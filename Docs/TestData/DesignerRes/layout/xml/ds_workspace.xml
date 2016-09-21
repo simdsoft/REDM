@@ -1,0 +1,15 @@
+﻿<sub>
+	<splitlayout pos="1,0,-10,-0" sliderwidth="4" clrbg="pbgra(44,44,44,44)"  cursor="png:ds_splith" clrslider="pbgra(22,22,22,ff)" bfirstchange="0" firstchildwidth="528">
+		<window clrbg="pbgra(5c,5c,5c,ff)"><!--第一个子split面板-->
+			<sub src="layout:ds_leftworkspace"/>
+		</window>
+		<splitlayout sliderwidth="4" cursor="png:ds_splith" clrslider="pbgra(22,22,22,ff)" firstchildwidth="950 ">
+			<window>
+				<sub src="layout:ds_midworkspace"/>
+			</window>
+			<window name="ds_right" clrbg="pbgra(33,33,33,ff)">
+				<sub src="layout:ds_rightworkspace"/>
+			</window>
+		</splitlayout>
+	</splitlayout>
+</sub>

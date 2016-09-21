@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<dm initsize="308,324" bresize="0" maxsize="-1,-1" alpha="255">
+	<root clrbg="pbgra(3a,3a,3a,ff)">
+		<window pos="0,0,-0,@33" bdrag="1">
+			<static pos="35,2,@102,@30" text="新建项目" align="left" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-21,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
+			<Static pos="5,4,@28,@27" skin="ds_opendir" />
+		</window>
+		<static pos="10,40,@30,@20" text="名称" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
+		<group pos="47,35,-10,@24" clrline="pbgra(cc,cc,cc,ff)" round="6" rcinset="4,2,4,2">
+			<edit name="ds_resnameedit" pos="0,0,-0,-0" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+		</group>
+		<static pos="10,70,@30,@20" text="目录" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
+		<group pos="46,66,-80,@24" clrline="pbgra(cc,cc,cc,ff)" round="6" rcinset="4,2,4,2">
+			<edit name="ds_respathedit" bReadOnly="1" pos="0,0,-0,-0" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+		</group>
+		<button name="ds_openrespath" pos="-78,66,@68,@24" text="打开目录" skin="ds_custombutton" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="rgba(ff,ff,ff,ff)" />
+		<button id="2" pos="-140,100,@60,@24" text="取消" skin="ds_custombutton" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="rgba(ff,ff,ff,ff)" />
+		<button id="1" pos="-70,100,@60,@24" text="确定" skin="ds_custombutton" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="rgba(ff,ff,ff,ff)" />
+		<window bdrag="1" pos="0,141,@133,@33">
+			<static pos="35,2,@102,@30" text="最近项目" align="left" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-21,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
+			<Static pos="5,4,@28,@27" skin="ds_opendir" />
+		</window>
+		<recentlist name="ds_recentlist" clritembg="pbgra(33,33,33,ff)" clritemtext="pbgra(ff,ff,ff,ff)" clritemselbg="pbgra(d1,d1,d1,ff)" cursel="0" itemheight="22" bhottrack="0" textpoint="10,-1" pos="4,174,@301,@120" clrbg="pbgra(33,33,33,ff)"/>
+		<button id="2"  pos="246,300,@60,@24" text="取消" skin="ds_custombutton" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="rgba(ff,ff,ff,ff)"/>
+	</root>
+</dm>

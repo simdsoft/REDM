@@ -1,0 +1,5 @@
+为实现简单换肤
+内置以下固定方式布局:
+1.固定两个文件夹:themes与layout，每个文件夹下均有一个dmindex.xml用于记录资源路径
+2.themes下dmindex.xml指定每个资源包的dmindex.xml所在位置
+3.theme文件夹，由dmindex.xml来指定，用于包含它们特例化的theme项

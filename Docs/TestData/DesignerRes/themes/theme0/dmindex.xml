@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="ds_closebutton" path="themes\theme0\image\ds_closebutton.png" />
+		<file name="ds_maxbutton" path="themes\theme0\image\ds_maxbutton.png" />
+		<file name="ds_restorebutton" path="themes\theme0\image\ds_restorebutton.png" />
+		<file name="ds_minbutton" path="themes\theme0\image\ds_minbutton.png" />
+		<file name="ds_menubg" path="themes\theme0\image\ds_menubg.png" />
+		<file name="ds_menuselbg" path="themes\theme0\image\ds_menuselbg.png" />
+		<file name="ds_menustep" path="themes\theme0\image\ds_menustep.png" />
+		<file name="ds_scrollbar" path="themes\theme0\image\ds_scrollbar.png" />
+		<file name="ds_toggle" path="themes\theme0\image\ds_toggle.png" />
+		<file name="ds_preview" path="themes\theme0\image\ds_preview.png" />
+		<file name="ds_comboxbtn" path="themes\theme0\image\ds_comboxbtn.png" />
+		<file name="ds_propcomboxbtn" path="themes\theme0\image\ds_propcomboxbtn.png" />
+		<file name="ds_custombutton" path="themes\theme0\image\ds_custombutton.png" />
+		<file name="ds_databutton" path="themes\theme0\image\ds_databutton.png" />
+		<file name="ds_checkbox" path="themes\theme0\image\ds_checkbox.png" />
+		<file name="ds_splith" path="themes\theme0\cur\ds_splith.png" />
+		<file name="ds_splitv" path="themes\theme0\cur\ds_splitv.png" />
+		<file name="ds_add" path="themes\theme0\cur\ds_add.png" />
+		<file name="ds_showeye" path="themes\theme0\image\ds_showeye.png" />
+		<file name="ds_lockeye" path="themes\theme0\image\ds_lockeye.png" />
+		<file name="ds_designbg" path="themes\theme0\image\ds_designbg.png" />
+		<file name="ds_imgeditbg" path="themes\theme0\image\ds_imgeditbg.png" />
+		<file name="ds_tool_move" path="themes\theme0\image\tools\ds_tool_move.png" />
+		<file name="ds_tool_selbk" path="themes\theme0\image\tools\ds_tool_selbk.png" />
+		<file name="ds_tool_selection" path="themes\theme0\image\tools\ds_tool_selection.png" />
+		<file name="ds_hoverframe" path="themes\theme0\image\ds_hoverframe.png" />
+		<file name="ds_addframe" path="themes\theme0\image\ds_addframe.png" />
+		<file name="ds_selframe" path="themes\theme0\image\ds_selframe.png" />
+		<file name="ds_attrname" path="themes\theme0\image\ds_attrname.png" />
+		<file name="ds_listbg" path="themes\theme0\image\ds_listbg.png" />
+		<file name="ds_listarr" path="themes\theme0\image\ds_listarr.png" />
+		<file name="ds_attreditframe" path="themes\theme0\image\ds_attreditframe.png" />
+		<file name="ds_tool_drag" path="themes\theme0\image\tools\ds_tool_drag.png" />
+		<file name="ds_drag_move" path="themes\theme0\image\ds_drag_move.png" />
+		<file name="ds_tool_add" path="themes\theme0\image\tools\ds_tool_add.png" />
+		<file name="ds_defbutton" path="themes\theme0\image\ds_defbutton.png" />
+		<file name="ds_expand" path="themes\theme0\image\ds_expand.png" />
+		<file name="ds_toolexpand" path="themes\theme0\image\ds_toolexpand.png" />
+		<file name="ds_w_Window" path="themes\theme0\image\widget\ds_w_Window.png" />
+		<file name="ds_w_Button" path="themes\theme0\image\widget\ds_w_Button.png" />
+		<file name="ds_w_Static" path="themes\theme0\image\widget\ds_w_Static.png" />
+		<file name="ds_w_Group" path="themes\theme0\image\widget\ds_w_Group.png" />
+		<file name="ds_w_CheckBox" path="themes\theme0\image\widget\ds_w_CheckBox.png" />
+		<file name="ds_w_Link" path="themes\theme0\image\widget\ds_w_Link.png" />
+		<file name="ds_w_Combobox" path="themes\theme0\image\widget\ds_w_Combobox.png" />
+		<file name="ds_w_HotKey" path="themes\theme0\image\widget\ds_w_HotKey.png" />
+		<file name="ds_w_IPAddress" path="themes\theme0\image\widget\ds_w_IPAddress.png" />
+		<file name="ds_w_RadioButton" path="themes\theme0\image\widget\ds_w_RadioButton.png" />
+		<file name="ds_w_SliderCtrl" path="themes\theme0\image\widget\ds_w_SliderCtrl.png" />
+		<file name="ds_w_ProcessCtrl" path="themes\theme0\image\widget\ds_w_ProcessCtrl.png" />
+		<file name="ds_w_TabCtrl" path="themes\theme0\image\widget\ds_w_TabCtrl.png" />
+		<file name="ds_w_ScrollBar" path="themes\theme0\image\widget\ds_w_ScrollBar.png" />
+		<file name="ds_w_RichEdit" path="themes\theme0\image\widget\ds_w_RichEdit.png" />
+		<file name="ds_w_Edit" path="themes\theme0\image\widget\ds_w_Edit.png" />
+		<file name="ds_w_ListBox" path="themes\theme0\image\widget\ds_w_ListBox.png" />
+		<file name="ds_w_TreeCtrl" path="themes\theme0\image\widget\ds_w_TreeCtrl.png" />
+		<file name="ds_w_HeaderCtrl" path="themes\theme0\image\widget\ds_w_HeaderCtrl.png" />
+		<file name="ds_w_ListCtrlEx" path="themes\theme0\image\widget\ds_w_ListCtrlEx.png" />
+		<file name="ds_w_Gif" path="themes\theme0\image\widget\ds_w_Gif.png" />
+		<file name="ds_opendir" path="themes\theme0\image\ds_opendir.png" />
+	</png>
+	<gif>
+		<file name="ds_scan_gif" path="themes\theme0\gif\scan.gif" />
+	</gif>
+</resource>

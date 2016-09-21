@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="closebutton" path="themes\theme0\image\closebutton.png" />
+		<file name="maxbutton" path="themes\theme0\image\maxbutton.png" />
+		<file name="restorebutton" path="themes\theme0\image\restorebutton.png" />
+		<file name="minbutton" path="themes\theme0\image\minbutton.png" />
+		<file name="custombutton" path="themes\theme0\image\custombutton.png" />
+	</png>
+</resource>

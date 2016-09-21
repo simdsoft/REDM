@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<resource>
+	<global>
+		<file name="ds_global" path="layout\xml\ds_global.xml" />
+	</global>
+	<layout>
+		<file name="ds_mainwnd" path="layout\xml\ds_mainwnd.xml" />
+		<file name="ds_toolbar" path="layout\xml\ds_toolbar.xml" />
+		<file name="ds_workspace" path="layout\xml\ds_workspace.xml" />
+		<file name="ds_leftworkspace" path="layout\xml\ds_leftworkspace.xml" />
+		<file name="ds_midworkspace" path="layout\xml\ds_midworkspace.xml" />
+		<file name="ds_rightworkspace" path="layout\xml\ds_rightworkspace.xml" />
+		<file name="ds_attr_name_panel" path="layout\xml\rightxml\ds_attr_name_panel.xml" />
+		<file name="ds_attr_host_panel" path="layout\xml\rightxml\ds_attr_host_panel.xml" />
+		<file name="ds_attr_widget_panel" path="layout\xml\rightxml\ds_attr_widget_panel.xml" />
+		<file name="ds_attr_pos_panel" path="layout\xml\rightxml\ds_attr_pos_panel.xml" />
+		<file name="ds_msgbox" path="layout\xml\ds_msgbox.xml" />
+		<file name="ds_scandlg" path="layout\xml\ds_scandlg.xml" />
+		<file name="ds_pooldlg" path="layout\xml\ds_pooldlg.xml" />
+		<file name="ds_skindlg" path="layout\xml\ds_skindlg.xml" />
+		<file name="ds_themedlg" path="layout\xml\ds_themedlg.xml" />
+		<file name="ds_imgdlg" path="layout\xml\ds_imgdlg.xml" />
+		<file name="ds_styledlg" path="layout\xml\ds_styledlg.xml" />
+		<file name="ds_expandwnd" path="layout\xml\ds_expandwnd.xml" />
+		<file name="ds_layoutdlg" path="layout\xml\ds_layoutdlg.xml" />
+		<file name="ds_attrtips" path="layout\xml\ds_attrtips.xml" />
+		<file name="ds_addtips" path="layout\xml\ds_addtips.xml" />
+		<file name="ds_menu_proj" path="layout\xml\menu\ds_menu_proj.xml" />
+		<file name="ds_add_dlg" path="layout\xml\ds_add_dlg.xml" />
+		<file name="ds_newdlg" path="layout\xml\ds_newdlg.xml" />
+	</layout>
+</resource>

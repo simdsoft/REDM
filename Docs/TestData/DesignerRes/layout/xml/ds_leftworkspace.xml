@@ -1,0 +1,22 @@
+﻿<sub>
+	<splitlayout pos="0,0,-0,-0" bvert="0" sliderwidth="4" clrbg="pbgra(44,44,44,44)" cursor="png:ds_splith" clrslider="pbgra(22,22,22,ff)" bfirstchange="0" firstchildwidth="264">
+		<window name="ds_lefttopview" clrbg="pbgra(33,33,33,ff)"><!--工程视图-->
+			<static pos="0,0,-0,26" clrbg="pbgra(22,22,22,ff)" text=" 工程视图" font="face:新宋体,size:14,weight:100" align="left" clrtext="pbgra(ff,ff,ff,ff)"/>
+			<dsprojtree name="ds_projtree" pos="0,26,-0,-0" brightclicksel="1" toggleskin="ds_toggle" childoffset="5" sbskin="ds_scrollbar" childoffset="5"
+			itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0">
+				
+			</dsprojtree>
+		</window>
+		<window name="ds_leftbtmview" clrbg="pbgra(33,33,33,ff)"><!--对象视图-->
+			<window pos="0,0,-0,26" clrbg="pbgra(22,22,22,ff)" text=" 对象视图" font="face:新宋体,size:14,weight:100" align="left" clrtext="pbgra(ff,ff,ff,ff)">
+				<checkbox pos="-80,4,@80,@18" name="ds_w_bpanel" text="支持panel" align="right" brightbox="1" checkskin="ds_checkbox"  clrtext="pbgra(ff,ff,ff,ff)" font="face:新宋体,size:14,weight:100" tiptext="支持显示面板子控件"/>
+			</window>
+			
+			<dsobjtree name="ds_objtree" pos="0,26,-0,-0" brightclicksel="1" toggleskin="ds_toggle" childoffset="5" sbskin="ds_scrollbar"
+			itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0"
+			lockskin="ds_lockeye" eyeskin="ds_showeye">
+				
+			</dsobjtree>
+		</window>
+	</splitlayout>
+</sub>

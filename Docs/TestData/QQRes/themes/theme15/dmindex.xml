@@ -1,0 +1,6 @@
+﻿<resource>  
+	<PNG>
+		<file name="bg" 				path="themes\theme15\image\bg.png"/>
+		<file name="preview" 			path="themes\theme15\image\preview.png"/>
+    </PNG>
+</resource>

@@ -1,0 +1,49 @@
+﻿<sub>
+	<tabctrl name="tabsubctrl" pos="0,0,-0,-0" tabalign="left" cursel="0" animateSteps="15"  font="face:宋体,size:12" skin="tab_pagebg" clrText="rgba(38,63,82,ff)" itemSize="78,26" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
+		<tabPage  itemskin="tab_item" animatetype="1" title="window" tiptext="window控件">	
+			<sub src="layout:widget_window"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="button" tiptext="button控件">	
+			<sub src="layout:widget_button"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="checkbox" tiptext="checkbox控件">	
+			<sub src="layout:widget_checkbox"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="radio" tiptext="radio控件">	
+			<sub src="layout:widget_radiobutton"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="tabctrl" tiptext="tabctrl控件">	
+			<sub src="layout:widget_tabctrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="listbox" tiptext="listbox控件">	
+			<sub src="layout:widget_listbox"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="combobox" tiptext="combobox控件">	
+			<sub src="layout:widget_combobox"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="edit" tiptext="edit控件">	
+			<sub src="layout:widget_edit"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="slidectrl" tiptext="slidectrl控件">	
+			<sub src="layout:widget_sliderctrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="processctrl" tiptext="processctrl控件">	
+			<sub src="layout:widget_processctrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="treectrl" tiptext="treectrl控件">	
+			<sub src="layout:widget_treectrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="headerctrl" tiptext="headerctrl控件">	
+			<sub src="layout:widget_headerctrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="splitter" tiptext="splitter布局">	
+			<sub src="layout:widget_splitter"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="hotkey" tiptext="hotkey控件">	
+			<sub src="layout:widget_hotkeyctrl"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="ipaddress" tiptext="ipaddress控件">	
+			<sub src="layout:widget_ipaddressctrl"/>
+		</tabPage>
+	</tabctrl>
+</sub>

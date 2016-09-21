@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<root>
+	<DUIStyleAttr 
+	STRING_id="styleID,相当于窗口的name，唯一标识,示例:id=style" 
+	SKIN_skin="窗口的style背景图,示例:skin=checkbox" 
+	SKIN_ncskin="窗口的styleNC背景图,仅在设置了ncmargin时有效,示例:ncskin=dui_frame" 
+	RECT_ncmargin="{0,0,0,0}窗口的style非客户区四边距,示例:ncmargin=2,2,2,2" 
+	STRING_cursor="{arrow}窗口的style默认光标,示例:cursor=hand" 
+	COLOR_clrbg="{pbgra(ff,ff,ff,00)}窗口的style默认背景色,在背景图为空时使用,示例:clrbg=pbgra(ff,00,ff,ff)" 
+	COLOR_clrbghover="{pbgra(ff,ff,ff,00)}窗口的style默认hover背景色,在背景图为空时使用,示例:clrbghover=pbgra(ff,00,ff,ff)" 
+	COLOR_clrbgpush="{pbgra(ff,ff,ff,00)}窗口的style默认push背景色,在背景图为空时使用,示例:COLOR_clrbgpush=pbgra(ff,00,ff,ff)" 
+	COLOR_clrbgdisable="{pbgra(ff,ff,ff,00)}窗口的style默认disable背景色,在背景图为空时使用,示例:COLOR_clrbgdisable=pbgra(ff,00,ff,ff)" 
+	COLOR_clrbgnoactive="{pbgra(ff,ff,ff,00)}窗口的style默认noactive背景色,在背景图为空时使用,示例:COLOR_clrbgnoactive=pbgra(ff,00,ff,ff)" 
+	COLOR_clrnc="{pbgra(ff,ff,ff,00)}窗口的style默认NC背景色,在NC背景图为空时使用,示例:clrnc=pbgra(ff,00,ff,ff)" 
+	COLOR_clrnchover="{pbgra(ff,ff,ff,00)}窗口的style默认NC hover背景色,在NC背景图为空时使用,示例:clrnchover=pbgra(ff,00,ff,ff)" 
+	COLOR_clrncpush="{pbgra(ff,ff,ff,00)}窗口的style默认NC push背景色,在NC背景图为空时使用,示例:clrncpush=pbgra(ff,00,ff,ff)" 
+	COLOR_clrncdisable="{pbgra(ff,ff,ff,00)}窗口的style默认NC disable背景色,在NC背景图为空时使用,示例:clrncdisable=pbgra(ff,00,ff,ff)" 
+	COLOR_clrncnoactive="{pbgra(ff,ff,ff,00)}窗口的style默认NC noactive背景色,在NC背景图为空时使用,示例:clrncnoactive=pbgra(ff,00,ff,ff)" 
+	BYTE_alpha="{255}窗口的style透明度,会在背景图或背景色的alpha值再次预乘,示例:alpha=0x80" 
+	COLOR_clrtext="{pbgra(00,00,00,ff)}窗口的style默认normarl文本色,示例:clrtext=pbgra(ff,00,ff,ff)" 
+	COLOR_clrtexthover="{pbgra(ff,ff,ff,00)}窗口的style默认hover文本色,示例:clrtexthover=pbgra(ff,00,ff,ff)" 
+	COLOR_clrtextpush="{pbgra(ff,ff,ff,00)}窗口的style默认push文本色,示例:clrtextpush=pbgra(ff,00,ff,ff)" 
+	COLOR_clrtextdisable="{pbgra(ff,ff,ff,00)}窗口的style默认disable文本色,示例:clrtextdisable=pbgra(ff,00,ff,ff)" 
+	COLOR_clrtextnoactive="{pbgra(ff,ff,ff,00)}窗口的style默认noactive文本色,示例:clrtextnoactive=pbgra(ff,00,ff,ff)" 
+	FONT_font="窗口的style默认normarl字体,示例:font=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	FONT_fonthover="窗口的style默认hover字体,示例:fonthover=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	FONT_fontpush="窗口的style默认push字体,示例:fontpush=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	FONT_fontdisable="窗口的style默认disable字体,示例:fontdisable=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作" 
+	FONT_fontnoactive="窗口的style默认noactive字体,示例:fontnoactive=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作" 
+	INT_textmode="窗口的style默认textalign,使用数字表示,示例textmode=0x100" 
+	OPTION_align="{center}窗口的style默认水平align,left对应Align_Left,center对应Align_Center,right对应Align_Right,示例align=left" 
+	OPTION_valign="{middle}窗口的style默认竖直align,top对应VAlign_Left,middle对应VAlign_Middle,bottom对应VAlign_Bottom,示例valign=left" 
+	bool_bdot="{0}窗口的style默认文本过长时使用...,示例bdot=1"
+	/>
+
+	<DUIFlowLayoutAttr 
+	INT_childpaddlen="子控件之间的额外间距,示例childpaddlen=10" 
+	/>
+	
+	<DUITabLayoutAttr 
+	SIZE_itemsize="控件的大小,示例itemsize=35,25" 
+	/>
+	
+	<DUIWrapLayoutAttr
+	INT_colcount="一行的控件数目,示例colcount=10" 
+	/>
+	
+	<DUISplitLayoutAttr
+	bool_bvert="{0}是否是竖直的,示例:bvert=1" 
+	bool_bfirstchange="{1}当整个外部窗口size变化时，第一个窗口变化,示例:bfirstchange=1" 
+	INT_firstchildwidth="{20}第一个窗口的开始宽度,示例:firstchildwidth=100"
+	SKIN_sliderskin="中间可拖动块的皮肤,示例:sliderskin=sliderskin"
+	COLOR_clrslider="{pbgra(ff,ff,ff,00)}中间可拖动块的背景色,示例:clrslider=pbgra(ff,ff,ff,ff)" 
+	INT_sliderwidth="{1}中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth=10" 
+	/>
+	
+	<DUIButtonAttr 
+	bool_banimate="{0}是否启用渐显示动画,示例:banimate=1"
+	INT_animatesteps="{20}在启用渐显示动画时,设置分多少次显示(每次间隔10ms）,示例:animatesteps=1"
+	bool_bmultilines="{0}是否支持多行,示例:bmultilines=1" 
+	INT_lineinter="{5}在多行下,设置行间距,示例:lineinter=1"
+	SKIN_iconskin="icon图,如使用了icon图,则text不再绘制,示例:iconskin=PNG:iconbtn"
+	ACCEL_accel="加速键,btn使用加速键触发点击消息,示例:accel=ctrl+enter" 
+	/>
+	<DUIScrollBaseAttr
+	SKIN_sbskin="滚动条图片,示例:sbskin=ScrollBar" 
+	INT_sbwidth="{-1}滚动条的宽度，默认为16,示例:sbwidth=16" 
+	INT_arrowwidth="{-1}上下（左右）箭头的高度(宽度),示例:arrowwidth=10"
+	OPTION_sbenable="{3}是否启用滚动条,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT,示例:sbenable=1" 
+	SIZE_range="{-1,-1}滚动范围,示例:range=1,100" 
+	POINT_curpos="{0,0}当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos=10,20"
+	bool_bnowheelscroll="{0}禁用滚轮滚动，示例:bnowheelscroll=1" 
+	/>
+	<DUITabPageAttr 
+	OPTION_animatetype="{0}动画类型,示例:animatetype=1,1:边展开,2:中心扩大,3:中心缩小"
+	STRING_title="tab页的标题,示例：title=标签1" 
+	SKIN_itemskin="标签项的皮肤，示例: itemskin=skin" 
+	/>
+	<DUITabCtrlAttr
+	POINT_textpoint="{-1,-1}相对于主标签区域的左上角偏移，默认为-1，-1，其中-1表示此方向居中，示例textpoint=-1,-1"
+	OPTION_tabalign="{top}tab页的排列方式,分为top、left、right、buttom,示例:tabalign=top"
+	SKIN_mainbgskin="整个item(标签列表)所在区的背景,不包括page区,示例:mainbgskin=TabCtrl_Item"
+	SKIN_itembgskin="每个item(标签)的skin，即在DUITabPageAttr::SKIN_itemskin之下先绘一次,用于所有item的hover-sel为同一状态时简化截图,示例:itembgskin=skin"
+	INT_firstitemoffset="{0}第一个Item(标签)的相对于边框的偏移，示例:firstitemoffset=10"
+	INT_itemspace="{0}Item之间的间距，示例:itemspace=10" 
+	INT_cursel="{0}当前选中项, 示例:cursel=1" 
+	INT_animatesteps="{0}整个动画图以多少次渐渐显示出来, 仅在设置了动画类型时有效，示例:animatesteps=20" 
+	SIZE_itemsize="Item(标签)项的大小，示例:itemsize=78,30" 
+	/>
+	<DUITreeCtrlAttr
+	SKIN_toggleskin="展开、收起小三角图案,示例:toggleskin=treetoggle" 
+	SKIN_checkskin="选中、不选中图案,用于启用了checkbox状态，示例:checkskin=treecheck" 
+	SKIN_iconskin="ICON连图，示例：iconSkin=menuicons" 
+	SKIN_itembgskin="项所在的背景图案,示例:itembgskin=itembgskin"
+	SKIN_itemhoverskin="停留项的背景图案,示例:itemhoverskin=itembgskin" 
+	SKIN_itemselskin="选中项的背景图案,示例:itemselskin=itemselskin" 
+	INT_childoffset="{16}子项相对于父项的偏移,示例:childoffset=20" 
+	INT_itemheight="{20}每项高度,示例:itemheight=20" 
+	INT_itemmargin="{4}项的左右空白,示例:itemmargin=5" 
+	COLOR_clritembg="{pbgra(ff,ff,ff,ff)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,ff)}item项的停留背景色,示例:clritemhoverbg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemselbg="{pbgra(88,00,00,ff)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemtext="{pbgra(00,00,00,ff)}item项的文本色,示例:clritemtext=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemhovertext="{pbgra(00,00,00,ff)}item项的停留文本色,示例:clritemhovertext=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemseltext="{pbgra(CC,CC,CC,ff)}item项的选中文本色,示例:clritemseltext=pbgra(ff,ff,ff,ff)" 
+	bool_bcheckbox="是否启用checkbox,示例:bcheckbox=1" 
+	bool_brightclicksel="是否支持右击选中,示例:brightclicksel=1"
+	bool_bhover="{1}是否支持hover,默认支持，面板中处理hover会出现透明，示例:bhover=1" 
+	/>
+	
+	<DUIListBoxAttr 
+	INT_itemheight="{20}项的默认高度,默认为20,示例:itemheight=20" 
+	POINT_iconpoint="{-1,-1}相对于Item的左上角偏移,默认为-1，-1，其中-1表示使用默认高度的1/6,示例:iconpoint=-1,-1"
+	POINT_textpoint="{-1,-1}相对于Item的左上角偏移，默认为-1，-1，其中-1表示此方向居中,示例:textpoint=-1,-1"
+	SKIN_iconskin="每项自带的ICON图案,一般为状态连图,示例:iconskin=skin"
+	SKIN_itembgskin="项所在的背景图案,示例：itembgskin=skin"
+	COLOR_clritembg="{pbgra(ff,ff,ff,00)}单数项item的背景色,示例:clritembg=pbgra(FF,FF,FF,FF)"
+	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,00)}双数项item的背景色,如不设置,则默认使用单数项的背景色,示例:clritembg2=pbgra(FF,FF,cc,FF)"
+	COLOR_clritembg2="{pbgra(ff,ff,ff,00)}item项的hover背景色,示例:clritemhoverbg=pbgra(ff,00,00,ff)"
+	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,00,00,ff)" 
+	COLOR_clritemtext="{pbgra(ff,ff,ff,00)}item项的文本色,示例:clritemtext=pbgra(ff,00,00,ff)" 
+	COLOR_clritemhovertext="{pbgra(ff,ff,ff,00)}item项的hover文本色,示例:clritemhoverext=pbgra(ff,00,00,ff)"
+	COLOR_clritemseltext="{pbgra(ff,ff,ff,00)}item项的选中文本色,示例:clritemseltext=pbgra(ff,00,00,ff)"
+	bool_bhottrack="{0}让指针下的项自动追踪选中显示,示例:bhottrack=1"
+	INT_cursel="{-1}此项为选中项，示例:cursel=1" 
+	/>
+	
+	<DUIListBoxExAttr
+	INT_itemheight="{20}项的默认高度,此值不支持动态变化,示例:itemheight=10"
+	INT_cursel="{-1}当前选项,示例:cursel=1"
+	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)"
+	bool_bnodrawbg="为QQdemo设置，不抓取背景，不然可能透明" 
+	/>
+	
+	<DUIRichEditAttr 
+	INT_editstyle="{0xC0}通过值来设置richedit属性，如ES_MULTILINE=0x4,示例:editstyle=0x4" 
+	INT_maxbuf="{32767}设置edit最大字符数，示例:maxbuf=100" 
+	bool_bautosel="{0}每次进入，默认选中所有内容，示例:bautosel=1"
+	bool_brichtext="{1}RichEdit模式，示例:brichtext=1"
+	bool_bwordwrap="{0}在多行状态下支持自动换行，示例:bwordwrap=1" 
+	bool_ballowbeep="If TRUE, beeping is enabled，示例:ballowbeep=1" 
+	bool_bautowordsel="{1}在选中文本时，如为true,在结尾自动选中到行头，示例:bautowordsel=1"
+	bool_bsinglevcenter="{0}单行居中模式,仅在bmultilines=0且brichtext=0的状态下生效，示例:bsinglevcenter=1"
+	bool_bmultilines="{0}多行模式.示例:bmultilines=1"
+	RECT_rcinsertmargin="{2,2,2,2}字符串显示区四边框值.示例:rcinsertmargin=2,2,2,2"
+	COLOR_clrtext="{00,00,00,ff}默认文本颜色，和style的clrtext相同作用.示例:clrtext=pbgra(00,00,00,ff)" 
+	OPTION_align="{left}段落排布，和style的align相同作用,默认left,可设置center,right,示例:align=left" 
+	FONT_font="默认文本字体,和style的font相同作用.示例:font=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作" 
+	bool_bhscroll="显示水平滚动条,示例:bhscroll=1"
+	bool_bvscroll="显示竖直滚动条,示例:bvscroll=1"
+	bool_bautohscroll="支持水平滚动条自动滚动,示例:bautohscroll=1"
+	bool_bautovscroll="支持竖直滚动条自动滚动,示例:bautovscroll=1"
+	bool_breadonly="只读，此时插入符仍会出现,示例:breadonly=1" 
+	bool_bwantreturn="回车换行，不然如果外部对它处理了，可能是exe退出,示例:bwantreturn=1"
+	bool_bpassword="加密显示，默认都以*显示,示例:bpassword=1" 
+	CHAR_passwordchar="配合加密，加密显示字符，取第一个字符，如为空，则使用默认*,示例:passwordchar=#" 
+	bool_bnumber="仅支持数字输入，此时无滚动条显示,示例:bnumber=1" 
+	bool_benabledrag="{1}支持内容拖拽，默认支持,示例:benabledrag=1" 
+	COLOR_clrcaret="{pbgra(00,00,00,ff)}光标颜色,示例:clrcaret=pbgra(ff,ff,ff,ff)" 
+	INI_caretanimatecount="{6}光标渐隐渐显次数，1次为正常状态，默认为6次,示例:caretanimatecount=6" 
+	/>
+	<DUIEditAttr
+	SKIN_surfaceskin="表层背景皮肤，示例:surfaceskin=editskin" 
+	STRING_surfacetext="表层文字，当真实文字为空时，表层文字出现，示例:surfacetext=this is edit" 
+	COLOR_surfacetextclr="{pbgra(cc,cc,cc,ff)}表层文字背景，示例:surfacetextclr=pbgra(00,00,ff,ff)" 
+	FONT_surfacefont="表层文字字体，示例:surfacefont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1" 
+	/>
+	
+	<DUIStaticAttr 
+	bool_bmultiLines="{0}是否支持多行,示例:bmultiLines=1" 
+	INT_lineinter="{5}行间距,默认为5，示例:lineinter=5" 
+	/>
+	
+	<DUILinkAttr 
+	STRING_href="设置链接，点击后触发,示例:href=www.hgy413.com" 
+	/>
+	
+	<DUIComboBoxBaseAttr
+	bool_bhideedit="{1}是否不显示edit,示例：bhideedit=1"
+	INT_dropheight="{200}下拉高度,取listbox的高度和此设置值的较小值显示,默认200，示例：dropheight=200" 
+	INT_animatetime="{200}下拉出来的时间，用于AnimateWindow,默认200,为0表示不使用下拉动画，示例：animatetime=200" 
+	SKIN_btnskin="下拉的小三角按钮皮肤，示例:btnskin=skinbtn" 
+	SIZE_btnsize="{-1,-1}下拉小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize=-1,-1"
+	INT_cursel="{-1}当前选中项，示例:cursel=1" 
+	INT_textoffset="文本的偏移，默认为0,示例:textoffset=10" 
+	bool_bdroptranslucent="下拉列表窗口是否支持透明,默认为不透明,示例:bdroptranslucent=0"
+	/>
+	<DUIGifAttr
+	GIF_gifskin="gif的资源，不是通过skin指定，而是直接通过文件标识指定,或以文件绝对路径指定,示例:gifskin=gif:4_gif,gifskin=c:\1.gif" 
+	bool_badjust="{1}是否调整使图片自适应尺寸，也就是图片保持比例缩放，不会变形，默认为true,示例:badjust=1" 
+	bool_bcalcclip="{0}计算并自动调整clip区包含整个绘制区,会损失绘制效率，适用于gif控件中包含子gif控件,如果子gif透明，则每次刷新只是父gif的一部分,示例:bcalcclip=1" 
+	/>
+	<DUIIEAttr
+	STRING_url="指定IE的默认加载URL,示例:url=www.baidu.com" 
+	bool_bshowscroll="是否显示或隐藏IE滚动条" 
+	ACCEL_refreshkey="刷新快捷捷,示例:accel=ctrl+f5"
+	/>
+	<DUIHeaderCtrlAttr
+	SKIN_itemskin="item状态图,示例:itemskin=itemskin" 
+	SKIN_sortskin="默认的sort状态图(小三角),示例:sortskin=sortskin"
+	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)"
+	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,00)}item项的停留背景色,示例:clritemhoverbg=pbgra(ff,ff,ff,ff)"
+	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的按下背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)"
+	RECT_rcitemmargin="item项的四边框,意思先缩小四边,再绘skin或颜色,示例:rcitemmargin=0,0,0,0"
+	INT_itemdelta="{4}每个Item自己左右的差值距离,示例:itemdelta=2"
+	bool_bfixwidth="固定宽度，默认是可变宽度的,示例:bfixwidth=1"
+	bool_bswap="{1}允许交换列,允许拖动交换列,示例:bswap=1"
+	bool_bsort="{1}允许排序sort,配合list发送排序消息,示例:bsort=1" 
+	/>
+	<DUIListCtrlExAttr
+	INT_headerheight="{20}列表头的高度,示例:headerheight=20" 
+	INT_itemheight="{20}项的默认高度,此值不支持动态变化,示例:itemheight=20" 
+	INT_cursel="当前选中项,示例:cursel=1" 
+	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)" 
+	bool_bhottrack="让指针下的项目自动高亮显示,示例:bhottrack=1" 
+	/>
+	
+	<DUIGroupAttr 
+	INT_round="{4}设置group的圆角半径大小,示例:round=4" 
+	INT_linewid="{1}线条的宽度,示例:linewid=1"
+	RECT_rcinset="{10,20,10,10}设置group的子窗口和外框的四边距,示例:rcinset=10,5,5,5"
+	COLOR_clrline="{pbgra(e2,b2,3e,ff)}设置group的线颜色,示例:clrline=pbgra(ff,00,00,80)" 
+	/>
+	
+	<DUICheckBoxAttr
+	bool_brightbox="{0}box图标是否在右边,示例:brightbox=1" 
+	bool_bmultilines="{0}是否支持多行,示例:bmultilines=1" 
+	INT_lineinter="{5}在多行下,设置行间距,示例:lineinter=1" 
+	SKIN_checkskin="check图,8分图或2分图或1分图,8分图,前4为未选中四种状态，后4为选中时四种状态,示例:checkskin=PNG:checkbox" 
+	SKIN_iconskin="icon图,如使用了icon图,则text不再绘制,示例:iconskin=PNG:iconbtn" 
+	INT_textoffset="{0}文本距离icon的偏移，默认为0,示例:textoffset=10" 
+	/>
+	
+	<DUIRadioButtonAttr 
+	bool_bautogroup="{1}是否自动加入组,同一个父窗口下的组radio不会被tab切换焦点,示例:bautogroup=1" 
+	bool_brightbox="{0}box图标是否在右边,示例:brightbox=1" 
+	bool_bmultilines="{0}是否支持多行,示例:bmultilines=1" 
+	INT_lineinter="{5}在多行下,设置行间距,示例:lineinter=1" 
+	SKIN_radioskin="radio图,8分图或2分图或1分图,前4为未选中四种状态，后4为选中时四种状态,示例:radioskin=PNG:radiobutton" 
+	SKIN_iconskin="icon图,如使用了icon图,则text不再绘制,示例:iconskin=PNG:iconbtn" 
+	INT_textoffset="文本距离icon的偏移，默认为0,示例:textoffset=10" 
+	/>
+	
+	<DUISliderCtrlAttr 
+	STRING_tipformat="tip提示语的设置格式,示例:tipformat=this is%d" 
+	SIZE_range="{0,100}范围最小值,最大值,示例:range=0,100"
+	INT_value="{0}范围当前值,示例:value=0" 
+	INT_thumbwidth="{0}thumb宽度,示例:thumbwidth=10"
+	INT_channelhei="{4}channel高度,示例:channelhei=10"
+	bool_bvert="是否是水平的,示例:bvert=1" 
+	SKIN_channelskin="channel图,示例:channelskin=PNG:channel" 
+	COLOR_clrchannel="channel颜色,在channel图无效时使用,示例:clrchannel=pbgra(ff,ff,ff,ff)"
+	SKIN_thumbskin="thumb图,示例:thumbskin=PNG:iconbtn"
+	COLOR_clrthumb="thumb颜色,在thumb图无效时使用,示例:clrthumb=pbgra(ff,ff,ff,ff)"
+	bool_bshowtip="是否显示tip,示例:bshowtip=1" 
+	/>
+	
+	<DUIProcessCtrlAttr
+	SIZE_range="{0,100}范围最小值,最大值,示例:range=0,100" 
+	INT_value="{0}范围当前值,示例:value=0"   
+	bool_bvert="是否是水平的,示例:bvert=1" 
+	SKIN_channelskin="channel图,示例:channelskin=PNG:channel" 
+	COLOR_clrchannel="channel颜色,在channel图无效时使用,示例:clrchannel=pbgra(ff,ff,ff,ff)"
+	SKIN_selskin=" 选中部分图,示例:selskin=PNG:iconbtn" 
+	COLOR_clrsel="选中颜色,在选中图无效时使用,示例:clrsel=pbgra(ff,ff,ff,ff)"
+	bool_bshowtip="是否显示tip" 
+	STRING_textformat="需要显示的进度文字format,示例:textformat=进度:%d" 
+	/>
+	
+	<DUIHotKeyCtrlAttr 
+	COLOR_clrcaret="光标颜色,示例:clrcaret=pbgra(ff,ff,ff,ff)"
+	INI_caretanimatecount="光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount=6" 
+	/>
+	
+	<DUIPAddressCtrlAttr
+	COLOR_clrdot="{pbgra(ff,00,00,ff)}dot颜色,示例:clrdot=pbgra(ff,ff,ff,ff)" 
+	COLOR_clrtext="{pbgra(00,00,00,ff)}默认文本颜色，和style的clrtext相同作用.示例:clrtext=pbgra(00,00,00,ff)" 
+	COLOR_clrcaret="{pbgra(00,00,00,ff)}光标颜色,示例:clrcaret=pbgra(ff,ff,ff,ff)" 
+	INI_caretanimatecount="{6}光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount=6" />
+	
+	<DUITreeCtrlExAttr
+	SKIN_toggleskin="展开、收起小三角图案,六种状态(收起三种+展开三种),示例:toggleskin=treetoggle" 
+	SKIN_checkskin="选中、不选中，半选中图案,用于启用了checkbox状态，9种状态(正常三种+选中三种+半选中三种),示例:checkskin=treecheck" 
+	SKIN_itembgskin="项所在的背景图案,正常/停留/选中,示例:itembgskin=itembgskin" 
+	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,00)}item项的停留背景色,示例:clritemhoverbg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)" 
+	INT_childoffset="{16}子项相对于父项的偏移,可被具体项覆盖,示例:childoffset=20" 
+	INT_itemheight="{20}每项高度,可被具体项覆盖,示例:itemheight=20" 
+	INT_itemwidth="{50}每项宽度,可被具体项覆盖,示例:itemwidth=20" 
+	bool_brightclicksel="是否支持右击选中,示例:brightclicksel=1" 
+	bool_bcheckbox="是否启用checkbox,示例:bcheckbox=1" 
+	/>
+	
+	<DUIWindowAttr
+	bool_bvisible="{1}窗口是否可见,示例:bvisible=1" 
+	bool_bdisable="{0}窗口是否禁用,示例:bdisable=1" 
+	bool_bplaceholder="{1}窗口隐藏时是否占位,默认是占位!,不占位时启动重新布局,注意流式布局子控件隐藏时同样使用占位,示例:bplaceholder=1" 
+	bool_bcache="{0}支持窗口内容的Cache标志,缓存画布建议用在不经常改变大小、背景色的地方,示例:bcache==1" 
+	bool_bolnydrawclient="{0}是否仅绘制客户区,示例:bolnydrawclient=1" 
+	bool_bfocusable="{0}窗口是否可获得焦点,焦点窗口可使用tab切换窗口，示例:bfocusable==1" 
+	bool_bshowdrawfocus="{0}在有焦点窗口时,是否绘制焦点框，示例:bshowdrawfocus==1" 
+	bool_bmsgnohandle="{0}窗口是否不处理消息,如为true,在hittest中会直接忽视这个窗口,用于static等.示例:bmsgnohandle==1" 
+	bool_bdrag="{0}窗口是否可拖动. 设置caption可拖动状态,示例:bdrag=1" 
+	STRING_style="指定使用的style,示例:style=custom"
+	STRING_text="窗口文本,示例:text=OK" 
+	STRING_tiptext="窗口tooltip提示语，示例:tiptext=close" 
+	STRING_tipxmlid="窗口tips的xmlid,示例:tipxmlid=dui_tips1" 
+	INT_tipdelay="{500}窗口tooltip提示语延迟显示时间(默认500ms)，示例:tipdelay=10" 
+	INT_tipspan="{5000}窗口tooltip提示语显示停留时间(默认5000ms)，示例:tipspan=10" 
+	RECT_tipflags="{-1,0,0,0}类似TrackPopupMenu的参数，前三项分别代表UINT uFlags, int x, int y，默认uFlags为-1,则无视此参数,示例:tipflags=0,100,10,0" 
+	INT_maxwidth="{-1}仅用于流式布局的子控件,窗口的最大宽度,为-1表示使用自动计算,示例:maxwidth=10" 
+	INT_minwidth="{-1}仅用于流式布局的子控件,窗口的最大小度,为-1表示使用自动计算,示例:INT_minwidth=10" 
+	INT_maxheight="{-1}仅用于流式布局的子控件,窗口的最大高度,为-1表示使用自动计算,示例:maxheight=10" 
+	INT_minheight="{-1}仅用于流式布局的子控件,窗口的最小高度,为-1表示使用自动计算,示例:minheight=10" 
+	INT_width="{-1}仅用于流式布局的子控件,窗口的正常宽度,为-1表示使用自动计算,示例:width=10" 
+	INT_height="{-1}仅用于流式布局的子控件,窗口的正常高度,为-1表示使用自动计算,示例:height=10" 
+	RECT_rcpadd="{0,0,0,0}仅用于流式布局的子控件,窗口的四个边的外边距,相当于把窗口四边扩大rcpadd，再放置到流式布局中,示例:rcPadd=10,5,5,5" 
+	/>
+	
+	<DMHWndAttr 
+	SIZE_initsize="{200,200}如果创建窗口时传入的size为0，则使用它创建窗口初始大小, 示例:initsize=800,572" 
+	SIZE_minsize="{0,0}最小大小, 示例:minsize=600,500" 
+	RECT_maxinset="{0,0,0,0}全屏时，周边预留大小,可设置负值 示例:maxinset=50,50,50,50" 
+	SIZE_maxsize="{-1,-1}最大大小，示例:maxsize=800,800，-1表示不做限制" 
+	STRING_title="窗口标题，默认不会显示出来 示例:title=dmmagic" 
+	STRING_regtip="使用的默认tip注册类名,为NULL使用默认 示例:regtip=dui_tip" 
+	STRING_regdraw="使用的默认draw注册类名,为NULL使用默认 示例:regdraw=dui_draw"
+	bool_bresize="窗口可改变大小,示例:bresize=1" 
+	bool_btranslucent="窗口使用UpdateLayeredWindow更新,示例:btranslucent=1"	
+	BYTE_alpha="{255}窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha=0xc0" 
+	INT_h="{0}hsl变换中h,值必须为[-180,180],代表的是人眼所能感知的颜色范围,0为默认值，h=-10" 
+	INT_s="{100}hsl变换中s,值必须为[0,200],色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳,示例:s=10" 
+	INT_l="{100}hsl变换中l,值必须为[0,200],指的是色彩的明度,100为默认值，数值越大，越接近于白色,示例:l=10" 
+	/>
+
+</root>

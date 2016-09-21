@@ -1,0 +1,5 @@
+﻿<sub>
+	<group name="group-IPAddress" pos="0,0,-0,-0" text="hotkey" align="right">
+		<ipaddress name="ipaddress" pos="0,0,@220,@20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrdot="pbgra(ff,ff,ff,ff)" clrtext="pbgra(ff,ff,ff,ff)" clrcaret="pbgra(ff,ff,ff,ff)"/>
+	</group>
+</sub>

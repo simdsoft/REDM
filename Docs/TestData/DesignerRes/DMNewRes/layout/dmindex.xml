@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<resource>
+	<global>
+		<file name="global" path="layout\xml\global.xml" />
+	</global>
+	<layout>
+		<file name="main" path="layout\xml\main.xml" />
+	</layout>
+</resource>

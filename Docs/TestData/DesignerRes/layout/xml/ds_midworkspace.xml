@@ -1,0 +1,10 @@
+﻿<sub>
+	<window pos="0,0,-0,37" clrbg="pbgra(22,22,22,ff)" font="face:新宋体,size:14,weight:100" align="left" clrtext="pbgra(ff,ff,ff,ff)">	
+		<checkbox pos="0,0,@145,@37" name="ds_w_widget" text="Button" align="left" checkskin="ds_w_Button" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Button"/>
+	</window>
+	<dsobjeditor name="ds_objeditor" pos="0,38,-0,-0" skin="ds_designbg" sbskin="ds_scrollbar" arrowwidth="0">
+		<static  name="ds_hoverframe" bvisible="0" skin="ds_hoverframe" pos="0,0,@200,@300"/>
+		<static  name="ds_selframe" bvisible="0" skin="ds_selframe" pos="0,0,@200,@300"/>
+		<duidragframe name="ds_dragframe"  bvisible="0" pos="0,0,@200,@300"/>
+	</dsobjeditor>
+</sub>

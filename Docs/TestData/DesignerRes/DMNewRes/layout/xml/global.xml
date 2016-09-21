@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<global font="face:宋体,size:14,weight:400,charset:0,underline:0,italic:0,strike:0">
+	<skin name="baseskin">
+		<imglist id="closebutton" src="PNG:closebutton" states="3" commit="关闭" />
+		<imglist id="maxbutton" src="PNG:maxbutton" states="3" commit="最大化" />
+		<imglist id="restorebutton" src="PNG:restorebutton" states="3" commit="恢复" />
+		<imglist id="minbutton" src="PNG:minbutton" states="3" commit="最小化" />
+		<imglist id="custombutton" src="png:custombutton" states="3" commit="通用按钮"/>
+	</skin>
+	<style />
+</global>
