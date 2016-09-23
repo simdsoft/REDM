@@ -25,6 +25,6 @@ DM库需要遵守什么开源协议？
   无任何协议，无论个人，团体，公司，都可以随意使用，修改，COPY DM库，开源的目的不是为了强制你使用这个库，如果你能从这个库中拿到你需要的代码，这也是OK的
   
 --->QQ群技术支持:
-  qq群：336721552
+  qq群：[336721552](http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8)
 DM库GIT路径:
     https://git.oschina.net/hgy413/REDM.git
