@@ -133,7 +133,7 @@ namespace DM
 	{
 		for (int i=0;i<4;i++)
 		{
-			m_pEdit[i]->SetWindowText(L'');
+			m_pEdit[i]->SetWindowText(L"");
 		}
 	}
 

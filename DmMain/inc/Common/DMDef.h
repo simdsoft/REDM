@@ -173,6 +173,10 @@ enum DMOLEDCFLAGS
 #define    IsValidString(x)							((x) && (x)[0])
 #endif
 
+#ifndef    __STR2WSTR
+#define	   __STR2WSTR(str)						     L##str
+#endif
+
 #define    DMABS(x)                                 ((x)>=0?(x):-(x))
 
 // ----------------------------------------------------

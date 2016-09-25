@@ -44,7 +44,7 @@ namespace DMAttr
 
 namespace DM
 {
-#define POSFLAG_NULL           L''			 // 正常坐标,负号表示以右(下)为参考
+#define POSFLAG_NULL           L""			 // 正常坐标,负号表示以右(下)为参考
 #define POSFLAG_REFCENTER      L'|'          // 参考父窗口中心
 #define POSFLAG_PERCENT        L'%'          // 采用在父窗口的百分比定义坐标
 #define POSFLAG_REFPREV_NEAR   L'['          // 参考前一个兄弟窗口与自己近的边

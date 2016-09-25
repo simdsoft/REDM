@@ -34,7 +34,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,CMAKE_INTDIR=\&quot;Debug\&quot;"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/Debug/gtest_d.pdb"
+				ProgramDataBaseFileName="../../bin/Debug/gtest_d.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -86,7 +86,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,CMAKE_INTDIR=\&quot;Release\&quot;"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/Release/gtest.pdb"
+				ProgramDataBaseFileName="../../bin/Release/gtest.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -138,7 +138,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/MinSizeRel/gtest.pdb"
+				ProgramDataBaseFileName="../../bin/MinSizeRel/gtest.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -191,7 +191,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/RelWithDebInfo/gtest.pdb"
+				ProgramDataBaseFileName="../../bin/RelWithDebInfo/gtest.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>

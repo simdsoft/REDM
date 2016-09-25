@@ -33,7 +33,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,NO_FSEEKO,_CRT_SECURE_NO_DEPRECATE,_CRT_NONSTDC_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/Debug/zlib_d.pdb"
+				ProgramDataBaseFileName="../../bin/Debug/zlib_d.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -84,7 +84,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,NO_FSEEKO,_CRT_SECURE_NO_DEPRECATE,_CRT_NONSTDC_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/Release/zlib.pdb"
+				ProgramDataBaseFileName="../../bin/Release/zlib.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -135,7 +135,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,NO_FSEEKO,_CRT_SECURE_NO_DEPRECATE,_CRT_NONSTDC_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/MinSizeRel/zlib.pdb"
+				ProgramDataBaseFileName="../../bin/MinSizeRel/zlib.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -187,7 +187,7 @@
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,DLL_DMMAIN,_DMDesigner_,DMLOG_ON,NO_FSEEKO,_CRT_SECURE_NO_DEPRECATE,_CRT_NONSTDC_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="F:/OpenSource/REDM/Build/bin/RelWithDebInfo/zlib.pdb"
+				ProgramDataBaseFileName="../../bin/RelWithDebInfo/zlib.pdb"
 />
 			<Tool
 				Name="VCCustomBuildTool"/>
