@@ -1331,9 +1331,9 @@ namespace DM
 				break;
 			}
 			m_rcSize = m_rcValue;
-			if (m_rcSize.Width()>64)
+			if (m_rcSize.Width()>84)
 			{
-				m_rcSize.right = m_rcSize.left + 64;
+				m_rcSize.right = m_rcSize.left + 84;
 			}
 		} while (false);
 		return DM_ECODE_OK;

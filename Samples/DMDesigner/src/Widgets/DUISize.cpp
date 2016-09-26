@@ -293,7 +293,7 @@ namespace DM
 				DM_InsertChild(m_pEdit[i]);
 				m_pEdit[i]->AddRef();
 				m_pEdit[i]->InitDMData(EditNode);
-				m_pEdit[i]->SetLimitText(3);
+				m_pEdit[i]->SetLimitText(4);
 			}
 		}
 		return iErr;
