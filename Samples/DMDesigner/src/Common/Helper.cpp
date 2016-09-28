@@ -116,6 +116,32 @@ bool SetLogInfo(CStringW strInfo)
 	return false;
 }
 
+DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
+{
+	DMXmlDocument* pXmlDoc = NULL;
+	do 
+	{
+		if (NULL==lpszType||NULL==lpszResName||NULL == g_pMainWnd||NULL == g_pMainWnd->m_pDesignerXml)
+		{
+			break;
+		}
+
+		DMSmartPtrT<ResFolder>pRes = g_pMainWnd->m_pDesignerXml->m_pRes;
+		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,L"");
+		if (!PathFileExists(strPath))
+		{
+			break;
+		}
+		DocDataPtr pSubData = g_pMainWnd->m_pDesignerXml->FindDocData(strPath);
+		if (pSubData&&pSubData->IsValid())// 原来已解析过了
+		{
+			pXmlDoc = pSubData->m_pXmlDoc;
+			break;
+		}
+	} while (false);
+	return pXmlDoc;
+}
+
 int DM_MessageBox(LPCWSTR lpText, UINT uType, LPCWSTR lpCaption,HWND hWnd)
 {
 	DMSmartPtrT<MsgBox> pBox;pBox.Attach(new  MsgBox());

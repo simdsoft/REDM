@@ -4,6 +4,8 @@
 
 namespace DM
 {
+	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR);
+	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
 	DMAppData::DMAppData(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
 		// 加载自身内部插件.内部插件的Install函数会做模块（对应filter:Modules）初始化操作
@@ -344,6 +346,17 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
+			DMXmlDocument* pDoc = NULL;
+			if (g_pGetSubXmlDoc
+				&&NULL!=(pDoc = g_pGetSubXmlDoc(lpszType,lpszResName)))// 支持外部生成Doc传入,内部复制,目前用于设计器
+			{
+				DMXmlNode XmlBase = XmlDoc.Base();
+				DMXmlNode XmlCopy = pDoc->Root();
+				XmlBase.InsertCopyChildNode(&XmlCopy);
+				iErr = DM_ECODE_OK;
+				break;
+			}
+
 			if (NULL==lpszType||NULL==lpszResName)
 			{
 				break;

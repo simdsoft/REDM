@@ -47,7 +47,10 @@ DMCode ObjXml::InitObjTree()
 		//3.更换资源包
 		g_pRes->RemoveObj(1);
 		g_pRes->AddObj(m_pRes);m_pRes->AddRef();
+
+		g_pDMApp->SetSubXmlDocCallBack(GetExistXmlDoc);
 		g_pDMApp->InitGlobal(m_strGlobalName);
+		g_pDMApp->SetSubXmlDocCallBack(NULL);
 
 		//4.初始化objeditor
 		m_pObjEditor->InitObjEditor();

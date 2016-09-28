@@ -15,6 +15,7 @@ bool IsDirectoryExist(CStringW strDir);///< 判断路径是否为文件夹
 bool OpenFolderAndSelectFile(CStringW strFilePath);///< 如果文件夹已经打开，就不用再重新打开一次，直接置顶显示，并选中目标文件http://www.cnblogs.com/shankun/p/4088860.html
 bool CopyDirectory(CStringW strSrcDir,CStringW strDestDir);///< 复制文件夹，注意，如果目标文件夹已存在，则在源文件夹为名复制到目标文件夹的子目录下
 bool SetLogInfo(CStringW strInfo);
+DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName);///< 获得已解析过的xml doc(未保存时可能和xml文件不同）
 
 int DM_MessageBox(LPCWSTR lpText,UINT uType = MB_OK, LPCWSTR lpCaption = L"MSG",HWND hWnd = NULL); 
 int StringToInt(CStringW str);
