@@ -6,7 +6,7 @@
 			<button name="closebutton" pos="-22,1,@21,@15" skin="closebutton" tiptext="关闭" />
 			<button name="maxbutton" pos="-42,1,@20,@15" skin="maxbutton" tiptext="最大化" />
 			<button name="restorebutton" pos="-42,1,@20,@15" skin="restorebutton" bvisible="0" tiptext="向下还原" />
-			<button name="minbutton" pos="-62,1,@20,@15" skin="ds_minbutton" tiptext="最小化" />
+			<button name="minbutton" pos="-62,1,@20,@15" skin="minbutton" tiptext="最小化" />
 		</window>
 		<Button id="1" pos="301,318,@118,@31" text="Ok" skin="custombutton" />
 		<Button id="2" pos="462,318,@118,@31" text="Cancel" skin="custombutton" />
