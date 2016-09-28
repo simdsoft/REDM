@@ -128,6 +128,10 @@ DMCode NewResDlg::OnOK()
 		}
 
 		m_strResDir = L"";
+		if (m_strResPath.Right(1)!=L"\\")
+		{
+			m_strResPath += L"\\";
+		}
 		m_strResDir = m_strResPath + m_strResName;
 		if (PathFileExists(m_strResDir))
 		{
