@@ -53,11 +53,11 @@ DMCode WidgetAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 			break;
 		}
 
+		m_pPropStyle = NULL;
 		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// 切换到最上层了，默认为DMHWnd窗口
 		{
 			m_pObjXml->m_pRighXml->m_pList->ExpandItem(WIGDET_ATTR,false);
 			m_pPanel->DM_SetVisible(false,true);
-			m_pPropStyle = NULL;
 			m_pCurDUI = NULL;
 			break;
 		}
