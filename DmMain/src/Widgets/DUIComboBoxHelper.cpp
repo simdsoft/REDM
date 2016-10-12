@@ -492,7 +492,7 @@ namespace DM
 	{
 		if (m_pDropDownWnd)
 		{
-			m_pDropDownWnd->Hide(IDCANCEL);
+			m_pDropDownWnd->Hide(IDOK);
 		}
 	}
 
