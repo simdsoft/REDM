@@ -37,6 +37,49 @@ namespace DM
 		MsgThunkUnInit();
 	}
 
+	BOOL DMCWnd::SubclassWindow(HWND hWnd)
+	{//copy from atlwin.SubclassWindow
+		DMASSERT(m_hWnd == NULL);
+		DMASSERT(::IsWindow(hWnd));
+
+		// Allocate the thunk structure here, where we can fail gracefully.
+		bool bAlloc = MsgThunkInit();
+		m_pThunk->Init((DWORD_PTR)(DMCWnd::WindowProc), this);
+		WNDPROC pProc = (WNDPROC)m_pThunk->GetCodeAddress();// 得到Thunk指针
+		WNDPROC pfnWndProc = (WNDPROC)::SetWindowLongPtr(hWnd, GWLP_WNDPROC, (LONG_PTR)pProc);
+		if (NULL == pfnWndProc)
+		{
+			if (bAlloc)
+			{
+				MsgThunkUnInit();
+			}
+			return FALSE;
+		}
+		m_pfnSuperWindowProc = pfnWndProc;
+		m_hWnd = hWnd;
+		return TRUE;
+	}
+
+	HWND DMCWnd::UnsubclassWindow(BOOL bForce /*= FALSE*/)
+	{
+		DMASSERT(m_hWnd != NULL);
+
+		WNDPROC pOurProc = (WNDPROC)m_pThunk->GetCodeAddress();;// 得到Thunk指针
+		WNDPROC pActiveProc = (WNDPROC)::GetWindowLongPtr(m_hWnd, GWLP_WNDPROC);
+
+		HWND hWnd = NULL;
+		if (bForce || pOurProc == pActiveProc)
+		{
+			if(!::SetWindowLongPtr(m_hWnd, GWLP_WNDPROC, (LONG_PTR)m_pfnSuperWindowProc))
+				return NULL;
+
+			m_pfnSuperWindowProc = ::DefWindowProc;
+			hWnd = m_hWnd;
+			m_hWnd = NULL;
+		}
+		return hWnd;
+	}
+
 	LRESULT CALLBACK DMCWnd::FirstWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		bool bThunk = false;

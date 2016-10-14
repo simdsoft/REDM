@@ -52,6 +52,9 @@ namespace DM
 		/// @return			ÎÞ
 		virtual void OnFinalMessage(HWND hWnd);		
 
+		BOOL SubclassWindow(HWND hWnd);
+		HWND UnsubclassWindow(BOOL bForce = FALSE);
+
 	public:
 		DECLARE_MESSAGE_MAP();// ÉùÃ÷ProcessWindowMessage
 		static LRESULT CALLBACK FirstWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
