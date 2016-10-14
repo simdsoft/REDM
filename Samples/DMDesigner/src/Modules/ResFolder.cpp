@@ -103,6 +103,10 @@ namespace DM
 						break;
 					}
 				}
+				else
+				{
+					break;
+				}
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);

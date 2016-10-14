@@ -238,6 +238,11 @@ DMCode ThemeDlg::OnOK()
 		//7. 将themes的dmindex.xml设置为未保存
 		pXml->SetDocUnSave(strPath);
 
+		//8.Res解析器增加一个新主题包
+		ResFolderItemPtr pItem = new ResFolderItem;
+		pItem->m_strThemeName = strThemeName;
+		pXml->m_pRes->AddObj(pItem);
+		
 		EndDialog(IDOK);
 		if (hAdd)
 		{

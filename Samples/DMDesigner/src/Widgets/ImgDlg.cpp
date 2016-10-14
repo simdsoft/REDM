@@ -372,13 +372,13 @@ DMCode ImgDlg::OnOK()
 		HDMTREEITEM hTheme = pProjTree->GetParentItem(pXml->m_hProjSel);
 		DMXmlNodePtr pThemeNode = (DMXmlNodePtr)pProjTree->GetItemData(hTheme);
 		CStringW strThemeName = pThemeNode->Attribute(XML_NAME);
+		DMAutoResetT<bool> AutoNoLoop(&pXml->m_pRes->m_bThemeLoop,false);// 不遍历其他主题包查找
 		if (DMSUCCEEDED(pXml->m_pRes->IsItemExists(strType,strImgName,strThemeName)))
 		{
 			DM_MessageBox(L"本主题包已存在此name!",MB_OK, L"MSG",m_hWnd);
 			m_pImgName->DV_SetFocusWnd();
 			break;
 		}
-
 		//2.判断目录文件名是否为空，判断是否没有拖入文件
 		CStringW strImgFileName = m_pImgFileName->GetWindowText();
 		if (strImgFileName.IsEmpty())
