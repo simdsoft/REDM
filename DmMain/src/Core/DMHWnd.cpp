@@ -1153,7 +1153,8 @@ namespace DM
 
 	DMCode DMHWnd::OnForceUpdateWindow()
 	{
-		OnPrint(GetDC(),NOMAL_PAINT);
+		DMAutoDC dc(m_hWnd);
+		OnPrint(dc,NOMAL_PAINT);
 		return DM_ECODE_OK;
 	}
 
