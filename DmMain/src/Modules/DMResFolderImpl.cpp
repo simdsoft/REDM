@@ -103,7 +103,7 @@ namespace DM
 						break;
 					}
 				}
-				else
+				else if(NULL == pTheme)
 				{
 					break;
 				}
