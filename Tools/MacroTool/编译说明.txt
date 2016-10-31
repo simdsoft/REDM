@@ -1,0 +1,4 @@
+1.导入DMMain的源文件
+2.编译生成bin
+3.把已编译的bin.zip解压，把MyRes资源放在编译生成的bin下
+4.拷贝DMMsgCrack.h、DMXmlCrack.h、DUIMsgCrack.h到编译生成的bin下
