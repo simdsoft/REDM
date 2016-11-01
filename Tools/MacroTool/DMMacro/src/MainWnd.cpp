@@ -32,6 +32,9 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	GetRootFullPath(L".\\DMXmlCrack.h",szPath,MAX_PATH);
 	m_MacroHelper.LoadFile(szPath,L"#define DM_BEGIN_ATTRIBUTES()");
 
+	memset(szPath,0,MAX_PATH);
+	GetRootFullPath(L".\\DMEventCrack.h",szPath,MAX_PATH);
+	m_MacroHelper.LoadFile(szPath,L"#define DECLARE_EVENT_MAP()");
 
 	return TRUE;
 }
