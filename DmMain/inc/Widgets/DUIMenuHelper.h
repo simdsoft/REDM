@@ -37,6 +37,7 @@ namespace DMAttr
 		static wchar_t* SIZE_iconsize;											///< 图标尺寸，默认为16*16,示例:iconsize="16,16"
 		static wchar_t* SIZE_roundsize;											///< 圆角尺寸，默认为0*0,示例:roundsize="1,1"
 		static wchar_t* COLOR_clrbg;											///< 整个菜单的背景色,在背景图不存在时使用,示例:clrbg="pbgra(ff,00,ff,ff)"
+		static wchar_t* COLOR_clrselbg;                                         ///< 选中菜单的背景色,在背景图不存在时使用,示例:clrselbg="pbgra(ff,00,ff,ff)"
 		static wchar_t* COLOR_clrstep;											///< 分割栏的背景色,在背景图不存在时使用,示例:clrstep="pbgra(ff,00,ff,ff)"
 		static wchar_t* COLOR_clrtext;											///< 正常文本颜色,示例:clrtext="pbgra(ff,00,ff,ff)"
 		static wchar_t* COLOR_clrtextsel;										///< 选中文本颜色,示例:clrtextsel="pbgra(ff,00,ff,ff)"
@@ -59,7 +60,7 @@ namespace DMAttr
 	DMAttrValueInit(DUIMenuAttr,SKIN_sepskin)DMAttrValueInit(DUIMenuAttr,SKIN_checkskin)DMAttrValueInit(DUIMenuAttr,INT_itemhei)
 	DMAttrValueInit(DUIMenuAttr,INT_iconoffset)DMAttrValueInit(DUIMenuAttr,INT_textoffset)DMAttrValueInit(DUIMenuAttr,INT_stepoffset)
 	DMAttrValueInit(DUIMenuAttr,INT_stephei)DMAttrValueInit(DUIMenuAttr,INT_maxwidth)DMAttrValueInit(DUIMenuAttr,bool_bshadow)DMAttrValueInit(DUIMenuAttr,SIZE_iconsize)
-	DMAttrValueInit(DUIMenuAttr,SIZE_roundsize)DMAttrValueInit(DUIMenuAttr,COLOR_clrbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrstep)
+	DMAttrValueInit(DUIMenuAttr,SIZE_roundsize)DMAttrValueInit(DUIMenuAttr,COLOR_clrbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrselbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrstep)
 	DMAttrValueInit(DUIMenuAttr,COLOR_clrtext)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextsel)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextgray)
 	DMAttrValueInit(DUIMenuAttr,FONT_font)DMAttrValueInit(DUIMenuAttr,BYTE_alpha)
 	DMAttrValueInit(DUIMenuAttr,NODE_sep)DMAttrValueInit(DUIMenuAttr,NODE_item)
@@ -118,6 +119,7 @@ namespace DM
 			DM_SIZE_ATTRIBUTE(DMAttr::DUIMenuAttr::SIZE_iconsize,m_szIcon,DM_ECODE_OK)
 			DM_SIZE_ATTRIBUTE(DMAttr::DUIMenuAttr::SIZE_roundsize,m_szRound,DM_ECODE_OK)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrbg,m_crBg,DM_ECODE_OK);
+			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrselbg,m_crSelBg,DM_ECODE_OK);
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrstep,m_crStep,DM_ECODE_OK);
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrtext,m_crTextNormal,DM_ECODE_OK);
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrtextsel,m_crTextSel,DM_ECODE_OK);
@@ -142,6 +144,7 @@ namespace DM
 		int                         m_MaxWidth;		 ///< 菜单项的最大宽度,默认为-1表示自动计算，要注意绘制的宽度要比它大14（系统自动扩展14,如强制禁止,则子菜单和父菜单间有14空隙）
 		bool                        m_bAutoCalc;
 		DMColor                     m_crBg;          ///< 整个菜单的背景色,在背景图不存在时使用
+		DMColor                     m_crSelBg;       ///< 选中菜单的背景色,在背景图不存在时使用
 		DMColor                     m_crStep;        ///< 分割栏的背景色
 		DMColor						m_crTextNormal;  ///< 正常文本颜色
 		DMColor						m_crTextSel;     ///< 选中文本颜色

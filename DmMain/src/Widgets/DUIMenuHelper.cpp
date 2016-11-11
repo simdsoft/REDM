@@ -20,6 +20,7 @@ namespace DM
 		m_bAutoCalc	  = true;
 
 		m_crBg         = GetSysColor(COLOR_MENU)|0xff000000;
+		m_crSelBg      = GetSysColor(COLOR_HIGHLIGHT)|0xff000000;
 		m_crStep	   = GetSysColor(COLOR_GRAYTEXT)|0xff000000;
 		m_crTextNormal = GetSysColor(COLOR_MENUTEXT)|0xff000000;
 		m_crTextSel    = GetSysColor(COLOR_HIGHLIGHTTEXT)|0xff000000;
@@ -157,7 +158,7 @@ namespace DM
 			{
 				m_pDUIMenuXmlInfo->m_pBgSkin->Draw(pCanvas,rcDraw,0);
 			}
-			else 
+			else if(!m_pDUIMenuXmlInfo->m_crBg.IsTextInvalid())
 			{
 				pCanvas->FillSolidRect(rcDraw,m_pDUIMenuXmlInfo->m_crBg);
 			}
@@ -274,6 +275,10 @@ namespace DM
 				if (m_pDUIMenuXmlInfo->m_pItemSelBgSkin)
 				{
 					m_pDUIMenuXmlInfo->m_pItemSelBgSkin->Draw(pCanvas, rcItem,0);
+				}
+				else if (!m_pDUIMenuXmlInfo->m_crSelBg.IsTextInvalid())
+				{
+					pCanvas->FillSolidRect(rcItem,m_pDUIMenuXmlInfo->m_crSelBg);
 				}
 			}
 

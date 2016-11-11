@@ -1,12 +1,16 @@
 #include "QQDemoAfx.h"
 #include "QQMainWnd.h"
 #include "resource.h"
+#include "TrayIconWndMgr.h"
+#include "DUIMenu.h"
 
 BEGIN_MSG_MAP(CQQMainWnd)
 	MSG_WM_CREATE(OnCreate)
 	MSG_WM_INITDIALOG(OnInitDialog)
 	MSG_WM_SHOWWINDOW(OnShowWindow)
 	MSG_WM_SIZE(OnSize)
+	MSG_WM_COMMAND(OnCommand)
+	MESSAGE_HANDLER_EX(WM_SHOWTRAYMENU, OnShowTrayMenu)
 	CHAIN_MSG_MAP(DMHWnd)// 将未处理的消息交由DMHWnd处理
 END_MSG_MAP()
 
@@ -27,6 +31,13 @@ CQQMainWnd::CQQMainWnd()
 		m_pSubListEx[i]   = NULL;
 	}
 	m_pListEx      = NULL;
+	new CTrayIconWndMgr;
+}
+
+CQQMainWnd::~CQQMainWnd()
+{
+	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemon已退出");
+	delete CTrayIconWndMgr::getSingletonPtr();
 }
 
 int CQQMainWnd::OnCreate(LPVOID)
@@ -76,6 +87,11 @@ BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pSubListTree[i]->m_EventMgr.SubscribeEvent(DMEventTCExpandArgs::EventID, Subscriber(&CQQMainWnd::OnSubListTree, this));
 		m_pSubListEx[i]->m_EventMgr.SubscribeEvent(DMEventLBSelChangedArgs::EventID, Subscriber(&CQQMainWnd::OnSubListEx, this));
 	}
+
+	// 增加一个托盘图标
+	CTrayIconWndMgr::getSingleton().InstallTrayIcon(L"欢迎使用DM库示例:QQDemo",m_hWnd,hIcon,IDI_QQ);
+	// 增加一个汽泡提示
+	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemo");
 	return TRUE;
 }
 
@@ -101,13 +117,41 @@ void CQQMainWnd::OnSize(UINT nType, CSize size)
 	}
 	m_WndShadow.SetPosition(0, 0);
 	SetMsgHandled(FALSE);
-}
+}   
 
 void CQQMainWnd::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	if (bShow)
 	{
 		m_WndShadow.SetPosition(0, 0);
+	}
+}
+
+LRESULT CQQMainWnd::OnShowTrayMenu(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	DUIMenu Menu;
+	Menu.LoadMenu(L"LayOut",L"dui_exitmenu");
+	POINT pt;
+	GetCursorPos(&pt);
+	Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
+	return TRUE;
+} 
+
+void CQQMainWnd::OnCommand(UINT uNotifyCode, int nID, HWND wndCtl)
+{
+	if (7001 == nID)
+	{
+		OnClose();
+	}
+	else if (7000 == nID)
+	{
+		CStringW strUrl = L"http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8";
+		//先使用默认浏览器打开，若打开失败（不存在默认浏览器），则强制使用IE打开
+		HINSTANCE hIns = ::ShellExecute(NULL, _T("open"), strUrl, NULL, NULL, SW_SHOWNORMAL);
+		if ( int(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
+		{
+			ShellExecute(NULL, _T("open"), _T("iexplore.exe"), strUrl, NULL, SW_SHOW);
+		}
 	}
 }
 
