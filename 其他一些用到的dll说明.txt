@@ -1,0 +1,13 @@
+Best wishes
+
+DMWebkit.dll只是一个简单的Webkit封装,我无法保证其代码质量,我并不擅长Webkit,NPSWF32.dll是Webkit的flash插件
+DM库是不需要任何开源协议的,所以暂时不打算封装第三方的Webkit（带开源协议）
+上述两个dll仅用于QQDemo中演示Webkit，有兴趣的可以自行封装自己的Webkit到DM库中
+
+DMH.dll是自己以前写的一个hook界面库，仅用于改变设计器弹出font,color系统框时的颜色，让设计器看起来更美观一点
+当然，这种hook界面技术可能已经过时
+注意：仅仅针对系统弹出框，设计器全由DM构成
+
+所以上述dll可以自行删除，它们和DUI完全无关
+
+guoyou
