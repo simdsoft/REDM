@@ -517,12 +517,15 @@ namespace DM
 
 	void DUIListBoxEx::OnMouseLeave()
 	{
-		__super::OnMouseLeave();
-		if (-1!=m_iHoverItem)
+		if (DM_IsVisible(true))// 加一个判断，防止非客户区在list隐藏时绘制
 		{
-			int nOldHover = m_iHoverItem;
-			m_iHoverItem  = -1;
-			m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+			__super::OnMouseLeave();
+			if (-1!=m_iHoverItem)
+			{
+				int nOldHover = m_iHoverItem;
+				m_iHoverItem  = -1;
+				m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+			}
 		}
 	}
 
