@@ -1,7 +1,5 @@
 #include "Plugin_DesignerAfx.h"
 #include "Plugin_Designer.h"
-#include "ListBoxEx.h"
-#include "ComboboxEx.h"
 
 Plugin_Designer::Plugin_Designer(void)
 {
@@ -18,14 +16,14 @@ const wchar_t* Plugin_Designer::GetName()const
 
 void Plugin_Designer::Install()
 {
-	g_pDMApp->Register(DMRegHelperT<ListBoxEx>(),true);
-	g_pDMApp->Register(DMRegHelperT<ComboboxEx>(),true);
+//	g_pDMApp->Register(DMRegHelperT<ListBoxEx>(),true);
+//	g_pDMApp->Register(DMRegHelperT<ComboboxEx>(),true);
 }
 
 void Plugin_Designer::Uninstall()
 {
-	g_pDMApp->UnRegister(ListBoxEx::GetClassName(),ListBoxEx::GetClassType());
-	g_pDMApp->UnRegister(ComboboxEx::GetClassName(),ComboboxEx::GetClassType());
+//	g_pDMApp->UnRegister(ListBoxEx::GetClassName(),ListBoxEx::GetClassType());
+//	g_pDMApp->UnRegister(ComboboxEx::GetClassName(),ComboboxEx::GetClassType());
 }
 
 void Plugin_Designer::Initialise()
