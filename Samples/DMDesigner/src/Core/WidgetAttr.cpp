@@ -440,7 +440,7 @@ DMCode WidgetAttr::InitAttrArray()
 	
 
 		//2.加入到第一列prop中
-		int nCount = m_strList.GetCount();
+		int nCount = m_strList.GetCount(); 
 		if (nCount<=0)
 		{
 			break;
@@ -462,7 +462,7 @@ DMCode WidgetAttr::InitAttrArray()
 		for (int i=0; i<nCount; i++)
 		{ 
 			CStringW strTemp = m_strList[i];
-			DMXmlNode XmlRoot = g_pAttr->m_AttrDoc.Root().FirstChild(strTemp);
+			DMXmlNode XmlRoot = g_pAttr->GetAttrNode(strTemp);
 			DMXmlAttribute XmlAttribute = XmlRoot.FirstAttribute();
 			while (XmlAttribute.IsValid())
 			{

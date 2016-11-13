@@ -472,6 +472,31 @@ DMXmlNode DMCtrlXml::Parse(CStringW strReg)
 	return XmlNode;
 }
 
+DMXmlNode DMCtrlXml::GetAttrNode(CStringW strNode)
+{
+	DMXmlNode XmlNode;
+	do 
+	{
+		if (strNode.IsEmpty())
+		{
+			break;
+		}
+		DMXmlNode RootNode = m_AttrDoc.Root();
+		if (!RootNode.IsValid())
+		{
+			break;
+		}
+
+		XmlNode = RootNode.FirstChild(strNode);
+		if (!XmlNode.IsValid())// 如果不存在，就去DMAttr::DMInitAttrDispatch::m_pDoc中查找
+		{
+			DMXmlNode RootNodeTemp = DMAttr::DMInitAttrDispatch::m_pDoc->Root();
+			XmlNode = RootNodeTemp.FirstChild(strNode);
+		}
+	} while (false);
+	return XmlNode;
+}
+
 bool DMCtrlXml::SetCopyNode(DMXmlNodePtr pNode, CRect rcWnd)
 {
 	if (pNode->IsValid())

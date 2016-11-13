@@ -64,6 +64,7 @@ public:
 	bool Parse(CStringW strClsName,CStringWList &strList);///< 从cls中解析中组成它的不同属性集名
 
 	DMXmlNode Parse(CStringW strReg);///< 从注册类名返回它的默认XmlNode
+	DMXmlNode GetAttrNode(CStringW strNode);
 
 	bool SetCopyNode(DMXmlNodePtr pNode, CRect rcWnd);
 	

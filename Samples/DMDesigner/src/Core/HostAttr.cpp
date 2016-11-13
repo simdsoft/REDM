@@ -330,7 +330,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 {
 	ReleaseProp();
 	m_pInitSize = NULL;
-	DMXmlNode XmlRoot = g_pAttr->m_AttrDoc.Root().FirstChild(L"DMHWndAttr");
+	DMXmlNode XmlRoot = g_pAttr->GetAttrNode(L"DMHWndAttr");
 	DMXmlAttribute XmlAttribute = XmlRoot.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{

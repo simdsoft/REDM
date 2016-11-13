@@ -12,8 +12,8 @@ echo hgy copy dbghelp.dll begin---------------------------------
 copy /y .\dbghelp.dll %OutDir%
 echo hgy copy dbghelp.dll end-----------------------------------
 echo hgy copy DesignerRes folder begin--------------------------------
-copy /y ..\..\Docs\TestData\dmplugins.cfg %OutDir%
-copy /y ..\..\Docs\TestData\dmpluginsd.cfg %OutDir%
+copy /y ..\..\Docs\TestData\dmplugins_design.cfg %OutDir%
+copy /y ..\..\Docs\TestData\dmpluginsd_design.cfg %OutDir%
 xcopy /y /s ..\..\Docs\TestData\DesignerRes %OutDir%\DesignerRes\
 echo hgy copy DesignerRes folder end----------------------------------
 

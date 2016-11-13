@@ -4,13 +4,13 @@
 // 
 // File name:	DMDesigner.h
 // File mark:    
-// File summary:入口   
+// File summary:入口    
 // Author:		guoyouhuang
 // Edition:     1.0 
 // Create date: 2016-7-7
 // ----------------------------------------------------------------
 #include "DMDesignerAfx.h"     
-#include "Plugin.h" 
+#include "Plugin.h"    
  
 int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   HINSTANCE hPrevInstance,
@@ -22,6 +22,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	Plugin plugin;
 	theApp.InstallPlugin(&plugin);
+
+	// 安装plugin，如果有需要!
+#ifdef DLL_DMMAIN// lib库下不支持插件
+#ifdef _DEBUG
+	theApp.LoadPlugins(L"dmpluginsd_design.cfg");
+#else
+	theApp.LoadPlugins(L"dmplugins_design.cfg");
+#endif
+#endif//DLL_DMMAIN
 
 	theApp.LoadResPack((WPARAM)(L"DesignerRes"),NULL,NULL);					
 	theApp.InitGlobal(L"ds_global");	

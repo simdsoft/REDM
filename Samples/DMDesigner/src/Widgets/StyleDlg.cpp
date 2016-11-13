@@ -244,7 +244,7 @@ DMCode StyleDlg::OnExpand()
 
 DMCode StyleDlg::InitAttrArray()
 {
-	DMXmlNode XmlRoot = g_pAttr->m_AttrDoc.Root().FirstChild(L"DUIStyleAttr");
+	DMXmlNode XmlRoot = g_pAttr->GetAttrNode(L"DUIStyleAttr");
 	DMXmlAttribute XmlAttribute = XmlRoot.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{

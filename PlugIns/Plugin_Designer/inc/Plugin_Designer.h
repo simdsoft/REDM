@@ -1,10 +1,10 @@
 #pragma once
 
-class Plugin_Expand:public IDMPlugin
+class Plugin_Designer:public IDMPlugin
 {
 public:
-	Plugin_Expand(void);
-	~Plugin_Expand(void);
+	Plugin_Designer(void);
+	~Plugin_Designer(void);
 
 	const wchar_t* GetName() const;
 	void Install();
@@ -12,5 +12,4 @@ public:
 
 	void Initialise();
 	void Shutdown();
-
 };

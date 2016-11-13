@@ -135,3 +135,5 @@ add_dependencies(Plugin_Expand  zlib)
 if(USE_DMSKIA_)
 TARGET_LINK_LIBRARIES(Plugin_Expand  Usp10.lib;Opengl32.lib)
 endif()
+
+SET_TARGET_PROPERTIES(Plugin_Expand PROPERTIES FOLDER PlugIns)

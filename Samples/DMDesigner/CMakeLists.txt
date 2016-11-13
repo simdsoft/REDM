@@ -64,7 +64,7 @@ INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/DmMain/inc
 					${DM_SOURCE_DIR}/DmMain/inc/Widgets;)
 					
 # 引用Plugin_Expand的头文件
-INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Expand/inc)
+INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Designer/inc)
   
 # 输出设置
 SET(CMAKE_CXX_FLAGS_DEBUG "/D_DEBUG /MTd /Zi /Ob0 /Od /RTC1")# 直接抄gui的默认，然后 改成mtd
@@ -88,7 +88,7 @@ SET_TARGET_PROPERTIES(DMDesigner PROPERTIES OUTPUT_NAME "DMDesigner")
 
 # 增加项目依赖项
 add_dependencies(DMDesigner  DmMain)
-add_dependencies(DMDesigner  Plugin_Expand)
+add_dependencies(DMDesigner  Plugin_Designer)
 
 #增加事件后命令
 add_custom_command(TARGET DMDesigner 
