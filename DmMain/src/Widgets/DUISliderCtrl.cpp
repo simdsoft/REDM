@@ -274,15 +274,17 @@ namespace DM
 				CRect rcThumb = GetThumbRect();
 				tipInfo.hDUIWnd  = m_hDUIWnd;
 				tipInfo.rcTarget = rcThumb;
+				
 				if (m_strTipFormat!=L"")
 				{
-					m_pDUIXmlInfo->m_strTooltipText.Format(m_strTipFormat,m_iValue);
+					CStringW strTrans = DMTR(m_strTipFormat);
+					m_pDUIXmlInfo->m_strTooltipText.Format(strTrans,m_iValue);
 				}
 				else
 				{
 					m_pDUIXmlInfo->m_strTooltipText.Format(L"%d",m_iValue);
 				}
-				tipInfo.lpszTip    = m_pDUIXmlInfo->m_strTooltipText;
+				tipInfo.strTip    = m_pDUIXmlInfo->m_strTooltipText;
 				tipInfo.iDelayTime =  50;
 				tipInfo.iSpanTime  =  5000;
 				iErr = DM_ECODE_OK;

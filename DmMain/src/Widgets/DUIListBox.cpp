@@ -540,8 +540,7 @@ namespace DM
 			{
 				rcText.top = rc.top + m_TextPt.y;
 			}
-
-			pCanvas->DrawText(pItem->strText,-1,rcText,align);
+			pCanvas->DrawText(DMTR(pItem->strText),-1,rcText,align);
 
 			if (bTextColorChanged)
 			{

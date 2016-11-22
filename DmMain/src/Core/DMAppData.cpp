@@ -219,6 +219,12 @@ namespace DM
 					iErr = CreateRegObj((void**)&m_pRenderObj, lpszClassName, DMREG_Render);
 				}
 				break;
+			case DMREG_Trans:
+				{
+					m_pTransObj.Release();// 先释放
+					iErr = CreateRegObj((void**)&m_pTransObj, lpszClassName, DMREG_Trans);
+				}
+				break;
 			case DMREG_Draw:
 			case DMREG_Layout:
 			case DMREG_ImgDecoder:
@@ -263,9 +269,10 @@ namespace DM
 			case DMREG_Log:      *ppObj = m_pLogObj;       m_pLogObj->AddRef();		  break;
 			case DMREG_Res:      *ppObj = m_pResObj;       m_pResObj->AddRef();		  break;
 			case DMREG_Render:   *ppObj = m_pRenderObj;	   m_pRenderObj->AddRef();    break;
+			case DMREG_Trans:    *ppObj = m_pTransObj;     m_pTransObj->AddRef();     break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render的RegType");
+					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans的RegType");
 				}
 				break;
 			}

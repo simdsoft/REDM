@@ -462,6 +462,7 @@ DMCode DUIRoot::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool b
 		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_title)
 		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regtip)
 		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regdraw)
+		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_transid)
 		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_initsize)
 		)
 	{

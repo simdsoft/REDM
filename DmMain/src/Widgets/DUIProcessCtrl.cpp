@@ -100,7 +100,7 @@ namespace DM
 				DV_PushDrawEnviron(pCanvas, DrawEnviron);
 
 				CStringW strValue;
-				strValue.Format(m_strTextFormat,m_iValue);
+				strValue.Format(DMTR(m_strTextFormat),m_iValue);
 				UINT uAlign = 0;
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
 				CRect rcText;
@@ -124,8 +124,9 @@ namespace DM
 
 			tipInfo.hDUIWnd  = m_hDUIWnd;
 			tipInfo.rcTarget = m_rcWindow;
-			m_pDUIXmlInfo->m_strTooltipText.Format(L"%d",m_iValue);
-			tipInfo.lpszTip    = m_pDUIXmlInfo->m_strTooltipText;
+			CStringW strTrans = DMTR(m_pDUIXmlInfo->m_strTooltipText);
+			strTrans.Format(L"%d",m_iValue);
+			tipInfo.strTip    = strTrans;
 			tipInfo.iDelayTime =  50;
 			tipInfo.iSpanTime  =  5000;
 			iErr = DM_ECODE_OK;

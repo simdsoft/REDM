@@ -127,6 +127,21 @@ void CWidgetWnd::OnCommand(UINT uNotifyCode, int nID, HWND wndCtl)
 	{
 		OnClose();
 	}
+	if (33361 == nID)
+	{
+		g_pDMApp->SetTrans(L"");
+		g_pDMApp->RedrawAll();
+	}
+	if (33362 == nID)
+	{
+		g_pDMApp->SetTrans(L"dmlg_fh");
+		g_pDMApp->RedrawAll();
+	}
+	if (33363 == nID)
+	{
+		g_pDMApp->SetTrans(L"dmlg_en");
+		g_pDMApp->RedrawAll();
+	}
 }
 
 //

@@ -563,7 +563,7 @@ namespace DM
 
 			tipInfo.hDUIWnd  = m_hDUIWnd;
 			tipInfo.rcTarget = rcItem;
-			tipInfo.lpszTip    = pPage->m_pDUIXmlInfo->m_strTooltipText;
+			tipInfo.strTip    = DMTR(pPage->m_pDUIXmlInfo->m_strTooltipText);
 			tipInfo.iDelayTime =  pPage->m_pDUIXmlInfo->m_iTooltipDelayTime;
 			tipInfo.iSpanTime  =  pPage->m_pDUIXmlInfo->m_iTooltipSpanTime;
 			iErr = DM_ECODE_OK;
@@ -694,7 +694,7 @@ namespace DM
 			pPage->DV_PushDrawEnviron(pCanvas,paint);
 			if (-1!=m_TextPt.x&&-1!=m_TextPt.y)
 			{
-				pCanvas->TextOut(GetItem(iItem)->m_strTitle,-1,rcItem.left+m_TextPt.x,rcItem.top+m_TextPt.y);
+				pCanvas->TextOut(DMTR(GetItem(iItem)->m_strTitle),-1,rcItem.left+m_TextPt.x,rcItem.top+m_TextPt.y);
 			}
 			else// x,y至少有一个为-1
 			{
@@ -712,7 +712,7 @@ namespace DM
 					rcText.left += m_TextPt.x;
 					uAlign = uTextAlign&(DT_VCENTER|DT_BOTTOM|DT_SINGLELINE|DT_END_ELLIPSIS);
 				}
-				pCanvas->DrawText(GetItem(iItem)->m_strTitle,-1,&rcText,uAlign);
+				pCanvas->DrawText(DMTR(GetItem(iItem)->m_strTitle),-1,&rcText,uAlign);
 			}
 
 			pPage->DV_PopDrawEnviron(pCanvas,paint);

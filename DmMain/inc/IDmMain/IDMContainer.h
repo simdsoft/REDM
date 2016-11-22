@@ -74,6 +74,10 @@ namespace DM
 		virtual DMCode OnRegisterTimeline(IDMTimeline *pHandler) = 0;						///< 注册使用全局定时器
 		virtual DMCode OnUnregisterTimeline(IDMTimeline *pHandler) = 0;						///< 反注册不使用全局定时器
 		virtual DMCode OnTimeline() = 0;													///< 不要在动画帧中调用OnRegisterTimeline、OnUnregisterTimeline
+	
+		//----------------------------------------------
+		// 语言包相关
+		virtual CStringW OnGetTransId() = 0;												///< 返回语言包特定id,内置如为NULL,则默认从custom中查找,否则,优先从此特定id查找,查不到,再去custom
 	};
 	typedef IDMContainer* IDMContainerPtr;
 

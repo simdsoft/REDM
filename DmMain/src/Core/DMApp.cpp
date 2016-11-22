@@ -299,4 +299,24 @@ namespace DM
 		g_pGetSubXmlDoc = fun;
 		return DM_ECODE_OK;
 	}
+
+	DMCode DMApp::LoadTrans(WPARAM wp, LPARAM lp /*= 0*/)
+	{
+		return g_pDMTrans->LoadTrans(wp, lp);
+	}
+
+	DMCode DMApp::SetTrans(CStringW strLanguageName)
+	{
+		return g_pDMTrans->SetTrans(strLanguageName);
+	}
+
+	DMCode DMApp::AddTransItem(CStringW strSrc, CStringW strTrans,CStringW strNodeName,CStringW strLanguageName)
+	{
+		return g_pDMTrans->AddTransItem(strSrc,strTrans,strNodeName,strLanguageName);
+	}
+
+	CStringW DMApp::GetTrans(CStringW strSrc,CStringW strNodeName,CStringW strLanguageName)
+	{
+		return g_pDMTrans->GetTrans(strSrc,strNodeName,strLanguageName);
+	}
 }//namespace DM

@@ -46,5 +46,9 @@
 		
 		<!--lua-->
 		<file name="test_lua" 	   		 	path="layout\lua\test.lua"/>
+		
+		<!--language-->
+		<file name="dmlg_en" 	   		 	path="layout\language\dmlg_en.xml"/>
+		<file name="dmlg_fh" 	   		 	path="layout\language\dmlg_fh.xml"/>
 	</layout>
 </resource>

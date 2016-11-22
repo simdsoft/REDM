@@ -29,6 +29,7 @@ namespace DMAttr
 		static wchar_t* STRING_title;                                     ///< 窗口标题，默认不会显示出来 示例:title="dmmagic"
 		static wchar_t* STRING_regtip;                                    ///< 使用的默认tip注册类名,为NULL使用默认 示例:regtip="dui_tip"
 		static wchar_t* STRING_regdraw;                                   ///< 使用的默认draw注册类名,为NULL使用默认 示例:regdraw="dui_draw"
+		static wchar_t* STRING_transid;                                   ///< 使用的transid,为NULL使用默认custom 示例:transid="custom"
 		static wchar_t* bool_bresize;                                     ///< 窗口可改变大小,示例:bresize="1"
 		static wchar_t* bool_btranslucent;                                ///< 窗口使用UpdateLayeredWindow更新,示例:btranslucent="1"
 		static wchar_t* BYTE_alpha;                                        ///< 窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha="0xc0"
@@ -37,7 +38,7 @@ namespace DMAttr
 		static wchar_t* INT_l;										      ///< hsl变换中l,值必须为[0,200],指的是色彩的明度,100为默认值，数值越大，越接近于白色,示例:l="10"
 	};
 	DMAttrValueInit(DMHWndAttr,SIZE_initsize)DMAttrValueInit(DMHWndAttr,SIZE_minsize)DMAttrValueInit(DMHWndAttr,RECT_maxinset)DMAttrValueInit(DMHWndAttr,SIZE_maxsize)
-	DMAttrValueInit(DMHWndAttr,STRING_title)DMAttrValueInit(DMHWndAttr,STRING_regtip)DMAttrValueInit(DMHWndAttr,STRING_regdraw)DMAttrValueInit(DMHWndAttr,bool_bresize)DMAttrValueInit(DMHWndAttr,bool_btranslucent)
+	DMAttrValueInit(DMHWndAttr,STRING_title)DMAttrValueInit(DMHWndAttr,STRING_regtip)DMAttrValueInit(DMHWndAttr,STRING_regdraw)DMAttrValueInit(DMHWndAttr,STRING_transid)DMAttrValueInit(DMHWndAttr,bool_bresize)DMAttrValueInit(DMHWndAttr,bool_btranslucent)
 	DMAttrValueInit(DMHWndAttr,BYTE_alpha)DMAttrValueInit(DMHWndAttr,INT_h)DMAttrValueInit(DMHWndAttr,INT_s)DMAttrValueInit(DMHWndAttr,INT_l)
 }
 
@@ -81,6 +82,7 @@ namespace DM
 			DM_STRING_ATTRIBUTE(DMAttr::DMHWndAttr::STRING_title,m_strTitle,DM_ECODE_OK)
 			DM_STRING_ATTRIBUTE(DMAttr::DMHWndAttr::STRING_regtip,m_strRegTip,DM_ECODE_OK)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DMHWndAttr::STRING_regdraw,OnAttributeRegDraw)
+			DM_STRING_ATTRIBUTE(DMAttr::DMHWndAttr::STRING_transid,m_strTransId,DM_ECODE_OK)
 			
 		DM_END_ATTRIBUTES()
 
@@ -111,6 +113,7 @@ namespace DM
 		CStringW						m_strTitle;			 ///< 窗口标题
 		CStringW                        m_strRegTip;         ///< tip注册类
 		CStringW                        m_strRegDraw;        ///< draw注册类
+		CStringW                        m_strTransId;        ///< 语言包的Node标识
 		DMHWnd*                         m_pOwner;
 	};
 

@@ -225,7 +225,8 @@ namespace DM
 			if (pItem->lpszText)
 			{// »æÎÄ×Ö
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlign);
-				pCanvas->DrawText(pItem->lpszText,pItem->cchTextMax,rcItem,ulAlign);
+				CStringW strTrans = DMTR(pItem->lpszText);
+				pCanvas->DrawText(strTrans,strTrans.GetLength(),rcItem,ulAlign);
 			}
 
 			if (DMT_NULL ==pItem->stFlag

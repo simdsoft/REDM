@@ -58,6 +58,7 @@ namespace DM
 	#define  g_pDMStylePool                              g_pDMAppData->m_StylePool
 	#define  g_pDMRender                                 g_pDMAppData->m_pRenderObj
 	#define  g_pDMThreadActiveWndTool                    g_pDMAppData->m_ThreadActiveWndTool
+	#define  g_pDMTrans                                  g_pDMAppData->m_pTransObj
 	
 
 	/// <summary>
@@ -133,6 +134,7 @@ namespace DM
 		DMSmartPtrT<IDMLog>         m_pLogObj;                                  ///< 当前被使用的Log对象
 		DMSmartPtrT<IDMRes>         m_pResObj;                                  ///< 当前被用来解析的Res对象
 		DMSmartPtrT<IDMRender>      m_pRenderObj;                               ///< 当前被用来解析的Render对象
+		DMSmartPtrT<IDMTrans>       m_pTransObj;                                ///< 当前被用来管理语言包的Trans对象
 
 	public:// 全局初始化
 		fun_UpdateLayeredWindowIndirect m_fun_UpdateLayeredWindowIndirect;

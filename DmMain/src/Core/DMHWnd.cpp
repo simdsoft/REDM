@@ -1224,6 +1224,11 @@ namespace DM
 		return iErr;
 	}
 
+	CStringW  DMHWnd::OnGetTransId()
+	{
+		return m_pHWndXmlInfo->m_strTransId;
+	}
+
 	//---------------------------------------------------
 	// Function Des: spy++²¿·Ö
 	LRESULT DMHWnd::OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam)

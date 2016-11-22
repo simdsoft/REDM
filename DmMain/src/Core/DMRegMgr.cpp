@@ -32,6 +32,7 @@ namespace DM
 		case DMREG_Animate:
 		case DMREG_ToolTip:
 		case DMREG_Script:
+		case DMREG_Trans:
 			{
 				delete obj;
 			}
@@ -64,6 +65,7 @@ namespace DM
 		case DMREG_Animate:
 		case DMREG_ToolTip:
 		case DMREG_Script:
+		case DMREG_Trans:
 			{
 				LPCWSTR lpszBaseNameSrc  = objsrc->GetBaseClassName();
 				LPCWSTR lpszBaseNameDest = objdest->GetBaseClassName();
@@ -111,6 +113,7 @@ namespace DM
 		case DMREG_Animate:		iErr = RegisterByType(m_RtAnimate,RegObj,bReplace);		break;
 		case DMREG_ToolTip:     iErr = RegisterByType(m_RtToolTip,RegObj,bReplace);     break;
 		case DMREG_Script:      iErr = RegisterByType(m_RtScript,RegObj,bReplace);		break;
+		case DMREG_Trans:       iErr = RegisterByType(m_RtTrans,RegObj,bReplace);		break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -144,6 +147,7 @@ namespace DM
 		case DMREG_Animate:		iErr = CreateRegObjByType(m_RtAnimate,ppObj,lpszClassName);			break;
 		case DMREG_ToolTip:     iErr = CreateRegObjByType(m_RtToolTip,ppObj,lpszClassName);		    break;
 		case DMREG_Script:      iErr = CreateRegObjByType(m_RtScript,ppObj,lpszClassName);		    break;
+		case DMREG_Trans:       iErr = CreateRegObjByType(m_RtTrans,ppObj,lpszClassName);		    break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -176,6 +180,7 @@ namespace DM
 		case DMREG_Animate:		iErr = UnRegisterByType(m_RtAnimate,lpszClassName);			break;
 		case DMREG_ToolTip:	    iErr = UnRegisterByType(m_RtToolTip,lpszClassName);		    break;
 		case DMREG_Script:	    iErr = UnRegisterByType(m_RtScript,lpszClassName);		    break;
+		case DMREG_Trans:	    iErr = UnRegisterByType(m_RtTrans,lpszClassName);		    break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -207,6 +212,7 @@ namespace DM
 		case DMREG_Animate:		iErr = SetDefRegObjByType(m_RtAnimate,lpszClassName);			break;
 		case DMREG_ToolTip:     iErr = SetDefRegObjByType(m_RtToolTip,lpszClassName);		    break;
 		case DMREG_Script:      iErr = SetDefRegObjByType(m_RtScript,lpszClassName);		    break;
+		case DMREG_Trans:       iErr = SetDefRegObjByType(m_RtTrans,lpszClassName);			    break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -238,6 +244,7 @@ namespace DM
 		case DMREG_Animate:     szName = m_RtAnimate.m_DefRegName; 			break;
 		case DMREG_ToolTip:     szName = m_RtToolTip.m_DefRegName; 		    break;
 		case DMREG_Script:      szName = m_RtScript.m_DefRegName; 		    break;
+		case DMREG_Trans:       szName = m_RtTrans.m_DefRegName; 		    break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;

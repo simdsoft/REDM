@@ -280,6 +280,36 @@ namespace DM
 		/// @brief			 允许外部指定sub xml的回调函数,外部传入xml句柄
 		/// @return			 DMCode
 		DMCode SetSubXmlDocCallBack(DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR));
+
+		/// -------------------------------------------------
+		/// @brief 加载翻译包扩展接口
+		/// @param[in]		 wp					传入内部使用的参数1，如翻译XML路径等，和自己扩展实现相关，内置为xml的ld或xml全路径
+		/// @param[in]		 lp					传入内部使用的参数2，如翻译XML等，和自己扩展实现相关,内置0表示xml id方式,1表示xml全路径方式
+		/// @return DM_ECODE_OK为成功
+		DMCode LoadTrans(WPARAM wp, LPARAM lp = 0);
+
+		/// -------------------------------------------------
+		/// @brief 设置默认语言包
+		// @param[in]		 strLanguageName	对应的语言包唯一标识，如果传NULL,则不使用翻译 
+		/// @return DM_ECODE_OK为成功
+		DMCode SetTrans(CStringW strLanguageName);
+
+		/// -------------------------------------------------
+		/// @brief 新加翻译字符串
+		/// @param[in]		 strSrc				XML中配置的字符串
+		/// @param[in]		 strTrans			被翻译的字符串
+		/// @param[in]		 strNodeName		是否指定为特定的配置,为NULL表示从通用的配置中查找
+		/// @param[in]		 strLanguageName	对应的语言包唯一标识,为NULL使用当前SetTrans指定的语言包
+		/// @return DM_ECODE_OK为成功
+		DMCode AddTransItem(CStringW strSrc, CStringW strTrans,CStringW strNodeName = L"",CStringW strLanguageName = L"");
+
+		/// -------------------------------------------------
+		/// @brief 获得翻译字符串
+		/// @param[in]		 strSrc				XML中配置的字符串
+		/// @param[in]		 strNodeName		是否指定为特定的配置
+		/// @param[in]		 strLanguageName	对应的语言包唯一标识,为NULL使用当前SetTrans指定的语言包
+		/// @return DM_ECODE_OK为成功
+		CStringW GetTrans(CStringW strSrc,CStringW strNodeName = L"",CStringW strLanguageName = L"");
 	};
 
 }//namespace DM

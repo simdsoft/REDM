@@ -1,4 +1,4 @@
-﻿<dm  initsize="800,600" minsize="800,600" maxsize="-1,-1" bresize="1" btranslucent="1" alpha = "255">
+﻿<dm  initsize="800,600" minsize="800,600" transid="dui_widget" maxsize="-1,-1" bresize="1" btranslucent="1" alpha = "255">
 	<root name="widgetwnd"><!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,-0" skin="bg" bfocusable="1">
 			<window name="caption" pos="0,0,-0,36"  bdrag="1"><!--可拖动区-->

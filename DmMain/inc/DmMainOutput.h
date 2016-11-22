@@ -91,6 +91,7 @@ __pragma(warning(disable: 4251))
 #include "IDMToolTip.h"
 #include "IDMAnimate.h"
 #include "IDMScript.h"
+#include "IDMTrans.h"
 
 // 5 ÏûÏ¢
 #include "DMMsgCrack.h"

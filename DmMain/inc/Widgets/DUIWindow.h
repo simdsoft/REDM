@@ -17,6 +17,7 @@
 
 namespace DM
 {
+	#define DMTR(str)									DV_GetTransText(str)          
 	class DUIWindow;
 	typedef DUIWindow* DUIWindowPtr;
 	/// <summary>
@@ -106,6 +107,10 @@ namespace DM
 		// Function Des:状态
 		virtual DMCode DV_GetState(int& iState);										///< 获取当前绘制状态
 		DWORD DM_ModifyState(DWORD dwAdd, DWORD dwRemove,bool bUpdate=false);			///< 更改状态
+
+		//---------------------------------------------------
+		// Function Des:语言包
+		virtual CStringW DV_GetTransText(CStringW strSrc);								///< 获得转换的字符串
 
 		//---------------------------------------------------
 		// Function Des:属性,所有rect都是相对于宿主m_hWnd的窗口坐标
@@ -306,7 +311,7 @@ namespace DM
 
 		CMap<CStringW,CStringW>					m_StrDataMap;
 		CArray<DUIWindowPtr>					m_ChildPanelArray;							///< 控件中包含的子容器列表
-
+	
 #if defined(_DEBUG)|| defined(_DMDesigner_)
 		CStringW								m_strXml;									///< 可提供给spy++显示
 		DMXmlNode                               m_XmlNode;                                  ///< 仅有design时有效,design中xmldoc一直是有效的，所有它的对象也会一直有效

@@ -1,5 +1,5 @@
-﻿<dm  initsize="283,530" minsize="283,530" maxsize="543,-1" bresize="1" btranslucent="1" regtip="DMTipsImpl" alpha = "255">
-	<root><!--root做为唯一的标识,它等同于window Node-->
+﻿<dm  initsize="283,530" minsize="283,530" transid="dui_mainwnd" maxsize="543,-1" bresize="1" btranslucent="1" regtip="DMTipsImpl" alpha = "255">
+	<root><!--root做为唯一的标识,它等同于window Node--> 
 		<window pos="0,0,-0,-0" skin="bg" bfocusable="1">
 			<window pos="0,0,-0,@114" bdrag="1">
 				<flash pos="-200,0,-0,-0" bmsgnohandle="1" url="flash:sun.swf"/>

@@ -328,6 +328,7 @@
 	STRING_title="窗口标题，默认不会显示出来 示例:title=dmmagic" 
 	STRING_regtip="使用的默认tip注册类名,为NULL使用默认 示例:regtip=dui_tip" 
 	STRING_regdraw="使用的默认draw注册类名,为NULL使用默认 示例:regdraw=dui_draw"
+	STRING_transid="使用的transid,为NULL使用默认custom 示例:transid=custom"
 	bool_bresize="窗口可改变大小,示例:bresize=1" 
 	bool_btranslucent="窗口使用UpdateLayeredWindow更新,示例:btranslucent=1"	
 	BYTE_alpha="{255}窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha=0xc0" 

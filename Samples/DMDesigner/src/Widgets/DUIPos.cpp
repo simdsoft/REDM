@@ -49,8 +49,8 @@ namespace DM
 			{
 				tipInfo.hDUIWnd    = m_hDUIWnd;
 				tipInfo.rcTarget   = GetItemRect(m_iHoverItem);
-				tipInfo.lpszTip    = g_Tips[m_iHoverItem];
-				tipInfo.lpszXmlId  = m_pDUIXmlInfo->m_strTipsXmlId;
+				tipInfo.strTip    = g_Tips[m_iHoverItem];
+				tipInfo.strXmlId  = m_pDUIXmlInfo->m_strTipsXmlId;
 				tipInfo.iDelayTime = m_pDUIXmlInfo->m_iTooltipDelayTime;
 				tipInfo.iSpanTime  = m_pDUIXmlInfo->m_iTooltipSpanTime;
 				tipInfo.rcPosFlags = m_pDUIXmlInfo->m_rcTooltipPosFlags;

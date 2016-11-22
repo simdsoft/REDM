@@ -105,7 +105,7 @@ namespace DM
 			{
 				break;
 			}
-			if (NULL == pInfo->lpszTip||0 == wcslen(pInfo->lpszTip))
+			if (pInfo->strTip.IsEmpty())
 			{
 				break;
 			}
@@ -119,7 +119,7 @@ namespace DM
 
 			/// 更新数据
 			m_rcTarget = pInfo->rcTarget;
-			m_strTip   = pInfo->lpszTip;
+			m_strTip   = pInfo->strTip;
 			m_strTip.Replace(L"\\r\\n",L"\r\n");//什么XML中\R\N不能被直接识别，因为XML文件中的"/n",会被认为是一个字符串"///n"是两个字符'//'和'/n'，而不是转义字符"/n",
 			m_strTip.Replace(L"\\n",L"\\r");
 			m_iDelayTime = pInfo->iDelayTime;

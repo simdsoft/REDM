@@ -1798,7 +1798,8 @@ namespace DM
 			if (!m_strSurfaceText.IsEmpty())
 			{
 				DMColor ClrOld = pCanvas->SetTextColor(m_SurfaceTextClr);
-				pCanvas->DrawText(m_strSurfaceText,m_strSurfaceText.GetLength(),&rcClient,DT_SINGLELINE|DT_VCENTER);
+				CStringW strTrans = DMTR(m_strSurfaceText);
+				pCanvas->DrawText(strTrans,strTrans.GetLength(),&rcClient,DT_SINGLELINE|DT_VCENTER);
 				pCanvas->SetTextColor(ClrOld);
 			}
 			

@@ -147,6 +147,7 @@ namespace DM
 		DMCode OnIsSizChanging();
 		DMCode OnRegisterTimeline(IDMTimeline *pHandler);
 		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);
+		CStringW OnGetTransId();
 
 		//---------------------------------------------------
 		// Function Des: spy++²¿·Ö

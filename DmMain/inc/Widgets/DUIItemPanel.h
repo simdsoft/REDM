@@ -66,10 +66,11 @@ namespace DM
 		DMCode OnClientToScreen(LPRECT lpRect);                         ///< 转发  
 		DMCode OnRegisterTimeline(IDMTimeline *pHandler);				///< 转发
 		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);				///< 转发
+		CStringW OnGetTransId();										///< 转发
 
 	public:// 重载DUIWindow
 		bool DV_IsStateChangeRedraw(){return true;}
-		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo); ///< 转发
+		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);	///< 转发
 
 	public:// 辅助
 		bool PreHandleFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp);        ///< 预处理消息,在这里设置面板背景的状态

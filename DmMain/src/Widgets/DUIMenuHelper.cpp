@@ -339,7 +339,8 @@ namespace DM
 			}
 			DMSmartPtrT<IDMFont> pOldFont;
 			pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,(IDMMetaFile**)&pOldFont);
-			pCanvas->DrawText(pdmmi->itemInfo.strText,pdmmi->itemInfo.strText.GetLength(),&rcText,DT_SINGLELINE|DT_VCENTER|DT_LEFT);
+			CStringW strTrans = g_pDMApp->GetTrans(pdmmi->itemInfo.strText,m_pDUIMenuXmlInfo->m_strTransId);
+			pCanvas->DrawText(strTrans,strTrans.GetLength(),&rcText,DT_SINGLELINE|DT_VCENTER|DT_LEFT);
 			pCanvas->SelectObject((IDMMetaFile*)pOldFont);
 			pCanvas->SetTextColor(crOld);
 

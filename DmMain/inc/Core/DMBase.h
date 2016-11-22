@@ -68,6 +68,8 @@ namespace DM
 		DMREG_ToolTip                           = 12,   ///<tooltip类
 		DMREG_Animate                           = 13,   ///<动画注册类
 		DMREG_Script                            = 14,   ///<脚本类
+		DMREG_Trans                             = 15,   ///<翻译类
+		
 		DMREG_MAX, 
 	};
 

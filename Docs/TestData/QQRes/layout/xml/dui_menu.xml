@@ -15,6 +15,11 @@
 			<item id="333422" icon="4" text="菜单3"/>
 		</item>
 	</item>
+	<item id="3336" text="多语言切换">
+		<item id="33361" text="原始语言"/>
+		<item id="33362" text="FH语言"/>
+		<item id="33363" text="EN语言"/>
+	</item>
 	<sep/>
 	<item id="3335" text="Quit"/>
 </menu>

@@ -69,7 +69,7 @@ namespace DM
 			if (!m_pDUIXmlInfo->m_strText.IsEmpty())
 			{
 				pCanvas->PopClip();
-				pCanvas->DrawText(m_pDUIXmlInfo->m_strText,-1,rcText, DT_SINGLELINE|DT_VCENTER);
+				pCanvas->DrawText(DMTR(m_pDUIXmlInfo->m_strText),-1,rcText, DT_SINGLELINE|DT_VCENTER);
 			}
 
 		} while (false);

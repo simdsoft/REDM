@@ -476,7 +476,7 @@ namespace DM
 	//---------------------------------------------------
 	//  Function Des:tooltip
 	DMCode DUIWindow::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
-	{
+	{ 
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -488,8 +488,8 @@ namespace DM
 
 			tipInfo.hDUIWnd  = m_hDUIWnd;
 			tipInfo.rcTarget = m_rcWindow;
-			tipInfo.lpszTip    = m_pDUIXmlInfo->m_strTooltipText;
-			tipInfo.lpszXmlId  = m_pDUIXmlInfo->m_strTipsXmlId;
+			tipInfo.strTip     = DMTR(m_pDUIXmlInfo->m_strTooltipText);
+			tipInfo.strXmlId   = m_pDUIXmlInfo->m_strTipsXmlId;
 			tipInfo.iDelayTime = m_pDUIXmlInfo->m_iTooltipDelayTime;
 			tipInfo.iSpanTime  = m_pDUIXmlInfo->m_iTooltipSpanTime;
 			tipInfo.rcPosFlags = m_pDUIXmlInfo->m_rcTooltipPosFlags;
@@ -612,7 +612,8 @@ namespace DM
 			DMSmartPtrT<IDMCanvas> pCanvas;
 			g_pDMRender->CreateCanvas(0, 0, &pCanvas);
 			DV_SetDrawEnvironEx(pCanvas);
-			DV_DrawText(pCanvas, m_pDUIXmlInfo->m_strText, m_pDUIXmlInfo->m_strText.GetLength(), rcTest, nTestDrawMode | DT_CALCRECT);
+			CStringW strTrans = DMTR(m_pDUIXmlInfo->m_strText);
+			DV_DrawText(pCanvas, strTrans, strTrans.GetLength(), rcTest, nTestDrawMode | DT_CALCRECT);
 
 			CRect rcNcMargin;
 			m_pDUIXmlInfo->m_pStyle->GetNcMargin(rcNcMargin);
@@ -765,6 +766,15 @@ namespace DM
 			DM_InvalidateRect(m_rcWindow);
 		}
 		return dwOldState;
+	}
+
+	CStringW DUIWindow::DV_GetTransText(CStringW strSrc)
+	{
+		if (m_pContainer)
+		{
+			return g_pDMApp->GetTrans(strSrc, m_pContainer->OnGetTransId());;
+		}
+		return strSrc;
 	}
 
 	//---------------------------------------------------
@@ -1856,7 +1866,8 @@ namespace DM
 			DV_GetTextRect(rcText);
 			UINT uAlign = 0;
 			m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
-			DV_DrawText(pCanvas, m_pDUIXmlInfo->m_strText, m_pDUIXmlInfo->m_strText.GetLength(),rcText, uAlign);
+			CStringW strTrans = DMTR(m_pDUIXmlInfo->m_strText);
+			DV_DrawText(pCanvas, strTrans, strTrans.GetLength(),rcText, uAlign);
 
 			if (m_pDUIXmlInfo->m_bShowDrawFocus)
 			{

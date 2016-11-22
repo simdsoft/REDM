@@ -44,6 +44,7 @@ namespace DMAttr
 		static wchar_t* COLOR_clrtextgray;										///< 灰度文本颜色,示例:clrtextgray="pbgra(ff,00,ff,ff)"
 		static wchar_t* FONT_font;												///< 菜单默认字体,目前菜单不同状态使用了相同字体,如有需要,可自己扩展,示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
 		static wchar_t* BYTE_alpha;											    ///< 窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha="0xc0"
+		static wchar_t* STRING_transid;										    ///< 使用的transid,为NULL使用默认custom 示例:transid="custom"
 
 		static wchar_t* NODE_sep;												///< 菜单的xml项结点名(对应一条分隔栏)
 		static wchar_t* NODE_item;                                              ///< 菜单的xml项结点名(对应一条菜单项)
@@ -62,7 +63,7 @@ namespace DMAttr
 	DMAttrValueInit(DUIMenuAttr,INT_stephei)DMAttrValueInit(DUIMenuAttr,INT_maxwidth)DMAttrValueInit(DUIMenuAttr,bool_bshadow)DMAttrValueInit(DUIMenuAttr,SIZE_iconsize)
 	DMAttrValueInit(DUIMenuAttr,SIZE_roundsize)DMAttrValueInit(DUIMenuAttr,COLOR_clrbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrselbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrstep)
 	DMAttrValueInit(DUIMenuAttr,COLOR_clrtext)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextsel)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextgray)
-	DMAttrValueInit(DUIMenuAttr,FONT_font)DMAttrValueInit(DUIMenuAttr,BYTE_alpha)
+	DMAttrValueInit(DUIMenuAttr,FONT_font)DMAttrValueInit(DUIMenuAttr,BYTE_alpha)DMAttrValueInit(DUIMenuAttr,STRING_transid)
 	DMAttrValueInit(DUIMenuAttr,NODE_sep)DMAttrValueInit(DUIMenuAttr,NODE_item)
 	DMAttrValueInit(DUIMenuAttr,ITEM_height)DMAttrValueInit(DUIMenuAttr,ITEM_icon)DMAttrValueInit(DUIMenuAttr,ITEM_text)
 	DMAttrValueInit(DUIMenuAttr,ITEM_skin)DMAttrValueInit(DUIMenuAttr,ITEM_id)
@@ -126,6 +127,8 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrtextgray,m_crTextGray,DM_ECODE_OK);
 			DM_FONTPTR_ATTRIBUTE(DMAttr::DUIMenuAttr::FONT_font,m_hFont,DM_ECODE_OK)
 			DM_UINT_ATTRIBUTE(DMAttr::DUIMenuAttr::BYTE_alpha, m_byAlpha, DM_ECODE_OK)
+			DM_STRING_ATTRIBUTE(DMAttr::DUIMenuAttr::STRING_transid,m_strTransId,DM_ECODE_OK)
+
 		DM_END_ATTRIBUTES()
 	public:
 		DMCode OnAttrMaxWidth(LPCWSTR pszValue, bool bLoadXml);
@@ -154,6 +157,7 @@ namespace DM
 		BYTE						m_byAlpha;		 ///< 透明度
 		bool                        m_bShadow;       ///< 菜单阴影
 		DMSmartPtrT<IDMFont>        m_hFont;         ///< 文字
+		CStringW                    m_strTransId;    ///< 语言包的Node标识
 	};
 
 	struct DMMenuItemInfo

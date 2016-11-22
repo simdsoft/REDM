@@ -70,7 +70,8 @@ namespace DM
 
 			UINT uAlign = 0;
 			m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
-			DV_DrawText(pCanvas, m_pDUIXmlInfo->m_strText, m_pDUIXmlInfo->m_strText.GetLength(),rcText, uAlign);
+			CStringW strTrans = DMTR(m_pDUIXmlInfo->m_strText);
+			DV_DrawText(pCanvas, strTrans, strTrans.GetLength(),rcText, uAlign);
 
 			DV_PopDrawEnviron(pCanvas, DrawEnviron);
 		} while (false);

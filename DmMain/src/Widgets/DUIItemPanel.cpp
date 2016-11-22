@@ -342,4 +342,8 @@ namespace DM
 		return false;
 	}
 
+	CStringW DUIItemPanel::OnGetTransId()
+	{
+		return m_pDUIWnd->GetContainer()->OnGetTransId();
+	}
 }//namespace DM

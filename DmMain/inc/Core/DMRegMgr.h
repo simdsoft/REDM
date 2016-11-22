@@ -71,6 +71,7 @@ namespace DM
 		DMRegTypeItem                       m_RtAnimate;
 		DMRegTypeItem                       m_RtToolTip;
 		DMRegTypeItem                       m_RtScript;
+		DMRegTypeItem                       m_RtTrans;
 
 	};
 

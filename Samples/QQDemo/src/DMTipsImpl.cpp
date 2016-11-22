@@ -129,8 +129,8 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strXmlId = pInfo->lpszXmlId;
-			CStringW strTip   = pInfo->lpszTip;
+			CStringW strXmlId = pInfo->strXmlId;
+			CStringW strTip   = pInfo->strTip;
 
 			if (IsTipWindows())
 			{
@@ -145,7 +145,7 @@ namespace DM
 				}
 			}
 			m_strXmlId	 = strXmlId;
-			m_strTip	 = pInfo->lpszTip;
+			m_strTip	 = pInfo->strTip;
 			m_rcPosFlags = pInfo->rcPosFlags;
 			m_rcScreenTarget = pInfo->rcScreenTarget;
 			Create();
