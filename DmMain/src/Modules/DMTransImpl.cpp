@@ -177,6 +177,10 @@ namespace DM
 		CStringW strTrans = strSrc;// 默认返回原始的
 		do 
 		{
+			if (strSrc.IsEmpty()||0==(int)GetCount())
+			{
+				break;
+			}
 			//1.查找语言包对象
 			DMLanguageItemPtr pLanguageItem = NULL;
 			if (strLanguageName.IsEmpty())// 从当前设置的语言包中查找
