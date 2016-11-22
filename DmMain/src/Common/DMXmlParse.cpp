@@ -6,8 +6,8 @@ namespace DM
 
 	void Init_Debug_XmlBuf(DMXmlNode &XmlNode)
 	{
-#ifdef _DEBUG	
-#ifndef _DMDesigner_// 设计器模式下，仅建议在分析问题时开放此辅助，不然会严重影响设计效率
+#if defined(_DEBUG)
+#if !defined(_DMDesigner_)// 设计器模式下，仅建议在分析问题时开放此辅助，不然会严重影响设计效率
 		XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
 #endif	
 #endif									
