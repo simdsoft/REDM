@@ -349,7 +349,7 @@ void DUIDragFrame::OnDragBox(DragMeta& meta, int iAction)
 
 void DUIDragFrame::OnDragMove(DragMeta& meta, int iAction)
 {
-	OnDragBox(meta,iAction);
+	//OnDragBox(meta,iAction);// ÔÝÊ±ÆÁ±Î
 }
 
 CRect DUIDragFrame::CalcDragFrameRect(CRect rcDrag)
