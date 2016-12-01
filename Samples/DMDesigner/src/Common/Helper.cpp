@@ -333,7 +333,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 	bool bRet = false;
 	do 
 	{
-		if (NULL == ptr)
+		if (NULL == ptr||!ptr->IsValid())
 		{
 			break;
 		}

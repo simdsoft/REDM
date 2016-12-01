@@ -606,9 +606,12 @@ namespace DM
 
 			// 支持面板显示,所以把它们统一转化成屏幕坐标
 			m_pOwner->DM_GetWindow(GDW_PARENT)->DV_GetChildMeasureLayout(rcContainer);
-			m_pOwner->GetContainer()->OnClientToScreen(rcContainer);
-			g_pMainWnd->ClientToScreen(rect);
-
+			if (m_pOwner->GetContainer() != g_pMainWnd->GetContainer())
+			{
+				m_pOwner->GetContainer()->OnClientToScreen(rcContainer);
+				g_pMainWnd->ClientToScreen(rect);
+			}
+	
 			rect.IntersectRect(rect,rcContainer);
 			if (rect.IsRectEmpty())
 			{
