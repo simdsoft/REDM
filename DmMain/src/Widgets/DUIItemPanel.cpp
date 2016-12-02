@@ -289,13 +289,13 @@ namespace DM
 	{
 		do 
 		{
-			if (WM_LBUTTONDOWN == uMsg)
+			if (WM_LBUTTONUP == uMsg)
 			{
 				DMEventOfPanelClickArgs Evt(this); 
 				DV_FireEvent(Evt);
 				break;
 			}
-			if (WM_RBUTTONDOWN == uMsg)
+			if (WM_RBUTTONUP == uMsg)
 			{
 				DMEventOfPanelRClickArgs Evt(this); 
 				DV_FireEvent(Evt);
