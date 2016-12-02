@@ -278,7 +278,8 @@ namespace DM
 					pRender->CreateCanvas(0,0,&pCanvas);
 					pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,NULL);
 					SIZE szText;
-					pCanvas->MeasureText(pdmmi->itemInfo.strText,pdmmi->itemInfo.strText.GetLength(),&szText);
+					CStringW strTrans = g_pDMApp->GetTrans(pdmmi->itemInfo.strText);
+					pCanvas->MeasureText(strTrans,strTrans.GetLength(),&szText);
 					nTextWidth = szText.cx+m_pDUIMenuXmlInfo->m_TextOffset;
 				}
 

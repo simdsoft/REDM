@@ -284,7 +284,7 @@ namespace DM
 		IDMCanvas *pCanvas = DM_GetCanvas(m_rcWindow,DMOLEDC_NODRAW);
 		DUIDrawEnviron DrawEnviron;
 		DV_PushDrawEnviron(pCanvas, DrawEnviron);
-		pCanvas->MeasureText(strText,-1,&szFont);
+		pCanvas->MeasureText(DMTR(strText),-1,&szFont);
 
 		m_pCaret->SetSize(CSize(1,szFont.cy));
 

@@ -25,7 +25,7 @@ namespace DM
 			rcText.right -= 20;
 			if (!m_pDUIXmlInfo->m_strText.IsEmpty())
 			{
-				pCanvas->MeasureText(m_pDUIXmlInfo->m_strText,-1,&szFont);
+				pCanvas->MeasureText(DMTR(m_pDUIXmlInfo->m_strText),-1,&szFont);
 				rcText.bottom = rcText.top+szFont.cy+2;
 				UINT ulAlgin = 0;
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlgin);
