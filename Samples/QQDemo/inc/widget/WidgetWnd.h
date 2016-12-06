@@ -39,6 +39,7 @@ public:
 	DMCode OnMinimize();
 	DMCode OnBtnMenu();
 	DMCode OnAttrTest();
+	DMCode OnEditChange(DMEventArgs *pEvt);
 
 	// Webkit≤‚ ‘
 	DMCode OnBtnWebBack();
