@@ -866,6 +866,92 @@ namespace DM
 		 return bRet;
 	}
 
+	void DUIListCtrlEx::UpdateScrollBar()
+	{
+		CRect rcClient;
+		DUIWindow::DV_GetClientRect(&rcClient);
+		rcClient.top += m_iHeaderHei;				 /// 不计算header,和父类不同处
+		if (rcClient.IsRectEmpty())
+		{
+			m_isbVisible    = DMSB_NULL;		     /// 关闭滚动条
+			return;
+		}
+
+		CSize size		= rcClient.Size();
+		m_isbVisible    = DMSB_NULL;		     /// 关闭滚动条
+
+		if (size.cy<m_szRange.cy				/// 需要竖直滚动条
+			|| (size.cx<m_szRange.cx&&size.cy<m_szRange.cy+m_isbWid))
+		{
+			m_isbVisible  |= DMSB_VERT;
+			m_siVer.nMin   = 0;
+			m_siVer.nMax   = m_szRange.cy-1;
+			m_siVer.nPage  = size.cy;
+
+			if (size.cx<m_szRange.cx+m_isbWid)/// 需要水平滚动条
+			{
+				m_isbVisible	|= DMSB_HORZ;
+				m_siVer.nPage    = size.cy-m_isbWid > 0 ? size.cy-m_isbWid : 0;
+
+				m_siHoz.nMin     = 0;
+				m_siHoz.nMax     = m_szRange.cx-1;
+				m_siHoz.nPage    = size.cx-m_isbWid > 0 ? size.cx-m_isbWid : 0;
+			}
+			else
+			{
+				m_siHoz.nPage = size.cx;
+				m_siHoz.nMin  = 0;
+				m_siHoz.nMax  = m_siHoz.nPage-1;
+				m_siHoz.nPos  = 0;
+				m_ptCurPos.x     = m_siHoz.nPos;/// 记录水平的nPos
+			}
+		}
+		else
+		{
+			/// 不需要水平滚动条
+			m_siVer.nPage = size.cy;
+			m_siVer.nMin  = 0;
+			m_siVer.nMax  = size.cy-1;
+			m_siVer.nPos  = 0;
+			m_ptCurPos.y     = m_siVer.nPos;
+
+			if (size.cx<m_szRange.cx)
+			{
+				/// 需要水平滚动条
+				m_isbVisible  |= DMSB_HORZ;
+				m_siHoz.nMin   = 0;
+				m_siHoz.nMax   = m_szRange.cx-1;
+				m_siHoz.nPage  = size.cx;
+			}
+			else/// 不需要水平滚动条
+			{
+				m_siHoz.nPage  = size.cx;
+				m_siHoz.nMin   = 0;
+				m_siHoz.nMax   = m_siHoz.nPage-1;
+				m_siHoz.nPos   = 0;
+				m_ptCurPos.x   = m_siHoz.nPos;
+			}
+		}
+
+		SetScrollPos(true,m_siVer.nPos,true);
+		SetScrollPos(false,m_siHoz.nPos,false);
+
+		DM_SendMessage(WM_NCCALCSIZE);   ///< 计算非客户区大小
+
+		//  根据需要调整原点位置，和父类不同处
+		if (HasScrollBar(false) && (m_ptCurPos.x+(LONG)m_siHoz.nPage)>m_szRange.cx)
+		{
+			m_ptCurPos.x = m_szRange.cx-m_siHoz.nPage;
+		}
+
+		if (HasScrollBar(true) && (m_ptCurPos.y+(LONG)m_siVer.nPage)>m_szRange.cy)
+		{
+			m_ptCurPos.y = m_szRange.cy-m_siVer.nPage;
+		}
+
+		DM_InvalidateRect(m_rcWindow);
+	}
+
 	//
 	void DUIListCtrlEx::PreArrayObjRemove(const LPLCITEMEX &obj)
 	{
@@ -981,13 +1067,7 @@ namespace DM
 		int iTotalHeight = GetTotalHeight();
 		int iTotalWidth  = m_pHeaderCtrl->GetTotalWidth();
 				
-		
 		CSize szView(iTotalWidth, iTotalHeight);
-		if (szView.cx>rcClient.Width())
-		{
-			szView.cy += (m_isbWid+4);// 在有水平滚动条时,为防止计算损失仍导致显示不完全,额外给4个像素显示
-		}
-
 		SetRangeSize(szView);
 	}
 

@@ -153,7 +153,8 @@ namespace DM
 		void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);							  ///<  更新光标位置
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTALLKEYS;};
 		bool OnScroll(bool bVert,UINT uCode,int nPos);                                     ///< 滚动时调整header的位置
-		
+		void UpdateScrollBar();
+
 	public:
 		void PreArrayObjRemove(const LPLCITEMEX &obj);
 		DMCode OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr);
