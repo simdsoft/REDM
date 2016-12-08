@@ -980,7 +980,14 @@ namespace DM
 		DUIWindow::DV_GetClientRect(&rcClient);
 		int iTotalHeight = GetTotalHeight();
 		int iTotalWidth  = m_pHeaderCtrl->GetTotalWidth();
+				
+		
 		CSize szView(iTotalWidth, iTotalHeight);
+		if (szView.cx>rcClient.Width())
+		{
+			szView.cy += (m_isbWid+4);// 在有水平滚动条时,为防止计算损失仍导致显示不完全,额外给4个像素显示
+		}
+
 		SetRangeSize(szView);
 	}
 
