@@ -30,6 +30,6 @@ DM库需要遵守什么开源协议？
 DM库GIT路径:
     https://git.oschina.net/hgy413/REDM.git
 DM库SVN路径:
-    svn://git.oschina.net/hgy413/REDM/
+    [svn://git.oschina.net/hgy413/REDM/](svn://git.oschina.net/hgy413/REDM/)
     帐号密码为你自己注册的码云帐号，密码
  **DM库快速入门任务式教程（1小时内学会使用DM）:** http://hgy413.com/3426.html
