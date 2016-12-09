@@ -29,5 +29,7 @@ DM库需要遵守什么开源协议？
   qq群：[336721552](http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8)
 DM库GIT路径:
     https://git.oschina.net/hgy413/REDM.git
-
+DM库SVN路径:
+    svn://git.oschina.net/hgy413/REDM/
+    帐号密码为你自己注册的码云帐号，密码
  **DM库快速入门任务式教程（1小时内学会使用DM）:** http://hgy413.com/3426.html
