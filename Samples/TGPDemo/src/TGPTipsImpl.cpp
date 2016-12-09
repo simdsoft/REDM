@@ -6,7 +6,7 @@ namespace DM
 //----------------------------------------------------------------------------------
 #define TIMERID_DELAY    1
 #define TIMERID_SPAN     2
-#define MARGIN_TIP       5
+#define MARGIN_TIP       3
 	BEGIN_MSG_MAP(TGPTipsImpl)
 		MSG_WM_TIMER(OnTimer)
 		REFLECT_NOTIFICATIONS_EX()
@@ -87,8 +87,8 @@ namespace DM
 				rcWnd.OffsetRect(-rcWnd.TopLeft());
 
 				CStringW strXml;
-				strXml.Format(L"<dm  initsize=\"%d,%d\"><root pos=\"0,0,-0,-0\" clrbg=\"pbgra(ff,ff,ff,ff)\" text=\"%s\"/></dm>",rcWnd.Width(),rcWnd.Height(),m_strTip);
-				int ulSize = 200;
+				strXml.Format(L"<dm  initsize=\"%d,%d\"><root pos=\"0,0,-0,-0\" ncmargin=\"1,1,1,1\" clrnc=\"pbgra(00,00,00,ff)\" clrbg=\"pbgra(e1,ff,ff,ff)\" font=\"weight:400,charset:0,underline:0,italic:0,strike:0,size:-12,face:ÐÂËÎÌå\" text=\"%s\"/></dm>",rcWnd.Width(),rcWnd.Height(),m_strTip);
+				int ulSize = 300;
 				DMBufT<BYTE>pBuf;pBuf.Allocate(ulSize);
 				UnicodeToUtf8(strXml.GetBuffer(),(PCHAR)pBuf.get(),ulSize);
 				strXml.ReleaseBuffer();
