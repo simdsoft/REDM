@@ -1,6 +1,7 @@
 #include "QQDemoAfx.h"
 #include "WidgetWnd.h"
 #include "DUIMenu.h"
+#include "DUIListCtrlEx.h"
 
 //
 #include "TabCtrl_Test.h"
@@ -76,6 +77,14 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		// 字符变化通知
 		pEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
 	}
+
+	// 增加ListCtrlEx排序示例
+	DUIListCtrlEx *pList = FindChildByNameT<DUIListCtrlEx>(L"listctrlex");
+	if (pList)
+	{
+		pList->m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderClickArgs::EventID, Subscriber(&CWidgetWnd::ListCtrlExHeaderClick, this));
+	}
+	
 
 	m_pWebkit = FindChildByNameT<DUIWebKit>(L"webobj");
 	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"web_url");
@@ -234,6 +243,40 @@ DMCode CWidgetWnd::OnEditChange(DMEventArgs *pEvt)
 	{
 		LOG_USER("richedit1 字符变化了\n");
 	}
+	return DM_ECODE_OK;
+}
+
+void SortItems(DUIListCtrlEx* pList, int nCol)
+{
+	if (1 == nCol// 只有点击1列头时才触发(0列开始)
+		&&pList->GetCount()>=2)
+	{
+		// 简单的示例,交换m_DMArray[0]和m_DMArray[1]
+		// 你也可以使用qsort_s函数来实现自己的快速排序
+		// 最终目的是调整m_DMArray中各项的顺序
+		LPLCITEMEX  pItem = pList->m_DMArray[0]; //等同于pList->GetObj(0);
+		pList->m_DMArray.RemoveAt(0);
+		pList->m_DMArray.InsertAt(1,pItem);
+
+		// 最后要更新下panel索引和刷新一下
+		pList->UpdateItemPanelId();
+		pList->DM_Invalidate();
+	}
+}
+
+DMCode CWidgetWnd::ListCtrlExHeaderClick(DMEventArgs* pEvt)
+{
+	DMEventHeaderClickArgs *pEvtCheck = (DMEventHeaderClickArgs*)pEvt;
+	DUIHeaderCtrl *pHeader = (DUIHeaderCtrl*)pEvtCheck->m_pSender;
+	if (pHeader)
+	{
+		DUIListCtrlEx *pList = (DUIListCtrlEx*)pHeader->DM_GetWindow(GDW_PARENT);
+		DMHDITEM hditem;
+		hditem.mask = DMHDI_ORDER;
+		pHeader->GetItem(pEvtCheck->m_iItem,&hditem);
+		SortItems(pList,hditem.iOrder);// iOrder为初始header的列头序号，从0开始
+	}
+
 	return DM_ECODE_OK;
 }
 

@@ -2,7 +2,7 @@
 	<listctrlex name="listctrlex" pos="10,5,%40,%60" cursel="1" headerheight="20" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame"  sbskin="scrollbar">
 		<HeaderCtrl align="center" itemdelta="4"  itemskin="listheader" bswap="1" bfixwidth="0" bsort="1">
 			<item width="100" text="H1-可拖拽" skin="listheader"/>
-			<item width="120" text="H2" />
+			<item width="120" text="H2-sort排序" />
 			<item width="120" text="H3" />
 			<item width="100" text="H4" />
 		</HeaderCtrl>

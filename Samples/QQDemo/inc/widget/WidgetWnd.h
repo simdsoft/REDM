@@ -40,6 +40,7 @@ public:
 	DMCode OnBtnMenu();
 	DMCode OnAttrTest();
 	DMCode OnEditChange(DMEventArgs *pEvt);
+	DMCode ListCtrlExHeaderClick(DMEventArgs* pEvt);
 
 	// Webkit≤‚ ‘
 	DMCode OnBtnWebBack();
