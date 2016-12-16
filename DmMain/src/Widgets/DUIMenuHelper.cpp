@@ -57,7 +57,7 @@ namespace DM
 	{
 		if (IsMenuWindowExist())
 		{
-			SetWindowLong(m_hWnd,GWL_WNDPROC, (LONG)m_pOldProc);
+			SetWindowLongPtr(m_hWnd,GWL_WNDPROC, (LONG_PTR)m_pOldProc);
 			::RemoveProp(m_hWnd, DMMENU_PROP_OBJ);
 			m_hWnd			= NULL;
 			m_pOldProc		= NULL;
@@ -412,7 +412,7 @@ namespace DM
 				m_bAlpha = false;
 			}
 
-			::SetWindowLong(m_hWnd, GWL_EXSTYLE, ::GetWindowLong(m_hWnd, GWL_EXSTYLE) | 0x80000);
+			::SetWindowLongPtr(m_hWnd, GWL_EXSTYLE, ::GetWindowLongPtr(m_hWnd, GWL_EXSTYLE) | 0x80000);
 			::SetLayeredWindowAttributes(m_hWnd, 0, m_pDUIMenuXmlInfo->m_byAlpha, LWA_ALPHA);
 		}
 		else
@@ -566,7 +566,7 @@ namespace DM
 		m_hWnd = hWnd;
 		::SetProp(m_hWnd, DMMENU_PROP_OBJ, (HANDLE)this);
 		m_pNowProc = WndProc;
-		m_pOldProc = (WNDPROC)::SetWindowLong(m_hWnd, GWL_WNDPROC, (DWORD)WndProc);
+		m_pOldProc = (WNDPROC)::SetWindowLongPtr(m_hWnd, GWL_WNDPROC, (LONG_PTR)WndProc);
 	}
 
 	LRESULT CALLBACK DUIMenuItem::SubMenuProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
