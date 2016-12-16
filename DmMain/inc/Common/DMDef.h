@@ -28,6 +28,10 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< 树形控件的定义
 #define DMOUT
 #define DMINOUT
 
+#ifdef _WIN64
+#define GWL_WNDPROC    GWLP_WNDPROC
+#endif//_WIN64
+
 // ----------------------------------------------------
 // 辅助
 #define DMADDEVENT(EventId)                          m_EventMgr;//.AddEvent(EventId);///< 默认不需要提前加载                                    

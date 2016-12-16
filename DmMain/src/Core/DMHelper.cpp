@@ -171,7 +171,7 @@ namespace DM
 			{
 				break;
 			}
-			dwReadSize = fread(*ppBuf, 1, dwSize, fp);
+			dwReadSize = (DWORD)fread(*ppBuf, 1, dwSize, fp);
 			fclose(fp);
 
 			bRet = true;

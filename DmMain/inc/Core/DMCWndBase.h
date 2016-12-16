@@ -38,10 +38,12 @@ namespace DM
 		DWORD GetExStyle() const throw();
 
 		LONG GetWindowLong(int nIndex) const throw();
-		//LONG_PTR GetWindowLongPtr(int nIndex) const throw();//32位下同于GetWindowLong,WinUser.h中有宏定义
-
 		LONG SetWindowLong(int nIndex, LONG dwNewLong) throw();
-		//LONG_PTR SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw();//32位下同于SetWindowLong,WinUser.h中有宏定义
+
+#ifdef _WIN64
+		LONG_PTR GetWindowLongPtr(int nIndex) const throw();//32位下同于GetWindowLong,WinUser.h中有宏定义
+		LONG_PTR SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw();//32位下同于SetWindowLong,WinUser.h中有宏定义
+#endif
 
 		WORD GetWindowWord(int nIndex) const throw();
 		WORD SetWindowWord(int nIndex, WORD wNewWord) throw();

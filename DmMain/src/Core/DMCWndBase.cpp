@@ -66,24 +66,25 @@ namespace DM
 		return ::GetWindowLong(m_hWnd, nIndex);
 	}
 
-	//LONG_PTR DMCWndBase::GetWindowLongPtr(int nIndex) const throw()
-	//{
-	//	DMASSERT(::IsWindow(m_hWnd));
-	//	return ::GetWindowLongPtr(m_hWnd, nIndex);
-	//}
-
 	LONG DMCWndBase::SetWindowLong(int nIndex, LONG dwNewLong) throw()
 	{
 		DMASSERT(::IsWindow(m_hWnd));
 		return ::SetWindowLong(m_hWnd, nIndex, dwNewLong);
 	}
 
-	//LONG_PTR DMCWndBase::SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw()
-	//{
-	//	DMASSERT(::IsWindow(m_hWnd));
-	//	return ::SetWindowLongPtr(m_hWnd, nIndex, dwNewLong);
-	//}
+#ifdef _WIN64
+	LONG_PTR DMCWndBase::SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw()
+	{
+		DMASSERT(::IsWindow(m_hWnd));
+		return ::SetWindowLongPtr(m_hWnd, nIndex, dwNewLong);
+	}
 
+	LONG_PTR DMCWndBase::GetWindowLongPtr(int nIndex) const throw()
+	{
+		DMASSERT(::IsWindow(m_hWnd));
+		return ::GetWindowLongPtr(m_hWnd, nIndex);
+	}
+#endif//_WIN64
 	WORD DMCWndBase::GetWindowWord(int nIndex) const throw()
 	{
 		DMASSERT(::IsWindow(m_hWnd));

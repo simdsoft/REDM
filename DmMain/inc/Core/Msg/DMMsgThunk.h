@@ -16,9 +16,10 @@
 
 namespace DM
 {
+#if defined(_M_IX86)
 	#pragma pack(push, 1)
 	/// <summary>
-	///		thunk操作，把hwnd偷换成this指针，从而实现全局函数切换到类成员函数,x64代码暂未移过来
+	///		thunk操作，把hwnd偷换成this指针，从而实现全局函数切换到类成员函数
 	/// </summary>
 	class DM_EXPORT DMMsgThunk
 	{
@@ -32,7 +33,22 @@ namespace DM
 		DWORD			m_relproc;
 	};
 	#pragma pack(pop)
-
+#elif defined(_M_AMD64)
+	#pragma pack(push,2)
+	class DM_EXPORT DMMsgThunk
+	{
+	public:
+		void Init(DWORD_PTR proc, void* pThis);	
+		void* GetCodeAddress();
+	public:
+		USHORT			RcxMov;    // mov rcx, pThis
+		ULONG64			RcxImm;    // 
+		USHORT			RaxMov;    // mov rax, target
+		ULONG64			RaxImm;    //
+		USHORT			RaxJmp;    // jmp target
+	};
+	#pragma pack(pop)
+#endif
 	/// <summary>
 	///		thunk工具,要创建多个主窗口，所以不能为单例模式
 	/// </summary>
@@ -51,5 +67,6 @@ namespace DM
 		HANDLE                m_hHeap;
 		DMMsgThunk            *m_pThunk;
 	};	
+
 
 }//namespace DM

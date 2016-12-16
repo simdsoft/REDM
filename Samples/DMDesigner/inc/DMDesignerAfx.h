@@ -80,8 +80,10 @@ using namespace DM;
 
 
 #if _MSC_VER==1500
+#if !defined(_WIN64)
 #include "vld.h"
 #pragma comment(lib, "vld.lib")// VLD仅在mDd模式下才能有效，其他v s版本请使用其他版本vld
+#endif
 #endif
 
 extern DMDesignerWnd* g_pMainWnd;

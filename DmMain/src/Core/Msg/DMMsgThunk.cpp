@@ -4,6 +4,7 @@
 namespace DM
 {
 	// DMMsgThunk--------------------------------
+#if defined(_M_IX86)
 	void DMMsgThunk::Init(DWORD_PTR proc, void* pThis)
 	{
 		m_mov = 0x042444C7;// C7 44 24 0C
@@ -19,7 +20,22 @@ namespace DM
 	{
 		return this;
 	}
-
+#elif defined(_M_AMD64)
+	void DMMsgThunk::Init(DWORD_PTR proc, void *pThis)
+	{
+		RcxMov = 0xb948;          // mov rcx, pThis
+		RcxImm = (ULONG64)pThis;  // 
+		RaxMov = 0xb848;          // mov rax, target
+		RaxImm = (ULONG64)proc;   //
+		RaxJmp = 0xe0ff;          // jmp rax
+		FlushInstructionCache(GetCurrentProcess(), this, sizeof(DMMsgThunk));
+	}
+	//some thunks will dynamically allocate the memory for the code
+	void* DMMsgThunk::GetCodeAddress()
+	{
+		return this;
+	}
+#endif
 	// DMMsgThunkTool-----------------------------
 	DMMsgThunkTool::DMMsgThunkTool()
 	{

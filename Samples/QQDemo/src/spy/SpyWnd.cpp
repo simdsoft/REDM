@@ -75,7 +75,7 @@ DMCode CSpyWnd::OnSpyInitEvent(DMEventArgs *pEvt)
 		m_pTreeEdit->SetWindowText(L"");
 		m_pSearchSta->DV_SetWindowText(L"请拖动左侧的指针到需要查看的窗口/控件上释放");
 		// 默认wparam传什么返回什么
-		DWORD lresult = 0; 
+		DWORD_PTR lresult = 0; 
 		LRESULT lr  = ::SendMessageTimeout(pInitEvt->m_hwnd,WM_DMSPY,DMSPY_INIT,(LPARAM)m_hWnd,SMTO_NORMAL,2000,&lresult);
 		if (lr&&DMSPY_INIT!=lresult)
 		{
@@ -109,7 +109,7 @@ DMCode CSpyWnd::OnTreeSelChanged(DMEventArgs *pEvt)
 			m_pSpyEnum->iCode   = GDW_FIRSTCHILD;
 			m_pSpyEnum->hDUIWnd = hDUIWnd;
 			DMSpyTool::WriteShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
-			DWORD lresult = 0; 
+			DWORD_PTR lresult = 0; 
 			if (0!= ::SendMessageTimeout(m_hRootWnd, WM_DMSPY, DMSPY_INFO, 0,SMTO_NORMAL,2000,&lresult)&&DMSPY_INFO ==lresult)
 			{
 				ReflashEditInfo();
@@ -229,7 +229,7 @@ bool CSpyWnd::HitTest(RECT &rc)
 		m_pSpyEnum->hDUIWnd = DMSPY_ENUM_BEGIN;
 		m_pSpyEnum->pt = pnnt;
 		DMSpyTool::WriteShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
-		DWORD lresult = 0; 
+		DWORD_PTR lresult = 0; 
 		HRESULT hr = ::SendMessageTimeout(m_hRootWnd, WM_DMSPY, DMSPY_POINT, 0,SMTO_NORMAL,2000,&lresult);
 		DMSpyTool::ReadShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
 		if (hr&&DMSPY_POINT == lresult&&m_pSpyEnum->hNextDUIWnd)

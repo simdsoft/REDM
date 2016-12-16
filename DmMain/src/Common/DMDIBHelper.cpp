@@ -110,7 +110,7 @@ namespace DM
 		LPBYTE lpPixSrc  = pSrc->m_pPixelBits  + nY2*pSrc->m_nBPS + nX2*4;
 		LPBYTE lpBitSrc  = NULL;
 		LPBYTE lpBitDest = NULL;
-
+#if !defined(_WIN64)
 		UINT* pBelowColor;
 		UINT* pAboveColor;
 		const UINT c_00000100 = 0x00000100;
@@ -172,7 +172,7 @@ ALPHA_BLEND_SAME:
 				}
 			}
 		}
-
+#endif//!defined(_WIN64)
 		return true;
 	}
 

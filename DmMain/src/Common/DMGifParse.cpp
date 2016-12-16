@@ -72,7 +72,7 @@ namespace DM
 			bRet = GetAllFrames(fp);
 			if (bRet)
 			{
-				m_gInfo.frames = GetCount();
+				m_gInfo.frames = (UINT)GetCount();
 			}
 		} while (false);
 		if (fp)
@@ -138,7 +138,7 @@ namespace DM
 			bRet = GetAllFrames(pBuf,bufLen);
 			if (bRet)
 			{
-				m_gInfo.frames = GetCount();
+				m_gInfo.frames = (UINT)GetCount();
 			}
 		} while (false);
 		return bRet;

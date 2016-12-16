@@ -463,11 +463,11 @@ namespace DM
 			{
 				break;
 			}
-			if(wParam != m_dwCurSel)
+			if((DWORD)wParam != m_dwCurSel)
 			{
 				Render();
 			}
-			m_dwCurSel = wParam;
+			m_dwCurSel = (DWORD)wParam;
 		} while (false);
 		return lRet;
 	}

@@ -38,7 +38,7 @@ namespace DM
 			if (-1 == nIndex
 				||nIndex>(int)GetCount())
 			{
-				nIndex = GetCount();
+				nIndex = (int)GetCount();
 			}
 
 			LPLBITEMEX pNewItem = new LBITEMEX(XmlNode,this);
@@ -713,7 +713,7 @@ namespace DM
 			{
 				break;
 			}
-			int iItem = pPanel->GetItemId();
+			int iItem = (int)pPanel->GetItemId();
 			*lpRect = GetItemRect(iItem);
 			iErr = DM_ECODE_OK;
 		} while (false);

@@ -145,7 +145,7 @@ namespace DM
 	DMCode DMAppData::IsRun(HWND hWnd)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		int iCount = m_RunhWndArray.GetCount();
+		int iCount = (int)m_RunhWndArray.GetCount();
 		for (int i=0;i<iCount; i++)
 		{
 			if (hWnd == m_RunhWndArray[i])

@@ -70,7 +70,7 @@ namespace DM
 
 		case WM_ACTIVATEAPP:// WM_ACTIVATEAPP发给被激活或失去激活的应用程序所拥有的所有窗口
 			{
-				OnActivateApp(wParam,lParam);
+				OnActivateApp((BOOL)wParam,(DWORD)lParam);
 			}
 			break;
 

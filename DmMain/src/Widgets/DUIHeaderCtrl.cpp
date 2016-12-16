@@ -575,7 +575,7 @@ namespace DM
 			}	
 			CRect rcItem(rcClient.left,rcClient.top,rcClient.left,rcClient.bottom);
 			int nMargin = m_bSort?m_nItemDelta:0;
-			int iCount  = GetCount();
+			int iCount  = (int)GetCount();
 			for (int i=0; i<iCount; i++)
 			{// 查找pt位于哪个Item中
 				if (0 == m_DMArray[i]->cxy) 

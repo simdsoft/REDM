@@ -134,7 +134,7 @@ namespace DM
 
 	int DUIListCtrlEx::GetColumnCount()
 	{
-		return m_pHeaderCtrl->GetItemCount();
+		return (int)m_pHeaderCtrl->GetItemCount();
 	}
 
 	CRect DUIListCtrlEx::GetItemRect(int iItem)
@@ -730,7 +730,7 @@ namespace DM
 			{
 				break;
 			}
-			int iItem = pPanel->GetItemId();
+			int iItem = (int)pPanel->GetItemId();
 			*lpRect = GetItemRect(iItem);
 			iErr = DM_ECODE_OK;
 		} while (false);

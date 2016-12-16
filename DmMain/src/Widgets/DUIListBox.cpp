@@ -61,7 +61,7 @@ namespace DM
 			if (-1 == nIndex
 				||nIndex>(int)GetCount())
 			{
-				nIndex = GetCount();
+				nIndex = (int)GetCount();
 			}
 
 			LPLBITEM pNewItem = new LBITEM;
@@ -781,7 +781,7 @@ namespace DM
 				pItem.strText = XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_text);
 				DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_icon),pItem.nImage);
 				
-				int lParam = pItem.lParam;
+				int lParam = (int)pItem.lParam;
 				DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_data),lParam);
 				pItem.lParam  = lParam;
 

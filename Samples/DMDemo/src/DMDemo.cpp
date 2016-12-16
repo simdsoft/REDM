@@ -5,10 +5,11 @@
 #include "DUIWebkit.h"
 
 #if _MSC_VER==1500
+#if !defined(_WIN64)
 #include "vld.h"
 #pragma comment(lib, "vld.lib")// VLD仅在mDd模式下才能有效
 #endif
-
+#endif
 CMainWnd* g_pMainWnd = NULL;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,

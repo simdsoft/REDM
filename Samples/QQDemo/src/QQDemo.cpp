@@ -27,9 +27,11 @@
 #include <time.h>
 #pragma comment(lib,  "dbghelp.lib")
 
-#if _MSC_VER==1500
+#if (_MSC_VER==1500)
+#if !defined(_WIN64)
 #include "vld.h"
 #pragma comment(lib, "vld.lib")// VLD仅在mDd模式下才能有效，其他v s版本请使用其他版本vld
+#endif
 #endif 
 
 LONG __stdcall _UnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo)

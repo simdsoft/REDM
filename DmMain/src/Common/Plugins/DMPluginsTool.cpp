@@ -68,7 +68,7 @@ namespace DM
 		m_LibsArray.RemoveAll();
 
 		// 移除以其他方式注册进来的插件.一般非dll
-		nCount = m_PluginArray.GetCount();
+		nCount = (int)m_PluginArray.GetCount();
 		for (int i=0; i<nCount; i++)
 		{
 			m_PluginArray[i]->Uninstall();

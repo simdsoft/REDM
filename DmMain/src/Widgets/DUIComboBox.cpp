@@ -90,7 +90,7 @@ namespace DM
 	{
 		if (m_pListBox)
 		{
-			return m_pListBox->GetCount();
+			return (int)m_pListBox->GetCount();
 		}
 		return 0;
 	}
