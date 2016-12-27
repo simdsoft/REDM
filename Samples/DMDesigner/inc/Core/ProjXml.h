@@ -74,6 +74,7 @@ protected:
 	DMCode ProjMenu_SetDefTheme();
 	DMCode ProjMenu_AddImg();
 	DMCode ProjMenu_DelImg();
+	DMCode ProjMenu_EditImg();
 	DMCode ProjMenu_AddLayout();
 	DMCode ProjMenu_DelLayout();
 	DMCode ProjMenu_EditLayout();

@@ -19,8 +19,9 @@ BEGIN_EVENT_MAP(ImgDlg)
 	EVENT_NAME_COMMAND(L"ds_img_opendir",OnOpenDir)
 END_EVENT_MAP()
 ImgDlg*  ImgDlg::ms_pthis = NULL;
-ImgDlg::ImgDlg()
+ImgDlg::ImgDlg(bool bEditMode)
 {
+	m_bEditMode = bEditMode;
 	ms_pthis	= this;
 	m_pTitle = m_pImgPath = NULL;
 	m_pSave = m_pClean = NULL;
@@ -35,22 +36,13 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 
 	//1.更新标题
 	m_pTitle = FindChildByNameT<DUIStatic>(L"ds_title");
-	CStringW strTitle;
-	strTitle += L"[新加IMG]";
-	m_pTitle->DV_SetWindowText(strTitle);
+	m_strTitle = m_bEditMode?L"[编辑IMG]":L"[新加IMG]";
+	m_pTitle->DV_SetWindowText(m_strTitle);
 
-	//2.更新path
+	// 2.初始化控件变量
 	m_pImgPath = FindChildByNameT<DUIStatic>(L"ds_img_path");
 	ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
 	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
-
-	HDMTREEITEM hTheme = pProjTree->GetParentItem(pXml->m_hProjSel);
-	DMXmlNodePtr pThemeNode = (DMXmlNodePtr)pProjTree->GetItemData(hTheme);
-	m_strDirName = pThemeNode->Attribute(XML_PATH);
-	m_strDirName = m_strDirName.Left(m_strDirName.ReverseFind(L'\\')+1);
-	m_strDir = pXml->m_strResDir + m_strDirName;
-	m_pImgPath->DV_SetWindowText(m_strDirName);
-
 	m_pImgEditor = FindChildByNameT<DUImgEditor>(L"ds_img_editor");DMASSERT(m_pImgEditor);
 	m_pbMultImg  = FindChildByNameT<DUICheckBox>(L"ds_img_bmult");DMASSERT(m_pbMultImg);
 	m_pbVert     = FindChildByNameT<DUICheckBox>(L"ds_img_bvert");DMASSERT(m_pbVert);
@@ -65,11 +57,65 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pImgDir->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
 	m_pImgFileName->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
 	m_pImgFileAfx->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	
+
+	// 3.得到主题包的node
+	HDMTREEITEM hTheme = NULL;
+	if (m_bEditMode)
+	{
+		HDMTREEITEM h_p = pProjTree->GetParentItem(pXml->m_hProjSel);
+		hTheme = pProjTree->GetParentItem(h_p);
+	}
+	else
+	{
+		hTheme = pProjTree->GetParentItem(pXml->m_hProjSel);
+	}
+
+	DMXmlNodePtr pThemeNode = (DMXmlNodePtr)pProjTree->GetItemData(hTheme);
+	m_strDirName = pThemeNode->Attribute(XML_PATH);
+	m_strDirName = m_strDirName.Left(m_strDirName.ReverseFind(L'\\')+1);
+	m_strDir = pXml->m_strResDir + m_strDirName;
+	m_pImgPath->DV_SetWindowText(m_strDirName);
+
+	//3.更新img结点
 	DMXmlNode XmlBase = m_ImgDoc.Base();
 	m_ImgNode = XmlBase.InsertChildNode(XML_FILE);
-	UpdateXml();
 
+	if (m_bEditMode)
+	{
+		DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
+		if (pNode)
+		{
+			// title
+			m_pImgName->SetWindowText(pNode->Attribute(XML_NAME));
+			CStringW strPath = pXml->m_strResDir + pNode->Attribute(XML_PATH);
+			m_pTitle->DV_SetWindowText(m_strTitle+strPath);
+
+			// 增加图片
+			m_pImgEditor->AddImg(strPath);
+
+			// 图片名+后缀
+			CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
+			CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
+			strFileName = strFileName.Right(strFileName.GetLength()-1-strFileName.ReverseFind(L'\\'));
+			m_pImgFileAfx->SetAttribute(L"text",strFileAfx);m_pImgFileAfx->DM_EnableWindow(false);
+			m_pImgFileName->SetAttribute(L"text",strFileName);m_pImgFileName->DM_EnableWindow(false);
+			m_pbMultImg->DM_SetVisible(false,true);
+
+			// 设置目录
+			strPath = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
+			strPath = strPath.Left(strPath.ReverseFind(L'\\')+1);
+			m_pImgDir->SetWindowText(strPath);
+			DUIButton* pOpenDir = FindChildByNameT<DUIButton>(L"ds_img_opendir");
+			if (pOpenDir)
+			{
+				pOpenDir->DM_SetVisible(false,true);
+			}
+
+			// img路径
+			m_pImgPath->SetAttribute(L"text",pNode->Attribute(XML_PATH));
+		}
+	}
+	UpdateXml();
 	return TRUE;
 }   
 
@@ -95,6 +141,11 @@ void ImgDlg::OnDropFiles(HDROP hDropInfo)
 {
 	do 
 	{
+		if (m_bEditMode)
+		{
+			break;
+		}
+		
 		int nDropCount = DragQueryFile(hDropInfo, -1, NULL, 0);
 		if (1!=nDropCount)
 		{
@@ -353,11 +404,10 @@ DMCode ImgDlg::OnOK()
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	HDMTREEITEM hAdd = NULL;
+	ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
+	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
 	do 
 	{
-		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
-
 		// 1.判断name是否为空，判断本主题包是否已含有此name,注意，并没有判断此文件有没有被其他name占用
 		CStringW strImgName = m_pImgName->GetWindowText();
 		if (strImgName.IsEmpty())
@@ -365,6 +415,49 @@ DMCode ImgDlg::OnOK()
 			DM_MessageBox(L"未设置name!",MB_OK, L"MSG",m_hWnd);
 			m_pImgName->DV_SetFocusWnd();
 			break;
+		}
+
+		if (m_bEditMode)// 编辑模式
+		{
+			DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
+			bool bFind = false;
+			HDMTREEITEM hParentItem = pProjTree->GetParentItem(pXml->m_hProjSel);
+			//2. 判断name是否已存在
+			if (hParentItem)
+			{
+				HDMTREEITEM hChildItem = pProjTree->GetChildItem(hParentItem);
+				while (hChildItem)
+				{
+					if (hChildItem != pXml->m_hProjSel)
+					{// 跳过编辑自身
+						DMXmlNodePtr pChildNode = (DMXmlNodePtr)pProjTree->GetItemData(hChildItem);
+						if (0 == strImgName.CompareNoCase(pChildNode->Attribute(XML_NAME)))
+						{
+							bFind = true;
+							break;
+						}
+					}
+					hChildItem = pProjTree->GetNextSiblingItem(hChildItem);
+				}
+			}
+			if (bFind)
+			{
+				DM_MessageBox(L"name已存在,请重新设置!",MB_OK,L"MSG",m_hWnd);
+				m_pImgName->DV_SetFocusWnd();
+				break;
+			}
+			
+			//3.判断名字是否和以前相同，如不同，则设置新名字到pNode中，并设置为未保存状态
+			CStringW strOldName = pNode->Attribute(XML_NAME);
+			if (0 != strOldName.CompareNoCase(strImgName))
+			{
+				pNode->SetAttribute(XML_NAME,strImgName);
+				pXml->SetDocUnSave(pNode);
+			}
+			
+			iErr = DM_ECODE_OK;
+			EndDialog(IDOK);
+			break;// 中间跳出，后续为新建模式
 		}
 		
 		DMXmlNodePtr pTypeNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);

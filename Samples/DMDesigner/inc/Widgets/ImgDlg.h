@@ -14,7 +14,7 @@
 class ImgDlg : public DMHDialog
 {
 public:
-	ImgDlg();
+	ImgDlg(bool bEditMode = false);
 	DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP()
 
@@ -36,6 +36,7 @@ protected:
 	DMCode OnOK();
 
 private:  
+	bool							m_bEditMode;
 	DUIStatic*                      m_pTitle;
 	DUIStatic*                      m_pImgPath;
 	DUImgEditor*                    m_pImgEditor;
@@ -58,5 +59,6 @@ private:
 
 	CStringW                        m_strDirName;///< 主题包文件夹名如"themes\\theme0"
 	CStringW                        m_strDir;    ///< 主题包所在的路径如"e:\\themes\\theme0\\"
+	CStringW                        m_strTitle;  ///< 
 	static  ImgDlg*                 ms_pthis; 	
 };

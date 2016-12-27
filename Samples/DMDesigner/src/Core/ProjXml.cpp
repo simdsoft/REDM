@@ -32,10 +32,11 @@ DesignMenu g_ProjMenuItem[] = \
 
 	{PROJMENU_ADDIMG,			L"     增加IMG"},//21 
 	{PROJMENU_DELIMG,			L"     删除IMG"},//22
+	{PROJMENU_EDITIMG,			L"     编辑IMG"},//23
 
-	{PROJMENU_ADDLAYOUT,		L"     增加LAYOUT"},//23
-	{PROJMENU_DELLAYOUT,		L"     删除LAYOUT"},//24
-	{PROJMENU_EDITLAYOUT,		L"     编辑LAYOUT"},//25
+	{PROJMENU_ADDLAYOUT,		L"     增加LAYOUT"},//24
+	{PROJMENU_DELLAYOUT,		L"     删除LAYOUT"},//25
+	{PROJMENU_EDITLAYOUT,		L"     编辑LAYOUT"},//26
 };
 
 ProjXml::ProjXml()
@@ -656,6 +657,12 @@ DMCode ProjXml::HandleProjTreeMenu(int nID)
 	case PROJMENU_DELIMG:
 		{
 			ProjMenu_DelImg();
+		}
+		break;
+
+	case PROJMENU_EDITIMG:
+		{
+			ProjMenu_EditImg();
 		}
 		break;
 
@@ -1470,6 +1477,22 @@ DMCode ProjXml::ProjMenu_DelImg()
 	return iErr;
 }
 
+DMCode ProjXml::ProjMenu_EditImg()
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		if (IDOK == DM_MessageBox(L"改变Img是危险的!!\r\n请确认它从未被任何skin使用过!!",MB_OKCANCEL))
+		{
+			DMSmartPtrT<ImgDlg> pDlg;pDlg.Attach(new ImgDlg(true));
+			pDlg->DoModal(L"ds_imgdlg",g_pMainWnd->m_hWnd,true);
+		} 
+
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+}
+
 DMCode ProjXml::ProjMenu_AddLayout()
 {
 	DMCode iErr = DM_ECODE_FAIL;
@@ -1850,6 +1873,8 @@ DMCode ProjXml::InitImgMenu(DMXmlNode& XmlNode)
 			XmlNode.InsertChildNode(XML_SEP);
 			DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
 			XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_DELIMG-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_DELIMG-PROJMENU_BASE].text);
+			XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+			XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_EDITIMG-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_EDITIMG-PROJMENU_BASE].text);
 			Init_Debug_XmlBuf(XmlNode);
 			iErr = DM_ECODE_OK;
 			break;
