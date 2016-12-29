@@ -45,7 +45,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (m_iHoverItem && m_pContainer)
+			if (-1!=m_iHoverItem && m_pContainer)
 			{
 				tipInfo.hDUIWnd    = m_hDUIWnd;
 				tipInfo.rcTarget   = GetItemRect(m_iHoverItem);
