@@ -109,6 +109,7 @@ namespace DM
 		bool Update2(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool UpdateFull(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool UpdateAuto(LPRECT lpRcContainer,OUT CRect &rcWindow);
+		bool IsUnInitPos(int iPos);
 		CSize CalcSize(LPRECT pRcContainer);//  计算窗口大小
 
 		// 设计器增加

@@ -18,11 +18,6 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	bool IsUnInitPos(int iPos)
-	{
-		return POS_INIT == iPos || POS_WAIT == iPos;
-	}
-
 	DMCode Layout::UpdateLayout(LPRECT lpRcContainer,OUT CRect &rcWindow)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -507,6 +502,11 @@ namespace DM
 			bRet = true;
 		} while (false);
 		return bRet;
+	}
+	
+	bool Layout::IsUnInitPos(int iPos)
+	{
+		return POS_INIT == iPos || POS_WAIT == iPos;
 	}
 
 	CSize Layout::CalcSize(LPRECT pRcContainer)
