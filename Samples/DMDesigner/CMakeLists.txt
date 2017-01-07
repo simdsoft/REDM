@@ -69,6 +69,8 @@ INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Designer/inc)
 # 输出设置
 SET(CMAKE_CXX_FLAGS_DEBUG "/D_DEBUG /MTd /Zi /Ob0 /Od /RTC1")# 直接抄gui的默认，然后 改成mtd
 SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2 /Ob2 /D NDEBUG")
+SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O1 /Ob1 /D NDEBUG")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /Zi /O2 /Ob1 /D NDEBUG")
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE)  # unicode版本
 ADD_EXECUTABLE(DMDesigner  WIN32
 			   ${ROOT_HEADER};
@@ -88,7 +90,9 @@ SET_TARGET_PROPERTIES(DMDesigner PROPERTIES OUTPUT_NAME "DMDesigner")
 
 # 增加项目依赖项
 add_dependencies(DMDesigner  DmMain)
+if(USE_DMDLL_)
 add_dependencies(DMDesigner  Plugin_Designer)
+endif()
 
 #增加事件后命令
 add_custom_command(TARGET DMDesigner 
