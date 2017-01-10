@@ -270,6 +270,7 @@ namespace DM
 				m_pCapturePanel.Release();
 				DM_ReleaseCapture();
 			}
+			DM_RemoveChildPanel(m_DMArray[nIndex]->pPanel);
 			RemoveObj(nIndex);
 			if (m_iSelItem==nIndex) 
 			{
@@ -296,6 +297,7 @@ namespace DM
 
 	void TGPListBoxEx::DeleteAllItems(bool bUpdate /*= true*/)
 	{
+		DM_RemoveAllChildPanel();
 		OnReleaseCapture(m_pCapturePanel);
 		RemoveAll();
 		m_iSelItem		 = -1;
@@ -426,7 +428,6 @@ namespace DM
 	// Function Des: DUI的消息分发系列函数
 	void TGPListBoxEx::OnDestroy()
 	{
-		DM_RemoveAllChildPanel();
 		DeleteAllItems(false);
 		__super::OnDestroy();
 	}

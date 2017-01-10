@@ -233,6 +233,7 @@ namespace DM
 				m_pCapturePanel.Release();
 				DM_ReleaseCapture();
 			}
+			DM_RemoveChildPanel(m_DMArray[nIndex]->pPanel);
 			RemoveObj(nIndex);
 			if (m_iSelItem==nIndex) 
 			{
@@ -258,6 +259,7 @@ namespace DM
 
 	void DUIListCtrlEx::DeleteAllItems(bool bUpdate /*= true*/)
 	{
+		DM_RemoveAllChildPanel();
 		OnReleaseCapture(m_pCapturePanel);// RemoveAll会delete所有的对象，所以m_pCapturePanel如果有值（正常为NULL）,要提前释放引用计数
 		RemoveAll();
 		m_iSelItem		 = -1;
@@ -456,7 +458,6 @@ namespace DM
 			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
 		}
 	
-		DM_RemoveAllChildPanel();
 		DeleteAllItems(false);
 		__super::OnDestroy();
 	}

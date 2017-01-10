@@ -82,6 +82,7 @@ namespace DM
 			}
 			bool bVisible = pData->bVisible;
 			int iCheckValue = pData->iCheckValue;
+			DM_RemoveChildPanel(pData->pPanel);
 			DeleteItem(hItem);
 
 			// 去掉父节点的展开标志

@@ -261,7 +261,9 @@ namespace DM
 				m_pCapturePanel.Release();
 				DM_ReleaseCapture();
 			}
+			DM_RemoveChildPanel(m_DMArray[nIndex]->pPanel);
 			RemoveObj(nIndex);
+			
 			if (m_iSelItem==nIndex) 
 			{
 				m_iSelItem = -1;
@@ -287,6 +289,7 @@ namespace DM
 
 	void DUIListBoxEx::DeleteAllItems(bool bUpdate /*= true*/)
 	{
+		DM_RemoveAllChildPanel();
 		OnReleaseCapture(m_pCapturePanel);// RemoveAll会delete所有的对象，所以m_pCapturePanel如果有值（正常为NULL）,要在这里释放引用计数
 		RemoveAll();
 		m_iSelItem		 = -1;
@@ -443,7 +446,6 @@ namespace DM
 	// Function Des: DUI的消息分发系列函数
 	void DUIListBoxEx::OnDestroy()
 	{
-		DM_RemoveAllChildPanel();
 		DeleteAllItems(false);
 		__super::OnDestroy();
 	}
