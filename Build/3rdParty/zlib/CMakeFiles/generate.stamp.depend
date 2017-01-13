@@ -1,8 +1,0 @@
-# CMake generation dependency list for this directory.
-F:/OpenSource/REDM/3rdParty/zlib/CMakeLists.txt
-D:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckTypeSize.cmake
-D:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFile.cmake
-D:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckFunctionExists.cmake
-D:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFile.cmake
-D:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/CheckCSourceCompiles.cmake
-F:/OpenSource/REDM/3rdParty/zlib/zlib.pc.cmakein
