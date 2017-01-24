@@ -10,18 +10,52 @@
 // Create date: 2016-7-7
 // ----------------------------------------------------------------
 #include "DMDesignerAfx.h"     
-#include "Plugin.h"    
+#include "Plugin.h"   
+#include <dbghelp.h> 
+#pragma comment(lib,  "dbghelp.lib")
+
+LONG __stdcall _UnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo)
+{
+	wchar_t szDir[MAX_PATH] = {0};
+	GetRootDirW(szDir,MAX_PATH);
+	CStringW  strDumpDir = szDir; 
+	time_t  tt = time(NULL);
+	tm* ptime = localtime(&tt);
+	CStringW strDumpPath;
+	strDumpPath.Format(L"%s-%04d-%02d-%02d-%02d-%02d-%02d-dmdesigner.dmp",
+		strDumpDir,
+		1900 + ptime->tm_year,
+		(ptime->tm_mon + 1) ,
+		ptime->tm_mday,
+		ptime->tm_hour,
+		ptime->tm_min,
+		ptime->tm_sec);
+	HANDLE  hFile = CreateFile(strDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE|FILE_SHARE_READ, NULL, CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+	if (INVALID_HANDLE_VALUE != hFile)
+	{ 
+		MINIDUMP_EXCEPTION_INFORMATION   ExInfo; 
+		ExInfo.ThreadId = ::GetCurrentThreadId();
+		ExInfo.ExceptionPointers = ExceptionInfo;
+		ExInfo.ClientPointers = NULL;
+
+		BOOL bOK = MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpWithFullMemory,&ExInfo, NULL, NULL);
+		CloseHandle(hFile); 
+	} 
+	return EXCEPTION_EXECUTE_HANDLER;
+}
  
 int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   HINSTANCE hPrevInstance,
 					   LPTSTR    lpCmdLine,
 					   int       nCmdShow)
 {     
+	SetUnhandledExceptionFilter(&_UnhandledExceptionFilter);
 	OleInitialize(NULL);  
 	DMApp theApp(hInstance); 
 
 	Plugin plugin;
 	theApp.InstallPlugin(&plugin);
+
 
 	// 安装plugin，如果有需要!
 #ifdef DLL_DMMAIN// lib库下不支持插件
