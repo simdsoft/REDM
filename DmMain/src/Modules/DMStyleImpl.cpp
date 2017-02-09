@@ -12,8 +12,10 @@ namespace DM
 		m_nTextAlign	 = 0;
 		m_bDotted        = false;
 		m_strCursor      = L"arrow";
+		m_hCursor        = ::LoadCursor(NULL,IDC_ARROW);
+		m_bBmpCursor	 = false;
 		m_byAlpha        = 0xFF;
-
+		
 		for (int i=0;i<5;i++)
 		{
 			m_ftText[i] = NULL;
@@ -25,6 +27,15 @@ namespace DM
 		// 保证normal是有值的.
 		m_ftText[0] = g_pDMFontPool->GetFont(L"");
 		m_crText[0].SetRGBA(0,0,0,0xff);
+	}
+
+	DMStyleImpl::~DMStyleImpl()
+	{
+		if (m_bBmpCursor &&NULL != m_hCursor)
+		{// 图片创建的Icon,一定要删除掉
+			::DestroyIcon(m_hCursor);
+			m_hCursor = NULL;
+		}
 	}
 
 	DMCode DMStyleImpl::CopyData(IDMStyle* pStyle)// 仅复制默认值部分，因为pStyle可以自身先定制
@@ -240,40 +251,8 @@ namespace DM
 	//---------------------------------------------------
 	DMCode DMStyleImpl::GetCursor(HCURSOR &hCursor)
 	{
-		DMCode iErr = DM_ECODE_OK;
-		do 
-		{
-			m_strCursor.Remove(VK_SPACE);
-			if (0 == m_strCursor.CompareNoCase(L"arrow"))	   {hCursor = ::LoadCursor(NULL,IDC_ARROW);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"ibeam"))	   {hCursor = ::LoadCursor(NULL,IDC_IBEAM);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"wait"))	   {hCursor = ::LoadCursor(NULL,IDC_WAIT);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"cross"))	   {hCursor = ::LoadCursor(NULL,IDC_CROSS);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"uparrow"))	   {hCursor = ::LoadCursor(NULL,IDC_UPARROW); break;}
-			if (0 == m_strCursor.CompareNoCase(L"size"))	   {hCursor = ::LoadCursor(NULL,IDC_SIZE);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizenwse"))   {hCursor = ::LoadCursor(NULL,IDC_SIZENWSE);break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizenesw"))   {hCursor = ::LoadCursor(NULL,IDC_SIZENESW);break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizewe"))     {hCursor = ::LoadCursor(NULL,IDC_SIZEWE);  break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizens"))     {hCursor = ::LoadCursor(NULL,IDC_SIZENS);  break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizeall"))    {hCursor = ::LoadCursor(NULL,IDC_SIZEALL); break;}
-			if (0 == m_strCursor.CompareNoCase(L"no"))	       {hCursor = ::LoadCursor(NULL,IDC_NO);      break;}
-			if (0 == m_strCursor.CompareNoCase(L"hand"))	   {hCursor = ::LoadCursor(NULL,IDC_HAND);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"help"))	   {hCursor = ::LoadCursor(NULL,IDC_HELP);    break;}
-			// 支持图片生成HCURSOR
-			DMSmartPtrT<IDMSkin> pCursorSkin = g_pDMApp->GetSkin(m_strCursor);
-			if (pCursorSkin.isValid())
-			{
-				DMSmartPtrT<IDMBitmap> pBitmap;
-				pCursorSkin->GetBitmap(&pBitmap);
-				if (pBitmap.isValid())
-				{
-					HBITMAP hBitmap = pBitmap->GetBitmap();
-					CSize sz(pBitmap->GetWidth(),pBitmap->GetHeight());
-					hCursor = CreateCursorFromBitmap(hBitmap,true,0,sz.cx/2,sz.cy/2);
-					break;
-				}
-			}
-			hCursor = NULL;
-		} while (false);
+		DMCode iErr = DM_ECODE_FAIL;
+		hCursor = m_hCursor;
 		if (hCursor)
 		{
 			iErr = DM_ECODE_OK;
@@ -449,4 +428,68 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+
+	DMCode DMStyleImpl::OnAttributeCursor(LPCWSTR lpszValue, bool bLoadXml)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			CStringW strCursor = lpszValue;
+			if (0 == m_strCursor.CompareNoCase(strCursor))
+			{
+				iErr = DM_ECODE_OK;
+				break;
+			}
+			m_strCursor = strCursor;
+			if (false == bLoadXml)
+			{
+				if (m_bBmpCursor &&NULL != m_hCursor)
+				{// 图片创建的Icon,一定要删除掉
+					::DestroyIcon(m_hCursor);
+					m_hCursor = NULL;
+				}
+			}
+			m_bBmpCursor = false;
+			m_strCursor.Remove(VK_SPACE);
+			if (0 == m_strCursor.CompareNoCase(L"arrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_ARROW);   break;}
+			if (0 == m_strCursor.CompareNoCase(L"ibeam"))	   {m_hCursor = ::LoadCursor(NULL,IDC_IBEAM);   break;}
+			if (0 == m_strCursor.CompareNoCase(L"wait"))	   {m_hCursor = ::LoadCursor(NULL,IDC_WAIT);    break;}
+			if (0 == m_strCursor.CompareNoCase(L"cross"))	   {m_hCursor = ::LoadCursor(NULL,IDC_CROSS);   break;}
+			if (0 == m_strCursor.CompareNoCase(L"uparrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_UPARROW); break;}
+			if (0 == m_strCursor.CompareNoCase(L"size"))	   {m_hCursor = ::LoadCursor(NULL,IDC_SIZE);    break;}
+			if (0 == m_strCursor.CompareNoCase(L"sizenwse"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENWSE);break;}
+			if (0 == m_strCursor.CompareNoCase(L"sizenesw"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENESW);break;}
+			if (0 == m_strCursor.CompareNoCase(L"sizewe"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZEWE);  break;}
+			if (0 == m_strCursor.CompareNoCase(L"sizens"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZENS);  break;}
+			if (0 == m_strCursor.CompareNoCase(L"sizeall"))    {m_hCursor = ::LoadCursor(NULL,IDC_SIZEALL); break;}
+			if (0 == m_strCursor.CompareNoCase(L"no"))	       {m_hCursor = ::LoadCursor(NULL,IDC_NO);      break;}
+			if (0 == m_strCursor.CompareNoCase(L"hand"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HAND);    break;}
+			if (0 == m_strCursor.CompareNoCase(L"help"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HELP);    break;}
+			// 支持图片生成HCURSOR
+			DMSmartPtrT<IDMSkin> pCursorSkin = g_pDMApp->GetSkin(m_strCursor);
+			if (pCursorSkin.isValid())
+			{
+				DMSmartPtrT<IDMBitmap> pBitmap;
+				pCursorSkin->GetBitmap(&pBitmap);
+				if (pBitmap.isValid())
+				{
+					HBITMAP hBitmap = pBitmap->GetBitmap();
+					CSize sz(pBitmap->GetWidth(),pBitmap->GetHeight());
+					m_hCursor = CreateCursorFromBitmap(hBitmap,true,0,sz.cx/2,sz.cy/2);
+					if (m_hCursor)
+					{
+						m_bBmpCursor = true;
+					}
+					break;
+				}
+			}
+			m_hCursor = NULL;
+		} while (false);
+		if (m_hCursor)
+		{
+			iErr = DM_ECODE_OK;
+		}
+		return iErr;
+	}
+
 }//namespace DM

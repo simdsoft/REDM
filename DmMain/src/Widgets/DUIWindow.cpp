@@ -1563,24 +1563,13 @@ namespace DM
 	// 为DC准备好当前窗口的绘图环境,从顶层窗口开始设置,设置所有的子窗口
 	DMCode DUIWindow::DV_SetDrawEnvironEx(IDMCanvas *pCanvas)
 	{
-		IDMFont *pDefFont = g_pDMFontPool->GetFont(L"");
-		if (pDefFont)
-		{
-			pCanvas->SelectObject(pDefFont);
-		}
-		S_SetDrawEnvironEx(this, pCanvas);
-		return DM_ECODE_OK;
-	}
-
-	DMCode DUIWindow::S_SetDrawEnvironEx(DUIWindow *pWnd,IDMCanvas *pCanvas)
-	{
-		DUIWindow *pParent = pWnd->DM_GetWindow(GDW_PARENT);   
+		DUIWindow *pParent = DM_GetWindow(GDW_PARENT); 
 		if (pParent)
 		{
-			S_SetDrawEnvironEx(pParent, pCanvas);
+			pParent->DV_SetDrawEnvironEx(pCanvas);
 		}
 		DUIDrawEnviron oldEnviron;
-		pWnd->DV_PushDrawEnviron(pCanvas, oldEnviron);
+		DV_PushDrawEnviron(pCanvas, oldEnviron);
 		return DM_ECODE_OK;
 	}
 

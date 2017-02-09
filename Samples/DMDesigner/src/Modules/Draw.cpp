@@ -199,7 +199,9 @@ namespace DM
 				}
 
 				m_pMemCanvas->ClearRect(m_rcOnlyOne,0);		
-				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(L""));
+				DMSmartPtrT<IDMFont> pOldFont;
+				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(L""),(IDMMetaFile**)&pOldFont);
+				m_pMemCanvas->SelectObject(pOldFont);
 
 				Draw(m_pMemCanvas,m_pInvalidRegion,pWnd);
 
@@ -216,7 +218,8 @@ namespace DM
 				m_pInvalidRegion->GetRgnBox(&rcInvalid);
 				m_pMemCanvas->PushClip(m_pInvalidRegion,RGN_COPY);						// 强制设置为拷贝区大小,注意不要传rcInvalid，因为rcInvalid可能包含了其他不需要刷新的子控件区域
 				m_pMemCanvas->ClearRect(rcInvalid,0);									// 清除残留的alpha值
-				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(L""));
+				DMSmartPtrT<IDMFont> pOldFont;
+				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(L""),(IDMMetaFile**)&pOldFont);
 				if (rcInvalid.Width()+100<m_rcCanvas.Width()
 					||rcInvalid.Height()+100<m_rcCanvas.Height())						// 大画布,无效区很小（gdi内部会优化）,绘制的效率还是要低于无效区大小的画布上直接绘制
 				{
@@ -233,12 +236,14 @@ namespace DM
 							CRect rcRect = pRect+i;
 							DMSmartPtrT<IDMCanvas>   pTempCanvas;
 							m_pRender->CreateCanvas(rcRect.Width(),rcRect.Height(),&pTempCanvas);
-							pTempCanvas->SelectObject(g_pDMApp->GetFont(L""));
+							DMSmartPtrT<IDMFont> pOldTempFont;
+							pTempCanvas->SelectObject(g_pDMApp->GetFont(L""),(IDMMetaFile**)&pOldTempFont);
 							pTempCanvas->OffsetViewportOrg(-rcRect.left,-rcRect.top);// 画布右移rcInvalid.left，下移rcInvalid.top
 							DMSmartPtrT<IDMRegion> pRgn;
 							m_pRender->CreateRegion(&pRgn);
 							pRgn->CombineRect(rcRect);
 							Draw(pTempCanvas,pRgn,pWnd);
+							pTempCanvas->SelectObject(pOldTempFont);
 							m_pMemCanvas->BitBlt(pTempCanvas,rcRect.left,rcRect.top,rcRect);
 						}
 					}
@@ -251,7 +256,7 @@ namespace DM
 				{
 					Draw(m_pMemCanvas,m_pInvalidRegion,pWnd);
 				}
-
+				m_pMemCanvas->SelectObject(pOldFont);
 				m_pMemCanvas->PopClip();		
 			}
 			m_pInvalidRegion->Clear();												// 清空刷新区

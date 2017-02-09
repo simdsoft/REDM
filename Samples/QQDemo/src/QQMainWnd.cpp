@@ -60,7 +60,7 @@ BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	{
 		// 示例绑定动态分配数据
 		byte* pBuf = new byte[100];
-		pNameEdit->SetData(L"key1",CStringW((wchar_t*)&pBuf,sizeof(byte*)));// strValue中记录的前四位内存值即pBuf地址
+		pNameEdit->SetData(L"key1",CStringW((wchar_t*)&pBuf,sizeof(LONG_PTR)));// strValue中记录的前四位内存值即pBuf地址
 		CStringW strValue = pNameEdit->GetData(L"key1");
 		byte* pByte = (byte*)(*(LONG_PTR*)strValue.GetBuffer());// 取前四位内存值转换成指针
 		assert (pByte == pBuf);

@@ -27,4 +27,32 @@ namespace DM
 		HWND               m_hWnd;
 	};
 
+	class DM_EXPORT DMAutoMemDC
+	{
+	public:
+		DMAutoMemDC(HDC hdc = NULL);
+		DMAutoMemDC(DMAutoMemDC &hdc);
+		~DMAutoMemDC();
+		operator const HDC()const
+		{
+			return m_hMemDC;
+		};
+
+		bool SelectObject(HPEN hPen);
+		bool SelectObject(HFONT hFont);
+		bool SelectObject(HBRUSH hBrush);
+		bool SelectObject(HBITMAP hBitmap);
+
+		bool DeleteDC();
+		
+	private:
+		HDC                m_hDC;
+		HDC			       m_hMemDC;
+
+		HPEN               m_hOldPen;
+		HFONT              m_hOldFont;
+		HBRUSH             m_hOldBrush;
+		HBITMAP            m_hOldBitmap;
+	};
+
 }//namespace DM

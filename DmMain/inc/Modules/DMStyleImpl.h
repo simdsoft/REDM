@@ -85,6 +85,7 @@ namespace DM
 		DMDECLARE_CLASS_NAME(DMStyleImpl,L"style",DMREG_Style);
 	public:
 		DMStyleImpl();
+		~DMStyleImpl();
 
 	public:
 		DMCode GetID(wchar_t* lpszId, int iSize);	
@@ -121,8 +122,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIStyleAttr::SKIN_skin,OnAttributeSkin)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIStyleAttr::SKIN_ncskin,OnAttributeNcSkin)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIStyleAttr::RECT_ncmargin,OnAttributeNcMargin)
-
-			DM_STRING_ATTRIBUTE(DMAttr::DUIStyleAttr::STRING_cursor,m_strCursor,DM_ECODE_OK)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIStyleAttr::STRING_cursor,OnAttributeCursor)
 
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIStyleAttr::COLOR_clrbg, m_crBg[0], DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIStyleAttr::COLOR_clrbghover, m_crBg[1], DM_ECODE_NOXMLLOADREFRESH)
@@ -169,6 +169,7 @@ namespace DM
 		DMCode OnAttributeSkin(LPCWSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeNcSkin(LPCWSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeNcMargin(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeCursor(LPCWSTR lpszValue, bool bLoadXml);
 
 	public:
 		CStringW                                    m_strID;        ///< 唯一标识
@@ -184,6 +185,8 @@ namespace DM
 		CStringW									m_strNcSkinName;///< 非客户区SKIN NAME
 		
 	    CStringW                                    m_strCursor;    ///< 光标NAME
+		HCURSOR                                     m_hCursor;	    ///< 当前光标值		
+		bool                                        m_bBmpCursor;   ///< 当前光标是否由图片创建
 		BYTE										m_byAlpha;      ///< 窗口透明度,只进行配置，支持依赖于控件
 
 		//-----------------------------

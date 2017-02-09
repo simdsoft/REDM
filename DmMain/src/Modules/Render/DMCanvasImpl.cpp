@@ -17,12 +17,9 @@ namespace DM
 	void DMCanvasImpl::Canv_Init(IDMRender* pRender, int nWid, int nHei)
 	{
 		m_pRender	 = pRender;
-		m_hdc		 = NULL;
 		m_ptOrg.x    = m_ptOrg.y = 0;
 
-		m_hdc   = ::CreateCompatibleDC(NULL);
 		::SetBkMode(m_hdc,TRANSPARENT);    // 设置透明背景
-
 
 		// 初始化被选入DC的当前图元 -----------------
 		DMSmartPtrT<IDMPen> pPen;
@@ -50,7 +47,7 @@ namespace DM
 
 	void DMCanvasImpl::Canv_Release()
 	{
-		::DeleteDC(m_hdc);
+		m_hdc.DeleteDC();
 	}
 
 	///----------------------------------------
@@ -70,7 +67,7 @@ namespace DM
 			{
 				pPreObj	  = m_pCurPen;
 				m_pCurPen = (DMPenImpl*)pObj;
-				::SelectObject(m_hdc, m_pCurPen->GetPen());
+				m_hdc.SelectObject(m_pCurPen->GetPen());
 			}
 			break;
 
@@ -78,7 +75,7 @@ namespace DM
 			{
 				pPreObj     = m_pCurBrush;
 				m_pCurBrush = (DMBrushImpl*)pObj;
-				::SelectObject(m_hdc, m_pCurBrush->GetBrush());
+				m_hdc.SelectObject(m_pCurBrush->GetBrush());
 			}
 			break;
 
@@ -86,7 +83,7 @@ namespace DM
 			{
 				pPreObj      =  m_pCurBitmap;
 				m_pCurBitmap = (DMBitmapImpl*)pObj;
-				::SelectObject(m_hdc, m_pCurBitmap->GetBitmap());
+				m_hdc.SelectObject(m_pCurBitmap->GetBitmap());
 			}
 			break;
 
@@ -94,7 +91,7 @@ namespace DM
 			{
 				pPreObj    = m_pCurFont;
 				m_pCurFont = (DMFontImpl*)pObj;
-				::SelectObject(m_hdc, m_pCurFont->GetFont());
+				m_hdc.SelectObject(m_pCurFont->GetFont());
 			}
 			break;
 
@@ -173,13 +170,13 @@ namespace DM
 			}
 
 			HBITMAP hBmp = ::CreateCompatibleBitmap(m_hdc,0,0);
-			 ::SelectObject(m_hdc,hBmp);// 临时对象，防止在Init中的HBITMAP被析构
+			m_hdc.SelectObject(hBmp);// 临时对象，防止在Init中的HBITMAP被析构
 			if (!DMSUCCEEDED(m_pCurBitmap->Init(size.cx, size.cy)))
 			{
 				DM_DELETE_OBJECT(hBmp);
 				break;
 			}
-			::SelectObject(m_hdc, m_pCurBitmap->GetBitmap());
+			m_hdc.SelectObject(m_pCurBitmap->GetBitmap());
 			DM_DELETE_OBJECT(hBmp);
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -351,8 +348,8 @@ namespace DM
 				lpRectDest = &rcSour;
 			}
 
-			HDC dcMem = ::CreateCompatibleDC(m_hdc);
-			::SelectObject(dcMem, pGdiBitmap->GetBitmap());
+			DMAutoMemDC dcMem(m_hdc);
+			dcMem.SelectObject(pGdiBitmap->GetBitmap());
 			BLENDFUNCTION bf = {AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
 			int nWidth		 = 0;
 			int nHeight	     = 0;
@@ -399,7 +396,7 @@ namespace DM
 #endif
 			}
 
-			DM_DELETE_OBJECT(dcMem); //这里如果不释放，下次AlphaBlend就会失败！gtest测试结果
+			dcMem.DeleteDC(); //这里如果不释放，下次AlphaBlend就会失败！gtest测试结果
 		} while (false);
 		::RestoreDC(m_hdc, iSaveState);
 		return iErr;
@@ -518,8 +515,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(lpRect);/// 注意，这里使用的是lpRect
-			::SelectObject(dcMem, m_pCurPen->GetPen());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurPen->GetPen());
 			::Rectangle(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// 注意，这里使用的是lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
@@ -545,8 +542,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(rcDest,false);
-			::SelectObject(dcMem, m_pCurBrush->GetBrush());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcDest,false);
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
 			::Rectangle(dcMem,rcDest.left,rcDest.top,rcDest.right,rcDest.bottom);
 		
 			BYTE alpha = 0xFF;
@@ -572,7 +569,7 @@ namespace DM
 			}
 #if 1
 	
-			HDC dcMem = AlphaBlendBackup(lpRect);
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);
 			HBRUSH hBrush = ::CreateSolidBrush(clr.ToCOLORREF());
 			::FillRect(dcMem,lpRect,hBrush);
 			AlphaBlendRestore(dcMem,clr.a);
@@ -633,8 +630,8 @@ namespace DM
 			{
 				break;
 			}
-			HDC dcMem	  = ::CreateCompatibleDC(m_hdc);
-			::SelectObject(dcMem,hBmp);
+			DMAutoMemDC dcMem(m_hdc);
+			dcMem.SelectObject(hBmp);
 			DWORD dwColor = clr.ToBGRA();
 			LPDWORD p     = pBits;
 			int nCount	  = iWid*iHei;
@@ -643,7 +640,7 @@ namespace DM
 				*pBits++ = dwColor;
 			}
 			::BitBlt(m_hdc,lpRect->left,lpRect->top,iWid,iHei,dcMem,0,0,SRCCOPY);
-			::DeleteDC(dcMem);
+			dcMem.DeleteDC();
 			::DeleteObject(hBmp);
 
 			iErr = DM_ECODE_OK;
@@ -667,8 +664,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(lpRect);/// 注意，这里使用的是lpRect
-			::SelectObject(dcMem, m_pCurPen->GetPen());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurPen->GetPen());
 			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// 注意，这里使用的是lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
@@ -694,8 +691,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(lpRect);/// 注意，这里使用的是lpRect
-			::SelectObject(dcMem, m_pCurBrush->GetBrush());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
 			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// 注意，这里使用的是lpRect
 
 			BYTE alpha = 0xFF;
@@ -725,8 +722,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(lpRect);/// 注意，这里使用的是lpRect
-			::SelectObject(dcMem, m_pCurPen->GetPen());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurPen->GetPen());
 			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// 注意，这里使用的是lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
@@ -752,8 +749,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(lpRect);/// 注意，这里使用的是lpRect
-			::SelectObject(dcMem, m_pCurBrush->GetBrush());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
 			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// 注意，这里使用的是lpRect
 
 			BYTE alpha = 0xFF;
@@ -793,8 +790,8 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(rcDest);
-			::SelectObject(dcMem, m_pCurPen->GetPen());
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcDest);
+			dcMem.SelectObject(m_pCurPen->GetPen());
 			::Polyline(dcMem,lpPt, cPoints);
 			BYTE alpha = m_pCurPen->GetColor().a;
 			AlphaBlendRestore(dcMem,alpha);
@@ -820,12 +817,12 @@ namespace DM
 				int nHei = lpRect->bottom-lpRect->top;
 				RECT rc  = {0,0,nWid,nHei};
 				HBITMAP hBmpMem = ::CreateCompatibleBitmap(m_hdc,nWid,nHei);
-				HDC dcMem = CreateCompatibleDC(m_hdc);
-				::SelectObject(dcMem,hBmpMem);
+				DMAutoMemDC dcMem(m_hdc);
+				dcMem.SelectObject(hBmpMem);
 				GradientFillRect(dcMem,&rc,clrBegin,clrEnd,bVert);
 				BLENDFUNCTION bf={AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
 				 ::AlphaBlend(m_hdc,lpRect->left,lpRect->top,nWid,nHei,dcMem,0,0,nWid,nHei,bf);
-				::DeleteDC(dcMem);
+				dcMem.DeleteDC();
 				::DeleteObject(hBmpMem);
 				iErr = DM_ECODE_OK;
 			}
@@ -939,7 +936,7 @@ namespace DM
 				break;
 			}
 
-			HDC dcMem = AlphaBlendBackup(rcDest,true,true);
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcDest,true,true);
 			DMColor TextClr = m_CurTextColor;
 			TextClr.PreMultiply(alpha);
 			::SetTextColor(dcMem, TextClr.ToCOLORREF());
@@ -974,7 +971,7 @@ namespace DM
 			{
 				break;
 			}
-			HDC dcMem = AlphaBlendBackup(rcDest,true,true);
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcDest,true,true);
 			DMColor TextClr = m_CurTextColor;
 			TextClr.PreMultiply(alpha);
 			::SetTextColor(dcMem, TextClr.ToCOLORREF());
@@ -1177,7 +1174,7 @@ namespace DM
 		return iErr;
 	}
 
-	HDC DMCanvasImpl::AlphaBlendBackup(LPCRECT lpRect,bool bInherit,bool bCopy)
+	DMAutoMemDC DMCanvasImpl::AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit,bool bCopy)
 	{
 		SaveCanvas();
 		m_RcTemp = lpRect;
@@ -1185,24 +1182,23 @@ namespace DM
 		int nHei = m_RcTemp.Height();
 		m_DIBTemp.CreateDIBSection(m_hdc,nWid,nHei);
 		
-		HDC dcMem = ::CreateCompatibleDC(m_hdc);
 		::SetBkMode(dcMem,TRANSPARENT);
-		::SelectObject(dcMem,m_DIBTemp.m_hBitmap);
+		dcMem.SelectObject(m_DIBTemp.m_hBitmap);
 		::SetViewportOrgEx(dcMem,-lpRect->left,-lpRect->top,NULL);
 
 		// 设置三无环境------------------------------------
 		if (bInherit)
 		{
-			::SelectObject(dcMem, m_pCurPen->GetPen());
-			::SelectObject(dcMem, m_pCurBrush->GetBrush());
-			::SelectObject(dcMem, m_pCurFont->GetFont());
+			dcMem.SelectObject(m_pCurPen->GetPen());
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
+			dcMem.SelectObject(m_pCurFont->GetFont());
 			::SetTextColor(dcMem, m_CurTextColor.ToCOLORREF());
 		}
 		else
 		{
-			::SelectObject(dcMem,GetStockObject(NULL_PEN));
-			::SelectObject(dcMem,GetStockObject(NULL_BRUSH));
-			::SelectObject(dcMem,GetStockObject(NULL_PEN));
+			dcMem.SelectObject((HPEN)GetStockObject(NULL_PEN));
+			dcMem.SelectObject((HBRUSH)GetStockObject(NULL_BRUSH));
+			dcMem.SelectObject((HFONT)GetStockObject(DEFAULT_GUI_FONT));
 			::SetTextColor(dcMem,RGBA(0,0,0,0));
 		}
 		m_bCopyTemp = bCopy;
@@ -1227,7 +1223,7 @@ namespace DM
 		return dcMem;
 	}
 
-	bool DMCanvasImpl::AlphaBlendRestore(HDC dcMem,BYTE alpha)
+	bool DMCanvasImpl::AlphaBlendRestore(DMAutoMemDC& dcMem,BYTE alpha)
 	{
 		int nWid = m_RcTemp.Width();
 		int nHei = m_RcTemp.Height();
@@ -1297,7 +1293,7 @@ namespace DM
 		BOOL bRet = ::AlphaBlend(m_hdc,m_RcTemp.left,m_RcTemp.top, nWid, nHei,
 			dcMem,m_RcTemp.left,m_RcTemp.top,nWid, nHei, bf);
 
-		::DeleteDC(dcMem);
+		dcMem.DeleteDC();
 		m_DIBTemp.DIBRelease();
 		RestoreCanvas();
 		return TRUE == bRet;

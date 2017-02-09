@@ -207,7 +207,6 @@ namespace DM
 		virtual DMCode DV_PushDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);     ///< 设置当前字体和颜色等环境
 		virtual DMCode DV_PopDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);      ///< 恢复先前字体和颜色等环境
 		DMCode DV_SetDrawEnvironEx(IDMCanvas* pCanvas);								   ///< 从最顶层父窗口开始,一层层设置环境
-		static DMCode S_SetDrawEnvironEx(DUIWindow* pWnd,IDMCanvas* pCanvas);
 
 		/// 屏幕画布相关(重要动画绘制)
 		IDMCanvas* DM_GetCanvas(LPRECT lpRect,DWORD dcFlags,bool bClientDC=true);	   ///< 获取画布（主窗口提供:1.默认画布(默认字体)2.复制窗口缓存画布区域3.复制背景色）

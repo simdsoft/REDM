@@ -276,10 +276,12 @@ namespace DM
 				{
 					DMSmartPtrT<IDMCanvas> pCanvas;
 					pRender->CreateCanvas(0,0,&pCanvas);
-					pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,NULL);
+					DMSmartPtrT<IDMFont> pOldFont;
+					pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,(IDMMetaFile**)&pOldFont);
 					SIZE szText;
 					CStringW strTrans = g_pDMApp->GetTrans(pdmmi->itemInfo.strText);
 					pCanvas->MeasureText(strTrans,strTrans.GetLength(),&szText);
+					pCanvas->SelectObject(pOldFont);
 					nTextWidth = szText.cx+m_pDUIMenuXmlInfo->m_TextOffset;
 				}
 

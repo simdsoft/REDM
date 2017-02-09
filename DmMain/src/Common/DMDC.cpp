@@ -55,4 +55,162 @@ namespace DM
 		}
 		return m_hDC;
 	}
+
+	// DMAutoMemDC -----------------------------------------------------------------
+	DMAutoMemDC::DMAutoMemDC(HDC hdc /*= NULL*/)
+		:m_hDC(hdc)
+	{
+		m_hOldPen    = NULL;
+		m_hOldFont   = NULL;
+		m_hOldBrush  = NULL;
+		m_hOldBitmap = NULL;
+		m_hMemDC = ::CreateCompatibleDC(hdc);
+		DMASSERT(NULL != m_hMemDC);
+	}
+
+	DMAutoMemDC::DMAutoMemDC(DMAutoMemDC &hdc)
+		:m_hDC(hdc)
+	{
+		m_hOldPen    = NULL;
+		m_hOldFont   = NULL;
+		m_hOldBrush  = NULL;
+		m_hOldBitmap = NULL;
+		m_hMemDC = ::CreateCompatibleDC(hdc);
+		DMASSERT(NULL != m_hMemDC);
+	}
+
+	DMAutoMemDC::~DMAutoMemDC()
+	{
+		DeleteDC();
+	}
+
+	bool DMAutoMemDC::SelectObject(HPEN hPen)
+	{
+		bool bRet = false;
+		do 
+		{
+			DMASSERT(NULL != m_hMemDC);
+			if (NULL == hPen)
+			{
+				break;
+			}
+			if (NULL == m_hOldPen)
+			{
+				m_hOldPen = (HPEN)::SelectObject(m_hMemDC,hPen);
+			}
+			else
+			{
+				::SelectObject(m_hMemDC,hPen);
+			}
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
+
+	bool DMAutoMemDC::SelectObject(HFONT hFont)
+	{
+		bool bRet = false;
+		do 
+		{
+			DMASSERT(NULL != m_hMemDC);
+			if (NULL == hFont)
+			{
+				break;
+			}
+			if (NULL == m_hOldFont)
+			{
+				m_hOldFont = (HFONT)::SelectObject(m_hMemDC,hFont);
+			}
+			else
+			{
+				::SelectObject(m_hMemDC,hFont);
+			}
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
+
+	bool DMAutoMemDC::SelectObject(HBRUSH hBrush)
+	{
+		bool bRet = false;
+		do 
+		{
+			DMASSERT(NULL != m_hMemDC);
+			if (NULL == hBrush)
+			{
+				break;
+			}
+			if (NULL == m_hOldBrush)
+			{
+				m_hOldBrush = (HBRUSH)::SelectObject(m_hMemDC,hBrush);
+			}
+			else
+			{
+				::SelectObject(m_hMemDC,hBrush);
+			}
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
+
+	bool DMAutoMemDC::SelectObject(HBITMAP hBitmap)
+	{
+		bool bRet = false;
+		do 
+		{
+			DMASSERT(NULL != m_hMemDC);
+			if (NULL == hBitmap)
+			{
+				break;
+			}
+			if (NULL == m_hOldBitmap)
+			{
+				m_hOldBitmap = (HBITMAP)::SelectObject(m_hMemDC,hBitmap);
+			}
+			else
+			{
+				::SelectObject(m_hMemDC,hBitmap);
+			}
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
+
+	bool DMAutoMemDC::DeleteDC()
+	{
+		bool bRet = false;
+		do 
+		{
+			if (NULL == m_hMemDC) // 表示已调用过DeleteDC
+			{
+				break;
+			}
+			if (m_hOldPen)
+			{
+				::SelectObject(m_hMemDC,m_hOldPen);
+			}
+			if (m_hOldFont)
+			{
+				::SelectObject(m_hMemDC,m_hOldFont);
+			}
+			if (m_hOldBrush)
+			{
+				::SelectObject(m_hMemDC,m_hOldBrush);
+			}
+			if (m_hOldBitmap)
+			{
+				::SelectObject(m_hMemDC,m_hOldBitmap);
+			}
+			m_hOldPen    = NULL;
+			m_hOldFont   = NULL;
+			m_hOldBrush  = NULL;
+			m_hOldBitmap = NULL;
+		
+			::DeleteDC(m_hMemDC);
+			m_hMemDC = m_hDC = NULL;
+			
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
 }//namespace DM

@@ -116,14 +116,14 @@ namespace DM
 
 	public:// 辅助
 	
-		HDC AlphaBlendBackup(LPCRECT lpRect,bool bInherit=false,bool bCopy=false);
-		bool AlphaBlendRestore(HDC dcMem,BYTE alpha=0xFF);
+		DMAutoMemDC AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit=false,bool bCopy=false);
+		bool AlphaBlendRestore(DMAutoMemDC& dcMem,BYTE alpha=0xFF);
 		CRect GetRealClipRect(LPCRECT lpRect);                  // 真正绘制的区域
 		BOOL GradientFillRect(HDC hdc, const RECT *rcFill, DMColor clrBegin,DMColor clrEnd,BOOL bVert);
 
 	public:
 		// 1
-		HDC											 m_hdc;
+		DMAutoMemDC									 m_hdc;
 
 		// 2被选入DC的当前图元
 		DMColor									     m_CurTextColor;
