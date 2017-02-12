@@ -25,6 +25,7 @@
 			<radiobutton name="ds_w_HeaderCtrl" text="HeaderCtrl" align="left" radioskin="ds_w_HeaderCtrl" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="HeaderCtrl"/>
 			<radiobutton name="ds_w_ListCtrlEx" text="ListCtrlEx" align="left" radioskin="ds_w_ListCtrlEx" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="ListCtrlEx"/>
 			<radiobutton name="ds_w_Gif" text="Gif" align="left" radioskin="ds_w_Gif" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Gif"/>
+			<radiobutton name="ds_w_IE" text="IE" align="left" radioskin="ds_w_Window" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="IE"/>
 		</tablayout>
 	</root>
 </dm>

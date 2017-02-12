@@ -442,6 +442,12 @@ DUIWindow* DUIRoot::GetAddChild()
 	
 		//6.选中最后一个子项,即新加入的子项
 		m_pObjTree->SelectItem(m_pObjTree->GetChildItem(hHoverItem,false));
+
+		if (0 == strReg.CompareNoCase(L"ie"))
+		{
+			pChild->DM_SetVisible(true,true);// 调用一次，让延迟加载的ie强制初始化
+		}
+		
 		pAdd = pChild;
 	} while (false);
 	return pAdd;

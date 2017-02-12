@@ -16,6 +16,21 @@
 #pragma once
 #include "DMActiveXBase.h"
 
+namespace DMAttr
+{
+	/// <summary>
+	///		<see cref="DM::DUIActiveX"/>的xml属性定义
+	/// </summary>
+	class DUIActiveXAttr
+	{
+	public:
+		static wchar_t* STRING_clsid;                                  ///< 指定CLSID,示例:clsid=""
+		static wchar_t* INT_clsctx;									   ///< 指定CLSCTX,默认为CLSCTX_ALL,示例:clsctx=""
+		static wchar_t* bool_bdelayinit;							   ///< 窗口显示时才加载,默认为true,示例:bdelayinit="1"
+	};
+	DMAttrValueInit(DUIActiveXAttr,STRING_clsid)DMAttrValueInit(DUIActiveXAttr,INT_clsctx)DMAttrValueInit(DUIActiveXAttr,bool_bdelayinit)
+}
+
 namespace DM
 {
 	class DM_EXPORT DUIActiveX : public DUIWindow
@@ -50,9 +65,9 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_CUSTOM_ATTRIBUTE(L"clsid",OnAttrClsid)
-			DM_DWORD_ATTRIBUTE(L"clsctx",m_clsCtx,DM_ECODE_OK)
-			DM_bool_ATTRIBUTE(L"delay",m_bDelayInit,DM_ECODE_OK)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIActiveXAttr::STRING_clsid,OnAttrClsid)
+			DM_DWORD_ATTRIBUTE(DMAttr::DUIActiveXAttr::INT_clsctx,m_clsCtx,DM_ECODE_OK)
+			DM_bool_ATTRIBUTE(DMAttr::DUIActiveXAttr::bool_bdelayinit,m_bDelayInit,DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 
 	public:// 辅助

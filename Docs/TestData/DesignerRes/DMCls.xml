@@ -85,6 +85,9 @@
 	</TreeCtrlEx>
 	<IE>
 		<DUIIEAttr/>
+		<DUIActiveXAttr/>
+		<DUIWindowAttr/>
+		<DUIStyleAttr/>	
 	</IE>
 	<Link>
 		<DUILinkAttr/>

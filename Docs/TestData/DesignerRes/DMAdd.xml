@@ -67,4 +67,5 @@
         </item>
 	</listctrlex>
 	<gif text="gif" 	 ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" badjust="1"/>
+	<ie url="www.baidu.com"/>
 </root> 

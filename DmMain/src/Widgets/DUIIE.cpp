@@ -527,6 +527,7 @@ namespace DM
 		:m_dwCookie(0)
 		,m_eventDispatch(NULL)
 		,m_bShowScroll(false)	
+		,m_bDisableScriptWarn(false)
 		,m_refreshkey(DUIAccel::TranslateAccelKey(L"f5"))
 	{		
 		m_clsid = CLSID_WebBrowser;
@@ -617,6 +618,7 @@ namespace DM
 			{
 				spOleObject->SetClientSite(&m_clientSite);
 			}
+			DisableScriptWarning(m_bDisableScriptWarn);
 
 // 			DMComPtr<IDispatch> spDisp;
 // 			HRESULT hr = m_pIE->get_Document(&spDisp);
@@ -1034,6 +1036,18 @@ namespace DM
 	{
 		dm_parsebool(pszValue,m_bShowScroll);
 		SetScrollBarShow(m_bShowScroll);
+		if (false == bLoadXml)
+		{
+			Refresh();
+		}
+		
+		return DM_ECODE_OK;
+	}
+
+	DMCode DUIIE::OnAttributeDisableScriptWarn(LPCWSTR pszValue, bool bLoadXml)
+	{
+		dm_parsebool(pszValue,m_bDisableScriptWarn);
+		DisableScriptWarning(m_bDisableScriptWarn);
 		return DM_ECODE_OK;
 	}
 

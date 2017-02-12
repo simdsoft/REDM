@@ -55,6 +55,7 @@ MultStr g_AddInfo[] = \
 	{L"HeaderCtrl",	 L"基础控件",		L"列表头",				L""},
 	{L"ListCtrlEx",	 L"扩展控件",		L"扩展列表view",		L""},
 	{L"Gif",		L"基础控件",		L"Gif动画",				L""},
+	{L"IE",			L"基础控件",		L"IE控件",				L""},
 };
 bool AddTipWnd::InitAdd(CStringW strInfo)
 {
