@@ -30,7 +30,7 @@ namespace DM
 	/// <summary>
 	///		 Tab页的三种动画
 	/// </summary>
-	class DUITabAnimate:public DUIWindow,public IDMTimeline
+	class DM_EXPORT DUITabAnimate:public DUIWindow,public IDMTimeline
 	{
 		DMDECLARE_CLASS_NAME(DUIWindow,DUINAME_TabAnimate,DMREG_Window);
 	public:
