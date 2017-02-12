@@ -67,7 +67,7 @@ namespace DM
 			pChild->InitDMData(XmlNode);
 			pChild->SetAttribute(L"pos",L"0,0,-0,-0",bLoading);
 			pChild->DM_SetVisible(false,true);
-			if (!bLoading && m_nCurSelItem>=iInsert)
+			if (!bLoading && m_nCurSelItem>=iRealInsert)
 			{
 				m_nCurSelItem++;
 			}
