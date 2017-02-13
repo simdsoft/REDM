@@ -7,8 +7,6 @@ namespace DM
 	{
 		m_pDUIXmlInfo->m_bVisible = false;// 默认Page页是隐藏的
 		m_TabAniType = TAB_NULL;
-
-		
 	}
 
 	DMCode DUITabPage::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
@@ -58,9 +56,9 @@ namespace DM
 				break;
 			}
 
-			if (-1 == iInsert||iInsert>(int)m_PageArray.GetCount())
+			if (-1 == iInsert||iInsert>GetItemCount())
 			{
-				iRealInsert = (int)m_PageArray.GetCount();
+				iRealInsert = GetItemCount();
 			}
 			DM_InsertChild(pChild);
 			m_PageArray.InsertAt(iRealInsert, pChild);
@@ -99,7 +97,7 @@ namespace DM
 		do 
 		{
 			if (nIndex<0
-				||nIndex>=(int)m_PageArray.GetCount()
+				||nIndex>=GetItemCount()
 				||(m_nCurSelItem == nIndex))
 			{
 				break;
@@ -148,15 +146,10 @@ namespace DM
 					pPage->DM_SetVisible(true, true);
 				}
 			}
-			CRect rcOldItem;
-			GetItemRect(nOldSelItem,rcOldItem);
-			CRect rcSelItem;
-			GetItemRect(m_nCurSelItem,rcSelItem);
+			
 			CRect rcTitle = GetTitleRect();
 			DM_InvalidateRect(rcTitle);
-			DM_InvalidateRect(rcOldItem);
-			DM_InvalidateRect(rcSelItem);
-
+	
 			// 4.
 			DMEventTabSelChangedArgs EndEvt(this);
 			EndEvt.m_uNewSel = nIndex;
@@ -169,7 +162,7 @@ namespace DM
 
 	bool DUITabCtrl::SetCurSel(LPCWSTR lpszTitle)
 	{
-		for (UINT i=0;i<m_PageArray.GetCount();i++)
+		for (int i=0;i<GetItemCount();i++)
 		{
 			if (0 == _wcsicmp(m_PageArray[i]->m_strTitle,lpszTitle))
 				return SetCurSel(i);
@@ -197,7 +190,7 @@ namespace DM
 		do 
 		{
 			if (nIndex<0
-				||nIndex>=(int)m_PageArray.GetCount())
+				||nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -236,9 +229,9 @@ namespace DM
 		return rcTitle;    
 	}
 
-	size_t DUITabCtrl::GetItemCount()
+	int DUITabCtrl::GetItemCount()
 	{
-		return m_PageArray.GetCount();
+		return (int)m_PageArray.GetCount();
 	}
 
 	DUITabPage* DUITabCtrl::GetItem(int nIndex)
@@ -246,7 +239,7 @@ namespace DM
 		DUITabPage* pPage = NULL;
 		do 
 		{
-			if (nIndex<0||nIndex>=(int)m_PageArray.GetCount())
+			if (nIndex<0||nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -270,14 +263,12 @@ namespace DM
 				nSelPage = 0;
 			}
 
-			if (nSelPage>=(int)m_PageArray.GetCount())
+			if (nSelPage>=GetItemCount())
 			{
-				nSelPage = (int)m_PageArray.GetCount()-1;
+				nSelPage = GetItemCount()-1;
 			}
 			m_nCurSelItem=-1;
 			SetCurSel(nSelPage);
-			CRect rcTitle = GetTitleRect();
-			DM_InvalidateRect(rcTitle);
 		}
 		else
 		{
@@ -285,59 +276,71 @@ namespace DM
 			{
 				m_nCurSelItem--;
 			}
-			CRect rcTitle = GetTitleRect();
-			DM_InvalidateRect(rcTitle);
 		}
-
+		CRect rcTitle = GetTitleRect();
+		DM_InvalidateRect(rcTitle);
 		return true;
 	}
 
 	bool DUITabCtrl::RemoveItem(DUIWindow* pPage,int nSelPage)
 	{
-		DM_DestroyChildWnd(pPage);
-		int nCount = (int)m_PageArray.GetCount();
-		int nIndex = 0;
-		for (nIndex=0;nIndex<nCount; nIndex++)
+		bool bRet = false;
+		do 
 		{
-			if (m_PageArray[nIndex] == pPage)
+			if (NULL == pPage)
 			{
-				m_PageArray.RemoveAt(nIndex);
 				break;
 			}
-		}
-
-		if (nIndex == m_nCurSelItem)// 删除的是当前选中页
-		{
-			if (nSelPage<0)
+			DM_DestroyChildWnd(pPage);
+			int nCount = GetItemCount();
+			bool bDel = false;
+			int nIndex = 0;
+			for (nIndex=0;nIndex<nCount; nIndex++)
 			{
-				nSelPage = 0;
+				if (m_PageArray[nIndex] == pPage)
+				{
+					m_PageArray.RemoveAt(nIndex);
+					bDel = true;
+					break;
+				}
+			}
+			if (false == bDel)
+			{
+				break;
 			}
 
-			if (nSelPage>=(int)m_PageArray.GetCount())
+			if (nIndex == m_nCurSelItem)// 删除的是当前选中页
 			{
-				nSelPage = (int)m_PageArray.GetCount()-1;
+				if (nSelPage<0)
+				{
+					nSelPage = 0;
+				}
+
+				if (nSelPage>=(int)m_PageArray.GetCount())
+				{
+					nSelPage = (int)m_PageArray.GetCount()-1;
+				}
+				m_nCurSelItem=-1;
+				SetCurSel(nSelPage);
 			}
-			m_nCurSelItem=-1;
-			SetCurSel(nSelPage);
+			else
+			{
+				if (m_nCurSelItem>nIndex) 
+				{
+					m_nCurSelItem--;
+				}
+			}
 			CRect rcTitle = GetTitleRect();
 			DM_InvalidateRect(rcTitle);
-		}
-		else
-		{
-			if (m_nCurSelItem>nIndex) 
-			{
-				m_nCurSelItem--;
-			}
-			CRect rcTitle = GetTitleRect();
-			DM_InvalidateRect(rcTitle);
-		}
 
-		return true;
+			bRet = true;
+		} while (false);
+		return bRet;
 	}
 
 	void DUITabCtrl::RemoveAllItems(void)
 	{
-		for (int i = (int)GetItemCount()-1; i >= 0; i--)
+		for (int i = GetItemCount()-1; i >= 0; i--)
 		{
 			DUITabPage * pTab = GetItem(i);
 			DM_DestroyChildWnd(pTab);
@@ -362,7 +365,7 @@ namespace DM
 			}
 
 			DWORD dwState = DUIWNDSTATE_Normal;
-			for (int i=0; i<(int)GetItemCount(); i++)
+			for (int i=0; i<GetItemCount(); i++)
 			{
 				dwState = DUIWNDSTATE_Normal;
 				if (i== m_nCurSelItem)
@@ -384,7 +387,7 @@ namespace DM
 
 	void DUITabCtrl::OnDestroy()
 	{
-		for(int i=(int)GetItemCount()-1; i>=0; i--)
+		for(int i=GetItemCount()-1; i>=0; i--)
 		{
 			DM_DestroyChildWnd(m_PageArray[i]);
 		}
@@ -403,7 +406,7 @@ namespace DM
 
 	int DUITabCtrl::HitTest(CPoint pt)
 	{
-		int nItemCount = (int)GetItemCount();
+		int nItemCount = GetItemCount();
 		for (int i=0; i<nItemCount; i++)
 		{
 			CRect rcItem;
@@ -449,7 +452,7 @@ namespace DM
 			{
 				if (!SetCurSel(m_nCurSelItem-1))// 轮询到最右边了
 				{
-					SetCurSel((int)GetItemCount()-1);
+					SetCurSel(GetItemCount()-1);
 				}
 			}
 			break;
@@ -467,7 +470,7 @@ namespace DM
 			SetCurSel(0);
 			break;
 		case VK_END:
-			SetCurSel((int)GetItemCount()-1);
+			SetCurSel(GetItemCount()-1);
 		default:
 			break;
 		}
@@ -485,7 +488,7 @@ namespace DM
 			}
 
 			if (-1 == m_nCurSelItem
-				||m_nCurSelItem>=(int)m_PageArray.GetCount())
+				||m_nCurSelItem>=GetItemCount())
 			{
 				m_nCurSelItem = 0;
 			}
