@@ -92,7 +92,7 @@ namespace DM
 		bool SetItemTitle(int nIndex, LPCWSTR lpszTitle);
 		bool GetItemRect(int nIndex, CRect &rcItem);	
 		CRect GetTitleRect();													///< 所有标签所在的大矩形，另一部分就是所有page所在的大矩形					
-		size_t GetItemCount();
+		int GetItemCount();
 		DUITabPage* GetItem(int nIndex);
 		bool RemoveItem(int nIndex, int nSelPage=0);
 		bool RemoveItem(DUIWindow* pPage,int nSelPage=0);
