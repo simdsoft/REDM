@@ -114,7 +114,9 @@ namespace DM
 					rcText.left = rcText.left+m_nTextOffset;
 					UINT uAlign = 0;
 					m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
-					DV_DrawText(pCanvas,strText,strText.GetLength(),rcText,uAlign);
+					CStringW strTrans = DMTR(strText);
+					DV_DrawText(pCanvas, strTrans, strTrans.GetLength(), rcText, uAlign);
+					//DV_DrawText(pCanvas,strText,strText.GetLength(),rcText,uAlign);
 				}
 			}
 
