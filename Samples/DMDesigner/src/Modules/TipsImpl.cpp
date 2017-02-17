@@ -181,15 +181,16 @@ namespace DM
 			m_strXmlId	 = strXmlId;
 			m_strTip	 = pInfo->strTip;
 			m_rcPosFlags = pInfo->rcPosFlags;
-			m_rcScreenTarget = pInfo->rcScreenTarget;
-			Create();
-			CreateTipsWnd();
+			m_rcScreenTarget = pInfo->rcScreenTarget;			
 	
 			/// 更新数据
 			m_rcTarget = pInfo->rcTarget;
 			m_iDelayTime = pInfo->iDelayTime;
 			m_iSpanTime  = pInfo->iSpanTime;
 			m_dwReserve  = pInfo->dwReserve;
+
+			Create();
+			CreateTipsWnd();
 
 			if (m_pWnd->IsWindowVisible())
 			{
