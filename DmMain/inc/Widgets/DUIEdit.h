@@ -68,8 +68,9 @@ namespace DMAttr
 		static wchar_t* STRING_surfacetext;                             ///< 表层文字，当真实文字为空时，表层文字出现，示例:surfacetext="this is edit"
 		static wchar_t* COLOR_surfacetextclr;                           ///< 表层文字背景，示例:surfacetextclr="pbgra(00,00,ff,ff)"  
 		static wchar_t* FONT_surfacefont;                               ///< 表层文字字体，示例:surfacefont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1"
+		static wchar_t* OPTION_surfacealign;							///< 表层文字字体左中右, 默认居左, 示例:surfacealign="right"
 	};
-	DMAttrValueInit(DUIEditAttr,SKIN_surfaceskin)DMAttrValueInit(DUIEditAttr,STRING_surfacetext)DMAttrValueInit(DUIEditAttr,COLOR_surfacetextclr)DMAttrValueInit(DUIEditAttr,FONT_surfacefont)
+	DMAttrValueInit(DUIEditAttr,SKIN_surfaceskin)DMAttrValueInit(DUIEditAttr,STRING_surfacetext)DMAttrValueInit(DUIEditAttr,COLOR_surfacetextclr)DMAttrValueInit(DUIEditAttr,FONT_surfacefont)DMAttrValueInit(DUIEditAttr,OPTION_surfacealign)
 
 }
 
@@ -295,11 +296,17 @@ namespace DM
 		void DM_OnSetFocus();
 		void DM_OnKillFocus();
 	public:
+		enum{EditAlign_Left,EditAlign_Center,EditAlign_Right};
 		DM_BEGIN_ATTRIBUTES()
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUIEditAttr::SKIN_surfaceskin,m_pSurfaceSkin,DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIEditAttr::COLOR_surfacetextclr,m_SurfaceTextClr,DM_ECODE_NOXMLLOADREFRESH)
 			DM_STRING_ATTRIBUTE(DMAttr::DUIEditAttr::STRING_surfacetext,m_strSurfaceText,DM_ECODE_NOXMLLOADREFRESH)
 			DM_FONTPTR_ATTRIBUTE(DMAttr::DUIEditAttr::FONT_surfacefont,m_pSurfaceFont,DM_ECODE_NOXMLLOADREFRESH)
+			DM_ENUM_BEGIN(DMAttr::DUIEditAttr::OPTION_surfacealign, UINT, DM_ECODE_NOXMLLOADREFRESH)
+				DM_ENUM_VALUE(L"left", EditAlign_Left)
+				DM_ENUM_VALUE(L"center", EditAlign_Center)
+				DM_ENUM_VALUE(L"right", EditAlign_Right)
+			DM_ENUM_END(m_uSurfaceAlign)
 		DM_END_ATTRIBUTES()
 
 	public:
@@ -307,5 +314,7 @@ namespace DM
 		CStringW				m_strSurfaceText;
 		DMSmartPtrT<IDMFont>	m_pSurfaceFont;
 		DMSmartPtrT<IDMSkin>    m_pSurfaceSkin;
+		UINT					m_uSurfaceAlign;	
+
 	};
 }//namespace DM
