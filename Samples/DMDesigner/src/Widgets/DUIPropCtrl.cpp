@@ -49,7 +49,7 @@ namespace DM
 					}
 					else if (0 == strType.CompareNoCase(L"OPTION"))// Ãÿ ‚¥¶¿Ì
 					{
-						if (0 == strName.CompareNoCase(L"align"))
+						if (0 == strName.CompareNoCase(L"align")||0 == strName.CompareNoCase(L"surfacealign")) 
 						{
 							XmlNode.SetAttribute(XML_OPTIONS,L"left|center|right");
 							strTempValue = L"center";
