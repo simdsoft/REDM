@@ -152,7 +152,8 @@ static LPCWSTR MSGSTR(UINT uMsg)												///< 打印MSG
 #define DM_DEF_CLASS_NAME							 L"DMClass"					///< 默认类名
 #define DM_DEF_SHADOWCLASS_NAME						 L"DMShadowClass"		    ///< 默认阴影类名
 #define DM_DEF_WINDOW_NAME							 L"DMWindow"                ///< 默认窗口名
-#define DM_DEF_STYLE                                 WS_POPUP|WS_CLIPCHILDREN|WS_TABSTOP
+//#define DM_DEF_STYLE                                 WS_POPUP|WS_CLIPCHILDREN|WS_TABSTOP
+#define DM_DEF_STYLE                                 WS_POPUP|WS_CLIPCHILDREN|WS_TABSTOP|WS_MINIMIZEBOX
 
 enum
 {
