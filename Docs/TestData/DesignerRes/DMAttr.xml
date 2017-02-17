@@ -165,6 +165,7 @@
 	STRING_surfacetext="表层文字，当真实文字为空时，表层文字出现，示例:surfacetext=this is edit" 
 	COLOR_surfacetextclr="{pbgra(cc,cc,cc,ff)}表层文字背景，示例:surfacetextclr=pbgra(00,00,ff,ff)" 
 	FONT_surfacefont="表层文字字体，示例:surfacefont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1" 
+	OPTION_surfacealign="{left}表层文字字体左中右, 默认居左, 示例:surfacealign=right"
 	/>
 	
 	<DUIStaticAttr 
