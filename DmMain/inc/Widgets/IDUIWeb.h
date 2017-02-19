@@ -81,6 +81,7 @@ namespace DM
 		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
 		/// @return HRESULT，失败为S_FALSE
 		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen) = 0;
+		virtual CStringW GetUrl() = 0;
 
 		/// @brief 停止
 		/// @return HRESULT，失败为S_FALSE

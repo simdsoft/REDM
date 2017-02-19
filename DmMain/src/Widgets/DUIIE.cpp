@@ -808,6 +808,25 @@ namespace DM
 		return hr;
 	}
 
+	CStringW DUIIE::GetUrl()
+	{
+		CStringW strUrl;
+		do 
+		{
+			if (!m_pIE)
+			{
+				break;
+			}
+			BSTR _bsURL = NULL;
+			HRESULT hr = m_pIE->get_LocationURL(&_bsURL);
+			if (!SUCCEEDED(hr) || _bsURL == NULL)
+				break;
+			CStringA strUrlA =_com_util::ConvertBSTRToString(_bsURL) ;
+			strUrl = DMA2W(strUrlA, CP_UTF8);
+		} while (false);
+		return strUrl;
+	}
+
 	HRESULT DUIIE::Stop()
 	{
 		HRESULT hr = S_FALSE;
