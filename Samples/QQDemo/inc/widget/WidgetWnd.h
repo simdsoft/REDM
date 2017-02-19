@@ -51,7 +51,7 @@ public:
 	static void OnURLChanged(const DMClientHandler*, DMString url);
 
 	// IE≤‚ ‘
-	DMCode NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
+	HRESULT NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
 
 	DMCode OnFireEvent(DMEventArgs &Evt);
 	void OnDUITimer(char id);

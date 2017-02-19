@@ -68,7 +68,7 @@ public:
 	DMCode OnBtnIefront();
 	DMCode IERefreshWeb(DMEventArgs* pEvent);
 
-	DMCode NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
+	HRESULT NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
 
 	// ¶¯»­------------------------------------
 	DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp);		

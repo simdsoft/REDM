@@ -22,40 +22,40 @@ namespace DM
 	class IDMWebEvent
 	{
 	public:
-		virtual DMCode BeforeNavigate2(DUIWND hWnd, DMIN IDispatch *pDisp, DMIN wchar_t *pUrl,DMIN int Flags,DMIN wchar_t *pTargetFrameName,DMIN wchar_t *pPostData,DMIN wchar_t *pHeaders,DMINOUT VARIANT_BOOL *bCancel){return DM_ECODE_NOTIMPL;}
-		virtual DMCode ClientToHostWindow(DUIWND hWnd, DMIN long *pCx, DMINOUT long *pCy){return DM_ECODE_NOTIMPL;}
-		virtual DMCode CommandStateChange(DUIWND hWnd, DMIN LONG command, DMIN VARIANT_BOOL enable){return DM_ECODE_NOTIMPL;}
-		virtual DMCode DocumentComplete(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl){return DM_ECODE_NOTIMPL;}
-		virtual DMCode DownloadBegin(DUIWND hWnd){return DM_ECODE_NOTIMPL;}
-		virtual DMCode DownloadComplete(DUIWND hWnd){return DM_ECODE_NOTIMPL;}
-		virtual DMCode FileDownload(DUIWND hWnd, DMIN VARIANT_BOOL ActiveDocument,DMINOUT VARIANT_BOOL *Cancel){return DM_ECODE_NOTIMPL;}
-		virtual DMCode NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl){return DM_ECODE_NOTIMPL;}
-		virtual DMCode NavigateError(DUIWND hWnd, DMIN IDispatch *pDisp,DMIN wchar_t *pUrl,DMIN wchar_t *pTargetFrameName,DMIN int statusCode,DMINOUT VARIANT_BOOL *bCancel){return DM_ECODE_NOTIMPL;}
-		virtual DMCode NewWindow2(DUIWND hWnd, DMINOUT IDispatch **pDisp,DMINOUT VARIANT_BOOL *bCancel){return DM_ECODE_NOTIMPL;}
-		virtual DMCode NewWindow3(DUIWND hWnd, DMINOUT IDispatch **pDisp,DMINOUT VARIANT_BOOL *bCancel,DMIN DWORD dwFlags,DMIN wchar_t *pUrlContext,DMIN wchar_t *pUrl){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnFullScreen(DUIWND hWnd, DMIN VARIANT_BOOL bFullScreen){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnMenuBar(DUIWND hWnd, DMIN VARIANT_BOOL bMenuBar){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnQuit(DUIWND hWnd){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnStatusBar(DUIWND hWnd, DMIN VARIANT_BOOL bStatusBar){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnTheaterMode(DUIWND hWnd, DMIN VARIANT_BOOL bTheaterMode){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnToolBar(DUIWND hWnd, DMIN VARIANT_BOOL bToolBar){return DM_ECODE_NOTIMPL;}
-		virtual DMCode OnVisible(DUIWND hWnd, DMIN VARIANT_BOOL bVisible){return DM_ECODE_NOTIMPL;}
-		virtual DMCode PrintTemplateInstantiation(DUIWND hWnd,DMIN IDispatch *pDisp){return DM_ECODE_NOTIMPL;}
-		virtual DMCode PrintTemplateTeardown(DUIWND hWnd,DMIN IDispatch *pDisp){return DM_ECODE_NOTIMPL;}
-		virtual DMCode PrivacyImpactedStateChange(DUIWND hWnd, DMIN VARIANT_BOOL bPrivacyImpacted){return DM_ECODE_NOTIMPL;}
-		virtual DMCode ProgressChange(DUIWND hWnd, DMIN LONG Progress,DMIN LONG ProgressMax){return DM_ECODE_NOTIMPL;}
-		virtual DMCode PropertyChange(DUIWND hWnd, DMIN wchar_t *pProperty){return DM_ECODE_NOTIMPL;}
-		virtual DMCode SetPhishingFilterStatus(DUIWND hWnd, DMIN LONG phishingFilterStatus){return DM_ECODE_NOTIMPL;}
-		virtual DMCode SetSecureLockIcon(DUIWND hWnd, DMIN int SecureLockIcon){return DM_ECODE_NOTIMPL;}
-		virtual DMCode StatusTextChange(DUIWND hWnd,DMIN wchar_t *pText){return DM_ECODE_NOTIMPL;}
-		virtual DMCode TitleChange(DUIWND hWnd, DMIN wchar_t *pText){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowClosing(DUIWND hWnd, DMIN VARIANT_BOOL IsChildWindow,DMINOUT VARIANT_BOOL *bCancel){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowSetHeight(DUIWND hWnd, DMIN LONG height){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowSetLeft(DUIWND hWnd, DMIN LONG left){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowSetResizable(DUIWND hWnd, DMIN VARIANT_BOOL bResizable){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowSetTop(DUIWND hWnd, DMIN LONG top){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowSetWidth(DUIWND hWnd, DMIN LONG width){return DM_ECODE_NOTIMPL;}
-		virtual DMCode WindowStateChanged(DUIWND hWnd, DMIN DWORD dwFlags,DMIN DWORD dwValidFlagsMask){return DM_ECODE_NOTIMPL;}
+		virtual HRESULT BeforeNavigate2(DUIWND hWnd, DMIN IDispatch *pDisp, DMIN wchar_t *pUrl,DMIN int Flags,DMIN wchar_t *pTargetFrameName,DMIN wchar_t *pPostData,DMIN wchar_t *pHeaders,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
+		virtual HRESULT ClientToHostWindow(DUIWND hWnd, DMIN long *pCx, DMINOUT long *pCy){return S_OK;}
+		virtual HRESULT CommandStateChange(DUIWND hWnd, DMIN LONG command, DMIN VARIANT_BOOL enable){return S_OK;}
+		virtual HRESULT DocumentComplete(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl){return S_OK;}
+		virtual HRESULT DownloadBegin(DUIWND hWnd){return S_OK;}
+		virtual HRESULT DownloadComplete(DUIWND hWnd){return S_OK;}
+		virtual HRESULT FileDownload(DUIWND hWnd, DMIN VARIANT_BOOL ActiveDocument,DMINOUT VARIANT_BOOL *Cancel){return S_OK;}
+		virtual HRESULT NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl){return S_OK;}
+		virtual HRESULT NavigateError(DUIWND hWnd, DMIN IDispatch *pDisp,DMIN wchar_t *pUrl,DMIN wchar_t *pTargetFrameName,DMIN int statusCode,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
+		virtual HRESULT NewWindow2(DUIWND hWnd, DMINOUT IDispatch **pDisp,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
+		virtual HRESULT NewWindow3(DUIWND hWnd, DMINOUT IDispatch **pDisp,DMINOUT VARIANT_BOOL *bCancel,DMIN DWORD dwFlags,DMIN wchar_t *pUrlContext,DMIN wchar_t *pUrl){return S_OK;}
+		virtual HRESULT OnFullScreen(DUIWND hWnd, DMIN VARIANT_BOOL bFullScreen){return S_OK;}
+		virtual HRESULT OnMenuBar(DUIWND hWnd, DMIN VARIANT_BOOL bMenuBar){return S_OK;}
+		virtual HRESULT OnQuit(DUIWND hWnd){return S_OK;}
+		virtual HRESULT OnStatusBar(DUIWND hWnd, DMIN VARIANT_BOOL bStatusBar){return S_OK;}
+		virtual HRESULT OnTheaterMode(DUIWND hWnd, DMIN VARIANT_BOOL bTheaterMode){return S_OK;}
+		virtual HRESULT OnToolBar(DUIWND hWnd, DMIN VARIANT_BOOL bToolBar){return S_OK;}
+		virtual HRESULT OnVisible(DUIWND hWnd, DMIN VARIANT_BOOL bVisible){return S_OK;}
+		virtual HRESULT PrintTemplateInstantiation(DUIWND hWnd,DMIN IDispatch *pDisp){return S_OK;}
+		virtual HRESULT PrintTemplateTeardown(DUIWND hWnd,DMIN IDispatch *pDisp){return S_OK;}
+		virtual HRESULT PrivacyImpactedStateChange(DUIWND hWnd, DMIN VARIANT_BOOL bPrivacyImpacted){return S_OK;}
+		virtual HRESULT ProgressChange(DUIWND hWnd, DMIN LONG Progress,DMIN LONG ProgressMax){return S_OK;}
+		virtual HRESULT PropertyChange(DUIWND hWnd, DMIN wchar_t *pProperty){return S_OK;}
+		virtual HRESULT SetPhishingFilterStatus(DUIWND hWnd, DMIN LONG phishingFilterStatus){return S_OK;}
+		virtual HRESULT SetSecureLockIcon(DUIWND hWnd, DMIN int SecureLockIcon){return S_OK;}
+		virtual HRESULT StatusTextChange(DUIWND hWnd,DMIN wchar_t *pText){return S_OK;}
+		virtual HRESULT TitleChange(DUIWND hWnd, DMIN wchar_t *pText){return S_OK;}
+		virtual HRESULT WindowClosing(DUIWND hWnd, DMIN VARIANT_BOOL IsChildWindow,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
+		virtual HRESULT WindowSetHeight(DUIWND hWnd, DMIN LONG height){return S_OK;}
+		virtual HRESULT WindowSetLeft(DUIWND hWnd, DMIN LONG left){return S_OK;}
+		virtual HRESULT WindowSetResizable(DUIWND hWnd, DMIN VARIANT_BOOL bResizable){return S_OK;}
+		virtual HRESULT WindowSetTop(DUIWND hWnd, DMIN LONG top){return S_OK;}
+		virtual HRESULT WindowSetWidth(DUIWND hWnd, DMIN LONG width){return S_OK;}
+		virtual HRESULT WindowStateChanged(DUIWND hWnd, DMIN DWORD dwFlags,DMIN DWORD dwValidFlagsMask){return S_OK;}
 		virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(DUIWND hWnd, REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return E_NOTIMPL;}
 		virtual HRESULT STDMETHODCALLTYPE Invoke(DUIWND hWnd, DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,UINT* puArgErr){return E_NOTIMPL;}
 	};

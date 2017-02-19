@@ -340,14 +340,14 @@ void CWidgetWnd::OnURLChanged(const DMClientHandler*handler, DMString url)
 }
 
 // ie
-DMCode CWidgetWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
+HRESULT CWidgetWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
 {
 	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"ieurl");
 	if (pRichEdit)
 	{
 		pRichEdit->SetWindowText(pUrl);
 	}
-	return DM_ECODE_OK;
+	return S_OK;
 }
  
 DMCode CWidgetWnd::OnFireEvent(DMEventArgs &Evt)

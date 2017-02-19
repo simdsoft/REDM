@@ -435,14 +435,14 @@ DM::DMCode CMainWnd::IERefreshWeb( DMEventArgs* pEvent )
 	return DM_ECODE_OK;
 }
 
-DMCode CMainWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
+HRESULT CMainWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
 {
 	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"ieurl");
 	if (pRichEdit&&m_pIE)
 	{
 		pRichEdit->SetWindowText(pUrl);
 	}
-	return DM_ECODE_OK;
+	return S_OK;
 }
 
 DMCode CMainWnd::MyTimer()

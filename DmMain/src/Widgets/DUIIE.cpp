@@ -57,6 +57,7 @@ namespace DM
 		if ((riid != IID_NULL) || !m_pEvtHandler)
 			return E_INVALIDARG;
 
+		HRESULT hr = S_OK;
 		switch(dispIdMember)
 		{
 		case DISPID_BEFORENAVIGATE2:
@@ -68,7 +69,7 @@ namespace DM
 				wchar_t *PostData		 = pDispParams->rgvarg[2].pvarVal->bstrVal;
 				wchar_t *Headers		 = pDispParams->rgvarg[1].pvarVal->bstrVal;
 				VARIANT_BOOL *bCancel	 = pDispParams->rgvarg[0].pboolVal;
-				m_pEvtHandler->BeforeNavigate2(m_hWnd,pDisp,pUrl,Flags,TargetFrameName,PostData,Headers,bCancel);
+				hr = m_pEvtHandler->BeforeNavigate2(m_hWnd,pDisp,pUrl,Flags,TargetFrameName,PostData,Headers,bCancel);
 			}
 			break;
 
@@ -76,7 +77,7 @@ namespace DM
 			{
 				long *pCx = pDispParams->rgvarg[1].plVal;
 				long *pCy = pDispParams->rgvarg[0].plVal;
-				m_pEvtHandler->ClientToHostWindow(m_hWnd,pCx,pCy);
+				hr = m_pEvtHandler->ClientToHostWindow(m_hWnd,pCx,pCy);
 			}
 			break;
 
@@ -84,7 +85,7 @@ namespace DM
 			{
 				long         Command = pDispParams->rgvarg[1].lVal;
 				VARIANT_BOOL Enable  = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->CommandStateChange(m_hWnd,Command,Enable);
+				hr = m_pEvtHandler->CommandStateChange(m_hWnd,Command,Enable);
 			}
 			break;
 
@@ -130,20 +131,20 @@ namespace DM
 				{
 					IDispatch *pDispArg = pDispParams->rgvarg[1].pdispVal;
 					wchar_t *pURL    = pDispParams->rgvarg[0].pvarVal->bstrVal;
-					m_pEvtHandler->DocumentComplete(m_hWnd,pDispArg,pURL);
+					hr = m_pEvtHandler->DocumentComplete(m_hWnd,pDispArg,pURL);
 				}
 			}
 			break;
 		
 		case DISPID_DOWNLOADBEGIN:
 			{
-				m_pEvtHandler->DownloadBegin(m_hWnd);
+				hr = m_pEvtHandler->DownloadBegin(m_hWnd);
 			}
 			break;
 		
 		case DISPID_DOWNLOADCOMPLETE:
 			{
-				m_pEvtHandler->DownloadComplete(m_hWnd);
+				hr = m_pEvtHandler->DownloadComplete(m_hWnd);
 			}
 			break;
 		
@@ -151,7 +152,7 @@ namespace DM
 			{
 				VARIANT_BOOL ActiveDocument = pDispParams->rgvarg[1].boolVal;
 				VARIANT_BOOL *Cancel        = pDispParams->rgvarg[0].pboolVal;
-				m_pEvtHandler->FileDownload(m_hWnd,ActiveDocument,Cancel);
+				hr = m_pEvtHandler->FileDownload(m_hWnd,ActiveDocument,Cancel);
 			}
 			break;
 
@@ -159,7 +160,7 @@ namespace DM
 			{
 				IDispatch *pDisp = pDispParams->rgvarg[1].pdispVal;
 				wchar_t *pUrl    = pDispParams->rgvarg[0].pvarVal->bstrVal;
-				m_pEvtHandler->NavigateComplete2(m_hWnd,pDisp,pUrl);
+				hr = m_pEvtHandler->NavigateComplete2(m_hWnd,pDisp,pUrl);
 			}
 			break;
 
@@ -170,7 +171,7 @@ namespace DM
 				wchar_t *TargetFrameName = pDispParams->rgvarg[2].pvarVal->bstrVal;
 				int StatusCode   = pDispParams->rgvarg[1].pvarVal->intVal;
 				VARIANT_BOOL *Cancel = pDispParams->rgvarg[0].pvarVal->pboolVal;
-				m_pEvtHandler->NavigateError(m_hWnd,pDisp,pUrl,TargetFrameName,StatusCode,Cancel);
+				hr = m_pEvtHandler->NavigateError(m_hWnd,pDisp,pUrl,TargetFrameName,StatusCode,Cancel);
 			}
 			break;
 
@@ -178,7 +179,7 @@ namespace DM
 			{
 				IDispatch **ppDisp   = pDispParams->rgvarg[1].ppdispVal;
 				VARIANT_BOOL *Cancel = pDispParams->rgvarg[0].pboolVal;
-				m_pEvtHandler->NewWindow2(m_hWnd,ppDisp,Cancel);
+				hr = m_pEvtHandler->NewWindow2(m_hWnd,ppDisp,Cancel);
 			}
 			break;
 
@@ -189,76 +190,76 @@ namespace DM
 				DWORD dwFlags        = pDispParams->rgvarg[2].intVal;
 				wchar_t* bstrUrlContext = pDispParams->rgvarg[1].bstrVal;
 				wchar_t* bstrUrl        = pDispParams->rgvarg[0].bstrVal;
-				m_pEvtHandler->NewWindow3(m_hWnd,ppDisp,Cancel,dwFlags,bstrUrlContext,bstrUrl);
+				hr = m_pEvtHandler->NewWindow3(m_hWnd,ppDisp,Cancel,dwFlags,bstrUrlContext,bstrUrl);
 			}
 			break;
 
 		case DISPID_ONFULLSCREEN:
 			{
 				VARIANT_BOOL FullScreen = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnFullScreen(m_hWnd,FullScreen);
+				hr = m_pEvtHandler->OnFullScreen(m_hWnd,FullScreen);
 			}
 			break;
 		
 		case DISPID_ONMENUBAR:
 			{
 				VARIANT_BOOL MenuBar = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnMenuBar(m_hWnd,MenuBar);
+				hr = m_pEvtHandler->OnMenuBar(m_hWnd,MenuBar);
 			}
 			break;
 
 		case DISPID_ONQUIT:
 			{
-				m_pEvtHandler->OnQuit(m_hWnd);
+				hr = m_pEvtHandler->OnQuit(m_hWnd);
 			}
 			break;
 
 		case DISPID_ONSTATUSBAR:
 			{
 				VARIANT_BOOL StatusBar = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnStatusBar(m_hWnd,StatusBar);
+				hr = m_pEvtHandler->OnStatusBar(m_hWnd,StatusBar);
 			}
 			break;
 
 		case DISPID_ONTHEATERMODE:
 			{
 				VARIANT_BOOL TheaterMode = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnTheaterMode(m_hWnd,TheaterMode);
+				hr = m_pEvtHandler->OnTheaterMode(m_hWnd,TheaterMode);
 			}
 			break;
 
 		case DISPID_ONTOOLBAR:
 			{
 				VARIANT_BOOL ToolBar = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnToolBar(m_hWnd,ToolBar);
+				hr = m_pEvtHandler->OnToolBar(m_hWnd,ToolBar);
 			}
 			break;
 
 		case DISPID_ONVISIBLE:
 			{
 				VARIANT_BOOL Visible = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->OnVisible(m_hWnd,Visible);
+				hr = m_pEvtHandler->OnVisible(m_hWnd,Visible);
 			}
 			break;
 		
 		case DISPID_PRINTTEMPLATEINSTANTIATION:
 			{
 				IDispatch *pDisp = pDispParams->rgvarg[0].pdispVal;
-				m_pEvtHandler->PrintTemplateInstantiation(m_hWnd,pDisp);
+				hr = m_pEvtHandler->PrintTemplateInstantiation(m_hWnd,pDisp);
 			}
 			break;
 		
 		case DISPID_PRINTTEMPLATETEARDOWN:
 			{
 				IDispatch *pDisp = pDispParams->rgvarg[0].pdispVal;
-				m_pEvtHandler->PrintTemplateTeardown(m_hWnd,pDisp);
+				hr = m_pEvtHandler->PrintTemplateTeardown(m_hWnd,pDisp);
 			}
 			break;
 
 		case DISPID_PRIVACYIMPACTEDSTATECHANGE:
 			{
 				VARIANT_BOOL PrivacyImpacted = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->PrivacyImpactedStateChange(m_hWnd,PrivacyImpacted);
+				hr = m_pEvtHandler->PrivacyImpactedStateChange(m_hWnd,PrivacyImpacted);
 			}
 			break;
 
@@ -266,42 +267,42 @@ namespace DM
 			{
 				LONG Progress 	 =	pDispParams->rgvarg[1].lVal;
 				LONG ProgressMax = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->ProgressChange(m_hWnd,Progress,ProgressMax);
+				hr = m_pEvtHandler->ProgressChange(m_hWnd,Progress,ProgressMax);
 			}
 			break;
 
 		case DISPID_PROPERTYCHANGE:
 			{
 				wchar_t* szProperty = pDispParams->rgvarg[0].bstrVal;
-				m_pEvtHandler->PropertyChange(m_hWnd,szProperty);
+				hr = m_pEvtHandler->PropertyChange(m_hWnd,szProperty);
 			}
 			break;
 
 		case DISPID_SETPHISHINGFILTERSTATUS:
 			{
 				LONG PhishingFilterStatus = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->SetPhishingFilterStatus(m_hWnd,PhishingFilterStatus);
+				hr = m_pEvtHandler->SetPhishingFilterStatus(m_hWnd,PhishingFilterStatus);
 			}
 			break;
 
 		case DISPID_SETSECURELOCKICON:
 			{
 				int SecureLockIcon = pDispParams->rgvarg[0].intVal;
-				m_pEvtHandler->SetSecureLockIcon(m_hWnd,SecureLockIcon);
+				hr = m_pEvtHandler->SetSecureLockIcon(m_hWnd,SecureLockIcon);
 			}
 			break;
 
 		case DISPID_STATUSTEXTCHANGE:
 			{
 				wchar_t* Text = pDispParams->rgvarg[0].bstrVal;
-				m_pEvtHandler->StatusTextChange(m_hWnd,Text);
+				hr = m_pEvtHandler->StatusTextChange(m_hWnd,Text);
 			}
 			break;
 
 		case DISPID_TITLECHANGE:
 			{
 				wchar_t* Text = pDispParams->rgvarg[0].bstrVal;
-				m_pEvtHandler->TitleChange(m_hWnd,Text);
+				hr = m_pEvtHandler->TitleChange(m_hWnd,Text);
 			}
 			break;
 		
@@ -309,42 +310,42 @@ namespace DM
 			{
 				VARIANT_BOOL IsChildWindow = pDispParams->rgvarg[1].boolVal;
 				VARIANT_BOOL *Cancel = pDispParams->rgvarg[0].pboolVal;
-				m_pEvtHandler->WindowClosing(m_hWnd,IsChildWindow,Cancel);
+				hr = m_pEvtHandler->WindowClosing(m_hWnd,IsChildWindow,Cancel);
 			}
 			break;
 
 		case DISPID_WINDOWSETHEIGHT:
 			{
 				LONG Height = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->WindowSetHeight(m_hWnd,Height);
+				hr = m_pEvtHandler->WindowSetHeight(m_hWnd,Height);
 			}
 			break;
 
 		case DISPID_WINDOWSETLEFT:
 			{
 				LONG Left = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->WindowSetLeft(m_hWnd,Left);
+				hr = m_pEvtHandler->WindowSetLeft(m_hWnd,Left);
 			}
 			break;
 
 		case DISPID_WINDOWSETRESIZABLE:
 			{
 				VARIANT_BOOL Resizable = pDispParams->rgvarg[0].boolVal;
-				m_pEvtHandler->WindowSetResizable(m_hWnd,Resizable);
+				hr = m_pEvtHandler->WindowSetResizable(m_hWnd,Resizable);
 			}
 			break;
 
 		case DISPID_WINDOWSETTOP:
 			{
 				LONG Top = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->WindowSetTop(m_hWnd,Top);
+				hr = m_pEvtHandler->WindowSetTop(m_hWnd,Top);
 			}
 			break;
 
 		case DISPID_WINDOWSETWIDTH:
 			{
 				LONG Width = pDispParams->rgvarg[0].lVal;
-				m_pEvtHandler->WindowSetWidth(m_hWnd,Width);
+				hr = m_pEvtHandler->WindowSetWidth(m_hWnd,Width);
 			}	
 			break;
 
@@ -352,7 +353,7 @@ namespace DM
 			{
 				DWORD dwFlags = pDispParams->rgvarg[1].ulVal;
 				DWORD dwValidFlagsMask = pDispParams->rgvarg[0].ulVal;
-				m_pEvtHandler->WindowStateChanged(m_hWnd,dwFlags,dwValidFlagsMask);
+				hr = m_pEvtHandler->WindowStateChanged(m_hWnd,dwFlags,dwValidFlagsMask);
 			}
 			break;
 		default:

@@ -18,7 +18,7 @@
 #include "SpyWnd.h" 
 #include "WidgetWnd.h"
 
-class CQQMainWnd:public DMHWnd,public IDMWebEvent
+class CQQMainWnd:public DMHWnd
 {
 public:
 	CQQMainWnd();
