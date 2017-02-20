@@ -75,6 +75,7 @@ namespace DM
 		m_pSkinBtn		= NULL;
 		m_pEdit			= NULL;
 		m_bHideEdit		= true;
+		m_bDropTranslucent = false;
 		m_nDropHeight   = 200;
 		m_dwBtnState    = DUIWNDSTATE_Normal;
 		m_iAnimTime     = 200;
@@ -486,6 +487,7 @@ namespace DM
 			else
 			{
 				m_pDropDownWnd->DM_AnimateWindow(m_iAnimTime,AW_SLIDE|(bDown?AW_VER_POSITIVE:AW_VER_NEGATIVE));
+				m_pDropDownWnd->RedrawAll();
 			}
 		} while (false);
 	}
