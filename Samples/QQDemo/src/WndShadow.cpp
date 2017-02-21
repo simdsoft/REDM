@@ -25,7 +25,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 //****************************************************************************
-#include "QQDemoAfx.h"
+#include "stdafx.h"
 #include "WndShadow.h"
 #include "math.h"
 #include "crtdbg.h"
@@ -151,10 +151,10 @@ void CWndShadow::Create(HWND hParentWnd)
 	}
 
 	// Replace the original WndProc of parent window to steal messages
-	m_OriParentProc = GetWindowLongPtr(hParentWnd, GWL_WNDPROC);
+	m_OriParentProc = GetWindowLong(hParentWnd, GWL_WNDPROC);
 
 #pragma warning(disable: 4311)	// temporrarily disable the type_cast warning in Win32
-	SetWindowLongPtr(hParentWnd, GWL_WNDPROC, (LONG_PTR)ParentProc);
+	SetWindowLong(hParentWnd, GWL_WNDPROC, (LONG)ParentProc);
 #pragma warning(default: 4311)
 
 }
