@@ -208,6 +208,14 @@ namespace DM
 					}
 					break;
 				}
+				if (0 == (m_dwMiscStatus & OLEMISC_SETCLIENTSITEFIRST)) 
+				{
+					hr = m_spOleObject->SetClientSite(static_cast<IOleClientSite*>(this));
+					if (FAILED(hr))
+					{
+						break;
+					}
+				}
 
 				hr = DoInplaceActivate();
 
@@ -698,7 +706,7 @@ namespace DM
 				hr = S_OK;
 				if (lprcPosRect && memcmp(&m_rcPos, lprcPosRect, sizeof(m_rcPos)) != 0 )
 				{
-					if (NULL != m_spInPlaceObject)
+					if (m_spInPlaceObject)
 					{
 						memcpy(&m_rcPos, lprcPosRect, sizeof(m_rcPos));
 						hr = m_spInPlaceObject->SetObjectRects(&m_rcPos, &m_rcPos);

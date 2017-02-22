@@ -28,10 +28,11 @@ namespace DMAttr
 	public:
 		static wchar_t* STRING_url;                                    ///< 指定IE的默认加载URL,示例:url="www.baidu.com"
 		static wchar_t* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
+		static wchar_t* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
 		static wchar_t* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
 		static wchar_t* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:accel="ctrl+f5"
 	};
-	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
+	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bshowcontext)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
 }
 
 namespace DM
@@ -49,156 +50,85 @@ namespace DM
 
 		//IUnkown
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
-		virtual ULONG STDMETHODCALLTYPE AddRef(void);
-		virtual ULONG STDMETHODCALLTYPE Release(void);
+		virtual ULONG STDMETHODCALLTYPE AddRef(void){return ++m_nRef;};
+		virtual ULONG STDMETHODCALLTYPE Release(void){return --m_nRef;};
 
 		//IDispatch
 		STDMETHOD(GetTypeInfoCount)(UINT *pctinfo){return E_NOTIMPL;}
 		STDMETHOD(GetTypeInfo)(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo){return E_NOTIMPL;}
-		virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return E_NOTIMPL;}
+		STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return E_NOTIMPL;}
 		STDMETHOD(Invoke)(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,UINT* puArgErr);
 
 	protected:
-		ULONG					m_nRef;
-		DUIIE					*m_pWebBrowser;
-		IDMWebEvent*			m_pEvtHandler;
-		DUIWND					m_hWnd;
+		ULONG								m_nRef;
+		DUIIE								*m_pWebBrowser;
+		IDMWebEvent*						m_pEvtHandler;
+		DUIWND								m_hWnd;
 	};
 
+	/// <summary>
+	///		控制WebBrowser的形为方式及其外观
+	/// </summary>
 	class DM_EXPORT DMIEDocHostUIHandler : public IDocHostUIHandler
 	{
 	public:
 		DMIEDocHostUIHandler();
+		void SetWebBrowser(DUIIE *pWebBrowser){m_pWebBrowser=pWebBrowser;};
+		void SetScrollBarShow(bool bShow){m_bShowScrollBar = bShow;}
+		void SetContextMenuShow(bool bShow) {m_bShowContextMenu = bShow;}
 
-		void SetWebBrowser(DUIIE *pWebBrowser);
+	public:
+		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
+		virtual ULONG STDMETHODCALLTYPE AddRef(void){return ++m_nRef;};
+		virtual ULONG STDMETHODCALLTYPE Release(void){return --m_nRef;};
 
-		void setScrollBar(bool bHasScrollBar){	m_bHasScrollBar_ = bHasScrollBar;}
-
-		virtual HRESULT STDMETHODCALLTYPE QueryInterface( 
-			/* [in] */ REFIID riid,
-			/* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
-
-		virtual ULONG STDMETHODCALLTYPE AddRef( void){return ++m_refCount;};
-
-		virtual ULONG STDMETHODCALLTYPE Release( void){return --m_refCount;};
-
-		virtual HRESULT STDMETHODCALLTYPE ShowContextMenu( 
-			/* [in] */ DWORD dwID,
-			/* [in] */ POINT *ppt,
-			/* [in] */ IUnknown *pcmdtReserved,
-			/* [in] */ IDispatch *pdispReserved){return E_NOTIMPL;};
-
-		virtual HRESULT STDMETHODCALLTYPE GetHostInfo( 
-			/* [out][in] */ DOCHOSTUIINFO *pInfo);
-
-		virtual HRESULT STDMETHODCALLTYPE ShowUI( 
-			/* [in] */ DWORD dwID,
-			/* [in] */ IOleInPlaceActiveObject *pActiveObject,
-			/* [in] */ IOleCommandTarget *pCommandTarget,
-			/* [in] */ IOleInPlaceFrame *pFrame,
-			/* [in] */ IOleInPlaceUIWindow *pDoc){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE HideUI( void){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE UpdateUI( void){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE EnableModeless( 
-			/* [in] */ BOOL fEnable){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE OnDocWindowActivate( 
-			/* [in] */ BOOL fActivate){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE OnFrameWindowActivate( 
-			/* [in] */ BOOL fActivate){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE ResizeBorder( 
-			/* [in] */ LPCRECT prcBorder,
-			/* [in] */ IOleInPlaceUIWindow *pUIWindow,
-			/* [in] */ BOOL fRameWindow){return S_OK;}
-
-		virtual HRESULT STDMETHODCALLTYPE TranslateAccelerator( 
-			/* [in] */ LPMSG lpMsg,
-			/* [in] */ const GUID *pguidCmdGroup,
-			/* [in] */ DWORD nCmdID){return S_FALSE;}
-
-		virtual HRESULT STDMETHODCALLTYPE GetOptionKeyPath( 
-			/* [out] */ 
-			__out  LPOLESTR *pchKey,
-			/* [in] */ DWORD dw){return S_FALSE;}
-
-		virtual HRESULT STDMETHODCALLTYPE GetDropTarget( 
-			/* [in] */ IDropTarget *pDropTarget,
-			/* [out] */ IDropTarget **ppDropTarget){return S_FALSE;}
-
-		virtual HRESULT STDMETHODCALLTYPE GetExternal( 
-			/* [out] */ IDispatch **ppDispatch);
-
-		virtual HRESULT STDMETHODCALLTYPE TranslateUrl( 
-			/* [in] */ DWORD dwTranslate,
-			/* [in] */ 
-			__in __nullterminated  OLECHAR *pchURLIn,
-			/* [out] */ 
-			__out  OLECHAR **ppchURLOut);
-
-		virtual HRESULT STDMETHODCALLTYPE FilterDataObject( 
-			/* [in] */ IDataObject *pDO,
-			/* [out] */ IDataObject **ppDORet);
+		// IDocHostUIHandler
+		STDMETHOD(ShowContextMenu)(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved);
+		STDMETHOD(GetHostInfo)(DOCHOSTUIINFO *pInfo);
+		STDMETHOD(ShowUI)(DWORD dwID,IOleInPlaceActiveObject *pActiveObject,IOleCommandTarget *pCommandTarget,IOleInPlaceFrame *pFrame,IOleInPlaceUIWindow *pDoc){return S_OK;}
+		STDMETHOD(HideUI)(void){return S_OK;}
+		STDMETHOD(UpdateUI)(void){return S_OK;}
+		STDMETHOD(EnableModeless)(BOOL fEnable){return S_OK;}
+		STDMETHOD(OnDocWindowActivate)(BOOL fActivate){return S_OK;}
+		STDMETHOD(OnFrameWindowActivate)(BOOL fActivate){return S_OK;}
+		STDMETHOD(ResizeBorder)(LPCRECT prcBorder,IOleInPlaceUIWindow *pUIWindow,BOOL fRameWindow){return S_OK;}
+		STDMETHOD(TranslateAccelerator)(LPMSG lpMsg,const GUID *pguidCmdGroup,DWORD nCmdID){return S_FALSE;}
+		STDMETHOD(GetOptionKeyPath)(LPOLESTR *pchKey,DWORD dw){return S_FALSE;}
+		STDMETHOD(GetDropTarget)(IDropTarget *pDropTarget,IDropTarget **ppDropTarget){return S_FALSE;}
+		STDMETHOD(GetExternal)(IDispatch **ppDispatch);
+		STDMETHOD(TranslateUrl)(DWORD dwTranslate,OLECHAR *pchURLIn, __out  OLECHAR **ppchURLOut);
+		STDMETHOD(FilterDataObject)(IDataObject *pDO,IDataObject **ppDORet);
 
 	protected:
-		ULONG		m_refCount;
-		DUIIE		*m_pWebBrowser;
-		bool		m_bHasScrollBar_;
+		ULONG							m_nRef;
+		DUIIE							*m_pWebBrowser;
+		bool							m_bShowScrollBar;
+		bool							m_bShowContextMenu;
 	};
-
 
 	class DM_EXPORT DMIEExternal : public IDispatch
 	{
 	public:
 		DMIEExternal();
-
 		void SetWebBrowser(DUIIE *pWebBrowser);
-
 		void SetEvtHandler(IDMWebEvent* pEventHandler);
 		void SetDUIWnd(DUIWND hWnd);
 
-		virtual HRESULT STDMETHODCALLTYPE QueryInterface( 
-			/* [in] */ REFIID riid,
-			/* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
+	public:
+		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
+		virtual ULONG STDMETHODCALLTYPE AddRef(void){return ++m_nRef;};
+		virtual ULONG STDMETHODCALLTYPE Release(void){return --m_nRef;};
 
-		virtual ULONG STDMETHODCALLTYPE AddRef( void){return ++m_refCount;};
-
-		virtual ULONG STDMETHODCALLTYPE Release( void){return --m_refCount;};
-
-		virtual HRESULT STDMETHODCALLTYPE GetTypeInfoCount( 
-			/* [out] */ __RPC__out UINT *pctinfo){return E_NOTIMPL;}
-
-		virtual HRESULT STDMETHODCALLTYPE GetTypeInfo( 
-			/* [in] */ UINT iTInfo,
-			/* [in] */ LCID lcid,
-			/* [out] */ __RPC__deref_out_opt ITypeInfo **ppTInfo){return E_NOTIMPL;}
-
-		virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames( 
-			/* [in] */ __RPC__in REFIID riid,
-			/* [size_is][in] */ __RPC__in_ecount_full(cNames) LPOLESTR *rgszNames,
-			/* [range][in] */ UINT cNames,
-			/* [in] */ LCID lcid,
-			/* [size_is][out] */ __RPC__out_ecount_full(cNames) DISPID *rgDispId);
-
-		virtual /* [local] */ HRESULT STDMETHODCALLTYPE Invoke( 
-			/* [in] */ DISPID dispIdMember,
-			/* [in] */ REFIID riid,
-			/* [in] */ LCID lcid,
-			/* [in] */ WORD wFlags,
-			/* [out][in] */ DISPPARAMS *pDispParams,
-			/* [out] */ VARIANT *pVarResult,
-			/* [out] */ EXCEPINFO *pExcepInfo,
-			/* [out] */ UINT *puArgErr);
+		STDMETHOD(GetTypeInfoCount)(UINT *pctinfo){return E_NOTIMPL;}
+		STDMETHOD(GetTypeInfo)(UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo){return E_NOTIMPL;}
+		STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId);
+		STDMETHOD(Invoke)(DISPID dispIdMember,REFIID riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
 
 	protected:
-		ULONG					m_refCount;
-		DUIIE					*m_pWebBrowser;
-		IDMWebEvent*			m_pEvtHandler;
-		DUIWND					m_hWnd;
+		ULONG							m_nRef;
+		DUIIE							*m_pWebBrowser;
+		IDMWebEvent*					m_pEvtHandler;
+		DUIWND							m_hDUIWnd;
 	};
 
 	class DM_EXPORT DMIEOleClientSite : public IOleClientSite
@@ -208,33 +138,20 @@ namespace DM
 
 		void SetWebBrowser(DUIIE* pWebBrowser);
 
-		// *** IUnknown ***
-		STDMETHOD(QueryInterface)(
-			/* [in] */ REFIID riid,
-			/* [iid_is][out] */ VOID **ppvObject);
-
-		virtual ULONG STDMETHODCALLTYPE AddRef( void){return ++m_refCount;};
-
-		virtual ULONG STDMETHODCALLTYPE Release( void){return --m_refCount;};
-
-		// *** IOleClientSite ***        
+	public:
+		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
+		virtual ULONG STDMETHODCALLTYPE AddRef(void){return ++m_nRef;};
+		virtual ULONG STDMETHODCALLTYPE Release(void){return --m_nRef;};
+   
 		STDMETHOD(SaveObject)(){return E_NOTIMPL;}
-		STDMETHOD(GetMoniker)(
-			/* [in] */ DWORD dwAssign,
-			/* [in] */ DWORD dwWhichMoniker,
-			/* [out] */ IMoniker **ppmk){return E_NOTIMPL;}
-
-		STDMETHOD(GetContainer)(
-			/* [out] */ IOleContainer **ppContainer){return E_NOTIMPL;}
-
+		STDMETHOD(GetMoniker)(DWORD dwAssign,DWORD dwWhichMoniker,IMoniker **ppmk){return E_NOTIMPL;}
+		STDMETHOD(GetContainer)(IOleContainer **ppContainer){return E_NOTIMPL;}
 		STDMETHOD(ShowObject)(){return E_NOTIMPL;}
-		STDMETHOD(OnShowWindow)(
-			/* [in] */ BOOL fShow){return E_NOTIMPL;}
-
+		STDMETHOD(OnShowWindow)(BOOL fShow){return E_NOTIMPL;}
 		STDMETHOD(RequestNewObjectLayout)(){return E_NOTIMPL;}
 
 	protected:
-		ULONG					m_refCount;
+		ULONG					m_nRef;
 		DUIIE *					m_pWebBrowser;
 	};
 
@@ -340,6 +257,11 @@ namespace DM
 		/// @return
 		void SetScrollBarShow(bool bShow);
 
+		/// @brief 是否显示IE的右键菜单
+		/// @param[in]		 bShow			是否显示
+		/// @return
+		void SetContextMenuShow(bool bShow);
+
 		/// @brief 转发IE的设置属性
 		/// @return
 		DMCode IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);
@@ -348,6 +270,7 @@ namespace DM
 		DM_BEGIN_ATTRIBUTES()
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::STRING_url,OnAttributeUrl)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::bool_bshowscroll,OnAttributeShowScroll)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::bool_bshowcontext,OnAttributeShowContext)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::bool_bdisablescriptwarn,OnAttributeDisableScriptWarn)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::ACCEL_refreshkey, OnAttributeRefreshKey)
 		DM_END_ATTRIBUTES()
@@ -355,6 +278,7 @@ namespace DM
 	public:
 		DMCode OnAttributeUrl(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttributeShowScroll(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeShowContext(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttributeDisableScriptWarn(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttributeRefreshKey(LPCWSTR pszValue, bool bLoadXml);
 
@@ -368,6 +292,7 @@ namespace DM
 		DMIEDocHostUIHandler		m_docHostUIHandler;
 		DMIEExternal				m_external;
 		bool						m_bShowScroll;
+		bool                        m_bShowContext;
 		bool                        m_bDisableScriptWarn;
 		DWORD						m_refreshkey;
 	};

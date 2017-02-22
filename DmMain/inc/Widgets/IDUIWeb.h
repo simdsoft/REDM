@@ -130,6 +130,11 @@ namespace DM
 		/// @return
 		virtual void SetScrollBarShow(bool bShow) = 0;
 
+		/// @brief 是否显示IE的右键菜单
+		/// @param[in]		 bShow			是否显示
+		/// @return
+		virtual void SetContextMenuShow(bool bShow) = 0;
+
 		/// @brief 转发DUIIE的SetAttribute
 		/// @param[in]		 bShow			是否显示
 		/// @return

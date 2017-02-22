@@ -21,7 +21,7 @@ namespace DM
 		m_pEvtHandler = pEventHandler;
 	}
 
-	void DMIEEvtDispatch::SetDUIWnd( DUIWND hWnd )
+	void DMIEEvtDispatch::SetDUIWnd(DUIWND hWnd)
 	{
 		m_hWnd = hWnd;
 	}
@@ -42,17 +42,7 @@ namespace DM
 		}
 	}
 
-	ULONG STDMETHODCALLTYPE DMIEEvtDispatch::AddRef(void)
-	{
-		return ++m_nRef;
-	}
-
-	ULONG STDMETHODCALLTYPE DMIEEvtDispatch::Release(void)
-	{ 
-		return --m_nRef;
-	}
-
-	STDMETHODIMP DMIEEvtDispatch::Invoke( /* [in] */ DISPID dispIdMember, /* [in] */ REFIID riid, /* [in] */ LCID lcid, /* [in] */ WORD wFlags, /* [out][in] */ DISPPARAMS *pDispParams, /* [out] */ VARIANT *pVarResult, /* [out] */ EXCEPINFO *pExcepInfo, /* [out] */ UINT *puArgErr )
+	STDMETHODIMP DMIEEvtDispatch::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams,  VARIANT *pVarResult,  EXCEPINFO *pExcepInfo,  UINT *puArgErr)
 	{
 		if ((riid != IID_NULL) || !m_pEvtHandler)
 			return E_INVALIDARG;
@@ -91,48 +81,9 @@ namespace DM
 
 		case DISPID_DOCUMENTCOMPLETE:
 			{
-
-// 				DMComQIPtr<IHTMLDocument2> pDoc;
-// 				DMComQIPtr<ICustomDoc> pCustomDoc;
-// 
-// 				IDispatch  *pDisp=NULL;
-// 				HRESULT hr=m_pWebBrowser->m_pIE->get_Document((IDispatch **)&pDisp);
-// 				if(S_OK==hr)
-// 				{
-// 					hr=pDisp->QueryInterface(IID_IHTMLDocument2,(void**)&pDoc);
-// 					if(S_OK!=hr) return S_FALSE;
-// 					//----------------------------------------
-// 
-// 					hr=pDoc->QueryInterface(IID_ICustomDoc,(void**)&pCustomDoc);
-// 					if(S_OK!=hr) return S_FALSE;
-// 
-// 					hr=pCustomDoc->SetUIHandler(&m_pWebBrowser->m_docHostUIHandler);
-// 					if(S_OK!=hr) return S_FALSE;
-// 
-// 					//---------------------------------------
-// 					IConnectionPointContainer *pCPContainer=NULL;
-// 					hr=pDoc->QueryInterface(IID_IConnectionPointContainer,(void**)&pCPContainer);
-// 					if(S_OK!=hr) return S_FALSE;
-// 
-// 					IConnectionPoint *m_pConnectionPoint=NULL;
-// 					hr = pCPContainer->FindConnectionPoint(DIID_HTMLDocumentEvents2,&m_pConnectionPoint);
-// 					if(S_OK!=hr) return S_FALSE;
-// 
-// 					DWORD m_dwCookie;
-// 					hr = m_pConnectionPoint->Advise(&m_pWebBrowser->m_eventDispatch, &m_dwCookie);
-// 					if(S_OK!=hr) return S_FALSE;
-// 
-// 					ULONG ulong=pCPContainer->Release();
-// 					ulong=m_pConnectionPoint->Release();
-// 
-// 					pDisp->Release();
-// 				}
-
-				{
-					IDispatch *pDispArg = pDispParams->rgvarg[1].pdispVal;
-					wchar_t *pURL    = pDispParams->rgvarg[0].pvarVal->bstrVal;
-					hr = m_pEvtHandler->DocumentComplete(m_hWnd,pDispArg,pURL);
-				}
+				IDispatch *pDispArg = pDispParams->rgvarg[1].pdispVal;
+				wchar_t *pURL    = pDispParams->rgvarg[0].pvarVal->bstrVal;
+				hr = m_pEvtHandler->DocumentComplete(m_hWnd,pDispArg,pURL);
 			}
 			break;
 		
@@ -362,41 +313,48 @@ namespace DM
 		return S_OK;
 	}
 
-//////////////////////////////////////////////////////////////////////////
-//DMIEDocHostUIHandler
+	///DMIEDocHostUIHandler------------------------------------------------------------------------------------
 	DMIEDocHostUIHandler::DMIEDocHostUIHandler()
-		: m_refCount(0)
+		: m_nRef(0)
 		, m_pWebBrowser(NULL)
-		, m_bHasScrollBar_(false)
+		, m_bShowScrollBar(false)
+		, m_bShowContextMenu(true)
 	{
 	}
 
-	void DMIEDocHostUIHandler::SetWebBrowser( DUIIE *pWebBrowser )
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject)
 	{
-		m_pWebBrowser=pWebBrowser;
-	}
-
-	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::QueryInterface( /* [in] */ REFIID riid, /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject )
-	{
-		if(IsEqualIID(riid, IID_IUnknown) || IsEqualIID(riid, IID_IDispatch) || IsEqualIID(riid, IID_IDocHostUIHandler))
+		if (IsEqualIID(riid, IID_IUnknown) || IsEqualIID(riid, IID_IDispatch) || IsEqualIID(riid, IID_IDocHostUIHandler))
 		{
 			AddRef();
 			*ppvObject=this;
 			return S_OK;
-		}else
+		}
+		else
 		{
 			ppvObject=NULL;
 			return E_NOINTERFACE;
 		}
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::GetHostInfo( /* [out][in] */ DOCHOSTUIINFO *pInfo )
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::ShowContextMenu(DWORD dwID, POINT *ppt, IUnknown *pcmdtReserved, IDispatch *pdispReserved)
 	{
-		if(pInfo)
+		if (!m_bShowContextMenu)
+		{
+			return S_OK;
+		}
+
+		return E_NOTIMPL;
+	}
+
+
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::GetHostInfo(DOCHOSTUIINFO *pInfo)
+	{
+		if (pInfo)
 		{
 			pInfo->cbSize = sizeof(DOCHOSTUIINFO);
 			pInfo->dwFlags = DOCHOSTUIFLAG_NO3DBORDER | DOCHOSTUIFLAG_THEME | DOCHOSTUIFLAG_NO3DOUTERBORDER | DOCHOSTUIFLAG_DIALOG | DOCHOSTUIFLAG_DISABLE_HELP_MENU;
-			if (m_bHasScrollBar_)								//决定是否显示滚动条
+			if (m_bShowScrollBar)								//决定是否显示滚动条
 			{
 				pInfo->dwFlags |= DOCHOSTUIFLAG_FLAT_SCROLLBAR;
 			}
@@ -409,44 +367,44 @@ namespace DM
 		return S_OK;
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::GetExternal( /* [out] */ IDispatch **ppDispatch )
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::GetExternal(IDispatch **ppDispatch)
 	{
-		if(m_pWebBrowser)
+		if (m_pWebBrowser)
 		{
-			*ppDispatch=&m_pWebBrowser->m_external;
-		}else
+			*ppDispatch = &m_pWebBrowser->m_external;
+		}
+		else
 		{
-			*ppDispatch=NULL;
+			*ppDispatch = NULL;
 			return S_FALSE;
 		}
 		return S_OK;
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::TranslateUrl( /* [in] */ DWORD dwTranslate, /* [in] */ __in __nullterminated OLECHAR *pchURLIn, /* [out] */ __out OLECHAR **ppchURLOut )
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::TranslateUrl(DWORD dwTranslate, __in __nullterminated OLECHAR *pchURLIn,  __out OLECHAR **ppchURLOut)
 	{
 		*ppchURLOut = 0;
 		return(S_FALSE);
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::FilterDataObject( /* [in] */ IDataObject *pDO, /* [out] */ IDataObject **ppDORet )
+	HRESULT STDMETHODCALLTYPE DMIEDocHostUIHandler::FilterDataObject(IDataObject *pDO,  IDataObject **ppDORet)
 	{
 		*ppDORet = 0;
 		return S_FALSE;
 	}
 
-//////////////////////////////////////////////////////////////////////////
-//DMIEOleClientSite
+	///DMIEOleClientSite------------------------------------------------------------------------------------
 	DMIEOleClientSite::DMIEOleClientSite()
-		: m_refCount(0)
+		: m_nRef(0)
 	{
 	}
 
-	void DMIEOleClientSite::SetWebBrowser( DUIIE* pWebBrowser )
+	void DMIEOleClientSite::SetWebBrowser(DUIIE* pWebBrowser)
 	{
 		m_pWebBrowser = pWebBrowser;
 	}
 
-	STDMETHODIMP DMIEOleClientSite::QueryInterface( /* [in] */ REFIID riid, /* [iid_is][out] */ VOID **ppvObject )
+	STDMETHODIMP DMIEOleClientSite::QueryInterface(REFIID riid, /* [iid_is][out] */ VOID **ppvObject)
 	{
 		if(IsEqualIID(riid, IID_IUnknown) || IsEqualIID(riid, IID_IOleClientSite))
 		{
@@ -467,30 +425,29 @@ namespace DM
 		}
 	}
 
-//////////////////////////////////////////////////////////////////////////
-//DMIEExternal
+	///DMIEExternal------------------------------------------------------------------------------------
 	DMIEExternal::DMIEExternal()
-		: m_refCount(0)
+		: m_nRef(0)
 		, m_pWebBrowser(NULL), m_pEvtHandler(NULL)
 	{
 	}
 
-	void DMIEExternal::SetWebBrowser( DUIIE *pWebBrowser )
+	void DMIEExternal::SetWebBrowser(DUIIE *pWebBrowser)
 	{
 		m_pWebBrowser = pWebBrowser;
 	}
 
-	void DMIEExternal::SetEvtHandler( IDMWebEvent* pEventHandler )
+	void DMIEExternal::SetEvtHandler(IDMWebEvent* pEventHandler)
 	{
 		m_pEvtHandler = pEventHandler;
 	}
 
-	void DMIEExternal::SetDUIWnd( DUIWND hWnd )
+	void DMIEExternal::SetDUIWnd(DUIWND hWnd)
 	{
-		m_hWnd = hWnd;
+		m_hDUIWnd = hWnd;
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEExternal::QueryInterface( /* [in] */ REFIID riid, /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject )
+	HRESULT STDMETHODCALLTYPE DMIEExternal::QueryInterface(REFIID riid, /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject)
 	{
 		if(IsEqualIID(riid, IID_IUnknown) || IsEqualIID(riid, IID_IDispatch))
 		{
@@ -504,30 +461,30 @@ namespace DM
 		}
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEExternal::GetIDsOfNames( /* [in] */ __RPC__in REFIID riid, /* [size_is][in] */ __RPC__in_ecount_full(cNames) LPOLESTR *rgszNames, /* [range][in] */ UINT cNames, /* [in] */ LCID lcid, /* [size_is][out] */ __RPC__out_ecount_full(cNames) DISPID *rgDispId )
+	HRESULT STDMETHODCALLTYPE DMIEExternal::GetIDsOfNames(__RPC__in REFIID riid, /* [size_is][in] */ __RPC__in_ecount_full(cNames) LPOLESTR *rgszNames, /* [range][in] */ UINT cNames, LCID lcid, /* [size_is][out] */ __RPC__out_ecount_full(cNames) DISPID *rgDispId)
 	{
 		if (m_pEvtHandler)
 		{
-			return m_pEvtHandler->GetIDsOfNames(m_hWnd, riid, rgszNames, cNames, lcid, rgDispId);
+			return m_pEvtHandler->GetIDsOfNames(m_hDUIWnd, riid, rgszNames, cNames, lcid, rgDispId);
 		}
 		return S_OK;
 	}
 
-	HRESULT STDMETHODCALLTYPE DMIEExternal::Invoke( /* [in] */ DISPID dispIdMember, /* [in] */ REFIID riid, /* [in] */ LCID lcid, /* [in] */ WORD wFlags, /* [out][in] */ DISPPARAMS *pDispParams, /* [out] */ VARIANT *pVarResult, /* [out] */ EXCEPINFO *pExcepInfo, /* [out] */ UINT *puArgErr )
+	HRESULT STDMETHODCALLTYPE DMIEExternal::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams,  VARIANT *pVarResult,  EXCEPINFO *pExcepInfo,  UINT *puArgErr)
 	{
 		if (m_pEvtHandler)
 		{
-			return m_pEvtHandler->Invoke(m_hWnd, dispIdMember, riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+			return m_pEvtHandler->Invoke(m_hDUIWnd, dispIdMember, riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
 		}
 		return S_OK;
 	}
 
-//////////////////////////////////////////////////////////////////////////
-//DUIIE------------------------------------
+	///DUIIE------------------------------------------------------------------------------------
 	DUIIE::DUIIE()
 		:m_dwCookie(0)
 		,m_eventDispatch(NULL)
 		,m_bShowScroll(false)	
+		,m_bShowContext(true)
 		,m_bDisableScriptWarn(false)
 		,m_refreshkey(DUIAccel::TranslateAccelKey(L"f5"))
 	{		
@@ -731,7 +688,7 @@ namespace DM
 		return bRet;
 	}
 
-	HRESULT DUIIE::SetEvtHandler( IDMWebEvent* pEventHandler )
+	HRESULT DUIIE::SetEvtHandler(IDMWebEvent* pEventHandler)
 	{
 		m_eventDispatch.SetEvtHandler(pEventHandler);
 		m_external.SetEvtHandler(pEventHandler);
@@ -767,7 +724,7 @@ namespace DM
 
 	}
 
-	HRESULT DUIIE::OpenUrl( LPCWSTR pszURL )
+	HRESULT DUIIE::OpenUrl(LPCWSTR pszURL)
 	{
 		HRESULT hr = S_FALSE;
 		do 
@@ -877,7 +834,7 @@ namespace DM
 		return hr;
 	}
 
-	HRESULT DUIIE::Refresh2( UINT32 nLevel )
+	HRESULT DUIIE::Refresh2(UINT32 nLevel)
 	{
 		HRESULT hr = S_FALSE;
 		do 
@@ -925,7 +882,7 @@ namespace DM
 		return hr;
 	}
 
-	HRESULT DUIIE::ExecuteScript( LPCWSTR pszScript )
+	HRESULT DUIIE::ExecuteScript(LPCWSTR pszScript)
 	{
 		HRESULT hr = S_FALSE;
 		do 
@@ -952,7 +909,7 @@ namespace DM
 		return hr;
 	}
 
-	HRESULT DUIIE::ExecuteScriptFuntion( LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult, int nMaxLen )
+	HRESULT DUIIE::ExecuteScriptFuntion(LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult, int nMaxLen)
 	{
 		HRESULT hr = E_FAIL;
 		do 
@@ -963,10 +920,10 @@ namespace DM
 			}
 			_variant_t _varErr;
 			DMComQIPtr<IDispatch>  pDisp;
-			hr = m_pIE->get_Document( &pDisp );
+			hr = m_pIE->get_Document(&pDisp);
 			if (SUCCEEDED(hr) && pDisp) {
 				DMComQIPtr<IHTMLDocument2> spDoc;
-				hr = pDisp->QueryInterface( IID_IHTMLDocument2,(void**)&spDoc );
+				hr = pDisp->QueryInterface(IID_IHTMLDocument2,(void**)&spDoc);
 				if (SUCCEEDED(hr) && spDoc) {
 					DMComQIPtr<IDispatch> spScript;
 					hr = spDoc->get_Script(&spScript);
@@ -982,7 +939,7 @@ namespace DM
 
 							// 以前没有CComBSTR::CopyTo出来BSTR没有释放，这里换成_variant_t。by ZC. 2011-12-30.
 							_variant_t* _vArrArg = new _variant_t[_dispparams.cArgs];
-							for ( size_t i = 0;i < _dispparams.cArgs;i++ ) {
+							for (size_t i = 0;i < _dispparams.cArgs;i++) {
 								size_t indx = vecParams.GetCount() - i - 1;
 								// 这里自动转化为BSTR。
 								_vArrArg[i] = vecParams[indx];
@@ -1018,7 +975,7 @@ namespace DM
 		return hr;
 	}
 
-	HRESULT DUIIE::DisableScriptWarning( bool bDisable )
+	HRESULT DUIIE::DisableScriptWarning(bool bDisable)
 	{
 		HRESULT hr = E_FAIL;
 		do 
@@ -1032,9 +989,14 @@ namespace DM
 		return hr;
 	}
 
-	void DUIIE::SetScrollBarShow( bool bShow )
+	void DUIIE::SetScrollBarShow(bool bShow)
 	{
-		m_docHostUIHandler.setScrollBar(bShow);
+		m_docHostUIHandler.SetScrollBarShow(bShow);
+	}
+
+	void DUIIE::SetContextMenuShow(bool bShow)
+	{
+		m_docHostUIHandler.SetContextMenuShow(bShow);
 	}
 
 	DMCode DUIIE::IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
@@ -1061,6 +1023,18 @@ namespace DM
 			Refresh();
 		}
 		
+		return DM_ECODE_OK;
+	}
+
+	DMCode DUIIE::OnAttributeShowContext(LPCWSTR pszValue, bool bLoadXml)
+	{
+		dm_parsebool(pszValue,m_bShowContext);
+		SetContextMenuShow(m_bShowContext);
+		if (false == bLoadXml)
+		{
+			Refresh();
+		}
+
 		return DM_ECODE_OK;
 	}
 
