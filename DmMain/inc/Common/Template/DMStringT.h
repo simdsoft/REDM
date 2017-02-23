@@ -1592,7 +1592,7 @@ namespace DM
 			int nLength = tchar_traits::Format(&pszBuffer, pszFormat, args);
 			if (nLength > 0 && pszBuffer != NULL)
 			{
-				*this = CStringT(pszBuffer, nLength);
+				*this = DMStringT(pszBuffer, nLength);
 				DMMemDispatch::DM_free(pszBuffer);
 				return true;
 			}
@@ -1608,7 +1608,7 @@ namespace DM
 			int nLength = tchar_traits::Format(&pszBuffer, pszFormat, args);
 			if (nLength > 0 && pszBuffer != NULL)
 			{
-				*this += CStringT(pszBuffer, nLength);
+				*this += DMStringT(pszBuffer, nLength);
 				DMMemDispatch::DM_free(pszBuffer);
 			}
 		}
