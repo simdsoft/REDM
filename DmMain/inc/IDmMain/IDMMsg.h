@@ -35,7 +35,10 @@ namespace DM
 	class  DM_EXPORT IDMMessageFilter
 	{
 	public://
+		IDMMessageFilter(){m_dwThreadId = ::GetCurrentThreadId();}
 		virtual BOOL PreTranslateMessage(MSG* pMsg) = 0;
+	public:
+		DWORD              m_dwThreadId;
 	};
 	typedef IDMMessageFilter* IDMMessageFilterPtr;
 
@@ -45,7 +48,10 @@ namespace DM
 	class IDMIdleHandler
 	{
 	public:
+		IDMIdleHandler(){m_dwThreadId = ::GetCurrentThreadId();}
 		virtual BOOL OnIdle() = 0;
+	public:
+		DWORD              m_dwThreadId;
 	};
 	typedef IDMIdleHandler* IDMIdleHandlerPtr;
 }

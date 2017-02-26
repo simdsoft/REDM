@@ -493,7 +493,7 @@ namespace DM
 
 	DUIIE::~DUIIE()
 	{
-		RegisterEvtHandler(FALSE);
+		
 	}
 
 	void DUIIE::DM_OnPaint(IDMCanvas* pCanvas)
@@ -555,6 +555,7 @@ namespace DM
 	void DUIIE::OnDestroy()
 	{
 		g_pDMApp->RemoveMessageFilter(this);
+		RegisterEvtHandler(FALSE);
 	}
 
 	DMCode DUIIE::DV_OnAxActivate(IUnknown *pUnknwn)
@@ -783,6 +784,40 @@ namespace DM
 			strUrl = DMA2W(strUrlA, CP_UTF8);
 		} while (false);
 		return strUrl;
+	}
+
+	HWND DUIIE::GetOleWindow()
+	{
+		HWND hOleWnd = NULL;
+		do 
+		{
+			if (!m_axContainer->ActiveXControl())
+			{
+				break;
+			}
+			DMComQIPtr<IOleWindow> ole_window = m_axContainer->ActiveXControl();
+			if (!ole_window)
+			{
+				break;
+			}
+			ole_window->GetWindow(&hOleWnd);
+		} while (false);
+		return hOleWnd;
+	}
+
+	bool DUIIE::IsBusy()
+	{
+		VARIANT_BOOL vBusy = VARIANT_FALSE;
+		do 
+		{
+			if (!m_pIE)
+			{
+				break;
+			}
+			
+			m_pIE->get_Busy(&vBusy);
+		} while (false);
+		return VARIANT_TRUE == vBusy;
 	}
 
 	HRESULT DUIIE::Stop()

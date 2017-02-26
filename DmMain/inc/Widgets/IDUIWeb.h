@@ -83,6 +83,14 @@ namespace DM
 		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen) = 0;
 		virtual CStringW GetUrl() = 0;
 
+		/// @brief »ñµÃOLE´°¿Ú¾ä±ú
+		/// @return HWND£¬Ê§°ÜÎªNULL
+		virtual HWND GetOleWindow() = 0;
+
+		/// @brief BUSY×´Ì¬
+		/// @return ture or false
+		virtual bool IsBusy() = 0;
+
 		/// @brief Í£Ö¹
 		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
 		virtual HRESULT Stop() = 0;

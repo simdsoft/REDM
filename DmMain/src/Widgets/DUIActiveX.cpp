@@ -69,7 +69,7 @@ namespace DM
 			}
 		}
 
-		SetActiveXVisible(bShow);
+		SetActiveXVisible(DM_IsVisible(true));
 	}
 
 	LRESULT DUIActiveX::OnMouseEvent(UINT uMsg,WPARAM wp,LPARAM lp)

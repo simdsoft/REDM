@@ -206,6 +206,14 @@ namespace DM
 		HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen);
 		CStringW GetUrl();
 
+		/// @brief »ñµÃOLE´°¿Ú¾ä±ú
+		/// @return HWND£¬Ê§°ÜÎªNULL
+		HWND GetOleWindow();
+
+		/// @brief BUSY×´Ì¬
+		/// @return ture or false
+		bool IsBusy();
+
 		/// @brief Í£Ö¹
 		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
 		HRESULT Stop();
