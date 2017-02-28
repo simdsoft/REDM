@@ -40,6 +40,9 @@ if(USE_DMDLL_)
 ADD_DEFINITIONS(-DDLL_DMMAIN)
 endif()
 
+# 开启MT模式
+OPTION(USE_ALLMT_ "Compile all projects as mt"   ON)
+
 # 开启设计器模式
 OPTION(USE_DESIGNER_ "Compile DmMain for designer"   OFF)
  if(USE_DESIGNER_)
