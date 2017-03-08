@@ -17,6 +17,7 @@ namespace DM
 		m_MaxWidth	  = -1;
 		m_hFont		  = g_pDMApp->GetFont(L"");
 		m_bShadow     = false;
+		m_bHideFrame  = false;
 		m_bAutoCalc	  = true;
 
 		m_crBg         = GetSysColor(COLOR_MENU)|0xff000000;
@@ -84,6 +85,9 @@ namespace DM
 
 		case WM_NCDESTROY:
 			return On_WM_NCDESTROY(wParam, lParam);
+			break;
+		case WM_WINDOWPOSCHANGING:
+			return On_WM_WINDOWPOSCHANGING(wParam,lParam);
 			break;
 		}
 
@@ -313,7 +317,7 @@ namespace DM
 				{
 					iState = 1;
 				}
-				
+
 				pdmmi->itemInfo.pSkin->Draw(pCanvas, rcSkin, iState);
 			}
 
@@ -391,6 +395,29 @@ namespace DM
 		return 0;
 	}
 
+	LRESULT DUIMenuItem::On_WM_WINDOWPOSCHANGING(WPARAM wParam,LPARAM lParam)
+	{
+		LRESULT lRet = 0;
+		do 
+		{
+			if (!IsMenuWindowExist())
+			{
+				break;
+			}
+			if (m_pDUIMenuXmlInfo->m_bHideFrame)
+			{//系统会自动替菜单加边框，因此必须去掉此部分额外地尺寸，将菜单大小改小
+				LPWINDOWPOS pWP = (LPWINDOWPOS)lParam;  
+				if (pWP)
+				{
+					pWP->cx -= 2*GetSystemMetrics(SM_CXBORDER)+4;   
+					pWP->cy -= 2*GetSystemMetrics(SM_CYBORDER)+4;
+				}
+			}
+			lRet = ::CallWindowProc(m_pOldProc,m_hWnd,WM_WINDOWPOSCHANGING, wParam, lParam);	
+		} while (false);
+		return lRet;
+	}
+
 	LRESULT DUIMenuItem::On_WM_CREATE(WPARAM wParam, LPARAM lParam)
 	{
 		if (0xff!=m_pDUIMenuXmlInfo->m_byAlpha)
@@ -419,7 +446,13 @@ namespace DM
 		{
 			m_bAlpha = false;
 		}	
-		return ::CallWindowProc(m_pOldProc,m_hWnd,WM_CREATE,wParam,lParam);
+		LRESULT lRet = ::CallWindowProc(m_pOldProc,m_hWnd,WM_CREATE,wParam,lParam);
+		if (m_pDUIMenuXmlInfo->m_bHideFrame)
+		{// 去掉菜单窗口的一些扩展风格
+			::SetWindowLongPtr(m_hWnd, GWL_STYLE, (::GetWindowLongPtr(m_hWnd, GWL_STYLE) & ~WS_BORDER));
+			::SetWindowLongPtr(m_hWnd, GWL_EXSTYLE, (::GetWindowLongPtr(m_hWnd, GWL_EXSTYLE) & ~(WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE)));
+		}
+		return lRet;
 	}
 
 	LRESULT DUIMenuItem::On_WM_KEYFIRST(WPARAM wParam, LPARAM lParam)
@@ -499,7 +532,14 @@ namespace DM
 				break;
 			}
 
-			::CallWindowProc(m_pOldProc, m_hWnd, WM_PRINT, wParam,lParam);
+			if (m_pDUIMenuXmlInfo->m_bHideFrame)
+			{// 阻止非客户区地绘制
+				::CallWindowProc(m_pOldProc, m_hWnd, WM_PRINTCLIENT, wParam,lParam);
+			}
+			else
+			{
+				::CallWindowProc(m_pOldProc, m_hWnd, WM_PRINT, wParam,lParam);
+			}
 
 			if (!IsMenuWindowExist())
 			{
@@ -561,7 +601,7 @@ namespace DM
 		{
 			dwClsStyle |= CS_DROPSHADOW;
 		}
-		
+
 		SetClassLong(hWnd, GCL_STYLE,dwClsStyle);
 		m_hWnd = hWnd;
 		::SetProp(m_hWnd, DMMENU_PROP_OBJ, (HANDLE)this);

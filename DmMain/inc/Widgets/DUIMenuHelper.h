@@ -34,6 +34,7 @@ namespace DMAttr
 		static wchar_t* INT_stephei;											///< Step的高度，默认为1,示例:stephei="10"
 		static wchar_t* INT_maxwidth;											///< 菜单项的最大宽度,默认为-1表示自动计算,示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
 		static wchar_t* bool_bshadow;											///< 菜单阴影是否开启，默认为0,示例:bshadow="0"
+		static wchar_t* bool_bhideframe;                                        ///< 是否隐藏菜单的主边框,默认为0,如果隐藏,则菜单项item的左右和主边框的左右相同,示例:bhideframe="1"
 		static wchar_t* SIZE_iconsize;											///< 图标尺寸，默认为16*16,示例:iconsize="16,16"
 		static wchar_t* SIZE_roundsize;											///< 圆角尺寸，默认为0*0,示例:roundsize="1,1"
 		static wchar_t* COLOR_clrbg;											///< 整个菜单的背景色,在背景图不存在时使用,示例:clrbg="pbgra(ff,00,ff,ff)"
@@ -60,7 +61,7 @@ namespace DMAttr
 	DMAttrValueInit(DUIMenuAttr,SKIN_bgskin)DMAttrValueInit(DUIMenuAttr,SKIN_itemselbgskin)DMAttrValueInit(DUIMenuAttr,SKIN_iconskin)
 	DMAttrValueInit(DUIMenuAttr,SKIN_sepskin)DMAttrValueInit(DUIMenuAttr,SKIN_checkskin)DMAttrValueInit(DUIMenuAttr,INT_itemhei)
 	DMAttrValueInit(DUIMenuAttr,INT_iconoffset)DMAttrValueInit(DUIMenuAttr,INT_textoffset)DMAttrValueInit(DUIMenuAttr,INT_stepoffset)
-	DMAttrValueInit(DUIMenuAttr,INT_stephei)DMAttrValueInit(DUIMenuAttr,INT_maxwidth)DMAttrValueInit(DUIMenuAttr,bool_bshadow)DMAttrValueInit(DUIMenuAttr,SIZE_iconsize)
+	DMAttrValueInit(DUIMenuAttr,INT_stephei)DMAttrValueInit(DUIMenuAttr,INT_maxwidth)DMAttrValueInit(DUIMenuAttr,bool_bshadow)DMAttrValueInit(DUIMenuAttr,bool_bhideframe)DMAttrValueInit(DUIMenuAttr,SIZE_iconsize)
 	DMAttrValueInit(DUIMenuAttr,SIZE_roundsize)DMAttrValueInit(DUIMenuAttr,COLOR_clrbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrselbg)DMAttrValueInit(DUIMenuAttr,COLOR_clrstep)
 	DMAttrValueInit(DUIMenuAttr,COLOR_clrtext)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextsel)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextgray)
 	DMAttrValueInit(DUIMenuAttr,FONT_font)DMAttrValueInit(DUIMenuAttr,BYTE_alpha)DMAttrValueInit(DUIMenuAttr,STRING_transid)
@@ -117,6 +118,7 @@ namespace DM
 			DM_INT_ATTRIBUTE(DMAttr::DUIMenuAttr::INT_stephei,m_StepHei,DM_ECODE_OK)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIMenuAttr::INT_maxwidth,OnAttrMaxWidth)
 			DM_bool_ATTRIBUTE(DMAttr::DUIMenuAttr::bool_bshadow,m_bShadow,DM_ECODE_OK)
+			DM_bool_ATTRIBUTE(DMAttr::DUIMenuAttr::bool_bhideframe,m_bHideFrame,DM_ECODE_OK)
 			DM_SIZE_ATTRIBUTE(DMAttr::DUIMenuAttr::SIZE_iconsize,m_szIcon,DM_ECODE_OK)
 			DM_SIZE_ATTRIBUTE(DMAttr::DUIMenuAttr::SIZE_roundsize,m_szRound,DM_ECODE_OK)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrbg,m_crBg,DM_ECODE_OK);
@@ -156,6 +158,7 @@ namespace DM
 		CSize                       m_szRound;       ///< 圆角尺寸
 		BYTE						m_byAlpha;		 ///< 透明度
 		bool                        m_bShadow;       ///< 菜单阴影
+		bool                        m_bHideFrame;    ///< 隐藏菜单主边框
 		DMSmartPtrT<IDMFont>        m_hFont;         ///< 文字
 		CStringW                    m_strTransId;    ///< 语言包的Node标识
 	};
@@ -198,6 +201,7 @@ namespace DM
 	public:
 		LRESULT On_WM_NCDESTROY(WPARAM wParam, LPARAM lParam);
 		LRESULT On_WM_NCPAINT(WPARAM wParam,LPARAM lParam);
+		LRESULT On_WM_WINDOWPOSCHANGING(WPARAM wParam,LPARAM lParam);
 		LRESULT On_WM_CREATE(WPARAM wParam, LPARAM lParam);
 		LRESULT On_WM_KEYFIRST(WPARAM wParam, LPARAM lParam);
 		LRESULT On_MN_SELECTITEM(WPARAM wParam, LPARAM lParam);
