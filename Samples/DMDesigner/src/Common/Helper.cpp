@@ -529,6 +529,10 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 		{
 			break;
 		}
+		if (strNewDir.Right(1)!=L"\\")
+		{// 避免出现E:\MyRes和E:\MyRes\\并存的现象
+			strNewDir += L"\\";
+		}
 
 		//2.循环查找是否已存在此dir记录
 		DMXmlNode XmlRoot = m_RecentDoc.Root();
@@ -538,6 +542,11 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 		while (XmlNode.IsValid())
 		{
 			CStringW strDir = XmlNode.Attribute(XML_PATH);
+			if (strDir.Right(1)!=L"\\")
+			{
+				strDir += L"\\";
+			}
+
 			if (0 == strNewDir.CompareNoCase(strDir))
 			{// 已存在
 				XmlExist = XmlNode;

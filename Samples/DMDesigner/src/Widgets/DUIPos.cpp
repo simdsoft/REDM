@@ -79,6 +79,7 @@ namespace DM
 
 	LRESULT PosEdit::OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
+		DM_MessageBox(L"不要使用输入法输入!,请切换到英文模式");
 		return 0;
 	}
 
