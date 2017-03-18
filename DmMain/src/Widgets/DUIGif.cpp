@@ -36,6 +36,7 @@ namespace DM
 			{
 				break;
 			}
+
 			iErr = LoadFromMemory(pBuf,dwSize); 
 		} while (false);
 		return iErr;
@@ -62,6 +63,26 @@ namespace DM
 			}
 			pImgDecoder->GetTotalLoopCount(m_ulTotalLoopCount);
 			pImgDecoder->GetFrameCount(m_ulFrameCount);
+			if (1 == m_ulFrameCount)
+			{// 单帧下可能是GIF，也可能是其他可被WIC解码的图片
+				DMAnimateFrame* pAnimateFrame = new DMAnimateFrame;
+				pRender->CreateBitmap(&pAnimateFrame->pBitmap);
+				DMSmartPtrT<IDMImgFrame> pImgFrame;
+				if (!DMSUCCEEDED(pImgDecoder->GetFrame(0,&pImgFrame)))
+				{
+					DM_DELETE(pAnimateFrame);
+					break;
+				}
+				if (!DMSUCCEEDED(pAnimateFrame->pBitmap->InitFromFrame(pImgFrame)))
+				{
+					DM_DELETE(pAnimateFrame);
+					break;
+				}
+				AddObj(pAnimateFrame);
+				iErr = DM_ECODE_OK; 
+				break;
+			}
+			
 			if (1 >= m_ulFrameCount||0 == m_ulTotalLoopCount)
 			{
 				break;
@@ -152,6 +173,28 @@ namespace DM
 		do 
 		{
 			__super::DM_OnPaint(pCanvas);
+			if (1 == m_ulFrameCount)
+			{// 单帧下可能是GIF，也可能是其他可被WIC解码的图片
+				CRect rcClient;
+				DV_GetClientRect(rcClient);
+				PDMAnimateFrame pFrame = NULL;
+				if (!GetObj(0,pFrame)||NULL == pFrame)
+				{
+					break;
+				}
+				if (pFrame->pBitmap.isValid())
+				{
+					CRect rcSrc(0,0,pFrame->pBitmap->GetWidth(),pFrame->pBitmap->GetHeight());
+					if (m_bAdjustPic)
+					{
+						CSize szPic(rcSrc.Width(),rcSrc.Height());
+						MeetRect(rcClient, szPic);
+					}
+					pCanvas->DrawBitamp(pFrame->pBitmap,&rcSrc,rcClient);
+				}
+				break;
+			}
+
 			int iState = ReadyCurFrame(m_ulCurFrame);
 			if (DMGIF_NOREADY==iState)
 			{
