@@ -47,6 +47,7 @@ namespace DM
 		DMEVT_SIZECHANGED,
 		DMEVT_CHECKCHANGING,
 		DMEVT_CHECKCHANGED,
+		DMEVT_RLBUTTONMENU,
 
 		DMEVT_TAB_SELCHANGING  = 11000,			
 		DMEVT_TAB_SELCHANGED,
@@ -169,6 +170,18 @@ namespace DM
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_CHECKCHANGED);}
 	};
 
+	/// <summary>
+	///		通用右键菜单消息
+	/// </summary>
+	class DM_EXPORT DMEventRButtonMenuCmdArgs:public DMEventArgs
+	{
+	public:
+		DMEventRButtonMenuCmdArgs(DUIWindow *pWnd):DMEventArgs(pWnd){m_pt.x=m_pt.y=0;}
+		enum{EventID = DMEVT_RLBUTTONMENU};
+		UINT GetEventID(){return EventID;};
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_RLBUTTONMENU);}
+		POINT				m_pt;
+	};
 
 	/// <summary>
 	///		Tab页切换中事件

@@ -129,6 +129,7 @@ namespace DM
 			DM_MSG_WM_SETFOCUS(DM_OnSetFocus)
 			DM_MSG_WM_KILLFOCUS(DM_OnKillFocus)
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
+			MSG_WM_RBUTTONDOWN(OnRButtonDown)
 			MSG_WM_MOUSEMOVE(OnMouseMove)
 			MSG_WM_KEYDOWN(OnKeyDown)
 			MSG_WM_CHAR(OnChar)
@@ -154,6 +155,7 @@ namespace DM
 		void DM_OnSetFocus();
 		void DM_OnKillFocus();
 		void OnLButtonDown(UINT nFlags, CPoint point);
+		void OnRButtonDown(UINT nFlags, CPoint point);
 		void OnMouseMove(UINT nFlags, CPoint point);
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

@@ -46,6 +46,7 @@ BEGIN_EVENT_MAP(CWidgetWnd)
 	EVENT_NAME_COMMAND(L"iejstest",IE_Test::OnBtnIeJsTest)
 
 	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RLBUTTONMENU,OnEditRButtonMenu)
 END_EVENT_MAP()
 CWidgetWnd::CWidgetWnd()
 {
@@ -262,6 +263,78 @@ void SortItems(DUIListCtrlEx* pList, int nCol)
 		pList->UpdateItemPanelId();
 		pList->DM_Invalidate();
 	}
+}
+
+DMCode CWidgetWnd::OnEditRButtonMenu(DMEventArgs *pEvt)
+{ 
+	DMEventRButtonMenuCmdArgs *pRMenuEvt = (DMEventRButtonMenuCmdArgs*)pEvt;
+	if (pRMenuEvt)
+	{
+		DUIMenu Menu;
+		Menu.LoadMenu(L"LayOut",L"dui_editmenu");
+
+		DUIRichEdit *pEdit = dynamic_cast<DUIRichEdit*> (pRMenuEvt->m_pSender);
+		if (pEdit)
+		{
+			BOOL bCanPaste = (BOOL)pEdit->DM_SendMessage(EM_CANPASTE);// wParam:Specifies the clipboard format to try. Set this parameter to zero to try any format currently on the clipboard
+			int nStartChar=0,nEndChar=0;
+			pEdit->DM_SendMessage(EM_GETSEL,(WPARAM)&nStartChar,(LPARAM)&nEndChar);// 参看CEdit::GetSel
+			BOOL bCopy    = nStartChar<nEndChar;
+			BOOL bCut	  = (bCopy && !pEdit->GetReadOnly());
+			BOOL bCanUndo = (BOOL)pEdit->DM_SendMessage(EM_CANUNDO);
+			BOOL bSelAll  = pEdit->GetWindowTextLength()>0;
+
+			// 这里要注意一点,step会占用pos的,dui_editmenu只演示了五个菜单项
+			EnableMenuItem(Menu.m_hMenu,0,MF_BYPOSITION|(bCut?MF_ENABLED:MF_GRAYED));
+			EnableMenuItem(Menu.m_hMenu,1,MF_BYPOSITION|(bCopy?MF_ENABLED:MF_GRAYED));
+			EnableMenuItem(Menu.m_hMenu,2,MF_BYPOSITION|(bCanPaste?MF_ENABLED:MF_GRAYED));
+			EnableMenuItem(Menu.m_hMenu,3,MF_BYPOSITION|(bCanUndo?MF_ENABLED:MF_GRAYED));
+			EnableMenuItem(Menu.m_hMenu,4,MF_BYPOSITION|(bCut?MF_ENABLED:MF_GRAYED));
+			EnableMenuItem(Menu.m_hMenu,5,MF_BYPOSITION|(bSelAll?MF_ENABLED:MF_GRAYED));
+
+		}     
+		POINT pt;      
+		GetCursorPos(&pt);
+		int iRet = Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
+		switch (iRet)
+		{
+		case 8000:
+			{
+				pEdit->DM_SendMessage(WM_CUT);
+			}
+			break;
+		case 8001:
+			{
+				pEdit->DM_SendMessage(WM_COPY);
+			}
+			break;
+		case 8002:
+			{
+				pEdit->DM_SendMessage(WM_PASTE);
+			}
+			break;
+		case 8003:
+			{
+				pEdit->DM_SendMessage(EM_UNDO);
+			}
+			break;
+		case 8004:
+			{
+				pEdit->DM_SendMessage(EM_REPLACESEL,TRUE,(LPARAM)TEXT(""));///< CEdit::ReplaceSel,WPARAM设置为true,支持undo
+			}
+			break;
+		case 8005:
+			{
+				pEdit->DM_SendMessage(EM_SETSEL,0,-1);
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	return DM_ECODE_OK;
 }
 
 DMCode CWidgetWnd::ListCtrlExHeaderClick(DMEventArgs* pEvt)

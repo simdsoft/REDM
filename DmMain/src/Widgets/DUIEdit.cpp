@@ -55,6 +55,7 @@ namespace DM
 		// edit
 		DMADDEVENT(DMEventRENotifyArgs::EventID);
 		DMADDEVENT(DMEventREWantReturnArgs::EventID);
+		DMADDEVENT(DMEventRButtonMenuCmdArgs::EventID);//
 	}
 
 	void DUIRichEdit::UnInit()
@@ -413,6 +414,13 @@ namespace DM
 			}
 
 		} while (false);
+	}
+
+	void DUIRichEdit::OnRButtonDown(UINT nFlags, CPoint point)
+	{
+		DMEventRButtonMenuCmdArgs Evt(this);
+		Evt.m_pt = point;
+		DV_FireEvent(Evt); 
 	}
 
 	void DUIRichEdit::OnMouseMove(UINT nFlags, CPoint point)
