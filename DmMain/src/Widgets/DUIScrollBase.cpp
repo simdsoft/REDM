@@ -8,6 +8,7 @@ namespace DM
 		m_bnowheelscroll        = false;
 		m_isbWid				= -1;
 		m_isbAllowSize          = -1;
+		m_iMiniThumbLen         = 18;
 		m_isbVisible            = DMSB_NULL;
 		m_isbEnable             = DMSB_BOTH;
 
@@ -1068,15 +1069,19 @@ namespace DM
 				iPageAllLen = 0;
 			}
 			iThumbLen = m_si.nPage*iPageAllLen/(nMax-m_si.nMin+1);	// 关键计算公式：nPage/(nMax-nMin+1)=滑块长度/滚动条的总长度（就是滑块可滑动的槽）
+			if (0 == iThumbLen)
+			{
+				iThumbLen = m_iMiniThumbLen;
+			}
 			if (nMax <= m_si.nMin+(int)m_si.nPage-1)      // 没有滑动条
 			{
 				iThumbLen = 0;						 
 			}
-			if (iThumbLen>0&&iThumbLen<THUMB_MINSIZE)// 有滚动条
+			if (iThumbLen>0&&iThumbLen<m_iMiniThumbLen)// 有滚动条
 			{
-				iThumbLen = THUMB_MINSIZE;
+				iThumbLen = m_iMiniThumbLen;
 			}
-			if (iPageAllLen<THUMB_MINSIZE)			 // 没有滑动条
+			if (iPageAllLen<m_iMiniThumbLen)			 // 没有滑动条
 			{
 				iThumbLen = 0;
 			}
@@ -1195,11 +1200,11 @@ namespace DM
 		CRect rcSb = GetScrollBarRect(bVert);
 		int nInterHei = (bVert?rcSb.Height():rcSb.Width())- 2*m_isbAllowSize;
 		int nSlideHei = psi->nPage*nInterHei/(psi->nMax-psi->nMin+1);
-		if (nSlideHei<THUMB_MINSIZE)
+		if (nSlideHei<m_iMiniThumbLen)
 		{
-			nSlideHei = THUMB_MINSIZE;
+			nSlideHei = m_iMiniThumbLen;
 		}
-		if (nInterHei<THUMB_MINSIZE)
+		if (nInterHei<m_iMiniThumbLen)
 		{
 			nSlideHei = 0;
 		}

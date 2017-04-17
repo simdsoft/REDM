@@ -89,7 +89,6 @@ struct SBSTATEINFO
 // 控件:上箭头、下箭头、坚直滚动条、竖直滑槽、左箭头、右箭头、水平滚动条、水平滑槽、小边角
 #define    SB_CORNOR								10
 #define    MAKESBSTATE(sbCode,nState,bVert)         MAKELONG((sbCode),MAKEWORD((nState),(bVert)))
-#define	   THUMB_MINSIZE							18		  // 滑块最小大小
 #define	   TIMER_SBWAIT								1         // 启动连续滚动的定时器
 #define    TIMER_SBGO								2         // 连续滚动的定时器
 }// namespace DM

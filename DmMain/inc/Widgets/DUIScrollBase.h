@@ -25,12 +25,13 @@ namespace DMAttr
 		static wchar_t* SKIN_sbskin;								    ///< 滚动条图片,示例:sbskin="ScrollBar"
 		static wchar_t* INT_sbwidth;									///< 滚动条的宽度，默认为16,示例:sbwidth="16"
 		static wchar_t* INT_arrowwidth;                                 ///< 上下（左右）箭头的高度(宽度),示例:arrowwidth="10"
+		static wchar_t* INT_minithumblen;								///< 最小滚轮高度, 默认18, 示例:minithumblen="18"
 		static wchar_t* OPTION_sbenable;							    ///< 是否启用滚动条,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT,示例:sbenable="1"
 		static wchar_t* SIZE_range;                                     ///< 滚动范围,示例:range="1,100"
 		static wchar_t* POINT_curpos;                                   ///< 当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos="10,20"
 		static wchar_t* bool_bnowheelscroll;                            ///< 禁用滚轮滚动，示例:bnowheelscroll="1"
 	};
-	DMAttrValueInit(DUIScrollBaseAttr,SKIN_sbskin)DMAttrValueInit(DUIScrollBaseAttr,INT_sbwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_arrowwidth)
+	DMAttrValueInit(DUIScrollBaseAttr,SKIN_sbskin)DMAttrValueInit(DUIScrollBaseAttr,INT_sbwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_arrowwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_minithumblen)
 	DMAttrValueInit(DUIScrollBaseAttr,OPTION_sbenable)DMAttrValueInit(DUIScrollBaseAttr,SIZE_range)
 	DMAttrValueInit(DUIScrollBaseAttr,POINT_curpos)DMAttrValueInit(DUIScrollBaseAttr,bool_bnowheelscroll)
 }
@@ -132,6 +133,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::SKIN_sbskin, OnAttributesbSkin)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::INT_sbwidth,OnAttributesbWidth)
 			DM_INT_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::INT_arrowwidth,m_isbAllowSize,DM_ECODE_NOXMLLOADREFRESH)
+			DM_INT_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::INT_minithumblen,m_iMiniThumbLen,DM_ECODE_NOXMLLOADREFRESH)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::OPTION_sbenable,OnAttributesbEnable)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::SIZE_range,OnAttributeRange)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::POINT_curpos,OnAttributePos)
@@ -151,6 +153,7 @@ namespace DM
 		int							m_isbVisible;		///< 滚动条显示信息,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT
 		int							m_isbEnable;	    ///< 滚动条可操作信息,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT
 		int                         m_isbAllowSize;     ///< 滚动条上下箭头高度(或左右)
+		int                         m_iMiniThumbLen;    ///< 最小滚轮高度
 
 		SBSTATEINFO                 m_sbInfo;           ///< 记录状态等信息组合，和DMScrollBarSkinImpl相呼应
 
