@@ -195,6 +195,7 @@
 	/>
 	<DUIActiveXAttr
 	bool_bdelayinit="{1}窗口显示时才加载,默认为true,示例:bdelayinit=1"
+	bool_bsupportmulthread="{0}ACTIVEX是否支持多线程,默认为false,注意,此属性暂不支持动态改变,示例:bsupportmulthread=0"   
 	/>
 	<DUIIEAttr
 	STRING_url="指定IE的默认加载URL,示例:url=www.baidu.com" 
