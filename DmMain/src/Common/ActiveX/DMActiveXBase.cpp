@@ -11,7 +11,7 @@ namespace DM
 	{
 	}
 
-	BOOL DMAxContainer::CreateControl(LPCRECT pRect, REFGUID clsid ,DWORD dwClsCtx /*=CLSCTX_INPROC_SERVER*/)
+	BOOL DMAxContainer::CreateControl(LPCRECT pRect, REFGUID clsid, DWORD dwClsCtx /*=CLSCTX_INPROC_SERVER*/ ,bool bSupportMultThread/*=false*/)
 	{
 		DMASSERT(m_pAxHostDelegate);
 		HRESULT hr = E_FAIL;
@@ -19,7 +19,7 @@ namespace DM
 		hr = CoCreateInstance(clsid, NULL,dwClsCtx , __uuidof(IUnknown), reinterpret_cast<void**>(&pControl));
 		if (SUCCEEDED(hr))
 		{
-			Init(pControl,pRect);
+			Init(pControl,pRect,bSupportMultThread);
 		}
 		return SUCCEEDED(hr);
 	}

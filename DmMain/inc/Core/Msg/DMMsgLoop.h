@@ -81,6 +81,8 @@ namespace DM
 		IDMIdleHandlerList						m_IdleHandlerList;
 		
 		MSG										m_msg;
+		DMLock*								    m_pMsgLock;
+		DMLock*                                 m_pIdleLock;
 
 	};
 

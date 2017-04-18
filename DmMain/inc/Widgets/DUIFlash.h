@@ -16,6 +16,19 @@
 #pragma once
 #include "DUIActiveX.h"
 
+namespace DMAttr
+{
+	/// <summary>
+	///		<see cref="DM::DUIFlash"/>的xml属性定义
+	/// </summary>
+	class DUIFlashAttr
+	{
+	public:
+		static wchar_t* STRING_url;									   ///< flash的资源,支持相对路径加载或Res方式加载,示例:url="http://www.hgy413.com/swf/2.swf"
+	};
+	DMAttrValueInit(DUIFlashAttr,STRING_url)
+}
+
 namespace DM
 {
 	/// <summary>
@@ -39,6 +52,7 @@ namespace DM
 		//---------------------------------------------------
 		bool Play(void* pBuf, DWORD dwSize);
 		bool Play(const LPCWSTR pszUrl);
+		DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> Ptr();
 
 	public:
 		DM_BEGIN_MSG_MAP()
@@ -48,19 +62,15 @@ namespace DM
 		void OnShowWindow(BOOL bShow, UINT nStatus);
 
 	public:
-		DMCode OnAttrUrl(LPCWSTR pszValue, bool bLoadXml);
-
-		/// DUIFlash的属性宏控制 
-		#define DMFLASH_STRING_url				L"url"                     ///< flash的资源,支持相对路径加载或Res方式加载
-	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_CUSTOM_ATTRIBUTE(DMFLASH_STRING_url,OnAttrUrl)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIFlashAttr::STRING_url,OnAttrUrl)
 		DM_END_ATTRIBUTES()
+	public:
+		DMCode OnAttrUrl(LPCWSTR pszValue, bool bLoadXml);
 
 	public:
 		long                                               m_curFrame;                                        
 		CStringW										   m_strUrl;
-		DMComQIPtr<ShockwaveFlashObjects::IShockwaveFlash> m_flash;
 	};
 
 }//namespace DM

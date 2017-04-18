@@ -165,33 +165,31 @@ namespace DM
 		DMDECLARE_CLASS_NAME(DUIIE, DUINAME_IE,DMREG_Window)
 	public:
 		DUIIE();
-		~DUIIE();
 
 	public:
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
 			MSG_WM_CREATE(OnCreate)
-			MSG_WM_SHOWWINDOW(OnShowWindow)
 			MSG_WM_DESTROY(OnDestroy) 
+			MSG_WM_SHOWWINDOW(OnShowWindow)
 		DM_END_MSG_MAP()
 	public:
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		int OnCreate(LPVOID);
-		void OnShowWindow(BOOL bShow, UINT nStatus);
 		void OnDestroy();
+		void OnShowWindow(BOOL bShow, UINT nStatus);
 		
 		
 	public:
 		DMCode DV_OnAxActivate(IUnknown *pUnknwn);
 		BOOL PreTranslateMessage(MSG* pMsg);
-		BOOL IsIEVisible();
 
 	public:
 		/// @brief 设置事件接收者
 		/// @param[in]		pEventHandler		事件接收者指针
 		/// @return HRESULT，S_OK
 		HRESULT SetEvtHandler(IDMWebEvent* pEventHandler);
-		HRESULT RegisterEvtHandler(BOOL inAdvise);
+		HRESULT RegisterEvtHandler(bool inAdvise);
 
 	public:
 		/// @brief 打开指定页面
@@ -209,6 +207,8 @@ namespace DM
 		/// @brief 获得OLE窗口句柄
 		/// @return HWND，失败为NULL
 		HWND GetOleWindow();
+		HWND GetIESWindow();
+		DMComPtr<IWebBrowser2> Ptr();
 
 		/// @brief BUSY状态
 		/// @return ture or false
@@ -273,7 +273,7 @@ namespace DM
 		/// @brief 转发IE的设置属性
 		/// @return
 		DMCode IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);
-		
+
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIIEAttr::STRING_url,OnAttributeUrl)
@@ -293,16 +293,16 @@ namespace DM
 	public:
 		CStringW				    m_strUrl;
 		DWORD						m_dwCookie;
-		DMIEEvtDispatch				m_eventDispatch;
-		DMComQIPtr<IWebBrowser2>	m_pIE;
+		DMIEEvtDispatch				m_EventDispatch;
+	
 
-		DMIEOleClientSite			m_clientSite;
-		DMIEDocHostUIHandler		m_docHostUIHandler;
-		DMIEExternal				m_external;
+		DMIEOleClientSite			m_ClientSite;
+		DMIEDocHostUIHandler		m_DocHostUIHandler;
+		DMIEExternal				m_External;
 		bool						m_bShowScroll;
 		bool                        m_bShowContext;
 		bool                        m_bDisableScriptWarn;
-		DWORD						m_refreshkey;
+		DWORD						m_Refreshkey;
 	};
 
 

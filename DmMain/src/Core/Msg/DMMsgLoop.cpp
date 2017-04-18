@@ -6,6 +6,8 @@ namespace DM
 	DMMsgLoop::DMMsgLoop()
 	{
 		memset(&m_msg, 0, sizeof(MSG));
+		m_pMsgLock = new DMLock;
+		m_pIdleLock = new DMLock;
 	}
 
 	DMMsgLoop::~DMMsgLoop()
@@ -15,6 +17,8 @@ namespace DM
 			DMASSERT(0 == GetRefCount());
 			g_pDMMsgLoopTool->RemoveMessageLoop();
 		}
+		DM_DELETE(m_pMsgLock);
+		DM_DELETE(m_pIdleLock);
 	}
 
 	int DMMsgLoop::Run()
@@ -67,6 +71,8 @@ namespace DM
 			{
 				break;
 			}
+
+			DMAutoLock autolock(m_pMsgLock);
 			POSITION pos = m_MsgFilterList.Find(pMessageFilter);
 			if (pos)
 			{
@@ -88,6 +94,8 @@ namespace DM
 			{
 				break;
 			}
+
+			DMAutoLock autolock(m_pMsgLock);
 			POSITION pos = m_MsgFilterList.Find(pMessageFilter);
 			if (!pos)
 			{
@@ -110,12 +118,12 @@ namespace DM
 			{
 				break;
 			}
+			DMAutoLock autolock(m_pIdleLock);
 			POSITION pos = m_IdleHandlerList.Find(pIdleHandler);
 			if (pos)
 			{
 				break;
 			}
-
 			m_IdleHandlerList.AddTail(pIdleHandler);
 			bRet = TRUE;
 		} while (false);
@@ -131,6 +139,7 @@ namespace DM
 			{
 				break;
 			}
+			DMAutoLock autolock(m_pIdleLock);
 			POSITION pos = m_IdleHandlerList.Find(pIdleHandler);
 			if (!pos)
 			{
@@ -145,18 +154,11 @@ namespace DM
 
 	BOOL DMMsgLoop::PreTranslateMessage(MSG* pMsg)
 	{
-		IDMMessageFilterList MsgFilterList; 
+		DMAutoLock autolock(m_pMsgLock);
 		POSITION Pos = m_MsgFilterList.GetHeadPosition();
-		while (Pos)// 复制一份，防止原数据被污染
-		{
-			IDMMessageFilterPtr &t = m_MsgFilterList.GetNext(Pos);
-			MsgFilterList.AddTail(t);
-		}
-
-		Pos = MsgFilterList.GetHeadPosition();
 		while (Pos)// 循环处理
 		{
-			IDMMessageFilterPtr pMessageFilter = MsgFilterList.GetNext(Pos);
+			IDMMessageFilterPtr& pMessageFilter = m_MsgFilterList.GetNext(Pos);
 			if (pMessageFilter != NULL && pMessageFilter->PreTranslateMessage(pMsg))
 			{
 				return TRUE;
@@ -168,21 +170,14 @@ namespace DM
 
 	BOOL DMMsgLoop::OnIdle(int /*nIdleCount*/)
 	{
-		IDMIdleHandlerList IdleHandlerList; 
+		DMAutoLock autolock(m_pIdleLock);
 		POSITION Pos = m_IdleHandlerList.GetHeadPosition();
-		while (Pos)// 复制一份，防止原数据被污染
-		{
-			IDMIdleHandlerPtr &t = m_IdleHandlerList.GetNext(Pos);
-			IdleHandlerList.AddTail(t);
-		}
-
-		Pos = IdleHandlerList.GetHeadPosition();
 		while (Pos)// 循环处理
 		{
-			IDMIdleHandlerPtr pIdleHandler = IdleHandlerList.GetNext(Pos);
-			if (pIdleHandler)
+			IDMIdleHandlerPtr& pIdleHandler = m_IdleHandlerList.GetNext(Pos);
+			if (pIdleHandler && pIdleHandler->OnIdle())
 			{
-				pIdleHandler->OnIdle();
+				return TRUE;
 			}
 		}
 

@@ -310,7 +310,7 @@ namespace DM
 		default:
 			return DISP_E_MEMBERNOTFOUND;
 		}
-		return S_OK;
+		return hr;
 	}
 
 	///DMIEDocHostUIHandler------------------------------------------------------------------------------------
@@ -353,7 +353,7 @@ namespace DM
 		if (pInfo)
 		{
 			pInfo->cbSize = sizeof(DOCHOSTUIINFO);
-			pInfo->dwFlags = DOCHOSTUIFLAG_NO3DBORDER | DOCHOSTUIFLAG_THEME | DOCHOSTUIFLAG_NO3DOUTERBORDER | DOCHOSTUIFLAG_DIALOG | DOCHOSTUIFLAG_DISABLE_HELP_MENU;
+			pInfo->dwFlags = DOCHOSTUIFLAG_DIV_BLOCKDEFAULT | DOCHOSTUIFLAG_CODEPAGELINKEDFONTS | DOCHOSTUIFLAG_THEME | DOCHOSTUIFLAG_NO3DBORDER;
 			if (m_bShowScrollBar)								//决定是否显示滚动条
 			{
 				pInfo->dwFlags |= DOCHOSTUIFLAG_FLAT_SCROLLBAR;
@@ -371,7 +371,7 @@ namespace DM
 	{
 		if (m_pWebBrowser)
 		{
-			*ppDispatch = &m_pWebBrowser->m_external;
+			*ppDispatch = &m_pWebBrowser->m_External;
 		}
 		else
 		{
@@ -414,8 +414,8 @@ namespace DM
 		}
 		else if (IsEqualIID(riid, IID_IDocHostUIHandler))
 		{
-			m_pWebBrowser->m_docHostUIHandler.AddRef();
-			*ppvObject=&(m_pWebBrowser->m_docHostUIHandler);
+			m_pWebBrowser->m_DocHostUIHandler.AddRef();
+			*ppvObject=&(m_pWebBrowser->m_DocHostUIHandler);
 			return S_OK;
 		}
 		else
@@ -482,36 +482,31 @@ namespace DM
 	///DUIIE------------------------------------------------------------------------------------
 	DUIIE::DUIIE()
 		:m_dwCookie(0)
-		,m_eventDispatch(NULL)
+		,m_EventDispatch(NULL)
 		,m_bShowScroll(false)	
 		,m_bShowContext(true)
 		,m_bDisableScriptWarn(false)
-		,m_refreshkey(DUIAccel::TranslateAccelKey(L"f5"))
+		,m_Refreshkey(DUIAccel::TranslateAccelKey(L"f5"))
 	{		
-		m_clsid = CLSID_WebBrowser;
-	}
-
-	DUIIE::~DUIIE()
-	{
-		
+		m_ClsId = CLSID_WebBrowser;
 	}
 
 	void DUIIE::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
 		{
-			if (false == m_bInit)
+			if (false == m_bInit || NULL == m_pAxContainer)
 			{
 				break;
 			}
-			if (DM_IsVisible())
+			if (DM_IsVisible(true))
 			{
-				SetActiveXVisible(TRUE);
+				SetActiveXVisible(true);
 			}
 			DMSmartPtrT<IDMCanvas> pTemp;
 			g_pDMRender->CreateCanvas(m_rcWindow.Width(),m_rcWindow.Height(),&pTemp);
 			HDC hdc = pTemp->GetDC();
-			m_axContainer->ProcessPaint(hdc, m_rcWindow,true);
+			m_pAxContainer->ProcessPaint(hdc, m_rcWindow,true);
 			pTemp->ReleaseDC(hdc);
 			pCanvas->BitBlt(pTemp,0,0,m_rcWindow);
 		} while (false);
@@ -529,6 +524,12 @@ namespace DM
 		return nRet;
 	}
 
+	void DUIIE::OnDestroy()
+	{
+		g_pDMApp->RemoveMessageFilter(this);
+		RegisterEvtHandler(FALSE);
+	}
+
 	void DUIIE::OnShowWindow(BOOL bShow, UINT nStatus)
 	{
 		DUIWindow::OnShowWindow(bShow,nStatus);
@@ -536,81 +537,50 @@ namespace DM
 		{
 			if (bShow&&false == m_bInit)// 窗口显示时才初始化
 			{
-				InitActiveX();
-				m_bInit = true;
+				m_bInit = InitActiveX();
 			}
 		}
 		else
 		{
 			if (false == m_bInit)
 			{
-				InitActiveX();
-				m_bInit = true;
+				m_bInit = InitActiveX();
 			}
 		}
 
 		SetActiveXVisible(FALSE); // 在此处全部隐藏，在绘制处显示
 	}
 
-	void DUIIE::OnDestroy()
-	{
-		g_pDMApp->RemoveMessageFilter(this);
-		RegisterEvtHandler(FALSE);
-	}
-
 	DMCode DUIIE::DV_OnAxActivate(IUnknown *pUnknwn)
 	{
-		m_pIE = pUnknwn;
-		if (m_pIE)
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
 		{
-			RegisterEvtHandler(TRUE);
-			m_eventDispatch.SetWebBrowser(this);
-			m_external.SetWebBrowser(this);
-			m_clientSite.SetWebBrowser(this);
-			m_docHostUIHandler.SetWebBrowser(this);
-			m_eventDispatch.SetDUIWnd(this->GetDUIWnd());
-			m_external.SetDUIWnd(this->GetDUIWnd());
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
+			{
+				break;
+			}
+
+			RegisterEvtHandler(true);
+			m_EventDispatch.SetWebBrowser(this);
+			m_External.SetWebBrowser(this);
+			m_ClientSite.SetWebBrowser(this);
+			m_DocHostUIHandler.SetWebBrowser(this);
+			m_EventDispatch.SetDUIWnd(this->GetDUIWnd());
+			m_External.SetDUIWnd(this->GetDUIWnd());
 
 			DMComPtr<IOleObject> spOleObject;
-			m_pIE->QueryInterface(IID_IOleObject, (void**)&spOleObject);
+			pWeb->QueryInterface(IID_IOleObject, (void**)&spOleObject);
 			if (spOleObject)
 			{
-				spOleObject->SetClientSite(&m_clientSite);
+				spOleObject->SetClientSite(&m_ClientSite);
 			}
 			DisableScriptWarning(m_bDisableScriptWarn);
-
-// 			DMComPtr<IDispatch> spDisp;
-// 			HRESULT hr = m_pIE->get_Document(&spDisp);
-// 			
-// 			if (SUCCEEDED(hr) && spDisp)
-// 			{
-// 				DMComPtr<IOleObject, &IID_IOleObject> spOleObject(spDisp);
-// 				DMComQIPtr<IHTMLDocument2, &IID_IHTMLDocument2> spHTML(spDisp);
-// 				if (spHTML)
-// 				{
-// 					if (spOleObject)
-// 					{
-// 						CComPtr<IOleClientSite> spClientSite;
-// 						hr = spOleObject->GetClientSite(&spClientSite);
-// 						if (SUCCEEDED(hr) && spClientSite)
-// 						{
-// 							m_spDefaultDocHostUIHandler = spClientSite;
-// 							m_spDefaultOleCommandTarget = spClientSite;
-// 						}
-// 					}
-// 
-// 					DMComQIPtr<IOleClientSite, &IID_IOleClientSite> spOleClientSite(spDisp);
-// 
-// 					DMComQIPtr<ICustomDoc, &IID_ICustomDoc> spCustomDoc(spDisp);
-// 					if (spCustomDoc) {
-// 						spCustomDoc->SetUIHandler(&m_docHostUIHandler);
-// 					}
-// 				}
-//			} 
-			
-			m_pIE->Navigate(bstr_t(m_strUrl),NULL,NULL,NULL,NULL);
-		}
-		return DM_ECODE_OK;
+			pWeb->Navigate(bstr_t(m_strUrl),NULL,NULL,NULL,NULL);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		return iErr;
 	}
 
 	BOOL DUIIE::PreTranslateMessage(MSG* pMsg)
@@ -618,15 +588,22 @@ namespace DM
 		BOOL bRet = FALSE;
 		do 
 		{
-
-			if (!m_pIE||!DM_IsVisible(true))
+			// 快捷键只考虑键盘消息
+			if (NULL == pMsg
+				||(WM_KEYDOWN != pMsg->message && WM_KEYUP != pMsg->message))
+			{
+				break;;
+			}
+			
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb || !DM_IsVisible(true))
 			{
 				break;
 			}
 
 			HWND hWnd = GetContainer()->OnGetHWnd();
 			// todo.在一台测试机上运行时(版本:ie10)，IE以pop-realwnd存在,在主窗口上输入文字，会自动被ie捕获焦点，从而主窗口失焦,文字输入到了ie中
-			// 解决方式:1.判断realwnd是否隐藏,隐藏时,不转发快捷键消息 2.判断同一进程中焦点窗口是否为ie所在的realwnd，如果不是,不转发快捷键消息
+			// 解决方式:1.判断realwnd是否隐藏,隐藏时,不转发快捷键消息 2.判断同一进程中激活窗口是否为ie所在的realwnd，如果不是,不转发快捷键消息
 			if (!::IsWindowVisible(hWnd))// 1
 			{
 				break;
@@ -634,7 +611,7 @@ namespace DM
 
 			if(pMsg->message == WM_KEYDOWN) //lzlong add
 			{
-				DUIAccel acc(m_refreshkey);
+				DUIAccel acc(m_Refreshkey);
 				if(pMsg->wParam == acc.GetKey())
 				{
 					if ((0 == acc.GetModifier()&&!PUSH_ALT&&!PUSH_CTRL&&!PUSH_SHIFT)// 未按下辅助键
@@ -647,61 +624,40 @@ namespace DM
 					}
 				}				
 			}
-
-			HWND hFocusWnd = ::GetFocus();// 2
-			if (hFocusWnd != hWnd)
+			bool bCopy = PUSH_CTRL && (0x00000043 == pMsg->wParam);
+			HWND hwActive = GetActiveWindow();// 得到本线程的顶层激活窗口
+			if (hwActive != hWnd && !bCopy)
 			{
 				break;
 			}
-
-			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject(m_pIE);
+			
+			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject = pWeb;
 			if (spInPlaceActiveObject)
 			{
-				spInPlaceActiveObject->TranslateAccelerator(pMsg);
+				if (pMsg->wParam != VK_BACK)//防止退格两次
+				{
+					spInPlaceActiveObject->TranslateAccelerator(pMsg);
+				}
 			}
+
 		} while (false);
 
-		return bRet;
-	}
-
-	BOOL DUIIE::IsIEVisible()
-	{
-		BOOL bRet = FALSE;
-		do 
-		{
-			if (!m_axContainer->ActiveXControl())
-			{
-				break;
-			}
-			DMComQIPtr<IOleWindow> ole_window = m_axContainer->ActiveXControl();
-			if (!ole_window)
-			{
-				break;
-			}
-			HWND window = NULL;
-			ole_window->GetWindow(&window);//For windowless objects, this method should always fail and return E_FAIL
-			if(!window)
-			{
-				break;
-			}
-			bRet = ::IsWindowVisible(window);	
-		} while (false);
 		return bRet;
 	}
 
 	HRESULT DUIIE::SetEvtHandler(IDMWebEvent* pEventHandler)
 	{
-		m_eventDispatch.SetEvtHandler(pEventHandler);
-		m_external.SetEvtHandler(pEventHandler);
+		m_EventDispatch.SetEvtHandler(pEventHandler);
+		m_External.SetEvtHandler(pEventHandler);
 		return S_OK;
 	}
 
-	HRESULT DUIIE::RegisterEvtHandler(BOOL inAdvise)
+	HRESULT DUIIE::RegisterEvtHandler(bool inAdvise)
 	{
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			DMComQIPtr<IConnectionPointContainer> pCPC = m_pIE;
+			DMComQIPtr<IConnectionPointContainer> pCPC = Ptr();
 			if (!pCPC)
 			{
 				break;
@@ -714,7 +670,7 @@ namespace DM
 			}
 			if (inAdvise)
 			{
-				hr = pCP->Advise(&m_eventDispatch, &m_dwCookie);
+				hr = pCP->Advise(&m_EventDispatch, &m_dwCookie);
 			}
 			else
 			{
@@ -731,11 +687,12 @@ namespace DM
 		do 
 		{
 			m_strUrl = pszURL;// 如果IE延迟加载，保证在延迟加载时使用新的URL
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			hr = m_pIE->Navigate(bstr_t(pszURL),NULL,NULL,NULL,NULL);
+			hr = pWeb->Navigate(bstr_t(pszURL),NULL,NULL,NULL,NULL);
 		} while (false);
 		return hr;
 	}
@@ -745,12 +702,13 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			BSTR _bsURL = NULL;
-			hr = m_pIE->get_LocationURL(&_bsURL);
+			hr = pWeb->get_LocationURL(&_bsURL);
 			if (!SUCCEEDED(hr) || _bsURL == NULL)
 				break;
 			CStringA strUrlA =_com_util::ConvertBSTRToString(_bsURL) ;
@@ -772,12 +730,13 @@ namespace DM
 		CStringW strUrl;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			BSTR _bsURL = NULL;
-			HRESULT hr = m_pIE->get_LocationURL(&_bsURL);
+			HRESULT hr = pWeb->get_LocationURL(&_bsURL);
 			if (!SUCCEEDED(hr) || _bsURL == NULL)
 				break;
 			CStringA strUrlA =_com_util::ConvertBSTRToString(_bsURL) ;
@@ -791,18 +750,55 @@ namespace DM
 		HWND hOleWnd = NULL;
 		do 
 		{
-			if (!m_axContainer->ActiveXControl())
+			if (NULL == m_pAxContainer)
 			{
 				break;
 			}
-			DMComQIPtr<IOleWindow> ole_window = m_axContainer->ActiveXControl();
-			if (!ole_window)
+
+			DMComPtr<IUnknown> pUnknown = m_pAxContainer->ActiveXControl();
+			if (NULL == pUnknown)
 			{
 				break;
 			}
-			ole_window->GetWindow(&hOleWnd);
+
+			DMComQIPtr<IOleWindow> pOleWnd = pUnknown;
+			if (NULL == pOleWnd)
+			{
+				break;
+			}
+			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAIL：eg: IE [Shell Embedding] window
 		} while (false);
 		return hOleWnd;
+	}
+
+	HWND DUIIE::GetIESWindow()
+	{
+		HWND hIESWnd = NULL;
+		do 
+		{
+			HWND hWnd = GetOleWindow();
+			if (!hWnd)
+			{
+				break;
+			}
+			hWnd = ::FindWindowEx(hWnd, NULL, L"Shell DocObject View", NULL);
+			if (NULL == hWnd)
+			{
+				break;
+			}
+			hIESWnd = ::FindWindowEx(hWnd, NULL, L"Internet Explorer_Server", NULL);
+		} while (false);
+		return hIESWnd;
+	}
+
+	DMComPtr<IWebBrowser2> DUIIE::Ptr()
+	{
+		DMComQIPtr<IWebBrowser2> ptr;
+		if (m_pAxContainer)
+		{
+			ptr = m_pAxContainer->ActiveXControl();
+		}
+		return ptr;
 	}
 
 	bool DUIIE::IsBusy()
@@ -810,12 +806,13 @@ namespace DM
 		VARIANT_BOOL vBusy = VARIANT_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			
-			m_pIE->get_Busy(&vBusy);
+			pWeb->get_Busy(&vBusy);
 		} while (false);
 		return VARIANT_TRUE == vBusy;
 	}
@@ -825,15 +822,16 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			VARIANT_BOOL vBusy = VARIANT_FALSE;
-			m_pIE->get_Busy(&vBusy);
+			pWeb->get_Busy(&vBusy);
 			// 只有浏览器繁忙时，才能停止浏览器。
 			if (VARIANT_TRUE == vBusy)
-				m_pIE->Stop();
+				pWeb->Stop();
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -844,11 +842,12 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			m_pIE->Quit();
+			pWeb->Quit();
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -859,11 +858,12 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			m_pIE->Refresh();
+			pWeb->Refresh();
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -874,14 +874,15 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			VARIANT _v;
 			_v.vt = VT_I4;
 			_v.lVal = nLevel;
-			m_pIE->Refresh2(&_v);
+			pWeb->Refresh2(&_v);
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -892,11 +893,12 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			m_pIE->GoBack();
+			pWeb->GoBack();
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -907,11 +909,12 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			m_pIE->GoForward();
+			pWeb->GoForward();
 			hr = S_OK;
 		} while (false);
 		return hr;
@@ -922,12 +925,13 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			DMComQIPtr<IHTMLDocument2> spDoc;
-			hr = m_pIE->get_Document(reinterpret_cast<IDispatch**>(&spDoc));
+			hr = pWeb->get_Document(reinterpret_cast<IDispatch**>(&spDoc));
 			if (SUCCEEDED(hr) && spDoc) {
 				DMComQIPtr<IHTMLWindow2> spWin;
 				hr = spDoc->get_parentWindow(&spWin);
@@ -949,13 +953,14 @@ namespace DM
 		HRESULT hr = E_FAIL;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
 			_variant_t _varErr;
 			DMComQIPtr<IDispatch>  pDisp;
-			hr = m_pIE->get_Document(&pDisp);
+			hr = pWeb->get_Document(&pDisp);
 			if (SUCCEEDED(hr) && pDisp) {
 				DMComQIPtr<IHTMLDocument2> spDoc;
 				hr = pDisp->QueryInterface(IID_IHTMLDocument2,(void**)&spDoc);
@@ -1015,23 +1020,24 @@ namespace DM
 		HRESULT hr = E_FAIL;
 		do 
 		{
-			if (!m_pIE)
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
 			{
 				break;
 			}
-			hr = m_pIE->put_Silent(bDisable ? VARIANT_TRUE : VARIANT_FALSE);
+			hr = pWeb->put_Silent(bDisable ? VARIANT_TRUE : VARIANT_FALSE);
 		} while (false);
 		return hr;
 	}
 
 	void DUIIE::SetScrollBarShow(bool bShow)
 	{
-		m_docHostUIHandler.SetScrollBarShow(bShow);
+		m_DocHostUIHandler.SetScrollBarShow(bShow);
 	}
 
 	void DUIIE::SetContextMenuShow(bool bShow)
 	{
-		m_docHostUIHandler.SetContextMenuShow(bShow);
+		m_DocHostUIHandler.SetContextMenuShow(bShow);
 	}
 
 	DMCode DUIIE::IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
@@ -1083,7 +1089,7 @@ namespace DM
 	DMCode DUIIE::OnAttributeRefreshKey(LPCWSTR pszValue, bool bLoadXml)
 	{
 		CStringW strValue = pszValue;
-		m_refreshkey = DUIAccel::TranslateAccelKey(strValue);
+		m_Refreshkey = DUIAccel::TranslateAccelKey(strValue);
 		return DM_ECODE_OK;
 	}
 

@@ -4,48 +4,97 @@
 namespace DM
 {
 	DUIActiveX::DUIActiveX() 
-		: m_axContainer(new DMAxContainerImpl(this))
+		: m_pAxContainer(new DMAxContainerImpl(this))
 	{
-		m_clsid		 = CLSID_NULL;
-		m_clsCtx	 = CLSCTX_ALL;
+		m_ClsId		 = CLSID_NULL;
+		m_ClsCtx	 = CLSCTX_ALL;
 		m_bDelayInit = true;
 		m_bInit		 = false;
+		m_bSupportMultThread = false;
 		m_pDUIXmlInfo->m_bFocusable = true;
 	}
 
 	DUIActiveX::~DUIActiveX() 
 	{
-		delete m_axContainer;
+		DM_DELETE(m_pAxContainer);
 	}
 
-	BOOL DUIActiveX::InitActiveX()
+	bool DUIActiveX::SetActiveXVisible(bool bVisible,bool bFocus)
 	{
-		BOOL bRet = m_axContainer->CreateControl(m_rcWindow,m_clsid,m_clsCtx);
-		if (bRet)
+		bool bRet = false;
+		do 
 		{
-			CRect rcClient;
-			DV_GetClientRect(rcClient);
-			m_axContainer->ActivateAx(NULL);
-			SetActiveXVisible(DM_IsVisible(TRUE));
-			m_axContainer->OnPosRectChange(m_rcWindow);
-		}
+			if (NULL == m_pAxContainer)
+			{
+				break;
+			}
+
+			DMComPtr<IUnknown> pUnknown = m_pAxContainer->ActiveXControl();
+			if (NULL == pUnknown)
+			{
+				break;
+			}
+			DMComQIPtr<IOleWindow> pOleWnd = pUnknown;
+			if (NULL == pOleWnd)
+			{
+				break;
+			}
+
+			HWND hOleWnd = NULL;
+			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAIL：eg: IE [Shell Embedding] window
+			if (!hOleWnd)
+			{
+				break;
+			}
+
+			HWND hWnd = NULL;
+			if (!bVisible)
+			{
+				HWND hFocusWnd = ::GetFocus();
+				hWnd = hFocusWnd;
+				while (hWnd && hWnd != hOleWnd)
+				{
+					hWnd = ::GetParent(hWnd);
+				}
+			}
+
+			ShowWindow(hOleWnd, bVisible?SW_SHOW:SW_HIDE);
+			if (hWnd == hOleWnd) // 焦点在ActiveX的窗口上
+			{
+				if (false == bFocus)
+				{
+					::SetFocus(GetContainer()->OnGetHWnd());// 让主DUI窗口得到焦点
+				}	
+			}
+			else
+			{
+				if (bFocus)
+				{
+					::SetFocus(hOleWnd);// 设置焦点到ActiveX的窗口上,如IE的[Shell Embedding]窗口
+				}	
+			}
+			bRet = true;
+		} while (false);
 		return bRet;
 	}
 
 	void DUIActiveX::OnSize(UINT nType, CSize size)
 	{
 		__super::OnSize(nType,size);
-		if (m_axContainer->ActiveXControl())
+		if (m_pAxContainer && m_pAxContainer->ActiveXControl())
 		{
-			m_axContainer->OnPosRectChange(m_rcWindow);        
+			m_pAxContainer->OnPosRectChange(m_rcWindow);        
 		}
 	}
 
 	void DUIActiveX::DM_OnPaint(IDMCanvas* pCanvas)
 	{
-		HDC hdc = pCanvas->GetDC();
-		m_axContainer->ProcessPaint(hdc, m_rcWindow);
-		pCanvas->ReleaseDC(hdc);
+		if (m_pAxContainer)
+		{
+			HDC hdc = pCanvas->GetDC();
+			m_pAxContainer->ProcessPaint(hdc, m_rcWindow);
+			pCanvas->ReleaseDC(hdc);
+		}
 	}
 
 	void DUIActiveX::OnShowWindow(BOOL bShow, UINT nStatus)
@@ -56,16 +105,14 @@ namespace DM
 		{
 			if (bShow&&false == m_bInit)// 窗口显示时才初始化
 			{
-				InitActiveX();
-				m_bInit = true;
+				m_bInit = InitActiveX();
 			}
 		}
 		else
 		{
 			if (false == m_bInit)
 			{
-				InitActiveX();
-				m_bInit = true;
+				m_bInit = InitActiveX();
 			}
 		}
 
@@ -74,10 +121,15 @@ namespace DM
 
 	LRESULT DUIActiveX::OnMouseEvent(UINT uMsg,WPARAM wp,LPARAM lp)
 	{
-		LRESULT lResult = 0;
+		LRESULT lr = 0;
 		do 
 		{
-			if (!m_axContainer->ActiveXControl())
+			if (NULL == m_pAxContainer)
+			{
+				break;
+			}
+			
+			if (!m_pAxContainer->ActiveXControl())
 			{
 				break;
 			}
@@ -86,16 +138,28 @@ namespace DM
 			{
 				DV_SetFocusWnd();
 			}
-			lResult = m_axContainer->OnWindowMessage(uMsg, wp, lp);
+			lr = m_pAxContainer->OnWindowMessage(uMsg, wp, lp);
 		} while (false);
-		return lResult;
+		return lr;
 	}
 
 	LRESULT DUIActiveX::OnKeyEvent(UINT uMsg,WPARAM wp,LPARAM lp)
 	{
-		if (!m_axContainer->ActiveXControl()) 
-			return 0;
-		return m_axContainer->OnWindowMessage(uMsg, wp, lp);
+		LRESULT lr = 0;
+		do 
+		{
+			if (NULL == m_pAxContainer)
+			{
+				break;
+			}
+
+			if (!m_pAxContainer->ActiveXControl())
+			{
+				break;
+			}
+			lr = m_pAxContainer->OnWindowMessage(uMsg, wp, lp);
+		} while (false);
+		return lr;
 	}
 
 	DMCode DUIActiveX::OnAttrClsid(LPCWSTR pszValue, bool bLoadXml)
@@ -106,67 +170,44 @@ namespace DM
 			{
 				break;
 			}
-			OLECHAR szCLSID[100] = {0};
+			OLECHAR szCLSID[200] = {0};
 			wcscpy_s(szCLSID,pszValue);
 
 			if (szCLSID[0] == L'{') 
 			{
-				::CLSIDFromString(szCLSID, &m_clsid);
+				::CLSIDFromString(szCLSID, &m_ClsId);
 			}
 			else
 			{
-				::CLSIDFromProgID(szCLSID, &m_clsid);
+				::CLSIDFromProgID(szCLSID, &m_ClsId);
 			}
 		} while (false);
 		return DM_ECODE_OK;
 	}
 
-	void DUIActiveX::SetActiveXVisible(BOOL bVisible)
+	// 辅助
+	bool DUIActiveX::InitActiveX()
 	{
+		bool bRet = false;
 		do 
 		{
-			if (!m_axContainer->ActiveXControl())
+			if (NULL == m_pAxContainer)
 			{
 				break;
 			}
-			DMComQIPtr<IOleWindow> ole_window = m_axContainer->ActiveXControl();
-			if (!ole_window)
-			{
-				break;
-			}
-			HWND window = NULL;
-			ole_window->GetWindow(&window);//For windowless objects, this method should always fail and return E_FAIL
-			if(!window)
+			if (!m_pAxContainer->CreateControl(m_rcWindow,m_ClsId,m_ClsCtx,m_bSupportMultThread))
 			{
 				break;
 			}
 
-			HWND hWnd = NULL;
-
-			if (!bVisible)
-			{
-				HWND hFocusWnd = ::GetFocus();
-				hWnd = hFocusWnd;
-				while (hWnd && hWnd != window)
-				{
-					hWnd = ::GetParent(hWnd);
-				}
-			}
-			ShowWindow(window, bVisible?SW_SHOW:SW_HIDE);
-			if (hWnd == window) // 避免主窗口失去焦点
-			{
-				::SetFocus(GetContainer()->OnGetHWnd());
-			}
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			m_pAxContainer->ActivateAx(NULL);
+			SetActiveXVisible(DM_IsVisible(true));
+			m_pAxContainer->OnPosRectChange(m_rcWindow);
+			bRet = true;
 		} while (false);
-	}
-
-	IUnknown * DUIActiveX::GetIUnknow()
-	{
-		if (!m_axContainer)
-		{
-			return NULL;
-		}
-		return m_axContainer->ActiveXControl();
+		return bRet;
 	}
 }// namespace DM
 

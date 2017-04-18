@@ -5,7 +5,7 @@ namespace DM
 {
 	DUIFlash::DUIFlash()
 	{
-		m_clsid    = __uuidof(ShockwaveFlashObjects::ShockwaveFlash);
+		m_ClsId    = __uuidof(ShockwaveFlashObjects::ShockwaveFlash);
 		m_curFrame = 0;
 	}
 
@@ -14,12 +14,12 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			m_flash = pUnknwn;
-			if (NULL == m_flash)
+			DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> pFlash = Ptr();
+			if (!pFlash)
 			{
 				break;
 			}
-			m_flash->put_WMode(bstr_t(_T("transparent")));// 设置背景透明
+			pFlash->put_WMode(bstr_t(_T("transparent")));// 设置背景透明
 			if (m_strUrl.IsEmpty())
 			{
 				break;
@@ -81,7 +81,8 @@ namespace DM
 				break;
 			}
 
-			if (!m_flash)
+			DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> pFlash = Ptr();
+			if (!pFlash)
 			{
 				break;
 			}
@@ -112,7 +113,7 @@ namespace DM
 			// 设置起始处播放
 			uli.QuadPart = 0;
 			spStream->Seek(*reinterpret_cast<PLARGE_INTEGER>(&uli), STREAM_SEEK_SET, NULL);
-			m_axContainer->InitControl(spStream);
+			m_pAxContainer->InitControl(spStream);
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -127,8 +128,8 @@ namespace DM
 			{
 				break;
 			}
-
-			if (!m_flash)
+			DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> pFlash = Ptr();
+			if (!pFlash)
 			{
 				break;
 			}
@@ -144,34 +145,48 @@ namespace DM
 			{
 				m_strUrl = pszUrl;
 			}
-			bRet = SUCCEEDED(m_flash->put_Movie(bstr_t(m_strUrl)));
+			bRet = SUCCEEDED(pFlash->put_Movie(bstr_t(m_strUrl)));
 		} while (false);
 		return bRet;
+	}
+
+	DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> DUIFlash::Ptr()
+	{
+		DMComQIPtr<ShockwaveFlashObjects::IShockwaveFlash> ptr;
+		if (m_pAxContainer)
+		{
+			ptr = m_pAxContainer->ActiveXControl();
+		}
+		return ptr;
 	}
 
 	void DUIFlash::OnShowWindow(BOOL bShow, UINT nStatus)
 	{
 		SetMsgHandled(FALSE);
-		if (!bShow)
+		DMComPtr<ShockwaveFlashObjects::IShockwaveFlash> pFlash = Ptr();
+		if (pFlash)
 		{
-			if (m_axContainer->ActiveXControl())
+			if (!bShow)
 			{
-				if (m_flash->IsPlaying())
+				if (m_pAxContainer->ActiveXControl())
 				{
-					m_curFrame = m_flash->CurrentFrame();
-					m_flash->StopPlay();	
+					if (pFlash->IsPlaying())
+					{
+						m_curFrame = pFlash->CurrentFrame();
+						pFlash->StopPlay();	
+					}
 				}
 			}
-		}
-		else
-		{
-			if (m_axContainer->ActiveXControl())
+			else
 			{
-				if (FALSE == m_flash->IsPlaying())
+				if (m_pAxContainer->ActiveXControl())
 				{
+					if (FALSE == pFlash->IsPlaying())
+					{
 
-					m_flash->GotoFrame(m_curFrame);
-					m_flash->Play();	
+						pFlash->GotoFrame(m_curFrame);
+						pFlash->Play();	
+					}
 				}
 			}
 		}
