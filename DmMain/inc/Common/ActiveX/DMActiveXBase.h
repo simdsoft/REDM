@@ -245,7 +245,7 @@ namespace DM
 			Clear();
 		}
 
-		IUnknown* ActiveXControl()
+		DMComPtr<IUnknown> ActiveXControl()
 		{
 			if (m_bSupportMultThread)
 			{
