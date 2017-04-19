@@ -278,14 +278,17 @@ namespace pugi
 	class PUGIXML_CLASS xml_writer_buff: public xml_writer
 	{
 	public:
-		xml_writer_buff(char_t* pszBuf,int nSize):m_nCurSize(0),m_szBuf(pszBuf),m_nSize(nSize){}
+		xml_writer_buff(char_t* pszBuf,int nSize):m_nCurSize(0),m_nNeedSize(0),m_szBuf(pszBuf),m_nSize(nSize){}
 		virtual void write(const void* data, size_t size);
 		const char_t * buffer(){return m_szBuf;}
+		int needsize(){return m_nNeedSize+1;}
+		bool isfinished(){return m_nNeedSize == m_nCurSize;}
 		int	size(){return m_nCurSize;}
 	protected:
 		char_t *m_szBuf;
 		int	    m_nSize;
 		int     m_nCurSize;
+		int     m_nNeedSize;
 	};
 
 	#ifndef PUGIXML_NO_STL

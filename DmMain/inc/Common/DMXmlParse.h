@@ -181,7 +181,7 @@ namespace DM
 		bool RemoveAttribute(LPCWSTR name);
 
 	public:/// 辅助,用于Debug打印XML内容
-		bool GetXmlContent(CStringW &strDebug,int iBufSize = 8000);
+		bool GetXmlContent(CStringW &strDebug);
 
 	public:
 		pugi::xml_node				m_XmlNode;						///< 默认构造m_XmlNode._root为0

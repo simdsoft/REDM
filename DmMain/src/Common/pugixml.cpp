@@ -4929,6 +4929,7 @@ namespace pugi
 	PUGI__FN void xml_writer_buff::write(const void* data, size_t size)
 	{
 		size /= sizeof(char_t);
+		m_nNeedSize += size;
 		if (m_nCurSize+size<m_nSize)
 		{
 			memcpy(m_szBuf+m_nCurSize,data,size*sizeof(char_t));
