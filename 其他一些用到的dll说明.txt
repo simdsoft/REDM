@@ -9,5 +9,6 @@ DMH.dllÊÇ×Ô¼ºÒÔÇ°Ð´µÄÒ»¸öhook½çÃæ¿â£¬½öÓÃÓÚ¸Ä±äÉè¼ÆÆ÷µ¯³öfont,colorÏµÍ³¿òÊ±µÄÑÕÉ
 ×¢Òâ£º½ö½öÕë¶ÔÏµÍ³µ¯³ö¿ò£¬Éè¼ÆÆ÷È«ÓÉDM¹¹³É
 
 ËùÒÔÉÏÊödll¿ÉÒÔ×ÔÐÐÉ¾³ý£¬ËüÃÇºÍDUIÍêÈ«ÎÞ¹Ø
+×îÍâ²ãµÄDMMultSingletonT.hÌæ»»DMSingletonT.h£¬Ôò¿ÉÊµÏÖÃ¿¸öÏß³Ì¶ÀÁ¢¹ÜÀí×Ô¼ºµÄDMApp
 
 guoyou
