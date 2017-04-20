@@ -14,8 +14,10 @@ namespace DM
 		InstallPlugin(m_pPlugin);
 
 		m_hInst		 = hInst;
-		m_Atom		 = RegisterClassEx(m_hInst, DM_DEF_CLASS_NAME);
-		m_shadowAtom = RegisterClassEx(m_hInst, DM_DEF_SHADOWCLASS_NAME, true);
+		CStringW strAtom;strAtom.Format(L"%s_%d_%d",DM_DEF_CLASS_NAME,::GetTickCount(),::GetCurrentThreadId());
+		CStringW strShadowAtom;strShadowAtom.Format(L"%s_%d_%d",DM_DEF_SHADOWCLASS_NAME,::GetTickCount(),::GetCurrentThreadId());
+		m_Atom		 = RegisterClassEx(m_hInst, strAtom.GetBuffer());strAtom.ReleaseBuffer();
+		m_shadowAtom = RegisterClassEx(m_hInst, strShadowAtom.GetBuffer(), true);strShadowAtom.ReleaseBuffer();
 
 		// 全局变量初始化
 		m_fun_UpdateLayeredWindowIndirect = NULL;
