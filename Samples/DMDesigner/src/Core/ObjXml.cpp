@@ -637,13 +637,11 @@ DMCode ObjXml::ObjMenu_Del()
 			DUITabCtrl* pTabCtrl = dynamic_cast<DUITabCtrl*>(pParent);
 			pTabCtrl->RemoveItem(pData->m_pDUIWnd);
 		}
-		else if (0 == _wcsicmp(pData->m_pDUIWnd->V_GetClassName(),DUIHeaderCtrl::GetClassName()))
+		else if (0 == _wcsicmp(pData->m_pDUIWnd->V_GetClassName(),DUIHeaderCtrl::GetClassName())
+				&& (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName())))
 		{
-			if (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName()))
-			{
-				SetLogInfo(L"DUIHeaderCtrl不能被删除");
-				break;
-			}
+			SetLogInfo(L"DUIHeaderCtrl不能被删除");
+			break;
 		}
 		else if (pData->m_bPanel)
 		{
