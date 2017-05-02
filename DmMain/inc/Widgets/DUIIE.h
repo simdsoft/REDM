@@ -195,9 +195,9 @@ namespace DM
 		/// @brief 打开指定页面
 		/// @param[in]		pszURL		需要打开的url字符串
 		/// @return HRESULT，失败为S_FALSE
-		HRESULT OpenUrl(LPCWSTR pszURL);
+		HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0);
 
-		/// @brief 打开指定页面
+		/// @brief 获得当前页面
 		/// @param[in]		pszURL		接收当前url的字符串缓冲区
 		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
 		/// @return HRESULT，失败为S_FALSE

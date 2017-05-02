@@ -76,7 +76,7 @@ namespace DM
 		/// @brief		更新窗口到HDC上
 		/// @param[in]  hdc              要更新的hdc
 		/// @param[in]  rcInvalid        要更新的区域
-		void UpdateHWnd(HDC hdc,const CRect &rcInvalid,bool bUpdate = false);
+		virtual void UpdateHWnd(HDC hdc,const CRect &rcInvalid,bool bUpdate = false);
 		void RedrawAll();
 
 		//---------------------------------------------------

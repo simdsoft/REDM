@@ -78,13 +78,19 @@ namespace DM
 		return bRet;
 	}
 
+	bool DUIActiveX::SetActiveXRect(CRect rcPos)
+	{
+		if (m_pAxContainer && m_pAxContainer->ActiveXControl())
+		{
+			return SUCCEEDED(m_pAxContainer->OnPosRectChange(rcPos));      
+		}
+		return false;
+	}
+
 	void DUIActiveX::OnSize(UINT nType, CSize size)
 	{
 		__super::OnSize(nType,size);
-		if (m_pAxContainer && m_pAxContainer->ActiveXControl())
-		{
-			m_pAxContainer->OnPosRectChange(m_rcWindow);        
-		}
+		SetActiveXRect(m_rcWindow);
 	}
 
 	void DUIActiveX::DM_OnPaint(IDMCanvas* pCanvas)
@@ -100,10 +106,9 @@ namespace DM
 	void DUIActiveX::OnShowWindow(BOOL bShow, UINT nStatus)
 	{
 		__super::OnShowWindow(bShow, nStatus);
-
 		if (m_bDelayInit)
 		{
-			if (bShow&&false == m_bInit)// 窗口显示时才初始化
+			if (DM_IsVisible(true)&&false == m_bInit)// 窗口显示时才初始化
 			{
 				m_bInit = InitActiveX();
 			}

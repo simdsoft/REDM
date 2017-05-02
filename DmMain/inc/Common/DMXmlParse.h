@@ -174,6 +174,7 @@ namespace DM
 		/// @param[in]	value 属性的值
 		/// @return	新节点
 		bool SetAttribute(LPCWSTR name, LPCWSTR value,bool bAppend = true);
+		bool SetAttributeInt(LPCWSTR name, int value,bool bAppend = true);
 
 		/// -------------------------------------------------
 		/// @brief  移除name名字的属性

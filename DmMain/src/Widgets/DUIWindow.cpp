@@ -2006,7 +2006,14 @@ namespace DM
 	{
 		LOG_INFO("[start]");
 		DM_RemoveAllChildPanel();
-		DUIWindow *pChild = m_Node.m_pFirstChild;
+	
+		// 先清空,再释放,在flash游戏中,它调用DMActiveXSite::Clear时，有可能引起WM_ACTIVATEAPP,
+		// 而如果flash是中间窗口,由于m_pFirstChild已被释放(还在While循环,未置NULL),则可能异常
+		DUIWindowNode TempNode = m_Node;
+		m_Node.m_pFirstChild = m_Node.m_pLastChild=NULL;
+		m_Node.m_nChildrenCount = 0;
+
+		DUIWindow *pChild = TempNode.m_pFirstChild;
 		while (pChild)
 		{
 			DUIWindow *pNextChild = pChild->m_Node.m_pNextSibling;
@@ -2014,8 +2021,6 @@ namespace DM
 			pChild->Release();
 			pChild = pNextChild;
 		}
-		m_Node.m_pFirstChild =m_Node.m_pLastChild=NULL;
-		m_Node.m_nChildrenCount=0;
 		LOG_INFO("[end]");
 	}
 

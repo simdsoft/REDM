@@ -22,7 +22,7 @@ namespace DM
 	class IDMWebEvent
 	{
 	public:
-		virtual HRESULT BeforeNavigate2(DUIWND hWnd, DMIN IDispatch *pDisp, DMIN wchar_t *pUrl,DMIN int Flags,DMIN wchar_t *pTargetFrameName,DMIN wchar_t *pPostData,DMIN wchar_t *pHeaders,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
+		virtual HRESULT BeforeNavigate2(DUIWND hWnd, DMIN IDispatch *pDisp, DMIN wchar_t *pUrl,DMIN int Flags,DMIN wchar_t *pTargetFrameName,DMIN VARIANT *pPostData,DMIN wchar_t *pHeaders,DMINOUT VARIANT_BOOL *bCancel){return S_OK;}
 		virtual HRESULT ClientToHostWindow(DUIWND hWnd, DMIN long *pCx, DMINOUT long *pCy){return S_OK;}
 		virtual HRESULT CommandStateChange(DUIWND hWnd, DMIN LONG command, DMIN VARIANT_BOOL enable){return S_OK;}
 		virtual HRESULT DocumentComplete(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl){return S_OK;}
@@ -74,7 +74,7 @@ namespace DM
 		/// @brief 打开指定页面
 		/// @param[in]		pszURL		需要打开的url字符串
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT OpenUrl(LPCWSTR pszURL) = 0;
+		virtual HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0) = 0;
 
 		/// @brief 打开指定页面
 		/// @param[in]		pszURL		接收当前url的字符串缓冲区

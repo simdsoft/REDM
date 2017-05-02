@@ -43,6 +43,7 @@ namespace DM
 
 	public:
 		bool SetActiveXVisible(bool bVisible,bool bFocus = false);						///< For windowless objects, this method invalid
+		bool SetActiveXRect(CRect rcPos);
 		
 	public:
 		DM_BEGIN_MSG_MAP()
@@ -77,7 +78,7 @@ namespace DM
 	public:// ¸¨Öú
 		bool InitActiveX();
 		
-	protected:
+	public:
 		DMAxContainerImpl			*m_pAxContainer;
 		CLSID						 m_ClsId;
 		DWORD						 m_ClsCtx;

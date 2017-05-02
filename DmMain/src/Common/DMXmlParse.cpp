@@ -352,6 +352,13 @@ namespace DM
 		return bRet;
 	}
 
+	bool DMXmlNode::SetAttributeInt(LPCWSTR name, int value,bool bAppend /*= true*/)
+	{
+		DMBufT<wchar_t> pBuf;pBuf.Allocate(20);
+		swprintf_s(pBuf.get(),20,L"%d",value);
+		return SetAttribute(name,pBuf.get(),bAppend);
+	}
+
 	bool DMXmlNode::RemoveAttribute(LPCWSTR name)
 	{
 		bool bRet = false;

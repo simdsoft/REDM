@@ -56,10 +56,10 @@ namespace DM
 				wchar_t *pUrl	 = pDispParams->rgvarg[5].pvarVal->bstrVal; 
 				int Flags		 = pDispParams->rgvarg[4].pvarVal->intVal; 
 				wchar_t *TargetFrameName = pDispParams->rgvarg[3].pvarVal->bstrVal; 
-				wchar_t *PostData		 = pDispParams->rgvarg[2].pvarVal->bstrVal;
+				//wchar_t *PostData		 = pDispParams->rgvarg[2].pvarVal->bstrVal;
 				wchar_t *Headers		 = pDispParams->rgvarg[1].pvarVal->bstrVal;
 				VARIANT_BOOL *bCancel	 = pDispParams->rgvarg[0].pboolVal;
-				hr = m_pEvtHandler->BeforeNavigate2(m_hWnd,pDisp,pUrl,Flags,TargetFrameName,PostData,Headers,bCancel);
+				hr = m_pEvtHandler->BeforeNavigate2(m_hWnd,pDisp,pUrl,Flags,TargetFrameName,pDispParams->rgvarg+2,Headers,bCancel);
 			}
 			break;
 
@@ -528,6 +528,7 @@ namespace DM
 	{
 		g_pDMApp->RemoveMessageFilter(this);
 		RegisterEvtHandler(FALSE);
+		SetMsgHandled(FALSE);
 	}
 
 	void DUIIE::OnShowWindow(BOOL bShow, UINT nStatus)
@@ -535,7 +536,7 @@ namespace DM
 		DUIWindow::OnShowWindow(bShow,nStatus);
 		if (m_bDelayInit)
 		{
-			if (bShow&&false == m_bInit)// 窗口显示时才初始化
+			if (DM_IsVisible(true)&&false == m_bInit)// 窗口显示时才初始化
 			{
 				m_bInit = InitActiveX();
 			}
@@ -547,8 +548,8 @@ namespace DM
 				m_bInit = InitActiveX();
 			}
 		}
-
-		SetActiveXVisible(FALSE); // 在此处全部隐藏，在绘制处显示
+		
+		SetActiveXVisible(false);// 在此处全部隐藏，在绘制处显示
 	}
 
 	DMCode DUIIE::DV_OnAxActivate(IUnknown *pUnknwn)
@@ -681,18 +682,54 @@ namespace DM
 
 	}
 
-	HRESULT DUIIE::OpenUrl(LPCWSTR pszURL)
+	HRESULT DUIIE::OpenUrl(LPCWSTR pszURL,int iFlags /*= 0*/,LPCWSTR pszTargetFrameName /*= NULL*/,LPCWSTR pszHeaders /*= NULL*/, LPCSTR pszPostData /*= NULL*/, int iPostDataLen /*=0*/)
 	{
 		HRESULT hr = S_FALSE;
 		do 
 		{
+			if (!IsValidString(pszURL))
+			{
+				break;
+			}
+		
 			m_strUrl = pszURL;// 如果IE延迟加载，保证在延迟加载时使用新的URL
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
 			{
 				break;
 			}
-			hr = pWeb->Navigate(bstr_t(pszURL),NULL,NULL,NULL,NULL);
+			_variant_t vUrl(pszURL);
+			_variant_t vFlags((iFlags!=-1)?(long)iFlags:(long)navNoReadFromCache, VT_I4);
+			_variant_t vTargetFrameName;
+			_variant_t vPostData;
+			_variant_t vHeader;
+			_variant_t vNull;
+			
+			if (IsValidString(pszTargetFrameName)) 
+			{
+				vTargetFrameName = pszTargetFrameName;
+			}
+			if (IsValidString(pszHeaders))
+			{
+				vHeader = pszHeaders;
+			}
+			if (IsValidString(pszPostData) && iPostDataLen>0)
+			{
+				SAFEARRAYBOUND sab = {(ULONG)iPostDataLen,0};
+				SAFEARRAY* pSF = ::SafeArrayCreate(VT_UI1, 1, &sab);
+				for (ULONG lIndex = 0; lIndex < sab.cElements; lIndex++) 
+				{
+					::SafeArrayPutElement(pSF, (LONG*)&lIndex, (void*)(&pszPostData[lIndex]));
+				}
+				vPostData.vt = VT_ARRAY | VT_UI1;
+				vPostData.parray = pSF;
+				hr = pWeb->Navigate2(&vUrl, &vFlags, &vTargetFrameName, &vPostData, &vHeader);
+				::SafeArrayDestroy(pSF);
+			}
+			else
+			{
+				hr = pWeb->Navigate2(&vUrl, &vNull, &vTargetFrameName, &vNull, &vHeader);
+			}
 		} while (false);
 		return hr;
 	}
@@ -858,6 +895,11 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
+			if (m_strUrl.IsEmpty() || 0 == m_strUrl.CompareNoCase(L"about:blank"))
+			{
+				break;
+			}
+
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
 			{
@@ -874,6 +916,11 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
+			if (m_strUrl.IsEmpty() || 0 == m_strUrl.CompareNoCase(L"about:blank"))
+			{
+				break;
+			}
+
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
 			{
@@ -932,15 +979,20 @@ namespace DM
 			}
 			DMComQIPtr<IHTMLDocument2> spDoc;
 			hr = pWeb->get_Document(reinterpret_cast<IDispatch**>(&spDoc));
-			if (SUCCEEDED(hr) && spDoc) {
+			if (SUCCEEDED(hr) && spDoc)
+			{
 				DMComQIPtr<IHTMLWindow2> spWin;
 				hr = spDoc->get_parentWindow(&spWin);
-				if (SUCCEEDED(hr) && spWin) {
+				if (SUCCEEDED(hr) && spWin)
+				{
 					_variant_t vRetCode;
-					try {
+					try 
+					{
 						_bstr_t _bsScript(pszScript);
 						hr = spWin->execScript(_bsScript, L"JavaScript", &vRetCode);
-					} catch(...) {
+					} 
+					catch(...) 
+					{
 					}
 				}
 			}
@@ -961,17 +1013,21 @@ namespace DM
 			_variant_t _varErr;
 			DMComQIPtr<IDispatch>  pDisp;
 			hr = pWeb->get_Document(&pDisp);
-			if (SUCCEEDED(hr) && pDisp) {
+			if (SUCCEEDED(hr) && pDisp)
+			{
 				DMComQIPtr<IHTMLDocument2> spDoc;
 				hr = pDisp->QueryInterface(IID_IHTMLDocument2,(void**)&spDoc);
-				if (SUCCEEDED(hr) && spDoc) {
+				if (SUCCEEDED(hr) && spDoc)
+				{
 					DMComQIPtr<IDispatch> spScript;
 					hr = spDoc->get_Script(&spScript);
-					if (SUCCEEDED(hr) && spScript) {
+					if (SUCCEEDED(hr) && spScript) 
+					{
 						_bstr_t _bsMember(strFun);
 						DISPID _dispid = 0;
 						hr = spScript->GetIDsOfNames(IID_NULL, &_bsMember.GetBSTR(), 1, LOCALE_SYSTEM_DEFAULT, &_dispid);
-						if (SUCCEEDED(hr)) {
+						if (SUCCEEDED(hr))
+						{
 
 							DISPPARAMS _dispparams = { 0 };
 							_dispparams.cArgs = (UINT)vecParams.GetCount();
@@ -979,23 +1035,20 @@ namespace DM
 
 							// 以前没有CComBSTR::CopyTo出来BSTR没有释放，这里换成_variant_t。by ZC. 2011-12-30.
 							_variant_t* _vArrArg = new _variant_t[_dispparams.cArgs];
-							for (size_t i = 0;i < _dispparams.cArgs;i++) {
+							for (size_t i = 0;i < _dispparams.cArgs;i++)
+							{
 								size_t indx = vecParams.GetCount() - i - 1;
 								// 这里自动转化为BSTR。
 								_vArrArg[i] = vecParams[indx];
 							}
 							_dispparams.rgvarg = _vArrArg;
 
-							EXCEPINFO _excepinfo = { 0 };
+							EXCEPINFO _excepinfo = {0};
 							UINT _nArgErr = (UINT)-1;	//initialize to invalid arg
 
 							hr = spScript->Invoke(_dispid,IID_NULL,0,DISPATCH_METHOD,&_dispparams, &_varErr, &_excepinfo, &_nArgErr);
 
-							if(_vArrArg != NULL)
-							{
-								delete []_vArrArg;
-								_vArrArg = NULL;
-							}
+							DM_DELETE_ARRAY(_vArrArg);
 						}
 					}
 				}

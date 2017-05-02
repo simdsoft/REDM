@@ -38,6 +38,12 @@ namespace DM
 		int iRealInsert = iInsert;
 		do 
 		{
+			if (!XmlNode.IsValid())
+			{
+				iRealInsert = -1;
+				break;
+			}
+			
 			if (m_pTabAnimate)
 			{
 				m_pTabAnimate->StopFrame();
