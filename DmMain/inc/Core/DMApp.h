@@ -263,6 +263,12 @@ namespace DM
 		DMCode RemoveMessageFilter(IDMMessageFilter* pMessageFilter);
 
 		/// -------------------------------------------------
+		/// @brief			增加线程消息循环
+		/// @param[in]		pMessageFilter	 基于<see cref="IDMMessageFilter"/>
+		/// @return			DMCode
+		bool AddMessageLoop(DMMsgLoop* pMsgLoop);
+
+		/// -------------------------------------------------
 		/// @brief			初始化DMXmlDocument
 		/// @param[inout]	XmlDoc			 需要初始化的xml对象
 		/// @param[in]		lpszType		 类型

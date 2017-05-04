@@ -284,6 +284,11 @@ namespace DM
 		return iErr;
 	}
 
+	bool DMApp::AddMessageLoop(DMMsgLoop* pMsgLoop)
+	{
+		return g_pDMMsgLoopTool->AddMessageLoop(pMsgLoop);
+	}
+
 	DMCode DMApp::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCWSTR lpszType,LPCWSTR lpszResName)
 	{
 		return g_pDMAppData->InitDMXmlDocument(XmlDoc,lpszType,lpszResName);
