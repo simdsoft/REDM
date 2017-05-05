@@ -15,6 +15,7 @@ BEGIN_MSG_MAP(DMDesignerWnd)
 	MSG_WM_COMMAND(OnCommand)
 	MSG_WM_TIMER(OnTimer) 
 	CHAIN_MSG_MAP(DMHWnd)// 将未处理的消息交由DMHWnd处理
+	REFLECT_NOTIFICATIONS_EX()
 END_MSG_MAP() 
 BEGIN_EVENT_MAP(DMDesignerWnd)
 	EVENT_NAME_COMMAND(L"ds_closebutton",	OnClose)

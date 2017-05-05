@@ -63,6 +63,9 @@ INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/DmMain/inc
 					${DM_SOURCE_DIR}/DmMain/inc/Modules;
 					${DM_SOURCE_DIR}/DmMain/inc/Widgets;)
 					
+# 引用scintilla的头文件
+INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/3rdParty/scintilla/inc)
+					
 # 引用Plugin_Expand的头文件
 INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Designer/inc)
   

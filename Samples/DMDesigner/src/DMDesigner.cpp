@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
-// 
+//   
 // File name:	DMDesigner.h
 // File mark:    
 // File summary:入口    
@@ -52,9 +52,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	SetUnhandledExceptionFilter(&_UnhandledExceptionFilter);
 	OleInitialize(NULL);  
 	DMApp theApp(hInstance); 
-
 	Plugin plugin;
 	theApp.InstallPlugin(&plugin);
+	Scintilla_RegisterClasses(hInstance);
 
 
 	// 安装plugin，如果有需要!

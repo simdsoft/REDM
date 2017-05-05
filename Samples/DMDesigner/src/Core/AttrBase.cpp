@@ -16,8 +16,11 @@ AttrBase::AttrBase()
 
 AttrBase::~AttrBase()
 {
-	m_pObjTree->m_EventMgr.UnSubscribeEvent(DMEventTCSelChangedArgs::EventID, Subscriber(&AttrBase::OnObjTreeChanged, this));
-	m_pObjTree->m_EventMgr.UnSubscribeEvent(DUITreeExLockChangedArgs::EventID, Subscriber(&AttrBase::OnLockChanged, this));
+	if (m_pObjTree)
+	{
+		m_pObjTree->m_EventMgr.UnSubscribeEvent(DMEventTCSelChangedArgs::EventID, Subscriber(&AttrBase::OnObjTreeChanged, this));
+		m_pObjTree->m_EventMgr.UnSubscribeEvent(DUITreeExLockChangedArgs::EventID, Subscriber(&AttrBase::OnLockChanged, this));
+	}
 	m_pObjTree = NULL;
 	m_hObjSel  = NULL;
 	m_bMuted   = false;

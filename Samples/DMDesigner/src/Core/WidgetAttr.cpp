@@ -185,6 +185,13 @@ DMCode WidgetAttr::OnPropValueChanged(DMEventArgs *pEvt)
 			pData->m_pDoc->m_bChange = true;
 		}
 	} while (false);
+	// 通知XmlEditor更新
+	if (g_pMainWnd)
+	{
+		DUIXmlUpdateArgs Evt(g_pMainWnd);
+		Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_CHANGEPROP;
+		g_pMainWnd->DV_FireEvent(Evt);
+	}
 	return iErr;
 }
 
@@ -293,6 +300,14 @@ DMCode WidgetAttr::OnPropDel(DMEventArgs *pEvt)
 			}
 		}
 	} while (false);
+
+	// 通知XmlEditor更新
+	if (g_pMainWnd)
+	{
+		DUIXmlUpdateArgs Evt(g_pMainWnd);
+		Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_DELPROP;
+		g_pMainWnd->DV_FireEvent(Evt);
+	}
 	return iErr;
 }
 
@@ -407,8 +422,16 @@ DMCode WidgetAttr::OnTreeSel(AttrTree* pTree)
 			m_pPropStyle = dynamic_cast<PropString*>(pPropTemp);
 		}
 
+		// 通知XmlEditor更新
+		if (g_pMainWnd)
+		{
+			DUIXmlUpdateArgs Evt(g_pMainWnd);
+			Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_ADDPROP;
+			g_pMainWnd->DV_FireEvent(Evt);
+		}
 		iErr = DM_ECODE_OK;
 	} while (false);
+
 	return iErr;
 }
 

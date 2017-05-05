@@ -133,6 +133,13 @@ DMCode HostAttr::OnPropValueChanged(DMEventArgs *pEvt)
 			XmlNode.SetAttribute(strName,strValue);
 			pData->m_pDoc->m_bChange = true;
 		}
+		// 通知XmlEditor更新
+		if (g_pMainWnd)
+		{
+			DUIXmlUpdateArgs Evt(g_pMainWnd);
+			Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_CHANGEPROP;
+			g_pMainWnd->DV_FireEvent(Evt);
+		}
 	} while (false);
 	return iErr;
 }
@@ -185,9 +192,16 @@ DMCode HostAttr::OnPropDel(DMEventArgs *pEvt)
 			XmlNode.RemoveAttribute(strName);
 			pData->m_pDoc->m_bChange = true;
 		}
-
+		// 通知XmlEditor更新
+		if (g_pMainWnd)
+		{
+			DUIXmlUpdateArgs Evt(g_pMainWnd);
+			Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_DELPROP;
+			g_pMainWnd->DV_FireEvent(Evt);
+		}
 		iErr = DM_ECODE_OK;
 	} while (false);
+
 	return iErr;
 }
 
@@ -313,6 +327,14 @@ DMCode HostAttr::OnTreeSel(AttrTree* pTree)
 			{
 				m_pInitSize = dynamic_cast<PropSize*>(pPropTemp);
 			}
+		}
+
+		// 通知XmlEditor更新
+		if (g_pMainWnd)
+		{
+			DUIXmlUpdateArgs Evt(g_pMainWnd);
+			Evt.m_UpdateType = DUIXmlUpdateArgs::XMLUPDATE_ADDPROP;
+			g_pMainWnd->DV_FireEvent(Evt);
 		}
 
 		iErr = DM_ECODE_OK;

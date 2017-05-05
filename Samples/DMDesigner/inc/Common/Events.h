@@ -35,6 +35,9 @@ namespace DM
 
 		// DUIRecentListBox
 		DMEVT_DRLISTBOX_DBLCLICK = 24400,
+
+		// XmlEditor
+		DMEVT_XML_UPDATA = 24500,
 	};
 
 	/// <summary>
@@ -139,5 +142,19 @@ namespace DM
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_DRLISTBOX_DBLCLICK);}
 		CStringW                  m_strDir;
+	};
+
+	/// <summary>
+	///		Xml需要更新显示
+	/// </summary>
+	class DUIXmlUpdateArgs : public DMEventArgs
+	{
+	public:
+		DUIXmlUpdateArgs(DUIWindow *pWnd) :DMEventArgs(pWnd),m_UpdateType(XMLUPDATE_DELPROP){}
+		enum{EventID=DMEVT_XML_UPDATA};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_XML_UPDATA);}
+		enum{XMLUPDATE_DELPROP=0,XMLUPDATE_ADDPROP,XMLUPDATE_CHANGEPROP};
+		int						 m_UpdateType;
 	};
 }//namespace DM

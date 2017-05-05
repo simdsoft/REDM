@@ -6,6 +6,11 @@
 #include <time.h>
 #pragma comment(lib,"shell32.lib")
 
+// scintilla
+#include "scintilla.h"
+#include "SciLexer.h"
+#pragma comment(lib, "IMM32.lib")
+
 // DM
 #include "DmMainOutput.h"
 
@@ -23,9 +28,11 @@
 
 // lib
 #ifdef _DEBUG
+#pragma comment(lib, "scintilla_d.lib")
 #pragma comment(lib,"DmMain_d.lib")
 #else
 #pragma comment(lib,"DmMain.lib")
+#pragma comment(lib, "scintilla.lib")
 #endif
 
 using namespace DM;
@@ -77,7 +84,6 @@ using namespace DM;
 #include "ProjXml.h"
 #include "ObjXml.h"
 #include "DMDesignerWnd.h"
-
 
 #if _MSC_VER==1500
 #if !defined(_WIN64)

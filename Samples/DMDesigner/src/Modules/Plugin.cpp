@@ -8,6 +8,7 @@
 #include "TipsImpl.h"
 #include "DUIRoot.h"
 #include"NewResDlg.h"
+#include "XmlEditor.h"
 
   
     
@@ -44,6 +45,7 @@ void Plugin::Install()
 	g_pDMApp->Register(DMRegHelperT<DUIObjEditor>(),true);	
 	g_pDMApp->Register(DMRegHelperT<DUIRoot>(),true);
 	g_pDMApp->Register(DMRegHelperT<DUIRecentListBox>(),true);
+	g_pDMApp->Register(DMRegHelperT<DUIRealXml>(),true);
 	g_pDMApp->SetDefRegObj(Layout::GetClassName(),Layout::GetClassType());
 	g_pDMApp->SetDefRegObj(ResMultFolder::GetClassName(),ResMultFolder::GetClassType());
 }
