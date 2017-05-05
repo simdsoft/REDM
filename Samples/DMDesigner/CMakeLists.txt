@@ -95,6 +95,9 @@ add_dependencies(DMDesigner  DmMain)
 if(USE_DMDLL_)
 add_dependencies(DMDesigner  Plugin_Designer)
 endif()
+if(USE_DESIGNER_)
+add_dependencies(DMDesigner  scintilla)
+endif()
 
 #增加事件后命令
 add_custom_command(TARGET DMDesigner 

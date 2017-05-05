@@ -75,7 +75,7 @@ namespace DM
 
 			m_pfnSuperWindowProc = ::DefWindowProc;
 			hWnd = m_hWnd;
-			m_hWnd = NULL;
+			// ≤ª÷√ø’m_hWnd
 		}
 		return hWnd;
 	}

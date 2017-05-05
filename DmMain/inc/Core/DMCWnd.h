@@ -60,7 +60,7 @@ namespace DM
 		static LRESULT CALLBACK FirstWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		LRESULT DefWindowProc();
-		LRESULT DefWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam);
+		virtual LRESULT DefWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 		// copy from atlwin
 		LRESULT ForwardNotifications(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
