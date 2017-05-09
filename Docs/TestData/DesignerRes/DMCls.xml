@@ -75,6 +75,7 @@
 	</HeaderCtrl>
 	<ListCtrlEx>
 		<DUIListCtrlExAttr/>
+		<DUIScrollBaseAttr/>
 		<DUIWindowAttr/>
 		<DUIStyleAttr/>	
 	</ListCtrlEx>

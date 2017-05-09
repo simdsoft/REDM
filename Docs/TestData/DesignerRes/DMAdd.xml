@@ -62,8 +62,12 @@
 			<item width="100" text="HeaderCtrl2" />
 		</HeaderCtrl>
 		 <item>
-           <Button 	text="listctrlex 子项1" pos="5,5,@120,@20" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
-		   <Button 	text="listctrlex 子项2" pos="5,5,@120,@20" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
+           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+				<Button pos="5,5,@120,@20" text="listctrlex 子项1"  ncmargin="1,1,1,1" clrnc="pbgra(00,00,ff,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
+		   </Window>
+		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+				<Button pos="5,5,@120,@20" text="listctrlex 子项2"  ncmargin="1,1,1,1" clrnc="pbgra(00,00,ff,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
+		   </Window>
         </item>
 	</listctrlex>
 	<gif text="gif" 	 ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" badjust="1"/>
