@@ -120,6 +120,7 @@ namespace DM
 			MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 			MSG_WM_MOUSEMOVE(OnMouseMove)
+			MSG_WM_MOUSELEAVE(OnMouseLeave)
 			MSG_WM_KEYDOWN(OnKeyDown)
 			MSG_WM_CHAR(OnChar)
 			MSG_WM_SHOWWINDOW(OnShowWindow)
@@ -135,6 +136,7 @@ namespace DM
 		void OnLButtonDbClick(UINT nFlags,CPoint pt);
 		void OnLButtonUp(UINT nFlags,CPoint pt);
 		void OnMouseMove(UINT nFlags,CPoint pt);
+		void OnMouseLeave();
 		void OnKeyDown(TCHAR nChar,UINT nRepCnt,UINT nFlags);          // 支持上下箭头控制项
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnShowWindow(BOOL bShow, UINT nStatus);

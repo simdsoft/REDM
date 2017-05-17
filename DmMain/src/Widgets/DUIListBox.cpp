@@ -704,6 +704,14 @@ namespace DM
 		}
 	}
 
+	void DUIListBox::OnMouseLeave()
+	{
+		if (DM_IsVisible(true))// 加一个判断，防止非客户区在list隐藏时绘制
+		{
+			SetMsgHandled(FALSE);
+		}
+	}
+
 	void DUIListBox::OnKeyDown(TCHAR nChar, UINT nRepCnt, UINT nFlags)
 	{
 		do 
