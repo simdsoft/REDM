@@ -571,7 +571,7 @@ namespace DM
 						HWND hWnd = m_pAxHostDelegate->GetAxHostWindow();
 						if (FALSE==::IsWindow(hWnd))
 						{
-							LOG_INFO("[mid]hgy:窗口没初始化时不要初始化activeX,已被坑一次了！！！！！！！！！！！！！！");
+							LOG_ERR("[mid]hgy:窗口没初始化时不要初始化activeX,已被坑一次了！！！！！！！！！！！！！！");
 							hr = S_FALSE;
 							break;
 						}
@@ -593,7 +593,7 @@ namespace DM
 						HWND hWnd = m_pAxHostDelegate->GetAxHostWindow();
 						if (FALSE==::IsWindow(hWnd))
 						{
-							LOG_INFO("[mid]hgy:窗口没初始化时不要初始化activeX,已被坑一次了！！！！！！！！！！！！！！");
+							LOG_ERR("[mid]hgy:窗口没初始化时不要初始化activeX,已被坑一次了！！！！！！！！！！！！！！");
 							hr = S_FALSE;
 							break;
 						}

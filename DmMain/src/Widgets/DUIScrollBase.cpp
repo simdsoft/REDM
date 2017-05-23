@@ -1034,7 +1034,7 @@ namespace DM
 			rcSb = GetScrollBarRect(bVert);// 直接获取竖直的滚动条大小，之后代码就直接用DUIScrollBar.GetPartRect
 			if (rcSb.IsRectEmpty())
 			{
-				LOG_INFO("[mid]rcSb is Empty\n");
+				LOG_DEBUG("[mid]rcSb is Empty\n");
 				break;
 			}
 			int iArrowLen		= 0;   //0 上下箭头长度
@@ -1060,7 +1060,7 @@ namespace DM
 			}
 			if (0 == nAllLen)
 			{
-				LOG_INFO("[mid]length is zero\n");
+				LOG_DEBUG("[mid]length is zero\n");
 				break;
 			}
 			iPageAllLen = nAllLen-2*m_isbAllowSize; // 中间长度为总长度减去两个箭头长度
@@ -1130,13 +1130,13 @@ namespace DM
 		{
 			if (NULL == m_psbSkin)
 			{
-				LOG_INFO("[mid]m_pSbSkin is Empty\n");
+				LOG_DEBUG("[mid]m_pSbSkin is Empty\n");
 				break;
 			}
 			CRect rcSb = GetScrollBarRect(bVert);
 			if (rcSb.IsRectEmpty())
 			{
-				LOG_INFO("[mid]rcSb is Empty\n");
+				LOG_DEBUG("[mid]rcSb is Empty\n");
 				break;
 			}
 

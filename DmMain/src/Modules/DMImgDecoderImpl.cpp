@@ -371,7 +371,7 @@ namespace DM
 			HRESULT hr = pBmpDecoder->GetMetadataQueryReader(&pMetadataQueryReader);
 			if(!SUCCEEDED(hr))
 			{
-				LOG_INFO("[mid]-GetMetadataQueryReader:0x%08x\n",hr);
+				LOG_DEBUG("[mid]-GetMetadataQueryReader:0x%08x\n",hr);
 				break;
 			}
 

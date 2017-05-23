@@ -94,7 +94,6 @@ namespace DM
 
 	DMCode DMRegMgr::Register(IDMReg &RegObj, bool bReplace/*=false*/)
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		int RegType = RegObj.GetClassType();
 		switch (RegType)
@@ -122,13 +121,12 @@ namespace DM
 			break;
 		}
 			
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMRegMgr::CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType)
 	{
-		LOG_INFO("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
+		LOG_DEBUG("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
 		DMCode iErr = DM_ECODE_OK;
 
 		switch (RegType)
@@ -156,13 +154,12 @@ namespace DM
 			break;
 		}
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
+		LOG_DEBUG("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMRegMgr::UnRegister(LPCWSTR lpszClassName,int RegType)
 	{
-		LOG_INFO("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
 		DMCode iErr = DM_ECODE_OK;
 		switch (RegType)
 		{
@@ -188,13 +185,12 @@ namespace DM
 			}
 			break;
 		}
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMRegMgr::SetDefRegObj(LPCWSTR lpszClassName,int RegType)
 	{
-		LOG_INFO("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
+		LOG_DEBUG("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
 		DMCode iErr = DM_ECODE_OK;
 		switch (RegType)
 		{
@@ -220,13 +216,12 @@ namespace DM
 			}
 			break;
 		}
-		LOG_INFO("[end]iErr:%d\n",iErr);
+		LOG_DEBUG("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMRegMgr::GetDefRegObj(CStringW &szName,int RegType)
 	{
-		LOG_INFO("[start]RegType:%d\n", RegType);
 		DMCode iErr = DM_ECODE_OK;
 		switch (RegType)
 		{
@@ -252,7 +247,6 @@ namespace DM
 			}
 			break;
 		}
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 

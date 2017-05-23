@@ -254,7 +254,6 @@ namespace DM
 	*/
 	void DMContainerImpl::OnFrameMouseMove(UINT uFlag,CPoint pt)
 	{
-		LOG_INFO("[start]\n");
 		do 
 		{
 			DUIWindow *pCaptureWnd = g_pDMDWndPool->FindDUIWnd(m_hDUICaptureWnd);

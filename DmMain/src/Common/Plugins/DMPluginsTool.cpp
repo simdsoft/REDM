@@ -19,7 +19,7 @@ namespace DM
 
 	DMCode DMPluginsTool::LoadPlugins(const wchar_t* pPluginsFile/* = L"plugins.cfg"*/)
 	{
-		LOG_INFO("[start]\n");
+		LOG_DEBUG("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -46,7 +46,7 @@ namespace DM
 
 			ParsePluginCfg(szPath, szExeDir);
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
+		LOG_DEBUG("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
@@ -78,7 +78,7 @@ namespace DM
 
 	DMCode DMPluginsTool::LoadPlugin(const CStringW& strPluginName)
 	{
-		LOG_INFO("[start]\n");
+		LOG_DEBUG("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -117,7 +117,7 @@ namespace DM
 			pFunc();
 			m_LibsArray.Add(pLib);
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
+		LOG_DEBUG("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 

@@ -204,7 +204,6 @@ namespace DM
 	///----------------------------
 	DMCode DMImgListSkinImpl::OnAttributeGetImage(LPCWSTR pszValue, bool bLoadXml)
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -270,7 +269,6 @@ namespace DM
 
 		} while (false);
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 }//namespace DM

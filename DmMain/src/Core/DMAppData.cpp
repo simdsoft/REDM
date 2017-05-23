@@ -411,7 +411,6 @@ namespace DM
 	/// ¸¨Öú-----------------------------------------------
 	ATOM DMAppData::RegisterClassEx(HINSTANCE hInst, LPCWSTR lpClassName, bool bShadow/*=false*/)
 	{
-		LOG_INFO("[start]\n");
 		WNDCLASSEX wcex		  = {sizeof(WNDCLASSEX)};
 		wcex.style            = CS_HREDRAW | CS_VREDRAW |CS_DBLCLKS;
 
@@ -428,7 +427,6 @@ namespace DM
 		wcex.lpszClassName    = lpClassName;
 
 		ATOM atom = ::RegisterClassEx(&wcex);
-		LOG_INFO("[end]atom:%d\n",atom);
 		return atom;
 	}
 

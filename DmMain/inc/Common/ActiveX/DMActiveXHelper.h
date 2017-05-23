@@ -23,7 +23,7 @@
 static const GUID GUID_IWebBrowserApp = { 0x0002DF05, 0x0000, 0x0000, { 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 } };
 // {1B36028E-B491-4BB2-8584-8A9E0A677D6E}
 static const GUID GUID_IXcpControlHost = { 0x1B36028E, 0xB491, 0x4BB2, { 0x85, 0x84, 0x8A, 0x9E, 0x0A, 0x67, 0x7D, 0x6E } };
-#define DMTRACENOTIMPL(funcname) 	/*LOG_INFO(funcname); */return E_NOTIMPL
+#define DMTRACENOTIMPL(funcname) 	/*LOG_DEBUG(funcname); */return E_NOTIMPL
 
 #ifdef _DISABLE_NO_VTABLE
 #define DM_NO_VTABLE

@@ -17,8 +17,12 @@ namespace DM
 {
 	enum DMLOGLEVEL///LOG类型
 	{
-		DMLOG_INFO  = 0,///<正常类型
-		DMLOG_ERR	= 1,///<错误类型
+		DMLOG_TRACE = 0,		///<跟踪类型
+		DMLOG_DEBUG = 10000,	///<Debug类型
+		DMLOG_INFO  = 20000,	///<正常类型
+		DMLOG_WARN  = 30000,	///<警告类型
+		DMLOG_ERR   = 40000,	///<错误类型
+		DMLOG_FATAL = 50000,    ///<极其严重错误
 	};
 
 	/// <summary>

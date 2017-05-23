@@ -6,7 +6,6 @@ namespace DM
 
 	DMCode DMAttributeImpl::ParseInt(LPCWSTR lpszValue,int&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -24,13 +23,11 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMAttributeImpl::ParseBool(LPCWSTR lpszValue,bool&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -55,14 +52,13 @@ namespace DM
 			Obj = (0!=iValue);
 			iErr = DM_ECODE_OK;
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
+
 		return iErr;
 	}
 
 	// #ffffff»òrgb(ff,ff,ff)»òrgba(ff,ff,ff,ff)
 	DMCode DMAttributeImpl::ParseColor(LPCWSTR lpszValue,DMColor&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -127,13 +123,12 @@ namespace DM
 			Obj.SetRGBA(r,g,b,a);
 			iErr = DM_ECODE_OK;
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
+
 		return iErr;
 	}
 
 	DMCode DMAttributeImpl::ParseSize(LPCWSTR lpszValue,DM::CSize&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -154,13 +149,11 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;;
 	}
 
 	DMCode DMAttributeImpl::ParsePoint(LPCWSTR lpszValue,DM::CPoint&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -181,13 +174,11 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;;
 	}
 
 	DMCode DMAttributeImpl::ParseRect(LPCWSTR lpszValue,DM::CRect&Obj)
 	{
-		LOG_INFO("[start]lpszValue:%s\n",lpszValue);
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -209,7 +200,6 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 

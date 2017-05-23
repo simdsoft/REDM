@@ -344,7 +344,6 @@ namespace DM
 
 	DMCode DUIWindow::InitDMData(DMXmlNode &XmlNode)
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -375,7 +374,6 @@ namespace DM
 
 			DV_CreateChildWnds(XmlNode);
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
@@ -1742,7 +1740,6 @@ namespace DM
 	// Function Des:消息
 	LRESULT DUIWindow::DM_SendMessage(UINT uMsg, WPARAM wp /*= 0*/, LPARAM lp /*= 0*/,BOOL *pbMsgHandled/*=NULL*/)
 	{	
-		LOG_INFO("[start]uMsg:%u\n",uMsg);
 		LRESULT lResult = 0;
 		do 
 		{
@@ -1770,7 +1767,6 @@ namespace DM
 
 		} while (false);
 
-		LOG_INFO("[end]\n");
 		return lResult;
 	}
 
@@ -2004,7 +2000,6 @@ namespace DM
 
 	void DUIWindow::OnDestroy()
 	{
-		LOG_INFO("[start]");
 		DM_RemoveAllChildPanel();
 	
 		// 先清空,再释放,在flash游戏中,它调用DMActiveXSite::Clear时，有可能引起WM_ACTIVATEAPP,
@@ -2021,7 +2016,6 @@ namespace DM
 			pChild->Release();
 			pChild = pNextChild;
 		}
-		LOG_INFO("[end]");
 	}
 
 	void DUIWindow::OnSize(UINT nType, CSize size)

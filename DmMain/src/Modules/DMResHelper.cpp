@@ -30,9 +30,7 @@ namespace DM
 	// DMResFolderItem-----------------------------------
 	DMResFolderItem::~DMResFolderItem()
 	{
-		LOG_INFO("[start]m_Array-count:%d\n",GetCount());
 		RemoveAll();
-		LOG_INFO("[end]m_Array-count:%d\n",GetCount());
 	}
 
 	void DMResFolderItem::PreArrayObjRemove(const DMResItemPtr &obj)

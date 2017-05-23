@@ -124,7 +124,6 @@ namespace DM
 
 	HWND DMHWnd::DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow/*=false*/)
 	{
-	
 		do 
 		{
 			// 窗口已创建
@@ -166,7 +165,6 @@ namespace DM
 			g_pDMPluginTool->SetInit();
 		}
 
-		LOG_INFO("[end]m_hWnd:0x%08x\n",m_hWnd);
 		return m_hWnd;
 	}
 
@@ -237,7 +235,6 @@ namespace DM
 	//---------------------------------------------------
 	DMCode DMHWnd::LoadDMData(LPCWSTR lpszXmlId)
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -277,13 +274,11 @@ namespace DM
 			// root节点本身也是一个DUIWindow窗口对象，但是在这里必须是"root"才能识别，在这个节点中可以有DUIWindow的各种属性，但是和布局位置相关的属性自动无效，因为该窗口总是充满整个宿主窗口。
 			DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMHWnd::LoadDMData(void *pXmlBuf, size_t bufLen)
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -323,13 +318,11 @@ namespace DM
 			// root节点本身也是一个DUIWindow窗口对象，但是在这里必须是"root"才能识别，在这个节点中可以有DUIWindow的各种属性，但是和布局位置相关的属性自动无效，因为该窗口总是充满整个宿主窗口。
 			DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 
 	DMCode DMHWnd::InitFromDMData()
 	{
-		LOG_INFO("[start]\n");
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -399,7 +392,6 @@ namespace DM
 			// 最后绘制
 			RedrawAll();
 		} while (false);
-		LOG_INFO("[end]iErr:%d\n",iErr);
 		return iErr;
 	}
 

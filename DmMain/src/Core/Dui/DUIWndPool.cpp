@@ -131,7 +131,6 @@ namespace DM
 	DUIWindowPtr DUIWndPool::FindDUIWnd(DUIWND hDUIWnd)
 	{
 		DMAutoLock autolock(&m_Lock);
-		LOG_INFO("[start]hDUIWnd:%d\n",hDUIWnd);
 		DUIWindowPtr pDUIWindow = NULL;
 		do 
 		{
@@ -141,28 +140,21 @@ namespace DM
 			}
 			GetObjByKey(hDUIWnd,pDUIWindow);// °²È«²Ù×÷MAP
 		} while (false);
-		LOG_INFO("[end]pDUIWindow:0x%08x\n",pDUIWindow);
 		return pDUIWindow;
 	}
 
 	DUIWND DUIWndPool::NewDUIWnd(DUIWindowPtr pDUIWindow)
 	{
 		DMAutoLock autolock(&m_Lock);
-		LOG_INFO("[start]pDUIWindow:0x%08x\n",pDUIWindow);
 		DUIWND NewDUIWnd = ++ m_hNextWnd;
 		AddKey(NewDUIWnd,pDUIWindow);
-		LOG_INFO("[end]NewDUIWnd:%d\n",NewDUIWnd);
 		return NewDUIWnd;
 	}
 
 	bool DUIWndPool::DestoryDUIWnd(DUIWND hDUIWnd)
 	{
 		DMAutoLock autolock(&m_Lock);
-		LOG_INFO("[start]hDUIWnd:%d\n",hDUIWnd);
-		bool bRet = RemoveKey(hDUIWnd);
-		// todo.
-		LOG_INFO("[end]bRet:%d\n",bRet);
-		return bRet;
+		return RemoveKey(hDUIWnd);;
 	}
 
 	DMCode DUIWndPool::UpdateSkin(WPARAM wp, LPARAM lp)
