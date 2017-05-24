@@ -21,7 +21,7 @@ namespace DM
 		}
 #endif
 		DM::CStringW szLog;
-		szLog.Format(L"[SECCLI:DuiMagic][%s][%s][line:%d]%s",pszLogPrix[iLevel/10000],lpszFuncName,iLine,szLogBuf);
+		szLog.Format(L"[SECCLI:DuiMagic][%s][%s][line:%d]%s",pszLogPrix[iLevel],lpszFuncName,iLine,szLogBuf);
 		OutputDebugStringW(szLog);
 		return DM_ECODE_OK;
 	}
