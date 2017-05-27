@@ -3,7 +3,6 @@
 
 void DMEnvironment::SetUp()
 {
-	OleInitialize(NULL);
 	m_pDMApp = new DMApp(NULL);
 }
 

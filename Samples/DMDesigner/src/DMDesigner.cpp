@@ -50,7 +50,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 {     
 	SetUnhandledExceptionFilter(&_UnhandledExceptionFilter);
-	OleInitialize(NULL);  
 	DMApp theApp(hInstance); 
 	Plugin plugin;
 	theApp.InstallPlugin(&plugin);

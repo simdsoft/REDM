@@ -17,8 +17,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   LPTSTR    lpCmdLine,
 					   int       nCmdShow)
 {
-
-	OleInitialize(NULL);
 	DMCode iErr = DM_ECODE_OK;
 	DMApp theApp(hInstance);
 

@@ -8,6 +8,7 @@ namespace DM
 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc = NULL; 
 	DMApp::DMApp(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
+		OleInitialize(NULL);
 		// 开始初始化全局数据
 		new DMAppData(hInst);
 	}

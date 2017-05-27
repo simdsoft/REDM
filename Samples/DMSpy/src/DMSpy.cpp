@@ -8,7 +8,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   LPTSTR    lpCmdLine,
 					   int       nCmdShow)
 {
-	OleInitialize(NULL);
 	DMCode iErr = DM_ECODE_OK;
 	DMApp theApp(hInstance);
 	iErr = theApp.SetDefRegObj(L"DMResFolderImpl",DMREG_Res);// 设置使用内置的文件夹解析Res方式

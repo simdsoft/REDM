@@ -71,7 +71,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 {                      
 	SetUnhandledExceptionFilter(&_UnhandledExceptionFilter);
-	OleInitialize(NULL);
 	DMApp theApp(hInstance);
 	// 安装plugin，如果有需要!
 #ifdef DLL_DMMAIN// lib库下不支持插件
@@ -110,5 +109,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		pMainWnd->ShowWindow(SW_SHOW);
 		theApp.Run(pMainWnd->GetSafeHwnd());								    // 运行当前线程的消息循环，并加入消息队列管理中
 	} while (false);
+	
 	return (int) 0;
 }

@@ -26,7 +26,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   LPTSTR    lpCmdLine,
 					   int       nCmdShow)
 {                       
-	OleInitialize(NULL);
 	DMApp theApp(hInstance);   
 	// 安装plugin，如果有需要! 
 #ifdef DLL_DMMAIN// lib库下不支持插件
