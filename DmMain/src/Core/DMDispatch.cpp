@@ -58,7 +58,6 @@ namespace DM
 	}
 	DMCode DMLogDispatch::LogW(DMLOGLEVEL iLevel,LPCWSTR lpszFuncName, LPCWSTR lpszFileName, int iLine,LPCWSTR szFmt,...)
 	{
-		DMAutoLock autolock(&m_Lock);
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
@@ -67,6 +66,7 @@ namespace DM
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
+			DMAutoLock autolock(&m_Lock);
 			va_list arg;
 			va_start(arg, szFmt);
 			wchar_t szBuf[200] = {0};

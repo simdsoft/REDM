@@ -29,7 +29,7 @@
 	#pragma message("DmMain使用lib版本")
 	#define DM_EXPORT
 
-#endif// DLL_DUIMAGIC
+#endif// DLL_DMMAIN
 
 // 由于编译器对template要求声明和实现一起提供，所以产生此告警
 // 也可导出模板,如:template class DM_EXPORT CStringT<wchar_t>
