@@ -66,6 +66,7 @@ namespace DM
 			if (1 == m_ulFrameCount)
 			{// 单帧下可能是GIF，也可能是其他可被WIC解码的图片
 				DMAnimateFrame* pAnimateFrame = new DMAnimateFrame;
+				memset(pAnimateFrame,0,sizeof(DMAnimateFrame));
 				pRender->CreateBitmap(&pAnimateFrame->pBitmap);
 				DMSmartPtrT<IDMImgFrame> pImgFrame;
 				if (!DMSUCCEEDED(pImgDecoder->GetFrame(0,&pImgFrame)))
@@ -99,6 +100,7 @@ namespace DM
 			for (int i=0;i<(int)m_ulFrameCount;i++)
 			{
 				DMAnimateFrame* pAnimateFrame = new DMAnimateFrame;
+				memset(pAnimateFrame,0,sizeof(DMAnimateFrame));
 				pRender->CreateBitmap(&pAnimateFrame->pBitmap);
 				DMSmartPtrT<IDMImgFrame> pImgFrame;
 				if (!DMSUCCEEDED(pImgDecoder->GetFrame(i,&pImgFrame)))
