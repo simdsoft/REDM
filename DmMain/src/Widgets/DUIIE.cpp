@@ -625,9 +625,22 @@ namespace DM
 					}
 				}				
 			}
-			bool bCopy = PUSH_CTRL && (0x00000043 == pMsg->wParam);
+
 			HWND hwActive = GetActiveWindow();// 得到本线程的顶层激活窗口
-			if (hwActive != hWnd && !bCopy)
+			// 遍历父窗口，判断是否是在Active窗口列下
+			bool bActive = false;
+			HWND hParent = hWnd;
+			while (hParent)
+			{
+				if (hParent == hwActive)
+				{
+					bActive = true;
+					break;
+				}
+				hParent = ::GetParent(hParent);
+			}
+			
+			if (!bActive)
 			{
 				break;
 			}
@@ -635,10 +648,7 @@ namespace DM
 			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject = pWeb;
 			if (spInPlaceActiveObject)
 			{
-				if (pMsg->wParam != VK_BACK)//防止退格两次
-				{
-					spInPlaceActiveObject->TranslateAccelerator(pMsg);
-				}
+				bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;
 			}
 
 		} while (false);
