@@ -30,10 +30,11 @@ namespace DMAttr
 		static wchar_t* SIZE_range;                                     ///< 滚动范围,示例:range="1,100"
 		static wchar_t* POINT_curpos;                                   ///< 当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos="10,20"
 		static wchar_t* bool_bnowheelscroll;                            ///< 禁用滚轮滚动，示例:bnowheelscroll="1"
+		static wchar_t* bool_bpagesplit;                                ///< 默认为true,此时区分SB_PAGEUP+SB_PAGEDOWN(上下滑槽区域),为false表示(滑槽区域=上滑槽+滚动块+下滑槽),示例:bpagesplit="1"
 	};
 	DMAttrValueInit(DUIScrollBaseAttr,SKIN_sbskin)DMAttrValueInit(DUIScrollBaseAttr,INT_sbwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_arrowwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_minithumblen)
 	DMAttrValueInit(DUIScrollBaseAttr,OPTION_sbenable)DMAttrValueInit(DUIScrollBaseAttr,SIZE_range)
-	DMAttrValueInit(DUIScrollBaseAttr,POINT_curpos)DMAttrValueInit(DUIScrollBaseAttr,bool_bnowheelscroll)
+	DMAttrValueInit(DUIScrollBaseAttr,POINT_curpos)DMAttrValueInit(DUIScrollBaseAttr,bool_bnowheelscroll)DMAttrValueInit(DUIScrollBaseAttr,bool_bpagesplit)
 }
 
 
@@ -110,9 +111,9 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 重载
 		//---------------------------------------------------
-		DMCode DV_GetClientRect(LPRECT lpRect);									///< 此时计算宿主客户区要排除滚动条
+		DMCode DV_GetClientRect(LPRECT lpRect);										///< 此时计算宿主客户区要排除滚动条
 		DMCode DV_OnNcHitTest(CPoint pt);											///< 模拟非客户区
-		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);                               ///< 换肤
+		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);								    ///< 换肤
 		
 	public:
 		bool HasScrollBar(bool bVert);												///< 是否存在滚动条（水平/竖直）
@@ -130,6 +131,7 @@ namespace DM
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_bool_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::bool_bnowheelscroll,m_bnowheelscroll,DM_ECODE_OK)
+			DM_bool_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::bool_bpagesplit,m_bpagesplit,DM_ECODE_NOXMLLOADREFRESH)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::SKIN_sbskin, OnAttributesbSkin)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::INT_sbwidth,OnAttributesbWidth)
 			DM_INT_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::INT_arrowwidth,m_isbAllowSize,DM_ECODE_NOXMLLOADREFRESH)
@@ -147,6 +149,7 @@ namespace DM
 
 	public:
 		bool                        m_bnowheelscroll;   ///< 禁止通过滚轮滚动
+		bool                        m_bpagesplit;       ///< true时区分SB_PAGEUP+SB_PAGEDOWN(上下滑槽区域)
 		DMSmartPtrT<IDMSkin>        m_psbSkin;			///< 滚动条图形
 		CRect						m_rcsbClient;       ///< 当前客户区域(如果有滚动条，则除去滚动条)
 		int							m_isbWid;			///< 滚动条的宽度(默认水平和竖直滚动条宽度相同,就使用一个参数吧

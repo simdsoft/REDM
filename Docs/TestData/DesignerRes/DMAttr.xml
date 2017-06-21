@@ -71,6 +71,7 @@
 	SIZE_range="{-1,-1}滚动范围,示例:range=1,100" 
 	POINT_curpos="{0,0}当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos=10,20"
 	bool_bnowheelscroll="{0}禁用滚轮滚动，示例:bnowheelscroll=1" 
+	bool_bpagesplit="{1}默认为true,此时区分SB_PAGEUP+SB_PAGEDOWN(上下滑槽区域),为false表示(滑槽区域=上滑槽+滚动块+下滑槽),示例:bpagesplit=1"
 	/>
 	<DUITabPageAttr 
 	OPTION_animatetype="{0}动画类型,示例:animatetype=1,1:边展开,2:中心扩大,3:中心缩小"

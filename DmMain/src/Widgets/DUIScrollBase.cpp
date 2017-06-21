@@ -6,6 +6,7 @@ namespace DM
 	DUIScrollBase::DUIScrollBase()
 	{
 		m_bnowheelscroll        = false;
+		m_bpagesplit            = true;
 		m_isbWid				= -1;
 		m_isbAllowSize          = -1;
 		m_iMiniThumbLen         = 18;
@@ -505,11 +506,11 @@ namespace DM
 					rcDest = GetSbPartRect(bVert,SB_PAGEUP);		
 					DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NOACTIVE,bVert); // 滚动部分的槽
 
+					rcDest = GetSbPartRect(bVert,SB_PAGEDOWN);		
+					DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NOACTIVE,bVert);// 滚动部分的槽
+
 					rcDest = GetSbPartRect(bVert,SB_THUMBTRACK);	
 					DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,m_bsbDrag?DMSBST_PUSHDOWN:DMSBST_NOACTIVE,bVert); // 滚动部分
-
-					rcDest = GetSbPartRect(bVert,SB_PAGEDOWN);		
-					DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NOACTIVE,bVert);			// 滚动部分的槽
 
 					rcDest = GetSbPartRect(bVert,SB_LINEDOWN);		
 					if (WORD(-1) != m_sbInfo.sbCode&&bVert==m_sbInfo.bVert&&SB_LINEDOWN==m_sbInfo.sbCode)// 鼠标在下箭头上
@@ -836,11 +837,11 @@ namespace DM
 				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEUP);		 // 滚动部分的槽
 				DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,nState,m_sbInfo.bVert);
 
-				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);	 // 滚动部分
-				DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,nState,m_sbInfo.bVert);
-
 				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEDOWN);      // 滚动部分的槽
 				DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,nState,m_sbInfo.bVert);
+
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);	 // 滚动部分
+				DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,nState,m_sbInfo.bVert);
 
 				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_LINEDOWN);       // 向下箭头
 				DrawScrollBar(pCanvas,rcDest,SB_LINEDOWN,nState,m_sbInfo.bVert);
@@ -1104,10 +1105,20 @@ namespace DM
 			switch (uSBCode)
 			{
 			case SB_LINEUP: 	rcDest.SetRect(0,0,rcSb.Width(),iArrowLen);break;
-			case SB_PAGEUP:		rcDest.SetRect(0,iArrowLen,rcSb.Width(),iArrowLen+iPageUpLen); break;
 			case SB_THUMBTRACK: rcDest.SetRect(0,iArrowLen+iPageUpLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen);break;
-			case SB_PAGEDOWN:	rcDest.SetRect(0,iArrowLen+iPageUpLen+iThumbLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen+iPageDownLen);break;
 			case SB_LINEDOWN:   rcDest.SetRect(0,iArrowLen+iPageUpLen+iThumbLen+iPageDownLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen+iPageDownLen+iArrowLen);break;
+			case SB_PAGEUP:
+				{
+					if (m_bpagesplit)rcDest.SetRect(0,iArrowLen,rcSb.Width(),iArrowLen+iPageUpLen);
+					else			 rcDest.SetRect(0,iArrowLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen+iPageDownLen);
+				}
+				break;
+			case SB_PAGEDOWN:
+				{
+					if (m_bpagesplit)rcDest.SetRect(0,iArrowLen+iPageUpLen+iThumbLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen+iPageDownLen);
+					else			 rcDest.SetRect(0,iArrowLen,rcSb.Width(),iArrowLen+iPageUpLen+iThumbLen+iPageDownLen);
+				}
+				break;
 			default:            rcDest.SetRectEmpty();break;
 			}
 		} while (false);
