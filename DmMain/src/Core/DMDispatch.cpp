@@ -83,31 +83,9 @@ namespace DMAttr
 {
 	// ----------------------------------------------------
 	// 内部强制规定XML属性字符串定义方式
-#if defined(_DEBUG)|| defined(_DMDesigner_)
 	DM::DMLazyT<DM::DMXmlDocument>  DMInitAttrDispatch::m_pDoc;
-#endif
 	wchar_t* DMInitAttrDispatch::GetAttrValue(wchar_t* cls,wchar_t *pBuf)
 	{  
-#if defined(_DEBUG)|| defined(_DMDesigner_)
-		if (!m_pDoc->Root().IsValid())///< 自动调用DMXmlDocument构造初始化
-		{
-			m_pDoc->Base().InsertChildNode(L"root");
-		}
-		DM::DMXmlNode XmlChild = m_pDoc->Root().FirstChild();
-		while (XmlChild.IsValid())
-		{
-			if (0 == _wcsicmp(XmlChild.GetName(),cls))
-			{
-				break;
-			}
-			XmlChild = XmlChild.NextSibling();
-		}
-		if (!XmlChild.IsValid())// 未找到就插入
-		{
-			XmlChild = m_pDoc->Root().InsertChildNode(cls);
-		}
-		XmlChild.SetAttribute(pBuf,L"");
-#endif
 		wchar_t*pLow = wcsstr(pBuf,L"_");
 		if (!pLow){DMASSERT_EXPR(0,L"请使用类型_定义方式,如INT_ihei");}
 		pLow++;

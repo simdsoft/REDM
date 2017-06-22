@@ -311,9 +311,8 @@ namespace DM
 		CMap<CStringW,CStringW>					m_StrDataMap;
 		CArray<DUIWindowPtr>					m_ChildPanelArray;							///< 控件中包含的子容器列表
 	
-#if defined(_DEBUG)|| defined(_DMDesigner_)
-		CStringW								m_strXml;									///< 可提供给spy++显示
-		DMXmlNode                               m_XmlNode;                                  ///< 仅有design时有效,design中xmldoc一直是有效的，所有它的对象也会一直有效
-#endif 
+		//-----------------------------------------------------------------------------------------------
+		CStringW								m_strXml;									///< 仅debug下有效,可提供给spy++显示
+		DMXmlNode                               m_XmlNode;                                  ///< 仅设置_DMDesigner_宏时有效,design中xmldoc一直是有效的，所有它的对象也会一直有效
 	};
 }//namespace DM

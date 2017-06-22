@@ -283,7 +283,7 @@ DMCtrlXml::DMCtrlXml()
 	DM::GetRootFullPath(ATTR_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
-		DMAttr::DMInitAttrDispatch::m_pDoc->SaveXml(szPath);// 由DM库自动生成,此时没有注释
+		DMASSERT(L"未找到DMAttr.xml");
 	}
 	m_AttrDoc.LoadFromFile(szPath);
 
@@ -488,11 +488,6 @@ DMXmlNode DMCtrlXml::GetAttrNode(CStringW strNode)
 		}
 
 		XmlNode = RootNode.FirstChild(strNode);
-		if (!XmlNode.IsValid())// 如果不存在，就去DMAttr::DMInitAttrDispatch::m_pDoc中查找
-		{
-			DMXmlNode RootNodeTemp = DMAttr::DMInitAttrDispatch::m_pDoc->Root();
-			XmlNode = RootNodeTemp.FirstChild(strNode);
-		}
 	} while (false);
 	return XmlNode;
 }

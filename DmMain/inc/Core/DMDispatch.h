@@ -53,8 +53,5 @@ namespace DMAttr
 	{
 	public:
 		static wchar_t* GetAttrValue(wchar_t* cls,wchar_t *pBuf);
-#if defined(_DEBUG)|| defined(_DMDesigner_)
-	public:static DM::DMLazyT<DM::DMXmlDocument> m_pDoc;
-#endif
 	};
 }
