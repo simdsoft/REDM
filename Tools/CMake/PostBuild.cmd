@@ -1,5 +1,4 @@
 @echo off
-echo hgy copy dbghelp.dll start---------------------------------
 
 set batDir=%~dp0
 shift & set OutDir=%1
