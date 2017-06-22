@@ -386,10 +386,16 @@ namespace DM
 				if (m_psbSkin)
 				{// 点击时绘制点击状态和滚动块部分
 					DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
-					DrawScrollBar(pCanvas,rcRail,SB_PAGEDOWN,DMSBST_NORMAL,bVert);
+					CRect rcDest;
+					rcDest = GetSbPartRect(bVert,SB_PAGEUP);		 // 滚动部分的槽
+					DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,bVert);
+
+					rcDest = GetSbPartRect(bVert,SB_PAGEDOWN);      // 滚动部分的
+					DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,bVert);
+
 					psi->nTrackPos = -1;
-					CRect rcSlide = GetSbPartRect(bVert,SB_THUMBTRACK);
-					DrawScrollBar(pCanvas,rcSlide,SB_THUMBTRACK,DMSBST_NORMAL,bVert);
+					rcDest = GetSbPartRect(bVert,SB_THUMBTRACK);
+					DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_NORMAL,bVert);
 					DM_ReleaseCanvas(pCanvas);
 				}
 			}
@@ -487,7 +493,7 @@ namespace DM
 				{
 					int nState = (DM_IsDisable(bVert)||!IsScrollBarEnable(bVert))?DMSBST_DISABLE:DMSBST_NOACTIVE;
 					rcDest = GetSbPartRect(bVert,SB_LINEUP);	
-					if (WORD(-1) != m_sbInfo.sbCode&&bVert==m_sbInfo.bVert&&SB_LINEUP==m_sbInfo.sbCode)// 鼠标在上箭头上
+					if (-1 != (int)(m_sbInfo.sbCode)&&bVert==m_sbInfo.bVert&&SB_LINEUP==m_sbInfo.sbCode)// 鼠标在上箭头上
 					{
 						if (PUSH_LBUTTONDOWN)// 按下状态
 						{
@@ -513,7 +519,7 @@ namespace DM
 					DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,m_bsbDrag?DMSBST_PUSHDOWN:DMSBST_NOACTIVE,bVert); // 滚动部分
 
 					rcDest = GetSbPartRect(bVert,SB_LINEDOWN);		
-					if (WORD(-1) != m_sbInfo.sbCode&&bVert==m_sbInfo.bVert&&SB_LINEDOWN==m_sbInfo.sbCode)// 鼠标在下箭头上
+					if (WORD(-1) != (WORD)(m_sbInfo.sbCode)&&bVert==m_sbInfo.bVert&&SB_LINEDOWN==m_sbInfo.sbCode)// 鼠标在下箭头上
 					{
 						if (PUSH_LBUTTONDOWN)// 按下状态
 						{
@@ -546,7 +552,7 @@ namespace DM
 		do 
 		{
 			m_sbInfo = HitTest(point);
-			if (WORD(-1) ==m_sbInfo.sbCode					  // 鼠标点不在滚动条上
+			if (WORD(-1) == (WORD)(m_sbInfo.sbCode)					  // 鼠标点不在滚动条上
 				||false == IsScrollBarEnable(m_sbInfo.bVert)) // 滚动条为禁用状态
 			{
 				break;
@@ -571,10 +577,18 @@ namespace DM
 				m_sbDragPt = point;
 				m_isbDragPos = m_sbInfo.bVert?m_siVer.nPos:m_siHoz.nPos;
 				m_dwUpdateTime = GetTickCount()-m_dwUpdateInterval;// 让第一次滚动消息能够即时刷新
+				CRect rcRail = GetSbRailwayRect(m_sbInfo.bVert);// 除去边框的大小
+				// 恢复滑块状态
+				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
+				CRect rcDest;
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEUP);		 // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert);
 
-				CRect rcSlide = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);
-				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcSlide,DMOLEDC_PAINTBKGND,FALSE);
-				DrawScrollBar(pCanvas,rcSlide,SB_THUMBTRACK,DMSBST_PUSHDOWN,m_sbInfo.bVert);
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEDOWN);      // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,m_sbInfo.bVert);
+
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);
+				DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_PUSHDOWN,m_sbInfo.bVert);
 				DM_ReleaseCanvas(pCanvas);
 			}	
 
@@ -585,7 +599,7 @@ namespace DM
 	{
 		do 
 		{
-			if (WORD(-1) ==m_sbInfo.sbCode                  // 鼠标点不在滚动条上
+			if (WORD(-1) == (WORD)(m_sbInfo.sbCode)          // 鼠标点不在滚动条上
 				||false == IsScrollBarEnable(m_sbInfo.bVert))// 滚动条为禁用状态
 			{
 				break;
@@ -600,22 +614,20 @@ namespace DM
 					OnScroll(m_sbInfo.bVert,SB_THUMBPOSITION,psi->nTrackPos);
 				}
 
-				CRect rcRail = GetScrollBarRect(m_sbInfo.bVert);// 除去边框的大小
-				if (m_sbInfo.bVert) 
-				{
-					rcRail.DeflateRect(0,m_isbAllowSize);
-				}
-				else 
-				{
-					rcRail.DeflateRect(m_isbAllowSize,0);
-				}
+				CRect rcRail = GetSbRailwayRect(m_sbInfo.bVert);// 除去边框的大小
 
 				// 恢复滑块状态
 				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
-				DrawScrollBar(pCanvas,rcRail,SB_PAGEDOWN,DMSBST_NORMAL,m_sbInfo.bVert);
+				CRect rcDest;
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEUP);		 // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert);
+
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEDOWN);      // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,m_sbInfo.bVert);
+
 				psi->nTrackPos = -1;
-				CRect rcSlide = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);
-				DrawScrollBar(pCanvas,rcSlide,SB_THUMBTRACK,DMSBST_NORMAL,m_sbInfo.bVert);
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);
+				DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_NORMAL,m_sbInfo.bVert);
 				DM_ReleaseCanvas(pCanvas);
 			}
 			else 
@@ -649,16 +661,7 @@ namespace DM
 				{
 					break;
 				}
-				CRect rcSb = GetScrollBarRect(m_sbInfo.bVert);
-				CRect rcRail = rcSb;// 除去两箭头的槽长度
-				if (m_sbInfo.bVert) 
-				{
-					rcRail.DeflateRect(0,m_isbAllowSize);
-				}
-				else 
-				{
-					rcRail.DeflateRect(m_isbAllowSize,0);
-				}
+				CRect rcRail = GetSbRailwayRect(m_sbInfo.bVert);
 				int nInterHei  = m_sbInfo.bVert?rcRail.Height():rcRail.Width();
 				SCROLLINFO*psi = m_sbInfo.bVert?(&m_siVer):(&m_siHoz);
 				int nSlideLen  = GetSbSlideLength(m_sbInfo.bVert);
@@ -693,8 +696,15 @@ namespace DM
 				}
 
 				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
-				DrawScrollBar(pCanvas,rcRail,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert);
-				DrawScrollBar(pCanvas,rcSlide,SB_THUMBTRACK,DMSBST_PUSHDOWN,m_sbInfo.bVert);
+				CRect rcDest;
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEUP);		 // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert);
+
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_PAGEDOWN);      // 滚动部分的槽
+				DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,m_sbInfo.bVert);
+
+				rcDest = GetSbPartRect(m_sbInfo.bVert,SB_THUMBTRACK);
+				DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_PUSHDOWN,m_sbInfo.bVert);
 				DM_ReleaseCanvas(pCanvas);
 
 				if (nNewTrackPos!=psi->nTrackPos)
@@ -710,7 +720,7 @@ namespace DM
 			SBSTATEINFO uHitOrig = m_sbInfo;// 备份出来，防止在其它过程中修改
 
 			// ---------2.1非拖动状态下鼠标离开了滚动条------------
-			if (WORD(-1) == uHit.sbCode) 
+			if (WORD(-1) == (WORD)(uHit.sbCode)) 
 			{
 				OnNcMouseLeave();
 				break;// 结束！
@@ -720,10 +730,10 @@ namespace DM
 			if (uHit != uHitOrig)
 			{
 				// ---------2.2.1非拖动状态下鼠标进入了当前滚动条------------
-				if (WORD(-1) == uHitOrig.sbCode|| uHitOrig.bVert != uHit.bVert)// 原始滚动条不存在或当前滚动条和原始滚动条不是同一！
+				if (WORD(-1) == (WORD)(uHitOrig.sbCode)|| uHitOrig.bVert != uHit.bVert)// 原始滚动条不存在或当前滚动条和原始滚动条不是同一！
 				{
 					// ---------2.2.1非拖动状态下原始滚动条失效--------------
-					if (WORD(-1) != uHitOrig.sbCode)// 满足uHitOrig.bVert != uHit.bVert时
+					if (WORD(-1) != (WORD)(uHitOrig.sbCode))// 满足uHitOrig.bVert != uHit.bVert时
 					{
 						OnNcMouseLeave();//切换滚动条，源滚动条失活
 					}
@@ -748,17 +758,16 @@ namespace DM
 							rcDest = GetSbPartRect(uHit.bVert,SB_LINEDOWN);
 							DrawScrollBar(pCanvas,rcDest,SB_LINEDOWN,DMSBST_NORMAL,uHit.bVert);
 						}
-						if (SB_THUMBTRACK!=uHit.sbCode)
-						{
-							rcDest = GetSbPartRect(uHit.bVert,SB_THUMBTRACK);
-							DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_NORMAL,uHit.bVert);
-						}
-
 						// 前面都是恢复默认状态，后面是直接绘制hover状态
 						//if (SB_PAGEUP!=uHit.sbCode&&SB_PAGEDOWN!=uHit.sbCode)
 						{
 							rcDest = GetSbPartRect(uHit.bVert,uHit.sbCode);
 							DrawScrollBar(pCanvas,rcDest,uHit.sbCode,DMSBST_HOVER,uHit.bVert);
+						}
+						if (SB_PAGEUP==uHit.sbCode||SB_PAGEDOWN==uHit.sbCode)// 不能让thumb被覆盖了
+						{
+							rcDest = GetSbPartRect(uHit.bVert,SB_THUMBTRACK);
+							DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_NORMAL,uHit.bVert);
 						}
 						DM_ReleaseCanvas(pCanvas);
 					}
@@ -776,11 +785,17 @@ namespace DM
 						}
 						else if (SB_THUMBTRACK == uHitOrig.sbCode)
 						{//需要先画轨道，再画拖动条,以处理拖动条可能出现的半透明
-							CRect rc = GetSbRailwayRect(uHitOrig.bVert);
-							DMSmartPtrT<IDMCanvas> pCanvas=DM_GetCanvas(&rc,DMOLEDC_PAINTBKGND,FALSE);
-							DrawScrollBar(pCanvas,rc,SB_PAGEUP,DMSBST_NORMAL,uHitOrig.bVert);
-							rc = GetSbPartRect(uHitOrig.bVert,SB_THUMBTRACK);
-							DrawScrollBar(pCanvas,rc,SB_THUMBTRACK,DMSBST_NORMAL,uHitOrig.bVert);
+							CRect rcRail = GetSbRailwayRect(uHitOrig.bVert);
+							DMSmartPtrT<IDMCanvas> pCanvas=DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
+							CRect rcDest;
+							rcDest = GetSbPartRect(uHitOrig.bVert,SB_PAGEUP);		 // 滚动部分的槽
+							DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,uHitOrig.bVert);
+
+							rcDest = GetSbPartRect(uHitOrig.bVert,SB_PAGEDOWN);      // 滚动部分的槽
+							DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,uHitOrig.bVert);
+
+							rcDest = GetSbPartRect(uHitOrig.bVert,SB_THUMBTRACK);
+							DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_NORMAL,uHitOrig.bVert);
 							DM_ReleaseCanvas(pCanvas);
 						}
 					}
@@ -796,18 +811,23 @@ namespace DM
 						}
 						else if(SB_THUMBTRACK == uHit.sbCode)
 						{// 需要先画轨道，再画拖动条,以处理拖动条可能出现的半透明
-							CRect rc = GetSbRailwayRect(uHit.bVert);
-							DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rc,DMOLEDC_PAINTBKGND,FALSE);
-							DrawScrollBar(pCanvas,rc,SB_PAGEUP,DMSBST_NORMAL,uHit.bVert);
-							rc = GetSbPartRect(uHit.bVert,SB_THUMBTRACK);
-							DrawScrollBar(pCanvas,rc,SB_THUMBTRACK,DMSBST_HOVER,uHit.bVert);
+							CRect rcRail = GetSbRailwayRect(uHit.bVert);
+							DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
+							CRect rcDest;
+							rcDest = GetSbPartRect(uHit.bVert,SB_PAGEUP);		 // 滚动部分的槽
+							DrawScrollBar(pCanvas,rcDest,SB_PAGEUP,DMSBST_NORMAL,uHit.bVert);
+
+							rcDest = GetSbPartRect(uHit.bVert,SB_PAGEDOWN);      // 滚动部分的槽
+							DrawScrollBar(pCanvas,rcDest,SB_PAGEDOWN,DMSBST_NORMAL,uHit.bVert);
+
+							rcDest = GetSbPartRect(uHit.bVert,SB_THUMBTRACK);
+							DrawScrollBar(pCanvas,rcDest,SB_THUMBTRACK,DMSBST_HOVER,uHit.bVert);
 							DM_ReleaseCanvas(pCanvas);
 						}
 					}
 				}
 				m_sbInfo = uHit;      //  更新状态，只在未拖动状态下更新，不然ButtonUp就没法释放了
 			}
-
 		} while (false);
 	}
 
@@ -820,7 +840,7 @@ namespace DM
 				break;
 			}
 
-			if (m_bsbDrag||WORD(-1)==m_sbInfo.sbCode)
+			if (m_bsbDrag||WORD(-1)==(WORD)(m_sbInfo.sbCode))
 			{
 				break;
 			}
@@ -1194,7 +1214,7 @@ namespace DM
 			{
 				break;
 			}
-
+			DMAutoResetT<bool> bAutosplit(&m_bpagesplit,true);
 			CRect rc;// 和DUIScrollBar保持一致，以便后续整合
 			rc = GetSbPartRect(hi.bVert,SB_LINEUP);    if (rc.PtInRect(pt)) {hi.sbCode=SB_LINEUP;break;}
 			rc = GetSbPartRect(hi.bVert,SB_LINEDOWN);  if (rc.PtInRect(pt)) {hi.sbCode= SB_LINEDOWN;break;}
@@ -1237,7 +1257,7 @@ namespace DM
 	{
 		do 
 		{
-			if (!m_psbSkin||NULL == pCanvas)
+			if (!m_psbSkin||NULL == pCanvas||NULL == lpRectDraw)
 			{
 				break;
 			}
@@ -1245,7 +1265,12 @@ namespace DM
 			{
 				iState = DMSBST_DISABLE;
 			}
-			m_psbSkin->Draw(pCanvas,lpRectDraw,MAKESBSTATE(iSbCode,iState,bVert),alpha);
+			CRect rcDraw = lpRectDraw;
+			if (rcDraw.IsRectEmpty())
+			{
+				break;
+			}
+			m_psbSkin->Draw(pCanvas,rcDraw,MAKESBSTATE(iSbCode,iState,bVert),alpha);
 		} while (false);
 	}
 

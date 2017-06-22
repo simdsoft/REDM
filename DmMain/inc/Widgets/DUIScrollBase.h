@@ -23,7 +23,7 @@ namespace DMAttr
 	{
 	public:
 		static wchar_t* SKIN_sbskin;								    ///< 滚动条图片,示例:sbskin="ScrollBar"
-		static wchar_t* INT_sbwidth;									///< 滚动条的宽度，默认为16,示例:sbwidth="16"
+		static wchar_t* INT_sbwidth;									///< 滚动条的宽度，默认为-1(滚动条图片宽/9),示例:sbwidth="16"
 		static wchar_t* INT_arrowwidth;                                 ///< 上下（左右）箭头的高度(宽度),示例:arrowwidth="10"
 		static wchar_t* INT_minithumblen;								///< 最小滚轮高度, 默认18, 示例:minithumblen="18"
 		static wchar_t* OPTION_sbenable;							    ///< 是否启用滚动条,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT,示例:sbenable="1"
