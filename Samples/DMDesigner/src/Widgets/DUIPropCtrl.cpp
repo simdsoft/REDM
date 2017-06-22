@@ -239,8 +239,8 @@ namespace DM
 			m_pPropList->m_iLeftColWid = rcClient.Width();
 		}
 		int iRightColWid = rcClient.Width() - m_pPropList->m_iLeftColWid;
-		m_pHeadCtrl->SetItemWidth(0,m_pPropList->m_iLeftColWid);
-		m_pHeadCtrl->SetItemWidth(1,iRightColWid);
+		m_pHeadCtrl->SetItemWidth(0,m_pPropList->m_iLeftColWid,false);
+		m_pHeadCtrl->SetItemWidth(1,iRightColWid,false);
 		AdjustLayout();
 		m_pPropList->DM_Invalidate();
 		return DM_ECODE_OK;

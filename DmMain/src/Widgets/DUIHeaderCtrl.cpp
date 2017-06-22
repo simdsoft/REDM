@@ -149,7 +149,7 @@ namespace DM
 		return m_DMArray[iItem]->cxy;
 	}
 
-	int DUIHeaderCtrl::SetItemWidth(int iItem,int iWid)
+	int DUIHeaderCtrl::SetItemWidth(int iItem,int iWid,bool bFire/*=true*/)
 	{
 		int iRet = -1;
 		do 
@@ -164,17 +164,20 @@ namespace DM
 			iRet = m_DMArray[iItem]->cxy;
 			m_DMArray[iItem]->cxy = iWid;
 
-			// 两消息同时发,listctrlex需要DMEventHeaderItemChangingArgs来动态更新scroll
-			DMEventHeaderItemChangingArgs Evt(this);
-			Evt.m_iItem  = iItem;
-			Evt.m_nWidth = iWid;
-			DV_FireEvent(Evt);
+			if (bFire)
+			{
+				// 两消息同时发,listctrlex需要DMEventHeaderItemChangingArgs来动态更新scroll
+				DMEventHeaderItemChangingArgs Evt(this);
+				Evt.m_iItem  = iItem;
+				Evt.m_nWidth = iWid;
+				DV_FireEvent(Evt);
 
-			DMEventHeaderItemChangedArgs Evt1(this);
-			Evt1.m_iItem  = iItem;
-			Evt1.m_nWidth = iWid;
-			DV_FireEvent(Evt1);
-
+				DMEventHeaderItemChangedArgs Evt1(this);
+				Evt1.m_iItem  = iItem;
+				Evt1.m_nWidth = iWid;
+				DV_FireEvent(Evt1);
+			}
+			
 			DM_Invalidate();
 		} while (false);
 		return iRet;

@@ -115,7 +115,7 @@ namespace DM
 		size_t GetItemCount() ;
 		int GetTotalWidth();
 		int GetItemWidth(int iItem);
-		int SetItemWidth(int iItem,int iWid);
+		int SetItemWidth(int iItem,int iWid,bool bFire=true);
 		bool DeleteItem(int iItem);
 		void DeleteAllItems();
 
