@@ -83,7 +83,6 @@ namespace DMAttr
 {
 	// ----------------------------------------------------
 	// 内部强制规定XML属性字符串定义方式
-	DM::DMLazyT<DM::DMXmlDocument>  DMInitAttrDispatch::m_pDoc;
 	wchar_t* DMInitAttrDispatch::GetAttrValue(wchar_t* cls,wchar_t *pBuf)
 	{  
 		wchar_t*pLow = wcsstr(pBuf,L"_");
