@@ -27,8 +27,12 @@ namespace DM
 			m_hModule = ::LoadLibraryExW(szPath, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 			if (NULL == m_hModule)
 			{
-				DMASSERT_EXPR(NULL != m_hModule,DynlibError());
-				break;
+				m_hModule = ::LoadLibraryW(szPath);
+				if (NULL == m_hModule)
+				{
+					DMASSERT_EXPR(NULL != m_hModule,DynlibError());
+					break;
+				}
 			}
 
 			bRet = true;

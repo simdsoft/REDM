@@ -126,7 +126,19 @@ namespace DM
 		/// @brief			卸载插件
 		/// @param[in]		plugin			  继承于<see cref="IDMPlugin"/>
 		/// @return			DMCode
-		DMCode UninstallPlugin(IDMPlugin* plugin);		
+		DMCode UninstallPlugin(IDMPlugin* plugin);	
+
+		/// -------------------------------------------------
+		/// @brief			调用全部插件的初始化
+		/// @param[in]		plugin			  继承于<see cref="IDMPlugin"/>
+		/// @return			DMCode
+		DMCode InitialisePlugins();
+
+		/// -------------------------------------------------
+		/// @brief			调用全部插件的反初始化
+		/// @param[in]		plugin			  继承于<see cref="IDMPlugin"/>
+		/// @return			DMCode
+		DMCode ShutdownPlugins();
 
 		//----------------------------------------------------------------------
 		// Function Des: 解析资源Res

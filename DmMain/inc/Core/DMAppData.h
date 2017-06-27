@@ -90,6 +90,8 @@ namespace DM
 		DMCode LoadPlugin(LPCWSTR lpszPluginName);
 		DMCode InstallPlugin(IDMPlugin* plugin);
 		DMCode UninstallPlugin(IDMPlugin* plugin);
+		DMCode InitialisePlugins();
+		DMCode ShutdownPlugins();
 
 		//---------------------------------------------------
 		// Function Des: ½âÎö×ÊÔ´Res

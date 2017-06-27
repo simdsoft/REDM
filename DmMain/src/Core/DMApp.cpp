@@ -94,6 +94,16 @@ namespace DM
 		return g_pDMAppData->UninstallPlugin(plugin);
 	}
 
+	DMCode DMApp::InitialisePlugins()
+	{
+		return g_pDMAppData->InitialisePlugins();
+	}
+
+	DMCode DMApp::ShutdownPlugins()
+	{
+		return g_pDMAppData->ShutdownPlugins();
+	}
+
 	/// ½âÎö×ÊÔ´Res--------------------------------------
 	DMCode DMApp::LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName)
 	{

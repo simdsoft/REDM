@@ -308,6 +308,18 @@ namespace DM
 		return m_PluginsTool->UninstallPlugin(plugin);
 	}
 
+	DMCode DMAppData::InitialisePlugins()
+	{
+		m_PluginsTool->InitialisePlugins();
+		return DM_ECODE_OK;
+	}
+
+	DMCode DMAppData::ShutdownPlugins()
+	{
+		m_PluginsTool->ShutdownPlugins();
+		return DM_ECODE_OK;
+	}
+
 	/// ½âÎö×ÊÔ´Res-----------------------------------------
 	DMCode DMAppData::LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName)
 	{
