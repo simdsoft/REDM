@@ -81,6 +81,7 @@
 	</ListCtrlEx>
 	<TreeCtrlEx>
 		<DUITreeCtrlExAttr/>
+		<DUIScrollBaseAttr/>
 		<DUIWindowAttr/>
 		<DUIStyleAttr/>	
 	</TreeCtrlEx>
