@@ -2146,36 +2146,21 @@ namespace DM
 
 	void DUIWindow::OnMouseHover(WPARAM wParam,CPoint ptPos)
 	{
-		//if (0!=m_pDUIXmlInfo->m_iID
-		//	||!m_pDUIXmlInfo->m_strName.IsEmpty())
-		//{
-		//	DMEventHoverCmdArgs Evt(this);
-		//	DV_FireEvent(Evt);
-		//}
-
 		if (m_hDUIWnd == DM_GetCapture())
 		{
 			DM_ModifyState(DUIWNDSTATE_PushDown, 0, false);
 		}
 
 		DM_ModifyState(DUIWNDSTATE_Hover, 0, true);
-		DM_OnNcPaint(0);
 	}
 
 	void DUIWindow::OnMouseLeave()
 	{
-		//if (0!=m_pDUIXmlInfo->m_iID
-		//	||!m_pDUIXmlInfo->m_strName.IsEmpty())
-		//{
-		//	DMEventLeaveCmdArgs Evt(this);
-		//	DV_FireEvent(Evt);
-		//}
 		if (m_hDUIWnd == DM_GetCapture())
 		{
 			DM_ModifyState(0, DUIWNDSTATE_PushDown, false);
 		}
-		DM_ModifyState(0, DUIWNDSTATE_Hover, true);//
-		DM_OnNcPaint(0);
+		DM_ModifyState(0, DUIWNDSTATE_Hover, true);
 	}
 
 	BOOL DUIWindow::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
