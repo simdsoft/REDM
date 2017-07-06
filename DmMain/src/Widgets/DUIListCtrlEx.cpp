@@ -10,8 +10,10 @@ namespace DM
 		m_iHoverItem     = -1;
 		m_iHeaderHei     = 20;
 		m_iDefItemHei    = 20;
-		m_crItemBg.SetTextInvalid();
-		m_crItemSelBg.SetTextInvalid();
+		for (int i=0;i<3;i++)
+		{
+			m_crItemBg[i].SetTextInvalid();
+		}
 		m_bHotTrack      = false;
 		m_pDUIXmlInfo->m_bFocusable = true;
 
@@ -20,7 +22,6 @@ namespace DM
 		DMADDEVENT(DMEventLCSelChangingArgs::EventID);
 		DMADDEVENT(DMEventLCSelChangedArgs::EventID);
 		DMADDEVENT(DMEventLCItemDeletedArgs::EventID);
-
 	}
 
 	DUIListCtrlEx::~DUIListCtrlEx()
@@ -52,7 +53,7 @@ namespace DM
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
 
-			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg);/// 默认背景色
+			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg[0]);/// 默认背景色
 
 			// 初始化布局
 			CRect rcLayout(0,0,m_pHeaderCtrl->GetTotalWidth(),pNewItem->nHeight);
@@ -195,13 +196,13 @@ namespace DM
 			if (-1 != nOldSel)
 			{
 				m_DMArray[nOldSel]->pPanel->ModifyState(0,DUIWNDSTATE_Check);
-				ModifyPanelBgClr(m_DMArray[nOldSel]->pPanel,m_crItemBg);
+				ModifyPanelBgClr(m_DMArray[nOldSel]->pPanel,m_crItemBg[0]);
 				RedrawItem(nOldSel);
 			}
 			if (-1 != m_iSelItem)
 			{
 				m_DMArray[m_iSelItem]->pPanel->ModifyState(DUIWNDSTATE_Check,0);
-				ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemSelBg);
+				ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemBg[2]);
 				RedrawItem(m_iSelItem);
 			}
 
@@ -209,6 +210,45 @@ namespace DM
 			evt2.m_nOldSel = nOldSel;
 			evt2.m_nNewSel = m_iSelItem;
 			DV_FireEvent(evt2);
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
+
+	bool DUIListCtrlEx::SetCurHover(int nIndex)
+	{
+		bool bRet = false;
+		do 
+		{
+			if (nIndex>=(int)GetCount())
+			{
+				break;
+			}
+
+			if (nIndex<0)
+			{
+				nIndex = -1;
+			}
+
+			if (m_iHoverItem==nIndex)
+			{
+				break;
+			}
+
+			int nOldHover = m_iHoverItem;
+			m_iHoverItem  = nIndex;
+			if (-1 != nOldHover&&nOldHover != m_iSelItem)
+			{
+				m_DMArray[nOldHover]->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
+				ModifyPanelBgClr(m_DMArray[nOldHover]->pPanel,m_crItemBg[0]);
+				RedrawItem(nOldHover);
+			}
+			if (-1 != m_iHoverItem&&m_iHoverItem != m_iSelItem)
+			{
+				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover,0);
+				ModifyPanelBgClr(m_DMArray[m_iHoverItem]->pPanel,m_crItemBg[1]);
+				RedrawItem(m_iHoverItem);
+			}
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -247,10 +287,11 @@ namespace DM
 			if (m_iHoverItem==nIndex) 
 			{
 				m_iHoverItem = -1;
-			}
+			}	
 			else if (m_iHoverItem>nIndex) 
 			{
 				m_iHoverItem--;
+				
 			}
 			UpdateItemPanelId(nIndex,-1);
 			SetLCScrollRange();
@@ -538,7 +579,7 @@ namespace DM
 		if (-1!=m_iHoverItem)
 		{
 			int nOldHover = m_iHoverItem;
-			m_iHoverItem  = -1;
+			SetCurHover(-1);
 			m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
 		}
 	}
@@ -631,21 +672,19 @@ namespace DM
 			if (iHoverItem != m_iHoverItem)
 			{
 				int iOldHoverItem = m_iHoverItem;
-				m_iHoverItem  = iHoverItem;
+				SetCurHover(iHoverItem);
 				if (-1!=iOldHoverItem)
 				{
-					RedrawItem(iOldHoverItem);
 					m_DMArray[iOldHoverItem]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
 				}
 
 				if (-1!=m_iHoverItem)
 				{
-					RedrawItem(m_iHoverItem);
 					m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_MOUSEHOVER,wParam,MAKELPARAM(pt.x,pt.y));
 				}
 			}
 			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
-				&& m_iSelItem != m_iHoverItem )
+				&& m_iSelItem != m_iHoverItem)
 			{///原有行失去焦点
 				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
 			}
@@ -952,7 +991,6 @@ namespace DM
 
 		DM_InvalidateRect(m_rcWindow);
 	}
-
 	//
 	void DUIListCtrlEx::PreArrayObjRemove(const LPLCITEMEX &obj)
 	{
@@ -975,7 +1013,7 @@ namespace DM
 						{
 							if (i!=m_iSelItem)
 							{
-								ModifyPanelBgClr(m_DMArray[i]->pPanel,m_crItemBg);
+								ModifyPanelBgClr(m_DMArray[i]->pPanel,m_crItemBg[0]);
 							}
 						}
 						DM_InvalidateRect(m_rcWindow);// 处理非客户区
@@ -985,7 +1023,7 @@ namespace DM
 					{
 						if (-1!=m_iSelItem&&m_iSelItem<(int)GetCount())
 						{
-							ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemSelBg);
+							ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemBg[2]);
 						}
 						DM_InvalidateRect(m_rcWindow);// 处理非客户区
 					}

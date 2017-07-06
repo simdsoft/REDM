@@ -4930,7 +4930,7 @@ namespace pugi
 	{
 		size /= sizeof(char_t);
 		m_nNeedSize += size;
-		if (m_nCurSize+size<m_nSize)
+		if (m_nCurSize+(int)size<m_nSize)
 		{
 			memcpy(m_szBuf+m_nCurSize,data,size*sizeof(char_t));
 			m_nCurSize += size;

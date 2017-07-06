@@ -484,7 +484,7 @@ namespace DM
 					DrawMoreScrollBar(pCanvas,SB_LINEUP,iState,bVert); 
 					DrawMoreScrollBar(pCanvas,SB_PAGEUP,DMSBST_NOACTIVE,bVert); 
 					DrawMoreScrollBar(pCanvas,SB_PAGEDOWN,DMSBST_NOACTIVE,bVert);
-					DrawMoreScrollBar(pCanvas,SB_THUMBTRACK,m_bsbDrag?DMSBST_PUSHDOWN:DMSBST_NOACTIVE,bVert); 
+					DrawMoreScrollBar(pCanvas,SB_THUMBTRACK,(m_bsbDrag&&bVert==m_sbInfo.bVert)?DMSBST_PUSHDOWN:DMSBST_NOACTIVE,bVert); 
 					iState = DMSBST_NOACTIVE;
 					if (WORD(-1) != (WORD)(m_sbInfo.sbCode)&&bVert==m_sbInfo.bVert&&SB_LINEDOWN==m_sbInfo.sbCode)// 鼠标在下箭头上
 					{

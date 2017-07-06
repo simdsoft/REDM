@@ -28,6 +28,7 @@ namespace DMAttr
 		static wchar_t* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
 		static wchar_t* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
 		static wchar_t* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static wchar_t* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
 		static wchar_t* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
 		static wchar_t* bool_bhottrack;                                          ///< 让指针下的项目自动高亮显示,示例:bhottrack="1"
 
@@ -36,7 +37,7 @@ namespace DMAttr
 		static wchar_t* ITEM_data;                                               ///< 项的数据,示例:data="10"
 	};
 	DMAttrValueInit(DUIListCtrlExAttr,INT_headerheight)DMAttrValueInit(DUIListCtrlExAttr,INT_itemheight)
-	DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)
+	DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemhoverbg)
 	DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemselbg)DMAttrValueInit(DUIListCtrlExAttr,bool_bhottrack)
 	DMAttrValueInit(DUIListCtrlExAttr,NODE_item)DMAttrValueInit(DUIListCtrlExAttr,ITEM_height)
 	DMAttrValueInit(DUIListCtrlExAttr,ITEM_data)
@@ -84,6 +85,7 @@ namespace DM
 		int GetColumnCount();
 		CRect GetItemRect(int iItem);
 		bool SetCurSel(int nIndex);
+		bool SetCurHover(int nIndex);
 		int GetCurSel() const;
 		void DeleteItem(int iItem);
 		void DeleteAllItems(bool bUpdate = true);
@@ -170,8 +172,9 @@ namespace DM
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_INT_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::INT_itemheight, m_iDefItemHei,		  DM_ECODE_OK)
-			DM_COLOR_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::COLOR_clritembg,m_crItemBg,		  DM_ECODE_NOXMLLOADREFRESH)
-			DM_COLOR_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::COLOR_clritemselbg,m_crItemSelBg,	  DM_ECODE_NOXMLLOADREFRESH)
+			DM_COLOR_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::COLOR_clritembg,m_crItemBg[0],	  DM_ECODE_NOXMLLOADREFRESH)
+			DM_COLOR_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::COLOR_clritemhoverbg,m_crItemBg[1], DM_ECODE_NOXMLLOADREFRESH)
+			DM_COLOR_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::COLOR_clritemselbg,m_crItemBg[2],	  DM_ECODE_NOXMLLOADREFRESH)
 			DM_bool_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::bool_bhottrack,m_bHotTrack,		  DM_ECODE_OK)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::INT_headerheight,OnAttributeHeaderHei)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::INT_cursel,OnAttributeCurSel)
@@ -184,8 +187,7 @@ namespace DM
 		int									   m_iHoverItem;					 ///< 当前停留项
 		int									   m_iHeaderHei;					 ///< 列表头高度
 		int									   m_iDefItemHei;					 ///< 项的默认高度
-		DMColor								   m_crItemBg; 
-		DMColor							       m_crItemSelBg; 
+		DMColor								   m_crItemBg[3];					 ///< 背景三连色
 		DMSmartPtrT<DUIItemPanel>			   m_pCapturePanel;					 ///< 当前调用了setcapture的面板
 		DMSmartPtrT<DUIHeaderCtrl>             m_pHeaderCtrl;                     
 		bool								   m_bHotTrack;  
