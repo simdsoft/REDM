@@ -3,7 +3,9 @@
 # All rights reserved.
 # History:
 # 		<Author>	<Time>		<Version>	  <Des>
-#      guoyou		2015-1-5	1.0		
+#      guoyou		2015-1-5	1.0
+#     k000      2017-07-11            使用target_include_directories指定DmMain的包含目录
+#     k000      2017-07-12            启用时 USE_DESIGNER_ 为DmMain定义宏 _DMDesigner_
 #-------------------------------------------------------
 PROJECT(DmMain)
 
@@ -70,29 +72,13 @@ use_precompiled_header(DmMain
    "${CMAKE_CURRENT_SOURCE_DIR}/inc/DmMainAfx.h"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/DmMainAfx.cpp"
   )
-  
-# 增加头文件搜索路径
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Common;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/Template;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/Plugins;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/ActiveX;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Core;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Msg;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Dui;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Event;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/IDmMain;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Render;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Skin;
-					${CMAKE_CURRENT_SOURCE_DIR}/inc/Widgets;)
 
 # 输出设置
 add_definitions(-DUNICODE -D_UNICODE)  # unicode版本
 
 set(CMAKE_DEBUG_POSTFIX "_d")# Debug下生成文件增加后缀,对exe无效.
 if(USE_DMDLL_)
-ADD_LIBRARY(DmMain SHARED 
+ADD_LIBRARY(DmMain SHARED
 			${ROOT_HEADER};
 			${COMMON_HEADER};
 			${COMMON_TEMPLATE_HEADER};
@@ -129,7 +115,7 @@ SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2 /Ob2 /D NDEBUG")
 SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O1 /Ob1 /D NDEBUG")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /Zi /O2 /Ob1 /D NDEBUG")
 endif()
-ADD_LIBRARY(DmMain STATIC 
+ADD_LIBRARY(DmMain STATIC
 			${ROOT_HEADER};
 			${COMMON_HEADER};
 			${COMMON_TEMPLATE_HEADER};
@@ -159,4 +145,27 @@ ADD_LIBRARY(DmMain STATIC
 			${WIDGETS_SOURCE};
 			)
 endif()
+
+if (USE_DESIGNER_)
+  target_compile_definitions(DmMain
+    PRIVATE _DMDesigner_
+  )
+endif()
+
+target_include_directories(DmMain
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Common
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/Template
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/Plugins
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Common/ActiveX
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Core
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Msg
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Dui
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Core/Event
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/IDmMain
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Render
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Skin
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Widgets
+)
 SET_TARGET_PROPERTIES(DmMain PROPERTIES OUTPUT_NAME "DmMain")
