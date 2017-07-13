@@ -372,11 +372,25 @@ DMCode StyleDlg::OnOK()
 		//5. 设置xml为未保存状态
 		m_pObjXml->SetDocUnSave(pStyleTypeNode);
 
-		EndDialog(IDOK);
+		//处理对象视图
+		if (hAdd&&m_pObjXml->m_bInitObjTree)// 
+		{
+			//1. 增加到style中
+			DMXmlDocument Doc;
+			DMXmlNode XmlBase = Doc.Base();
+			DMXmlNode XmlStyle = XmlBase.InsertChildNode(XML_STYLE);
+			XmlStyle.SetAttribute(XML_NAME,pStyleTypeNode->Attribute(XML_NAME));// 父结点name即为所属style池name
+			XmlStyle.InsertCopyChildNode(&XmlStyleNode);
+			g_pDMApp->AddStylePoolItem(XmlStyle);
+		}
+
 		if (hAdd)
 		{
 			m_pProjTree->SelectItem(hAdd);
 		}
+
+		EndDialog(IDOK);
+		
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
