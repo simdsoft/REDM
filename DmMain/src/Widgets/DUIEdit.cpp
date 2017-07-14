@@ -34,7 +34,7 @@ namespace DM
 		m_bWantTab           = false;
 		m_bSingleLineVCenter = true;
 		m_bScrollPending     = false;
-		m_bEnableDragDrop    = true;
+		m_bEnableDragDrop    = false;
 		m_bAutoSel           = false;
 		m_cchTextMost        = g_InitTextMaxLen;
 		m_chPasswordChar     = _T('*');

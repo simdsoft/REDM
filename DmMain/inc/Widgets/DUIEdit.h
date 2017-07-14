@@ -45,7 +45,7 @@ namespace DMAttr
 		static wchar_t* bool_bpassword;								    ///< 加密显示，默认都以*显示,示例:bpassword="1"
 		static wchar_t* CHAR_passwordchar;								///< 配合加密，加密显示字符，取第一个字符，如为空，则使用默认*,示例:passwordchar="#"
 		static wchar_t* bool_bnumber;								    ///< 仅支持数字输入，此时无滚动条显示,示例:bnumber="1"
-		static wchar_t* bool_benabledrag;								///< 支持内容拖拽，默认支持,示例:benabledrag="1"
+		static wchar_t* bool_benabledrag;								///< 支持内容拖拽，默认不支持,示例:benabledrag="1"
 
 		// 光标
 		static wchar_t* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"

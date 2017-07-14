@@ -345,7 +345,8 @@ namespace DM
 			hr = m_pServ->TxGetDropTarget(&pDropTarget);
 			if (SUCCEEDED(hr))
 			{
-				hr = pDropTarget->DragLeave();
+				__try{hr = pDropTarget->DragLeave();}
+				__except(1){}
 				pDropTarget->Release();
 			}
 
