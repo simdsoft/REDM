@@ -20,7 +20,7 @@
 namespace DM
 {
 	/// <summary>
-	///		单例模式模板类
+	///		单例模式模板类,特别注意:跨模块传递时,T类需要重新实现static T& getSingleton()及static T* getSingletonPtr()
 	/// </summary>
 	template <typename T> 
 	class DMSingletonT
