@@ -76,7 +76,7 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		pEdit->DM_SendMessage(EM_SETCHARFORMAT,SCF_SELECTION,(LPARAM)&cf);
 
 		// 字符变化通知
-		pEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+		pEdit->SetEventMask(ENM_CHANGE|pEdit->GetEventMask());
 	}
 
 	// 增加ListCtrlEx排序示例

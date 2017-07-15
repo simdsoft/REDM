@@ -39,10 +39,10 @@ BOOL LayoutDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pLayoutFileAfx  = FindChildByNameT<DUIEdit>(L"ds_layout_fileafx");DMASSERT(m_pLayoutFileAfx);
 	m_pXml           = FindChildByNameT<DUIRichEdit>(L"ds_layout_xml");DMASSERT(m_pXml);
 
-	m_pLayoutName->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pLayoutDir->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pLayoutFileName->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pLayoutFileAfx->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+	m_pLayoutName->SetEventMask(ENM_CHANGE|m_pLayoutName->GetEventMask());
+	m_pLayoutDir->SetEventMask(ENM_CHANGE|m_pLayoutDir->GetEventMask());
+	m_pLayoutFileName->SetEventMask(ENM_CHANGE|m_pLayoutFileName->GetEventMask());
+	m_pLayoutFileAfx->SetEventMask(ENM_CHANGE|m_pLayoutFileAfx->GetEventMask());
 
 	if (m_bEditMode)// 初始化部分变量
 	{

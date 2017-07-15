@@ -303,7 +303,7 @@ namespace DM
 				strPos.Format(L"0,0,-%d,-0",szBtn.cx);
 				m_pEdit->SetAttribute(L"pos",strPos,true);
 				m_pEdit->SetID(CB_EDIT_ID);
-				m_pEdit->DM_SendMessage(EM_SETEVENTMASK,0 ,ENM_CHANGE);
+				m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 			}
 
 			bRet = CreateListBox(XmlNode);// ´´½¨List
@@ -540,7 +540,7 @@ namespace DM
 						strPos.Format(L"0,0,-%d,-0",rcBtn.Width());
 						m_pEdit->SetAttribute(L"pos",strPos,true);
 						m_pEdit->SetID(CB_EDIT_ID);
-						m_pEdit->DM_SendMessage(EM_SETEVENTMASK,0 ,ENM_CHANGE);
+						m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 					}
 					m_pEdit->SetWindowText(strText);
 					m_pEdit->DM_SetVisible(true,true);

@@ -53,10 +53,10 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pImgFileName = FindChildByNameT<DUIEdit>(L"ds_img_filename");DMASSERT(m_pImgFileName);
 	m_pImgFileAfx  = FindChildByNameT<DUIEdit>(L"ds_img_fileafx");DMASSERT(m_pImgFileAfx);
 	m_pXml = FindChildByNameT<DUIRichEdit>(L"ds_img_xml");DMASSERT(m_pXml);
-	m_pImgName->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pImgDir->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pImgFileName->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pImgFileAfx->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+	m_pImgName->SetEventMask(ENM_CHANGE|m_pImgName->GetEventMask());
+	m_pImgDir->SetEventMask(ENM_CHANGE|m_pImgDir->GetEventMask());
+	m_pImgFileName->SetEventMask(ENM_CHANGE|m_pImgFileName->GetEventMask());
+	m_pImgFileAfx->SetEventMask(ENM_CHANGE|m_pImgFileAfx->GetEventMask());
 
 	// 3.得到主题包的node
 	HDMTREEITEM hTheme = NULL;

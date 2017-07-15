@@ -149,7 +149,7 @@ void TGPComboboxEx::OnSelChanged()
 			break;
 		}
 		int iSel = m_pListBox->GetCurSel();
-		if (-1 == iSel||iSel>=m_pListBox->GetCount())
+		if (-1 == iSel||iSel>=(int)m_pListBox->GetCount())
 		{
 			break;
 		}

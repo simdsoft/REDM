@@ -90,12 +90,24 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: 对外接口
+		// Function Des: 对外接口,参看afxcmn.inl，和CRichEditCtrl保持一致
 		//---------------------------------------------------
 		CStringW GetWindowText();
 		int GetWindowText(LPWSTR lpString,int nMaxCount);
 		int GetWindowTextLength();
 		void SetWindowText(LPCWSTR lpszText);
+
+		DWORD GetEventMask();										
+		DWORD SetEventMask(DWORD dwEventMask);						///< 设置需要接收的事件类型 SetEventMask(ENM_OBJECTPOSITIONS | ENM_PROTECTED | ENM_DROPFILES | ENM_CHANGE | ENM_LINK | ENM_SELCHANGE | ENM_DRAGDROPDONE);
+
+		int LineFromChar(LONG nIndex);								///< 参看MSDN：返回字符所在行号,-1返回当前选中第一个字符所在的行, 未选中则返回光标所在行
+		int LineIndex(int nLine = -1);								///< 参看MSDN：返回行起始字符的Index,-1表示当前光标所在行
+		int CharFromPos(POINT pt);									///< 参看MSDN：返回pt(客户端坐标)最近的字符的Index，如果pt超过了最后字符范围,返回最后字符的Index
+		POINT PosFromChar(LONG nChar);								///< 参看MSDN：nChar为字符Index,pt为字符所在的pt(客户端坐标),和CharFromPos相对应
+		int GetFirstVisibleLine();									///< 参看MSDN：返回最上面可见行的Index
+		int GetLineCount();											///< 参看MSDN：返回行数,注意,行可以为空行,可以使用
+		int LineLength(int nLine = -1);								///< 注意这里是直接传入行号,原始的是传入字符Index,内部做了封装
+		CStringW GetLineText(int nLine = -1);						///< 得到指定行的字符串
 
 		void SetSel(DWORD dwSelection, BOOL bNoScroll = FALSE);
 		void ReplaceSel(LPWSTR LPCWSTR,BOOL bCanUndo = TRUE);

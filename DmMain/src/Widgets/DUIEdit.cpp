@@ -99,6 +99,70 @@ namespace DM
 		DM_SendMessage(WM_SETTEXT,0,(LPARAM)lpszText);
 	}
 
+	DWORD DUIRichEdit::GetEventMask()
+	{
+		return (DWORD)DM_SendMessage(EM_GETEVENTMASK, 0, 0L);
+	}
+
+	DWORD DUIRichEdit::SetEventMask(DWORD dwEventMask)
+	{
+		return (DWORD)DM_SendMessage(EM_SETEVENTMASK, 0, dwEventMask);
+	}
+
+	int DUIRichEdit::LineFromChar(LONG nIndex)
+	{
+		return (int)DM_SendMessage(EM_EXLINEFROMCHAR, 0, nIndex);
+	}
+
+	int DUIRichEdit::LineIndex(int nLine /*= -1*/)
+	{
+		return (int)DM_SendMessage(EM_LINEINDEX, nLine, 0L);
+	}
+
+	int DUIRichEdit::CharFromPos(POINT pt)
+	{
+		POINTL ptl = {pt.x, pt.y}; 
+		return (int)DM_SendMessage(EM_CHARFROMPOS, 0, (LPARAM)&ptl);
+	}
+
+	POINT DUIRichEdit::PosFromChar(LONG nChar)
+	{
+		POINTL pt;
+		DM_SendMessage(EM_POSFROMCHAR, (WPARAM)&pt, nChar); 
+		return CPoint(pt.x, pt.y); 
+	}
+
+	int DUIRichEdit::GetFirstVisibleLine()
+	{
+		return (int)DM_SendMessage(EM_GETFIRSTVISIBLELINE, 0, 0L); 
+	}
+
+	int DUIRichEdit::GetLineCount()
+	{
+		return (int)DM_SendMessage(EM_GETLINECOUNT, 0, 0);
+	}
+
+	int DUIRichEdit::LineLength(int nLine /*= -1*/)
+	{
+		int nCharIndex = LineIndex(nLine);
+		return (int)DM_SendMessage(EM_LINELENGTH, nCharIndex, 0);
+	}
+
+	CStringW DUIRichEdit::GetLineText(int nLine /*= -1*/)
+	{
+		CStringW strRet;
+		int nLen = LineLength(nLine)+1;
+		wchar_t *pBuf = strRet.GetBufferSetLength(nLen);
+		*(LPINT)pBuf = nLen;
+		if (-1 == nLine)
+		{
+			nLine = LineFromChar(-1);
+		}
+		DM_SendMessage(EM_GETLINE,nLine,(LPARAM)pBuf);
+		strRet.ReleaseBuffer();
+		return strRet;
+	}
+
 	void DUIRichEdit::SetSel(DWORD dwSelection, BOOL bNoScroll)
 	{
 		DM_SendMessage(EM_SETSEL, LOWORD(dwSelection), HIWORD(dwSelection));

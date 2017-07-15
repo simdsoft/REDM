@@ -283,7 +283,7 @@ namespace DM
 		g_pDMApp->CreateRegObj((void**)&m_pEdit, L"posedit",DMREG_Window);
 		DM_InsertChild(m_pEdit);
 		m_pEdit->InitDMData(EditNode);
-		m_pEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+		m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 		m_pEdit->m_EventMgr.SubscribeEvent(DMEventRENotifyArgs::EventID,Subscriber(&PosItem::OnEditChange, this));
 
 		DM_DELETE(pDoc);

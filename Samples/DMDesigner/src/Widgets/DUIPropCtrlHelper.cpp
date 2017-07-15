@@ -836,7 +836,7 @@ namespace DM
 			m_strValue.Format(L"%d",iValue);
 			m_pValueEdit->SetWindowText(m_strValue);
 			m_pValueEdit->SetAttribute(L"bnumber",L"1");
-			m_pValueEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+			m_pValueEdit->SetEventMask(ENM_CHANGE|m_pValueEdit->GetEventMask());
 			m_pValueEdit->m_EventMgr.SubscribeEvent(DM::DMEventRENotifyArgs::EventID, Subscriber(&PropByte::OnEditChange, this));
 
 			iErr = DM_ECODE_OK;
@@ -1569,7 +1569,7 @@ namespace DM
 			m_pBtn->DM_SetVisible(bShow,true);
 			CStringW strOldValue = m_strValue;
 			m_strValue = m_pValueEdit->GetWindowText();
-			m_pValueEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+			m_pValueEdit->SetEventMask(ENM_CHANGE|m_pValueEdit->GetEventMask());
 			m_pValueEdit->m_EventMgr.SubscribeEvent(DMEventRENotifyArgs::EventID, Subscriber(&PropFont::OnEditChange, this));
 			SendValueChangedEvt(strOldValue);
 			m_bInPlaceEdit = bShow;

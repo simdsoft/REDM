@@ -12,8 +12,8 @@ NameAttr::NameAttr()
 	m_pNameEdit = m_pPanel->FindChildByNameT<DUIEdit>(L"ds_attr_name");		DMASSERT(m_pNameEdit);
 	m_pIdEdit	= m_pPanel->FindChildByNameT<DUIEdit>(L"ds_attr_id");		DMASSERT(m_pIdEdit);
 	m_pClSta	= m_pPanel->FindChildByNameT<DUIStatic>(L"ds_attr_clsname");DMASSERT(m_pClSta);
-	m_pNameEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pIdEdit->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+	m_pNameEdit->SetEventMask(ENM_CHANGE|m_pNameEdit->GetEventMask());
+	m_pIdEdit->SetEventMask(ENM_CHANGE|m_pIdEdit->GetEventMask());
 	//
 	ms_pthis   = this;
 }

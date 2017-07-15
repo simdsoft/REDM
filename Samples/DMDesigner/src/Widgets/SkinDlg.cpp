@@ -47,9 +47,9 @@ BOOL SkinDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		EndDialog(IDCANCEL);
 	}
 
-	m_pId->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+	m_pId->SetEventMask(ENM_CHANGE|m_pId->GetEventMask());
 	m_pRect->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
-	m_pState->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
+	m_pState->SetEventMask(ENM_CHANGE|m_pState->GetEventMask());
 
 	if (m_bEditMode)// 编辑模式，初始化部分变量
 	{
