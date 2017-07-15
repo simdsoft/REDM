@@ -40,7 +40,6 @@ namespace DM
 		m_chPasswordChar     = _T('*');
 		m_lAccelPos          = -1;
 		m_dwEditStyle        = ES_LEFT|ES_AUTOHSCROLL|ES_AUTOVSCROLL;
-		m_rcInsetMargin.SetRect(2,2,2,2);
 		m_HMEsizelExtent.cx = m_HMEsizelExtent.cy = 0;
 
 		//
@@ -582,60 +581,6 @@ namespace DM
 				pServ->TxSendMessage(WM_SETFOCUS,0,0,NULL);
 				m_pTxtHost->TxSetFocus();
 			}
-#if 0
-			m_siHoz.nPage = m_rcsbClient.Width()-m_rcInsetMargin.left-m_rcInsetMargin.right;
-			m_siVer.nPage = m_rcsbClient.Height()-m_rcInsetMargin.top-m_rcInsetMargin.bottom;
-
-			HDC hdc = ::GetDC(GetContainer()->OnGetHWnd());
-			LONG xPerInch = ::GetDeviceCaps(hdc, LOGPIXELSX); // 沿屏幕宽度每逻辑英寸的像素数
-			LONG yPerInch = ::GetDeviceCaps(hdc, LOGPIXELSY); // 沿屏幕高度每逻辑英寸的像素数
-			::ReleaseDC(GetContainer()->OnGetHWnd(), hdc);
-
-			m_HMEsizelExtent.cx = DUIEditHelper::DtoHimetric(m_rcsbClient.Width(), xPerInch);
-			m_HMEsizelExtent.cy = DUIEditHelper::DtoHimetric(m_rcsbClient.Height(), yPerInch);
-
-			m_HMErcInsetMargin.left  = DUIEditHelper::DtoHimetric(m_rcInsetMargin.left,xPerInch);
-			m_HMErcInsetMargin.right = DUIEditHelper::DtoHimetric(m_rcInsetMargin.right,xPerInch);
-
-			if (!m_bRichText && m_bSingleLineVCenter && !(m_dwEditStyle&ES_MULTILINE))
-			{// 单行居中状态，此时只留一个文字高
-				m_HMErcInsetMargin.top	  = DUIEditHelper::DtoHimetric(m_rcsbClient.Height()-m_nFontHeight,yPerInch)/2;
-				m_HMErcInsetMargin.bottom = m_HMErcInsetMargin.top;
-			}
-			else
-			{
-				m_HMErcInsetMargin.top	  = DUIEditHelper::DtoHimetric(m_rcInsetMargin.top,yPerInch);
-				m_HMErcInsetMargin.bottom = DUIEditHelper::DtoHimetric(m_rcInsetMargin.bottom,yPerInch);
-			}
-			
-			/*窗口有焦点时，需要更新光标位置：先使edit失活用来关闭光标，再激活edit来显示光标。
-			此处不应该直接用setfocus和killfocus，因为这两个消息可能会被外面响应。导致逻辑错误*/
-
-			bool bFocus = DM_IsFocusWnd();
-			if (bFocus)
-			{
-				m_pTxtHost->m_bUiActive = false;
-				pServ->OnTxUIDeactivate();
-				pServ->TxSendMessage(WM_KILLFOCUS,0,0,NULL);
-				m_pTxtHost->TxShowCaret(FALSE);
-			}
-			// TXTBIT_CHARFORMATCHANGE:the character format changed.
-			// TXTBIT_CLIENTRECTCHANGE:the client rectangle changed
-			pServ->OnTxPropertyBitsChange(TXTBIT_EXTENTCHANGE|TXTBIT_CLIENTRECTCHANGE, TXTBIT_EXTENTCHANGE|TXTBIT_CLIENTRECTCHANGE);
-			if (bFocus)
-			{
-				CRect rcClient;
-				DV_GetClientRect(&rcClient);
-				if (DM_GetWindow(GDW_PARENT))// 设置光标显示区
-				{
-					DM_GetWindow(GDW_PARENT)->DV_OnShowCaretRect(&rcClient);
-				}
-
-				m_pTxtHost->m_bUiActive = true;
-				pServ->OnTxUIActivate();
-				pServ->TxSendMessage(WM_SETFOCUS,0,0,NULL);
-			}
-#endif 
 		} while (false);
 		return 0;
 	}
@@ -974,16 +919,22 @@ namespace DM
 		HRESULT hr = S_FALSE;
 		do 
 		{
+			DMSmartPtrT<IDMCanvas> pCanvas;
+			DMSmartPtrT<IDMRender> pRender;
+			if (!DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&pRender, DMREG_Render)))
+			{
+				break;
+			}
+			pRender->CreateCanvas(0,0,&pCanvas);
+			DV_SetDrawEnvironEx(pCanvas);
 			DMSmartPtrT<IDMFont> pFont = pFt;
 			if (NULL == pFont)
 			{
-				m_pDUIXmlInfo->m_pStyle->GetTextFont(0,&pFont);
-				if (NULL == pFont)
-				{
-					pFont = g_pDMApp->GetFont(L"");
-				}
+				pCanvas->GetObject((IDMMetaFile**)&pFont,DMF_FONT);
 			}
-			m_nFontHeight = DMABS(pFont->GetLogFont()->lfHeight);
+			SIZE szText = {0};
+			pCanvas->MeasureText(L"A",1,&szText);
+			m_nFontHeight = szText.cy;
 
 			memset(pcf, 0, sizeof(CHARFORMAT2W));
 			pcf->cbSize = sizeof(CHARFORMAT2W);
@@ -1000,7 +951,7 @@ namespace DM
 			const LOGFONTW *plf = pFont->GetLogFont();
 			if (yPixPerInch)
 			{
-				pcf->yHeight	 = -DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);
+				pcf->yHeight = -DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);
 			}
 			pcf->yOffset	 = 0;
 			pcf->dwEffects   = 0;

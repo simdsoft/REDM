@@ -145,7 +145,7 @@
 	bool_bautowordsel="{1}在选中文本时，如为true,在结尾自动选中到行头，示例:bautowordsel=1"
 	bool_bsinglevcenter="{0}单行居中模式,仅在bmultilines=0且brichtext=0的状态下生效，示例:bsinglevcenter=1"
 	bool_bmultilines="{0}多行模式.示例:bmultilines=1"
-	RECT_rcinsertmargin="{2,2,2,2}字符串显示区四边框值.示例:rcinsertmargin=2,2,2,2"
+	RECT_rcinsertmargin="{0,0,0,0}字符串显示区四边框值.示例:rcinsertmargin=0,0,0,0"
 	COLOR_clrtext="{00,00,00,ff}默认文本颜色，和style的clrtext相同作用.示例:clrtext=pbgra(00,00,00,ff)" 
 	OPTION_align="{left}段落排布，和style的align相同作用,默认left,可设置center,right,示例:align=left" 
 	FONT_font="默认文本字体,和style的font相同作用.示例:font=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作" 
