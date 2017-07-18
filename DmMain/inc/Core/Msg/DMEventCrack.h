@@ -1,16 +1,19 @@
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
-// 
-// File Name: DMEventCrack.h 
-// File Des:  
+//
+// File Name: DMEventCrack.h
+// File Des:
 // File Summary:
 // Cur Version: 1.0
 // Author:
 // Create Data:
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
-//      guoyou		2015-2-3	1.0			
+//      guoyou		2015-2-3	1.0
+//    k000      2017-07-18            为DECLARE_EVENT_MAP/BEGIN_EVENT_MAP/
+//                                    BEGIN_EVENT_MAPT/END_EVENT_MAP宏中DM下的类型添加
+//                                    命名空间
 //--------------------------------------------------------
 #pragma once
 
@@ -20,12 +23,12 @@ namespace DM
 // 在头文件中声明,在源文件中定义,通用的作法，调试时可使用MacroTool转换成换行的源代码调试
 #define DECLARE_EVENT_MAP()\
 public:\
-	virtual DMCode DMHandleEvent(DM::DMEventArgs *pEvt);
+	virtual DM::DMCode DMHandleEvent(DM::DMEventArgs *pEvt);
 
 #define BEGIN_EVENT_MAP(classname)\
-	DMCode classname::DMHandleEvent(DM::DMEventArgs *pEvt)\
+	DM::DMCode classname::DMHandleEvent(DM::DMEventArgs *pEvt)\
 	{ \
-		DMCode iErr = DM_ECODE_FAIL;\
+		DM::DMCode iErr = DM::DM_ECODE_FAIL;\
 		do\
 		{\
 			UINT  uCode = pEvt->GetEventID();
@@ -33,9 +36,9 @@ public:\
 //-------------------------------------------------------
 // 在头文件中声明并定义,用于模板类
 #define BEGIN_EVENT_MAPT(classname)\
-	DMCode DMHandleEvent(DM::DMEventArgs *pEvt)\
+	DM::DMCode DMHandleEvent(DM::DMEventArgs *pEvt)\
 	{ \
-		DMCode iErr = DM_ECODE_FAIL;\
+		DM::DMCode iErr = DM_ECODE_FAIL;\
 		do\
 		{\
 		UINT  uCode = pEvt->GetEventID();
@@ -45,7 +48,7 @@ public:\
 // 结束
 #define END_EVENT_MAP()\
 		} while (false);\
-		if (DM_ECODE_FAIL==iErr)\
+		if (DM::DM_ECODE_FAIL==iErr)\
 		{\
 			return __super::DMHandleEvent(pEvt);\
 		}\
