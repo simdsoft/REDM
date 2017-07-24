@@ -154,7 +154,7 @@ namespace DM
 		HDMTREEITEM GetSelectedItem();
 		HDMTREEITEM GetNextItem(HDMTREEITEM hItem);
 		bool SelectItem(HDMTREEITEM hItem,bool bEnsureVisible=true);
-		bool HoverItem(HDMTREEITEM hItem,bool bEnsureVisible=true);
+		bool HoverItem(HDMTREEITEM hItem,CPoint pt,bool bEnsureVisible=true);
 		bool ItemHasChildren(HDMTREEITEM hItem);
 		bool SetItemData(HDMTREEITEM hItem, LPARAM lParam);
 		LPARAM GetItemData(HDMTREEITEM hItem) const;
@@ -177,7 +177,6 @@ namespace DM
 			MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 			MSG_WM_RBUTTONDOWN(OnRButtonDown);
-			MSG_WM_MOUSEMOVE(OnMouseMove)
 			MSG_WM_MOUSELEAVE(OnMouseLeave)
 			DM_MSG_WM_SETFOCUS(DM_OnSetFocus)
 			DM_MSG_WM_KILLFOCUS(DM_OnKillFocus)
@@ -199,7 +198,6 @@ namespace DM
 		void OnLButtonDbClick(UINT nFlags,CPoint pt);
 		void OnLButtonUp(UINT nFlags,CPoint pt);
 		void OnRButtonDown(UINT nFlags, CPoint pt);
-		void OnMouseMove(UINT nFlags,CPoint pt);
 		void OnMouseLeave();
 		void DM_OnSetFocus();
 		void DM_OnKillFocus();

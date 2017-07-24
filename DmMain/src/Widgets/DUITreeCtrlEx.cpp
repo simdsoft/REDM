@@ -270,10 +270,10 @@ namespace DM
 				break;
 			}
 
-			if (!ItemIsValid(hItem))
-			{
-				break;
-			}
+			//if (!ItemIsValid(hItem))
+			//{
+			//	break;
+			//}
 
 			DMEventTCSelChangingArgs EvtSelChanging(this);
 			EvtSelChanging.m_hOldSel = m_hSelItem;
@@ -299,11 +299,21 @@ namespace DM
 
 			if (EvtSelChanged.m_hOldSel)
 			{
+				LPTVITEMEX pData = GetItem(m_hSelItem);
+				if (pData)
+				{
+					pData->pPanel->ModifyState(0,DUIWNDSTATE_Check);
+				}
 				RedrawItem(EvtSelChanged.m_hOldSel);
 			}
 
 			if (m_hSelItem)
 			{
+				LPTVITEMEX pData = GetItem(m_hSelItem);
+				if (pData)
+				{
+					pData->pPanel->ModifyState(DUIWNDSTATE_Check,0);
+				}
 				RedrawItem(m_hSelItem);
 			}
 
@@ -312,7 +322,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool DUITreeCtrlEx::HoverItem(HDMTREEITEM hItem,bool bEnsureVisible)
+	bool DUITreeCtrlEx::HoverItem(HDMTREEITEM hItem,CPoint pt,bool bEnsureVisible)
 	{
 		bool bRet = false;
 		do 
@@ -323,24 +333,53 @@ namespace DM
 				break;
 			}
 
-			if (!ItemIsValid(hItem))
-			{
-				break;
-			}
-
 			if (hItem&&bEnsureVisible) 
 			{
 				EnsureVisible(hItem);
 			}
 			HDMTREEITEM hOldItem = m_hHoverItem;
 			m_hHoverItem		 = hItem;
+			CRect rcOldItem;
+			CRect rcItem;
 			if (hOldItem)
 			{
+				ItemMouseLeave(hOldItem);
+				LPTVITEMEX pData = GetItem(hOldItem);
+				if (pData)
+				{
+					pData->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
+					pData->pPanel->OnFrameEvent(WM_MOUSELEAVE, 0, 0);
+					pData->pPanel->DM_InvalidateRect(pData->pPanel->m_rcWindow);
+				}
+				GetItemRect(hOldItem,rcOldItem);
 				RedrawItem(hOldItem);
 			}
 			if (m_hHoverItem)
 			{
+				ItemMouseMove(m_hHoverItem,0,pt);
+				LPTVITEMEX pData = GetItem(m_hHoverItem);
+				if (pData)
+				{
+					pData->pPanel->ModifyState(DUIWNDSTATE_Hover,0);
+					pData->pPanel->OnFrameEvent(WM_MOUSEHOVER, 0, 0);
+					pData->pPanel->DM_InvalidateRect(pData->pPanel->m_rcWindow);
+				}
+				GetItemRect(m_hHoverItem,rcItem);
 				RedrawItem(m_hHoverItem);
+			}
+
+			// 刷新
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			CRect rcNeed(rcClient.left,rcItem.top,rcClient.right,rcItem.bottom);// 画布为整一行
+			if (!rcNeed.IsRectEmpty())
+			{
+				DM_InvalidateRect(rcNeed);
+			}
+			if (!rcOldItem.IsRectEmpty())
+			{
+				rcNeed.SetRect(rcClient.left,rcOldItem.top,rcClient.right,rcOldItem.bottom);
+				DM_InvalidateRect(rcNeed);
 			}
 
 			bRet = true;
@@ -781,9 +820,8 @@ namespace DM
 			{
 				break;
 			}
-
-			m_hHoverItem = HitTest(pt);
-
+			HDMTREEITEM hHoverItem = HitTest(pt);
+			HoverItem(hHoverItem,false);
 			if (m_hHoverItem!=m_hSelItem 
 				&& m_hHoverItem)
 			{
@@ -792,96 +830,10 @@ namespace DM
 		} while (false);	
 	}
 
-	void DUITreeCtrlEx::OnMouseMove(UINT nFlags,CPoint pt)
-	{
-		HDMTREEITEM hOldHoverItem = m_hHoverItem;
-		do 
-		{
-			HDMTREEITEM hHitTest = HitTest(pt);//这里已转换pt的坐标为相对hHitTest的坐标
-			// item先处理
-			if (hHitTest!=m_hHoverItem)
-			{
-				if (m_hHoverItem)
-				{
-					ItemMouseLeave(m_hHoverItem);
-				}
-				m_hHoverItem = hHitTest;
-				RedrawItem(hOldHoverItem);
-			}
-			if (m_hHoverItem)
-			{
-				ItemMouseMove(m_hHoverItem, nFlags, pt);
-			}
-
-			// panel后处理
-			LPTVITEMEX pData = NULL;
-			CRect rcItem;
-			if (GetItemRect(hHitTest,rcItem)
-				&&pt.x>=0)// 大于0表示在项内
-			{
-				if (m_pCapturePanel)
-				{
-					m_pCapturePanel->OnFrameEvent(WM_MOUSEMOVE,(WPARAM)nFlags,MAKELPARAM(pt.x,pt.y));
-					break;
-				}
-
-				if (m_hHoverItem)
-				{
-					pData = GetItem(m_hHoverItem);
-					pData->pPanel->OnFrameEvent(WM_MOUSEHOVER,(WPARAM)nFlags,MAKELPARAM(pt.x,pt.y));
-				}
-			}
-			CRect rcOldItem;
-			if (hOldHoverItem!=m_hHoverItem)
-			{
-				if (NULL!= hOldHoverItem)// 给旧panel发离开消息
-				{
-					pData = GetItem(hOldHoverItem);
-					pData->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-				}
-			
-				GetItemRect(hOldHoverItem,rcOldItem);
-			}
-
-			if (m_hHoverItem)
-			{
-				pData = GetItem(m_hHoverItem);
-				pData->pPanel->OnFrameEvent(WM_MOUSEMOVE,(WPARAM)nFlags,MAKELPARAM(pt.x,pt.y));
-			}
-
-			CRect rcClient;
-			DV_GetClientRect(rcClient);
-			CRect rcNeed(rcClient.left,rcItem.top,rcClient.right,rcItem.bottom);// 画布为整一行
-			if (!rcNeed.IsRectEmpty())
-			{
-				DM_InvalidateRect(rcNeed);
-			}
-			if (!rcOldItem.IsRectEmpty())
-			{
-				rcNeed.SetRect(rcClient.left,rcOldItem.top,rcClient.right,rcOldItem.bottom);
-				DM_InvalidateRect(rcNeed);
-			}
-		} while (false);
-		if (hOldHoverItem != m_hHoverItem)
-		{
-			RedrawItem(m_hHoverItem);
-		}
-	}
-
 	void DUITreeCtrlEx::OnMouseLeave()
 	{
-		if (m_hHoverItem)
-		{
-			HDMTREEITEM hOldHoverItem = m_hHoverItem;
-			m_hHoverItem = NULL;
-			RedrawItem(hOldHoverItem);
-			ItemMouseLeave(hOldHoverItem);
-			if (NULL!= hOldHoverItem)// 给旧panel发离开消息
-			{
-				LPTVITEMEX pData = GetItem(hOldHoverItem);
-				pData->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-			}
-		}
+		__super::OnMouseLeave();
+		HoverItem(NULL,false);
 	}
 
 	void DUITreeCtrlEx::DM_OnSetFocus()
@@ -963,14 +915,10 @@ namespace DM
 				if (m_pCapturePanel)
 				{
 					m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-					break;
+					break;// 跳出
 				}
 
-				if (uMsg == WM_LBUTTONDOWN)
-				{
-					int  h = 0;
-				}
-
+				HoverItem(hHitTest,false);
 				if (m_hHoverItem)
 				{
 					pData = GetItem(m_hHoverItem);
@@ -1470,7 +1418,6 @@ namespace DM
 	void DUITreeCtrlEx::ItemMouseLeave(HDMTREEITEM hItem)
 	{
 		LPTVITEMEX pData = GetItem(hItem);
-
 		if (m_nItemHoverBtn != DMTVEXBtn_None)
 		{
 			if (m_nItemHoverBtn == DMTVEXBtn_Toggle 
