@@ -472,8 +472,7 @@ namespace DM
 		} while (false);
 	}
 
-	// 
-	DMCode DUIListCtrlEx::OnHeaderSizeChanging(DMEventArgs *pEvt)
+	DMCode DUIListCtrlEx::OnHeaderSizeChanged(DMEventArgs *pEvt)
 	{
 		SetLCScrollRange();
 		CRect rcDraw;
@@ -495,7 +494,6 @@ namespace DM
 	{
 		if (m_pHeaderCtrl)
 		{
-			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemChangingArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanging, this));
 			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
 		}
 	
@@ -814,7 +812,7 @@ namespace DM
 			m_pHeaderCtrl->SetAttribute(L"pos",strPos,true);
 
 			// 设置接收header消息
-			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangingArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanging, this));
+			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangingArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
 			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
 
 			DMXmlNode XmlItem = XmlNode.FirstChild(DMAttr::DUIListCtrlExAttr::NODE_item);
@@ -898,6 +896,7 @@ namespace DM
 		 {
 			 //  处理列头滚动
 			 UpdateHeaderCtrl();
+			 DM_InvalidateRect(m_rcWindow);
 			 if (SB_THUMBTRACK == uCode)
 			 {
 				 ScrollUpdateWindow();//在header调整位置后再实时更新一次，不然由于在调整前实时更新了，header会比list滚动慢

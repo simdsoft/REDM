@@ -405,11 +405,6 @@ namespace DM
 			{
 				SetRangeCurPos(ptPos);
 			}
-
-			if (SB_THUMBTRACK == uCode)
-			{
-				ScrollUpdateWindow();
-			}
 		}
 
 		return true;

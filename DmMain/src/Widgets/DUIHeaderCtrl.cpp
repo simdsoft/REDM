@@ -161,17 +161,23 @@ namespace DM
 				break;
 			}
 
+			if (bFire)
+			{
+				DMEventHeaderItemChangingArgs Evt0(this);
+				Evt0.m_iItem  = iItem;
+				Evt0.m_nWidth = iWid;
+				DV_FireEvent(Evt0);
+				if (TRUE == Evt0.m_bCancel)
+				{
+					break;
+				}
+				iWid = Evt0.m_nWidth;// 外部可改变
+			}
 			iRet = m_DMArray[iItem]->cxy;
 			m_DMArray[iItem]->cxy = iWid;
 
 			if (bFire)
 			{
-				// 两消息同时发,listctrlex需要DMEventHeaderItemChangingArgs来动态更新scroll
-				DMEventHeaderItemChangingArgs Evt(this);
-				Evt.m_iItem  = iItem;
-				Evt.m_nWidth = iWid;
-				DV_FireEvent(Evt);
-
 				DMEventHeaderItemChangedArgs Evt1(this);
 				Evt1.m_iItem  = iItem;
 				Evt1.m_nWidth = iWid;
@@ -449,13 +455,21 @@ namespace DM
 					{
 						cxNew = 0;
 					}
-					m_DMArray[LOWORD(m_dwHitTest)]->cxy = cxNew;
-					// 发出调节宽度消息
-					DMEventHeaderItemChangingArgs Evt(this);
-					Evt.m_nWidth = cxNew;
-					DV_FireEvent(Evt);
-					DM_Invalidate();
-					GetContainer()->OnUpdateWindow();// 立即更新窗口
+
+					DMEventHeaderItemChangingArgs Evt0(this);
+					Evt0.m_iItem  = LOWORD(m_dwHitTest);
+					Evt0.m_nWidth = cxNew;
+					DV_FireEvent(Evt0);
+					if (false == Evt0.m_bCancel)
+					{
+						m_DMArray[LOWORD(m_dwHitTest)]->cxy = Evt0.m_nWidth;
+						// 发出调节宽度消息
+						DMEventHeaderItemChangedArgs Evt(this);
+						Evt.m_nWidth = Evt0.m_nWidth;
+						DV_FireEvent(Evt);
+						DM_Invalidate();
+						GetContainer()->OnUpdateWindow();// 立即更新窗口
+					}
 				}
 			}
 		}

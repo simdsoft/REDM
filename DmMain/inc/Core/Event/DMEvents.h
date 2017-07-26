@@ -481,12 +481,13 @@ namespace DM
 	class DM_EXPORT DMEventHeaderItemChangingArgs : public DMEventArgs
 	{
 	public:
-		DMEventHeaderItemChangingArgs(DUIWindow *pWnd):DMEventArgs(pWnd){}
+		DMEventHeaderItemChangingArgs(DUIWindow *pWnd):DMEventArgs(pWnd),m_bCancel(FALSE){}
 		enum{EventID=DMEVT_HEADER_ITEMCHANGING};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_HEADER_ITEMCHANGING);}
 		int						m_iItem;
-		int						m_nWidth;
+		int						m_nWidth;	//外部可设置新的宽度
+		BOOL                    m_bCancel;  //可取消设置
 	};
 
 	/// <summary>

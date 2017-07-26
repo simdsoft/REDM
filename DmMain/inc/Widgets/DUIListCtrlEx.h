@@ -98,7 +98,7 @@ namespace DM
 		void RedrawItem(int iItem);
 
 	public:// ½»»¥ÏûÏ¢
-		DMCode OnHeaderSizeChanging(DMEventArgs *pEvt);
+		DMCode OnHeaderSizeChanged(DMEventArgs *pEvt);
 		DMCode OnHeaderSwap(DMEventArgs *pEvt);
 
 	public:
