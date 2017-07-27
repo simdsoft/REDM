@@ -94,6 +94,7 @@ namespace DM
 		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);							///< 获得子窗口的布局空间大小,默认为客户区，但是tab这样的控件不一样
 		virtual DMCode DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz);					///< 当没有指定窗口大小时，通过如皮肤或文字内容计算窗口的期望大小，
 
+		bool DM_IsLayoutFinished();														///< 布局是否完成
 		bool DM_IsParentFlowLayout();													///< 父窗口是否使用流式布局
 		DMCode DM_FloatLayout(LPRECT lpRect);											///< 从绝对布局开始子布局
 		DMCode DM_UpdateLayout(LPRECT lpRect);											///< 更新自身布局

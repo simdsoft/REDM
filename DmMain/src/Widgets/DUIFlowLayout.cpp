@@ -12,7 +12,7 @@ namespace DM
 	{
 		do 
 		{
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;
@@ -195,7 +195,7 @@ namespace DM
 	{
 		do 
 		{
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;
@@ -363,7 +363,7 @@ namespace DM
 	{
 		do 
 		{
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;
@@ -436,7 +436,7 @@ namespace DM
 	{
 		do 
 		{
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;
@@ -717,7 +717,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;

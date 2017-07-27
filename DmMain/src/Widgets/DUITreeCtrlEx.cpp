@@ -771,7 +771,8 @@ namespace DM
 
 	void DUITreeCtrlEx::OnLButtonDown(UINT nFlags,CPoint pt)
 	{
-		m_hHoverItem = HitTest(pt);
+		HDMTREEITEM hHoverTest = HitTest(pt);
+		HoverItem(hHoverTest, pt);
 		if (m_hHoverItem!=m_hSelItem && m_hHoverItem)
 		{// 
 			SelectItem(m_hHoverItem,false);
@@ -821,8 +822,8 @@ namespace DM
 			{
 				break;
 			}
-			HDMTREEITEM hHoverTest = HitTest(pt);
-			HoverItem(hHoverTest, pt);
+			HDMTREEITEM hHoverItem = HitTest(pt);
+			HoverItem(hHoverItem,false);
 			if (m_hHoverItem!=m_hSelItem 
 				&& m_hHoverItem)
 			{
@@ -908,29 +909,23 @@ namespace DM
 		{
 			CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			HDMTREEITEM hHitTest = HitTest(pt);//这里已转换pt的坐标
-			CRect rcItem;
-			LPTVITEMEX pData = NULL;
-			if (GetItemRect(hHitTest,rcItem)
-				&&pt.x>=0)
+			if (m_pCapturePanel)
 			{
-				if (m_pCapturePanel)
-				{
-					m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-					break;// 跳出
-				}
-
-				HoverItem(hHitTest,false);
-				if (m_hHoverItem)
-				{
-					pData = GetItem(m_hHoverItem);
-					pData->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-				}
+				m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
+				break;// 跳出
 			}
 
 			if (m_pDUIXmlInfo->m_bFocusable
 				&& (uMsg==WM_LBUTTONDOWN || uMsg== WM_RBUTTONDOWN || uMsg==WM_LBUTTONDBLCLK))
 			{
 				DV_SetFocusWnd();
+			}
+
+			HoverItem(hHitTest,false);
+			if (m_hHoverItem)
+			{
+				LPTVITEMEX pData = GetItem(m_hHoverItem);
+				pData->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
 			}
 		} while (false);
 		return lRet;

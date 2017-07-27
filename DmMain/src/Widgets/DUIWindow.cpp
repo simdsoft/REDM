@@ -358,11 +358,7 @@ namespace DM
 			m_XmlNode = XmlNode;
 #endif// _DMDesigner_
 
-			DMBase::InitDMData(XmlNode);			 // 子类先处理，未处理的交由DUIWindow自身m_pDUIXmlInfo处理，这样子类如设置相同的属性值，子类优先处理完
-			/*if (!DM_IsParentFlowLayout())
-			{
-				m_pLayout->InitDMData(XmlNode);		 // 锚点布局自己解析,此代码转交由DM_CHAINFUN_ATTRIBUTTE(DM_Layout)解析,这样意味着子类可以覆盖掉pos等布局属性
-			}*/
+			DMBase::InitDMData(XmlNode);	 // 子类先处理，未处理的交由DUIWindow自身m_pDUIXmlInfo处理，这样子类如设置相同的属性值，子类优先处理完
 			if (0!=DM_SendMessage(WM_CREATE))// 不为0表示创建失败
 			{
 				if (m_Node.m_pParent)
@@ -371,7 +367,12 @@ namespace DM
 				}
 				break;
 			}
-
+			if (m_Node.m_pParent)
+			{
+				if (!m_Node.m_pParent->DM_IsVisible(true))m_dwDUIState |= DUIWNDSTATE_Novisible;
+				if (m_Node.m_pParent->DM_IsDisable(true)) m_dwDUIState |= DUIWNDSTATE_Disable;
+			}
+			DM_SendMessage(WM_SHOWWINDOW,DM_IsVisible(true),ParentShow);// 仅仅给自己发一个WM_SHOWWINDOW消息
 			DV_CreateChildWnds(XmlNode);
 		} while (false);
 		return iErr;
@@ -577,7 +578,7 @@ namespace DM
 				DMASSERT_EXPR(0,L"流式布局请重载DV_UpdateChildLayout!");
 				break;
 			}
-			if (POS_INIT == m_rcWindow.left&&POS_INIT == m_rcWindow.right&&POS_INIT==m_rcWindow.top&&POS_INIT==m_rcWindow.bottom)
+			if (!DM_IsLayoutFinished())
 			{ 
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 			}
@@ -622,6 +623,11 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
+	}
+
+	bool DUIWindow::DM_IsLayoutFinished()
+	{
+		return !(POS_INIT == m_rcWindow.left||POS_INIT == m_rcWindow.right||POS_INIT==m_rcWindow.top||POS_INIT==m_rcWindow.bottom);
 	}
 
 	bool DUIWindow::DM_IsParentFlowLayout()
@@ -2046,7 +2052,7 @@ namespace DM
 			if (ParentShow == nStatus)// 命令是父窗口发过来的
 			{
 				if (bShow&& false == DM_IsVisible(false))//父窗口显示,如果本窗口不显示，就不显示
-				{
+				{ 
 					bShow = false;
 				}
 			}
@@ -2055,6 +2061,11 @@ namespace DM
 				m_pDUIXmlInfo->m_bVisible = (TRUE==bShow);  // 正常命令，则更新本窗口的显示标志
 			}
 
+			if (bShow && m_Node.m_pParent)
+			{
+				bShow = m_Node.m_pParent->DM_IsVisible(true);
+			}
+			
 			if (bShow)// 更新本窗口显示状态
 			{
 				DM_ModifyState(0, DUIWNDSTATE_Novisible);
@@ -2086,7 +2097,7 @@ namespace DM
 				}
 			}
 
-			if (!m_pDUIXmlInfo->m_bPlaceHolder)// 如果子窗口不占位，则需要重新布局
+			if (!m_pDUIXmlInfo->m_bPlaceHolder && DM_IsLayoutFinished())// 如果子窗口不占位，则需要重新布局
 			{
 				DUIWindow* pParent = DM_GetWindow(GDW_PARENT);
 				if (pParent)
