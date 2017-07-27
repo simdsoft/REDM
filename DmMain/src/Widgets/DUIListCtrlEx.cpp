@@ -494,6 +494,7 @@ namespace DM
 	{
 		if (m_pHeaderCtrl)
 		{
+			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
 			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
 		}
 	
@@ -812,7 +813,7 @@ namespace DM
 			m_pHeaderCtrl->SetAttribute(L"pos",strPos,true);
 
 			// 设置接收header消息
-			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangingArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
+			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
 			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
 
 			DMXmlNode XmlItem = XmlNode.FirstChild(DMAttr::DUIListCtrlExAttr::NODE_item);

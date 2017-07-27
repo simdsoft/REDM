@@ -787,7 +787,8 @@ namespace DM
 
 	void DUITreeCtrlEx::OnLButtonDbClick(UINT nFlags,CPoint pt)
 	{
-		m_hHoverItem = HitTest(pt);
+		HDMTREEITEM hHoverTest = HitTest(pt);
+		HoverItem(hHoverTest, pt);
 		if (m_hHoverItem)
 		{
 			Expand(m_hHoverItem,DMTVEX_TOGGLE);
@@ -797,8 +798,8 @@ namespace DM
 
 	void DUITreeCtrlEx::OnLButtonUp(UINT nFlags,CPoint pt)
 	{
-		m_hHoverItem = HitTest(pt);
-
+		HDMTREEITEM hHoverTest = HitTest(pt);
+		HoverItem(hHoverTest, pt);
 		if (m_hCaptureItem)
 		{
 			ItemLButtonUp(m_hCaptureItem, nFlags, pt);
@@ -820,8 +821,8 @@ namespace DM
 			{
 				break;
 			}
-			HDMTREEITEM hHoverItem = HitTest(pt);
-			HoverItem(hHoverItem,false);
+			HDMTREEITEM hHoverTest = HitTest(pt);
+			HoverItem(hHoverTest, pt);
 			if (m_hHoverItem!=m_hSelItem 
 				&& m_hHoverItem)
 			{
