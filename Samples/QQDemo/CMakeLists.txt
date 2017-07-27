@@ -28,13 +28,6 @@ SOURCE_GROUP("src\\spy"			FILES 	${SPY_SOURCE})
 SOURCE_GROUP("src\\script"		FILES 	${SCRIPT_SOURCE})
 SOURCE_GROUP("src\\widget"		FILES 	${WIDGET_SOURCE})
 
-
-
-# 增加预编译头
-use_precompiled_header(QQDemo
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/QQDemoAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/QQDemoAfx.cpp"
-  )
   
  # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;${CMAKE_CURRENT_SOURCE_DIR}/;${CMAKE_CURRENT_SOURCE_DIR}/inc/spy;${CMAKE_CURRENT_SOURCE_DIR}/inc/script;${CMAKE_CURRENT_SOURCE_DIR}/inc/widget;)
@@ -93,4 +86,9 @@ add_custom_command(TARGET QQDemo
 					COMMENT "This command will be executed after build target QQDemo"
 					)
 SET_TARGET_PROPERTIES(QQDemo PROPERTIES FOLDER Samples)
- 
+
+# 增加预编译头
+use_precompiled_header(QQDemo
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/QQDemoAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/QQDemoAfx.cpp"
+  )

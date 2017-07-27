@@ -67,12 +67,6 @@ SOURCE_GROUP("src\\Modules\\Render"				FILES 	${MODULES_RENDER_SOURCE})
 SOURCE_GROUP("src\\Modules\\Skin"				FILES 	${MODULES_SKIN_SOURCE})
 SOURCE_GROUP("src\\Widgets"						FILES 	${WIDGETS_SOURCE})
 
-# 增加预编译头
-use_precompiled_header(DmMain
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DmMainAfx.h"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/DmMainAfx.cpp"
-  )
-
 # 输出设置
 add_definitions(-DUNICODE -D_UNICODE)  # unicode版本
 
@@ -169,3 +163,9 @@ target_include_directories(DmMain
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Widgets
 )
 SET_TARGET_PROPERTIES(DmMain PROPERTIES OUTPUT_NAME "DmMain")
+
+# 增加预编译头
+use_precompiled_header(DmMain
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DmMainAfx.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/DmMainAfx.cpp"
+  )

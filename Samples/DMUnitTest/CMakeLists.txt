@@ -19,11 +19,6 @@ SOURCE_GROUP("inc" 								FILES 	${ROOT_HEADER})
 SOURCE_GROUP("src"								FILES 	${ROOT_SOURCE})
 SOURCE_GROUP("src\\TestCase" 					FILES 	${TESTCASE_SOURCE})
 
-# 增加预编译头
-use_precompiled_header(DMUnitTest
-   "${CMAKE_CURRENT_SOURCE_DIR}/DMUintTestAfx.h"
-  "${CMAKE_CURRENT_SOURCE_DIR}/DMUintTestAfx.cpp"
-  )
   
 # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/;
@@ -80,6 +75,9 @@ add_custom_command(TARGET DMUnitTest
 					)
 
 
-
-
+# 增加预编译头
+use_precompiled_header(DMUnitTest
+   "${CMAKE_CURRENT_SOURCE_DIR}/DMUintTestAfx.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/DMUintTestAfx.cpp"
+  )
 

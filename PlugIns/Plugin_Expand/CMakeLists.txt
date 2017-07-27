@@ -42,11 +42,6 @@ SOURCE_GROUP("inc\\Render" 						FILES 	${RENDER_HEADER})
 SOURCE_GROUP("src\\Render"						FILES 	${RENDER_SOURCE})
 endif()
   
- # 增加预编译头
-use_precompiled_header(Plugin_Expand
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/Plugin_ExpandAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/Plugin_ExpandAfx.cpp"
-  )
   
 # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;)
@@ -137,3 +132,9 @@ TARGET_LINK_LIBRARIES(Plugin_Expand  Usp10.lib;Opengl32.lib)
 endif()
 
 SET_TARGET_PROPERTIES(Plugin_Expand PROPERTIES FOLDER PlugIns)
+
+ # 增加预编译头
+use_precompiled_header(Plugin_Expand
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/Plugin_ExpandAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/Plugin_ExpandAfx.cpp"
+  )

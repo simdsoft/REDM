@@ -25,11 +25,6 @@ SOURCE_GROUP("src"				FILES 	${ROOT_SOURCE})
 SOURCE_GROUP("src\\Res"			FILES 	${ROOT_RES_SOURCE})
 SOURCE_GROUP("src\\Menu" 		FILES 	${ROOT_MENU_SOURCE})
 
-# 增加预编译头
-use_precompiled_header(TGPDemo
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/TGPDemoAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/TGPDemoAfx.cpp"
-  )
   
  # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;${CMAKE_CURRENT_SOURCE_DIR}/;${CMAKE_CURRENT_SOURCE_DIR}/inc/Res;${CMAKE_CURRENT_SOURCE_DIR}/inc/Menu;)
@@ -89,4 +84,9 @@ add_custom_command(TARGET TGPDemo
 					COMMENT "This command will be executed after build target TGPDemo"
 					)
 SET_TARGET_PROPERTIES(TGPDemo PROPERTIES FOLDER Samples)
- 
+
+# 增加预编译头
+use_precompiled_header(TGPDemo
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/TGPDemoAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/TGPDemoAfx.cpp"
+  )

@@ -36,11 +36,6 @@ SOURCE_GROUP("src\\Editor"						FILES 	${EDITOR_SOURCE})
 SOURCE_GROUP("src\\Modules"						FILES 	${MODULES_SOURCE})
 SOURCE_GROUP("src\\Widgets"						FILES 	${WIDGETS_SOURCE})
 
-# 增加预编译头
-use_precompiled_header(DMDemo
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DMDesignerAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/DMDesignerAfx.cpp"
-  )
   
  # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;
@@ -114,4 +109,10 @@ add_custom_command(TARGET DMDesigner
 					COMMENT "This command will be executed after build target DMDesigner"
 					)
 SET_TARGET_PROPERTIES(DMDesigner PROPERTIES FOLDER Samples)
+
+# 增加预编译头
+use_precompiled_header(DMDesigner
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DMDesignerAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/DMDesignerAfx.cpp"
+  )
  

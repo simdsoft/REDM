@@ -9,7 +9,7 @@ macro(use_precompiled_header TARGET HEADER_FILE SRC_FILE)
 
   # Use MSVC_IDE to exclude NMake from using PCHs
   if (MSVC AND NOT NMAKE AND NOT OGRE_UNITY_BUILD)
-	add_definitions(/Yu"${HEADER}")
+	set_target_properties(${TARGET} PROPERTIES COMPILE_FLAGS /Yu"${HEADER}")
     set_source_files_properties(${SRC_FILE}
       PPROPERTIES COMPILE_FLAGS /Yc"${HEADER}"
 	)
