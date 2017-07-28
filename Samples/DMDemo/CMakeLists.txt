@@ -13,13 +13,6 @@ FILE(GLOB ROOT_SOURCE 		${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp;src/*.c)
 
 SOURCE_GROUP("inc" 		FILES 	${ROOT_HEADER})
 SOURCE_GROUP("src"		FILES 	${ROOT_SOURCE})
-
-
-# 增加预编译头
-use_precompiled_header(DMDemo
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DMDemoAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/DMDemoAfx.cpp"
-  )
   
  # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc)
@@ -74,3 +67,9 @@ add_custom_command(TARGET DMDemo
 					)
  
  SET_TARGET_PROPERTIES(DMDemo PROPERTIES FOLDER Samples)
+ 
+ # 增加预编译头
+use_precompiled_header(DMDemo
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/DMDemoAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/DMDemoAfx.cpp"
+  )

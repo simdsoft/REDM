@@ -14,11 +14,6 @@ FILE(GLOB ROOT_SOURCE 							src/*.cpp;src/*.c)
 SOURCE_GROUP("inc" 								FILES 	${ROOT_HEADER})
 SOURCE_GROUP("src"								FILES 	${ROOT_SOURCE})
 
- # 增加预编译头
-use_precompiled_header(Plugin_Designer
-   "${CMAKE_CURRENT_SOURCE_DIR}/inc/Plugin_DesignerAfx.h"
-   "${CMAKE_CURRENT_SOURCE_DIR}/src/Plugin_DesignerAfx.cpp"
-  )
   
 # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc;)
@@ -65,3 +60,9 @@ set_target_properties(Plugin_Designer PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELWIT
 add_dependencies(Plugin_Designer  DmMain)
 
 SET_TARGET_PROPERTIES(Plugin_Designer PROPERTIES FOLDER PlugIns)
+
+ # 增加预编译头
+use_precompiled_header(Plugin_Designer
+   "${CMAKE_CURRENT_SOURCE_DIR}/inc/Plugin_DesignerAfx.h"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/Plugin_DesignerAfx.cpp"
+  )
