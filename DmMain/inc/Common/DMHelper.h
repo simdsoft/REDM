@@ -24,10 +24,10 @@ namespace DM
 	//---------------------------------------------------
 	bool DM_EXPORT GetRootPathW(wchar_t *pszPath, DWORD dwSize);
 	bool DM_EXPORT GetRootDirW(wchar_t *pszPath, DWORD dwSize);
-	bool DM_EXPORT GetRootFullPath(wchar_t *pszSrcPath, wchar_t *pszDestPath, DWORD dwSize);
-	bool DM_EXPORT CheckFileExistW(wchar_t *pszFilePath);
-	DWORD DM_EXPORT GetFileSizeW(wchar_t *pszFilePath);
-	bool DM_EXPORT GetFileBufW(wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize);
+	bool DM_EXPORT GetRootFullPath(const wchar_t *pszSrcPath, wchar_t *pszDestPath, DWORD dwSize);
+	bool DM_EXPORT CheckFileExistW(const wchar_t *pszFilePath);
+	DWORD DM_EXPORT GetFileSizeW(const wchar_t *pszFilePath);
+	bool DM_EXPORT GetFileBufW(const wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize);
 
 	//---------------------------------------------------
 	// Function Des: 字体转换函数,dwLen为字符数，非字节数
@@ -35,8 +35,8 @@ namespace DM
 	// Output Parameter:
 	// return:
 	//---------------------------------------------------
-	bool DM_EXPORT UnicodeToAscii(CONST PWCHAR pwszSrc, PCHAR pszDst, DWORD dwLen);
-	bool DM_EXPORT UnicodeToUtf8(CONST PWCHAR pwszSrc, PCHAR pszDst, DWORD dwLen);
+	bool DM_EXPORT UnicodeToAscii(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen);
+	bool DM_EXPORT UnicodeToUtf8(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen);
 
 	//---------------------------------------------------
 	// Function Des: 转换

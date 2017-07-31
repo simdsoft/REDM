@@ -74,7 +74,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool GetRootFullPath(wchar_t *pszSrcPath, wchar_t *pszDestPath, DWORD dwSize)
+	bool GetRootFullPath(const wchar_t *pszSrcPath, wchar_t *pszDestPath, DWORD dwSize)
 	{
 		bool bRet = false;
 		do 
@@ -101,7 +101,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool CheckFileExistW(wchar_t *pszFilePath)
+	bool CheckFileExistW(const wchar_t *pszFilePath)
 	{
 		bool bRet = false;
 		do 
@@ -125,7 +125,7 @@ namespace DM
 		return bRet;
 	}
 
-	DWORD GetFileSizeW(wchar_t *pszFilePath)
+	DWORD GetFileSizeW(const wchar_t *pszFilePath)
 	{
 		DWORD dwSize = 0;
 		do 
@@ -153,7 +153,7 @@ namespace DM
 		return dwSize;
 	}
 
-	bool GetFileBufW(wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize)
+	bool GetFileBufW(const wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize)
 	{
 		bool bRet =  false;
 		do 
@@ -179,7 +179,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool UnicodeToAscii(CONST PWCHAR pwszSrc, PCHAR pszDst, DWORD dwLen)
+	bool UnicodeToAscii(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen)
 	{
 		bool bRet = false;
 		do 
@@ -207,7 +207,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool UnicodeToUtf8(CONST PWCHAR pwszSrc, PCHAR pszDst, DWORD dwLen)
+	bool UnicodeToUtf8(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen)
 	{
 		bool bRet = false;
 		do 
