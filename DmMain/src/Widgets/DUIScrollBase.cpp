@@ -382,6 +382,7 @@ namespace DM
 					DrawMoreScrollBar(pCanvas,SB_PAGEDOWN,DMSBST_NORMAL,bVert);
 					psi->nTrackPos = -1;
 					DrawMoreScrollBar(pCanvas,SB_THUMBTRACK,DMSBST_NORMAL,bVert);
+					DM_ReleaseCanvas(pCanvas);
 				}
 			}
 		}

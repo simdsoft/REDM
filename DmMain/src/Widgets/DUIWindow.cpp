@@ -1584,6 +1584,7 @@ namespace DM
 		{
 			if (-1 != m_DUIData.m_dcFlags||NULL == m_pContainer)
 			{
+				DMASSERT_EXPR(0,L"亲,弹这个框是告诉你,你的DM_GetCanvas和DM_ReleaseCanvas没有配对使用!");
 				break;
 			}
 
