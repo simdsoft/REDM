@@ -407,6 +407,11 @@ namespace DM
 				SetRangeCurPos(ptPos);
 			}
 		}
+		DMEventOnScrollArgs Evt(this);
+		Evt.m_bVert = bVert;
+		Evt.m_iPos = nPos;
+		Evt.m_iSbCode = (int)uCode;
+		DV_FireEvent(Evt);
 
 		return true;
 	}

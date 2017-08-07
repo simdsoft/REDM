@@ -94,7 +94,7 @@ namespace DM
 			bHasChildren		 = false;
 			nLevel				 = 0;
 			nCheckBoxValue		 = DMTVICheckBox_UnChecked;
-			nItemWidth			 = 0;
+			nContentWidth			 = 0;
 			dwToggleState		 = DUIWNDSTATE_Normal;
 			dwCheckBoxState		 = DUIWNDSTATE_Normal;
 		}
@@ -110,7 +110,7 @@ namespace DM
 		bool			bHasChildren;
 		int             nLevel;
 		int             nCheckBoxValue;
-		int				nItemWidth;
+		int				nContentWidth;
 		DWORD			dwToggleState;
 		DWORD			dwCheckBoxState;
 	} TVITEM, *LPTVITEM;
@@ -212,7 +212,8 @@ namespace DM
 
 		virtual int GetScrollLineSize(bool bVert);
 		virtual void ItemLayout();														///< 计算树形控件一项的绘制区				
-		virtual void CalaItemWidth(LPTVITEM pItem);
+		virtual int  CalaItemContentWidth(LPTVITEM pItem);
+		virtual int  CalcItemWidth(const LPTVITEM pItem);
 		virtual int  GetMaxItemWidth();
 		virtual int  GetMaxItemWidth(HDMTREEITEM hItem);
 

@@ -373,10 +373,6 @@ namespace DM
 						LPDMHDITEM pItem = m_DMArray[LOWORD(m_dwHitTest)];
 						m_DMArray.RemoveAt(LOWORD(m_dwHitTest));
 						int nPos = LOWORD(m_dwDragTo);
-						if (nPos>LOWORD(m_dwHitTest)) 
-						{
-							nPos--;// 要考虑将自己移除的影响
-						}
 						m_DMArray.InsertAt(LOWORD(m_dwDragTo),pItem);
 						// 发消息通知宿主表项位置发生变化,如ListCtrl
 						DMEventHeaderItemSwapArgs Evt(this);

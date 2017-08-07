@@ -47,7 +47,6 @@ namespace DM
 		DMADDEVENT(DMEventTCCheckStateArgs::EventID);
 		DMADDEVENT(DMEventTCExpandArgs::EventID);
 		DMADDEVENT(DMEventTCDbClickArgs::EventID);
-
 	}
 
 	void DUITreeCtrl::UnInit()
@@ -114,7 +113,7 @@ namespace DM
 				LPTVITEM pParent = GetItem(hParent);
 				pParent->bHasChildren = false;
 				pParent->bCollapsed = false;
-				CalaItemWidth(pParent);            
+				CalaItemContentWidth(pParent);            
 			}
 
 			if (m_bCheckBox 
@@ -208,11 +207,11 @@ namespace DM
 				if (!GetChildItem(hParent) && !pParentItem->bHasChildren)
 				{
 					pParentItem->bHasChildren = true;  // 插入一个子项了，所以为true
-					CalaItemWidth(pParentItem);
+					CalaItemContentWidth(pParentItem);
 				}
 			}    
 
-			CalaItemWidth(pItemObj);
+			CalaItemContentWidth(pItemObj);
 
 			hRet = DMTreeT<LPTVITEM>::InsertItem(pItemObj,hParent,hInsertAfter);
 			pItemObj->hItem = hRet;
@@ -222,7 +221,7 @@ namespace DM
 			{
 				m_nVisibleItems++;
 
-				nViewWidth = max(rcClient.Width(), pItemObj->nItemWidth + pItemObj->nLevel*m_iChildOffset);
+				nViewWidth = max(rcClient.Width(), CalcItemWidth(pItemObj));
 				if (nViewWidth>m_nMaxItemWidth) 
 				{
 					m_nMaxItemWidth = nViewWidth;
@@ -586,33 +585,18 @@ namespace DM
 	{    
 		do 
 		{
-			bool bTextColorChanged = false;
 			LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);
-			pCanvas->OffsetViewportOrg(rc.left,rc.top);
+			pCanvas->OffsetViewportOrg(rc.left+m_iChildOffset*pItem->nLevel,rc.top);
 
 			CRect rcItemBg;
-			rcItemBg.SetRect(m_iTextOffset+m_iItemMargin, 0, pItem->nItemWidth, m_iItemHei);
+			rcItemBg.SetRect(m_iTextOffset+m_iItemMargin, 0, CalcItemWidth(pItem), m_iItemHei);
+			if (rcItemBg.right>rc.Width() - m_iChildOffset*pItem->nLevel)
+			{
+				rcItemBg.right = rc.Width() - m_iChildOffset*pItem->nLevel;
+			}
 
-			///0. 设置字体
-			bool bFontChanged = false;
-			DWORD dwOld = DUIWNDSTATE_Normal;
-			DUIDrawEnviron DrawEnviron;
-			if (hItem == m_hHoverItem)
-			{
-				DWORD dwOld = DM_ModifyState(DUIWNDSTATE_Hover,DUIWNDSTATE_FULL,false);
-				bFontChanged = true;
-			}
-			if (hItem == m_hSelItem)
-			{
-				DWORD dwOld = DM_ModifyState(DUIWNDSTATE_PushDown,DUIWNDSTATE_FULL,false);
-				bFontChanged = true;
-			}
-			if (bFontChanged)
-			{
-				DV_PushDrawEnviron(pCanvas,DrawEnviron);
-			}
-		
-			DMColor crOldText;
+			DMColor crOldText = PBGRA(0XFF,0XFF,0XFF,0XFF);
+			bool bTextColorChanged = false;
 			///1. 绘制背景
 			if (hItem == m_hSelItem)
 			{
@@ -627,9 +611,11 @@ namespace DM
 						pCanvas->FillSolidRect(rcItemBg, m_crItemSelBg);
 					}
 				}
-
-				bTextColorChanged = true;
-				crOldText = pCanvas->SetTextColor(m_crItemSelText);
+				if (!m_crItemSelText.IsTextInvalid())
+				{
+					bTextColorChanged = true;
+					crOldText = pCanvas->SetTextColor(m_crItemSelText);
+				}
 			}
 			else if (hItem == m_hHoverItem)
 			{
@@ -644,9 +630,11 @@ namespace DM
 						pCanvas->FillSolidRect(rcItemBg, m_crItemHoverBg);
 					}
 				}
-
-				bTextColorChanged = true;
-				crOldText = pCanvas->SetTextColor(m_crItemHoverText);
+				if (!m_crItemHoverText.IsTextInvalid())
+				{
+					bTextColorChanged = true;
+					crOldText = pCanvas->SetTextColor(m_crItemHoverText);
+				}
 			}
 			else
 			{
@@ -661,9 +649,11 @@ namespace DM
 						pCanvas->FillSolidRect(rcItemBg, m_crItemBg);
 					}
 				}
-
-				bTextColorChanged = true;
-				crOldText = pCanvas->SetTextColor(m_crItemText);
+				if (!m_crItemText.IsTextInvalid())
+				{
+					bTextColorChanged = true;
+					crOldText = pCanvas->SetTextColor(m_crItemText);
+				}
 			}
 
 			if (pItem->bHasChildren &&
@@ -704,22 +694,21 @@ namespace DM
 				}
 			}
 
-			UINT align = DT_VCENTER|DT_SINGLELINE;
-			rcItemBg.OffsetRect(m_iItemMargin, 0);
-			pCanvas->DrawText(pItem->strText,-1,rcItemBg,align);    
-
+			UINT ulAlgin = 0;
+			m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlgin);
+			CRect rcContent = rcItemBg;
+			rcContent.right = CalaItemContentWidth(pItem);
+			if (rcContent.right>rc.Width()-m_iChildOffset*pItem->nLevel)
+			{
+				rcContent.right = rc.Width()-m_iChildOffset*pItem->nLevel;
+			}
+			pCanvas->DrawText(DMTR(pItem->strText),-1,rcContent,ulAlgin);    
 			if (bTextColorChanged)
 			{
 				pCanvas->SetTextColor(crOldText);
 			}
 
-			if (bFontChanged)
-			{
-				DV_PopDrawEnviron(pCanvas,DrawEnviron);
-				DM_ModifyState(dwOld,0,false);
-			}
-
-			pCanvas->OffsetViewportOrg(-rc.left,-rc.top);
+			pCanvas->OffsetViewportOrg(-rc.left-m_iChildOffset*pItem->nLevel,-rc.top);
 		} while (false);
 	}
 
@@ -743,29 +732,11 @@ namespace DM
 			{
 				LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);
 
-				CRect rcItem(m_iChildOffset*pItem->nLevel,0,m_iChildOffset*pItem->nLevel+pItem->nItemWidth ,m_iItemHei);
+				CRect rcItem(0,0,CalcItemWidth(pItem),m_iItemHei);
 				rcItem.OffsetRect(rcClient.left-m_ptCurPos.x,rcClient.top+m_iItemHei*iItem-m_ptCurPos.y);
-				if (rcItem.bottom>rcClient.bottom) 
-				{
-					rcItem.bottom = rcClient.bottom;
-				}
-				if (rcItem.right>rcClient.right)
-				{
-					rcItem.right = rcClient.right;
-				}
-
 				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcItem,m_bHover?DMOLEDC_PAINTBKGND:DMOLEDC_NODRAW);
-				DUIDrawEnviron DrawEnviron;
-
-				DWORD dwOld = DM_ModifyState(0,DUIWNDSTATE_FULL,false);/// <item默认使用normal字体状态
-				DV_PushDrawEnviron(pCanvas,DrawEnviron);
-				DM_ModifyState(dwOld,0,false);
-
 				DM_SendMessage(WM_ERASEBKGND,(WPARAM)(void*)pCanvas);
-
 				DrawItem(pCanvas,rcItem,hItem);
-				DV_PopDrawEnviron(pCanvas,DrawEnviron);
-				
 				DM_ReleaseCanvas(pCanvas);
 			}
 
@@ -784,11 +755,6 @@ namespace DM
 	{
 		do 
 		{
-			if (DM_IsUpdateLocked())
-			{
-				break;
-			}
-			DWORD dwOld = DM_ModifyState(0,DUIWNDSTATE_FULL,false);/// <item默认使用normal字体状态
 			DUIDrawEnviron DrawEnviron;
 			DV_PushDrawEnviron(pCanvas,DrawEnviron);
 
@@ -813,7 +779,7 @@ namespace DM
 				}
 				if (iVisible>=iFirstVisible)
 				{// 从可视区第一项开始绘制
-					CRect rcItem(m_iChildOffset*pItem->nLevel,0,m_iChildOffset*pItem->nLevel+pItem->nItemWidth,m_iItemHei);
+					CRect rcItem(0,0,CalcItemWidth(pItem),m_iItemHei);
 					rcItem.OffsetRect(rcClient.left-m_ptCurPos.x,rcClient.top-m_ptCurPos.y+iVisible*m_iItemHei);
 					DrawItem(pCanvas,rcItem,hItem);
 				}
@@ -829,7 +795,6 @@ namespace DM
 				hItem = DMTreeT<LPTVITEM>::GetNextItem(hItem);
 			}
 			DV_PopDrawEnviron(pCanvas,DrawEnviron);
-			DM_ModifyState(dwOld,0,false);
 		} while (false);
 	}
 
@@ -1074,19 +1039,27 @@ namespace DM
 		m_iTextOffset = iOffset;
 	}
 
-	void DUITreeCtrl::CalaItemWidth(LPTVITEM pItem)
+	int DUITreeCtrl::CalaItemContentWidth(LPTVITEM pItem)
 	{
-		DMSmartPtrT<IDMCanvas> pCanvas;
-		g_pDMRender->CreateCanvas(0,0,&pCanvas);
-		DV_SetDrawEnvironEx(pCanvas);
-		UINT ulAlgin = 0;
-		m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlgin);
-		int nTestDrawMode = ulAlgin & ~(DT_CENTER | DT_RIGHT | DT_VCENTER | DT_BOTTOM);
+		if (0 == pItem->nContentWidth && !pItem->strText.IsEmpty())// 未初始化过
+		{
+			DMSmartPtrT<IDMCanvas> pCanvas;
+			g_pDMRender->CreateCanvas(0,0,&pCanvas);
+			DV_SetDrawEnvironEx(pCanvas);
+			UINT ulAlgin = 0;
+			m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlgin);
+			int nTestDrawMode = ulAlgin & ~(DT_CENTER | DT_RIGHT | DT_VCENTER | DT_BOTTOM | DT_END_ELLIPSIS);
 
-		CRect rcTest;
-		DV_DrawText(pCanvas,pItem->strText, pItem->strText.GetLength(), rcTest, nTestDrawMode | DT_CALCRECT);
+			CRect rcTest;
+			DV_DrawText(pCanvas,DMTR(pItem->strText), -1, rcTest, nTestDrawMode | DT_CALCRECT);
+			pItem->nContentWidth = rcTest.Width() + m_iTextOffset + 2*m_iItemMargin;
+		}
+		return pItem->nContentWidth;
+	}
 
-		pItem->nItemWidth = rcTest.Width() + m_iTextOffset + 2*m_iItemMargin;
+	int DUITreeCtrl::CalcItemWidth(const LPTVITEM pItem)
+	{	
+		return CalaItemContentWidth(pItem) + pItem->nLevel*m_iChildOffset;
 	}
 
 	int DUITreeCtrl::GetMaxItemWidth(HDMTREEITEM hItem)
@@ -1097,7 +1070,7 @@ namespace DM
 		LPTVITEM pItem = GetItem(hItem);
 		if (pItem->bVisible)
 		{
-			nItemWidth = pItem->nItemWidth + pItem->nLevel*m_iChildOffset;
+			nItemWidth = CalcItemWidth(pItem);
 		}
 		else
 		{
@@ -1579,7 +1552,7 @@ namespace DM
 				dm_parsebool(lpszValue,m_bCheckBox);
 				break;
 			}
-			
+
 			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_toggleskin))
 			{
 				m_pToggleSkin = g_pDMApp->GetSkin(lpszValue);
@@ -1608,11 +1581,11 @@ namespace DM
 				while (hItem)
 				{
 					LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);
-					CalaItemWidth(pItem);
+					CalaItemContentWidth(pItem);
 					hItem = DMTreeT<LPTVITEM>::GetNextItem(hItem);
 				}
 			}
-		
+
 			DM_Invalidate();
 		}
 		return iErr;
