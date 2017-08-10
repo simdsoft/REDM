@@ -105,6 +105,8 @@ namespace DM
 			if (0 == pCopy->m_strCursor.CompareNoCase(L"arrow"))
 			{
 				pCopy->m_strCursor	   = m_strCursor;
+				pCopy->m_hCursor       = m_hCursor;		///< 由图片创建的icon可以DestroyIcon多次，后面会直接返回无效光标的错误，但不会报错
+				pCopy->m_bBmpCursor    = m_bBmpCursor;
 			}
 			if (0xff == pCopy->m_byAlpha)
 			{
