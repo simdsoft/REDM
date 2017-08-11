@@ -247,7 +247,7 @@ namespace DM
 				m_siHoz.nMin  = 0;
 				m_siHoz.nMax  = m_siHoz.nPage-1;
 				m_siHoz.nPos  = 0;
-				m_ptCurPos.x     = m_siHoz.nPos;/// 记录水平的nPos
+				m_ptCurPos.x  = m_siHoz.nPos;/// 记录水平的nPos
 			}
 		}
 		else
@@ -273,7 +273,7 @@ namespace DM
 				m_siHoz.nMin   = 0;
 				m_siHoz.nMax   = m_siHoz.nPage-1;
 				m_siHoz.nPos   = 0;
-				m_ptCurPos.x	   = m_siHoz.nPos;
+				m_ptCurPos.x   = m_siHoz.nPos;
 			}
 		}
 
@@ -380,8 +380,9 @@ namespace DM
 					DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,FALSE);
 					DrawMoreScrollBar(pCanvas,SB_PAGEUP,DMSBST_NORMAL,bVert);
 					DrawMoreScrollBar(pCanvas,SB_PAGEDOWN,DMSBST_NORMAL,bVert);
-					psi->nTrackPos = -1;
+					psi->nTrackPos = -1;// 此时trackpos必须为-1，不然计算thumb时会出错
 					DrawMoreScrollBar(pCanvas,SB_THUMBTRACK,DMSBST_NORMAL,bVert);
+					DM_ReleaseCanvas(pCanvas);
 				}
 			}
 		}
@@ -406,6 +407,11 @@ namespace DM
 				SetRangeCurPos(ptPos);
 			}
 		}
+		DMEventOnScrollArgs Evt(this);
+		Evt.m_bVert = bVert;
+		Evt.m_iPos = nPos;
+		Evt.m_iSbCode = (int)uCode;
+		DV_FireEvent(Evt);
 
 		return true;
 	}
@@ -563,6 +569,7 @@ namespace DM
 				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,false);
 				DrawMoreScrollBar(pCanvas,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert); 
 				DrawMoreScrollBar(pCanvas,SB_PAGEDOWN,DMSBST_NORMAL,m_sbInfo.bVert); 
+				psi->nTrackPos = -1;// 此时trackpos必须为-1，不然计算thumb时会出错
 				DrawMoreScrollBar(pCanvas,SB_THUMBTRACK,DMSBST_NORMAL,m_sbInfo.bVert);//恢复滑块状态
 				DM_ReleaseCanvas(pCanvas);
 			}

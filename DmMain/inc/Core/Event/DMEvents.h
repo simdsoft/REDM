@@ -91,6 +91,8 @@ namespace DM
 		DMEVT_SD_POSCHANG      = 22000,
 		DMEVT_SD_POSCHANGED,
 
+		DMEVT_SC_ONSCROLL      = 22100,
+
 		// 预留1000空间给script设置事件
 		DMEVT_SCRIPT_START     = 23000,
 		DMEVT_SCRIPT_END       = 24000,
@@ -604,6 +606,22 @@ namespace DM
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_SD_POSCHANGED);}
 		int                     m_nOldPos;
 		int                     m_nNewPos;
+	};
+
+	/// <summary>
+	///		滚动事件
+	/// </summary>
+	class DM_EXPORT DMEventOnScrollArgs : public DMEventArgs
+	{
+	public:
+		DMEventOnScrollArgs(DUIWindow *pWnd) :DMEventArgs(pWnd),m_iSbCode(-1),m_iPos(0),m_bVert(true){}
+		enum{EventID=DMEVT_SC_ONSCROLL};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_SC_ONSCROLL);}
+		int						m_iSbCode;
+		int                     m_iPos;
+		bool                    m_bVert;
+
 	};
 
 	/// <summary>
