@@ -684,7 +684,15 @@ namespace DM
 			{
 				break;
 			}
-			pData->pPanel->DM_InvalidateRect(pData->pPanel->m_rcWindow);
+			CRect rcItem;
+			if (!GetItemRect(hItem,rcItem))
+			{
+				break;
+			}
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			CRect rcNeed(rcClient.left,rcItem.top,rcClient.right,rcItem.bottom);// 画布为整一行
+			DM_InvalidateRect(rcNeed);
 		} while (false);
 	}
 
