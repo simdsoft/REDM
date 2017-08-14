@@ -450,25 +450,7 @@ namespace DM
 				break;
 			}
 
-			CRect rcClient = GetListRect();
-			CRect rcItem = GetItemRect(iItem);
-			CRect rcInter;
-			rcInter.IntersectRect(&rcClient,&rcItem);
-			if (rcInter.IsRectEmpty())
-			{
-				break;
-			}
-			IDMCanvas* pCanvas = DM_GetCanvas(&rcInter,DMOLEDC_PAINTBKGND);
-			if (NULL == pCanvas)
-			{
-				break;
-			}
-			DUIDrawEnviron DrawEnviron;
-			DV_PushDrawEnviron(pCanvas,DrawEnviron);
-			DM_SendMessage(WM_ERASEBKGND,(WPARAM)(HDC)pCanvas);
-			DrawItem(pCanvas,rcItem,iItem);
-			DV_PopDrawEnviron(pCanvas,DrawEnviron);
-			DM_ReleaseCanvas(pCanvas);
+			m_DMArray[iItem]->pPanel->DM_InvalidateRect(m_DMArray[iItem]->pPanel->m_rcWindow);
 		} while (false);
 	}
 

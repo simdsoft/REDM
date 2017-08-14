@@ -684,26 +684,7 @@ namespace DM
 			{
 				break;
 			}
-
-			CRect rcItem;
-			if (!GetItemRect(hItem,rcItem))
-			{
-				break;
-			}
-
-			// 进入绘制
-			CRect rcClient;
-			DV_GetClientRect(rcClient);
-			CRect rcNeed(rcClient.left,rcItem.top,rcClient.right,rcItem.bottom);// 画布为整一行
-			DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcNeed,DMOLEDC_PAINTBKGND);
-			if (pCanvas)
-			{
-				DUIDrawEnviron DrawEnviron;
-				DV_PushDrawEnviron(pCanvas,DrawEnviron);
-				DrawItem(pCanvas,rcItem,hItem);
-				DV_PopDrawEnviron(pCanvas,DrawEnviron);
-			}
-			DM_ReleaseCanvas(pCanvas);
+			pData->pPanel->DM_InvalidateRect(pData->pPanel->m_rcWindow);
 		} while (false);
 	}
 
