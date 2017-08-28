@@ -184,21 +184,25 @@ namespace DM
 			DM_AddChildPanel(pData->pPanel);
 
 			// 强制加上偏移
-			int iOffset = 0;
-			if (m_pCheckSkin&&m_bCheckBox)
-			{
-				CSize sz;
-				m_pCheckSkin->GetStateSize(sz);
-				iOffset = sz.cx;
-			}
+			if (hParent==DMTVI_ROOT)
+			{// 根结点的iChildOffset为它的实际偏移，其他结点为相对于父节点的偏移
+				int iOffset = 0;
+				if (m_pCheckSkin&&m_bCheckBox)
+				{
+					CSize sz;
+					m_pCheckSkin->GetStateSize(sz);
+					iOffset = sz.cx;
+				}
 
-			if (m_pToggleSkin)
-			{
-				CSize sz;
-				m_pToggleSkin->GetStateSize(sz);
-				iOffset += sz.cx;
+				if (m_pToggleSkin)
+				{
+					CSize sz;
+					m_pToggleSkin->GetStateSize(sz);
+					iOffset += sz.cx;
+				}
+
+				pData->iChildOffset += iOffset;
 			}
-			pData->iChildOffset += iOffset;
 
 			// 更新滚动条
 			if (bEnsureVisible)
