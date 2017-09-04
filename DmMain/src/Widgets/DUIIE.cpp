@@ -1093,19 +1093,25 @@ namespace DM
 		return hr;
 	}
 
-	void DUIIE::SetScrollBarShow(bool bShow)
+	HRESULT DUIIE::SetScrollBarShow(bool bShow)
 	{
 		m_DocHostUIHandler.SetScrollBarShow(bShow);
+		return S_OK;
 	}
 
-	void DUIIE::SetContextMenuShow(bool bShow)
+	HRESULT DUIIE::SetContextMenuShow(bool bShow)
 	{
 		m_DocHostUIHandler.SetContextMenuShow(bShow);
+		return S_OK;
 	}
 
-	DMCode DUIIE::IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
+	HRESULT DUIIE::WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
 	{
-		return SetAttribute(pszAttribute,pszValue,bLoadXml);
+		if (DMSUCCEEDED(SetAttribute(pszAttribute,pszValue,bLoadXml)))
+		{
+			return S_OK;
+		}
+		return S_FALSE;
 	}
 
 	DMCode DUIIE::OnAttributeUrl(LPCWSTR pszValue, bool bLoadXml)

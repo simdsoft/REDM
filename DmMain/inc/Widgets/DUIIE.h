@@ -263,16 +263,16 @@ namespace DM
 		/// @brief 是否显示IE的滚动条
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		void SetScrollBarShow(bool bShow);
+		HRESULT SetScrollBarShow(bool bShow);
 
 		/// @brief 是否显示IE的右键菜单
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		void SetContextMenuShow(bool bShow);
+		HRESULT SetContextMenuShow(bool bShow);
 
 		/// @brief 转发IE的设置属性
 		/// @return
-		DMCode IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);
+		HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);
 
 	public:
 		DM_BEGIN_ATTRIBUTES()

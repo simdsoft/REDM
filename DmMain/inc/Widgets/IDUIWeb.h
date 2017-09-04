@@ -2,8 +2,8 @@
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
-// File Name: IDUIIE.h 
-// File Des:提供IE对外接口
+// File Name: IDUIWeb.h 
+// File Des:提供Web对外接口
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -61,7 +61,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 IE对外接口
+	///		 Web对外接口
 	/// </summary>
 	class IDUIWeb
 	{
@@ -69,56 +69,55 @@ namespace DM
 		/// @brief 设置事件接收者
 		/// @param[in]		pEventHandler		事件接收者指针
 		/// @return HRESULT，S_OK
-		virtual HRESULT SetEvtHandler(IDMWebEvent* pEventHandler) = 0;
+		virtual HRESULT SetEvtHandler(IDMWebEvent* pEventHandler){return E_NOTIMPL;};
 
 		/// @brief 打开指定页面
 		/// @param[in]		pszURL		需要打开的url字符串
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0) = 0;
+		virtual HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0){return E_NOTIMPL;};
 
 		/// @brief 打开指定页面
 		/// @param[in]		pszURL		接收当前url的字符串缓冲区
 		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen) = 0;
-		virtual CStringW GetUrl() = 0;
-
+		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen){return E_NOTIMPL;};
+	
 		/// @brief 获得OLE窗口句柄
 		/// @return HWND，失败为NULL
-		virtual HWND GetOleWindow() = 0;
+		virtual HWND GetOleWindow(){return NULL;};
 
 		/// @brief BUSY状态
 		/// @return ture or false
-		virtual bool IsBusy() = 0;
+		virtual bool IsBusy(){return false;};
 
 		/// @brief 停止
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT Stop() = 0;
+		virtual HRESULT Stop(){return E_NOTIMPL;};
 
 		/// @brief 关闭浏览器
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT Quit() = 0;
+		virtual HRESULT Quit(){return E_NOTIMPL;};
 
 		/// @brief 刷新
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT Refresh() = 0;
+		virtual HRESULT Refresh(){return E_NOTIMPL;};
 
 		/// @brief 指定刷新级别刷新
 		/// @param[in]		nLevel		刷新常量， 简化了参数类型， REFRESH_NORMAL 0x0 / REFRESH_IFEXPIRED 0x01 / REFRESH_COMPLETELY 0x03
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT Refresh2(UINT32 nLevel) = 0;
+		virtual HRESULT Refresh2(UINT32 nLevel){return E_NOTIMPL;};
 
 		/// @brief 后退
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT GoBack() = 0;
+		virtual HRESULT GoBack(){return E_NOTIMPL;};
 
 		/// @brief 前进
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT GoForward() = 0;
+		virtual HRESULT GoForward(){return E_NOTIMPL;};
 
 		/// @brief 在当前浏览器控制器下执行脚本
 		/// @return HRESULT，失败为S_FALSE
-		virtual HRESULT ExecuteScript(LPCWSTR pszScript) = 0;
+		virtual HRESULT ExecuteScript(LPCWSTR pszScript){return E_NOTIMPL;};
 
 		/// @brief 执行指定函数名字的脚本
 		/// @param[in]		 strFun			指定要脚本执行的函数名称
@@ -126,27 +125,27 @@ namespace DM
 		/// @param[out]		 strResult		返回脚本函数执行的结果
 		/// @param[in]		 nMaxLen		返回脚本函数执行的结果缓冲区的最大长度
 		/// @return HRESULT，失败为E_FAIL
-		virtual HRESULT ExecuteScriptFuntion(LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult = NULL,int nMaxLen = -1) = 0;
+		virtual HRESULT ExecuteScriptFuntion(LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult = NULL,int nMaxLen = -1){return E_NOTIMPL;};
 
 		/// @brief 禁止脚本警告
 		/// @param[in]		 bDisable		是否禁止
 		/// @return HRESULT，失败为E_FAIL
-		virtual HRESULT DisableScriptWarning(bool bDisable) = 0;
+		virtual HRESULT DisableScriptWarning(bool bDisable){return E_NOTIMPL;};
 
-		/// @brief 是否显示IE的滚动条
+		/// @brief 是否显示Web的滚动条
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		virtual void SetScrollBarShow(bool bShow) = 0;
+		virtual HRESULT SetScrollBarShow(bool bShow){return E_NOTIMPL;};
 
-		/// @brief 是否显示IE的右键菜单
+		/// @brief 是否显示Web的右键菜单
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		virtual void SetContextMenuShow(bool bShow) = 0;
+		virtual HRESULT SetContextMenuShow(bool bShow){return E_NOTIMPL;};
 
-		/// @brief 转发DUIIE的SetAttribute
+		/// @brief 转发Web的SetAttribute
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		virtual DMCode IESetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml) = 0;					
+		virtual HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml){return E_NOTIMPL;};					
 	};
 
 }
