@@ -2,7 +2,7 @@
 #include "DMHWnd.h"
 #define  RESIZE_OFFSET								5							///< Resize时设置箭头属性
 namespace DM
-{	
+{
 	BEGIN_MSG_MAP(DMHWnd)
 		MSG_WM_PAINT(OnPaint)
 		MSG_WM_PRINT(OnPrint)
@@ -76,7 +76,7 @@ namespace DM
 	HWND DMHWnd::DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow/*=false*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
-		do 
+		do
 		{
 			// 窗口已创建
 			if (m_hWnd)
@@ -109,7 +109,7 @@ namespace DM
 		if (m_hWnd)
 		{
 			// 开始布局
-			InitFromDMData();			
+			InitFromDMData();
 
 			// 注册可拖动
 			::RegisterDragDrop(m_hWnd, &m_DropTarget);
@@ -119,12 +119,15 @@ namespace DM
 		}
 
 		LOG_INFO("[end]m_hWnd:0x%08x\n",m_hWnd);
+
+    OnPostCreate();
+
 		return m_hWnd;
 	}
 
 	HWND DMHWnd::DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow/*=false*/)
 	{
-		do 
+		do
 		{
 			// 窗口已创建
 			if (m_hWnd)
@@ -156,7 +159,7 @@ namespace DM
 		if (m_hWnd)
 		{
 			// 开始布局
-			InitFromDMData();			
+			InitFromDMData();
 
 			// 注册可拖动
 			::RegisterDragDrop(m_hWnd, &m_DropTarget);
@@ -165,12 +168,14 @@ namespace DM
 			g_pDMPluginTool->SetInit();
 		}
 
+    OnPostCreate();
+
 		return m_hWnd;
 	}
 
 	void DMHWnd::UpdateHWnd(HDC hdc,const CRect &rcInvalid,bool bUpdate)
 	{
-		do 
+		do
 		{
 			if (NULL == m_pDraw)
 			{
@@ -211,7 +216,7 @@ namespace DM
 	// 不仅能避免多次重复地更新同一区域，也优化了应用的更新操作
 	void DMHWnd::RedrawAll()
 	{
-		do 
+		do
 		{
 			if (NULL == m_pDraw)
 			{
@@ -223,7 +228,7 @@ namespace DM
 			{
 				Invalidate(FALSE);// 不清空背景
 			}
-			else if (m_dummyWnd.IsWindow()) 
+			else if (m_dummyWnd.IsWindow())
 			{
 				m_dummyWnd.Invalidate(FALSE);
 			}
@@ -236,7 +241,7 @@ namespace DM
 	DMCode DMHWnd::LoadDMData(LPCWSTR lpszXmlId)
 	{
 		DMCode iErr = DM_ECODE_OK;
-		do 
+		do
 		{
 			DMXmlDocument XmlDoc;
 			if (!DMSUCCEEDED(g_pDMAppData->InitDMXmlDocument(XmlDoc,RES_LAYOUT,lpszXmlId)))
@@ -258,7 +263,7 @@ namespace DM
 				g_pDMSkinPool->AddSkinPoolItem(XmlSkin);
 				XmlSkin = XmlSkin.NextSibling(L"skin");
 			}
-			
+
 			// 解析私有Style节点,外部可以释放它--------------
 			DMXmlNode XmlStyle = XmlNode.FirstChild(L"style");
 			while (XmlStyle.IsValid())
@@ -280,7 +285,7 @@ namespace DM
 	DMCode DMHWnd::LoadDMData(void *pXmlBuf, size_t bufLen)
 	{
 		DMCode iErr = DM_ECODE_OK;
-		do 
+		do
 		{
 			DMXmlDocument XmlDoc;
 			if (!XmlDoc.LoadFromBuffer(pXmlBuf, bufLen))
@@ -324,7 +329,7 @@ namespace DM
 	DMCode DMHWnd::InitFromDMData()
 	{
 		DMCode iErr = DM_ECODE_OK;
-		do 
+		do
 		{
 			// 注册tip
 			m_pToolTip.Release();
@@ -338,21 +343,21 @@ namespace DM
 
 			// 设置窗口属性可拖动 ----------------------
 			DWORD dwStyle = WS_MAXIMIZEBOX| WS_THICKFRAME;
-			if (m_pHWndXmlInfo->m_bResizable)	
+			if (m_pHWndXmlInfo->m_bResizable)
 			{
 				ModifyStyle(0,dwStyle);
 			}
 			else
-			{			
+			{
 				ModifyStyle(dwStyle,0);
 			}
-			
+
 			DWORD dwExStyle = WS_EX_LAYERED;
 			if (m_pHWndXmlInfo->m_bTranslucent)
 			{
 				ModifyStyleEx(0,dwExStyle);
 			}
-		
+
 			// 设置窗口标题 ----------------------------
 			SetWindowText(m_pHWndXmlInfo->m_strTitle);
 
@@ -381,7 +386,7 @@ namespace DM
 			}
 
 			else
-			{	
+			{
 				DM_FloatLayout(rcClient);
 				DV_UpdateChildLayout();// 必须调用此处更新DUI位置，不然外部设置窗口没有布局
 			}
@@ -403,11 +408,11 @@ namespace DM
 			CRect rcUp;
 			::GetClipBox(hdc, rcUp);// 测试表明此处总是和PAINTSTRUCT.rcPaint一致
 			UpdateHWnd(hdc, rcUp);
-		}	
+		}
 		else
 		{
 			OnPrint(hdc, NOMAL_PAINT);
-		}	
+		}
 	}
 
 	void DMHWnd::OnPrint(HDC hdc, UINT uFlags)
@@ -427,7 +432,7 @@ namespace DM
 
 	void DMHWnd::OnSize(UINT nType, CSize size)
 	{
-		do 
+		do
 		{
 			if (IsIconic())
 			{
@@ -463,7 +468,7 @@ namespace DM
 
 	void DMHWnd::OnGetMinMaxInfo(LPMINMAXINFO lpMMI)
 	{// http://hgy413.com/1870.html
-		do 
+		do
 		{
 			HMONITOR hMonitor = ::MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONULL);
 			if (NULL == hMonitor)
@@ -581,7 +586,7 @@ namespace DM
 
 	void DMHWnd::OnMove(CPoint pt)
 	{
-		do 
+		do
 		{
 			int iCount = (int)g_pDMDWndPool->m_RealDUIWndArray.GetCount();
 			if (iCount<=0)
@@ -716,7 +721,7 @@ namespace DM
 	LRESULT DMHWnd::OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam)
 	{
 		// 资料可参看http://blog.csdn.net/hgy413/article/details/6863924
-		do 
+		do
 		{
 			if (!bCalcValidRects)
 			{
@@ -752,9 +757,9 @@ namespace DM
 
 	LRESULT DMHWnd::OnMouseEvent(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		do 
+		do
 		{
-			
+
 			OnFrameEvent(uMsg,wParam,lParam);    //将鼠标消息转发到DUIWindow处理
 			if (m_pToolTip)
 			{
@@ -814,7 +819,7 @@ namespace DM
 	DMCode DMHWnd::DM_AnimateWindow(DWORD dwTime,DWORD dwFlags)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			if (NULL == m_pDraw)
 			{
@@ -1013,7 +1018,7 @@ namespace DM
 	DMCode DMHWnd::OnReleaseCaptureWnd()
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			iErr = DMContainerImpl::OnReleaseCaptureWnd();
 			::ReleaseCapture();
@@ -1033,7 +1038,7 @@ namespace DM
 	DMCode DMHWnd::OnGetDraw(IDMDraw** ppObj)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			if (NULL == ppObj||NULL == m_pDraw)
 			{
@@ -1050,7 +1055,7 @@ namespace DM
 	DMCode DMHWnd::OnGetCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas**ppCanvas)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			if (NULL == ppCanvas||NULL == lpRect||NULL == m_pDraw)
 			{
@@ -1069,7 +1074,7 @@ namespace DM
 				if (pMemCanvas)
 				{
 					(*ppCanvas)->BitBlt(pMemCanvas,rc.left,rc.top,&rc,SRCCOPY);
-				}		
+				}
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -1078,7 +1083,7 @@ namespace DM
 
 	DMCode DMHWnd::OnReleaseCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas*pCanvas)
 	{
-		do 
+		do
 		{
 			if (NULL == lpRect||NULL == m_pDraw)
 			{
@@ -1150,7 +1155,7 @@ namespace DM
 	DMCode DMHWnd::OnUpdateRect(LPCRECT lpRect)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			if (NULL == m_pDraw
 				||NULL == lpRect)
@@ -1163,7 +1168,7 @@ namespace DM
 			{
 				m_dummyWnd.Invalidate(FALSE);
 			}
-			else 
+			else
 			{
 				Invalidate(FALSE);// 不清空背景
 			}
@@ -1232,7 +1237,7 @@ namespace DM
 	DMCode DMHWnd::DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			CRect rcWindow;
 			GetWindowRect(rcWindow);
@@ -1279,7 +1284,7 @@ namespace DM
 	DMCode DMHWnd::DM_UpdateShowCanvas(LPRECT lpRect)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		do 
+		do
 		{
 			if (NULL == m_pDraw)
 			{
@@ -1343,4 +1348,9 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+
+  void DMHWnd::OnPostCreate()
+  {
+
+  }
 }//namespace DM

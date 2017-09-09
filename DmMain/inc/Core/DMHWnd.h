@@ -1,8 +1,8 @@
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
-// 
-// File Name: DMHWnd.h 
+//
+// File Name: DMHWnd.h
 // File Des: 主窗口类,用于CWnd相关Create
 // File Summary:  成员变量总是放在ClassName_Data类中，XML变量总是放在ClassName_XmlInfo类中
 // Cur Version: 1.0
@@ -10,14 +10,16 @@
 // Create Data:
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
-//      guoyou		2015-1-11	1.0			
+//      guoyou		2015-1-11	1.0
+//      k000		2017-09-07	1.0			Add OnPostCreate method called by
+//																		DM_CreateWindowEx after window is created.
 //-------------------------------------------------------
 #pragma once
 #include "DMContainerImpl.h"
 #include "DMHWndHelper.h"
 #include "DMMsgLoop.h"
 namespace DM
-{	
+{
 	/// <summary>
 	///		此为最重要窗口主类，所有实例主窗口都应该直接或间接继承于此类,属性：<see cref="DMAttr::DMHWndAttr"/>
 	/// </summary>
@@ -26,7 +28,7 @@ namespace DM
 	/// <remarks>
 	class DM_EXPORT DMHWnd:public DMCWnd          // 窗口基础消息处理
 						  ,public DMContainerImpl // 消息分发到子DUI窗口
-						  ,public DUIWindow		  // 主窗口自身为DUI窗口	
+						  ,public DUIWindow		  // 主窗口自身为DUI窗口
 						  ,public IDMAnimateOwner // 动画窗口的拥有者
 	{
 	public:
@@ -36,7 +38,7 @@ namespace DM
 		// Function Des: 创建窗口接口函数
 		//---------------------------------------------------
 		HWND DM_CreateWindow(LPCWSTR lpszXmlId,int x=0, int y=0, int nWidth=0, int nHeight=0, HWND hWndParent=NULL, bool bShadow=false);///< 创建窗口
-		
+
 		/// -------------------------------------------------
 		/// @brief			创建窗口
 		/// @param[in]		lpszXmlId       使用的XML文件在dmindex.xml中的标识
@@ -48,7 +50,7 @@ namespace DM
 		/// @param[in]		nWidth			宽度
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
-		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message	
+		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
 		/// @param[in]		bShadow         是否使用阴影窗口
 		/// @return			HWND
 		HWND DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow=false);
@@ -66,7 +68,7 @@ namespace DM
 		/// @param[in]		nWidth			宽度
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
-		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message	
+		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
 		/// @param[in]		bShadow         是否使用阴影窗口
 		/// @return			HWND
 		HWND DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow=false);
@@ -113,20 +115,20 @@ namespace DM
 		UINT OnNcHitTest(CPoint point);
 		int OnCreate(LPCREATESTRUCT lpCreateStruct);
 		LRESULT OnNcCreate(LPCREATESTRUCT lpCreateStruct);						///< 如果OnNcCreate返回false，窗口将不会被创建！
-		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam); 
+		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);
 		LRESULT OnMouseEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< 用于处理鼠标点击消息
 		LRESULT OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< 键盘消息传递，如焦点
 		LRESULT OnHostMsg(UINT uMsg, WPARAM wParam, LPARAM lParam);
-		
+
 
 		//---------------------------------------------------
 		// Function Des: 动画
 		//---------------------------------------------------
 		DMCode DM_AnimateWindow(DWORD dwTime,DWORD dwFlags);					    ///< 动画效果
 		DUIWindow* GetAnimateOwnerWnd();
-		DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};		
-		DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};		    
-		DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};				
+		DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
+		DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
+		DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
 
 		//---------------------------------------------------
 		// Function Des: 容器部分
@@ -157,9 +159,15 @@ namespace DM
 	public:// 辅助
 		DMCode DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect);
 		DMCode DM_UpdateShowCanvas(LPRECT lpRect);
-		
+
+  protected:
+    /**
+     * This method is called by DM_CreateWindowEx after window is created.
+     */
+    virtual void OnPostCreate();
+
 	public:
-		DECLARE_MESSAGE_MAP()	
+		DECLARE_MESSAGE_MAP()
 		DECLARE_EVENT_MAP()
 
 		DM_BEGIN_ATTRIBUTES()
