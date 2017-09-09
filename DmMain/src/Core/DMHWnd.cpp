@@ -116,12 +116,11 @@ namespace DM
 
 			// 设置初始化完成状态
 			g_pDMPluginTool->SetInit();
+
+			OnAfterCreated();
 		}
-
+		
 		LOG_INFO("[end]m_hWnd:0x%08x\n",m_hWnd);
-
-    OnPostCreate();
-
 		return m_hWnd;
 	}
 
@@ -166,10 +165,11 @@ namespace DM
 
 			// 设置初始化完成状态
 			g_pDMPluginTool->SetInit();
+
+			OnAfterCreated();
 		}
-
-    OnPostCreate();
-
+	
+		LOG_INFO("[end]m_hWnd:0x%08x\n",m_hWnd);
 		return m_hWnd;
 	}
 
@@ -1349,7 +1349,7 @@ namespace DM
 		return iErr;
 	}
 
-  void DMHWnd::OnPostCreate()
+  void DMHWnd::OnAfterCreated()
   {
 
   }

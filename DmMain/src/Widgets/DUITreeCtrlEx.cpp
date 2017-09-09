@@ -1473,7 +1473,7 @@ namespace DM
 		return hRet;
 	}
 
-	int DUITreeCtrlEx::ItemHitTest(HDMTREEITEM hItem,CPoint &pt) const
+	int DUITreeCtrlEx::ItemHitTest(HDMTREEITEM hItem,CPoint &pt) 
 	{
 		int iHitTestBtn = DMTVEXBtn_None;
 		do 

@@ -432,6 +432,10 @@ namespace DM
 			{
 				m_DMArray[iItem]->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
 			}
+			if (iItem != m_iSelItem)
+			{
+				m_DMArray[iItem]->pPanel->OnSetFocusWnd(NULL);
+			}
 			m_DMArray[iItem]->pPanel->DrawItem(pCanvas,rc);
 		} while (false);
 	}

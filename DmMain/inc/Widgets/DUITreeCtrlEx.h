@@ -244,16 +244,16 @@ namespace DM
 
 		
 		// 位置相关
-		HDMTREEITEM HitTest(CPoint &pt);													///< 自动修改pt的位置为相对当前项的偏移量(如处于XOffset那一段区域,则pt.x为负值)
-		int ItemHitTest(HDMTREEITEM hItem,CPoint &pt) const;								///<这里pt已被转换成为相对当前项的偏移量，只需判断x即可
+		virtual HDMTREEITEM HitTest(CPoint &pt);											///< 自动修改pt的位置为相对当前项的偏移量(如处于XOffset那一段区域,则pt.x为负值)
+		virtual int ItemHitTest(HDMTREEITEM hItem,CPoint &pt);								///<这里pt已被转换成为相对当前项的偏移量，只需判断x即可
 
-		int GetTotalHeight();
-		int GetTotalWidth();
+		virtual int GetTotalHeight();
+		virtual int GetTotalWidth();
 		int GetItemHeightWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总高度
 		int GetItemWidthWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总宽度
 		int GetItemXOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
 		int GetItemYOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
-		bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);									///< 计算某项区域(和rcClient处同一坐标系）
+		virtual bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);							///< 计算某项区域(和rcClient处同一坐标系）
 		bool GetToggleRect(HDMTREEITEM hItem,CRect &rcToggle);                              ///< 计算某项toggle区域(和rcClient处同一坐标系）
 		bool GetCheckBoxRect(HDMTREEITEM hItem,CRect &rcCheckBox);                          ///< 计算某项checkbox区域(和rcClient处同一坐标系）
 		void UpdateScrollRangeSize();

@@ -161,10 +161,7 @@ namespace DM
 		DMCode DM_UpdateShowCanvas(LPRECT lpRect);
 
   protected:
-    /**
-     * This method is called by DM_CreateWindowEx after window is created.
-     */
-    virtual void OnPostCreate();
+		virtual void OnAfterCreated();							///< 窗口创建成功后调用
 
 	public:
 		DECLARE_MESSAGE_MAP()
