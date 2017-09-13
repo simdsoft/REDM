@@ -376,6 +376,9 @@ namespace DM
 				::SetLayeredWindowAttributes(m_hWnd,0,m_pHWndXmlInfo->m_byAlpha,LWA_ALPHA);
 			}
 
+			// 保证子窗口处理一次ShowWindow事件
+			DM_SendMessage(WM_SHOWWINDOW, TRUE, 0); 
+
 			// 设置宽高 ------------------------------
 			CRect rcClient;
 			GetClientRect(rcClient);

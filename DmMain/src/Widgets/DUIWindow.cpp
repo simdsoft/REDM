@@ -367,12 +367,6 @@ namespace DM
 				}
 				break;
 			}
-			if (m_Node.m_pParent)
-			{
-				if (!m_Node.m_pParent->DM_IsVisible(true))m_dwDUIState |= DUIWNDSTATE_Novisible;
-				if (m_Node.m_pParent->DM_IsDisable(true)) m_dwDUIState |= DUIWNDSTATE_Disable;
-			}
-			DM_SendMessage(WM_SHOWWINDOW,DM_IsVisible(true),ParentShow);// 仅仅给自己发一个WM_SHOWWINDOW消息
 			DV_CreateChildWnds(XmlNode);
 		} while (false);
 		return iErr;
