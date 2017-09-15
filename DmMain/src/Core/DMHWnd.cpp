@@ -523,10 +523,7 @@ namespace DM
 		}
 		::RevokeDragDrop(m_hWnd);						    // 撤回可拖动
 		g_pDMDWndPool->RemoveMainDUIWnd(GetDUIWnd());		///< 控制主窗口的DUI列表,用于换肤计算
-		if (DMSUCCEEDED(g_pDMAppData->IsRun(m_hWnd)))
-		{
-			::PostQuitMessage(1);
-		}
+		OnAfterClosed();
 	}
 
 	void DMHWnd::OnActivate(UINT nState, BOOL bMinimized, HWND wndOther)
@@ -1356,4 +1353,14 @@ namespace DM
   {
 
   }
+
+  void DMHWnd::OnAfterClosed()
+  {
+	  if (DMSUCCEEDED(g_pDMApp->IsRun(m_hWnd)))
+	  {
+		  ::PostQuitMessage(1);
+	  }
+  }
+
+
 }//namespace DM

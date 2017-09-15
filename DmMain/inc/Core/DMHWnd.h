@@ -162,6 +162,7 @@ namespace DM
 
   protected:
 		virtual void OnAfterCreated();							///< 窗口创建成功后调用
+		virtual void OnAfterClosed();							///< 窗口退出后,内部判断如果此窗口运行消息循环,自动发送WM_QUIT消息,用户可重载处理
 
 	public:
 		DECLARE_MESSAGE_MAP()

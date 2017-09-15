@@ -250,7 +250,7 @@ namespace DM
 		/// @param[in]		 nMaxLen		返回脚本函数执行的结果缓冲区的最大长度
 		/// @return HRESULT，失败为E_FAIL
 		HRESULT ExecuteScriptFuntion( 
-			LPCWSTR strFun, 
+			LPCWSTR pszFun, 
 			const DM::CArray<LPCWSTR>& vecParams, 
 			LPWSTR strResult = NULL,
 			int nMaxLen = -1);

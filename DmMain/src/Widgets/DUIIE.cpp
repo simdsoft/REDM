@@ -1010,7 +1010,7 @@ namespace DM
 		return hr;
 	}
 
-	HRESULT DUIIE::ExecuteScriptFuntion(LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult, int nMaxLen)
+	HRESULT DUIIE::ExecuteScriptFuntion(LPCWSTR pszFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult, int nMaxLen)
 	{
 		HRESULT hr = E_FAIL;
 		do 
@@ -1033,7 +1033,7 @@ namespace DM
 					hr = spDoc->get_Script(&spScript);
 					if (SUCCEEDED(hr) && spScript) 
 					{
-						_bstr_t _bsMember(strFun);
+						_bstr_t _bsMember(pszFun);
 						DISPID _dispid = 0;
 						hr = spScript->GetIDsOfNames(IID_NULL, &_bsMember.GetBSTR(), 1, LOCALE_SYSTEM_DEFAULT, &_dispid);
 						if (SUCCEEDED(hr))
