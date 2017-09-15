@@ -40,6 +40,11 @@ namespace DM
 		return g_pDMAppData->Run(hMainWnd,bEnableActive);
 	}
 
+	DMCode DMApp::IsRun(HWND hWnd)
+	{
+		return g_pDMAppData->IsRun(hWnd);
+	}
+
 	/// ×¢²áÀà-----------------------------------------
 	DMCode DMApp::Register(IDMReg &RegObj, bool bReplace/*=false*/)
 	{

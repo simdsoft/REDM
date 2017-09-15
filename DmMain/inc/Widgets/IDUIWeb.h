@@ -125,7 +125,7 @@ namespace DM
 		/// @param[out]		 strResult		返回脚本函数执行的结果
 		/// @param[in]		 nMaxLen		返回脚本函数执行的结果缓冲区的最大长度
 		/// @return HRESULT，失败为E_FAIL
-		virtual HRESULT ExecuteScriptFuntion(LPCWSTR strFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult = NULL,int nMaxLen = -1){return E_NOTIMPL;};
+		virtual HRESULT ExecuteScriptFuntion(LPCWSTR pszFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult = NULL,int nMaxLen = -1){return E_NOTIMPL;};
 
 		/// @brief 禁止脚本警告
 		/// @param[in]		 bDisable		是否禁止
