@@ -35,3 +35,7 @@ DM库需要遵守什么开源协议？
 * DM库SVN路径:
     [svn://git.oschina.net/hgy413/REDM/](svn://git.oschina.net/hgy413/REDM/)
 * **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
+   
+     
+## 4. 附录
+*  [DMCef](https://gitee.com/hgy413/DMCef)插件，实现Cef相关功能
