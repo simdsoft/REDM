@@ -66,6 +66,11 @@ namespace DM
 	class IDUIWeb
 	{
 	public:
+		enum{DMWEBTYPE_IE,DMWEBTYPE_WEBKIT,DMWEBTYPE_OSRWEBKIT,};
+		/// @brief 返回当前的类型(ie/webkit/离屏webkit)
+		/// @return 默认为IE
+		virtual int GetWebType(){return DMWEBTYPE_IE;};
+
 		/// @brief 设置事件接收者
 		/// @param[in]		pEventHandler		事件接收者指针
 		/// @return HRESULT，S_OK

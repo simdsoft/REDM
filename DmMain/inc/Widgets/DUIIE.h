@@ -30,7 +30,7 @@ namespace DMAttr
 		static wchar_t* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
 		static wchar_t* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
 		static wchar_t* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
-		static wchar_t* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:accel="ctrl+f5"
+		static wchar_t* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:refreshkey="ctrl+f5"
 	};
 	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bshowcontext)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
 }

@@ -178,6 +178,10 @@ enum DMOLEDCFLAGS
 #define    IsValidString(x)							((x) && (x)[0])
 #endif
 
+#ifndef    SAFE_STR
+#define    SAFE_STR(a)								 IsValidString(a) ? a :L""
+#endif
+
 #ifndef    __STR2WSTR
 #define	   __STR2WSTR(str)						     L##str
 #endif
