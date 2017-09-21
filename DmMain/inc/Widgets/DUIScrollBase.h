@@ -123,7 +123,6 @@ namespace DM
 		CRect GetSbSlideRectByPos(bool bVert,int nPos);								///< 根据nPos获得滚动滑块所在的位置
 		SBSTATEINFO HitTest(CPoint pt);												///< 获取状态等信息组合
 		int GetSbSlideLength(bool bVert);											///< 获取滚动滑块的长度
-		void ScrollUpdateWindow();													///< 滚动条更新到窗口显示
 
 	public:
 		void DrawScrollBar(IDMCanvas *pCanvas,LPCRECT lpRectDraw,int iSbCode,int iState,bool bVert, BYTE alpha=0xff);
@@ -167,9 +166,6 @@ namespace DM
 		int							m_isbDragPos;		///< 对应SCROLLINFO.nPos(水平、竖直)
 		CPoint						m_sbDragPt;			///< 拖动的位置（x表示水平，y表示竖直)
 		bool						m_bsbDrag;          ///< 拖动状态（鼠标按下时在滑块上）
-
-		DWORD						m_dwUpdateTime;		///< 记录调用UpdateSWindow的时间
-		DWORD						m_dwUpdateInterval;
 		
 		CSize                       m_szRange;          ///< 滚动区的宽高
 		CPoint                      m_ptCurPos;         ///< x指向水平scroll的nPos,y指向竖直scroll的nPos

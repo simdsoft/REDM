@@ -19,9 +19,6 @@ namespace DM
 		memset(&m_siVer,0,sizeof(SCROLLINFO));
 		m_siHoz.nTrackPos		= -1;
 		m_siVer.nTrackPos		= -1;
-
-		m_dwUpdateInterval      = 0;
-
 		m_pDUIXmlInfo->m_bOnlyDrawClient = true;/// 此处一定为true,用于设置画布只绘制客户区
 
 		m_szRange.SetSize(-1,-1);
@@ -534,7 +531,6 @@ namespace DM
 				m_bsbDrag  = true;
 				m_sbDragPt = point;
 				m_isbDragPos = m_sbInfo.bVert?m_siVer.nPos:m_siHoz.nPos;
-				m_dwUpdateTime = GetTickCount()-m_dwUpdateInterval;// 让第一次滚动消息能够即时刷新
 				CRect rcRail = GetSbRailwayRect(m_sbInfo.bVert);// 除去边框的大小
 				DMSmartPtrT<IDMCanvas> pCanvas = DM_GetCanvas(&rcRail,DMOLEDC_PAINTBKGND,false);
 				DrawMoreScrollBar(pCanvas,SB_PAGEUP,DMSBST_NORMAL,m_sbInfo.bVert); 
@@ -1146,16 +1142,6 @@ namespace DM
 		}
 
 		return nSlideHei;
-	}
-
-	void DUIScrollBase::ScrollUpdateWindow()
-	{
-		DWORD dwTime = GetTickCount();
-		if (dwTime-m_dwUpdateTime>=m_dwUpdateInterval)
-		{
-			GetContainer()->OnUpdateWindow();
-			m_dwUpdateTime = dwTime;
-		}
 	}
 
 	void DUIScrollBase::DrawScrollBar(IDMCanvas *pCanvas,LPCRECT lpRectDraw, int iSbCode,int iState,bool bVert, BYTE alpha)
