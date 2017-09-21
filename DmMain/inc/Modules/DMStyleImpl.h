@@ -53,7 +53,7 @@ namespace DMAttr
 		
 		static wchar_t* INT_textmode;                                       ///< 窗口的style默认textalign,使用数字表示,示例textmode="0x100"
 		static wchar_t* OPTION_align;                                       ///< 窗口的style默认水平align,left对应Align_Left,center对应Align_Center,right对应Align_Right,示例align="left"
-		static wchar_t*	OPTION_valign;                                      ///< 窗口的style默认竖直align,top对应VAlign_Left,middle对应VAlign_Middle,bottom对应VAlign_Bottom,示例valign="left"
+		static wchar_t*	OPTION_valign;                                      ///< 窗口的style默认竖直align,top对应VAlign_Top,middle对应VAlign_Middle,bottom对应VAlign_Bottom,示例valign="top"
 		static wchar_t* bool_bdot;									    	///< 窗口的style默认文本过长时使用...,示例bdot="1"
 	};
 	DMAttrValueInit(DUIStyleAttr,STRING_id)
