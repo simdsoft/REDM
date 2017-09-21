@@ -173,6 +173,7 @@ namespace DM
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
 			MSG_WM_DESTROY(OnDestroy)
+			MSG_WM_SIZE(OnSize)
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
 			MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
@@ -194,6 +195,7 @@ namespace DM
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnDestroy();
+		void OnSize(UINT nType, CSize size);
 		void OnLButtonDown(UINT nFlags,CPoint pt);
 		void OnLButtonDbClick(UINT nFlags,CPoint pt);
 		void OnLButtonUp(UINT nFlags,CPoint pt);
@@ -263,7 +265,6 @@ namespace DM
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_toggleskin, m_pToggleSkin, DM_ECODE_NOXMLLOADREFRESH)  
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_checkskin, m_pCheckSkin, DM_ECODE_NOXMLLOADREFRESH)  
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_itembgskin, m_pItemBgSkin, DM_ECODE_NOXMLLOADREFRESH)  
-
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_childoffset, m_iDefChildOffset, DM_ECODE_NOXMLLOADREFRESH)
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_itemheight,  m_iDefItemHei,     DM_ECODE_NOXMLLOADREFRESH)
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_itemwidth,  m_iDefItemWid,     DM_ECODE_NOXMLLOADREFRESH)

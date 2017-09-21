@@ -140,7 +140,6 @@ namespace DM
 			if (pData->bVisible)
 			{
 				UpdateScrollRangeSize();
-				DM_Invalidate();
 			}
 			bRet = true;
 		} while (false);
@@ -200,7 +199,6 @@ namespace DM
 					m_pToggleSkin->GetStateSize(sz);
 					iOffset += sz.cx;
 				}
-
 				pData->iChildOffset += iOffset;
 			}
 
@@ -274,15 +272,9 @@ namespace DM
 				break;
 			}
 
-			//if (!ItemIsValid(hItem))
-			//{
-			//	break;
-			//}
-
 			DMEventTCSelChangingArgs EvtSelChanging(this);
 			EvtSelChanging.m_hOldSel = m_hSelItem;
 			EvtSelChanging.m_hNewSel = hItem;
-
 			DV_FireEvent(EvtSelChanging);
 			if (EvtSelChanging.m_bCancel)
 			{
@@ -297,7 +289,6 @@ namespace DM
 			DMEventTCSelChangedArgs EvtSelChanged(this);
 			EvtSelChanged.m_hOldSel = m_hSelItem;
 			EvtSelChanged.m_hNewSel = hItem;
-
 			m_hSelItem    = hItem;
 			DV_FireEvent(EvtSelChanged);
 
@@ -310,7 +301,6 @@ namespace DM
 				}
 				RedrawItem(EvtSelChanged.m_hOldSel);
 			}
-
 			if (m_hSelItem)
 			{
 				LPTVITEMEX pData = GetItem(m_hSelItem);
@@ -743,11 +733,11 @@ namespace DM
 
 				if (pData->bCollapsed)
 				{// 跳过被折叠的项
-					HDMTREEITEM hChild = GetChildItem(hItem,FALSE);
+					HDMTREEITEM hChild = GetChildItem(hItem,false);
 					while (hChild)
 					{
 						hItem = hChild;
-						hChild = GetChildItem(hItem,FALSE);
+						hChild = GetChildItem(hItem,false);
 					}
 				}
 				hItem = GetNextItem(hItem);
@@ -760,6 +750,12 @@ namespace DM
 	{
 		DM_RemoveAllChildPanel();
 		DeleteAllItems();
+	}
+
+	void DUITreeCtrlEx::OnSize( UINT nType, CSize size )
+	{
+		__super::OnSize(nType, size);
+		UpdateScrollRangeSize();
 	}
 
 	void DUITreeCtrlEx::OnLButtonDown(UINT nFlags,CPoint pt)
@@ -1771,30 +1767,4 @@ namespace DM
 		CSize szView(iWid,iHei);
 		SetRangeSize(szView);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }//namespace DM
