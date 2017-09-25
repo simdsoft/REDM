@@ -648,9 +648,12 @@ namespace DM
 			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject = pWeb;
 			if (spInPlaceActiveObject)
 			{
-				bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;
+				if (pMsg->wParam != VK_BACK)//防止退格两次
+				{// 不能在这里直接bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;,IE会把ctrl+s之类的快捷键全处理了
+					spInPlaceActiveObject->TranslateAccelerator(pMsg);
+				}
 			}
-
+			
 		} while (false);
 
 		return bRet;

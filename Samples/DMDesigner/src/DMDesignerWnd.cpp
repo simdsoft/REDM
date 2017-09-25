@@ -264,7 +264,10 @@ bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 	}
 	else if (0 == str.CompareNoCase(L"CTRL+S"))
 	{
-		m_pDesignerXml->SaveRes();
+		if (m_pDesignerXml)
+		{
+			m_pDesignerXml->SaveRes();
+		}
 	}
 	else if (0 == str.CompareNoCase(L"CTRL+Q"))
 	{
