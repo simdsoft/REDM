@@ -886,7 +886,7 @@ namespace DM
 			 DM_InvalidateRect(m_rcWindow);
 			 if (SB_THUMBTRACK == uCode)
 			 {
-				 GetContainer()->OnUpdateWindow();//在header调整位置后再实时更新一次，不然由于在调整前实时更新了，header会比list滚动慢
+				 ScrollUpdateWindow();//在header调整位置后再实时更新一次，不然由于在调整前实时更新了，header会比list滚动慢
 			 }
 		 }
 		 return bRet;

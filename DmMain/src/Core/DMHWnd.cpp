@@ -222,7 +222,7 @@ namespace DM
 			{
 				break;
 			}
-			m_pDraw->InvalidateRect(&m_rcWindow,RGN_COPY);// 组合无效区
+			m_pDraw->InvalidateRect(NULL,&m_rcWindow,RGN_COPY);// 组合无效区
 
 			if (false == m_pHWndXmlInfo->m_bTranslucent)
 			{
@@ -1152,7 +1152,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DMHWnd::OnUpdateRect(LPCRECT lpRect)
+	DMCode DMHWnd::OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do
@@ -1163,7 +1163,7 @@ namespace DM
 				break;
 			}
 
-			m_pDraw->InvalidateRect(lpRect,RGN_OR);// 组合无效区
+			m_pDraw->InvalidateRect(hDUIWnd,lpRect,RGN_OR);// 组合无效区
 			if (m_dummyWnd.IsWindow())
 			{
 				m_dummyWnd.Invalidate(FALSE);

@@ -144,7 +144,7 @@ namespace DM
 		DMCode OnIsTranslucent();
 		DMCode OnUpdateWindow();
 		DMCode OnForceUpdateWindow();
-		DMCode OnUpdateRect(LPCRECT lpRect);
+		DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd);
 		DMCode OnClientToScreen(LPRECT lpRect);
 		DMCode OnIsSizChanging();
 		DMCode OnRegisterTimeline(IDMTimeline *pHandler);

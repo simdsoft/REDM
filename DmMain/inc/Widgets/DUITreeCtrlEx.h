@@ -45,9 +45,9 @@ namespace DMAttr
 		static wchar_t* ITEM_data;											///< 项的数据,示例:data="1"
 	};
 	DMAttrValueInit(DUITreeCtrlExAttr,SKIN_toggleskin)DMAttrValueInit(DUITreeCtrlExAttr,SKIN_checkskin)DMAttrValueInit(DUITreeCtrlExAttr,SKIN_itembgskin)DMAttrValueInit(DUITreeCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUITreeCtrlExAttr,COLOR_clritemhoverbg)
-	DMAttrValueInit(DUITreeCtrlExAttr,COLOR_clritemselbg)DMAttrValueInit(DUITreeCtrlExAttr,INT_childoffset)DMAttrValueInit(DUITreeCtrlExAttr,INT_itemheight)DMAttrValueInit(DUITreeCtrlExAttr,INT_itemwidth)
-	DMAttrValueInit(DUITreeCtrlExAttr,bool_brightclicksel)DMAttrValueInit(DUITreeCtrlExAttr,bool_bcheckbox)DMAttrValueInit(DUITreeCtrlExAttr,NODE_treeitem)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_bcollapsed)
-	DMAttrValueInit(DUITreeCtrlExAttr,ITEM_height)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_width)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_childoffset)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_data)
+		DMAttrValueInit(DUITreeCtrlExAttr,COLOR_clritemselbg)DMAttrValueInit(DUITreeCtrlExAttr,INT_childoffset)DMAttrValueInit(DUITreeCtrlExAttr,INT_itemheight)DMAttrValueInit(DUITreeCtrlExAttr,INT_itemwidth)
+		DMAttrValueInit(DUITreeCtrlExAttr,bool_brightclicksel)DMAttrValueInit(DUITreeCtrlExAttr,bool_bcheckbox)DMAttrValueInit(DUITreeCtrlExAttr,NODE_treeitem)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_bcollapsed)
+		DMAttrValueInit(DUITreeCtrlExAttr,ITEM_height)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_width)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_childoffset)DMAttrValueInit(DUITreeCtrlExAttr,ITEM_data)
 }
 
 namespace DM
@@ -124,65 +124,100 @@ namespace DM
 		: public DUIScrollBase
 		, public IDMItemPanelOwner
 		, public DMTreeT<LPTVITEMEX>
+		, public DMMapT<HDMTREEITEM,CRect>
 	{
 		DMDECLARE_CLASS_NAME(DUITreeCtrlEx, DUINAME_TreeCtrlEx,DMREG_Window)
 	public:
 		DUITreeCtrlEx();
-		~DUITreeCtrlEx();
-		
+
 	public:
 		//---------------------------------------------------
-		// Function Des: 对外接口
+		// Function Des: 对外接口 methods
 		//---------------------------------------------------
-		bool RemoveAllItems();																			///< 移除所有结点
+		bool RemoveAllItems();
 		bool RemoveItem(HDMTREEITEM hItem);
-		bool SetItemRect(HDMTREEITEM hItem, CRect rcItem);												///< 设置某项的区域
-		
-		///---------------------------------
-		/// 插入函数
-		HDMTREEITEM InsertItem(LPTVITEMEX pData,HDMTREEITEM hParent,HDMTREEITEM hInsertAfter,BOOL bEnsureVisible);
-		HDMTREEITEM InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent=DMTVI_ROOT, HDMTREEITEM hInsertAfter=DMTVI_LAST,BOOL bEnsureVisible=FALSE);
-
-		///---------------------------------
-		/// 获取系列函数，可参考CTreeCtrl的成员函数列表
-		HDMTREEITEM GetRootItem();
-		HDMTREEITEM GetRootItem(HDMTREEITEM hItem);
-		HDMTREEITEM GetNextSiblingItem(HDMTREEITEM hItem);
-		HDMTREEITEM GetPrevSiblingItem(HDMTREEITEM hItem);
-		HDMTREEITEM GetChildItem(HDMTREEITEM hItem,bool bFirst =true);
-		HDMTREEITEM GetParentItem(HDMTREEITEM hItem);
-		HDMTREEITEM GetSelectedItem();
-		HDMTREEITEM GetNextItem(HDMTREEITEM hItem);
-		bool SelectItem(HDMTREEITEM hItem,bool bEnsureVisible=true);
-		bool HoverItem(HDMTREEITEM hItem,CPoint pt,bool bEnsureVisible=true);
-		bool ItemHasChildren(HDMTREEITEM hItem);
-		bool SetItemData(HDMTREEITEM hItem, LPARAM lParam);
-		LPARAM GetItemData(HDMTREEITEM hItem) const;
-
-		bool GetCheckState(HDMTREEITEM hItem) const;    
-		bool SetCheckState(HDMTREEITEM hItem,bool bCheck);   
-
-		bool Expand(HDMTREEITEM hItem,UINT nCode = DMTVEX_EXPAND);
+		HDMTREEITEM InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent=DMTVI_ROOT, HDMTREEITEM hInsertAfter=DMTVI_LAST,bool bEnsureVisible=false);
 		bool EnsureVisible(HDMTREEITEM hItem,bool bFirstVisible = false);
+		bool Expand(HDMTREEITEM hItem,UINT nCode = DMTVEX_EXPAND);
+		bool SetCheckState(HDMTREEITEM hItem,bool bCheck);   
+		bool SelectItem(HDMTREEITEM hItem,bool bEnsureVisible=true);
 
-	public:// 绘制！！！！
+		//---------------------------------------------------
+		// Function Des: IDMItemPanelOwner methods
+		//---------------------------------------------------
+		virtual DUIWindow* GetOwnerWindow();   
+		virtual DMCode OnSetCapture(DUIItemPanel* pPanel);
+		virtual DMCode OnReleaseCapture(DUIItemPanel* pPanel);
+		virtual DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);
+
+		//---------------------------------------------------
+		// Function Des: Draw methods
+		//---------------------------------------------------
 		virtual void DrawItem(IDMCanvas* pCanvas,CRect& rc,HDMTREEITEM hItem);
 		virtual void RedrawItem(HDMTREEITEM hItem);
+
+		//---------------------------------------------------
+		// Function Des: DV methods
+		//---------------------------------------------------
+		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_OnSetCursor(const CPoint &pt);
+		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
+		virtual bool DV_IsSupportFastRefresh();
+		virtual void LoadBranch(HDMTREEITEM hParent,DMXmlNode &XmlItem);
+		virtual void LoadItemAttribute(DMXmlNode &XmlItem, LPTVITEMEX pData);
+		virtual bool OnScroll(bool bVert,UINT uCode,int nPos);
+		virtual int GetScrollLineSize(bool bVert){return m_iDefItemHei;};
+		virtual int GetItemWidth(HDMTREEITEM hItem);
+		virtual int GetTotalHeight();
+		virtual int GetTotalWidth();
+		virtual int GetItemHeightWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总高度
+		virtual int GetItemWidthWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总宽度
+		virtual int GetItemXOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
+		virtual int GetItemYOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
+		virtual bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);									///< 计算某项区域(和rcClient处同一坐标系）
+		virtual bool GetToggleRect(HDMTREEITEM hItem,CRect &rcToggle);                              ///< 计算某项toggle区域(和rcClient处同一坐标系）
+		virtual bool GetCheckBoxRect(HDMTREEITEM hItem,CRect &rcCheckBox);                          ///< 计算某项checkbox区域(和rcClient处同一坐标系）
+		virtual HDMTREEITEM HitTest(CPoint &pt);													///< 自动修改pt的位置为相对当前项的偏移量(如处于XOffset那一段区域,则pt.x为负值)
+		virtual int ItemHitTest(HDMTREEITEM hItem,CPoint &pt);										///<这里pt已被转换成为相对当前项的偏移量，只需判断x即可
+		virtual void UpdateScrollRange();
+		virtual void UpdateVisibleMap();
+
+		virtual void OnNodeFree(LPTVITEMEX &pItemData);
+
+	public:// 辅助
+		//---------------------------------------------------
+		// Function Des: 辅助 methods
+		//---------------------------------------------------
+		HDMTREEITEM InsertItem(LPTVITEMEX pData,HDMTREEITEM hParent,HDMTREEITEM hInsertAfter,bool bEnsureVisible);
+		void SetChildrenVisible(HDMTREEITEM hItem,bool bVisible);
+		void SetChildrenState(HDMTREEITEM hItem,int iCheckValue);
+		void CheckState(HDMTREEITEM hItem, bool bCheck,bool bCheckChild = true);  
+		bool CheckChildrenState(HDMTREEITEM hItem,bool bCheck);			// 子树节点中有和bCheck不一样的状态,则返回false，全一致返回true
+		bool IsAncestor(HDMTREEITEM hItem1,HDMTREEITEM hItem2);         // hItem2是否为hItem1的子项
+
+		void ModifyToggleState(HDMTREEITEM hItem, DWORD dwStateAdd, DWORD dwStateRemove);
+		void ModifyChekcBoxState(HDMTREEITEM hItem, DWORD dwStateAdd, DWORD dwStateRemove);
+		void ItemLButtonDown(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
+		void ItemLButtonUp(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
+		void ItemLButtonDbClick(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
+		void ItemMouseMove(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
+		void ItemMouseLeave(HDMTREEITEM hItem);
 
 	public:
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
-			MSG_WM_DESTROY(OnDestroy)
 			MSG_WM_SIZE(OnSize)
+			MSG_WM_DESTROY(OnDestroy)
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
 			MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 			MSG_WM_RBUTTONDOWN(OnRButtonDown);
-			MSG_WM_MOUSELEAVE(OnMouseLeave)
+		MSG_WM_MOUSELEAVE(OnMouseLeave)
 			DM_MSG_WM_SETFOCUS(DM_OnSetFocus)
 			DM_MSG_WM_KILLFOCUS(DM_OnKillFocus)
 			MSG_WM_CHAR(OnChar)
 			MSG_WM_KEYDOWN(OnKeyDown)
+			MSG_WM_MOUSELEAVE(OnMouseLeave)
 			MSG_WM_MOUSEWHEEL(OnMouseWheel)
 			MESSAGE_RANGE_HANDLER_EX(WM_MOUSEFIRST,WM_MOUSELAST,OnMouseEvent)
 			MESSAGE_RANGE_HANDLER_EX(WM_KEYFIRST,WM_KEYLAST,OnKeyEvent)
@@ -194,8 +229,8 @@ namespace DM
 		// Function Des: DUI的消息分发系列函数
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
-		void OnDestroy();
 		void OnSize(UINT nType, CSize size);
+		void OnDestroy();
 		void OnLButtonDown(UINT nFlags,CPoint pt);
 		void OnLButtonDbClick(UINT nFlags,CPoint pt);
 		void OnLButtonUp(UINT nFlags,CPoint pt);
@@ -209,62 +244,13 @@ namespace DM
 		LRESULT OnMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam);
 		LRESULT OnKeyEvent(UINT uMsg,WPARAM wParam,LPARAM lParam);
 
-	public:
-		//---------------------------------------------------
-		// Function Des: 可重载函数
-		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
-		virtual DMCode DV_OnSetCursor(const CPoint &pt);
-		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
-		virtual void LoadBranch(HDMTREEITEM hParent,DMXmlNode &XmlItem);
-		virtual void LoadItemAttribute(DMXmlNode &XmlItem, LPTVITEMEX pData);      	
-		virtual void OnNodeFree(LPTVITEMEX &pItemData);
-		virtual int GetScrollLineSize(bool bVert){return m_iDefItemHei;};
-		
-
-		// 抽象实现
-		DUIWindow* GetOwnerWindow();   
-		DMCode OnSetCapture(DUIItemPanel* pPanel);
-		DMCode OnReleaseCapture(DUIItemPanel* pPanel);
-		DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);							///< 请使用*lpRect赋值！
-
-	public:// 辅助
-		void SetChildrenVisible(HDMTREEITEM hItem,bool bVisible);
-		void SetChildrenState(HDMTREEITEM hItem,int iCheckValue);
-		void CheckState(HDMTREEITEM hItem, bool bCheck,bool bCheckChild = true);  
-		bool CheckChildrenState(HDMTREEITEM hItem,bool bCheck);			// 子树节点中有和bCheck不一样的状态,则返回false，全一致返回true
-		bool IsAncestor(HDMTREEITEM hItem1,HDMTREEITEM hItem2);         // hItem2是否为hItem1的子项
-		bool ItemIsValid(HDMTREEITEM hItem);
-
-		void ModifyToggleState(HDMTREEITEM hItem, DWORD dwStateAdd, DWORD dwStateRemove);
-		void ModifyChekcBoxState(HDMTREEITEM hItem, DWORD dwStateAdd, DWORD dwStateRemove);
-		void ItemLButtonDown(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
-		void ItemLButtonUp(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
-		void ItemLButtonDbClick(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
-		void ItemMouseMove(HDMTREEITEM hItem, UINT nFlags,CPoint pt);
-		void ItemMouseLeave(HDMTREEITEM hItem);
-
-		
-		// 位置相关
-		virtual HDMTREEITEM HitTest(CPoint &pt);											///< 自动修改pt的位置为相对当前项的偏移量(如处于XOffset那一段区域,则pt.x为负值)
-		virtual int ItemHitTest(HDMTREEITEM hItem,CPoint &pt);								///<这里pt已被转换成为相对当前项的偏移量，只需判断x即可
-
-		virtual int GetTotalHeight();
-		virtual int GetTotalWidth();
-		int GetItemHeightWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总高度
-		int GetItemWidthWithAllChild(HDMTREEITEM hItem);									///< 计算某一项以及它的所有可见子项的总宽度
-		int GetItemXOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
-		int GetItemYOffset(HDMTREEITEM hItem);                                              ///< 计算某项到根结点的偏移（不可见设置为0）
-		virtual bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);							///< 计算某项区域(和rcClient处同一坐标系）
-		bool GetToggleRect(HDMTREEITEM hItem,CRect &rcToggle);                              ///< 计算某项toggle区域(和rcClient处同一坐标系）
-		bool GetCheckBoxRect(HDMTREEITEM hItem,CRect &rcCheckBox);                          ///< 计算某项checkbox区域(和rcClient处同一坐标系）
-		void UpdateScrollRangeSize();
 
 	public:
 		DM_BEGIN_ATTRIBUTES()  
-			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_toggleskin, m_pToggleSkin, DM_ECODE_NOXMLLOADREFRESH)  
-			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_checkskin, m_pCheckSkin, DM_ECODE_NOXMLLOADREFRESH)  
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_toggleskin,OnAttributeToggleSkin)  
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_checkskin,OnAttributeCheckSkin)  
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::SKIN_itembgskin, m_pItemBgSkin, DM_ECODE_NOXMLLOADREFRESH)  
+
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_childoffset, m_iDefChildOffset, DM_ECODE_NOXMLLOADREFRESH)
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_itemheight,  m_iDefItemHei,     DM_ECODE_NOXMLLOADREFRESH)
 			DM_INT_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::INT_itemwidth,  m_iDefItemWid,     DM_ECODE_NOXMLLOADREFRESH)
@@ -273,32 +259,35 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::COLOR_clritembg,		m_crItemBg[0],DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::COLOR_clritemhoverbg,m_crItemBg[1],DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUITreeCtrlExAttr::COLOR_clritemselbg,	m_crItemBg[2],DM_ECODE_NOXMLLOADREFRESH)
-		DM_END_ATTRIBUTES()
+			DM_END_ATTRIBUTES()
+	public:
+		DMCode OnAttributeToggleSkin(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeCheckSkin(LPCWSTR pszValue, bool bLoadXml);
 
 	public:
-		IDMSkinPtr					m_pToggleSkin;			///< 小三角6连图
-		IDMSkinPtr					m_pCheckSkin;			///< checkbox9连图
-		IDMSkinPtr					m_pItemBgSkin;			///< 背景三连图
-		DMColor					    m_crItemBg[3];			///< 背景三连色
+		IDMSkinPtr								m_pToggleSkin;			///< 小三角6连图
+		IDMSkinPtr								m_pCheckSkin;			///< checkbox9连图
+		IDMSkinPtr								m_pItemBgSkin;			///< 背景三连图
+		DMColor									m_crItemBg[3];			///< 背景三连色
 
-		int						    m_iDefItemHei;		    ///< 项的默认高度
-		int						    m_iDefItemWid;		    ///< 项的默认宽度
-		int							m_iDefChildOffset;      ///< 子项相对父项默认偏移
+		int										m_iDefItemHei;		    ///< 项的默认高度
+		int										m_iDefItemWid;		    ///< 项的默认宽度
+		int										m_iDefChildOffset;      ///< 子项相对父项默认偏移
 
-		bool						m_bRightClickSel;       ///< 是否支持右击选中
-		bool						m_bCheckBox;			///< 是否启用checkbox
+		bool									m_bRightClickSel;       ///< 是否支持右击选中
+		bool									m_bCheckBox;			///< 是否启用checkbox
 
 		// 辅助
-		HDMTREEITEM					m_hSelItem;				///< 当前选中项
-		HDMTREEITEM					m_hHoverItem;           ///< 当前停留项
-		HDMTREEITEM					m_hCaptureItem;         ///< 获得capture项(用于鼠标点击后再回复)
+		HDMTREEITEM								m_hSelItem;				///< 当前选中项
+		HDMTREEITEM								m_hHoverItem;           ///< 当前停留项
+		HDMTREEITEM								m_hCaptureItem;         ///< 获得capture项(用于鼠标点击后再回复)
 
 		// 
-		int							m_nItemHoverBtn;		///< 对应小三角和checkbox
-		int							m_nItemPushDownBtn;
-
-		//
-		DMSmartPtrT<DUIItemPanel>	m_pCapturePanel;		///< 当前调用了setcapture的面板,此面板只在鼠标按下的瞬间设置，弹起清空
+		int										m_nItemHoverBtn;		///< 对应小三角和checkbox
+		int										m_nItemPushDownBtn;
+		CSize                                   m_szCheck;				///< 记录checkbox的大小
+		CSize                                   m_szToggle;				///< 记录Toggle的大小
+		DMSmartPtrT<DUIItemPanel>				m_pCapturePanel;		///< 当前调用了setcapture的面板,此面板只在鼠标按下的瞬间设置，弹起清空
+		DWORD                                   m_dwStartTime;
 	};
-
-}//namespace DM
+}

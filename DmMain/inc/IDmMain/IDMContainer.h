@@ -61,7 +61,7 @@ namespace DM
 		virtual DMCode OnIsTranslucent() = 0;												///<是否分层窗口
 		virtual DMCode OnUpdateWindow() = 0;												///<调用系统UpdateWindow				
 		virtual DMCode OnForceUpdateWindow() = 0;											///<强制立即调用刷新									
-		virtual DMCode OnUpdateRect(LPCRECT lpRect) = 0;									///<增加无效区
+		virtual DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd) = 0;						///<增加无效区
 		virtual DMCode OnClientToScreen(LPRECT lpRect) = 0;                                 ///<用于面板子控件转换成屏幕坐标
 		virtual DMCode OnIsSizChanging() = 0;                                               ///<用于判断容器是否正在布局
 

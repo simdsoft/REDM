@@ -81,8 +81,9 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMDraw::InvalidateRect(LPCRECT lpRect,int fnCombineMode)
+	DMCode DMDraw::InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode)
 	{// 目标:m_pInvalidRegion保存所有无效区,m_bOnlyOneRectRepaint记录是否为无效矩形区
+
 		CRect rcInvalid = m_rcCanvas;
 		do 
 		{
@@ -93,40 +94,49 @@ namespace DM
 				m_rcOnlyOne = m_rcCanvas;
 				break;
 			}
+
+			//2.判断是否为空
 			rcInvalid = lpRect;
+			if (rcInvalid.IsRectEmpty()||rcInvalid.left<0||rcInvalid.top<0||rcInvalid.bottom<0||rcInvalid.right<0)
+			{
+				rcInvalid.SetRectEmpty();
+				break;
+			}
+			//4.仅有一个Rect时,前面排除lpRect为NULL的状态,此时只有无效矩形
 			if (RGN_COPY == fnCombineMode
 				||RGN_AND == fnCombineMode
 				)
-			{// 仅有一个Rect时,前面排除lpRect为NULL的状态,此时只有无效矩形
+			{
 				m_bOnlyOneRectRepaint = true;
-				m_rcOnlyOne = lpRect;
+				m_rcOnlyOne = rcInvalid;
 				break;
 			}
+
+			//5. 前面条件限制了lpRect不为NULL,且不是全刷新,且不是RGN_COPY||RGN_AND
 			if (m_bOnlyOneRectRepaint)
-			{// 前面条件限制了lpRect不为NULL,且不是全刷新,且不是RGN_COPY||RGN_AND
-				if (m_rcOnlyOne.PtInRect(rcInvalid.TopLeft())
-					&&m_rcOnlyOne.PtInRect(rcInvalid.BottomRight())
-					)// 新的无效矩形在原无效矩形以内,此时只有无效矩形
+			{
+				CRect rcNew = m_rcOnlyOne;
+				rcNew.UnionRect(rcInvalid,m_rcOnlyOne);
+				if (rcNew.EqualRect(m_rcOnlyOne)// 新的无效矩形在原无效矩形以内
+					||rcNew.EqualRect(rcInvalid))// 旧的无效矩形在新无效矩形以内
 				{
-					break;
-				}
-				else if (rcInvalid.PtInRect(m_rcOnlyOne.TopLeft())
-					&&rcInvalid.PtInRect(m_rcOnlyOne.BottomRight())
-					)// 旧的无效矩形在无效矩形以内,此时只有无效矩形
-				{
-					m_rcOnlyOne = rcInvalid;// 更新无效矩形
+					m_rcOnlyOne = rcNew;
 					break;
 				}
 			}
 			m_bOnlyOneRectRepaint = false;// 不是一个无效矩形
 		} while (false);
+
 		// 最后进入无效Rgn设置
 		if (NULL == m_pInvalidRegion)
 		{
 			m_pRender->CreateRegion(&m_pInvalidRegion);
 		}
-		m_pInvalidRegion->CombineRect(&rcInvalid,fnCombineMode);// 组合无效区
-		m_bNeedRepaint = true;
+		if (!rcInvalid.IsRectEmpty())
+		{
+			m_pInvalidRegion->CombineRect(&rcInvalid,fnCombineMode);// 组合无效区
+			m_bNeedRepaint = true;
+		}
 		return DM_ECODE_OK;
 	}
 
@@ -138,14 +148,22 @@ namespace DM
 			{
 				break;
 			}
+
 			if (m_bOnlyOneRectRepaint)
 			{
-				Array.Add(m_rcOnlyOne);
+				if (!m_rcOnlyOne.IsRectEmpty())
+				{
+					Array.Add(m_rcOnlyOne);
+				}
 				break;
 			}
 
 			CRect rcInvalid;
 			m_pInvalidRegion->GetRgnBox(&rcInvalid);
+			if (rcInvalid.IsRectEmpty())
+			{
+				break;
+			}
 			if (rcInvalid.Width()+100<m_rcCanvas.Width()
 				||rcInvalid.Height()+100<m_rcCanvas.Height())						// 大画布,无效区很小（gdi内部会优化）,绘制的效率还是要低于无效区大小的画布上直接绘制
 			{
@@ -209,7 +227,7 @@ namespace DM
 				{
 					m_pMemCanvas->PopClip();	
 				}
-				m_bOnlyOneRectRepaint = false;
+				m_pMemCanvas->SelectObject(pOldFont);
 				m_rcOnlyOne.SetRectEmpty();
 			}
 			else// 可能有多个无效矩形的异形无效区
@@ -306,9 +324,9 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == pRgn											// 无效区为NULL
-				||pRgn->IsEmpty()										// 无效区为空
-				||DRAW_END == Draw_State						// 遍历到最后了
+			if (NULL == pRgn										// 无效区为NULL
+				||pRgn->IsEmpty()									// 无效区为空
+				||DRAW_END == Draw_State							// 遍历到最后了
 				||(DRAW_DRAWING == Draw_State && pWndCur == pEnd))  // 遍历到最后标志窗口了，最后标志窗口一般为NULL或起点窗口
 			{
 				Draw_State = DRAW_END;
@@ -316,10 +334,10 @@ namespace DM
 			}
 
 			CRect rcPlaceHolder;
-			pWndCur->DV_GetWindowRect(&rcPlaceHolder);					// 获得占位大小，如不显示
-			if (!pWndCur->DM_IsVisible(true)							// 窗口不可见
-				||!pRgn->RectInRegion(&rcPlaceHolder)					// 占位和绘制区无交集
-				||rcPlaceHolder.IsRectEmpty())                          // 占位为空
+			pWndCur->DV_GetWindowRect(&rcPlaceHolder);				// 获得占位大小，如不显示
+			if (!pWndCur->DM_IsVisible(true)						// 窗口不可见
+				||!pRgn->RectInRegion(&rcPlaceHolder)				// 占位和绘制区无交集
+				||rcPlaceHolder.IsRectEmpty())                      // 占位为空
 			{
 				break;
 			}
@@ -423,5 +441,4 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
-
 }//namespace DM

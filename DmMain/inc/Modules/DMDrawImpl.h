@@ -35,7 +35,7 @@ namespace DM
 		DMCode DrawForeground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd);
 		DMCode Draw(IDMCanvas* pCanvas, IDMRegion* lpRgn,DUIWindow* pWnd);
 
-		DMCode InvalidateRect(LPCRECT lpRect,int fnCombineMode=RGN_AND);
+		DMCode InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode=RGN_AND);
 		int    GetInvalidateRect(DM::CArray<CRect>& Array);
 		bool   IsInvalidate(){return m_bNeedRepaint;};
 		DMCode Render(DUIWindow* pWnd);

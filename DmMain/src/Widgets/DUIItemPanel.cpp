@@ -193,7 +193,7 @@ namespace DM
 		return m_pDUIWnd->GetContainer()->OnForceUpdateWindow();
 	}
 
-	DMCode DUIItemPanel::OnUpdateRect(LPCRECT lpRect)
+	DMCode DUIItemPanel::OnUpdateRect(LPCRECT lpRect, DUIWND hDUIWnd)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -289,7 +289,7 @@ namespace DM
 	{
 		do 
 		{
-			if (WM_LBUTTONUP == uMsg)
+			if (WM_LBUTTONDOWN == uMsg)
 			{
 				DMEventOfPanelClickArgs Evt(this); 
 				DV_FireEvent(Evt);
@@ -328,13 +328,13 @@ namespace DM
 			{
 			case WM_MOUSEHOVER: 
 				{
-					DM_ModifyState(DUIWNDSTATE_Hover,0,TRUE);
+					DM_ModifyState(DUIWNDSTATE_Hover,0,true);
 				}
 				break;
 
 			case WM_MOUSELEAVE: 
 				{
-					DM_ModifyState(0,DUIWNDSTATE_Hover,TRUE);
+					DM_ModifyState(0,DUIWNDSTATE_Hover,true);
 				}
 				break;
 			}

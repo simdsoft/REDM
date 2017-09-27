@@ -224,10 +224,10 @@ enum DMOLEDCFLAGS
 // ----------------------------------------------------
 // LOG
 #ifdef   DMLOG_ON
-#define  LOG_TRACE(fmt, ...)						 DMLogDispatch::LogW(DMLOG_TRACE,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
-#define  LOG_DEBUG(fmt, ...)						 DMLogDispatch::LogW(DMLOG_DEBUG,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
-#define  LOG_INFO(fmt, ...)							 DMLogDispatch::LogW(DMLOG_INFO,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
-#define  LOG_WARN(fmt, ...)							 DMLogDispatch::LogW(DMLOG_WARN,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
+#define  LOG_TRACE(fmt, ...)						 //DMLogDispatch::LogW(DMLOG_TRACE,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
+#define  LOG_DEBUG(fmt, ...)						 //DMLogDispatch::LogW(DMLOG_DEBUG,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
+#define  LOG_INFO(fmt, ...)							 //DMLogDispatch::LogW(DMLOG_INFO,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
+#define  LOG_WARN(fmt, ...)							 //DMLogDispatch::LogW(DMLOG_WARN,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
 #define  LOG_ERR(fmt, ...)							 DMLogDispatch::LogW(DMLOG_ERR,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
 #define  LOG_FATAL(fmt, ...)						 DMLogDispatch::LogW(DMLOG_FATAL,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
 #else

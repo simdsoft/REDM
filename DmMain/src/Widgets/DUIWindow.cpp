@@ -921,7 +921,7 @@ namespace DM
 			{
 				if (m_pContainer)
 				{
-					m_pContainer->OnUpdateRect(lpRect);
+					m_pContainer->OnUpdateRect(lpRect,m_hDUIWnd);
 				}
 			}
 			iErr = DM_ECODE_OK;

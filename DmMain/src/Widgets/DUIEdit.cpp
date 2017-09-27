@@ -969,7 +969,7 @@ namespace DM
 			m_bScrollPending = false;
 			if (SB_THUMBTRACK == uCode)
 			{
-				 GetContainer()->OnUpdateWindow();
+				ScrollUpdateWindow();
 			}
 			bRet = (0 == lresult);
 

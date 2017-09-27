@@ -47,7 +47,7 @@ namespace DM
 		DMCode OnIsTranslucent(){return DM_ECODE_NOTIMPL;}
 		DMCode OnUpdateWindow(){return DM_ECODE_NOTIMPL;}
 		DMCode OnForceUpdateWindow(){return DM_ECODE_NOTIMPL;}
-		DMCode OnUpdateRect(LPCRECT lpRect){return DM_ECODE_NOTIMPL;}
+		DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd){return DM_ECODE_NOTIMPL;}
 		DMCode OnClientToScreen(LPRECT lpRect){return DM_ECODE_NOTIMPL;}
 		DMCode OnIsSizChanging(){return DM_ECODE_NOTIMPL;}
 

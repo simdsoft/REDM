@@ -27,7 +27,7 @@ namespace DM
 		virtual  DMCode Draw(IDMCanvas* pCanvas, IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 					///< 绘制,绘制后一般无效区会被清空
 		
 		// DMHWnd无效区+自身绘制
-		virtual  DMCode InvalidateRect(LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					    ///< 设置无效区
+		virtual  DMCode InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					    ///< 设置无效区
 		virtual  int    GetInvalidateRect(DM::CArray<CRect>& Array) = 0;									///< 得到无效矩形列表,返回个数
 		virtual  bool   IsInvalidate() = 0;																	///< 是否存在无效区
 		virtual  DMCode Render(DUIWindow* pWnd) = 0;														///< 根据无效区列表进行绘制,pWnd一般为DMHWnd所在DUIWindow

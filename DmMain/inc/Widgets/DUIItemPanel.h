@@ -62,7 +62,7 @@ namespace DM
 		DMCode OnIsTranslucent();                                       ///< 转发
 		DMCode OnUpdateWindow();										///< 转发
 		DMCode OnForceUpdateWindow();									///< 转发
-		DMCode OnUpdateRect(LPCRECT lpRect);                            ///< 面板内控件更新刷新
+		DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd);             ///< 面板内控件更新刷新
 		DMCode OnClientToScreen(LPRECT lpRect);                         ///< 转发  
 		DMCode OnRegisterTimeline(IDMTimeline *pHandler);				///< 转发
 		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);				///< 转发
