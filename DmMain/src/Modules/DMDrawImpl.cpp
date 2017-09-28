@@ -97,7 +97,9 @@ namespace DM
 
 			//2.ÅÐ¶ÏÊÇ·ñÎª¿Õ
 			rcInvalid = lpRect;
-			if (rcInvalid.IsRectEmpty()||rcInvalid.left<0||rcInvalid.top<0||rcInvalid.bottom<0||rcInvalid.right<0)
+			rcInvalid.left = rcInvalid.left>0?rcInvalid.left:0;
+			rcInvalid.top = rcInvalid.top>0?rcInvalid.top:0;
+			if (rcInvalid.IsRectEmpty())
 			{
 				rcInvalid.SetRectEmpty();
 				break;
