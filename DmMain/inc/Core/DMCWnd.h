@@ -56,7 +56,7 @@ namespace DM
 		HWND UnsubclassWindow(BOOL bForce = FALSE);
 
 	public:
-		DECLARE_MESSAGE_MAP();// ÉùÃ÷ProcessWindowMessage
+		DECLARE_MSG_MAP();// ÉùÃ÷ProcessWindowMessage
 		static LRESULT CALLBACK FirstWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		LRESULT DefWindowProc();

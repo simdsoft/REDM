@@ -165,7 +165,7 @@ namespace DM
 		virtual void OnAfterClosed();							///< 窗口退出后,内部判断如果此窗口运行消息循环,自动发送WM_QUIT消息,用户可重载处理
 
 	public:
-		DECLARE_MESSAGE_MAP()
+		DECLARE_MSG_MAP()
 		DECLARE_EVENT_MAP()
 
 		DM_BEGIN_ATTRIBUTES()

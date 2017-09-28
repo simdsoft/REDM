@@ -125,7 +125,7 @@ namespace DM
 	{
 	public:
 		DMDummyWnd(DMHWnd* pOwner);
-		DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
+		DECLARE_MSG_MAP()// 仿MFC消息映射宏
 
 	public:
 

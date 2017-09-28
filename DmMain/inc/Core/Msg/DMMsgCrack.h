@@ -26,7 +26,7 @@ namespace DM
 
 //-------------------------------------------------------
 // 在头文件中声明,在源文件中定义,通用的作法，调试时可使用MacroTool转换成换行的源代码调试
-#define DECLARE_MESSAGE_MAP() \
+#define DECLARE_MSG_MAP() \
 public: \
 	BOOL IsMsgHandled() const; \
 	void SetMsgHandled(BOOL bHandled); \
@@ -63,7 +63,10 @@ public: \
 		{ \
 	case 0:
 
-
+//-------------------------------------------------------
+#ifndef DECLARE_MESSAGE_MAP
+#define DECLARE_MESSAGE_MAP()					DECLARE_MSG_MAP()
+#endif
 //-------------------------------------------------------
 // 在头文件中声明并定义,用于模板类
 #define BEGIN_MSG_MAPT(theClass) \

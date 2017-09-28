@@ -47,7 +47,7 @@ namespace DM
 		void ShowTooltip(bool bShow);
 	
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DECLARE_MSG_MAP()										// 仿MFC消息映射宏
 
 	protected:
 		int						  m_iDelayTime;

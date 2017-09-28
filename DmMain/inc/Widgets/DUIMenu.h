@@ -60,7 +60,7 @@ namespace DM
 		static LRESULT CALLBACK MenuHookProc(int iCode, WPARAM wParam, LPARAM lParam);
 
 	public:// 辅助
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DECLARE_MSG_MAP()										// 仿MFC消息映射宏
 
 	public:
 		DMSmartPtrT<DUIMenu_XmlInfo>			m_pDUIMenuXmlInfo;

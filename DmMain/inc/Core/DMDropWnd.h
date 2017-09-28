@@ -56,7 +56,7 @@ namespace DM
 		int OnMouseActivate(HWND wndTopLevel, UINT nHitTest, UINT message);
 
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DECLARE_MSG_MAP()										// 仿MFC消息映射宏
 
 	public:
 		//---------------------------------------------------

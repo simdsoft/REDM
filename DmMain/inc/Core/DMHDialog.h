@@ -36,7 +36,7 @@ namespace DM
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 
 	protected:
-		DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
+		DECLARE_MSG_MAP()// 仿MFC消息映射宏
 		DECLARE_EVENT_MAP()
 
 	protected:
