@@ -89,7 +89,7 @@ namespace DM
 				LOG_ERR("[mid]-GetRootDirW fail\n");
 				break;
 			}
-			memset(pszDestPath, 0, dwSize);
+			wmemset(pszDestPath, 0, dwSize);
 			if (0 == PathCombineW(pszDestPath, szExeDir, pszSrcPath))
 			{
 				LOG_ERR("[mid]-PathCombineW fail\n");

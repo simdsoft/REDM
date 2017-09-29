@@ -108,6 +108,7 @@ namespace DM
 		m_clrText			 = PBGRA(0,0,0,255);
 		m_clrCaret           = PBGRA(0,0,0,0xff);
 		m_iCaretAniCount     = 6;
+		m_strAlign           = L"left";
 
 	}
 
@@ -266,6 +267,8 @@ namespace DM
 				strAttr.Format(L"%d",m_iCaretAniCount);
 				m_pEdit[i]->OnAttrCuretAnimateCount(strAttr,false);
 
+				m_pEdit[i]->OnAttrAlign(m_strAlign,false);
+
 				iLeft += iEditWid;
 				iLeft += EDIT_DELTA;
 			}
@@ -341,6 +344,24 @@ namespace DM
 				if (m_pEdit[i])
 				{
 					m_pEdit[i]->OnAttrCuretAnimateCount(pszValue,bLoadXml);
+				}
+			}
+		} while (false);
+		return DM_ECODE_OK;
+	}
+
+
+	DM::DMCode DUIPAddressCtrl::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
+	{
+		do 
+		{
+			m_strAlign = pszValue;
+			for (int i=0;i<4;i++)
+			{
+				if (m_pEdit[i])
+				{
+					m_pEdit[i]->OnAttrAlign(pszValue,bLoadXml);
+					
 				}
 			}
 		} while (false);
