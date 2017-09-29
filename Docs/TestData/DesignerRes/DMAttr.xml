@@ -287,6 +287,7 @@
 	COLOR_clrdot="{pbgra(ff,00,00,ff)}dot颜色,示例:clrdot=pbgra(ff,ff,ff,ff)" 
 	COLOR_clrtext="{pbgra(00,00,00,ff)}默认文本颜色，和style的clrtext相同作用.示例:clrtext=pbgra(00,00,00,ff)" 
 	COLOR_clrcaret="{pbgra(00,00,00,ff)}光标颜色,示例:clrcaret=pbgra(ff,ff,ff,ff)" 
+	OPTION_align="{left}段落排布，和style的align相同作用,默认left,可设置center,right,示例:align=left"
 	INI_caretanimatecount="{6}光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount=6" />
 	
 	<DUITreeCtrlExAttr
