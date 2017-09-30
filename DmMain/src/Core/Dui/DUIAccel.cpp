@@ -39,6 +39,7 @@ namespace DM
 		CStringW str;
 		switch(vk)
 		{
+		case VK_TAB:   str = L"TAB";	break;
 		case VK_ESCAPE:str = L"ESC";	break;
 		case VK_RETURN:str = L"Enter";  break;
 		case VK_UP:	   str = L"Up";		break;
