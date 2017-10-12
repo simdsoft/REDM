@@ -29,6 +29,7 @@ void AddExpandWnd::OnLButtonUp(UINT nFlags,CPoint pt)
 			strSkin.Format(L"ds_w_%s",strSkin);
 			pCbx->SetAttribute(L"checkskin",strSkin);
 			pCbx->SetAttribute(L"text",pChild->m_pDUIXmlInfo->m_strText);
+			pCbx->SetAttribute(L"tiptext",pChild->m_pDUIXmlInfo->m_strText);
 			Hide();
 			break;
 		}
