@@ -929,23 +929,13 @@ namespace DM
 
 	void DUIListBoxEx::UpdateScrollRangeSize()
 	{
-		CRect rcClient;
-		DUIWindow::DV_GetClientRect(&rcClient);
 		int nTotalHeight = 0;
 		int iCount = (int)m_DMArray.GetCount();
 		for (int i = 0; i<iCount; i++)
 		{
 			nTotalHeight += m_DMArray[i]->nHeight;
 		}
-		CSize szView(rcClient.Width(), nTotalHeight);
-		if (szView.cy>rcClient.Height())
-		{
-			szView.cx -= m_isbWid;
-			if (szView.cx<0)
-			{
-				szView.cx = 0;
-			}
-		}
+		CSize szView(0, nTotalHeight);
 		SetRangeSize(szView);
 	}
 
