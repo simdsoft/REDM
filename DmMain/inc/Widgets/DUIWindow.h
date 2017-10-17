@@ -59,7 +59,7 @@ namespace DM
 		
 		//---------------------------------------------------
 		// Function Des:初始化
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);						    ///< 创建子窗口
+		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);						    ///< 1.初始化传入为本控件XmlNode 2.动态创建子控件列表(s),创建Child1,Child2格式应为:<A><Child1 ../><Child2 .../></A>,(A可为任意名)
 		DMCode InitDMData(DMXmlNode &XmlNode);											///< 解析XML
 		
 		//---------------------------------------------------
