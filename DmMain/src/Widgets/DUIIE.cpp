@@ -851,6 +851,23 @@ namespace DM
 		return ptr;
 	}
 
+	HRESULT DUIIE::UpdateWebRect(LPRECT lpRect)
+	{
+		HRESULT hr = S_FALSE;
+		do 
+		{
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (NULL == lpRect || !pWeb)
+			{
+				break;
+			}
+			m_rcWindow = lpRect;
+			SetActiveXRect(m_rcWindow);
+			hr = S_OK;
+		} while (false);
+		return hr;
+	}
+
 	bool DUIIE::IsBusy()
 	{
 		VARIANT_BOOL vBusy = VARIANT_FALSE;

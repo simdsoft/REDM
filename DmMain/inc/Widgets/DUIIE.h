@@ -210,6 +210,10 @@ namespace DM
 		HWND GetIESWindow();
 		DMComPtr<IWebBrowser2> Ptr();
 
+		/// @brief 主动设置Web的区域
+		/// @return HRESULT，失败为S_FALSE
+		HRESULT UpdateWebRect(LPRECT lpRect);
+
 		/// @brief BUSY状态
 		/// @return ture or false
 		bool IsBusy();

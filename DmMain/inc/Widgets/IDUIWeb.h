@@ -91,6 +91,10 @@ namespace DM
 		/// @return HWND，失败为NULL
 		virtual HWND GetOleWindow(){return NULL;};
 
+		/// @brief 主动设置Web的区域
+		/// @return HRESULT，失败为S_FALSE
+		virtual HRESULT UpdateWebRect(LPRECT lpRect){return E_NOTIMPL;}
+
 		/// @brief BUSY状态
 		/// @return ture or false
 		virtual bool IsBusy(){return false;};
