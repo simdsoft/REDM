@@ -527,6 +527,7 @@ namespace DM
 	void DUIIE::OnDestroy()
 	{
 		g_pDMApp->RemoveMessageFilter(this);
+		SetEvtHandler(NULL);
 		RegisterEvtHandler(FALSE);
 		SetMsgHandled(FALSE);
 	}
@@ -668,7 +669,7 @@ namespace DM
 
 	HRESULT DUIIE::RegisterEvtHandler(bool inAdvise)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComQIPtr<IConnectionPointContainer> pCPC = Ptr();
@@ -697,7 +698,7 @@ namespace DM
 
 	HRESULT DUIIE::OpenUrl(LPCWSTR pszURL,int iFlags /*= 0*/,LPCWSTR pszTargetFrameName /*= NULL*/,LPCWSTR pszHeaders /*= NULL*/, LPCSTR pszPostData /*= NULL*/, int iPostDataLen /*=0*/)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			if (!IsValidString(pszURL))
@@ -749,7 +750,7 @@ namespace DM
 
 	HRESULT DUIIE::GetUrl(LPWSTR pszUrl, int nMaxLen)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -853,7 +854,7 @@ namespace DM
 
 	HRESULT DUIIE::UpdateWebRect(LPRECT lpRect)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -886,7 +887,7 @@ namespace DM
 
 	HRESULT DUIIE::Stop()
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -906,7 +907,7 @@ namespace DM
 
 	HRESULT DUIIE::Quit()
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -922,7 +923,7 @@ namespace DM
 
 	HRESULT DUIIE::Refresh()
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			if (m_strUrl.IsEmpty() || 0 == m_strUrl.CompareNoCase(L"about:blank"))
@@ -943,7 +944,7 @@ namespace DM
 
 	HRESULT DUIIE::Refresh2(UINT32 nLevel)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			if (m_strUrl.IsEmpty() || 0 == m_strUrl.CompareNoCase(L"about:blank"))
@@ -967,7 +968,7 @@ namespace DM
 
 	HRESULT DUIIE::GoBack()
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -983,7 +984,7 @@ namespace DM
 
 	HRESULT DUIIE::GoForward()
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
@@ -999,7 +1000,7 @@ namespace DM
 
 	HRESULT DUIIE::ExecuteScript(LPCWSTR pszScript)
 	{
-		HRESULT hr = S_FALSE;
+		HRESULT hr = E_FAIL;
 		do 
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
