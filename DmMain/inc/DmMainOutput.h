@@ -34,7 +34,7 @@
 // 由于编译器对template要求声明和实现一起提供，所以产生此告警
 // 也可导出模板,如:template class DM_EXPORT CStringT<wchar_t>
 __pragma(warning(disable: 4251))
-
+__pragma(warning(disable: 4275))
 /// 头文件依赖
 
 // 0 系统类

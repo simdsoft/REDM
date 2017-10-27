@@ -208,7 +208,7 @@ namespace DM
 		/// @return HWND，失败为NULL
 		HWND GetOleWindow();
 		HWND GetIESWindow();
-		DMComPtr<IWebBrowser2> Ptr();
+		virtual DMComPtr<IWebBrowser2> Ptr();
 
 		/// @brief 主动设置Web的区域
 		/// @return HRESULT，失败为S_FALSE
