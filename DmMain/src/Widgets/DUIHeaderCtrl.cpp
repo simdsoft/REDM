@@ -288,16 +288,7 @@ namespace DM
 			}
 
 			CRect rcItem = GetItemRect(iItem);
-			IDMCanvas *pCanvas = DM_GetCanvas(rcItem,DMOLEDC_PAINTBKGND);
-			if (NULL == pCanvas)
-			{
-				break;
-			}
-			DUIDrawEnviron DrawEnviron;
-			DV_PushDrawEnviron(pCanvas, DrawEnviron);
-			DrawItem(pCanvas,rcItem,m_DMArray[iItem]);
-			DV_PopDrawEnviron(pCanvas, DrawEnviron);
-			DM_ReleaseCanvas(pCanvas);
+			DM_InvalidateRect(rcItem);
 		} while (false);
 	}
 
