@@ -3,7 +3,6 @@
 
 namespace DM
 {
-
 	DUIListCtrlEx::DUIListCtrlEx()
 	{
 		m_iSelItem       = -1;
@@ -14,21 +13,23 @@ namespace DM
 		{
 			m_crItemBg[i].SetTextInvalid();
 		}
-		m_bHotTrack      = false;
+		m_bMultiSel		 = false;
+		m_bMouseDown     = false;
+		m_bStartSel      = false;
+		m_bSelFrameUp    = false;
+		m_pWndRectangle	 = NULL;
 		m_pDUIXmlInfo->m_bFocusable = true;
 
 		// listctrl
-		DMADDEVENT(DMEventLCGetDispInfoArgs::EventID);
 		DMADDEVENT(DMEventLCSelChangingArgs::EventID);
 		DMADDEVENT(DMEventLCSelChangedArgs::EventID);
 		DMADDEVENT(DMEventLCItemDeletedArgs::EventID);
 	}
 
-	DUIListCtrlEx::~DUIListCtrlEx()
-	{
-		DeleteAllItems(false);
-	}
-
+	//---------------------------------------------------
+	// Function Des: 对外接口 methods
+	//---------------------------------------------------
+#pragma region 对外接口
 	int DUIListCtrlEx::InsertItem(int nIndex, DMXmlNode&XmlNode)
 	{
 		int iRet = -1;
@@ -39,9 +40,9 @@ namespace DM
 				break;
 			}
 			if (-1 == nIndex
-				||nIndex>(int)GetCount())
+				||nIndex>GetItemCount())
 			{
-				nIndex = (int)GetCount();
+				nIndex = GetItemCount();
 			}
 
 			LPLCITEMEX pNewItem = new LCITEMEX(XmlNode,this);
@@ -52,11 +53,10 @@ namespace DM
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
-
-			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg[0]);/// 默认背景色
+			ModifyPanelBgClr(pNewItem->pPanel);
 
 			// 初始化布局
-			CRect rcLayout(0,0,m_pHeaderCtrl->GetTotalWidth(),pNewItem->nHeight);
+			CRect rcLayout(0,0,GetTotalWidth(),pNewItem->nHeight);
 			pNewItem->pPanel->DM_FloatLayout(rcLayout);
 
 			m_DMArray.InsertAt(nIndex,pNewItem);
@@ -70,11 +70,7 @@ namespace DM
 			{
 				m_iHoverItem++;
 			}
-
 			UpdateItemPanelId(nIndex,-1);
-
-			// 更新滚动条
-			SetLCScrollRange();
 			iRet = nIndex;
 		} while (false);
 		return iRet;
@@ -105,13 +101,13 @@ namespace DM
 		int iErr = LB_ERR ;
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
 
 			int nPos = 0;
-			for (int i = 0; i < nIndex; i++)
+			for (int i=0; i<nIndex; i++)
 			{
 				nPos += m_DMArray[i]->nHeight;
 			}
@@ -122,62 +118,21 @@ namespace DM
 		return iErr;
 	}
 
-	int DUIListCtrlEx::GetTotalHeight()
-	{
-		int nTotalHeight = 0;
-		int iCount = (int)m_DMArray.GetCount();
-		for (int i = 0; i<iCount; i++)
-		{
-			nTotalHeight += m_DMArray[i]->nHeight;
-		}
-		return nTotalHeight;
-	}
-
-	int DUIListCtrlEx::GetColumnCount()
-	{
-		return (int)m_pHeaderCtrl->GetItemCount();
-	}
-
-	CRect DUIListCtrlEx::GetItemRect(int iItem)
-	{
-		CRect rcDest;
-		do 
-		{
-			if (iItem<0
-				||iItem>=(int)GetCount())
-			{
-				break;
-			}
-	
-			int nPos = 0;
-			for (int i = 0; i < iItem; i++)
-			{
-				nPos += m_DMArray[i]->nHeight;
-			}
-			CRect rcClient = GetListRect();
-			CRect rcRet(CPoint(0,nPos),CSize(rcClient.Width(),m_DMArray[iItem]->nHeight));
-			rcRet.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
-			rcDest = rcRet;
-		} while (false);
-		return rcDest;
-	}
-
 	bool DUIListCtrlEx::SetCurSel(int nIndex)
 	{
 		bool bRet = false;
 		do 
 		{
-			if (nIndex>=(int)GetCount())
+			if (nIndex>=GetItemCount())
 			{
 				break;
 			}
-
 			if (nIndex<0)
 			{
 				nIndex = -1;
 			}
 
-			if (m_iSelItem==nIndex)
+			if (m_iSelItem == nIndex)
 			{
 				break;
 			}
@@ -185,7 +140,6 @@ namespace DM
 			Evt.m_nOldSel = m_iSelItem;
 			Evt.m_nNewSel = nIndex;
 			DV_FireEvent(Evt);
-
 			if (Evt.m_bCancel)
 			{
 				break;
@@ -196,13 +150,12 @@ namespace DM
 			if (-1 != nOldSel)
 			{
 				m_DMArray[nOldSel]->pPanel->ModifyState(0,DUIWNDSTATE_Check);
-				ModifyPanelBgClr(m_DMArray[nOldSel]->pPanel,m_crItemBg[0]);
 				RedrawItem(nOldSel);
 			}
+
 			if (-1 != m_iSelItem)
 			{
 				m_DMArray[m_iSelItem]->pPanel->ModifyState(DUIWNDSTATE_Check,0);
-				ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemBg[2]);
 				RedrawItem(m_iSelItem);
 			}
 
@@ -220,7 +173,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex>=(int)GetCount())
+			if (nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -237,16 +190,14 @@ namespace DM
 
 			int nOldHover = m_iHoverItem;
 			m_iHoverItem  = nIndex;
-			if (-1 != nOldHover&&nOldHover != m_iSelItem)
+			if (-1 != nOldHover)
 			{
 				m_DMArray[nOldHover]->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
-				ModifyPanelBgClr(m_DMArray[nOldHover]->pPanel,m_crItemBg[0]);
 				RedrawItem(nOldHover);
 			}
-			if (-1 != m_iHoverItem&&m_iHoverItem != m_iSelItem)
+			if (-1 != m_iHoverItem)
 			{
 				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover,0);
-				ModifyPanelBgClr(m_DMArray[m_iHoverItem]->pPanel,m_crItemBg[1]);
 				RedrawItem(m_iHoverItem);
 			}
 			bRet = true;
@@ -259,11 +210,21 @@ namespace DM
 		return m_iSelItem;
 	}
 
+	int DUIListCtrlEx::GetColumnCount()
+	{
+		return (int)m_pHeaderCtrl->GetItemCount();
+	}
+
+	int DUIListCtrlEx::GetItemCount()
+	{
+		return (int)DMArrayT<LPLCITEMEX>::GetCount();
+	}
+
 	void DUIListCtrlEx::DeleteItem(int nIndex)
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -291,10 +252,14 @@ namespace DM
 			else if (m_iHoverItem>nIndex) 
 			{
 				m_iHoverItem--;
-				
+
 			}
 			UpdateItemPanelId(nIndex,-1);
-			SetLCScrollRange();
+			UpdateScrollRange();
+			if (DMMapT<int,CRect>::IsKeyExist(nIndex))
+			{// 删除了可视区的项
+				UpdateVisibleMap();
+			}
 		} while (false);
 	}
 
@@ -302,7 +267,8 @@ namespace DM
 	{
 		DM_RemoveAllChildPanel();
 		OnReleaseCapture(m_pCapturePanel);// RemoveAll会delete所有的对象，所以m_pCapturePanel如果有值（正常为NULL）,要提前释放引用计数
-		RemoveAll();
+		DMArrayT<LPLCITEMEX>::RemoveAll();
+		DMMapT<int,CRect>::RemoveAll();
 		m_iSelItem		 = -1;
 		m_iHoverItem	 = -1;
 		SetRangeSize(CSize(0,0));
@@ -316,7 +282,7 @@ namespace DM
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=(int)GetItemCount())
 			{
 				break;
 			}
@@ -356,7 +322,7 @@ namespace DM
 
 	LPARAM DUIListCtrlEx::GetItemData(int nIndex)
 	{
-		if (nIndex<0 || nIndex >= (int)GetCount())
+		if (nIndex<0 || nIndex >= GetItemCount())
 		{
 			return 0;
 		}
@@ -369,7 +335,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -379,334 +345,12 @@ namespace DM
 		} while (false);
 		return bRet;
 	}
-
-	// 绘制
-	void DUIListCtrlEx::DrawItem(IDMCanvas* pCanvas, CRect& rc, int iItem)
-	{
-		do 
-		{
-			if (!DM_IsVisible(true))
-			{
-				break;
-			}
-
-			if (iItem >= (int)GetCount())
-			{
-				break;
-			}
-
-			// 先更新所有子项的位置
-			CRect rcCol(rc);
-			rcCol.right = rcCol.left;// 第一项左边开始计算
-			int iColCount  = GetColumnCount();
-			for (int i=0; i<iColCount; i++)
-			{
-				DMHDITEM hdi;
-				hdi.mask = DMHDI_WIDTH|DMHDI_ORDER;
-				m_pHeaderCtrl->GetItem(i, &hdi);
-				rcCol.left  = rcCol.right;
-				rcCol.right = rcCol.left + hdi.cxy;
-				CRect rcChild(rcCol);
-				DUIWindow *pChild = m_DMArray[iItem]->pPanel->DM_GetWindow(GDW_FIRSTCHILD);
-				int iIndex = 0;
-				while (pChild)
-				{
-					if (iIndex == hdi.iOrder)
-					{
-						rcChild.OffsetRect(-rc.TopLeft());
-						pChild->DM_FloatLayout(rcChild);
-						break;
-					}
-					iIndex++;
-					pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);// 只取兄弟窗口
-				}
-			}
-
-			DMEventLCGetDispInfoArgs evt(this);
-			evt.m_bHover = (iItem == m_iHoverItem);
-			evt.m_bSel   = (iItem == m_iSelItem);
-			evt.m_pItem  = m_DMArray[iItem]->pPanel;
-			evt.m_iItem  = iItem;
-			DV_FireEvent(evt);
-			if (!m_bHotTrack)//不需要热追踪
-			{
-				m_DMArray[iItem]->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
-			}
-			if (iItem != m_iSelItem)
-			{
-				m_DMArray[iItem]->pPanel->OnSetFocusWnd(NULL);
-			}
-			m_DMArray[iItem]->pPanel->DrawItem(pCanvas,rc);
-		} while (false);
-	}
-
-	void DUIListCtrlEx::RedrawItem(int iItem)
-	{
-		do 
-		{
-			if (!DM_IsVisible(true))
-			{
-				break;
-			}
-
-			if (iItem >= (int)GetCount())
-			{
-				break;
-			}
-
-			m_DMArray[iItem]->pPanel->DM_InvalidateRect(m_DMArray[iItem]->pPanel->m_rcWindow);
-		} while (false);
-	}
-
-	DMCode DUIListCtrlEx::OnHeaderSizeChanged(DMEventArgs *pEvt)
-	{
-		SetLCScrollRange();
-		CRect rcDraw;
-		DUIWindow::DV_GetClientRect(&rcDraw);
-		rcDraw.top += m_iHeaderHei;
-		DM_InvalidateRect(rcDraw);
-		return DM_ECODE_OK;
-	}
-
-	DMCode DUIListCtrlEx::OnHeaderSwap(DMEventArgs *pEvt)
-	{
-		DM_InvalidateRect(GetListRect());
-		return DM_ECODE_OK;
-	}
+#pragma endregion
 
 	//---------------------------------------------------
-	// Function Des: DUI的消息分发系列函数
-	void DUIListCtrlEx::OnDestroy()
-	{
-		if (m_pHeaderCtrl)
-		{
-			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
-			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
-		}
-	
-		DeleteAllItems(false);
-		__super::OnDestroy();
-	}
-
-	void DUIListCtrlEx::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
-	{
-		DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
-		if (pOwner)
-		{
-			pOwner->DM_SendMessage(WM_CHAR, nChar, MAKELONG(nFlags, nRepCnt));
-		}
-		if (-1!=m_iSelItem)
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_CHAR,nChar, MAKELONG(nFlags, nRepCnt));
-		}
-	}
-
-	void DUIListCtrlEx::OnSize(UINT nType,CSize size)
-	{
-		__super::OnSize(nType,size);
-		UpdateHeaderCtrl();// 先更新header，再重设置panel，不然会出现panel小于header
-		UpdateAllPanelLayout();
-	}
-
-	void DUIListCtrlEx::DM_OnPaint(IDMCanvas* pCanvas)
-	{
-		do 
-		{
-			DUIDrawEnviron  DrawEnviron;
-			DV_PushDrawEnviron(pCanvas,DrawEnviron);
-
-			CRect rcList = GetListRect();
-			pCanvas->PushClip(rcList);
-			
-			int nTotalHeight = 0;
-			int iCount = (int)GetCount();
-			for (int iItem = 0; iItem < iCount; iItem++)
-			{
-				if ((nTotalHeight >= m_ptCurPos.y && nTotalHeight < m_ptCurPos.y + rcList.Height())
-					|| (nTotalHeight + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && nTotalHeight + m_DMArray[iItem]->nHeight < m_ptCurPos.y + rcList.Height())
-					|| (nTotalHeight <= m_ptCurPos.y && nTotalHeight + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + rcList.Height())
-					)
-				{
-					CRect rcItem(0,0,rcList.Width(),m_DMArray[iItem]->nHeight);
-					rcItem.OffsetRect(-m_ptCurPos.x,nTotalHeight-m_ptCurPos.y);
-					rcItem.OffsetRect(rcList.TopLeft());
-					DrawItem(pCanvas,rcItem,iItem);
-				}
-				nTotalHeight += m_DMArray[iItem]->nHeight;
-			}
-			pCanvas->PopClip();
-			DV_PopDrawEnviron(pCanvas,DrawEnviron);
-		} while (false);
-	}
-
-	void DUIListCtrlEx::DM_OnSetFocus()
-	{
-		__super::DM_OnSetFocus();
-		if (-1!=m_iSelItem) 
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
-		}
-	}
-
-	void DUIListCtrlEx::DM_OnKillFocus()
-	{
-		__super::DM_OnKillFocus();
-		if (-1!=m_iSelItem) 
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
-			RedrawItem(m_iSelItem);
-		}
-	}
-
-	void DUIListCtrlEx::OnMouseLeave()
-	{
-		__super::OnMouseLeave();
-		if (-1!=m_iHoverItem)
-		{
-			int nOldHover = m_iHoverItem;
-			SetCurHover(-1);
-			m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-		}
-	}
-
-	BOOL DUIListCtrlEx::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
-	{
-		return __super::OnMouseWheel(nFlags,zDelta,pt);
-	}
-
-	void DUIListCtrlEx::OnKeyDown(TCHAR nChar, UINT nRepCnt, UINT nFlags)
-	{
-		do 
-		{
-			if (-1!=m_iSelItem)
-			{
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
-				if (m_DMArray[m_iSelItem]->pPanel->IsMsgHandled())// 如下拉框，内部处理了就不能下滚了
-				{
-					break;
-				}
-			}
-
-			int  iNewSelItem = -1;
-			DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
-			if (pOwner 
-				&&(VK_ESCAPE == nChar))
-			{
-				pOwner->DM_SendMessage(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
-				break;
-			}
-
-			if (VK_DOWN==nChar&&m_iSelItem<(int)GetCount()-1)
-			{
-				iNewSelItem = m_iSelItem+1;
-			}
-			else if (VK_UP==nChar&&m_iSelItem>0)
-			{
-				iNewSelItem = m_iSelItem-1;
-			}
-			else if (VK_RETURN==nChar&&pOwner)                     
-			{
-				iNewSelItem = m_iSelItem;
-			}
-
-			if (-1!=iNewSelItem)
-			{
-				EnsureVisible(iNewSelItem);
-				SetCurSel(iNewSelItem);
-			}
-		} while (false);
-	}
-
-
-	LRESULT DUIListCtrlEx::OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam)
-	{
-		LRESULT lRet=__super::OnNcCalcSize(bCalcValidRects,lParam);
-		UpdateHeaderCtrl();
-		UpdateAllPanelLayout();
-		return lRet;
-	}
-
-	LRESULT DUIListCtrlEx::OnMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
-	{
-		LRESULT lRet = 0;
-		do 
-		{
-
-			CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			if (WM_LBUTTONUP == uMsg
-				&& m_iHoverItem != m_iSelItem)
-			{
-				SetCurSel(m_iHoverItem);
-			}
-			if (m_pCapturePanel)
-			{
-				CRect rcItem;
-				m_pCapturePanel->OnGetContainerRect(rcItem);
-				pt.Offset(-rcItem.TopLeft());///< 转换成面板坐标
-				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-				break;
-			}
-
-			if (m_pDUIXmlInfo->m_bFocusable
-				&& (uMsg==WM_LBUTTONDOWN || uMsg== WM_RBUTTONDOWN || uMsg==WM_LBUTTONDBLCLK))
-			{
-				DV_SetFocusWnd();
-			}
-
-			int iHoverItem = HitTest(pt);
-			if (iHoverItem != m_iHoverItem)
-			{
-				int iOldHoverItem = m_iHoverItem;
-				SetCurHover(iHoverItem);
-				if (-1!=iOldHoverItem)
-				{
-					m_DMArray[iOldHoverItem]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-				}
-
-				if (-1!=m_iHoverItem)
-				{
-					m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_MOUSEHOVER,wParam,MAKELPARAM(pt.x,pt.y));
-				}
-			}
-			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
-				&& m_iSelItem != m_iHoverItem)
-			{///原有行失去焦点
-				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
-			}
-
-			if (-1!=m_iHoverItem)
-			{
-				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-			}
-		} while (false);
-		return lRet;
-	}
-
-	LRESULT DUIListCtrlEx::OnKeyEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
-	{
-		LRESULT lRet = 0;
-		do 
-		{
-			if (m_pCapturePanel)
-			{
-				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,lParam);
-				SetMsgHandled(m_pCapturePanel->IsMsgHandled());
-			}
-			else if (-1!=m_iSelItem)
-			{
-				lRet = m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(uMsg,wParam,lParam);
-				SetMsgHandled(m_DMArray[m_iSelItem]->pPanel->IsMsgHandled());
-			}
-			else
-			{
-				SetMsgHandled(FALSE);
-			}
-		} while (false);
-		return lRet;
-	}
-
+	// Function Des: IDMItemPanelOwner methods
 	//---------------------------------------------------
-	// Function Des: IDMItemPanelOwner实现
+#pragma region IDMItemPanelOwner
 	DUIWindow* DUIListCtrlEx::GetOwnerWindow()
 	{
 		return this;
@@ -761,46 +405,108 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+#pragma endregion
 
 	//---------------------------------------------------
-	// Function Des: 可重载函数
+	// Function Des: Draw methods
+	//---------------------------------------------------
+#pragma region Draw
+	void DUIListCtrlEx::DrawItem(IDMCanvas* pCanvas, CRect& rcItem, int iItem)
+	{
+		RelayoutItem(iItem,rcItem);
+		CRect rcClient;
+		DV_GetClientRect(rcClient);
+		rcItem.right = rcItem.right>rcClient.right?rcClient.right:rcItem.right;
+		m_DMArray[iItem]->pPanel->DrawItem(pCanvas,rcItem);
+	}
+
+	void DUIListCtrlEx::RedrawItem(int iItem)
+	{
+		do 
+		{
+			CRect rcItem;
+			if (!DMMapT<int,CRect>::GetObjByKey(iItem,rcItem))
+			{
+				break;
+			}
+			DM_InvalidateRect(rcItem);
+		} while (false);
+	}
+
+	DMCode DUIListCtrlEx::OnHeaderSizeChanged(DMEventArgs *pEvt)
+	{
+		RelayVisibleItemsWidth(GetTotalWidth());
+		UpdateScrollRange();
+		return DM_ECODE_OK;
+	}
+
+	DMCode DUIListCtrlEx::OnHeaderSwap(DMEventArgs *pEvt)
+	{
+		DM_InvalidateRect(GetListRect());
+		return DM_ECODE_OK;
+	}
+
+	DMCode DUIListCtrlEx::OnScrollEvent(DMEventArgs *pEvt)
+	{
+		UpdateVisibleMap();
+		DMEventOnScrollArgs* pEvent = (DMEventOnScrollArgs*)pEvt;
+		if (!pEvent->m_bVert)
+		{
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			CRect rcHeader(rcClient);
+			rcHeader.bottom = rcHeader.top + m_iHeaderHei;
+			rcHeader.left  -= m_ptCurPos.x;
+			m_pHeaderCtrl->DM_FloatLayout(rcHeader);
+		}
+		if (SB_THUMBTRACK == pEvent->m_iSbCode)
+		{
+			ScrollUpdateWindow();
+		}
+		return DM_ECODE_OK;
+	}
+#pragma endregion
+
+	//---------------------------------------------------
+	// Function Des: DV methods
+	//---------------------------------------------------
+#pragma region DV
 	DMCode DUIListCtrlEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (!XmlNode.IsValid())
+			if (!DMSUCCEEDED(__super::DV_CreateChildWnds(XmlNode)))
 			{
 				break;
 			}
 
-			if (!DMSUCCEEDED(__super::DV_CreateChildWnds(XmlNode)))
-			{// 无论
-				break;
-			}
-			DUIWindow *pChild = DM_GetWindow(GDW_FIRSTCHILD);
-			while (pChild)
-			{// 查找HeaderCtrl
-				if(pChild->IsClass(DUIHeaderCtrl::GetClassName()))
-				{
-					m_pHeaderCtrl = (DUIHeaderCtrl*)pChild;
-					break;// 跳出内循环
-				}
-				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
-			}
+			//1.Header
+			m_pHeaderCtrl = dynamic_cast<DUIHeaderCtrl*>(DM_GetWindow(GDW_FIRSTCHILD));
 			if (NULL == m_pHeaderCtrl)
 			{
 				DMASSERT_EXPR(0,L"listctrlex必须有headctrl");
 				break;
 			}
-
 			CStringW strPos;
 			strPos.Format(L"0,0,-0,%d",m_iHeaderHei);
 			m_pHeaderCtrl->SetAttribute(L"pos",strPos,true);
 
+			//2.dragframe
+			m_pWndRectangle = m_pHeaderCtrl->DM_GetWindow(GDW_NEXTSIBLING);
+			if (!m_pWndRectangle)
+			{
+				m_pWndRectangle = new DUIWindow();
+				m_pWndRectangle->SetAttribute(L"clrbg",L"pbgra(ff,ff,ff,80)",true);
+				DM_InsertChild(m_pWndRectangle,DUIWND_FIRST);
+			}
+			m_pWndRectangle->SetAttribute(L"bmsgnohandle",L"1",true);
+			m_pWndRectangle->SetAttribute(L"bvisible",L"0",true);
+
 			// 设置接收header消息
 			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
 			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
+			m_EventMgr.SubscribeEvent(DM::DMEventOnScrollArgs::EventID, Subscriber(&DUIListCtrlEx::OnScrollEvent, this));
 
 			DMXmlNode XmlItem = XmlNode.FirstChild(DMAttr::DUIListCtrlExAttr::NODE_item);
 			while (XmlItem.IsValid())
@@ -808,88 +514,14 @@ namespace DM
 				InsertItem(-1,XmlItem);
 				XmlItem = XmlItem.NextSibling();
 			}
+
 			int nSelItem = -1;
 			DMAttributeDispatch::ParseInt(XmlNode.Attribute(DMAttr::DUIListCtrlExAttr::INT_cursel),nSelItem);
 			SetCurSel(nSelItem);
+			UpdateScrollRange();
+			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
-	}
-
-	DMCode DUIListCtrlEx::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
-	{
-		DMCode iErr = DM_ECODE_FAIL;
-		do 
-		{
-			if (-1==m_iHoverItem)
-			{
-				iErr = __super::DV_OnUpdateToolTip(pt, tipInfo);
-				break;
-			}
-			iErr = m_DMArray[m_iHoverItem]->pPanel->DV_OnUpdateToolTip(pt, tipInfo);
-		} while (false);
-		return iErr;
-	}
-
-	DMCode DUIListCtrlEx::DV_OnSetCursor(const CPoint &pt)
-	{
-		DMCode iErr = DM_ECODE_FAIL;
-		do 
-		{
-			if (m_pCapturePanel)
-			{
-				CRect rcItem;
-				m_pCapturePanel->OnGetContainerRect(rcItem);
-				if (0!=m_pCapturePanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pt.x-rcItem.left,pt.y-rcItem.top))) 
-				{
-					iErr = DM_ECODE_OK;
-					break;
-				}
-			}
-
-			if (-1!=m_iHoverItem)
-			{
-				CRect rcItem = GetItemRect(m_iHoverItem);
-				if (0!=m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pt.x-rcItem.left,pt.y-rcItem.top))) 
-				{
-					iErr = DM_ECODE_OK;
-					break;
-				}
-			}
-			iErr = __super::DV_OnSetCursor(pt);
-		} while (false);
-		return iErr;
-	}
-
-	void DUIListCtrlEx::OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew)
-	{
-		do 
-		{
-			if (-1==m_iSelItem)
-			{
-				break;
-			}
-			if (DM_IsFocusWnd())
-			{
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
-			}
-		} while (false);
-	}
-
-	bool DUIListCtrlEx::OnScroll(bool bVert,UINT uCode,int nPos)
-	{
-		 bool bRet = __super::OnScroll(bVert, uCode, nPos);
-		 if (!bVert)
-		 {
-			 //  处理列头滚动
-			 UpdateHeaderCtrl();
-			 DM_InvalidateRect(m_rcWindow);
-			 if (SB_THUMBTRACK == uCode)
-			 {
-				 ScrollUpdateWindow();//在header调整位置后再实时更新一次，不然由于在调整前实时更新了，header会比list滚动慢
-			 }
-		 }
-		 return bRet;
 	}
 
 	void DUIListCtrlEx::UpdateScrollBar()
@@ -977,56 +609,151 @@ namespace DM
 
 		DM_InvalidateRect(m_rcWindow);
 	}
-	//
-	void DUIListCtrlEx::PreArrayObjRemove(const LPLCITEMEX &obj)
+
+	int DUIListCtrlEx::GetTotalHeight()
 	{
-		delete obj;
+		int nTotalHeight = 0;
+		int iCount = GetItemCount();
+		for (int i = 0; i<iCount; i++)
+		{
+			nTotalHeight += m_DMArray[i]->nHeight;
+		}
+		return nTotalHeight;
 	}
 
-
-	DMCode DUIListCtrlEx::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
+	int DUIListCtrlEx::GetTotalWidth()
 	{
+		return m_pHeaderCtrl->GetTotalWidth();
+	}
+
+	CRect DUIListCtrlEx::GetListRect()
+	{
+		CRect rcClient;
+		DV_GetClientRect(rcClient);
+
+		CRect rcList = rcClient;
+		rcList.top += m_iHeaderHei;
+		rcList.right = rcList.left + GetTotalWidth();
+		return rcList;
+	}
+
+	CRect DUIListCtrlEx::GetItemRect(int iItem)
+	{
+		CRect rcDest;
 		do 
 		{
-			if (DM_ECODE_NOXMLLOADREFRESH == iErr)
+			if (iItem<0
+				||iItem>=GetItemCount())
 			{
-				if (false == bLoadXml)
-				{
-					if (0 == _wcsicmp(DMAttr::DUIListCtrlExAttr::COLOR_clritembg,pszAttribute))
-					{
-						int nCount = (int)GetCount();
-						for (int i=0; i<nCount; i++)
-						{
-							if (i!=m_iSelItem)
-							{
-								ModifyPanelBgClr(m_DMArray[i]->pPanel,m_crItemBg[0]);
-							}
-						}
-						DM_InvalidateRect(m_rcWindow);// 处理非客户区
-					}
-
-					if (0 == _wcsicmp(DMAttr::DUIListCtrlExAttr::COLOR_clritemselbg,pszAttribute))
-					{
-						if (-1!=m_iSelItem&&m_iSelItem<(int)GetCount())
-						{
-							ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemBg[2]);
-						}
-						DM_InvalidateRect(m_rcWindow);// 处理非客户区
-					}
-				}
-				iErr = DM_ECODE_OK;/// 已处理
 				break;
 			}
-			__super::OnAttributeFinished(pszAttribute,pszValue,bLoadXml,iErr);
 
+			// 先从可视列表中查找
+			if (DMMapT<int,CRect>::GetObjByKey(iItem,rcDest))
+			{
+				break;
+			}
+
+			int nPos = 0;
+			for (int i = 0; i<iItem; i++)
+			{
+				nPos += m_DMArray[i]->nHeight;
+			}
+			CRect rcClient = GetListRect();
+			CRect rcRet(CPoint(0,nPos),CSize(GetTotalWidth(),m_DMArray[iItem]->nHeight));
+			rcRet.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
+			rcDest = rcRet;
 		} while (false);
-		return iErr;
+		return rcDest;
 	}
 
-	// 辅助
-	void DUIListCtrlEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast/* = -1*/)
+	int DUIListCtrlEx::HitTest(CPoint &pt)
+	{// 传入的pt为rcClient所在坐标系的坐标
+		int iRet = -1;
+		POSITION pos = m_Map.GetStartPosition();
+		while(pos)
+		{
+			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// 进入可视区,水平可能为负值
+			{
+				pt -= p->m_value.TopLeft();
+				iRet = p->m_key;
+				break;
+			}
+		}
+		return iRet;
+	}
+
+	int DUIListCtrlEx::HitTotalY(int iTotalY)
 	{
-		int iCount  = (int)GetCount();
+		int iRet = -1;
+		do 
+		{
+			if (iTotalY<0)
+			{
+				break;
+			}
+			int nTotalHeight = m_iHeaderHei;
+			int iCount = GetItemCount();
+			for (int i = 0; i < iCount; i++)
+			{
+				nTotalHeight += m_DMArray[i]->nHeight;
+				if (iTotalY < nTotalHeight)
+				{
+					iRet = i;
+					break;
+				}
+			}
+		} while (false);
+		return iRet;
+	}
+
+	void DUIListCtrlEx::UpdateScrollRange()
+	{
+		int iHei = GetTotalHeight();
+		int iWid = GetTotalWidth();
+		CSize szView(iWid,iHei);
+		SetRangeSize(szView);
+	}
+
+	void DUIListCtrlEx::UpdateVisibleMap()
+	{
+		DMMapT<int,CRect>::RemoveAll();
+		CRect rcList = GetListRect();
+		if (rcList.IsRectEmpty())
+		{
+			return;
+		}
+
+		int iTotalHei = 0;
+		int iCount = GetItemCount();
+		for (int iItem = 0; iItem < iCount; iItem++)
+		{
+			if ((iTotalHei >= m_ptCurPos.y && iTotalHei < m_ptCurPos.y + rcList.Height())
+				|| (iTotalHei + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && iTotalHei + m_DMArray[iItem]->nHeight < m_ptCurPos.y + rcList.Height())
+				|| (iTotalHei <= m_ptCurPos.y && iTotalHei + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + rcList.Height())
+				)
+			{
+				CRect rcItem(0,iTotalHei,rcList.Width(),iTotalHei+m_DMArray[iItem]->nHeight);// 在大平面的坐标，以大平面左上角为原点
+				rcItem.OffsetRect(rcList.TopLeft()-m_ptCurPos);// 转换成rcList所在的坐标系坐标
+				DMMapT<int,CRect>::AddKey(iItem,rcItem);
+			}
+			iTotalHei += m_DMArray[iItem]->nHeight;
+			if (iTotalHei>=m_ptCurPos.y+rcList.Height())// 总高度已超过可视区
+			{
+				break;
+			}
+		}
+	}
+#pragma endregion
+
+	//---------------------------------------------------
+	// Function Des: 辅助 methods
+	//---------------------------------------------------
+#pragma region 辅助
+	void DUIListCtrlEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast /*= -1*/)
+	{
+		int iCount  = GetItemCount();
 		if (-1 == iLast)
 		{
 			iLast = iCount;
@@ -1037,103 +764,526 @@ namespace DM
 		}
 	}
 
-	void DUIListCtrlEx::UpdateAllPanelLayout()
+	void DUIListCtrlEx::RelayVisibleItemsWidth(int iNewWid)
 	{
-		int iCount  = (int)GetCount();
-		CRect rcHeader;
-		m_pHeaderCtrl->DV_GetClientRect(rcHeader);
-		int iWid = rcHeader.Width();
-		if (iWid<m_pHeaderCtrl->GetTotalWidth())
+		POSITION pos = m_Map.GetStartPosition();
+		while(pos)
 		{
-			iWid = m_pHeaderCtrl->GetTotalWidth();
-		}
-		for (int i=0;i<iCount;i++)
-		{
-			CRect rcLayout(0,0,iWid,m_DMArray[i]->nHeight);
-			m_DMArray[i]->pPanel->DM_FloatLayout(rcLayout);
-		}
+			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+			p->m_value.right = p->m_value.left + iNewWid;
+		}	
 	}
 
-	void DUIListCtrlEx::ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr)
+	void DUIListCtrlEx::ReLayoutVisibleItems()
+	{
+		POSITION pos = m_Map.GetStartPosition();
+		while(pos)
+		{
+			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+			RelayoutItem(p->m_key,p->m_value);
+		}	
+	}
+
+	void DUIListCtrlEx::RelayoutItem(int iItem,CRect rcItem)
 	{
 		do 
 		{
-			if (NULL == pPanel)
+			int iCount = GetItemCount();
+			if (iItem < 0||iItem>iCount)
 			{
 				break;
 			}
-			if (Clr.IsTextInvalid())
+
+			//1.布局自身
+			CRect rcLayout(0,0,rcItem.Width(),rcItem.Height());
+			m_DMArray[iItem]->pPanel->DM_FloatLayout(rcLayout);
+
+			//2.布局子控件
+			CRect rcCol(rcLayout);
+			rcCol.right = rcCol.left;// 第一项左边开始计算
+			int iColCount  = GetColumnCount();
+			for (int i=0; i<iColCount; i++)
 			{
-				break;
-			}
-			CStringW strClr;
-			strClr.Format(L"rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
-			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
-		} while (false);
-	}
-
-	void DUIListCtrlEx::UpdateHeaderCtrl()
-	{
-		CRect rcClient;
-		DV_GetClientRect(&rcClient);
-		CRect rcHeader(rcClient);
-		rcHeader.bottom = rcHeader.top+m_iHeaderHei;
-		rcHeader.left -= m_ptCurPos.x;
-		if (m_pHeaderCtrl)
-		{
-			m_pHeaderCtrl->DM_FloatLayout(rcHeader);
-		}
-	}
-
-	void DUIListCtrlEx::SetLCScrollRange()
-	{
-		CRect rcClient;
-		DUIWindow::DV_GetClientRect(&rcClient);
-		int iTotalHeight = GetTotalHeight();
-		int iTotalWidth  = m_pHeaderCtrl->GetTotalWidth();
-				
-		CSize szView(iTotalWidth, iTotalHeight);
-		SetRangeSize(szView);
-	}
-
-	CRect DUIListCtrlEx::GetListRect()
-	{
-		CRect rcList;
-		DV_GetClientRect(&rcList);
-		rcList.top += m_iHeaderHei;
-		CRect rcHead;
-		m_pHeaderCtrl->DV_GetClientRect(&rcHead);
-		rcList.right = rcList.left + rcHead.Width();
-		return rcList;
-	}
-
-	int DUIListCtrlEx::HitTest(CPoint &pt)
-	{
-		int iRet = -1;
-		do 
-		{
-			CRect rcList = GetListRect();
-			if (!rcList.PtInRect(pt))
-			{
-				break;
-			}
-			CPoint pt2 = pt;
-			pt2.y -= rcList.top-m_ptCurPos.y;
-			int nTotalHeight = 0;
-			int iCount = (int)GetCount();
-			for (int i = 0; i < iCount; i++)
-			{
-				nTotalHeight += m_DMArray[i]->nHeight;
-				if (pt2.y < nTotalHeight)
+				DMHDITEM hdi;
+				hdi.mask = DMHDI_WIDTH|DMHDI_ORDER;
+				m_pHeaderCtrl->GetItem(i, &hdi);
+				rcCol.left  = rcCol.right;
+				rcCol.right = rcCol.left + hdi.cxy;
+				CRect rcChild(rcCol);
+				DUIWindow *pChild = m_DMArray[iItem]->pPanel->DM_GetWindow(GDW_FIRSTCHILD);
+				int iIndex = 0;
+				while (pChild)
 				{
-					iRet = i;
-					pt.x -= rcList.left - m_ptCurPos.x;
-					pt.y = pt2.y - nTotalHeight + m_DMArray[i]->nHeight;
-					break;
+					if (iIndex == hdi.iOrder)
+					{
+						pChild->DM_FloatLayout(rcChild);
+						break;
+					}
+					iIndex++;
+					pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);// 只取兄弟窗口
 				}
 			}
 		} while (false);
-		return iRet;
+	}
+
+	void DUIListCtrlEx::ModifyPanelBgClr(DUIItemPanel* pPanel)
+	{
+		if (pPanel)
+		{
+			CStringW strClr;
+			if (!m_crItemBg[0].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+			}
+			if (!m_crItemBg[1].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbghover",strClr,false);
+			}
+			if (!m_crItemBg[2].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbgpush",strClr,false);
+			}
+		}
+	}
+
+	void DUIListCtrlEx::ModifySelItems(int nOldSel,int nNewSel)
+	{
+		bool bRet = false;
+		do 
+		{
+			DMEventLCSelChangingArgs Evt(this);
+			Evt.m_nOldSel = nOldSel;
+			Evt.m_nNewSel = nNewSel;
+			DV_FireEvent(Evt);
+			if (Evt.m_bCancel)
+			{
+				break;
+			}
+			if (m_bStartSel && m_bMultiSel)
+			{// 框选
+				if (-1 != nNewSel)
+				{
+					if (-1 == nOldSel)
+					{
+						nOldSel = 0;
+					}
+					int iMax =  DMMAX(nOldSel,nNewSel);
+					int iMin = (iMax == nOldSel) ? nNewSel : nOldSel;
+					if (!PUSH_CTRL)
+					{// 没有按住CTRL,那就把原有的选中全清掉,否则不清空
+						for (int i=0; i<iMin; i++)
+						{
+							if (DMSUCCEEDED(m_DMArray[i]->pPanel->DM_SetCheck(false)))
+							{
+								RedrawItem(i);
+							}
+						}
+						for (int i=iMax+1; i<GetItemCount(); i++)
+						{
+							if (DMSUCCEEDED(m_DMArray[i]->pPanel->DM_SetCheck(false)))
+							{
+								RedrawItem(i);
+							}
+						}
+					}
+					for (int i=iMin; i<=iMax; i++)
+					{
+						if (DMSUCCEEDED(m_DMArray[i]->pPanel->DM_SetCheck(true)))
+						{
+							RedrawItem(i);
+						}
+					}
+					SetCurHover(-1);
+					EnsureVisible(m_bSelFrameUp?iMin:iMax);
+				}
+			}
+			else if(PUSH_CTRL && m_bMultiSel)
+			{
+				if (-1 != nNewSel)
+				{// CTRL改变原来的状态
+					m_DMArray[nNewSel]->pPanel->DM_SetCheck(!m_DMArray[nNewSel]->pPanel->DM_IsChecked());
+					m_iSelItem = m_DMArray[nNewSel]->pPanel->DM_IsChecked()?nNewSel:-1;
+					RedrawItem(nNewSel);
+				}
+			}
+			else if (PUSH_SHIFT && m_bMultiSel)
+			{// SHIFT选中所有
+				if (-1 != nNewSel)
+				{
+					if (-1 == nOldSel)
+					{
+						nOldSel = 0;
+					}
+					int iMax =  DMMAX(nOldSel,nNewSel);
+					int iMin = (iMax == nOldSel) ? nNewSel : nOldSel;
+					for (int i=0; i<GetItemCount(); i++)
+					{
+						bool bCheck = (i>=iMin && i<=iMax);
+						if (DMSUCCEEDED(m_DMArray[i]->pPanel->DM_SetCheck(bCheck)))
+						{
+							RedrawItem(i);
+						}
+					}
+				}
+			}
+			else
+			{//一般是鼠标点击，单选
+				m_iSelItem = -1;
+				for (int i=0; i<GetItemCount(); i++)
+				{ 
+					if (DMSUCCEEDED(m_DMArray[i]->pPanel->DM_SetCheck(false)))
+					{
+						RedrawItem(i);
+					}
+				}
+				if (nNewSel != -1) 
+				{
+					m_DMArray[nNewSel]->pPanel->DM_SetCheck(true);
+					m_iSelItem = nNewSel;
+					RedrawItem(nNewSel);
+				}
+			}
+			bRet = true;
+		} while (false);
+		if (bRet)
+		{
+			DMEventLCSelChangedArgs evt2(this);
+			evt2.m_nOldSel = nOldSel;
+			evt2.m_nNewSel = nNewSel;
+			DV_FireEvent(evt2);
+
+			// 恢复光标
+			if (-1 != m_iSelItem)
+			{
+				m_DMArray[m_iSelItem]->pPanel->DM_SendMessage(WM_SETFOCUS,0,0);
+				RedrawItem(m_iSelItem);
+			}
+
+			POSITION pos = m_Map.GetStartPosition();
+			while(pos)
+			{
+				DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+				if (p->m_key != m_iSelItem)
+				{
+					m_DMArray[p->m_key]->pPanel->OnSetFocusWnd(NULL);
+				}
+			}
+		}
+	}
+#pragma endregion
+
+	//---------------------------------------------------
+	// Function Des: DUI的消息分发系列函数
+	//---------------------------------------------------
+#pragma region MsgDispatch
+	void DUIListCtrlEx::DM_OnPaint(IDMCanvas* pCanvas)
+	{
+		do 
+		{
+			CRect rcInvalid;
+			pCanvas->GetClipBox(rcInvalid);
+			if (rcInvalid.IsRectEmpty())
+			{
+				break;
+			}
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			pCanvas->PushClip(rcClient);
+			if (m_iHoverItem)
+			{
+				CRect rcHover;
+				if (DMMapT<int,CRect>::GetObjByKey(m_iHoverItem,rcHover))
+				{
+					CRect rcNeed;rcNeed.UnionRect(rcHover,rcInvalid);
+					if (rcNeed.EqualRect(rcHover))
+					{
+						DrawItem(pCanvas,rcHover,m_iHoverItem);
+						pCanvas->PopClip();
+						break;
+					}
+				}
+			}
+			if (m_iSelItem)
+			{
+				CRect rcSel;
+				if (DMMapT<int,CRect>::GetObjByKey(m_iSelItem,rcSel))
+				{
+					CRect rcNeed;rcNeed.UnionRect(rcSel,rcInvalid);
+					if (rcNeed.EqualRect(rcSel))
+					{
+						DrawItem(pCanvas,rcSel,m_iSelItem);
+						pCanvas->PopClip();
+						break;
+					}
+				}
+			}
+			POSITION pos = m_Map.GetStartPosition();
+			while(pos)
+			{
+				DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+				CRect rcNeed = p->m_value;
+				rcNeed.left = rcClient.left;
+				rcNeed.IntersectRect(rcNeed,rcInvalid);
+				if (!rcNeed.IsRectEmpty())
+				{
+					DrawItem(pCanvas,p->m_value,p->m_key);
+				}
+			}
+			pCanvas->PopClip();
+		} while (false);
+	}
+
+	void DUIListCtrlEx::OnSize(UINT nType, CSize size)
+	{
+		__super::OnSize(nType,size);
+		UpdateVisibleMap();
+	}
+
+	void DUIListCtrlEx::OnDestroy()
+	{
+		if (m_pHeaderCtrl)
+		{
+			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
+			m_pHeaderCtrl->m_EventMgr.UnSubscribeEvent(DM::DMEventHeaderItemSwapArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSwap, this));
+		}
+		m_EventMgr.UnSubscribeEvent(DM::DMEventOnScrollArgs::EventID, Subscriber(&DUIListCtrlEx::OnScrollEvent, this));
+
+		DeleteAllItems(false);
+		__super::OnDestroy();
+	}
+
+	void DUIListCtrlEx::DM_OnSetFocus()
+	{
+		__super::DM_OnSetFocus();
+		if (-1!=m_iSelItem) 
+		{
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
+		}
+	}
+
+	void DUIListCtrlEx::DM_OnKillFocus()
+	{
+		__super::DM_OnKillFocus();
+		if (-1!=m_iSelItem) 
+		{
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
+			RedrawItem(m_iSelItem);
+		}
+	}
+
+	void DUIListCtrlEx::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
+		if (pOwner)
+		{
+			pOwner->DM_SendMessage(WM_CHAR, nChar, MAKELONG(nFlags, nRepCnt));
+		}
+		if (-1!=m_iSelItem)
+		{
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_CHAR,nChar, MAKELONG(nFlags, nRepCnt));
+		}
+	}
+
+	void DUIListCtrlEx::OnMouseLeave()
+	{
+		__super::OnMouseLeave();
+		if (-1!=m_iHoverItem)
+		{
+			int nOldHover = m_iHoverItem;
+			SetCurHover(-1);
+			m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+		}
+	}
+
+	BOOL DUIListCtrlEx::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+	{
+		return __super::OnMouseWheel(nFlags,zDelta,pt);
+	}
+
+	void DUIListCtrlEx::OnKeyDown(TCHAR nChar, UINT nRepCnt, UINT nFlags)
+	{
+		do 
+		{
+			if (-1!=m_iSelItem)
+			{
+				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
+				if (m_DMArray[m_iSelItem]->pPanel->IsMsgHandled())// 如下拉框，内部处理了就不能下滚了
+				{
+					break;
+				}
+			}
+
+			if (m_bStartSel && m_bMultiSel)
+			{// 框选
+				break;
+			}
+
+			int  iNewSelItem = -1;
+			DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
+			if (pOwner 
+				&&(VK_ESCAPE == nChar))
+			{
+				pOwner->DM_SendMessage(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
+				break;
+			}
+
+			if (VK_DOWN==nChar&&m_iSelItem<GetItemCount()-1)
+			{
+				iNewSelItem = m_iSelItem+1;
+			}
+			else if (VK_UP==nChar&&m_iSelItem>0)
+			{
+				iNewSelItem = m_iSelItem-1;
+			}
+			else if (VK_RETURN==nChar&&pOwner)                     
+			{
+				iNewSelItem = m_iSelItem;
+			}
+
+			if (-1!=iNewSelItem)
+			{
+				EnsureVisible(iNewSelItem);
+				ModifySelItems(m_iSelItem,iNewSelItem);
+			}
+		} while (false);
+	}
+
+	LRESULT DUIListCtrlEx::OnMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
+	{
+		LRESULT lRet = 0;
+		CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+		switch (uMsg)
+		{
+		case WM_LBUTTONDOWN:
+			{
+				if (m_bMultiSel)
+				{
+					m_bMouseDown = true;
+					m_bStartSel = false;
+					m_ptStart = pt + m_ptCurPos; // 如果不记录m_ptCurPos,当滚轮滚动时,m_ptStart就无效了
+				}
+				else
+				{
+					m_bMouseDown = false;
+					m_bStartSel = false;
+				}
+				DM_SetCapture();
+			}
+			break;
+		case WM_LBUTTONUP:
+			{
+				DM_ReleaseCapture();
+				m_bMouseDown = false;
+				if (false == m_bStartSel)
+				{
+					ModifySelItems(m_iSelItem,m_iHoverItem);
+				}
+				else
+				{
+					m_pWndRectangle->DM_SetVisible(false,true);
+					DM_Invalidate();
+				}
+				m_bStartSel = false;
+			}
+			break;
+		case WM_MOUSEMOVE:
+			{
+				if (m_bMouseDown)
+				{
+					CRect rcList = GetListRect();
+					CRect rcClient;
+					DV_GetClientRect(rcClient);
+					rcList.right = DMMAX(rcList.right,rcClient.right);
+					CPoint ptLeftTop = m_ptStart - m_ptCurPos;
+					CPoint ptRightBtm = pt;
+					m_rcDragFrame.SetRect(ptLeftTop,ptRightBtm);
+					m_rcDragFrame.NormalizeRect();
+					m_bSelFrameUp = ptLeftTop.y > ptRightBtm.y;
+					if (m_rcDragFrame.Width()>10 || m_rcDragFrame.Height()>10)
+					{
+						m_bStartSel = true; 
+						m_iSelItem = -1;//放弃单独那条
+						m_pWndRectangle->DM_FloatLayout(m_rcDragFrame);
+						m_pWndRectangle->DM_SetVisible(true,true);
+						CRect rcInvalid(rcList.left,m_rcDragFrame.top,rcList.right,m_rcDragFrame.bottom);
+						DM_Invalidate();
+
+						int iFirst = HitTotalY(m_rcDragFrame.top+m_ptCurPos.y-rcClient.top);
+						int iLast = HitTotalY(m_rcDragFrame.bottom+m_ptCurPos.y-rcClient.top);
+						ModifySelItems(iFirst,iLast); 	
+					}
+				}
+			}
+			break;
+		default:
+			break;
+		}
+
+		do 
+		{
+			if (m_pCapturePanel)
+			{
+				CRect rcItem;
+				m_pCapturePanel->OnGetContainerRect(rcItem);
+				pt.Offset(-rcItem.TopLeft());///< 转换成面板坐标
+				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
+				break;
+			}
+
+			if (m_pDUIXmlInfo->m_bFocusable
+				&& (uMsg==WM_LBUTTONDOWN || uMsg== WM_RBUTTONDOWN || uMsg==WM_LBUTTONDBLCLK))
+			{
+				DV_SetFocusWnd();
+			}
+
+			int iHoverItem = HitTest(pt);
+			if (iHoverItem != m_iHoverItem)
+			{
+				int iOldHoverItem = m_iHoverItem;
+				SetCurHover(iHoverItem);
+				if (-1!=iOldHoverItem)
+				{
+					m_DMArray[iOldHoverItem]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+				}
+
+				if (-1!=m_iHoverItem)
+				{
+					m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_MOUSEHOVER,wParam,MAKELPARAM(pt.x,pt.y));
+				}
+			}
+			if (-1!=m_iHoverItem)
+			{
+				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
+			}
+
+		} while (false);
+		return lRet;
+	}
+
+	LRESULT DUIListCtrlEx::OnKeyEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
+	{
+		LRESULT lRet = 0;
+		do 
+		{
+			if (m_pCapturePanel)
+			{
+				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,lParam);
+				SetMsgHandled(m_pCapturePanel->IsMsgHandled());
+			}
+			else if (-1!=m_iSelItem)
+			{
+				lRet = m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(uMsg,wParam,lParam);
+				SetMsgHandled(m_DMArray[m_iSelItem]->pPanel->IsMsgHandled());
+			}
+			else
+			{
+				SetMsgHandled(FALSE);
+			}
+		} while (false);
+		return lRet;
 	}
 
 	DMCode DUIListCtrlEx::OnAttributeHeaderHei(LPCWSTR lpszValue, bool bLoadXml)
@@ -1177,5 +1327,6 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+#pragma endregion
 
 }//namespace DM

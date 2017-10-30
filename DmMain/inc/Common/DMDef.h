@@ -187,6 +187,8 @@ enum DMOLEDCFLAGS
 #endif
 
 #define    DMABS(x)                                 ((x)>=0?(x):-(x))
+#define	   DMMAX(a,b)								(((a) > (b)) ? (a) : (b))
+#define    DMMIN(a,b)							    (((a) < (b)) ? (a) : (b))
 
 // ----------------------------------------------------
 // 代理Delegate,暂未使用,功能测试OK

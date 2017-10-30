@@ -250,7 +250,7 @@ DMCode CWidgetWnd::OnEditChange(DMEventArgs *pEvt)
 void SortItems(DUIListCtrlEx* pList, int nCol)
 {
 	if (1 == nCol// 只有点击1列头时才触发(0列开始)
-		&&pList->GetCount()>=2)
+		&&pList->GetItemCount()>=2)
 	{
 		// 简单的示例,交换m_DMArray[0]和m_DMArray[1]
 		// 你也可以使用qsort_s函数来实现自己的快速排序

@@ -223,7 +223,7 @@
 	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
 	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,00)}item项的停留背景色,示例:clritemhoverbg=pbgra(ff,ff,ff,ff)" 
 	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)" 
-	bool_bhottrack="让指针下的项目自动高亮显示,示例:bhottrack=1" 
+	bool_bmultisel="是否支持多选,默认不支持,示例:bmultisel=1" 
 	/>
 	
 	<DUIGroupAttr 

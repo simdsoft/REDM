@@ -463,6 +463,7 @@ namespace DM
 			}
 
 			// »æÖÆÃæ°å
+			rc.right = rc.right>rcClient.right?rcClient.right:rc.right;
 			pData->pPanel->DrawItem(pCanvas,rc);
 		} while (false);
 	}
@@ -508,8 +509,6 @@ namespace DM
 
 	DMCode DUITreeCtrlEx::DV_OnSetCursor(const CPoint &pt)
 	{
-		return DM_ECODE_FAIL;
-#if 1
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -550,13 +549,10 @@ namespace DM
 			iErr = __super::DV_OnSetCursor(pt);
 		} while (false);
 		return iErr;
-#endif
 	}
 
 	DMCode DUITreeCtrlEx::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
 	{
-		return DM_ECODE_FAIL;
-#if 1
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -569,7 +565,6 @@ namespace DM
 			iErr = pData->pPanel->DV_OnUpdateToolTip(pt, tipInfo);
 		} while (false);
 		return iErr;
-#endif
 	}
 
 	bool DUITreeCtrlEx::DV_IsSupportFastRefresh()
@@ -1421,7 +1416,6 @@ namespace DM
 
 	void DUITreeCtrlEx::OnSize(UINT nType, CSize size)
 	{
-		CRect rcOld = m_rcWindow;
 		__super::OnSize(nType,size);
 		UpdateVisibleMap();
 	}
@@ -1665,22 +1659,4 @@ namespace DM
 		}
 		return DM_ECODE_OK;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
