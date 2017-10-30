@@ -8,6 +8,7 @@
 PROJECT(DMDesigner) 
 
 # 文件分组（过滤），同时必须加入到ADD_LIBRARY中才能显示
+FILE(GLOB ROOT		 									./*.h;./*.rc;)
 FILE(GLOB ROOT_HEADER 									inc/*.h)
 FILE(GLOB COMMON_HEADER     							inc/Common/*.h)
 FILE(GLOB CORE_HEADER       							inc/Core/*.h)
@@ -22,6 +23,7 @@ FILE(GLOB EDITOR_SOURCE       							src/Editor/*.cpp;src/Editor/*.c)
 FILE(GLOB MODULES_SOURCE    							src/Modules/*.cpp;src/Modules/*.c)
 FILE(GLOB WIDGETS_SOURCE    							src/Widgets/*.cpp;src/Widgets/*.c)
 
+SOURCE_GROUP("other"							FILES 	${ROOT})
 SOURCE_GROUP("inc" 								FILES 	${ROOT_HEADER})
 SOURCE_GROUP("inc\\Common" 						FILES 	${COMMON_HEADER})
 SOURCE_GROUP("inc\\Core" 						FILES 	${CORE_HEADER})#必须用\\,不能用/
@@ -73,6 +75,7 @@ SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /Zi /O2 /Ob1 /D NDEBUG")
 endif()
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE)  # unicode版本
 ADD_EXECUTABLE(DMDesigner  WIN32
+			   ${ROOT};
 			   ${ROOT_HEADER};
 			   ${ROOT_SOURCE};
 			   ${COMMON_HEADER};
