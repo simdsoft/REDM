@@ -271,9 +271,9 @@ namespace DM
 		DMMapT<int,CRect>::RemoveAll();
 		m_iSelItem		 = -1;
 		m_iHoverItem	 = -1;
-		SetRangeSize(CSize(0,0));
 		if (bUpdate)
 		{
+			SetRangeSize(CSize(0,0));
 			DM_Invalidate();
 		}
 	}
@@ -522,6 +522,52 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
+	}
+
+	DMCode DUIListCtrlEx::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (-1==m_iHoverItem)
+			{
+				iErr = __super::DV_OnUpdateToolTip(pt, tipInfo);
+				break;
+			}
+			iErr = m_DMArray[m_iHoverItem]->pPanel->DV_OnUpdateToolTip(pt, tipInfo);
+		} while (false);
+		return iErr;
+	}
+
+	DMCode DUIListCtrlEx::DV_OnSetCursor(const CPoint &pt)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (m_pCapturePanel)
+			{
+				CRect rcItem;
+				m_pCapturePanel->OnGetContainerRect(rcItem);
+				if (0!=m_pCapturePanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pt.x-rcItem.left,pt.y-rcItem.top))) 
+				{
+					iErr = DM_ECODE_OK;
+					break;
+				}
+			}
+
+			if (-1!=m_iHoverItem)
+			{
+				CRect rcItem = GetItemRect(m_iHoverItem);
+				if (0!=m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pt.x-rcItem.left,pt.y-rcItem.top))) 
+				{
+					iErr = DM_ECODE_OK;
+					break;
+				}
+			}
+			iErr = __super::DV_OnSetCursor(pt);
+		} while (false);
+		return iErr;
+
 	}
 
 	void DUIListCtrlEx::UpdateScrollBar()

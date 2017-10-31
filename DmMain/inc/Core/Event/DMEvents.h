@@ -47,7 +47,7 @@ namespace DM
 		DMEVT_SIZECHANGED,
 		DMEVT_CHECKCHANGING,
 		DMEVT_CHECKCHANGED,
-		DMEVT_RLBUTTONMENU,
+		DMEVT_RBUTTONMENU,
 
 		DMEVT_TAB_SELCHANGING  = 11000,			
 		DMEVT_TAB_SELCHANGED,
@@ -179,9 +179,9 @@ namespace DM
 	{
 	public:
 		DMEventRButtonMenuCmdArgs(DUIWindow *pWnd):DMEventArgs(pWnd){m_pt.x=m_pt.y=0;}
-		enum{EventID = DMEVT_RLBUTTONMENU};
+		enum{EventID = DMEVT_RBUTTONMENU};
 		UINT GetEventID(){return EventID;};
-		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_RLBUTTONMENU);}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_RBUTTONMENU);}
 		POINT				m_pt;
 	};
 

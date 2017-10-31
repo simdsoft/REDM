@@ -38,9 +38,9 @@ namespace DMAttr
 		static wchar_t* ITEM_data;                                               ///< 项的数据,示例:data="10"
 	};
 	DMAttrValueInit(DUIListCtrlExAttr,INT_headerheight)DMAttrValueInit(DUIListCtrlExAttr,INT_itemheight)
-		DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemhoverbg)
-		DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemselbg)DMAttrValueInit(DUIListCtrlExAttr,bool_bmultisel)
-		DMAttrValueInit(DUIListCtrlExAttr,NODE_item)DMAttrValueInit(DUIListCtrlExAttr,ITEM_height)DMAttrValueInit(DUIListCtrlExAttr,ITEM_data)
+	DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemhoverbg)
+	DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemselbg)DMAttrValueInit(DUIListCtrlExAttr,bool_bmultisel)
+	DMAttrValueInit(DUIListCtrlExAttr,NODE_item)DMAttrValueInit(DUIListCtrlExAttr,ITEM_height)DMAttrValueInit(DUIListCtrlExAttr,ITEM_data)
 }
 
 namespace DM
@@ -114,6 +114,8 @@ namespace DM
 		// Function Des: DV methods
 		//---------------------------------------------------
 		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
+		virtual DMCode DV_OnSetCursor(const CPoint &pt);
 		virtual	void UpdateScrollBar();
 		virtual int GetTotalHeight();
 		virtual int GetTotalWidth();
@@ -150,7 +152,7 @@ namespace DM
 			MESSAGE_RANGE_HANDLER_EX(WM_KEYFIRST,WM_KEYLAST,OnKeyEvent)
 			MESSAGE_RANGE_HANDLER_EX(WM_IME_STARTCOMPOSITION,WM_IME_KEYLAST,OnKeyEvent)
 			MESSAGE_HANDLER_EX(WM_IME_CHAR,OnKeyEvent)
-			DM_END_MSG_MAP()
+		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
 		// Function Des: DUI的消息分发系列函数
@@ -176,7 +178,7 @@ namespace DM
 			DM_bool_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::bool_bmultisel,m_bMultiSel,         DM_ECODE_OK)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::INT_headerheight,OnAttributeHeaderHei)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIListCtrlExAttr::INT_cursel,OnAttributeCurSel)
-			DM_END_ATTRIBUTES()
+		DM_END_ATTRIBUTES()
 	public:
 		DMCode OnAttributeHeaderHei(LPCWSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml);

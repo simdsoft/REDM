@@ -8,24 +8,21 @@ namespace DM
 		m_iSelItem       = -1;
 		m_iHoverItem     = -1;
 		m_iDefItemHei    = 20;
-		m_bNoDrawBg      = false;
-		m_crItemBg.SetTextInvalid();
-		m_crItemSelBg.SetTextInvalid();
-
+		for (int i=0;i<3;i++)
+		{
+			m_crItemBg[i].SetTextInvalid();
+		}
 		m_pDUIXmlInfo->m_bFocusable = true;
- 
+
 		// listbox
 		DMADDEVENT(DMEventLBSelChangingArgs::EventID);
 		DMADDEVENT(DMEventLBSelChangedArgs::EventID);
-		DMADDEVENT(DMEventLBGetDispInfoArgs::EventID);
-
 	}
 
-	DUIListBoxEx::~DUIListBoxEx()
-	{
-		DeleteAllItems(false);
-	}
-
+	//---------------------------------------------------
+	// Function Des: 对外接口 methods
+	//---------------------------------------------------
+#pragma region 对外接口
 	int DUIListBoxEx::InsertItem(int nIndex, DMXmlNode&XmlNode)
 	{
 		int iRet = -1;
@@ -36,11 +33,10 @@ namespace DM
 				break;
 			}
 			if (-1 == nIndex
-				||nIndex>(int)GetCount())
+				||nIndex>GetItemCount())
 			{
-				nIndex = (int)GetCount();
+				nIndex = GetItemCount();
 			}
-
 			LPLBITEMEX pNewItem = new LBITEMEX(XmlNode,this);
 			CStringW strHei		= XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_height);
 			pNewItem->nHeight   = m_iDefItemHei;
@@ -49,12 +45,12 @@ namespace DM
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
-			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg);/// 默认背景色
+			ModifyPanelBgClr(pNewItem->pPanel);/// 默认背景色
 
 			// 初始化布局
 			CRect rcLayout(0,0,m_rcsbClient.Width(),pNewItem->nHeight);
 			pNewItem->pPanel->DM_FloatLayout(rcLayout);
-			
+
 			m_DMArray.InsertAt(nIndex,pNewItem);
 			DM_AddChildPanel(pNewItem->pPanel);
 
@@ -66,67 +62,18 @@ namespace DM
 			{
 				m_iHoverItem++;
 			}
-
 			UpdateItemPanelId(nIndex,-1);
-
-			// 更新滚动条
-			UpdateScrollRangeSize();
 			iRet = nIndex;
 		} while (false);
 		return iRet;
-	}
-
-	int DUIListBoxEx::GetItemHeight(int nIndex) const
-	{
-		if (nIndex < 0 || nIndex >= (int)m_DMArray.GetCount())
-			return LB_ERR;
-
-		return m_DMArray[nIndex]->nHeight;
-	}
-
-	int DUIListBoxEx::GetAllItemHeight()
-	{
-		int nTotalHeight = 0;
-		int iCount = (int)m_DMArray.GetCount();
-		for (int i = 0; i<iCount; i++)
-		{
-			nTotalHeight += m_DMArray[i]->nHeight;
-		}
-		return nTotalHeight;
-	}
-
-	int DUIListBoxEx::SetAllItemHeight(int cyItemHeight, bool bUpdate)
-	{
-		int iCount = (int)m_DMArray.GetCount();
-		for (int i = 0; i<iCount; i++)
-		{
-			SetItemHeight(i,cyItemHeight,bUpdate);
-		}
-		return 0;
-	}
-
-	int DUIListBoxEx::SetItemHeight(int nIndex, int cyItemHeight, bool bUpdate)
-	{
-		if (cyItemHeight < 0 || nIndex < 0 || nIndex >= (int)GetCount())
-			return LB_ERR;
-		if (cyItemHeight==m_DMArray[nIndex]->nHeight)
-		{
-			return 0;
-		}
-		m_DMArray[nIndex]->nHeight = cyItemHeight;
-		if (bUpdate)
-		{
-			UpdateScrollRangeSize();
-		}
-
-		return 0;
 	}
 
 	int DUIListBoxEx::GetTopIndex() const
 	{
 		LONG tmpY = m_ptCurPos.y;
 		int nIndex = 0;
-		for (int i = 0; i < (int)m_DMArray.GetCount(); i++)
+		int nCount = (int)m_DMArray.GetCount();
+		for (int i = 0; i < nCount; i++)
 		{
 			tmpY = tmpY - m_DMArray[i]->nHeight;
 			if (tmpY >= 0)
@@ -146,7 +93,7 @@ namespace DM
 		int iErr = LB_ERR ;
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -163,30 +110,50 @@ namespace DM
 		return iErr;
 	}
 
-	CRect DUIListBoxEx::GetItemRect(int iItem)
+	int DUIListBoxEx::GetItemHeight(int nIndex) 
 	{
-		CRect rcDest;
-		do 
+		if (nIndex < 0 || nIndex >= GetItemCount())
+			return LB_ERR;
+
+		return m_DMArray[nIndex]->nHeight;
+	}
+
+	int DUIListBoxEx::GetAllItemHeight()
+	{
+		int nTotalHeight = 0;
+		int iCount = GetItemCount();
+		for (int i = 0; i<iCount; i++)
 		{
-			if (iItem<0
-				||iItem>=(int)GetCount())
-			{
-				break;
-			}
+			nTotalHeight += m_DMArray[i]->nHeight;
+		}
+		return nTotalHeight;
+	}
 
-			CRect rcClient;
-			DV_GetClientRect(&rcClient);
-			int nPos = 0;
-		
-			for (int i = 0; i < iItem; i++)
-			{
-				nPos += m_DMArray[i]->nHeight;
-			}
-			rcDest.SetRect(0,nPos,rcClient.Width(), m_DMArray[iItem]->nHeight+nPos);
-			rcDest.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
+	int DUIListBoxEx::SetAllItemHeight(int cyItemHeight, bool bUpdate /*= true*/)
+	{
+		int iCount = GetItemCount();
+		for (int i = 0; i<iCount; i++)
+		{
+			SetItemHeight(i,cyItemHeight,bUpdate);
+		}
+		return 0;
+	}
 
-		} while (false);
-		return rcDest;
+	int DUIListBoxEx::SetItemHeight(int nIndex, int cyItemHeight, bool bUpdate /*= true*/)
+	{
+		if (cyItemHeight < 0 || nIndex < 0 || nIndex >= GetItemCount())
+			return LB_ERR;
+		if (cyItemHeight==m_DMArray[nIndex]->nHeight)
+		{
+			return 0;
+		}
+		m_DMArray[nIndex]->nHeight = cyItemHeight;
+		if (bUpdate)
+		{
+			UpdateScrollRange();
+		}
+
+		return 0;
 	}
 
 	bool DUIListBoxEx::SetCurSel(int nIndex)
@@ -194,7 +161,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex>=(int)GetCount())
+			if (nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -222,21 +189,65 @@ namespace DM
 			if (-1 != nOldSel)
 			{
 				m_DMArray[nOldSel]->pPanel->ModifyState(0,DUIWNDSTATE_Check);
-				ModifyPanelBgClr(m_DMArray[nOldSel]->pPanel,m_crItemBg);
 				RedrawItem(nOldSel);
 			}
 			if (-1 != m_iSelItem)
 			{
 				m_DMArray[m_iSelItem]->pPanel->ModifyState(DUIWNDSTATE_Check,0);
-				ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemSelBg);
+				m_DMArray[m_iSelItem]->pPanel->DM_SendMessage(WM_SETFOCUS,0,0);
 				RedrawItem(m_iSelItem);
+			}
+			POSITION pos = m_Map.GetStartPosition();
+			while(pos)
+			{
+				DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+				if (p->m_key != m_iSelItem)
+				{
+					m_DMArray[p->m_key]->pPanel->OnSetFocusWnd(NULL);
+				}
 			}
 
 			DMEventLBSelChangedArgs evt2(this);
 			evt2.m_nOldSel = nOldSel;
 			evt2.m_nNewSel = m_iSelItem;
 			DV_FireEvent(evt2);
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
 
+	bool DUIListBoxEx::SetCurHover(int nIndex)
+	{
+		bool bRet = false;
+		do 
+		{
+			if (nIndex>=GetItemCount())
+			{
+				break;
+			}
+
+			if (nIndex<0)
+			{
+				nIndex = -1;
+			}
+
+			if (m_iHoverItem==nIndex)
+			{
+				break;
+			}
+
+			int nOldHover = m_iHoverItem;
+			m_iHoverItem  = nIndex;
+			if (-1 != nOldHover)
+			{
+				m_DMArray[nOldHover]->pPanel->ModifyState(0,DUIWNDSTATE_Hover);
+				RedrawItem(nOldHover);
+			}
+			if (-1 != m_iHoverItem)
+			{
+				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover,0);
+				RedrawItem(m_iHoverItem);
+			}
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -247,11 +258,16 @@ namespace DM
 		return m_iSelItem;
 	}
 
+	int DUIListBoxEx::GetItemCount()
+	{
+		return (int)DMArrayT<LPLBITEMEX>::GetCount();
+	}
+
 	void DUIListBoxEx::DeleteItem(int nIndex)
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -263,7 +279,6 @@ namespace DM
 			}
 			DM_RemoveChildPanel(m_DMArray[nIndex]->pPanel);
 			RemoveObj(nIndex);
-			
 			if (m_iSelItem==nIndex) 
 			{
 				m_iSelItem = -1;
@@ -282,8 +297,11 @@ namespace DM
 				m_iHoverItem--;
 			}
 			UpdateItemPanelId(nIndex,-1);
-
-			UpdateScrollRangeSize();
+			UpdateScrollRange();
+			if (DMMapT<int,CRect>::IsKeyExist(nIndex))
+			{// 删除了可视区的项
+				UpdateVisibleMap();
+			}
 		} while (false);
 	}
 
@@ -291,7 +309,8 @@ namespace DM
 	{
 		DM_RemoveAllChildPanel();
 		OnReleaseCapture(m_pCapturePanel);// RemoveAll会delete所有的对象，所以m_pCapturePanel如果有值（正常为NULL）,要在这里释放引用计数
-		RemoveAll();
+		DMArrayT<LPLBITEMEX>::RemoveAll();
+		DMMapT<int,CRect>::RemoveAll();
 		m_iSelItem		 = -1;
 		m_iHoverItem	 = -1;
 		if (bUpdate)
@@ -305,7 +324,7 @@ namespace DM
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -347,7 +366,7 @@ namespace DM
 
 	LPARAM DUIListBoxEx::GetItemData(int nIndex)
 	{
-		if (nIndex<0 || nIndex >= (int)GetCount())
+		if (nIndex<0 || nIndex >= GetItemCount())
 		{
 			return 0;
 		}
@@ -360,7 +379,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex<0 || nIndex>=(int)GetCount())
+			if (nIndex<0 || nIndex>=GetItemCount())
 			{
 				break;
 			}
@@ -370,304 +389,13 @@ namespace DM
 		} while (false);
 		return bRet;
 	}
+#pragma endregion
 
-	// 绘制
-	void DUIListBoxEx::DrawItem(IDMCanvas* pCanvas, CRect& rc, int iItem)
-	{
-		do 
-		{
-			if (!DM_IsVisible(true))
-			{
-				break;
-			}
-
-			if (iItem >= (int)GetCount())
-			{
-				break;
-			}
-			DMEventLBGetDispInfoArgs evt(this);
-			evt.m_bHover = (iItem == m_iHoverItem);
-			evt.m_bSel   = (iItem == m_iSelItem);
-			evt.m_pItem  = m_DMArray[iItem]->pPanel;
-			evt.m_iItem  = iItem;
-			DV_FireEvent(evt);
-			m_DMArray[iItem]->pPanel->DrawItem(pCanvas,rc);
-
-		} while (false);
-	}
-
-	void DUIListBoxEx::RedrawItem(int iItem)
-	{
-		do 
-		{
-			if (!DM_IsVisible(true))
-			{
-				break;
-			}
-
-			if (iItem >= (int)GetCount())
-			{
-				break;
-			}
-
-			int nTargetY = 0;
-			for (int i = 0; i < iItem; i++)
-			{
-				nTargetY += m_DMArray[i]->nHeight;
-			}
-			CRect rcClient;
-			DV_GetClientRect(&rcClient);
-			if ((nTargetY >= m_ptCurPos.y && nTargetY <= m_ptCurPos.y + rcClient.Height())
-				||(nTargetY + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && nTargetY + m_DMArray[iItem]->nHeight <= m_ptCurPos.y + rcClient.Height())
-				||(nTargetY <= m_ptCurPos.y && nTargetY + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + rcClient.Height()))
-			{//目标有部分在可视范围内
-				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);
-				rcItem.OffsetRect(0,nTargetY-m_ptCurPos.y);// 促使第一个item可能只绘制一部分
-				rcItem.OffsetRect(rcClient.TopLeft());
-				IDMCanvas* pCanvas = DM_GetCanvas(&rcItem,m_bNoDrawBg?DMOLEDC_NODRAW:DMOLEDC_PAINTBKGND);// todo.暂时不抓背景
-				if (NULL == pCanvas)
-				{
-					break;
-				}
-				DUIDrawEnviron DrawEnviron;
-				DV_PushDrawEnviron(pCanvas,DrawEnviron);
-
-				DM_SendMessage(WM_ERASEBKGND,(WPARAM)(HDC)pCanvas);
-				DrawItem(pCanvas,rcItem,iItem);
-
-				DV_PopDrawEnviron(pCanvas,DrawEnviron);
-				DM_ReleaseCanvas(pCanvas);
-				
-			}
-		} while (false);
-	}
 
 	//---------------------------------------------------
-	// Function Des: DUI的消息分发系列函数
-	void DUIListBoxEx::OnDestroy()
-	{
-		DeleteAllItems(false);
-		__super::OnDestroy();
-	}
-	void DUIListBoxEx::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
-	{
-		DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
-		if (pOwner)
-		{
-			pOwner->DM_SendMessage(WM_CHAR, nChar, MAKELONG(nFlags, nRepCnt));
-		}
-		if (-1!=m_iSelItem)
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_CHAR,nChar, MAKELONG(nFlags, nRepCnt));
-		}
-	}
-
-	void DUIListBoxEx::OnSize(UINT nType,CSize size)
-	{
-		__super::OnSize(nType,size);
-		UpdateAllPanelLayout();
-	}
-
-	void DUIListBoxEx::DM_OnPaint(IDMCanvas* pCanvas)
-	{
-		do 
-		{
-			DUIDrawEnviron  DrawEnviron;
-			DV_PushDrawEnviron(pCanvas,DrawEnviron);
-
-			CRect rcClient;
-			DV_GetClientRect(&rcClient);
-			int nTotalHeight = 0;
-			int iCount = (int)GetCount();
-			for (int iItem = 0; iItem < iCount; iItem++)
-			{
-				if ((nTotalHeight >= m_ptCurPos.y && nTotalHeight < m_ptCurPos.y + rcClient.Height())
-					|| (nTotalHeight + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && nTotalHeight + m_DMArray[iItem]->nHeight < m_ptCurPos.y + m_rcsbClient.Height())
-					||(nTotalHeight<=m_ptCurPos.y && nTotalHeight + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + m_rcsbClient.Height())
-					)
-				{
-					CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);
-					rcItem.OffsetRect(0,nTotalHeight-m_ptCurPos.y);
-					rcItem.OffsetRect(rcClient.TopLeft());
-					DrawItem(pCanvas,rcItem,iItem);
-				}
-				nTotalHeight += m_DMArray[iItem]->nHeight;
-			}
-
-			DV_PopDrawEnviron(pCanvas,DrawEnviron);
-		} while (false);
-	}
-
-	void DUIListBoxEx::DM_OnSetFocus()
-	{
-		__super::DM_OnSetFocus();
-		if (-1!=m_iSelItem) 
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
-		}
-	}
-
-	void DUIListBoxEx::DM_OnKillFocus()
-	{
-		__super::DM_OnKillFocus();
-		if (-1!=m_iSelItem) 
-		{
-			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
-			RedrawItem(m_iSelItem);
-		}
-	}
-
-	void DUIListBoxEx::OnMouseLeave()
-	{
-		if (DM_IsVisible(true))// 加一个判断，防止非客户区在list隐藏时绘制
-		{
-			__super::OnMouseLeave();
-			if (-1!=m_iHoverItem)
-			{
-				int nOldHover = m_iHoverItem;
-				m_iHoverItem  = -1;
-				m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-			}
-		}
-	}
-
-	BOOL DUIListBoxEx::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
-	{
-		return __super::OnMouseWheel(nFlags,zDelta,pt);
-	}
-
-	void DUIListBoxEx::OnKeyDown(TCHAR nChar, UINT nRepCnt, UINT nFlags)
-	{
-		do 
-		{
-			if (-1!=m_iSelItem)
-			{
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
-				if (m_DMArray[m_iSelItem]->pPanel->IsMsgHandled())
-				{
-					break;
-				}
-			}
-
-			int  iNewSelItem = -1;
-			DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
-			if (pOwner 
-				&&(VK_ESCAPE == nChar))
-			{
-				pOwner->DM_SendMessage(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
-				break;
-			}
-
-			if (VK_DOWN==nChar&&m_iSelItem<(int)GetCount()-1)
-			{
-				iNewSelItem = m_iSelItem+1;
-			}
-			else if (VK_UP==nChar&&m_iSelItem>0)
-			{
-				iNewSelItem = m_iSelItem-1;
-			}
-			else if (VK_RETURN==nChar&&pOwner)                     
-			{
-				iNewSelItem = m_iSelItem;
-			}
-
-			if (-1!=iNewSelItem)
-			{
-				EnsureVisible(iNewSelItem);
-				SetCurSel(iNewSelItem);
-			}
-		} while (false);
-	}
-
-	LRESULT DUIListBoxEx::OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam)
-	{
-		LRESULT lRet=__super::OnNcCalcSize(bCalcValidRects,lParam);
-		UpdateAllPanelLayout();
-		return lRet;
-	}
-
-	LRESULT DUIListBoxEx::OnMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
-	{
-		LRESULT lRet = 0;
-		do 
-		{
-			CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			if (WM_LBUTTONUP == uMsg
-				&& m_iHoverItem != m_iSelItem)
-			{
-				SetCurSel(m_iHoverItem);
-			}
-			if (m_pCapturePanel)
-			{
-				CRect rcItem;
-				m_pCapturePanel->OnGetContainerRect(rcItem);
-				pt.Offset(-rcItem.TopLeft());///< 转换成面板坐标
-				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-				break;
-			}
-
-			if (m_pDUIXmlInfo->m_bFocusable
-				&& (uMsg==WM_LBUTTONDOWN || uMsg== WM_RBUTTONDOWN || uMsg==WM_LBUTTONDBLCLK))
-			{
-				DV_SetFocusWnd();
-			}
-
-			int iHoverItem = HitTest(pt);
-			if (iHoverItem != m_iHoverItem)
-			{
-				int iOldHoverItem = m_iHoverItem;
-				m_iHoverItem  = iHoverItem;
-				if (-1!=iOldHoverItem)
-				{
-					RedrawItem(iOldHoverItem);
-					m_DMArray[iOldHoverItem]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
-				}
-
-				if (-1!=m_iHoverItem)
-				{
-					RedrawItem(m_iHoverItem);
-					m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_MOUSEHOVER,wParam,MAKELPARAM(pt.x,pt.y));
-				}
-			}
-			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
-				&& m_iSelItem != m_iHoverItem )
-			{///原有行失去焦点
-				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
-			}
-
-			if (-1!=m_iHoverItem)
-			{
-				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-			}
-		} while (false);
-		return lRet;
-	}
-
-	LRESULT DUIListBoxEx::OnKeyEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
-	{
-		LRESULT lRet = 0;
-		do 
-		{
-			if (m_pCapturePanel)
-			{
-				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,lParam);
-				SetMsgHandled(m_pCapturePanel->IsMsgHandled());
-			}
-			else if (-1!=m_iSelItem)
-			{
-				lRet = m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(uMsg,wParam,lParam);
-				SetMsgHandled(m_DMArray[m_iSelItem]->pPanel->IsMsgHandled());
-			}
-			else
-			{
-				SetMsgHandled(FALSE);
-			}
-		} while (false);
-		return lRet;
-	}
-
+	// Function Des: IDMItemPanelOwner methods
 	//---------------------------------------------------
-	// Function Des: IDMItemPanelOwner实现
+#pragma region IDMItemPanelOwner
 	DUIWindow* DUIListBoxEx::GetOwnerWindow()
 	{
 		return this;
@@ -704,7 +432,7 @@ namespace DM
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
-	}
+	}	
 
 	DMCode DUIListBoxEx::OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect)
 	{
@@ -721,9 +449,52 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+#pragma endregion
+
 
 	//---------------------------------------------------
-	// Function Des: 可重载函数
+	// Function Des: Draw methods
+	//---------------------------------------------------
+#pragma region Draw
+	void DUIListBoxEx::DrawItem(IDMCanvas* pCanvas, CRect& rcItem, int iItem)
+	{
+		RelayoutItem(iItem,rcItem);
+		CRect rcClient;
+		DV_GetClientRect(rcClient);
+		rcItem.right = rcItem.right>rcClient.right?rcClient.right:rcItem.right;
+		m_DMArray[iItem]->pPanel->DrawItem(pCanvas,rcItem);
+	}
+
+	void DUIListBoxEx::RedrawItem(int iItem)
+	{
+		do 
+		{
+			CRect rcItem;
+			if (!DMMapT<int,CRect>::GetObjByKey(iItem,rcItem))
+			{
+				break;
+			}
+			DM_InvalidateRect(rcItem);
+		} while (false);
+	}
+
+	DMCode DUIListBoxEx::OnScrollEvent(DMEventArgs *pEvt)
+	{
+		UpdateVisibleMap();
+		DMEventOnScrollArgs* pEvent = (DMEventOnScrollArgs*)pEvt;
+		if (SB_THUMBTRACK == pEvent->m_iSbCode)
+		{
+			ScrollUpdateWindow();
+		}
+		return DM_ECODE_OK;
+	}
+#pragma endregion
+
+
+	//---------------------------------------------------
+	// Function Des: DV methods
+	//---------------------------------------------------
+#pragma region DV
 	DMCode DUIListBoxEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -734,6 +505,8 @@ namespace DM
 				break;
 			}
 
+			m_EventMgr.SubscribeEvent(DM::DMEventOnScrollArgs::EventID, Subscriber(&DUIListBoxEx::OnScrollEvent, this));
+
 			DMXmlNode XmlItem = XmlNode.FirstChild(DMAttr::DUIListBoxExAttr::NODE_item);
 			while (XmlItem.IsValid())
 			{
@@ -743,6 +516,7 @@ namespace DM
 			int nSelItem = -1;
 			DMAttributeDispatch::ParseInt(XmlNode.Attribute(DMAttr::DUIListBoxExAttr::INT_cursel),nSelItem);
 			SetCurSel(nSelItem);
+			UpdateScrollRange();
 		} while (false);
 		return iErr;
 	}
@@ -792,72 +566,102 @@ namespace DM
 		return iErr;
 	}
 
-	void DUIListBoxEx::OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew)
+	CRect DUIListBoxEx::GetItemRect(int iItem)
 	{
+		CRect rcDest;
 		do 
 		{
-			if (-1==m_iSelItem)
+			if (iItem<0
+				||iItem>=GetItemCount())
 			{
 				break;
 			}
 
-			if (DM_IsFocusWnd())
+			// 先从可视列表中查找
+			if (DMMapT<int,CRect>::GetObjByKey(iItem,rcDest))
 			{
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
-				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
-			}
-		} while (false);
-	}
-
-	// 
-	void DUIListBoxEx::PreArrayObjRemove(const LPLBITEMEX &obj)
-	{
-		delete obj;
-	}
-
-	DMCode DUIListBoxEx::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
-	{
-		do 
-		{
-			if (DM_ECODE_NOXMLLOADREFRESH == iErr)
-			{
-				if (false == bLoadXml)
-				{
-					if (0 == _wcsicmp(DMAttr::DUIListBoxExAttr::COLOR_clritembg,pszAttribute))
-					{
-						int nCount = (int)GetCount();
-						for (int i=0; i<nCount; i++)
-						{
-							if (i!=m_iSelItem)
-							{
-								ModifyPanelBgClr(m_DMArray[i]->pPanel,m_crItemBg);
-							}
-						}
-						DM_InvalidateRect(m_rcWindow);// 处理非客户区
-					}
-
-					if (0 == _wcsicmp(DMAttr::DUIListBoxExAttr::COLOR_clritemselbg,pszAttribute))
-					{
-						if (-1!=m_iSelItem&&m_iSelItem<(int)GetCount())
-						{
-							ModifyPanelBgClr(m_DMArray[m_iSelItem]->pPanel,m_crItemSelBg);
-						}
-						DM_InvalidateRect(m_rcWindow);// 处理非客户区
-					}
-				}
-				iErr = DM_ECODE_OK;/// 已处理
 				break;
 			}
-			__super::OnAttributeFinished(pszAttribute,pszValue,bLoadXml,iErr);
 
+			CRect rcClient;
+			DV_GetClientRect(&rcClient);
+			int nPos = 0;
+			for (int i = 0; i < iItem; i++)
+			{
+				nPos += m_DMArray[i]->nHeight;
+			}
+			rcDest.SetRect(0,nPos,rcClient.Width(), m_DMArray[iItem]->nHeight+nPos);
+			rcDest.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
 		} while (false);
-		return iErr;
-
+		return rcDest;
 	}
 
-	void DUIListBoxEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast/* = -1*/)
+	int DUIListBoxEx::HitTest(CPoint &pt)
 	{
-		int iCount  = (int)GetCount();
+		// 传入的pt为rcClient所在坐标系的坐标
+		int iRet = -1;
+		POSITION pos = m_Map.GetStartPosition();
+		while(pos)
+		{
+			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// 进入可视区,水平可能为负值
+			{
+				pt -= p->m_value.TopLeft();
+				iRet = p->m_key;
+				break;
+			}
+		}
+		return iRet;
+	}
+
+	void DUIListBoxEx::UpdateScrollRange()
+	{
+		int iHei = GetAllItemHeight();
+		CSize szView(0,iHei);
+		SetRangeSize(szView);
+	}
+
+	void DUIListBoxEx::UpdateVisibleMap()
+	{
+		DMMapT<int,CRect>::RemoveAll();
+		CRect rcClient;
+		DV_GetClientRect(&rcClient);
+		if (rcClient.IsRectEmpty())
+		{
+			return;
+		}
+		
+		int iTotalHei = 0;
+		int iCount = GetItemCount();
+		for (int iItem = 0; iItem < iCount; iItem++)
+		{
+			if ((iTotalHei >= m_ptCurPos.y && iTotalHei < m_ptCurPos.y + rcClient.Height())
+				|| (iTotalHei + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && iTotalHei + m_DMArray[iItem]->nHeight < m_ptCurPos.y + rcClient.Height())
+				||(iTotalHei<=m_ptCurPos.y && iTotalHei + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + m_rcsbClient.Height())
+				)
+			{
+				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);// 在大平面的坐标，以大平面左上角为原点
+				rcItem.OffsetRect(0,iTotalHei-m_ptCurPos.y);
+				rcItem.OffsetRect(rcClient.TopLeft());// 转换成rcList所在的坐标系坐标
+				DMMapT<int,CRect>::AddKey(iItem,rcItem);
+			}
+			iTotalHei += m_DMArray[iItem]->nHeight;
+			if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// 总高度已超过可视区
+			{
+				break;
+			}
+		}
+	}
+#pragma endregion
+
+
+	//---------------------------------------------------
+	// Function Des: 辅助 methods
+	//---------------------------------------------------
+#pragma region 辅助
+	void DUIListBoxEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast /*= -1*/)
+	{
+		int iCount  = GetItemCount();
 		if (-1 == iLast)
 		{
 			iLast = iCount;
@@ -868,75 +672,310 @@ namespace DM
 		}
 	}
 
-	void DUIListBoxEx::UpdateAllPanelLayout()
+	void DUIListBoxEx::ReLayoutVisibleItems()
 	{
-		int iCount  = (int)GetCount();
-		for (int i=0;i<iCount;i++)
+		POSITION pos = m_Map.GetStartPosition();
+		while(pos)
 		{
-			CRect rcLayout(0,0,m_rcsbClient.Width(),m_DMArray[i]->nHeight);
-			m_DMArray[i]->pPanel->DM_FloatLayout(rcLayout);
-		}
+			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+			RelayoutItem(p->m_key,p->m_value);
+		}	
 	}
 
-	void DUIListBoxEx::ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr)
+	void DUIListBoxEx::RelayoutItem(int iItem,CRect rcItem)
 	{
 		do 
 		{
-			if (NULL == pPanel)
+			int iCount = GetItemCount();
+			if (iItem < 0||iItem>iCount)
 			{
 				break;
 			}
-			if (Clr.IsTextInvalid())
-			{
-				break;
-			}
-			CStringW strClr;
-			strClr.Format(L"rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
-			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+
+			//1.布局自身
+			CRect rcLayout(0,0,rcItem.Width(),rcItem.Height());
+			m_DMArray[iItem]->pPanel->DM_FloatLayout(rcLayout);
 		} while (false);
 	}
 
-	int DUIListBoxEx::HitTest(CPoint &pt)
+	void DUIListBoxEx::ModifyPanelBgClr(DUIItemPanel* pPanel)
 	{
-		int iRet = -1;
+		if (pPanel)
+		{
+			CStringW strClr;
+			if (!m_crItemBg[0].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+			}
+			if (!m_crItemBg[1].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbghover",strClr,false);
+			}
+			if (!m_crItemBg[2].IsTextInvalid())
+			{
+				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbgpush",strClr,false);
+			}
+		}
+	}
+#pragma endregion
+
+
+	//---------------------------------------------------
+	// Function Des: DUI的消息分发系列函数
+	//---------------------------------------------------
+#pragma region MsgDispatch
+	void DUIListBoxEx::DM_OnPaint(IDMCanvas* pCanvas)
+	{
 		do 
 		{
-			CRect rcClient;
-			DV_GetClientRect(&rcClient);
-			if (!rcClient.PtInRect(pt))
+			CRect rcInvalid;
+			pCanvas->GetClipBox(rcInvalid);
+			if (rcInvalid.IsRectEmpty())
 			{
 				break;
 			}
-
-			CPoint pt2 = pt;
-			pt2.y -= rcClient.top-m_ptCurPos.y;
-			int nTotalHeight = 0;
-			int iCount = (int)GetCount();
-			for (int i = 0; i < iCount; i++)
+			if (m_iHoverItem)
 			{
-				nTotalHeight += m_DMArray[i]->nHeight;
-				if (pt2.y < nTotalHeight)
+				CRect rcHover;
+				if (DMMapT<int,CRect>::GetObjByKey(m_iHoverItem,rcHover))
 				{
-					iRet = i;
-					pt.x -= rcClient.left;
-					pt.y = pt2.y - nTotalHeight + m_DMArray[i]->nHeight;
-					break;
+					CRect rcNeed;rcNeed.UnionRect(rcHover,rcInvalid);
+					if (rcNeed.EqualRect(rcHover))
+					{
+						DrawItem(pCanvas,rcHover,m_iHoverItem);
+						break;
+					}
+				}
+			}
+			if (m_iSelItem)
+			{
+				CRect rcSel;
+				if (DMMapT<int,CRect>::GetObjByKey(m_iSelItem,rcSel))
+				{
+					CRect rcNeed;rcNeed.UnionRect(rcSel,rcInvalid);
+					if (rcNeed.EqualRect(rcSel))
+					{
+						DrawItem(pCanvas,rcSel,m_iSelItem);
+						break;
+					}
+				}
+			}
+			POSITION pos = m_Map.GetStartPosition();
+			while(pos)
+			{
+				DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
+				CRect rcNeed = p->m_value;
+				rcNeed.IntersectRect(rcNeed,rcInvalid);
+				if (!rcNeed.IsRectEmpty())
+				{
+					DrawItem(pCanvas,p->m_value,p->m_key);
 				}
 			}
 		} while (false);
-		return iRet;
 	}
 
-	void DUIListBoxEx::UpdateScrollRangeSize()
+	void DUIListBoxEx::OnSize(UINT nType, CSize size)
 	{
-		int nTotalHeight = 0;
-		int iCount = (int)m_DMArray.GetCount();
-		for (int i = 0; i<iCount; i++)
+		__super::OnSize(nType,size);
+		UpdateVisibleMap();
+	}
+
+	void DUIListBoxEx::OnDestroy()
+	{
+		m_EventMgr.UnSubscribeEvent(DM::DMEventOnScrollArgs::EventID, Subscriber(&DUIListBoxEx::OnScrollEvent, this));
+		DeleteAllItems(false);
+		__super::OnDestroy();
+	}
+
+	void DUIListBoxEx::DM_OnSetFocus()
+	{
+		__super::DM_OnSetFocus();
+		if (-1!=m_iSelItem) 
 		{
-			nTotalHeight += m_DMArray[i]->nHeight;
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_SETFOCUS,0,0);
 		}
-		CSize szView(0, nTotalHeight);
-		SetRangeSize(szView);
+	}
+
+	void DUIListBoxEx::DM_OnKillFocus()
+	{
+		__super::DM_OnKillFocus();
+		if (-1!=m_iSelItem) 
+		{
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KILLFOCUS,0,0);
+			RedrawItem(m_iSelItem);
+		}
+	}
+
+	void DUIListBoxEx::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
+		if (pOwner)
+		{
+			pOwner->DM_SendMessage(WM_CHAR, nChar, MAKELONG(nFlags, nRepCnt));
+		}
+		if (-1!=m_iSelItem)
+		{
+			m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_CHAR,nChar, MAKELONG(nFlags, nRepCnt));
+		}
+	}
+
+	void DUIListBoxEx::OnMouseLeave()
+	{
+		if (DM_IsVisible(true))// 加一个判断，防止非客户区在list隐藏时绘制
+		{
+			__super::OnMouseLeave();
+			if (-1!=m_iHoverItem)
+			{
+				int nOldHover = m_iHoverItem;
+				SetCurHover(-1);
+				m_DMArray[nOldHover]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+			}
+		}
+	}
+
+	BOOL DUIListBoxEx::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+	{
+		return __super::OnMouseWheel(nFlags,zDelta,pt);
+	}
+
+	void DUIListBoxEx::OnKeyDown(TCHAR nChar, UINT nRepCnt, UINT nFlags)
+	{
+		do 
+		{
+			if (-1!=m_iSelItem)
+			{
+				m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
+				if (m_DMArray[m_iSelItem]->pPanel->IsMsgHandled())
+				{
+					break;
+				}
+			}
+
+			int  iNewSelItem = -1;
+			DUIWindow *pOwner = DM_GetWindow(GDW_OWNER);
+			if (pOwner 
+				&&(VK_ESCAPE == nChar))
+			{
+				pOwner->DM_SendMessage(WM_KEYDOWN, nChar, MAKELONG(nFlags, nRepCnt));
+				break;
+			}
+
+			if (VK_DOWN==nChar&&m_iSelItem<GetItemCount()-1)
+			{
+				iNewSelItem = m_iSelItem+1;
+			}
+			else if (VK_UP==nChar&&m_iSelItem>0)
+			{
+				iNewSelItem = m_iSelItem-1;
+			}
+			else if (VK_RETURN==nChar&&pOwner)                     
+			{
+				iNewSelItem = m_iSelItem;
+			}
+
+			if (-1!=iNewSelItem)
+			{
+				EnsureVisible(iNewSelItem);
+				SetCurSel(iNewSelItem);
+			}
+		} while (false);
+	}
+
+	LRESULT DUIListBoxEx::OnMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
+	{
+		LRESULT lRet = 0;
+		CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+		switch (uMsg)
+		{
+		case WM_LBUTTONDOWN:
+			{
+				DM_SetCapture();
+			}
+			break;
+		case WM_LBUTTONUP:
+			{
+				DM_ReleaseCapture();
+				if (m_iHoverItem != m_iSelItem)
+				{
+					SetCurSel(m_iHoverItem);
+				}
+			}
+			break;
+		default:
+			break;
+		}
+
+		do 
+		{
+			if (m_pCapturePanel)
+			{
+				CRect rcItem;
+				m_pCapturePanel->OnGetContainerRect(rcItem);
+				pt.Offset(-rcItem.TopLeft());///< 转换成面板坐标
+				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
+				break;
+			}
+
+			if (m_pDUIXmlInfo->m_bFocusable
+				&& (uMsg==WM_LBUTTONDOWN || uMsg== WM_RBUTTONDOWN || uMsg==WM_LBUTTONDBLCLK))
+			{
+				DV_SetFocusWnd();
+			}
+
+			int iHoverItem = HitTest(pt);
+			if (iHoverItem != m_iHoverItem)
+			{
+				int iOldHoverItem = m_iHoverItem;
+				SetCurHover(iHoverItem);
+				if (-1!=iOldHoverItem)
+				{
+					m_DMArray[iOldHoverItem]->pPanel->OnFrameEvent(WM_MOUSELEAVE,0,0);
+				}
+
+				if (-1!=m_iHoverItem)
+				{
+					m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(WM_MOUSEHOVER,wParam,MAKELPARAM(pt.x,pt.y));
+				}
+			}
+			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
+				&& m_iSelItem != m_iHoverItem )
+			{///原有行失去焦点
+				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
+			}
+			if (-1!=m_iHoverItem)
+			{
+				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));//panel的子项得到hover时，会让原来得到hover的panel失去hover
+				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover,0);//listctrlex的item下还有一层window,所以listctrlex失去hover的是window,不用担心
+			}
+
+		} while (false);
+		return lRet;
+	}
+
+	LRESULT DUIListBoxEx::OnKeyEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
+	{
+		LRESULT lRet = 0;
+		do 
+		{
+			if (m_pCapturePanel)
+			{
+				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,lParam);
+				SetMsgHandled(m_pCapturePanel->IsMsgHandled());
+			}
+			else if (-1!=m_iSelItem)
+			{
+				lRet = m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(uMsg,wParam,lParam);
+				SetMsgHandled(m_DMArray[m_iSelItem]->pPanel->IsMsgHandled());
+			}
+			else
+			{
+				SetMsgHandled(FALSE);
+			}
+		} while (false);
+		return lRet;
 	}
 
 	DMCode DUIListBoxEx::OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml)
@@ -955,5 +994,6 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
+#pragma endregion
 
 }//namespace DM

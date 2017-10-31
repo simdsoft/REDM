@@ -46,7 +46,7 @@ BEGIN_EVENT_MAP(CWidgetWnd)
 	EVENT_NAME_COMMAND(L"iejstest",IE_Test::OnBtnIeJsTest)
 
 	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RLBUTTONMENU,OnEditRButtonMenu)
+	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RBUTTONMENU,OnEditRButtonMenu)
 END_EVENT_MAP()
 CWidgetWnd::CWidgetWnd()
 {
