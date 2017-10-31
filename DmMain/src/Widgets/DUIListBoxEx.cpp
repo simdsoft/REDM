@@ -33,9 +33,9 @@ namespace DM
 				break;
 			}
 			if (-1 == nIndex
-				||nIndex>GetItemCount())
+				||nIndex>GetCount())
 			{
-				nIndex = GetItemCount();
+				nIndex = GetCount();
 			}
 			LPLBITEMEX pNewItem = new LBITEMEX(XmlNode,this);
 			CStringW strHei		= XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_height);
@@ -93,7 +93,7 @@ namespace DM
 		int iErr = LB_ERR ;
 		do 
 		{
-			if (nIndex<0 || nIndex>=GetItemCount())
+			if (nIndex<0 || nIndex>=GetCount())
 			{
 				break;
 			}
@@ -112,7 +112,7 @@ namespace DM
 
 	int DUIListBoxEx::GetItemHeight(int nIndex) 
 	{
-		if (nIndex < 0 || nIndex >= GetItemCount())
+		if (nIndex < 0 || nIndex >= GetCount())
 			return LB_ERR;
 
 		return m_DMArray[nIndex]->nHeight;
@@ -121,7 +121,7 @@ namespace DM
 	int DUIListBoxEx::GetAllItemHeight()
 	{
 		int nTotalHeight = 0;
-		int iCount = GetItemCount();
+		int iCount = GetCount();
 		for (int i = 0; i<iCount; i++)
 		{
 			nTotalHeight += m_DMArray[i]->nHeight;
@@ -131,7 +131,7 @@ namespace DM
 
 	int DUIListBoxEx::SetAllItemHeight(int cyItemHeight, bool bUpdate /*= true*/)
 	{
-		int iCount = GetItemCount();
+		int iCount = GetCount();
 		for (int i = 0; i<iCount; i++)
 		{
 			SetItemHeight(i,cyItemHeight,bUpdate);
@@ -141,7 +141,7 @@ namespace DM
 
 	int DUIListBoxEx::SetItemHeight(int nIndex, int cyItemHeight, bool bUpdate /*= true*/)
 	{
-		if (cyItemHeight < 0 || nIndex < 0 || nIndex >= GetItemCount())
+		if (cyItemHeight < 0 || nIndex < 0 || nIndex >= GetCount())
 			return LB_ERR;
 		if (cyItemHeight==m_DMArray[nIndex]->nHeight)
 		{
@@ -161,7 +161,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex>=GetItemCount())
+			if (nIndex>=GetCount())
 			{
 				break;
 			}
@@ -221,7 +221,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex>=GetItemCount())
+			if (nIndex>=GetCount())
 			{
 				break;
 			}
@@ -258,7 +258,7 @@ namespace DM
 		return m_iSelItem;
 	}
 
-	int DUIListBoxEx::GetItemCount()
+	int DUIListBoxEx::GetCount()
 	{
 		return (int)DMArrayT<LPLBITEMEX>::GetCount();
 	}
@@ -267,7 +267,7 @@ namespace DM
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=GetItemCount())
+			if (nIndex<0 || nIndex>=GetCount())
 			{
 				break;
 			}
@@ -324,7 +324,7 @@ namespace DM
 	{
 		do 
 		{
-			if (nIndex<0 || nIndex>=GetItemCount())
+			if (nIndex<0 || nIndex>=GetCount())
 			{
 				break;
 			}
@@ -366,7 +366,7 @@ namespace DM
 
 	LPARAM DUIListBoxEx::GetItemData(int nIndex)
 	{
-		if (nIndex<0 || nIndex >= GetItemCount())
+		if (nIndex<0 || nIndex >= GetCount())
 		{
 			return 0;
 		}
@@ -379,7 +379,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (nIndex<0 || nIndex>=GetItemCount())
+			if (nIndex<0 || nIndex>=GetCount())
 			{
 				break;
 			}
@@ -572,7 +572,7 @@ namespace DM
 		do 
 		{
 			if (iItem<0
-				||iItem>=GetItemCount())
+				||iItem>=GetCount())
 			{
 				break;
 			}
@@ -632,7 +632,7 @@ namespace DM
 		}
 		
 		int iTotalHei = 0;
-		int iCount = GetItemCount();
+		int iCount = GetCount();
 		for (int iItem = 0; iItem < iCount; iItem++)
 		{
 			if ((iTotalHei >= m_ptCurPos.y && iTotalHei < m_ptCurPos.y + rcClient.Height())
@@ -661,7 +661,7 @@ namespace DM
 #pragma region ¸¨Öú
 	void DUIListBoxEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast /*= -1*/)
 	{
-		int iCount  = GetItemCount();
+		int iCount  = GetCount();
 		if (-1 == iLast)
 		{
 			iLast = iCount;
@@ -686,7 +686,7 @@ namespace DM
 	{
 		do 
 		{
-			int iCount = GetItemCount();
+			int iCount = GetCount();
 			if (iItem < 0||iItem>iCount)
 			{
 				break;
@@ -863,7 +863,7 @@ namespace DM
 				break;
 			}
 
-			if (VK_DOWN==nChar&&m_iSelItem<GetItemCount()-1)
+			if (VK_DOWN==nChar&&m_iSelItem<GetCount()-1)
 			{
 				iNewSelItem = m_iSelItem+1;
 			}

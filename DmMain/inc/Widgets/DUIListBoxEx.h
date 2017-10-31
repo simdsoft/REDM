@@ -85,7 +85,7 @@ namespace DM
 		bool SetCurSel(int nIndex);
 		bool SetCurHover(int nIndex);
 		int GetCurSel() const;
-		int GetItemCount();
+		int GetCount();
 		void DeleteItem(int nIndex);
 		void DeleteAllItems(bool bUpdate = true);
 		void EnsureVisible(int nIndex);
