@@ -131,8 +131,8 @@
 	INT_itemheight="{20}项的默认高度,此值不支持动态变化,示例:itemheight=10"
 	INT_cursel="{-1}当前选项,示例:cursel=1"
 	COLOR_clritembg="{pbgra(ff,ff,ff,00)}item项的背景色,示例:clritembg=pbgra(ff,ff,ff,ff)" 
+	COLOR_clritemhoverbg="{pbgra(ff,ff,ff,00)}item项的停留背景色,示例:clritemhoverbg=pbgra(ff,ff,ff,ff)"
 	COLOR_clritemselbg="{pbgra(ff,ff,ff,00)}item项的选中背景色,示例:clritemselbg=pbgra(ff,ff,ff,ff)"
-	bool_bnodrawbg="为QQdemo设置，不抓取背景，不然可能透明" 
 	/>
 	
 	<DUIRichEditAttr 

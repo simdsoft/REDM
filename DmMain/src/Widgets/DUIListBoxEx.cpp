@@ -458,7 +458,6 @@ namespace DM
 #pragma region Draw
 	void DUIListBoxEx::DrawItem(IDMCanvas* pCanvas, CRect& rcItem, int iItem)
 	{
-		RelayoutItem(iItem,rcItem);
 		CRect rcClient;
 		DV_GetClientRect(rcClient);
 		rcItem.right = rcItem.right>rcClient.right?rcClient.right:rcItem.right;
@@ -630,7 +629,7 @@ namespace DM
 		{
 			return;
 		}
-		
+
 		int iTotalHei = 0;
 		int iCount = GetCount();
 		for (int iItem = 0; iItem < iCount; iItem++)
@@ -644,6 +643,8 @@ namespace DM
 				rcItem.OffsetRect(0,iTotalHei-m_ptCurPos.y);
 				rcItem.OffsetRect(rcClient.TopLeft());// 转换成rcList所在的坐标系坐标
 				DMMapT<int,CRect>::AddKey(iItem,rcItem);
+				CRect rcLayout(0,0,rcItem.Width(),rcItem.Height());
+				m_DMArray[iItem]->pPanel->DM_FloatLayout(rcLayout);
 			}
 			iTotalHei += m_DMArray[iItem]->nHeight;
 			if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// 总高度已超过可视区
