@@ -75,7 +75,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 对外接口 methods
 		//---------------------------------------------------
-		int InsertItem(int nIndex, DMXmlNode&XmlNode);
+		int InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate = true);
 		int GetTopIndex() const;
 		int SetTopIndex(int nIndex);
 		int GetItemHeight(int nIndex);
