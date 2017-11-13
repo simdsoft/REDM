@@ -30,7 +30,7 @@ namespace DM
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
 #pragma region 对外接口
-	int DUIListCtrlEx::InsertItem(int nIndex, DMXmlNode&XmlNode)
+	int DUIListCtrlEx::InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate/* = true*/)
 	{
 		int iRet = -1;
 		do 
@@ -71,6 +71,11 @@ namespace DM
 				m_iHoverItem++;
 			}
 			UpdateItemPanelId(nIndex,-1);
+			if (bUpdate)
+			{
+				UpdateVisibleMap();
+				UpdateScrollRange();
+			}
 			iRet = nIndex;
 		} while (false);
 		return iRet;
