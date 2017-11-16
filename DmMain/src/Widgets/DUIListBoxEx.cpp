@@ -951,10 +951,13 @@ namespace DM
 			{///原有行失去焦点
 				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
 			}
-			if (-1!=m_iHoverItem)
+			if (-1 != m_iHoverItem)
 			{
-				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));//panel的子项得到hover时，会让原来得到hover的panel失去hover
-				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover,0);//listctrlex的item下还有一层window,所以listctrlex失去hover的是window,不用担心
+				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg, wParam, MAKELPARAM(pt.x, pt.y));//panel的子项得到hover时，会让原来得到hover的panel失去hover
+			}
+			if (-1 != m_iHoverItem)
+			{
+				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover, 0);//listctrlex的item下还有一层window,所以listctrlex失去hover的是window,不用担心
 			}
 
 		} while (false);
