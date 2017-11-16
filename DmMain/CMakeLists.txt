@@ -25,7 +25,7 @@ FILE(GLOB MODULES_RENDER_HEADER    						inc/Modules/Render/*.h)
 FILE(GLOB MODULES_SKIN_HEADER    						inc/Modules/Skin/*.h)
 FILE(GLOB WIDGETS_HEADER    							inc/Widgets/*.h)
 
-FILE(GLOB ROOT_SOURCE 									src/*.cpp;src/*.c)
+FILE(GLOB ROOT_SOURCE 									src/*.cpp;src/*.c;src/*.rc)
 FILE(GLOB COMMON_SOURCE     							src/Common/*.cpp;src/Common/*.c)
 FILE(GLOB COMMON_PLUGINS_SOURCE     					src/Common/Plugins/*.cpp;src/Common/Plugins/*.c)
 FILE(GLOB COMMON_ACTIVEX_SOURCE     					src/Common/ActiveX/*.cpp;src/Common/ActiveX/*.c)
