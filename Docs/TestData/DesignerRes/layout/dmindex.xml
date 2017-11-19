@@ -29,5 +29,6 @@
 		<file name="ds_add_dlg" path="layout\xml\ds_add_dlg.xml" />
 		<file name="ds_newdlg" path="layout\xml\ds_newdlg.xml" />
 		<file name="ds_xmlwnd" path="layout\xml\ds_xmlwnd.xml" />
+		<file name="ds_menubar" path="layout\xml\ds_menubar.xml" />
 	</layout>
 </resource>

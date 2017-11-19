@@ -2,6 +2,34 @@
 #include "DMDesignerWnd.h"
 #include "NewResDlg.h"
 
+DesignMenu g_GlbMenuItem[] = \
+{
+	{GLBMENU_NEW,			  L" 新建 ctrl+n"},//0 
+	{GLBMENU_SAVE,			  L" 保存 ctrl+s"},//1 
+	{GLBMENU_CLOSE,			  L" 关闭"},//2 
+	{GLBMENU_EXIT,		      L" 退出"},//3 
+
+	{GLBMENU_OPTOBJPROJ,	  L" 切换对象视图 ctrl+q"},//4 
+	{GLBMENU_RELOAD,		  L" 重新加载     f5"},//5 
+
+	{GLBMENU_MOVEMODE,		  L" Move模式 ctrl+1"},//6
+	{GLBMENU_SELMODE,		  L" Sel模式  ctrl+2"},//7
+	{GLBMENU_ADDMODE,		  L" Add模式  ctrl+3"},//8
+
+	{GLBMENU_HELPDOC,		  L" 帮助文档"},//9
+	{GLBMENU_ONLINEHELP,	  L" 在线教程"},//10
+};
+enum
+{
+	GLBMENUBTN_ID_MIN          = 100,
+	GLBMENUBTN_ID_FILE,							///< 文件
+	GLBMENUBTN_ID_VIEW,							///< 视图
+	GLBMENUBTN_ID_MODE,							///< 模式
+	GLBMENUBTN_ID_HELP,							///< 帮助
+	//
+	GLBMENUBTN_ID_MAX		   = 110
+};
+
 DMDesignerWnd* g_pMainWnd = NULL;
 DMSmartPtrT<ResMultFolder> g_pRes;
 BEGIN_MSG_MAP(DMDesignerWnd)    
@@ -22,8 +50,8 @@ BEGIN_EVENT_MAP(DMDesignerWnd)
 	EVENT_NAME_COMMAND(L"ds_maxbutton",		OnMaximize)
 	EVENT_NAME_COMMAND(L"ds_restorebutton", OnRestore)
 	EVENT_NAME_COMMAND(L"ds_minbutton",		OnMinimize)
-
 	EVENT_NAME_HANDLER(L"ds_preview",DMEVT_CMD,OnPreview)
+	EVENT_ID_COMMAND_RANGE(GLBMENUBTN_ID_MIN,GLBMENUBTN_ID_MAX,OnGlobalMenuBtn)	
 	CHAIN_EVENT_STATIC_MAP(RightXml,s_DMHandleEvent)
 	CHAIN_EVENT_STATIC_MAP(AddXml,s_DMHandleEvent)
 END_EVENT_MAP()
@@ -175,7 +203,11 @@ void DMDesignerWnd::OnDropFiles(HDROP hDropInfo)
 
 void DMDesignerWnd::OnCommand(UINT uNotifyCode, int nID, HWND wndCtl)
 {
-	if (nID>=OBJMENU_OPENDIR)
+	if (nID>=GLBMENU_BASE)
+	{
+		HandleGlobalMenu(nID);
+	}
+	else if (nID>=OBJMENU_OPENDIR)
 	{
 		m_pDesignerXml->HandleObjTreeMenu(nID);
 	}
@@ -200,7 +232,7 @@ void DMDesignerWnd::OnTimer(UINT_PTR idEvent)
 		{
 			i = 0;
 		}
-		FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,ff,ff)");
+		FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,00,ff)");
 		FindChildByNameT<DUIStatic>(L"ds_tips")->DV_SetWindowText(g_Tips[i++]);
 	} while (false);
 }
@@ -255,12 +287,7 @@ bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 	CStringW str = acc.FormatHotkey();
 	if (0 == str.CompareNoCase(L"CTRL+N"))
 	{
-		DMSmartPtrT<NewResDlg> pDlg;
-		pDlg.Attach(new NewResDlg());
-		if (IDOK == pDlg->DoModal(L"ds_newdlg",m_hWnd,true))
-		{
-			OnParseRes(pDlg->m_strResDir);
-		}
+		OpenNewProj();
 	}
 	else if (0 == str.CompareNoCase(L"CTRL+S"))
 	{
@@ -271,23 +298,7 @@ bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 	}
 	else if (0 == str.CompareNoCase(L"CTRL+Q"))
 	{
-		if (m_pDesignerXml)
-		{
-			if (m_pDesignerXml->m_bInitObjTree)
-			{
-				if (IDOK == DM_MessageBox(L"确认关闭对象视图?\r\n",MB_OKCANCEL))
-				{
-					m_pDesignerXml->ReleaseObjTree();
-				}
-			}
-			else
-			{
-				if (IDOK == DM_MessageBox(L"确认加载对象视图?\r\n",MB_OKCANCEL))
-				{
-					m_pDesignerXml->InitObjTree();
-				}
-			}
-		}
+		OptionObjProj();
 	}
 	else if (0 == str.CompareNoCase(L"CTRL+1")
 			||0 == str.CompareNoCase(L"CTRL+2")
@@ -300,16 +311,7 @@ bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 	}
 	else if (0 == str.CompareNoCase(L"f5"))
 	{
-		if (m_pDesignerXml)
-		{
-			bool bInitObj = m_pDesignerXml->m_bInitObjTree;
-			OnParseRes(m_pDesignerXml->m_strResDir);
-
-			if (bInitObj)
-			{
-				m_pDesignerXml->InitObjTree();
-			}
-		}
+		ReloadProj();
 	}
 
 	return true;
@@ -320,7 +322,7 @@ DMCode DMDesignerWnd::OnParseRes(CStringW strResDir)
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		DM_DELETE(m_pDesignerXml);
+		CloseProj();
 		m_pDesignerXml = new ObjXml;
 		m_pDesignerXml->ParseRes(strResDir);
 		iErr = m_pDesignerXml->InitProjTree();
@@ -338,4 +340,274 @@ DMCode DMDesignerWnd::OnParseRes(CStringW strResDir)
 	}
 	return iErr;
 }
+
+DMCode DMDesignerWnd::OnGlobalMenuBtn(int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		DUIWindow* pCur = FindChildById(idFrom);
+		if (NULL == pCur)
+		{
+			break;
+		}
+		
+		DMXmlDocument Doc;
+		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,L"ds_menu_proj");
+		DMXmlNode XmlNode = Doc.Root();
+		XmlNode.SetAttributeInt(XML_BSHADOW,1);
+		XmlNode.SetAttribute(L"clrtext",L"pbgra(ff,ff,00,ff)");
+		InitFileMenu(XmlNode,idFrom);
+		InitViewMenu(XmlNode,idFrom);
+		InitModeMenu(XmlNode,idFrom);
+		InitHelpMenu(XmlNode,idFrom);
+
+		DUIMenu Menu;
+		Menu.LoadMenu(XmlNode); 
+		CRect rcButton = pCur->m_rcWindow;
+		ClientToScreen(rcButton);
+		CPoint pt(rcButton.left,rcButton.bottom);
+		Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+}
+
+DMCode DMDesignerWnd::HandleGlobalMenu(int nID)
+{
+	switch (nID)
+	{
+	case GLBMENU_NEW:
+		{
+			OpenNewProj();
+		}
+		break;
+
+	case GLBMENU_SAVE:
+		{
+			if (m_pDesignerXml)
+			{
+				m_pDesignerXml->SaveRes();
+			}
+		}
+		break;
+
+	case GLBMENU_CLOSE:
+		{
+			CloseProj();
+		}
+		break;
+
+	case GLBMENU_EXIT:
+		{
+			OnClose();
+		}
+		break;
+
+	case GLBMENU_OPTOBJPROJ:
+		{
+			OptionObjProj();
+		}
+		break;
+
+	case GLBMENU_RELOAD:
+		{
+			ReloadProj();
+		}
+		break;
+
+	case GLBMENU_MOVEMODE:
+	case GLBMENU_SELMODE:
+	case GLBMENU_ADDMODE:
+		{
+			int iSel = nID-GLBMENU_MOVEMODE;
+			FindChildByNameT<DUITabCtrl>(L"ds_tool")->SetCurSel(iSel);
+		}
+		break;
+
+	case GLBMENU_HELPDOC:
+		{
+			wchar_t szDocPath[MAX_PATH]={0};
+			DM::GetRootFullPath(L".\\DesignerRes\\DMDesign-Help.docx",szDocPath,MAX_PATH);
+			if (::PathFileExists(szDocPath))
+			{
+				::ShellExecuteW(NULL,L"open",szDocPath,NULL,NULL,SW_SHOWNORMAL);
+			}
+		}
+		break;
+
+	case GLBMENU_ONLINEHELP:
+		{
+			SHELLEXECUTEINFOW shelli = { 0 };
+			shelli.cbSize = sizeof(SHELLEXECUTEINFOW);
+			shelli.fMask = SEE_MASK_FLAG_NO_UI | SEE_MASK_NOCLOSEPROCESS;
+			shelli.lpVerb = L"open";
+			shelli.lpFile = L"http://hgy413.com/3426.html";
+			shelli.nShow = SW_SHOW;
+			::ShellExecuteExW(&shelli);
+		}
+		break;
+
+	default:
+		break;
+	}
+	return DM_ECODE_OK;
+}
+
+DMCode DMDesignerWnd::InitFileMenu(DMXmlNode& XmlNode,int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		if (GLBMENUBTN_ID_FILE != idFrom)
+		{
+			break;
+		}
+		
+		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].text);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].text);
+		Init_Debug_XmlBuf(XmlNode);
+
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+
+}
+
+DMCode DMDesignerWnd::InitViewMenu(DMXmlNode& XmlNode,int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		if (GLBMENUBTN_ID_VIEW != idFrom)
+		{
+			break;
+		}
+
+		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		Init_Debug_XmlBuf(XmlNode);
+
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+}
+
+DMCode DMDesignerWnd::InitModeMenu(DMXmlNode& XmlNode,int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		if (GLBMENUBTN_ID_MODE != idFrom)
+		{
+			break;
+		}
+
+		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].text);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].text);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].text);
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+}
+
+DMCode DMDesignerWnd::InitHelpMenu(DMXmlNode& XmlNode,int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do 
+	{
+		if (GLBMENUBTN_ID_HELP != idFrom)
+		{
+			break;
+		}
+
+		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].text);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].text);
+		Init_Debug_XmlBuf(XmlNode);
+
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
+}
+
+DMCode DMDesignerWnd::OpenNewProj()
+{
+	DMSmartPtrT<NewResDlg> pDlg;
+	pDlg.Attach(new NewResDlg());
+	if (IDOK == pDlg->DoModal(L"ds_newdlg",m_hWnd,true))
+	{
+		OnParseRes(pDlg->m_strResDir);
+	}
+	return DM_ECODE_OK;
+}
+
+DMCode DMDesignerWnd::CloseProj()
+{
+	if (m_pDesignerXml&&m_pDesignerXml->IsNeedSave())
+	{
+		m_pDesignerXml->SaveRes(false);
+	}
+	DM_DELETE(m_pDesignerXml);
+	FindChildByNameT<DUIStatic>(L"ds_resdirsta")->DV_SetWindowText(L"ctrl+n打开最近列表或拖拽Res文件进来");
+	return DM_ECODE_OK;
+}
+
+DMCode DMDesignerWnd::OptionObjProj()
+{
+	if (m_pDesignerXml)
+	{
+		if (m_pDesignerXml->m_bInitObjTree)
+		{
+			if (IDOK == DM_MessageBox(L"确认关闭对象视图?\r\n",MB_OKCANCEL))
+			{
+				m_pDesignerXml->ReleaseObjTree();
+			}
+		}
+		else
+		{
+			if (IDOK == DM_MessageBox(L"确认加载对象视图?\r\n",MB_OKCANCEL))
+			{
+				m_pDesignerXml->InitObjTree();
+			}
+		}
+	}
+	return DM_ECODE_OK;
+}
+
+DMCode DMDesignerWnd::ReloadProj()
+{
+	if (m_pDesignerXml)
+	{
+		bool bInitObj = m_pDesignerXml->m_bInitObjTree;
+		OnParseRes(m_pDesignerXml->m_strResDir);
+
+		if (bInitObj)
+		{
+			m_pDesignerXml->InitObjTree();
+		}
+	}
+   return DM_ECODE_OK;
+}
+
+
+
+
+
+
+
+
+
 

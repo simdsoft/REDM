@@ -399,33 +399,39 @@ DMCode ObjXml::InitCopyObjMenu(DMXmlNode& XmlNode)
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
+		DMXmlNode XmlPaste = XmlNode.InsertChildNode(XML_ITEM);
+		XmlPaste.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_PASTE-OBJMENU_BASE].id));XmlPaste.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_PASTE-OBJMENU_BASE].text);
+		XmlPaste.SetAttributeInt(XML_BDISABLE,g_pAttr->m_CopyNode.IsValid()?0:1);
+
+		DMXmlNode XmlCopy = XmlNode.InsertChildNode(XML_ITEM);
+		XmlCopy.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_COPY-OBJMENU_BASE].id));XmlCopy.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_COPY-OBJMENU_BASE].text);
+		XmlNode.InsertChildNode(XML_SEP);
+
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 		if (NULL == pData||!pData->IsValid()||0 == m_pObjTree->GetParentItem(m_hObjSel))
 		{// DM根结点不使用复制,粘贴菜单
+			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
+			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 		if (MoveMode == m_pObjEditor->m_DesignMod)
 		{// move模式下不支持
+			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
+			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 		if (pData->m_bPanel)
 		{// panel下不支持
+			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
+			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 
-		if (g_pAttr->m_CopyNode.IsValid())
-		{
-			DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-			XmlItem.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_PASTE-OBJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_PASTE-OBJMENU_BASE].text);
-		}
 		if (pData->m_pRootWnd == pData->m_pDUIWnd)
 		{// root层也不使用复制菜单,但可以粘贴
+			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
-
-		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_COPY-OBJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_COPY-OBJMENU_BASE].text);
-		XmlNode.InsertChildNode(XML_SEP);
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
@@ -444,12 +450,17 @@ DMCode ObjXml::InitCustomObjMenu(DMXmlNode& XmlNode)
 	
 	if (NULL != m_hObjSel)
 	{
+		XmlNode.InsertChildNode(XML_SEP);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].text);
 		DM::LPTVITEMEX pData = m_pObjTree->GetItem(m_hObjSel);
 		if (DMTVEXLock_UnLocked == pData->iLockValue &&0 != m_pObjTree->GetParentItem(m_hObjSel)&&0 != m_pObjTree->GetParentItem(m_pObjTree->GetParentItem(m_hObjSel)))
 		{
-			XmlNode.InsertChildNode(XML_SEP);
-			XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-			XmlItem.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].text);
+			XmlItem.SetAttributeInt(XML_BDISABLE,0);
+		}
+		else
+		{
+			XmlItem.SetAttributeInt(XML_BDISABLE,1);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
-//   
+//      
 // File name:	DMDesigner.h
 // File mark:    
 // File summary:Èë¿Ú    

@@ -46,6 +46,8 @@
 #define  XML_ITEM									 L"item"
 #define  XML_SEP									 L"sep"
 #define  XML_ALPHA                                   L"alpha"
+#define  XML_BSHADOW                                 L"bshadow"
+#define  XML_BDISABLE                                L"bdisable"
 
 // 属性xml
 #define  ATTR_FILE									 L".\\DesignerRes\\DMAttr.xml"
@@ -114,6 +116,24 @@ enum ObjMenuId
 	OBJMENU_LOCKALLCHILD,
 	OBJMENU_UNLOCKALLCHILD,
 	OBJMENU_DEL,
+};
+enum GlbMenuId
+{
+	GLBMENU_BASE   = 10000,
+	GLBMENU_NEW    = 10000,
+	GLBMENU_SAVE,
+	GLBMENU_CLOSE,
+	GLBMENU_EXIT,
+
+	GLBMENU_OPTOBJPROJ,
+	GLBMENU_RELOAD,
+
+	GLBMENU_MOVEMODE,
+	GLBMENU_SELMODE,
+	GLBMENU_ADDMODE,
+
+	GLBMENU_HELPDOC,
+	GLBMENU_ONLINEHELP,
 };
 
 // 指定List的项索引

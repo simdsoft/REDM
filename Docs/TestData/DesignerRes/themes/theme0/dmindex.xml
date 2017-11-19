@@ -8,6 +8,7 @@
 		<file name="ds_menubg" path="themes\theme0\image\ds_menubg.png" />
 		<file name="ds_menuselbg" path="themes\theme0\image\ds_menuselbg.png" />
 		<file name="ds_menustep" path="themes\theme0\image\ds_menustep.png" />
+		<file name="ds_menubarbutton" path="themes\theme0\image\ds_menubarbutton.png" />
 		<file name="ds_scrollbar" path="themes\theme0\image\ds_scrollbar.png" />
 		<file name="ds_toggle" path="themes\theme0\image\ds_toggle.png" />
 		<file name="ds_preview" path="themes\theme0\image\ds_preview.png" />

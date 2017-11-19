@@ -13,7 +13,8 @@
 		<!--菜单图片-->
 		<img9 id="ds_menubg" 	src="PNG:ds_menubg" 	states="1" margin="1,1,1,1" commit="菜单背景"/>
 		<img9 id="ds_menuselbg" src="PNG:ds_menuselbg"  states="1" margin="4,0,4,0" commit="菜单选中背景"/>
-		<img9 id="ds_menustep" src="PNG:ds_menustep"  states="1" margin="5,0,5,0" commit="菜单step背景"/>
+		<img9 id="ds_menustep"  src="PNG:ds_menustep"  states="1" margin="5,0,5,0"  commit="菜单step背景"/>
+		<imglist id="ds_menubarbutton"  src="PNG:ds_menubarbutton"  states="3"      commit="菜单按扭状态"/>
 		
 		<!--左边树形控件图片-->
 		<imglist id="ds_toggle" 	src="PNG:ds_toggle" 	states="6" commit="小三角"/>

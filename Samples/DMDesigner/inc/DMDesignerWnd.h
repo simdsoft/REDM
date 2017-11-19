@@ -37,7 +37,21 @@ public:
 	bool OnAccelPressed(const DUIAccel& Accel);
 
 	DMCode OnParseRes(CStringW strResDir);									///< 读取资源
+	
+protected:
+	// Menu项
+	DMCode OnGlobalMenuBtn(int idFrom);
+	DMCode HandleGlobalMenu(int nID);
+	DMCode InitFileMenu(DMXmlNode& XmlNode,int idFrom);
+	DMCode InitViewMenu(DMXmlNode& XmlNode,int idFrom);
+	DMCode InitModeMenu(DMXmlNode& XmlNode,int idFrom);
+	DMCode InitHelpMenu(DMXmlNode& XmlNode,int idFrom);
 
+public:
+	DMCode OpenNewProj();
+	DMCode CloseProj();
+	DMCode OptionObjProj();
+	DMCode ReloadProj();
 public:
 	ObjXml*					m_pDesignerXml;   
 };
