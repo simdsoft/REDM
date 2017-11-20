@@ -658,6 +658,11 @@ namespace DM
 			}
 		}
 	}
+
+	void DUIListBoxEx::PreArrayObjRemove(const LPLBITEMEX &obj)
+	{
+		delete obj;
+	}
 #pragma endregion
 
 

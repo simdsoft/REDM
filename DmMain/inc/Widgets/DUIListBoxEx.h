@@ -117,6 +117,7 @@ namespace DM
 		virtual int HitTest(CPoint &pt);															///< 自动修改pt的位置为相对当前项的偏移量
 		virtual void UpdateScrollRange();	
 		virtual void UpdateVisibleMap();
+		virtual void PreArrayObjRemove(const LPLBITEMEX &obj);
 
 	public:// 辅助
 		//---------------------------------------------------

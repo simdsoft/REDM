@@ -125,6 +125,7 @@ namespace DM
 		int HitTotalY(int iTotalY);
 		virtual void UpdateScrollRange();	
 		virtual void UpdateVisibleMap();
+		virtual void PreArrayObjRemove(const LPLCITEMEX &obj);
 
 	public:// ¸¨Öú
 		//---------------------------------------------------

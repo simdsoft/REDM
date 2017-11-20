@@ -796,6 +796,11 @@ namespace DM
 			}
 		}
 	}
+
+	void DUIListCtrlEx::PreArrayObjRemove(const LPLCITEMEX &obj)
+	{
+		delete obj;
+	}
 #pragma endregion
 
 	//---------------------------------------------------
