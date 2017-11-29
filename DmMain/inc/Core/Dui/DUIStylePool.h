@@ -19,14 +19,13 @@ namespace DM
 	/// <summary>
 	///		Style的池对象,用于支持局部Style
 	/// </summary>
-	class DMStylePoolItem:public DMRefNum,public DMArrayT<IDMStylePtr>
+	class DMStylePoolItem:public DMRefNum,public DMMapT<CStringW,IDMStylePtr>
 	{
 	public:
 		virtual ~DMStylePoolItem();
 
 	public:// 辅助重载函数
-
-		void PreArrayObjRemove(const IDMStylePtr &obj);
+		void PreMapKeyRemove(const IDMStylePtr &obj);
 	};
 	typedef DMStylePoolItem* DMStylePoolItemPtr; 
 

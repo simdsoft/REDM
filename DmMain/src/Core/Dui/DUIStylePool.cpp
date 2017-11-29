@@ -8,7 +8,7 @@ namespace DM
 		RemoveAll();
 	}
 
-	void DMStylePoolItem::PreArrayObjRemove(const IDMStylePtr &obj)
+	void DMStylePoolItem::PreMapKeyRemove(const IDMStylePtr &obj)
 	{
 		obj->Release();
 	}
@@ -30,7 +30,7 @@ namespace DM
 				break;
 			}
 
-			CStringW strName = XmlNode.Attribute(L"name");
+			CStringW strName = XmlNode.Attribute(L"name");strName.MakeLower();
 			bool bExist = true;
 			if (false == GetObjByKey(strName, pItem))
 			{
@@ -41,12 +41,26 @@ namespace DM
 			DMXmlNode XmlStyle = XmlNode.FirstChild();
 			while (XmlStyle.IsValid())
 			{
-				LPCWSTR lpszClassName = XmlStyle.GetName();
-				IDMStylePtr pStylePtr = NULL;
-				if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStylePtr,lpszClassName,DMREG_Style)))
+				CStringW strId =XmlStyle.Attribute(L"id");strId.MakeLower();
+				if (strId.IsEmpty())
 				{
-					pStylePtr->InitDMData(XmlStyle);
-					pItem->AddObj(pStylePtr);
+					CStringW szInfo; 
+					XmlStyle.GetXmlContent(szInfo);
+					szInfo += L"(style)未设置id,将自动忽视";
+					DMASSERT_EXPR(0, szInfo);
+				}
+				else
+				{
+					if (!pItem->IsKeyExist(strId))
+					{// key不存在时才加入
+						LPCWSTR lpszClassName = XmlStyle.GetName();
+						IDMStylePtr pStylePtr = NULL;
+						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStylePtr,lpszClassName,DMREG_Style)))
+						{
+							pStylePtr->InitDMData(XmlStyle);
+							pItem->AddKey(strId,pStylePtr);
+						}
+					}
 				}
 				XmlStyle = XmlStyle.NextSibling();
 			}
@@ -62,7 +76,7 @@ namespace DM
 
 	DMCode DUIStylePool::RemoveStylePoolItem(LPCWSTR lpszName)
 	{
-		CStringW szKey = lpszName;
+		CStringW szKey = lpszName;szKey.MakeLower();
 		RemoveKey(szKey);
 		return DM_ECODE_OK;
 	}
@@ -84,39 +98,26 @@ namespace DM
 			}
 
 			DMStylePoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;
+			CStringW strName = lpszName;strName.MakeLower();
+			CStringW strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
 				{
-					pStyle = FindStyleFromAll(lpszKey);
+					pStyle = FindStyleFromAll(strKey);
 				}
 				break;
 			}
 			else
 			{
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
-				{
-					memset(szId,0,2*MAX_PATH);
-					IDMStylePtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
-					{
-						pStyle = pTemp;// 已找到
-						break;
-					}
-				}
-
-				if (pStyle)
+				if (pCur->GetObjByKey(strKey,pStyle))
 				{
 					break;// 已找到
 				}
 
 				if (bLoopFind)
 				{
-					pStyle = FindStyleFromAll(lpszKey);
+					pStyle = FindStyleFromAll(strKey);
 				}
 			}
 		} while (false);
@@ -170,27 +171,15 @@ namespace DM
 				break;
 			}
 
+			CStringW strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
 				DM::CMap<CStringW,DMStylePoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMStylePoolItemPtr &pCur = p->m_value;
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
+				if (pCur->GetObjByKey(strKey,pStyle))
 				{
-					memset(szId,0,2*MAX_PATH);
-					IDMStylePtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
-					{
-						pStyle = pTemp;// 已找到
-						break;
-					}
-				}
-				if (pStyle)
-				{
-					break;// 已找到
+					break;
 				}
 			}
 		} while (false);

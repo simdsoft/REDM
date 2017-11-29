@@ -19,14 +19,13 @@ namespace DM
 	/// <summary>
 	///		Skin的池对象,用于支持局部skin
 	/// </summary>
-	class DMSkinPoolItem:public DMRefNum,public DMArrayT<IDMSkinPtr>
+	class DMSkinPoolItem:public DMRefNum,public DMMapT<CStringW,IDMSkinPtr>
 	{
 	public:
 		virtual ~DMSkinPoolItem();
 
 	public:// 辅助重载函数
-
-	   void PreArrayObjRemove(const IDMSkinPtr &obj);
+	   void PreMapKeyRemove(const IDMSkinPtr &obj);
 	};
 	typedef DMSkinPoolItem* DMSkinPoolItemPtr; 
 

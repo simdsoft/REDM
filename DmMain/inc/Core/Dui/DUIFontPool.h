@@ -23,7 +23,7 @@ namespace DM
 	/// <remarks>
 	///		导出仅为了方便gtest测试
 	/// </remarks>
-	class DM_EXPORT DUIFontPool:DMMapT<CStringW,IDMFontPtr>
+	class DM_EXPORT DUIFontPool:public DMMapT<CStringW,IDMFontPtr>
 	{
 	public:
 		DUIFontPool();

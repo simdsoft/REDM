@@ -44,6 +44,7 @@ namespace DM
 			CStringW szFont = strFont;
 			szFont.Trim();
 			szFont.Remove(VK_SPACE);// ÒÆ³ý¿Õ¸ñ
+			szFont.MakeLower();
 			if (false == GetLogFont(szFont,&lf))
 			{
 				if (GetObjByKey(szFont,pFont))
@@ -73,7 +74,7 @@ namespace DM
 	CStringW DUIFontPool::GetFontKey(const LPLOGFONTW lpLogFont)
 	{
 		CStringW szKey;
-		CStringW strFaceName = lpLogFont->lfFaceName;
+		CStringW strFaceName = lpLogFont->lfFaceName;strFaceName.MakeLower();
 		szKey.Format(L"weight:%d,charset:%d,underline:%d,italic:%d,strike:%d,size:%d,face:%s",lpLogFont->lfWeight,lpLogFont->lfCharSet,lpLogFont->lfUnderline,lpLogFont->lfItalic,lpLogFont->lfStrikeOut,lpLogFont->lfHeight,strFaceName);
 		return szKey;
 	}
@@ -86,6 +87,7 @@ namespace DM
 			CStringW szFont = strFont;
 			szFont.Trim();
 			szFont.Remove(VK_SPACE);// ÒÆ³ý¿Õ¸ñ
+			szFont.MakeLower();
 			if (szFont.IsEmpty()||NULL==lpLogFont)// ÎªNULL
 			{
 				break;

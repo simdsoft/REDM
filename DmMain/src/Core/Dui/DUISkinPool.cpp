@@ -8,7 +8,7 @@ namespace DM
 		RemoveAll();
 	}
 
-	void DMSkinPoolItem::PreArrayObjRemove(const IDMSkinPtr &obj)
+	void DMSkinPoolItem::PreMapKeyRemove(const IDMSkinPtr &obj)
 	{
 		obj->Release();
 	}
@@ -30,7 +30,7 @@ namespace DM
 				break;
 			}
 
-			CStringW strName = XmlNode.Attribute(L"name");
+			CStringW strName = XmlNode.Attribute(L"name");strName.MakeLower();
 			bool bExist = true;
 			if (false == GetObjByKey(strName, pItem))
 			{
@@ -41,28 +41,42 @@ namespace DM
 			DMXmlNode XmlSkin = XmlNode.FirstChild();
 			while (XmlSkin.IsValid())
 			{
-				LPCWSTR lpszClassName = XmlSkin.GetName();
-				IDMSkinPtr pSkinPtr = NULL;
-				if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
+				CStringW strId = XmlSkin.Attribute(L"id");strId.MakeLower();
+				if (strId.IsEmpty())
 				{
-					pSkinPtr->InitDMData(XmlSkin);
-					if (!DMSUCCEEDED(pSkinPtr->IsValid()))
-					{
-						CStringW szInfo = lpszClassName;
-						szInfo += L"(skin)无效！,将自动移除";
-						DMASSERT_EXPR(0, szInfo);
-						pSkinPtr->Release();
-					}
-					else
-					{
-						pItem->AddObj(pSkinPtr);
-					}
+					CStringW szInfo; 
+					XmlSkin.GetXmlContent(szInfo);
+					szInfo += L"(skin)未设置id,将自动忽视";
+					DMASSERT_EXPR(0, szInfo);
 				}
 				else
 				{
-					CStringW szInfo = lpszClassName;
-					szInfo += L"(skinpool)类型无法解析！,请查看是否写错";
-					DMASSERT_EXPR(0, szInfo);
+					if (!pItem->IsKeyExist(strId))
+					{// key不存在时才加入
+						LPCWSTR lpszClassName = XmlSkin.GetName();  
+						IDMSkinPtr pSkinPtr = NULL;
+						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
+						{
+							pSkinPtr->InitDMData(XmlSkin);
+							if (!DMSUCCEEDED(pSkinPtr->IsValid()))
+							{
+								CStringW szInfo = lpszClassName;
+								szInfo += L"(skin)无效！,将自动移除";
+								DMASSERT_EXPR(0, szInfo);
+								pSkinPtr->Release();
+							}
+							else
+							{
+								pItem->AddKey(strId,pSkinPtr);
+							}
+						}
+						else
+						{
+							CStringW szInfo = lpszClassName;
+							szInfo += L"(skinpool)类型无法解析！,请查看是否写错";
+							DMASSERT_EXPR(0, szInfo);
+						}
+					}
 				}
 				XmlSkin = XmlSkin.NextSibling();
 			}
@@ -78,7 +92,7 @@ namespace DM
 
 	DMCode DUISkinPool::RemoveSkinPoolItem(LPCWSTR lpszName)
 	{
-		CStringW szKey = lpszName;
+		CStringW szKey = lpszName;szKey.MakeLower();
 		RemoveKey(szKey);
 		return DM_ECODE_OK;
 	}
@@ -86,7 +100,7 @@ namespace DM
 	DMCode DUISkinPool::RemoveAllSkinPoolItemExcept(LPCWSTR lpszName)
 	{
 		DMSkinPoolItemPtr pItem = NULL;
-		CStringW strKey = lpszName;
+		CStringW strKey = lpszName;strKey.MakeLower();
 		if (GetObjByKey(strKey, pItem))
 		{
 			pItem->AddRef();// 防止被删除
@@ -126,10 +140,11 @@ namespace DM
 				{
 					DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 					DMSkinPoolItemPtr &pCur = p->m_value;
-					int count = (int)pCur->m_DMArray.GetCount();
-					for (int i=0; i<count; i++)
+					POSITION poscur = pCur->m_Map.GetStartPosition();
+					while(poscur)
 					{
-						IDMSkinPtr &pTemp = pCur->m_DMArray[i];
+						DM::CMap<CStringW,IDMSkinPtr>::CPair *pcur = pCur->m_Map.GetNext(poscur);
+						IDMSkinPtr &pTemp = pcur->m_value;
 						if (DMSUCCEEDED(pTemp->UpdateSkin((WPARAM)lpszUpdate,0)))
 						{
 							m_UpdateSkinArray.Add(pTemp);
@@ -196,7 +211,27 @@ namespace DM
 				break;
 			}
 
-			//2. 创建skin对象
+			//2.判断skin的id是否为空
+			CStringW strId = XmlNode.Attribute(L"id");strId.MakeLower();
+			if (strId.IsEmpty())
+			{
+				CStringW szInfo; 
+				XmlNode.GetXmlContent(szInfo);
+				szInfo += L"(skin)未设置id,将自动忽视";
+				DMASSERT_EXPR(0, szInfo);
+				break;
+			}
+
+			//3.判断skin的id是否存在
+			if (FindSkinFromAll(strId))				// 默认从所有skin池中查找
+			{
+				CStringW szInfo = strId;
+				szInfo += L"(skinpool)此skin名已存在";
+				DMASSERT_EXPR(0, szInfo);
+				break;// 名字已存在
+			}
+
+			//4.创建skin对象
 			LPCWSTR lpszClassName = XmlNode.GetName();
 			IDMSkinPtr pSkinPtr = NULL;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
@@ -206,21 +241,9 @@ namespace DM
 				DMASSERT_EXPR(0, szInfo);
 				break;
 			}
-
-			// 3.判断skin的id是否存在
 			pSkinPtr->InitDMData(XmlNode);
-			wchar_t szId[MAX_PATH] = {0};
-			pSkinPtr->GetID(szId, MAX_PATH);		// 取得对象唯一ID名
-			if (FindSkinFromAll(szId))				// 默认从所有skin池中查找
-			{
-				CStringW szInfo = szId;
-				szInfo += L"(skinpool)此skin名已存在";
-				DMASSERT_EXPR(0, szInfo);
-				pSkinPtr->Release();
-				break;// 名字已存在
-			}
 
-			// 4.初始化skin的图元
+			//5.初始化skin的图元
 			CStringW strType = (NULL==pszType)?L"png":pszType;
 			if (!DMSUCCEEDED(pSkinPtr->SetBitmap((LPBYTE)pBuf,bufLen,strType)))
 			{
@@ -228,9 +251,9 @@ namespace DM
 				break;
 			}
 
-			// 5.判断skinpool是否存在，不存在则创建加入
+			//6.判断skinpool是否存在，不存在则创建加入
 			bool bExist = true;
-			CStringW strName = lpszPoolName;
+			CStringW strName = lpszPoolName;strName.MakeLower();
 			DMSkinPoolItemPtr pItem = NULL;
 			if (false == GetObjByKey(strName, pItem))
 			{
@@ -238,7 +261,7 @@ namespace DM
 				pItem   = new DMSkinPoolItem;
 			}
 			
-			pItem->AddObj(pSkinPtr);
+			pItem->AddKey(strId,pSkinPtr);
 			if (false == bExist)
 			{
 				AddKey(strName,pItem);
@@ -259,41 +282,25 @@ namespace DM
 			}
 
 			DMSkinPoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;
+			CStringW strName = lpszName;strName.MakeLower();
+			CStringW strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
 				{
-					iErr = RemoveSkinFromAll(lpszKey);
+					iErr = RemoveSkinFromAll(strKey);
 				}
 				break;
 			}
 			else
 			{
-				bool bFind = false;
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
+				if (!pCur->RemoveKey(strKey))
 				{
-					memset(szId,0,2*MAX_PATH);
-					IDMSkinPtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
+					if (bLoopFind)
 					{
-						pCur->RemoveObj(i);
-						bFind = true;
-						break;
+						iErr = RemoveSkinFromAll(strKey);
 					}
-				}
-
-				if (!bFind)
-				{
-					break;// 已找到
-				}
-
-				if (bLoopFind)
-				{
-					iErr = RemoveSkinFromAll(lpszKey);
+					break;
 				}
 			}
 			iErr = DM_ECODE_OK;
@@ -310,25 +317,15 @@ namespace DM
 			{
 				break;
 			}
-
+			CStringW strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
 				DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMSkinPoolItemPtr &pCur = p->m_value;
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
+				if (pCur->RemoveKey(strKey))
 				{
-					memset(szId,0,2*MAX_PATH);
-					IDMSkinPtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
-					{
-						iErr = DM_ECODE_OK;
-						pCur->RemoveObj(i);
-						break;
-					}
+					iErr = DM_ECODE_OK;
 				}
 			}
 		} while (false);
@@ -346,39 +343,26 @@ namespace DM
 			}
 
 			DMSkinPoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;
+			CStringW strName = lpszName;strName.MakeLower();
+			CStringW strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
 				{
-					pSkin = FindSkinFromAll(lpszKey);
+					pSkin = FindSkinFromAll(strKey);
 				}
 				break;
 			}
 			else
 			{
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
-				{
-					memset(szId,0,2*MAX_PATH);
-					IDMSkinPtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
-					{
-						pSkin = pTemp;// 已找到
-						break;
-					}
-				}
-
-				if (pSkin)
+				if (pCur->GetObjByKey(strKey,pSkin))
 				{
 					break;// 已找到
 				}
 
 				if (bLoopFind)
 				{
-					pSkin = FindSkinFromAll(lpszKey);
+					pSkin = FindSkinFromAll(strKey);
 				}
 			}
 		} while (false);
@@ -432,27 +416,15 @@ namespace DM
 				break;
 			}
 
+			CStringW strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
 				DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMSkinPoolItemPtr &pCur = p->m_value;
-				int count = (int)pCur->m_DMArray.GetCount();
-				wchar_t szId[MAX_PATH] = {0};
-				for (int i=0; i<count; i++)
+				if (pCur->GetObjByKey(strKey,pSkin))
 				{
-					memset(szId,0,2*MAX_PATH);
-					IDMSkinPtr &pTemp = pCur->m_DMArray[i];
-					pTemp->GetID(szId, MAX_PATH);
-					if (0 == _wcsicmp(szId, lpszKey))
-					{
-						pSkin = pTemp;// 已找到
-						break;
-					}
-				}
-				if (pSkin)
-				{
-					break;// 已找到
+					break;
 				}
 			}
 		} while (false);
@@ -463,7 +435,5 @@ namespace DM
 	{
 		obj->Release();
 	}
-
-
 
 }//namespace DM
