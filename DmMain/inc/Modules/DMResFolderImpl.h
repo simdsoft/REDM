@@ -17,7 +17,6 @@
 
 namespace DM
 {
-#define  RES_INDEXFILE_CHECK          1// 开启文件是否存在强制校验存在
 	/// <summary>
 	///		内置Res打包文件夹为以下结构:如果你觉得不能满足需求，可以自己修改一份，自己注册进去
 	///     Res文件夹包含两个子文件夹：1.layout文件夹 2.themes文件夹

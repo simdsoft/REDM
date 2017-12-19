@@ -3,7 +3,6 @@
 #include "DMZipHelper.h"
 namespace DM
 {
-#define  RES_INDEXFILE_CHECK          1// 开启文件是否存在强制校验存在
 	/// <summary>
 	///     外置zip示例和内置打包文件夹一致
 	///		内置Res打包文件夹为以下结构:如果你觉得不能满足需求，可以自己修改一份，自己注册进去

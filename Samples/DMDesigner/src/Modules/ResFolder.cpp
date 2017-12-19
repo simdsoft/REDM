@@ -426,13 +426,13 @@ namespace DM
 						wchar_t szPath[MAX_PATH] = {0};
 						if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
 						{
-#if RES_INDEXFILE_CHECK
+#if defined(_DEBUG)
 							if (!CheckFileExistW(szPath))
 							{
 								CStringW szInfo = szPath;szInfo+=L"文件不存在！";
 								DMASSERT_EXPR(0,szInfo);
 							}
-#endif //RES_INDEXFILE_CHECK
+#endif 
 							ResItem *pResItem = new ResItem(lpszType,lpszName,szPath);
 							(*ppItem)->AddObj(pResItem);// 来自DMArrayT
 						}

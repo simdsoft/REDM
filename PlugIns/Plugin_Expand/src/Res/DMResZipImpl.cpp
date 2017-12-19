@@ -426,14 +426,14 @@ namespace DM
 					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
 					if (NULL!=lpszFilePath&&0!=wcslen(lpszFilePath))
 					{
-#if RES_INDEXFILE_CHECK
+#if defined(_DEBUG)
 						CDMZipFile zftemp;
 						if (!m_zipFile.GetFile(lpszFilePath,zftemp))
 						{
 							CStringW szInfo = lpszFilePath;szInfo+=L"文件不存在！";DMASSERT_EXPR(0,szInfo);
 						}
 						zftemp.Close();
-#endif //RES_INDEXFILE_CHECK
+#endif
 						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName,lpszFilePath);
 						(*ppItem)->AddObj(pResItem);// 来自DMArrayT
 					}
