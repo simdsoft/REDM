@@ -95,6 +95,15 @@ namespace DM
 		__super::DM_OnSetFocus();
 	}
 
+	void DUIRadioButton::OnLButtonUp(UINT nFlags,CPoint pt)
+	{
+		__super::OnLButtonUp(nFlags,pt);
+		if (!DM_IsChecked())
+		{
+			DM_SetCheck(true);
+		}
+	}
+
 	//---------------------------------------------------
 	// Function Des: ÷ÿ‘ÿDUIWindow
 	DMCode DUIRadioButton::DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT pRect,UINT uFormat)

@@ -56,6 +56,7 @@ namespace DM
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
 			DM_MSG_WM_SETFOCUS(DM_OnSetFocus)
+			MSG_WM_LBUTTONUP(OnLButtonUp)
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
@@ -63,6 +64,7 @@ namespace DM
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void DM_OnSetFocus();
+		void OnLButtonUp(UINT nFlags,CPoint pt);
 
 	public:
 		//---------------------------------------------------
