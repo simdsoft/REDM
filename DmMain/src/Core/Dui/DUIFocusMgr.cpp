@@ -234,7 +234,7 @@ namespace DM
 
 	void DUIFocusMgr::SetFocusedWnd(DUIWND DUIWnd)
 	{
-		SetFocuseWndWithReason(DUIWnd, kReasonDirectFocusChange);
+		SetFocuseWndWithReason(DUIWnd, FocusReasonByDirect);
 	}
 
 	DUIWND DUIFocusMgr::GetFocusedWnd()
@@ -370,7 +370,7 @@ namespace DM
 				{
 					if (pNextWnd->DV_IsSiblingsAutoGroup())
 					{
-						SetFocuseWndWithReason(pNextWnd->GetDUIWnd(),kReasonFocusTraversal); 
+						SetFocuseWndWithReason(pNextWnd->GetDUIWnd(),FocusReasonByTab); 
 						break;
 					}
 					pNextWnd = pNextWnd->DM_GetWindow(uCode);
@@ -382,7 +382,7 @@ namespace DM
 					{
 						if (pNextWnd->DV_IsSiblingsAutoGroup())
 						{
-							SetFocuseWndWithReason(pNextWnd->GetDUIWnd(),kReasonFocusTraversal);
+							SetFocuseWndWithReason(pNextWnd->GetDUIWnd(),FocusReasonByTab);
 							break;
 						}
 						pNextWnd = pNextWnd->DM_GetWindow(uCode);
@@ -409,7 +409,7 @@ namespace DM
 		DUIWindow *pWnd   = GetNextFocusableWnd(pFocus,bReverse,true);
 		if (pWnd)
 		{
-			SetFocuseWndWithReason(pWnd->GetDUIWnd(),kReasonFocusTraversal);
+			SetFocuseWndWithReason(pWnd->GetDUIWnd(),FocusReasonByTab);
 		}
 	}
 
@@ -426,12 +426,12 @@ namespace DM
 			DUIWindow *pNewFocus=g_pDMDWndPool->FindDUIWnd(DUIWnd);
 			if (pOldFocus)  
 			{
-				pOldFocus->DM_SendMessage(WM_KILLFOCUS,(WPARAM)pNewFocus);
+				pOldFocus->DM_SendMessage(WM_KILLFOCUS,(WPARAM)DUIWnd);
 			}
 
 			if (pNewFocus&&!pNewFocus->DM_IsDisable(TRUE))
 			{
-				pNewFocus->DM_SendMessage(WM_SETFOCUS,(WPARAM)pOldFocus);
+				pNewFocus->DM_SendMessage(WM_SETFOCUS,(WPARAM)m_hDUIFocusWnd,(LPARAM)reason);
 				m_hDUIFocusWnd = DUIWnd;
 			}
 			else
@@ -460,7 +460,7 @@ namespace DM
 			&&!pWnd->DM_IsDisable(TRUE))
 		{
 			m_hDUIFocusWnd = m_hDUIFocusBackupWnd;
-			pWnd->DM_SendMessage(WM_SETFOCUS);
+			pWnd->DM_SendMessage(WM_SETFOCUS,0,(LPARAM)FocusReasonByRestore);
 		}
 		m_hDUIFocusBackupWnd = 0;
 	}

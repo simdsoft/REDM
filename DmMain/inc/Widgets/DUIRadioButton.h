@@ -55,7 +55,7 @@ namespace DM
 	public:
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
-			DM_MSG_WM_SETFOCUS(DM_OnSetFocus)
+			MESSAGE_HANDLER_EX(WM_SETFOCUS,DM_OnSetFocus)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 		DM_END_MSG_MAP()
 	public:
@@ -63,7 +63,7 @@ namespace DM
 		// Function Des: DUI的消息分发系列函数
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
-		void DM_OnSetFocus();
+		LRESULT DM_OnSetFocus(UINT uMsg, WPARAM wParam, LPARAM lParam);
 		void OnLButtonUp(UINT nFlags,CPoint pt);
 
 	public:

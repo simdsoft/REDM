@@ -142,6 +142,12 @@ namespace DM
 		int AttributeInt(LPCWSTR name);
 
 		/// -------------------------------------------------
+		/// @brief		指定名字的attribute的内容
+		/// @param[in]	name attribute的名字
+		/// @return		指定名字的attribute的内容（int64）
+		INT64 AttributeInt64(LPCWSTR name);
+
+		/// -------------------------------------------------
 		/// @brief  插入一个新的节点
 		/// @param[in]	name 新节点的名字
 		/// @param[in]	pXmlNode 被插入的旧结点，为NULL表示直接插入
@@ -175,6 +181,7 @@ namespace DM
 		/// @return	新节点
 		bool SetAttribute(LPCWSTR name, LPCWSTR value,bool bAppend = true);
 		bool SetAttributeInt(LPCWSTR name, int value,bool bAppend = true);
+		bool SetAttributeInt64(LPCWSTR name, INT64 value,bool bAppend = true);
 
 		/// -------------------------------------------------
 		/// @brief  移除name名字的属性

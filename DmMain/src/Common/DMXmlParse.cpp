@@ -235,6 +235,16 @@ namespace DM
 		return m_XmlNode.attribute(name).as_int();
 	}
 
+	INT64 DMXmlNode::AttributeInt64(LPCWSTR name)
+	{
+		if (!m_XmlNode)
+		{
+			return NULL;
+		}
+
+		return m_XmlNode.attribute(name).as_llong();
+	}
+
 	DMXmlNode DMXmlNode::InsertChildNode(LPCWSTR name,DMXmlNode* pXmlNode,bool bAfter /*= true*/)
 	{
 		DMXmlNode XmlElement;
@@ -356,6 +366,13 @@ namespace DM
 	{
 		DMBufT<wchar_t> pBuf;pBuf.Allocate(20);
 		swprintf_s(pBuf.get(),20,L"%d",value);
+		return SetAttribute(name,pBuf.get(),bAppend);
+	}
+
+	bool DMXmlNode::SetAttributeInt64(LPCWSTR name, INT64 value,bool bAppend /*= true*/)
+	{
+		DMBufT<wchar_t> pBuf;pBuf.Allocate(40);
+		swprintf_s(pBuf.get(),40,L"%I64d",value);
 		return SetAttribute(name,pBuf.get(),bAppend);
 	}
 

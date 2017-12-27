@@ -89,10 +89,13 @@ namespace DM
 		}
 	}
 
-	void DUIRadioButton::DM_OnSetFocus()
+	LRESULT DUIRadioButton::DM_OnSetFocus(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		DM_SetCheck(true);
-		__super::DM_OnSetFocus();
+		if (DUIFocusMgr::FocusReasonByRestore != lParam)
+		{
+			DM_SetCheck(true);
+		}
+		return true;
 	}
 
 	void DUIRadioButton::OnLButtonUp(UINT nFlags,CPoint pt)

@@ -69,8 +69,8 @@ namespace DM
 			DMAutoLock autolock(&m_Lock);
 			va_list arg;
 			va_start(arg, szFmt);
-			wchar_t szBuf[200] = {0};
-			_vsnwprintf_s(szBuf, 200, sizeof(szBuf) / sizeof(wchar_t) - 1, szFmt, arg);
+			wchar_t szBuf[200*5] = {0};
+			_vsnwprintf_s(szBuf, 200*5, sizeof(szBuf) / sizeof(wchar_t) - 1, szFmt, arg);
 			va_end(arg);
 			iErr = m_pLogObj->LogW(iLevel, lpszFuncName, lpszFileName, iLine, szBuf);
 		} while (false);

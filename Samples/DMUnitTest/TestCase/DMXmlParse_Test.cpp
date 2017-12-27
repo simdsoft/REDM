@@ -39,6 +39,10 @@ TEST_F(DMXmlParseTest,test1)
 	DMXmlNode XmlElementNoFind = doc.Root(L"hgy");
 	EXPECT_EQ(XmlElementNoFind.IsValid(), false);// 并没有hgy这个节
 	DMXmlNode XmlElementRoot = doc.Root();
+	XmlElementRoot.SetAttributeInt64(L"I64",123456789012);// 设置一个I64
+	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"I64"),123456789012);
+	XmlElementRoot.SetAttribute(L"0x64",L"0x9876543210");// 以字符串的方式设置一个I64
+	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"0x64"),0x9876543210);
 	DMXmlNode XmlElementRoot1 = doc.Root(L"xmlui");
 	EXPECT_EQ(XmlElementRoot.IsEqual(XmlElementRoot1), true);
 	EXPECT_EQ(XmlElementRoot.IsEqual(XmlElementNoFind), false);

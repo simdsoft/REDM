@@ -55,6 +55,18 @@ namespace DM
 							Play(pBuf, ulSize);
 						}
 					}
+					else
+					{
+						DWORD dwSize = GetFileSizeW((LPCWSTR)m_strUrl);
+						DMBufT<byte> pBuf;
+						pBuf.Allocate(dwSize);
+						DWORD dwRead;
+						GetFileBufW((LPCWSTR)m_strUrl,(void**)&pBuf,dwSize,dwRead);
+						if (pBuf && dwSize)
+						{
+							Play(pBuf, dwSize);
+						}
+					}
 				}
 			}
 			else// ±¾µØswfÂ·¾¶

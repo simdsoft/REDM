@@ -77,8 +77,9 @@ namespace DM
 	public:
 		enum FocusChangeReason
 		{
-			kReasonFocusTraversal,	     // Tab or Shift+Tab                
-			kReasonDirectFocusChange     // 点击或直接跳转
+			FocusReasonByTab,			 // Tab or Shift+Tab                
+			FocusReasonByDirect,		 // 点击或直接跳转
+			FocusReasonByRestore,		 // 主窗口失去再尝试恢复焦点
 		};
 
 		DUIFocusMgr(DUIWindow *pHWnd);
