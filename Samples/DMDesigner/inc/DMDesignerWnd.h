@@ -23,6 +23,7 @@ public:
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
 	void OnDestroy();
+	void OnLButtonDown(UINT nFlags,CPoint pt);
 	void OnLButtonDbClick(UINT nFlags,CPoint pt);
 	void OnDropFiles(HDROP hDropInfo);
 	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);	

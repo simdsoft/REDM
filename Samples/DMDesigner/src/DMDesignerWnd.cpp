@@ -38,6 +38,7 @@ BEGIN_MSG_MAP(DMDesignerWnd)
 	MSG_WM_INITDIALOG(OnInitDialog) 
 	MSG_WM_SIZE(OnSize)
 	MSG_WM_DESTROY(OnDestroy)
+	MSG_WM_LBUTTONDOWN(OnLButtonDown)
 	MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
 	MSG_WM_DROPFILES(OnDropFiles)
 	MSG_WM_COMMAND(OnCommand)
@@ -121,6 +122,12 @@ BOOL DMDesignerWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 
 	SetTimer(TIMER_TIPS,4000);
 	return TRUE;  
+}
+
+void DMDesignerWnd::OnLButtonDown(UINT nFlags,CPoint pt)
+{
+	SetFocus();
+	SetMsgHandled(FALSE);
 }
 
 void DMDesignerWnd::OnLButtonDbClick(UINT nFlags,CPoint pt)

@@ -627,32 +627,22 @@ namespace DM
 				}				
 			}
 
-			HWND hwActive = GetActiveWindow();// 得到本线程的顶层激活窗口
-			// 遍历父窗口，判断是否是在Active窗口列下
-			bool bActive = false;
-			HWND hParent = hWnd;
-			while (hParent)
+			HWND hFocusWnd = ::GetFocus();
+			HWND hFocusTopWnd = hFocusWnd;	
+			while (hFocusTopWnd && hFocusTopWnd != hWnd)// 判断焦点窗口是否在hWnd的子窗口列中
 			{
-				if (hParent == hwActive)
-				{
-					bActive = true;
-					break;
-				}
-				hParent = ::GetParent(hParent);
+				hFocusTopWnd = ::GetParent(hFocusTopWnd);
 			}
-			
-			if (!bActive)
+			if (hFocusTopWnd != hWnd // 焦点窗口不在hWnd的子窗口列中
+				|| hFocusWnd == hWnd)// 焦点窗口在hWnd的子窗口列中,并且不是hWnd
 			{
 				break;
 			}
 			
 			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject = pWeb;
 			if (spInPlaceActiveObject)
-			{
-				if (pMsg->wParam != VK_BACK)//防止退格两次
-				{// 不能在这里直接bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;,IE会把ctrl+s之类的快捷键全处理了
-					spInPlaceActiveObject->TranslateAccelerator(pMsg);
-				}
+			{			
+				bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;
 			}
 			
 		} while (false);
@@ -796,25 +786,36 @@ namespace DM
 		return strUrl;
 	}
 
-
 	HRESULT DUIIE::SetWebFocus()
-	{
-		DMComPtr<IWebBrowser2> pIWebBrowser = Ptr();
+	{// 感谢Liufy大佬提供的代码
+		HRESULT hr = E_FAIL;
+		do 
+		{
+			DMComPtr<IWebBrowser2> pWeb = Ptr();
+			if (!pWeb)
+			{
+				break;
+			}
 
-		if ( pIWebBrowser != NULL ) {
-			DMComPtr<IHTMLDocument2> pIDocument = NULL;
-			pIWebBrowser->get_Document( reinterpret_cast<IDispatch**>(&pIDocument) );
-
-			if ( pIDocument != NULL ) {
-				DMComPtr<IHTMLWindow2> pIHtmlWindow = NULL;
-				pIDocument->get_parentWindow( &pIHtmlWindow );
-
-				if ( pIHtmlWindow != NULL ) {
-					pIHtmlWindow->focus();
+			DMComQIPtr<IHTMLDocument2> spDoc;
+			hr = pWeb->get_Document(reinterpret_cast<IDispatch**>(&spDoc));
+			if (SUCCEEDED(hr) && spDoc)
+			{
+				DMComQIPtr<IHTMLWindow2> spWin;
+				hr = spDoc->get_parentWindow(&spWin);
+				if (SUCCEEDED(hr) && spWin)
+				{
+					try 
+					{
+						hr = spWin->focus();
+					} 
+					catch(...) 
+					{
+					}
 				}
 			}
-		}
-		return S_OK;
+		} while (false);
+		return hr;
 	}
 
 	HWND DUIIE::GetOleWindow()
