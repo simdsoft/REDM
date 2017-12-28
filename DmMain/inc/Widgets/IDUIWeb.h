@@ -86,7 +86,10 @@ namespace DM
 		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
 		/// @return HRESULT，失败为S_FALSE
 		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen){return E_NOTIMPL;};
-	
+
+		/// @brief 给浏览器窗口设焦点
+		virtual HRESULT SetWebFocus(){return E_NOTIMPL;};
+
 		/// @brief 获得OLE窗口句柄
 		/// @return HWND，失败为NULL
 		virtual HWND GetOleWindow(){return NULL;};

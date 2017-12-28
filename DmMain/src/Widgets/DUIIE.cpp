@@ -796,6 +796,27 @@ namespace DM
 		return strUrl;
 	}
 
+
+	HRESULT DUIIE::SetWebFocus()
+	{
+		DMComPtr<IWebBrowser2> pIWebBrowser = Ptr();
+
+		if ( pIWebBrowser != NULL ) {
+			DMComPtr<IHTMLDocument2> pIDocument = NULL;
+			pIWebBrowser->get_Document( reinterpret_cast<IDispatch**>(&pIDocument) );
+
+			if ( pIDocument != NULL ) {
+				DMComPtr<IHTMLWindow2> pIHtmlWindow = NULL;
+				pIDocument->get_parentWindow( &pIHtmlWindow );
+
+				if ( pIHtmlWindow != NULL ) {
+					pIHtmlWindow->focus();
+				}
+			}
+		}
+		return S_OK;
+	}
+
 	HWND DUIIE::GetOleWindow()
 	{
 		HWND hOleWnd = NULL;

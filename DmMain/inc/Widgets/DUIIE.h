@@ -204,6 +204,9 @@ namespace DM
 		HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen);
 		CStringW GetUrl();
 
+		/// @brief 给浏览器窗口设焦点
+		HRESULT SetWebFocus();
+
 		/// @brief 获得OLE窗口句柄
 		/// @return HWND，失败为NULL
 		HWND GetOleWindow();
