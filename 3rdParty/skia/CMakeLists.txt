@@ -99,10 +99,11 @@ INCLUDE_DIRECTORIES(inc/config;
 add_definitions(-DUNICODE -D_UNICODE)  # unicode版本
 
 set(CMAKE_DEBUG_POSTFIX "_d")# Debug下生成文件增加后缀,对exe无效.
-
+add_compile_options(/MP /Gm-)
 # 输出设置
 ADD_DEFINITIONS(-DSK_IGNORE_ETC1_SUPPORT) 						
 ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS) 						# disable CRT
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244")
 if(USE_ALLMT_)
 SET(CMAKE_CXX_FLAGS_DEBUG "/D_DEBUG /MTd /Zi /Ob0 /Od /RTC1")# 直接抄gui的默认，然后 改成mtd
 SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2 /Ob2 /D NDEBUG")

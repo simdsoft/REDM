@@ -12,6 +12,22 @@
 	long long is longest type
  */
 
+#if (_MSC_VER>1900)
+#define _C_STD_BEGIN
+#define _C_STD_END
+#define _CSTD	::
+
+ /* VC++ COMPILER PARAMETERS */
+#define _LONGLONG	__int64
+#define _ULONGLONG	unsigned __int64
+#define _LLONG_MAX	0x7fffffffffffffff
+#define _ULLONG_MAX	0xffffffffffffffff
+
+typedef _LONGLONG _Longlong;
+typedef _ULONGLONG _ULonglong;
+#endif
+
+
 _C_STD_BEGIN
 		/* TYPE DEFINITIONS */
 typedef signed char int8_t;
