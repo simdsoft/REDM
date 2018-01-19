@@ -382,7 +382,7 @@ namespace DM
 			if (rcClient.IsRectEmpty())
 			{
 				// 在触发WM_SIZE时会重置布局
-				SetWindowPos(NULL,0,0,m_pHWndXmlInfo->m_szInit.cx,m_pHWndXmlInfo->m_szInit.cy,SWP_NOZORDER|SWP_NOMOVE);
+				SetWindowPos(NULL,0,0,m_pHWndXmlInfo->m_szInit.cx,m_pHWndXmlInfo->m_szInit.cy,SWP_NOZORDER|SWP_NOMOVE|SWP_NOACTIVATE);
 			}
 
 			else
