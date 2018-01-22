@@ -57,8 +57,9 @@ namespace DMAttr
 		static wchar_t* COLOR_clrslider;                               ///< 中间可拖动块的背景色,示例:clrslider="pbgra(ff,ff,ff,ff)"
 		static wchar_t* INT_sliderwidth;                               ///< 中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth="10"
 		static wchar_t* INT_firstchildwidth;                           ///< 第一个窗口的开始宽度,示例:firstchildwidth="100"
+		static wchar_t* STRING_firstchildpercent;                      ///< 第一个窗口的开始宽度百分比,和INT_firstchildwidth同时使用时,优先使用百分比,示例:firstchildpercent="%50"
 	};
-	DMAttrValueInit(DUISplitLayoutAttr,bool_bvert)DMAttrValueInit(DUISplitLayoutAttr,bool_bfirstchange)DMAttrValueInit(DUISplitLayoutAttr,INT_firstchildwidth)
+	DMAttrValueInit(DUISplitLayoutAttr,bool_bvert)DMAttrValueInit(DUISplitLayoutAttr,bool_bfirstchange)DMAttrValueInit(DUISplitLayoutAttr,INT_firstchildwidth)DMAttrValueInit(DUISplitLayoutAttr,STRING_firstchildpercent)
 	DMAttrValueInit(DUISplitLayoutAttr,SKIN_sliderskin)DMAttrValueInit(DUISplitLayoutAttr,COLOR_clrslider)DMAttrValueInit(DUISplitLayoutAttr,INT_sliderwidth)
 }
 
@@ -173,10 +174,12 @@ namespace DM
 			DM_bool_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::bool_bfirstchange,m_bFirstChange,DM_ECODE_NOXMLRELAYOUT)
 			DM_INT_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::INT_sliderwidth,m_iSliderWid,DM_ECODE_NOXMLRELAYOUT)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::INT_firstchildwidth,OnAttributeFirstChildWidth)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::STRING_firstchildpercent,OnAttributeFirstChildPercent)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::SKIN_sliderskin,m_pSliderSkin,DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::COLOR_clrslider,m_ClrSlider,DM_ECODE_NOXMLLOADREFRESH)
 		DM_END_ATTRIBUTES()
 		DMCode OnAttributeFirstChildWidth(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeFirstChildPercent(LPCWSTR lpszValue, bool bLoadXml);
 
 	public:
 		bool                             m_bVert;                ///< 是否竖直
@@ -185,6 +188,7 @@ namespace DM
 		DMColor                          m_ClrSlider;
 		bool                             m_bFirstChange;
 		int                              m_iFirstChildWidth;     ///< 第一个窗口的初始值
+		int                              m_iFirstChildPercent;   ///< 第一个窗口的初始百分比
 		int                              m_iFixWid;              ///< 固定的宽度，为-1表示未初始化,其余表示size变化时，固定size的那个窗口
 		bool                             m_bDrag;
 		CPoint                           m_ptDrag;

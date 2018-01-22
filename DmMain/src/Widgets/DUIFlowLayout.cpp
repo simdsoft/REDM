@@ -631,6 +631,7 @@ namespace DM
 		m_bVert				= false;
 		m_bFirstChange		= true;
 		m_iFirstChildWidth  = 20;
+		m_iFirstChildPercent= -1;
 		m_iSliderWid		= 1;
 		m_iFixWid			= -1;
 		m_bDrag				= false;
@@ -722,6 +723,10 @@ namespace DM
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 				break;
 			} 
+			if (m_rcWindow.IsRectEmpty())
+			{
+				break;
+			}
 
 			if (2!=m_Node.m_nChildrenCount)
 			{
@@ -734,7 +739,12 @@ namespace DM
 				if (-1 == m_iFixWid)
 				{
 					CRect rcFirst = m_rcWindow;
-					rcFirst.bottom = rcFirst.top+m_iFirstChildWidth;
+					int iFirstChildWidth = m_iFirstChildWidth;
+					if (-1  != m_iFirstChildPercent)
+					{
+						iFirstChildWidth = (m_rcWindow.Height()*m_iFirstChildPercent)/100;
+					}
+					rcFirst.bottom = rcFirst.top+iFirstChildWidth;
 					if (m_rcWindow.bottom-rcFirst.bottom<m_iSliderWid)//1.1.剩余高度不足，补足
 					{
 						rcFirst.bottom = m_rcWindow.bottom- m_iSliderWid;
@@ -775,7 +785,12 @@ namespace DM
 				if (-1 == m_iFixWid)
 				{
 					CRect rcFirst = m_rcWindow;
-					rcFirst.right = rcFirst.left+m_iFirstChildWidth;
+					int iFirstChildWidth = m_iFirstChildWidth;
+					if (-1  != m_iFirstChildPercent)
+					{
+						iFirstChildWidth = (m_rcWindow.Width()*m_iFirstChildPercent)/100;
+					}
+					rcFirst.right = rcFirst.left+iFirstChildWidth;
 					if (m_rcWindow.right-rcFirst.right<m_iSliderWid)//1.1.剩余高度不足，补足
 					{
 						rcFirst.right = m_rcWindow.right- m_iSliderWid;
@@ -932,6 +947,46 @@ namespace DM
 
 			iErr = DM_ECODE_OK;
 		} while (false);
+		return iErr;
+	}
+
+
+	DMCode DUISplitLayout::OnAttributeFirstChildPercent(LPCWSTR lpszValue, bool bLoadXml)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			CStringW strValue = lpszValue;
+			if (strValue.IsEmpty())
+			{
+				break;
+			}
+
+			if (0 == strValue.CompareNoCase(L"-1"))
+			{
+				m_iFirstChildPercent = -1;
+				iErr = DM_ECODE_OK;
+				break;
+			}
+
+			if (strValue[0] != L'%')
+			{
+				break;
+			}
+			strValue = ++lpszValue;
+			int temp = m_iFirstChildPercent;
+			dm_parseint(lpszValue,temp);
+			m_iFirstChildPercent = DMABS(temp);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		if (DMSUCCEEDED(iErr))
+		{		
+			if (!bLoadXml)// 重新初始化
+			{
+				m_iFixWid = -1;
+				DV_UpdateChildLayout();
+			}
+		}
 		return iErr;
 	}
 

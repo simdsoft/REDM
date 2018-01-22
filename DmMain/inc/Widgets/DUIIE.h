@@ -44,9 +44,7 @@ namespace DM
 		DMIEEvtDispatch(IDMWebEvent* pEventHandler);
 
 		void SetWebBrowser(DUIIE  *pWebBrowser);
-
 		void SetEvtHandler(IDMWebEvent* pEventHandler);
-		void SetDUIWnd(DUIWND hWnd);
 
 		//IUnkown
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
@@ -59,11 +57,13 @@ namespace DM
 		STDMETHOD(GetIDsOfNames)(REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return E_NOTIMPL;}
 		STDMETHOD(Invoke)(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,UINT* puArgErr);
 
-	protected:
+	public:
 		ULONG								m_nRef;
 		DUIIE								*m_pWebBrowser;
 		IDMWebEvent*						m_pEvtHandler;
 		DUIWND								m_hWnd;
+		bool								m_bCanGoForward;
+		bool								m_bCanGoBack;
 	};
 
 	/// <summary>
@@ -112,7 +112,6 @@ namespace DM
 		DMIEExternal();
 		void SetWebBrowser(DUIIE *pWebBrowser);
 		void SetEvtHandler(IDMWebEvent* pEventHandler);
-		void SetDUIWnd(DUIWND hWnd);
 
 	public:
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
@@ -238,9 +237,17 @@ namespace DM
 		/// @return HRESULT，失败为S_FALSE
 		HRESULT Refresh2(UINT32 nLevel);
 
+		// @brief 是否可导航后退
+		/// @return ture or false
+		bool CanGoBack();
+
 		/// @brief 后退
 		/// @return HRESULT，失败为S_FALSE
 		HRESULT GoBack();
+
+		/// @brief 是否可导航前进
+		/// @return ture or false
+		bool CanGoForward();
 
 		/// @brief 前进
 		/// @return HRESULT，失败为S_FALSE

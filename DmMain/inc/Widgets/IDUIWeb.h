@@ -157,7 +157,19 @@ namespace DM
 		/// @brief 转发Web的SetAttribute
 		/// @param[in]		 bShow			是否显示
 		/// @return
-		virtual HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml){return E_NOTIMPL;};					
+		virtual HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml){return E_NOTIMPL;};
+
+
+		//---------------------------------------------------------
+		// 向后添加新接口，以兼容旧版
+
+		/// @brief 是否可导航后退
+		/// @return ture or false
+		virtual bool CanGoBack(){return false;}
+
+		/// @brief 是否可导航前进
+		/// @return ture or false
+		virtual bool CanGoForward(){return false;}
 	};
 
 }

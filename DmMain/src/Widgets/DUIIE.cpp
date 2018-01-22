@@ -8,22 +8,23 @@ namespace DM
 	DMIEEvtDispatch::DMIEEvtDispatch(IDMWebEvent* pEventHandler)
 		:m_pEvtHandler(pEventHandler),
 		m_nRef(1),
-		m_hWnd(0)
+		m_hWnd(0),
+		m_bCanGoForward(false),
+		m_bCanGoBack(false)
 	{
 	}
 	void DMIEEvtDispatch::SetWebBrowser(DUIIE  *pWebBrowser)
 	{
 		m_pWebBrowser = pWebBrowser;
+		if (m_pWebBrowser)
+		{
+			m_hWnd = m_pWebBrowser->GetDUIWnd();
+		}
 	}
 
 	void DMIEEvtDispatch::SetEvtHandler(IDMWebEvent* pEventHandler)
 	{
 		m_pEvtHandler = pEventHandler;
-	}
-
-	void DMIEEvtDispatch::SetDUIWnd(DUIWND hWnd)
-	{
-		m_hWnd = hWnd;
 	}
 
 	//IUnkown
@@ -75,6 +76,18 @@ namespace DM
 			{
 				long         Command = pDispParams->rgvarg[1].lVal;
 				VARIANT_BOOL Enable  = pDispParams->rgvarg[0].boolVal;
+				if (m_pWebBrowser)
+				{
+					if (CSC_NAVIGATEBACK == Command)
+					{
+						m_bCanGoBack = (VARIANT_TRUE == Enable);
+					}
+					else if (CSC_NAVIGATEFORWARD == Command)
+					{
+						m_bCanGoForward = (VARIANT_TRUE == Enable);
+					}
+				}
+				
 				hr = m_pEvtHandler->CommandStateChange(m_hWnd,Command,Enable);
 			}
 			break;
@@ -428,6 +441,7 @@ namespace DM
 	///DMIEExternal------------------------------------------------------------------------------------
 	DMIEExternal::DMIEExternal()
 		: m_nRef(0)
+		, m_hDUIWnd(0)
 		, m_pWebBrowser(NULL), m_pEvtHandler(NULL)
 	{
 	}
@@ -435,16 +449,15 @@ namespace DM
 	void DMIEExternal::SetWebBrowser(DUIIE *pWebBrowser)
 	{
 		m_pWebBrowser = pWebBrowser;
+		if (m_pWebBrowser)
+		{
+			m_hDUIWnd = m_pWebBrowser->GetDUIWnd();
+		}
 	}
 
 	void DMIEExternal::SetEvtHandler(IDMWebEvent* pEventHandler)
 	{
 		m_pEvtHandler = pEventHandler;
-	}
-
-	void DMIEExternal::SetDUIWnd(DUIWND hWnd)
-	{
-		m_hDUIWnd = hWnd;
 	}
 
 	HRESULT STDMETHODCALLTYPE DMIEExternal::QueryInterface(REFIID riid, /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject)
@@ -569,8 +582,6 @@ namespace DM
 			m_External.SetWebBrowser(this);
 			m_ClientSite.SetWebBrowser(this);
 			m_DocHostUIHandler.SetWebBrowser(this);
-			m_EventDispatch.SetDUIWnd(this->GetDUIWnd());
-			m_External.SetDUIWnd(this->GetDUIWnd());
 
 			DMComPtr<IOleObject> spOleObject;
 			pWeb->QueryInterface(IID_IOleObject, (void**)&spOleObject);
@@ -988,6 +999,11 @@ namespace DM
 		return hr;
 	}
 
+	bool DUIIE::CanGoBack()
+	{
+		return m_EventDispatch.m_bCanGoBack;
+	}
+
 	HRESULT DUIIE::GoBack()
 	{
 		HRESULT hr = E_FAIL;
@@ -1002,6 +1018,11 @@ namespace DM
 			hr = S_OK;
 		} while (false);
 		return hr;
+	}
+
+	bool DUIIE::CanGoForward()
+	{
+		return m_EventDispatch.m_bCanGoForward;
 	}
 
 	HRESULT DUIIE::GoForward()

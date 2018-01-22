@@ -128,7 +128,8 @@ namespace DM
 	public:
 		void DrawScrollBar(IDMCanvas *pCanvas,LPCRECT lpRectDraw,int iSbCode,int iState,bool bVert, BYTE alpha=0xff);
 		void DrawMoreScrollBar(IDMCanvas *pCanvas,int iSbCode,int iState,bool bVert, BYTE alpha=0xff);
-		
+		int CalcState(bool bVert,int sbCode, SBSTATEINFO& sbCmpInfo);
+
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_bool_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::bool_bnowheelscroll,m_bnowheelscroll,DM_ECODE_OK)

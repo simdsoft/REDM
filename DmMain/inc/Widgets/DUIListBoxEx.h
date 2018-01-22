@@ -127,6 +127,7 @@ namespace DM
 		void ReLayoutVisibleItems();																///< 更新可见的所有项
 		void RelayoutItem(int iItem,CRect rcItem);													///< 更新单项的布局
 		void ModifyPanelBgClr(DUIItemPanel* pPanel);												///< 改变Panel的背景色
+		void ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr);									///< 旧版接口，保留
 
 	public:
 		DM_BEGIN_MSG_MAP()

@@ -731,6 +731,24 @@ namespace DM
 			}
 		}
 	}
+
+	void DUIListBoxEx::ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr)
+	{
+		do 
+		{
+			if (NULL == pPanel)
+			{
+				break;
+			}
+			if (Clr.IsTextInvalid())
+			{
+				break;
+			}
+			CStringW strClr;
+			strClr.Format(L"rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
+			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+		} while (false);
+	}
 #pragma endregion
 
 
