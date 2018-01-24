@@ -68,6 +68,12 @@
 		<DUIWindowAttr/>
 		<DUIStyleAttr/>	
 	</Gif>
+	<PngGif>
+		<DUIPngGifAttr/>
+		<DUIGifAttr/>
+		<DUIWindowAttr/>
+		<DUIStyleAttr/>	
+	</PngGif>
 	<HeaderCtrl>
 		<DUIHeaderCtrlAttr/>
 		<DUIWindowAttr/>

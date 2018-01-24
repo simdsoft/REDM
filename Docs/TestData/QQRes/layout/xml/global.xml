@@ -55,6 +55,9 @@
 		 
 		 <!--tip-->
 		 <img9       id="tip_frame" 		 src="PNG:tipframe"             states="1"  margin="1,1,1,1" />
+		  
+		 <!--pnggif-->
+		 <imglist 	 id="4_png"				 src="gif:4_png" 				states="26"/>
 	</skin>
 	<skin name="widgetprivate">
 		<imglist 	 id="closebutton" 			 src="PNG:Btn_Close"   			states="3"  commit="和全局的close标识一样，这时需要使用widgetprivate:closebutton来识别"/>

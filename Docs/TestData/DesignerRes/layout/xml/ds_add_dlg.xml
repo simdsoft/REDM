@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<dm initsize="466,331" minsize="600,400" maxsize="-1,-1" bresize="0" btranslucent="1" alpha="255" regtip="TipsImpl">
+<dm initsize="466,370" minsize="600,400" maxsize="-1,-1" bresize="0" btranslucent="1" alpha="255" regtip="TipsImpl">
 	<root clrbg="pbgra(40,40,40,ff)" clrnc="pbgra(59,59,59,ff)" ncmargin="01,01,01,01">
 		<tablayout name="ds_w_tablayout" pos="14,16,-4,-2" itemsize="145,37" childpaddlen="3">
 			<radiobutton name="ds_w_Window" text="Window" align="left" radioskin="ds_w_Window" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Window"/>
@@ -25,6 +25,7 @@
 			<radiobutton name="ds_w_HeaderCtrl" text="HeaderCtrl" align="left" radioskin="ds_w_HeaderCtrl" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="HeaderCtrl"/>
 			<radiobutton name="ds_w_ListCtrlEx" text="ListCtrlEx" align="left" radioskin="ds_w_ListCtrlEx" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="ListCtrlEx"/>
 			<radiobutton name="ds_w_Gif" text="Gif" align="left" radioskin="ds_w_Gif" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Gif"/>
+			<radiobutton name="ds_w_PngGif" text="PngGif" align="left" radioskin="ds_w_Gif" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="PngGif"/>
 			<radiobutton name="ds_w_IE" text="IE" align="left" radioskin="ds_w_Window" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="IE"/>
 		</tablayout>
 	</root>

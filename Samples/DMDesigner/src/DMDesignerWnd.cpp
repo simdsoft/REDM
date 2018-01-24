@@ -254,7 +254,7 @@ DMCode DMDesignerWnd::OnClose()
 			m_pDesignerXml->SaveRes(false);
 		}
 	}
-
+	KillTimer(TIMER_TIPS);
 	DestroyWindow();
 	return DM_ECODE_OK;
 }		

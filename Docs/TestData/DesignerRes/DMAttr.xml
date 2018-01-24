@@ -194,6 +194,10 @@
 	bool_badjust="{1}是否调整使图片自适应尺寸，也就是图片保持比例缩放，不会变形，默认为true,示例:badjust=1" 
 	bool_bcalcclip="{0}计算并自动调整clip区包含整个绘制区,会损失绘制效率，适用于gif控件中包含子gif控件,如果子gif透明，则每次刷新只是父gif的一部分,示例:bcalcclip=1" 
 	/>
+	<DUIPngGifAttr
+	SKIN_pnggifskin="pnggif的资源,通过skin指定,区分于gifskin,示例:pnggifskin=png:4_png"  
+	INT_elapse="{10} 轮播的时间间隔（单位1/100秒）,默认为10,示例:elapse=1"
+	/>
 	<DUIActiveXAttr
 	bool_bdelayinit="{1}窗口显示时才加载,默认为true,示例:bdelayinit=1"
 	bool_bsupportmulthread="{0}ACTIVEX是否支持多线程,默认为false,注意,此属性暂不支持动态改变,示例:bsupportmulthread=0"   

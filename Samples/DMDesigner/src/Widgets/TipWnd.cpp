@@ -54,11 +54,14 @@ MultStr g_AddInfo[] = \
 	{L"TreeCtrlEX",	 L"扩展控件",		L"扩展树形控件",		L""},
 	{L"HeaderCtrl",	 L"基础控件",		L"列表头",				L""},
 	{L"ListCtrlEx",	 L"扩展控件",		L"扩展列表view",		L""},
-	{L"Gif",		L"基础控件",		L"Gif动画",				L""},
-	{L"IE",			L"基础控件",		L"IE控件",				L""},
-};
+	{L"Gif",		 L"基础控件",		L"Gif动画",				L""},
+	{L"PngGif",		 L"基础控件",		L"PngGif控件",		    L""},
+	{L"IE",			 L"基础控件",		L"IE控件",				L""},
+	{L"SplitLayout", L"基础控件",		L"SplitLayout控件",		L"分隔两个窗口"},
+}; 
 bool AddTipWnd::InitAdd(CStringW strInfo)
 {
+	bool bFind = false;
 	int nCount = countof(g_AddInfo);
 	for (int i=0; i<nCount; i++)
 	{
@@ -68,7 +71,15 @@ bool AddTipWnd::InitAdd(CStringW strInfo)
 			FindChildByNameT<DUIStatic>(L"ds_add_text2")->DV_SetWindowText(g_AddInfo[i].strTwo);
 			FindChildByNameT<DUIStatic>(L"ds_add_text3")->DV_SetWindowText(g_AddInfo[i].strThree);
 			FindChildByNameT<DUIStatic>(L"ds_add_text4")->DV_SetWindowText(g_AddInfo[i].strFour);
+			bFind = true;
 		}
+	}
+	if (!bFind)
+	{
+		FindChildByNameT<DUIStatic>(L"ds_add_text1")->DV_SetWindowText(strInfo);
+		FindChildByNameT<DUIStatic>(L"ds_add_text2")->DV_SetWindowText(L"基础控件");
+		FindChildByNameT<DUIStatic>(L"ds_add_text3")->DV_SetWindowText(L"基础控件");
+		FindChildByNameT<DUIStatic>(L"ds_add_text4")->DV_SetWindowText(L"");
 	}
 	return true;
 }

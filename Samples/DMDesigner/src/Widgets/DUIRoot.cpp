@@ -129,6 +129,15 @@ void DUIRoot::OnLButtonDown(UINT nFlags,CPoint pt)
 void DUIRoot::OnLButtonUp(UINT nFlags,CPoint pt)
 {
 	m_bDown = false;
+	if (AddMode == m_DesignMod)
+	{
+		if (m_pAddWnd && 0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUISplitLayout::GetClassName()))
+		{// 针对splite特殊处理,splite应该在拖拉完成后再执行初始化
+			DUISplitLayout* pSplit = (DUISplitLayout*)m_pAddWnd;
+			pSplit->m_iFixWid = -1;
+			pSplit->DV_UpdateChildLayout();
+		}  
+	}
 	m_pAddWnd  = NULL;
 	m_pAddParentPt.SetPoint(0,0);
 	DM_ReleaseCapture();
@@ -310,6 +319,7 @@ bool DUIRoot::IsSupportAddChild(DUIWindow* pParentWnd,CStringW strReg)
 			||0 == strParent.CompareNoCase(L"ListCtrlEx")
 			||0 == strParent.CompareNoCase(L"item")
 			||0 == strParent.CompareNoCase(L"treeitem")
+			||0 == strParent.CompareNoCase(L"splitlayout")
 			)
 		{
 			bRet = false;

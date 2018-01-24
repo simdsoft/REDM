@@ -69,7 +69,7 @@ DMCode ObjXml::InitObjTree()
 			BindObjTreeData(pData->m_pDoc,pEditor,pDUI,XmlNode,hDMTreeItem);// 更新
 			// 解析生成子树
 			InitObjChildTree(hDMTreeItem);
-			m_pObjTree->SetLockState(hDMTreeItem,true);// 默认初始全锁
+			m_pObjTree->SetLockState(hDMTreeItem,false);// 默认初始全不锁
 			hDMTreeItem = m_pObjTree->GetNextSiblingItem(hDMTreeItem);
 		}
 
@@ -652,6 +652,11 @@ DMCode ObjXml::ObjMenu_Del()
 				&& (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName())))
 		{
 			SetLogInfo(L"DUIHeaderCtrl不能被删除");
+			break;
+		}
+		else if (0 == _wcsicmp(pParent->V_GetClassName(),DUISplitLayout::GetClassName()))
+		{
+			SetLogInfo(L"DUISplitLayout的子控件不能被删除");
 			break;
 		}
 		else if (pData->m_bPanel)

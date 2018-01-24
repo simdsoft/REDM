@@ -25,6 +25,7 @@
 #include "DUIComboBox.h"
 #include "DUIActiveX.h"
 #include "DUIGif.h"
+#include "DUIPngGif.h"
 #include "DUIFlash.h"
 #include "DUIIE.h"
 #include "DUIHeaderCtrl.h"
@@ -134,6 +135,7 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUILink>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIComboBox>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGif>(),true);
+		iErr = g_pDMApp->Register(DMRegHelperT<DUIPngGif>(),true);
 #if !defined(_WIN64)// flash暂不支持X64,后续调整下
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIFlash>(),true);
 #endif
