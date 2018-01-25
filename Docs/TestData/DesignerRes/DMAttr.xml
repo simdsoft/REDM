@@ -52,6 +52,7 @@
 	SKIN_sliderskin="中间可拖动块的皮肤,示例:sliderskin=sliderskin"
 	COLOR_clrslider="{pbgra(ff,ff,ff,00)}中间可拖动块的背景色,示例:clrslider=pbgra(ff,ff,ff,ff)" 
 	INT_sliderwidth="{1}中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth=10" 
+	STRING_firstchildpercent="{-1}第一个窗口的开始宽度百分比,和INT_firstchildwidth同时使用时,优先使用百分比,示例:firstchildpercent=%50"
 	/>
 	
 	<DUIButtonAttr 

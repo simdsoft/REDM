@@ -22,7 +22,6 @@
 #include "DUISkinPool.h"
 #include "DUIStylePool.h"
 #include "DMMsgLoop.h"
-#include "DMThreadMgr.h"
 #include "DUITimer.h"
 #include "DMSpyTool.h"
 
@@ -115,7 +114,6 @@ namespace DM
 
 	public:// 消息处理
 		DMLazyT<DMMsgLoopTool>      m_MsgLoopTool;                              ///< 消息循环
-		DMLazyT<DMThreadActiveWndTool> m_ThreadActiveWndTool;                   ///< 管理当前线程激活窗口
 
 	public:
 		DMLazyT<DMRegMgr>			m_RegMgr;									///< 注册类管理

@@ -111,7 +111,14 @@ namespace DM
 				pMsgLoop->AddRef(); // 引用计数+1
 			}
 
-			HWND hLastMainWnd = m_ThreadActiveWndTool->SetActiveWnd(hMainWnd);
+			HWND hLastMainWnd = ::GetActiveWindow();
+			if (::IsWindow(hMainWnd))
+			{
+				if (!(::GetWindowLong(hMainWnd, GWL_EXSTYLE) & WS_EX_TOOLWINDOW))
+				{// 有WS_EX_TOOLWINDOW属性的不强制设置激活
+					hLastMainWnd = ::SetActiveWindow(hMainWnd);
+				}
+			}
 			size_t index = m_RunhWndArray.Add(hMainWnd);// 用于DestroyWindow中判断是否发送WM_QUIT消息 
 			pMsgLoop->Run();
 			if (::IsWindow(hLastMainWnd)&&bEnableActive) 
@@ -122,7 +129,7 @@ namespace DM
 			{
 				m_RunhWndArray.RemoveAt(index);
 			}
-			m_ThreadActiveWndTool->SetActiveWnd(hLastMainWnd);
+			::SetActiveWindow(hLastMainWnd);
 
 			if(::IsWindow(hMainWnd)) 
 			{

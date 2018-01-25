@@ -17,7 +17,7 @@ namespace DM
 
 	DMHDialog::DMHDialog()
 	{
-		m_nRetCode = IDOK;
+		m_nRetCode = -1;
 	}
 
 	DMHDialog::~DMHDialog()
@@ -29,7 +29,7 @@ namespace DM
 		BOOL bEnableParent = FALSE;
 		if(NULL == hParent)
 		{
-			hParent = g_pDMThreadActiveWndTool->GetActiveWnd();
+			hParent = ::GetActiveWindow();
 		}
 		
 		if (hParent && hParent != ::GetDesktopWindow() && ::IsWindowEnabled(hParent))
@@ -50,25 +50,21 @@ namespace DM
 			CenterWindow();
 		}
 
-		SendMessage(WM_INITDIALOG);//发送init消息
-
-		if(GetExStyle()&WS_EX_TOOLWINDOW)
-		{
-			::ShowWindow(m_hWnd,SW_SHOWNOACTIVATE);
-		}
-		else
-		{
-			::ShowWindow(m_hWnd,SW_SHOWNORMAL);
-		}
+		SendMessage(WM_INITDIALOG,(WPARAM)m_hWnd);//发送init消息
 
 		/*
 		解决安装qq五笔导致“退出提醒窗口”无法出现的问题---此问题在yggui中出现
 		HWND_NOTOPMOST：将窗口置于所有非顶层窗口之上（即在所有顶层窗口之后）。如果窗口已经是非顶层窗口则该标志不起作用。
 		HWND_TOP:将窗口置于Z序的顶部。
 		*/
-		::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW);
+		::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOACTIVATE);
 	    g_pDMApp->Run(m_hWnd,true);// 此内部已封装完ActiveWnd切换和DestoryWindow
-
+		if (-1 == m_nRetCode)
+		{// 防止非EndDialog退出(如此窗口的父窗口不是主窗口,而主窗口关闭时)
+			DMASSERT_EXPR(0,L"此DoModel没有调用EndDialog就退出了!");
+			::PostQuitMessage(1);
+		}
+		
 		if (bEnableParent)
 		{
 			::EnableWindow(hParent, TRUE);
@@ -79,7 +75,8 @@ namespace DM
 
 	void DMHDialog::EndDialog( INT_PTR nResult )
 	{
-		m_nRetCode = nResult;
+		DMASSERT_EXPR(-1!=nResult,L"EndDialog的返回值不能为-1!");
+		m_nRetCode = (-1==nResult)?IDCANCEL:nResult;
 		PostMessage(WM_QUIT);
 	} 
 

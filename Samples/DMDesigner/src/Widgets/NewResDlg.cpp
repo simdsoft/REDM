@@ -126,6 +126,11 @@ DMCode NewResDlg::OnOK()
 			DM_MessageBox(L"未设置资源路径!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
+		if (!IsDirectoryExist(m_strResPath))
+		{
+			DM_MessageBox(L"资源路径错误!",MB_OK,L"MSG",m_hWnd);
+			break;
+		}
 
 		m_strResDir = L"";
 		if (m_strResPath.Right(1)!=L"\\")

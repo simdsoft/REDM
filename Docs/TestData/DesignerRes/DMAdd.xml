@@ -73,4 +73,8 @@
 	<gif text="gif" 	 ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" badjust="1"/>
 	<pnggif text="pnggif" 	 ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" badjust="1"/>
 	<ie url="www.baidu.com"/>
+	<splitlayout sliderwidth="2" firstchildwidth="40" bfirstchange="0">
+		<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="水平"/>
+		<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化"/>
+	</splitlayout>
 </root> 

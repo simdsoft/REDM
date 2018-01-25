@@ -27,6 +27,7 @@
 			<radiobutton name="ds_w_Gif" text="Gif" align="left" radioskin="ds_w_Gif" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Gif"/>
 			<radiobutton name="ds_w_PngGif" text="PngGif" align="left" radioskin="ds_w_Gif" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="PngGif"/>
 			<radiobutton name="ds_w_IE" text="IE" align="left" radioskin="ds_w_Window" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="IE"/>
+			<radiobutton name="ds_w_SplitLayout" text="SplitLayout" align="left" radioskin="ds_w_Window" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="SplitLayout"/>
 		</tablayout>
 	</root>
 </dm>
