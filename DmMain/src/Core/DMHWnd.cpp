@@ -629,8 +629,12 @@ namespace DM
 
 	BOOL DMHWnd::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	{
-		ScreenToClient(&pt);
-		return 0!=OnFrameEvent(WM_MOUSEWHEEL,MAKEWPARAM(nFlags,zDelta),MAKELPARAM(pt.x,pt.y));
+		if (IsWindowEnabled())
+		{// win10
+			ScreenToClient(&pt);
+			return 0!=OnFrameEvent(WM_MOUSEWHEEL,MAKEWPARAM(nFlags,zDelta),MAKELPARAM(pt.x,pt.y));
+		}
+		return FALSE;
 	}
 
 	BOOL DMHWnd::OnNcActivate(BOOL bActive)
