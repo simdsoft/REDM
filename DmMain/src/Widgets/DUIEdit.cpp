@@ -1015,7 +1015,7 @@ namespace DM
 			const LOGFONTW *plf = pFont->GetLogFont();
 			if (yPixPerInch)
 			{
-				pcf->yHeight = -DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);
+				pcf->yHeight = DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);// 此处不能为负
 			}
 			pcf->yOffset	 = 0;
 			pcf->dwEffects   = 0;
