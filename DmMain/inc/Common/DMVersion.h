@@ -4,7 +4,7 @@
 // 
 // File name:	DMVersion.h
 // File mark:   
-// File summary:å®šä¹‰ç‰ˆæœ¬å·
+// File summary:¶¨Òå°æ±¾ºÅ
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2017-3-16
@@ -17,7 +17,7 @@
 
 #define PRODUCTNAME     "DMMain"
 
-// ä»¥ä¸‹å®šä¹‰åŒæ—¶è¢«RCå’ŒCPPæ–‡ä»¶ä½¿ç”¨ï¼Œè¯·ä¸è¦ä¿®æ”¹
+// ÒÔÏÂ¶¨ÒåÍ¬Ê±±»RCºÍCPPÎÄ¼şÊ¹ÓÃ£¬Çë²»ÒªĞŞ¸Ä
 #define VER			    VER_MAJOR.VER_MINOR.VER_SLAVE.VER_BUILD
 #define VER_KEY		    VER_MAJOR,VER_MINOR,VER_SLAVE,VER_BUILD
 
