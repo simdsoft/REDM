@@ -206,7 +206,7 @@ namespace DM
 
 		int DMDropWnd::OnMouseActivate( HWND wndTopLevel, UINT nHitTest, UINT message )
 		{
-			return MA_NOACTIVATEANDEAT;// Do not activate CWnd object and discard the mouse event
+			return MA_NOACTIVATE;// Do not activate CWnd object
 		}
 
 		BOOL DMDropWnd::PreTranslateMessage(MSG* pMsg)
@@ -218,6 +218,12 @@ namespace DM
 				{
 					break;
 				}
+				if (WM_LBUTTONDOWN == pMsg->message && pMsg->hwnd != m_hWnd && IsWindowVisible())
+				{// 防止先按下window+D,再鼠标点击恢复的这种测试@_@ 
+					Hide(IDOK);
+					break;
+				}
+			
 				if (WM_ACTIVATEAPP == pMsg->message)
 				{
 					SendMessage(pMsg->message,pMsg->wParam,pMsg->lParam);
