@@ -58,6 +58,9 @@ namespace DM
 		virtual HRESULT WindowStateChanged(DUIWND hWnd, DMIN DWORD dwFlags,DMIN DWORD dwValidFlagsMask){return S_OK;}
 		virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(DUIWND hWnd, REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return S_OK;}
 		virtual HRESULT STDMETHODCALLTYPE Invoke(DUIWND hWnd, DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,UINT* puArgErr){return S_OK;}
+
+		// 部分接口为webkit特有
+		virtual HRESULT OnPreKeyEvent(DUIWND hWnd, MSG* pMsg){return E_NOTIMPL;}
 	};
 
 	/// <summary>
