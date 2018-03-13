@@ -245,6 +245,7 @@
 	SKIN_checkskin="check图,8分图或2分图或1分图,8分图,前4为未选中四种状态，后4为选中时四种状态,示例:checkskin=PNG:checkbox" 
 	SKIN_iconskin="icon图,如使用了icon图,则text不再绘制,示例:iconskin=PNG:iconbtn" 
 	INT_textoffset="{0}文本距离icon的偏移，默认为0,示例:textoffset=10" 
+	bool_bchecked="{0}是否默认被选中,示例:bchecked=1"
 	/>
 	
 	<DUIRadioButtonAttr 

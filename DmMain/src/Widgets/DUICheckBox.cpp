@@ -203,4 +203,19 @@ namespace DM
 		return rcDest;
 	}
 
+	DMCode DUICheckBox::OnAttributeChecked(LPCWSTR lpszValue, bool bLoadXml)
+	{
+		bool bCheck = false;
+		dm_parsebool(lpszValue,bCheck);
+		//DM_SetCheck(bCheck);
+		if (bCheck)
+		{
+			DM_ModifyState(DUIWNDSTATE_Check, 0, true);
+		}
+		else
+		{
+			DM_ModifyState(0, DUIWNDSTATE_Check, true);
+		}
+		return DM_ECODE_NOXMLLOADREFRESH;
+	}
 }//namespace DM
