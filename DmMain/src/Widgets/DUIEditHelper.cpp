@@ -605,6 +605,10 @@ namespace DM
 		BOOL bRet = FALSE;
 		do 
 		{
+			if (fShow && !m_bUiActive)
+			{
+				break;
+			}
 			m_pRichEdit->ShowCaret(TRUE == fShow);
 			bRet = TRUE;
 		} while (false);
@@ -613,10 +617,9 @@ namespace DM
 
 	BOOL DUITextHost::TxSetCaretPos(INT x, INT y)// hgytest pass 靠近边界时x.y均为-32000
 	{
-		m_pRichEdit->ResetCaret(CPoint(x,y));
 		m_ptCaret.x = x;
 		m_ptCaret.y = y;
-		return TRUE;
+		return m_pRichEdit->ResetCaret(CPoint(x,y));
 	}
 
 	BOOL DUITextHost::TxSetTimer(UINT idTimer, UINT uTimeout)// hgytest pass,在rtf或动画中调用
@@ -750,12 +753,12 @@ namespace DM
 
 	HRESULT DUITextHost::OnTxCharFormatChange(const CHARFORMATW * pcf)
 	{
-		return S_FALSE;
+		return S_OK;
 	}
 
 	HRESULT DUITextHost::OnTxParaFormatChange(const PARAFORMAT * ppf)
 	{
-		return S_FALSE;
+		return S_OK;
 	}
 
 	HRESULT DUITextHost::TxGetPropertyBits(DWORD dwMask, DWORD *pdwBits)

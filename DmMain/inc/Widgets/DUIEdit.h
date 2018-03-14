@@ -201,7 +201,7 @@ namespace DM
 
 		void ShowCaret(bool bShow);
 		void InitCaret(int w, int h);
-		void ResetCaret(CPoint point);
+		bool ResetCaret(CPoint point);
 
 	public:
 		HRESULT OnTxNotify(DWORD iNotify,LPVOID pv);// 消息分发
@@ -276,9 +276,10 @@ namespace DM
 		bool						 m_bSingleLineVCenter;    
 		bool						 m_bScrollPending;                     // 滚动条处理中
 		bool						 m_bEnableDragDrop;   
-		bool						 m_bAutoSel;            
+		bool						 m_bAutoSel;
+		HIMC						 m_hCurIMC;	
+		DUITextHost					 *m_pTxtHost;
 
-		DUITextHost					 *m_pTxtHost;	
 		DUICaret*					 m_pCaret;
 		DMColor                      m_clrCaret;
 		int						     m_iCaretAniCount;

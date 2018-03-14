@@ -41,6 +41,7 @@ namespace DM
 		m_lAccelPos          = -1;
 		m_dwEditStyle        = ES_LEFT|ES_AUTOHSCROLL|ES_AUTOVSCROLL;
 		m_HMEsizelExtent.cx = m_HMEsizelExtent.cy = 0;
+		m_hCurIMC            = NULL;
 
 		//
 		m_pDUIXmlInfo->m_bFocusable = true;
@@ -313,6 +314,7 @@ namespace DM
 
 	void DUIRichEdit::OnDestroy()
 	{
+		DV_KillFocusWnd();
 		OnEnableDragDrop(false);
 		__super::OnDestroy();
 
@@ -415,6 +417,10 @@ namespace DM
 				SetSel(MAKELONG(0,-1),TRUE);
 			}
 
+			if (ES_PASSWORD & m_dwEditStyle)
+			{// 禁用中文输入法，参看http://blog.csdn.net/xie1xiao1jun/article/details/17913967
+				m_hCurIMC = ::ImmAssociateContext(GetContainer()->OnGetHWnd(), NULL);
+			}
 		} while (false);
 	}
 
@@ -445,6 +451,10 @@ namespace DM
 			pServ->TxSendMessage(WM_KILLFOCUS,0,0,NULL);
 			m_pTxtHost->TxShowCaret(FALSE);
 
+			if (ES_PASSWORD & m_dwEditStyle)
+			{// 恢复
+				ImmAssociateContext(GetContainer()->OnGetHWnd(), m_hCurIMC);
+			}
 		} while (false);
 	}
 
@@ -1129,25 +1139,32 @@ namespace DM
 		}
 	}
 
-	void DUIRichEdit::ResetCaret(CPoint point)
+	bool DUIRichEdit::ResetCaret(CPoint point)
 	{
-		CRect rcClient;
-		DV_GetClientRect(rcClient);
-		CPoint pt = rcClient.TopLeft();
-		point -= pt;
-		if (m_pCaret)
+		bool bRet = false;
+		do 
 		{
-			m_pCaret->SetPos(point);
-		}
-	}
+			if (NULL == m_pCaret)
+			{
+				break;
+			}
 
+			CRect rcClient;
+			DV_GetClientRect(rcClient);
+			CPoint pt = rcClient.TopLeft();
+			point -= pt;
+			m_pCaret->SetPos(point);
+			bRet = true;
+		} while (false);
+		return bRet;
+	}
 
 	BOOL DUIRichEdit::DV_WndProc( UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT & lResult )
 	{
 		do 
 		{
-			if (NULL==m_pCaret||NULL == m_pTxtHost->GetTextService())
-			{
+			if (NULL == m_pTxtHost->GetTextService())
+			{// 此处不能做m_pCaret的判断，因为要去掉IMF_AUTOFONT时m_pCaret仍为空
 				break;
 			}
 			if (WM_KEYDOWN == uMsg)
