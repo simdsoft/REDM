@@ -20,7 +20,7 @@
 #include "DMRegionImpl.h"
 
 namespace DM
-{;
+{
 	class DMCanvasImpl:public IDMCanvas
 	{
 	public:

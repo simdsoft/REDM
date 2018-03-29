@@ -57,26 +57,23 @@ namespace DM
 	}
 
 	// DMAutoMemDC -----------------------------------------------------------------
-	DMAutoMemDC::DMAutoMemDC(HDC hdc /*= NULL*/)
-		:m_hDC(hdc)
+	DMAutoMemDC::DMAutoMemDC()
 	{
 		m_hOldPen    = NULL;
 		m_hOldFont   = NULL;
 		m_hOldBrush  = NULL;
 		m_hOldBitmap = NULL;
-		m_hMemDC = ::CreateCompatibleDC(hdc);
-		DMASSERT(NULL != m_hMemDC);
+		m_hMemDC	 = NULL;
+	}
+
+	DMAutoMemDC::DMAutoMemDC(HDC hdc)
+	{
+		InitDC(hdc);
 	}
 
 	DMAutoMemDC::DMAutoMemDC(DMAutoMemDC &hdc)
-		:m_hDC(hdc)
 	{
-		m_hOldPen    = NULL;
-		m_hOldFont   = NULL;
-		m_hOldBrush  = NULL;
-		m_hOldBitmap = NULL;
-		m_hMemDC = ::CreateCompatibleDC(hdc);
-		DMASSERT(NULL != m_hMemDC);
+		InitDC(hdc);
 	}
 
 	DMAutoMemDC::~DMAutoMemDC()
@@ -176,6 +173,15 @@ namespace DM
 		return bRet;
 	}
 
+
+	bool DMAutoMemDC::InitDC(HDC hdc /*= NULL*/)
+	{
+		DeleteDC();
+		m_hMemDC = ::CreateCompatibleDC(hdc);
+		DMASSERT(NULL != m_hMemDC);
+		return (NULL != m_hMemDC);
+	}
+
 	bool DMAutoMemDC::DeleteDC()
 	{
 		bool bRet = false;
@@ -205,10 +211,10 @@ namespace DM
 			m_hOldFont   = NULL;
 			m_hOldBrush  = NULL;
 			m_hOldBitmap = NULL;
-		
+
 			::DeleteDC(m_hMemDC);
-			m_hMemDC = m_hDC = NULL;
-			
+			m_hMemDC = NULL;
+
 			bRet = true;
 		} while (false);
 		return bRet;

@@ -17,7 +17,6 @@ namespace DM
 	{
 		m_pSkCanvas  = new SkCanvas();
 		m_pRender	 = pRender;
-		m_hGetDC	 = NULL;
 		m_iSaveState = - 1;
 		m_ptOrg.fX = m_ptOrg.fY = 0.0f;
 
@@ -209,11 +208,15 @@ namespace DM
 			return m_hGetDC;
 		}
 
-		HDC hdc = ::GetDC(NULL);
-		m_hGetDC = ::CreateCompatibleDC(hdc);
-		::ReleaseDC(NULL, hdc);
-		HBITMAP hBitmap = m_pCurBitmap->GetBitmap();
-		::SelectObject(m_hGetDC, hBitmap);
+		{
+			DMAutoDC hdc;
+			m_hGetDC.InitDC(hdc);
+		}
+		m_hGetDC.SelectObject(m_pCurBitmap->GetBitmap());
+		m_hGetDC.SelectObject(m_pCurPen->GetPen());
+		m_hGetDC.SelectObject(m_pCurBrush->GetBrush());
+		m_hGetDC.SelectObject(m_pCurFont->GetFont());
+		::SetTextColor(m_hGetDC, m_CurTextColor.ToCOLORREF());
 		if (m_pSkCanvas->isClipEmpty())// 什么都没画
 		{
 			::IntersectClipRect(m_hGetDC,0,0,0,0); // 创建一个新的空的剪切区域
@@ -269,7 +272,7 @@ namespace DM
 	{
 		if (hdc == m_hGetDC)
 		{
-			DM_DELETE_OBJECT(m_hGetDC);
+			m_hGetDC.DeleteDC();
 		}
 		return DM_ECODE_OK;
 	}
@@ -969,45 +972,65 @@ namespace DM
 				nCount = (int)wcslen(lpString);
 			}
 
-			if (0 == nCount) // 要绘制的文字还是空
+			if (uFormat & DT_CALCRECT)
 			{
-				if (uFormat & DT_CALCRECT)// 需取得大小，绘制区设置为0
-				{
-					lpRect->right = lpRect->left;
-					lpRect->bottom = lpRect->top;
-				}
+				HDC hdc = GetDC();
+				::DrawText(hdc,lpString,nCount,lpRect,uFormat);
+				ReleaseDC(hdc);
 				iErr = DM_ECODE_OK;
 				break;
 			}
-			
-			SkPaint  txtPaint = m_pCurFont->GetSkPaint();
-			txtPaint.setColor(m_CurTextColor.ToBGRA());
-			txtPaint.setTypeface(m_pCurFont->GetSkTypeFace());
-			if (0xff!=alpha)
+
+			HDC hdc = GetDC();
+
+			// 先计算真实文字区域大小
+			CRect rcMeasure = *lpRect;// 取左上角坐标
+			::DrawText(hdc,lpString,nCount,rcMeasure,uFormat|DT_CALCRECT);
+			CRect rcAll = lpRect;
+			int nMeasureWid = rcMeasure.Width();int nMeasureHei = rcMeasure.Height();
+			int nWid = lpRect->right-lpRect->left;int nHei = lpRect->bottom-lpRect->top;
+			if (uFormat&DT_CENTER &&nWid>nMeasureWid)
 			{
-				txtPaint.setAlpha(alpha);
+				rcMeasure.left  = lpRect->left+(nWid-nMeasureWid)/2;
+				rcMeasure.right = rcMeasure.left+nMeasureWid;
 			}
-			if (uFormat&DT_CENTER)
+			if (uFormat&DT_VCENTER&&nHei>nMeasureHei)
 			{
-				txtPaint.setTextAlign(SkPaint::kCenter_Align);
+				rcMeasure.top    = lpRect->top+(nHei-nMeasureHei)/2;
+				rcMeasure.bottom = rcMeasure.top+nMeasureHei;
 			}
-			else if(uFormat&DT_RIGHT)
+			if (uFormat&DT_RIGHT)
 			{
-				txtPaint.setTextAlign(SkPaint::kRight_Align);
+				rcMeasure.right = rcAll.right;
+				rcMeasure.left  = rcMeasure.right-nMeasureWid;
+			}
+			if (uFormat&DT_BOTTOM)
+			{
+				rcMeasure.bottom = rcAll.bottom;
+				rcMeasure.top    = rcMeasure.bottom-nMeasureHei;
 			}
 
-			SkRect skRc;
-			Rect2SkRect(lpRect, skRc);
-			skRc.offset(m_ptOrg);
-			skRc = DrawText_Skia(m_pSkCanvas,lpString,nCount,skRc,txtPaint,uFormat);
-			if (uFormat & DT_CALCRECT)
+			//CRect rcDest = GetRealClipRect(rcMeasure);//已计算出大小，就不用裁剪了
+			CRect rcDest = rcMeasure&rcAll;
+			if (rcDest.IsRectEmpty())
 			{
-				lpRect->left	= (int)skRc.fLeft;
-				lpRect->top		= (int)skRc.fTop;
-				lpRect->right	= (int)skRc.fRight;
-				lpRect->bottom  = (int)skRc.fBottom;
-				::OffsetRect(lpRect, (int)-m_ptOrg.fX,(int)-m_ptOrg.fY);// 防止负数出现
+				ReleaseDC(hdc);
+				break;
 			}
+			if (rcDest.Width()*rcDest.Height()>2000*2000)// 防止外部非法传参进来！
+			{
+				ReleaseDC(hdc);
+				break;
+			}
+
+			DMAutoMemDC dcMem(hdc);AlphaBlendBackup(dcMem,rcDest,true,true);
+			DMColor TextClr = m_CurTextColor;
+			TextClr.PreMultiply(alpha);
+			::SetTextColor(dcMem, TextClr.ToCOLORREF());
+			::DrawTextW(dcMem,lpString,nCount,rcDest,uFormat);
+			AlphaBlendRestore(dcMem,TextClr.a);
+
+			ReleaseDC(hdc);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -1244,6 +1267,131 @@ namespace DM
 		lpRect->fRight	+= dx;
 		lpRect->fTop	-= dy;
 		lpRect->fBottom += dy;
+	}
+
+	DMAutoMemDC DMSkiaCanvasImpl::AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit/*=false*/,bool bCopy/*=false*/)
+	{
+		SaveCanvas();
+		m_RcTemp = lpRect;
+		int nWid = m_RcTemp.Width();
+		int nHei = m_RcTemp.Height();
+		m_DIBTemp.CreateDIBSection(m_hGetDC,nWid,nHei);
+
+		::SetBkMode(dcMem,TRANSPARENT);
+		dcMem.SelectObject(m_DIBTemp.m_hBitmap);
+		::SetViewportOrgEx(dcMem,-lpRect->left,-lpRect->top,NULL);
+
+		// 设置三无环境------------------------------------
+		if (bInherit)
+		{
+			dcMem.SelectObject(m_pCurPen->GetPen());
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
+			dcMem.SelectObject(m_pCurFont->GetFont());
+			::SetTextColor(dcMem, m_CurTextColor.ToCOLORREF());
+		}
+		else
+		{
+			dcMem.SelectObject((HPEN)GetStockObject(NULL_PEN));
+			dcMem.SelectObject((HBRUSH)GetStockObject(NULL_BRUSH));
+			dcMem.SelectObject((HFONT)GetStockObject(DEFAULT_GUI_FONT));
+			::SetTextColor(dcMem,RGBA(0,0,0,0));
+		}
+		m_bCopyTemp = bCopy;
+		if (bCopy)
+		{
+			::BitBlt(dcMem,lpRect->left, lpRect->top, nWid, nHei,m_hGetDC,lpRect->left, lpRect->top, SRCCOPY);
+		}
+
+		if (m_DIBTemp.m_pPixelBits)
+		{
+			BYTE* p = m_DIBTemp.m_pPixelBits+3;
+			for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+			{
+				*p = 1;
+			}
+		}
+		else
+		{
+			LOG_ERR("CreateDIBSection失败了!\n");
+		}
+
+		return dcMem;
+	}
+
+	bool DMSkiaCanvasImpl::AlphaBlendRestore(DMAutoMemDC& dcMem,BYTE alpha/*=0xFF*/)
+	{
+		int nWid = m_RcTemp.Width();
+		int nHei = m_RcTemp.Height();
+		if (m_DIBTemp.m_pPixelBits)
+		{
+#if 1
+			BYTE* p = m_DIBTemp.m_pPixelBits+3;
+			if (m_bCopyTemp)
+			{
+				for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+				{
+					*p -= 1;
+					if (0 == *p)
+					{
+						memset(p-3,0,3);// 仅xp,win7-32下需要使用此方式
+					}
+					//if(*p==0) *p=0xff;
+					//else memset(p-3,0,4);
+				}
+			}
+			else
+			{
+				for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+				{
+					*p -= 1;
+				}
+			}
+#else// MMX只有在大图片时才会更高效,暂时不启用
+			byte* p = (byte*)m_DIBTemp.m_pPixelBits;
+			const UINT c_01000000 = 0x01000000;
+			__asm
+			{
+				movd   xmm0,c_01000000 
+					pshufd  xmm0,xmm0,0 
+			}
+			int mmxsize = m_DIBTemp.m_nImageSize - m_DIBTemp.m_nImageSize%16;
+			for (int i=0; i<mmxsize; i+=16)
+			{
+				__asm
+				{
+					pushad
+						mov         eax,dword ptr [i] 
+					mov         ecx,dword ptr [p] 
+					lea         edi,[ecx+eax]
+					movdqu      xmm1,xmmword ptr [edi] 
+					psubd       xmm1,xmm0 
+						movdqu      xmmword ptr [edi],xmm1 
+						popad
+				}
+			}
+			__asm
+			{
+				emms				;必要的!Empty MMX Status
+			}
+
+			p = m_DIBTemp.m_pPixelBits+mmxsize+3;
+			for (int j=mmxsize;j<m_DIBTemp.m_nImageSize;j+=4,p+=4)// 余下部分不足16位了，直接for循环
+			{
+				*p -= 0x1;
+			}
+#endif 
+		}//if (m_DIBTemp.m_pPixelBits)
+
+		//CRect rcDest = m_RcTemp;OffsetRect(rcDest,m_ptOrg.x,m_ptOrg.y);
+		//bool bRet = DMDIBHelper::AlphaBlend32(&m_pCurBitmap->m_DibHelper,rcDest.left, rcDest.top, nWid, nWid,&m_DIBTemp,0,0,nWid, nHei,alpha);
+		BLENDFUNCTION bf = {AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
+		BOOL bRet = ::AlphaBlend(m_hGetDC,m_RcTemp.left,m_RcTemp.top, nWid, nHei,
+			dcMem,m_RcTemp.left,m_RcTemp.top,nWid, nHei, bf);
+
+		dcMem.DeleteDC();
+		m_DIBTemp.DIBRelease();
+		RestoreCanvas();
+		return TRUE == bRet;
 	}
 
 }//namespace DM

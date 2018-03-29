@@ -8,10 +8,12 @@ namespace DM
 		m_iStyle = iStyle;
 		m_iWidth = iWidth;
 		m_Clr	 =  clr;
+		m_hPen	 = ::CreatePen(m_iStyle,m_iWidth,m_Clr.ToCOLORREF());
 	}
 
 	DMSkiaPenImpl::~DMSkiaPenImpl()
 	{
+		DM_DELETE_OBJECT(m_hPen);
 	}
 
 	void DMSkiaPenImpl::SetWidth(int iWidth)
@@ -43,4 +45,10 @@ namespace DM
 	{
 		return m_iStyle;
 	}
+
+	HPEN DMSkiaPenImpl::GetPen()
+	{
+		return m_hPen;
+	}
+
 }//namespace DM

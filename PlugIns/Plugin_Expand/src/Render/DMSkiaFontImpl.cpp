@@ -38,6 +38,9 @@ namespace DM
 			m_SkPaint.setTextEncoding(SkPaint::kUTF16_TextEncoding);
 			m_SkPaint.setAntiAlias(true);// È¥¾â³Ý
 			m_SkPaint.setLCDRenderText(true);
+
+			m_lf.lfQuality = CLEARTYPE_QUALITY;
+			m_hFont = ::CreateFontIndirectW(&m_lf);
 		}
 	}
 
@@ -48,6 +51,7 @@ namespace DM
 			m_SkFont->unref();
 			m_SkFont = NULL;
 		}
+		DM_DELETE_OBJECT(m_hFont);
 	}
 
 	const LOGFONTW* DMSkiaFontImpl::GetLogFont() const
@@ -83,6 +87,11 @@ namespace DM
 	SkTypeface* DMSkiaFontImpl::GetSkTypeFace()
 	{
 		return m_SkFont;
+	}
+
+	HFONT DMSkiaFontImpl::GetFont()
+	{
+		return m_hFont;
 	}
 
 }//namespace DM

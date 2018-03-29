@@ -19,6 +19,10 @@ namespace DM
 		m_pRender	 = pRender;
 		m_ptOrg.x    = m_ptOrg.y = 0;
 
+		{
+			DMAutoDC hdc;
+			m_hdc.InitDC(hdc);
+		}
 		::SetBkMode(m_hdc,TRANSPARENT);    // 设置透明背景
 
 		// 初始化被选入DC的当前图元 -----------------

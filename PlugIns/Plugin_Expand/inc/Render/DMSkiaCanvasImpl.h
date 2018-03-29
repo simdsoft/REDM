@@ -118,6 +118,8 @@ namespace DM
 	public:// 辅助
 		bool Rect2SkRect(LPCRECT lpRect,SkRect &skiRc);
 		void InflateSkRect(SkRect *lpRect,SkScalar dx,SkScalar dy);
+		DMAutoMemDC AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit=false,bool bCopy=false);
+		bool AlphaBlendRestore(DMAutoMemDC& dcMem,BYTE alpha=0xFF);
 	
 	public:
 		// 1
@@ -132,13 +134,18 @@ namespace DM
 
 		// 3
 		SkPoint                                      m_ptOrg;
-		HDC											 m_hGetDC;
+		DMAutoMemDC									 m_hGetDC;
 
 		// 类厂
 		IDMRender									 *m_pRender;
 
 		// 辅助混合使用------------------
 		int                                           m_iSaveState; //skia 的savestate和hdc不同，不是-1返回上一次~！
+
+		// 辅助混合使用------------------
+		DMDIBHelper                                  m_DIBTemp;
+		CRect                                        m_RcTemp;
+		bool                                         m_bCopyTemp;
 	};
 
 

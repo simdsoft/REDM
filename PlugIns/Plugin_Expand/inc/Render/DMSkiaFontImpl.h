@@ -31,12 +31,14 @@ namespace DM
 	public:// 辅助
 		SkPaint GetSkPaint();
 		SkTypeface* GetSkTypeFace();
+		HFONT  GetFont();
 
 	protected:
 		// SkTypeface代表指定的字体风格，可以用来测量和绘制文字，也就是说不仅可以用于绘制文本，还可以用来测量文本
 		SkTypeface                          *m_SkFont;	 // 定义字体
 		SkPaint                              m_SkPaint;  // 定义文字绘制属性
 		LOGFONTW                             m_lf;
+		HFONT                                m_hFont;
 	};
 
 }//namespace DM

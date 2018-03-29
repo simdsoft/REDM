@@ -34,10 +34,12 @@ namespace DM
 		virtual int GetWidth();
 		virtual DMColor GetColor();
 		virtual int GetStyle();
+		virtual HPEN GetPen();
 
 	protected:
 		int							m_iStyle;
 		int							m_iWidth;
 		DMColor						m_Clr;
+		HPEN						m_hPen;
 	};
 }

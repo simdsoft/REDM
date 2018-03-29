@@ -98,9 +98,7 @@ namespace DM
 			{
 				break;
 			}
-
-			DMSkiaBitmapImpl *pSkiaBmp = (DMSkiaBitmapImpl*)pBmp;
-			*ppBrush = new DMSkiaBrushImpl(pSkiaBmp->GetSkBitmap());
+			*ppBrush = new DMSkiaBrushImpl(pBmp);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;

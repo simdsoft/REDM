@@ -13,6 +13,7 @@
 //      guoyou		2015-8-19	1.0			
 //-------------------------------------------------------
 #pragma once
+#include "DMDIBHelper.h"
 
 namespace DM
 {
@@ -55,6 +56,4 @@ namespace DM
 		SkBitmap				  m_SkBitmap;
 		DMDIBHelper               m_DibHelper;
 	};
-
-
 }//namespace DM

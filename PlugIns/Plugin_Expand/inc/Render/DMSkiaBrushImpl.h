@@ -20,17 +20,19 @@ namespace DM
 	{
 	public:
 		DMSkiaBrushImpl(DMColor clr);
-		DMSkiaBrushImpl(SkBitmap SkBmp);
+		DMSkiaBrushImpl(IDMBitmap* pBmp);
 		~DMSkiaBrushImpl();
 
 		bool IsBitmap();
 		SkBitmap GetBitmap();
+		HBRUSH	GetBrush();
 		DMColor GetColor();
 
 	protected:
 		bool                           m_bBmp;	
 		DMColor						   m_Clr;
 		SkBitmap					   m_SkBmp;			// Î»Í¼»­Ë¢
+		HBRUSH                         m_hBrush;
 	};
 
 }//namespace DM
