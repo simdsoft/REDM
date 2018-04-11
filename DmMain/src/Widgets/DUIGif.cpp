@@ -83,20 +83,24 @@ namespace DM
 				iErr = DM_ECODE_OK; 
 				break;
 			}
-			
+
 			if (1 >= m_ulFrameCount||0 == m_ulTotalLoopCount)
 			{
 				break;
 			}
 			// gif解码格式,wic可以解码帧，所以把图形数据部分去掉了
+			bool bGif = false;
 			DMSmartPtrT<DMGifParse> pObj;
 			pObj.Attach(new DMGifParse);
-			if (!pObj->LoadFromMemory((BYTE*)lpBuf,ulSize))
+			UINT ulMaxWid=0,ulMaxHei=0;
+			if (pObj->LoadFromMemory((BYTE*)lpBuf,ulSize))
 			{
-				break;
+				bGif = true;
+				LPGLOBAL_INFO pGlobalInfo = pObj->GetGlobalInfo();
+				DMASSERT_EXPR(pGlobalInfo->frames==m_ulFrameCount,L"解码的帧不同!");
+				ulMaxWid = pGlobalInfo->scrWidth;
+				ulMaxHei = pGlobalInfo->scrHeight;
 			}
-			LPGLOBAL_INFO pGlobalInfo = pObj->GetGlobalInfo();
-			DMASSERT_EXPR(pGlobalInfo->frames==m_ulFrameCount,L"解码的帧不同!");
 			for (int i=0;i<(int)m_ulFrameCount;i++)
 			{
 				DMAnimateFrame* pAnimateFrame = new DMAnimateFrame;
@@ -113,15 +117,30 @@ namespace DM
 					DM_DELETE(pAnimateFrame);
 					break;
 				}
-				memcpy(&pAnimateFrame->gifFrame,pObj->GetFrame(i),sizeof(GIFFRAME));
 				UINT ulDelay = 0;
 				pImgFrame->GetDelay(ulDelay);
-				DMASSERT_EXPR(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,L"解码的延迟不同!");
+				if (bGif)
+				{
+					memcpy(&pAnimateFrame->gifFrame,pObj->GetFrame(i),sizeof(GIFFRAME));
+					DMASSERT_EXPR(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,L"解码的延迟不同!");
+				}
+				else
+				{
+					UINT ulWid=0,ulHei=0;
+					pImgFrame->GetSize(ulWid,ulHei);
+					ulMaxWid = DMMAX(ulMaxWid,ulWid);
+					ulMaxHei = DMMAX(ulMaxHei,ulHei);
+					pAnimateFrame->gifFrame.ctrlExt.delayTime = (WORD)ulDelay;
+					pAnimateFrame->gifFrame.imageWidth  = (WORD)ulWid;
+					pAnimateFrame->gifFrame.imageHeight = (WORD)ulHei;
+					pAnimateFrame->gifFrame.ctrlExt.disposalMethod = DM_BACKGROUND;
+				}
 				AddObj(pAnimateFrame);
 			}
+
 			m_ulFrameCount = (UINT)GetCount();// 怕不定所有帧都能解析成功
-			pRender->CreateCanvas(pGlobalInfo->scrWidth,pGlobalInfo->scrHeight,&m_pMemCanvas);
-			m_rcGif.SetRect(0,0,pGlobalInfo->scrWidth,pGlobalInfo->scrHeight);
+			pRender->CreateCanvas(ulMaxWid,ulMaxHei,&m_pMemCanvas);
+			m_rcGif.SetRect(0,0,ulMaxWid,ulMaxHei);
 			iErr = DM_ECODE_OK; 
 		} while (false);
 		if (!DMSUCCEEDED(iErr))
@@ -229,7 +248,7 @@ namespace DM
 						pCanvas->PushClip(rcClient,RGN_OR);
 					}
 				}
-			
+
 				// 绘制
 				PDMAnimateFrame &pFrame = m_DMArray[m_ulCurFrame];
 				CRect rcFrame(pFrame->gifFrame.imageLPos, pFrame->gifFrame.imageTPos, 

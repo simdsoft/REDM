@@ -83,7 +83,7 @@ namespace DM
 
 	DMCode DMDrawImpl::InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode)
 	{// 目标:m_pInvalidRegion保存所有无效区,m_bOnlyOneRectRepaint记录是否为无效矩形区
-	
+
 		CRect rcInvalid = m_rcCanvas;
 		do 
 		{
@@ -115,7 +115,7 @@ namespace DM
 			}
 
 			//5. 前面条件限制了lpRect不为NULL,且不是全刷新,且不是RGN_COPY||RGN_AND
-			if (m_bOnlyOneRectRepaint)
+			if (m_bOnlyOneRectRepaint&&!m_rcOnlyOne.IsRectEmpty())
 			{
 				CRect rcNew = m_rcOnlyOne;
 				rcNew.UnionRect(rcInvalid,m_rcOnlyOne);
@@ -128,7 +128,7 @@ namespace DM
 			}
 			m_bOnlyOneRectRepaint = false;// 不是一个无效矩形
 		} while (false);
-		
+
 		// 最后进入无效Rgn设置
 		if (NULL == m_pInvalidRegion)
 		{
@@ -217,7 +217,7 @@ namespace DM
 				{
 					m_pMemCanvas->PushClip(m_rcOnlyOne,RGN_COPY);	
 				}
-			
+
 				m_pMemCanvas->ClearRect(m_rcOnlyOne,0);		
 				DMSmartPtrT<IDMFont> pOldFont;
 				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(L""),(IDMMetaFile**)&pOldFont);

@@ -21,7 +21,7 @@
 #include "DMSkiaHelper.h"
 
 namespace DM
-{;
+{
 	class DMSkiaCanvasImpl:public IDMCanvas
 	{
 	public:
