@@ -134,7 +134,7 @@ namespace DM
 
 		// 3
 		SkPoint                                      m_ptOrg;
-		DMAutoMemDC									 m_hGetDC;
+		HDC											 m_hGetDC;
 
 		// ¿‡≥ß
 		IDMRender									 *m_pRender;
@@ -146,6 +146,10 @@ namespace DM
 		DMDIBHelper                                  m_DIBTemp;
 		CRect                                        m_RcTemp;
 		bool                                         m_bCopyTemp;
+		HPEN										 m_hOldPen;
+		HFONT										 m_hOldFont;
+		HBRUSH										 m_hOldBrush;
+		HBITMAP										 m_hOldBitmap;
 	};
 
 

@@ -115,7 +115,7 @@ namespace DM
 			}
 
 			//5. 前面条件限制了lpRect不为NULL,且不是全刷新,且不是RGN_COPY||RGN_AND
-			if (m_bOnlyOneRectRepaint&&!m_rcOnlyOne.IsRectEmpty())
+			if (m_bOnlyOneRectRepaint)
 			{
 				CRect rcNew = m_rcOnlyOne;
 				rcNew.UnionRect(rcInvalid,m_rcOnlyOne);

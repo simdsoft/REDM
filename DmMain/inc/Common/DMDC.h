@@ -30,8 +30,7 @@ namespace DM
 	class DM_EXPORT DMAutoMemDC
 	{
 	public:
-		DMAutoMemDC();
-		DMAutoMemDC(HDC hdc);
+		DMAutoMemDC(HDC hdc = NULL);
 		DMAutoMemDC(DMAutoMemDC &hdc);
 		~DMAutoMemDC();
 		operator const HDC()const
@@ -43,10 +42,11 @@ namespace DM
 		bool SelectObject(HFONT hFont);
 		bool SelectObject(HBRUSH hBrush);
 		bool SelectObject(HBITMAP hBitmap);
-		bool InitDC(HDC hdc = NULL);
-		bool DeleteDC();
 
+		bool DeleteDC();
+		
 	private:
+		HDC                m_hDC;
 		HDC			       m_hMemDC;
 
 		HPEN               m_hOldPen;

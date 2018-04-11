@@ -15,8 +15,15 @@ namespace DM
 
 	void DMSkiaCanvasImpl::Canv_Init(IDMRender* pRender, int nWid, int nHei)
 	{
+		m_hOldPen    = NULL;
+		m_hOldFont   = NULL;
+		m_hOldBrush  = NULL;
+		m_hOldBitmap = NULL;
+
+		//
 		m_pSkCanvas  = new SkCanvas();
 		m_pRender	 = pRender;
+		m_hGetDC	 = NULL;
 		m_iSaveState = - 1;
 		m_ptOrg.fX = m_ptOrg.fY = 0.0f;
 
@@ -208,14 +215,25 @@ namespace DM
 			return m_hGetDC;
 		}
 
+		HDC hdc = ::GetDC(NULL);
+		m_hGetDC = ::CreateCompatibleDC(hdc);
+		::ReleaseDC(NULL, hdc);
+		if (NULL == m_hOldBitmap)
 		{
-			DMAutoDC hdc;
-			m_hGetDC.InitDC(hdc);
+			m_hOldBitmap = (HBITMAP)::SelectObject(m_hGetDC, m_pCurBitmap->GetBitmap());
 		}
-		m_hGetDC.SelectObject(m_pCurBitmap->GetBitmap());
-		m_hGetDC.SelectObject(m_pCurPen->GetPen());
-		m_hGetDC.SelectObject(m_pCurBrush->GetBrush());
-		m_hGetDC.SelectObject(m_pCurFont->GetFont());
+		if (NULL == m_hOldPen)
+		{
+			m_hOldPen = (HPEN)::SelectObject(m_hGetDC, m_pCurPen->GetPen());
+		}
+		if (NULL == m_hOldBrush)
+		{
+			m_hOldBrush = (HBRUSH)::SelectObject(m_hGetDC, m_pCurBrush->GetBrush());
+		}
+		if (NULL == m_hOldFont)
+		{
+			m_hOldFont = (HFONT)::SelectObject(m_hGetDC, m_pCurFont->GetFont());
+		}
 		::SetTextColor(m_hGetDC, m_CurTextColor.ToCOLORREF());
 		if (m_pSkCanvas->isClipEmpty())// Ê²Ã´¶¼Ã»»­
 		{
@@ -272,7 +290,29 @@ namespace DM
 	{
 		if (hdc == m_hGetDC)
 		{
-			m_hGetDC.DeleteDC();
+			if (m_hOldPen)
+			{
+				::SelectObject(m_hGetDC,m_hOldPen);
+			}
+			if (m_hOldFont)
+			{
+				::SelectObject(m_hGetDC,m_hOldFont);
+			}
+			if (m_hOldBrush)
+			{
+				::SelectObject(m_hGetDC,m_hOldBrush);
+			}
+			if (m_hOldBitmap)
+			{
+				::SelectObject(m_hGetDC,m_hOldBitmap);
+			}
+			m_hOldPen    = NULL;
+			m_hOldFont   = NULL;
+			m_hOldBrush  = NULL;
+			m_hOldBitmap = NULL;
+
+			::DeleteDC(m_hGetDC);
+			m_hGetDC = NULL;
 		}
 		return DM_ECODE_OK;
 	}
