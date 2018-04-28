@@ -984,7 +984,14 @@ namespace DM
 			{
 				nCount = (int)wcslen(lpString);
 			}
+			HDC hdc = GetDC();
+			if (TRUE == ::GetTextExtentPoint32W(hdc,lpString,nCount,pSize))
+			{
+				iErr = DM_ECODE_OK;
+			}
+			ReleaseDC(hdc);
 
+#if 0
 			SkPaint txtPaint = m_pCurFont->GetSkPaint();
 			txtPaint.setTypeface(m_pCurFont->GetSkTypeFace());
 			pSize->cx = (LONG)txtPaint.measureText(lpString, nCount*sizeof(wchar_t));
@@ -992,6 +999,7 @@ namespace DM
 			SkPaint::FontMetrics metrics;
 			txtPaint.getFontMetrics(&metrics);
 			pSize->cy = (int)(metrics.fBottom-metrics.fTop);
+#endif
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
