@@ -10,4 +10,7 @@
 	<gif pos="%80,110,@112,@70" badjust="1" gifskin="gif:2_gif"/>
 	<gif pos="650,190,@150,@100" badjust="1" gifskin="gif:3_gif"/>
 	<gif pos="%80,300,@35,@25" badjust="1" gifskin="gif:4_gif"/>
+	<gif pos="%80,310,@102,@102" badjust="1" gifskin="gif:5_gif"/>
+	<gif pos="%80,380,@256,@64" badjust="1" gifskin="gif:allefant_gif"/>
+	<gif pos="%80,430,@40,@40" badjust="1" gifskin="gif:dispose_gif"/>
 </sub>
