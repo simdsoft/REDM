@@ -140,6 +140,7 @@ namespace DM
 
 			m_ulFrameCount = (UINT)GetCount();// 怕不定所有帧都能解析成功
 			pRender->CreateCanvas(ulMaxWid,ulMaxHei,&m_pMemCanvas);
+			pRender->CreateCanvas(ulMaxWid, ulMaxHei, &m_pPreviousCanvas);
 			m_rcGif.SetRect(0,0,ulMaxWid,ulMaxHei);
 			iErr = DM_ECODE_OK; 
 		} while (false);
@@ -185,6 +186,7 @@ namespace DM
 		m_dwPreFrameTime     = 0;       // 时间刷新时初始化
 		m_bPause             = false;
 		m_pMemCanvas.Release();
+		m_pPreviousCanvas.Release();
 		RemoveAll();
 		return DM_ECODE_OK;
 	}
@@ -260,20 +262,53 @@ namespace DM
 				if (0 == m_ulCurFrame)
 				{
 					m_pMemCanvas->ClearRect(m_rcGif,0);
-				}
-
-				if (DM_BACKGROUND == pFrame->gifFrame.ctrlExt.disposalMethod)
-				{
-					m_pMemCanvas->ClearRect(rcFrame,PBGRA(0,0,0,0));// 清空frame所在区域
-				}
-
-				if (DM_PREVIOUS == pFrame->gifFrame.ctrlExt.disposalMethod)
-				{// 回到先前状态
+					m_pPreviousCanvas->ClearRect(m_rcGif, 0);
 				}
 				else
 				{
-					m_pMemCanvas->DrawBitamp(pFrame->pBitmap,rcSor,rcFrame);
+					PDMAnimateFrame &pPreFrame = m_DMArray[m_ulCurFrame - 1];
+					CRect rcPreFrame(pPreFrame->gifFrame.imageLPos, pPreFrame->gifFrame.imageTPos, 
+						pPreFrame->gifFrame.imageLPos+pPreFrame->gifFrame.imageWidth,pPreFrame->gifFrame.imageTPos+pPreFrame->gifFrame.imageHeight);
+
+					// dispoalMethod表示绘制完当前帧后，绘制下一帧图片前的处理方式
+					// http://giflib.sourceforge.net/whatsinagif/animation_and_transparency.html
+					switch (pPreFrame->gifFrame.ctrlExt.disposalMethod)
+					{
+					case DM_UNDEFINED:
+						break;
+					case DM_NONE:
+						break;
+					case DM_BACKGROUND:
+						m_pMemCanvas->ClearRect(rcPreFrame,PBGRA(0,0,0,0));// 清空frame所在区域
+						break;
+					case DM_PREVIOUS:
+						// 恢复备份帧
+						m_pMemCanvas->BitBlt(m_pPreviousCanvas, m_rcGif.left, m_rcGif.top, m_rcGif);
+						break;
+					default:
+						break;
+					}
 				}
+				
+				m_pMemCanvas->DrawBitamp(pFrame->pBitmap,rcSor,rcFrame);
+
+				switch(pFrame->gifFrame.ctrlExt.disposalMethod)
+				{
+				case DM_UNDEFINED:
+				case DM_NONE:
+					// 备份该帧
+					m_pPreviousCanvas->BitBlt(m_pMemCanvas, m_rcGif.left, m_rcGif.top, m_rcGif);
+					break;
+				case DM_BACKGROUND:
+					// 在下一帧绘制之前处理，否则DMGIF_NOREADY时会绘制出中间过渡帧，造成闪烁
+					break;
+				case DM_PREVIOUS:
+					// 在下一帧绘制之前处理，否则DMGIF_NOREADY时会绘制出中间过渡帧，造成闪烁
+					break;
+				default:
+					break; 
+				}
+
 				m_dwPreFrameTime = GetTickCount();// 重设置时间
 				m_ulCurFrame++;					  // 增加引用计数
 			}
@@ -339,6 +374,10 @@ namespace DM
 			{
 				break;
 			}
+			if (m_pPreviousCanvas.isNull())
+			{
+				break;
+			}
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -357,6 +396,7 @@ namespace DM
 			m_ulCurLoop          = 0;
 			m_dwPreFrameTime     = 0;       // 时间刷新时初始化
 			m_pMemCanvas->ClearRect(m_rcGif,0);
+			m_pPreviousCanvas->ClearRect(m_rcGif, 0);
 			m_bPause             = false;
 
 			bRet = true;
@@ -398,6 +438,12 @@ namespace DM
 				break;
 			}
 
+			PDMAnimateFrame &pFrameObj = m_DMArray[m_ulCurFrame];
+			if (0 == pFrameObj->gifFrame.ctrlExt.delayTime)
+			{
+				pFrameObj->gifFrame.ctrlExt.delayTime = 10;// 默认0.1s吧
+			}
+
 			//3. 时间未到
 			if (GetTickCount()-m_dwPreFrameTime<(DWORD)m_DMArray[m_ulCurFrame]->gifFrame.ctrlExt.delayTime*10)
 			{
@@ -405,11 +451,6 @@ namespace DM
 				break;
 			}
 
-			PDMAnimateFrame &pFrameObj = m_DMArray[m_ulCurFrame];
-			if (0 == pFrameObj->gifFrame.ctrlExt.delayTime)
-			{
-				pFrameObj->gifFrame.ctrlExt.delayTime = 10;// 默认0.1s吧
-			}
 			iState = DMGIF_READY;
 		} while (false);
 		return iState;

@@ -88,7 +88,7 @@ namespace DM
 		do 
 		{
 			m_nOffset = 0;
-			if (NULL == pBuf||bufLen<=1000)
+			if (NULL == pBuf||bufLen<=380)
 			{
 				break;
 			}

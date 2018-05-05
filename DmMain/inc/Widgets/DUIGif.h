@@ -102,6 +102,7 @@ namespace DM
 		bool                                         m_bCalcClip;                ///< 计算并自动调整clip区包含整个绘制区
 
 		DMSmartPtrT<IDMCanvas>                       m_pMemCanvas;               ///< 内存画布,绘制每一帧
+		DMSmartPtrT<IDMCanvas>                       m_pPreviousCanvas;          ///< 前一个Unspecified or Do Not Dispose帧
 		CRect                                        m_rcGif;					 ///< gif的框架大小,帧大小不一定为框架大小
 
 		// 帧控制

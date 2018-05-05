@@ -119,5 +119,8 @@
 		<file name="3_gif" 			path="themes\theme0\Animate\3.gif"/>
 		<file name="4_gif" 			path="themes\theme0\Animate\4.gif"/>
 		<file name="4_png" 			path="themes\theme0\animate\4_png.png" />
+		<file name="5_gif" 			path="themes\theme0\Animate\5.gif"/>
+		<file name="allefant_gif" 	path="themes\theme0\Animate\allefant.gif"/>
+		<file name="dispose_gif" 		path="themes\theme0\Animate\dispose.gif"/>
 	</gif>
  </resource>
