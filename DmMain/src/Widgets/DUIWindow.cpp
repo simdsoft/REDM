@@ -2114,6 +2114,11 @@ namespace DM
 	{
 		do 
 		{
+			if (m_pDUIXmlInfo->m_bFocusable)
+			{
+				DV_SetFocusWnd();
+			}
+
 			if (m_pDUIXmlInfo->m_bDrag)
 			{
 				HWND hWnd = GetContainer()->OnGetHWnd();
@@ -2121,10 +2126,6 @@ namespace DM
 				break;// HTCAPTION设置后,通过打印消息,确认hook中收到WM_LBUTTONUP消息
 			}
 
-			if (m_pDUIXmlInfo->m_bFocusable)
-			{
-				DV_SetFocusWnd();
-			}
 			DM_SetCapture();
 			DM_ModifyState(DUIWNDSTATE_PushDown, 0, true);
 
