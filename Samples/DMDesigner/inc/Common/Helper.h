@@ -20,6 +20,7 @@ DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName);///< »ñµÃÒÑ½
 int DM_MessageBox(LPCWSTR lpText,UINT uType = MB_OK, LPCWSTR lpCaption = L"MSG",HWND hWnd = NULL); 
 int StringToInt(CStringW str);
 CStringW IntToString(int id);
+bool IsUseDgSkin();
 
 // »æÖÆº¯Êý¶þ´Î·â×°
 DMCode AutoDrawText(IDMCanvas*pCanvas,CStringW strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha=0xFF);
@@ -74,6 +75,7 @@ public:
 	DMXmlDocument	m_AttrDoc;
 	DMXmlDocument   m_ClsDoc;  
 	DMXmlDocument   m_AddDoc;
+	DMXmlDocument   m_AddDgDoc;
 
 	// copy
 	DMXmlDocument   m_CopyDoc;

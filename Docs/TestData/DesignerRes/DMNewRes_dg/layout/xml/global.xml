@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<global font="face:宋体,size:14,weight:400,charset:0,underline:0,italic:0,strike:0">
+	<style />
+	<skin name="dg">
+		<img9 id="dg_channel_hz" src="designer:dg_channel_hz" states="1" bvert="0" btitle="0" margin="1,1,1,1" />
+		<imglist id="dg_checkbtn" src="designer:dg_checkbtn" states="8" bvert="0" btitle="0" />
+		<imglist id="dg_closebtn" src="designer:dg_closebtn" states="3" bvert="0" btitle="0" />
+		<imglist id="dg_comboxbtn" src="designer:dg_comboxbtn" states="3" bvert="0" btitle="0" />
+		<img9 id="dg_custombtn" src="designer:dg_custombtn" states="3" bvert="0" btitle="0" margin="2,2,2,2" />
+		<img9 id="dg_headerctrl" src="designer:dg_headerctrl" states="4" bvert="0" btitle="0" margin="2,2,2,2" />
+		<imglist id="dg_maxbtn" src="designer:dg_maxbtn" states="3" bvert="0" btitle="0" />
+		<imglist id="dg_minbtn" src="designer:dg_minbtn" states="3" bvert="0" btitle="0" />
+		<img9 id="dg_processchannel_hz" src="designer:dg_processchannel_hz" states="1" bvert="0" btitle="0" margin="2,2,2,2" />
+		<imglist id="dg_radiobtn" src="designer:dg_radiobtn" states="8" bvert="0" btitle="0" />
+		<imglist id="dg_restorebtn" src="designer:dg_restorebtn" states="3" bvert="0" btitle="0" />
+		<scrollbar id="dg_scrollbar" src="designer:dg_scrollbar" states="1" bvert="0" btitle="0" margin="2,2,2,2" />
+		<img9 id="dg_selprocess_hz" src="designer:dg_selprocess_hz" states="1" bvert="0" btitle="0" margin="2,2,2,2" />
+		<imglist id="dg_splith" src="designer:dg_splith" states="1" bvert="0" btitle="0" />
+		<imglist id="dg_thumb_hz" src="designer:dg_thumb_hz" states="4" bvert="0" btitle="0" />
+	</skin>
+</global>

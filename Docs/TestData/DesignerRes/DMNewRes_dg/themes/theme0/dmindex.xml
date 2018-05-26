@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<resource>
+	<designer>
+		<file name="dg_1_gif" path="themes\theme0\designer\dg_1.gif" />
+		<file name="dg_channel_hz" path="themes\theme0\designer\dg_channel_hz.png" />
+		<file name="dg_checkbtn" path="themes\theme0\designer\dg_checkbtn.png" />
+		<file name="dg_closebtn" path="themes\theme0\designer\dg_closebtn.png" />
+		<file name="dg_comboxbtn" path="themes\theme0\designer\dg_comboxbtn.png" />
+		<file name="dg_custombtn" path="themes\theme0\designer\dg_custombtn.png" />
+		<file name="dg_headerctrl" path="themes\theme0\designer\dg_headerctrl.png" />
+		<file name="dg_maxbtn" path="themes\theme0\designer\dg_maxbtn.png" />
+		<file name="dg_minbtn" path="themes\theme0\designer\dg_minbtn.png" />
+		<file name="dg_processchannel_hz" path="themes\theme0\designer\dg_processchannel_hz.png" />
+		<file name="dg_radiobtn" path="themes\theme0\designer\dg_radiobtn.png" />
+		<file name="dg_restorebtn" path="themes\theme0\designer\dg_restorebtn.png" />
+		<file name="dg_scrollbar" path="themes\theme0\designer\dg_scrollbar.png" />
+		<file name="dg_selprocess_hz" path="themes\theme0\designer\dg_selprocess_hz.png" />
+		<file name="dg_splith" path="themes\theme0\designer\dg_splith.png" />
+		<file name="dg_thumb_hz" path="themes\theme0\designer\dg_thumb_hz.png" />
+	</designer>
+</resource>

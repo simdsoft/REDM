@@ -166,6 +166,24 @@ CStringW IntToString(int id)
 	return str;
 }
 
+bool IsUseDgSkin()
+{
+	bool bRet = false;
+	do 
+	{
+		if (NULL == g_pMainWnd
+			||NULL == g_pMainWnd->m_pDesignerXml
+			||g_pMainWnd->m_pDesignerXml->m_strResDir.IsEmpty())
+		{
+			break;
+		}
+
+		CStringW strDgSkinDir = g_pMainWnd->m_pDesignerXml->m_strResDir+L"themes\\theme0\\designer";
+		bRet = IsDirectoryExist(strDgSkinDir);
+	} while (false);
+	return bRet;
+}
+
 DMCode AutoDrawText(IDMCanvas*pCanvas,CStringW strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha/*=0xFF*/)
 {
 	DMCode iErr = DM_ECODE_FAIL;
@@ -302,6 +320,14 @@ DMCtrlXml::DMCtrlXml()
 		DMASSERT(L"未找到DMAdd.xml");
 	}
 	m_AddDoc.LoadFromFile(szPath);
+
+	// 初始化DMAdd_dg.xml
+	DM::GetRootFullPath(ADD_DG_FILE,szPath,MAX_PATH);
+	if (!PathFileExists(szPath))
+	{
+		DMASSERT(L"未找到DMAdd_dg.xml");
+	}
+	m_AddDgDoc.LoadFromFile(szPath);
 
 	// 初始化Copy Node，临时保存的xml
 	DMXmlNode BaseNode = m_CopyDoc.Base();
@@ -454,7 +480,7 @@ DMXmlNode DMCtrlXml::Parse(CStringW strReg)
 			break;
 		}
 
-		DMXmlNode RootNode = m_AddDoc.Root();
+		DMXmlNode RootNode = IsUseDgSkin()?m_AddDgDoc.Root():m_AddDoc.Root();
 		if (!RootNode.IsValid())
 		{
 			break;

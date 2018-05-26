@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<resource>
+	<themes name="theme0">
+		<file name="theme0" path="themes\theme0\dmindex.xml" />
+	</themes>
+</resource>

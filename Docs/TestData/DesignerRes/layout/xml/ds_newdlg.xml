@@ -4,6 +4,7 @@
 		<window pos="0,0,-0,@33" bdrag="1">
 			<static pos="35,2,@102,@30" text="新建项目" align="left" font="weight:700,charset:134,underline:0,italic:0,strike:0,size:-21,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
 			<Static pos="5,4,@28,@27" skin="ds_opendir" />
+			<checkbox name="ds_useskin" pos="231,10,@169,@18" text="新建项目使用内置默认皮肤" align="left" checkskin="ds_checkbox" clrtext="pbgra(ff,ff,00,ff)" font="face:新宋体,size:12,weight:100" tiptext="勾选后新建项目加载内置默认的皮肤" bchecked="1" />
 		</window>
 		<static pos="10,40,@30,@20" text="名称" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-13,face:新宋体" clrtext="pbgra(ff,ff,ff,ff)" />
 		<group pos="47,35,-10,@24" clrline="pbgra(cc,cc,cc,ff)" round="6" rcinset="4,2,4,2">

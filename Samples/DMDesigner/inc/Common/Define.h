@@ -53,8 +53,10 @@
 #define  ATTR_FILE									 L".\\DesignerRes\\DMAttr.xml"
 #define  CLS_FILE									 L".\\DesignerRes\\DMCls.xml"
 #define  ADD_FILE									 L".\\DesignerRes\\DMAdd.xml"
+#define  ADD_DG_FILE								 L".\\DesignerRes\\DMAdd_dg.xml"
 #define  REC_FILE                                    L".\\DMDesigner.xml"
 #define  NEW_DIR                                     L".\\DesignerRes\\DMNewRes"
+#define  NEW_DG_DIR                                  L".\\DesignerRes\\DMNewRes_dg"
 
 #define  PROJTREE_THEMES                             L"主题包列表"
 #define  PROJTREE_LAYOUTFILES                        L"文件列表"

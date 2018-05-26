@@ -166,7 +166,7 @@ DMCode NewResDlg::CreateResDir()
 	do 
 	{
 		wchar_t szSrcPath[MAX_PATH] = {0};
-		DM::GetRootFullPath(NEW_DIR,szSrcPath,MAX_PATH);
+		DM::GetRootFullPath(FindChildByName(L"ds_useskin")->DM_IsChecked()?NEW_DG_DIR:NEW_DIR,szSrcPath,MAX_PATH);
 		if (false == CopyDirectory(szSrcPath,m_strResDir))
 		{
 			break;
