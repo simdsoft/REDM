@@ -1815,9 +1815,9 @@ namespace DM
 
 			if(DMSUCCEEDED(GetContainer()->OnIsTranslucent())) //lzlon add
 			{
-				//pCanvas->AlphaRestore();
-				rcClient.DeflateRect(m_rcInsetMargin);// 不在文字范围内的不做填充
-				pCanvas->AdjustAlpha(0xff,rcClient);
+				CRect rcClientTemp = rcClient;
+				rcClientTemp.DeflateRect(m_rcInsetMargin);// 不在文字范围内的不做填充
+				pCanvas->AdjustAlpha(0xff,rcClientTemp);
 			}
 
 			if (m_pSurfaceSkin)
