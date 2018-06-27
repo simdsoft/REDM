@@ -749,11 +749,13 @@ namespace DM
 	// Function Des:◊¥Ã¨
 	DMCode DUIWindow::DV_GetState(int& iState)
 	{
-		iState = IIF_STATE5(m_dwDUIState,0,1,2,3,4);
-		if (m_dwDUIState&DUIWNDSTATE_Check)
-		{
-			iState = 2;
+		DWORD dwDUIState = m_dwDUIState;
+		if (dwDUIState&DUIWNDSTATE_Check)
+		{// DUIWNDSTATE_Check ”Õ¨DUIWNDSTATE_PushDown
+			dwDUIState  &= ~DUIWNDSTATE_Check;
+			dwDUIState  |= DUIWNDSTATE_PushDown;
 		}
+		iState = IIF_STATE5(dwDUIState,0,1,2,3,4);
 		return DM_ECODE_OK;
 	}
 
