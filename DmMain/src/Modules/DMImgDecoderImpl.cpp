@@ -466,7 +466,7 @@ namespace DM
 					GIFFRAMEPTR fm = pObj->GetFrame(i);
 					if (fm)
 					{
-						m_DMArray[i]->SetDelay(fm->ctrlExt.delayTime);
+						m_DMArray[i]->SetDelay(fm->ctrlExt.delayTime*10);
 					}
 				}
 				if (gi->bLoop)
