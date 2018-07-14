@@ -482,7 +482,7 @@ namespace DM
 			}
 
 			rcName.left += 10;
-			pCanvas->DrawText(m_strName,-1,rcName,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+			pCanvas->DrawText(m_strName,-1,rcName,DT_LEFT|DT_SINGLELINE|DT_VCENTER|DT_END_ELLIPSIS);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -679,7 +679,7 @@ namespace DM
 			}
 
 			rcName.right-=5;
-			pCanvas->DrawText(m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
+			pCanvas->DrawText(m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER|DT_END_ELLIPSIS);
 			//AutoDrawText(pCanvas,L"face:ÐÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
 			iErr = DM_ECODE_OK;
 		} while (false);

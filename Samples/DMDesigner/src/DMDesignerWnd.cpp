@@ -59,22 +59,35 @@ END_EVENT_MAP()
 
 CStringW g_Tips[] = \
 {
-	L"F5可以快速重新加载工程视图/对象视图",
-	L"Ctrl+N可以建立一个新资源",
-	L"Ctrl+S可以保存资源",
-	L"Ctrl+Q在建立对象视图和销毁对象视图间切换",
-	L"在工程/对象视图中点击右键可以快速定位到相关文件",
-	L"在对象视图中通过锁定来保证控件不被改变",
-	L"在对象视图中右键复制/粘贴可以快速复制/粘贴控件",
-	L"在对象视图中选中支持Panel可以开启Panel支持",
+	L"点击F5重新从磁盘中加载资源文件",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"使用Ctrl+N打开新建资源窗口以及历史记录",
+	L"使用Ctrl+S随时保存资源文件到磁盘中",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"使用Ctrl+Q在建立对象视图和销毁对象视图间切换",
+	L"在工程/对象视图中点击右键可以快速跳转到相关文件",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"在对象视图中点击小锁图标来锁定控件不被改变",
+	L"在对象视图中点击小眼睛图标来临时隐藏控件",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"在对象视图中的控件上右键复制/粘贴可以快速复制/粘贴控件",
+	L"在对象视图中勾选支持Panel可以开启Panel支持",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
 	L"在SEL模式下，显示成灰色的DOT不可拖动",
 	L"在SEL模式下，左/右击均可快速选中控件",
-	L"使用DELETE快捷键可以删除PROP的项",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"使用DELETE快捷键可以删除右侧的PROP项",
+	L"所有的显示区域都支持拖动来改变大小",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"右边属性列表的中间也支持拖动来改变左右大小",
 	L"在工程视图中，未绑定XML的结点为灰色",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
 	L"在对象视图中，ItemPanel项显示成红色",
 	L"CTRL+1可以快速切换到MOVE模式",
-	L"CTRL+2可以快速切换到SEL模式"
-	L"CTRL+3可以快速切换到Add模式"
+	L"更多操作细节请点击菜单->帮助->帮助文档",
+	L"CTRL+2可以快速切换到SEL模式",
+	L"CTRL+3可以快速切换到Add模式",
+	L"更多操作细节请点击菜单->帮助->帮助文档",
 };
 #define  TIMER_TIPS                                  110
 DMDesignerWnd::DMDesignerWnd()
@@ -239,7 +252,7 @@ void DMDesignerWnd::OnTimer(UINT_PTR idEvent)
 		{
 			i = 0;
 		}
-		FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,00,ff)");
+		FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(00,ff,ff,ff)");
 		FindChildByNameT<DUIStatic>(L"ds_tips")->DV_SetWindowText(g_Tips[i++]);
 	} while (false);
 }
@@ -449,7 +462,7 @@ DMCode DMDesignerWnd::HandleGlobalMenu(int nID)
 			shelli.cbSize = sizeof(SHELLEXECUTEINFOW);
 			shelli.fMask = SEE_MASK_FLAG_NO_UI | SEE_MASK_NOCLOSEPROCESS;
 			shelli.lpVerb = L"open";
-			shelli.lpFile = L"http://hgy413.com/3426.html";
+			shelli.lpFile = L"http://hgy413.com/3382.html";
 			shelli.nShow = SW_SHOW;
 			::ShellExecuteExW(&shelli);
 		}
