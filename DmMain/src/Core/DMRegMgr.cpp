@@ -67,12 +67,7 @@ namespace DM
 		case DMREG_Script:
 		case DMREG_Trans:
 			{
-				LPCWSTR lpszBaseNameSrc  = objsrc->GetBaseClassName();
-				LPCWSTR lpszBaseNameDest = objdest->GetBaseClassName();
-				bool bMatchBase =
-					(NULL == lpszBaseNameSrc&&NULL == lpszBaseNameDest)										 // 基类都为DMBase
-					||(lpszBaseNameSrc&&lpszBaseNameDest&&(0 == _wcsicmp(lpszBaseNameSrc,lpszBaseNameDest)));// 都不为NULL且相等(_wcsicmp不能使用空字符串)
-				bRet = (bMatchBase && 0==_wcsicmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class作为唯一的标识，肯定不为空字符串
+				bRet = (0==_wcsicmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class作为唯一的标识，肯定不为空字符串
 			}
 			break;
 		default:
