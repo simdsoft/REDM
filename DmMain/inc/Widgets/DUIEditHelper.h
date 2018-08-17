@@ -14,11 +14,11 @@
 //--------------------------------------------------------
 #pragma once
 #include "DUIScrollBase.h"
-
-#include <Richedit.h>// 和TextServ.h的顺序不能变
-#include <TextServ.h>
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")
+#include <Richedit.h>// 和TextServ.h的顺序不能变
+#include <TextServ.h>
+
 
 namespace DM
 {
