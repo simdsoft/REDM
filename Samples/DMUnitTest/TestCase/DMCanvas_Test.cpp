@@ -186,6 +186,22 @@ TEST_F(CanvasTest, 测试基础函数)
 	RECT rcGradientFill = {150, 40, 250, 60};
 	pCanvasTemp->GradientFill(PBGRA(0,0xff,0xff,0xcc),PBGRA(0,0xff, 0,0x80),&rcGradientFill, FALSE,0xff);
 
+	// 测试DrawArc----------------------------------------------
+	//https://blog.csdn.net/clever101/article/details/6195026
+	RECT rcArc = {260, 0, 320, 60};
+	float startAngle = 60.0f;// 设置起点角度为60度  
+	float sweepAngle = 150.0f;// 设置旋转角度为150度  
+	pPen.Release();
+	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreatePen(PBGRA(0x0,0xff,0xff,0xff),PS_SOLID,1, &pPen)), true);
+	pCanvasTemp->SelectObject(pPen);
+	pCanvasTemp->DrawArc(&rcArc,startAngle,sweepAngle);
+
+	RECT rcPie = {320, 0, 380, 60};
+	pBrush.Release();
+	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreateSolidColorBrush(PBGRA(0,0,0xff,0xff), &pBrush)), true);
+	pCanvasTemp->SelectObject(pBrush);
+	pCanvasTemp->FillPie(&rcPie,startAngle,sweepAngle);
+
 	// end 绘制到屏幕
 #if SHOW_TOSCREEN
 	DMAutoDC hdc;

@@ -4,6 +4,13 @@
 void DMEnvironment::SetUp()
 {
 	m_pDMApp = new DMApp(NULL);
+#ifdef DLL_DMMAIN// lib库下不支持插件
+#ifdef _DEBUG
+	m_pDMApp->LoadPlugins(L"dmpluginsd.cfg");
+#else
+	m_pDMApp->LoadPlugins(L"dmplugins.cfg");
+#endif
+#endif//DLL_DMMAIN
 }
 
 void DMEnvironment::TearDown()
@@ -22,6 +29,8 @@ int main(int argc, char* argv[])
 {
 	pGlobalPtr = new DMEnvironment;
 	testing::AddGlobalTestEnvironment(pGlobalPtr);   //注册
+
+
 
 	char curdir[MAX_PATH] = {0};
 

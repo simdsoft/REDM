@@ -1,6 +1,6 @@
 #include "DmMainAfx.h"
 #include "DMCanvasImpl.h"
-
+#include <math.h>
 
 namespace DM
 {
@@ -1329,4 +1329,80 @@ namespace DM
 		return ::GradientFill(hdc,vert,2,&gRect,1,bVert?GRADIENT_FILL_RECT_V:GRADIENT_FILL_RECT_H);
 	}
 
+	DMCode DMCanvasImpl::DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (NULL == lpRect)
+			{
+				break;
+			}
+
+			CRect rcDest = GetRealClipRect(lpRect);
+			if (rcDest.IsRectEmpty())
+			{
+				break;
+			}
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			dcMem.SelectObject(m_pCurPen->GetPen());
+
+			CPoint ptCenter((lpRect->left+lpRect->right)/2,(lpRect->top+lpRect->bottom)/2);
+			int xWid = lpRect->right - ptCenter.x;
+			int yHei = ptCenter.y - lpRect->top;
+			float startAngleMath = startAngle*3.1415926f/180.f;// 转成真实可计算的角度
+			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// 转成真实可计算的角度
+			int nXStartArc = ptCenter.x + (int)(xWid*cos(startAngleMath));
+			int nYStartArc = ptCenter.y + (int)(yHei*sin(startAngleMath));
+			int nXEndArc   = ptCenter.x + (int)(xWid*cos(sweepAngleMath));
+			int nYEndArc   = ptCenter.y + (int)(yHei*sin(sweepAngleMath));
+			::Arc(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// start放后面,这样和gdi+来保持一致,都是顺时针
+			
+			BYTE alpha = m_pCurPen->GetColor().a;
+			AlphaBlendRestore(dcMem,alpha);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		return iErr;
+	}
+
+	DMCode DMCanvasImpl::FillPie(LPCRECT lpRect,float startAngle, float sweepAngle)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (NULL == lpRect)
+			{
+				break;
+			}
+
+			CRect rcDest = GetRealClipRect(lpRect);
+			if (rcDest.IsRectEmpty())
+			{
+				break;
+			}
+
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcDest,false);
+			dcMem.SelectObject(m_pCurBrush->GetBrush());
+			
+			CPoint ptCenter((lpRect->left+lpRect->right)/2,(lpRect->top+lpRect->bottom)/2);
+			int xWid = lpRect->right - ptCenter.x;
+			int yHei = ptCenter.y - lpRect->top;
+			float startAngleMath = startAngle*3.1415926f/180.f;// 转成真实可计算的角度
+			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// 转成真实可计算的角度
+			int nXStartArc = ptCenter.x + (int)(xWid*cos(startAngleMath));
+			int nYStartArc = ptCenter.y + (int)(yHei*sin(startAngleMath));
+			int nXEndArc   = ptCenter.x + (int)(xWid*cos(sweepAngleMath));
+			int nYEndArc   = ptCenter.y + (int)(yHei*sin(sweepAngleMath));
+			::Pie(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// start放后面,这样和gdi+来保持一致,都是顺时针
+
+			BYTE alpha = 0xFF;
+			if (!m_pCurBrush->IsBitmap())
+			{
+				alpha = m_pCurBrush->GetColor().a;
+			}
+			AlphaBlendRestore(dcMem,alpha);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		return iErr;
+	}
 }//namespace DM

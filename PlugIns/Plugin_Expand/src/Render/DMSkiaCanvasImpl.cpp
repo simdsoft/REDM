@@ -539,6 +539,7 @@ namespace DM
 
 				PopClip();
 			}
+			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
@@ -637,6 +638,7 @@ namespace DM
 					iErr = DrawBitamp(pBitamp, &rcSrc, &rcDest, alpha, mode[y][x]);
 				}
 			}
+			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
@@ -1440,6 +1442,70 @@ namespace DM
 		m_DIBTemp.DIBRelease();
 		RestoreCanvas();
 		return TRUE == bRet;
+	}
+
+
+	DMCode DMSkiaCanvasImpl::DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle)
+	{// https://www.cnblogs.com/tjudzj/p/4387145.html
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (NULL == lpRect)
+			{
+				break;
+			}
+
+			SkPaint skPaint;
+			SkColor skClr = m_pCurPen->GetColor().ToBGRA();
+			skPaint.setColor(skClr);
+			DMGetLineDashEffect skDash(m_pCurPen->GetStyle());
+			skPaint.setPathEffect(skDash.Get());
+			skPaint.setStrokeWidth((SkScalar)m_pCurPen->GetWidth()-0.5f);
+			skPaint.setStyle(SkPaint::kStroke_Style);
+			skPaint.setAntiAlias(true);
+
+			SkRect skRc;
+			Rect2SkRect(lpRect, skRc);
+			skRc.offset(m_ptOrg);
+			m_pSkCanvas->drawArc(skRc,startAngle,sweepAngle,false,skPaint);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		return iErr;
+	}
+
+
+	DMCode DMSkiaCanvasImpl::FillPie(LPCRECT lpRect,float startAngle, float sweepAngle)
+	{
+		DMCode iErr = DM_ECODE_FAIL;
+		do 
+		{
+			if (NULL == lpRect)
+			{
+				break;
+			}
+
+			SkPaint skPaint;
+			if (m_pCurBrush->IsBitmap())
+			{
+				skPaint.setFilterBitmap(true);
+				skPaint.setShader(SkShader::CreateBitmapShader(m_pCurBrush->GetBitmap(),SkShader::kRepeat_TileMode,SkShader::kRepeat_TileMode))->unref();
+			}
+			else
+			{
+				skPaint.setFilterBitmap(false);
+				SkColor skClr = m_pCurBrush->GetColor().ToBGRA();
+				skPaint.setColor(skClr);
+			}
+			skPaint.setStyle(SkPaint::kFill_Style);
+			skPaint.setAntiAlias(true);
+
+			SkRect skRc;
+			Rect2SkRect(lpRect, skRc);
+			skRc.offset(m_ptOrg);
+			m_pSkCanvas->drawArc(skRc,startAngle,sweepAngle,true,skPaint);
+			iErr = DM_ECODE_OK;
+		} while (false);
+		return iErr;
 	}
 
 }//namespace DM

@@ -21,5 +21,5 @@
 #pragma comment(lib,"DmMain.lib")
 #endif
 
-#define  SHOW_TOSCREEN			  0// 设置为0表示不显示到屏幕
+#define  SHOW_TOSCREEN			  1// 设置为0表示不显示到屏幕
 using namespace DM;

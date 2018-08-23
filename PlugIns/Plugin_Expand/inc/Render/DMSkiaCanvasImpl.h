@@ -120,6 +120,13 @@ namespace DM
 		void InflateSkRect(SkRect *lpRect,SkScalar dx,SkScalar dy);
 		DMAutoMemDC AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit=false,bool bCopy=false);
 		bool AlphaBlendRestore(DMAutoMemDC& dcMem,BYTE alpha=0xFF);
+
+	public:
+		//---------------------------------------------------
+		// Function Des:后续根据需求增加的扩展函数,放在最后,以保证向上兼容
+		//---------------------------------------------------
+		DMCode DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle);
+		DMCode FillPie(LPCRECT lpRect,float startAngle, float sweepAngle);
 	
 	public:
 		// 1

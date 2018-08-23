@@ -272,10 +272,15 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des:备份整个Alpha!
 		//---------------------------------------------------
-		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;					///<调整一个区域的alpha
+		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;							///<调整一个区域的alpha
 		virtual DMCode AlphaBackup(LPRECT lpRect) = 0;
 		virtual DMCode AlphaRestore() = 0;
 
+		//---------------------------------------------------
+		// Function Des:后续根据需求增加的扩展函数,放在最后,以保证向上兼容
+		//---------------------------------------------------
+		virtual DMCode DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle) = 0;			///<startAngle:从 x 轴沿顺时针旋转到扇形区第一个边的角度,sweepAngle从startAngle参数沿顺时针旋转到第二个边的角度（以度为单位）
+		virtual DMCode FillPie(LPCRECT lpRect,float startAngle, float sweepAngle) = 0;			///<https://msdn.microsoft.com/zh-cn/library/2cd07tb4(v=vs.110).aspx?cs-save-lang=1&cs-lang=cpp#code-snippet-1
 	};
 
 }//namespace DM

@@ -71,12 +71,5 @@ TEST_F(DMPluginTest,²âÊÔ)
 	g_pDMApp->LoadPlugins(L"I:\\REDM\\Docs\\TestData\\dmplugins.cfg");
 #endif if
 #endif
-
-
-#ifdef _DEBUG
-	g_pDMApp->LoadPlugins(L"dmpluginsd.cfg");
-#else
-	g_pDMApp->LoadPlugins(L"dmplugins.cfg");
 #endif
-#endif //DLL_DMMAIN
 }
