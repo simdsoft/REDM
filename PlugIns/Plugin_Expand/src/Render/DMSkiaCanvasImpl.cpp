@@ -505,7 +505,7 @@ namespace DM
 			{
 				skPaint.setAlpha(alpha);
 			}
-
+			skPaint.setFilterLevel(SkPaint::kHigh_FilterLevel);
 			if (DEM_STRETCH == ExpandMode)
 			{
 				m_pSkCanvas->drawBitmapRectToRect(skBmp, &skRcSrc, skRcDest,&skPaint);
