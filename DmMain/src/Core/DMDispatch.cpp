@@ -69,10 +69,11 @@ namespace DM
 			DMAutoLock autolock(&m_Lock);
 			va_list arg;
 			va_start(arg, szFmt);
-			wchar_t szBuf[200*5] = {0};
-			_vsnwprintf_s(szBuf, 200*5, sizeof(szBuf) / sizeof(wchar_t) - 1, szFmt, arg);
+			int len = _vscwprintf(szFmt, arg);
+			DMBufT<wchar_t> pBuf;pBuf.Allocate(len+1);
+			vswprintf(pBuf, szFmt, arg);
 			va_end(arg);
-			iErr = m_pLogObj->LogW(iLevel, lpszFuncName, lpszFileName, iLine, szBuf);
+			iErr = m_pLogObj->LogW(iLevel, lpszFuncName, lpszFileName, iLine, pBuf);
 		} while (false);
 
 		return iErr;
