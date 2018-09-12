@@ -479,7 +479,8 @@ namespace DM
 			{
 				break;
 			}
-
+			DMEXPEND_MODE lowExpandMode = (DMEXPEND_MODE)LOWORD(ExpandMode);
+			SkPaint::FilterLevel hiExpandMode = (SkPaint::FilterLevel)HIWORD(ExpandMode);//skia默认就是kNone_FilterLevel
 			DMSmartPtrT<DMSkiaBitmapImpl> pSkiaBitmap = (DMSkiaBitmapImpl*)pBitamp;
 			SkBitmap skBmp = pSkiaBitmap->GetSkBitmap();
 			RECT rcSour = {0,0,skBmp.width(),skBmp.height()};
@@ -505,12 +506,12 @@ namespace DM
 			{
 				skPaint.setAlpha(alpha);
 			}
-			skPaint.setFilterLevel(SkPaint::kHigh_FilterLevel);
-			if (DEM_STRETCH == ExpandMode)
+			skPaint.setFilterLevel(hiExpandMode);
+			if (DEM_STRETCH == lowExpandMode)
 			{
 				m_pSkCanvas->drawBitmapRectToRect(skBmp, &skRcSrc, skRcDest,&skPaint);
 			}
-			else /*(DEM_TILE == ExpandMode)*/ // 平铺
+			else /*(DEM_TILE == lowExpandMode)*/ // 平铺
 			{
 #if 0
 				SkBitmap skBmpsub;
@@ -554,7 +555,7 @@ namespace DM
 			{
 				break;
 			}
-
+			WORD hiExpandMode = HIWORD(ExpandMode);
 			// 9宫格，xDest、xSrc对应以左上角为原点，9宫格划分的4个横坐标，yDest、ySrc以左上角为原点，9宫格划分的4个纵坐标
 			int xDest[4] = {lpRectDest->left,lpRectDest->left+lpSrcMargin->left,lpRectDest->right-lpSrcMargin->right,lpRectDest->right};
 			int yDest[4] = {lpRectDest->top,lpRectDest->top+lpSrcMargin->top,lpRectDest->bottom-lpSrcMargin->bottom,lpRectDest->bottom};
@@ -615,9 +616,9 @@ namespace DM
 
 			//定义绘制模式
 			DMEXPEND_MODE mode[3][3]={//四个边角从上面可以看出源和目标的边角矩形大小总是一致
-				{DEM_STRETCH,ExpandMode,DEM_STRETCH},
+				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode), ExpandMode, (DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode)},
 				{ExpandMode,ExpandMode,ExpandMode},
-				{DEM_STRETCH,ExpandMode,DEM_STRETCH}
+				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode), ExpandMode, (DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode)}
 			};
 
 			for (int y=0;y<3;y++)
