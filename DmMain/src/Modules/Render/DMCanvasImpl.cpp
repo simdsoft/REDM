@@ -1344,7 +1344,10 @@ namespace DM
 			{
 				break;
 			}
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// 注意，这里使用的是lpRect
+			CRect rcArc = *lpRect;
+			int iPenWid = (m_pCurPen->GetWidth()+1)/2;
+			rcArc.InflateRect(iPenWid,iPenWid,iPenWid,iPenWid);
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcArc);/// 注意，这里使用的是lpRect
 			dcMem.SelectObject(m_pCurPen->GetPen());
 
 			CPoint ptCenter((lpRect->left+lpRect->right)/2,(lpRect->top+lpRect->bottom)/2);
