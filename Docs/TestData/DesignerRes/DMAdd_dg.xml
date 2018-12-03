@@ -74,18 +74,18 @@
 			<item width="100" text="HeaderCtrl2" />
 		</HeaderCtrl>
 		 <item>
-           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
 				<Button pos="5,5,@120,@20" text="listctrlex 子项1"  skin="dg:dg_custombtn"/>
 		   </Window>
-		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
 				<Button pos="5,5,@120,@20" text="listctrlex 子项2"  skin="dg:dg_custombtn"/>
 		   </Window>
         </item>
 		<item>
-           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
 				<Button pos="5,5,@120,@20" text="listctrlex 子项2-1"  skin="dg:dg_custombtn"/>
 		   </Window>
-		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)">
+		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
 				<Button pos="5,5,@120,@20" text="listctrlex 子项2-2"  skin="dg:dg_custombtn"/>
 		   </Window>
         </item>
