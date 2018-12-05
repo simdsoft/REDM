@@ -1585,23 +1585,27 @@ namespace DM
 		IDMFont* pFont = g_pDMApp->GetFont(m_pValueEdit->GetWindowText());
 
 		CHOOSEFONTW cf;
-		LOGFONTW* lf = (LOGFONTW*)pFont->GetLogFont();
-		lf->lfHeight = DMABS(lf->lfHeight);
+		LOGFONTW lfw = {0};
+		memcpy(&lfw,pFont->GetLogFont(),sizeof(LOGFONTW));
 
 		// Initialize CHOOSEFONT 
 		wchar_t szStyleName[64]; // contains style name after return
 		ZeroMemory(&cf, sizeof(cf));
 		cf.lStructSize = sizeof(cf);
 		cf.lpszStyle = (LPWSTR)&szStyleName;
-		cf.lpLogFont = lf;
+		cf.lpLogFont = &lfw;
 		cf.Flags = CF_EFFECTS | CF_SCREENFONTS|CF_INITTOLOGFONTSTRUCT;
 		cf.hwndOwner = m_pOwner->GetContainer()->OnGetHWnd();
 
 		if (ChooseFont(&cf))
 		{
 			CStringW strOldValue = m_strValue;
-			m_pValueEdit->SetWindowText(GetFontKey(lf));
-			SendValueChangedEvt(strOldValue);
+			CStringW strNewValue = GetFontKey(&lfw);
+			if (0 != strOldValue.CompareNoCase(strNewValue))
+			{
+				m_pValueEdit->SetWindowText(strNewValue);
+				SendValueChangedEvt(strOldValue);
+			}
 		}
 	
 		return DM_ECODE_OK;

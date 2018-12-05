@@ -327,7 +327,24 @@ namespace DM
 				false == bFixPos)// 不强制固定
 			{
 			}
-			
+			HMONITOR hMonitor = ::MonitorFromRect(&rcWnd, MONITOR_DEFAULTTONEAREST);
+			if (NULL != hMonitor)
+			{
+				MONITORINFO mi = {sizeof(MONITORINFO)};
+				::GetMonitorInfo(hMonitor, &mi);
+				CRect rcWork = mi.rcWork;
+				if (rcWork.left < rcWork.right)
+				{// 简单的支持位移在屏幕内
+					if (rcWnd.right > rcWork.right) 
+						rcWnd.OffsetRect(rcWork.right - rcWnd.right, 0);
+					if (rcWnd.bottom > rcWork.bottom)
+						rcWnd.OffsetRect(0, rcWork.bottom - rcWnd.bottom);
+					if (rcWnd.left < rcWork.left)
+						rcWnd.OffsetRect(rcWork.left - rcWnd.left, 0);
+					if (rcWnd.top < rcWork.top)
+						rcWnd.OffsetRect(0, rcWork.top - rcWnd.top);
+				}
+			}
 			m_pWnd->SetWindowPos(HWND_TOPMOST,rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height(),SWP_NOSENDCHANGING|SWP_SHOWWINDOW|SWP_NOACTIVATE);
 		} while (false);
 	}

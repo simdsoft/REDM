@@ -93,6 +93,10 @@ namespace DM
 
 		DMEVT_SC_ONSCROLL      = 22100,
 
+		DMEVT_CL_SETDATE       = 22150,
+		DMEVT_CL_CLICKDATECHANGED,
+
+
 		// 预留1000空间给script设置事件
 		DMEVT_SCRIPT_START     = 23000,
 		DMEVT_SCRIPT_END       = 24000,
@@ -622,6 +626,39 @@ namespace DM
 		int                     m_iPos;
 		bool                    m_bVert;
 
+	};
+
+	/// <summary>
+	///		日历 设置日期时触发
+	/// </summary>
+	class DM_EXPORT DMEventCalenderSetDateArgs : public DMEventArgs
+	{
+	public:
+		DMEventCalenderSetDateArgs(DUIWindow *pWnd) :DMEventArgs(pWnd),m_iYear(-1),m_iMonth(-1),m_iDay(-1){}
+		enum{EventID=DMEVT_CL_SETDATE};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_CL_SETDATE);}
+		int					   m_iYear;			
+		int                    m_iMonth;
+		int                    m_iDay;
+	};
+
+	/// <summary>
+	///		日历 CELL被点击改变后触发
+	/// </summary>
+	class DM_EXPORT DMEventCalenderClickDateChangedArgs : public DMEventArgs
+	{// 如果新旧相差一个月,说明点击到了灰色的cell，自动执行了跳转
+	public:
+		DMEventCalenderClickDateChangedArgs(DUIWindow *pWnd) :DMEventArgs(pWnd),m_iOldYear(-1),m_iOldMonth(-1),m_iOldDay(-1),m_iNewYear(-1),m_iNewMonth(-1),m_iNewDay(-1){}
+		enum{EventID=DMEVT_CL_CLICKDATECHANGED};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_CL_CLICKDATECHANGED);}
+		int					   m_iOldYear;			
+		int                    m_iOldMonth;
+		int                    m_iOldDay;
+		int					   m_iNewYear;			
+		int                    m_iNewMonth;
+		int                    m_iNewDay;
 	};
 
 	/// <summary>

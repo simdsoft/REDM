@@ -17,5 +17,8 @@
 		<img9 id="dg_selprocess_hz" src="designer:dg_selprocess_hz" states="1" bvert="0" btitle="0" margin="2,2,2,2" />
 		<imglist id="dg_splith" src="designer:dg_splith" states="1" bvert="0" btitle="0" />
 		<imglist id="dg_thumb_hz" src="designer:dg_thumb_hz" states="4" bvert="0" btitle="0" />
+		<img9 id="dg_calendarcell" src="designer:dg_calendarcell" states="3" bvert="0" btitle="0" margin="3,3,3,3" />
+		<img9 id="dg_calendarleft" src="designer:dg_calendarleft" states="3" bvert="0" btitle="0" margin="4,4,4,4" />
+		<img9 id="dg_calendarright" src="designer:dg_calendarright" states="3" bvert="0" btitle="0" margin="4,4,4,4" />	
 	</skin>
 </global>

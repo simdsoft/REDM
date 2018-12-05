@@ -107,6 +107,10 @@
 	
 	<file name="splith"         	path="themes\theme0\image\widget\splith.png"/>
 	<file name="splitv"         	path="themes\theme0\image\widget\splitv.png"/>
+	
+	<file name="calendar_left" 		path="themes\theme0\image\widget\calendar_left.png" />
+	<file name="calendar_right" 	path="themes\theme0\image\widget\calendar_right.png" />
+	<file name="calendar_cell" 		path="themes\theme0\image\widget\calendar_cell.png" />
 	</png>
 	 <flash>
 		<file name="sun.SWF" 	    path="themes\theme0\flash\sun.swf"/>

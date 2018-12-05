@@ -340,7 +340,20 @@ namespace DM
 			// 特殊处理---------------------------------------------------------------
 
 			CRect rcWnd;
-			m_pWnd->GetWindowRect(&rcWnd);
+			CStringW strKey = L"rcWnd";
+			CStringW strValue = m_pWnd->GetData(strKey);
+			if (strValue.IsEmpty())
+			{
+				m_pWnd->GetWindowRect(&rcWnd);
+				strValue.Format(L"%d,%d,%d,%d",rcWnd);
+				m_pWnd->SetData(strKey,strValue);
+			}
+			else
+			{
+				dm_parserect(strValue,rcWnd);
+			}
+			
+			//m_pWnd->GetWindowRect(&rcWnd);
 			// 计算固定位置
 			int iFlags = m_rcPosFlags.left;
 			bool bFixPos = (m_rcPosFlags.bottom!=0);
@@ -376,7 +389,39 @@ namespace DM
 				false == bFixPos)// 不强制固定
 			{
 			}
-			
+
+			HMONITOR hMonitor = ::MonitorFromRect(&rcWnd, MONITOR_DEFAULTTONEAREST);
+			if (NULL != hMonitor)
+			{
+				MONITORINFO mi = {sizeof(MONITORINFO)};
+				::GetMonitorInfo(hMonitor, &mi);
+				CRect rcWork = mi.rcWork;
+				if (rcWork.left < rcWork.right)
+				{
+					if (-1 != iFlags)
+					{
+						if (rcWnd.right>rcWork.right)
+						{// 对于设计器的这些特殊tips来说，只需要考虑其右边,同时通过SetData保存它们的初始rect,在没有限制时，使用初始rect
+							int iWidth = (rcWork.right-rcWnd.left)>100 ? (rcWork.right-rcWnd.left):100;
+							rcWnd.bottom = rcWnd.top + (rcWnd.Width()*rcWnd.Height())/iWidth;
+							rcWnd.right = rcWnd.left + iWidth;
+							rcWnd.OffsetRect(rcWork.right - rcWnd.right, 0);
+						}
+					}
+					else
+					{
+						if (rcWnd.right > rcWork.right) 
+							rcWnd.OffsetRect(rcWork.right - rcWnd.right, 0);
+						if (rcWnd.bottom > rcWork.bottom)
+							rcWnd.OffsetRect(0, rcWork.bottom - rcWnd.bottom);
+						if (rcWnd.left < rcWork.left)
+							rcWnd.OffsetRect(rcWork.left - rcWnd.left, 0);
+						if (rcWnd.top < rcWork.top)
+							rcWnd.OffsetRect(0, rcWork.top - rcWnd.top);
+					}
+				}
+			}
+
 			m_pWnd->SetWindowPos(HWND_TOPMOST,rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height(),SWP_NOSENDCHANGING|SWP_SHOWWINDOW|SWP_NOACTIVATE);
 		} while (false);
 	}

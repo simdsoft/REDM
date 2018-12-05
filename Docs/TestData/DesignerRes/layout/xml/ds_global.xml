@@ -79,5 +79,12 @@
 		<imglist id="ds_w_HeaderCtrl" src="ds_w_HeaderCtrl" states="2"/>
 		<imglist id="ds_w_ListCtrlEx" src="ds_w_ListCtrlEx" states="2"/>
 		<imglist id="ds_w_Gif" src="ds_w_Gif" states="2"/>
+		<imglist id="ds_w_IE" src="ds_w_IE" states="2"/>
+		<imglist id="ds_w_ListBoxEx" src="ds_w_ListBoxEx" states="2"/>
+		<imglist id="ds_w_MonthCalCtrl" src="ds_w_MonthCalCtrl" states="2"/>
+		<imglist id="ds_w_PngGif" src="ds_w_PngGif" states="2"/>
+		<imglist id="ds_w_SplitLayout" src="ds_w_SplitLayout" states="2"/>
+		<imglist id="ds_w_TabPage" src="ds_w_TabPage" states="2"/>
+		<imglist id="ds_w_TreeCtrlEx" src="ds_w_TreeCtrlEx" states="2"/>
 	</skin>
 </global>

@@ -50,6 +50,9 @@ namespace DM
 #define      DUINAME_ListCtrlEx	L"ListCtrlEx"                   // DUI ListCtrlEx
 #define      DUINAME_Gif     	L"Gif"                          // DUI Gif
 #define      DUINAME_ScrollBase L"ScrollBase"                   // DUI ScrollBase
+#define      DUINAME_MonthCalCtrl L"MonthCalCtrl"				// DUI MonthCalCtrl
+#define      DUINAME_DateTimeCtrl L"DUIDateTimeCtrl"		    // DUI DateTimeCtrl
+
 // ----------------------------------------------------
 // scroll
 // 状态:正常、停留、点击、禁用、非Active

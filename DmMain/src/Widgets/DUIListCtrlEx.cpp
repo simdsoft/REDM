@@ -1048,7 +1048,7 @@ namespace DM
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
 			pCanvas->PushClip(rcClient);
-			if (m_iHoverItem)
+			if (-1 != m_iHoverItem)
 			{
 				CRect rcHover;
 				if (DMMapT<int,CRect>::GetObjByKey(m_iHoverItem,rcHover))
@@ -1062,7 +1062,7 @@ namespace DM
 					}
 				}
 			}
-			if (m_iSelItem)
+			if (-1 != m_iSelItem)
 			{
 				CRect rcSel;
 				if (DMMapT<int,CRect>::GetObjByKey(m_iSelItem,rcSel))

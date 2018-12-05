@@ -310,6 +310,49 @@
 	bool_bcheckbox="是否启用checkbox,示例:bcheckbox=1" 
 	/>
 	
+	<DUIMonthCalCtrlAttr
+	INT_headerheight="{24}头部的高度,默认为24,示例:headerheight=24"
+	INT_btnoffset="{4}头部左右小三角相对于边框的偏移，默认为4,示例:btnoffset=4"
+	COLOR_clrheaderbg="{pbgra(ff,ff,ff,00)}头部的背景色,示例:clrheaderbg=pbgra(ff,ff,ff,ff)"
+	SKIN_headerbgskin="头部的背景图,示例:headerbgskin=bgskin"
+	SKIN_leftbtnskin="左边的小三角按钮皮肤，示例:leftbtnskin=skinbtn"
+	SKIN_rightbtnskin="右边的小三角按钮皮肤，示例:rightbtnskin=skinbtn"
+	SIZE_btnsize="{-1,-1}小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize=-1,-1"
+	COLOR_clrheadertext="{pbgra(00,00,00,ff)}头部中间的文本颜色,示例:clrheadertext=pbgra(ff,ff,ff,ff)"
+	FONT_headerfont="头部中间的文本字体,示例:headerfont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	STRING_headertextformat="{%04d年%02d月}头部中间的文本format,带有格示化数字的符号,示例:headertextformat=%04d年%02d月"
+	
+	INT_titleheight="{24}title的高度,默认为24,示例:titleheight=24"
+	STRING_weektitle="{日,一, 二, 三, 四, 五, 六}七天的表示法,以逗号分隔,示例:weektitle=日,一, 二, 三, 四, 五, 六"
+	COLOR_clrtitletext="{pbgra(00,00,00,ff)}title的字体色,示例:clrtitletext=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtitlebg="{pbgra(ff,ff,ff,00)}title的背景色,示例:clrtitlebg=pbgra(ff,ff,ff,ff)"
+	SKIN_titlebgskin="title的背景图,示例:titlebgskin=bgskin"
+	FONT_titlefont="title的文本字体,示例:titlefont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+
+	bool_bhidegraycell="{0}是否隐藏gray cell,示例:bhidegraycell=0"
+	COLOR_clrgraycelltext="{pbgra(d2,d2,d2,ff)}graycell的normarl文本色(上下月的cell为greycell),示例:clrgraycelltext=pbgra(ff,ff,ff,ff)"
+	COLOR_clrgraycelltexthover="{pbgra(d2,d2,d2,ff)}graycell的hover文本色(上下月的cell为greycell),示例:clrgraycelltexthover=pbgra(ff,ff,ff,ff)"
+	COLOR_clrgraycelltextpush="{pbgra(d2,d2,d2,ff)}graycell的push文本色(上下月的cell为greycell),示例:clrgraycelltextpush=pbgra(ff,ff,ff,ff"
+	COLOR_clrcell="{pbgra(ff,ff,ff,00)}所有cell的背景色,示例:clrcell=pbgra(ff,ff,ff,ff)"
+	COLOR_clrcellhover="{pbgra(ff,ff,ff,00)}所有cell的hover背景色,示例:clrcellhover=pbgra(ff,ff,ff,ff)"
+	COLOR_clrcellpush="{pbgra(00,da,a8,ff)}所有cell的push背景色,示例:clrcellpush=pbgra(ff,ff,ff,ff)"
+	SKIN_cellskin="所有cell的三态背景图,示例:cellskin=skin"
+	bool_bshowjieri="{1}是否显示节日,如果显示,则cell的文本占上方的2/3,节日占下方1/3,示例:bshowjieri=1"
+	COLOR_clrjieritext="{pbgra(f2,b1,50,ff)节日的字体色,示例:clrjieritext=pbgra(ff,ff,ff,ff)"
+	FONT_jierifont="节日的文本字体,示例:jierifont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	
+	INT_todayheight="{24}today的高度,默认为24,示例:todayheight=24"
+	COLOR_clrtodaytext="{pbgra(00,00,00,ff)}today的normarl文本色,示例:clrtodaytext=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtodaytexthover="{pbgra(00,00,00,ff)}today的hover文本色,示例:clrtodaytexthover=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtodaytextpush="{pbgra(00,00,00,ff)}today的push文本色,示例:clrtodaytextpush=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtoday="{pbgra(ff,ff,ff,00)}today的背景色,示例:clrtoday=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtodayhover="{pbgra(ff,ff,ff,00)}today的hover背景色,示例:clrtodayhover=pbgra(ff,ff,ff,ff)"
+	COLOR_clrtodaypush="{pbgra(ff,ff,ff,00)}today的push背景色,示例:clrtodaypush=pbgra(ff,ff,ff,ff)"
+	SKIN_todayskin="每个today的三态背景图,示例:todayskin=skin"
+	FONT_todayfont="today的文本字体,示例:todayfont=face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1,face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作"
+	STRING_todaytextformat="{今天:%04d/%02d/%02d}today的文本format,带有格示化数字的符号,示例:todaytextformat=今天:%04d/%02d/%02d"
+	/>
+	
 	<DUIWindowAttr
 	bool_bvisible="{1}窗口是否可见,示例:bvisible=1" 
 	bool_bdisable="{0}窗口是否禁用,示例:bdisable=1" 

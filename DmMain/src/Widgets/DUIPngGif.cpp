@@ -68,6 +68,7 @@ namespace DM
 
 			m_ulFrameCount = (UINT)ulFrameCount;
 			pRender->CreateCanvas(nDstX,nDstY,&m_pMemCanvas);
+			pRender->CreateCanvas(nDstX,nDstY,&m_pPreviousCanvas);
 			m_rcGif.SetRect(0,0,nDstX,nDstY);
 			m_ulTotalLoopCount = -1;
 

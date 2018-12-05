@@ -1,5 +1,5 @@
 ﻿<sub>
-	<tabctrl name="tabsubctrl" pos="0,0,-0,-0" tabalign="left" cursel="0" animateSteps="15"  font="face:宋体,size:12" skin="tab_pagebg" clrText="rgba(38,63,82,ff)" itemSize="78,26" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
+	<tabctrl name="tabsubctrl" pos="0,0,-0,-0" tabalign="left" cursel="0" animateSteps="15"  font="face:宋体,size:12" skin="tab_pagebg" clrText="rgba(38,63,82,ff)" itemSize="78,25" firstitemoffset="7"  itemspace="2" textpoint="-1,10">
 		<tabPage  itemskin="tab_item" animatetype="1" title="window" tiptext="window控件">	
 			<sub src="layout:widget_window"/>
 		</tabPage>
@@ -47,6 +47,9 @@
 		</tabPage>
 		<tabPage  itemskin="tab_item" animatetype="1" title="pnggif" tiptext="pnggif控件">	
 			<sub src="layout:widget_pnggif"/>
+		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="monthcalctrl" tiptext="monthcalctrl控件">	
+			<sub src="layout:widget_monthcalctrl"/>
 		</tabPage>
 	</tabctrl>
 </sub>

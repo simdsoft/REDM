@@ -41,6 +41,7 @@
 		<file name="widget_hotkeyctrl" 	     path="layout\xml\widget\control\widget_hotkeyctrl.xml"/>
 		<file name="widget_ipaddressctrl" 	 path="layout\xml\widget\control\widget_IPAddressCtrl.xml"/>
 		<file name="widget_pnggif" 	 		 path="layout\xml\widget\control\widget_pnggif.xml"/>
+		<file name="widget_monthcalctrl" 	 path="layout\xml\widget\control\widget_monthcalctrl.xml"/>
 		
 		<!--tips-->
 		<file name="dui_tips1" 	   		 	path="layout\xml\tips\dui_tips1.xml"/>

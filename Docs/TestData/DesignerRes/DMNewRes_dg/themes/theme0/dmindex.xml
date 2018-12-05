@@ -17,5 +17,8 @@
 		<file name="dg_selprocess_hz" path="themes\theme0\designer\dg_selprocess_hz.png" />
 		<file name="dg_splith" path="themes\theme0\designer\dg_splith.png" />
 		<file name="dg_thumb_hz" path="themes\theme0\designer\dg_thumb_hz.png" />
+		<file name="dg_calendarcell" path="themes\theme0\designer\dg_calendarcell.png" />
+		<file name="dg_calendarleft" path="themes\theme0\designer\dg_calendarleft.png" />
+		<file name="dg_calendarright" path="themes\theme0\designer\dg_calendarright.png" />
 	</designer>
 </resource>

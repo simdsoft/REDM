@@ -104,6 +104,10 @@
 		<imglist 	id="webrefresh" 			 src="PNG:webrefresh"    		states="4"/>
 		<imglist 	id="splith" 				 src="PNG:splith" 				states="1" commint="split cur" />
 		<imglist 	id="splitv" 				 src="PNG:splitv" 				states="1" commint="split cur" />
+		
+		<img9 		id="calendar_left" 			 src="PNG:calendar_left" 		states="3" margin="4,4,4,4" />
+		<img9 		id="calendar_right" 		 src="PNG:calendar_right" 		states="3" margin="4,4,4,4" />
+		<img9 		id="calendar_cell" 			 src="PNG:calendar_cell" 		states="3" margin="3,3,3,3" />
 	</skin>
 	<style>
 		<style id="custom"  skin="dui_frame" ncskin="dui_frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)"/>

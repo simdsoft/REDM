@@ -61,6 +61,13 @@
 		<file name="ds_w_HeaderCtrl" path="themes\theme0\image\widget\ds_w_HeaderCtrl.png" />
 		<file name="ds_w_ListCtrlEx" path="themes\theme0\image\widget\ds_w_ListCtrlEx.png" />
 		<file name="ds_w_Gif" path="themes\theme0\image\widget\ds_w_Gif.png" />
+		<file name="ds_w_IE" path="themes\theme0\image\widget\ds_w_IE.png" />
+		<file name="ds_w_ListBoxEx" path="themes\theme0\image\widget\ds_w_ListBoxEx.png" />
+		<file name="ds_w_MonthCalCtrl" path="themes\theme0\image\widget\ds_w_MonthCalCtrl.png" />
+		<file name="ds_w_PngGif" path="themes\theme0\image\widget\ds_w_PngGif.png" />
+		<file name="ds_w_SplitLayout" path="themes\theme0\image\widget\ds_w_SplitLayout.png" />
+		<file name="ds_w_TabPage" path="themes\theme0\image\widget\ds_w_TabPage.png" />
+		<file name="ds_w_TreeCtrlEx" path="themes\theme0\image\widget\ds_w_TreeCtrlEx.png" />
 		<file name="ds_opendir" path="themes\theme0\image\ds_opendir.png" />
 	</png>
 	<gif>

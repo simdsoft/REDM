@@ -149,7 +149,12 @@ int DM_MessageBox(LPCWSTR lpText, UINT uType, LPCWSTR lpCaption,HWND hWnd)
 	{
 		hWnd = g_pMainWnd->m_hWnd;
 	}
-	return pBox->MessageBox(hWnd,lpText,lpCaption,uType);
+	int iRet = pBox->MessageBox(hWnd,lpText,lpCaption,uType);
+	if (g_pMainWnd && g_pMainWnd->IsWindow())
+	{
+		g_pMainWnd->SetActiveWindow();
+	}
+	return iRet;
 }
 
 int StringToInt(CStringW str)
