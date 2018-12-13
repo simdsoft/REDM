@@ -301,7 +301,6 @@ namespace DM
 			if (SUCCEEDED(hr))
 			{
 				hr = pDropTarget->DragEnter(pDataObj,grfKeyState,pt,pdwEffect);
-				*pdwEffect = DROPEFFECT_COPY;
 				pDropTarget->Release();
 			}
 		} while (false);
@@ -323,7 +322,6 @@ namespace DM
 			if (SUCCEEDED(hr))
 			{
 				hr = pDropTarget->DragOver(grfKeyState,pt,pdwEffect);
-				*pdwEffect = DROPEFFECT_COPY;
 				pDropTarget->Release();
 			}
 

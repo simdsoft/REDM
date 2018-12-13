@@ -105,7 +105,7 @@ namespace DM
 			{
 				break;
 			}
-			*pdwEffect = DROPEFFECT_NONE;//表示此窗口不能接受拖放。
+			bool IsDrag = false;
 			if (hDUIHoverWnd != m_hDUIHoverWnd)
 			{
 				DTMAP::CPair* pPair = m_mapDropTarget.Lookup(m_hDUIHoverWnd);
@@ -117,6 +117,7 @@ namespace DM
 				pPair = m_mapDropTarget.Lookup(m_hDUIHoverWnd);
 				if (m_hDUIHoverWnd && pPair)
 				{
+					IsDrag = true;
 					pPair->m_value->DragEnter(m_pDataObj,grfKeyState,pt,pdwEffect);
 				}
 			}
@@ -125,8 +126,13 @@ namespace DM
 				DTMAP::CPair *pPair = m_mapDropTarget.Lookup(m_hDUIHoverWnd);
 				if (m_hDUIHoverWnd && pPair)
 				{
+					IsDrag = true;
 					pPair->m_value->DragOver(grfKeyState,pt,pdwEffect);
 				}
+			}
+			if (false == IsDrag)
+			{
+				*pdwEffect = DROPEFFECT_NONE;//没有注册的子控件全部不能接受拖放。
 			}
 		} while (false);
 		return S_OK;

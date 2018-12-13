@@ -13,7 +13,7 @@
 #define VER_MAJOR		1
 #define VER_MINOR		0
 #define VER_SLAVE		0
-#define VER_BUILD		210
+#define VER_BUILD		213
 
 #define PRODUCTNAME     "DMMain"
 
