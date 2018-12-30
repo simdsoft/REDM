@@ -133,7 +133,7 @@ namespace DM
 				if (!(dwOldState & DUIWNDSTATE_Check))
 				{
 					DUIWindow* pWnd = DV_GetSelSiblingInGroup();
-					if (NULL == pWnd||0 != _wcsicmp(pWnd->V_GetClassName(),DUIRadioButton::GetClassName()))
+					if (NULL == pWnd||!pWnd->IsClass(DUIRadioButton::GetClassName()))
 					{
 						break;
 					}
@@ -164,7 +164,7 @@ namespace DM
 			DUIWindow *pSibling = pParent->DM_GetWindow(GDW_FIRSTCHILD);
 			while (pSibling)
 			{
-				if (0 == _wcsicmp(pSibling->V_GetClassName(),DUIRadioButton::GetClassName()))
+				if (0 != pSibling->IsClass(DUIRadioButton::GetClassName()))
 				{
 					if (pSibling->DM_IsChecked())
 					{

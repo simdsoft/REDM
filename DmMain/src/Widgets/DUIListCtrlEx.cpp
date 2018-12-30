@@ -442,13 +442,13 @@ namespace DM
 	{
 		RelayVisibleItemsWidth(GetTotalWidth());
 		UpdateScrollRange();
-		return DM_ECODE_OK;
+		return DM_ECODE_FAIL;
 	}
 
 	DMCode DUIListCtrlEx::OnHeaderSwap(DMEventArgs *pEvt)
 	{
 		DM_InvalidateRect(GetListRect());
-		return DM_ECODE_OK;
+		return DM_ECODE_FAIL;
 	}
 
 	DMCode DUIListCtrlEx::OnScrollEvent(DMEventArgs *pEvt)
@@ -468,7 +468,7 @@ namespace DM
 		{
 			ScrollUpdateWindow();
 		}
-		return DM_ECODE_OK;
+		return DM_ECODE_FAIL;
 	}
 #pragma endregion
 

@@ -127,9 +127,14 @@ namespace DM
 
 	HDMTREEITEM DUITreeCtrlEx::InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent/*=DMTVI_ROOT*/, HDMTREEITEM hInsertAfter/*=DMTVI_LAST*/,bool bEnsureVisible/*=false*/)
 	{
-		LPTVITEMEX pData = new TVITEMEX(XmlItem,this);
+		LPTVITEMEX pData = NewNodeData(XmlItem,this);
 		LoadItemAttribute(XmlItem, pData);
-		return InsertItem(pData, hParent, hInsertAfter, bEnsureVisible);
+		HDMTREEITEM hRet = InsertItem(pData, hParent, hInsertAfter, bEnsureVisible);
+		if (NULL == hRet)
+		{
+			OnNodeFree(pData);
+		}
+		return hRet;
 	}
 
 	bool DUITreeCtrlEx::EnsureVisible(HDMTREEITEM hItem,bool bFirstVisible /*= false*/)
@@ -294,7 +299,7 @@ namespace DM
 			DV_FireEvent(EvtSelChanged);
 			if (EvtSelChanged.m_hOldSel)
 			{
-				LPTVITEMEX pData = GetItem(m_hSelItem);
+				LPTVITEMEX pData = GetItem(EvtSelChanged.m_hOldSel);
 				pData->pPanel->ModifyState(0,DUIWNDSTATE_Check);
 				RedrawItem(EvtSelChanged.m_hOldSel);
 			}
@@ -322,6 +327,44 @@ namespace DM
 		} while (false);
 		return bRet;
 	}
+
+	HDMTREEITEM DUITreeCtrlEx::GetSelectedItem()
+	{
+		return m_hSelItem;
+	}
+
+	bool DUITreeCtrlEx::SetItemData(HDMTREEITEM hItem, LPARAM lParam)
+	{
+		bool bRet = false;
+		do 
+		{
+			if (hItem)
+			{
+				LPTVITEMEX pData = GetItem(hItem);
+				if (pData)
+				{
+					pData->lParam = lParam;
+					bRet = true;
+					break;
+				}
+			}
+		} while (false);
+		return bRet;
+	}
+
+	LPARAM DUITreeCtrlEx::GetItemData(HDMTREEITEM hItem) const
+	{
+		if (hItem)
+		{
+			LPTVITEMEX pData = GetItem(hItem);
+			if (pData)
+			{
+				return pData->lParam;
+			}
+		}
+		return 0;
+	}
+
 #pragma endregion
 
 
@@ -1033,6 +1076,11 @@ namespace DM
 		}
 	}
 
+	LPTVITEMEX DUITreeCtrlEx::NewNodeData(DMXmlNode XmlNode, IDMItemPanelOwner* pItemOwner)
+	{
+		return new TVITEMEX(XmlNode,this);
+	}
+
 	void DUITreeCtrlEx::OnNodeFree(LPTVITEMEX &pItemData)
 	{
 		pItemData->pPanel->SetItemId(-1);
@@ -1051,6 +1099,8 @@ namespace DM
 		do 
 		{
 			DMASSERT(pData);
+			hParent = (NULL == hParent) ? DMTVI_ROOT:hParent;
+			hInsertAfter = (NULL == hInsertAfter) ? DMTVI_LAST:hInsertAfter;
 			if (DMTVI_ROOT != hParent)
 			{
 				LPTVITEMEX pParentData = GetItem(hParent);

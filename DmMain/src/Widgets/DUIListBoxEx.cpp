@@ -490,7 +490,7 @@ namespace DM
 		{
 			ScrollUpdateWindow();
 		}
-		return DM_ECODE_OK;
+		return DM_ECODE_FAIL;
 	}
 #pragma endregion
 

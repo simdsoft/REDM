@@ -153,7 +153,7 @@ namespace DM
 		, public IDMItemPanelOwner
 		, public DMTreeT<LPTVITEMEX>
 	{
-		DMDECLARE_CLASS_NAME(DUITreeEx, DUINAME_TreeCtrlEx,DMREG_Window)
+		DMDECLARE_CLASS_NAME(DUITreeEx, L"treeex",DMREG_Window)
 	public:
 		DUITreeEx();
 		~DUITreeEx();

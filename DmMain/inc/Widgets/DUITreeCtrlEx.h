@@ -141,6 +141,9 @@ namespace DM
 		bool Expand(HDMTREEITEM hItem,UINT nCode = DMTVEX_EXPAND);
 		bool SetCheckState(HDMTREEITEM hItem,bool bCheck);   
 		bool SelectItem(HDMTREEITEM hItem,bool bEnsureVisible=true);
+		HDMTREEITEM GetSelectedItem();
+		bool SetItemData(HDMTREEITEM hItem, LPARAM lParam);
+		LPARAM GetItemData(HDMTREEITEM hItem) const;
 
 		//---------------------------------------------------
 		// Function Des: IDMItemPanelOwner methods
@@ -182,7 +185,8 @@ namespace DM
 		virtual void UpdateScrollRange();
 		virtual void UpdateVisibleMap();
 
-		virtual void OnNodeFree(LPTVITEMEX &pItemData);
+		virtual LPTVITEMEX NewNodeData(DMXmlNode XmlNode, IDMItemPanelOwner* pItemOwner);			///< 创建LPTVITEMEX的接口
+		virtual void OnNodeFree(LPTVITEMEX &pItemData);												///< 释放LPTVITEMEX的接口
 
 	public:// 辅助
 		//---------------------------------------------------
