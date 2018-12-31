@@ -345,7 +345,7 @@ namespace DM
 			if (strValue.IsEmpty())
 			{
 				m_pWnd->GetWindowRect(&rcWnd);
-				strValue.Format(L"%d,%d,%d,%d",rcWnd);
+				strValue.Format(L"%d,%d,%d,%d",rcWnd.left,rcWnd.top,rcWnd.right,rcWnd.bottom);
 				m_pWnd->SetData(strKey,strValue);
 			}
 			else

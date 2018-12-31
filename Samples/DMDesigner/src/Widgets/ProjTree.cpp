@@ -106,7 +106,7 @@ DMCode AttrTree::DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo)
 		tipInfo.iSpanTime  = 7000;
 		tipInfo.rcPosFlags = CRect(0,tipInfo.rcScreenTarget.Width(),-tipInfo.rcScreenTarget.Height(),1);
 		DMXmlInitAttrPtr pData = (DMXmlInitAttrPtr)GetItemData(m_hHoverItem);
-		tipInfo.dwReserve = (DWORD)pData;
+		tipInfo.dwReserve = (LPARAM)pData;
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;

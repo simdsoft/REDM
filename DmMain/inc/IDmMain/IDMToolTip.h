@@ -31,7 +31,7 @@ namespace DM
 		CRect       rcPosFlags;		 ///< 类似TrackPopupMenu的参数，前三项分别代表UINT uFlags, int x, int y,第四项大于表示强制固定，为0表示不强制固定，到屏幕边上时，自动内移
 		CRect       rcScreenTarget;  ///< rcTarget为相对于其窗口的客户区域，rcScreenTarget为屏幕区域
 		
-		DWORD       dwReserve;       ///< 保留
+		LPARAM      dwReserve;       ///< 保留
 	}DMToolTipInfo,*PDMToolTipInfo;
 
 	/// <summary>

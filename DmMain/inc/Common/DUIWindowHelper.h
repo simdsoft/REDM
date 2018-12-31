@@ -237,7 +237,7 @@ namespace DM
 
 		DMSmartPtrT<IDMFont>		 m_pOldPen;
 		DMColor						 m_ClrOld;
-		DWORD                        m_dwReserve;					///< 其他
+		LPARAM                       m_dwReserve;					///< 其他
 	};
 
 	// -----------------------------------------------

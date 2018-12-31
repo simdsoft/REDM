@@ -64,7 +64,7 @@ namespace DM
 		int							 m_iSpanTime;
 		CStringW					 m_strXmlId;
 		CStringW					 m_strTip; 
-		DWORD                        m_dwReserve;
+		LPARAM                       m_dwReserve;
 		CRect						 m_rcTarget;
 		bool						 m_bShowing;                         ///< 显示定时器已启用，但窗口还未显示
 		CRect                        m_rcPosFlags;
