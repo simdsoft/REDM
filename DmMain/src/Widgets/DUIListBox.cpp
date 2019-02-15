@@ -35,6 +35,7 @@ namespace DM
 		m_crItemSelText.SetTextInvalid();
 
 		m_bHotTrack      = false;
+		m_pDUIXmlInfo->m_pStyle->SetAttribute(L"align",L"left",false);    ///Align_Left
 
 
 		// listbox
@@ -520,7 +521,9 @@ namespace DM
 			}
 
 
-			UINT align = DT_SINGLELINE;
+			UINT align = 0;
+			m_pDUIXmlInfo->m_pStyle->GetTextAlign(align);
+			align |= DT_SINGLELINE;
 			rcText = rc;
 
 			if (m_TextPt.x == -1)
@@ -540,6 +543,7 @@ namespace DM
 			{
 				rcText.top = rc.top + m_TextPt.y;
 			}
+			
 			pCanvas->DrawText(DMTR(pItem->strText),-1,rcText,align);
 
 			if (bTextColorChanged)
