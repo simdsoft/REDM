@@ -5,7 +5,6 @@
 # 		<Author>	<Time>		<Version>	  <Des>
 #      guoyou		2015-1-5	1.0
 #     k000      2017-07-11            使用target_include_directories指定DmMain的包含目录
-#     k000      2017-07-12            启用时 USE_DESIGNER_ 为DmMain定义宏 _DMDesigner_
 #-------------------------------------------------------
 PROJECT(DmMain)
 
@@ -136,12 +135,6 @@ ADD_LIBRARY(DmMain STATIC
 			${MODULES_SKIN_SOURCE};
 			${WIDGETS_SOURCE};
 			)
-endif()
-
-if (USE_DESIGNER_)
-  target_compile_definitions(DmMain
-    PRIVATE _DMDesigner_
-  )
 endif()
 
 target_include_directories(DmMain

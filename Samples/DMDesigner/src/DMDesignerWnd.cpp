@@ -95,6 +95,7 @@ DMDesignerWnd::DMDesignerWnd()
 	g_pMainWnd = this;
 	g_pDMApp->GetDefRegObj((void**)&g_pRes, DMREG_Res);
 	m_pDesignerXml = NULL;
+	SetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1",L"440A2781-8BC2-4AC4-8225-9AC451FE42B4");
 }
 
 DMDesignerWnd::~DMDesignerWnd()

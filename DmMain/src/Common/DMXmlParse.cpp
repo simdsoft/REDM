@@ -7,9 +7,12 @@ namespace DM
 	void Init_Debug_XmlBuf(DMXmlNode &XmlNode)
 	{
 #if defined(_DEBUG)
-#if !defined(_DMDesigner_)// 设计器模式下，仅建议在分析问题时开放此辅助，不然会严重影响设计效率
-		XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
-#endif	
+		DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
+		if (NULL == pMain																													 // 加载插件时机,主窗口未初始化
+			||(0 != pMain->GetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase(L"440A2781-8BC2-4AC4-8225-9AC451FE42B4")))// 主窗口初始人后,非设计器模式
+		{// 设计器模式下，仅建议在分析问题时开放此辅助，不然会严重影响设计效率
+			XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
+		}
 #endif									
 	}
 #define INIT_DEBUG_XMLBUF(XmlNode) Init_Debug_XmlBuf(XmlNode);

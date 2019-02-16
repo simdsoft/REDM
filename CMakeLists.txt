@@ -5,8 +5,6 @@
 # 		<Author>	<Time>		<Version>	  <Des>
 #      guoyou		2015-1-5	1.0
 #      k000     2017-07-11            修复项目作为子项目引入时PrecompiledHeader.cmake路径错误
-#      k000     2017-07-12            移除全局 _DMDesigner_ 宏定义
-#                                     仅在启用 USE_DESIGNER_ 选项时编译 DMDesigner 项目
 #-------------------------------------------------------
 cmake_minimum_required(VERSION 2.8)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -46,8 +44,6 @@ endif()
 # 开启MT模式
 OPTION(USE_ALLMT_ "Compile all projects as mt"   ON)
 
-# 开启设计器模式
-OPTION(USE_DESIGNER_ "Compile DmMain for designer"   OFF)
 
 # 是否开启LOG功能
 OPTION(USE_DMLOG_  "DM open log"    ON)
@@ -68,10 +64,7 @@ ADD_SUBDIRECTORY(${PROJDIR}/DmMain)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/QQDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMUnitTest)
-
-if(USE_DESIGNER_)
-  ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDesigner)
-endif(USE_DESIGNER_)
+ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDesigner)
 
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/TGPDemo)
 if(USE_DMDLL_)# 仅dll模式下支持插件

@@ -354,9 +354,11 @@ namespace DM
 #ifdef _DEBUG
 			m_strXml = XmlNode.m_strDebugBuf;	
 #endif //_DEBUG
-#ifdef _DMDesigner_
-			m_XmlNode = XmlNode;
-#endif// _DMDesigner_
+			DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
+			if (pMain && 0 == pMain->GetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase(L"440A2781-8BC2-4AC4-8225-9AC451FE42B4"))
+			{
+				m_XmlNode = XmlNode;
+			}
 
 			DMBase::InitDMData(XmlNode);	 // 子类先处理，未处理的交由DUIWindow自身m_pDUIXmlInfo处理，这样子类如设置相同的属性值，子类优先处理完
 			if (0!=DM_SendMessage(WM_CREATE))// 不为0表示创建失败
