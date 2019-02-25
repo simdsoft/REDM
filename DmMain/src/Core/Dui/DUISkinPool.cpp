@@ -197,11 +197,10 @@ namespace DM
 			}
 
 			//1. º”‘ÿxml£¨»ÁL"<imglist id=\"1\" states=\"1\" />";
-			int ulSize = 260;
-			byte pXmlBuf[260] = {0};
-			UnicodeToUtf8((PWCHAR)lpszXml,(PCHAR)pXmlBuf,ulSize);
+			CStringW strWXml(lpszXml);
+			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
-			if (false == doc.LoadFromBuffer(pXmlBuf, ulSize))
+			if (false == doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength()))
 			{
 				break;
 			}

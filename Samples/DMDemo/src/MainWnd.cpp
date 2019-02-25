@@ -711,12 +711,10 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 			if (pSkin)
 			{
 				// œ»ª÷∏¥
-				wchar_t pWBuf[] = L"<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
-				int ulSize = 100;
-				byte pBuf[100] = {0};
-				UnicodeToUtf8(pWBuf,(PCHAR)pBuf,ulSize);
+				CStringW strWXml = L"<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
+				CStringA strXml = DMW2A(strWXml,CP_UTF8);
 				DMXmlDocument doc;
-				doc.LoadFromBuffer(pBuf, ulSize);
+				doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 				DMXmlNode XmlNode = doc.Root();
 				pSkin->InitDMData(XmlNode);
 

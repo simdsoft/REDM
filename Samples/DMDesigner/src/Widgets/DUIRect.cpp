@@ -282,12 +282,10 @@ namespace DM
 	DMCode DUIRect::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		wchar_t pWBuf[] = L"<edit textalign=\"center\" bautosel=\"1\"/>";
-		int ulSize = 100;
-		byte pBuf[100] = {0};
-		UnicodeToUtf8(pWBuf,(PCHAR)pBuf,ulSize);
+		CStringW strWXml = L"<edit textalign=\"center\" bautosel=\"1\"/>";
+		CStringA strXml = DMW2A(strWXml,CP_UTF8);
 		DMXmlDocument doc;
-		doc.LoadFromBuffer(pBuf, ulSize);
+		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
 		for (int i=0;i<4;i++)
 		{

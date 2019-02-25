@@ -13,14 +13,11 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 			break;
 		}
 
-		CStringW strBuf;
-		strBuf.Format(L"<tabPage itemskin=\"tab_item\" clrbg=\"pbgra(cc,cc,cc,FF)\" animatetype=\"1\" title=\"insert%d\"> <window pos=\"0,0,-0,-0\" text=\"insert%d\"/></tabPage>",m_nInsertCount,m_nInsertCount);
-		int ulSize = 200;
-		byte pBuf[200] = {0};
-		UnicodeToUtf8(strBuf.GetBuffer(),(PCHAR)pBuf,ulSize);
-		strBuf.ReleaseBuffer();
+		CStringW strWXml;
+		strWXml.Format(L"<tabPage itemskin=\"tab_item\" clrbg=\"pbgra(cc,cc,cc,FF)\" animatetype=\"1\" title=\"insert%d\"> <window pos=\"0,0,-0,-0\" text=\"insert%d\"/></tabPage>",m_nInsertCount,m_nInsertCount);
+		CStringA strXml = DMW2A(strWXml,CP_UTF8);
 		DMXmlDocument doc;
-		doc.LoadFromBuffer(pBuf, ulSize);
+		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode XmlNode = doc.Root();
 		if (!XmlNode.IsValid())
 		{
@@ -43,9 +40,9 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 			pBuf.Allocate(dwSize);
 			DWORD dwRead;
 			GetFileBufW(L"c:\\1.png",(void**)&pBuf,dwSize,dwRead);
-			wchar_t pWBuf[] = L"<imglist id=\"closebutton\"  states=\"3\" />";
-			g_pDMApp->AddSkinFromMemory(pBuf,dwSize,L"png",pWBuf);
-			//pBtn->SetAttribute(L"skin",L"123456");
+			wchar_t pWBuf[] = L"<imglist id=\"123456\"  states=\"3\" />";
+			g_pDMApp->AddSkin(pBuf,dwSize,L"png",pWBuf);
+			pBtn->SetAttribute(L"skin",L"123456");
 		}
 #endif
 
