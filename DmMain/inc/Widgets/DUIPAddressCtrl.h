@@ -22,12 +22,13 @@ namespace DMAttr
 	public:
 		static wchar_t* COLOR_clrdot;                                   ///< dot颜色,示例:clrdot="pbgra(ff,ff,ff,ff)"
 		static wchar_t* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
+		static wchar_t* FONT_font;										///< 默认文本字体, 和style的font相同作用.示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
 		static wchar_t* OPTION_align;									///< 段落排布，和style的align相同作用,默认left,可设置center,right,示例:align="left"
 		// 光标
 		static wchar_t* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
 		static wchar_t* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
 	};
-	DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrdot)DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrtext)
+	DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrdot)DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrtext)DMAttrValueInit(DUIPAddressCtrlAttr,FONT_font)
 	DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrcaret)DMAttrValueInit(DUIPAddressCtrlAttr,INI_caretanimatecount)
 	DMAttrValueInit(DUIPAddressCtrlAttr,OPTION_align);
 }
@@ -102,20 +103,18 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::COLOR_clrdot,m_clrDot,DM_ECODE_NOXMLLOADREFRESH)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext,OnAttrTextColor)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret,OnAttrCuretClr)
+			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::FONT_font,OnAttrTextFont)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount,OnAttrCuretAnimateCount)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::OPTION_align,OnAttrAlign)
 		DM_END_ATTRIBUTES()
 	public:
 		DMCode OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttrTextFont(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml);
 		DMCode OnAttrAlign(LPCWSTR pszValue, bool bLoadXml);
 	public:
 		DMSmartPtrT<DUIPEdit>                   m_pEdit[4];
 		DMColor                                 m_clrDot;
-		DMColor                                 m_clrText;
-		DMColor									m_clrCaret;
-		int										m_iCaretAniCount;
-		CStringW                                m_strAlign;
 	};
 }//namespace DM

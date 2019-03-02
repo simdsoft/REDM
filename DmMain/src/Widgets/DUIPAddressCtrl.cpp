@@ -104,12 +104,7 @@ namespace DM
 
 	DUIPAddressCtrl::DUIPAddressCtrl()
 	{
-		m_clrDot			 = PBGRA(255,0,0,255);
-		m_clrText			 = PBGRA(0,0,0,255);
-		m_clrCaret           = PBGRA(0,0,0,0xff);
-		m_iCaretAniCount     = 6;
-		m_strAlign           = L"left";
-
+		m_clrDot = PBGRA(255,0,0,255);
 	}
 
 	BOOL DUIPAddressCtrl::IsBlank() const
@@ -257,18 +252,6 @@ namespace DM
 			{
 				strAttr.Format(L"%d,0,@%d,-0",iLeft,iEditWid);
 				m_pEdit[i]->SetAttribute(L"pos",strAttr,false);
-
-				strAttr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_clrText.b,m_clrText.g,m_clrText.r,m_clrText.a);
-				m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,strAttr,false);
-
-				strAttr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_clrCaret.b,m_clrCaret.g,m_clrCaret.r,m_clrCaret.a);
-				m_pEdit[i]->OnAttrCuretClr(strAttr,false);
-
-				strAttr.Format(L"%d",m_iCaretAniCount);
-				m_pEdit[i]->OnAttrCuretAnimateCount(strAttr,false);
-
-				m_pEdit[i]->OnAttrAlign(m_strAlign,false);
-
 				iLeft += iEditWid;
 				iLeft += EDIT_DELTA;
 			}
@@ -280,11 +263,16 @@ namespace DM
 	DMCode DUIPAddressCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringW strWXml = L"<edit textalign=\"center\" bautosel=\"1\"/>";
+		CStringW strWXml = L"<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";
 		CStringA strXml = DMW2A(strWXml,CP_UTF8);
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
+		CStringW strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
+		CStringW strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
+		CStringW strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
+		CStringW strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
+		CStringW strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
 		for (int i=0;i<4;i++)
 		{
 			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], DUINAME_IPEdit,DMREG_Window);
@@ -294,6 +282,26 @@ namespace DM
 				m_pEdit[i]->AddRef();
 				m_pEdit[i]->InitDMData(EditNode);
 				m_pEdit[i]->SetLimitText(3);
+				if (!strTextFont.IsEmpty())
+				{
+					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::FONT_font,strTextFont,false);
+				}
+				if (!strTextClr.IsEmpty())
+				{
+					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,strTextClr,false);
+				}
+				if (!strCaretClr.IsEmpty())
+				{
+					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrcaret,strCaretClr,false);
+				}
+				if (!strCaretAniCount.IsEmpty())
+				{
+					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::INI_caretanimatecount,strCaretAniCount,false);
+				}
+				if (!strAlign.IsEmpty())
+				{
+					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::OPTION_align,strAlign,false);
+				}
 			}
 		}
 		return iErr;
@@ -302,67 +310,62 @@ namespace DM
 	//
 	DMCode DUIPAddressCtrl::OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml)
 	{
-		do 
+		for (int i=0;i<4;i++)
 		{
-			DMAttributeDispatch::ParseColor(pszValue,m_clrText);
-			for (int i=0;i<4;i++)
+			if (m_pEdit[i])
 			{
-				if (m_pEdit[i])
-				{
-					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,pszValue,bLoadXml);
-				}
+				m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,pszValue,bLoadXml);
 			}
-		} while (false);
+		}
 		return DM_ECODE_OK;
 	}
 
 	DMCode DUIPAddressCtrl::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
 	{
-		do 
+		for (int i=0;i<4;i++)
 		{
-			DMAttributeDispatch::ParseColor(pszValue,m_clrCaret);
-			for (int i=0;i<4;i++)
+			if (m_pEdit[i])
 			{
-				if (m_pEdit[i])
-				{
-					m_pEdit[i]->OnAttrCuretClr(pszValue,bLoadXml);
-				}
+				m_pEdit[i]->OnAttrCuretClr(pszValue,bLoadXml);
 			}
-		} while (false);
+		}
+		return DM_ECODE_OK;
+	}
+
+	DMCode DUIPAddressCtrl::OnAttrTextFont(LPCWSTR pszValue, bool bLoadXml)
+	{
+		for (int i=0;i<4;i++)
+		{
+			if (m_pEdit[i])
+			{
+				m_pEdit[i]->OnAttrTextFont(pszValue,bLoadXml);
+			}
+		}
 		return DM_ECODE_OK;
 	}
 
 	DMCode DUIPAddressCtrl::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
 	{
-		do 
+		for (int i=0;i<4;i++)
 		{
-			DMAttributeDispatch::ParseInt(pszValue,m_iCaretAniCount);
-			for (int i=0;i<4;i++)
+			if (m_pEdit[i])
 			{
-				if (m_pEdit[i])
-				{
-					m_pEdit[i]->OnAttrCuretAnimateCount(pszValue,bLoadXml);
-				}
+				m_pEdit[i]->OnAttrCuretAnimateCount(pszValue,bLoadXml);
 			}
-		} while (false);
+		}
 		return DM_ECODE_OK;
 	}
 
 
-	DM::DMCode DUIPAddressCtrl::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
 	{
-		do 
+		for (int i=0;i<4;i++)
 		{
-			m_strAlign = pszValue;
-			for (int i=0;i<4;i++)
+			if (m_pEdit[i])
 			{
-				if (m_pEdit[i])
-				{
-					m_pEdit[i]->OnAttrAlign(pszValue,bLoadXml);
-					
-				}
+				m_pEdit[i]->OnAttrAlign(pszValue,bLoadXml);
 			}
-		} while (false);
+		}
 		return DM_ECODE_OK;
 	}
 
