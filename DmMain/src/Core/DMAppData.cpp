@@ -18,15 +18,16 @@ namespace DM
 		CStringW strShadowAtom;strShadowAtom.Format(L"%s_%d_%d",DM_DEF_SHADOWCLASS_NAME,::GetTickCount(),::GetCurrentThreadId());
 		m_Atom		 = RegisterClassEx(m_hInst, strAtom.GetBuffer());strAtom.ReleaseBuffer();
 		m_shadowAtom = RegisterClassEx(m_hInst, strShadowAtom.GetBuffer(), true);strShadowAtom.ReleaseBuffer();
+		m_pTaskRunnerObj->InitEvent(::GetCurrentThreadId());// 在ATOM建立后才才能创建UI消息窗口
 
 		// 全局变量初始化
 		m_fun_UpdateLayeredWindowIndirect = NULL;
-		 HMODULE hMod = GetModuleHandleW(L"user32");
-		 if (hMod)
-		 {
+		HMODULE hMod = GetModuleHandleW(L"user32");
+		if (hMod)
+		{
 			m_fun_UpdateLayeredWindowIndirect =
 				(fun_UpdateLayeredWindowIndirect)GetProcAddress(hMod,"UpdateLayeredWindowIndirect");
-		 }
+		}
 	}
 
 	DMAppData::~DMAppData()
@@ -35,6 +36,7 @@ namespace DM
 		DMLogDispatch::SetLogDispatch(NULL);
 
 		// 卸载自身内部插件.
+		m_pTaskRunnerObj->UninstallEvent();
 		UninstallPlugin(m_pPlugin);
 		DM_DELETE(m_pPlugin);
 	}
@@ -234,6 +236,12 @@ namespace DM
 					iErr = CreateRegObj((void**)&m_pTransObj, lpszClassName, DMREG_Trans);
 				}
 				break;
+			case DMREG_TaskRunner:
+				{
+					m_pTaskRunnerObj.Release();// 先释放
+					iErr = CreateRegObj((void**)&m_pTaskRunnerObj, lpszClassName, DMREG_TaskRunner);
+				}
+				break;
 			case DMREG_Draw:
 			case DMREG_Layout:
 			case DMREG_ImgDecoder:
@@ -279,9 +287,10 @@ namespace DM
 			case DMREG_Res:      *ppObj = m_pResObj;       m_pResObj->AddRef();		  break;
 			case DMREG_Render:   *ppObj = m_pRenderObj;	   m_pRenderObj->AddRef();    break;
 			case DMREG_Trans:    *ppObj = m_pTransObj;     m_pTransObj->AddRef();     break;
+			case DMREG_TaskRunner:*ppObj = m_pTaskRunnerObj;m_pTaskRunnerObj->AddRef();break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans的RegType");
+					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans、DMREG_TaskRunner的RegType");
 				}
 				break;
 			}

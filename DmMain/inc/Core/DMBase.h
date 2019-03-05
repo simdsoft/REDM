@@ -63,12 +63,13 @@ namespace DM
 		DMREG_Res		                        = 7,    ///<资源打包类
 		DMREG_Render                            = 8,    ///<渲染类
 		DMREG_Draw                              = 9,    ///<绘制类
-		DMREG_Log	                            = 10,    ///<LOG类
+		DMREG_Log	                            = 10,   ///<LOG类
 		DMREG_FlowLayout                        = 11,   ///<流式布局类,基于DUIWindow实现
 		DMREG_ToolTip                           = 12,   ///<tooltip类
 		DMREG_Animate                           = 13,   ///<动画注册类
 		DMREG_Script                            = 14,   ///<脚本类
 		DMREG_Trans                             = 15,   ///<翻译类
+		DMREG_TaskRunner                        = 16,   ///<事件类,内置类似于QT的跨线程绑定,分发事件
 		
 		DMREG_MAX, 
 	};

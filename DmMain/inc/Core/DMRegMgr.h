@@ -72,6 +72,7 @@ namespace DM
 		DMRegTypeItem                       m_RtToolTip;
 		DMRegTypeItem                       m_RtScript;
 		DMRegTypeItem                       m_RtTrans;
+		DMRegTypeItem                       m_RtTaskRunner;
 
 	};
 

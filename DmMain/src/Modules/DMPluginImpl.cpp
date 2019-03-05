@@ -12,6 +12,7 @@
 #include "DMLayoutImpl.h"
 #include "DMTooltipImpl.h"
 #include "DMTransImpl.h"
+#include "DMTaskRunnerImpl.h"
 
 #include "DUIButton.h"
 #include "DUIScrollBase.h"
@@ -119,6 +120,11 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTransImpl>(),true);
 		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"×¢²áDMTransImplÊ§°Ü!");
 		iErr = g_pDMApp->SetDefRegObj(DMTransImpl::GetClassName(),DMTransImpl::GetClassType());
+
+		// ÄÚÖÃTaskRunner-----------------------
+		iErr = g_pDMApp->Register(DMRegHelperT<DMTaskRunnerImpl>(),true);
+		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"×¢²áDMTaskRunnerImplÊ§°Ü!");
+		iErr = g_pDMApp->SetDefRegObj(DMTaskRunnerImpl::GetClassName(),DMTaskRunnerImpl::GetClassType());
 
 		// ÄÚÖÃWidget ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIWindow>(),true);

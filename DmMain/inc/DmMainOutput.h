@@ -69,6 +69,7 @@ __pragma(warning(disable: 4275))
 #include "DMBase.h"
 #include "DUIAccel.h"
 #include "DMColor.h"
+#include "DMBundle.h"
 
 // 3 事件
 #include "DMEventMgr.h"
@@ -92,6 +93,7 @@ __pragma(warning(disable: 4275))
 #include "IDMAnimate.h"
 #include "IDMScript.h"
 #include "IDMTrans.h"
+#include "IDMTaskRunner.h"
 
 // 5 消息
 #include "DMMsgCrack.h"

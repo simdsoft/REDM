@@ -33,6 +33,7 @@ namespace DM
 		case DMREG_ToolTip:
 		case DMREG_Script:
 		case DMREG_Trans:
+		case DMREG_TaskRunner:
 			{
 				delete obj;
 			}
@@ -66,6 +67,7 @@ namespace DM
 		case DMREG_ToolTip:
 		case DMREG_Script:
 		case DMREG_Trans:
+		case DMREG_TaskRunner:
 			{
 				bRet = (0==_wcsicmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class作为唯一的标识，肯定不为空字符串
 			}
@@ -108,6 +110,7 @@ namespace DM
 		case DMREG_ToolTip:     iErr = RegisterByType(m_RtToolTip,RegObj,bReplace);     break;
 		case DMREG_Script:      iErr = RegisterByType(m_RtScript,RegObj,bReplace);		break;
 		case DMREG_Trans:       iErr = RegisterByType(m_RtTrans,RegObj,bReplace);		break;
+		case DMREG_TaskRunner:  iErr = RegisterByType(m_RtTaskRunner,RegObj,bReplace);  break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -141,6 +144,7 @@ namespace DM
 		case DMREG_ToolTip:     iErr = CreateRegObjByType(m_RtToolTip,ppObj,lpszClassName);		    break;
 		case DMREG_Script:      iErr = CreateRegObjByType(m_RtScript,ppObj,lpszClassName);		    break;
 		case DMREG_Trans:       iErr = CreateRegObjByType(m_RtTrans,ppObj,lpszClassName);		    break;
+		case DMREG_TaskRunner:  iErr = CreateRegObjByType(m_RtTaskRunner,ppObj,lpszClassName);		break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -173,6 +177,7 @@ namespace DM
 		case DMREG_ToolTip:	    iErr = UnRegisterByType(m_RtToolTip,lpszClassName);		    break;
 		case DMREG_Script:	    iErr = UnRegisterByType(m_RtScript,lpszClassName);		    break;
 		case DMREG_Trans:	    iErr = UnRegisterByType(m_RtTrans,lpszClassName);		    break;
+		case DMREG_TaskRunner:	iErr = UnRegisterByType(m_RtTaskRunner,lpszClassName);		break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -204,6 +209,7 @@ namespace DM
 		case DMREG_ToolTip:     iErr = SetDefRegObjByType(m_RtToolTip,lpszClassName);		    break;
 		case DMREG_Script:      iErr = SetDefRegObjByType(m_RtScript,lpszClassName);		    break;
 		case DMREG_Trans:       iErr = SetDefRegObjByType(m_RtTrans,lpszClassName);			    break;
+		case DMREG_TaskRunner:  iErr = SetDefRegObjByType(m_RtTaskRunner,lpszClassName) break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
@@ -235,6 +241,7 @@ namespace DM
 		case DMREG_ToolTip:     szName = m_RtToolTip.m_DefRegName; 		    break;
 		case DMREG_Script:      szName = m_RtScript.m_DefRegName; 		    break;
 		case DMREG_Trans:       szName = m_RtTrans.m_DefRegName; 		    break;
+		case DMREG_TaskRunner:  szName = m_RtTaskRunner.m_DefRegName; 		break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
