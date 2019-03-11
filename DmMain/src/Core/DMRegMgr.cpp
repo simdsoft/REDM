@@ -209,7 +209,7 @@ namespace DM
 		case DMREG_ToolTip:     iErr = SetDefRegObjByType(m_RtToolTip,lpszClassName);		    break;
 		case DMREG_Script:      iErr = SetDefRegObjByType(m_RtScript,lpszClassName);		    break;
 		case DMREG_Trans:       iErr = SetDefRegObjByType(m_RtTrans,lpszClassName);			    break;
-		case DMREG_TaskRunner:  iErr = SetDefRegObjByType(m_RtTaskRunner,lpszClassName) break;
+		case DMREG_TaskRunner:  iErr = SetDefRegObjByType(m_RtTaskRunner,lpszClassName);        break;
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
