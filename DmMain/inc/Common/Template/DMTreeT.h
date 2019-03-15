@@ -516,12 +516,9 @@ namespace DM
 				FreeNode(hSibling);
 				hSibling=hNextSibling;
 			}
-			if (hsNode != DMTVN_ROOT)
-			{
-				OnNodeFree(hsNode->data);// 在树形结构破坏前释放
-			}
 			if (hsNode!=DMTVN_ROOT)
 			{
+				OnNodeFree(hsNode->data);// 在树形结构破坏前释放
 				delete hsNode;
 			}
 		}
