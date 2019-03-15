@@ -508,17 +508,17 @@ namespace DM
 		///< 采用后序遍历的方式释放结点占用的空间
 		void FreeNode(HDMTREENODE hsNode)
 		{
-			DMASSERT(hsNode);
-			if (hsNode != DMTVN_ROOT)
-			{
-				OnNodeFree(hsNode->data);// 在树形结构破坏前释放
-			}
+			DMASSERT(hsNode);		
 			HDMTREENODE hSibling=(HDMTREENODE)GetChildItem((HDMTREEITEM)hsNode);
 			while (hSibling)
 			{
 				HDMTREENODE hNextSibling=hSibling->hNextSibling;
 				FreeNode(hSibling);
 				hSibling=hNextSibling;
+			}
+			if (hsNode != DMTVN_ROOT)
+			{
+				OnNodeFree(hsNode->data);// 在树形结构破坏前释放
 			}
 			if (hsNode!=DMTVN_ROOT)
 			{
