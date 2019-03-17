@@ -30,32 +30,87 @@ DM库需要遵守什么开源协议？
 
 ## 3. 关于  
 * QQ群技术支持：[336721552](http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8)
+
 * DM库GIT路径:
     [https://git.oschina.net/hgy413/REDM.git](https://git.oschina.net/hgy413/REDM.git)
-* **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
+
    
      
 ## 4. 附录
-###4.1 DMCef
+
+### 4.0 DM库快速入门任务式
+* **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
+
+### 4.1 DMCef
 * [DMCef](https://gitee.com/hgy413/DMCef)插件，实现Cef相关功能
 ![cef](https://gitee.com/hgy413/DMCef/raw/master/Docs/cef.gif)
 
-###4.2 设计器
+### 4.2 设计器
 
 | 简单的完整构建图 | 新建/打开资源 |
 | --- | --- |
-| ![a](http://hgy413.com/ueditor/php/upload/image/20160927/1474938757999326.gif) | ![b](http://hgy413.com/ueditor/php/upload/image/20180607/1528341440973222.gif) |
+| ![a](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/a.gif) | ![b](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/b.gif) |
 
 | 双击打开历史资源 | 内置基础控件 |
 | --- | --- |
-| ![c](http://hgy413.com/ueditor/php/upload/image/20180607/1528341568708797.gif) | ![d](http://hgy413.com/ueditor/php/upload/image/20180607/1528342176839044.gif) |
+| ![c](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/c.gif) | ![d](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/d.gif) |
 
 | 坐标调整 | 属性调整 |
 | --- | --- |
-| ![e](http://hgy413.com/ueditor/php/upload/image/20180607/1528342608719096.gif) | ![f](http://hgy413.com/ueditor/php/upload/image/20180607/1528343200874355.gif) |
+| ![e](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/e.gif) | ![f](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/f.gif) |
 
 
 | 复制粘贴删除控件 | 多图增加皮肤 |
 | --- | --- |
-| ![g](http://hgy413.com/ueditor/php/upload/image/20180607/1528343476506194.gif) | ![h](http://hgy413.com/ueditor/php/upload/image/20160920/1474338753316817.gif) |
+| ![g](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/g.gif) | ![h](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/h.gif) |
+
+| 跳转选中文件或文件夹 | 扫描校验错误 |
+| --- | --- |
+| ![i](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/i.gif) | ![j](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/j.gif) |
+
+
+### 4.3 部分项目
+
+| 古剑奇谭登陆器 | 4366游戏大厅 |
+| --- | --- |
+| ![a](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/a.gif) | ![b](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/b.gif) |
+
+| 特牛游戏大厅 | YY游戏大厅 |
+| --- | --- |
+| ![c](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/c.gif) | ![d](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/d.gif) |
+
+| 欢乐砸蛋 | YPLAY |
+| --- | --- |
+| ![e](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/e.gif) | ![f](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/f.gif) |
+
+| YY游戏微端 | LOL外服盒子 |
+| --- | --- |
+| ![g](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/g.gif) | ![h](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/h.gif) |
+
+| YGP盒子 | 天刀盒子 |
+| --- | --- |
+| ![i](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/i.gif) | ![j](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/j.gif) |
+
+
+| 战舰盒子 | YY端游独立下载器 |
+| --- | --- |
+| ![k](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/k.gif) | ![l](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/l.gif) |
+
+| 网吧桌面管理器 | 网吧后台进程管理器 |
+| --- | --- |
+| ![m](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/m.gif) | ![n](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/n.gif) |
+
+| STREAM助手 |  |
+| --- | --- |
+| ![o](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/o.gif) | |
+
+
+### 4.4 自带Demo
+| DMDemo | QQDemo |
+| --- | --- |
+| ![a](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/a.gif) | ![b](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/b.gif) |
+
+| TGPDemo |  |
+| --- | --- |
+| ![c](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/c.gif) | |
 
