@@ -114,3 +114,5 @@ DM库需要遵守什么开源协议？
 | --- | --- |
 | ![c](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/c.gif) | |
 
+### 4.5 生成帮助文档
+* [DMHelper](https://gitee.com/hgy413/DMHelper)
