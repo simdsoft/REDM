@@ -32,10 +32,30 @@ DM库需要遵守什么开源协议？
 * QQ群技术支持：[336721552](http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8)
 * DM库GIT路径:
     [https://git.oschina.net/hgy413/REDM.git](https://git.oschina.net/hgy413/REDM.git)
-* DM库SVN路径:
-    [svn://git.oschina.net/hgy413/REDM/](svn://git.oschina.net/hgy413/REDM/)
 * **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
    
      
 ## 4. 附录
-*  [DMCef](https://gitee.com/hgy413/DMCef)插件，实现Cef相关功能
+###4.1 DMCef
+* [DMCef](https://gitee.com/hgy413/DMCef)插件，实现Cef相关功能
+![cef](https://gitee.com/hgy413/DMCef/raw/master/Docs/cef.gif)
+
+###4.2 设计器
+
+| 简单的完整构建图 | 新建/打开资源 |
+| --- | --- |
+| ![a](http://hgy413.com/ueditor/php/upload/image/20160927/1474938757999326.gif) | ![b](http://hgy413.com/ueditor/php/upload/image/20180607/1528341440973222.gif) |
+
+| 双击打开历史资源 | 内置基础控件 |
+| --- | --- |
+| ![c](http://hgy413.com/ueditor/php/upload/image/20180607/1528341568708797.gif) | ![d](http://hgy413.com/ueditor/php/upload/image/20180607/1528342176839044.gif) |
+
+| 坐标调整 | 属性调整 |
+| --- | --- |
+| ![e](http://hgy413.com/ueditor/php/upload/image/20180607/1528342608719096.gif) | ![f](http://hgy413.com/ueditor/php/upload/image/20180607/1528343200874355.gif) |
+
+
+| 复制粘贴删除控件 | 多图增加皮肤 |
+| --- | --- |
+| ![g](http://hgy413.com/ueditor/php/upload/image/20180607/1528343476506194.gif) | ![h](http://hgy413.com/ueditor/php/upload/image/20160920/1474338753316817.gif) |
+
