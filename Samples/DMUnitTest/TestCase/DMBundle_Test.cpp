@@ -57,6 +57,10 @@ public:
 TEST_F(BundleTest, 测试基础函数)
 {
 	DMBundle bundle = BundleTest::InitBundle();
+	DMBundle bundle1 = bundle; // 指向同一块DMBundleImpl内存，引用计数+1
+	DMBundle bundle2(bundle);  // 指向同一块DMBundleImpl内存，引用计数+1
+	DMBundle bundle3 = bundle.Clone();// 复制一块新的DMBundleImpl内存,bundle3初始引用计数为1
+
 	bool ret1 = bundle.GetBool(L"1");
 	byte ret2 = bundle.GetByte(L"2");
 	char ret3 = bundle.GetChar(L"3");
