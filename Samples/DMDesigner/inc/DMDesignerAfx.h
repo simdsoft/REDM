@@ -83,9 +83,18 @@ using namespace DM;
 #include "RightXml.h"
 #include "ProjXml.h"
 #include "ObjXml.h"
+#include "ActionSlot.h"
+#include "ActionSlotMgr.h"
 #include "DMDesignerWnd.h"
 
 //
 extern DMDesignerWnd* g_pMainWnd;
 extern DMLazyT<DMCtrlXml> g_pAttr;
 extern DMSmartPtrT<ResMultFolder> g_pRes;
+
+#define  INSERTNEWOBSERVEACTION(ACT)			if (g_pMainWnd->m_ActionSlotMgr.IsActionArrayChainEmpty() && !g_pMainWnd->m_ActionSlotMgr.GetMemberbMuteAddSlot()){\
+														g_pMainWnd->m_ActionSlotMgr.InsertNewAction(new NullActionSlot());\
+												}\
+												g_pMainWnd->m_ActionSlotMgr.InsertNewAction(ACT);\
+												if (!g_pMainWnd->m_ActionSlotMgr.GetMemberbMuteAddSlot())\
+													g_pMainWnd->m_ActionSlotMgr.InsertNewAction(new NullActionSlot());

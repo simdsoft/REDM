@@ -387,7 +387,7 @@ void DUIDragFrame::OnLButtonDown(UINT nFlags,CPoint pt)
 		pMeta->SetCurSor();
 		m_StartDragPt = pt;
 		m_TrackDragPt = m_StartDragPt;
-		m_StartDragRc = m_dragMetas[0].m_Rect;
+	//	m_StartDragRc = m_dragMetas[0].m_Rect;
 		if (0 == pMeta->m_Index&&m_pData)
 		{
 			if (false == m_pData->m_pRootWnd->MLDownInSelMode(pt,m_pData->m_pDUIWnd))//说明点击在同一个dragframe上
@@ -395,6 +395,7 @@ void DUIDragFrame::OnLButtonDown(UINT nFlags,CPoint pt)
 				DM_Invalidate();
 			}
 		}
+		m_StartDragRc = m_dragMetas[0].m_Rect;
 	}
 }
 
@@ -402,6 +403,16 @@ void DUIDragFrame::OnLButtonUp(UINT nFlags,CPoint pt)
 {
 	m_bDown = false;
 	g_pMainWnd->m_pDesignerXml->m_pObjEditor->SelFrameInAllMode();// 故意在弹出后才更新选中框,这样可以在拖动时以选中框为参考
+
+	CRect EndDragRc = m_dragMetas[0].m_Rect;
+	if (EndDragRc != m_StartDragRc)
+	{
+		DMASSERT(m_pData);
+		if (m_pData)
+		{
+			INSERTNEWOBSERVEACTION(new EditorElemPosChgActionSlot(g_pMainWnd->m_pDesignerXml->m_pObjTree->GetSelectedItem(), m_StartDragRc, EndDragRc, m_bMain, g_pMainWnd->m_pDesignerXml->m_pObjTree, this));
+		}
+	}
 	DM_ReleaseCapture();
 	DM_Invalidate();
 }

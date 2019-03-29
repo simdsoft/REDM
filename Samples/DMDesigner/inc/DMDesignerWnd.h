@@ -44,6 +44,7 @@ protected:
 	DMCode OnGlobalMenuBtn(int idFrom);
 	DMCode HandleGlobalMenu(int nID);
 	DMCode InitFileMenu(DMXmlNode& XmlNode,int idFrom);
+	DMCode InitEditMenu(DMXmlNode& XmlNode, int idFrom);
 	DMCode InitViewMenu(DMXmlNode& XmlNode,int idFrom);
 	DMCode InitModeMenu(DMXmlNode& XmlNode,int idFrom);
 	DMCode InitHelpMenu(DMXmlNode& XmlNode,int idFrom);
@@ -54,5 +55,6 @@ public:
 	DMCode OptionObjProj();
 	DMCode ReloadProj();
 public:
-	ObjXml*					m_pDesignerXml;   
+	ObjXml*							m_pDesignerXml;   
+	ActionSlotMgr<ActionSlot>		m_ActionSlotMgr;
 };

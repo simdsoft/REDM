@@ -52,6 +52,26 @@ DMCode ObjTree::UpdateItemRect(HDMTREEITEM hRet)
 	return iErr;
 }
 
+void ObjTree::OnNodeFree(DM::LPTVITEMEX &pItemData)
+{
+	m_DeletedItemsDataArr.Add(pItemData);
+	m_DeletedItemsLparamArr.Add(pItemData ? pItemData->lParam : NULL);
+	__super::OnNodeFree(pItemData);
+}
+
+bool ObjTree::IsItemStillExist(const DM::LPTVITEMEX &pItemData, LPARAM lp)
+{
+	if (!pItemData)
+		return false;
+	int nCount = (int)m_DeletedItemsDataArr.GetCount();
+	for (int i = 0; i < nCount; i++)
+	{
+		if (pItemData == m_DeletedItemsDataArr[i] && m_DeletedItemsLparamArr[i] == lp)
+			return false;
+	}
+	return true;
+}
+
 void ObjTree::OnRButtonDown(UINT nFlags, CPoint pt)
 {
 	do 

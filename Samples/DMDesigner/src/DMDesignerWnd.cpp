@@ -9,20 +9,24 @@ DesignMenu g_GlbMenuItem[] = \
 	{GLBMENU_CLOSE,			  L" 关闭"},//2 
 	{GLBMENU_EXIT,		      L" 退出"},//3 
 
-	{GLBMENU_OPTOBJPROJ,	  L" 切换对象视图 ctrl+q"},//4 
-	{GLBMENU_RELOAD,		  L" 重新加载     f5"},//5 
+	{GLBMENU_UNDO,			  L" 撤销 ctrl+z" }, //4
+	{GLBMENU_REDO,			  L" 重做 ctrl+r" }, //5
 
-	{GLBMENU_MOVEMODE,		  L" Move模式 ctrl+1"},//6
-	{GLBMENU_SELMODE,		  L" Sel模式  ctrl+2"},//7
-	{GLBMENU_ADDMODE,		  L" Add模式  ctrl+3"},//8
+	{GLBMENU_OPTOBJPROJ,	  L" 切换对象视图 ctrl+q"},//6 
+	{GLBMENU_RELOAD,		  L" 重新加载     f5"},//7
 
-	{GLBMENU_HELPDOC,		  L" 帮助文档"},//9
-	{GLBMENU_ONLINEHELP,	  L" 在线教程"},//10
+	{GLBMENU_MOVEMODE,		  L" Move模式 ctrl+1"},//8
+	{GLBMENU_SELMODE,		  L" Sel模式  ctrl+2"},//9
+	{GLBMENU_ADDMODE,		  L" Add模式  ctrl+3"},//10
+
+	{GLBMENU_HELPDOC,		  L" 帮助文档"},//11
+	{GLBMENU_ONLINEHELP,	  L" 在线教程"},//12
 };
 enum
 {
 	GLBMENUBTN_ID_MIN          = 100,
 	GLBMENUBTN_ID_FILE,							///< 文件
+	GLBMENUBTN_ID_EDIT,							///< 编辑
 	GLBMENUBTN_ID_VIEW,							///< 视图
 	GLBMENUBTN_ID_MODE,							///< 模式
 	GLBMENUBTN_ID_HELP,							///< 帮助
@@ -126,13 +130,20 @@ BOOL DMDesignerWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		strAcc.Format(L"ctrl+%d",i);
 		accel = DUIAccel::TranslateAccelKey(strAcc);
 		DUIAccel acctemp(accel);
-		GetAccelMgr()->RegisterAccel(acctemp,this);
-		
+		GetAccelMgr()->RegisterAccel(acctemp,this);		
 	}
 
 	accel = DUIAccel::TranslateAccelKey(L"f5");
 	DUIAccel accf5(accel);
 	GetAccelMgr()->RegisterAccel(accf5,this);
+
+	accel = DUIAccel::TranslateAccelKey(L"ctrl+z");
+	DUIAccel accCtrlZ(accel);
+	GetAccelMgr()->RegisterAccel(accCtrlZ, this);
+
+	accel = DUIAccel::TranslateAccelKey(L"ctrl+r");
+	DUIAccel accCtrlR(accel);
+	GetAccelMgr()->RegisterAccel(accCtrlR, this);
 
 	SetTimer(TIMER_TIPS,4000);
 	return TRUE;  
@@ -334,6 +345,14 @@ bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 	{
 		ReloadProj();
 	}
+	else if (0 == str.CompareNoCase(L"Ctrl+Z"))
+	{
+		HandleGlobalMenu(GLBMENU_UNDO);
+	}
+	else if (0 == str.CompareNoCase(L"Ctrl+R"))
+	{
+		HandleGlobalMenu(GLBMENU_REDO);
+	}
 
 	return true;
 }
@@ -379,6 +398,7 @@ DMCode DMDesignerWnd::OnGlobalMenuBtn(int idFrom)
 		XmlNode.SetAttributeInt(XML_BSHADOW,1);
 		XmlNode.SetAttribute(L"clrtext",L"pbgra(ff,ff,00,ff)");
 		InitFileMenu(XmlNode,idFrom);
+		InitEditMenu(XmlNode,idFrom);
 		InitViewMenu(XmlNode,idFrom);
 		InitModeMenu(XmlNode,idFrom);
 		InitHelpMenu(XmlNode,idFrom);
@@ -422,6 +442,18 @@ DMCode DMDesignerWnd::HandleGlobalMenu(int nID)
 	case GLBMENU_EXIT:
 		{
 			OnClose();
+		}
+		break;
+
+	case GLBMENU_UNDO:
+		{
+			m_ActionSlotMgr.ExcutePrevSiblingAction();
+		}
+		break;
+
+	case GLBMENU_REDO:
+		{
+			m_ActionSlotMgr.ExcuteNextSiblingAction();
 		}
 		break;
 
@@ -499,6 +531,29 @@ DMCode DMDesignerWnd::InitFileMenu(DMXmlNode& XmlNode,int idFrom)
 	} while (false);
 	return iErr;
 
+}
+
+DMCode DMDesignerWnd::InitEditMenu(DMXmlNode& XmlNode, int idFrom)
+{
+	DMCode iErr = DM_ECODE_FAIL;
+	do
+	{
+		if (GLBMENUBTN_ID_EDIT != idFrom)
+		{
+			break;
+		}
+
+		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID, IntToString(g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].id)); XmlItem.SetAttribute(XML_TEXT, g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_BDISABLE, m_ActionSlotMgr.IsExistPrevSiblingSteps() ? 0 : 1);
+		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
+		XmlItem.SetAttribute(XML_ID, IntToString(g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].id)); XmlItem.SetAttribute(XML_TEXT, g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_BDISABLE, m_ActionSlotMgr.IsExistNextSiblingSteps() ? 0 : 1);
+		Init_Debug_XmlBuf(XmlNode);
+
+		iErr = DM_ECODE_OK;
+	} while (false);
+	return iErr;
 }
 
 DMCode DMDesignerWnd::InitViewMenu(DMXmlNode& XmlNode,int idFrom)
@@ -594,6 +649,7 @@ DMCode DMDesignerWnd::OptionObjProj()
 		{
 			if (IDOK == DM_MessageBox(L"确认关闭对象视图?\r\n",MB_OKCANCEL))
 			{
+				m_ActionSlotMgr.FreeAllActionSlot();//去掉所有动作监控
 				m_pDesignerXml->ReleaseObjTree();
 			}
 		}

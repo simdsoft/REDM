@@ -80,6 +80,8 @@ private:
 
 	CRect CalcDragFrameRect(CRect rcDrag);
 	void InternalHandleDrag(CRect& rect, int* pHori, int* pVert);
+	
+public:
 	void SetElementWidth(int wid);
 	void SetElementHeight(int hei);
 	bool SetElementRect(CRect rect);
