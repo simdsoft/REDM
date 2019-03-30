@@ -594,6 +594,8 @@ namespace DM
 
 	BOOL DUITextHost::TxCreateCaret(HBITMAP hbmp, INT xWidth, INT yHeight)// hgytest pass，插入符显示前自动触发
 	{
+		::CreateCaret(m_pRichEdit->GetContainer()->OnGetHWnd(),hbmp,xWidth,yHeight);
+		::HideCaret(m_pRichEdit->GetContainer()->OnGetHWnd());
 		m_pRichEdit->InitCaret(xWidth,yHeight);
 		return TRUE;
 	}
@@ -615,6 +617,7 @@ namespace DM
 
 	BOOL DUITextHost::TxSetCaretPos(INT x, INT y)// hgytest pass 靠近边界时x.y均为-32000
 	{
+		::SetCaretPos(x,y);
 		m_ptCaret.x = x;
 		m_ptCaret.y = y;
 		return m_pRichEdit->ResetCaret(CPoint(x,y));
