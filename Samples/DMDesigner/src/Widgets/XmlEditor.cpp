@@ -43,7 +43,7 @@ LRESULT XmlEditor::DefWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if(notify->nmhdr.code == SCN_MARGINCLICK)
 		{ 
 			// 确定是页边点击事件 
-			const int line_number = Call(SCI_LINEFROMPOSITION,notify->position); 
+			const int line_number = (int)Call(SCI_LINEFROMPOSITION,notify->position); 
 			Call(SCI_TOGGLEFOLD, line_number); 
 		} 
 		static int LastProcessedChar = 0; 
@@ -190,12 +190,12 @@ LRESULT XmlEditor::GotoPos(int iPos, bool bDirect /*= true*/)
 
 int XmlEditor::GetCurrentPos(bool bDirect /*= true*/)
 {
-	return Call(SCI_GETCURRENTPOS, 0, 0, bDirect);
+	return (int)Call(SCI_GETCURRENTPOS, 0, 0, bDirect);
 }
 
 int XmlEditor::GetCurLine(int iLen, LPCSTR lpszText, bool bDirect /*= true*/)
 {
-	return Call(SCI_GETCURLINE, static_cast<WPARAM>(iLen), reinterpret_cast<LPARAM>(lpszText), bDirect);
+	return (int)Call(SCI_GETCURLINE, static_cast<WPARAM>(iLen), reinterpret_cast<LPARAM>(lpszText), bDirect);
 }
 
 LRESULT XmlEditor::SetUndoCollection(bool bCollectUndo, bool bDirect /*= true*/)

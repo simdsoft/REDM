@@ -135,7 +135,7 @@ DMCode StyleDlg::OnTreeInit(AttrTree* pTree)
 		NoDataNode.SetAttribute(XML_TEXT,L"DUIStyleAttr");
 		HDMTREEITEM hTreeRoot =  pTree->InsertItem(NoDataNode);
 
-		int iCount = GetCount();
+		int iCount = (int)GetCount();
 		if (0 == iCount)
 		{
 			break;

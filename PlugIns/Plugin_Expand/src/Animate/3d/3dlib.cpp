@@ -23,8 +23,8 @@ void Build_Sin_Cos_Tables(void)
 		float theta = (float)ang*PI/(float)180;
 
 		// insert next entry into table
-		cos_look[ang] = cos(theta);
-		sin_look[ang] = sin(theta);
+		cos_look[ang] = (float)cos((double)theta);
+		sin_look[ang] = (float)sin((double)theta);
 
 	} // end for ang
 

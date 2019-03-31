@@ -140,7 +140,7 @@ void CSpyWnd::InitTreeCtrl(HWND hRootWnd)
 		wchar_t szXmlPath[MAX_PATH] = {0};
 		DM::GetRootFullPath(L".\\DMSpyTree.xml",szXmlPath,MAX_PATH);
 		DMSpyTool::WriteShareMemory(szXmlPath,MAX_PATH);
-		HRESULT hr = ::SendMessage(hRootWnd, WM_DMSPY, DMSPY_ENUM, 0);
+		HRESULT hr = (HRESULT)::SendMessage(hRootWnd, WM_DMSPY, DMSPY_ENUM, 0);
 		if (DMSPY_ENUM != hr)
 		{
 			break;
@@ -230,7 +230,7 @@ bool CSpyWnd::HitTest(RECT &rc)
 		m_pSpyEnum->pt = pnnt;
 		DMSpyTool::WriteShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
 		DWORD_PTR lresult = 0; 
-		HRESULT hr = ::SendMessageTimeout(m_hRootWnd, WM_DMSPY, DMSPY_POINT, 0,SMTO_NORMAL,2000,&lresult);
+		HRESULT hr = (HRESULT)::SendMessageTimeout(m_hRootWnd, WM_DMSPY, DMSPY_POINT, 0,SMTO_NORMAL,2000,&lresult);
 		DMSpyTool::ReadShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
 		if (hr&&DMSPY_POINT == lresult&&m_pSpyEnum->hNextDUIWnd)
 		{

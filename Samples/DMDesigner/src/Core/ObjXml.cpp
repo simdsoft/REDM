@@ -326,7 +326,7 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 		CStringWList strList;
 		CStringW strName;
 		CStringW strKey;
-		int nCount = SplitStringT(strStyle,L':',strList);
+		int nCount = (int)SplitStringT(strStyle,L':',strList);
 		if (1==nCount)
 		{
 			strKey = strStyle;
@@ -665,12 +665,12 @@ DMCode ObjXml::ObjMenu_Del()
 			if (0 == _wcsicmp(pParent->V_GetClassName(),DUIListBoxEx::GetClassName()))
 			{
 				DUIListBoxEx* pListBoxEx = dynamic_cast<DUIListBoxEx*>(pParent);
-				pListBoxEx->DeleteItem(pPanel->m_dwItemId);
+				pListBoxEx->DeleteItem((int)pPanel->m_dwItemId);
 			}
 			if (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName()))
 			{
 				DUIListCtrlEx* pListCtrlEx = dynamic_cast<DUIListCtrlEx*>(pParent);
-				pListCtrlEx->DeleteItem(pPanel->m_dwItemId);
+				pListCtrlEx->DeleteItem((int)pPanel->m_dwItemId);
 			}
 			else
 			{

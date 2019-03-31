@@ -159,7 +159,7 @@ DMCode SkinDlg::OnThemeCbxChange(DMEventArgs *pEvt)
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 			CStringW strSrc = pNode->Attribute(XML_SRC);
 			CStringWList strList;
-			int nCount = SplitStringT(strSrc,L':',strList);
+			int nCount = (int)SplitStringT(strSrc,L':',strList);
 			if (2 == nCount)
 			{
 				strType = strList[0];
@@ -301,7 +301,7 @@ DMCode SkinDlg::OnOK()
 		// 1.≈–∂œ «∑Ò—°‘Ò∆§∑Ùµƒimg
 		CStringW strImgSrc = m_SkinNode.Attribute(XML_SRC);
 		CStringWList strList;
-		int nCount = SplitStringT(strImgSrc,L':',strList);
+		int nCount = (int)SplitStringT(strImgSrc,L':',strList);
 		if (strImgSrc.IsEmpty()
 			||2!=nCount)
 		{

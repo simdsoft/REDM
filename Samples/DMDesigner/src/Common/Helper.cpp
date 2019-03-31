@@ -370,7 +370,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		}
 		CStringW AttrName = ptr->GetName();
 		CStringWList strList;
-		int nCount = SplitStringT(AttrName,L'_',strList);
+		int nCount = (int)SplitStringT(AttrName,L'_',strList);
 		DMASSERT(2==nCount);
 
 		//0.Ö¸¶¨desc
@@ -402,7 +402,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		else
 		{
 			CStringWList strValueList;
-			nCount = SplitStringT(strDesc,L'}',strValueList);
+			nCount = (int)SplitStringT(strDesc,L'}',strValueList);
 			if (strDesc.Left(1) == L'{'&& 2 == nCount)//1
 			{
 				strValue = strValueList[0].Mid(1,strValueList[0].GetLength()-1);
@@ -435,7 +435,7 @@ bool DMCtrlXml::ParseName(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strN
 		}
 		CStringW AttrName = ptr->GetName();
 		CStringWList strList;
-		int nCount = SplitStringT(AttrName,L'_',strList);
+		int nCount = (int)SplitStringT(AttrName,L'_',strList);
 		DMASSERT(2==nCount);
 	
 		strType = strList[0];

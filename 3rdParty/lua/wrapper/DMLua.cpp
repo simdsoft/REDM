@@ -446,7 +446,7 @@ namespace DMLUA
 	HWND read(lua_State *L, int index)
 	{
 		if(lua_isnumber(L,index))
-			return (HWND)(UINT)lua_tonumber(L, index);
+			return (HWND)(LONG_PTR)lua_tonumber(L, index);
 		else
 			return *(HWND*)lua_touserdata(L, index);
 	}
@@ -455,7 +455,7 @@ namespace DMLUA
 	HDC read(lua_State *L, int index)
 	{
 		if(lua_isnumber(L,index))
-			return (HDC)(UINT)lua_tonumber(L, index);
+			return (HDC)(LONG_PTR)lua_tonumber(L, index);
 		else
 			return *(HDC*)lua_touserdata(L, index);
 	}
@@ -464,7 +464,7 @@ namespace DMLUA
 	HICON read(lua_State *L, int index)
 	{
 		if(lua_isnumber(L,index))
-			return (HICON)(UINT)lua_tonumber(L, index);
+			return (HICON)(LONG_PTR)lua_tonumber(L, index);
 		else
 			return *(HICON*)lua_touserdata(L, index);
 	}
@@ -473,7 +473,7 @@ namespace DMLUA
 	HBITMAP read(lua_State *L, int index)
 	{
 		if(lua_isnumber(L,index))
-			return (HBITMAP)(UINT)lua_tonumber(L, index);
+			return (HBITMAP)(LONG_PTR)lua_tonumber(L, index);
 		else
 			return *(HBITMAP*)lua_touserdata(L, index);
 	}
@@ -482,7 +482,7 @@ namespace DMLUA
 	HINSTANCE read(lua_State *L, int index)
 	{
 		if(lua_isnumber(L,index))
-			return (HINSTANCE)(UINT)lua_tonumber(L, index);
+			return (HINSTANCE)(LONG_PTR)lua_tonumber(L, index);
 		else
 			return *(HINSTANCE*)lua_touserdata(L, index);
 	}

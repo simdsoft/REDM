@@ -39,7 +39,7 @@ BOOL CSkinWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		pRes->SendExpandInfo((WPARAM)(LPVOID)pBuf, (LPARAM)iAllThemeSize);
 		CStringW strValue = (wchar_t*)pBuf.get();
 		CStringWList strUpdateList;
-		int nCount = SplitStringT(strValue,L';',strUpdateList);
+		int nCount = (int)SplitStringT(strValue,L';',strUpdateList);
 		CStringW strType = L"png";CStringW strResName=L"preview";
 		for (int i=0;i<nCount;i++)
 		{

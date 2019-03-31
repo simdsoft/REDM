@@ -495,11 +495,11 @@ DMCode CMainWnd::MyTimer()
 		{
 			pScrollBar->m_siHoz.nPos+=1;
 			pScrollBar->m_siVer.nPos+=1;
-			if (pScrollBar->m_siHoz.nPos>pScrollBar->m_siHoz.nMax-pScrollBar->m_siHoz.nMin-pScrollBar->m_siHoz.nPage)
+			if (pScrollBar->m_siHoz.nPos>pScrollBar->m_siHoz.nMax-pScrollBar->m_siHoz.nMin-(int)pScrollBar->m_siHoz.nPage)
 			{
 				pScrollBar->m_siHoz.nPos = pScrollBar->m_siHoz.nMin;
 			}
-			if (pScrollBar->m_siVer.nPos>pScrollBar->m_siVer.nMax-pScrollBar->m_siHoz.nMin-pScrollBar->m_siVer.nPage)
+			if (pScrollBar->m_siVer.nPos>pScrollBar->m_siVer.nMax-pScrollBar->m_siHoz.nMin-(int)pScrollBar->m_siVer.nPage)
 			{
 				pScrollBar->m_siVer.nPos = pScrollBar->m_siVer.nMin;
 			}

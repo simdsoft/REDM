@@ -91,7 +91,7 @@ namespace DM
 			BeginFade(false,LOWORD(wp),HIWORD(wp));// ¿ªÊ¼½¥ÏÔ
 			if (lp!=0)
 			{
-				SetTimer(TIMER_3D,(UINT_PTR)lp);
+				SetTimer(TIMER_3D,(UINT)lp);
 			}
 			else
 			{

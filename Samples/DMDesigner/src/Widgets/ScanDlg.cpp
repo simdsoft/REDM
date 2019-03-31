@@ -254,7 +254,7 @@ DMCode ScanDlg::Scan(bool bRepair)
 					CStringWList strList;
 					CStringW strName;
 					CStringW strKey;
-					int nCount = SplitStringT(strSrc,L':',strList);
+					int nCount = (int)SplitStringT(strSrc,L':',strList);
 					if (1==nCount)
 					{
 						strKey  = L"PNG";
@@ -321,7 +321,7 @@ DMCode ScanDlg::Scan(bool bRepair)
 							CStringWList strList;
 							CStringW strName;
 							CStringW strKey;
-							int nCount = SplitStringT(strSrc,L':',strList);
+							int nCount = (int)SplitStringT(strSrc,L':',strList);
 							if (1==nCount)
 							{
 								strKey = L"PNG";

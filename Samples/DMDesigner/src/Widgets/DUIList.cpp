@@ -40,7 +40,7 @@ namespace DM
 			if (-1 == nIndex
 				||nIndex>(int)GetCount())
 			{
-				nIndex = GetCount();
+				nIndex = (int)GetCount();
 			} 
 
 			LPDSLBITEMEX pNewItem = new DSLBITEMEX(XmlNode,this);
@@ -492,7 +492,7 @@ namespace DM
 				CRect rcItem;
 				m_DMArray[m_iSelItem]->pPanel->OnGetContainerRect(rcItem);
 				pnnt.Offset(-rcItem.TopLeft());///< 转换成面板坐标
-				bRet = m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_MOUSEWHEEL, MAKEWPARAM(nFlags,zDelta), MAKELPARAM(pnnt.x, pnnt.y));
+				bRet = (BOOL)m_DMArray[m_iSelItem]->pPanel->OnFrameEvent(WM_MOUSEWHEEL, MAKEWPARAM(nFlags,zDelta), MAKELPARAM(pnnt.x, pnnt.y));
 				if (m_DMArray[m_iSelItem]->pPanel->IsMsgHandled())
 				{
 					break;
@@ -764,7 +764,7 @@ namespace DM
 			{
 				break;
 			}
-			int iItem = pPanel->GetItemId();
+			int iItem = (int)pPanel->GetItemId();
 			*lpRect = GetItemRect(iItem);
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -1069,7 +1069,7 @@ namespace DM
 					CRect rcItem(0,0,rcClient.Width(),nHei);
 					rcItem.OffsetRect(0,nTotalHeight-m_ptCurPos.y);
 					rcItem.OffsetRect(rcClient.TopLeft());
-					DrawItem(pCanvas,rcItem,items[i]);
+					DrawItem(pCanvas,rcItem,(int)items[i]);
 				}
 				nTotalHeight += nHei;
 			}

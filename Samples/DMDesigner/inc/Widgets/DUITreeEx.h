@@ -107,7 +107,9 @@ namespace DM
 		stTVITMEX(DMXmlNode XmlNode, IDMItemPanelOwner* pItemOwner)
 		{
 			pPanel.Attach(new DUIItemPanel(XmlNode,pItemOwner));
-			hItem = iHeight = iChildOffset = nLevel = lParam = NULL;
+			hItem = NULL;
+			iHeight = iChildOffset = nLevel = NULL;
+			lParam = NULL;
 			bVisible = true;
 			iWidth = 20; 
 			iCheckValue = DMTVEXCheckBox_UnChecked;

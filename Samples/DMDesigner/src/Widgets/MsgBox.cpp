@@ -43,7 +43,7 @@ int MsgBox::MessageBox(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType)
 	m_strCaption = lpCaption;
 	m_strText = lpText;
 	m_uType = uType;
-	return  DoModal(m_strXmlId,hWnd,true);
+	return  (int)DoModal(m_strXmlId,hWnd,true);
 } 
 
 BOOL MsgBox::OnInitDialog(HWND wndFocus, LPARAM lInitParam)

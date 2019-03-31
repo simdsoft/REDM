@@ -926,7 +926,7 @@ namespace DM
 
 			m_pValueCbx->InitDMData(EditNode);
 			CStringWList strList;
-			int nCount = SplitStringT(m_strOptions,L'|',strList);
+			int nCount = (int)SplitStringT(m_strOptions,L'|',strList);
 			int iSel = 0;
 			if (nCount>0)
 			{

@@ -83,7 +83,7 @@ int TGPComboboxEx::GetCount() const
 {
 	if (m_pListBox)
 	{
-		return m_pListBox->GetCount();
+		return (int)m_pListBox->GetCount();
 	}
 	return  -1;
 }

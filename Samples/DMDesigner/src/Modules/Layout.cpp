@@ -110,7 +110,7 @@ namespace DM
 		CRect rcContainer;
 		m_pOwner->DV_GetChildMeasureLayout(rcContainer);
 		POSITION pos	  = pList->GetHeadPosition();
-		int iCount		  = pList->GetCount();
+		int iCount		  = (int)pList->GetCount();
 		while (pos)
 		{
 			POSITION posOld	  = pos;
@@ -145,7 +145,7 @@ namespace DM
 		{
 			CStringWList strPosList;
 			SplitStringT(strPos,L',',strPosList);
-			m_nCount = strPosList.GetCount();
+			m_nCount = (int)strPosList.GetCount();
 			if (2!=m_nCount&&4!=m_nCount)
 			{
 				break;

@@ -40,7 +40,7 @@ namespace DM
 		::ZeroMemory(&mii,sizeof(MENUITEMINFO));
 		mii.cbSize = sizeof(MENUITEMINFO);
 		mii.fMask  = MIIM_FTYPE | MIIM_DATA | MIIM_STATE | MIIM_STRING | MIIM_ID | MIIM_BITMAP | MIIM_SUBMENU | MIIM_BITMAP | MIIM_CHECKMARKS;
-		if (0 == ::GetMenuItemInfo(m_hMenu, wParam, MF_BYPOSITION, &mii))
+		if (0 == ::GetMenuItemInfo(m_hMenu, (UINT)wParam, MF_BYPOSITION, &mii))
 		{
 			return ::CallWindowProc(m_pOldProc, hWnd, MN_BUTTONUP, wParam, lParam);
 		}

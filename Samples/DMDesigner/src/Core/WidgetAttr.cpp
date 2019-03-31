@@ -463,7 +463,7 @@ DMCode WidgetAttr::InitAttrArray()
 	
 
 		//2.加入到第一列prop中
-		int nCount = m_strList.GetCount(); 
+		int nCount = (int)m_strList.GetCount(); 
 		if (nCount<=0)
 		{
 			break;

@@ -232,7 +232,7 @@ bool DUImgEditor::Save(CStringW strPath)
 
 int DUImgEditor::GetImgCount()
 {
-	return m_BmpList.GetCount();
+	return (int)m_BmpList.GetCount();
 }
 
 void DUImgEditor::UpdateScrollRangeSize()
@@ -247,7 +247,7 @@ CSize DUImgEditor::GetRangeSize()
 	{
 		int iHei = 0;
 		int iWid = 0;
-		int iCount = m_BmpList.GetCount();
+		int iCount = (int)m_BmpList.GetCount();
 		if (0 == iCount)
 		{
 			break;
