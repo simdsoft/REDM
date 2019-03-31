@@ -48,7 +48,7 @@ namespace DM
 		{
 			//先使用默认浏览器打开，若打开失败（不存在默认浏览器），则强制使用IE打开
 			HINSTANCE hIns = ::ShellExecute(NULL, _T("open"), m_strLinkUrl, NULL, NULL, SW_SHOWNORMAL);
-			if ( int(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
+			if ((LPARAM)(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
 			{
 				ShellExecute(NULL, _T("open"), _T("iexplore.exe"), m_strLinkUrl, NULL, SW_SHOW);
 			}

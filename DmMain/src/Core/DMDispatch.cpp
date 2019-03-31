@@ -71,7 +71,7 @@ namespace DM
 			va_start(arg, szFmt);
 			int len = _vscwprintf(szFmt, arg);
 			DMBufT<wchar_t> pBuf;pBuf.Allocate(len+1);
-			vswprintf(pBuf, szFmt, arg);
+			vswprintf_s(pBuf, (len+1), szFmt, arg);
 			va_end(arg);
 			iErr = m_pLogObj->LogW(iLevel, lpszFuncName, lpszFileName, iLine, pBuf);
 		} while (false);

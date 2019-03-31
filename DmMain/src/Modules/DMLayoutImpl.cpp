@@ -110,7 +110,7 @@ namespace DM
 		CRect rcContainer;
 		m_pOwner->DV_GetChildMeasureLayout(rcContainer);
 		POSITION pos	  = pList->GetHeadPosition();
-		int iCount		  = pList->GetCount();
+		int iCount		  = (int)pList->GetCount();
 		while (pos)
 		{
 			POSITION posOld	  = pos;

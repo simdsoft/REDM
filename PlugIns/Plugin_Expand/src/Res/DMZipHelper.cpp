@@ -196,7 +196,7 @@ namespace DM
 			m_dwKey[0]	= 305419896;
 			m_dwKey[1]	= 591751049;
 			m_dwKey[2]	= 878082192;
-			int nLen = strlen(lpszPassword);
+			int nLen = (int)strlen(lpszPassword);
 			for (int i = 0; i < nLen; i++)
 			{
 				UpdateKeys(lpszPassword[i]);

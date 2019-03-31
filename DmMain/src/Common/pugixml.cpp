@@ -4929,11 +4929,11 @@ namespace pugi
 	PUGI__FN void xml_writer_buff::write(const void* data, size_t size)
 	{
 		size /= sizeof(char_t);
-		m_nNeedSize += size;
+		m_nNeedSize += (int)size;
 		if (m_nCurSize+(int)size<m_nSize)
 		{
 			memcpy(m_szBuf+m_nCurSize,data,size*sizeof(char_t));
-			m_nCurSize += size;
+			m_nCurSize += (int)size;
 			m_szBuf[m_nCurSize] = 0;
 		}
 	}

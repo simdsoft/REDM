@@ -38,7 +38,7 @@ namespace DM
 	/// <summary>
 	///		辅助注册类，T必须是基于DMBase的类，或者实现了(static)GetClassName与GetBaseClassName的类
 	/// </summary>
-	template<class T=DMBase>
+	template<class T>
 	class  DMRegHelperT:public IDMReg
 	{
 	public:// 默认构造函数是必须的，不然无法初始化对象

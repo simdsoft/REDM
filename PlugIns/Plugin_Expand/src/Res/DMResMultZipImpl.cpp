@@ -52,7 +52,7 @@ namespace DM
 	DMCode DMResMultZipImpl::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		int iCount = GetCount();
+		int iCount = (int)GetCount();
 		for (int i=0; i<iCount; i++)
 		{
 			DMResZipImplPtr pItem = NULL;
@@ -71,7 +71,7 @@ namespace DM
 	DMCode DMResMultZipImpl::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		int iCount = GetCount();
+		int iCount = (int)GetCount();
 		for (int i=0; i<iCount; i++)
 		{
 			DMResZipImplPtr pItem = NULL;
@@ -90,7 +90,7 @@ namespace DM
 	DMCode DMResMultZipImpl::GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		int iCount = GetCount();
+		int iCount = (int)GetCount();
 		for (int i=0; i<iCount; i++)
 		{
 			DMResZipImplPtr pItem = NULL;
@@ -121,7 +121,7 @@ namespace DM
 		if (NULL != lp)
 		{
 			wchar_t* szzipKey = (wchar_t*)lp;
-			int iCount = GetCount();
+			int iCount = (int)GetCount();
 			for (int i=0; i<iCount; i++)
 			{
 				DMResZipImplPtr pItem = NULL;

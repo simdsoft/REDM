@@ -457,7 +457,7 @@ namespace DM
 		{
 			DMSmartPtrT<DMGifParse> pObj;
 			pObj.Attach(new DMGifParse);
-			if (pObj->LoadFromMemory((BYTE*)pBuf,bufLen))
+			if (pObj->LoadFromMemory((BYTE*)pBuf, (int)bufLen))
 			{
 				LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
 				DMASSERT_EXPR(gi->frames==m_ulFrameCount,L"解析文件得到的frame数不同！！");

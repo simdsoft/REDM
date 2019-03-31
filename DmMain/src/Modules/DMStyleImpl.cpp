@@ -158,7 +158,7 @@ namespace DM
 				break;
 			}
 			memset(lpszId, 0, iSize);
-			swprintf_s(lpszId, iSize, L"%s", m_strID);
+			swprintf_s(lpszId, iSize, L"%s", (LPCWSTR)m_strID);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;

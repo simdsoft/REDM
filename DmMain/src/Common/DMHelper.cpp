@@ -184,7 +184,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			int nSize = ::WideCharToMultiByte(CP_ACP, 0, pwszSrc, wcslen(pwszSrc)+1, NULL, 0, NULL, NULL);
+			int nSize = ::WideCharToMultiByte(CP_ACP, 0, pwszSrc, (int)wcslen(pwszSrc)+1, NULL, 0, NULL, NULL);
 			if (0 == nSize)// not success
 			{
 				break;
@@ -196,7 +196,7 @@ namespace DM
 				break;
 			}
 
-			if (!::WideCharToMultiByte(CP_ACP, 0, pwszSrc, wcslen(pwszSrc)+1, pszDst, nSize, NULL, NULL))
+			if (!::WideCharToMultiByte(CP_ACP, 0, pwszSrc, (int)wcslen(pwszSrc)+1, pszDst, nSize, NULL, NULL))
 			{
 				break;
 			}
@@ -212,7 +212,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			int nSize = ::WideCharToMultiByte(CP_UTF8, 0, pwszSrc, wcslen(pwszSrc)+1, NULL, 0, NULL, NULL);
+			int nSize = ::WideCharToMultiByte(CP_UTF8, 0, pwszSrc, (int)wcslen(pwszSrc)+1, NULL, 0, NULL, NULL);
 			if (0 == nSize)// not success
 			{
 				break;
@@ -224,7 +224,7 @@ namespace DM
 				break;
 			}
 
-			if (!::WideCharToMultiByte(CP_UTF8, 0, pwszSrc, wcslen(pwszSrc)+1, pszDst, nSize, NULL, NULL))
+			if (!::WideCharToMultiByte(CP_UTF8, 0, pwszSrc, (int)wcslen(pwszSrc)+1, pszDst, nSize, NULL, NULL))
 			{
 				break;
 			}

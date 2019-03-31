@@ -163,7 +163,7 @@ namespace DM
 		do 
 		{
 			DUIWindowPtr pDUIWindow = NULL;
-			int nCount  = m_MainDUIWndArray.GetCount();
+			int nCount  = (int)m_MainDUIWndArray.GetCount();
 			for (int i=0;i<nCount;i++)
 			{
 				pDUIWindow = NULL;
@@ -186,7 +186,7 @@ namespace DM
 	DMCode DUIWndPool::RedrawAll()
 	{
 		DUIWindowPtr pDUIWindow = NULL;
-		int nCount  = m_MainDUIWndArray.GetCount();
+		int nCount  = (int)m_MainDUIWndArray.GetCount();
 		for (int i=0;i<nCount;i++)
 		{
 			pDUIWindow = NULL;

@@ -138,7 +138,7 @@ namespace DM
 			CStringWList strList;
 			CStringW strName;
 			CStringW strKey;
-			int nCount = SplitStringT(strValue,L':',strList);
+			int nCount = (int)SplitStringT(strValue,L':',strList);
 			if (1==nCount)
 			{
 				strKey = strValue;

@@ -99,7 +99,7 @@ namespace DM
 		CStringWList strKeyList;
 		SplitStringT(strValue,L'+',strKeyList);
 		LPWSTR pszKey =  NULL;
-		int nCount = strKeyList.GetCount();
+		int nCount = (int)strKeyList.GetCount();
 		for (int i=0;i<nCount;i++)
 		{
 			strKeyList[i].Trim();

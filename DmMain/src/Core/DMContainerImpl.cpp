@@ -545,7 +545,7 @@ namespace DM
 
 	void DMContainerImpl::OnActivateApp( BOOL bActive, DWORD dwThreadID )
 	{
-		MSG Msg = {0,WM_ACTIVATEAPP,bActive,dwThreadID,0};
+		MSG Msg = {0,WM_ACTIVATEAPP,MAKEWPARAM(bActive,0),MAKELPARAM(dwThreadID,0),0};
 		m_pContainWnd->DM_DispatchMessage(&Msg);
 	}
 

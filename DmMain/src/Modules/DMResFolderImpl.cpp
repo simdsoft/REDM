@@ -132,7 +132,7 @@ namespace DM
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
-			ulSize = size;
+			ulSize = (unsigned long)size;
 		} while (false);
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{

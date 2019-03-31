@@ -129,7 +129,7 @@ namespace DM
 			memcpy(pBuf,lpSrc,nLen*2);
 			CStringW strValue = pBuf;
 			CStringWList strUpdateList;
-			int nCount = SplitStringT(strValue,L';',strUpdateList);
+			int nCount = (int)SplitStringT(strValue,L';',strUpdateList);
 			// 1. 更新所有需更新的skin
 			m_UpdateSkinArray.RemoveAll();
 			for (int i=0;i<nCount;i++)
@@ -382,7 +382,7 @@ namespace DM
 			CStringWList strList;
 			CStringW strName;
 			CStringW strKey;
-			int nCount = SplitStringT(strValue,L':',strList);
+			int nCount = (int)SplitStringT(strValue,L':',strList);
 			if (1==nCount)
 			{
 				strKey = strValue;

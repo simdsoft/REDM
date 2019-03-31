@@ -148,7 +148,7 @@ void CQQMainWnd::OnCommand(UINT uNotifyCode, int nID, HWND wndCtl)
 		CStringW strUrl = L"http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8";
 		//先使用默认浏览器打开，若打开失败（不存在默认浏览器），则强制使用IE打开
 		HINSTANCE hIns = ::ShellExecute(NULL, _T("open"), strUrl, NULL, NULL, SW_SHOWNORMAL);
-		if ( int(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
+		if ( (LPARAM)(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
 		{
 			ShellExecute(NULL, _T("open"), _T("iexplore.exe"), strUrl, NULL, SW_SHOW);
 		}

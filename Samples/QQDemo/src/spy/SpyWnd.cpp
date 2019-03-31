@@ -103,7 +103,7 @@ DMCode CSpyWnd::OnTreeSelChanged(DMEventArgs *pEvt)
 	HDMTREEITEM hSelItem = pSelEvt->m_hNewSel;
 	if (hSelItem)
 	{
-		DUIWND hDUIWnd = m_pTreeCtrl->GetItemData(hSelItem);
+		DUIWND hDUIWnd = (DUIWND)m_pTreeCtrl->GetItemData(hSelItem);
 		if (hDUIWnd)
 		{
 			m_pSpyEnum->iCode   = GDW_FIRSTCHILD;
@@ -238,7 +238,7 @@ bool CSpyWnd::HitTest(RECT &rc)
 			HDMTREEITEM hItem = m_pTreeCtrl->GetRootItem();
 			while (hItem)
 			{
-				DUIWND hDUIWnd = m_pTreeCtrl->GetItemData(hItem);
+				DUIWND hDUIWnd = (DUIWND)m_pTreeCtrl->GetItemData(hItem);
 				if (m_pSpyEnum->hNextDUIWnd == hDUIWnd)
 				{
 					m_bHittest = true;
