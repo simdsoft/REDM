@@ -157,6 +157,8 @@ namespace DM
 		HFONT										 m_hOldFont;
 		HBRUSH										 m_hOldBrush;
 		HBITMAP										 m_hOldBitmap;
+
+		bool                                         m_bSupportLeetspeak; ///< 是否支持火星文
 	};
 
 

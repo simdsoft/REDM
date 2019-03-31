@@ -53,7 +53,7 @@ SkRect DrawText_Skia(SkCanvas* canvas,const wchar_t *text,int len,SkRect box,con
 //////////////////////////////////////////////////////////////////////////
 void DMSkDrawText::Init(LPCWSTR lpString,int nCount,SkRect skRc, const SkPaint &skPaint, UINT uFormat)
 {
-	if (uFormat & DT_NOPREFIX)//不考虑前缀
+	if (uFormat & DT_NOPREFIX)// 不考虑前缀
 	{
 		m_Text.setCount(nCount);
 		memcpy(m_Text.begin(),lpString,nCount*sizeof(wchar_t));
@@ -66,16 +66,16 @@ void DMSkDrawText::Init(LPCWSTR lpString,int nCount,SkRect skRc, const SkPaint &
 		memcpy(tmp.begin(),lpString,nCount*sizeof(wchar_t));
 		for (int i=0;i<tmp.count();i++)
 		{
-			if (L'&' == tmp[i])// 前缀
+			if (tmp[i]==L'&' && i+1<tmp.count())
 			{
-				tmp.remove(i,1);
-				if (i<tmp.count()-1)
+				if (tmp[i+1] == L'&')// 前缀
 				{
-					m_Prefix.push(i);
+					tmp.remove(i,1);
 				}
-				if (i<tmp.count()-1 && tmp[i+1]==L'&') // 如果是&&，则后一个&跳过，因为要显示
+				else
 				{
-					i++;  
+					tmp.remove(i,1);
+					m_Prefix.push(i);
 				}
 			}
 		}
@@ -100,32 +100,34 @@ void DMSkDrawText::buildLines()
 		const wchar_t *text = m_Text.begin();
 		const wchar_t* stop = m_Text.begin() + m_Text.count();
 		SkScalar maxWid = m_rcBound.width();// 宽度
-		if (m_uFormat & DT_CALCRECT && maxWid < 1.0f)
+		if (m_uFormat&DT_CALCRECT && maxWid<1.0f)
 		{
 			maxWid = 10000.0f;
 		}
-		int lineHead=0;
+		int lineHead = 0;
 		while (lineHead<m_Text.count())
 		{
 			m_Lines.push(lineHead);
 			size_t line_len = breakTextEx(m_pSkPaint,text,stop-text,maxWid,0);
+			if (0 == line_len)
+				break;
 			text += line_len;
 			lineHead += (int)line_len;
 		};
 	}
 }
 
-SkScalar DMSkDrawText::drawLine( SkCanvas *canvas, SkScalar x, SkScalar y, int iBegin,int iEnd,SkScalar fontHei )
+SkScalar DMSkDrawText::drawLine( SkCanvas *canvas, SkScalar x, SkScalar y, int iBegin,int iEnd)
 {
-	const wchar_t *text=m_Text.begin()+iBegin;
+	const wchar_t *text = m_Text.begin()+iBegin;
 
-	if (!(m_uFormat & DT_CALCRECT))
+	if(!(m_uFormat & DT_CALCRECT))
 	{
 		canvas->drawText(text,(iEnd-iBegin)*sizeof(wchar_t),x,y,*m_pSkPaint);
-		int i=0;
+		int i = 0;
 		while (i<m_Prefix.count())
 		{
-			if(m_Prefix[i]>=iBegin)
+			if (m_Prefix[i]>=iBegin)
 				break;
 			i++;
 		}
@@ -134,7 +136,7 @@ SkScalar DMSkDrawText::drawLine( SkCanvas *canvas, SkScalar x, SkScalar y, int i
 		if (m_pSkPaint->getTextAlign() != SkPaint::kLeft_Align)
 		{
 			SkScalar nTextWidth = m_pSkPaint->measureText(text,(iEnd-iBegin)*sizeof(wchar_t));
-			switch (m_pSkPaint->getTextAlign())
+			switch(m_pSkPaint->getTextAlign())
 			{
 			case SkPaint::kCenter_Align:
 				xBase = x - nTextWidth/2.0f;
@@ -145,49 +147,48 @@ SkScalar DMSkDrawText::drawLine( SkCanvas *canvas, SkScalar x, SkScalar y, int i
 			}
 		}
 
-		while (i<m_Prefix.count() && m_Prefix[i]<iEnd)
+		while(i<m_Prefix.count() && m_Prefix[i]<iEnd)
 		{
 			SkScalar x1 = m_pSkPaint->measureText(text,(m_Prefix[i]-iBegin)*sizeof(wchar_t));
 			SkScalar x2 = m_pSkPaint->measureText(text,(m_Prefix[i]-iBegin+1)*sizeof(wchar_t));
-			canvas->drawLine(xBase+x1,y+1,xBase+x2,y+1,*m_pSkPaint); //绘制下划线
+			canvas->drawLine(xBase+x1,y+1,xBase+x2,y+1,*m_pSkPaint); // 绘制下划线
 			i++;
 		}
 	}
 	return m_pSkPaint->measureText(text,(iEnd-iBegin)*sizeof(wchar_t));
 }
 
-SkScalar DMSkDrawText::drawLineEndWithEllipsis( SkCanvas *canvas, SkScalar x, SkScalar y, int iBegin,int iEnd,SkScalar fontHei,SkScalar maxWidth )
+SkScalar DMSkDrawText::drawLineEndWithEllipsis( SkCanvas *canvas, SkScalar x, SkScalar y, int iBegin,int iEnd,SkScalar maxWidth)
 {
 	SkScalar widReq = m_pSkPaint->measureText(m_Text.begin()+iBegin,(iEnd-iBegin)*sizeof(wchar_t));
 	if (widReq<=m_rcBound.width())
 	{
-		return drawLine(canvas,x,y,iBegin,iEnd,fontHei);
+		return drawLine(canvas,x,y,iBegin,iEnd);
 	}
 	else
 	{
 		SkScalar fWidEllipsis = m_pSkPaint->measureText(CH_ELLIPSIS,sizeof(CH_ELLIPSIS)-sizeof(wchar_t));
-		maxWidth-=fWidEllipsis;
+		maxWidth -= fWidEllipsis;
 
 		int i=0;
-		const wchar_t *text=m_Text.begin()+iBegin;
+		const wchar_t *text = m_Text.begin()+iBegin;
 		SkScalar fWid=0.0f;
 		while (i<(iEnd-iBegin))
 		{
 			SkScalar fWord = m_pSkPaint->measureText(text+i,sizeof(wchar_t));
-			if (fWid + fWord > maxWidth)
+			if (fWid + fWord > maxWidth) 
 				break;
 			fWid += fWord;
 			i++;
 		}
-		if (!(m_uFormat & DT_CALCRECT))
+		if(!(m_uFormat & DT_CALCRECT))
 		{
 			wchar_t *pbuf = new wchar_t[i+3];
-			memcpy(pbuf,text,i*sizeof(wchar_t));
-			memcpy(pbuf+i,CH_ELLIPSIS,3*sizeof(wchar_t));
-			canvas->drawText(pbuf,(i+3)*sizeof(wchar_t),x,y,*m_pSkPaint);
+			memcpy(pbuf, text, i*sizeof(wchar_t));
+			memcpy(pbuf+i, CH_ELLIPSIS, 3*sizeof(wchar_t));
+			canvas->drawText(pbuf, (i+3)*sizeof(wchar_t), x , y, *m_pSkPaint);
 			DM_DELETE_ARRAY(pbuf);
 		}
-
 		return fWid + fWidEllipsis;
 	}
 }
@@ -197,7 +198,6 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 	// 可参考http://hgy413.com/1855.html
 	SkPaint::FontMetrics metrics;
 	m_pSkPaint->getFontMetrics(&metrics);
-	float fontHeight = metrics.fDescent-metrics.fAscent;// 字符高
 	float lineSpan = metrics.fBottom-metrics.fTop;// 行高
 	SkRect rcDraw = m_rcBound;
 
@@ -210,7 +210,7 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 	case SkPaint::kRight_Align:
 		x = m_rcBound.width();
 		break;
-	default://SkPaint::kLeft_Align:
+	default:// SkPaint::kLeft_Align:
 		x = 0;
 		break;
 	}
@@ -219,21 +219,25 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 	canvas->save();
 	canvas->clipRect(m_rcBound);// 设置裁剪区
 	float height = m_rcBound.height();
-	float y=m_rcBound.fTop - metrics.fAscent;
-	if (m_uFormat&DT_SINGLELINE||1==m_Lines.count())//单行显示
+	float y = m_rcBound.fTop-metrics.fTop;
+	if (m_uFormat&DT_SINGLELINE)// 单行显示
 	{
 		rcDraw.fBottom = rcDraw.fTop + lineSpan;
-		if (m_uFormat&DT_VCENTER) 
+		if (m_uFormat & DT_VCENTER) 
 		{
-			y += (height - fontHeight)/2.0f;
+			y += (height - lineSpan)/2.0f;
+		}
+		else if (m_uFormat & DT_BOTTOM)
+		{
+			y += (height - lineSpan);
 		}
 		if (m_uFormat & DT_ELLIPSIS)// 只支持在行尾增加省略号
 		{
-			rcDraw.fRight = rcDraw.fLeft + drawLineEndWithEllipsis(canvas,x,y,0,m_Text.count(),fontHeight,m_rcBound.width());
+			rcDraw.fRight = rcDraw.fLeft + drawLineEndWithEllipsis(canvas,x,y,0,m_Text.count(),m_rcBound.width());
 		}
 		else
 		{
-			rcDraw.fRight = rcDraw.fLeft + drawLine(canvas,x,y,0,m_Text.count(),fontHeight);
+			rcDraw.fRight = rcDraw.fLeft + drawLine(canvas,x,y,0,m_Text.count());
 		}
 	}
 	else// 多行显示
@@ -242,33 +246,33 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 		int iLine = 0;
 		while(iLine<m_Lines.count())
 		{
-			if (abs(y + lineSpan + metrics.fAscent) >= abs(m_rcBound.fBottom)) 
-				break;  //the last visible line
+			if (y + lineSpan + metrics.fTop >= m_rcBound.fBottom) 
+				break;  // the last visible line
 			int iBegin = m_Lines[iLine];
 			int iEnd = iLine<(m_Lines.count()-1)?m_Lines[iLine+1]:m_Text.count();
-			SkScalar lineWid = drawLine(canvas,x,y,iBegin,iEnd,fontHeight);
+			SkScalar lineWid = drawLine(canvas,x,y,iBegin,iEnd);
 			maxLineWid = MAX(maxLineWid,lineWid);
 			y += lineSpan;
 			iLine ++;
 		}
-		if (iLine<m_Lines.count())//Draw the last visible line
+		if (iLine<m_Lines.count())// Draw the last visible line
 		{
-			int iBegin=m_Lines[iLine];
+			int iBegin = m_Lines[iLine];
 			int iEnd = iLine<(m_Lines.count()-1)?m_Lines[iLine+1]:m_Text.count();
 			SkScalar lineWid;
-			if (m_uFormat & DT_ELLIPSIS)//只支持在行尾增加省略号
+			if (m_uFormat & DT_ELLIPSIS)// 只支持在行尾增加省略号
 			{
-				lineWid = drawLineEndWithEllipsis(canvas,x,y,iBegin,iEnd,fontHeight,m_rcBound.width());
+				lineWid = drawLineEndWithEllipsis(canvas,x,y,iBegin,iEnd,m_rcBound.width());
 			}
 			else
 			{
-				lineWid = drawLine(canvas,x,y,iBegin,iEnd,fontHeight);
+				lineWid = drawLine(canvas,x,y,iBegin,iEnd);
 			}
 			maxLineWid = MAX(maxLineWid,lineWid);
 			y += lineSpan;
 		}
-		rcDraw.fRight = rcDraw.fLeft+maxLineWid-fontHeight;// 记得减fontHeight
-		rcDraw.fBottom = y-abs(metrics.fAscent);// 记得减fAscent
+		rcDraw.fRight = rcDraw.fLeft + maxLineWid;
+		rcDraw.fBottom = y + metrics.fTop;
 	}
 	canvas->restore();
 	return rcDraw;

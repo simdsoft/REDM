@@ -49,6 +49,8 @@ namespace DM
 		m_pRender->CreateBitmap(&pBmp);
 		pBmp->Init(nWid,nHei);
 		SelectObject(pBmp);
+
+		m_bSupportLeetspeak = true;
 	}
 
 	void DMSkiaCanvasImpl::Canv_Release()
@@ -987,22 +989,27 @@ namespace DM
 			{
 				nCount = (int)wcslen(lpString);
 			}
-			HDC hdc = GetDC();
-			if (TRUE == ::GetTextExtentPoint32W(hdc,lpString,nCount,pSize))
+
+			if (m_bSupportLeetspeak)
 			{
-				iErr = DM_ECODE_OK;
+				HDC hdc = GetDC();
+				if (TRUE == ::GetTextExtentPoint32W(hdc,lpString,nCount,pSize))
+				{
+					iErr = DM_ECODE_OK;
+				}
+				ReleaseDC(hdc);
 			}
-			ReleaseDC(hdc);
+			else
+			{
+				SkPaint txtPaint = m_pCurFont->GetSkPaint();
+				txtPaint.setTypeface(m_pCurFont->GetSkTypeFace());
+				pSize->cx = (LONG)txtPaint.measureText(lpString, nCount*sizeof(wchar_t));
 
-#if 0
-			SkPaint txtPaint = m_pCurFont->GetSkPaint();
-			txtPaint.setTypeface(m_pCurFont->GetSkTypeFace());
-			pSize->cx = (LONG)txtPaint.measureText(lpString, nCount*sizeof(wchar_t));
+				SkPaint::FontMetrics metrics;
+				txtPaint.getFontMetrics(&metrics);
+				pSize->cy = (int)(metrics.fBottom-metrics.fTop);
+			}
 
-			SkPaint::FontMetrics metrics;
-			txtPaint.getFontMetrics(&metrics);
-			pSize->cy = (int)(metrics.fBottom-metrics.fTop);
-#endif
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -1023,66 +1030,110 @@ namespace DM
 				nCount = (int)wcslen(lpString);
 			}
 
-			if (uFormat & DT_CALCRECT)
+			if (m_bSupportLeetspeak)
 			{
+				if (uFormat & DT_CALCRECT)
+				{
+					HDC hdc = GetDC();
+					::DrawText(hdc,lpString,nCount,lpRect,uFormat);
+					ReleaseDC(hdc);
+					iErr = DM_ECODE_OK;
+					break;
+				}
+
 				HDC hdc = GetDC();
-				::DrawText(hdc,lpString,nCount,lpRect,uFormat);
+
+				// 先计算真实文字区域大小
+				CRect rcMeasure = *lpRect;// 取左上角坐标
+				::DrawText(hdc,lpString,nCount,rcMeasure,uFormat|DT_CALCRECT);
+				CRect rcAll = lpRect;
+				int nMeasureWid = rcMeasure.Width();int nMeasureHei = rcMeasure.Height();
+				int nWid = lpRect->right-lpRect->left;int nHei = lpRect->bottom-lpRect->top;
+				if (uFormat&DT_CENTER &&nWid>nMeasureWid)
+				{
+					rcMeasure.left  = lpRect->left+(nWid-nMeasureWid)/2;
+					rcMeasure.right = rcMeasure.left+nMeasureWid;
+				}
+				if (uFormat&DT_VCENTER&&nHei>nMeasureHei)
+				{
+					rcMeasure.top    = lpRect->top+(nHei-nMeasureHei)/2;
+					rcMeasure.bottom = rcMeasure.top+nMeasureHei;
+				}
+				if (uFormat&DT_RIGHT)
+				{
+					rcMeasure.right = rcAll.right;
+					rcMeasure.left  = rcMeasure.right-nMeasureWid;
+				}
+				if (uFormat&DT_BOTTOM)
+				{
+					rcMeasure.bottom = rcAll.bottom;
+					rcMeasure.top    = rcMeasure.bottom-nMeasureHei;
+				}
+
+				//CRect rcDest = GetRealClipRect(rcMeasure);//已计算出大小，就不用裁剪了
+				CRect rcDest = rcMeasure&rcAll;
+				if (rcDest.IsRectEmpty())
+				{
+					ReleaseDC(hdc);
+					break;
+				}
+				if (rcDest.Width()*rcDest.Height()>2000*2000)// 防止外部非法传参进来！
+				{
+					ReleaseDC(hdc);
+					break;
+				}
+
+				DMAutoMemDC dcMem(hdc);AlphaBlendBackup(dcMem,rcDest,true,true);
+				DMColor TextClr = m_CurTextColor;
+				TextClr.PreMultiply(alpha);
+				::SetTextColor(dcMem, TextClr.ToCOLORREF());
+				::DrawTextW(dcMem,lpString,nCount,rcDest,uFormat);
+				AlphaBlendRestore(dcMem,TextClr.a);
+
 				ReleaseDC(hdc);
 				iErr = DM_ECODE_OK;
-				break;
 			}
+			else
+			{
+				if (0 == nCount) // 要绘制的文字还是空
+				{
+					if (uFormat & DT_CALCRECT)// 需取得大小，绘制区设置为0
+					{
+						lpRect->right = lpRect->left;
+						lpRect->bottom = lpRect->top;
+					}
+					iErr = DM_ECODE_OK;
+					break;
+				}
 
-			HDC hdc = GetDC();
+				SkPaint  txtPaint = m_pCurFont->GetSkPaint();
+				txtPaint.setColor(m_CurTextColor.ToBGRA());
+				txtPaint.setTypeface(m_pCurFont->GetSkTypeFace());
+				if (0xff!=alpha)
+				{
+					txtPaint.setAlpha(alpha);
+				}
+				if (uFormat&DT_CENTER)
+				{
+					txtPaint.setTextAlign(SkPaint::kCenter_Align);
+				}
+				else if(uFormat&DT_RIGHT)
+				{
+					txtPaint.setTextAlign(SkPaint::kRight_Align);
+				}
 
-			// 先计算真实文字区域大小
-			CRect rcMeasure = *lpRect;// 取左上角坐标
-			::DrawText(hdc,lpString,nCount,rcMeasure,uFormat|DT_CALCRECT);
-			CRect rcAll = lpRect;
-			int nMeasureWid = rcMeasure.Width();int nMeasureHei = rcMeasure.Height();
-			int nWid = lpRect->right-lpRect->left;int nHei = lpRect->bottom-lpRect->top;
-			if (uFormat&DT_CENTER &&nWid>nMeasureWid)
-			{
-				rcMeasure.left  = lpRect->left+(nWid-nMeasureWid)/2;
-				rcMeasure.right = rcMeasure.left+nMeasureWid;
+				SkRect skRc;
+				Rect2SkRect(lpRect, skRc);
+				skRc.offset(m_ptOrg);
+				skRc = DrawText_Skia(m_pSkCanvas,lpString,nCount,skRc,txtPaint,uFormat);
+				if (uFormat & DT_CALCRECT)
+				{
+					lpRect->left	= (int)skRc.fLeft;
+					lpRect->top		= (int)skRc.fTop;
+					lpRect->right	= (int)skRc.fRight;
+					lpRect->bottom  = (int)skRc.fBottom;
+				}
 			}
-			if (uFormat&DT_VCENTER&&nHei>nMeasureHei)
-			{
-				rcMeasure.top    = lpRect->top+(nHei-nMeasureHei)/2;
-				rcMeasure.bottom = rcMeasure.top+nMeasureHei;
-			}
-			if (uFormat&DT_RIGHT)
-			{
-				rcMeasure.right = rcAll.right;
-				rcMeasure.left  = rcMeasure.right-nMeasureWid;
-			}
-			if (uFormat&DT_BOTTOM)
-			{
-				rcMeasure.bottom = rcAll.bottom;
-				rcMeasure.top    = rcMeasure.bottom-nMeasureHei;
-			}
-
-			//CRect rcDest = GetRealClipRect(rcMeasure);//已计算出大小，就不用裁剪了
-			CRect rcDest = rcMeasure&rcAll;
-			if (rcDest.IsRectEmpty())
-			{
-				ReleaseDC(hdc);
-				break;
-			}
-			if (rcDest.Width()*rcDest.Height()>2000*2000)// 防止外部非法传参进来！
-			{
-				ReleaseDC(hdc);
-				break;
-			}
-
-			DMAutoMemDC dcMem(hdc);AlphaBlendBackup(dcMem,rcDest,true,true);
-			DMColor TextClr = m_CurTextColor;
-			TextClr.PreMultiply(alpha);
-			::SetTextColor(dcMem, TextClr.ToCOLORREF());
-			::DrawTextW(dcMem,lpString,nCount,rcDest,uFormat);
-			AlphaBlendRestore(dcMem,TextClr.a);
-
-			ReleaseDC(hdc);
-			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
