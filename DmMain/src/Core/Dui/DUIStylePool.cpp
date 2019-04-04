@@ -3,14 +3,52 @@
 
 namespace DM
 {
-	DMStylePoolItem::~DMStylePoolItem()
+
+	DMStylePoolItem::DMStylePoolItem(CStringW strName,DMXmlNode &xmlNodes)
 	{
-		RemoveAll();
+		m_strName = strName;
+		m_Doc.Base().InsertChildNode(L"root");
+		AddStyles(xmlNodes);
 	}
 
-	void DMStylePoolItem::PreMapKeyRemove(const IDMStylePtr &obj)
+	void DMStylePoolItem::AddStyles(DMXmlNode &XmlStyles)
 	{
-		obj->Release();
+		do 
+		{
+			if (!XmlStyles.IsValid())
+			{
+				break;
+			}
+			 
+			DMXmlNode XmlNode = m_Doc.Root().InsertCopyChildNode(&XmlStyles);
+			DMXmlNode XmlStyle = XmlNode.FirstChild();
+			while (XmlStyle.IsValid())
+			{
+				CStringW strId = XmlStyle.Attribute(L"id");strId.MakeLower();
+				if (strId.IsEmpty())
+				{
+					CStringW szInfo; 
+					XmlStyle.GetXmlContent(szInfo);
+					szInfo += L"(style)未设置id,将自动忽视";
+					DMASSERT_EXPR(0, szInfo);
+				}
+				else
+				{
+					if (!IsKeyExist(strId))
+					{// key不存在时才加入
+						AddKey(strId, XmlStyle);
+					}
+				}
+				XmlStyle = XmlStyle.NextSibling();
+			}
+		} while (false);
+	}
+
+	DMXmlNode DMStylePoolItem::GetStyle(CStringW strId)
+	{
+		DMXmlNode XmlStyle;
+		GetObjByKey(strId, XmlStyle);
+		return XmlStyle;
 	}
 
 	// ------------------------------DUIStylePool
@@ -31,43 +69,17 @@ namespace DM
 			}
 
 			CStringW strName = XmlNode.Attribute(L"name");strName.MakeLower();
-			bool bExist = true;
 			if (false == GetObjByKey(strName, pItem))
 			{
-				bExist  = false;
-				pItem   = new DMStylePoolItem;
-			}
-
-			DMXmlNode XmlStyle = XmlNode.FirstChild();
-			while (XmlStyle.IsValid())
-			{
-				CStringW strId =XmlStyle.Attribute(L"id");strId.MakeLower();
-				if (strId.IsEmpty())
-				{
-					CStringW szInfo; 
-					XmlStyle.GetXmlContent(szInfo);
-					szInfo += L"(style)未设置id,将自动忽视";
-					DMASSERT_EXPR(0, szInfo);
-				}
-				else
-				{
-					if (!pItem->IsKeyExist(strId))
-					{// key不存在时才加入
-						LPCWSTR lpszClassName = XmlStyle.GetName();
-						IDMStylePtr pStylePtr = NULL;
-						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStylePtr,lpszClassName,DMREG_Style)))
-						{
-							pStylePtr->InitDMData(XmlStyle);
-							pItem->AddKey(strId,pStylePtr);
-						}
-					}
-				}
-				XmlStyle = XmlStyle.NextSibling();
-			}
-
-			if (false == bExist)
-			{
+				pItem = new DMStylePoolItem(strName,XmlNode);
 				AddKey(strName,pItem);
+			}
+			else
+			{
+				if (pItem)
+				{
+					pItem->AddStyles(XmlNode);
+				}
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -87,9 +99,9 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	IDMStylePtr DUIStylePool::FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind)
+	DMXmlNode DUIStylePool::FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind)
 	{
-		IDMStylePtr  pStyle = NULL;
+		DMXmlNode XmlStyle;
 		do 
 		{
 			if (NULL == lpszKey||wcslen(lpszKey)<=0)
@@ -104,29 +116,29 @@ namespace DM
 			{
 				if (bLoopFind)
 				{
-					pStyle = FindStyleFromAll(strKey);
+					XmlStyle = FindStyleFromAll(strKey);
 				}
 				break;
 			}
 			else
 			{
-				if (pCur->GetObjByKey(strKey,pStyle))
+				if (pCur->GetObjByKey(strKey,XmlStyle))
 				{
 					break;// 已找到
 				}
 
 				if (bLoopFind)
 				{
-					pStyle = FindStyleFromAll(strKey);
+					XmlStyle = FindStyleFromAll(strKey);
 				}
 			}
 		} while (false);
-		return pStyle;
+		return XmlStyle;
 	}
 
-	IDMStylePtr DUIStylePool::FindStyle(LPCWSTR lpszBuf,bool bLoopFind)
+	DMXmlNode DUIStylePool::FindStyle(LPCWSTR lpszBuf,bool bLoopFind)
 	{
-		IDMStylePtr  pStyle = NULL;
+		DMXmlNode XmlStyle;
 		do 
 		{
 			if (NULL == lpszBuf||wcslen(lpszBuf)<=0)
@@ -156,14 +168,14 @@ namespace DM
 				break;
 			}
 
-			pStyle = FindStyle(strKey,strName,bLoopFind);
+			XmlStyle = FindStyle(strKey,strName,bLoopFind);
 		} while (false);
-		return pStyle;
+		return XmlStyle;
 	}
 
-	IDMStylePtr DUIStylePool::FindStyleFromAll(LPCWSTR lpszKey)
+	DMXmlNode DUIStylePool::FindStyleFromAll(LPCWSTR lpszKey)
 	{
-		IDMStylePtr  pStyle = NULL;
+		DMXmlNode XmlStyle;
 		do 
 		{
 			if (NULL == lpszKey||wcslen(lpszKey)<=0)
@@ -177,13 +189,13 @@ namespace DM
 			{
 				DM::CMap<CStringW,DMStylePoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMStylePoolItemPtr &pCur = p->m_value;
-				if (pCur->GetObjByKey(strKey,pStyle))
+				if (pCur->GetObjByKey(strKey,XmlStyle))
 				{
 					break;
 				}
 			}
 		} while (false);
-		return pStyle;
+		return XmlStyle;
 	}
 
 	void DUIStylePool::PreMapKeyRemove(const DMStylePoolItemPtr &obj)

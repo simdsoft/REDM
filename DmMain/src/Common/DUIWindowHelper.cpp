@@ -152,12 +152,21 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			IDMStylePtr pStyle = g_pDMApp->GetStyle(lpszValue);
-			if (NULL == pStyle)
+			DMXmlNode XmlStyle = g_pDMApp->GetStyle(lpszValue);
+			if (!XmlStyle.IsValid())
 			{
 				break;
 			}
-			pStyle->CopyData(m_pStyle);// style的内容仅有字符,大小可以忽视
+			DMXmlAttribute XmlAttribute = XmlStyle.FirstAttribute();
+			while (XmlAttribute.IsValid())
+			{
+				if (DM_ECODE_FAIL == m_pStyle->SetAttribute(XmlAttribute.GetName(), XmlAttribute.GetValue(), true)
+					&& m_pOwner)
+				{
+					m_pOwner->SetAttribute(XmlAttribute.GetName(), XmlAttribute.GetValue(), true);
+				}
+				XmlAttribute = XmlAttribute.NextAttribute();
+			}
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
