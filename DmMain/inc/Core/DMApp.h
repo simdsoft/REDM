@@ -229,7 +229,7 @@ namespace DM
 		/// @brief			获取指定style,从所有style池中
 		/// @param[in]		lpszSkin		  Skin对应的str
 		/// @return			DMCode
-		IDMStyle* GetStyle(LPCWSTR lpszStyle);
+		DMXmlNode GetStyle(LPCWSTR lpszStyle);
 
 		/// -------------------------------------------------
 		/// @brief			换肤

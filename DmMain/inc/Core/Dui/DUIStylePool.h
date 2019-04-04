@@ -19,13 +19,18 @@ namespace DM
 	/// <summary>
 	///		Style的池对象,用于支持局部Style
 	/// </summary>
-	class DMStylePoolItem:public DMRefNum,public DMMapT<CStringW,IDMStylePtr>
+	class DMStylePoolItem:public DMRefNum, public DMMapT<CStringW,DMXmlNode>
 	{
 	public:
-		virtual ~DMStylePoolItem();
+		DMStylePoolItem(CStringW strName,DMXmlNode &xmlNodes);
 
-	public:// 辅助重载函数
-		void PreMapKeyRemove(const IDMStylePtr &obj);
+	public:
+		void AddStyles(DMXmlNode &XmlStyles);
+		DMXmlNode GetStyle(CStringW strId);
+
+	public:
+		DMXmlDocument               m_Doc;
+		CStringW                    m_strName;
 	};
 	typedef DMStylePoolItem* DMStylePoolItemPtr; 
 
@@ -47,7 +52,7 @@ namespace DM
 		DMCode AddStylePoolItem(DMXmlNode &XmlNode);
 
 		/// -------------------------------------------------
-		/// @brief  移除一个style池，如style池已存在,则加入解析的项
+		/// @brief  移除一个style池
 		/// @param[in]  lpszName	style池的名称
 		/// @return  DMCode
 		DMCode RemoveStylePoolItem(LPCWSTR lpszName);
@@ -63,23 +68,24 @@ namespace DM
 		/// @param[in]  lpszName		用于查找style池的name
 		/// @param[in]  bLoopFind		是否遍历所有池查找
 		/// @remark 默认先在lpszName的style池中找，如果找不到,而且bLoopFind为真，就全部遍历找
-		/// @return IDMStylePtr，为NULL表示失败
-		IDMStylePtr FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
+		/// @return style的xmlnode
+		DMXmlNode FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief  找查找style
+		/// @brief   查找style
 		/// @param[in]  lpszBuf			style池的名称:style的key
-		/// @return IDMStylePtr，为NULL表示失败
-		IDMStylePtr FindStyle(LPCWSTR lpszBuf,bool bLoopFind = true);
+		/// @return style的xmlnode
+		DMXmlNode FindStyle(LPCWSTR lpszBuf,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief  全部遍历找查找style
 		/// @param[in]  lpszKey			用于查找style的key
-		/// @return IDMStylePtr，为NULL表示失败
-		IDMStylePtr FindStyleFromAll(LPCWSTR lpszKey);
-	public:
+		/// @return style的xmlnode
+		DMXmlNode FindStyleFromAll(LPCWSTR lpszKey);
 
+	public:
 		virtual void PreMapKeyRemove(const DMStylePoolItemPtr &obj);
+
 	};
 
 

@@ -168,7 +168,7 @@ namespace DM
 		return g_pDMSkinPool->RemoveSkin(lpszKey,lpszName,bLoopFind);
 	}
 
-	IDMStyle* DMApp::GetStyle(LPCWSTR lpszStyle)
+	DMXmlNode DMApp::GetStyle(LPCWSTR lpszStyle)
 	{
 		return g_pDMStylePool->FindStyle(lpszStyle);
 	}
