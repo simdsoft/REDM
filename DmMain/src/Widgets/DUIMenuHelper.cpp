@@ -286,25 +286,7 @@ namespace DM
 				}
 			}
 
-			// 绘制ITEM项的ICON
-			CRect rcIcon;
-			rcIcon.left		= rcItem.left+m_pDUIMenuXmlInfo->m_IconOffset;
-			rcIcon.right	= rcIcon.left+m_pDUIMenuXmlInfo->m_szIcon.cx;
-			rcIcon.top		= rcItem.top+(rcItem.Height()-m_pDUIMenuXmlInfo->m_szIcon.cy)/2;
-			rcIcon.bottom   = rcIcon.top+m_pDUIMenuXmlInfo->m_szIcon.cy;
-			if (bChecked)
-			{
-				if (m_pDUIMenuXmlInfo->m_pCheckSkin)
-				{
-					m_pDUIMenuXmlInfo->m_pCheckSkin->Draw(pCanvas,rcIcon,bRadio?1:0);
-				}
-			}
-			else if (pdmmi->itemInfo.iIcon!=-1 && m_pDUIMenuXmlInfo->m_pIconSkin)
-			{
-				m_pDUIMenuXmlInfo->m_pIconSkin->Draw(pCanvas,rcIcon,pdmmi->itemInfo.iIcon);
-			}
-			rcItem.left = rcIcon.right;// 转换成文字区域
-			// 绘制Skin
+			// 绘制Skin,skin使用整个背景区
 			if (pdmmi->itemInfo.pSkin)
 			{
 				CRect rcSkin = rcItem;
@@ -321,13 +303,33 @@ namespace DM
 				pdmmi->itemInfo.pSkin->Draw(pCanvas, rcSkin, iState);
 			}
 
+			// 绘制ITEM项的ICON
+			CRect rcIcon;
+			rcIcon.left		= rcItem.left+pdmmi->itemInfo.iconOffset;
+			rcIcon.right	= rcIcon.left+pdmmi->itemInfo.szIcon.cx;
+			rcIcon.top		= rcItem.top+(rcItem.Height()-pdmmi->itemInfo.szIcon.cy)/2;
+			rcIcon.bottom   = rcIcon.top+pdmmi->itemInfo.szIcon.cy;
+			if (bChecked)
+			{
+				if (m_pDUIMenuXmlInfo->m_pCheckSkin)
+				{
+					m_pDUIMenuXmlInfo->m_pCheckSkin->Draw(pCanvas,rcIcon,bRadio?1:0);
+				}
+			}
+			else if (pdmmi->itemInfo.iIcon!=-1 && m_pDUIMenuXmlInfo->m_pIconSkin)
+			{
+				m_pDUIMenuXmlInfo->m_pIconSkin->Draw(pCanvas,rcIcon,pdmmi->itemInfo.iIcon);
+			}
+
+			rcItem.left = rcIcon.right;// 转换成文字区域
+
 			// 绘制文字
 			if (pdmmi->itemInfo.strText.IsEmpty())
 			{
 				break;// 不绘制
 			}
 			CRect rcText = rcItem;
-			rcText.left = rcText.left+m_pDUIMenuXmlInfo->m_TextOffset;
+			rcText.left = rcText.left+pdmmi->itemInfo.textOffset;
 			DMColor crOld = 0xFFFFFFFF;
 			if (bDisabled)
 			{
@@ -409,8 +411,8 @@ namespace DM
 				LPWINDOWPOS pWP = (LPWINDOWPOS)lParam;  
 				if (pWP)
 				{
-					pWP->cx -= 2*GetSystemMetrics(SM_CXBORDER)+4;   
-					pWP->cy -= 2*GetSystemMetrics(SM_CYBORDER)+4;
+					pWP->cx -= 2*GetSystemMetrics(SM_CXBORDER)+3;   
+					pWP->cy -= 2*GetSystemMetrics(SM_CYBORDER)+3;
 				}
 			}
 			lRet = ::CallWindowProc(m_pOldProc,m_hWnd,WM_WINDOWPOSCHANGING, wParam, lParam);	
@@ -509,7 +511,7 @@ namespace DM
 	{
 		LRESULT lRet = 0;
 		do 
-		{
+		{ 
 			if (!IsMenuWindowExist())
 			{
 				break;

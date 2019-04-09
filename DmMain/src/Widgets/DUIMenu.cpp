@@ -31,11 +31,18 @@ namespace DM
 	{
 		DMMenuItemData *pdmmi = NewMenuItemData();
 		pdmmi->itemInfo.iIcon = -1;
+		pdmmi->itemInfo.szIcon = m_pDUIMenuXmlInfo->m_szIcon;
+		DMAttributeDispatch::ParseSize(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_iconsize),pdmmi->itemInfo.szIcon);
+		pdmmi->itemInfo.iconOffset = m_pDUIMenuXmlInfo->m_IconOffset;
+		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_iconoffset),pdmmi->itemInfo.iconOffset);
 		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_icon),pdmmi->itemInfo.iIcon);
 		pdmmi->itemInfo.strText = XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_text);
+		pdmmi->itemInfo.textOffset = m_pDUIMenuXmlInfo->m_TextOffset;
+		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_textoffset),pdmmi->itemInfo.textOffset);
 		pdmmi->itemInfo.pSkin = g_pDMApp->GetSkin(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_skin));
 		pdmmi->itemInfo.nHeight = m_pDUIMenuXmlInfo->m_nItemHei;
 		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_height),pdmmi->itemInfo.nHeight);
+		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_maxwidth),pdmmi->itemInfo.maxWidth);
 		if (pdmmi->itemInfo.pSkin)
 		{	
 			CSize sz;
@@ -260,33 +267,37 @@ namespace DM
 			if (pdmmi)
 			{// Item
 				lpMeasureItemStruct->itemHeight = pdmmi->itemInfo.nHeight;
-				//
-				lpMeasureItemStruct->itemWidth = m_pDUIMenuXmlInfo->m_szIcon.cx+m_pDUIMenuXmlInfo->m_IconOffset;
-
-				int nSkinWidth = 0;
-				if (pdmmi->itemInfo.pSkin)
+				//o
+				if (-1 != pdmmi->itemInfo.iIcon)
 				{
+					lpMeasureItemStruct->itemWidth = pdmmi->itemInfo.szIcon.cx+pdmmi->itemInfo.iconOffset;
+				}
+				
+				if (pdmmi->itemInfo.pSkin)
+				{// 如果菜单项指定了自己的skin就直接使用skin的宽度.忽视其他，这样就可以通过skin的宽度来让父子菜单项宽度不一致
 					CSize sz;
 					pdmmi->itemInfo.pSkin->GetStateSize(sz);
-					nSkinWidth = sz.cx;
+					lpMeasureItemStruct->itemWidth = sz.cx;
 				}
-
-				int nTextWidth = 0;
-				if (!pdmmi->itemInfo.strText.IsEmpty())
+				else
 				{
-					DMSmartPtrT<IDMCanvas> pCanvas;
-					pRender->CreateCanvas(0,0,&pCanvas);
-					DMSmartPtrT<IDMFont> pOldFont;
-					pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,(IDMMetaFile**)&pOldFont);
-					SIZE szText;
-					CStringW strTrans = g_pDMApp->GetTrans(pdmmi->itemInfo.strText);
-					pCanvas->MeasureText(strTrans,strTrans.GetLength(),&szText);
-					pCanvas->SelectObject(pOldFont);
-					nTextWidth = szText.cx+m_pDUIMenuXmlInfo->m_TextOffset;
-				}
+					int nTextWidth = 0;
+					if (!pdmmi->itemInfo.strText.IsEmpty())
+					{
+						DMSmartPtrT<IDMCanvas> pCanvas;
+						pRender->CreateCanvas(0,0,&pCanvas);
+						DMSmartPtrT<IDMFont> pOldFont;
+						pCanvas->SelectObject(m_pDUIMenuXmlInfo->m_hFont,(IDMMetaFile**)&pOldFont);
+						SIZE szText;
+						CStringW strTrans = g_pDMApp->GetTrans(pdmmi->itemInfo.strText);
+						pCanvas->MeasureText(strTrans,strTrans.GetLength(),&szText);
+						pCanvas->SelectObject(pOldFont);
+						nTextWidth = szText.cx+pdmmi->itemInfo.textOffset;
+					}
 
-				lpMeasureItemStruct->itemWidth += (nSkinWidth>nTextWidth?nSkinWidth:nTextWidth);
-			}
+					lpMeasureItemStruct->itemWidth += nTextWidth;
+				}
+			} 
 			else
 			{// Step
 				CSize sz;
@@ -298,9 +309,14 @@ namespace DM
 				lpMeasureItemStruct->itemWidth  = 0;
 			}
 
-			if (!m_pDUIMenuXmlInfo->m_bAutoCalc)//如果是指定宽度，就使用指定宽度
+			if (!m_pDUIMenuXmlInfo->m_bAutoCalc)// 如果是指定宽度，就使用指定宽度
 			{
 				lpMeasureItemStruct->itemWidth = m_pDUIMenuXmlInfo->m_MaxWidth;
+			}
+
+			if (pdmmi && pdmmi->itemInfo.maxWidth != -1)// 子项的max可以覆盖全局
+			{
+				lpMeasureItemStruct->itemWidth = pdmmi->itemInfo.maxWidth;
 			}
 
 			if (m_pDUIMenuXmlInfo->m_bAutoCalc
@@ -309,7 +325,7 @@ namespace DM
 			{
 				m_pDUIMenuXmlInfo->m_MaxWidth = lpMeasureItemStruct->itemWidth;//如果不是指定宽度， 自动计算出最大宽度
 			}
-
+			
 		} while (FALSE);
 	}
 

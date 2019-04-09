@@ -50,9 +50,13 @@ namespace DMAttr
 		static wchar_t* NODE_sep;												///< 菜单的xml项结点名(对应一条分隔栏)
 		static wchar_t* NODE_item;                                              ///< 菜单的xml项结点名(对应一条菜单项)
 		static wchar_t* ITEM_height;                                            ///< 菜单项的高度(可选)，如果菜单项高度小于菜单项的背景连图的高度，则以背景连图高度为准, 示例:height="20"
+		static wchar_t* ITEM_maxwidth;											///< 菜单项的最大宽度(可选),示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
 		static wchar_t* ITEM_icon;                                              ///< 菜单项的icon位置（-1表示没有icon）示例:icon="1"
 		static wchar_t* ITEM_text;                                              ///< 菜单项的文本  示例:text="打开PE文件..."
-		static wchar_t* ITEM_skin;                                              ///< 菜单项的背景连图(正常-选中-灰掉)  示例:skin="itemskin"
+		static wchar_t* ITEM_iconsize;											///< 菜单项的图标尺寸(可选)，默认为16*16,如果有,就覆盖INT_iconsize,示例:iconsize="16,16"
+		static wchar_t* ITEM_iconoffset;										///< 菜单项的图标左边缘偏移(可选),如果有,就覆盖INT_iconoffset,示例:iconoffset="10"
+		static wchar_t* ITEM_textoffset;										///< 菜单项的文本文本左边缘偏移(可选),如果有,就覆盖INT_textoffset,示例:textoffset="10"
+		static wchar_t* ITEM_skin;                                              ///< 菜单项的背景连图(正常-选中-灰掉)，还有一个作用,在使用自动计算宽度时,当skin存在,并且没有设置ITEM_maxwidth时,会取当前的skin作为当前菜单的宽度,如果父子菜单需要不同的宽度,可以通过这种方式来指定, 示例:skin="itemskin"
 		static wchar_t* ITEM_id;												///< 菜单项的id(不能为0,在1到65535之间)，用于点击时发送消息  示例:id="10"
 		static wchar_t* ITEM_bcheck;                                            ///< 菜单项的check项（配合SKIN_checkskin）  示例:bcheck="1"
 		static wchar_t* ITEM_bradio;                                            ///< 菜单项的radio项（配合SKIN_checkskin，和check项二选一）  示例:bradio="1"
@@ -66,7 +70,9 @@ namespace DMAttr
 	DMAttrValueInit(DUIMenuAttr,COLOR_clrtext)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextsel)DMAttrValueInit(DUIMenuAttr,COLOR_clrtextgray)
 	DMAttrValueInit(DUIMenuAttr,FONT_font)DMAttrValueInit(DUIMenuAttr,BYTE_alpha)DMAttrValueInit(DUIMenuAttr,STRING_transid)
 	DMAttrValueInit(DUIMenuAttr,NODE_sep)DMAttrValueInit(DUIMenuAttr,NODE_item)
-	DMAttrValueInit(DUIMenuAttr,ITEM_height)DMAttrValueInit(DUIMenuAttr,ITEM_icon)DMAttrValueInit(DUIMenuAttr,ITEM_text)
+	DMAttrValueInit(DUIMenuAttr,ITEM_height)DMAttrValueInit(DUIMenuAttr,ITEM_maxwidth)
+	DMAttrValueInit(DUIMenuAttr,ITEM_icon)DMAttrValueInit(DUIMenuAttr,ITEM_text)
+	DMAttrValueInit(DUIMenuAttr,ITEM_iconsize)DMAttrValueInit(DUIMenuAttr,ITEM_iconoffset)DMAttrValueInit(DUIMenuAttr,ITEM_textoffset)
 	DMAttrValueInit(DUIMenuAttr,ITEM_skin)DMAttrValueInit(DUIMenuAttr,ITEM_id)
 	DMAttrValueInit(DUIMenuAttr,ITEM_bcheck)DMAttrValueInit(DUIMenuAttr,ITEM_bradio)DMAttrValueInit(DUIMenuAttr,ITEM_bdisable)
 
@@ -165,10 +171,15 @@ namespace DM
 
 	struct DMMenuItemInfo
 	{
+		DMMenuItemInfo(){nHeight = 0; maxWidth = -1; iIcon = -1; pSkin = NULL; iconOffset = 0; textOffset = 0; dwData = 0;}
 		int				nHeight;
+		int             maxWidth;                     ///< 菜单项的最大宽度
 		int				iIcon;						  ///< icon位置
 		IDMSkin*		pSkin;						  ///< 图片
 		CStringW		strText;					  ///< 文字
+		CSize           szIcon;                       ///< 图标尺寸
+		int             iconOffset;                   ///< 图标左边缘偏移
+		int				textOffset;                   ///< 文本左边缘偏移
 		DWORD           dwData;                       ///< 其他数据
 	};
 
@@ -176,7 +187,7 @@ namespace DM
 	{
 		HMENU		   hMenu;
 		UINT_PTR       nID;
-		DMMenuItemInfo itemInfo; 
+		DMMenuItemInfo itemInfo;
 	};
 
 	/// <summary>
