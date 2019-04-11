@@ -4,7 +4,7 @@
 		<window clrbg="pbgra(5c,5c,5c,ff)" bfocusable="1">
 			<sub src="layout:ds_leftworkspace" />
 		</window>
-		<splitlayout sliderwidth="4" cursor="png:ds_splith" clrslider="pbgra(22,22,22,ff)" firstchildpercent="%75">
+		<splitlayout sliderwidth="4" cursor="png:ds_splith" clrslider="pbgra(22,22,22,ff)" firstchildpercent="%75" minimumwidth="200" maximumwidth="400">
 			<window bfocusable="1">
 				<sub src="layout:ds_midworkspace" />
 			</window>

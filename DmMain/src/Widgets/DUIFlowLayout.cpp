@@ -634,6 +634,8 @@ namespace DM
 		m_iFirstChildPercent= -1;
 		m_iSliderWid		= 1;
 		m_iFixWid			= -1;
+		m_iMinimumWid		= -1;
+		m_iMaximumWid		= -1;
 		m_bDrag				= false;
 		m_ClrSlider.SetTextInvalid();
 	}
@@ -708,7 +710,16 @@ namespace DM
 			m_ptDrag      = pt;
 			ptDiff        = m_ptDrag - ptDiff;
 			int iDiff     = m_bVert?ptDiff.y:ptDiff.x;
-			UpdateDrag(iDiff);	
+			int iOldFixWid = m_iFixWid;
+			UpdateDrag(iDiff);
+			int iRealDiff = m_bFirstChange ? iOldFixWid - m_iFixWid : m_iFixWid - iOldFixWid;
+			if (iRealDiff != iDiff)
+			{
+				if (m_bVert)
+					m_ptDrag.y += iRealDiff - iDiff;
+				else
+					m_ptDrag.x += iRealDiff - iDiff;
+			}
 		} while (false);
 	}
 
@@ -890,6 +901,15 @@ namespace DM
 			{
 				m_iFixWid += iDiff;
 			}
+			if (-1 != m_iMaximumWid && m_iFixWid > m_iMaximumWid)
+			{
+				m_iFixWid = m_iMaximumWid;
+			}
+			else if (-1 != m_iMinimumWid && m_iFixWid < m_iMinimumWid)
+			{
+				m_iFixWid = m_iMinimumWid;
+			}
+
 			if (m_iFixWid<0)
 			{
 				m_iFixWid = 0;

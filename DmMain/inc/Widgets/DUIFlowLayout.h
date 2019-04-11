@@ -58,9 +58,12 @@ namespace DMAttr
 		static wchar_t* INT_sliderwidth;                               ///< 中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth="10"
 		static wchar_t* INT_firstchildwidth;                           ///< 第一个窗口的开始宽度,示例:firstchildwidth="100"
 		static wchar_t* STRING_firstchildpercent;                      ///< 第一个窗口的开始宽度百分比,和INT_firstchildwidth同时使用时,优先使用百分比,示例:firstchildpercent="%50"
+		static wchar_t* INT_minimumwidth;							   ///< 非第一个变化窗口可拖拽最小宽度(水平)或高度(竖直) :minimumwidth="30"  lzlong add
+		static wchar_t* INT_maximumwidth;							   ///< 非第一个变化窗口可拖拽最大宽度(水平)或高度(竖直) :maximumwidth="300"  lzlong add
 	};
 	DMAttrValueInit(DUISplitLayoutAttr,bool_bvert)DMAttrValueInit(DUISplitLayoutAttr,bool_bfirstchange)DMAttrValueInit(DUISplitLayoutAttr,INT_firstchildwidth)DMAttrValueInit(DUISplitLayoutAttr,STRING_firstchildpercent)
-	DMAttrValueInit(DUISplitLayoutAttr,SKIN_sliderskin)DMAttrValueInit(DUISplitLayoutAttr,COLOR_clrslider)DMAttrValueInit(DUISplitLayoutAttr,INT_sliderwidth)
+		DMAttrValueInit(DUISplitLayoutAttr, SKIN_sliderskin)DMAttrValueInit(DUISplitLayoutAttr, COLOR_clrslider)DMAttrValueInit(DUISplitLayoutAttr, INT_sliderwidth)DMAttrValueInit(DUISplitLayoutAttr, INT_minimumwidth)
+		DMAttrValueInit(DUISplitLayoutAttr, INT_maximumwidth)
 }
 
 namespace DM
@@ -177,6 +180,8 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::STRING_firstchildpercent,OnAttributeFirstChildPercent)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::SKIN_sliderskin,m_pSliderSkin,DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::COLOR_clrslider,m_ClrSlider,DM_ECODE_NOXMLLOADREFRESH)
+			DM_INT_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::INT_minimumwidth, m_iMinimumWid, DM_ECODE_NOXMLRELAYOUT)
+			DM_INT_ATTRIBUTE(DMAttr::DUISplitLayoutAttr::INT_maximumwidth, m_iMaximumWid, DM_ECODE_NOXMLRELAYOUT)
 		DM_END_ATTRIBUTES()
 		DMCode OnAttributeFirstChildWidth(LPCWSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeFirstChildPercent(LPCWSTR lpszValue, bool bLoadXml);
@@ -184,6 +189,8 @@ namespace DM
 	public:
 		bool                             m_bVert;                ///< 是否竖直
 		int                              m_iSliderWid;           ///< 中间可拖动块的宽度(水平)或高度(竖直)
+		int								 m_iMinimumWid;			 ///< 最小宽高
+		int								 m_iMaximumWid;			 ///< 最大宽高
 		DMSmartPtrT<IDMSkin>             m_pSliderSkin;
 		DMColor                          m_ClrSlider;
 		bool                             m_bFirstChange;
