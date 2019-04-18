@@ -63,7 +63,6 @@ namespace DM
 		// Function Des: жиди
 		//---------------------------------------------------
 		virtual BOOL PreTranslateMessage(MSG* pMsg);
-		virtual void OnFinalMessage(HWND);
 		virtual DMCode OnReleaseCaptureWnd();
 
 	public:// ИЈжњ

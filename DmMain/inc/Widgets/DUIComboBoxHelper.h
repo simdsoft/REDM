@@ -169,7 +169,7 @@ namespace DM
 		int									m_iAnimTime;						     ///< 动画时间  
 		int									m_iInitSel;								 ///< 默认选中索引
 		int                                 m_nTextOffset;							 ///< 文本偏移
-		DMDropWnd *						    m_pDropDownWnd;							 ///< DropDown指针
+		DMSmartPtrT<DMDropWnd>				m_pDropDownWnd;							 ///< DropDown指针
 		bool								m_bDropTranslucent;
 
 		DMXmlDocument                       m_EditDoc;                               ///< 备份edit的xml

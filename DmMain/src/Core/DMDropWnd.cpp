@@ -247,12 +247,6 @@ namespace DM
 			return bRet;
 		}
 
-		void DMDropWnd::OnFinalMessage(HWND hWnd)
-		{
-			__super::OnFinalMessage(hWnd);
-			delete this;
-		}
-
 		DMCode DMDropWnd::OnReleaseCaptureWnd()
 		{
 			DMCode iErr = DMHWnd::OnReleaseCaptureWnd();

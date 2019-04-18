@@ -79,7 +79,6 @@ namespace DM
 		m_nDropHeight   = 200;
 		m_dwBtnState    = DUIWNDSTATE_Normal;
 		m_iAnimTime     = 200;
-		m_pDropDownWnd  = NULL;
 		m_iInitSel      = -1;
 		m_nTextOffset	= 0;
 		m_BtnSize.SetSize(-1,-1);
@@ -203,11 +202,9 @@ namespace DM
 
 	void DUIComboBoxBase::OnDestroy()
 	{
-		if (m_pDropDownWnd&&m_pDropDownWnd->IsWindow())
+		if (m_pDropDownWnd.isValid())
 		{// 仍交由父窗口释放时自动释放
-			//m_pDropDownWnd->PostMessage(WM_DESTROY);// 如果一定要释放,这里必须为Post消息
 			m_pDropDownWnd->m_pOwner = NULL;
-			m_pDropDownWnd = NULL;
 		}
 		__super::OnDestroy();
 	}
@@ -474,9 +471,9 @@ namespace DM
 				break;
 			}
 
-			if (NULL == m_pDropDownWnd)
+			if (m_pDropDownWnd.isNull())
 			{
-				m_pDropDownWnd = new DMDropWnd(this);
+				m_pDropDownWnd.Attach(new DMDropWnd(this));
 			}
 
 			m_pDropDownWnd->Show(rcPopup);
@@ -494,7 +491,7 @@ namespace DM
 
 	void DUIComboBoxBase::CloseUp()
 	{
-		if (m_pDropDownWnd)
+		if (m_pDropDownWnd.isValid())
 		{
 			m_pDropDownWnd->Hide(IDOK);
 		}
