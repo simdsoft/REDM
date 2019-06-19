@@ -3301,14 +3301,16 @@ namespace DM
 		{
 			return; 
 		}
-		int hi = high+1; 
+		int hi = high;
 		int lo = low;
 		T elem= array[low]; 
-		for( ; ; ) 
-		{ 
-			while(lo<high && 0>CmpT(array[++lo],elem)); //array[++lo]<elem
-			while(hi>low && 0<CmpT(array[--hi],elem)); //array[--hi]>elem
-			if(lo<hi) 
+		while(hi != low)
+		{
+			while (low < hi && 0 <= CmpT(array[hi], elem)) //array[--hi]>elem
+				hi--;
+			while (low<hi && 0>=CmpT(array[lo], elem)) //array[++lo]<elem
+				lo++;
+			if(lo<hi) //交换两个数在数组中的位置
 			{
 				T elemTemp = array[lo];
 				array[lo] = array[hi];
