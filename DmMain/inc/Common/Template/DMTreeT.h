@@ -350,6 +350,23 @@ namespace DM
 		HDMTREEITEM TraversingRecursion(HDMTREEITEM hItem,CBTRAVERSING funTraversing,LPARAM lParam)
 		{
 			DMASSERT(hItem);
+			HDMTREEITEM hSibling = GetChildItem(hItem); //lzlong change to this  下面的遍历有问题 2019-6-13
+			while (hSibling)
+			{
+				HDMTREEITEM hNextSibling = GetNextSiblingItem(hSibling);
+				TraversingRecursion(hSibling, funTraversing, lParam);
+				hSibling = hNextSibling;
+			}
+			if (hItem != DMTVI_ROOT)
+			{
+				if (funTraversing(GetItemPt(hItem), lParam))
+				{
+					return hItem;
+				}
+			}
+			return NULL;
+
+		/*	DMASSERT(hItem);
 			if (hItem!=DMTVI_ROOT)
 			{
 				if (funTraversing(GetItemPt(hItem),lParam))
@@ -379,7 +396,7 @@ namespace DM
 				}
 				hChild = GetNextSiblingItem(hChild);
 			}
-			return NULL;
+			return NULL; */
 		}
 
 		///< 按顺序方式从指定结点开始查找后面的结点，包括自己的子节点及自己向下的兄弟结点

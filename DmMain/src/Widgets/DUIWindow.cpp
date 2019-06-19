@@ -2090,6 +2090,14 @@ namespace DM
 				pChild = pNextChild;
 			}
 
+			size_t count = (int)m_ChildPanelArray.GetCount();
+			for (size_t i = 0; i < count; i++)
+			{
+				m_ChildPanelArray[i]->AddRef();
+				m_ChildPanelArray[i]->DM_SendMessage(WM_SHOWWINDOW, bShow, ParentShow);// 更新所有panel子窗口的显示状态
+				m_ChildPanelArray[i]->Release();
+			}
+
 			if (!DM_IsVisible(true))
 			{	
 				if (DM_IsFocusWnd()) 

@@ -83,7 +83,7 @@ namespace DM
 			}
 			bool bVisible = pData->bVisible;
 			int iCheckValue = pData->iCheckValue;
-			DM_RemoveChildPanel(pData->pPanel);
+			//DM_RemoveChildPanel(pData->pPanel);//这一步放到OnNodeFree 因为删除一个父节点会递归删除子节点
 			DeleteItem(hItem);
 
 			// 去掉父节点的展开标志
@@ -1084,6 +1084,7 @@ namespace DM
 	void DUITreeCtrlEx::OnNodeFree(LPTVITEMEX &pItemData)
 	{
 		pItemData->pPanel->SetItemId(-1);
+		DM_RemoveChildPanel(pItemData->pPanel);
 		DM_DELETE(pItemData);
 	}
 #pragma endregion
