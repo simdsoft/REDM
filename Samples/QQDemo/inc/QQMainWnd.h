@@ -17,8 +17,9 @@
 #include "SkinWnd.h"
 #include "SpyWnd.h" 
 #include "WidgetWnd.h"
+#include "DMTrayIconImpl.h"
 
-class CQQMainWnd:public DMHWnd
+class CQQMainWnd :public DMHWnd, public DMTrayIconImpl<CQQMainWnd>
 {
 public:
 	CQQMainWnd();
@@ -33,6 +34,7 @@ public:
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);	
 	void OnShowWindow(BOOL bShow, UINT nStatus);
+	virtual int OnTrayOnRButtonUp(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam);
 	LRESULT OnShowTrayMenu(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);// ≤Àµ•≤‚ ‘
 

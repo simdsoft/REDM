@@ -10,7 +10,8 @@ BEGIN_MSG_MAP(CQQMainWnd)
 	MSG_WM_SHOWWINDOW(OnShowWindow)
 	MSG_WM_SIZE(OnSize)
 	MSG_WM_COMMAND(OnCommand)
-	MESSAGE_HANDLER_EX(WM_SHOWTRAYMENU, OnShowTrayMenu)
+	//MESSAGE_HANDLER_EX(WM_SHOWTRAYMENU, OnShowTrayMenu)//老代码
+	CHAIN_MSG_MAP(DMTrayIconImpl)
 	CHAIN_MSG_MAP(DMHWnd)// 将未处理的消息交由DMHWnd处理
 END_MSG_MAP()
 
@@ -31,13 +32,14 @@ CQQMainWnd::CQQMainWnd()
 		m_pSubListEx[i]   = NULL;
 	}
 	m_pListEx      = NULL;
-	new CTrayIconWndMgr;
+//	new CTrayIconWndMgr;//老代码
 }
 
 CQQMainWnd::~CQQMainWnd()
 {
-	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemon已退出");
-	delete CTrayIconWndMgr::getSingletonPtr();
+// 	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemon已退出");//老代码
+// 	delete CTrayIconWndMgr::getSingletonPtr();
+	ShowTrayBalloonTip(L"DM库示例", L"QQDemon已退出");//新trayicon代码
 }
 
 int CQQMainWnd::OnCreate(LPVOID)
@@ -88,10 +90,14 @@ BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pSubListEx[i]->m_EventMgr.SubscribeEvent(DMEventLBSelChangedArgs::EventID, Subscriber(&CQQMainWnd::OnSubListEx, this));
 	}
 
-	// 增加一个托盘图标
+/*	// 增加一个托盘图标
 	CTrayIconWndMgr::getSingleton().InstallTrayIcon(L"欢迎使用DM库示例:QQDemo",m_hWnd,hIcon,IDI_QQ);
 	// 增加一个汽泡提示
-	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemo");
+	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM库示例",L"QQDemo"); */
+
+	//下面是新的trayico封装
+	InstallIcon(L"欢迎使用DM库示例:QQDemo", hIcon, IDI_QQ);
+	ShowTrayBalloonTip(L"DM库示例", L"QQDemo");
 	return TRUE;
 }
 
@@ -125,6 +131,11 @@ void CQQMainWnd::OnShowWindow(BOOL bShow, UINT nStatus)
 	{
 		m_WndShadow.SetPosition(0, 0);
 	}
+}
+
+int CQQMainWnd::OnTrayOnRButtonUp(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return OnShowTrayMenu(uMsg, wParam, lParam);
 }
 
 LRESULT CQQMainWnd::OnShowTrayMenu(UINT uMsg, WPARAM wParam, LPARAM lParam)
