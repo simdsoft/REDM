@@ -50,6 +50,7 @@ namespace DM
 	///---------------------------
 	DUICaret::DUICaret()
 	{
+		m_pt.SetPoint(-1, -1);
 		m_dwPreFrameTime = 0;
 		m_bBlinking      = false;
 		m_clr            = PBGRA(0,0,0,0xff);
