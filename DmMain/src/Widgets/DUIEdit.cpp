@@ -417,7 +417,8 @@ namespace DM
 				SetSel(MAKELONG(0,-1),TRUE);
 			}
 
-			if (ES_PASSWORD & m_dwEditStyle)
+			if (ES_PASSWORD & m_dwEditStyle
+				|| ES_NUMBER & m_dwEditStyle)
 			{// 禁用中文输入法，参看http://blog.csdn.net/xie1xiao1jun/article/details/17913967
 				m_hCurIMC = ::ImmAssociateContext(GetContainer()->OnGetHWnd(), NULL);
 			}
@@ -451,7 +452,8 @@ namespace DM
 			pServ->TxSendMessage(WM_KILLFOCUS,0,0,NULL);
 			m_pTxtHost->TxShowCaret(FALSE);
 
-			if (ES_PASSWORD & m_dwEditStyle)
+			if (ES_PASSWORD & m_dwEditStyle
+				|| ES_NUMBER & m_dwEditStyle)
 			{// 恢复
 				ImmAssociateContext(GetContainer()->OnGetHWnd(), m_hCurIMC);
 			}
