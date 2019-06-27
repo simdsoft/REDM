@@ -26,6 +26,7 @@ namespace DMAttr
 	public:
 		static wchar_t* bool_bhideedit;                                               ///< 是否不显示edit,示例：bhideedit="1"
 		static wchar_t* INT_dropheight;                                               ///< 下拉高度,取listbox的高度和此设置值的较小值显示,默认200，示例：dropheight="200"
+		static wchar_t* INT_dropemptyheight;                                          ///< 当listbox为空时的显示高度,默认0，示例：dropemptyheight="200"
 		static wchar_t* INT_animatetime;                                              ///< 下拉出来的时间，用于AnimateWindow,默认200,为0表示不使用下拉动画,示例：animatetime="200"
 		static wchar_t* SKIN_btnskin;                                                 ///< 下拉的小三角按钮皮肤，示例:btnskin="skinbtn"
 		static wchar_t* SIZE_btnsize;                                                 ///< 下拉小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize="-1,-1"
@@ -33,9 +34,10 @@ namespace DMAttr
 		static wchar_t* INT_textoffset;                                 			  ///< 文本的偏移，默认为0,示例:textoffset="10"
 		static wchar_t* bool_bdroptranslucent;										  ///< 下拉列表窗口是否支持透明,默认为不透明,示例:bdroptranslucent="0"
 
+
 		static wchar_t* ITEM_subedit;												  ///< 子控件edit的XML标识
 	};
-	DMAttrValueInit(DUIComboBoxBaseAttr,bool_bhideedit)DMAttrValueInit(DUIComboBoxBaseAttr,INT_dropheight)DMAttrValueInit(DUIComboBoxBaseAttr,INT_animatetime)
+	DMAttrValueInit(DUIComboBoxBaseAttr,bool_bhideedit)DMAttrValueInit(DUIComboBoxBaseAttr,INT_dropheight)DMAttrValueInit(DUIComboBoxBaseAttr, INT_dropemptyheight)DMAttrValueInit(DUIComboBoxBaseAttr,INT_animatetime)
 	DMAttrValueInit(DUIComboBoxBaseAttr,SKIN_btnskin)DMAttrValueInit(DUIComboBoxBaseAttr,SIZE_btnsize)DMAttrValueInit(DUIComboBoxBaseAttr,INT_cursel)DMAttrValueInit(DUIComboBoxBaseAttr,INT_textoffset)
 	DMAttrValueInit(DUIComboBoxBaseAttr,bool_bdroptranslucent)DMAttrValueInit(DUIComboBoxBaseAttr,ITEM_subedit)
 }
@@ -147,6 +149,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::INT_cursel,	 OnAttributeCurSel)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::SIZE_btnsize,   OnAttributeBtnSize)
 			DM_INT_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::INT_dropheight,    m_nDropHeight, DM_ECODE_OK)
+			DM_INT_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::INT_dropemptyheight, m_nDropEmptyHeight, DM_ECODE_OK)
 			DM_INT_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::INT_animatetime,   m_iAnimTime,   DM_ECODE_OK)
 			DM_INT_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::INT_textoffset,    m_nTextOffset, DM_ECODE_NOXMLLOADREFRESH)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUIComboBoxBaseAttr::SKIN_btnskin,  m_pSkinBtn,    DM_ECODE_NOXMLLOADREFRESH)
@@ -166,6 +169,7 @@ namespace DM
 
 		bool 							    m_bHideEdit;							 ///< 是否ComboBox显示Edit
 		int									m_nDropHeight;							 ///< 下拉框高度
+		int									m_nDropEmptyHeight;						 ///< List为空时下拉框高度
 		int									m_iAnimTime;						     ///< 动画时间  
 		int									m_iInitSel;								 ///< 默认选中索引
 		int                                 m_nTextOffset;							 ///< 文本偏移

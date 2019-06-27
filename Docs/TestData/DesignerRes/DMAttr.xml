@@ -183,6 +183,7 @@
 	<DUIComboBoxBaseAttr
 	bool_bhideedit="{1}是否不显示edit,示例：bhideedit=1"
 	INT_dropheight="{200}下拉高度,取listbox的高度和此设置值的较小值显示,默认200，示例：dropheight=200" 
+	INT_dropemptyheight="{0}当listbox为空时的显示高度,默认0，示例：dropemptyheight=200"
 	INT_animatetime="{200}下拉出来的时间，用于AnimateWindow,默认200,为0表示不使用下拉动画，示例：animatetime=200" 
 	SKIN_btnskin="下拉的小三角按钮皮肤，示例:btnskin=skinbtn" 
 	SIZE_btnsize="{-1,-1}下拉小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize=-1,-1"

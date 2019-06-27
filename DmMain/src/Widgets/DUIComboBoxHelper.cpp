@@ -77,6 +77,7 @@ namespace DM
 		m_bHideEdit		= true;
 		m_bDropTranslucent = false;
 		m_nDropHeight   = 200;
+		m_nDropEmptyHeight = 0;
 		m_dwBtnState    = DUIWNDSTATE_Normal;
 		m_iAnimTime     = 200;
 		m_iInitSel      = -1;

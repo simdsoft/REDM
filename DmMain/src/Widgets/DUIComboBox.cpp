@@ -103,7 +103,7 @@ namespace DM
 			int nCount = GetCount();
 			if (0 >= nCount)
 			{
-				nDropHeight = 0;
+				nDropHeight = m_nDropEmptyHeight;
 				break;
 			}
 
@@ -186,6 +186,7 @@ namespace DM
 			m_pListBox->SetContainer(GetContainer());
 			DMCode dwCode =	m_pListBox->InitDMData(XmlNode.FirstChild(DMAttr::DUIComboBoxAttr::ITEM_sublistbox));
 			m_pListBox->SetAttribute(L"pos",L"0,0,-0,-0",true);
+			m_pListBox->SetAttribute(L"clrbg", L"pbgra(ff,ff,ff,ff)", true); //默认白色底图
 			m_pListBox->SetAttribute(L"hotTrack",L"1",true);// 不让它选中
 			m_pListBox->DM_SetOwnerWnd(this);				// chain notify message to combobox
 			m_pListBox->SetID(CB_LIST_ID);
