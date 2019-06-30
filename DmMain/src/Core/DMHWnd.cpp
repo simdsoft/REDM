@@ -504,7 +504,10 @@ namespace DM
 	void DMHWnd::OnDestroy()
 	{
 		DUIWindow::DM_SendMessage(WM_DESTROY);    // Ïú»ÙDUI´°¿Ú
-		m_pDraw.Release();
+		if (m_pDraw)
+		{
+			m_pDraw.Release();
+		}
 		if (m_pToolTip)
 		{
 			if (m_pCurMsgLoop)

@@ -30,13 +30,10 @@ namespace DM
 			UnPreMsg();
 			if (IsWindow())
 			{
+				AddRef();// 因为DestroyWindow会调用DM_SendMessage，内部会先AddRef，再Release,引用计数为0,从而引发delete，所以这里要+1
 				DestroyWindow();
 			}
-			int nCount = GetRefCount();
-			if (nCount>0)
-			{
-				SetRefCount(0);
-			}
+			SetRefCount(0);
 		}
 
 		DMCode DMDropWnd::Show(LPCRECT lpRect)
