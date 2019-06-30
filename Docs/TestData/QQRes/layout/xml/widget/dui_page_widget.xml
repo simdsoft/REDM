@@ -51,5 +51,8 @@
 		<tabPage  itemskin="tab_item" animatetype="1" title="monthcalctrl" tiptext="monthcalctrl控件">	
 			<sub src="layout:widget_monthcalctrl"/>
 		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="scrollwnd" tiptext="scrollwnd控件">	
+			<sub src="layout:widget_scrollwnd"/>
+		</tabPage>
 	</tabctrl>
 </sub>

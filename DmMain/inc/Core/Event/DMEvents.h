@@ -51,6 +51,9 @@ namespace DM
 
 		DMEVT_TAB_SELCHANGING  = 11000,			
 		DMEVT_TAB_SELCHANGED,
+		DMEVT_TAB_DELING,
+		DMEVT_TAB_DELETED,
+
 		
 		DMEVT_TAB_3DVIEW       = 12000,
 
@@ -95,6 +98,11 @@ namespace DM
 
 		DMEVT_CL_SETDATE       = 22150,
 		DMEVT_CL_CLICKDATECHANGED,
+
+		DMEVT_RT_BOXCHANG      = 22200,
+		DMEVT_RT_BOXCHANGED,
+
+		DMEVT_CHILDLAYOUT_FINISHED = 22250,
 
 
 		// 预留1000空间给script设置事件
@@ -216,6 +224,34 @@ namespace DM
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_SELCHANGED);}
 		UINT				m_uOldSel;			///<先前选中页
 		UINT				m_uNewSel;			///<当前选中页
+	};
+
+	/// <summary>
+	///		Tab页准备删除事件
+	/// </summary>
+	class DM_EXPORT DMEventTabCtrlDelingArgs : public DMEventArgs
+	{
+	public:
+		DMEventTabCtrlDelingArgs(DUIWindow* pWnd):DMEventArgs(pWnd),m_bCancel(false),m_pPage(NULL){}
+		enum{EventID=DMEVT_TAB_DELING};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_DELING);}
+		DUIWindow*            m_pPage;            ///< 当前准备删除的项
+		bool                  m_bCancel;          ///< 是否取消删除
+	};
+
+	/// <summary>
+	///		Tab页删除后事件
+	/// </summary>
+	class DMEventTabCtrlDelArgs : public DMEventArgs
+	{
+	public:
+		DMEventTabCtrlDelArgs(DUIWindow* pWnd):DMEventArgs(pWnd),m_pPage(NULL),m_bDelAll(false){}
+		enum{EventID=DMEVT_TAB_DELETED};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_DELETED);}
+		DUIWindow*            m_pPage;            ///< 当前已删除的项
+		bool                  m_bDelAll;          ///< 在调用DeleteAllItems时设置为true
 	};
 
 	/// <summary>
@@ -659,6 +695,48 @@ namespace DM
 		int					   m_iNewYear;			
 		int                    m_iNewMonth;
 		int                    m_iNewDay;
+	};
+
+	/// <summary>
+	///		 RectTracker的box区域改变时触发
+	/// </summary>
+	class DM_EXPORT DMEventRTBOXChangingArgs : public DMEventArgs
+	{
+	public:
+		DMEventRTBOXChangingArgs(DUIWindow *pWnd):DMEventArgs(pWnd),m_bCancel(FALSE){}
+		enum{EventID=DMEVT_RT_BOXCHANG};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_RT_BOXCHANG);}
+		CRect                   m_rcBoxOld;
+		CRect                   m_rcBoxNew;
+		BOOL					m_bCancel;
+	};
+
+	/// <summary>
+	///		 RectTracker的box区域改变后触发
+	/// </summary>
+	class DM_EXPORT DMEventRTBOXChangedArgs : public DMEventArgs
+	{
+	public:
+		DMEventRTBOXChangedArgs(DUIWindow *pWnd):DMEventArgs(pWnd),m_message(0){}
+		enum{EventID=DMEVT_RT_BOXCHANGED};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_RT_BOXCHANGED);}
+		CRect                   m_rcBoxOld;
+		CRect                   m_rcBoxNew;
+		UINT                    m_message;
+	};
+
+	/// <summary>
+	///		 子窗口布局完成后通知
+	/// </summary>
+	class DM_EXPORT DMEventChildLayoutFinishedArgs : public DMEventArgs
+	{
+	public:
+		DMEventChildLayoutFinishedArgs(DUIWindow *pWnd) :DMEventArgs(pWnd){}
+		enum{EventID=DMEVT_CHILDLAYOUT_FINISHED};
+		virtual UINT GetEventID(){return EventID;}
+		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_CHILDLAYOUT_FINISHED);}
 	};
 
 	/// <summary>

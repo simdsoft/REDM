@@ -84,4 +84,9 @@
 	clrjieritext="pbgra(f0,80,1,ff)" jierifont="face:微软雅黑,size:8,weight:400" 
 	clrtodaytext="pbgra(00,00,00,ff)" clrtodaytexthover="pbgra(ff,00,ff,ff)" clrtodaytextpush="pbgra(f0,80,1,ff)">
 	</MonthCalCtrl> 
+	<scrollwnd clrbg="pbgra(ff,ff,ff,ff)">
+		<scrollFL>
+			<Button pos="10,10,@200,@200" text="滚动条下的一个子控件" clrbg="pbgra(ff,ff,00,ff)"/>
+		</scrollFL>
+	</scrollwnd>
 </root> 

@@ -22,6 +22,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT DMHDialog:public DMHWnd
 	{
+		DMDECLARE_CLASS_NAME(DMHDialog,L"hdialog",DMREG_Window);
 	public:
 		DMHDialog();
 		virtual~DMHDialog();

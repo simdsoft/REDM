@@ -6,7 +6,7 @@
 		<imglist id="dg_checkbtn" src="designer:dg_checkbtn" states="8" bvert="0" btitle="0" />
 		<imglist id="dg_closebtn" src="designer:dg_closebtn" states="3" bvert="0" btitle="0" />
 		<imglist id="dg_comboxbtn" src="designer:dg_comboxbtn" states="3" bvert="0" btitle="0" />
-		<img9 id="dg_custombtn" src="designer:dg_custombtn" states="3" bvert="0" btitle="0" margin="2,2,2,2" />
+		<img9 id="dg_custombtn" src="designer:dg_custombtn" states="3" bvert="0" btitle="0" margin="3,2,3,2" />
 		<img9 id="dg_headerctrl" src="designer:dg_headerctrl" states="4" bvert="0" btitle="0" margin="2,2,2,2" />
 		<imglist id="dg_maxbtn" src="designer:dg_maxbtn" states="3" bvert="0" btitle="0" />
 		<imglist id="dg_minbtn" src="designer:dg_minbtn" states="3" bvert="0" btitle="0" />
@@ -19,6 +19,7 @@
 		<imglist id="dg_thumb_hz" src="designer:dg_thumb_hz" states="4" bvert="0" btitle="0" />
 		<img9 id="dg_calendarcell" src="designer:dg_calendarcell" states="3" bvert="0" btitle="0" margin="3,3,3,3" />
 		<img9 id="dg_calendarleft" src="designer:dg_calendarleft" states="3" bvert="0" btitle="0" margin="4,4,4,4" />
-		<img9 id="dg_calendarright" src="designer:dg_calendarright" states="3" bvert="0" btitle="0" margin="4,4,4,4" />	
+		<img9 id="dg_calendarright" src="designer:dg_calendarright" states="3" bvert="0" btitle="0" margin="4,4,4,4" />
+		<imglist id="dg_drag_move" src="designer:dg_drag_move" states="2" bvert="0" btitle="0" />
 	</skin>
 </global>

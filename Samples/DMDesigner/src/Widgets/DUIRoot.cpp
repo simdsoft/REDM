@@ -320,6 +320,7 @@ bool DUIRoot::IsSupportAddChild(DUIWindow* pParentWnd,CStringW strReg)
 			||0 == strParent.CompareNoCase(L"item")
 			||0 == strParent.CompareNoCase(L"treeitem")
 			||0 == strParent.CompareNoCase(L"splitlayout")
+			||0 == strParent.CompareNoCase(L"scrollwnd")
 			)
 		{
 			bRet = false;

@@ -20,5 +20,6 @@
 		<file name="dg_calendarcell" path="themes\theme0\designer\dg_calendarcell.png" />
 		<file name="dg_calendarleft" path="themes\theme0\designer\dg_calendarleft.png" />
 		<file name="dg_calendarright" path="themes\theme0\designer\dg_calendarright.png" />
+		<file name="dg_drag_move" path="themes\theme0\designer\dg_drag_move.png" />
 	</designer>
 </resource>

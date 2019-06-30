@@ -29,7 +29,7 @@ namespace DM
 		m_bUseRange             = true;
 
 		// scrollbar
-		DMADDEVENT(DMEventScrollArgs::EventID);
+		DMADDEVENT(DMEventOnScrollArgs::EventID);
 	}
 
 	//---------------------------------------------------
@@ -223,6 +223,7 @@ namespace DM
 
 		CSize size		= rcClient.Size();
 		m_isbVisible    = DMSB_NULL;		     /// 关闭滚动条
+		CPoint ptCurPos = m_ptCurPos;	
 
 		if (size.cy<m_szRange.cy				/// 需要竖直滚动条
 			|| (size.cx<m_szRange.cx&&size.cy<m_szRange.cy+m_isbWid))
@@ -281,6 +282,10 @@ namespace DM
 		SetScrollPos(false,m_siHoz.nPos,false);
 
 		DM_SendMessage(WM_NCCALCSIZE);   ///< 计算非客户区大小
+		if (m_ptCurPos != ptCurPos)
+		{
+			OnRangeCurPosChanged(ptCurPos,m_ptCurPos);
+		}
 		DM_InvalidateRect(m_rcWindow);
 	}
 

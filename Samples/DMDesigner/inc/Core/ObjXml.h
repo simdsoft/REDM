@@ -27,7 +27,7 @@ public:
 
 	// 其他
 	DMCode OnObjTreeChanged(DMEventArgs* pEvt);
-	DMCode InitObjTreeNode(DMXmlNode& TreeNode,bool IsDMXml = false);
+	DMCode InitObjTreeNode(DUIWindow*pWnd, DMXmlNode& TreeNode, bool IsDMXml = false);
 	DMCode BindObjTreeData(DocDataPtr pDoc,DUIRoot* pEditor,DUIWindowPtr pDUI, DMXmlNode& Node, HDMTREEITEM hTreeItem,bool bPanel = false);
 	HDMTREEITEM InsertObjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTREEITEM hParent =DMTVI_ROOT);
 	HDMTREEITEM FindStyle(CStringW strStyle);// 注意,这里找到的HDMTREEITEM为ProjTree中的项
@@ -49,6 +49,7 @@ public:
 	DMCode EnumChildTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM hTreeItem,bool bPanel = false);
 	DMCode EnumPanelTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM hTreeItem);
 	DMCode RemoveObjTreeItemMap(HDMTREEITEM hTreeItem);///< 移除hTreeItem及其对应所有子节点的map
+	bool  IsDeletable(DUIWindow* pWnd);
 
 private:
 	HDMTREEITEM _FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CStringW strKey);

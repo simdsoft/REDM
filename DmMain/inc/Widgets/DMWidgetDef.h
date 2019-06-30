@@ -50,8 +50,12 @@ namespace DM
 #define      DUINAME_ListCtrlEx	L"ListCtrlEx"                   // DUI ListCtrlEx
 #define      DUINAME_Gif     	L"Gif"                          // DUI Gif
 #define      DUINAME_ScrollBase L"ScrollBase"                   // DUI ScrollBase
+#define      DUINAME_ScrollWnd  L"ScrollWnd"                    // DUI ScrollWnd
+#define      DUINAME_ScrollFL   L"ScrollFL"                     // DUI ScrollFL
 #define      DUINAME_MonthCalCtrl L"MonthCalCtrl"				// DUI MonthCalCtrl
-#define      DUINAME_DateTimeCtrl L"DUIDateTimeCtrl"		    // DUI DateTimeCtrl
+#define      DUINAME_DateTimeCtrl L"DateTimeCtrl"				// DUI DateTimeCtrl
+#define      DUINAME_RectTracker  L"RectTracker"				// DUI RectTracker
+
 
 // ----------------------------------------------------
 // scroll

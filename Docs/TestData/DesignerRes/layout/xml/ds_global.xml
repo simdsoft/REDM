@@ -86,5 +86,6 @@
 		<imglist id="ds_w_SplitLayout" src="ds_w_SplitLayout" states="2"/>
 		<imglist id="ds_w_TabPage" src="ds_w_TabPage" states="2"/>
 		<imglist id="ds_w_TreeCtrlEx" src="ds_w_TreeCtrlEx" states="2"/>
+		<imglist id="ds_w_ScrollWnd" src="ds_w_ScrollWnd" states="2"/>
 	</skin>
 </global>

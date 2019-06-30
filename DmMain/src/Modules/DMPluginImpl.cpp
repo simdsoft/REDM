@@ -16,6 +16,7 @@
 
 #include "DUIButton.h"
 #include "DUIScrollBase.h"
+#include "DUIScrollWnd.h"
 #include "DUITabCtrl.h"
 #include "DUITreeCtrl.h"
 #include "DUIListBox.h"
@@ -130,6 +131,8 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIWindow>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIButton>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIScrollBase>(),true);
+		iErr = g_pDMApp->Register(DMRegHelperT<DUIScrollWnd>(), true);
+		iErr = g_pDMApp->Register(DMRegHelperT<DUIScrollFL>(), true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUITabPage>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUITabCtrl>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUITreeCtrl>(),true);

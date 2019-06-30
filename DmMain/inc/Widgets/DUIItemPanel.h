@@ -34,6 +34,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT DUIItemPanel:public DUIWindow,public DMContainerImpl
 	{
+		DMDECLARE_CLASS_NAME(DUIItemPanel,L"ItemPanel",DMREG_Window);
 	public:
 		DUIItemPanel(DMXmlNode XmlNode, IDMItemPanelOwner *pItemOwner = NULL);
 		~DUIItemPanel();

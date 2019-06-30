@@ -26,13 +26,14 @@ namespace DM
 		{
 			rcWindow.SetRect(POS_INIT,POS_INIT,POS_INIT,POS_INIT);// 先使原窗口坐标无效
 			CRect rcContainer;
+			DUIWindow* pParent = m_pOwner->DM_GetWindow(GDW_PARENT);
 			if (!lpRcContainer)
 			{
-				if (!m_pOwner->DM_GetWindow(GDW_PARENT))
+				if (!pParent)
 				{
 					break;
 				}
-				m_pOwner->DM_GetWindow(GDW_PARENT)->DV_GetChildMeasureLayout(rcContainer);
+				pParent->DV_GetChildMeasureLayout(rcContainer);
 				lpRcContainer = &rcContainer;
 			}
 			rcContainer = lpRcContainer;
@@ -70,7 +71,20 @@ namespace DM
 				}
 			}
 			rcWindow.NormalizeRect();
-			rcWindow = rcWindow&rcContainer;// 锁定子区域不能超过容器区域
+
+			if (pParent)
+			{
+				CRect rcMeasure;
+				if (DM_ECODE_NOLOOP != pParent->DV_GetChildMeasureLayout(rcMeasure))
+				{// 允许子窗口的区域大于父窗口的m_rcWindow，这样才能支持父窗口带滚动
+					rcWindow = rcWindow & rcContainer;// 锁定子区域不能超过容器区域
+				}
+			}
+			else
+			{
+				rcWindow = rcWindow & rcContainer;// 锁定子区域不能超过容器区域
+			}
+			
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -605,17 +619,25 @@ namespace DM
 			CRect rcContainer;
 
 			// 支持面板显示,所以把它们统一转化成屏幕坐标
-			m_pOwner->DM_GetWindow(GDW_PARENT)->DV_GetChildMeasureLayout(rcContainer);
+			DUIWindow* pParent = m_pOwner->DM_GetWindow(GDW_PARENT);
+			DMCode iCode = pParent->DV_GetChildMeasureLayout(rcContainer);
 			if (m_pOwner->GetContainer() != g_pMainWnd->GetContainer())
 			{
 				m_pOwner->GetContainer()->OnClientToScreen(rcContainer);
 				g_pMainWnd->ClientToScreen(rect);
 			}
 	
-			rect.IntersectRect(rect,rcContainer);
-			if (rect.IsRectEmpty())
+			if (DM_ECODE_NOLOOP != iCode)
+			{// 允许子窗口的区域大于父窗口的m_rcWindow，这样才能支持父窗口带滚动
+				rect.IntersectRect(rect,rcContainer);
+				if (rect.IsRectEmpty())
+				{
+					break;
+				}
+			}
+			else
 			{
-				break;
+				rcContainer.UnionRect(rcContainer,rect);
 			}
 			//left
 			ParseItemPos(PosLeft,rcContainer.left,rcContainer.right,true,rect.left);

@@ -174,4 +174,13 @@
 		<DUIWindowAttr/>
 		<DUIStyleAttr/>	
 	</MonthCalCtrl>
+	<ScrollWnd>
+		<DUIScrollBaseAttr/>
+		<DUIWindowAttr/>
+		<DUIStyleAttr/>	
+	</ScrollWnd>
+	<ScrollFL>
+		<DUIWindowAttr/>
+		<DUIStyleAttr/>	
+	</ScrollFL>
 </root>

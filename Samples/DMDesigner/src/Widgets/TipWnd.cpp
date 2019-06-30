@@ -59,6 +59,7 @@ MultStr g_AddInfo[] = \
 	{L"IE",			 L"基础控件",		L"IE控件",				L""},
 	{L"SplitLayout", L"基础控件",		L"SplitLayout控件",		L"分隔两个窗口"},
 	{L"MonthCalCtrl", L"基础控件",		L"日历控件",			L""}, 
+	{L"ScrollWnd",	L"基础控件",		L"滚动条容器控件",		L"允许插入多个超过容器范围的子窗口"}, 
 }; 
 bool AddTipWnd::InitAdd(CStringW strInfo)
 {

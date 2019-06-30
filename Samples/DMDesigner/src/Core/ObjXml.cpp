@@ -262,7 +262,7 @@ DMCode ObjXml::OnObjTreeChanged(DMEventArgs* pEvt)
 	return DM_ECODE_OK;
 }
 
-DMCode ObjXml::InitObjTreeNode(DMXmlNode& TreeNode,bool IsDMXml)
+DMCode ObjXml::InitObjTreeNode(DUIWindow*pWnd, DMXmlNode& TreeNode,bool IsDMXml)
 {
 	TreeNode = TreeNode.InsertChildNode(XML_TREEITEM);
 	TreeNode.SetAttribute(XML_CHILDOFFSET,L"0");
@@ -270,6 +270,11 @@ DMCode ObjXml::InitObjTreeNode(DMXmlNode& TreeNode,bool IsDMXml)
 	StaticNode.SetAttribute(XML_POS,L"3,0,-36,-0");
 	StaticNode.SetAttribute(XML_SKIN,IsDMXml? XML_DEFSKIN:XML_DATASKIN);
 	StaticNode.SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,ff,ff)");
+
+	if (!IsDMXml && !IsDeletable(pWnd))//规避主窗口和panel窗口
+	{
+		StaticNode.SetAttribute(XML_SKIN,XML_CUSTOMSKIN);
+	}
 
 	Init_Debug_XmlBuf(TreeNode);
 
@@ -453,14 +458,24 @@ DMCode ObjXml::InitCustomObjMenu(DMXmlNode& XmlNode)
 		XmlNode.InsertChildNode(XML_SEP);
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
 		XmlItem.SetAttribute(XML_ID,IntToString(g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ObjMenuItem[OBJMENU_DEL-OBJMENU_BASE].text);
-		DM::LPTVITEMEX pData = m_pObjTree->GetItem(m_hObjSel);
-		if (DMTVEXLock_UnLocked == pData->iLockValue &&0 != m_pObjTree->GetParentItem(m_hObjSel)&&0 != m_pObjTree->GetParentItem(m_pObjTree->GetParentItem(m_hObjSel)))
+		DM::LPTVITEMEX pTviData = m_pObjTree->GetItem(m_hObjSel);
+		if (DMTVEXLock_UnLocked == pTviData->iLockValue &&0 != m_pObjTree->GetParentItem(m_hObjSel)&&0 != m_pObjTree->GetParentItem(m_pObjTree->GetParentItem(m_hObjSel)))
 		{
 			XmlItem.SetAttributeInt(XML_BDISABLE,0);
 		}
 		else
 		{
 			XmlItem.SetAttributeInt(XML_BDISABLE,1);
+		}
+
+		// 特殊子控件不允许被删除
+		ObjTreeDataPtr pData = (ObjTreeDataPtr)pTviData->lParam;
+		if (NULL != pData&&pData->IsValid()&&NULL != pData->m_pDUIWnd)
+		{
+			if (!IsDeletable(pData->m_pDUIWnd))
+			{
+				XmlItem.SetAttributeInt(XML_BDISABLE,1);
+			}
 		}
 	}
 	
@@ -648,17 +663,6 @@ DMCode ObjXml::ObjMenu_Del()
 			DUITabCtrl* pTabCtrl = dynamic_cast<DUITabCtrl*>(pParent);
 			pTabCtrl->RemoveItem(pData->m_pDUIWnd);
 		}
-		else if (0 == _wcsicmp(pData->m_pDUIWnd->V_GetClassName(),DUIHeaderCtrl::GetClassName())
-				&& (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName())))
-		{
-			SetLogInfo(L"DUIHeaderCtrl不能被删除");
-			break;
-		}
-		else if (0 == _wcsicmp(pParent->V_GetClassName(),DUISplitLayout::GetClassName()))
-		{
-			SetLogInfo(L"DUISplitLayout的子控件不能被删除");
-			break;
-		}
 		else if (pData->m_bPanel)
 		{
 			DUIItemPanel* pPanel = dynamic_cast<DUIItemPanel*>(pData->m_pDUIWnd);
@@ -761,7 +765,7 @@ DMCode ObjXml::InitObjRootTree()
 		//3.尝试插入到树形控件中
 		DMXmlDocument TreeDoc;
 		DMXmlNode TreeNode = TreeDoc.Base();
-		InitObjTreeNode(TreeNode,true);
+		InitObjTreeNode(NULL,TreeNode,true);
 		HDMTREEITEM hDMTree  = InsertObjTreeItem(TreeNode,pItem->m_szName);
 
 		//4.绑定data
@@ -801,7 +805,7 @@ DMCode ObjXml::EnumChildTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM 
 		//2. 插入子结点并绑定数据
 		DMXmlDocument TreeDoc;
 		DMXmlNode TreeNode = TreeDoc.Base();
-		InitObjTreeNode(TreeNode,bPanel);
+		InitObjTreeNode(pWnd,TreeNode,bPanel);
 		CStringW strText = pWnd->V_GetClassName();
 		if (bPanel)
 		{
@@ -817,11 +821,12 @@ DMCode ObjXml::EnumChildTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM 
 
 		//3. 子结点递归
 		DUIWindow* pChild = pWnd->DM_GetWindow(GDW_FIRSTCHILD);
-		while (pChild
-			&& pChild->m_XmlNode.IsValid()//1. 过滤掉那些insert进来的child，并且不调用InitDMData的，如Edit
-			)
+		while (pChild)
 		{
-			EnumChildTreeItem(pMainWnd,pChild,hChild,false);// 进入下一层
+			if (pChild->m_XmlNode.IsValid())//1. 过滤掉那些insert进来的child，并且不调用InitDMData的,规避在insert进来的child之后有xml创建的窗口
+			{
+				EnumChildTreeItem(pMainWnd,pChild,hChild,false);// 进入下一层
+			}
 			pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 		}
 		if (m_pbPanelCheck->DM_IsChecked())
@@ -875,6 +880,52 @@ DMCode ObjXml::RemoveObjTreeItemMap(HDMTREEITEM hTreeItem)
 		}
 	}
 	return DM_ECODE_OK;
+}
+
+bool ObjXml::IsDeletable(DUIWindow* pWnd)
+{
+	bool bRet = false;
+	do 
+	{
+		if (NULL == pWnd)
+		{
+			break;
+		}
+
+		CStringW strClassName = pWnd->V_GetClassName();
+		bool bPanel = (0 == _wcsicmp(strClassName, L"ItemPanel"));
+
+		// 1.找到父控件
+		DUIWindowPtr pParent = bPanel? pWnd->DM_GetWindow(GDW_PANELPARENT):pWnd->DM_GetWindow(GDW_PARENT);
+		if (NULL == pParent)
+		{
+			break;
+		}
+		
+		CStringW strParentClassName = pParent->V_GetClassName();
+
+		if (0 == _wcsicmp(strClassName,DUIHeaderCtrl::GetClassName())
+			&& (0 == _wcsicmp(strParentClassName,DUIListCtrlEx::GetClassName())))
+		{
+			SetLogInfo(L"ListCtrl的DUIHeaderCtrl不能被删除");
+			break;
+		}
+
+		if (0 == _wcsicmp(strParentClassName,DUISplitLayout::GetClassName()))
+		{
+			SetLogInfo(L"DUISplitLayout的子控件不能被删除");
+			break;
+		}
+
+		if (0 == _wcsicmp(strClassName,DUIScrollFL::GetClassName())
+			&& (0 == _wcsicmp(strParentClassName,DUIScrollWnd::GetClassName())))
+		{
+			SetLogInfo(L"ScrollWnd的ScrollFL不能被删除");
+			break;
+		}
+		bRet = true;
+	} while (false);
+	return bRet;
 }
 
 HDMTREEITEM ObjXml::_FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CStringW strKey)

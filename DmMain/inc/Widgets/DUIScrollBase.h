@@ -45,7 +45,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT DUIScrollBase:public DUIWindow
 	{
-		DMDECLARE_CLASS_NAME(DUIWindow,DUINAME_ScrollBase,DMREG_Window);
+		DMDECLARE_CLASS_NAME(DUIScrollBase,DUINAME_ScrollBase,DMREG_Window);
 	public:
 		DUIScrollBase();
 

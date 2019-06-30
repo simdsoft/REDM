@@ -68,6 +68,7 @@
 		<file name="ds_w_SplitLayout" path="themes\theme0\image\widget\ds_w_SplitLayout.png" />
 		<file name="ds_w_TabPage" path="themes\theme0\image\widget\ds_w_TabPage.png" />
 		<file name="ds_w_TreeCtrlEx" path="themes\theme0\image\widget\ds_w_TreeCtrlEx.png" />
+		<file name="ds_w_ScrollWnd" path="themes\theme0\image\widget\ds_w_ScrollWnd.png" />
 		<file name="ds_opendir" path="themes\theme0\image\ds_opendir.png" />
 	</png>
 	<gif>

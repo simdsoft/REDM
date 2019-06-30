@@ -31,6 +31,7 @@ namespace DM
 						  ,public DUIWindow		  // 主窗口自身为DUI窗口
 						  ,public IDMAnimateOwner // 动画窗口的拥有者
 	{
+		DMDECLARE_CLASS_NAME(DMHWnd,L"hwnd",DMREG_Window);
 	public:
 		DMHWnd();
 	public:

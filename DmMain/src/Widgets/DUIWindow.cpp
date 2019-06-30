@@ -25,6 +25,7 @@ namespace DM
 		DMADDEVENT(DMEventSizeChangedCmdArgs::EventID);
 		DMADDEVENT(DMEventCheckChangingCmdArgs::EventID);
 		DMADDEVENT(DMEventCheckChangedCmdArgs::EventID);
+		DMADDEVENT(DMEventChildLayoutFinishedArgs::EventID);
 
 		// focus
 		DMADDEVENT(DMEventSetFocusArgs::EventID);
@@ -585,6 +586,13 @@ namespace DM
 				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
 			}
 			iErr = m_pLayout->UpdateChildLayout();
+
+			if (DMSUCCEEDED(iErr))
+			{
+				DMEventChildLayoutFinishedArgs Evt(this);
+				DV_FireEvent(Evt);
+			}
+		
 			DM_Invalidate();// 更新完后刷新整个区域
 		} while (false);
 		return iErr;

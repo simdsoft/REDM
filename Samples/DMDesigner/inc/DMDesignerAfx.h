@@ -25,6 +25,7 @@
 #include "DUIFlowLayout.h"
 #include "DUIListBoxEx.h"
 #include "DUIListCtrlEx.h"
+#include "DUIScrollWnd.h"
 
 // lib
 #ifdef _DEBUG

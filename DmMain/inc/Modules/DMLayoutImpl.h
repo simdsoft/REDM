@@ -48,13 +48,14 @@ namespace DMAttr
 
 namespace DM
 {
-#define POSFLAG_REFCENTER      '|'          // 参考父窗口中心
-#define POSFLAG_REFPREV_NEAR   '['          // 参考前一个兄弟窗口与自己近的边
-#define POSFLAG_REFNEXT_NEAR   ']'          // 参考下一个兄弟窗口与自己近的边
-#define POSFLAG_REFPREV_FAR    '{'          // 参考前一个兄弟窗口与自己远的边
-#define POSFLAG_REFNEXT_FAR    '}'          // 参考下一个兄弟窗口与自己远的边
-#define POSFLAG_PERCENT        '%'          // 采用在父窗口的百分比定义坐标
-#define POSFLAG_DEFSIZE        '@'          // 在pos属性中定义窗口的size，只在在定义x2,y2时有效
+#define POSFLAG_NULL           L""			 // 正常坐标,负号表示以右(下)为参考
+#define POSFLAG_REFCENTER      L'|'          // 参考父窗口中心
+#define POSFLAG_PERCENT        L'%'          // 采用在父窗口的百分比定义坐标
+#define POSFLAG_REFPREV_NEAR   L'['          // 参考前一个兄弟窗口与自己近的边
+#define POSFLAG_REFNEXT_NEAR   L']'          // 参考下一个兄弟窗口与自己近的边
+#define POSFLAG_REFPREV_FAR    L'{'          // 参考前一个兄弟窗口与自己远的边
+#define POSFLAG_REFNEXT_FAR    L'}'          // 参考下一个兄弟窗口与自己远的边
+#define POSFLAG_DEFSIZE        L'@'          // 在pos属性中定义窗口的size，只在在定义x2,y2时有效
 
 	enum POS_TYPE// 坐标属性
 	{
