@@ -996,6 +996,7 @@ namespace DM
 
 	public:
 		CArray();
+	    CArray(const CArray< E, ETraits >& aSrc);
 
 		size_t GetCount() const;
 		bool IsEmpty() const;
@@ -1021,6 +1022,8 @@ namespace DM
 
 		const E& operator[]( size_t iElement ) const;
 		E& operator[]( size_t iElement );
+
+		CArray< E, ETraits > & operator = (const CArray< E, ETraits >& aSrc);
 
 		void InsertAt( size_t iElement, INARGTYPE element, size_t nCount = 1 );
 		void InsertArrayAt( size_t iStart, const CArray< E, ETraits >* paNew );
@@ -1048,6 +1051,30 @@ namespace DM
 		~CArray();
 
 	};
+
+	template< typename E, class ETraits >
+	CArray<E, ETraits>::CArray(const CArray< E, ETraits >& aSrc) :
+	m_pData( NULL ),
+		m_nSize( 0 ),
+		m_nMaxSize( 0 ),
+		m_nGrowBy( 0 )
+	{
+		if (this != &aSrc)
+		{
+			this->Copy(aSrc);
+		}
+	}
+
+	template< typename E, class ETraits>
+	CArray< E, ETraits > & CArray<E, ETraits>::operator=(const CArray< E, ETraits >& aSrc)
+	{
+		if (this == &aSrc)
+		{
+			return *this;
+		}
+		this->Copy(aSrc);
+		return *this;
+	}
 
 	template< typename E, class ETraits >
 	inline size_t CArray< E, ETraits >::GetCount() const
