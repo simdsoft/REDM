@@ -1255,14 +1255,16 @@ namespace DM
 					rcList.right = DMMAX(rcList.right,rcClient.right);
 					CPoint ptLeftTop = m_ptStart - m_ptCurPos;
 					CPoint ptRightBtm = pt;
-					m_rcDragFrame.SetRect(ptLeftTop,ptRightBtm);
-					m_rcDragFrame.NormalizeRect();
+					CRect rcDragFrame(ptLeftTop,ptRightBtm);
+					rcDragFrame.NormalizeRect();
 					m_bSelFrameUp = ptLeftTop.y > ptRightBtm.y;
-					if (m_rcDragFrame.Width()>10 || m_rcDragFrame.Height()>10)
+					if (rcDragFrame.Width()>10 || rcDragFrame.Height()>10)
 					{
 						m_bStartSel = true; 
 						m_iSelItem = -1;//放弃单独那条
-						m_pWndRectangle->DM_FloatLayout(m_rcDragFrame);
+						rcDragFrame.IntersectRect(rcClient, rcDragFrame);
+						m_pWndRectangle->DM_FloatLayout(rcDragFrame);
+						m_rcDragFrame = rcDragFrame;
 						m_pWndRectangle->DM_SetVisible(true,true);
 						CRect rcInvalid(rcList.left,m_rcDragFrame.top,rcList.right,m_rcDragFrame.bottom);
 						DM_Invalidate();
