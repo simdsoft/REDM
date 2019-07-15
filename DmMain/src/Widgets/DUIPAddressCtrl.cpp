@@ -58,16 +58,14 @@ namespace DM
 			{
 				break;
 			}
-			if (GetWindowTextLength()>2)
+			if (GetWindowTextLength() >2)
 			{
-
 				DUIWindow* pNext = DM_GetWindow(GDW_NEXTSIBLING);
 				if (NULL!=pNext&&pNext->IsClass(DUIPEdit::GetClassName()))
 				{
 					pNext->DV_SetFocusWnd();
 				}
 			}
-
 		} while (false);
 	}
 
@@ -81,11 +79,13 @@ namespace DM
 			if (iValue > (int)m_byMax)
 			{
 				SetField(m_byMax);
+				SetSel(MAKELONG(GetWindowTextLength(), GetWindowTextLength()));
 				break;
 			}
 			if (iValue < (int)m_byMin)
 			{
 				SetField(m_byMin);
+				SetSel(MAKELONG(GetWindowTextLength(), GetWindowTextLength()));
 				break;
 			}
 			bRet = false;
