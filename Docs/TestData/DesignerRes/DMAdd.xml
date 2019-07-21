@@ -89,4 +89,5 @@
 			<Button pos="10,10,@200,@200" text="滚动条下的一个子控件" clrbg="pbgra(ff,ff,00,ff)"/>
 		</scrollFL>
 	</scrollwnd>
+	<RectTracker clrdot="pbgra(00,00,ff,ff)" clrboxdash="pbgra(00,00,ff,ff)" clrboxsolid="pbgra(00,00,00,ff)" />
 </root> 

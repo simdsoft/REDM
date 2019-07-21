@@ -131,11 +131,33 @@ void DUIRoot::OnLButtonUp(UINT nFlags,CPoint pt)
 	m_bDown = false;
 	if (AddMode == m_DesignMod)
 	{
-		if (m_pAddWnd && 0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUISplitLayout::GetClassName()))
-		{// 针对splite特殊处理,splite应该在拖拉完成后再执行初始化
-			DUISplitLayout* pSplit = (DUISplitLayout*)m_pAddWnd;
-			pSplit->m_iFixWid = -1;
-			pSplit->DV_UpdateChildLayout();
+		if (m_pAddWnd)
+		{
+			if (0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUISplitLayout::GetClassName()))
+			{
+				// 针对splite特殊处理,splite应该在拖拉完成后再执行初始化
+				DUISplitLayout* pSplit = (DUISplitLayout*)m_pAddWnd;
+				pSplit->m_iFixWid = -1;
+				pSplit->DV_UpdateChildLayout();
+			}
+			
+			if (0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUIRectTracker::GetClassName()))
+			{
+				// 针对DUIRectTracker特殊处理,总是限制为100*100
+				DUIRectTracker* pRectTracker = (DUIRectTracker*)m_pAddWnd;
+				
+				CRect rcWnd = pRectTracker->m_rcWindow;
+				rcWnd.SetRect(rcWnd.left,rcWnd.top, rcWnd.left+100, rcWnd.top+100);// 总是限定为100*100
+				CRect rcBox = pRectTracker->CalcBoxRect(rcWnd);
+				pRectTracker->SetBoxRect(rcBox,false);
+
+				// 更新pos到xml内存中，对应预览
+				CRect rcParent = pRectTracker->DM_GetWindow(GDW_PARENT)->m_rcWindow;
+				rcWnd.OffsetRect(-rcParent.TopLeft());
+				CStringW strPos; 
+				strPos.Format(L"%d,%d,@%d,@%d",rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height());
+				pRectTracker->m_XmlNode.SetAttribute(L"pos",strPos);
+			}
 		}  
 	}
 	m_pAddWnd  = NULL;

@@ -108,6 +108,8 @@
 		<img9 		id="calendar_left" 			 src="PNG:calendar_left" 		states="3" margin="4,4,4,4" />
 		<img9 		id="calendar_right" 		 src="PNG:calendar_right" 		states="3" margin="4,4,4,4" />
 		<img9 		id="calendar_cell" 			 src="PNG:calendar_cell" 		states="3" margin="3,3,3,3" />
+
+		<imglist    id="drag_move" 				 src="PNG:drag_move" 			states="2" commint="拖动时显示小图标"/>
 	</skin>
 	<style>
 		<style id="custom"  skin="dui_frame" ncskin="dui_frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)"/>

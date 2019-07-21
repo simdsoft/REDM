@@ -54,5 +54,8 @@
 		<tabPage  itemskin="tab_item" animatetype="1" title="scrollwnd" tiptext="scrollwnd控件">	
 			<sub src="layout:widget_scrollwnd"/>
 		</tabPage>
+		<tabPage  itemskin="tab_item" animatetype="1" title="recttracker" tiptext="recttracker控件">	
+			<sub src="layout:widget_recttracker"/>
+		</tabPage>
 	</tabctrl>
 </sub>

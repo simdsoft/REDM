@@ -52,6 +52,7 @@
 	<file name="spy_icon"         	path="themes\theme0\image\spy\spyicon.png"/>
 	
 	<!--widget-->
+	<file name="drag_move" 			path="themes\theme0\image\widget\drag_move.png"/>
 	<file name="bord" 				path="themes\theme0\image\widget\bord.png"/>
 	<file name="Btn_Close" 			path="themes\theme0\image\widget\btn_close.png"/>
 	<file name="Btn_Max"   			path="themes\theme0\image\widget\btn_max.png"/>

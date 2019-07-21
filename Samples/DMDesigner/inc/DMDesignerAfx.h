@@ -26,6 +26,7 @@
 #include "DUIListBoxEx.h"
 #include "DUIListCtrlEx.h"
 #include "DUIScrollWnd.h"
+#include "DUIRectTracker.h"
 
 // lib
 #ifdef _DEBUG

@@ -41,7 +41,7 @@
 #include "DUIPAddressCtrl.h"
 #include "DUITreeCtrlEx.h"
 #include "DUIMonthCalCtrl.h"
-
+#include "DUIRectTracker.h"
 #include "DUIFlowLayout.h"
 
 
@@ -162,6 +162,7 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIPAddressCtrl>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUITreeCtrlEx>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIMonthCalCtrl>(),true);
+		iErr = g_pDMApp->Register(DMRegHelperT<DUIRectTracker>(),true);
 		
 
 		// ÄÚÖÃFlowLayout ----------------------------

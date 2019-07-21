@@ -30,6 +30,7 @@
 			<radiobutton name="ds_w_SplitLayout" text="SplitLayout" align="left" radioskin="ds_w_SplitLayout" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="SplitLayout"/>
 			<radiobutton name="ds_w_MonthCalCtrl" text="MonthCalCtrl" align="left" radioskin="ds_w_MonthCalCtrl" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="MonthCalCtrl"/>
 			<radiobutton name="ds_w_ScrollWnd" text="ScrollWnd" align="left" radioskin="ds_w_ScrollWnd" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="ScrollWnd"/>
+			<radiobutton name="ds_w_RectTracker" text="RectTracker" align="left" radioskin="ds_w_RectTracker" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="RectTracker"/>
 		</tablayout>
 	</root>
 </dm>

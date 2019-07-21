@@ -65,6 +65,18 @@
 	SKIN_iconskin="icon图,如使用了icon图,则text不再绘制,示例:iconskin=PNG:iconbtn"
 	ACCEL_accel="加速键,btn使用加速键触发点击消息,示例:accel=ctrl+enter" 
 	/>
+
+	<DUIRectTrackerAttr
+	SKIN_moveskin=" move小图标，示例:moveskin=bg"
+	COLOR_clrdot="{pbgra(00,00,00,ff)}dot正常颜色，示例:clrdot=pbgra(ff,00,ff,ff)"
+	COLOR_clrdotgray="{pbgra(c6,c6,c6,ff)}dot灰掉颜色，示例:clrdotgray=pbgra(ff,00,ff,ff)"
+	COLOR_clrboxsolid="{pbgra(ff,ff,ff,ff)}box的PS_SOLID绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxsolid=pbgra(ff,00,ff,ff)"
+	COLOR_clrboxdash="{pbgra(ff,00,00,ff)}box的PS_DASH绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxdash=pbgra(ff,00,ff,ff)"
+	INT_dotwidth="{6}dot的宽高,默认为6,示例:dotwidth=6"
+	bool_bmain="{0}为true时只有右下角三个dot是可拖动,其余dot全为灰,示例:bmain=0"
+	bool_ballgray="{0}为true时,dot全为灰,示例:ballgray=0"
+	/>
+
 	<DUIScrollBaseAttr
 	SKIN_sbskin="滚动条图片,示例:sbskin=ScrollBar" 
 	INT_sbwidth="{-1}滚动条的宽度，默认为16,示例:sbwidth=16" 

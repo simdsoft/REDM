@@ -183,4 +183,9 @@
 		<DUIWindowAttr/>
 		<DUIStyleAttr/>	
 	</ScrollFL>
+	<RectTracker>
+		<DUIRectTrackerAttr/>
+		<DUIWindowAttr/>
+		<DUIStyleAttr/>	
+	</RectTracker>
 </root>
