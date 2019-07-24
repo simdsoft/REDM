@@ -118,7 +118,7 @@ namespace DM
 			rcInvalid.UnionRect(rcInvalid, m_rcWindow);
 			CRect rcParent;
 			DM_GetWindow(GDW_PARENT)->DV_GetClientRect(rcParent);
-			rcInvalid.IntersectRect(rcInvalid,rcParent)
+			rcInvalid.IntersectRect(rcInvalid,rcParent);
 			DM_GetWindow(GDW_PARENT)->DM_InvalidateRect(rcInvalid);
 
 			if (bFire)
