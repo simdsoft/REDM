@@ -1212,12 +1212,13 @@ namespace DM
 			va_end(argList);
 			return *this;
         }
+
 		bool LoadString(HINSTANCE hInst, UINT nID)
 		{
 			tchar szTemp[256] = {0};
-			int nChar = tchar_traits::LoadString(hInst, nID,szTemp,256);
+			int nChar = tchar_traits::LoadString(hInst, nID,szTemp,255);
 			if(nChar==0) return false;
-			AssignCopy(nChar,buf);
+			AssignCopy(nChar,szTemp);
 			return true;
 		}
 
