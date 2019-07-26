@@ -5,16 +5,16 @@
 * DM的部分代码，部分框架本来就是取之于各类开源，所以尝试开源DM库，取得于开源，回馈于开源，为开源软件业贡献自己的一份小小力量
 * 就目前所有开源的DUI库来看，个人认为有个很大的不足，那就是并未按商业化的标准来做这些开源项目:
 
-  - 没有文档
-  - 没有框架图
-  - 没有帮助说明
-  - 代码未规范化，基本无注释
-  - 没有单元测试
-  - 没有设计器  
+  - 没有文档  
+  - 没有框架图  
+  - 没有帮助说明  
+  - 代码未规范化，基本无注释  
+  - 没有单元测试  
+  - 没有设计器    
 
-当然，瑕不掩瑜，个人还是非常佩服这些开源的大牛们的!
+当然，瑕不掩瑜，个人还是非常佩服这些开源的大牛们的!  
   
-`REDM`是一套基于商业化标准的开源directui界面框架，不仅能提供完善的项目管理方案、详细的文档框架，也可轻松协助完成可视化界面设计，其核心库的稳定性已在内部多个大型商化项目中通过验证。
+`REDM`是一套基于商业化标准的开源directui界面框架，不仅能提供完善的项目管理方案、详细的文档框架，也可轻松协助完成可视化界面设计，其核心库的稳定性已在内部多个大型商化项目中通过验证。 
 
 * DM库有详细的文档，详细的[框架图](http://hgy413.com/2086.html)：DM\Docs\DM详细文档.doc;DM\Docs\DUI主流程图.vsdx
 * DM库运行了两年，前身为yggui,稳定可靠，[部分示例](http://hgy413.com/3392.html)
@@ -41,11 +41,15 @@ DM库需要遵守什么开源协议？
 ### 4.0 DM库快速入门任务式
 * **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
 
-### 4.1 DMCef
+### 4.1 NSDM
+* [NSDM](https://gitee.com/hgy413/NSDM)，使用设计器设计安装界面，并用NSIS实现安装打包功能 
+![nsdm](https://gitee.com/hgy413/NSDM/raw/master/Docs/nsdm.gif)
+
+### 4.2 DMCef
 * [DMCef](https://gitee.com/hgy413/DMCef)插件，实现Cef相关功能
 ![cef](https://gitee.com/hgy413/DMCef/raw/master/Docs/cef.gif)
 
-### 4.2 设计器
+### 4.3 设计器
 
 | 简单的完整构建图 | 新建/打开资源 |
 | --- | --- |
@@ -69,7 +73,7 @@ DM库需要遵守什么开源协议？
 | ![i](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/i.gif) | ![j](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/designer/j.gif) |
 
 
-### 4.3 部分项目
+### 4.4 部分项目
 
 | 古剑奇谭登陆器 | 4366游戏大厅 |
 | --- | --- |
@@ -105,7 +109,7 @@ DM库需要遵守什么开源协议？
 | ![o](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/xiangmo/o.gif) | |
 
 
-### 4.4 自带Demo
+### 4.5 自带Demo
 | DMDemo | QQDemo |
 | --- | --- |
 | ![a](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/a.gif) | ![b](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/b.gif) |
@@ -114,5 +118,5 @@ DM库需要遵守什么开源协议？
 | --- | --- |
 | ![c](https://gitee.com/hgy413/DMHelper/raw/master/Docs/yanshi/demo/c.gif) | |
 
-### 4.5 生成帮助文档
+### 4.6 生成帮助文档
 * [DMHelper](https://gitee.com/hgy413/DMHelper)
