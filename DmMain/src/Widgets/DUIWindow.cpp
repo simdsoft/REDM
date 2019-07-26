@@ -604,7 +604,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	// 通过文本来计算大小
+	// 优先使用文本，如果文本为空,则使用skin大小
 	DMCode DUIWindow::DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -612,6 +612,14 @@ namespace DM
 		{
 			if (m_pDUIXmlInfo->m_strText.IsEmpty())
 			{
+				DMSmartPtrT<IDMSkin> pSkin;
+				m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
+				if (NULL == pSkin)
+				{
+					break;
+				}
+				pSkin->GetStateSize(sz);
+				iErr = DM_ECODE_OK;
 				break;
 			}
 			UINT uAlign = 0;

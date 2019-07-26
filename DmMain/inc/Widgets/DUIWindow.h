@@ -92,7 +92,7 @@ namespace DM
 		// Function Des:通用布局
 		virtual DMCode DV_UpdateChildLayout();											///< 更新所有子窗口位置
 		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);							///< 获得子窗口的布局空间大小,默认为客户区，但是tab这样的控件不一样
-		virtual DMCode DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz);					///< 当没有指定窗口大小时，通过如皮肤或文字内容计算窗口的期望大小，
+		virtual DMCode DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz);					///< 当没有指定窗口大小时，通过如皮肤或文字内容计算窗口的期望大小(优先使用文本，如果文本为空,则使用skin大小)
 
 		bool DM_IsLayoutFinished();														///< 布局是否完成
 		bool DM_IsParentFlowLayout();													///< 父窗口是否使用流式布局
