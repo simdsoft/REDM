@@ -41,6 +41,12 @@ DM库需要遵守什么开源协议？
 ### 4.0 DM库快速入门任务式
 * **DM库快速入门任务式[教程](http://hgy413.com/3426.html)（1小时内学会使用DM）**
 
+### 4.0.0 Effect-Designer
+* [Effect-Designer](https://gitee.com/lzlong88/Effect-Designer)，一款类似于抖音特效素材制作工具的，非常强大的短视频特效素材设计器，由天涯行客大神提供，天涯行客大神也是[REDM](https://gitee.com/hgy413/REDM)的深度开发及维护者。
+![effectcreator](https://gitee.com/lzlong88/gitstore/raw/master/PicStore/effectcreator.png) 
+
+![recordsoft](https://gitee.com/lzlong88/gitstore/raw/master/PicStore/recordsoft.gif)
+
 ### 4.1 NSDM
 * [NSDM](https://gitee.com/hgy413/NSDM)，使用设计器设计安装界面，并用NSIS实现安装打包功能 
 ![nsdm](https://gitee.com/hgy413/NSDM/raw/master/Docs/nsdm.gif)
