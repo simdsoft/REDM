@@ -66,7 +66,7 @@ namespace DM
 				obj = m_DMArray[iElement];
 				bRet = true;
 			} while (false);
-			return true;
+			return bRet;
 		}
 
 		/// -------------------------------------------------

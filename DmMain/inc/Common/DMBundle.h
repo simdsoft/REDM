@@ -34,7 +34,7 @@ namespace DM
 	public:
 		DMBundle Clone();										///< 复制当前Bundle
 		void Clear();											///< 移除当前Bundle映射中的所有元素
-		int Size();											    ///< 得到当前Bundle的映射大小
+		int Size() const;									    ///< 得到当前Bundle的映射大小
 		bool Remove(LPCWSTR key);								///< 移除当前Bundle的映射Key
 		bool HasKey(LPCWSTR key);								///< 当前Bundle的映射Key是否存在,DM_ECODE_OK表示存在
 

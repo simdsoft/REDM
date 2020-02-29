@@ -41,8 +41,8 @@ namespace DM
 		m_pBundleImpl->Clear();
 	}
 
-	int DMBundle::Size()
-	{
+	int DMBundle::Size() const
+{
 		return m_pBundleImpl->Size();
 	}
 
