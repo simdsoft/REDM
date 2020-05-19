@@ -103,7 +103,11 @@ namespace DM
 			}
 
 			// 解析xml
-			LoadDMData(lpszXmlId);
+			if (DM_ECODE_OK != LoadDMData(lpszXmlId))
+			{
+				LOG_ERR("[mid]LoadDMData fail\n");
+				break;
+			}
 
 		} while (false);
 		if (m_hWnd)
@@ -152,7 +156,11 @@ namespace DM
 			}
 
 			// 解析xml
-			LoadDMData(pXmlBuf,bufLen);
+			if (DM_ECODE_OK != LoadDMData(pXmlBuf, bufLen))
+			{
+				LOG_ERR("[mid]LoadDMData fail\n");
+				break;
+			}
 
 		} while (false);
 		if (m_hWnd)
@@ -240,7 +248,7 @@ namespace DM
 	//---------------------------------------------------
 	DMCode DMHWnd::LoadDMData(LPCWSTR lpszXmlId)
 	{
-		DMCode iErr = DM_ECODE_OK;
+		DMCode iErr = DM_ECODE_FAIL;
 		do
 		{
 			DMXmlDocument XmlDoc;
@@ -273,18 +281,22 @@ namespace DM
 			}
 
 			// 解析自身的XML-Attribute-----------------------
-			DMBase::InitDMData(XmlNode);
+			iErr = DMBase::InitDMData(XmlNode);
+			if (iErr != DM_ECODE_OK)
+			{
+				break;
+			}
 
 			// 循环解析DUI的XML -----------------------------
 			// root节点本身也是一个DUIWindow窗口对象，但是在这里必须是"root"才能识别，在这个节点中可以有DUIWindow的各种属性，但是和布局位置相关的属性自动无效，因为该窗口总是充满整个宿主窗口。
-			DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
+			iErr = DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
 		return iErr;
 	}
 
 	DMCode DMHWnd::LoadDMData(void *pXmlBuf, size_t bufLen)
 	{
-		DMCode iErr = DM_ECODE_OK;
+		DMCode iErr = DM_ECODE_FAIL;
 		do
 		{
 			DMXmlDocument XmlDoc;
@@ -317,11 +329,15 @@ namespace DM
 			}
 
 			// 解析自身的XML-Attribute-----------------------
-			DMBase::InitDMData(XmlNode);
+			iErr = DMBase::InitDMData(XmlNode);
+			if (iErr != DM_ECODE_OK)
+			{
+				break;
+			}
 
 			// 循环解析DUI的XML -----------------------------
 			// root节点本身也是一个DUIWindow窗口对象，但是在这里必须是"root"才能识别，在这个节点中可以有DUIWindow的各种属性，但是和布局位置相关的属性自动无效，因为该窗口总是充满整个宿主窗口。
-			DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
+			iErr = DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
 		return iErr;
 	}
