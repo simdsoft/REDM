@@ -43,7 +43,6 @@ namespace DM
 			LOGFONTW lf={0};
 			CStringW szFont = strFont;
 			szFont.Trim();
-			szFont.Remove(VK_SPACE);// ÒÆ³ý¿Õ¸ñ
 			szFont.MakeLower();
 			if (false == GetLogFont(szFont,&lf))
 			{
@@ -86,7 +85,6 @@ namespace DM
 		{
 			CStringW szFont = strFont;
 			szFont.Trim();
-			szFont.Remove(VK_SPACE);// ÒÆ³ý¿Õ¸ñ
 			szFont.MakeLower();
 			if (szFont.IsEmpty()||NULL==lpLogFont)// ÎªNULL
 			{
