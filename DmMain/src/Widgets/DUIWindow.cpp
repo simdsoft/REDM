@@ -377,7 +377,7 @@ namespace DM
 			}
 			DM_SendMessage(WM_SHOWWINDOW,DM_IsVisible(true),ParentShow);// 仅仅给自己发一个WM_SHOWWINDOW消息
 			DV_CreateChildWnds(XmlNode);
-            iErr = DM_ECODE_OK;
+			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
