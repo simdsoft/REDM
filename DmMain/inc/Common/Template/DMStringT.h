@@ -691,9 +691,9 @@ namespace DM
             return *this;
         }
 
-        const DMStringT& Append(const tchar * psz)
+        const DMStringT& Append(const tchar * psz, int len = -1)
         {
-            DMStringT strCopy(psz);
+            DMStringT strCopy(psz, len);
             ConcatInPlace(strCopy.GetData()->nDataLength, strCopy.m_pszData);
             return *this;
         }
