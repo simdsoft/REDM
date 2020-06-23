@@ -47,10 +47,9 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief			运行消息循环
 		/// @param[in]		hMainWnd          窗口句柄
-		/// @param[in]		bEnableActive     是否强制enalbe窗口(用于DoModal)
 		/// @remark         在窗口创建后，运行消息循环
 		/// @return			DMCode
-		DMCode Run(HWND hMainWnd,bool bEnableActive=false);
+		DMCode Run(HWND hWnd);
 
 		/// -------------------------------------------------
 		/// @brief			此窗口是否为运行消息循环的主窗口   

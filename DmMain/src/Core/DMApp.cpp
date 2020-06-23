@@ -35,9 +35,9 @@ namespace DM
 		return g_pDMAppData->InitGlobal(lpszXmlId);
 	}
 
-	DMCode DMApp::Run(HWND hMainWnd,bool bEnableActive)
+	DMCode DMApp::Run(HWND hWnd)
 	{
-		return g_pDMAppData->Run(hMainWnd,bEnableActive);
+		return g_pDMAppData->Run(hWnd);
 	}
 
 	DMCode DMApp::IsRun(HWND hWnd)

@@ -24,51 +24,53 @@ namespace DM
 	{
 	}
 
-	INT_PTR DMHDialog::DoModal(LPCWSTR lpszXmlId, HWND hParent/*=NULL*/, bool bShadow/*=false*/, DM::CRect rect/* = NULL*/)
+	INT_PTR DMHDialog::DoModal(LPCWSTR lpszXmlId, HWND hWndParent/*=NULL*/, bool bShadow/*=false*/, DM::CRect rect/* = NULL*/)
 	{
 		BOOL bEnableParent = FALSE;
-		if(NULL == hParent)
-		{
-			hParent = ::GetActiveWindow();
-		}
+		if(NULL == hWndParent)
+			hWndParent = ::GetActiveWindow();
 		
-		if (hParent && hParent != ::GetDesktopWindow() && ::IsWindowEnabled(hParent))
+		if (hWndParent && hWndParent != ::GetDesktopWindow() && ::IsWindowEnabled(hWndParent))
 		{
-			::EnableWindow(hParent, FALSE);
+			::EnableWindow(hWndParent, FALSE);
 			bEnableParent = TRUE;
 		}
 
-		if(!DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hParent, bShadow))
-		{
-			::EnableWindow(hParent, TRUE);
-			return 0; // 此处失败了
+		if(DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hWndParent, bShadow))
+		{	
+			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//发送init消息
+
+			// 修改滞后消息，让业务机会在InitDialog调整窗口大小滞后还能居中
+			GetClientRect(rect);
+			if (!rect.IsRectEmpty())
+				CenterWindow();
+
+			/*
+			解决安装qq五笔导致“退出提醒窗口”无法出现的问题---此问题在yggui中出现
+			HWND_NOTOPMOST：将窗口置于所有非顶层窗口之上（即在所有顶层窗口之后）。如果窗口已经是非顶层窗口则该标志不起作用。
+			HWND_TOP:将窗口置于Z序的顶部。
+			*/
+			::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOACTIVATE);
+			g_pDMApp->Run(m_hWnd); // RunModalLoop, 这里没有和mfc一样利用m_nFlags标记检查ContinueModal
+
+			// [mfc] hide the window before enabling the parent, etc.
+			if (m_hWnd != NULL)
+				SetWindowPos(NULL, 0, 0, 0, 0, SWP_HIDEWINDOW |
+					SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+			if (-1 == m_nRetCode)
+			{// 防止非EndDialog退出(如此窗口的父窗口不是主窗口,而主窗口关闭时)
+				DMASSERT_EXPR(0, L"此DoModel没有调用EndDialog就退出了!");
+				::PostQuitMessage(1);
+			}
 		}
 
-		GetClientRect(rect);
-		if (!rect.IsRectEmpty())
-		{
-			CenterWindow();
-		}
-
-		SendMessage(WM_INITDIALOG,(WPARAM)m_hWnd);//发送init消息
-
-		/*
-		解决安装qq五笔导致“退出提醒窗口”无法出现的问题---此问题在yggui中出现
-		HWND_NOTOPMOST：将窗口置于所有非顶层窗口之上（即在所有顶层窗口之后）。如果窗口已经是非顶层窗口则该标志不起作用。
-		HWND_TOP:将窗口置于Z序的顶部。
-		*/
-		::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOACTIVATE);
-	    g_pDMApp->Run(m_hWnd,true);// 此内部已封装完ActiveWnd切换和DestoryWindow
-		if (-1 == m_nRetCode)
-		{// 防止非EndDialog退出(如此窗口的父窗口不是主窗口,而主窗口关闭时)
-			DMASSERT_EXPR(0,L"此DoModel没有调用EndDialog就退出了!");
-			::PostQuitMessage(1);
-		}
-		
 		if (bEnableParent)
-		{
-			::EnableWindow(hParent, TRUE);
-		}
+			::EnableWindow(hWndParent, TRUE);
+		if (hWndParent != NULL && ::GetActiveWindow() == m_hWnd)
+			::SetActiveWindow(hWndParent);
+
+		// destroy modal window
+		DestroyWindow();
 
 		return m_nRetCode;
 	}
