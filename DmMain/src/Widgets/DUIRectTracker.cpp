@@ -91,7 +91,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
-#pragma region 对外接口
+#pragma region Public methods
 	bool DUIRectTracker::SetBoxRect(CRect& rect, bool bFire)
 	{
 		bool bRet = true;
@@ -283,7 +283,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 辅助 methods
 	//---------------------------------------------------
-#pragma region 辅助
+#pragma region Helpers
 	void DUIRectTracker::LinkDragMetaEvent()
 	{
 		m_dragMetas[0] = DMDragMeta(0, ::LoadCursor(NULL,IDC_HAND));

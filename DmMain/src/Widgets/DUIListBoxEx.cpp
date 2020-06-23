@@ -22,7 +22,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
-#pragma region 对外接口
+#pragma region Public methods
 	int DUIListBoxEx::InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate/* = true*/)
 	{
 		int iRet = -1;

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMPlugin_Test.cpp 
-// File Des: ²âÊÔ²å¼þ·½Ê½µÄ²âÊÔÓÃÀý
+// File Des: æµ‹è¯•æ’ä»¶æ–¹å¼çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -54,16 +54,16 @@ public:
 	}
 };
 
-TEST_F(DMPluginTest,²âÊÔ)
+TEST_F(DMPluginTest,æµ‹è¯•)
 {
 #ifdef DLL_DMMAIN
-	IDMPlugin* plugin = new Plugin_Test;// Õâ¸ö²»ÄÜdelete£¬±ØÐëÏÈ·´°²×°
+	IDMPlugin* plugin = new Plugin_Test;// è¿™ä¸ªä¸èƒ½deleteï¼Œå¿…é¡»å…ˆåå®‰è£…
 	g_pDMApp->InstallPlugin(plugin);
 	g_pDMApp->UninstallPlugin(plugin);
 	DM_DELETE(plugin);
 
 
-// ¾ø¶ÔÂ·¾¶²âÊÔ
+// ç»å¯¹è·¯å¾„æµ‹è¯•
 #if 0
 #ifdef _DEBUG
 	g_pDMApp->LoadPlugins(L"I:\\REDM\\Docs\\TestData\\dmpluginsd.cfg");

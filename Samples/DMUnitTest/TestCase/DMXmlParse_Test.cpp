@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMXmlParse_Test.cpp 
-// File Des: ²âÊÔXml½âÎö·â×°Àà
+// File Des: æµ‹è¯•Xmlè§£æå°è£…ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -34,14 +34,14 @@ TEST_F(DMXmlParseTest,test1)
 	DMXmlDocument doc;
 	EXPECT_EQ(doc.LoadFromFile(L"UTRes\\UTTest\\UTXmlParse.xml"), true);
 
-	// ÓÃÓÚ´òÓ¡XmlÄÚÈİ
-	// ÏÈ×ö±éÀú
+	// ç”¨äºæ‰“å°Xmlå†…å®¹
+	// å…ˆåšéå†
 	DMXmlNode XmlElementNoFind = doc.Root(L"hgy");
-	EXPECT_EQ(XmlElementNoFind.IsValid(), false);// ²¢Ã»ÓĞhgyÕâ¸ö½Ú
+	EXPECT_EQ(XmlElementNoFind.IsValid(), false);// å¹¶æ²¡æœ‰hgyè¿™ä¸ªèŠ‚
 	DMXmlNode XmlElementRoot = doc.Root();
-	XmlElementRoot.SetAttributeInt64(L"I64",123456789012);// ÉèÖÃÒ»¸öI64
+	XmlElementRoot.SetAttributeInt64(L"I64",123456789012);// è®¾ç½®ä¸€ä¸ªI64
 	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"I64"),123456789012);
-	XmlElementRoot.SetAttribute(L"0x64",L"0x9876543210");// ÒÔ×Ö·û´®µÄ·½Ê½ÉèÖÃÒ»¸öI64
+	XmlElementRoot.SetAttribute(L"0x64",L"0x9876543210");// ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼è®¾ç½®ä¸€ä¸ªI64
 	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"0x64"),0x9876543210);
 	DMXmlNode XmlElementRoot1 = doc.Root(L"xmlui");
 	EXPECT_EQ(XmlElementRoot.IsEqual(XmlElementRoot1), true);

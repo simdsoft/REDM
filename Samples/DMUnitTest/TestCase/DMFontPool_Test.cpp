@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMUintTestAfx.h 
-// File Des: ²âÊÔ×ÖÌåºÍ×Ö·û´®µÄ¹ØÁª
+// File Des: æµ‹è¯•å­—ä½“å’Œå­—ç¬¦ä¸²çš„å…³è”
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -32,17 +32,17 @@ public:
 
 };
 
-TEST_F(DMFontPoolTest, ²âÊÔFontPool)
+TEST_F(DMFontPoolTest, æµ‹è¯•FontPool)
 {
-	CStringW str = L"face:Î¢ÈíÑÅºÚ,size:0,weight:400,charset:134,underline:1,italic:1,strike:1,adding:0";
+	CStringW str = L"face:å¾®è½¯é›…é»‘,size:0,weight:400,charset:134,underline:1,italic:1,strike:1,adding:0";
 	DUIFontPool fontpool;
 	fontpool.SetDefaultFont(str);
-	IDMFontPtr pDefFont = fontpool.GetFont(L"");// È¡µÃÄ¬ÈÏ×ÖÌå
-	IDMFontPtr pDFont = fontpool.GetFont(L"size:0,weight:400"); //µÚÒ»´Î´´½¨
-	IDMFontPtr pFont1 = fontpool.GetFont(L"size:0,weight:400"); //µÚ¶þ´ÎÈ¡µÃ
+	IDMFontPtr pDefFont = fontpool.GetFont(L"");// å–å¾—é»˜è®¤å­—ä½“
+	IDMFontPtr pDFont = fontpool.GetFont(L"size:0,weight:400"); //ç¬¬ä¸€æ¬¡åˆ›å»º
+	IDMFontPtr pFont1 = fontpool.GetFont(L"size:0,weight:400"); //ç¬¬äºŒæ¬¡å–å¾—
 	EXPECT_EQ(pDFont == pFont1,true);
 
-	EXPECT_EQ(0==_wcsicmp(pDFont->GetFaceName(),L"Î¢ÈíÑÅºÚ"),true);//Ã»ÓÐÉèÖÃµÄ¾Í²ÉÓÃÄ¬ÈÏµÄ
+	EXPECT_EQ(0==_wcsicmp(pDFont->GetFaceName(),L"å¾®è½¯é›…é»‘"),true);//æ²¡æœ‰è®¾ç½®çš„å°±é‡‡ç”¨é»˜è®¤çš„
 
 
 }

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSkinPool_Test.cpp 
-// File Des: ²âÊÔÆ¤·ô»æÖÆ³ØÀà
+// File Des: æµ‹è¯•çš®è‚¤ç»˜åˆ¶æ± ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -34,11 +34,11 @@ public:
 
 protected:
 	DMSmartPtrT<IDMRes>	   m_pRes;
-	DMSmartPtrT<IDMRender> m_pDefRender; // ÄÚ²¿µÄÄ¬ÈÏÊ¹ÓÃ¶ÔÏó
+	DMSmartPtrT<IDMRender> m_pDefRender; // å†…éƒ¨çš„é»˜è®¤ä½¿ç”¨å¯¹è±¡
 	DUISkinPool             m_pSkinPool;
 };
 
-TEST_F(DMSkinPoolTest, ²âÊÔ)
+TEST_F(DMSkinPoolTest, æµ‹è¯•)
 {
 
 	DMSmartPtrT<IDMRes> pRes;

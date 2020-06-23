@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMRes_Test.cpp 
-// File Des: ²âÊÔ×ÊÔ´´ò°ü·½Ê½µÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•èµ„æºæ‰“åŒ…æ–¹å¼çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -28,27 +28,27 @@ public:
 	}
 };
 
-TEST_F(DMResTest,²âÊÔResÎÄ¼ş¼Ğ´ò°ü)
+TEST_F(DMResTest,æµ‹è¯•Resæ–‡ä»¶å¤¹æ‰“åŒ…)
 {
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->LoadResPack((WPARAM)L"UTRes",NULL,L"DMResFolderImpl")),true);
 	
-	// ²âÊÔÄÚÖÃµÄDMResFolderImplÀàÊÇ·ñÕı³£
+	// æµ‹è¯•å†…ç½®çš„DMResFolderImplç±»æ˜¯å¦æ­£å¸¸
 	DMSmartPtrT<IDMRes> m_pRes;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&m_pRes, DMREG_Res)),true);
 
 	//EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pRes,L"DMResFolderImpl",DMREG_Res)),true);
 
-	// ½â°ü¹¦ÄÜ
+	// è§£åŒ…åŠŸèƒ½
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->LoadResPack((WPARAM)(L"UTRes"),NULL)),true);
 
-	// ÅĞ¶ÏlayoutÖĞµÄXML_MAINWNDÊÇ·ñ´æÔÚ
+	// åˆ¤æ–­layoutä¸­çš„XML_MAINWNDæ˜¯å¦å­˜åœ¨
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->IsItemExists(RES_LAYOUT,L"dui_main")),true);
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->IsItemExists(RES_LAYOUT,L"dui_main1")),false);
 
-	// ÅĞ¶ÏthemeÖĞµÄBtn_RestoreÊÇ·ñ´æÔÚ
+	// åˆ¤æ–­themeä¸­çš„Btn_Restoreæ˜¯å¦å­˜åœ¨
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->IsItemExists(L"png",L"Btn_Restore")),true);
 
-	// È¡µÃdefaultÖ÷ÌâÏÂµÄbtn_menu
+	// å–å¾—defaultä¸»é¢˜ä¸‹çš„btn_menu
 	unsigned long size1 = 0;
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->GetItemSize(L"png",L"Btn_Menu",size1)),true);
 
@@ -63,7 +63,7 @@ TEST_F(DMResTest,²âÊÔResÎÄ¼ş¼Ğ´ò°ü)
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->GetItemSize(L"png",L"Btn_Restore",size1)),true);
 
 
-	// Íâ²¿¼ÓÔØÆ¤·ô¹¦ÄÜ
+	// å¤–éƒ¨åŠ è½½çš®è‚¤åŠŸèƒ½
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->LoadTheme((WPARAM)L"theme2",(LPARAM)L"UTRes\\themes\\theme2\\dmindex.xml")),true);
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->SetCurTheme(L"theme2")),true);
 	EXPECT_EQ(DMSUCCEEDED(m_pRes->GetItemSize(L"png",L"Btn_Menu",size1)),true);

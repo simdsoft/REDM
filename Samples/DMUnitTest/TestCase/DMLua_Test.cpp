@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c) tencent 
 // All rights reserved.
 // 
 // File name:	DMLua_Test.cpp
 // File mark:   
-// File summary:²âÊÔLUAµÄ²âÊÔÓÃÀı
+// File summary:æµ‹è¯•LUAçš„æµ‹è¯•ç”¨ä¾‹
 
 // Author:		guoyouhuang
 // Edition:     1.0
@@ -105,7 +105,7 @@ struct A
 	int		   m_Value;
 };
 
-// »ùÀà
+// åŸºç±»
 struct base
 {
 	base() {}
@@ -114,7 +114,7 @@ struct base
 	int  m_base_var;
 };
 
-// ×ÓÀà
+// å­ç±»
 class test : public base
 {
 public:
@@ -143,7 +143,7 @@ public:
 	int m_test;
 };
 
-// È«¾Ö×ÓÀàµÄÊµÀı
+// å…¨å±€å­ç±»çš„å®ä¾‹
 test g_test(11);
 TEST_F(DMLuaTest, simple3)
 { 
@@ -185,19 +185,19 @@ TEST_F(DMLuaTest, simple4)
 	DMLUA::lua_context   L;
 	luaL_openlibs(L);
 
-	// ´´½¨table haha
+	// åˆ›å»ºtable haha
 	DMLUA::table haha(L, "haha");
 
-	// ÉèÖÃÊıÖµ
+	// è®¾ç½®æ•°å€¼
 	haha.set("value", 1);
 
-	// ÉèÖÃtable
+	// è®¾ç½®table
 	haha.set("inside", DMLUA::table(L));
 
-	// »ñÈ¡inside
+	// è·å–inside
 	DMLUA::table inside = haha.get<DMLUA::table>("inside");
 
-	// ²åÈëÊıÖµ
+	// æ’å…¥æ•°å€¼
 	inside.set("value", 2);
 
 	wchar_t szPath[MAX_PATH] = {0};
@@ -207,26 +207,26 @@ TEST_F(DMLuaTest, simple4)
 
 	DMLUA::dofile(L, szLuaPath);
 
-	// ´Ólua»ñÈ¡±äÁ¿
+	// ä»luaè·å–å˜é‡
 	const char* test = haha.get<const char*>("test");
 	printf("haha.test = %s\n", test);
 
 	// 
 	DMLUA::table from_lua_table(L, "lua_table");
 
-	// µ÷ÓÃluaº¯Êı
+	// è°ƒç”¨luaå‡½æ•°
 	DMLUA::call<void>(L, "print_table", from_lua_table);
 
-	// ĞÂ½¨Ò»¸ö±í¸ñ
+	// æ–°å»ºä¸€ä¸ªè¡¨æ ¼
 	DMLUA::table temp(L);
 
-	// ÉèÖÃÖµ
+	// è®¾ç½®å€¼
 	temp.set("name", "local table !!");
 
-	// µ÷ÓÃluaº¯Êı
+	// è°ƒç”¨luaå‡½æ•°
 	DMLUA::call<void>(L, "print_table", temp);
 
-	// µ÷ÓÃluaº¯Êı
+	// è°ƒç”¨luaå‡½æ•°
 	DMLUA::table ret = DMLUA::call<DMLUA::table>(L, "return_table", "give me a table !!");
 	printf("ret.name =\t%s\n", ret.get<const char*>("name"));
 }
@@ -258,7 +258,7 @@ TEST_F(DMLuaTest, simple5)
 	DMLUA::dofile(L, szLuaPath);
 
 	printf("%s\n","-------------------------- calling test_error()");
-	DMLUA::call<void>(L, "test_error");// test_error_3²»´æÔÚ£¬×Ô¶¯µ÷ÓÃshow_error
+	DMLUA::call<void>(L, "test_error");// test_error_3ä¸å­˜åœ¨ï¼Œè‡ªåŠ¨è°ƒç”¨show_error
 
 	DMLUA::def(L, "_ALERT", show_error);
 	DMLUA::call<void>(L, "_ALERT", "test !!!");
@@ -373,7 +373,7 @@ TEST_F(DMLuaTest, simple7)
 	DMLUA::class_def<HgyObj>(L,"PrintInfo",&HgyObj::PrintInfo);
 
 	DMLUA::class_add<HgyObjFactory>(L,"HgyObjFactory");
-	DMLUA::class_con<HgyObjFactory>(L, DMLUA::constructor<HgyObjFactory>);// Ò»¶¨Òª³õÊ¼»¯¹¹Ôìº¯Êı£¬²»È»ÎŞ·¨Ê¹ÓÃ
+	DMLUA::class_con<HgyObjFactory>(L, DMLUA::constructor<HgyObjFactory>);// ä¸€å®šè¦åˆå§‹åŒ–æ„é€ å‡½æ•°ï¼Œä¸ç„¶æ— æ³•ä½¿ç”¨
 	DMLUA::class_def<HgyObjFactory>(L, "CreateObj", &HgyObjFactory::CreateObj);
 	DMLUA::class_def<HgyObjFactory>(L, "DestroyObj", &HgyObjFactory::DestroyObj);
 

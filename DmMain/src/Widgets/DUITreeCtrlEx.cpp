@@ -33,7 +33,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
-#pragma region 对外接口
+#pragma region Public methods
 	bool DUITreeCtrlEx::RemoveAllItems()
 	{
 		DMMapT<HDMTREEITEM,CRect>::RemoveAll();
@@ -1093,7 +1093,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 辅助 methods
 	//---------------------------------------------------
-#pragma region 辅助
+#pragma region Helpers
 	HDMTREEITEM DUITreeCtrlEx::InsertItem(LPTVITEMEX pData,HDMTREEITEM hParent,HDMTREEITEM hInsertAfter,bool bEnsureVisible)
 	{
 		HDMTREEITEM hRet = NULL;

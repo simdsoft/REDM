@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDIBHelper_Test.cpp 
-// File Des: ²âÊÔRGBA--BGRAÓÃÀı
+// File Des: æµ‹è¯•RGBA--BGRAç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -32,7 +32,7 @@ public:
 
 };
 
-TEST_F(DMColorTest, ²âÊÔBGRAºÍRGBA¼äµÄ±ä»¯)
+TEST_F(DMColorTest, æµ‹è¯•BGRAå’ŒRGBAé—´çš„å˜åŒ–)
 {
 	DMColor Clr = PBGRA(0x10,0x20,0x30,0x40);
 	EXPECT_EQ(0x40==Clr.a&&0x30==Clr.r&&0x20==Clr.g&&0x10==Clr.b, true);

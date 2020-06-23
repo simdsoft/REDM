@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDIBHelper_Test.cpp 
-// File Des: ²âÊÔDIB±ä»»µÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•DIBå˜æ¢çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -27,7 +27,7 @@ public:
 		EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromFile(L"UTRes\\UTTest\\red-alpha50.png")), true);
 		
 		DMSmartPtrT<IDMImgFrame> pFrame;
-		pImgDecoder->GetFrame(0, &pFrame);//jpg¿Ï¶¨Ö»ÓĞÒ»Ö¡£¬ËùÒÔ´«0
+		pImgDecoder->GetFrame(0, &pFrame);//jpgè‚¯å®šåªæœ‰ä¸€å¸§ï¼Œæ‰€ä»¥ä¼ 0
 		EXPECT_EQ(pFrame!=NULL, true);
 		UINT width = 0;
 		UINT height = 0;
@@ -45,7 +45,7 @@ public:
 		EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromFile(L"UTRes\\UTTest\\gre-alpha50.png")), true);
 
 		pFrame.Release();
-		pImgDecoder->GetFrame(0, &pFrame);//jpg¿Ï¶¨Ö»ÓĞÒ»Ö¡£¬ËùÒÔ´«0
+		pImgDecoder->GetFrame(0, &pFrame);//jpgè‚¯å®šåªæœ‰ä¸€å¸§ï¼Œæ‰€ä»¥ä¼ 0
 		EXPECT_EQ(pFrame!=NULL, true);
 		EXPECT_EQ(DMSUCCEEDED(pFrame->GetSize(width, height)), true);
 
@@ -65,24 +65,24 @@ public:
 	DMLazyT<DMDIBHelper>  m_pHelperG;
 };
 
-TEST_F(DMDibHelperTest, ²âÊÔDIB¹¦ÄÜ)
+TEST_F(DMDibHelperTest, æµ‹è¯•DIBåŠŸèƒ½)
 {
 	TearDown();
 	SetUp();
-	// HSL±ä»»-------------------------------------------
+	// HSLå˜æ¢-------------------------------------------
 	EXPECT_EQ(m_pHelper->AdjustHSL32(150, 100, 100),true);
 	wchar_t *pszSaveFile = L".\\UTRes\\UTTest\\red-alpha50-hsl.bmp";
 	wchar_t szPath[MAX_PATH]={0};
 	GetRootFullPath(pszSaveFile, szPath,MAX_PATH);
 	EXPECT_EQ(m_pHelper->SaveFile(szPath),true);
 
-	// »Ò¶ÈÍ¼-------------------------------------------
+	// ç°åº¦å›¾-------------------------------------------
 	EXPECT_EQ(m_pHelper->GreyImage(),true);
 	pszSaveFile = L".\\UTRes\\UTTest\\red-alpha50-gray.bmp";
 	GetRootFullPath(pszSaveFile, szPath,MAX_PATH);
 	EXPECT_EQ(m_pHelper->SaveFile(szPath),true);
 
-	// »Ö¸´Ô­Í¼-------------------------------------------
+	// æ¢å¤åŸå›¾-------------------------------------------
 	EXPECT_EQ(m_pHelper->ResetHSL32(), true);
 	pszSaveFile = L".\\UTRes\\UTTest\\red-alpha50-org.bmp";
 	GetRootFullPath(pszSaveFile, szPath,MAX_PATH);
@@ -90,12 +90,12 @@ TEST_F(DMDibHelperTest, ²âÊÔDIB¹¦ÄÜ)
 }
 
 
-TEST_F(DMDibHelperTest, ²âÊÔDIBµÄ´æÈ¡ÏñËØ)
+TEST_F(DMDibHelperTest, æµ‹è¯•DIBçš„å­˜å–åƒç´ )
 {
 	TearDown();
 	SetUp();
 
-	 // ²âÊÔÏñËØ´æÈ¡---------------------------------
+	 // æµ‹è¯•åƒç´ å­˜å–---------------------------------
 	DMColor clr = m_pHelper->GetPixel(10,11);
 	EXPECT_EQ(0x80==clr.r, true);
 	clr.a = 0x90;clr.r = 0xc0;
@@ -103,19 +103,19 @@ TEST_F(DMDibHelperTest, ²âÊÔDIBµÄ´æÈ¡ÏñËØ)
 	clr = m_pHelper->GetPixel(10,11);
 	EXPECT_EQ(0xc0==clr.r, true);
 
-	// ²âÊÔalpha´æÈ¡---------------------------------
+	// æµ‹è¯•alphaå­˜å–---------------------------------
 	BYTE alpha = m_pHelper->GetAlpha(10,11);
 	EXPECT_EQ(0x90==alpha, true);
-	m_pHelper->SetAlpha(10,1,0x80);   // Ô¤³Ë¿ÉÄÜÓĞÏñËØËğÊ§
+	m_pHelper->SetAlpha(10,1,0x80);   // é¢„ä¹˜å¯èƒ½æœ‰åƒç´ æŸå¤±
 }
 
 
-TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀÇå0±¸·İ)
+TEST_F(DMDibHelperTest, æµ‹è¯•GDIå‡½æ•°Alphaé€šé“æ¸…0å¤‡ä»½)
 {
 	TearDown();
 	SetUp();
 
-   // ²âÊÔAlphaÍ¨µÀ±¸·İ---------------------------------
+   // æµ‹è¯•Alphaé€šé“å¤‡ä»½---------------------------------
 	DWORD dwTime1 = GetTickCount();
 	for (int i=0;i<20;i++)
 	{
@@ -125,7 +125,7 @@ TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀÇå0±¸·İ)
 	DWORD dwTime2 = GetTickCount()-dwTime1;
 	printf("AlphaBackup+AlphaRestore time:%dms-------------------------------------------\n",dwTime2);
 
-	// ²âÊÔFillRectÊÇ·ñÒıÆğAlphaÍ¨µÀÇå0------------------
+	// æµ‹è¯•FillRectæ˜¯å¦å¼•èµ·Alphaé€šé“æ¸…0------------------
 	DMAutoDC hdc;
 	HDC dcMem = ::CreateCompatibleDC(hdc);
 	::SelectObject(dcMem, m_pHelper->m_hBitmap);
@@ -133,29 +133,29 @@ TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀÇå0±¸·İ)
 	CRect rcDest(0,0,m_pHelper->m_nWidth,m_pHelper->m_nHeight);
 	for (int i=3; i+3<m_pHelper->m_nImageSize; i+=4)
 	{
-		EXPECT_EQ(0x80==(DWORD)(byte)m_pHelper->m_pPixelBits[i],true);// ²âÊÔÖ®Ç°£¬ËùÓĞµÄalpha¶¼ÊÇ0x80
+		EXPECT_EQ(0x80==(DWORD)(byte)m_pHelper->m_pPixelBits[i],true);// æµ‹è¯•ä¹‹å‰ï¼Œæ‰€æœ‰çš„alphaéƒ½æ˜¯0x80
 	}
 	rcDest.DeflateRect(20,8);
 	m_pHelper->AlphaBackup(rcDest);
 	::FillRect(dcMem,&rcDest,(HBRUSH)::GetStockObject(WHITE_BRUSH));
 
-#if 0// ´Ë²âÊÔÖ»ÔÚrcDestÎªÈ«ÇøÓòÊ±¿ªÆô
+#if 0// æ­¤æµ‹è¯•åªåœ¨rcDestä¸ºå…¨åŒºåŸŸæ—¶å¼€å¯
 	for (int i=3; i+3<m_pHelper->m_nImageSize; i+=4)
 	{
-		EXPECT_EQ(0==(DWORD)(byte)m_pHelper->m_pPixelBits[i],true);	  // FillRect²Ù×÷ºó£¬ËùÓĞµÄalpha¶¼ÊÇ0x0
+		EXPECT_EQ(0==(DWORD)(byte)m_pHelper->m_pPixelBits[i],true);	  // FillRectæ“ä½œåï¼Œæ‰€æœ‰çš„alphaéƒ½æ˜¯0x0
 	}
 #endif
 	m_pHelper->AlphaRestore();
 
 #if SHOW_TOSCREEN
 	BLENDFUNCTION bf = { AC_SRC_OVER,0,255,AC_SRC_ALPHA};
-	bool bRet = ::AlphaBlend(hdc, 400, 0,100,50,dcMem, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf);// Ö»ÓĞAlphaÄÜ»æ³öÍ¸Ã÷Ğ§¹û
+	bool bRet = ::AlphaBlend(hdc, 400, 0,100,50,dcMem, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf);// åªæœ‰Alphaèƒ½ç»˜å‡ºé€æ˜æ•ˆæœ
 #endif
 	::DeleteDC(dcMem);
 }
 
 
-TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀ»ìºÏ)
+TEST_F(DMDibHelperTest, æµ‹è¯•GDIå‡½æ•°Alphaé€šé“æ··åˆ)
 {
 	TearDown();
 	SetUp();
@@ -169,7 +169,7 @@ TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀ»ìºÏ)
 	DMDIBHelper*pDest = m_pHelperG.Get();DMDIBHelper*pSrc = m_pHelper.Get();
 	DWORD dwt1 = GetTickCount();
 	//for (int i=0;i<100;i++)
-	//bool bRet = ::AlphaBlend(dcMem1, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,dcMem, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf);// Ö»ÓĞAlphaÄÜ»æ³öÍ¸Ã÷Ğ§¹û
+	//bool bRet = ::AlphaBlend(dcMem1, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,dcMem, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf);// åªæœ‰Alphaèƒ½ç»˜å‡ºé€æ˜æ•ˆæœ
 	//DMDIBHelper::AlphaBlend32(pDest,0,0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,pSrc, 10, 10,m_pHelper->m_nWidth,m_pHelper->m_nHeight,0Xcf);
 	DWORD dwt2 = GetTickCount()-dwt1;
 	printf("AlphaBlend time:%d==============\n",dwt2);
@@ -178,7 +178,7 @@ TEST_F(DMDibHelperTest, ²âÊÔGDIº¯ÊıAlphaÍ¨µÀ»ìºÏ)
 	//DMDIBHelper::AlphaBlend32(pDest,0,0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,pSrc, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,255);
 #if SHOW_TOSCREEN
 	BLENDFUNCTION bf1 = { AC_SRC_OVER,0,255,AC_SRC_ALPHA};
-    ::AlphaBlend(hdc, 400, 0,100,50,dcMem1, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf1);// Ö»ÓĞAlphaÄÜ»æ³öÍ¸Ã÷Ğ§¹û
+    ::AlphaBlend(hdc, 400, 0,100,50,dcMem1, 0, 0,m_pHelper->m_nWidth,m_pHelper->m_nHeight,bf1);// åªæœ‰Alphaèƒ½ç»˜å‡ºé€æ˜æ•ˆæœ
 #endif
 	::DeleteDC(dcMem);
 	::DeleteDC(dcMem1);

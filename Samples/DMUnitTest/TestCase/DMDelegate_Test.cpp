@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDelegate_Test.cpp 
-// File Des: ²âÊÔÎ¯ÍĞ´úÀíµÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•å§”æ‰˜ä»£ç†çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -16,7 +16,7 @@
 #include "DMUintTestAfx.h"
 #include "DMDelegate.h"
 
-/// ²âÊÔÄ£Äâ
+/// æµ‹è¯•æ¨¡æ‹Ÿ
 class IBase
 {
 public:
@@ -32,8 +32,8 @@ public:
 		printf("BaseFun1\n");
 		return true;
 	}
-public:// ³õÊ¼»¯
-	virtual IBase* GetDelegate()// Õâ±ØĞëÎªĞéº¯Êı
+public:// åˆå§‹åŒ–
+	virtual IBase* GetDelegate()// è¿™å¿…é¡»ä¸ºè™šå‡½æ•°
 	{
 		if (NULL == m_pDelegate)
 		{
@@ -47,7 +47,7 @@ public:
 	IBase*  m_pDelegate;
 };
 
-/// A¼Ì³ĞÓÚB
+/// Aç»§æ‰¿äºB
 class IA:public IBase
 {
 public:
@@ -71,14 +71,14 @@ public:
 			m_pDelegate = new IA;
 		}
 		DMDLBIND(((IA*)m_pDelegate)->m_fun_AFun1,DMBind(&A::AFun1,this))
-		return __super::GetDelegate();// ÈÃ¸¸Àà¼ÌĞø³õÊ¼»¯
+		return __super::GetDelegate();// è®©çˆ¶ç±»ç»§ç»­åˆå§‹åŒ–
 	}
 };
 
 class B:public Base
 {
 public:
-	bool BaseFun1()// Èç¹ûÊ¹ÓÃBase*p=new B,±¾À´ÕâÓ¦¸ÃÊÇ¸öĞéº¯Êı²ÅÄÜ±»µ÷ÓÃµ½£¬µ«´úÀí¿ÉÒÔ×ª·¢
+	bool BaseFun1()// å¦‚æœä½¿ç”¨Base*p=new B,æœ¬æ¥è¿™åº”è¯¥æ˜¯ä¸ªè™šå‡½æ•°æ‰èƒ½è¢«è°ƒç”¨åˆ°ï¼Œä½†ä»£ç†å¯ä»¥è½¬å‘
 	{
 		printf("B-Fun1\n");
 		return true;

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSkin_Test.cpp 
-// File Des: ²âÊÔÆ¤·ô»æÖÆÀà
+// File Des: æµ‹è¯•çš®è‚¤ç»˜åˆ¶ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -32,7 +32,7 @@ public:
 
 protected:
 	DMSmartPtrT<IDMRes>	   m_pRes;
-	DMSmartPtrT<IDMRender> m_pDefRender; // ÄÚ²¿µÄÄ¬ÈÏÊ¹ÓÃ¶ÔÏó
+	DMSmartPtrT<IDMRender> m_pDefRender; // å†…éƒ¨çš„é»˜è®¤ä½¿ç”¨å¯¹è±¡
 };
 
 // imglist
@@ -48,8 +48,8 @@ TEST_F(DMSkinTest, imglist_Test)
 		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, L"imglist",DMREG_Skin)),true);
 		m_pSkin->InitDMData(XmlNode);
 		wchar_t szId[MAX_PATH] = {0};
-		m_pSkin->GetID(szId, MAX_PATH);		// È¡µÃ¶ÔÏóÎ¨Ò»IDÃû
-		int iStates = 0;m_pSkin->GetStates(iStates); // È¡µÃ×´Ì¬Êı
+		m_pSkin->GetID(szId, MAX_PATH);		// å–å¾—å¯¹è±¡å”¯ä¸€IDå
+		int iStates = 0;m_pSkin->GetStates(iStates); // å–å¾—çŠ¶æ€æ•°
 		SIZE sz;
 		EXPECT_EQ(DMSUCCEEDED(m_pSkin->GetStateSize(sz)),true);
 
@@ -83,8 +83,8 @@ TEST_F(DMSkinTest, img9_Test)
 		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, L"img9",DMREG_Skin)),true);
 		m_pSkin->InitDMData(XmlNode);
 		wchar_t szId[MAX_PATH] = {0};
-		m_pSkin->GetID(szId, MAX_PATH);		// È¡µÃ¶ÔÏóÎ¨Ò»IDÃû
-		int iStates = 0;m_pSkin->GetStates(iStates); // È¡µÃ×´Ì¬Êı
+		m_pSkin->GetID(szId, MAX_PATH);		// å–å¾—å¯¹è±¡å”¯ä¸€IDå
+		int iStates = 0;m_pSkin->GetStates(iStates); // å–å¾—çŠ¶æ€æ•°
 		SIZE sz;
 		EXPECT_EQ(DMSUCCEEDED(m_pSkin->GetStateSize(sz)),true);
 
@@ -124,7 +124,7 @@ TEST_F(DMSkinTest, scroll_Test)
 		EXPECT_EQ(DMSUCCEEDED(m_pDefRender->CreateCanvas(200,200,&pCanvas)),true);
 
 	
-		// normal ÊúÖ±----
+		// normal ç«–ç›´----
 		CSize sz(16,16);
 		CRect rcArrowUp(CPoint(0,0),sz);CRect rcPage(0,17,16,64);CRect rcAllowDown(CPoint(0,65),sz);CRect rcThumb(0,25,16,50);
 		int nState = DMSBST_NORMAL;
@@ -137,8 +137,8 @@ TEST_F(DMSkinTest, scroll_Test)
 			m_pSkin->Draw(pCanvas,rcThumb,MAKESBSTATE(SB_THUMBTRACK,nState,1));
 		}
 	
-		// normal Ë®Æ½----
-		CRect rcArrowLeft(CPoint(102,-17),sz);CRect rcPageH(119,-17,183,-1);CRect rcAllowRight(184,-17,200,-1); CRect rcThumbH(123,-17,169,-1);              // µÚÒ»´Î»áÏÂÒÆ17£¬ËùÒÔÖ±½ÓÈ¡-17
+		// normal æ°´å¹³----
+		CRect rcArrowLeft(CPoint(102,-17),sz);CRect rcPageH(119,-17,183,-1);CRect rcAllowRight(184,-17,200,-1); CRect rcThumbH(123,-17,169,-1);              // ç¬¬ä¸€æ¬¡ä¼šä¸‹ç§»17ï¼Œæ‰€ä»¥ç›´æ¥å–-17
 		nState = DMSBST_NORMAL;
 		for (nState=0;nState<5;nState++)
 		{

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMCanvas_Test.cpp 
-// File Des: ²âÊÔCanvas»æÖÆµÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•Canvasç»˜åˆ¶çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -22,7 +22,7 @@ public:
 	virtual void SetUp(){}
 	virtual void TearDown(){}
 
-	// Ê¹ÓÃDMBundleÉèÖÃ°ó¶¨Êı¾İ
+	// ä½¿ç”¨DMBundleè®¾ç½®ç»‘å®šæ•°æ®
 	static DMBundle InitBundle()
 	{
 		DMBundle bundle;
@@ -54,12 +54,12 @@ public:
 };
 
 
-TEST_F(BundleTest, ²âÊÔ»ù´¡º¯Êı)
+TEST_F(BundleTest, æµ‹è¯•åŸºç¡€å‡½æ•°)
 {
 	DMBundle bundle = BundleTest::InitBundle();
-	DMBundle bundle1 = bundle; // Ö¸ÏòÍ¬Ò»¿éDMBundleImplÄÚ´æ£¬ÒıÓÃ¼ÆÊı+1
-	DMBundle bundle2(bundle);  // Ö¸ÏòÍ¬Ò»¿éDMBundleImplÄÚ´æ£¬ÒıÓÃ¼ÆÊı+1
-	DMBundle bundle3 = bundle.Clone();// ¸´ÖÆÒ»¿éĞÂµÄDMBundleImplÄÚ´æ,bundle3³õÊ¼ÒıÓÃ¼ÆÊıÎª1
+	DMBundle bundle1 = bundle; // æŒ‡å‘åŒä¸€å—DMBundleImplå†…å­˜ï¼Œå¼•ç”¨è®¡æ•°+1
+	DMBundle bundle2(bundle);  // æŒ‡å‘åŒä¸€å—DMBundleImplå†…å­˜ï¼Œå¼•ç”¨è®¡æ•°+1
+	DMBundle bundle3 = bundle.Clone();// å¤åˆ¶ä¸€å—æ–°çš„DMBundleImplå†…å­˜,bundle3åˆå§‹å¼•ç”¨è®¡æ•°ä¸º1
 
 	bool ret1 = bundle.GetBool(L"1");
 	byte ret2 = bundle.GetByte(L"2");
