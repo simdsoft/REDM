@@ -29,7 +29,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
-#pragma region 对外接口
+#pragma region Public methods
 	int DUIListCtrlEx::InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate/* = true*/)
 	{
 		int iRet = -1;
@@ -806,7 +806,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 辅助 methods
 	//---------------------------------------------------
-#pragma region 辅助
+#pragma region Helpers
 	void DUIListCtrlEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast /*= -1*/)
 	{
 		int iCount  = GetItemCount();

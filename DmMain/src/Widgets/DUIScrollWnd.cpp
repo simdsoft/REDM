@@ -85,7 +85,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: 对外接口 methods
 	//---------------------------------------------------
-#pragma region 对外接口
+#pragma region Public methods
 	void DUIScrollWnd::UpdateScrollRange()
 	{
 		if (m_pFLChild )
