@@ -20,10 +20,6 @@ namespace DM
 		m_nRetCode = -1;
 	}
 
-	DMHDialog::~DMHDialog()
-	{
-	}
-
 	INT_PTR DMHDialog::DoModal(LPCWSTR lpszXmlId, HWND hWndParent/*=NULL*/, bool bShadow/*=false*/, DM::CRect rect/* = NULL*/)
 	{
 		BOOL bEnableParent = FALSE;

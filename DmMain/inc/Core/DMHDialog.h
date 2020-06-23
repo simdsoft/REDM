@@ -25,9 +25,7 @@ namespace DM
 		DMDECLARE_CLASS_NAME(DMHDialog,L"hdialog",DMREG_Window);
 	public:
 		DMHDialog();
-		virtual~DMHDialog();
 
-	public:
 		virtual INT_PTR DoModal(LPCWSTR lpszXmlId, HWND hParent=NULL, bool bShadow=false,DM::CRect rect=DM::CRect(0,0,0,0));
 		void EndDialog(INT_PTR nResult);
 
