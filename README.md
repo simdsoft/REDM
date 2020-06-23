@@ -1,6 +1,8 @@
 # REDM  
 ---
 
+[![Build status](https://ci.appveyor.com/api/projects/status/5dq8665euimtgfw7/branch/master?svg=true)](https://ci.appveyor.com/project/halx99/redm/branch/master)
+
 ## 1. 为什么开源DM库
 * DM的部分代码，部分框架本来就是取之于各类开源，所以尝试开源DM库，取得于开源，回馈于开源，为开源软件业贡献自己的一份小小力量
 * 就目前所有开源的DUI库来看，个人认为有个很大的不足，那就是并未按商业化的标准来做这些开源项目:
