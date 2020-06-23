@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMGifParse_Test.cpp 
-// File Des: ²âÊÔgif½âÎöµÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•gifè§£æçš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -32,7 +32,7 @@ public:
 protected:
 };
 
-TEST_F(DMGifParseTest, ²âÊÔGifParseÎÄ¼ş¼ÓÔØ¹¦ÄÜ)
+TEST_F(DMGifParseTest, æµ‹è¯•GifParseæ–‡ä»¶åŠ è½½åŠŸèƒ½)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
 	GetRootDirW(szExeDir, MAX_PATH);
@@ -42,30 +42,30 @@ TEST_F(DMGifParseTest, ²âÊÔGifParseÎÄ¼ş¼ÓÔØ¹¦ÄÜ)
 	pObj.Attach(new DMGifParse);
 	EXPECT_EQ(pObj->LoadFromFile(szPath),true);
 	LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
-	printf("²âÊÔGifParseÎÄ¼ş¼ÓÔØ¹¦ÄÜ----------------------------------\n");
-	printf("Âß¼­ÆÁÄ»¿í¶È=%d,¸ß¶È=%d\n",gi->scrWidth,gi->scrHeight);
+	printf("æµ‹è¯•GifParseæ–‡ä»¶åŠ è½½åŠŸèƒ½----------------------------------\n");
+	printf("é€»è¾‘å±å¹•å®½åº¦=%d,é«˜åº¦=%d\n",gi->scrWidth,gi->scrHeight);
 	if (gi->bLoop)
 	{
-		printf("Ñ­»·´ÎÊı=%d\n",gi->totalLoopCount);
+		printf("å¾ªç¯æ¬¡æ•°=%d\n",gi->totalLoopCount);
 	}
 	else
 	{
-		printf("Ñ­»·´ÎÊı1´Î\n");
+		printf("å¾ªç¯æ¬¡æ•°1æ¬¡\n");
 	}
 	for (int i=0;i<(int)gi->frames;i++)
 	{
 		GIFFRAMEPTR fm = pObj->GetFrame(i);
 		EXPECT_EQ(NULL!=fm, true);
 
-		printf("µÚ%dÖ¡,¿í¶È:%d,¸ß¶È:%d,left:%d,top:%d\n",i+1,fm->imageWidth,fm->imageHeight,fm->imageLPos,fm->imageTPos);
+		printf("ç¬¬%då¸§,å®½åº¦:%d,é«˜åº¦:%d,left:%d,top:%d\n",i+1,fm->imageWidth,fm->imageHeight,fm->imageLPos,fm->imageTPos);
 		if (fm->ctrlExt.active)
-			printf("µÚ%dÖ¡ÑÓÊ±£¨ºÁÃë£©=%d,Í¸Ã÷É«:%d,µÈ´ıÓÃ»§ÊäÈë:%d\n",i+1,fm->ctrlExt.delayTime*10,fm->ctrlExt.trsFlag,fm->ctrlExt.userInputFlag);
+			printf("ç¬¬%då¸§å»¶æ—¶ï¼ˆæ¯«ç§’ï¼‰=%d,é€æ˜è‰²:%d,ç­‰å¾…ç”¨æˆ·è¾“å…¥:%d\n",i+1,fm->ctrlExt.delayTime*10,fm->ctrlExt.trsFlag,fm->ctrlExt.userInputFlag);
 	}
 
-	printf("²âÊÔGifParseÎÄ¼ş¼ÓÔØ¹¦ÄÜ----------------------------------\n");
+	printf("æµ‹è¯•GifParseæ–‡ä»¶åŠ è½½åŠŸèƒ½----------------------------------\n");
 }
 
-TEST_F(DMGifParseTest, ²âÊÔGifParseÄÚ´æ¼ÓÔØ¹¦ÄÜ)
+TEST_F(DMGifParseTest, æµ‹è¯•GifParseå†…å­˜åŠ è½½åŠŸèƒ½)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
 	GetRootDirW(szExeDir, MAX_PATH);
@@ -84,27 +84,27 @@ TEST_F(DMGifParseTest, ²âÊÔGifParseÄÚ´æ¼ÓÔØ¹¦ÄÜ)
 	pObj.Attach(new DMGifParse);
 	EXPECT_EQ(pObj->LoadFromMemory(pBuf,dwSize),true);
 	LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
-	printf("²âÊÔGifParseÄÚ´æ¼ÓÔØ¹¦ÄÜ----------------------------------\n");
-	printf("Âß¼­ÆÁÄ»¿í¶È=%d,¸ß¶È=%d\n",gi->scrWidth,gi->scrHeight);
+	printf("æµ‹è¯•GifParseå†…å­˜åŠ è½½åŠŸèƒ½----------------------------------\n");
+	printf("é€»è¾‘å±å¹•å®½åº¦=%d,é«˜åº¦=%d\n",gi->scrWidth,gi->scrHeight);
 	if (gi->bLoop)
 	{
-		printf("Ñ­»·´ÎÊı=%d\n",gi->totalLoopCount);
+		printf("å¾ªç¯æ¬¡æ•°=%d\n",gi->totalLoopCount);
 	}
 	else
 	{
-		printf("Ñ­»·´ÎÊı1´Î\n");
+		printf("å¾ªç¯æ¬¡æ•°1æ¬¡\n");
 	}
 	for (int i=0;i<(int)gi->frames;i++)
 	{
 		GIFFRAMEPTR fm = pObj->GetFrame(i);
 		EXPECT_EQ(NULL!=fm, true);
 
-		printf("µÚ%dÖ¡,¿í¶È:%d,¸ß¶È:%d,left:%d,top:%d\n",i+1,fm->imageWidth,fm->imageHeight,fm->imageLPos,fm->imageTPos);
+		printf("ç¬¬%då¸§,å®½åº¦:%d,é«˜åº¦:%d,left:%d,top:%d\n",i+1,fm->imageWidth,fm->imageHeight,fm->imageLPos,fm->imageTPos);
 		if (fm->ctrlExt.active)
-			printf("µÚ%dÖ¡ÑÓÊ±£¨ºÁÃë£©=%d,Í¸Ã÷É«:%d,µÈ´ıÓÃ»§ÊäÈë:%d\n",i+1,fm->ctrlExt.delayTime*10,fm->ctrlExt.trsFlag,fm->ctrlExt.userInputFlag);
+			printf("ç¬¬%då¸§å»¶æ—¶ï¼ˆæ¯«ç§’ï¼‰=%d,é€æ˜è‰²:%d,ç­‰å¾…ç”¨æˆ·è¾“å…¥:%d\n",i+1,fm->ctrlExt.delayTime*10,fm->ctrlExt.trsFlag,fm->ctrlExt.userInputFlag);
 	}
 
-	printf("²âÊÔGifParseÄÚ´æ¼ÓÔØ¹¦ÄÜ----------------------------------\n");
+	printf("æµ‹è¯•GifParseå†…å­˜åŠ è½½åŠŸèƒ½----------------------------------\n");
 
 	DM_DELETE_ARRAY(pBuf);
 }

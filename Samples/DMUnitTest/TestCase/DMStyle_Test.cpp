@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMStyle_Test.cpp 
-// File Des: ²âÊÔÄÚÖÃµÄstyle
+// File Des: æµ‹è¯•å†…ç½®çš„style
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -23,7 +23,7 @@ public:
 		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&m_pRes, DMREG_Res)),true);
 		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&m_pDefRender,DMREG_Render)),true);
 		EXPECT_EQ(DMSUCCEEDED(m_pRes->LoadResPack((WPARAM)(L"UTRes"),NULL)),true);
-		g_pDMApp->InitGlobal(); // ¼ÓÔØÒ»µãskin
+		g_pDMApp->InitGlobal(); // åŠ è½½ä¸€ç‚¹skin
 	}
 
 	virtual void TearDown()
@@ -33,18 +33,18 @@ public:
 
 protected:
 	DMSmartPtrT<IDMRes>	   m_pRes;
-	DMSmartPtrT<IDMRender> m_pDefRender; // ÄÚ²¿µÄÄ¬ÈÏÊ¹ÓÃ¶ÔÏó
+	DMSmartPtrT<IDMRender> m_pDefRender; // å†…éƒ¨çš„é»˜è®¤ä½¿ç”¨å¯¹è±¡
 };
 
-TEST_F(DMStyleTest, ²âÊÔ)
+TEST_F(DMStyleTest, æµ‹è¯•)
 {
 	DMSmartPtrT<IDMStyle>     pStyle;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStyle,L"style",DMREG_Style)),true);
 
 	CStringW strWXml = L"<style id=\"custom\" "\
 					L"clrtext=\"rgba(ff,ff,ff,ff)\" clrtexthover=\"rgba(ff,00,ff,ff)\" clrtextpush=\"rgba(ff,ff,00,ff)\" clrtextdisable=\"rgba(00,ff,ff,ff)\" clrtextnoactive=\"rgba(00,00,ff,ff)\" "\
-					L"font=\"face:ËÎÌå,size:10,weight:400,charset:0,underline:0,italic:1,strike:1\" "\
-					L"fonthover=\"face:ºÚÌå,size:11,weight:401,underline:1,italic:1,strike:1\" skin=\"DM_Frame \" NCskin=\"Btn_Close \" "\
+					L"font=\"face:å®‹ä½“,size:10,weight:400,charset:0,underline:0,italic:1,strike:1\" "\
+					L"fonthover=\"face:é»‘ä½“,size:11,weight:401,underline:1,italic:1,strike:1\" skin=\"DM_Frame \" NCskin=\"Btn_Close \" "\
 					L"clrbg=\"rgba(fc,fc,fc,fc)\" align=\"right\" clrnc=\"rgba(fd,fd,fd,fd)\" ncmargin=\"1,2,3,4\" cursor=\" sizewe\" "\
 					L"skin1=\"DM_Frame\" />";
 	
@@ -56,9 +56,9 @@ TEST_F(DMStyleTest, ²âÊÔ)
 
 	wchar_t szId[MAX_PATH] = {0};
 	pStyle->GetID(szId, MAX_PATH);
-	EXPECT_EQ(0==_wcsicmp(szId,L"custom"),true); // Ãû×Ö
+	EXPECT_EQ(0==_wcsicmp(szId,L"custom"),true); // åå­—
 
-	// ÎÄ±¾ÑÕÉ«
+	// æ–‡æœ¬é¢œè‰²
 	DMColor clr[5];
 	for (int i=0;i<5;i++)
 	{
@@ -70,17 +70,17 @@ TEST_F(DMStyleTest, ²âÊÔ)
 	EXPECT_EQ(0x00==clr[3].r&&0xff==clr[3].g&&0xff==clr[3].b&&0xff==clr[3].a,true);
 	EXPECT_EQ(0x00==clr[4].r&&0x00==clr[4].g&&0xff==clr[4].b&&0xff==clr[4].a,true);
 
-	// ×ÖÌå
+	// å­—ä½“
 	DMSmartPtrT<IDMFont> pFont[5];
 	for (int i=0;i<5;i++)
 	{
 		EXPECT_EQ(DMSUCCEEDED(pStyle->GetTextFont(i,&pFont[i])),true);
 	}
 
-	EXPECT_EQ(0==_wcsicmp(L"ËÎÌå",pFont[0]->GetFaceName())&&-10==pFont[0]->GetLogFont()->lfHeight&&400==pFont[0]->GetLogFont()->lfWeight,true);
-	EXPECT_EQ(0==_wcsicmp(L"ºÚÌå",pFont[1]->GetFaceName())&&-11==pFont[1]->GetLogFont()->lfHeight&&401==pFont[1]->GetLogFont()->lfWeight,true);
+	EXPECT_EQ(0==_wcsicmp(L"å®‹ä½“",pFont[0]->GetFaceName())&&-10==pFont[0]->GetLogFont()->lfHeight&&400==pFont[0]->GetLogFont()->lfWeight,true);
+	EXPECT_EQ(0==_wcsicmp(L"é»‘ä½“",pFont[1]->GetFaceName())&&-11==pFont[1]->GetLogFont()->lfHeight&&401==pFont[1]->GetLogFont()->lfWeight,true);
 
-	// ±³¾°É«
+	// èƒŒæ™¯è‰²
 	DMColor crBg,crNc;
 	pStyle->GetBgColor(0,crBg);
 	pStyle->GetNcColor(0,crNc);
@@ -97,7 +97,7 @@ TEST_F(DMStyleTest, ²âÊÔ)
 	pStyle->GetNcMargin(NcRc);
 
 	HCURSOR hCursor = NULL;
-	pStyle->GetCursor(hCursor);// size¹â±êÊÇ¿ÕµÄ
+	pStyle->GetCursor(hCursor);// sizeå…‰æ ‡æ˜¯ç©ºçš„
 	EXPECT_EQ(NULL!=hCursor,true);
 
 	UINT Align = 0;

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMPlugin_Test.cpp 
-// File Des: ²âÊÔ¿çÏß³ÌÊÂ¼ş°ó¶¨µÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•è·¨çº¿ç¨‹äº‹ä»¶ç»‘å®šçš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -31,17 +31,17 @@ class TaskRunnerTest:public::testing::Test,public DMRefNum
 {
 public:
 	DMSmartPtrT<IDMTaskRunner> m_pTaskRunner;
-	//DMDISABLE_RUNNABLE_METHOD_REFCOUNT(TaskRunnerTest);//Ç¿ÖÆ½ûÓÃÒıÓÃ¼ÆÊı¿ØÖÆÉúÃüÖÜÆÚ,ÈçĞèÒª,Ó¦¸Ã·ÅÔÚÔÚ.hÎÄ¼şÖĞ£¬»ùÓÚDMRefNumµÄÀà,²»ĞèÒª´Ë¾ä£¬Ä¬ÈÏDM¿â¶¼»ùÓÚDMRefNum
+	//DMDISABLE_RUNNABLE_METHOD_REFCOUNT(TaskRunnerTest);//å¼ºåˆ¶ç¦ç”¨å¼•ç”¨è®¡æ•°æ§åˆ¶ç”Ÿå‘½å‘¨æœŸ,å¦‚éœ€è¦,åº”è¯¥æ”¾åœ¨åœ¨.hæ–‡ä»¶ä¸­ï¼ŒåŸºäºDMRefNumçš„ç±»,ä¸éœ€è¦æ­¤å¥ï¼Œé»˜è®¤DMåº“éƒ½åŸºäºDMRefNum
 
 public:
 	virtual void SetUp()
 	{
-		//1. »ñÈ¡¶ÔÏó,Á½ÖÖ·½Ê½------------------------------------------------
-		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&m_pTaskRunner,DMREG_TaskRunner)),true);// Ê¹ÓÃÄÚ²¿ÒÑ³õÊ¼»¯Íê³ÉµÄTaskRunner¶ÔÏó¡£
-		//EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pTaskRunner,NULL, DMREG_TaskRunner)),true);// ×Ô¼º´´½¨Ò»¸öTaskRunner¶ÔÏó£¬µ«ÒªÔÚUIÏß³ÌÖĞµ÷ÓÃInitEvent³õÊ¼»¯UI»·¾³¡£
+		//1. è·å–å¯¹è±¡,ä¸¤ç§æ–¹å¼------------------------------------------------
+		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&m_pTaskRunner,DMREG_TaskRunner)),true);// ä½¿ç”¨å†…éƒ¨å·²åˆå§‹åŒ–å®Œæˆçš„TaskRunnerå¯¹è±¡ã€‚
+		//EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pTaskRunner,NULL, DMREG_TaskRunner)),true);// è‡ªå·±åˆ›å»ºä¸€ä¸ªTaskRunnerå¯¹è±¡ï¼Œä½†è¦åœ¨UIçº¿ç¨‹ä¸­è°ƒç”¨InitEventåˆå§‹åŒ–UIç¯å¢ƒã€‚
 		//m_pTaskRunner->InitEvent(::GetCurrentThreadId());
 
-		//2. ÌáÇ°°ó¶¨£¬Ö»ÒªÔÚFireEventÖ®Ç°°ó¶¨¼´¿É---------------------------
+		//2. æå‰ç»‘å®šï¼Œåªè¦åœ¨FireEventä¹‹å‰ç»‘å®šå³å¯---------------------------
 		InitBind();
 	}
 
@@ -49,35 +49,35 @@ public:
 	virtual void OnFinalRelease(){}	
 	~TaskRunnerTest(){m_RefCount = 0;}
 
-public:// ¸¨Öú
+public:// è¾…åŠ©
 	void InitBind()
 	{
 		if (m_pTaskRunner)
 		{
-			// Í¬²½°ó¶¨£¬ÔÚFireEventÊ±Í¬²½´¥·¢
-			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::s_slotSyncEvent1));			// °ó¶¨È«¾Öº¯Êı
+			// åŒæ­¥ç»‘å®šï¼Œåœ¨FireEventæ—¶åŒæ­¥è§¦å‘
+			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::s_slotSyncEvent1));			// ç»‘å®šå…¨å±€å‡½æ•°
 			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::slotSyncEvent1, this));
-			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::slotSyncEvent1, this));		// ¶à´Î°ó¶¨£¬ºóÒ»´Î±»ºöÂÔ
-			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::slotSyncEvent2, this),99);	// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
-			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC2),DMSlot(&TaskRunnerTest::slotSyncEvent2, this),99);	// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
-			//m_pTaskRunner->RemoveEvent(ID2NAME(EVENTID_SYNC1));	// ÒÆ³ı²âÊÔ	
-			//m_pTaskRunner->RemoveEventIfThis(this);				// ÒÆ³ıÕâ¸öÀàµÄËùÓĞ°ó¶¨
-			//m_pTaskRunner->RemoveAllEvents();						// ÒÆ³ıËùÓĞ°ó¶¨
+			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::slotSyncEvent1, this));		// å¤šæ¬¡ç»‘å®šï¼Œåä¸€æ¬¡è¢«å¿½ç•¥
+			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC1),DMSlot(&TaskRunnerTest::slotSyncEvent2, this),99);	// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
+			m_pTaskRunner->ConnectEvent(DMTT_SYNC, ID2NAME(EVENTID_SYNC2),DMSlot(&TaskRunnerTest::slotSyncEvent2, this),99);	// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
+			//m_pTaskRunner->RemoveEvent(ID2NAME(EVENTID_SYNC1));	// ç§»é™¤æµ‹è¯•	
+			//m_pTaskRunner->RemoveEventIfThis(this);				// ç§»é™¤è¿™ä¸ªç±»çš„æ‰€æœ‰ç»‘å®š
+			//m_pTaskRunner->RemoveAllEvents();						// ç§»é™¤æ‰€æœ‰ç»‘å®š
 
-			// UI°ó¶¨£¬ÔÚFireEventÊ±Òì²½µ½UIÏß³Ì´¥·¢
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::s_slotUIEvent1));				// °ó¶¨È«¾Öº¯Êı
+			// UIç»‘å®šï¼Œåœ¨FireEventæ—¶å¼‚æ­¥åˆ°UIçº¿ç¨‹è§¦å‘
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::s_slotUIEvent1));				// ç»‘å®šå…¨å±€å‡½æ•°
 			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::slotUIEvent1, this));
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::slotUIEvent1, this));			// ¶à´Î°ó¶¨£¬ºóÒ»´Î±»ºöÂÔ
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::slotUIEvent2, this),99);		// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI2),DMSlot(&TaskRunnerTest::slotUIEvent2, this),99);		// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::slotUIEvent1, this));			// å¤šæ¬¡ç»‘å®šï¼Œåä¸€æ¬¡è¢«å¿½ç•¥
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI1),DMSlot(&TaskRunnerTest::slotUIEvent2, this),99);		// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_UI,ID2NAME(EVENTID_UI2),DMSlot(&TaskRunnerTest::slotUIEvent2, this),99);		// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
 
-			// ¹¤×÷Ïß³Ì°ó¶¨,ÔÚFireEventÊ±Òì²½µ½ÄÚ²¿µÄ¹¤×÷Ïß³Ì´¥·¢
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::s_slotAyncEvent1));				// °ó¶¨È«¾Öº¯Êı
+			// å·¥ä½œçº¿ç¨‹ç»‘å®š,åœ¨FireEventæ—¶å¼‚æ­¥åˆ°å†…éƒ¨çš„å·¥ä½œçº¿ç¨‹è§¦å‘
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::s_slotAyncEvent1));				// ç»‘å®šå…¨å±€å‡½æ•°
 			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::slotAyncEvent1, this));
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::slotAyncEvent1, this));		// ¶à´Î°ó¶¨£¬ºóÒ»´Î±»ºöÂÔ
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::slotAyncEvent2, this),99);	// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC2),DMSlot(&TaskRunnerTest::slotAyncEvent2, this),99);	// ºó°ó¶¨£¬µ«ÏÈµ÷ÓÃ£¬ÒòÎª99±ÈÄ¬ÈÏ100Ğ¡
-			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC2),DMSlot(&TaskRunnerTest::s_slotAyncEvent1));			// °ó¶¨È«¾Öº¯Êı
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::slotAyncEvent1, this));		// å¤šæ¬¡ç»‘å®šï¼Œåä¸€æ¬¡è¢«å¿½ç•¥
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC1),DMSlot(&TaskRunnerTest::slotAyncEvent2, this),99);	// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC2),DMSlot(&TaskRunnerTest::slotAyncEvent2, this),99);	// åç»‘å®šï¼Œä½†å…ˆè°ƒç”¨ï¼Œå› ä¸º99æ¯”é»˜è®¤100å°
+			m_pTaskRunner->ConnectEvent(DMTT_ASYN_WORK,ID2NAME(EVENTID_AYNC2),DMSlot(&TaskRunnerTest::s_slotAyncEvent1));			// ç»‘å®šå…¨å±€å‡½æ•°
 		}
 	}
 
@@ -85,14 +85,14 @@ public:// ¸¨Öú
 	{
 		if (m_pTaskRunner)
 		{
-			// ÎŞĞèFireEvent£¬Ö±½Ó°ÑÒ»¸öº¯ÊıPostµ½(Í¬²½,Òì²½UIÏß³Ì,Òì²½¹¤×÷Ïß³Ì)´¥·¢
+			// æ— éœ€FireEventï¼Œç›´æ¥æŠŠä¸€ä¸ªå‡½æ•°Poståˆ°(åŒæ­¥,å¼‚æ­¥UIçº¿ç¨‹,å¼‚æ­¥å·¥ä½œçº¿ç¨‹)è§¦å‘
 			CStringW str = L"abc";
 			m_pTaskRunner->PostTask(DMTT_SYNC,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
 			m_pTaskRunner->PostTask(DMTT_ASYN_UI,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
 			m_pTaskRunner->PostTask(DMTT_ASYN_WORK,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
 
 
-			// Ê¹ÓÃ²ÎÊı£¬´¥·¢µ÷ÓÃ°ó¶¨µÄº¯Êı
+			// ä½¿ç”¨å‚æ•°ï¼Œè§¦å‘è°ƒç”¨ç»‘å®šçš„å‡½æ•°
 			DMBundle bundle = InitBundle();
 			m_pTaskRunner->FireEvent(ID2NAME(EVENTID_SYNC1),bundle);
 			m_pTaskRunner->FireEvent(ID2NAME(EVENTID_SYNC2),bundle);
@@ -105,7 +105,7 @@ public:// ¸¨Öú
 		}
 	}
 
-	// Ê¹ÓÃDMBundleÉèÖÃ°ó¶¨Êı¾İ
+	// ä½¿ç”¨DMBundleè®¾ç½®ç»‘å®šæ•°æ®
 	DMBundle InitBundle()
 	{
 		DMBundle bundle;
@@ -135,7 +135,7 @@ public:// ¸¨Öú
 		return bundle;
 	}
 
-public:// ²âÊÔ
+public:// æµ‹è¯•
 	static bool TaskRunnerTest::s_slotSyncEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
@@ -198,8 +198,8 @@ public:// ²âÊÔ
 };
 
 
-TEST_F(TaskRunnerTest,²âÊÔ)
+TEST_F(TaskRunnerTest,æµ‹è¯•)
 {
-	//3. ´¥·¢µ÷ÓÃ,¿ÉÒÔÔÚÈÎÒâº¯Êı´¦µ÷ÓÃ------------------------------------------------------------------------------------ 
+	//3. è§¦å‘è°ƒç”¨,å¯ä»¥åœ¨ä»»æ„å‡½æ•°å¤„è°ƒç”¨------------------------------------------------------------------------------------ 
 	FireBind();
 }

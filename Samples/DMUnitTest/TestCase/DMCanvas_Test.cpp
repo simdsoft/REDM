@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMCanvas_Test.cpp 
-// File Des: ²âÊÔCanvas»æÖÆµÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•Canvasç»˜åˆ¶çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -32,59 +32,59 @@ public:
 
 protected:
 	DMSmartPtrT<IDMRender> m_pRender;
-	DMSmartPtrT<IDMRender> m_pDefRender; // ÄÚ²¿µÄÄ¬ÈÏÊ¹ÓÃ¶ÔÏó
-	LPCWSTR                m_pDefName;   // ÄÚ²¿Ê¹ÓÃµÄ¶ÔÏóÃû
+	DMSmartPtrT<IDMRender> m_pDefRender; // å†…éƒ¨çš„é»˜è®¤ä½¿ç”¨å¯¹è±¡
+	LPCWSTR                m_pDefName;   // å†…éƒ¨ä½¿ç”¨çš„å¯¹è±¡å
 	
 };
 
-TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
+TEST_F(CanvasTest, æµ‹è¯•åŸºç¡€å‡½æ•°)
 {
-	/// ´´½¨------------------------
+	/// åˆ›å»º------------------------
 	DMSmartPtrT<IDMCanvas>  pCanvas;
 	EXPECT_EQ(DMSUCCEEDED(m_pDefRender->CreateCanvas(100,200,&pCanvas)),true);
 
-	/// »ñÈ¡------------------------
+	/// è·å–------------------------
 	DMSmartPtrT<IDMBitmap>     pBitmap;
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->GetObject((IDMMetaFile**)&pBitmap,DMF_BITMAP)),true);
 
-	/// ÖØÉèÖÃ´óĞ¡-------------------
+	/// é‡è®¾ç½®å¤§å°-------------------
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->Resize(400,500)),true);
 
-	/// ²âÊÔÆ½ÆÌ»æÖÆºÍÀ­Éì»æÖÆ------
+	/// æµ‹è¯•å¹³é“ºç»˜åˆ¶å’Œæ‹‰ä¼¸ç»˜åˆ¶------
 	pBitmap.Release();
 
-	// È¡µÃ½âÂëÆ÷
+	// å–å¾—è§£ç å™¨
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,NULL,DMREG_ImgDecoder)),true);
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromFile(L"UTRes\\UTTest\\canvas-1.png")), true);
 
-	// È¡µÃÖ¡
+	// å–å¾—å¸§
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//png¿Ï¶¨Ö»ÓĞÒ»Ö¡£¬ËùÒÔ´«0
+	pImgDecoder->GetFrame(0, &pFrame);//pngè‚¯å®šåªæœ‰ä¸€å¸§ï¼Œæ‰€ä»¥ä¼ 0
 
 	EXPECT_EQ(DMSUCCEEDED(m_pDefRender->CreateBitmap(&pBitmap)),true);
 	EXPECT_EQ(DMSUCCEEDED(pBitmap->InitFromFrame(pFrame)), true);
 
 	RECT rcSor  = {0, 0, pBitmap->GetWidth()+0, pBitmap->GetHeight()+0};
 	RECT rcDest = {0, 0, pBitmap->GetWidth()+0, pBitmap->GetHeight()+0};
-	EXPECT_EQ(DMSUCCEEDED(pCanvas->DrawBitamp(pBitmap, NULL, NULL,0xcc)),true);//Ô­Í¼»æÖÆ,Ö±½Ó´«NULL
+	EXPECT_EQ(DMSUCCEEDED(pCanvas->DrawBitamp(pBitmap, NULL, NULL,0xcc)),true);//åŸå›¾ç»˜åˆ¶,ç›´æ¥ä¼ NULL
 
-	rcDest.top = rcDest.bottom+1;//ÏÂÒÆ£¬Ä£ÏòÀ­ÉìÒ»±¶
+	rcDest.top = rcDest.bottom+1;//ä¸‹ç§»ï¼Œæ¨¡å‘æ‹‰ä¼¸ä¸€å€
 	rcDest.bottom = rcDest.top + pBitmap->GetHeight();
 	rcDest.right  = rcDest.left + pBitmap->GetWidth()*2;
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->DrawBitamp(pBitmap, &rcSor, &rcDest,255)),true);
 
-	rcDest.top = rcDest.bottom+1;//ÏÂÒÆ,Æ½ÆÌ
-	rcDest.bottom = 150;//Áô¿Õ¼ä¸øÏÂÃæµÄ9¹¬¸ñ»æÖÆ
+	rcDest.top = rcDest.bottom+1;//ä¸‹ç§»,å¹³é“º
+	rcDest.bottom = 150;//ç•™ç©ºé—´ç»™ä¸‹é¢çš„9å®«æ ¼ç»˜åˆ¶
 	rcDest.right  = 150;
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->DrawBitamp(pBitmap, &rcSor, &rcDest,255,DEM_TILE)),true);
 
-	// ²âÊÔDrawBitmapNine9¹¬¸ñ----------------------------------
+	// æµ‹è¯•DrawBitmapNine9å®«æ ¼----------------------------------
 	pImgDecoder.Release();
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,NULL,DMREG_ImgDecoder)),true);
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromFile(L"UTRes\\UTTest\\canvas-9.png")), true);
 	pFrame.Release();
-	pImgDecoder->GetFrame(0, &pFrame);//png¿Ï¶¨Ö»ÓĞÒ»Ö¡£¬ËùÒÔ´«0
+	pImgDecoder->GetFrame(0, &pFrame);//pngè‚¯å®šåªæœ‰ä¸€å¸§ï¼Œæ‰€ä»¥ä¼ 0
 	pBitmap.Release();
 	EXPECT_EQ(DMSUCCEEDED(m_pDefRender->CreateBitmap(&pBitmap)),true);
 	EXPECT_EQ(DMSUCCEEDED(pBitmap->InitFromFrame(pFrame)), true);
@@ -93,13 +93,13 @@ TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
 	RECT rcNineMargin = {48, 42, 48, 2};
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->DrawBitmapNine(pBitmap, &rcNineSor,&rcNineMargin, &rcNineDest,255, DEM_STRETCH)),true);
 
-	// »­²¼×ø±ê±ä»»--------------------------------------------
-	EXPECT_EQ(DMSUCCEEDED(pCanvas->OffsetViewportOrg(100, 0)), true);// »­²¼×óÒÆ100
+	// ç”»å¸ƒåæ ‡å˜æ¢--------------------------------------------
+	EXPECT_EQ(DMSUCCEEDED(pCanvas->OffsetViewportOrg(100, 0)), true);// ç”»å¸ƒå·¦ç§»100
 	//EXPECT_EQ(DMSUCCEEDED(pCanvas->SetViewportOrgEx(-100, 0)), true);
 	POINT OrgPt;
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->GetViewportOrg(&OrgPt)), true);
 
-	// »æÖÆÎÄ×Ö-----------------------------------------------
+	// ç»˜åˆ¶æ–‡å­—-----------------------------------------------
 	DMColor TextClr = PBGRA(0,0,0xff,0xff);
 	pCanvas->SetTextColor(TextClr);
 
@@ -113,44 +113,44 @@ TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->MeasureText(L"MeasureText",-1,&MesureSize)),true);
 	EXPECT_EQ(DMSUCCEEDED(pCanvas->TextOut(L"TextOut", -1, 100, 0)), true);
 
-	// ²âÊÔFillRectangle-------------------------------------
-	RECT rcFillRectangle = {270, 0, 310, 40};// ×¢Òâ»­²¼×óÒÆÁË£¬ËùÒÔ300-310ÊÇ»æ²»³öÀ´µÄ
+	// æµ‹è¯•FillRectangle-------------------------------------
+	RECT rcFillRectangle = {270, 0, 310, 40};// æ³¨æ„ç”»å¸ƒå·¦ç§»äº†ï¼Œæ‰€ä»¥300-310æ˜¯ç»˜ä¸å‡ºæ¥çš„
 	DMSmartPtrT<IDMBrush>pBrush;
 	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreateSolidColorBrush(PBGRA(0,0x70, 0, 0x70), &pBrush)), true);
 	pCanvas->SelectObject(pBrush);
 	pCanvas->FillRectangle(&rcFillRectangle);
 
-	// ²âÊÔDrawRectangle-------------------------------------
-	//RECT rcDrawRectangle = {270, 41, 310, 81};// ×¢Òâ»­²¼×óÒÆÁË£¬ËùÒÔ300-310ÊÇ»æ²»³öÀ´µÄ
+	// æµ‹è¯•DrawRectangle-------------------------------------
+	//RECT rcDrawRectangle = {270, 41, 310, 81};// æ³¨æ„ç”»å¸ƒå·¦ç§»äº†ï¼Œæ‰€ä»¥300-310æ˜¯ç»˜ä¸å‡ºæ¥çš„
 	RECT rcDrawRectangle = {-100, 0, 300, 300};
 	DMSmartPtrT<IDMPen> pPen;
 	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreatePen(PBGRA(0xa0,0xa0, 0, 0xa0),PS_DASH,1, &pPen)), true);
 	pCanvas->SelectObject(pPen);
 	pCanvas->DrawRectangle(&rcDrawRectangle);
 
-	// ²âÊÔFillSolidRect-------------------------------------
+	// æµ‹è¯•FillSolidRect-------------------------------------
 	RECT rcSolidRectangle = {-19, 40,60, 80};
-	pCanvas->FillSolidRect(&rcSolidRectangle, PBGRA(0x70,0x70,0x70,0x70));// ×¢ÒâÊÇPBGRA£¬ËùÒÔÎª0x70Í¸Ã÷¶ÈµÄ°×É«
+	pCanvas->FillSolidRect(&rcSolidRectangle, PBGRA(0x70,0x70,0x70,0x70));// æ³¨æ„æ˜¯PBGRAï¼Œæ‰€ä»¥ä¸º0x70é€æ˜åº¦çš„ç™½è‰²
 
-	// ²âÊÔDrawRoundRect-------------------------------------
+	// æµ‹è¯•DrawRoundRect-------------------------------------
 	RECT rcDrawRoundRect = {270, 40, 310, 80};
 	POINT ptDrawRoundRec = {10,10};
 	pCanvas->DrawRoundRect(&rcDrawRoundRect, ptDrawRoundRec);
 
-	// ²âÊÔFillRoundRect-------------------------------------
+	// æµ‹è¯•FillRoundRect-------------------------------------
 	RECT rcFillRoundRect = {270, 80, 310, 120};
 	POINT ptFillRoundRect = {10,10};
 	pCanvas->FillRoundRect(&rcFillRoundRect, ptFillRoundRect);
 
-	// ²âÊÔDrawEllipse-------------------------------------
+	// æµ‹è¯•DrawEllipse-------------------------------------
 	RECT rcDrawEllipse = {240, 121, 310, 161};
 	pCanvas->DrawEllipse(&rcDrawEllipse);
 
-	// ²âÊÔFillEllipse-------------------------------------
+	// æµ‹è¯•FillEllipse-------------------------------------
 	RECT rcFillEllipse = {240, 162, 310, 201};
 	pCanvas->FillEllipse(&rcFillEllipse);
 
-	// ²âÊÔPolyline----------------------------------------
+	// æµ‹è¯•Polyline----------------------------------------
 	pPen.Release();
 	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreatePen(PBGRA(0x0,0x0, 0xcc, 0xcc),PS_DASHDOTDOT,1, &pPen)), true);
 	pCanvas->SelectObject(pPen);
@@ -163,8 +163,8 @@ TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
 	//pt[3] = pt[0];
 	pCanvas->Polyline(pt, 5);
 
-	// ²Ã¼ôÇø------------------------------------------------
-	CRect rcClip(100, 0, 200,100);//Ï¸½Ú¿ÉÒÔ¿´http://hgy413.com/1847.html
+	// è£å‰ªåŒº------------------------------------------------
+	CRect rcClip(100, 0, 200,100);//ç»†èŠ‚å¯ä»¥çœ‹http://hgy413.com/1847.html
 	pCanvas->PushClip(rcClip);
 	CRect rcClipDest;
 	pCanvas->GetClipBox(rcClipDest);
@@ -182,15 +182,15 @@ TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
 	pCanvasTemp->BitBlt(pCanvas, -100,0,rcCanvas,SRCCOPY);
 	pCanvasTemp->AlphaBlend(pCanvas,rcCanvasSrc,rcCanvas);
 
-	// ²âÊÔGradientFill----------------------------------------
+	// æµ‹è¯•GradientFill----------------------------------------
 	RECT rcGradientFill = {150, 40, 250, 60};
 	pCanvasTemp->GradientFill(PBGRA(0,0xff,0xff,0xcc),PBGRA(0,0xff, 0,0x80),&rcGradientFill, FALSE,0xff);
 
-	// ²âÊÔDrawArc----------------------------------------------
+	// æµ‹è¯•DrawArc----------------------------------------------
 	//https://blog.csdn.net/clever101/article/details/6195026
 	RECT rcArc = {260, 0, 320, 60};
-	float startAngle = 60.0f;// ÉèÖÃÆğµã½Ç¶ÈÎª60¶È  
-	float sweepAngle = 150.0f;// ÉèÖÃĞı×ª½Ç¶ÈÎª150¶È  
+	float startAngle = 60.0f;// è®¾ç½®èµ·ç‚¹è§’åº¦ä¸º60åº¦  
+	float sweepAngle = 150.0f;// è®¾ç½®æ—‹è½¬è§’åº¦ä¸º150åº¦  
 	pPen.Release();
 	EXPECT_EQ(DMSUCCEEDED(m_pRender->CreatePen(PBGRA(0x0,0xff,0xff,0xff),PS_SOLID,1, &pPen)), true);
 	pCanvasTemp->SelectObject(pPen);
@@ -202,12 +202,12 @@ TEST_F(CanvasTest, ²âÊÔ»ù´¡º¯Êı)
 	pCanvasTemp->SelectObject(pBrush);
 	pCanvasTemp->FillPie(&rcPie,startAngle,sweepAngle);
 
-	// end »æÖÆµ½ÆÁÄ»
+	// end ç»˜åˆ¶åˆ°å±å¹•
 #if SHOW_TOSCREEN
 	DMAutoDC hdc;
 	HDC dcMem = pCanvasTemp->GetDC();
 	BLENDFUNCTION bf = {AC_SRC_OVER,0,0xff,AC_SRC_ALPHA};
-	bool bRet = ::AlphaBlend(hdc, 400, 0,400,400,dcMem, 0, 0,400,400,bf);// Ö»ÓĞAlphaÄÜ»æ³öÍ¸Ã÷Ğ§¹û,ÓÉ»­²¼×óÒÆ100£¬ËùÒÔÔ´x=-100
+	bool bRet = ::AlphaBlend(hdc, 400, 0,400,400,dcMem, 0, 0,400,400,bf);// åªæœ‰Alphaèƒ½ç»˜å‡ºé€æ˜æ•ˆæœ,ç”±ç”»å¸ƒå·¦ç§»100ï¼Œæ‰€ä»¥æºx=-100
 	//::BitBlt(hdc, 0, 0,400,500,dcMem, -100,0, SRCCOPY);
 	pCanvasTemp->ReleaseDC(dcMem);
 #endif

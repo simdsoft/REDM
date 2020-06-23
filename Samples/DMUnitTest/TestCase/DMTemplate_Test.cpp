@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMTemplate_Test.cpp 
-// File Des: ²âÊÔÄ£°åÀàµÄ²âÊÔÓÃÀı
+// File Des: æµ‹è¯•æ¨¡æ¿ç±»çš„æµ‹è¯•ç”¨ä¾‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -31,14 +31,14 @@ public:
 protected:
 };
 
-TEST_F(DMTemplateTest, ²âÊÔCStringW¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•CStringWåŠŸèƒ½)
 {
 	CStringW sz = L"ok";
 	LPCWSTR lp = sz;
 
 }
 
-TEST_F(DMTemplateTest, ²âÊÔDMMapT¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•DMMapTåŠŸèƒ½)
 {
 	DMMapT<int, CStringW> MapT;
 	MapT.AddKey(1, L"string1");
@@ -51,7 +51,7 @@ TEST_F(DMTemplateTest, ²âÊÔDMMapT¹¦ÄÜ)
 	EXPECT_EQ(0, MapT.GetCount());
 }
 
-TEST_F(DMTemplateTest, ²âÊÔDMArrayT¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•DMArrayTåŠŸèƒ½)
 {
 
 }
@@ -78,7 +78,7 @@ public:
 };
 
 
-TEST_F(DMTemplateTest, ²âÊÔDMLazyT¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•DMLazyTåŠŸèƒ½)
 {
 	DM::DMLazyT<LazyTest,false>  m_pObj;
 	if (m_pObj)
@@ -90,16 +90,16 @@ TEST_F(DMTemplateTest, ²âÊÔDMLazyT¹¦ÄÜ)
 	EXPECT_EQ(true, m_pObj.IsValid());
 
 
-	// ÔÚµ÷ÓÃÊ±×Ô¶¯³õÊ¼»¯
+	// åœ¨è°ƒç”¨æ—¶è‡ªåŠ¨åˆå§‹åŒ–
 	DM::DMLazyT<LazyTest>  m_pAutoObj;
 	
 	EXPECT_EQ(false, m_pAutoObj.IsValid());
-	m_pAutoObj->Show();// ÔÚÈ¡Ö¸ÕëÊ±×Ô¶¯Init
+	m_pAutoObj->Show();// åœ¨å–æŒ‡é’ˆæ—¶è‡ªåŠ¨Init
 	EXPECT_EQ(true, m_pAutoObj.IsValid());
 
 }
 
-TEST_F(DMTemplateTest, ²âÊÔDMBufT¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•DMBufTåŠŸèƒ½)
 {
 	DMBufT<BYTE>      dmbuf;
 	BYTE *ptr = dmbuf.Allocate(100);
@@ -113,8 +113,8 @@ TEST_F(DMTemplateTest, ²âÊÔDMBufT¹¦ÄÜ)
 class BaseA
 {
 public:
-	BaseA(){printf("DMNewT---BaseA¹¹Ôìº¯Êı\n");}
-	virtual~BaseA(){printf("DMDelT---BaseAÎö¹¹º¯Êı\n");}
+	BaseA(){printf("DMNewT---BaseAæ„é€ å‡½æ•°\n");}
+	virtual~BaseA(){printf("DMDelT---BaseAææ„å‡½æ•°\n");}
 
 public:
 	int   m_i;
@@ -124,17 +124,17 @@ public:
 class Sub:public BaseA
 {
 public:
-	Sub(){printf("DMNewT---Sub¹¹Ôìº¯Êı\n");}
-	virtual~Sub(){printf("DMDelT---SubÎö¹¹º¯Êı\n");}
-	virtual void fun(){printf("funº¯Êı\n");}
+	Sub(){printf("DMNewT---Subæ„é€ å‡½æ•°\n");}
+	virtual~Sub(){printf("DMDelT---Subææ„å‡½æ•°\n");}
+	virtual void fun(){printf("funå‡½æ•°\n");}
 public:
 	int m_k;
 };
 
-TEST_F(DMTemplateTest, ²âÊÔDMNewTºÍDMDelT¹¦ÄÜ)
+TEST_F(DMTemplateTest, æµ‹è¯•DMNewTå’ŒDMDelTåŠŸèƒ½)
 {
-	// ÎÒÃÇ¿ÉÒÔÔÚexeÖĞÊ¹ÓÃ DMNewT Éú³ÉSub¶ÔÏó£¬²¢±£´æ³ÉBaseÖ¸Õëµ½dllÖĞ
-	// ×îºóÔÚdllÖĞÊ¹ÓÃDMDelTÊÍ·ÅSub¶ÔÏó
+	// æˆ‘ä»¬å¯ä»¥åœ¨exeä¸­ä½¿ç”¨ DMNewT ç”ŸæˆSubå¯¹è±¡ï¼Œå¹¶ä¿å­˜æˆBaseæŒ‡é’ˆåˆ°dllä¸­
+	// æœ€ååœ¨dllä¸­ä½¿ç”¨DMDelTé‡Šæ”¾Subå¯¹è±¡
 	BaseA *pObj = DMNewT<Sub>(2); 
 	((Sub*)pObj)->fun();
 	((Sub*)pObj+1)->fun();

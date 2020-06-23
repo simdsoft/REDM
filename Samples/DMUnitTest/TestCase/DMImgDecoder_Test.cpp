@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+Ôªø//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMImgDecoder_Test.cpp 
-// File Des: ≤‚ ‘Õº–ŒΩ‚¬Î∆˜µƒ≤‚ ‘”√¿˝
+// File Des: ÊµãËØïÂõæÂΩ¢Ëß£Á†ÅÂô®ÁöÑÊµãËØïÁî®‰æã
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -54,11 +54,11 @@ protected:
 
 protected:
 	HBITMAP                        m_hBmp;
-	void*                          pBits;//œÒÀÿ’Û¡–
+	void*                          pBits;//ÂÉèÁ¥†ÈòµÂàó
 };
 
 //---------------------------------------------------------------------
-// ≤‚ ‘ƒ⁄¥Êº”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÂÜÖÂ≠òÂä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_PNG)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
@@ -81,7 +81,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_PNG)
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromMemory(pBuf, dwSize)), true);
 
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//pngøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//pngËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -90,17 +90,17 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_PNG)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 0, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 0, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 	DM_DELETE_ARRAY(pBuf);
 }
 
 
-// ≤‚ ‘Œƒº˛º”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÊñá‰ª∂Âä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_PNG)
 {
 	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
@@ -111,7 +111,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_PNG)
 
 	
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//pngøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//pngËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -120,17 +120,17 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_PNG)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 0, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 0, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 
 }
 
 //---------------------------------------------------------------------
-// ≤‚ ‘ƒ⁄¥Êº”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÂÜÖÂ≠òÂä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_JPG)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
@@ -153,7 +153,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_JPG)
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromMemory(pBuf, dwSize)), true);
 
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//jpgøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//jpgËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -162,17 +162,17 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_JPG)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 100, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 100, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 	DM_DELETE_ARRAY(pBuf);
 }
 
 
-// ≤‚ ‘Œƒº˛º”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÊñá‰ª∂Âä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_JPG)
 {
 	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
@@ -183,7 +183,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_JPG)
 
 
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//jpgøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//jpgËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -192,17 +192,17 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_JPG)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 100, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 100, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 
 }
 
 //---------------------------------------------------------------------
-// ≤‚ ‘ƒ⁄¥Êº”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÂÜÖÂ≠òÂä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_BMP)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
@@ -225,7 +225,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_BMP)
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromMemory(pBuf, dwSize)), true);
 
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//bmpøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//bmpËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -234,17 +234,17 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_BMP)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 200, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 200, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 	DM_DELETE_ARRAY(pBuf);
 }
 
 
-// ≤‚ ‘Œƒº˛º”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÊñá‰ª∂Âä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_BMP)
 {
 	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
@@ -255,7 +255,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_BMP)
 
 
 	DMSmartPtrT<IDMImgFrame> pFrame;
-	pImgDecoder->GetFrame(0, &pFrame);//bmpøœ∂®÷ª”–“ª÷°£¨À˘“‘¥´0
+	pImgDecoder->GetFrame(0, &pFrame);//bmpËÇØÂÆöÂè™Êúâ‰∏ÄÂ∏ßÔºåÊâÄ‰ª•‰º†0
 	EXPECT_EQ(pFrame!=NULL, true);
 	UINT width = 0;
 	UINT height = 0;
@@ -264,17 +264,17 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_BMP)
 	const int stride = GetStride(width, 32);
 	EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 	SelectObject(dcMem,m_hBmp);
-	StretchBlt(dc, 200, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+	StretchBlt(dc, 200, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 #endif
 
 }
 
 //---------------------------------------------------------------------
-// ≤‚ ‘ƒ⁄¥Êº”‘ÿΩ”ø⁄ «∑ÒOK
+// ÊµãËØïÂÜÖÂ≠òÂä†ËΩΩÊé•Âè£ÊòØÂê¶OK
 TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 {
 	wchar_t szExeDir[MAX_PATH] = {0};
@@ -297,7 +297,7 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromMemory(pBuf, dwSize)), true);
 
 
-	// ºÚµ•—≠ª∑≤•∑≈
+	// ÁÆÄÂçïÂæ™ÁéØÊí≠Êîæ
 	UINT ulFrameCount = 0;
 	pImgDecoder->GetFrameCount(ulFrameCount);
 	printf("ImgDecoderTest-LoadFromFileIsSuccess_GIF-ulFrameCount:%d\n",ulFrameCount);
@@ -305,7 +305,7 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 	pImgDecoder->GetTotalLoopCount(ulTotalLoopCount);
 	printf("ImgDecoderTest-LoadFromFileIsSuccess_GIF-ulTotalLoopCount:%d\n",ulTotalLoopCount);
 	EXPECT_EQ(0!=ulFrameCount,true);
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 #endif
@@ -317,7 +317,7 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 		UINT ulDelay = 0;
 		pFrame->GetDelay(ulDelay);
 		EXPECT_EQ(0!=ulDelay,true);
-		printf("ImgDecoderTest-LoadFromFileIsSuccess_GIF-%i ÷°µƒ—”≥ŸŒ™:%d ms\n",i,ulDelay);
+		printf("ImgDecoderTest-LoadFromFileIsSuccess_GIF-%i Â∏ßÁöÑÂª∂Ëøü‰∏∫:%d ms\n",i,ulDelay);
 
 		UINT width = 0;
 		UINT height = 0;
@@ -327,9 +327,9 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 		const int stride = GetStride(width, 32);
 		EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 		SelectObject(dcMem,m_hBmp);
-		StretchBlt(dc, 300, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+		StretchBlt(dc, 300, 0, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 		Sleep(ulDelay);
 #endif
 	}
@@ -347,7 +347,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_GIF)
 	EXPECT_EQ(DMSUCCEEDED(pImgDecoder->LoadFromFile(L"UTRes\\UTTest\\1.gif")), true);
 
 
-	// ºÚµ•—≠ª∑≤•∑≈
+	// ÁÆÄÂçïÂæ™ÁéØÊí≠Êîæ
 	UINT ulFrameCount = 0;
 	pImgDecoder->GetFrameCount(ulFrameCount);
 	printf("ImgDecoderTest-LoadFromMemoryIsSuccess_GIF-ulFrameCount:%d\n",ulFrameCount);
@@ -355,7 +355,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_GIF)
 	pImgDecoder->GetTotalLoopCount(ulTotalLoopCount);
 	printf("ImgDecoderTest-LoadFromMemoryIsSuccess_GIF-ulTotalLoopCount:%d\n",ulTotalLoopCount);
 	EXPECT_EQ(0!=ulFrameCount,true);
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 	HDC dc = GetDC(NULL);
 	HDC dcMem = CreateCompatibleDC(dc);
 #endif
@@ -368,7 +368,7 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_GIF)
 		UINT ulDelay = 0;
 		pFrame->GetDelay(ulDelay);
 		EXPECT_EQ(0!=ulDelay,true);
-		printf("ImgDecoderTest-LoadFromMemoryIsSuccess_GIF-%i ÷°µƒ—”≥ŸŒ™:%d ms\n",i,ulDelay);
+		printf("ImgDecoderTest-LoadFromMemoryIsSuccess_GIF-%i Â∏ßÁöÑÂª∂Ëøü‰∏∫:%d ms\n",i,ulDelay);
 
 		UINT width = 0;
 		UINT height = 0;
@@ -378,9 +378,9 @@ TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_GIF)
 		const int stride = GetStride(width, 32);
 		EXPECT_EQ(DMSUCCEEDED(pFrame->CopyPixels(pBits, stride*height,stride)), true);
 
-#if SHOW_TOSCREEN//ªÊ÷∆µΩ∆¡ƒª
+#if SHOW_TOSCREEN//ÁªòÂà∂Âà∞Â±èÂπï
 		SelectObject(dcMem,m_hBmp);
-		StretchBlt(dc, 300, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ªÊ÷∆µΩ∆¡ƒª
+		StretchBlt(dc, 300, 50, width, height, dcMem,0, 0, width, height, SRCCOPY);//ÁªòÂà∂Âà∞Â±èÂπï
 		Sleep(ulDelay);
 #endif
 	}

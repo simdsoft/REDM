@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMRegister_Test.cpp 
-// File Des: ²âÊÔ×¢²á¡¢·´×¢²á¹¦ÄÜ
+// File Des: æµ‹è¯•æ³¨å†Œã€åæ³¨å†ŒåŠŸèƒ½
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -60,18 +60,18 @@ public:
 };
 
 
-TEST_F(DMRegisterTest, ²âÊÔ×¢²á¹¦ÄÜ)
+TEST_F(DMRegisterTest, æµ‹è¯•æ³¨å†ŒåŠŸèƒ½)
 {
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest>(),true)),true);
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest1>(),true)),true);
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest>(),false)),false); // ·ÇÇ¿ÖÆ¸²¸Ç
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest1>(),true)),true);  // Ç¿ÖÆ¸²¸Ç
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest>(),false)),false); // éžå¼ºåˆ¶è¦†ç›–
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest1>(),true)),true);  // å¼ºåˆ¶è¦†ç›–
 
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->UnRegister(L"DMLogImplTest",DMREG_Log)),true);         // ·´×¢²á
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->UnRegister(L"DMLogImplTest",DMREG_Log)),true);         // åæ³¨å†Œ
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->SetDefRegObj(DMLogImplTest1::GetClassName(),DMLogImplTest1::GetClassType())), true);
 
 	DMSmartPtrT<IDMLog>  m_pLogObj;
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, L"DMLogImplTest",IDMLog::GetClassType())),false);   // Õâ¸öÀà±»·´×¢²áÁË£¬ËùÒÔ·µ»Øfalse
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, L"DMLogImplTest",IDMLog::GetClassType())),false);   // è¿™ä¸ªç±»è¢«åæ³¨å†Œäº†ï¼Œæ‰€ä»¥è¿”å›žfalse
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, L"DMLogImplTest1",IDMLog::GetClassType())),true);
 
 	LPCWSTR lpszClassName = DM::g_pDMApp->GetDefRegObj(DMREG_Log);
