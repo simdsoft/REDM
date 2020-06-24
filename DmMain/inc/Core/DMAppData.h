@@ -71,7 +71,7 @@ namespace DM
 		virtual~DMAppData();
 
 		DMCode InitGlobal(LPCWSTR lpszXmlId);
-		DMCode Run(HWND hMainWnd,bool bEnableActive);
+		DMCode Run(HWND hWnd);
 		DMCode IsRun(HWND hWnd);
 		//---------------------------------------------------
 		// Function Des: ×¢²áÀà
