@@ -21,7 +21,7 @@
 namespace DM
 {
 	// The NativeWindow shadow style
-	enum NativeWindowShadowStyle {
+	enum {
 		// 无任何阴影效果
 		NWSDS_NULL = 0,
 
