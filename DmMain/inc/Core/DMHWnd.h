@@ -29,7 +29,7 @@ namespace DM
 		// top-level窗口微软定义: 非Child，无WS_CHILD风格, 无Parent, 无Owner, 或者Parent是DesktopWindow的窗口
 		NWSDS_DROPSHADOW = 1,
 
-		// dwm的四边引用效果, 用于普通Dialog或主窗口
+		// dwm的四边阴影效果, 用于普通Dialog或主窗口
 		NWSDS_DWMSHADOW = 2,
 	};
 
