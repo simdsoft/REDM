@@ -46,7 +46,7 @@ namespace DM
 			HWND_NOTOPMOST：将窗口置于所有非顶层窗口之上（即在所有顶层窗口之后）。如果窗口已经是非顶层窗口则该标志不起作用。
 			HWND_TOP:将窗口置于Z序的顶部。
 			*/
-			::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOACTIVATE);
+			::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW);
 			g_pDMApp->Run(m_hWnd); // RunModalLoop, 这里没有和mfc一样利用m_nFlags标记检查ContinueModal
 
 			// [mfc] hide the window before enabling the parent, etc.
