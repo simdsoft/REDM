@@ -65,7 +65,7 @@ namespace DM
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		shadowStyle     阴影窗口风格, 详见: NativeWindowShadowStyle
+		/// @param[in]		shadowStyle     窗口阴影风格, 详见: NativeWindowShadowStyle
 		/// @return			HWND
 		HWND DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
@@ -83,7 +83,7 @@ namespace DM
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		shadowStyle     阴影窗口风格, 详见: NativeWindowShadowStyle
+		/// @param[in]		shadowStyle     窗口阴影风格, 详见: NativeWindowShadowStyle
 		/// @return			HWND
 		HWND DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
