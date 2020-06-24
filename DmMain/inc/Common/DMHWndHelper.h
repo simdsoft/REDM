@@ -14,6 +14,8 @@
 //-------------------------------------------------------
 #pragma once
 
+typedef struct _MARGINS MARGINS;
+
 namespace DMAttr
 { 
 	/// <summary>
@@ -155,4 +157,19 @@ namespace DM
 	// 透明窗口更新
 	typedef BOOL (WINAPI *fun_UpdateLayeredWindowIndirect)(HWND hwnd, const DMUPDATELAYEREDWINDOWINFO *pULWInfo);
 
+	// ----------------------------------------------------
+	// DWM阴影窗口支持
+	typedef HRESULT(WINAPI* fun_DwmIsCompositionEnabled)(
+		BOOL* pfEnabled
+		);
+	typedef HRESULT(WINAPI* fun_DwmSetWindowAttribute)(
+		HWND    hwnd,
+		DWORD   dwAttribute,
+		LPCVOID pvAttribute,
+		DWORD   cbAttribute
+	);
+	typedef HRESULT(WINAPI* fun_DwmExtendFrameIntoClientArea)(
+		HWND          hWnd,
+		const MARGINS* pMarInset
+	);
 }

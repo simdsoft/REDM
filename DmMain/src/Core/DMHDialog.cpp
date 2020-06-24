@@ -32,7 +32,7 @@ namespace DM
 			bEnableParent = TRUE;
 		}
 
-		if(DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hWndParent, bShadow))
+		if(DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hWndParent, bShadow ? NWSDS_DWMSHADOW : NWSDS_NULL))
 		{	
 			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//∑¢ÀÕinitœ˚œ¢
 
