@@ -197,6 +197,7 @@ namespace DM
 
 		/// 文字相关
 		virtual DMCode DV_SetWindowText(LPCWSTR lpszText);							    ///< 设置文本
+		virtual const CStringW& DV_GetWindowText() const;
 		virtual DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);						///< 绘制文字,在WM_PAINT中触发
 		virtual DMCode DV_DrawMultText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat,int nLineInter);   ///< 示例代码,用于xml中的字符串\R\N解析
 		
