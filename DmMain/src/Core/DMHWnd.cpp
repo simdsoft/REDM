@@ -1392,7 +1392,7 @@ namespace DM
 				HRESULT hr = thisApp->m_fun_DwmSetWindowAttribute(m_hWnd, DWMWA_NCRENDERING_POLICY, &v, sizeof(v));
 
 				if (bEnabled && SUCCEEDED(hr)) {
-					MARGINS margins = { margin, margin, margin, margin };
+					MARGINS margins = { margin };
 					hr = thisApp->m_fun_DwmExtendFrameIntoClientArea(m_hWnd, &margins);
 					return SUCCEEDED(hr);
 				}
