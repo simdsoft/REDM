@@ -1431,6 +1431,11 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
+	const CStringW& DUIWindow::DV_GetWindowText() const
+	{
+		return m_pDUIXmlInfo->m_strText;
+	}
+
 	DMCode DUIWindow::DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat)
 	{
 		byte alpha;
