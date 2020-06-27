@@ -1,5 +1,7 @@
 #include "DmMainAfx.h"
 #include "DMHWnd.h"
+#include <dwmapi.h>
+
 #define  RESIZE_OFFSET								5							///< Resize时设置箭头属性
 namespace DM
 {
@@ -58,9 +60,9 @@ namespace DM
 	}
 
 	/// @brief 创建窗口
-	/// @param bShadow 使用Shadow窗口类注册！
+	/// @param shadowStyle 阴影风格！
 	/// @return  窗口资源句柄.
-	HWND DMHWnd::DM_CreateWindow(LPCWSTR lpszXmlId, int x/*=0*/, int y/*=0*/, int nWidth/*=0*/, int nHeight/*=0*/, HWND hWndParent/*=NULL*/, bool bShadow/*=false*/)
+	HWND DMHWnd::DM_CreateWindow(LPCWSTR lpszXmlId, int x/*=0*/, int y/*=0*/, int nWidth/*=0*/, int nHeight/*=0*/, HWND hWndParent/*=NULL*/, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
 		if (m_hWnd)
@@ -68,12 +70,12 @@ namespace DM
 			LOG_ERR("[mid]m_hWnd:0x%08x is exist\n", m_hWnd);
 			return m_hWnd;
 		}
-		DM_CreateWindowEx(lpszXmlId, DM_DEF_WINDOW_NAME, DM_DEF_STYLE, 0, x, y, nWidth, nHeight, hWndParent, NULL, bShadow);
+		DM_CreateWindowEx(lpszXmlId, DM_DEF_WINDOW_NAME, DM_DEF_STYLE, 0, x, y, nWidth, nHeight, hWndParent, NULL, shadowStyle);
 		LOG_INFO("[end]-m_hWnd:0x%08x\n", m_hWnd);
 		return m_hWnd;
 	}
 
-	HWND DMHWnd::DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow/*=false*/)
+	HWND DMHWnd::DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
 		do
@@ -92,7 +94,7 @@ namespace DM
 			}
 			m_HWndData.m_lpszXmlId = lpszXmlId;
 
-			ATOM Atom = bShadow?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // 是否使用阴影窗口类创建
+			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // 是否使用阴影窗口类创建
 
 			// 创建时会先调用到OnNcCreate来解析XML资源，如OnNcCreate返回失败,则创建失败，m_hWnd为NULL
 			DMCWnd::CreateWindowEx((LPCWSTR)Atom,lpWindowName, dwStyle, dwExStyle, x, y, nWidth, nHeight, hWndParent, lpParam);
@@ -101,6 +103,10 @@ namespace DM
 				LOG_ERR("[mid]CreateWnd fail\n");
 				break;
 			}
+
+			// DWM阴影效果
+			if (shadowStyle == NWSDS_DWMSHADOW)
+				DM_EnableShadowEffect();
 
 			// 解析xml
 			if (DM_ECODE_OK != LoadDMData(lpszXmlId))
@@ -128,7 +134,7 @@ namespace DM
 		return m_hWnd;
 	}
 
-	HWND DMHWnd::DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow/*=false*/)
+	HWND DMHWnd::DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		do
 		{
@@ -145,7 +151,7 @@ namespace DM
 				break;
 			}
 
-			ATOM Atom = bShadow?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // 是否使用阴影窗口类创建
+			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // 是否使用阴影窗口类创建
 
 			// 创建时会先调用到OnNcCreate来解析XML资源，如OnNcCreate返回失败,则创建失败，m_hWnd为NULL
 			DMCWnd::CreateWindowEx((LPCWSTR)Atom,lpWindowName, dwStyle, dwExStyle, x, y, nWidth, nHeight, hWndParent, lpParam);
@@ -154,6 +160,10 @@ namespace DM
 				LOG_ERR("[mid]CreateWnd fail\n");
 				break;
 			}
+
+			// DWM阴影效果
+			if (shadowStyle == NWSDS_DWMSHADOW)
+				DM_EnableShadowEffect();
 
 			// 解析xml
 			if (DM_ECODE_OK != LoadDMData(pXmlBuf, bufLen))
@@ -1369,18 +1379,41 @@ namespace DM
 		return iErr;
 	}
 
-  void DMHWnd::OnAfterCreated()
-  {
+	BOOL DMHWnd::DM_EnableShadowEffect(BOOL bEnabled/* = TRUE*/, int margin/* = 1 */)
+	{
+		DMAppData* thisApp = g_pDMAppData;
+		if (thisApp->m_fun_DwmIsCompositionEnabled) {
+			BOOL bSystemEnabled = FALSE;
+			thisApp->m_fun_DwmIsCompositionEnabled(&bSystemEnabled);
 
-  }
+			if (bSystemEnabled) {
+				// apply shadow
+				int v = bEnabled ? DWMNCRP_ENABLED : DWMNCRP_USEWINDOWSTYLE;
+				HRESULT hr = thisApp->m_fun_DwmSetWindowAttribute(m_hWnd, DWMWA_NCRENDERING_POLICY, &v, sizeof(v));
 
-  void DMHWnd::OnAfterClosed()
-  {
-	  if (DMSUCCEEDED(g_pDMApp->IsRun(m_hWnd)))
-	  {
-		  ::PostQuitMessage(1);
-	  }
-  }
+				if (bEnabled && SUCCEEDED(hr)) {
+					MARGINS margins = { margin };
+					hr = thisApp->m_fun_DwmExtendFrameIntoClientArea(m_hWnd, &margins);
+					return SUCCEEDED(hr);
+				}
+			}
+		}
+
+		return FALSE;
+	}
+
+	void DMHWnd::OnAfterCreated()
+	{
+
+	}
+
+	void DMHWnd::OnAfterClosed()
+	{
+		  if (DMSUCCEEDED(g_pDMApp->IsRun(m_hWnd)))
+		  {
+			  ::PostQuitMessage(1);
+		  }
+	}
 
 
 }//namespace DM

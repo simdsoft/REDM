@@ -28,10 +28,20 @@ namespace DM
 			m_fun_UpdateLayeredWindowIndirect =
 				(fun_UpdateLayeredWindowIndirect)GetProcAddress(hMod,"UpdateLayeredWindowIndirect");
 		}
+
+		// DWM
+		m_hModuleDWM = LoadLibraryW(L"dwmapi");
+		if (m_hModuleDWM) {
+			m_fun_DwmIsCompositionEnabled = (fun_DwmIsCompositionEnabled)GetProcAddress(m_hModuleDWM, "DwmIsCompositionEnabled");
+			m_fun_DwmSetWindowAttribute = (fun_DwmSetWindowAttribute)GetProcAddress(m_hModuleDWM, "DwmSetWindowAttribute");
+			m_fun_DwmExtendFrameIntoClientArea = (fun_DwmExtendFrameIntoClientArea)GetProcAddress(m_hModuleDWM, "DwmExtendFrameIntoClientArea");
+		}
 	}
 
 	DMAppData::~DMAppData()
 	{	
+		if (m_hModuleDWM) FreeLibrary(m_hModuleDWM);
+
 		// œ»πÿ±’LOG
 		DMLogDispatch::SetLogDispatch(NULL);
 

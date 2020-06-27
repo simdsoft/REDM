@@ -141,6 +141,15 @@ namespace DM
 	public:// 全局初始化
 		fun_UpdateLayeredWindowIndirect m_fun_UpdateLayeredWindowIndirect;
 
+		/// <summary>
+		///  DWM windows vista only
+		/// </summary>
+		fun_DwmIsCompositionEnabled m_fun_DwmIsCompositionEnabled;
+		fun_DwmSetWindowAttribute m_fun_DwmSetWindowAttribute;
+		fun_DwmExtendFrameIntoClientArea m_fun_DwmExtendFrameIntoClientArea;
+
+		HMODULE m_hModuleDWM;
+
 	public:
 		DM::CArray<HWND>            m_RunhWndArray;                             ///< 运行Run函数的hWnd队列
 

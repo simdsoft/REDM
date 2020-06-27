@@ -20,6 +20,19 @@
 #include "DMMsgLoop.h"
 namespace DM
 {
+	// The NativeWindow shadow style
+	enum {
+		// 无任何阴影效果
+		NWSDS_NULL = 0,
+
+		// CS_DROPDOWN效果, 仅用于短生命周期的top-level窗口, 例如menu和tooltip
+		// top-level窗口微软定义: 非Child，无WS_CHILD风格, 无Parent, 无Owner, 或者Parent是DesktopWindow的窗口
+		NWSDS_DROPSHADOW = 1,
+
+		// dwm的四边阴影效果, 用于普通Dialog或主窗口
+		NWSDS_DWMSHADOW = 2,
+	};
+
 	/// <summary>
 	///		此为最重要窗口主类，所有实例主窗口都应该直接或间接继承于此类,属性：<see cref="DMAttr::DMHWndAttr"/>
 	/// </summary>
@@ -38,7 +51,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 创建窗口接口函数
 		//---------------------------------------------------
-		HWND DM_CreateWindow(LPCWSTR lpszXmlId,int x=0, int y=0, int nWidth=0, int nHeight=0, HWND hWndParent=NULL, bool bShadow=false);///< 创建窗口
+		HWND DM_CreateWindow(LPCWSTR lpszXmlId,int x=0, int y=0, int nWidth=0, int nHeight=0, HWND hWndParent=NULL, int shadowStyle=NWSDS_NULL);///< 创建窗口
 
 		/// -------------------------------------------------
 		/// @brief			创建窗口
@@ -52,9 +65,9 @@ namespace DM
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		bShadow         是否使用阴影窗口
+		/// @param[in]		shadowStyle     窗口阴影风格, 详见: NativeWindowShadowStyle
 		/// @return			HWND
-		HWND DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow=false);
+		HWND DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
 
 		/// -------------------------------------------------
@@ -70,9 +83,9 @@ namespace DM
 		/// @param[in]		nHeight			高度
 		/// @param[in]		hWndParent		父窗口
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		bShadow         是否使用阴影窗口
+		/// @param[in]		shadowStyle     窗口阴影风格, 详见: NativeWindowShadowStyle
 		/// @return			HWND
-		HWND DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, bool bShadow=false);
+		HWND DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
 
 		/// -------------------------------------------------
@@ -160,6 +173,8 @@ namespace DM
 	public:// 辅助
 		DMCode DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect);
 		DMCode DM_UpdateShowCanvas(LPRECT lpRect);
+
+		BOOL DM_EnableShadowEffect(BOOL bEnabled = TRUE, int margin = 1);
 
   protected:
 		virtual void OnAfterCreated();							///< 窗口创建成功后调用
