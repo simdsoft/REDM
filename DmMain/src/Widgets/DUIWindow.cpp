@@ -1513,7 +1513,7 @@ namespace DM
 						break;
 					}
 					pt.x = rcDest.left;					 // x还原
-					nLine++;							 // 行数++
+					++nLine;							 // 行数++
 					continue;
 				}
 
