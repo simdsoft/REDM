@@ -593,7 +593,7 @@ DMCode SkinDlg::UpdateXml()
 		}
 		else  
 		{
-			m_SkinNode.m_XmlNode.remove_attribute(L"margin");
+			m_SkinNode.RemoveAttribute(L"margin");
 		}
 
 		CStringW strXml;
