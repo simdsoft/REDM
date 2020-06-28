@@ -407,30 +407,24 @@ namespace DM
 
 	bool DMXmlNode::GetXmlContent(CStringW &strDebug)
 	{
-		bool bRet = false;
-		do 
-		{	
-			int iBufSize = 500;
-			DMBufT<wchar_t> pBuf;pBuf.Allocate(iBufSize);
-			pugi::xml_writer_buff* pWriter = new pugi::xml_writer_buff(pBuf.get(),iBufSize);
-			m_XmlNode.print(*pWriter,L"\t",pugi::format_default,pugi::encoding_utf16);
-			if (!pWriter->isfinished())
+		class xml_string_writer : public pugi::xml_writer
+		{
+		public:
+			xml_string_writer(CStringW& rbuf) : buffer(rbuf), pugi::xml_writer()
 			{
-				iBufSize = pWriter->needsize();
-				DM_DELETE(pWriter);
-				pBuf.Allocate(iBufSize);
-				pWriter = new pugi::xml_writer_buff(pBuf.get(),iBufSize);
-				m_XmlNode.print(*pWriter,L"\t",pugi::format_default,pugi::encoding_utf16);
 			}
-			
-			bRet = pWriter->isfinished();
-			if (bRet)
+
+			// Write memory chunk into stream/file/whatever
+			virtual void write(const void* data, size_t size) override
 			{
-				strDebug = CStringW(pWriter->buffer(),pWriter->size());
+				buffer.Append((const wchar_t*)data, size / sizeof(wchar_t));
 			}
-			DM_DELETE(pWriter);
-		} while (false);
-		return bRet;
+			CStringW& buffer;
+		};
+		xml_string_writer writer(strDebug);
+		m_XmlNode.print(writer, L"\t", pugi::format_default, pugi::encoding_utf16);
+		
+		return true;
 	}
 
 	// DMXmlDocHandle--------------------------------------------

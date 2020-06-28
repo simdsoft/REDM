@@ -336,14 +336,14 @@ DMCtrlXml::DMCtrlXml()
 
 	// 初始化Copy Node，临时保存的xml
 	DMXmlNode BaseNode = m_CopyDoc.Base();
-	BaseNode.InsertChildNode(L"Root");
+	BaseNode.InsertChildNode(L"root");
 
 	// 初始化DMDesigner.xml
 	DM::GetRootFullPath(REC_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
 		DMXmlNode NewNode = m_RecentDoc.Base();
-		NewNode.InsertChildNode(L"Recently");
+		NewNode.InsertChildNode(L"recently");
 		m_RecentDoc.SaveXml(szPath);
 	}
 	else
