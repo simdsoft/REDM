@@ -1454,6 +1454,7 @@ namespace DM
 		uFormat = uFormat|DT_WORDBREAK;
 		return DUIWindow::DV_DrawText(pCanvas, szBuf, szBuf.GetLength(), lpRect, uFormat);
 #endif
+		// halx99: xml中可使用实体引用: &#xD;&#xA;
 		do //hgy: 为什么XML中\R\N不能被直接识别，因为XML文件中的"/n",会被认为是一个字符串"///n"是两个字符'//'和'/n'，而不是转义字符"/n",
 		{
 			CRect rcDest = lpRect;
@@ -1478,20 +1479,41 @@ namespace DM
 			int nLine	 = 1;				// 当前行
 			lpRect->right = lpRect->left;   // 用于DT_CALCRECT
 			LPCWSTR pszBufCopy = pszBuf;
+
 			while (i<cchText)
 			{
 				LPWSTR pNextChar = CharNextW(pszBufCopy);
-				if (*pszBufCopy==L'\\' && pNextChar && *pNextChar==L'n')
-				{
-					pt.y += iLineHei+nLineInter;		 // 行高+行间距
-					if (pt.y>=rcDest.bottom)
+				
+				// Parsing new line
+				bool bNewLine = false;
+				switch (*pszBufCopy) {
+				case L'\n': // 真实换行符支持
+					bNewLine = true;
+					++i;
+					pszBufCopy = pNextChar;
+					pNextChar = CharNextW(pszBufCopy);
+					break;
+				case L'\\': // transfer character like general program languages
+					++i; // 无论如何吃掉一个转意字符
+					if (*pNextChar == L'n') {
+						++i;
+						pszBufCopy = CharNextW(pNextChar);	 // pszBufCopy同样跳两个字符
+						bNewLine = true;
+					}
+					else { // 其他字符, 吃掉1个转义字符后继续呈现
+						pszBufCopy = pNextChar;
+						pNextChar = CharNextW(pszBufCopy);
+					}
+					break;
+				}
+				if (bNewLine) { // process new line
+					pt.y += iLineHei + nLineInter;		 // 行高+行间距
+					if (pt.y >= rcDest.bottom)
 					{
 						break;
 					}
 					pt.x = rcDest.left;					 // x还原
-					nLine ++ ;							 // 行数++
-					i += 2;								 // 字符数++
-					pszBufCopy = CharNextW(pNextChar);	 // pszBufCopy同样跳两个字符
+					nLine++;							 // 行数++
 					continue;
 				}
 
@@ -1520,7 +1542,7 @@ namespace DM
 				{
 					lpRect->right = pt.x;
 				}
-				i += 1;
+				++i;
 				pszBufCopy = pNextChar;
 			}
 			if (uFormat&DT_CALCRECT)

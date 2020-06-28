@@ -607,6 +607,7 @@ namespace DM
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
+			m_pValueEdit->OnAttrCustomEx(L"bmultiLines", L"1", false);
 			m_pValueEdit->SetWindowText(m_strValue);
 			m_pValueEdit->DM_SetVisible(false);
 
@@ -742,6 +743,7 @@ namespace DM
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
+			m_pValueEdit->OnAttrCustomEx(L"bmultilines", L"1", false);
 			m_pValueEdit->SetWindowText(m_strValue);
 
 			iErr = DM_ECODE_OK;
