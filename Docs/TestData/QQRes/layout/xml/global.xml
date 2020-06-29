@@ -20,6 +20,7 @@
 		<imglist id="tab_5" src="PNG:tab_5" states="3" />
 		<imglist id="tree_toggle" src="PNG:tree_toggle" states="6" />
 		<imglist id="tree_check" src="PNG:tree_check" states="9" />
+		<!--list icon-->
 		<scrollbar id="list_scroll" src="PNG:list_scroll" states="1" margin="5,5,5,5" />
 		<img9 id="list_header" src="PNG:list_header" states="4" margin="2,2,2,2" />
 		<imglist id="list_qqvip" src="PNG:list_qqvip" states="2" />
@@ -38,13 +39,17 @@
 		<imglist id="list_selicon5" src="PNG:list_selicon5" states="1" />
 		<imglist id="list_selicon6" src="PNG:list_selicon6" states="1" />
 		<imglist id="list_selicon7" src="PNG:list_selicon7" states="1" />
+		<!--skin-->
 		<imglist id="skin_midbg" src="PNG:skin_midbg" states="1" />
 		<imglist id="skin_setbtn" src="PNG:skin_setbtn" states="3" />
 		<imglist id="skin_outbtn" src="PNG:skin_outbtn" states="3" />
+		<!--custom-->
 		<img9 id="btncustom" src="PNG:btncustom" states="4" margin="2,2,2,2" commit="通常的btn状态" />
 		<img9 id="bord" src="PNG:bord" states="1" margin="1,1,1,1" />
 		<img9 id="dui_frame" src="PNG:dui_frame" states="2" margin="2,2,2,2" />
+		<!--tip-->
 		<img9 id="tip_frame" src="PNG:tipframe" states="1" margin="1,1,1,1" />
+		<!--pnggif-->
 		<imglist id="4_png" src="gif:4_png" states="26" />
 	</skin>
 	<skin name="widgetprivate">

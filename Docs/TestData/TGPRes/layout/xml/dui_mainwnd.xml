@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <dm initsize="282,717" minsize="282,717" maxsize="282,717" regtip="TGPTipsImpl" bresize="0" btranslucent="0" alpha="255">
 	<root>
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,-0" skin="mainskin:main" bfocusable="1">
 			<window pos="0,0,-0,@21" bdrag="1">
+				<!--可拖动区-->
 				<label pos="10,3,@91,@20" skin="logo" />
 				<button name="button_menu" pos="-87,11,@24,@11" skin="menu" cursor="hand" />
 				<button name="button_close" pos="-22,11,@9,@9" skin="button_close" cursor="hand" />

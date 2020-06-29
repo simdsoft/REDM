@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <menu roundsize="20,20" alpha="0xc0" clrTextSel="pbgra(00,00,ff,ff)" itemselbgskin="menuitemselbg" iconSkin="menuicons" checkSkin="menucheck" iconSize="16,16" bgskin="bg" defitemHeight="26" iconoffset="14" stepoffset="40" textoffset="28">
+	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
 	<item id="3331" bcheck="1" text="菜单支持无限层" />
 	<item id="3332" icon="2" skin="menubigskin" text="" />
 	<item id="3333" bdisable="1" text="四层子菜单演示" />

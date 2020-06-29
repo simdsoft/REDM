@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <dm initsize="280,100" minsize="280,100" bresize="1" btranslucent="1" alpha="255">
 	<root clrbg="pbgra(3d,3d,3d,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,@35" bdrag="1">
+			<!--标题区-->
 			<label name="ds_title" pos="5,2,-22,-0" text="增加皮肤池" bdot="1" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>

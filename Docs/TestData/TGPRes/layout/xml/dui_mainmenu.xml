@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <menu bgskin="main_menue_bg" maxwidth="166" bshadow="0" itemhei="30" clrtext="pbgra(ff,ff,ff,ff)" textoffset="58">
+	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
 	<item height="11" />
 	<item id="1001" text="设置" skin="meue_item_bk" />
 	<item id="1002" text="换肤" skin="meue_item_bk" />

@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <dm initsize="400,100" btranslucent="1" alpha="230">
 	<root clrbg="pbgra(3a,3a,3a,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,@25" clrbg="pbgra(59,59,59,ff)" bdrag="1">
+			<!--标题区-->
 			<label name="ds_msgtitle" pos="5,2,@180,-0" text="欢迎使用DM设计器" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>

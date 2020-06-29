@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <sub>
+	<!--必须以UTF8格式，不然中文无法识别-->
 	<link pos="10,10,@48,@48" skin="Webicon" style="style-Link" href="www.hgy413.com" />
 	<button name="webback" pos="[7,30,@31,@27" skin="webback" />
 	<button name="webrefresh" pos="[7,30,@31,@27" skin="webrefresh" />

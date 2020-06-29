@@ -36,6 +36,7 @@
 	</combobox>
 	<listboxex nocache="1" pos="160,50,-250,@150" margin="2,2,2,2" class="style-edit" itemHeight="50" ncSkin="DUI_Frame" sbSkin="ScrollBar">
 		<items>
+			<!--必须全部使用nocache-->
 			<item nocache="1">
 				<label nocache="1" pos="5,2,200,20" class="style-Link" text="组合面板1" />
 				<button nocache="1" pos="%20,20,@26,@17" focusable="1" skin="Btn_Menu" tiptext="menu" />

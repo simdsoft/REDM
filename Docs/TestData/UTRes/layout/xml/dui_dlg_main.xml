@@ -48,12 +48,14 @@
 		<turn3dview name="turn3d" nocache="1" pos="0,0,-0,-0" zStep="100" yStep="2" />
 	</root>
 	<style>
+		<!--局部style对象-->
 		<style name="style-link_forum" cursor="hand" colorText="rgba(00,00,ff,e6)" colorTextHover="rgba(00,f0,cf,e6)" colorTextPush="rgba(00,00,00,e6)" font="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0,adding:0" fontHover="face:宋体,size:13,underline:1" />
 		<style name="style-DUI_Frame" skin="DUI_Frame" font="" colorText="#000000" margin-x="0" />
 		<style name="style-Link" skin="DUI_Frame" cursor="hand" colorText="rgba(1e,78,d5,ff)" colorTextHover="rgba(1e,78,d5,ff)" font="italic:1" fontHover="underline:1,italic:1" />
 		<style name="style-edit" ncskin="Nc_bg" margin="2,2,2,2" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0,adding:0" />
 	</style>
 	<skin>
+		<!--局部skin对象-->
 		<imgframe name="DUI_Frame" src="PNG:DUI_Frame" states="2" margin-x="2" margin-y="2" />
 		<imglist name="Btn_Close" src="PNG:Btn_Close" states="3" />
 		<imglist name="Btn_Max" src="PNG:Btn_Max" states="3" />

@@ -8,6 +8,7 @@
 			<window pos="126,13,@19,@19" tipxmlid="dui_cftips1" cursor="hand" tipflags="0,-70,-5,1" />
 			<tgpcomboxex pos="0,-36,@160,-0" skin="lbx_lcshowbg">
 				<subshow>
+					<!--初始显示区-->
 					<label name="area" pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州一区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand" />
 					<button name="ms" pos="-56,10,@40,@20" text="22ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand" />
 				</subshow>

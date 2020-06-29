@@ -9,6 +9,7 @@
 		</headerctrl>
 		<item height="100" commit="多少列,就插入多少个子窗口">
 			<window>
+				<!--第一行第一列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第一列" tiptext="扩展控件" />
 				<listbox pos="50,25,-1,@70" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" &gt;
 					<item text="1" icon="1" data="100" height="30" />
@@ -22,21 +23,26 @@
 				</listbox>
 			</window>
 			<window>
+				<!--第一行第二列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第二列" />
 				<gif pos="0,40,@100,@40" badjust="1" gifskin="gif:4_gif" />
 			</window>
 			<window>
+				<!--第一行第三列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第三列" />
 			</window>
 			<window>
+				<!--第一行第四列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第四列" />
 			</window>
 		</item>
 		<item height="150">
 			<window>
+				<!--第二行第一列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第一列" />
 			</window>
 			<window>
+				<!--第二行第二列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第二列" />
 				<combobox pos="1,22,-1,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn" bhideedit="0" dropheight="100" animatetime="200">
 					<subedit font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0" sbskin="scrollbar" />
@@ -51,42 +57,53 @@
 				</combobox>
 			</window>
 			<window>
+				<!--第二行第三列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第三列" />
 			</window>
 			<window>
+				<!--第二行第四列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第四列" />
 			</window>
 		</item>
 		<item height="90">
 			<window>
+				<!--第三行第一列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第一列" />
 				<richedit pos="10,21,-1,@65" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
 			</window>
 			<window>
+				<!--第三行第二列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第二列" />
 			</window>
 			<window>
+				<!--第三行第三列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第三列" />
 			</window>
 			<window>
+				<!--第三行第四列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第四列" />
 			</window>
 		</item>
 		<item height="50">
 			<window>
+				<!--第四行第一列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第一列" />
 			</window>
 			<window>
+				<!--第四行第二列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第二列" />
 			</window>
 			<window>
+				<!--第四行第三列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第三列" />
 			</window>
 			<window>
+				<!--第四行第四列-->
 				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第四列" />
 			</window>
 		</item>
 	</listctrlex>
+	<!---->
 	<listboxex pos="%41,5,-50,%40" cursel="1" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame" sbskin="ScrollBar">
 		<item height="100">
 			<label pos="5,2,60,20" style="style-Link" text="组合面板1" />

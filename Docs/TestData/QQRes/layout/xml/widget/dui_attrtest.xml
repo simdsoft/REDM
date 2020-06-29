@@ -2,6 +2,7 @@
 <dm name="AttributeTestWnd" title="换肤" initsize="600,150" resizable="1" translucent="1" alpha="0xff">
 	<root skin="bg" alpha="0xff">
 		<window pos="0,0,-0,23" bdrag="1">
+			<!--可拖动区-->
 			<button name="btn_attrtestclose" pos="-49,2,-4,19" skin="widgetprivate:closebutton" banimate="1" nopresize="1" tiptext="关闭属性测试" />
 			<label pos="100,0,-100,@20" text="如果你不清楚控件名称,请开启dmspy++查看!!" align="center" />
 		</window>

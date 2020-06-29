@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
+<!--没有特定配置,全从custom中读取翻译-->
 <dmlg name="dmlg_en">
+	<!--给一个唯一标识-->
 	<node name="custom">
+		<!--通用标识-->
 		<item src="扁扁熊" trans="Flat bear" />
 		<item src="编辑个性签名" trans="Edit the personal signature" />
 		<item src="联系人" trans="Contacts" />

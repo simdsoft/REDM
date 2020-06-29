@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <sub>
 	<window name="ds_attr_name_panel" bvisible="0" pos="2,0,-2,@68" clrbg="pbgra(59,59,59,ff)">
+		<!--name区域-->
 		<sub src="layout:ds_attr_name_panel" />
 	</window>
 	<duilist bvisible="0" name="ds_attr_list" pos="2,70,-2,-0" itemheight="24" expandarrskin="ds_listarr" sbskin="ds_scrollbar" arrowwidth="0">

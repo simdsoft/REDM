@@ -20,6 +20,7 @@
 		<file name="tab_5" path="themes\theme0\image\tab\tab_5.png" />
 		<file name="tree_toggle" path="themes\theme0\image\tree\tree_toggle.png" />
 		<file name="tree_check" path="themes\theme0\image\tree\tree_check.png" />
+		<!--list icon-->
 		<file name="list_header" path="themes\theme0\image\list\list_header.png" />
 		<file name="list_scroll" path="themes\theme0\image\list\list_scroll.png" />
 		<file name="list_qqvip" path="themes\theme0\image\list\list_qqvip.png" />
@@ -38,11 +39,14 @@
 		<file name="list_selicon5" path="themes\theme0\image\list\list_selicon5.png" />
 		<file name="list_selicon6" path="themes\theme0\image\list\list_selicon6.png" />
 		<file name="list_selicon7" path="themes\theme0\image\list\list_selicon7.png" />
+		<!--skin-->
 		<file name="skin_midbg" path="themes\theme0\image\skin\skin_midbg.png" />
 		<file name="skin_setbtn" path="themes\theme0\image\skin\skin_setbtn.png" />
 		<file name="skin_outbtn" path="themes\theme0\image\skin\skin_outbtn.png" />
+		<!--spy-->
 		<file name="spy_drag" path="themes\theme0\image\spy\spydrag.png" />
 		<file name="spy_icon" path="themes\theme0\image\spy\spyicon.png" />
+		<!--widget-->
 		<file name="drag_move" path="themes\theme0\image\widget\drag_move.png" />
 		<file name="bord" path="themes\theme0\image\widget\bord.png" />
 		<file name="Btn_Close" path="themes\theme0\image\widget\btn_close.png" />
@@ -71,18 +75,22 @@
 		<file name="process_channel" path="themes\theme0\image\widget\process_channel.png" />
 		<file name="process_sel_hz" path="themes\theme0\image\widget\process_sel_hz.png" />
 		<file name="process_sel_vz" path="themes\theme0\image\widget\process_sel_vz.png" />
+		<!--menu-->
 		<file name="menuitembg" path="themes\theme0\image\menu\menu_itembg.png" />
 		<file name="menuitemselbg" path="themes\theme0\image\menu\menu_itemselbg.png" />
 		<file name="menuicons" path="themes\theme0\image\menu\menu_icons.png" />
 		<file name="menusep" path="themes\theme0\image\menu\menu_sep.png" />
 		<file name="menucheck" path="themes\theme0\image\menu\menu_check.png" />
 		<file name="menubigskin" path="themes\theme0\image\menu\Menu_BigSkin.png" />
+		<!--web-->
 		<file name="webicon" path="themes\theme0\image\web\webicon.png" />
 		<file name="webback" path="themes\theme0\image\web\webback.png" />
 		<file name="webfront" path="themes\theme0\image\web\webfront.png" />
 		<file name="webrefresh" path="themes\theme0\image\web\webrefresh.png" />
+		<!--custom-->
 		<file name="btncustom" path="themes\theme0\image\btn_custom.png" />
 		<file name="dui_frame" path="themes\theme0\image\dui_frame.png" />
+		<!--tip-->
 		<file name="tipframe" path="themes\theme0\image\tipframe.png" />
 		<file name="splith" path="themes\theme0\image\widget\splith.png" />
 		<file name="splitv" path="themes\theme0\image\widget\splitv.png" />

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <menu bgskin="main_menue_bg" maxwidth="166" bshadow="0" itemhei="30" clrtext="pbgra(ff,ff,ff,ff)" textoffset="58" font="face:宋体,size:15,weight:400">
+	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
 	<item height="11" />
 	<item id="2001" text="优化启动速度" skin="meue_item_bk" holdskin="meue_item_hold" bhold="true" bsel="0" />
 	<item id="2002" text="自动更新" skin="meue_item_bk" holdskin="meue_item_hold" bhold="true" bsel="1" />
