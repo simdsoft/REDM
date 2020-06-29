@@ -65,8 +65,9 @@ namespace DM
 		if (hWndParent != NULL && ::GetActiveWindow() == m_hWnd)
 			::SetActiveWindow(hWndParent);
 
-		// destroy modal window
-		DestroyWindow();
+		// Destroy modal window
+		if(IsWindow())
+			DestroyWindow();
 
 		return m_nRetCode;
 	}
