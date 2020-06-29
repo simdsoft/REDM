@@ -1,24 +1,26 @@
-﻿<dm name="SkinWindow" title="换肤" initsize="350,300" resizable="1" translucent="0" alpha = "0xff">
-	 <root skin="bg" alpha="0xff">
-		<window pos="0,0,-0,23" bdrag="1"><!--可拖动区-->
-			<button name="btn_skinclose"   pos="-49,2,-4,19"    skin="Btn_Close"    banimate="1" nopresize="1" tiptext="skinclose" />
+<?xml version="1.0"?>
+<dm name="SkinWindow" title="换肤" initsize="350,300" resizable="1" translucent="0" alpha="0xff">
+	<root skin="bg" alpha="0xff">
+		<window pos="0,0,-0,23" bdrag="1">
+			<!--可拖动区-->
+			<button name="btn_skinclose" pos="-49,2,-4,19" skin="Btn_Close" banimate="1" nopresize="1" tiptext="skinclose" />
 		</window>
 		<group pos="10,24,-10,@120" text="全屏HSLA,仅为演示(但不建议hsl作用于动画窗口)" align="center">
-			<sliderctrl name="h_slider" pos="0,0,@220,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="-180,180" value="0"  thumbwidth="11" channelhei="6"/>
-			<sliderctrl name="s_slider" pos="0,24,@220,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,200" value="100"  thumbwidth="11" channelhei="6"/>
-			<sliderctrl name="l_slider" pos="0,48,@220,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,200" value="100"  thumbwidth="11" channelhei="6"/>
-			<sliderctrl name="a_slider" pos="0,72,@220,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,255" value="0xff"  thumbwidth="11" channelhei="6"/>
+			<sliderctrl name="h_slider" pos="0,0,@220,@22" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="-180,180" value="0" thumbwidth="11" channelhei="6" />
+			<sliderctrl name="s_slider" pos="0,24,@220,@22" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,200" value="100" thumbwidth="11" channelhei="6" />
+			<sliderctrl name="l_slider" pos="0,48,@220,@22" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,200" value="100" thumbwidth="11" channelhei="6" />
+			<sliderctrl name="a_slider" pos="0,72,@220,@22" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,255" value="0xff" thumbwidth="11" channelhei="6" />
 		</group>
 		<group pos="2,154,-2,-2" text="主题切换" align="center">
-			<WrapLayout pos="0,0,-0,-0"    rcInset="1,1,1,1" childpaddLen="5" itemsize="100,100" alpha="0x80" clrbg="pbgra(ff,00,ff,ff)">
-				<window   name="skin1"  bcache="1"  maxWidth="100"  skin="Skin1"/>
-				<window   name="skin2"  bcache="1"  maxWidth="100"  skin="Skin2"/>
-				<window   name="skin3"  bcache="1"  maxWidth="100"  clrbg="pbgra(f7,f3,ee,ff)"/>
-			</WrapLayout>
+			<wraplayout pos="0,0,-0,-0" rcInset="1,1,1,1" childpaddLen="5" itemsize="100,100" alpha="0x80" clrbg="pbgra(ff,00,ff,ff)">
+				<window name="skin1" bcache="1" maxWidth="100" skin="Skin1" />
+				<window name="skin2" bcache="1" maxWidth="100" skin="Skin2" />
+				<window name="skin3" bcache="1" maxWidth="100" clrbg="pbgra(f7,f3,ee,ff)" />
+			</wraplayout>
 		</group>
 	</root>
 	<skin name="skinprivate">
-		<imglist 	 id="Skin1" 			     src="PNG:Skin1"   			states="2"  commit="换肤1连图"/>
-		<imglist 	 id="Skin2" 			     src="PNG:Skin2"   			states="2"  commit="换肤2连图"/>
+		<imglist id="Skin1" src="PNG:Skin1" states="2" commit="换肤1连图" />
+		<imglist id="Skin2" src="PNG:Skin2" states="2" commit="换肤2连图" />
 	</skin>
 </dm>

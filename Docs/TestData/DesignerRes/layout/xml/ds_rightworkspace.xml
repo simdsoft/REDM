@@ -1,19 +1,21 @@
-﻿<sub>
-	<window name="ds_attr_name_panel" bvisible="0" pos="2,0,-2,@68" clrbg="pbgra(59,59,59,ff)"><!--name区域-->
-		<sub src="layout:ds_attr_name_panel"/>
+<?xml version="1.0"?>
+<sub>
+	<window name="ds_attr_name_panel" bvisible="0" pos="2,0,-2,@68" clrbg="pbgra(59,59,59,ff)">
+		<!--name区域-->
+		<sub src="layout:ds_attr_name_panel" />
 	</window>
 	<duilist bvisible="0" name="ds_attr_list" pos="2,70,-2,-0" itemheight="24" expandarrskin="ds_listarr" sbskin="ds_scrollbar" arrowwidth="0">
 		<item skin="ds_listbg" bexpand="0" expandheight="300">
-			<static pos="25,0,-0,@24" text="主窗口属性列表" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400"/>
-			<sub src="layout:ds_attr_host_panel"/>
+			<label pos="25,0,-0,@24" text="主窗口属性列表" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400" />
+			<sub src="layout:ds_attr_host_panel" />
 		</item>
 		<item skin="ds_listbg" bexpand="0" expandheight="400">
-			<static pos="25,0,-0,@24" text="控件属性列表" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400"/>
-			<sub src="layout:ds_attr_widget_panel"/>
+			<label pos="25,0,-0,@24" text="控件属性列表" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400" />
+			<sub src="layout:ds_attr_widget_panel" />
 		</item>
-		<item  skin="ds_listbg" expandheight="72">
-			<static pos="25,0,-0,@24" text="锚点布局" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400"/>
-			<sub src="layout:ds_attr_pos_panel"/>
+		<item skin="ds_listbg" expandheight="72">
+			<label pos="25,0,-0,@24" text="锚点布局" align="left" clrtext="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:14,weight:400" />
+			<sub src="layout:ds_attr_pos_panel" />
 		</item>
 	</duilist>
 </sub>

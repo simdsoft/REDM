@@ -1,7 +1,10 @@
-﻿<dm  initsize="800,400" minsize="800,400" maxsize="-1,-1" bresize="1" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(3b,3b,3b,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@36" bdrag="1"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,34" text="Window" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)"/>
+<?xml version="1.0"?>
+<dm initsize="800,400" minsize="800,400" maxsize="-1,-1" bresize="1" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(3b,3b,3b,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@36" bdrag="1">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,34" text="Window" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

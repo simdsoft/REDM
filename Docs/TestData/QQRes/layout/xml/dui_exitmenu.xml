@@ -1,6 +1,7 @@
-﻿<menu  bhideframe="1" textoffset="13" font="face:微软雅黑,size:13">
+<?xml version="1.0"?>
+<menu bhideframe="1" textoffset="13" font="face:微软雅黑,size:13">
 	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
-	<item id="7000" text="官方支持" skin="btncustom"/>
-	<sep/>
-	<item id="7001" text="退出"  skin="dui_frame"/>
+	<item id="7000" text="官方支持" skin="btncustom" />
+	<sep />
+	<item id="7001" text="退出" skin="dui_frame" />
 </menu>

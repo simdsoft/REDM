@@ -1,20 +1,21 @@
-﻿<menu  roundsize="20,20" alpha="0xc0" clrTextSel="pbgra(00,00,ff,ff)" itemselbgskin="DUI_Frame" iconSkin="menuicons"  checkSkin="menucheck" iconSize="16,16" bgskin="DUI_Frame"  defitemHeight="26" iconoffset="14" stepoffset="40" textoffset="28">
+<?xml version="1.0"?>
+<menu roundsize="20,20" alpha="0xc0" clrTextSel="pbgra(00,00,ff,ff)" itemselbgskin="DUI_Frame" iconSkin="menuicons" checkSkin="menucheck" iconSize="16,16" bgskin="DUI_Frame" defitemHeight="26" iconoffset="14" stepoffset="40" textoffset="28">
 	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
-	<item id="3331" bcheck="1" text="菜单支持无限层"/>
-	<item id="3332" icon="2"  skin="menubigskin" text=""/>
-	<item id="3333" bdisable="1" text="四层子菜单演示"/>
-	<sep/>
+	<item id="3331" bcheck="1" text="菜单支持无限层" />
+	<item id="3332" icon="2" skin="menubigskin" text="" />
+	<item id="3333" bdisable="1" text="四层子菜单演示" />
+	<sep />
 	<item id="3334" text="sub1-移上显示子菜单">
-		<item id="33341" icon="0" text="3D翻转"/>
+		<item id="33341" icon="0" text="3D翻转" />
 		<item id="33342" icon="1" text="sub2-移上显示子菜单">
-			<item id="333421" icon="2"  skin="menubigskin" text=""/>
+			<item id="333421" icon="2" skin="menubigskin" text="" />
 			<item id="333422" icon="1" text="sub3-移上显示子菜单">
-				<item id="3334211" icon="2"  skin="menubigskin" text=""/>
-				<item id="3334221" icon="4" text="菜单3"/>
+				<item id="3334211" icon="2" skin="menubigskin" text="" />
+				<item id="3334221" icon="4" text="菜单3" />
 			</item>
-			<item id="333422" icon="4" text="菜单3"/>
+			<item id="333422" icon="4" text="菜单3" />
 		</item>
 	</item>
-	<sep/>
-	<item id="3335" text="Quit"/>
+	<sep />
+	<item id="3335" text="Quit" />
 </menu>

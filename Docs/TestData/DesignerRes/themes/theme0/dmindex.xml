@@ -42,7 +42,7 @@
 		<file name="ds_toolexpand" path="themes\theme0\image\ds_toolexpand.png" />
 		<file name="ds_w_Window" path="themes\theme0\image\widget\ds_w_Window.png" />
 		<file name="ds_w_Button" path="themes\theme0\image\widget\ds_w_Button.png" />
-		<file name="ds_w_Static" path="themes\theme0\image\widget\ds_w_Static.png" />
+		<file name="ds_w_Label" path="themes\theme0\image\widget\ds_w_Label.png" />
 		<file name="ds_w_Group" path="themes\theme0\image\widget\ds_w_Group.png" />
 		<file name="ds_w_CheckBox" path="themes\theme0\image\widget\ds_w_CheckBox.png" />
 		<file name="ds_w_Link" path="themes\theme0\image\widget\ds_w_Link.png" />

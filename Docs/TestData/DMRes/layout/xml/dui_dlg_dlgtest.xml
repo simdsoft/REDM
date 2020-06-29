@@ -1,9 +1,11 @@
-﻿<dm name="DlgTest" title="DlgTest" initsize="300,50" resizable="1" translucent="0" alpha = "0x80">
-	 <root skin="bg" alpha="0xff">
-		<window pos="0,0,-0,23" bcaption="1"><!--可拖动区-->
-			<button name="btn_skinclose" id="1"  pos="-49,2,-4,19"    skin="Btn_Close"    banimate="1" nopresize="1" tiptext="skinclose" />
+<?xml version="1.0"?>
+<dm name="DlgTest" title="DlgTest" initsize="300,50" resizable="1" translucent="0" alpha="0x80">
+	<root skin="bg" alpha="0xff">
+		<window pos="0,0,-0,23" bcaption="1">
+			<!--可拖动区-->
+			<button name="btn_skinclose" id="1" pos="-49,2,-4,19" skin="Btn_Close" banimate="1" nopresize="1" tiptext="skinclose" />
 		</window>
-		<button id="1"  text="ok"  	  style="custom"   pos="70,20,125,35"/>
-		<button id="2"  text="cancel" style="custom"  pos="230,20,185,35"/>
+		<button id="1" text="ok" style="custom" pos="70,20,125,35" />
+		<button id="2" text="cancel" style="custom" pos="230,20,185,35" />
 	</root>
 </dm>

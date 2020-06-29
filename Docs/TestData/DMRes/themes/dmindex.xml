@@ -1,7 +1,8 @@
-﻿<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
-<resource>  
-	<themes name="default"> 
-		<file name="default" path="themes\default\dmindex.xml"/>
-		<file name="theme1" path="themes\theme1\dmindex.xml"/>
+<?xml version="1.0"?>
+<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
+<resource>
+	<themes name="default">
+		<file name="default" path="themes\default\dmindex.xml" />
+		<file name="theme1" path="themes\theme1\dmindex.xml" />
 	</themes>
 </resource>

@@ -1,5 +1,6 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-pnggif" pos="0,0,-0,-0" text="button" align="right">
-		<pnggif pos="%40,100,@134,@134" badjust="1" pnggifskin="gif:4_png"/>
+		<pnggif pos="%40,100,@134,@134" badjust="1" pnggifskin="gif:4_png" />
 	</group>
 </sub>

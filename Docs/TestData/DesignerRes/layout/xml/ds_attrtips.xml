@@ -1,11 +1,12 @@
-﻿<dm initsize="370,125" minsize="370,125" bresize="0" maxsize="-1,-1" btranslucent="1" alpha = "240">
+<?xml version="1.0"?>
+<dm initsize="370,125" minsize="370,125" bresize="0" maxsize="-1,-1" btranslucent="1" alpha="240">
 	<root clrnc="pbgra(cc,cc,cc,ff)" ncmargin="2,2,2,2" clrbg="pbgra(66,66,66,ff)">
-		<static name="ds_attr" pos="6,2,-0,@20" align="left" font="face:新宋体,size:16,weight:700"    clrtext="pbgra(f0,f0,f0,ff)"/>
-		<static pos="6,22,@40,@16" align="left" font="face:新宋体,size:14,weight:400" text="类型:"    clrtext="pbgra(d6,d6,d6,ff)"/>
-		<static name="ds_type" pos="[6,22,-0,@16" align="left" font="face:新宋体,size:14,weight:400"  clrtext="pbgra(d6,d6,d6,ff)"/>
-		<static pos="6,40,@40,@16" align="left" font="face:新宋体,size:14,weight:400" text="名字:"    clrtext="pbgra(d6,d6,d6,ff)"/>
-		<static name="ds_name" pos="[6,40,-0,@16" align="left" font="face:新宋体,size:14,weight:400"  clrtext="pbgra(d6,d6,d6,ff)"/>
-		<static pos="6,40,@40,@16" align="left" font="face:新宋体,size:14,weight:400" 				   clrtext="pbgra(d6,d6,d6,ff)"/>
-		<static name="ds_desc" pos="6,58,-0,-0" align="left" bmultiLines="1" font="face:新宋体,size:12,weight:100" bdot="1" clrtext="pbgra(00,d7,ff,ff)"/>
+		<label name="ds_attr" pos="6,2,-0,@20" align="left" font="face:新宋体,size:16,weight:700" clrtext="pbgra(f0,f0,f0,ff)" />
+		<label pos="6,22,@40,@16" align="left" font="face:新宋体,size:14,weight:400" text="类型:" clrtext="pbgra(d6,d6,d6,ff)" />
+		<label name="ds_type" pos="[6,22,-0,@16" align="left" font="face:新宋体,size:14,weight:400" clrtext="pbgra(d6,d6,d6,ff)" />
+		<label pos="6,40,@40,@16" align="left" font="face:新宋体,size:14,weight:400" text="名字:" clrtext="pbgra(d6,d6,d6,ff)" />
+		<label name="ds_name" pos="[6,40,-0,@16" align="left" font="face:新宋体,size:14,weight:400" clrtext="pbgra(d6,d6,d6,ff)" />
+		<label pos="6,40,@40,@16" align="left" font="face:新宋体,size:14,weight:400" clrtext="pbgra(d6,d6,d6,ff)" />
+		<label name="ds_desc" pos="6,58,-0,-0" align="left" bmultiLines="1" font="face:新宋体,size:12,weight:100" bdot="1" clrtext="pbgra(00,d7,ff,ff)" />
 	</root>
 </dm>

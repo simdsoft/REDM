@@ -1,35 +1,37 @@
-﻿<dm  initsize="283,530" minsize="283,530" transid="dui_mainwnd" maxsize="543,-1" bresize="1" btranslucent="1" regtip="DMTipsImpl" alpha = "255">
-	<root><!--root做为唯一的标识,它等同于window Node--> 
+<?xml version="1.0"?>
+<dm initsize="283,530" minsize="283,530" transid="dui_mainwnd" maxsize="543,-1" bresize="1" btranslucent="1" regtip="DMTipsImpl" alpha="255">
+	<root>
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,-0" skin="bg" bfocusable="1">
 			<window pos="0,0,-0,@114" bdrag="1">
-				<flash pos="-200,0,-0,-0" bmsgnohandle="1" url="flash:sun.swf"/>
-				<static pos="10,4,@42,@18" skin="logo-QQ"/>
-				<button name="closebutton" pos="-25,0,@25,@23" skin="closebutton" banimate="1" animatesteps="50" tipxmlid="dui_tips1" bfocusable="1"/>
-				<button name="minbutton" pos="-50,0,@25,@23" skin="minbutton" banimate="1" animatesteps="50" tiptext="最小化" bfocusable="1"/>
-				<button name="btn_skin" pos="-75,3,@20,@20" skin="btn_skin" tiptext="更改外观" tipxmlid="dui_tips2" bfocusable="1"/>
-				<button name="btn_MedalWall" pos="-100,3,@20,@20" skin="btn_MedalWall" tiptext="有未领取的勋章,领取后QQ聊天更安全便捷" bfocusable="1"/>
-				<button name="head" pos="10,44,@63,@63" skin="head" tiptext="个人资料完整度67%,完善个人资料" bfocusable="1"/>
-				<static pos="[5,44,@48,@16" align="left" font="face:微软雅黑,size:14,weight:700" clrtext="pbgra(0,0,0,ff)" text="扁扁熊" bfocusable="1"/>
-				<button name="name_edit_btn" pos="77,66,-62,@22" align="left" skin="btn_edit" text="编辑个性签名" font="face:微软雅黑,size:12,weight:400" textclr="pbgra(0,0,0,ff)" bvisible="1"/>
-				<edit   name="name_edit" pos="77,66,-62,@24" align="left" ncmargin="1,1,1,1" bautosel="1" clrnc="pbgra(e2,b2,3e,ff)" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:17,weight:400" bvisible="0"/>
+				<flash pos="-200,0,-0,-0" bmsgnohandle="1" url="flash:sun.swf" />
+				<label pos="10,4,@42,@18" skin="logo-QQ" />
+				<button name="closebutton" pos="-25,0,@25,@23" skin="closebutton" banimate="1" animatesteps="50" tipxmlid="dui_tips1" bfocusable="1" />
+				<button name="minbutton" pos="-50,0,@25,@23" skin="minbutton" banimate="1" animatesteps="50" tiptext="最小化" bfocusable="1" />
+				<button name="btn_skin" pos="-75,3,@20,@20" skin="btn_skin" tiptext="更改外观" tipxmlid="dui_tips2" bfocusable="1" />
+				<button name="btn_MedalWall" pos="-100,3,@20,@20" skin="btn_MedalWall" tiptext="有未领取的勋章,领取后QQ聊天更安全便捷" bfocusable="1" />
+				<button name="head" pos="10,44,@63,@63" skin="head" tiptext="个人资料完整度67%,完善个人资料" bfocusable="1" />
+				<label pos="[5,44,@48,@16" align="left" font="face:微软雅黑,size:14,weight:700" clrtext="pbgra(0,0,0,ff)" text="扁扁熊" bfocusable="1" />
+				<button name="name_edit_btn" pos="77,66,-62,@22" align="left" skin="btn_edit" text="编辑个性签名" font="face:微软雅黑,size:12,weight:400" textclr="pbgra(0,0,0,ff)" bvisible="1" />
+				<edit name="name_edit" pos="77,66,-62,@24" align="left" ncmargin="1,1,1,1" bautosel="1" clrnc="pbgra(e2,b2,3e,ff)" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:17,weight:400" bvisible="0" />
 			</window>
-			<edit   name="search_edit" pos="0,114,-0,@30" surfaceskin="surface_search" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:17,weight:400"/>
+			<edit name="search_edit" pos="0,114,-0,@30" surfaceskin="surface_search" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:17,weight:400" />
 			<tabctrl name="maintab" pos="0,144,-0,-58" itemsize="50,36" animatesteps="20" mainbgskin="tab_bg">
-				<tabPage  itemskin="tab_1"  animatetype="1" tiptext="联系人">
-					<sub src="layout:dui_contacts"/>
-				</tabPage>
-				<tabPage  itemskin="tab_2"  animatetype="1" tiptext="会员">
-					<sub src="layout:dui_speak"/>
-				</tabPage>
-				<tabPage  itemskin="tab_3" animatetype="1" tiptext="辅助工具">
-					<button name="btn_spy" pos="0,0,-1,@30" text="spy++" skin="btncustom" alpha="0x80" tiptext="用于辅助查看dui子窗口的小工具"/>
-				</tabPage>
-				<tabPage  itemskin="tab_4" animatetype="1" tiptext="测试区">
-					<button name="btn_widget" pos="0,0,-1,@30" text="标准控件测试" skin="btncustom" alpha="0x80" tiptext="点击弹出测试标准控件"/>
-				</tabPage>
-				<tabPage  itemskin="tab_5" animatetype="1" tiptext="预留区">
-					<sub src="layout:dui_widget"/>
-				</tabPage>
+				<tabpage itemskin="tab_1" animatetype="1" tiptext="联系人">
+					<sub src="layout:dui_contacts" />
+				</tabpage>
+				<tabpage itemskin="tab_2" animatetype="1" tiptext="会员">
+					<sub src="layout:dui_speak" />
+				</tabpage>
+				<tabpage itemskin="tab_3" animatetype="1" tiptext="辅助工具">
+					<button name="btn_spy" pos="0,0,-1,@30" text="spy++" skin="btncustom" alpha="0x80" tiptext="用于辅助查看dui子窗口的小工具" />
+				</tabpage>
+				<tabpage itemskin="tab_4" animatetype="1" tiptext="测试区">
+					<button name="btn_widget" pos="0,0,-1,@30" text="标准控件测试" skin="btncustom" alpha="0x80" tiptext="点击弹出测试标准控件" />
+				</tabpage>
+				<tabpage itemskin="tab_5" animatetype="1" tiptext="预留区">
+					<sub src="layout:dui_widget" />
+				</tabpage>
 			</tabctrl>
 		</window>
 	</root>

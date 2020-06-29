@@ -1,37 +1,41 @@
-﻿<dm name="SkinWindow" initsize="750,540" btranslucent="0" alpha = "0xff">
-	<root><!--root做为唯一的标识,它等同于window Node-->
+<?xml version="1.0"?>
+<dm name="SkinWindow" initsize="750,540" btranslucent="0" alpha="0xff">
+	<root>
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,-0" skin="bg" bfocusable="1" bdrag="1">
-			<static pos="10,4,@42,@18" skin="logo-QQ"/><static pos="[2,4,@72,@18" text="更改外观" font="face:微软雅黑,size:14,weight:400"/>
-			<button name="skin_closebtn" pos="-25,0,@25,@23" skin="closebutton" banimate="1" animatesteps="50"  tiptext="关闭" bfocusable="1"/>
+			<label pos="10,4,@42,@18" skin="logo-QQ" />
+			<label pos="[2,4,@72,@18" text="更改外观" font="face:微软雅黑,size:14,weight:400" />
+			<button name="skin_closebtn" pos="-25,0,@25,@23" skin="closebutton" banimate="1" animatesteps="50" tiptext="关闭" bfocusable="1" />
 			<window pos="0,30,-0,@45" skin="skin_midbg">
-				<button pos="20,7,@96,@30" skin="skin_setbtn"/>
-				<static pos="[10,0,-0,-0" text="主题全部取自Documents\Tencent Files\All Users\QQ\Misc\QQSkin,源自QQ2015"/>
+				<button pos="20,7,@96,@30" skin="skin_setbtn" />
+				<label pos="[10,0,-0,-0" text="主题全部取自Documents\Tencent Files\All Users\QQ\Misc\QQSkin,源自QQ2015" />
 			</window>
-			<window pos="0,75,-0,-0" clrbg="pbgra(ff,ff,ff,ff)"><!--skin区域-->
-				<window name="skin_tab" pos="5,5,-5,-5" clrbg="pbgra(ff,ff,ff,ff)"><!--skin区域-->
-					<tablayout name="tablayout" pos="0,0,-0,@370" itemsize="122,122" childpaddLen="1">
-					</tablayout>
+			<window pos="0,75,-0,-0" clrbg="pbgra(ff,ff,ff,ff)">
+				<!--skin区域-->
+				<window name="skin_tab" pos="5,5,-5,-5" clrbg="pbgra(ff,ff,ff,ff)">
+					<!--skin区域-->
+					<tablayout name="tablayout" pos="0,0,-0,@370" itemsize="122,122" childpaddLen="1" />
 					<tablayout name="tablayoutclr" pos="0,370,-0,@40" itemsize="40,40" childpaddLen="1">
-						<SkinPreview clrbg="pbgra(da,9a,16,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(dd,8a,28,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(6b,a6,31,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(4e,43,da,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(80,62,e5,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(9f,63,b1,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(c0,51,6b,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(a0,5c,59,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(c0,74,30,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(9a,82,0,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(77,9c,15,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(ac,b0,4f,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(c4,c5,7a,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(d6,b7,9b,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(4d,4d,80,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(59,bc,f0,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(aa,ba,cf,ff)" cursor="hand" tiptext="纯色"/>
-						<SkinPreview clrbg="pbgra(cc,cc,cc,ff)" cursor="hand" tiptext="纯色"/>
+						<skinpreview clrbg="pbgra(da,9a,16,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(dd,8a,28,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(6b,a6,31,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(4e,43,da,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(80,62,e5,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(9f,63,b1,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(c0,51,6b,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(a0,5c,59,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(c0,74,30,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(9a,82,0,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(77,9c,15,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(ac,b0,4f,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(c4,c5,7a,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(d6,b7,9b,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(4d,4d,80,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(59,bc,f0,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(aa,ba,cf,ff)" cursor="hand" tiptext="纯色" />
+						<skinpreview clrbg="pbgra(cc,cc,cc,ff)" cursor="hand" tiptext="纯色" />
 					</tablayout>
-					<button name="skin_outbtn" pos="0,422,@76,@27" skin="skin_outbtn"/>
+					<button name="skin_outbtn" pos="0,422,@76,@27" skin="skin_outbtn" />
 				</window>
 			</window>
 		</window>

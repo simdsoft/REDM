@@ -1,48 +1,48 @@
 <?xml version="1.0"?>
 <root>
-	<Window 	text="Window" 	   ncmargin="1,1,1,1" 			clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
-	<Button 	text="Button" 	   skin="dg:dg_custombtn"/>
-	<Static 	text="Static"      ncmargin="1,1,1,1" 			clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
-	<group  	text="Group"       clrbg="pbgra(dd,dd,dd,ff)"   clrline="pbgra(00,00,00,ff)"/>
-	<checkbox   text="checkbox"    ncmargin="1,1,1,1" 			clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" checkskin="dg:dg_checkbtn" align="left"/>
-	<Link		text="Link"        ncmargin="1,1,1,1" 			clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" href="www.hgy413.com" pos="192,362,@253,@39" cursor="hand" font="weight:400,charset:0,underline:1,italic:0,strike:0,size:-14,face:新宋体" clrtexthover="pbgra(ff,ff,ff,ff)" />
-	<combobox   ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)"   btnskin="dg:dg_comboxbtn" clrbg="pbgra(dd,dd,dd,ff)" clrtext="pbgra(ff,ff,ff,ff)" textoffset="10" bhideedit="1" dropheight="55">
-		<subedit font="weight:400,charset:0,underline:1,italic:0,strike:0,size:-14,face:新宋体"/>
+	<window text="Window" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" />
+	<button text="Button" skin="dg:dg_custombtn" />
+	<label text="Label" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" />
+	<group text="Group" clrbg="pbgra(dd,dd,dd,ff)" clrline="pbgra(00,00,00,ff)" />
+	<checkbox text="checkbox" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" checkskin="dg:dg_checkbtn" align="left" />
+	<link text="Link" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" href="www.hgy413.com" pos="192,362,@253,@39" cursor="hand" font="weight:400,charset:0,underline:1,italic:0,strike:0,size:-14,face:新宋体" clrtexthover="pbgra(ff,ff,ff,ff)" />
+	<combobox ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" btnskin="dg:dg_comboxbtn" clrbg="pbgra(dd,dd,dd,ff)" clrtext="pbgra(ff,ff,ff,ff)" textoffset="10" bhideedit="1" dropheight="55">
+		<subedit font="weight:400,charset:0,underline:1,italic:0,strike:0,size:-14,face:新宋体" />
 		<sublistbox ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clritembg="pbgra(dd,dd,dd,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(00,00,00,ff)" clritemselbg="pbgra(c8,c8,c8,ff)" cursel="0" itemheight="22" bhottrack="1" textpoint="10,-1" sbskin="dg:dg_scrollbar">
 			<item text="combobox" />
-			<item text="second line"/> 
-			<item text="third line"/> 
+			<item text="second line" />
+			<item text="third line" />
 		</sublistbox>
 	</combobox>
-	<listbox ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clritembg="pbgra(dd,dd,dd,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(00,00,00,ff)" clritemselbg="pbgra(c8,c8,c8,ff)" cursel="0" itemheight="22" bhottrack="0" textpoint="10,-1"  sbskin="dg:dg_scrollbar">
-		<item text="listbox   "/>
-		<item text="second line"/> 
-		<item text="third line"/> 
+	<listbox ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clritembg="pbgra(dd,dd,dd,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(00,00,00,ff)" clritemselbg="pbgra(c8,c8,c8,ff)" cursel="0" itemheight="22" bhottrack="0" textpoint="10,-1" sbskin="dg:dg_scrollbar">
+		<item text="listbox   " />
+		<item text="second line" />
+		<item text="third line" />
 	</listbox>
-	<HotKey 	 text="HotKey"       ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
-	<IPAddress   text="IPAddress"    ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"/>
-	<RadioButton text="RadioButton"  ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" radioskin="dg:dg_radiobtn" align="left"/>
-	<sliderctrl  text="SliderCtrl"   bvert="0" thumbskin="dg:dg_thumb_hz" bShowTip="1" channelskin="dg:dg_channel_hz" range="-100,100" value="0"  thumbwidth="11" channelhei="4"/>
-	<ProcessCtrl align="left"        textformat="自定义ProcessCtrl:%d" clrtext="pbgra(00,00,00,ff)" bvert="0" bShowTip="1" selskin="dg:dg_selprocess_hz" channelskin="dg:dg_processchannel_hz" range="-100,100" value="70"/>
-	<TabCtrl 	 text="TabCtrl"  ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" tabalign="top" cursel="0" animatesteps="15" itemsize="78,30" firstitemoffset="7"  itemspace="3">
-		<tabPage  itemskin="dg:dg_headerctrl" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="TabCtrl"/>	
-		<tabPage  itemskin="dg:dg_headerctrl" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="TabCtrl2"/>	
-	</TabCtrl>
-	<tabPage   itemskin="dg:dg_headerctrl" clrbg="pbgra(e2,00,3e,80)" animatetype="1" title="tabPage"/>	
-	<richedit  text="richedit" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"  sbskin="dg:dg_scrollbar"/>
-	<edit   surfacetext="表层文字edit"  ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)"  surfacetextclr="pbgra(ff,ff,ff,ff)"/>
-	<listboxex cursel="0" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" itemheight="30"  sbskin="dg:dg_scrollbar">
-        <item>
-           <Button 	text="listboxex 子项1" pos="5,5,@120,@20"  skin="dg:dg_custombtn"/>
-        </item>
-        <item height="40">
-			<Button text="listboxex 子项2" pos="10,5,@120,@20" skin="dg:dg_custombtn"/>
-        </item>  
-        <item height="50">
-			<Button text="listboxex 子项3" pos="10,5,@120,@20" skin="dg:dg_custombtn"/>
-        </item>  		
-    </listboxex>
-	<treectrl ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" childoffset="20" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(80,80,80,ff)" itemheight="20"  sbskin="dg:dg_scrollbar">
+	<hotkey text="HotKey" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" />
+	<ipaddress text="IPAddress" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" />
+	<radiobutton text="RadioButton" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" radioskin="dg:dg_radiobtn" align="left" />
+	<sliderctrl text="SliderCtrl" bvert="0" thumbskin="dg:dg_thumb_hz" bShowTip="1" channelskin="dg:dg_channel_hz" range="-100,100" value="0" thumbwidth="11" channelhei="4" />
+	<processctrl align="left" textformat="自定义ProcessCtrl:%d" clrtext="pbgra(00,00,00,ff)" bvert="0" bShowTip="1" selskin="dg:dg_selprocess_hz" channelskin="dg:dg_processchannel_hz" range="-100,100" value="70" />
+	<tabctrl text="TabCtrl" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" tabalign="top" cursel="0" animatesteps="15" itemsize="78,30" firstitemoffset="7" itemspace="3">
+		<tabpage itemskin="dg:dg_headerctrl" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="TabCtrl" />
+		<tabpage itemskin="dg:dg_headerctrl" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="TabCtrl2" />
+	</tabctrl>
+	<tabpage itemskin="dg:dg_headerctrl" clrbg="pbgra(e2,00,3e,80)" animatetype="1" title="tabPage" />
+	<richedit text="richedit" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="dg:dg_scrollbar" />
+	<edit surfacetext="表层文字edit" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" surfacetextclr="pbgra(ff,ff,ff,ff)" />
+	<listboxex cursel="0" ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" itemheight="30" sbskin="dg:dg_scrollbar">
+		<item>
+			<button text="listboxex 子项1" pos="5,5,@120,@20" skin="dg:dg_custombtn" />
+		</item>
+		<item height="40">
+			<button text="listboxex 子项2" pos="10,5,@120,@20" skin="dg:dg_custombtn" />
+		</item>
+		<item height="50">
+			<button text="listboxex 子项3" pos="10,5,@120,@20" skin="dg:dg_custombtn" />
+		</item>
+	</listboxex>
+	<treectrl ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" childoffset="20" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(80,80,80,ff)" itemheight="20" sbskin="dg:dg_scrollbar">
 		<item text="treectrl1">
 			<item text="treectrl1-1" />
 		</item>
@@ -50,64 +50,55 @@
 			<item text="treectrl2-1" />
 		</item>
 	</treectrl>
-	<treectrlex ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" childoffset="20" 
-    clritemhoverbg="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)"  
-	clritemselbg="pbgra(af,ed,fd,ff)" itemheight="30" sbskin="dg:dg_scrollbar">
+	<treectrlex ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" childoffset="20" clritemhoverbg="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(af,ed,fd,ff)" itemheight="30" sbskin="dg:dg_scrollbar">
 		<treeitem width="150" height="30" childoffset="0">
-			<Button 	text="treectrlex 子项1" pos="5,5,@120,@20" skin="dg:dg_custombtn"/>
+			<button text="treectrlex 子项1" pos="5,5,@120,@20" skin="dg:dg_custombtn" />
 		</treeitem>
 		<treeitem width="200" childoffset="0">
-			<Button text="treectrlex 子项2" pos="10,5,@120,@20" skin="dg:dg_custombtn"/>
+			<button text="treectrlex 子项2" pos="10,5,@120,@20" skin="dg:dg_custombtn" />
 		</treeitem>
 		<treeitem width="200" childoffset="0">
-			<Button text="treectrlex 子项3" pos="10,5,@120,@20" skin="dg:dg_custombtn"/>
+			<button text="treectrlex 子项3" pos="10,5,@120,@20" skin="dg:dg_custombtn" />
 		</treeitem>
 	</treectrlex>
-	<HeaderCtrl align="center" itemdelta="4" itemskin="dg:dg_headerctrl" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
-		<item width="80" text="可拖拽" skin="dg:dg_headerctrl"/>
+	<headerctrl align="center" itemdelta="4" itemskin="dg:dg_headerctrl" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
+		<item width="80" text="可拖拽" skin="dg:dg_headerctrl" />
 		<item width="80" text="可变换" />
 		<item width="80" text="可排序" />
-	</HeaderCtrl>
+	</headerctrl>
 	<listctrlex ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(dd,dd,dd,ff)" itemheight="30" sbskin="dg:dg_scrollbar">
-		<HeaderCtrl align="center" itemdelta="4"  itemskin="dg:dg_headerctrl" bswap="1" bfixwidth="0" bsort="1">
+		<headerctrl align="center" itemdelta="4" itemskin="dg:dg_headerctrl" bswap="1" bfixwidth="0" bsort="1">
 			<item width="100" text="HeaderCtrl1" />
 			<item width="100" text="HeaderCtrl2" />
-		</HeaderCtrl>
-		 <item>
-           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
-				<Button pos="5,5,@120,@20" text="listctrlex 子项1"  skin="dg:dg_custombtn"/>
-		   </Window>
-		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
-				<Button pos="5,5,@120,@20" text="listctrlex 子项2"  skin="dg:dg_custombtn"/>
-		   </Window>
-        </item>
+		</headerctrl>
 		<item>
-           <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
-				<Button pos="5,5,@120,@20" text="listctrlex 子项2-1"  skin="dg:dg_custombtn"/>
-		   </Window>
-		   <Window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
-				<Button pos="5,5,@120,@20" text="listctrlex 子项2-2"  skin="dg:dg_custombtn"/>
-		   </Window>
-        </item>
+			<window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
+				<button pos="5,5,@120,@20" text="listctrlex 子项1" skin="dg:dg_custombtn" />
+			</window>
+			<window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
+				<button pos="5,5,@120,@20" text="listctrlex 子项2" skin="dg:dg_custombtn" />
+			</window>
+		</item>
+		<item>
+			<window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
+				<button pos="5,5,@120,@20" text="listctrlex 子项2-1" skin="dg:dg_custombtn" />
+			</window>
+			<window ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(00,00,00,00)">
+				<button pos="5,5,@120,@20" text="listctrlex 子项2-2" skin="dg:dg_custombtn" />
+			</window>
+		</item>
 	</listctrlex>
-	<gif  badjust="1" gifskin="designer:dg_1_gif" clrbg="pbgra(ff,ff,ff,ff)"/>
-	<ie url="www.baidu.com"/>
+	<gif badjust="1" gifskin="designer:dg_1_gif" clrbg="pbgra(ff,ff,ff,ff)" />
+	<ie url="www.baidu.com" />
 	<splitlayout sliderwidth="2" firstchildwidth="40" cursor="dg:dg_splith" bfirstchange="0">
-		<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="水平"/>
-		<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化"/>
+		<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="水平" />
+		<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化" />
 	</splitlayout>
-	<MonthCalCtrl ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:12,weight:400" 
-	leftbtnskin="dg_calendarleft" rightbtnskin="dg_calendarright" 
-	clrheaderbg="pbgra(93,f0,d2,ff)" btnsize="22,22" clrheadertext="pbgra(ff,d3,80,ff)" headerfont="face:微软雅黑,size:18,weight:700"
-	weektitle="日,一, 二, 三, 四, 五, 六" clrtitletext="pbgra(80,d3,ff,ff)" titlefont="face:微软雅黑,size:10,weight:400" 
-	clrgraycelltext="pbgra(d2,d2,d2,ff)" clrtext="pbgra(00,00,00,ff)" clrcell="pbgra(f5,f5,f5,ff)" clrcellhover="pbgra(93,f0,ff,ff)" cellskin="dg:dg_calendarcell"
-	clrjieritext="pbgra(f0,80,1,ff)" jierifont="face:微软雅黑,size:8,weight:400" 
-	clrtodaytext="pbgra(00,00,00,ff)" clrtodaytexthover="pbgra(ff,00,ff,ff)" clrtodaytextpush="pbgra(f0,80,1,ff)">
-	</MonthCalCtrl> 
+	<monthcalctrl ncmargin="1,1,1,1" clrnc="pbgra(00,00,00,ff)" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:12,weight:400" leftbtnskin="dg_calendarleft" rightbtnskin="dg_calendarright" clrheaderbg="pbgra(93,f0,d2,ff)" btnsize="22,22" clrheadertext="pbgra(ff,d3,80,ff)" headerfont="face:微软雅黑,size:18,weight:700" weektitle="日,一, 二, 三, 四, 五, 六" clrtitletext="pbgra(80,d3,ff,ff)" titlefont="face:微软雅黑,size:10,weight:400" clrgraycelltext="pbgra(d2,d2,d2,ff)" clrtext="pbgra(00,00,00,ff)" clrcell="pbgra(f5,f5,f5,ff)" clrcellhover="pbgra(93,f0,ff,ff)" cellskin="dg:dg_calendarcell" clrjieritext="pbgra(f0,80,1,ff)" jierifont="face:微软雅黑,size:8,weight:400" clrtodaytext="pbgra(00,00,00,ff)" clrtodaytexthover="pbgra(ff,00,ff,ff)" clrtodaytextpush="pbgra(f0,80,1,ff)" />
 	<scrollwnd clrbg="pbgra(ff,ff,ff,ff)" sbskin="dg:dg_scrollbar">
-		<scrollFL>
-			<Button pos="10,10,@200,@200" text="滚动条下的一个子控件" skin="dg:dg_custombtn" />
-		</scrollFL>
+		<scrollfl>
+			<button pos="10,10,@200,@200" text="滚动条下的一个子控件" skin="dg:dg_custombtn" />
+		</scrollfl>
 	</scrollwnd>
-	<RectTracker moveskin="dg:dg_drag_move" clrdot="pbgra(00,00,ff,ff)" clrboxdash="pbgra(00,00,ff,ff)" clrboxsolid="pbgra(00,00,00,ff)" />
-</root> 
+	<recttracker moveskin="dg:dg_drag_move" clrdot="pbgra(00,00,ff,ff)" clrboxdash="pbgra(00,00,ff,ff)" clrboxsolid="pbgra(00,00,00,ff)" />
+</root>

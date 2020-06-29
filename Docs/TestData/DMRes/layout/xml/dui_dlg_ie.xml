@@ -1,4 +1,5 @@
-﻿<dm name="ie" title="ie" initsize="0,0" resizable="0" translucent="0" alpha = "0xff">
+<?xml version="1.0"?>
+<dm name="ie" title="ie" initsize="0,0" resizable="0" translucent="0" alpha="0xff">
 	<root>
 		<ie name="ie" pos="0,0,-0,-0" url="www.baidu.com" />
 	</root>

@@ -1,45 +1,41 @@
-﻿<dm  initsize="650,369" minsize="650,369" bresize="1" maxsize="-1,-1" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(3d,3d,3d,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@36" bdrag="1"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,34" text="IMG" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="650,369" minsize="650,369" bresize="1" maxsize="-1,-1" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(3d,3d,3d,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@36" bdrag="1">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,34" text="IMG" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
-		<window pos="5,38,@250,-60" clrbg="pbgra(59,59,59,ff)"><!--左边区-->
-
+		<window pos="5,38,@250,-60" clrbg="pbgra(59,59,59,ff)">
+			<!--左边区-->
 			<window pos="2,0,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@34,@18" text="name:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit   name="ds_img_name" pos="[0,0,-0,@18" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<label pos="0,0,@34,@18" text="name:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_img_name" pos="[0,0,-0,@18" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			</window>
-			
 			<window pos="2,23,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@41,@18" text="目录:\" align="right"  font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit name="ds_img_dir" pos="[0,0,-24,@18" text=""  breadonly="1"
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
-				<button name="ds_img_opendir" pos="-24,0,-0,-0" text="..."  skin="ds_custombutton" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
+				<label pos="0,0,@41,@18" text="目录:\" align="right" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_img_dir" pos="[0,0,-24,@18" text="" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<button name="ds_img_opendir" pos="-24,0,-0,-0" text="..." skin="ds_custombutton" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
 			</window>
-			
 			<window pos="2,46,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@48,@18" text="图片名:" align="right"  font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit name="ds_img_filename" pos="[0,0,-40,@18" text=""
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
-				<edit name="ds_img_fileafx" pos="[0,0,-0,@18" text=""  breadonly="1"
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<label pos="0,0,@48,@18" text="图片名:" align="right" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_img_filename" pos="[0,0,-40,@18" text="" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<edit name="ds_img_fileafx" pos="[0,0,-0,@18" text="" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			</window>
-			
-			<checkbox name="ds_img_bmult" pos="2,69,-2,@18" text="使用多图拼接-->" checkskin="ds_checkbox"  align="left" brightbox="1" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<checkbox name="ds_img_bvert" pos="2,92,-2,@18" bvisible="0" text="多图坚直排列-->" checkskin="ds_checkbox"  align="left" brightbox="1" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button   name="ds_img_save"  pos="2,115,@50,@18" bvisible="0" text="导出" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button   name="ds_img_clean"  pos="[5,115,@50,@18"  bvisible="0" text="清空" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
+			<checkbox name="ds_img_bmult" pos="2,69,-2,@18" text="使用多图拼接-->" checkskin="ds_checkbox" align="left" brightbox="1" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+			<checkbox name="ds_img_bvert" pos="2,92,-2,@18" bvisible="0" text="多图坚直排列-->" checkskin="ds_checkbox" align="left" brightbox="1" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button name="ds_img_save" pos="2,115,@50,@18" bvisible="0" text="导出" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button name="ds_img_clean" pos="[5,115,@50,@18" bvisible="0" text="清空" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
-		<duimgeditor name="ds_img_editor" pos="255,38,-0,-60" text="请拖动文件到此处(仅显示可显示的图片)" clrtext="pbgra(c8,8c,93,ff)" skin="ds_imgeditbg" sbskin="ds_scrollbar" arrowwidth="0"><!--右边区-->
-		</duimgeditor>
-		<richedit name="ds_img_xml"  pos="0,-60,-0,@24" clrbg="pbgra(c8,8c,93,ff)" clrcaret="pbgra(cc,cc,cc,cc)" 
-		font="face:新宋体,size:12,weight:100" bwordwrap="0" breadonly="1" bwantreturn="1" bmultilines="1" caretanimatecount="5" 
-		clrtext="rgba(ff,ff,ff,ff)" bhscroll="1" sbskin="ds_scrollbar" arrowwidth="0"/>
-		<window pos="0,-36,-0,-0"><!--下边区-->
-			<static name="ds_img_path" pos="0,0,-150,-0" text="\image\"  align="left" font="face:新宋体,size:22,weight:700" clrtext="pbgra(00,00,ff,ff)"/>
-			<button  id="1" pos="-150,10,@60,@24"  text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button  id="2" pos="-74,10,@60,@24"  text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
+		<!--右边区-->
+		<duimgeditor name="ds_img_editor" pos="255,38,-0,-60" text="请拖动文件到此处(仅显示可显示的图片)" clrtext="pbgra(c8,8c,93,ff)" skin="ds_imgeditbg" sbskin="ds_scrollbar" arrowwidth="0" />
+		<richedit name="ds_img_xml" pos="0,-60,-0,@24" clrbg="pbgra(c8,8c,93,ff)" clrcaret="pbgra(cc,cc,cc,cc)" font="face:新宋体,size:12,weight:100" bwordwrap="0" breadonly="1" bwantreturn="1" bmultilines="1" caretanimatecount="5" clrtext="rgba(ff,ff,ff,ff)" bhscroll="1" sbskin="ds_scrollbar" arrowwidth="0" />
+		<window pos="0,-36,-0,-0">
+			<!--下边区-->
+			<label name="ds_img_path" pos="0,0,-150,-0" text="\image\" align="left" font="face:新宋体,size:22,weight:700" clrtext="pbgra(00,00,ff,ff)" />
+			<button id="1" pos="-150,10,@60,@24" text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-74,10,@60,@24" text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

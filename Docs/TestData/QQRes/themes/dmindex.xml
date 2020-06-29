@@ -1,23 +1,24 @@
-﻿<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
-<resource>  
-	<themes name="默认主题"> 
-		<file name="默认主题" path="themes\theme0\dmindex.xml"/>
-		<file name="主题1" path="themes\theme1\dmindex.xml"/>
-		<file name="主题2" path="themes\theme2\dmindex.xml"/>
-		<file name="主题3" path="themes\theme3\dmindex.xml"/>
-		<file name="主题4" path="themes\theme4\dmindex.xml"/>
-		<file name="主题5" path="themes\theme5\dmindex.xml"/>
-		<file name="主题6" path="themes\theme6\dmindex.xml"/>
-		<file name="主题7" path="themes\theme7\dmindex.xml"/>
-		<file name="主题8" path="themes\theme8\dmindex.xml"/>
-		<file name="主题9" path="themes\theme9\dmindex.xml"/>
-		<file name="主题10" path="themes\theme10\dmindex.xml"/>
-		<file name="主题11" path="themes\theme11\dmindex.xml"/>
-		<file name="主题12" path="themes\theme12\dmindex.xml"/>
-		<file name="主题13" path="themes\theme13\dmindex.xml"/>
-		<file name="主题14" path="themes\theme14\dmindex.xml"/>
-		<file name="主题15" path="themes\theme15\dmindex.xml"/>
-		<file name="主题16" path="themes\theme16\dmindex.xml"/>
-		<file name="主题17" path="themes\theme17\dmindex.xml"/>
+<?xml version="1.0"?>
+<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
+<resource>
+	<themes name="默认主题">
+		<file name="默认主题" path="themes\theme0\dmindex.xml" />
+		<file name="主题1" path="themes\theme1\dmindex.xml" />
+		<file name="主题2" path="themes\theme2\dmindex.xml" />
+		<file name="主题3" path="themes\theme3\dmindex.xml" />
+		<file name="主题4" path="themes\theme4\dmindex.xml" />
+		<file name="主题5" path="themes\theme5\dmindex.xml" />
+		<file name="主题6" path="themes\theme6\dmindex.xml" />
+		<file name="主题7" path="themes\theme7\dmindex.xml" />
+		<file name="主题8" path="themes\theme8\dmindex.xml" />
+		<file name="主题9" path="themes\theme9\dmindex.xml" />
+		<file name="主题10" path="themes\theme10\dmindex.xml" />
+		<file name="主题11" path="themes\theme11\dmindex.xml" />
+		<file name="主题12" path="themes\theme12\dmindex.xml" />
+		<file name="主题13" path="themes\theme13\dmindex.xml" />
+		<file name="主题14" path="themes\theme14\dmindex.xml" />
+		<file name="主题15" path="themes\theme15\dmindex.xml" />
+		<file name="主题16" path="themes\theme16\dmindex.xml" />
+		<file name="主题17" path="themes\theme17\dmindex.xml" />
 	</themes>
 </resource>

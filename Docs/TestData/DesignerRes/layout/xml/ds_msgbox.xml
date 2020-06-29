@@ -1,26 +1,26 @@
-﻿<dm  initsize="350,110" minsize="350,100"  btranslucent="1" alpha = "230">
-	<root clrbg="pbgra(3a,3a,3a,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@25" clrbg="pbgra(00,00,ff,ff)" bdrag="0"><!--标题区-->
-			<static name="ds_msgtitle" pos="5,2,@180,-0" text="MSG" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="350,110" minsize="350,100" btranslucent="1" alpha="230">
+	<root clrbg="pbgra(3a,3a,3a,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@25" clrbg="pbgra(00,00,ff,ff)" bdrag="0">
+			<!--标题区-->
+			<label name="ds_msgtitle" pos="5,2,@180,-0" text="MSG" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
-		<richedit name="ds_msgtext" pos="0,25,-0,-24"  bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"  
-		sbskin="scrollbar" arrowwidth="0" font="face:新宋体,size:14,weight:400" clrtext="pbgra(ff,ff,ff,ff)"/>
+		<richedit name="ds_msgtext" pos="0,25,-0,-24" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" arrowwidth="0" font="face:新宋体,size:14,weight:400" clrtext="pbgra(ff,ff,ff,ff)" />
 		<tabctrl name="ds_msgtabctrl" tabalign="top" pos="0,-24,-0,-0" cursel="2" itemsize="78,0">
-			<tabPage>	
-				<button  id="1" pos="145,-24,@60,@24"  text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>
-				
-			<tabPage>	
-				<button  id="1" pos="-140,-24,@60,@24"  text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-				<button  id="1" pos="-76,-24,@60,@24"  text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>
-			
-			<tabPage>	
-				<button  id="1" pos="42,-24,@60,@24"  text="YES" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-				<button  id="1" pos="144,-24,@60,@24"  text="NO" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-				<button  id="1" pos="246,-24,@60,@24"  text="Cancel" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>
+			<tabpage>
+				<button id="1" pos="145,-24,@60,@24" text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
+			<tabpage>
+				<button id="1" pos="-140,-24,@60,@24" text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+				<button id="1" pos="-76,-24,@60,@24" text="" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
+			<tabpage>
+				<button id="1" pos="42,-24,@60,@24" text="YES" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+				<button id="1" pos="144,-24,@60,@24" text="NO" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+				<button id="1" pos="246,-24,@60,@24" text="Cancel" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
 		</tabctrl>
 	</root>
 </dm>

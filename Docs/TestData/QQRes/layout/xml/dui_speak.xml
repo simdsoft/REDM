@@ -1,57 +1,58 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<listboxex pos="0,0,-0,-0" itemheight="54" sbskin="list_scroll" clrbg="pbgra(50,50,50,50)" sbwidth="12">
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon2"/>	
-				<static  pos="60,7" possize="-1,-1" text="西安交通大学深圳总群" clrtext="pbgra(00,00,ff,ff)"/>
-				<static  pos="60,27" possize="-1,-1" text="广电-软件-马丁:要有资金支持 现在" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon2" />
+				<label pos="60,7" possize="-1,-1" text="西安交通大学深圳总群" clrtext="pbgra(00,00,ff,ff)" />
+				<label pos="60,27" possize="-1,-1" text="广电-软件-马丁:要有资金支持 现在" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>	
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon1"/>	
-				<static  pos="60,7" possize="-1,-1" text="我的iphone"/>
-				<static  pos="60,27" possize="-1,-1" text="您已登陆手机QQ,可传文件到手机" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon1" />
+				<label pos="60,7" possize="-1,-1" text="我的iphone" />
+				<label pos="60,27" possize="-1,-1" text="您已登陆手机QQ,可传文件到手机" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon3"/>	
-				<static  pos="60,7" possize="-1,-1" text="时鉴宣"/>
-				<static  pos="60,27" possize="-1,-1" text="Everything will be OK" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon3" />
+				<label pos="60,7" possize="-1,-1" text="时鉴宣" />
+				<label pos="60,27" possize="-1,-1" text="Everything will be OK" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon4"/>	
-				<static  pos="60,7" possize="-1,-1" text="godsu"/>
-				<link  pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-				<static  pos="60,27" possize="-1,-1" text="Keep on going never give up...." clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon4" />
+				<label pos="60,7" possize="-1,-1" text="godsu" />
+				<link pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+				<label pos="60,27" possize="-1,-1" text="Keep on going never give up...." clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon5"/>	
-				<static  pos="60,7" possize="-1,-1" text="joey"/>
-				<link  pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-				<static  pos="60,27" possize="-1,-1" text="Believe in yourself." clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon5" />
+				<label pos="60,7" possize="-1,-1" text="joey" />
+				<link pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+				<label pos="60,27" possize="-1,-1" text="Believe in yourself." clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon6"/>	
-				<static  pos="60,7" possize="-1,-1" text="shineyang"/>
-				<link  pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-				<static  pos="60,27" possize="-1,-1" text="Never say die." clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon6" />
+				<label pos="60,7" possize="-1,-1" text="shineyang" />
+				<link pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+				<label pos="60,27" possize="-1,-1" text="Never say die." clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 		<item>
 			<window pos="0,0,-0,-0" skin="list_bg">
-				<button pos="10,7,@40,@40" skin="list_selicon7"/>	
-				<static  pos="60,7" possize="-1,-1" text="Terryzhang"/>
-				<link  pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-				<static  pos="60,27" possize="-1,-1" text="~~Learn and live." clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+				<button pos="10,7,@40,@40" skin="list_selicon7" />
+				<label pos="60,7" possize="-1,-1" text="Terryzhang" />
+				<link pos="[10,7,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+				<label pos="60,27" possize="-1,-1" text="~~Learn and live." clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 			</window>
-		</item>		
+		</item>
 	</listboxex>
 </sub>

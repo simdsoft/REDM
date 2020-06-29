@@ -1,15 +1,16 @@
-﻿<sub>
-	<window pos="0,0,-0,37" clrbg="pbgra(22,22,22,ff)" font="face:新宋体,size:14,weight:100" align="left" clrtext="pbgra(ff,ff,ff,ff)">	
-		<checkbox pos="0,0,@145,@37" name="ds_w_widget" text="Button" align="left" checkskin="ds_w_Button" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Button"/>
+<?xml version="1.0"?>
+<sub>
+	<window pos="0,0,-0,37" clrbg="pbgra(22,22,22,ff)" font="face:新宋体,size:14,weight:100" align="left" clrtext="pbgra(ff,ff,ff,ff)">
+		<checkbox pos="0,0,@145,@37" name="ds_w_widget" text="Button" align="left" checkskin="ds_w_Button" clrbgpush="pbgra(b8,b8,b8,ff)" clrbghover="pbgra(4a,4a,4a,ff)" clrtext="pbgra(ff,ff,ff,ff)" tipxmlid="ds_addtips" tipflags="00,145,-37,00" tiptext="Button" />
 	</window>
 	<splitlayout pos="0,38,-0,-0" bdot="1" bvert="1" sliderwidth="4" cursor="png:ds_splitv" clrslider="pbgra(22,22,22,ff)" firstchildwidth="550">
 		<dsobjeditor name="ds_objeditor" text="ctrl+n打开最近列表或拖拽Res文件进来" clrtext="pbgra(ff,ff,00,ff)" font="face:新宋体,size:20,weight:700" skin="ds_designbg" sbskin="ds_scrollbar" bfocusable="1" arrowwidth="0">
-			<static  name="ds_hoverframe" bvisible="0" skin="ds_hoverframe" pos="0,0,@200,@300"/>
-			<static  name="ds_selframe" bvisible="0" skin="ds_selframe" pos="0,0,@200,@300"/>
-			<duidragframe name="ds_dragframe"  bvisible="0" pos="0,0,@200,@300"/>
+			<label name="ds_hoverframe" bvisible="0" skin="ds_hoverframe" pos="0,0,@200,@300" />
+			<label name="ds_selframe" bvisible="0" skin="ds_selframe" pos="0,0,@200,@300" />
+			<duidragframe name="ds_dragframe" bvisible="0" pos="0,0,@200,@300" />
 		</dsobjeditor>
 		<window name="ds_right" clrbg="pbgra(33,33,33,ff)">
-			<sub src="layout:ds_xmlwnd"/>
+			<sub src="layout:ds_xmlwnd" />
 		</window>
 	</splitlayout>
 </sub>

@@ -1,7 +1,8 @@
-﻿<dm  initsize="165,86"  btranslucent="1" alpha = "255">
-	<root skin="tips_bg" >
-		<static pos="6,4,-5,-6" clrbg="pbgra(20,1c,1b,ff)">
-			<static pos="10,10,-0,@48" clrtext="pbgra(ff,ff,ff,ff)" align="left" valign="left" font="face:宋体,size:12,weight:400" bmultiLines="1" text="从TGP启动游戏即可获得:\r\n经验加成10%"/>
-		</static>
+<?xml version="1.0"?>
+<dm initsize="165,86" btranslucent="1" alpha="255">
+	<root skin="tips_bg">
+		<label pos="6,4,-5,-6" clrbg="pbgra(20,1c,1b,ff)">
+			<label pos="10,10,-0,@48" clrtext="pbgra(ff,ff,ff,ff)" align="left" valign="left" font="face:宋体,size:12,weight:400" bmultiLines="1" text="从TGP启动游戏即可获得:\r\n经验加成10%" />
+		</label>
 	</root>
 </dm>

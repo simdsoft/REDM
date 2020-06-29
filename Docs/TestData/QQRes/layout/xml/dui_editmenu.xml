@@ -1,9 +1,10 @@
-﻿<menu  bhideframe="1"  textoffset="13" itemhei="24" font="face:微软雅黑,size:13">
+<?xml version="1.0"?>
+<menu bhideframe="1" textoffset="13" itemhei="24" font="face:微软雅黑,size:13">
 	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
-	<item id="8000" text="cut          "     skin="dui_frame"/>
-	<item id="8001" text="copy  "     skin="dui_frame"/>
-	<item id="8002" text="paste " 	  skin="dui_frame"/>
-	<item id="8003" text="undo "      skin="dui_frame" />
-	<item id="8004" text="del "       skin="dui_frame"/>
-	<item id="8005" text="selall "    skin="dui_frame"/>
+	<item id="8000" text="cut          " skin="dui_frame" />
+	<item id="8001" text="copy  " skin="dui_frame" />
+	<item id="8002" text="paste " skin="dui_frame" />
+	<item id="8003" text="undo " skin="dui_frame" />
+	<item id="8004" text="del " skin="dui_frame" />
+	<item id="8005" text="selall " skin="dui_frame" />
 </menu>

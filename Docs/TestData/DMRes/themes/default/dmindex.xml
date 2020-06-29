@@ -1,76 +1,67 @@
-<resource>  
-  <PNG>
-	<file name="tranbg" 		path="themes\default\image\tranbg.png"/>
-	<file name="Border" 		path="themes\default\image\dui_border.png"/>
-	<file name="Skin1" 			path="themes\default\image\skin1.png"/>
-	<file name="Skin2" 			path="themes\default\image\skin2.png"/>
-	<file name="Btn_Skin" 		path="themes\default\image\btn_skin.png"/>
-	<file name="Btn_Close" 		path="themes\default\image\btn_close.png"/>
-	<file name="Btn_Max"   		path="themes\default\image\btn_max.png"/>
-	<file name="Btn_Restore"    path="themes\default\image\btn_restore.png"/>
-	<file name="Btn_Min"   		path="themes\default\image\btn_min.png"/>
-	<file name="Btn_Menu"  		path="themes\default\image\btn_menu.png"/>
-	<file name="Icon"      		path="themes\default\image\icon.png"/>
-	<file name="Logo"      		path="themes\default\image\logo.png"/>
-	<file name="White_Bg" 		path="themes\default\image\white_bg.png"/>
-	<file name="scanbutton" 	path="themes\default\image\scanbutton.png"/>
-	<file name="ncbg" 			path="themes\default\image\nc_border.png"/>
-	<file name="ScrollBar" 		path="themes\default\image\scrollbar.png"/>
-	<file name="webicon" 		path="themes\default\image\webicon.png"/>
-	<file name="webback" 		path="themes\default\image\webback.png"/>
-	<file name="webfront" 		path="themes\default\image\webfront.png"/>
-	<file name="webrefresh" 	path="themes\default\image\webrefresh.png"/>
-	
-	<file name="menuitembg" 	path="themes\default\image\menu\menu_itembg.png"/>
-	<file name="menuicons" 		path="themes\default\image\menu\menu_icons.png"/>
-	<file name="menusep" 		path="themes\default\image\menu\menu_sep.png"/>
-	<file name="menucheck" 		path="themes\default\image\menu\menu_check.png"/>
-	<file name="menubigskin"    path="themes\default\image\menu\Menu_BigSkin.png"/>
-	
-	<file name="combobtn"       path="themes\default\image\combox_btn.png"/>
-	<file name="checkbox"       path="themes\default\image\checkbox.png"/>
-	<file name="radiobutton"    path="themes\default\image\radiobutton.png"/>
-	<file name="iconbtn"        path="themes\default\image\iconbtn.png"/>
-	<file name="btncustom"      path="themes\default\image\btn_custom.png"/>
-	
-	<file name="treecheck"    path="themes\default\image\tree_check.png"/>
-	<file name="treetoggle"    path="themes\default\image\tree_toggle.png"/>
-	<file name="listheader"    path="themes\default\image\list_header.png"/>
-	
-	<file name="thumb_hz"        path="themes\default\image\thumb_hz.png"/>
-	<file name="thumb_vz"        path="themes\default\image\thumb_vz.png"/>
-	
-	<file name="process_channel" path="themes\default\image\process_channel.png"/>
-	<file name="process_sel_hz"  path="themes\default\image\process_sel_hz.png"/>
-	<file name="process_sel_vz"  path="themes\default\image\process_sel_vz.png"/>
-	
-	<file name="channel_hz"        path="themes\default\image\channel_hz.png"/>
-	<file name="channel_vz"        path="themes\default\image\channel_vz.png"/>
-	
-	<file name="spydrag"          path="themes\default\image\spy\spydrag.png"/>
-	<file name="spyicon"          path="themes\default\image\spy\spyicon.png"/>
-	
-	<file name="bg"         	 path="themes\default\image\bg.png"/>
-	<file name="1"         	     path="themes\default\image\1.png"/>
-	
-	<file name="tabbar_1"         	     path="themes\default\image\tab\tabbar_1.png"/>
-	<file name="tabbar_2"         	     path="themes\default\image\tab\tabbar_2.png"/>
-	<file name="tabbar_3"         	     path="themes\default\image\tab\tabbar_3.png"/>
-	<file name="tabbar_4"         	     path="themes\default\image\tab\tabbar_4.png"/>
-	<file name="tabbar_5"         	     path="themes\default\image\tab\tabbar_5.png"/>
-	<file name="tabbar_6"         	     path="themes\default\image\tab\tabbar_6.png"/>
-	<file name="tab_pagebg"         	 path="themes\default\image\tab\tab_pagebg.png"/>
-	<file name="tab_item"         		 path="themes\default\image\tab\tab_item.png"/>
-	
-  </PNG>
-  <flash>
-	<file name="1.SWF" 	path="themes\default\flash\1.swf"/>
-	<file name="2.SWF" 	path="themes\default\flash\2.swf"/>
-  </flash>
-  <gif>
-	<file name="1_gif" 	path="themes\default\Animate\1.gif"/>
-	<file name="2_gif" 	path="themes\default\Animate\2.gif"/>
-	<file name="3_gif" 	path="themes\default\Animate\3.gif"/>
-	<file name="4_gif" 	path="themes\default\Animate\4.gif"/>
-  </gif>
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="tranbg" path="themes\default\image\tranbg.png" />
+		<file name="Border" path="themes\default\image\dui_border.png" />
+		<file name="Skin1" path="themes\default\image\skin1.png" />
+		<file name="Skin2" path="themes\default\image\skin2.png" />
+		<file name="Btn_Skin" path="themes\default\image\btn_skin.png" />
+		<file name="Btn_Close" path="themes\default\image\btn_close.png" />
+		<file name="Btn_Max" path="themes\default\image\btn_max.png" />
+		<file name="Btn_Restore" path="themes\default\image\btn_restore.png" />
+		<file name="Btn_Min" path="themes\default\image\btn_min.png" />
+		<file name="Btn_Menu" path="themes\default\image\btn_menu.png" />
+		<file name="Icon" path="themes\default\image\icon.png" />
+		<file name="Logo" path="themes\default\image\logo.png" />
+		<file name="White_Bg" path="themes\default\image\white_bg.png" />
+		<file name="scanbutton" path="themes\default\image\scanbutton.png" />
+		<file name="ncbg" path="themes\default\image\nc_border.png" />
+		<file name="ScrollBar" path="themes\default\image\scrollbar.png" />
+		<file name="webicon" path="themes\default\image\webicon.png" />
+		<file name="webback" path="themes\default\image\webback.png" />
+		<file name="webfront" path="themes\default\image\webfront.png" />
+		<file name="webrefresh" path="themes\default\image\webrefresh.png" />
+		<file name="menuitembg" path="themes\default\image\menu\menu_itembg.png" />
+		<file name="menuicons" path="themes\default\image\menu\menu_icons.png" />
+		<file name="menusep" path="themes\default\image\menu\menu_sep.png" />
+		<file name="menucheck" path="themes\default\image\menu\menu_check.png" />
+		<file name="menubigskin" path="themes\default\image\menu\Menu_BigSkin.png" />
+		<file name="combobtn" path="themes\default\image\combox_btn.png" />
+		<file name="checkbox" path="themes\default\image\checkbox.png" />
+		<file name="radiobutton" path="themes\default\image\radiobutton.png" />
+		<file name="iconbtn" path="themes\default\image\iconbtn.png" />
+		<file name="btncustom" path="themes\default\image\btn_custom.png" />
+		<file name="treecheck" path="themes\default\image\tree_check.png" />
+		<file name="treetoggle" path="themes\default\image\tree_toggle.png" />
+		<file name="listheader" path="themes\default\image\list_header.png" />
+		<file name="thumb_hz" path="themes\default\image\thumb_hz.png" />
+		<file name="thumb_vz" path="themes\default\image\thumb_vz.png" />
+		<file name="process_channel" path="themes\default\image\process_channel.png" />
+		<file name="process_sel_hz" path="themes\default\image\process_sel_hz.png" />
+		<file name="process_sel_vz" path="themes\default\image\process_sel_vz.png" />
+		<file name="channel_hz" path="themes\default\image\channel_hz.png" />
+		<file name="channel_vz" path="themes\default\image\channel_vz.png" />
+		<file name="spydrag" path="themes\default\image\spy\spydrag.png" />
+		<file name="spyicon" path="themes\default\image\spy\spyicon.png" />
+		<file name="bg" path="themes\default\image\bg.png" />
+		<file name="1" path="themes\default\image\1.png" />
+		<file name="tabbar_1" path="themes\default\image\tab\tabbar_1.png" />
+		<file name="tabbar_2" path="themes\default\image\tab\tabbar_2.png" />
+		<file name="tabbar_3" path="themes\default\image\tab\tabbar_3.png" />
+		<file name="tabbar_4" path="themes\default\image\tab\tabbar_4.png" />
+		<file name="tabbar_5" path="themes\default\image\tab\tabbar_5.png" />
+		<file name="tabbar_6" path="themes\default\image\tab\tabbar_6.png" />
+		<file name="tab_pagebg" path="themes\default\image\tab\tab_pagebg.png" />
+		<file name="tab_item" path="themes\default\image\tab\tab_item.png" />
+	</png>
+	<flash>
+		<file name="1.SWF" path="themes\default\flash\1.swf" />
+		<file name="2.SWF" path="themes\default\flash\2.swf" />
+	</flash>
+	<gif>
+		<file name="1_gif" path="themes\default\Animate\1.gif" />
+		<file name="2_gif" path="themes\default\Animate\2.gif" />
+		<file name="3_gif" path="themes\default\Animate\3.gif" />
+		<file name="4_gif" path="themes\default\Animate\4.gif" />
+	</gif>
 </resource>

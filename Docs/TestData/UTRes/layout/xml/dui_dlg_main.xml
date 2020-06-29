@@ -1,106 +1,91 @@
-﻿<dm name="mainWindow" title="duimagic示例" size="800,572" minsize="600,500" resizable="1" translucent="0" alpha = "255">
-  <root>
-	<window name="frontwnd" pos="0,0,-0,-0" Animateskin="animate:1_gif" url="FLASH:1.swf" skin="DUI_Frame">
-		<button name="btn_close"  nocache="1" pos="-49,2,-4,19"    skin="Btn_Close"     nopresize="1" tiptext="close" />
-		<button name="btn_max"    nocache="1"  pos="-75,2,-49,19"  skin="Btn_Max" />
-		<button id="10"  		  nocache="1" pos="-75,2,-49,19"   skin="Btn_Restore"   visible="0" />
-		<button name="btn_min"    nocache="1" pos="-101,2,-75,19"  skin="Btn_Min"  />
-		<button name="btn_menu"   nocache="1" pos="-127,2,-101,19" skin="Btn_Menu" />
-		
-		<link   name="link_forum" nocache="1" pos="-157,2,-127,19" style="style-link_forum" text="论坛" href="www.hgy413.com" />
-		<link   name="link_help"  nocache="1" pos="-187,2,-157,19" style="style-link_forum" text="求助" href="www.hgy413.com" />
-	
-		<window name="icon"       nocache="1" pos="8,4,@16,@16"       skin="Icon" />
-		<window name="logo"       nocache="1" pos="-154,30,@150,@60"  skin="Logo" />
-		<window name="title"      nocache="1" pos="26,4,@144,@14"     text="360安全卫士DM演示版"    font="face:宋体,size:13,bold:1,strike:0,adding:10" colorText="rgba(44,7a,a1,ff)" />
-		<tabctrl name="tab_main" nocache="1"  pos="11,24,@446,@62" CurSel="1" font="face:宋体,size:12,bold:1" colorText="rgba(38,63,82,ff)" ItemSize="-1,62" FirstItemOffset="10" tabAlign="top" focusable="1" ItemSpace="5"  ItemSkin="Tab_Item" IconSkin="Tab_Icon" iconpoint="11,0" textpoint="-1,40">
-			<tabPage nocache="1" title="常用"/>
-			<tabPage nocache="1" title="木马防火墙"/>
-			<tabPage nocache="1" title="杀毒"/>
-			<tabPage nocache="1" title="网盾"/>
-			<tabPage nocache="1" title="防盗号"/>
-			<tabPage nocache="1" title="软件管家"/>
-		</tabctrl>
-		<tabctrl name="tab_ctrl"  nocache="1" pos="5,91,-5,-25" CurSel="0" SliderSteps="20"  font="face:宋体,size:12,bold:0" skin="TabCtrl_PageBg" colorText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7" tabAlign="top" ItemSpace="3"  ItemBgSkin="TabCtrl_ItemBg" ItemSkin="TabCtrl_Item" iconpoint="0,5" textpoint="-1,10">
-			<tabPage  nocache="1"   title="通用控件">
-				<sub src="layout:dui_page_widget"/>
-			</tabPage>
-			<tabPage  nocache="1" colorBg1="rgba(fc,fc,ff,ff)" bCenterSlider="1" title="网页展示">
-				<sub src="layout:dui_page_webit"/>
-			</tabPage>
-				
-			<tabPage  nocache="1" bCenterSlider="1" skin="Btn_Menu" title="多帧动画">
-				<Animate nocache="1" name="ani_gif" pos="0,0,@568,@425"   Animateskin="animate:1_gif" />
-				<button nocache="1" name="scan_btn" pos="10,10,@140,@53" skin="scanbutton"/>
-			</tabPage>
-			<tabPage  nocache="1" colorBg="rgba(ff,ff,ff,ff)" title="流式布局">
-				<sub src="layout:dui_page_flowlayout"/>
-			</tabPage>
-			<tabPage  title="清理垃圾">
-			
-			</tabPage>
-			<tabPage  nocache="1" title="清理痕迹"/>
-			<tabPage  nocache="1" title="系统修复">
-				<flash name=""  nocache="1" pos="0,0,-0,-0"  url="..\..\test\unittest\data\res\swf\game1.swf" delay="1" />
-			</tabPage>
-			<tabPage  nocache="1" title="高级工具"/>
-	  </tabctrl>
-	  <window name="version"      nocache="1" pos="2,-25,@158,-0" align="left" font="face:宋体,size:12,bold:0" colorText="rgba(38,63,82,ff)" text="主程序版本: 1.0"/>
-	  <window name="muma" 		nocache="1" pos="[0,-25,@151,-0" align="left" font="face:宋体,size:12,bold:0" colorText="rgba(38,63,82,ff)" text="备用木马库: 2014-11-14"/>
-	  <link   name="link_update"  nocache="1" pos="[0,-25,@54,-0"  font="face:宋体,size:12,bold:0" cursor="hand" colorText="rgba(33,78,33,ff)" text="检查更新" href="www.hgy413.com" />
-	</window>
-	<Turn3dView name="turn3d"       nocache="1" pos="0,0,-0,-0" zStep="100" yStep="2"/>
-  </root>
-  
-  
-  <style>
-    <!--局部style对象-->
-	<style name="style-link_forum" cursor="hand" colorText="rgba(00,00,ff,e6)" colorTextHover="rgba(00,f0,cf,e6)" colorTextPush="rgba(00,00,00,e6)" font="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0,adding:0" fontHover="face:宋体,size:13,underline:1"/>
-	<style name="style-DUI_Frame" skin="DUI_Frame" font="" colorText="#000000" margin-x="0"/>
-	<style name="style-Link" skin="DUI_Frame" cursor="hand" colorText="rgba(1e,78,d5,ff)" colorTextHover="rgba(1e,78,d5,ff)" font="italic:1" fontHover="underline:1,italic:1" />
-	<style name="style-edit" ncskin="Nc_bg" margin="2,2,2,2" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0,adding:0" />
- </style>
-   <skin>
-    <!--局部skin对象-->
-	<imgframe name="DUI_Frame"  	src="PNG:DUI_Frame"     states="2" margin-x="2" margin-y="2"/>
-	<imglist name="Btn_Close"   	src="PNG:Btn_Close"     states="3"/>
-	<imglist name="Btn_Max"     	src="PNG:Btn_Max"   	states="3"/>
-	<imglist name="Btn_Restore"	 	src="PNG:Btn_Restore"   states="3"/>
-	<imglist name="Btn_Min"     	src="PNG:Btn_Min"  	    states="3"/>
-	<imglist name="Btn_Menu"    	src="PNG:Btn_Menu"  	states="3"/>
-	<imglist name="Icon"        	src="PNG:Icon"      	states="1"/>
-	<imglist name="Logo"        	src="PNG:Logo"      	states="1"/>
-	
-	<imglist name="Tab_Item" 		src="PNG:Tab_Item" 		states="3"/>
-    <imglist name="Tab_Icon" 		src="PNG:Tab_Icon" 		states="6"/>
-	<imglist name="TabCtrl_Item" 	src="PNG:TabCtrl_Item" 	states="3"/>
-	<imglist name="TabCtrl_ItemBg" 	src="PNG:TabCtrl_ItemBg" states="1"/>
-	<imgframe name="TabCtrl_PageBg" src="PNG:TabCtrl_PageBg" states="1" margin-x="1" margin-y="1"/>
-	
-	<imglist name="White_Bg" 		src="PNG:White_Bg" 		states="1"/>
-	<imglist name="Black_Bg" 		src="PNG:Black_Bg" 		states="1"/>
-	<imglist name="scanbutton" 		src="PNG:scanbutton"    states="3"/>
-	<imglist name="Webicon" 		src="PNG:webicon"       states="1"/>
-	<imglist name="WebBack" 		src="PNG:webback"       states="4"/>
-	<imglist name="webfront" 		src="PNG:webfront"      states="4"/>
-	<imglist name="webrefresh" 		src="PNG:webrefresh"    states="4"/>
-	
-	<imgframe name="Nc_bg"          src="PNG:Nc_bg"         states="2" margin-x="2" margin-y="2" />
-	<scrollbar name="ScrollBar"     src="PNG:scrollbar"     margin="3" states="1"/>
-	
-	<imgframe name="menuitembg" 	src="PNG:menuitembg"    states="2" left="1" top="2" bottom="2"/>
-	<imglist name="menuicons" 		src="PNG:menuicons"     states="12"/>
-	<imglist name="menusep" 		src="PNG:menusep"       states="1"/>
-	<imglist name="menucheck" 		src="PNG:menucheck"     states="2"/>
-	<imglist name="menubigskin" 	src="PNG:menubigskin"   states="2"/>
-	
-	<imglist name="combobtn" 	    src="PNG:combobtn"      states="3"/>
-	<imglist name="treecheck" 	    src="PNG:treecheck"     states="9"/>
-	<imglist name="treetoggle" 	    src="PNG:treetoggle"    states="6"/>
-	
-	<imgframe name="listheader"     src="PNG:listheader"    states="4" margin-x="2" margin-y="2"/>
-	
-	
-	
-  </skin>
+<?xml version="1.0"?>
+<dm name="mainWindow" title="duimagic示例" size="800,572" minsize="600,500" resizable="1" translucent="0" alpha="255">
+	<root>
+		<window name="frontwnd" pos="0,0,-0,-0" Animateskin="animate:1_gif" url="FLASH:1.swf" skin="DUI_Frame">
+			<button name="btn_close" nocache="1" pos="-49,2,-4,19" skin="Btn_Close" nopresize="1" tiptext="close" />
+			<button name="btn_max" nocache="1" pos="-75,2,-49,19" skin="Btn_Max" />
+			<button id="10" nocache="1" pos="-75,2,-49,19" skin="Btn_Restore" visible="0" />
+			<button name="btn_min" nocache="1" pos="-101,2,-75,19" skin="Btn_Min" />
+			<button name="btn_menu" nocache="1" pos="-127,2,-101,19" skin="Btn_Menu" />
+			<link name="link_forum" nocache="1" pos="-157,2,-127,19" style="style-link_forum" text="论坛" href="www.hgy413.com" />
+			<link name="link_help" nocache="1" pos="-187,2,-157,19" style="style-link_forum" text="求助" href="www.hgy413.com" />
+			<window name="icon" nocache="1" pos="8,4,@16,@16" skin="Icon" />
+			<window name="logo" nocache="1" pos="-154,30,@150,@60" skin="Logo" />
+			<window name="title" nocache="1" pos="26,4,@144,@14" text="360安全卫士DM演示版" font="face:宋体,size:13,bold:1,strike:0,adding:10" colorText="rgba(44,7a,a1,ff)" />
+			<tabctrl name="tab_main" nocache="1" pos="11,24,@446,@62" CurSel="1" font="face:宋体,size:12,bold:1" colorText="rgba(38,63,82,ff)" ItemSize="-1,62" FirstItemOffset="10" tabAlign="top" focusable="1" ItemSpace="5" ItemSkin="Tab_Item" IconSkin="Tab_Icon" iconpoint="11,0" textpoint="-1,40">
+				<tabpage nocache="1" title="常用" />
+				<tabpage nocache="1" title="木马防火墙" />
+				<tabpage nocache="1" title="杀毒" />
+				<tabpage nocache="1" title="网盾" />
+				<tabpage nocache="1" title="防盗号" />
+				<tabpage nocache="1" title="软件管家" />
+			</tabctrl>
+			<tabctrl name="tab_ctrl" nocache="1" pos="5,91,-5,-25" CurSel="0" SliderSteps="20" font="face:宋体,size:12,bold:0" skin="TabCtrl_PageBg" colorText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7" tabAlign="top" ItemSpace="3" ItemBgSkin="TabCtrl_ItemBg" ItemSkin="TabCtrl_Item" iconpoint="0,5" textpoint="-1,10">
+				<tabpage nocache="1" title="通用控件">
+					<sub src="layout:dui_page_widget" />
+				</tabpage>
+				<tabpage nocache="1" colorBg1="rgba(fc,fc,ff,ff)" bCenterSlider="1" title="网页展示">
+					<sub src="layout:dui_page_webit" />
+				</tabpage>
+				<tabpage nocache="1" bCenterSlider="1" skin="Btn_Menu" title="多帧动画">
+					<animate nocache="1" name="ani_gif" pos="0,0,@568,@425" Animateskin="animate:1_gif" />
+					<button nocache="1" name="scan_btn" pos="10,10,@140,@53" skin="scanbutton" />
+				</tabpage>
+				<tabpage nocache="1" colorBg="rgba(ff,ff,ff,ff)" title="流式布局">
+					<sub src="layout:dui_page_flowlayout" />
+				</tabpage>
+				<tabpage title="清理垃圾" />
+				<tabpage nocache="1" title="清理痕迹" />
+				<tabpage nocache="1" title="系统修复">
+					<flash name="" nocache="1" pos="0,0,-0,-0" url="..\..\test\unittest\data\res\swf\game1.swf" delay="1" />
+				</tabpage>
+				<tabpage nocache="1" title="高级工具" />
+			</tabctrl>
+			<window name="version" nocache="1" pos="2,-25,@158,-0" align="left" font="face:宋体,size:12,bold:0" colorText="rgba(38,63,82,ff)" text="主程序版本: 1.0" />
+			<window name="muma" nocache="1" pos="[0,-25,@151,-0" align="left" font="face:宋体,size:12,bold:0" colorText="rgba(38,63,82,ff)" text="备用木马库: 2014-11-14" />
+			<link name="link_update" nocache="1" pos="[0,-25,@54,-0" font="face:宋体,size:12,bold:0" cursor="hand" colorText="rgba(33,78,33,ff)" text="检查更新" href="www.hgy413.com" />
+		</window>
+		<turn3dview name="turn3d" nocache="1" pos="0,0,-0,-0" zStep="100" yStep="2" />
+	</root>
+	<style>
+		<!--局部style对象-->
+		<style name="style-link_forum" cursor="hand" colorText="rgba(00,00,ff,e6)" colorTextHover="rgba(00,f0,cf,e6)" colorTextPush="rgba(00,00,00,e6)" font="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0,adding:0" fontHover="face:宋体,size:13,underline:1" />
+		<style name="style-DUI_Frame" skin="DUI_Frame" font="" colorText="#000000" margin-x="0" />
+		<style name="style-Link" skin="DUI_Frame" cursor="hand" colorText="rgba(1e,78,d5,ff)" colorTextHover="rgba(1e,78,d5,ff)" font="italic:1" fontHover="underline:1,italic:1" />
+		<style name="style-edit" ncskin="Nc_bg" margin="2,2,2,2" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0,adding:0" />
+	</style>
+	<skin>
+		<!--局部skin对象-->
+		<imgframe name="DUI_Frame" src="PNG:DUI_Frame" states="2" margin-x="2" margin-y="2" />
+		<imglist name="Btn_Close" src="PNG:Btn_Close" states="3" />
+		<imglist name="Btn_Max" src="PNG:Btn_Max" states="3" />
+		<imglist name="Btn_Restore" src="PNG:Btn_Restore" states="3" />
+		<imglist name="Btn_Min" src="PNG:Btn_Min" states="3" />
+		<imglist name="Btn_Menu" src="PNG:Btn_Menu" states="3" />
+		<imglist name="Icon" src="PNG:Icon" states="1" />
+		<imglist name="Logo" src="PNG:Logo" states="1" />
+		<imglist name="Tab_Item" src="PNG:Tab_Item" states="3" />
+		<imglist name="Tab_Icon" src="PNG:Tab_Icon" states="6" />
+		<imglist name="TabCtrl_Item" src="PNG:TabCtrl_Item" states="3" />
+		<imglist name="TabCtrl_ItemBg" src="PNG:TabCtrl_ItemBg" states="1" />
+		<imgframe name="TabCtrl_PageBg" src="PNG:TabCtrl_PageBg" states="1" margin-x="1" margin-y="1" />
+		<imglist name="White_Bg" src="PNG:White_Bg" states="1" />
+		<imglist name="Black_Bg" src="PNG:Black_Bg" states="1" />
+		<imglist name="scanbutton" src="PNG:scanbutton" states="3" />
+		<imglist name="Webicon" src="PNG:webicon" states="1" />
+		<imglist name="WebBack" src="PNG:webback" states="4" />
+		<imglist name="webfront" src="PNG:webfront" states="4" />
+		<imglist name="webrefresh" src="PNG:webrefresh" states="4" />
+		<imgframe name="Nc_bg" src="PNG:Nc_bg" states="2" margin-x="2" margin-y="2" />
+		<scrollbar name="ScrollBar" src="PNG:scrollbar" margin="3" states="1" />
+		<imgframe name="menuitembg" src="PNG:menuitembg" states="2" left="1" top="2" bottom="2" />
+		<imglist name="menuicons" src="PNG:menuicons" states="12" />
+		<imglist name="menusep" src="PNG:menusep" states="1" />
+		<imglist name="menucheck" src="PNG:menucheck" states="2" />
+		<imglist name="menubigskin" src="PNG:menubigskin" states="2" />
+		<imglist name="combobtn" src="PNG:combobtn" states="3" />
+		<imglist name="treecheck" src="PNG:treecheck" states="9" />
+		<imglist name="treetoggle" src="PNG:treetoggle" states="6" />
+		<imgframe name="listheader" src="PNG:listheader" states="4" margin-x="2" margin-y="2" />
+	</skin>
 </dm>

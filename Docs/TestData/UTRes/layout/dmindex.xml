@@ -1,10 +1,12 @@
-﻿<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
-<resource>  
-	<global><!--全局属性,直接包含skin、style、默认字体等-->
-		<file name="global" path="layout\xml\global.xml"  />
+<?xml version="1.0"?>
+<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
+<resource>
+	<global>
+		<!--全局属性,直接包含skin、style、默认字体等-->
+		<file name="global" path="layout\xml\global.xml" />
 	</global>
 	<layout>
-		<file name="dui_main" path="layout\xml\dui_dlg_main.xml"  />
-		<file name="dui_page_widget" path="layout\xml\dui_page_widget.xml"  />
+		<file name="dui_main" path="layout\xml\dui_dlg_main.xml" />
+		<file name="dui_page_widget" path="layout\xml\dui_page_widget.xml" />
 	</layout>
 </resource>

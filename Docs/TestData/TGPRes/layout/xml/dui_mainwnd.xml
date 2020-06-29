@@ -1,20 +1,21 @@
-﻿<dm  initsize="282,717" minsize="282,717" maxsize="282,717" regtip="TGPTipsImpl" bresize="0" btranslucent="0" alpha = "255">
-	<root><!--root做为唯一的标识,它等同于window Node-->
+<?xml version="1.0"?>
+<dm initsize="282,717" minsize="282,717" maxsize="282,717" regtip="TGPTipsImpl" bresize="0" btranslucent="0" alpha="255">
+	<root>
+		<!--root做为唯一的标识,它等同于window Node-->
 		<window pos="0,0,-0,-0" skin="mainskin:main" bfocusable="1">
-			<window pos="0,0,-0,@21" bdrag="1"><!--可拖动区-->
-				<static pos="10,3,@91,@20" skin="logo"/>
-				<button name="button_menu"  pos="-87,11,@24,@11" skin="menu" cursor="hand"/>
-				<button name="button_close" pos="-22,11,@9,@9" 	skin="button_close" cursor="hand"/>
-				<button name="button_mini"  pos="-49,11,@9,@12" skin="button_mini" cursor="hand" />
+			<window pos="0,0,-0,@21" bdrag="1">
+				<!--可拖动区-->
+				<label pos="10,3,@91,@20" skin="logo" />
+				<button name="button_menu" pos="-87,11,@24,@11" skin="menu" cursor="hand" />
+				<button name="button_close" pos="-22,11,@9,@9" skin="button_close" cursor="hand" />
+				<button name="button_mini" pos="-49,11,@9,@12" skin="button_mini" cursor="hand" />
 			</window>
-			<tabctrl name="maintab" pos="0,116,-0,-48"  itemsize="94,37"  mainbgskin="tab_mainbg">
-				<tabPage itemskin="tab_game">
-					<sub src="layout:dui_tab_game"/>
-				</tabPage>
-				<tabPage itemskin="tab_group">
-				</tabPage>
-				<tabPage itemskin="tab_friend">
-				</tabPage>
+			<tabctrl name="maintab" pos="0,116,-0,-48" itemsize="94,37" mainbgskin="tab_mainbg">
+				<tabpage itemskin="tab_game">
+					<sub src="layout:dui_tab_game" />
+				</tabpage>
+				<tabpage itemskin="tab_group" />
+				<tabpage itemskin="tab_friend" />
 			</tabctrl>
 		</window>
 	</root>

@@ -1,9 +1,12 @@
-﻿<dm  initsize="100,100"  btranslucent="1" alpha = "220">
-	<root name="tips2" clrbg="pbgra(ff,00,ff,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<gif  pos="0,0,-0,80" badjust="1" gifskin="gif:2_gif"/>
-		<link   name="link_forum"  pos="0,80,-0,-0" style="style-link" text="个人主页" href="www.hgy413.com" />
+<?xml version="1.0"?>
+<dm initsize="100,100" btranslucent="1" alpha="220">
+	<root name="tips2" clrbg="pbgra(ff,00,ff,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<gif pos="0,0,-0,80" badjust="1" gifskin="gif:2_gif" />
+		<link name="link_forum" pos="0,80,-0,-0" style="style-link" text="个人主页" href="www.hgy413.com" />
 	</root>
-	<style name="tips2"><!--局部style对象,外部可在窗口销毁时释放-->
+	<style name="tips2">
+		<!--局部style对象,外部可在窗口销毁时释放-->
 		<style id="style-Link" cursor="hand" clrtext="pbgra(d5,78,1e,ff)" clrTextHover="pbgra(d5,78,1e,ff)" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0" fontHover="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0" />
 	</style>
 </dm>

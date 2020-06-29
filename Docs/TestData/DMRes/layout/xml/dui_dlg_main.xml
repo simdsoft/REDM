@@ -1,76 +1,74 @@
-﻿<DM  initsize="1156,814" minsize="800,600" maxsize="-1,-1" bresize="1" btranslucent="1" alpha = "240">
-  <root name="mainWindow" skin="tranbg" bdrag="1">
-	<flash pos="0,0,-0,%23" bmsgnohandle="1" url="http://www.hgy413.com/swf/2.swf"/>
-	<window name="frontwnd" pos="%24,%23,%94,%95"  valign="top" style="custom" alpha="0xff">
-		<window name="caption" pos="0,0,-0,36"  bdrag="1"><!--可拖动区-->
-			<static pos="100,0,-100,@20" text="敲击ctrl+enter来控制最大化和恢复切换" align="center"/>
-			<button name="btn_close"   pos="-49,2,-4,19"    skin="Btn_Close"    banimate="1" nopresize="1" tiptext="close" />
-			<button name="btn_max"     pos="-75,2,-49,19"   skin="Btn_Max" accel="ctrl+enter" />
-			<button id="10"  		   pos="-75,2,-49,19"   skin="Btn_Restore"   accel="ctrl+enter" bvisible="0" />
-			<button name="btn_min"     pos="-101,2,-75,19"  skin="Btn_Min"  />
-			<button name="btn_menu"    pos="-127,2,-101,19" skin="Btn_Menu" />
-			<button name="btn_skin"    pos="-152,2,-132,22" skin="Btn_Skin" cursor="hand"/>
-			<link   name="link_forum"  pos="-187,4,-157,19" style="style-link" text="论坛" href="www.hgy413.com" />
+<?xml version="1.0"?>
+<dm initsize="1156,814" minsize="800,600" maxsize="-1,-1" bresize="1" btranslucent="1" alpha="240">
+	<root name="mainWindow" skin="tranbg" bdrag="1">
+		<flash pos="0,0,-0,%23" bmsgnohandle="1" url="http://www.hgy413.com/swf/2.swf" />
+		<window name="frontwnd" pos="%24,%23,%94,%95" valign="top" style="custom" alpha="0xff">
+			<window name="caption" pos="0,0,-0,36" bdrag="1">
+				<!--可拖动区-->
+				<label pos="100,0,-100,@20" text="敲击ctrl+enter来控制最大化和恢复切换" align="center" />
+				<button name="btn_close" pos="-49,2,-4,19" skin="Btn_Close" banimate="1" nopresize="1" tiptext="close" />
+				<button name="btn_max" pos="-75,2,-49,19" skin="Btn_Max" accel="ctrl+enter" />
+				<button id="10" pos="-75,2,-49,19" skin="Btn_Restore" accel="ctrl+enter" bvisible="0" />
+				<button name="btn_min" pos="-101,2,-75,19" skin="Btn_Min" />
+				<button name="btn_menu" pos="-127,2,-101,19" skin="Btn_Menu" />
+				<button name="btn_skin" pos="-152,2,-132,22" skin="Btn_Skin" cursor="hand" />
+				<link name="link_forum" pos="-187,4,-157,19" style="style-link" text="论坛" href="www.hgy413.com" />
+			</window>
+			<!--中间状态区-->
+			<window name="icon" pos="8,4,@16,@16" skin="Icon" />
+			<window name="logo" pos="-154,30,@150,@60" skin="Logo" />
+			<window name="title" pos="26,4,@144,@14" text="360安全卫士DM演示版" font="face:宋体,size:13,weight:800,strike:0" clrtext="rgba(44,7a,a1,ff)" />
+			<!--tabbar状态区-->
+			<tabctrl name="tabmain" pos="11,24,@446,@62" CurSel="1" font="face:宋体,size:12,weight:800" clrText="rgba(38,63,82,ff)" ItemSize="65,62" FirstItemOffset="10" tabAlign="top" focusable="1" ItemSpace="5" textpoint="-1,40">
+				<tabpage title="常用" itemskin="tabbar_1" />
+				<tabpage title="木马防火墙" itemskin="tabbar_2" />
+				<tabpage title="杀毒" itemskin="tabbar_3" />
+				<tabpage title="网盾" itemskin="tabbar_4" />
+				<tabpage title="防盗号" itemskin="tabbar_5" />
+				<tabpage title="软件管家" itemskin="tabbar_6" />
+			</tabctrl>
+			<button name="btn_attrtest" pos="460,24,@140,@30" text="点击弹出测试属性框!!" clrnc="pbgra(0,0,ff,ff)" ncmargin="1,1,1,1" />
+			<!--tabctrl主展示区-->
+			<tabctrl name="tabctrl" TabAlign="top" pos="5,91,-5,-25" AnimateSteps="15" skin="tab_pagebg" font="face:宋体,size:12" alpha="0xff" clrText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7" ItemSpace="3" textpoint="-1,10">
+				<tabpage itemskin="tab_item" animatetype="1" clrtexthover="rgba(ff,00,00,80)" title="通用布局">
+					<sub src="layout:dui_page_layout" />
+				</tabpage>
+				<tabpage itemskin="tab_item" animatetype="2" colorBg1="rgba(fc,fc,ff,ff)" bCenterSlider="1" title="通用控件">
+					<sub src="layout:dui_page_widget" />
+				</tabpage>
+				<tabpage itemskin="tab_item" animatetype="1" title="通用控件扩展">
+					<sub src="layout:dui_page_widgetex" />
+				</tabpage>
+				<tabpage itemskin="tab_item" animatetype="3" title="GIF展示">
+					<sub src="layout:dui_page_gif" />
+				</tabpage>
+				<tabpage itemskin="tab_item" title="插件动画展示">
+					<sub src="layout:dui_page_animate" />
+				</tabpage>
+				<tabpage itemskin="tab_item" animatetype="1" title="ActiveX展示">
+					<sub src="layout:dui_page_activeX" />
+				</tabpage>
+				<tabpage itemskin="tab_item" animatetype="1" title="网页展示">
+					<tabctrl name="tabsubctrl" TabAlign="top" pos="0,0,-0,-0" tabalign="left" CurSel="0" AnimateSteps="15" font="face:宋体,size:12" alpha="0xff" skin="tab_pagebg" clrText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7" ItemSpace="3" textpoint="-1,10">
+						<tabpage itemskin="tab_item" title="Webkit网页">
+							<sub src="layout:dui_page_webkit" />
+						</tabpage>
+						<tabpage itemskin="tab_item" title="IE网页">
+							<sub src="layout:dui_page_ie" />
+						</tabpage>
+					</tabctrl>
+				</tabpage>
+				<tabpage itemskin="tab_item" title="预留5" />
+			</tabctrl>
 		</window>
-		<!--中间状态区-->
-		<window name="icon"        pos="8,4,@16,@16"       skin="Icon" />
-		<window name="logo"        pos="-154,30,@150,@60"  skin="Logo" />
-		<window name="title"       pos="26,4,@144,@14"     text="360安全卫士DM演示版"    font="face:宋体,size:13,weight:800,strike:0" clrtext="rgba(44,7a,a1,ff)" />
-		
-		<!--tabbar状态区-->
-		<tabctrl name="tabmain"  pos="11,24,@446,@62" CurSel="1" font="face:宋体,size:12,weight:800" clrText="rgba(38,63,82,ff)" ItemSize="65,62" FirstItemOffset="10" tabAlign="top" focusable="1" ItemSpace="5"  textpoint="-1,40">
-			<tabPage  title="常用" itemskin="tabbar_1"/>
-			<tabPage  title="木马防火墙" itemskin="tabbar_2"/>
-			<tabPage  title="杀毒" itemskin="tabbar_3"/>
-			<tabPage  title="网盾" itemskin="tabbar_4"/>
-			<tabPage  title="防盗号" itemskin="tabbar_5"/>
-			<tabPage  title="软件管家" itemskin="tabbar_6"/>
-		</tabctrl>
-		<button name="btn_attrtest"  pos="460,24,@140,@30" text="点击弹出测试属性框!!" clrnc="pbgra(0,0,ff,ff)" ncmargin="1,1,1,1"/>
-		
-		<!--tabctrl主展示区-->
-		<tabctrl name="tabctrl" TabAlign="top" pos="5,91,-5,-25" AnimateSteps="15" skin="tab_pagebg" font="face:宋体,size:12" alpha="0xff" clrText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7"  ItemSpace="3"  textpoint="-1,10">
-			<tabPage  itemskin="tab_item" animatetype="1" clrtexthover="rgba(ff,00,00,80)" title="通用布局">
-				<sub src="layout:dui_page_layout"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" animatetype="2" colorBg1="rgba(fc,fc,ff,ff)" bCenterSlider="1" title="通用控件">
-				<sub src="layout:dui_page_widget"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" animatetype="1"  title="通用控件扩展">
-				<sub src="layout:dui_page_widgetex"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" animatetype="3"  title="GIF展示">
-				<sub src="layout:dui_page_gif"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" title="插件动画展示">
-				<sub src="layout:dui_page_animate"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" animatetype="1"  title="ActiveX展示">
-				<sub  src="layout:dui_page_activeX"/>
-			</tabPage>
-			<tabPage  itemskin="tab_item" animatetype="1"  title="网页展示">
-				<tabctrl name="tabsubctrl" TabAlign="top" pos="0,0,-0,-0" tabalign="left" CurSel="0" AnimateSteps="15"  font="face:宋体,size:12" alpha="0xff" skin="tab_pagebg" clrText="rgba(38,63,82,ff)" ItemSize="78,30" FirstItemOffset="7"  ItemSpace="3" textpoint="-1,10">
-					<tabPage  itemskin="tab_item" title="Webkit网页">
-						<sub src="layout:dui_page_webkit"/>
-					</tabPage>
-					<tabPage  itemskin="tab_item" title="IE网页">
-						<sub src="layout:dui_page_ie"/>
-					</tabPage>
-				</tabctrl>
-			</tabPage>
-			<tabPage  itemskin="tab_item" title="预留5"/>
-	  </tabctrl>
-	</window>
-  </root>
-  
-  
-  <style name="myprivate">
-    <!--局部style对象,外部可在窗口销毁时释放-->
-	<style id="style-Link" cursor="hand" clrtext="rgba(1e,78,d5,ff)" clrTextHover="rgba(1e,78,d5,ff)" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0" fontHover="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0" />
-	<style id="style-edit" ncskin="ncbg" ncmargin="2,2,2,2" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0" />
-  </style>
-  <skin name="myprivate">
-    <!--局部skin对象,外部可在窗口销毁时释放-->
-	<imglist id="White_Bg" 		src="PNG:White_Bg" 		states="1"/>
-  </skin>
-</DM>
+	</root>
+	<style name="myprivate">
+		<!--局部style对象,外部可在窗口销毁时释放-->
+		<style id="style-Link" cursor="hand" clrtext="rgba(1e,78,d5,ff)" clrTextHover="rgba(1e,78,d5,ff)" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0" fontHover="face:宋体,size:13,bold:0,underline:1,italic:0,strike:0" />
+		<style id="style-edit" ncskin="ncbg" ncmargin="2,2,2,2" font="face:宋体,size:13,bold:0,underline:0,italic:0,strike:0" />
+	</style>
+	<skin name="myprivate">
+		<!--局部skin对象,外部可在窗口销毁时释放-->
+		<imglist id="White_Bg" src="PNG:White_Bg" states="1" />
+	</skin>
+</dm>

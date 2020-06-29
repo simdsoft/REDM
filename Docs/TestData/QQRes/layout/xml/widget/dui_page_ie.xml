@@ -1,12 +1,14 @@
-﻿<sub> <!--必须以UTF8格式，不然中文无法识别-->
-	<link   pos="10,10,@48,@48" skin="Webicon" style="style-Link" href="www.hgy413.com" />
-	<button name="ieback" pos="[7,30,@31,@27" skin="webback"/>
-	<button name="ierefresh" pos="[7,30,@31,@27" skin="webrefresh"/>
-	<button name="iefront" pos="[7,30,@31,@27" skin="webfront"/>
-	<button name="iejstest" pos="[7,30,@51,@27" skin="btncustom" text = "js test"/>
-	<window pos="66,4,@131,@27"  align="left" text="DM有窗口ie浏览器1.0" font="face:宋体,size:13,bold:0,strike:0,adding:10" colorText="rgba(48,4a,51,ff)"/>
-	<richedit name="ieurl" pos="237,30,-10,@27" skin="dui_frame" brichtext="0" bautosel="1" bmultilines="0"  bwantreturn="1" benabledrag="1"  sbSkin="ScrollBar"/>
+<?xml version="1.0"?>
+<sub>
+	<!--必须以UTF8格式，不然中文无法识别-->
+	<link pos="10,10,@48,@48" skin="Webicon" style="style-Link" href="www.hgy413.com" />
+	<button name="ieback" pos="[7,30,@31,@27" skin="webback" />
+	<button name="ierefresh" pos="[7,30,@31,@27" skin="webrefresh" />
+	<button name="iefront" pos="[7,30,@31,@27" skin="webfront" />
+	<button name="iejstest" pos="[7,30,@51,@27" skin="btncustom" text="js test" />
+	<window pos="66,4,@131,@27" align="left" text="DM有窗口ie浏览器1.0" font="face:宋体,size:13,bold:0,strike:0,adding:10" colorText="rgba(48,4a,51,ff)" />
+	<richedit name="ieurl" pos="237,30,-10,@27" skin="dui_frame" brichtext="0" bautosel="1" bmultilines="0" bwantreturn="1" benabledrag="1" sbSkin="ScrollBar" />
 	<window pos="10,63,-10,-10" skin="tab_pagebg">
-	<ierealwnd name="ieobj" pos="1,1,-1,-1" url="www.baidu.com" />
+		<ierealwnd name="ieobj" pos="1,1,-1,-1" url="www.baidu.com" />
 	</window>
 </sub>

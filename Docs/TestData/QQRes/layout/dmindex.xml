@@ -1,59 +1,58 @@
-﻿<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
-<resource>  
-	<global><!--全局属性,直接包含skin、style、默认字体等-->
-		<file name="global" path="layout\xml\global.xml"  />
+<?xml version="1.0"?>
+<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
+<resource>
+	<global>
+		<!--全局属性,直接包含skin、style、默认字体等-->
+		<file name="global" path="layout\xml\global.xml" />
 	</global>
 	<layout>
-		<file name="dui_mainwnd" 	 path="layout\xml\dui_mainwnd.xml"  />
-		<file name="dui_contacts" 	 path="layout\xml\dui_contacts.xml"  />
-		<file name="dui_speak" 	 	 path="layout\xml\dui_speak.xml"  />
-		<file name="dui_skin" 	 	 path="layout\xml\dui_skin.xml"  />
-		<file name="dui_spy" 	 	 path="layout\xml\dui_spy.xml"  />
-		<file name="dui_widget" 	 path="layout\xml\dui_widget.xml"  />
-		<file name="dui_menu" 	     path="layout\xml\dui_menu.xml"  />
-		<file name="dui_editmenu" 	 path="layout\xml\dui_editmenu.xml"  />
-		<file name="dui_exitmenu" 	 path="layout\xml\dui_exitmenu.xml"  />
-		<file name="dui_ie" 	     path="layout\xml\dui_ie.xml"  />
+		<file name="dui_mainwnd" path="layout\xml\dui_mainwnd.xml" />
+		<file name="dui_contacts" path="layout\xml\dui_contacts.xml" />
+		<file name="dui_speak" path="layout\xml\dui_speak.xml" />
+		<file name="dui_skin" path="layout\xml\dui_skin.xml" />
+		<file name="dui_spy" path="layout\xml\dui_spy.xml" />
+		<file name="dui_widget" path="layout\xml\dui_widget.xml" />
+		<file name="dui_menu" path="layout\xml\dui_menu.xml" />
+		<file name="dui_editmenu" path="layout\xml\dui_editmenu.xml" />
+		<file name="dui_exitmenu" path="layout\xml\dui_exitmenu.xml" />
+		<file name="dui_ie" path="layout\xml\dui_ie.xml" />
 		<!--page-->
-		<file name="dui_page_layout" 	     path="layout\xml\widget\dui_page_layout.xml"/>
-		<file name="dui_page_widget" 	     path="layout\xml\widget\dui_page_widget.xml"/>
-		<file name="dui_page_widgetex" 	     path="layout\xml\widget\dui_page_widgetex.xml"/>
-		<file name="dui_page_gif" 	  	     path="layout\xml\widget\dui_page_gif.xml"/>
-		<file name="dui_page_activex" 	  	 path="layout\xml\widget\dui_page_activex.xml"/>
-		<file name="dui_page_webkit" 	  	 path="layout\xml\widget\dui_page_webkit.xml"/>
-		<file name="dui_page_ie" 	  	 	 path="layout\xml\widget\dui_page_ie.xml"/>
-		<file name="dui_page_script" 	  	 path="layout\xml\widget\dui_page_script.xml"/>
-		<file name="dui_attrtest" 	   		 path="layout\xml\widget\dui_attrtest.xml"/>
+		<file name="dui_page_layout" path="layout\xml\widget\dui_page_layout.xml" />
+		<file name="dui_page_widget" path="layout\xml\widget\dui_page_widget.xml" />
+		<file name="dui_page_widgetex" path="layout\xml\widget\dui_page_widgetex.xml" />
+		<file name="dui_page_gif" path="layout\xml\widget\dui_page_gif.xml" />
+		<file name="dui_page_activex" path="layout\xml\widget\dui_page_activex.xml" />
+		<file name="dui_page_webkit" path="layout\xml\widget\dui_page_webkit.xml" />
+		<file name="dui_page_ie" path="layout\xml\widget\dui_page_ie.xml" />
+		<file name="dui_page_script" path="layout\xml\widget\dui_page_script.xml" />
+		<file name="dui_attrtest" path="layout\xml\widget\dui_attrtest.xml" />
 		<!--control-->
-		<file name="widget_window" 	   		 path="layout\xml\widget\control\widget_window.xml"/>
-		<file name="widget_button" 	    	 path="layout\xml\widget\control\widget_button.xml"/>
-		<file name="widget_checkbox" 	     path="layout\xml\widget\control\widget_checkbox.xml"/>
-		<file name="widget_radiobutton" 	 path="layout\xml\widget\control\widget_radiobutton.xml"/>
-		<file name="widget_tabctrl" 	 	 path="layout\xml\widget\control\widget_tabctrl.xml"/>
-		<file name="widget_listbox" 	 	 path="layout\xml\widget\control\widget_listbox.xml"/>
-		<file name="widget_combobox" 	 	 path="layout\xml\widget\control\widget_combobox.xml"/>
-		<file name="widget_edit" 	 		 path="layout\xml\widget\control\widget_edit.xml"/>
-		<file name="widget_sliderctrl" 	 	 path="layout\xml\widget\control\widget_sliderctrl.xml"/>
-		<file name="widget_processctrl" 	 path="layout\xml\widget\control\widget_processctrl.xml"/>
-		<file name="widget_treectrl" 	     path="layout\xml\widget\control\widget_treectrl.xml"/>
-		<file name="widget_headerctrl" 	     path="layout\xml\widget\control\widget_headerctrl.xml"/>
-		<file name="widget_splitter" 	     path="layout\xml\widget\control\widget_splitter.xml"/>
-		<file name="widget_hotkeyctrl" 	     path="layout\xml\widget\control\widget_hotkeyctrl.xml"/>
-		<file name="widget_ipaddressctrl" 	 path="layout\xml\widget\control\widget_IPAddressCtrl.xml"/>
-		<file name="widget_pnggif" 	 		 path="layout\xml\widget\control\widget_pnggif.xml"/>
-		<file name="widget_monthcalctrl" 	 path="layout\xml\widget\control\widget_monthcalctrl.xml"/>
-		<file name="widget_scrollwnd" 	 	 path="layout\xml\widget\control\widget_scrollwnd.xml"/>
-		<file name="widget_RectTracker" 	 path="layout\xml\widget\control\widget_RectTracker.xml"/>
-		
+		<file name="widget_window" path="layout\xml\widget\control\widget_window.xml" />
+		<file name="widget_button" path="layout\xml\widget\control\widget_button.xml" />
+		<file name="widget_checkbox" path="layout\xml\widget\control\widget_checkbox.xml" />
+		<file name="widget_radiobutton" path="layout\xml\widget\control\widget_radiobutton.xml" />
+		<file name="widget_tabctrl" path="layout\xml\widget\control\widget_tabctrl.xml" />
+		<file name="widget_listbox" path="layout\xml\widget\control\widget_listbox.xml" />
+		<file name="widget_combobox" path="layout\xml\widget\control\widget_combobox.xml" />
+		<file name="widget_edit" path="layout\xml\widget\control\widget_edit.xml" />
+		<file name="widget_sliderctrl" path="layout\xml\widget\control\widget_sliderctrl.xml" />
+		<file name="widget_processctrl" path="layout\xml\widget\control\widget_processctrl.xml" />
+		<file name="widget_treectrl" path="layout\xml\widget\control\widget_treectrl.xml" />
+		<file name="widget_headerctrl" path="layout\xml\widget\control\widget_headerctrl.xml" />
+		<file name="widget_splitter" path="layout\xml\widget\control\widget_splitter.xml" />
+		<file name="widget_hotkeyctrl" path="layout\xml\widget\control\widget_hotkeyctrl.xml" />
+		<file name="widget_ipaddressctrl" path="layout\xml\widget\control\widget_IPAddressCtrl.xml" />
+		<file name="widget_pnggif" path="layout\xml\widget\control\widget_pnggif.xml" />
+		<file name="widget_monthcalctrl" path="layout\xml\widget\control\widget_monthcalctrl.xml" />
+		<file name="widget_scrollwnd" path="layout\xml\widget\control\widget_scrollwnd.xml" />
+		<file name="widget_RectTracker" path="layout\xml\widget\control\widget_RectTracker.xml" />
 		<!--tips-->
-		<file name="dui_tips1" 	   		 	path="layout\xml\tips\dui_tips1.xml"/>
-		<file name="dui_tips2" 	   		 	path="layout\xml\tips\dui_tips2.xml"/>
-		
+		<file name="dui_tips1" path="layout\xml\tips\dui_tips1.xml" />
+		<file name="dui_tips2" path="layout\xml\tips\dui_tips2.xml" />
 		<!--lua-->
-		<file name="test_lua" 	   		 	path="layout\lua\test.lua"/>
-		
+		<file name="test_lua" path="layout\lua\test.lua" />
 		<!--language-->
-		<file name="dmlg_en" 	   		 	path="layout\language\dmlg_en.xml"/>
-		<file name="dmlg_fh" 	   		 	path="layout\language\dmlg_fh.xml"/>
+		<file name="dmlg_en" path="layout\language\dmlg_en.xml" />
+		<file name="dmlg_fh" path="layout\language\dmlg_fh.xml" />
 	</layout>
 </resource>

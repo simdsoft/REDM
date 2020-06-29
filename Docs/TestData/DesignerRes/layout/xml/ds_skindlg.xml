@@ -1,54 +1,49 @@
-﻿<dm  initsize="850,500" minsize="850,500" bresize="1" maxsize="-1,-1" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(3d,3d,3d,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@36" bdrag="1"><!--标题区-->
-			<edit   name="ds_skin_xml" pos="20,2,-22,34" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:16,weight:700" clrtext="pbgra(00,00,ff,ff)" />
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="850,500" minsize="850,500" bresize="1" maxsize="-1,-1" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(3d,3d,3d,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@36" bdrag="1">
+			<!--标题区-->
+			<edit name="ds_skin_xml" pos="20,2,-22,34" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:16,weight:700" clrtext="pbgra(00,00,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
-		<window pos="5,38,@200,-40" clrbg="pbgra(59,59,59,ff)"><!--左边区-->
+		<window pos="5,38,@200,-40" clrbg="pbgra(59,59,59,ff)">
+			<!--左边区-->
 			<combobox name="ds_skin_typecbx" pos="2,0,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" bhideedit="1" clrtext="pbgra(ff,ff,ff,ff)" dropheight="100" btnskin="ds_comboxbtn">
-				<subedit  bmultilines="0"  sbskin="ds_scrollbar"/>
-				<sublistbox alpha="180" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" cursel="0"  itemheight="22" bhottrack="0 "  clritembg="pbgra(3a,3a,3a,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(ff,ff,ff,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" sbskin="ds_scrollbar">
+				<subedit bmultilines="0" sbskin="ds_scrollbar" />
+				<sublistbox alpha="180" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" cursel="0" itemheight="22" bhottrack="0 " clritembg="pbgra(3a,3a,3a,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(ff,ff,ff,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" sbskin="ds_scrollbar">
 					<item text="imglist" />
-					<item text="img9"/> 
-					<item text="scrollbar"/>
+					<item text="img9" />
+					<item text="scrollbar" />
 				</sublistbox>
 			</combobox>
-			
 			<window pos="2,23,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@20,@18" text="id:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit   name="ds_skin_id" pos="[0,0,-0,@18" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<label pos="0,0,@20,@18" text="id:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_skin_id" pos="[0,0,-0,@18" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			</window>
-			
-			<checkbox name="ds_skin_bvert" pos="2,46,98,@18" text="竖直连图" checkskin="ds_checkbox"  align="left" brightbox="0" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<checkbox name="ds_skin_btitle" pos="100,46,-2,@18" text="平铺绘制" checkskin="ds_checkbox"  align="left" brightbox="0" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			
+			<checkbox name="ds_skin_bvert" pos="2,46,98,@18" text="竖直连图" checkskin="ds_checkbox" align="left" brightbox="0" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+			<checkbox name="ds_skin_btitle" pos="100,46,-2,@18" text="平铺绘制" checkskin="ds_checkbox" align="left" brightbox="0" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
 			<window pos="2,69,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@60,@18" text="状态数:" align="left"  font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
+				<label pos="0,0,@60,@18" text="状态数:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
 				<edit name="ds_skin_state" pos="[0,0,-0,@18" bnumber="1" text="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			</window>
-			
 			<window name="ds_skin_img9" pos="2,92,-2,@18" bvisible="0">
-				<static pos="0,0,@60,@18" text="9宫格:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<duirect name="ds_skin_margin" pos="[5,0,-0,@18" ncmargin="1,1,1,1" clrnc="pbgra(cc,cc,cc,ff)" clrdot="pbgra(ff,ff,ff,ff)" clrtext="pbgra(ff,ff,ff,ff)" clrcaret="pbgra(ff,ff,ff,ff)"/>
+				<label pos="0,0,@60,@18" text="9宫格:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<duirect name="ds_skin_margin" pos="[5,0,-0,@18" ncmargin="1,1,1,1" clrnc="pbgra(cc,cc,cc,ff)" clrdot="pbgra(ff,ff,ff,ff)" clrtext="pbgra(ff,ff,ff,ff)" clrcaret="pbgra(ff,ff,ff,ff)" />
 			</window>
-			
 			<combobox name="ds_skin_themecbx" pos="2,115,-2,@18" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" bhideedit="1" clrtext="pbgra(ff,ff,ff,ff)" dropheight="100" btnskin="ds_comboxbtn">
-				<subedit  bmultilines="0"  sbskin="ds_scrollbar"/>
-				<sublistbox alpha="180" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" cursel="0"  itemheight="22" bhottrack="0 "  clritembg="pbgra(3a,3a,3a,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(ff,ff,ff,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" sbskin="ds_scrollbar"  arrowwidth="0">
-				</sublistbox>
+				<subedit bmultilines="0" sbskin="ds_scrollbar" />
+				<sublistbox alpha="180" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1" cursel="0" itemheight="22" bhottrack="0 " clritembg="pbgra(3a,3a,3a,ff)" clritemhoverbg="pbgra(44,44,44,ff)" clritemtext="pbgra(ff,ff,ff,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" sbskin="ds_scrollbar" arrowwidth="0" />
 			</combobox>
-			
-			<dsprojtree name="ds_skintree" pos="2,138,-2,-2" brightclicksel="1" toggleskin="ds_toggle" childoffset="5" sbskin="ds_scrollbar" childoffset="5"
-			itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0">
-				
-			</dsprojtree>
-			
+			<dsprojtree name="ds_skintree" pos="2,138,-2,-2" brightclicksel="1" toggleskin="ds_toggle" childoffset="5" sbskin="ds_scrollbar" childoffset="5" itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0" />
 		</window>
-		<duimgeditor name="ds_skin_editor" pos="205,38,-0,-40" text="仅显示可显示的图片" clrtext="pbgra(c8,8c,93,ff)" skin="ds_imgeditbg" sbskin="ds_scrollbar" arrowwidth="0"/><!--右边区-->
-		<window pos="0,-40,-0,-0"><!--下边区-->
-			<edit   name="ds_skin_imgpath" pos="20,0,-150,-0"  breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:16,weight:700" clrtext="pbgra(00,00,ff,ff)" />
-			<button  id="1" pos="-150,10,@60,@24"  text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button  id="2" pos="-74,10,@60,@24"  text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
+		<duimgeditor name="ds_skin_editor" pos="205,38,-0,-40" text="仅显示可显示的图片" clrtext="pbgra(c8,8c,93,ff)" skin="ds_imgeditbg" sbskin="ds_scrollbar" arrowwidth="0" />
+		<!--右边区-->
+		<window pos="0,-40,-0,-0">
+			<!--下边区-->
+			<edit name="ds_skin_imgpath" pos="20,0,-150,-0" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:16,weight:700" clrtext="pbgra(00,00,ff,ff)" />
+			<button id="1" pos="-150,10,@60,@24" text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-74,10,@60,@24" text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

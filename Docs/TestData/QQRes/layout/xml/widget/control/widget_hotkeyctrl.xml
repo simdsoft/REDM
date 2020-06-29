@@ -1,6 +1,7 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-hotkey" pos="0,0,-0,-0" text="hotkey" align="right">
-		<hotkey name="hotkey" pos="0,0,@220,@20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrcaret="pbgra(00,ff,ff,ff)" caretanimatecount="1" font="face:宋体,size:16,weight:100"/>
-		<hotkey name="hotkey1" pos="0,40,@220,@20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:16,weight:400"/>
+		<hotkey name="hotkey" pos="0,0,@220,@20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrcaret="pbgra(00,ff,ff,ff)" caretanimatecount="1" font="face:宋体,size:16,weight:100" />
+		<hotkey name="hotkey1" pos="0,40,@220,@20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:16,weight:400" />
 	</group>
 </sub>

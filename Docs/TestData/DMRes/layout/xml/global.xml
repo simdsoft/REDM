@@ -1,64 +1,57 @@
-﻿<global font="face:仿宋,size:14,weight:100">
+<?xml version="1.0"?>
+<global font="face:仿宋,size:14,weight:100">
 	<skin>
-		<scrollbar 	 id="SCrollBar" 			 src="PNG:ScrollBar"   			states="1"  margin="2,2,2,2"	commit="滚动条图"/>
-		<imglist 	 id="Btn_Skin" 			     src="PNG:Btn_Skin"   			states="4"  commit="换肤按钮状态连图"/>
-		<imglist 	 id="Btn_Close" 			 src="PNG:Btn_Close"   			states="3"  commit="关闭按钮状态连图"/>
-		<imglist 	 id="Btn_Max"    			 src="PNG:Btn_Max"   			states="3"  commit="最大化按钮状态连图"/>
-		<imglist 	 id="Btn_Restore"  			 src="PNG:Btn_Restore"   		states="3"  commit="恢复按钮状态连图"/>
-		<imglist 	 id="Btn_Min"  				 src="PNG:Btn_Min"   	 		states="3"  commit="最小化按钮状态连图"/>
-		<imglist 	 id="Btn_Menu"  			 src="PNG:Btn_Menu"   			states="3"  commit="菜单按钮状态连图"/>
-		<imglist 	 id="Icon"        			 src="PNG:Icon"      			states="1"  commit="360的ICON图"/>
-		<imglist 	 id="Logo"        			 src="PNG:Logo"      			states="1"  commit="360的LOG图" />
-		<imglist     id="treecheck" 	         src="PNG:treecheck"            states="9"  commit="树形控件的check选中项"/>
-	    <imglist     id="treetoggle" 	         src="PNG:treetoggle"           states="6"  commit="树形控件的小三角"/>
-		<imglist     id="menuicons" 		     src="PNG:menuicons"            states="12" commit="通用的icon"/>
-		<imglist     id="combobtn" 		         src="PNG:combobtn"             states="3"  commit="combobox的小三角"/>
-		<imglist     id="checkbox" 		         src="PNG:checkbox"             states="8"  commit="checkbox的8种状态"/>
-		<imglist     id="radiobutton" 		     src="PNG:radiobutton"          states="8"  commit="radiobutton的8种状态"/>
-		<imglist     id="iconbtn" 		         src="PNG:iconbtn"              states="1"  commit="btn的icon状态"/>
-		
-		<imglist 	id="scanbutton" 			 src="PNG:scanbutton"   		states="3"/>
-		<imglist 	id="Webicon" 				 src="PNG:webicon"       		states="1"/>
-		<imglist 	id="WebBack" 				 src="PNG:webback"       		states="4"/>
-		<imglist 	id="webfront" 				 src="PNG:webfront"      		states="4"/>
-		<imglist 	id="webrefresh" 			 src="PNG:webrefresh"    		states="4"/>
-		
-		<img9 		id="channel_hz" 			 src="PNG:channel_hz"    		states="1" margin="1,1,1,1"/>
-		<img9 		id="channel_vz" 			 src="PNG:channel_vz"    		states="1" margin="1,1,1,1"/>
-		<imglist 	id="thumb_hz" 			 	 src="PNG:thumb_hz"    		    states="4"/>
-		<imglist 	id="thumb_vz" 			 	 src="PNG:thumb_vz"    		    states="4"  bvert="1"/>
-		
-		<img9 		id="process_channel" 		 src="PNG:process_channel"    	states="1" margin="2,2,2,2"/>
-		<img9 		id="process_sel_hz" 		 src="PNG:process_sel_hz"       states="1" margin="2,2,2,2"/>
-		<img9 		id="process_sel_vz" 		 src="PNG:process_sel_vz"       states="1" margin="2,2,2,2"/>
-			
-		<imglist 	id="menuicons" 				 src="PNG:menuicons"     		states="12"/>
-		<imglist 	id="menusep" 				 src="PNG:menusep"       		states="1"/>
-		<imglist 	id="menucheck" 				 src="PNG:menucheck"    		states="2"/>
-		<imglist 	id="menubigskin" 			 src="PNG:menubigskin"   		states="2"/>
-		<img9 		id="menuitembg" 			 src="PNG:menuitembg"    		states="2" margin="2,2,2,2"/>
-		
-		<imglist	 id="tranbg" 			     src="PNG:tranbg"   		states="1"  margin="5,12,5,5" commit="异形图"/>
-		<img9        id="ncbg" 		             src="PNG:ncbg"                 states="2"   margin="2,2,2,2"   commit="非客户区边框9宫格图"/>
-		<img9 	 	 id="DUI_Frame"  			 src="PNG:Border"     			states="2"  margin="2,2,2,2"	commit="边框9宫格图"/>
-		<img9        id="listheader"             src="PNG:listheader"           states="4" margin="2,2,2,2"/>
-		
-		<img9        id="btncustom" 		     src="PNG:btncustom"            states="4"  margin="2,2,2,2" commit="通常的btn状态"/>
-		<img9 		 id="bg" 		             src="PNG:bg"      				states="1" margin="2,2,2,2"/>
-		
-		<imglist     id="1" 		             src="PNG:1"      				states="1" />
-		
-		<imglist     id="tabbar_1" 		         src="PNG:tabbar_1"      		states="3" />
-		<imglist     id="tabbar_2" 		         src="PNG:tabbar_2"      		states="3" />
-		<imglist     id="tabbar_3" 		         src="PNG:tabbar_3"      		states="3" />
-		<imglist     id="tabbar_4" 		         src="PNG:tabbar_4"      		states="3" />
-		<imglist     id="tabbar_5" 		         src="PNG:tabbar_5"      		states="3" />
-		<imglist     id="tabbar_6" 		         src="PNG:tabbar_6"      		states="3" />
-		<imglist     id="tab_item" 		         src="PNG:tab_item"      		states="3" />
-		<img9    	 id="tab_pagebg" 		     src="PNG:tab_pagebg"      		states="1" margin="1,1,1,1"/>
+		<scrollbar id="SCrollBar" src="PNG:ScrollBar" states="1" margin="2,2,2,2" commit="滚动条图" />
+		<imglist id="Btn_Skin" src="PNG:Btn_Skin" states="4" commit="换肤按钮状态连图" />
+		<imglist id="Btn_Close" src="PNG:Btn_Close" states="3" commit="关闭按钮状态连图" />
+		<imglist id="Btn_Max" src="PNG:Btn_Max" states="3" commit="最大化按钮状态连图" />
+		<imglist id="Btn_Restore" src="PNG:Btn_Restore" states="3" commit="恢复按钮状态连图" />
+		<imglist id="Btn_Min" src="PNG:Btn_Min" states="3" commit="最小化按钮状态连图" />
+		<imglist id="Btn_Menu" src="PNG:Btn_Menu" states="3" commit="菜单按钮状态连图" />
+		<imglist id="Icon" src="PNG:Icon" states="1" commit="360的ICON图" />
+		<imglist id="Logo" src="PNG:Logo" states="1" commit="360的LOG图" />
+		<imglist id="treecheck" src="PNG:treecheck" states="9" commit="树形控件的check选中项" />
+		<imglist id="treetoggle" src="PNG:treetoggle" states="6" commit="树形控件的小三角" />
+		<imglist id="menuicons" src="PNG:menuicons" states="12" commit="通用的icon" />
+		<imglist id="combobtn" src="PNG:combobtn" states="3" commit="combobox的小三角" />
+		<imglist id="checkbox" src="PNG:checkbox" states="8" commit="checkbox的8种状态" />
+		<imglist id="radiobutton" src="PNG:radiobutton" states="8" commit="radiobutton的8种状态" />
+		<imglist id="iconbtn" src="PNG:iconbtn" states="1" commit="btn的icon状态" />
+		<imglist id="scanbutton" src="PNG:scanbutton" states="3" />
+		<imglist id="Webicon" src="PNG:webicon" states="1" />
+		<imglist id="WebBack" src="PNG:webback" states="4" />
+		<imglist id="webfront" src="PNG:webfront" states="4" />
+		<imglist id="webrefresh" src="PNG:webrefresh" states="4" />
+		<img9 id="channel_hz" src="PNG:channel_hz" states="1" margin="1,1,1,1" />
+		<img9 id="channel_vz" src="PNG:channel_vz" states="1" margin="1,1,1,1" />
+		<imglist id="thumb_hz" src="PNG:thumb_hz" states="4" />
+		<imglist id="thumb_vz" src="PNG:thumb_vz" states="4" bvert="1" />
+		<img9 id="process_channel" src="PNG:process_channel" states="1" margin="2,2,2,2" />
+		<img9 id="process_sel_hz" src="PNG:process_sel_hz" states="1" margin="2,2,2,2" />
+		<img9 id="process_sel_vz" src="PNG:process_sel_vz" states="1" margin="2,2,2,2" />
+		<imglist id="menuicons" src="PNG:menuicons" states="12" />
+		<imglist id="menusep" src="PNG:menusep" states="1" />
+		<imglist id="menucheck" src="PNG:menucheck" states="2" />
+		<imglist id="menubigskin" src="PNG:menubigskin" states="2" />
+		<img9 id="menuitembg" src="PNG:menuitembg" states="2" margin="2,2,2,2" />
+		<imglist id="tranbg" src="PNG:tranbg" states="1" margin="5,12,5,5" commit="异形图" />
+		<img9 id="ncbg" src="PNG:ncbg" states="2" margin="2,2,2,2" commit="非客户区边框9宫格图" />
+		<img9 id="DUI_Frame" src="PNG:Border" states="2" margin="2,2,2,2" commit="边框9宫格图" />
+		<img9 id="listheader" src="PNG:listheader" states="4" margin="2,2,2,2" />
+		<img9 id="btncustom" src="PNG:btncustom" states="4" margin="2,2,2,2" commit="通常的btn状态" />
+		<img9 id="bg" src="PNG:bg" states="1" margin="2,2,2,2" />
+		<imglist id="1" src="PNG:1" states="1" />
+		<imglist id="tabbar_1" src="PNG:tabbar_1" states="3" />
+		<imglist id="tabbar_2" src="PNG:tabbar_2" states="3" />
+		<imglist id="tabbar_3" src="PNG:tabbar_3" states="3" />
+		<imglist id="tabbar_4" src="PNG:tabbar_4" states="3" />
+		<imglist id="tabbar_5" src="PNG:tabbar_5" states="3" />
+		<imglist id="tabbar_6" src="PNG:tabbar_6" states="3" />
+		<imglist id="tab_item" src="PNG:tab_item" states="3" />
+		<img9 id="tab_pagebg" src="PNG:tab_pagebg" states="1" margin="1,1,1,1" />
 	</skin>
 	<style>
-		<style id="custom"  font="" alpha="0xff" skin="DUI_Frame" ncskin="DUI_Frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)" margin-x="0"/>
-		<style id="static"  clrnc="pbgra(e2,b2,3e,ff)" ncmargin="1,1,1,1"/>
+		<style id="custom" font="" alpha="0xff" skin="DUI_Frame" ncskin="DUI_Frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)" margin-x="0" />
+		<style id="static" clrnc="pbgra(e2,b2,3e,ff)" ncmargin="1,1,1,1" />
 	</style>
 </global>

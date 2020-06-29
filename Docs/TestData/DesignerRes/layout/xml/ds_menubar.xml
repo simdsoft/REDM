@@ -1,7 +1,9 @@
-﻿<sub><!--id和代码中enum一致-->
-	<button id="101" 	pos="2,2,@48,-2"  text="文件" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体"/>
-	<button id="102"	pos="[0,2,@48,-2" text="编辑" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体"/>
-	<button id="103"	pos="[0,2,@48,-2" text="视图" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体"/>
-	<button id="104"	pos="[0,2,@48,-2" text="模式" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体"/>
-	<button id="105" 	pos="[0,2,@48,-2" text="帮助" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体"/>
+<?xml version="1.0"?>
+<sub>
+	<!--id和代码中enum一致-->
+	<button id="101" pos="2,2,@48,-2" text="文件" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体" />
+	<button id="102" pos="[0,2,@48,-2" text="编辑" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体" />
+	<button id="103" pos="[0,2,@48,-2" text="视图" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体" />
+	<button id="104" pos="[0,2,@48,-2" text="模式" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体" />
+	<button id="105" pos="[0,2,@48,-2" text="帮助" skin="ds_menubarbutton" clrtext="pbgra(ff,ff,ff,ff)" font="weight:400,charset:134,underline:0,italic:0,strike:0,size:-12,face:新宋体" />
 </sub>

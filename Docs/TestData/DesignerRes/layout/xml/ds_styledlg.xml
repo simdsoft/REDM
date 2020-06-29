@@ -1,20 +1,22 @@
-﻿<dm  initsize="715,400" minsize="715,400" bresize="1" maxsize="-1,-1" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(66,66,66,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@28" bdrag="1" clrbg="pbgra(22,22,22,ff)"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,34" text="Style" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton"/>
+<?xml version="1.0"?>
+<dm initsize="715,400" minsize="715,400" bresize="1" maxsize="-1,-1" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(66,66,66,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@28" bdrag="1" clrbg="pbgra(22,22,22,ff)">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,34" text="Style" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" />
 		</window>
-		<window  pos="0,28,@34,-0" clrbg="pbgra(22,22,22,ff)">
-			<button name="ds_style_expand" pos="0,0,@34,@34" skin="ds_toolexpand"/>
+		<window pos="0,28,@34,-0" clrbg="pbgra(22,22,22,ff)">
+			<button name="ds_style_expand" pos="0,0,@34,@34" skin="ds_toolexpand" />
 		</window>
-		<propframe name="ds_style_prop" pos="36,28,-2,-50" expandskin="ds_expand" rowhei="24" itembgskin="ds_custombutton" bshowhead="0" deschei="85" leftcolwid="120"
-		sbskin="ds_scrollbar" arrowwidth="0">
-			<propgrid name="style" value="" desc="style的属性集合" bgroup="1">
-			</propgrid>
+		<propframe name="ds_style_prop" pos="36,28,-2,-50" expandskin="ds_expand" rowhei="24" itembgskin="ds_custombutton" bshowhead="0" deschei="85" leftcolwid="120" sbskin="ds_scrollbar" arrowwidth="0">
+			<propgrid name="style" value="" desc="style的属性集合" bgroup="1" />
 		</propframe>
-		<window pos="0,-40,-0,-0"><!--下边区-->
-			<button  id="1" pos="-150,10,@60,@24"  text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button  id="2" pos="-74,10,@60,@24"  text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
+		<window pos="0,-40,-0,-0">
+			<!--下边区-->
+			<button id="1" pos="-150,10,@60,@24" text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-74,10,@60,@24" text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

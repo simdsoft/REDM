@@ -1,31 +1,32 @@
-﻿<sub>
-	<static pos="7,0,-0,@18" align="left" clrtext="pbgra(76,7b,80,ff)" font="face:宋体,size:12,weight:400" text="我的游戏(3)"/>
-	<TGPListBoxEx name="listboxex" pos="0,18,-0,-0"  sbskin="scrollbar">
-		<item name="cf" ncmargin="10,18,20,15" ncskin="lbx_itembg" skin="lbx_cfbg"  height="180">
-			<window pos="11,11,@46,@46" tiptext="打开游戏助手"/>
-			<button name="cf_menu" pos="-30,10,@19,@19" skin="lbx_arr"/>
-			<window pos="126,13,@19,@19" tipxmlid="dui_cftips1" cursor="hand" tipflags="0,-70,-5,1"/>
+<?xml version="1.0"?>
+<sub>
+	<label pos="7,0,-0,@18" align="left" clrtext="pbgra(76,7b,80,ff)" font="face:宋体,size:12,weight:400" text="我的游戏(3)" />
+	<tgplistboxex name="listboxex" pos="0,18,-0,-0" sbskin="scrollbar">
+		<item name="cf" ncmargin="10,18,20,15" ncskin="lbx_itembg" skin="lbx_cfbg" height="180">
+			<window pos="11,11,@46,@46" tiptext="打开游戏助手" />
+			<button name="cf_menu" pos="-30,10,@19,@19" skin="lbx_arr" />
+			<window pos="126,13,@19,@19" tipxmlid="dui_cftips1" cursor="hand" tipflags="0,-70,-5,1" />
 			<tgpcomboxex pos="0,-36,@160,-0" skin="lbx_lcshowbg">
-				<subshow><!--初始显示区-->
-					<static name="area" pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州一区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand"/>
-					<button name="ms" pos="-56,10,@40,@20" text="22ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand"/>
+				<subshow>
+					<!--初始显示区-->
+					<label name="area" pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州一区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand" />
+					<button name="ms" pos="-56,10,@40,@20" text="22ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand" />
 				</subshow>
 				<sublistboxex itemheight="38" bswapline="0">
 					<item ncmargin="0,2,0,1" skin="lbx_lcbg" cursor="hand">
-						<static pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州一区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand"/>
-						<button pos="-56,10,@40,@20" text="22ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand"/>
+						<label pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州一区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand" />
+						<button pos="-56,10,@40,@20" text="22ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand" />
 					</item>
 					<item ncmargin="0,1,0,2" skin="lbx_lcbg" cursor="hand">
-						<static pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州二区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand"/>
-						<button pos="-56,10,@40,@20" text="23ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand"/>
+						<label pos="17,0,@100,-0" clrtext="pbgra(ae,a8,a4,ff)" align="left" text="广州二区 3.8.2" font="face:宋体,size:12,weight:400" cursor="hand" />
+						<button pos="-56,10,@40,@20" text="23ms" clrtext="pbgra(ff,87,15,ff)" clrtexthover="pbgra(00,ff,00,ff)" font="face:宋体,size:12,weight:400" cursor="hand" />
 					</item>
 				</sublistboxex>
 			</tgpcomboxex>
-			<button pos="-90,-37,-0,-0" skin="lbx_startgame"/>
+			<button pos="-90,-37,-0,-0" skin="lbx_startgame" />
 		</item>
-		
 		<item name="bns" ncmargin="10,18,20,15" ncskin="lbx_itembg" skin="lbx_bnsbg" height="180">
-			<window pos="11,11,@46,@46" tipxmlid="dui_cftips1" cursor="hand" tipflags="0,-70,-5,1"/>
+			<window pos="11,11,@46,@46" tipxmlid="dui_cftips1" cursor="hand" tipflags="0,-70,-5,1" />
 		</item>
-	</TGPListBoxEx>
+	</tgplistboxex>
 </sub>

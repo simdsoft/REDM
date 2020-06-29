@@ -1,5 +1,6 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-recttracker" pos="0,0,-0,-0" text="recttracker" align="left">
-		<RectTracker pos="50,50,@200,@200" moveskin="drag_move" clrdot="pbgra(00,00,ff,ff)" clrboxdash="pbgra(00,00,ff,ff)" clrboxsolid="pbgra(00,00,00,ff)" />
+		<recttracker pos="50,50,@200,@200" moveskin="drag_move" clrdot="pbgra(00,00,ff,ff)" clrboxdash="pbgra(00,00,ff,ff)" clrboxsolid="pbgra(00,00,00,ff)" />
 	</group>
 </sub>

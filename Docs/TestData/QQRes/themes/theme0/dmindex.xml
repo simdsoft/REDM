@@ -1,131 +1,116 @@
-﻿<resource>  
-  <png>
-	<file name="scrollbar" 			path="themes\theme0\image\scrollbar.png"/>
-	<file name="bg" 				path="themes\theme0\image\bg.png"/>
-	<file name="preview" 			path="themes\theme0\image\preview.png"/>
-	<file name="btn_skin" 			path="themes\theme0\image\btn_skin.png"/>
-	<file name="logo-QQ" 			path="themes\theme0\image\logo-QQ.png"/>
-	<file name="minbutton" 			path="themes\theme0\image\minbutton.png"/>
-	<file name="closebutton" 		path="themes\theme0\image\closebutton.png"/>
-	<file name="btn_MedalWall" 		path="themes\theme0\image\btn_MedalWall.png"/>
-	<file name="head" 				path="themes\theme0\image\head.png"/>
-	<file name="btn_edit" 			path="themes\theme0\image\btn_edit.png"/>
-	<file name="surface_search" 	path="themes\theme0\image\surface_search.png"/>
-	
-	<file name="tab_bg" 			path="themes\theme0\image\tab\tab_bg.png"/>
-	<file name="tab_1" 				path="themes\theme0\image\tab\tab_1.png"/>
-	<file name="tab_2" 				path="themes\theme0\image\tab\tab_2.png"/>
-	<file name="tab_3" 				path="themes\theme0\image\tab\tab_3.png"/>
-	<file name="tab_4" 				path="themes\theme0\image\tab\tab_4.png"/>
-	<file name="tab_5" 				path="themes\theme0\image\tab\tab_5.png"/>
-	
-	<file name="tree_toggle" 	    path="themes\theme0\image\tree\tree_toggle.png"/>
-	<file name="tree_check" 	    path="themes\theme0\image\tree\tree_check.png"/>
-	
-	 <!--list icon-->
-	<file name="list_header" 		path="themes\theme0\image\list\list_header.png"/>
-    <file name="list_scroll" 		path="themes\theme0\image\list\list_scroll.png"/>
-	<file name="list_qqvip" 		path="themes\theme0\image\list\list_qqvip.png"/>
-	<file name="list_bg" 			path="themes\theme0\image\list\list_bg.png"/>
-	<file name="list_icon1" 		path="themes\theme0\image\list\list_icon1.png"/>
-	<file name="list_icon2" 		path="themes\theme0\image\list\list_icon2.png"/>
-	<file name="list_icon3" 		path="themes\theme0\image\list\list_icon3.png"/>
-	<file name="list_icon4" 		path="themes\theme0\image\list\list_icon4.png"/>
-	<file name="list_icon5" 		path="themes\theme0\image\list\list_icon5.png"/>
-	<file name="list_icon6" 		path="themes\theme0\image\list\list_icon6.png"/>
-	<file name="list_icon7" 		path="themes\theme0\image\list\list_icon7.png"/>
-	
-	<file name="list_selicon1" 		path="themes\theme0\image\list\list_selicon1.png"/>
-	<file name="list_selicon2" 		path="themes\theme0\image\list\list_selicon2.png"/>
-	<file name="list_selicon3" 		path="themes\theme0\image\list\list_selicon3.png"/>
-	<file name="list_selicon4" 		path="themes\theme0\image\list\list_selicon4.png"/>
-	<file name="list_selicon5" 		path="themes\theme0\image\list\list_selicon5.png"/>
-	<file name="list_selicon6" 		path="themes\theme0\image\list\list_selicon6.png"/>
-	<file name="list_selicon7" 		path="themes\theme0\image\list\list_selicon7.png"/>
-	<!--skin-->
-	<file name="skin_midbg" 		path="themes\theme0\image\skin\skin_midbg.png"/>
-	<file name="skin_setbtn" 		path="themes\theme0\image\skin\skin_setbtn.png"/>
-	<file name="skin_outbtn" 		path="themes\theme0\image\skin\skin_outbtn.png"/>
-	
-	<!--spy-->
-	<file name="spy_drag"          	path="themes\theme0\image\spy\spydrag.png"/>
-	<file name="spy_icon"         	path="themes\theme0\image\spy\spyicon.png"/>
-	
-	<!--widget-->
-	<file name="drag_move" 			path="themes\theme0\image\widget\drag_move.png"/>
-	<file name="bord" 				path="themes\theme0\image\widget\bord.png"/>
-	<file name="Btn_Close" 			path="themes\theme0\image\widget\btn_close.png"/>
-	<file name="Btn_Max"   			path="themes\theme0\image\widget\btn_max.png"/>
-	<file name="Btn_Restore"   	 	path="themes\theme0\image\widget\btn_restore.png"/>
-	<file name="Btn_Min"   			path="themes\theme0\image\widget\btn_min.png"/>
-	<file name="Btn_Menu"  			path="themes\theme0\image\widget\btn_menu.png"/>
-	
-	<file name="360icon"      		path="themes\theme0\image\widget\360icon.png"/>
-	<file name="360logo"      		path="themes\theme0\image\widget\360logo.png"/>
-	<file name="tabbar_1"         	path="themes\theme0\image\widget\tab\tabbar_1.png"/>
-	<file name="tabbar_2"         	path="themes\theme0\image\widget\tab\tabbar_2.png"/>
-	<file name="tabbar_3"         	path="themes\theme0\image\widget\tab\tabbar_3.png"/>
-	<file name="tabbar_4"         	path="themes\theme0\image\widget\tab\tabbar_4.png"/>
-	<file name="tabbar_5"         	path="themes\theme0\image\widget\tab\tabbar_5.png"/>
-	<file name="tabbar_6"         	path="themes\theme0\image\widget\tab\tabbar_6.png"/>
-	<file name="tab_pagebg"         path="themes\theme0\image\widget\tab\tab_pagebg.png"/>
-	<file name="tab_item"           path="themes\theme0\image\widget\tab\tab_item.png"/>
-	
-	<file name="checkbox" 			path="themes\theme0\image\widget\checkbox.png"/>
-	<file name="radiobutton" 		path="themes\theme0\image\widget\radiobutton.png"/>
-	<file name="iconbtn" 			path="themes\theme0\image\widget\iconbtn.png"/>
-	<file name="comboxbtn" 			path="themes\theme0\image\widget\comboxbtn.png"/>
-	
-	<file name="thumb_hz"       	path="themes\theme0\image\widget\thumb_hz.png"/>
-	<file name="thumb_vz"       	path="themes\theme0\image\widget\thumb_vz.png"/>
-	<file name="channel_hz"         path="themes\theme0\image\widget\channel_hz.png"/>
-	<file name="channel_vz"         path="themes\theme0\image\widget\channel_vz.png"/>
-	
-	<file name="process_channel" 	path="themes\theme0\image\widget\process_channel.png"/>
-	<file name="process_sel_hz"  	path="themes\theme0\image\widget\process_sel_hz.png"/>
-	<file name="process_sel_vz"  	path="themes\theme0\image\widget\process_sel_vz.png"/>
-	
-	<!--menu-->
-	<file name="menuitembg" 		path="themes\theme0\image\menu\menu_itembg.png"/>
-	<file name="menuitemselbg" 		path="themes\theme0\image\menu\menu_itemselbg.png"/>
-	<file name="menuicons" 			path="themes\theme0\image\menu\menu_icons.png"/>
-	<file name="menusep" 			path="themes\theme0\image\menu\menu_sep.png"/>
-	<file name="menucheck" 			path="themes\theme0\image\menu\menu_check.png"/>
-	<file name="menubigskin"    	path="themes\theme0\image\menu\Menu_BigSkin.png"/>
-	
-	<!--web-->
-	<file name="webicon" 			path="themes\theme0\image\web\webicon.png"/>
-	<file name="webback" 			path="themes\theme0\image\web\webback.png"/>
-	<file name="webfront" 			path="themes\theme0\image\web\webfront.png"/>
-	<file name="webrefresh" 		path="themes\theme0\image\web\webrefresh.png"/>
-	
-	<!--custom-->
-	<file name="btncustom"      	path="themes\theme0\image\btn_custom.png"/>
-	<file name="dui_frame"      	path="themes\theme0\image\dui_frame.png"/>
-	
-	<!--tip-->
-	<file name="tipframe"      		path="themes\theme0\image\tipframe.png"/>
-	
-	<file name="splith"         	path="themes\theme0\image\widget\splith.png"/>
-	<file name="splitv"         	path="themes\theme0\image\widget\splitv.png"/>
-	
-	<file name="calendar_left" 		path="themes\theme0\image\widget\calendar_left.png" />
-	<file name="calendar_right" 	path="themes\theme0\image\widget\calendar_right.png" />
-	<file name="calendar_cell" 		path="themes\theme0\image\widget\calendar_cell.png" />
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="scrollbar" path="themes\theme0\image\scrollbar.png" />
+		<file name="bg" path="themes\theme0\image\bg.png" />
+		<file name="preview" path="themes\theme0\image\preview.png" />
+		<file name="btn_skin" path="themes\theme0\image\btn_skin.png" />
+		<file name="logo-QQ" path="themes\theme0\image\logo-QQ.png" />
+		<file name="minbutton" path="themes\theme0\image\minbutton.png" />
+		<file name="closebutton" path="themes\theme0\image\closebutton.png" />
+		<file name="btn_MedalWall" path="themes\theme0\image\btn_MedalWall.png" />
+		<file name="head" path="themes\theme0\image\head.png" />
+		<file name="btn_edit" path="themes\theme0\image\btn_edit.png" />
+		<file name="surface_search" path="themes\theme0\image\surface_search.png" />
+		<file name="tab_bg" path="themes\theme0\image\tab\tab_bg.png" />
+		<file name="tab_1" path="themes\theme0\image\tab\tab_1.png" />
+		<file name="tab_2" path="themes\theme0\image\tab\tab_2.png" />
+		<file name="tab_3" path="themes\theme0\image\tab\tab_3.png" />
+		<file name="tab_4" path="themes\theme0\image\tab\tab_4.png" />
+		<file name="tab_5" path="themes\theme0\image\tab\tab_5.png" />
+		<file name="tree_toggle" path="themes\theme0\image\tree\tree_toggle.png" />
+		<file name="tree_check" path="themes\theme0\image\tree\tree_check.png" />
+		<!--list icon-->
+		<file name="list_header" path="themes\theme0\image\list\list_header.png" />
+		<file name="list_scroll" path="themes\theme0\image\list\list_scroll.png" />
+		<file name="list_qqvip" path="themes\theme0\image\list\list_qqvip.png" />
+		<file name="list_bg" path="themes\theme0\image\list\list_bg.png" />
+		<file name="list_icon1" path="themes\theme0\image\list\list_icon1.png" />
+		<file name="list_icon2" path="themes\theme0\image\list\list_icon2.png" />
+		<file name="list_icon3" path="themes\theme0\image\list\list_icon3.png" />
+		<file name="list_icon4" path="themes\theme0\image\list\list_icon4.png" />
+		<file name="list_icon5" path="themes\theme0\image\list\list_icon5.png" />
+		<file name="list_icon6" path="themes\theme0\image\list\list_icon6.png" />
+		<file name="list_icon7" path="themes\theme0\image\list\list_icon7.png" />
+		<file name="list_selicon1" path="themes\theme0\image\list\list_selicon1.png" />
+		<file name="list_selicon2" path="themes\theme0\image\list\list_selicon2.png" />
+		<file name="list_selicon3" path="themes\theme0\image\list\list_selicon3.png" />
+		<file name="list_selicon4" path="themes\theme0\image\list\list_selicon4.png" />
+		<file name="list_selicon5" path="themes\theme0\image\list\list_selicon5.png" />
+		<file name="list_selicon6" path="themes\theme0\image\list\list_selicon6.png" />
+		<file name="list_selicon7" path="themes\theme0\image\list\list_selicon7.png" />
+		<!--skin-->
+		<file name="skin_midbg" path="themes\theme0\image\skin\skin_midbg.png" />
+		<file name="skin_setbtn" path="themes\theme0\image\skin\skin_setbtn.png" />
+		<file name="skin_outbtn" path="themes\theme0\image\skin\skin_outbtn.png" />
+		<!--spy-->
+		<file name="spy_drag" path="themes\theme0\image\spy\spydrag.png" />
+		<file name="spy_icon" path="themes\theme0\image\spy\spyicon.png" />
+		<!--widget-->
+		<file name="drag_move" path="themes\theme0\image\widget\drag_move.png" />
+		<file name="bord" path="themes\theme0\image\widget\bord.png" />
+		<file name="Btn_Close" path="themes\theme0\image\widget\btn_close.png" />
+		<file name="Btn_Max" path="themes\theme0\image\widget\btn_max.png" />
+		<file name="Btn_Restore" path="themes\theme0\image\widget\btn_restore.png" />
+		<file name="Btn_Min" path="themes\theme0\image\widget\btn_min.png" />
+		<file name="Btn_Menu" path="themes\theme0\image\widget\btn_menu.png" />
+		<file name="360icon" path="themes\theme0\image\widget\360icon.png" />
+		<file name="360logo" path="themes\theme0\image\widget\360logo.png" />
+		<file name="tabbar_1" path="themes\theme0\image\widget\tab\tabbar_1.png" />
+		<file name="tabbar_2" path="themes\theme0\image\widget\tab\tabbar_2.png" />
+		<file name="tabbar_3" path="themes\theme0\image\widget\tab\tabbar_3.png" />
+		<file name="tabbar_4" path="themes\theme0\image\widget\tab\tabbar_4.png" />
+		<file name="tabbar_5" path="themes\theme0\image\widget\tab\tabbar_5.png" />
+		<file name="tabbar_6" path="themes\theme0\image\widget\tab\tabbar_6.png" />
+		<file name="tab_pagebg" path="themes\theme0\image\widget\tab\tab_pagebg.png" />
+		<file name="tab_item" path="themes\theme0\image\widget\tab\tab_item.png" />
+		<file name="checkbox" path="themes\theme0\image\widget\checkbox.png" />
+		<file name="radiobutton" path="themes\theme0\image\widget\radiobutton.png" />
+		<file name="iconbtn" path="themes\theme0\image\widget\iconbtn.png" />
+		<file name="comboxbtn" path="themes\theme0\image\widget\comboxbtn.png" />
+		<file name="thumb_hz" path="themes\theme0\image\widget\thumb_hz.png" />
+		<file name="thumb_vz" path="themes\theme0\image\widget\thumb_vz.png" />
+		<file name="channel_hz" path="themes\theme0\image\widget\channel_hz.png" />
+		<file name="channel_vz" path="themes\theme0\image\widget\channel_vz.png" />
+		<file name="process_channel" path="themes\theme0\image\widget\process_channel.png" />
+		<file name="process_sel_hz" path="themes\theme0\image\widget\process_sel_hz.png" />
+		<file name="process_sel_vz" path="themes\theme0\image\widget\process_sel_vz.png" />
+		<!--menu-->
+		<file name="menuitembg" path="themes\theme0\image\menu\menu_itembg.png" />
+		<file name="menuitemselbg" path="themes\theme0\image\menu\menu_itemselbg.png" />
+		<file name="menuicons" path="themes\theme0\image\menu\menu_icons.png" />
+		<file name="menusep" path="themes\theme0\image\menu\menu_sep.png" />
+		<file name="menucheck" path="themes\theme0\image\menu\menu_check.png" />
+		<file name="menubigskin" path="themes\theme0\image\menu\Menu_BigSkin.png" />
+		<!--web-->
+		<file name="webicon" path="themes\theme0\image\web\webicon.png" />
+		<file name="webback" path="themes\theme0\image\web\webback.png" />
+		<file name="webfront" path="themes\theme0\image\web\webfront.png" />
+		<file name="webrefresh" path="themes\theme0\image\web\webrefresh.png" />
+		<!--custom-->
+		<file name="btncustom" path="themes\theme0\image\btn_custom.png" />
+		<file name="dui_frame" path="themes\theme0\image\dui_frame.png" />
+		<!--tip-->
+		<file name="tipframe" path="themes\theme0\image\tipframe.png" />
+		<file name="splith" path="themes\theme0\image\widget\splith.png" />
+		<file name="splitv" path="themes\theme0\image\widget\splitv.png" />
+		<file name="calendar_left" path="themes\theme0\image\widget\calendar_left.png" />
+		<file name="calendar_right" path="themes\theme0\image\widget\calendar_right.png" />
+		<file name="calendar_cell" path="themes\theme0\image\widget\calendar_cell.png" />
 	</png>
-	 <flash>
-		<file name="sun.SWF" 	    path="themes\theme0\flash\sun.swf"/>
-		<file name="1.SWF" 	    path="themes\theme0\flash\1.swf"/>
-		<file name="noon.SWF" 	    path="themes\theme0\flash\noon.swf"/>
+	<flash>
+		<file name="sun.SWF" path="themes\theme0\flash\sun.swf" />
+		<file name="1.SWF" path="themes\theme0\flash\1.swf" />
+		<file name="noon.SWF" path="themes\theme0\flash\noon.swf" />
 	</flash>
 	<gif>
-		<file name="1_gif" 		    path="themes\theme0\Animate\1.gif"/>
-		<file name="2_gif" 			path="themes\theme0\Animate\2.gif"/>
-		<file name="3_gif" 			path="themes\theme0\Animate\3.gif"/>
-		<file name="4_gif" 			path="themes\theme0\Animate\4.gif"/>
-		<file name="4_png" 			path="themes\theme0\animate\4_png.png" />
-		<file name="5_gif" 			path="themes\theme0\Animate\5.gif"/>
-		<file name="allefant_gif" 	path="themes\theme0\Animate\allefant.gif"/>
-		<file name="dispose_gif" 		path="themes\theme0\Animate\dispose.gif"/>
+		<file name="1_gif" path="themes\theme0\Animate\1.gif" />
+		<file name="2_gif" path="themes\theme0\Animate\2.gif" />
+		<file name="3_gif" path="themes\theme0\Animate\3.gif" />
+		<file name="4_gif" path="themes\theme0\Animate\4.gif" />
+		<file name="4_png" path="themes\theme0\animate\4_png.png" />
+		<file name="5_gif" path="themes\theme0\Animate\5.gif" />
+		<file name="allefant_gif" path="themes\theme0\Animate\allefant.gif" />
+		<file name="dispose_gif" path="themes\theme0\Animate\dispose.gif" />
 	</gif>
- </resource>
+</resource>

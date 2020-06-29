@@ -1,10 +1,11 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-button" pos="0,0,-0,-0" text="button" align="right">
-		<button name="button" pos="0,0,@120,@20" text="Defalut Style" skin="btncustom"/>
-		<button name="button1" pos="0,25,@120,@20"  text="Animate Style" alpha="0x80" banimate="1" animatesteps="250" skin="btncustom" align="left" valign="top"/>
-		<button name="button2" pos="0,50,@120,@40"  text="Multiline\n Style"  skin="btncustom" bmultilines="1" />
-		<button name="button3" pos="0,95,@120,@40"  skin="btncustom" iconskin="iconbtn" />
-		<button name="accelbtn" pos="0,140,@120,@40"  text="Accel Key\n:ctrl+f1"  bmultilines="1" skin="btncustom" accel="ctrl+f1" />
-		<button name="button4" pos="0,185,@120,@20"  text="Disable Style" skin="btncustom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" />
+		<button name="button" pos="0,0,@120,@20" text="Defalut Style" skin="btncustom" />
+		<button name="button1" pos="0,25,@120,@20" text="Animate Style" alpha="0x80" banimate="1" animatesteps="250" skin="btncustom" align="left" valign="top" />
+		<button name="button2" pos="0,50,@120,@40" text="Multiline\n Style" skin="btncustom" bmultilines="1" />
+		<button name="button3" pos="0,95,@120,@40" skin="btncustom" iconskin="iconbtn" />
+		<button name="accelbtn" pos="0,140,@120,@40" text="Accel Key\n:ctrl+f1" bmultilines="1" skin="btncustom" accel="ctrl+f1" />
+		<button name="button4" pos="0,185,@120,@20" text="Disable Style" skin="btncustom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" />
 	</group>
 </sub>

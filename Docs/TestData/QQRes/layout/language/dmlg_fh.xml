@@ -1,30 +1,34 @@
+<?xml version="1.0"?>
 <!--默认先查找transid指定的特定配置，如果未找到，则统一从custom中查找-->
-<dmlg name="dmlg_fh"><!--给一个唯一标识dmlg_fn来标识-->
-	<node name="custom"><!--custom为通用标识-->
-		<item src="通用布局"  trans="генеральный план"/>
-		<item src="通用控件"  trans="Общий контроль"/>
-		<item src="通用控件扩展"  trans="Универсальный управляющий элемент-расширитель"/>
-		<item src="GIF展示"  trans="GIF Дисплей"/>
-		<item src="插件动画展示"  trans="Plug-анимация показывает"/>
-		<item src="ActiveX展示"  trans="ActiveX Дисплей"/>
-		<item src="网页展示"  trans="впечатления Page"/>
-		<item src="脚本展示"  trans="Галерея Script"/>
+<dmlg name="dmlg_fh">
+	<!--给一个唯一标识dmlg_fn来标识-->
+	<node name="custom">
+		<!--custom为通用标识-->
+		<item src="通用布局" trans="генеральный план" />
+		<item src="通用控件" trans="Общий контроль" />
+		<item src="通用控件扩展" trans="Универсальный управляющий элемент-расширитель" />
+		<item src="GIF展示" trans="GIF Дисплей" />
+		<item src="插件动画展示" trans="Plug-анимация показывает" />
+		<item src="ActiveX展示" trans="ActiveX Дисплей" />
+		<item src="网页展示" trans="впечатления Page" />
+		<item src="脚本展示" trans="Галерея Script" />
 	</node>
-	<node name="dui_mainwnd"><!--dui_mainwnd特定transid的特殊翻译-->
-		<item src="扁扁熊"  trans="Плоские медведи"/>
-		<item src="编辑个性签名"  trans="Изменить подпись"/>
-		
-		<item src="联系人"  trans="контакты"/>
-		<item src="会员"  trans="член"/>
-		<item src="辅助工具"  trans="доступность"/>
-		<item src="用于辅助查看dui子窗口的小工具"  trans="См дуй помочь дочернего окна для гаджетов"/>
-		<item src="测试区"  trans="песочница"/>
-		<item src="标准控件测试"  trans="Стандартный тест управления"/>
-		<item src="点击弹出测试标准控件"  trans="Нажмите стандарты тестирования управления всплывающий"/>
-		<item src="预留区"  trans="Конфиденциальная зона"/>
+	<node name="dui_mainwnd">
+		<!--dui_mainwnd特定transid的特殊翻译-->
+		<item src="扁扁熊" trans="Плоские медведи" />
+		<item src="编辑个性签名" trans="Изменить подпись" />
+		<item src="联系人" trans="контакты" />
+		<item src="会员" trans="член" />
+		<item src="辅助工具" trans="доступность" />
+		<item src="用于辅助查看dui子窗口的小工具" trans="См дуй помочь дочернего окна для гаджетов" />
+		<item src="测试区" trans="песочница" />
+		<item src="标准控件测试" trans="Стандартный тест управления" />
+		<item src="点击弹出测试标准控件" trans="Нажмите стандарты тестирования управления всплывающий" />
+		<item src="预留区" trans="Конфиденциальная зона" />
 	</node>
-	<node name="dui_exitmenu"><!--dui_exitmenu特定transid的特殊翻译-->
-		<item src="官方支持"  trans="Официальная поддержка"/>
-		<item src="退出"  trans="выход"/>
+	<node name="dui_exitmenu">
+		<!--dui_exitmenu特定transid的特殊翻译-->
+		<item src="官方支持" trans="Официальная поддержка" />
+		<item src="退出" trans="выход" />
 	</node>
 </dmlg>

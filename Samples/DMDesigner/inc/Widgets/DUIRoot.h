@@ -16,7 +16,7 @@ class ObjXml;
 class ObjTree;
 class DUIRoot:public DUIWindow
 {
-	DMDECLARE_CLASS_NAME(DUIRoot, L"Root",DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUIRoot, L"root",DMREG_Window)
 public:
 	DUIRoot();
 

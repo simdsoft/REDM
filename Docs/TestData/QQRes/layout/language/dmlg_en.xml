@@ -1,29 +1,28 @@
+<?xml version="1.0"?>
 <!--没有特定配置,全从custom中读取翻译-->
-<dmlg name="dmlg_en"><!--给一个唯一标识-->
-	<node name="custom"><!--通用标识-->
-		<item src="扁扁熊"  trans="Flat bear"/>
-		<item src="编辑个性签名"  trans="Edit the personal signature"/>
-		
-		<item src="联系人"  trans="Contacts"/>
-		<item src="会员"  trans="member"/>
-		<item src="辅助工具"  trans="Auxiliary Tools"/>
-		<item src="用于辅助查看dui子窗口的小工具"  trans="Gadget to assist in viewing dui child windows"/>
-		<item src="测试区"  trans="Test area"/>
-		<item src="标准控件测试"  trans="Standard control test"/>
-		<item src="点击弹出测试标准控件"  trans="Click on the pop-up test standard control"/>
-		<item src="预留区"  trans="Reserved area"/>
-		
-		<item src="官方支持"  trans="Official support"/>
-		<item src="退出"  trans="drop out"/>
-		
-		<item src="通用布局"  trans="Common layout"/>
-		<item src="通用控件"  trans="Common Controls"/>
-		<item src="通用控件扩展"  trans="Common Controls Extension"/>
-		<item src="GIF展示"  trans="GIF display"/>
-		<item src="插件动画展示"  trans="Plug-in animation display"/>
-		<item src="ActiveX展示"  trans="ActiveX display"/>
-		<item src="网页展示"  trans="Web page display"/>
-		<item src="脚本展示"  trans="Script display"/>
+<dmlg name="dmlg_en">
+	<!--给一个唯一标识-->
+	<node name="custom">
+		<!--通用标识-->
+		<item src="扁扁熊" trans="Flat bear" />
+		<item src="编辑个性签名" trans="Edit the personal signature" />
+		<item src="联系人" trans="Contacts" />
+		<item src="会员" trans="member" />
+		<item src="辅助工具" trans="Auxiliary Tools" />
+		<item src="用于辅助查看dui子窗口的小工具" trans="Gadget to assist in viewing dui child windows" />
+		<item src="测试区" trans="Test area" />
+		<item src="标准控件测试" trans="Standard control test" />
+		<item src="点击弹出测试标准控件" trans="Click on the pop-up test standard control" />
+		<item src="预留区" trans="Reserved area" />
+		<item src="官方支持" trans="Official support" />
+		<item src="退出" trans="drop out" />
+		<item src="通用布局" trans="Common layout" />
+		<item src="通用控件" trans="Common Controls" />
+		<item src="通用控件扩展" trans="Common Controls Extension" />
+		<item src="GIF展示" trans="GIF display" />
+		<item src="插件动画展示" trans="Plug-in animation display" />
+		<item src="ActiveX展示" trans="ActiveX display" />
+		<item src="网页展示" trans="Web page display" />
+		<item src="脚本展示" trans="Script display" />
 	</node>
 </dmlg>
-

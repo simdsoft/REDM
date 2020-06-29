@@ -1,23 +1,25 @@
-﻿<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
-<resource>  
-	<global><!--全局属性,直接包含skin、style、默认字体等-->
-		<file name="global" path="layout\xml\global.xml"  />
+<?xml version="1.0"?>
+<!--请使用utf8格式,所有相对路径都是相对于顶层目录，不要在最前面使用\或/,因为zip可能不识别-->
+<resource>
+	<global>
+		<!--全局属性,直接包含skin、style、默认字体等-->
+		<file name="global" path="layout\xml\global.xml" />
 	</global>
 	<layout>
-		<file name="dui_main" 	 path="layout\xml\dui_dlg_main.xml"  />
-		<file name="dui_ie" 	 path="layout\xml\dui_dlg_ie.xml"  />
-		<file name="dui_dlgtest" path="layout\xml\dui_dlg_dlgtest.xml"  />
-		<file name="dui_skin"    path="layout\xml\dui_dlg_skin.xml"  />
-		<file name="dui_attrtest"    path="layout\xml\dui_dlg_attrtest.xml"  />
-		<file name="dui_spy"     path="layout\xml\dui_dlg_spy.xml"    />
-		<file name="dui_page_layout"     path="layout\xml\dui_page_layout.xml"  />
-		<file name="dui_page_widget"     path="layout\xml\dui_page_widget.xml"  />
-		<file name="dui_page_widgetex"   path="layout\xml\dui_page_widgetex.xml"  />
-		<file name="dui_page_gif" 		 path="layout\xml\dui_page_gif.xml"  />
-		<file name="dui_page_animate" 	 path="layout\xml\dui_page_animate.xml"  />
-		<file name="dui_page_activex" 	 path="layout\xml\dui_page_activex.xml"  />
-		<file name="dui_page_webkit" 	 path="layout\xml\dui_page_webkit.xml"  />
-		<file name="dui_page_ie" 		 path="layout\xml\dui_page_ie.xml"  />
-		<file name="dui_menu" 	 path="layout\xml\dui_menu.xml"  />
+		<file name="dui_main" path="layout\xml\dui_dlg_main.xml" />
+		<file name="dui_ie" path="layout\xml\dui_dlg_ie.xml" />
+		<file name="dui_dlgtest" path="layout\xml\dui_dlg_dlgtest.xml" />
+		<file name="dui_skin" path="layout\xml\dui_dlg_skin.xml" />
+		<file name="dui_attrtest" path="layout\xml\dui_dlg_attrtest.xml" />
+		<file name="dui_spy" path="layout\xml\dui_dlg_spy.xml" />
+		<file name="dui_page_layout" path="layout\xml\dui_page_layout.xml" />
+		<file name="dui_page_widget" path="layout\xml\dui_page_widget.xml" />
+		<file name="dui_page_widgetex" path="layout\xml\dui_page_widgetex.xml" />
+		<file name="dui_page_gif" path="layout\xml\dui_page_gif.xml" />
+		<file name="dui_page_animate" path="layout\xml\dui_page_animate.xml" />
+		<file name="dui_page_activex" path="layout\xml\dui_page_activex.xml" />
+		<file name="dui_page_webkit" path="layout\xml\dui_page_webkit.xml" />
+		<file name="dui_page_ie" path="layout\xml\dui_page_ie.xml" />
+		<file name="dui_menu" path="layout\xml\dui_menu.xml" />
 	</layout>
 </resource>

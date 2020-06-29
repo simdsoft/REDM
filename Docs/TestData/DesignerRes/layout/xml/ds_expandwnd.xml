@@ -1,10 +1,11 @@
-﻿<dm  initsize="200,400" minsize="200,400" bresize="0" maxsize="-1,-1" btranslucent="1" regtip="TipsImpl" alpha = "240">
-	<root clrnc="pbgra(3b,3b,3b,ff)" ncmargin="2,2,2,2" clrbg="pbgra(3b,3b,3b,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@25" clrbg="pbgra(59,59,59,ff)"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,34" text="Expand" align="left" font="face:新宋体,size:15,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)"/>
+<?xml version="1.0"?>
+<dm initsize="200,400" minsize="200,400" bresize="0" maxsize="-1,-1" btranslucent="1" regtip="TipsImpl" alpha="240">
+	<root clrnc="pbgra(3b,3b,3b,ff)" ncmargin="2,2,2,2" clrbg="pbgra(3b,3b,3b,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@25" clrbg="pbgra(59,59,59,ff)">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,34" text="Expand" align="left" font="face:新宋体,size:15,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
-		<dsattrtree name="ds_attrtree" pos="0,33,-0,-34" brightclicksel="1" toggleskin="ds_toggle" tipxmlid="ds_attrtips" childoffset="5" sbskin="ds_scrollbar" 
-			itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0">
-		</dsattrtree>
+		<dsattrtree name="ds_attrtree" pos="0,33,-0,-34" brightclicksel="1" toggleskin="ds_toggle" tipxmlid="ds_attrtips" childoffset="5" sbskin="ds_scrollbar" itemheight="20" itemwidth="50" clritemhoverbg="pbgra(44,44,44,ff)" clritemselbg="pbgra(bd,bd,bd,ff)" arrowwidth="0" />
 	</root>
 </dm>

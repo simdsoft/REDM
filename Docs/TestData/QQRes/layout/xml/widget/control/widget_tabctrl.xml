@@ -1,23 +1,24 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-tabctrl" pos="0,0,-0,-0" text="tabctrl" align="right">
-		<button name="btn_tabctrl_insert" pos="10,13,@100,@24" text="插入" skin="btncustom" alpha="0x80" tiptext="限制最多插入五项"/>
-		<button name="btn_tabctrl_del" 	  pos="[10,13,@100,@24" text="删除" skin="btncustom" alpha="0x80" tiptext="依次删除插入的项"/>
-		<tabctrl name="tabctrl1" tabalign="top" pos="10,50,-10,@100"  cursel="0" animatesteps="15"  font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
-			<tabPage itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1"/>	
-			<tabPage itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2"/>	
+		<button name="btn_tabctrl_insert" pos="10,13,@100,@24" text="插入" skin="btncustom" alpha="0x80" tiptext="限制最多插入五项" />
+		<button name="btn_tabctrl_del" pos="[10,13,@100,@24" text="删除" skin="btncustom" alpha="0x80" tiptext="依次删除插入的项" />
+		<tabctrl name="tabctrl1" tabalign="top" pos="10,50,-10,@100" cursel="0" animatesteps="15" font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7" itemspace="3" textpoint="-1,10">
+			<tabpage itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1" />
+			<tabpage itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2" />
 		</tabctrl>
 		<group pos="0,160,-0,-0" text="其他形式tabctrl" align="right">
-			<tabctrl name="tabctrl2" tabalign="left" pos="0,0,%49,@100"  cursel="0" animatesteps="15"  font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
-				<tabPage   itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1"/>	
-				<tabPage   itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2"/>	
+			<tabctrl name="tabctrl2" tabalign="left" pos="0,0,%49,@100" cursel="0" animatesteps="15" font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7" itemspace="3" textpoint="-1,10">
+				<tabpage itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1" />
+				<tabpage itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2" />
 			</tabctrl>
-			<tabctrl name="tabctrl3" tabalign="right" pos="%51,0,%99,@100"  cursel="0" animatesteps="15"  font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
-				<tabPage   itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1"/>	
-				<tabPage   itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2"/>	
+			<tabctrl name="tabctrl3" tabalign="right" pos="%51,0,%99,@100" cursel="0" animatesteps="15" font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7" itemspace="3" textpoint="-1,10">
+				<tabpage itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1" />
+				<tabpage itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2" />
 			</tabctrl>
-			<tabctrl name="tabctrl4" tabalign="bottom" pos="0,110,%49,@100"  cursel="0" animatesteps="15"  font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7"  itemspace="3" textpoint="-1,10">
-				<tabPage  itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1"/>	
-				<tabPage  itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2"/>	
+			<tabctrl name="tabctrl4" tabalign="bottom" pos="0,110,%49,@100" cursel="0" animatesteps="15" font="face:宋体,size:12" clrText="rgba(38,63,82,ff)" itemsize="78,30" firstitemoffset="7" itemspace="3" textpoint="-1,10">
+				<tabpage itemskin="tab_item" clrbg="pbgra(e2,b2,3e,80)" animatetype="1" title="top1" />
+				<tabpage itemskin="tab_item" clrbg="pbgra(3e,b2,e2,80)" animatetype="1" title="top2" />
 			</tabctrl>
 		</group>
 	</group>

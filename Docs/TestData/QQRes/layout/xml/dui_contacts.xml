@@ -1,154 +1,160 @@
-﻿<sub>
-    <listboxex name="listex" pos="0,0,-0,-0" sbskin="list_scroll" sbwidth="12" clrbg="pbgra(50,50,50,50)" bnodrawbg="1" itemheight="28" >
-		<item ><!--第一个tree-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
-				<treectrl name="listex_tree0" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)"  clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)"  clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
-					<item text="我的设备 1/2" bCollapsed="1" >
+<?xml version="1.0"?>
+<sub>
+	<listboxex name="listex" pos="0,0,-0,-0" sbskin="list_scroll" sbwidth="12" clrbg="pbgra(50,50,50,50)" bnodrawbg="1" itemheight="28">
+		<item>
+			<!--第一个tree-->
+			<window pos="0,0,-0,-0" skin="list_bg">
+				<treectrl name="listex_tree0" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)" clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
+					<item text="我的设备 1/2" bCollapsed="1">
 						<item text="test" />
 					</item>
-				</treectrl>	
+				</treectrl>
 			</window>
 		</item>
-		<item height="0"><!--第一个tree下展开数据-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
+		<item height="0">
+			<!--第一个tree下展开数据-->
+			<window pos="0,0,-0,-0" skin="list_bg">
 				<listboxex name="listex_listex0" pos="0,0,-0,-0" clrbg="pbgra(50,50,50,50)" itemheight="28">
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
-							<button pos="10,%30,@20,@20" skin="list_icon1"/>	
-							<static  pos="[10,%30" possize="-1,-1" valign="middle" text="我的iphone"/>
-							<static  pos="[10,%30" possize="-1,-1"  valign="middle" text="上次登陆:2015-4-5 11:56" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
-						 </window>
+							<button pos="10,%30,@20,@20" skin="list_icon1" />
+							<label pos="[10,%30" possize="-1,-1" valign="middle" text="我的iphone" />
+							<label pos="[10,%30" possize="-1,-1" valign="middle" text="上次登陆:2015-4-5 11:56" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
-							<button pos="10,%30,@20,@20" skin="list_icon2"/>	
-							<static  pos="[10,%30" possize="-1,-1" text="我的ipad"/>
-							<static  pos="[10,%30" possize="-1,-1" text="上次登陆:2015-4-4 10:56" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
-						 </window>
+							<button pos="10,%30,@20,@20" skin="list_icon2" />
+							<label pos="[10,%30" possize="-1,-1" text="我的ipad" />
+							<label pos="[10,%30" possize="-1,-1" text="上次登陆:2015-4-4 10:56" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
+						</window>
 					</item>
 				</listboxex>
-			 </window>
-		</item>
-		<item><!--第二个tree-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
-				<treectrl name="listex_tree1" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)"  clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)"  clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
-					<item text="腾讯同事 10/11" bCollapsed="1" >
-						<item text="test" />
-					</item>
-				</treectrl>	
 			</window>
 		</item>
-		<item height="0"><!--第二个tree下展开数据-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
+		<item>
+			<!--第二个tree-->
+			<window pos="0,0,-0,-0" skin="list_bg">
+				<treectrl name="listex_tree1" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)" clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
+					<item text="腾讯同事 10/11" bCollapsed="1">
+						<item text="test" />
+					</item>
+				</treectrl>
+			</window>
+		</item>
+		<item height="0">
+			<!--第二个tree下展开数据-->
+			<window pos="0,0,-0,-0" skin="list_bg">
 				<listboxex name="listex_listex1" pos="0,0,-0,-0" clrbg="pbgra(50,50,50,50)" itemheight="28">
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n战斗民族就是干">
-							<button pos="10,%30,@20,@20" skin="list_icon3"/>	
-							<static  pos="[10,%30" possize="-1,-1" text="时鉴宣"/>
-							<static  pos="[10,%30" possize="-1,-1" text="战斗民族就是干" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
-						 </window>
+							<button pos="10,%30,@20,@20" skin="list_icon3" />
+							<label pos="[10,%30" possize="-1,-1" text="时鉴宣" />
+							<label pos="[10,%30" possize="-1,-1" text="战斗民族就是干" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg">
-								<button pos="10,%30,@20,@20" skin="list_icon4"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="godsu"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-						 </window>
-						 </window>
-					</item>
-					<item>
-						<window pos="0,0,-0,-0" skin="list_bg">
-							<window pos="0,0,-0,-0" skin="list_bg">
-								<button pos="10,%30,@20,@20" skin="list_icon5"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="joey"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
+								<button pos="10,%30,@20,@20" skin="list_icon4" />
+								<label pos="[10,%30" possize="-1,-1" text="godsu" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
 							</window>
-						 </window>
+						</window>
+					</item>
+					<item>
+						<window pos="0,0,-0,-0" skin="list_bg">
+							<window pos="0,0,-0,-0" skin="list_bg">
+								<button pos="10,%30,@20,@20" skin="list_icon5" />
+								<label pos="[10,%30" possize="-1,-1" text="joey" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+							</window>
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n拒绝玻璃心">
-								<button pos="10,%30,@20,@20" skin="list_icon6"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="shineyang"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-								<static  pos="[10,%30" possize="-1,-1" text="拒绝玻璃心" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+								<button pos="10,%30,@20,@20" skin="list_icon6" />
+								<label pos="[10,%30" possize="-1,-1" text="shineyang" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+								<label pos="[10,%30" possize="-1,-1" text="拒绝玻璃心" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 							</window>
-						 </window>
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n2015 开放 高效">
-								<button pos="10,%30,@20,@20" skin="list_icon7"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="Terryzhang"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-								<static  pos="[10,%30" possize="-1,-1" text="2015 开放 高效" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+								<button pos="10,%30,@20,@20" skin="list_icon7" />
+								<label pos="[10,%30" possize="-1,-1" text="Terryzhang" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+								<label pos="[10,%30" possize="-1,-1" text="2015 开放 高效" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 							</window>
-						 </window>
+						</window>
 					</item>
 				</listboxex>
 			</window>
 		</item>
-		<item><!--第三个tree-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
-				<treectrl name="listex_tree2" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)"  clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)"  clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
-					<item text="腾讯客户端安全 7/12" bCollapsed="1" >
+		<item>
+			<!--第三个tree-->
+			<window pos="0,0,-0,-0" skin="list_bg">
+				<treectrl name="listex_tree2" pos="0,0,-0,-0" clritemtext="pbgra(00,00,00,ff)" clritemhoverbg="pbgra(ff,ff,ff,00)" clritemseltext="pbgra(00,00,00,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(ff,ff,ff,00)" itemheight="28" sbenable="0" bnowheelscroll="0" toggleskin="tree_toggle" commit="item项和总高度相同，并禁用滚动从而达到小三角出现,子项隐藏的效果">
+					<item text="腾讯客户端安全 7/12" bCollapsed="1">
 						<item text="test" />
 					</item>
-				</treectrl>	
+				</treectrl>
 			</window>
 		</item>
-		<item height="0"><!--第三个tree下展开数据-->
-			<window  pos="0,0,-0,-0" skin="list_bg">
-				<listboxex  name="listex_listex2" pos="0,0,-0,-0" clrbg="pbgra(50,50,50,50)" itemheight="28">
+		<item height="0">
+			<!--第三个tree下展开数据-->
+			<window pos="0,0,-0,-0" skin="list_bg">
+				<listboxex name="listex_listex2" pos="0,0,-0,-0" clrbg="pbgra(50,50,50,50)" itemheight="28">
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n战斗民族就是干">
-							<button pos="10,%30,@20,@20" skin="list_icon3"/>	
-							<static  pos="[10,%30" possize="-1,-1" text="时鉴宣"/>
-							<static  pos="[10,%30" possize="-1,-1" text="战斗民族就是干" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
-						 </window>
+							<button pos="10,%30,@20,@20" skin="list_icon3" />
+							<label pos="[10,%30" possize="-1,-1" text="时鉴宣" />
+							<label pos="[10,%30" possize="-1,-1" text="战斗民族就是干" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg">
-								<button pos="10,%30,@20,@20" skin="list_icon4"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="godsu"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-						 </window>
-						 </window>
-					</item>
-					<item>
-						<window pos="0,0,-0,-0" skin="list_bg">
-							<window pos="0,0,-0,-0" skin="list_bg">
-								<button pos="10,%30,@20,@20" skin="list_icon5"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="joey"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
+								<button pos="10,%30,@20,@20" skin="list_icon4" />
+								<label pos="[10,%30" possize="-1,-1" text="godsu" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
 							</window>
-						 </window>
+						</window>
+					</item>
+					<item>
+						<window pos="0,0,-0,-0" skin="list_bg">
+							<window pos="0,0,-0,-0" skin="list_bg">
+								<button pos="10,%30,@20,@20" skin="list_icon5" />
+								<label pos="[10,%30" possize="-1,-1" text="joey" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+							</window>
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n拒绝玻璃心">
-								<button pos="10,%30,@20,@20" skin="list_icon6"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="shineyang"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-								<static  pos="[10,%30" possize="-1,-1" text="拒绝玻璃心" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+								<button pos="10,%30,@20,@20" skin="list_icon6" />
+								<label pos="[10,%30" possize="-1,-1" text="shineyang" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+								<label pos="[10,%30" possize="-1,-1" text="拒绝玻璃心" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 							</window>
-						 </window>
+						</window>
 					</item>
 					<item>
 						<window pos="0,0,-0,-0" skin="list_bg">
 							<window pos="0,0,-0,-0" skin="list_bg" tiptext="个性签名更新:\r\n2015 开放 高效">
-								<button pos="10,%30,@20,@20" skin="list_icon7"/>	
-								<static  pos="[10,%30" possize="-1,-1" text="Terryzhang"/>
-								<link  pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌"/>
-								<static  pos="[10,%30" possize="-1,-1" text="2015 开放 高效" clrtext="pbgra(7f,7f,7f,7f)" font="size:12"/>
+								<button pos="10,%30,@20,@20" skin="list_icon7" />
+								<label pos="[10,%30" possize="-1,-1" text="Terryzhang" />
+								<link pos="[10,%30,@26,@12" skin="list_qqvip" href="www.hgy413.com" tiptext="QQ会员身份铭牌" />
+								<label pos="[10,%30" possize="-1,-1" text="2015 开放 高效" clrtext="pbgra(7f,7f,7f,7f)" font="size:12" />
 							</window>
-						 </window>
+						</window>
 					</item>
 				</listboxex>
 			</window>
 		</item>
-		
 	</listboxex>
 </sub>

@@ -1,28 +1,28 @@
-﻿<dm  initsize="400,100" btranslucent="1" alpha = "230">
-	<root clrbg="pbgra(3a,3a,3a,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@25" clrbg="pbgra(59,59,59,ff)" bdrag="1"><!--标题区-->
-			<static name="ds_msgtitle" pos="5,2,@180,-0" text="欢迎使用DM设计器" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="400,100" btranslucent="1" alpha="230">
+	<root clrbg="pbgra(3a,3a,3a,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@25" clrbg="pbgra(59,59,59,ff)" bdrag="1">
+			<!--标题区-->
+			<label name="ds_msgtitle" pos="5,2,@180,-0" text="欢迎使用DM设计器" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
 		<tabctrl name="ds_scantabctrl" tabalign="top" pos="0,25,-0,-0" cursel="0" itemsize="78,0">
-			<tabPage>	
-				<button  id="1" pos="105,-70,@190,@58"  text="立即体检" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>	
-			<tabPage>	
-				<button  id="1" pos="105,-70,@190,@58"  text="未发现错误" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>	
-			<tabPage clrbg="pbgra(8,8,8,ff)">	
-				<gif  pos="0,0,@100,@100" badjust="1" gifskin="gif:ds_scan_gif">
-				</gif>
-				<listbox name="ds_scanlist" pos="[5,0,-5,-75" itemheight="20" cursel="0" clritemtext="pbgra(00,00,ff,ff)" font="face:新宋体,size:12,weight:400" sbskin="ds_scrollbar" arrowwidth="0">
-				</listbox>
-				<button  id="1" pos="155,-70,@190,@58" text="立即修复" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>
-			<tabPage>	
-				<listbox name="ds_repairlist" pos="5,0,-5,-75" itemheight="20" cursel="0" clritemtext="pbgra(ff,ff,00,ff)" font="face:新宋体,size:12,weight:400" sbskin="ds_scrollbar" arrowwidth="0">
-				</listbox>
-				<button  id="1" pos="155,-70,@190,@58" text="修复成功" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)"/>
-			</tabPage>	
+			<tabpage>
+				<button id="1" pos="105,-70,@190,@58" text="立即体检" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
+			<tabpage>
+				<button id="1" pos="105,-70,@190,@58" text="未发现错误" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
+			<tabpage clrbg="pbgra(8,8,8,ff)">
+				<gif pos="0,0,@100,@100" badjust="1" gifskin="gif:ds_scan_gif" />
+				<listbox name="ds_scanlist" pos="[5,0,-5,-75" itemheight="20" cursel="0" clritemtext="pbgra(00,00,ff,ff)" font="face:新宋体,size:12,weight:400" sbskin="ds_scrollbar" arrowwidth="0" />
+				<button id="1" pos="155,-70,@190,@58" text="立即修复" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
+			<tabpage>
+				<listbox name="ds_repairlist" pos="5,0,-5,-75" itemheight="20" cursel="0" clritemtext="pbgra(ff,ff,00,ff)" font="face:新宋体,size:12,weight:400" sbskin="ds_scrollbar" arrowwidth="0" />
+				<button id="1" pos="155,-70,@190,@58" text="修复成功" skin="ds_custombutton" font="face:新宋体,size:34,weight:700" clrtext="rgba(ff,ff,ff,ff)" />
+			</tabpage>
 		</tabctrl>
 	</root>
 </dm>

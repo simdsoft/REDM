@@ -1,6 +1,7 @@
-﻿<sub>
-	<richedit name="richedit1" pos="10,10,%20,%20" text="自动换行,右键显示菜单" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
-	<richedit name="richedit2" pos="%21,10,%41,%20" text="多行不自动换行edit" clrbg="pbgra(00,00,00,00)" caretanimatecount="1" ncmargin="1,1,1,1" clrcaret="pbgra(ff,00,00,ff)"  clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bhscroll="1" bwordwrap="0"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
+<?xml version="1.0"?>
+<sub>
+	<richedit name="richedit1" pos="10,10,%20,%20" text="自动换行,右键显示菜单" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
+	<richedit name="richedit2" pos="%21,10,%41,%20" text="多行不自动换行edit" clrbg="pbgra(00,00,00,00)" caretanimatecount="1" ncmargin="1,1,1,1" clrcaret="pbgra(ff,00,00,ff)" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bhscroll="1" bwordwrap="0" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
 	<edit name="edit1" pos="%42,10,%62,%20" text="单行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" />
 	<edit name="edit2" pos="10,%21,%40,%41" surfacetext="表层文字edit,点击表层文字消失" surfacetextclr="pbgra(ff,ff,ff,ff)" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" />
 </sub>

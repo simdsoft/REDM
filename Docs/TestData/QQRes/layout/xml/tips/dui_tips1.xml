@@ -1,6 +1,7 @@
-﻿<dm  initsize="150,100"  btranslucent="0" alpha = "255">
+<?xml version="1.0"?>
+<dm initsize="150,100" btranslucent="0" alpha="255">
 	<root clrbg="pbgra(ff,ff,ff,ff)">
-		<flash pos="0,0,@100,@100"  url="flash:1.swf"/>
-		<gif   pos="100,0,@50,@100" badjust="1" gifskin="gif:4_gif"/>
+		<flash pos="0,0,@100,@100" url="flash:1.swf" />
+		<gif pos="100,0,@50,@100" badjust="1" gifskin="gif:4_gif" />
 	</root>
 </dm>

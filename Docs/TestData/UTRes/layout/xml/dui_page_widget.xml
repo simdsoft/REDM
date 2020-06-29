@@ -1,115 +1,108 @@
-﻿<sub>
-	<richedit nocache="1" name="rich_edit" pos="10,65,@140,@73" style="style-edit" multiLines="1" vscrollBar="1" wordWrap="1"  autoVscroll="1"  hscrollBar="1" wantReturn="1" enableDragdrop="1"   sbSkin="ScrollBar"/>
-	<scrollbar nocache="1"  pos="10,140,@16,@120"  Page="100" Max="280" SbSkin="ScrollBar"/>
-	<scrollbar nocache="1"  pos="30,140,@120,@16"  Page="100" Max="280" SbSkin="ScrollBar"  bVert="0"/>
-
-	<listbox   nocache="1"  pos="30,270,@120,@120"  ncSkin="DUI_Frame"   margin="2,2,2,2" hotTrack="1" iconSkin="menuicons" colorText="rgba(00,00,ff,ff)" colorSelText="rgba(FF,FF,FF,FF)" colorItemBkgnd2="rgba(FF,FF,cc,FF)" colorItemBkgnd="rgba(FF,FF,FF,FF)" colorItemSelBkgnd="rgba(ff,00,00,ff)" SbSkin="ScrollBar">
+<?xml version="1.0"?>
+<sub>
+	<richedit nocache="1" name="rich_edit" pos="10,65,@140,@73" style="style-edit" multiLines="1" vscrollBar="1" wordWrap="1" autoVscroll="1" hscrollBar="1" wantReturn="1" enableDragdrop="1" sbSkin="ScrollBar" />
+	<scrollbar nocache="1" pos="10,140,@16,@120" Page="100" Max="280" SbSkin="ScrollBar" />
+	<scrollbar nocache="1" pos="30,140,@120,@16" Page="100" Max="280" SbSkin="ScrollBar" bVert="0" />
+	<listbox nocache="1" pos="30,270,@120,@120" ncSkin="DUI_Frame" margin="2,2,2,2" hotTrack="1" iconSkin="menuicons" colorText="rgba(00,00,ff,ff)" colorSelText="rgba(FF,FF,FF,FF)" colorItemBkgnd2="rgba(FF,FF,cc,FF)" colorItemBkgnd="rgba(FF,FF,FF,FF)" colorItemSelBkgnd="rgba(ff,00,00,ff)" SbSkin="ScrollBar">
 		<items>
-          <item text="listbox1" icon="1" data="100"/>
-          <item text="2" icon="2" data="100"/>
-          <item text="3" icon="3" data="103"/>
-          <item text="4" icon="4" data="100"/>
-          <item text="5" icon="5" data="105"/>
-          <item text="6" icon="6" data="100"/>
-		  <item text="7" icon="7" data="103"/>
-          <item text="8" icon="8" data="100"/>
-          <item text="9" icon="9" data="105"/>
-          <item text="0" icon="0" data="100"/>
-        </items>
+			<item text="listbox1" icon="1" data="100" />
+			<item text="2" icon="2" data="100" />
+			<item text="3" icon="3" data="103" />
+			<item text="4" icon="4" data="100" />
+			<item text="5" icon="5" data="105" />
+			<item text="6" icon="6" data="100" />
+			<item text="7" icon="7" data="103" />
+			<item text="8" icon="8" data="100" />
+			<item text="9" icon="9" data="105" />
+			<item text="0" icon="0" data="100" />
+		</items>
 	</listbox>
-	
-	<combobox nocache="1" pos="160,10,@200,@20"  curSel="1" style="style-edit" btnSkin="combobtn"  bHideEdit="0" dropHeight="100" dotted="0" animateTime="200"  >
-		<sub_edit  inset="5,0,5,0"  font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0,adding:0" align="left" multiLines="0"  sbSkin="ScrollBar"/>
-        <sub_listbox ncSkin="DUI_Frame"   margin="2,2,2,2" hotTrack="1" iconSkin="menuicons" colorText="rgba(00,00,ff,ff)" colorSelText="rgba(FF,FF,FF,FF)" colorItemBkgnd2="rgba(FF,FF,cc,FF)" colorItemBkgnd="rgba(FF,FF,FF,FF)" colorItemSelBkgnd="rgba(ff,00,00,ff)" SbSkin="ScrollBar">
+	<combobox nocache="1" pos="160,10,@200,@20" curSel="1" style="style-edit" btnSkin="combobtn" bHideEdit="0" dropHeight="100" dotted="0" animateTime="200">
+		<sub_edit inset="5,0,5,0" font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0,adding:0" align="left" multiLines="0" sbSkin="ScrollBar" />
+		<sub_listbox ncSkin="DUI_Frame" margin="2,2,2,2" hotTrack="1" iconSkin="menuicons" colorText="rgba(00,00,ff,ff)" colorSelText="rgba(FF,FF,FF,FF)" colorItemBkgnd2="rgba(FF,FF,cc,FF)" colorItemBkgnd="rgba(FF,FF,FF,FF)" colorItemSelBkgnd="rgba(ff,00,00,ff)" SbSkin="ScrollBar">
 			<items>
-				<item text="combobox1" icon="1" data="100"/>
-				<item text="combobox2" icon="2" data="100"/>
-				<item text="3" icon="3" data="103"/>
-				<item text="4" icon="4" data="100"/>
-				<item text="5" icon="5" data="105"/>
-				<item text="6" icon="6" data="100"/>
-				<item text="7" icon="7" data="103"/>
-				<item text="8" icon="8" data="100"/>
-				<item text="9" icon="9" data="105"/>
-				<item text="0" icon="0" data="100"/>
-        </items>
+				<item text="combobox1" icon="1" data="100" />
+				<item text="combobox2" icon="2" data="100" />
+				<item text="3" icon="3" data="103" />
+				<item text="4" icon="4" data="100" />
+				<item text="5" icon="5" data="105" />
+				<item text="6" icon="6" data="100" />
+				<item text="7" icon="7" data="103" />
+				<item text="8" icon="8" data="100" />
+				<item text="9" icon="9" data="105" />
+				<item text="0" icon="0" data="100" />
+			</items>
 		</sub_listbox>
 	</combobox>
-	
-	<listboxex nocache="1" pos="160,50,-250,@150" margin="2,2,2,2"  class="style-edit" itemHeight="50" ncSkin="DUI_Frame"  sbSkin="ScrollBar">
-        <items> <!--必须全部使用nocache-->
-          <item nocache="1">
-            <static nocache="1" pos="5,2,200,20" class="style-Link"  text="组合面板1" />
-            <button nocache="1" pos="%20,20,@26,@17" focusable="1" skin="Btn_Menu" tiptext="menu"/>
-            <link   nocache="1" pos="%40,20,@100,@23" style="style-link_forum" text="论坛" href="www.hgy413.com"  />
-          </item>
-          <item nocache="1">
-            <static nocache="1" pos="5,2,200,20" class="style-Link"  text="组合面板2"  />
-            <button nocache="1" pos="5,20,@45,@17"  focusable="1" skin="Btn_Close" tiptext="close"/>
-			<button nocache="1" pos="5,40,@45,@17"  focusable="1" skin="Btn_Close" tiptext="close"/>
-            <link   nocache="1" pos="70,20,200,43" style="style-link_forum" text="求助" href="www.hgy413.com"/>
-          </item> 
-		  <item nocache="1">
-            <static nocache="1" pos="5,2,200,20" class="style-Link"  text="组合面板3"  />
-            <button nocache="1" pos="5,20,@45,@17"  focusable="1" skin="Btn_Close" tiptext="close"/>
-			<button nocache="1" pos="5,40,@45,@17"  focusable="1" skin="Btn_Close" tiptext="close"/>
-            <link   nocache="1" pos="70,20,200,43" style="style-link_forum" text="DM" href="www.hgy413.com"/>
-          </item>
+	<listboxex nocache="1" pos="160,50,-250,@150" margin="2,2,2,2" class="style-edit" itemHeight="50" ncSkin="DUI_Frame" sbSkin="ScrollBar">
+		<items>
+			<!--必须全部使用nocache-->
+			<item nocache="1">
+				<label nocache="1" pos="5,2,200,20" class="style-Link" text="组合面板1" />
+				<button nocache="1" pos="%20,20,@26,@17" focusable="1" skin="Btn_Menu" tiptext="menu" />
+				<link nocache="1" pos="%40,20,@100,@23" style="style-link_forum" text="论坛" href="www.hgy413.com" />
+			</item>
+			<item nocache="1">
+				<label nocache="1" pos="5,2,200,20" class="style-Link" text="组合面板2" />
+				<button nocache="1" pos="5,20,@45,@17" focusable="1" skin="Btn_Close" tiptext="close" />
+				<button nocache="1" pos="5,40,@45,@17" focusable="1" skin="Btn_Close" tiptext="close" />
+				<link nocache="1" pos="70,20,200,43" style="style-link_forum" text="求助" href="www.hgy413.com" />
+			</item>
+			<item nocache="1">
+				<label nocache="1" pos="5,2,200,20" class="style-Link" text="组合面板3" />
+				<button nocache="1" pos="5,20,@45,@17" focusable="1" skin="Btn_Close" tiptext="close" />
+				<button nocache="1" pos="5,40,@45,@17" focusable="1" skin="Btn_Close" tiptext="close" />
+				<link nocache="1" pos="70,20,200,43" style="style-link_forum" text="DM" href="www.hgy413.com" />
+			</item>
 		</items>
-    </listboxex>
-	 
-	<treectrl nocache="1" pos="160,220,%40,%85" margin="2,2,2,2" indent="30" checkBox="0" checkSkin="treecheck" toggleSkin="treetoggle" colorItemBkgnd="rgba(ff,00,ff,ff)" itemHeight="30" iconSkin="menuicons" ncSkin="DUI_Frame"  sbSkin="ScrollBar">
+	</listboxex>
+	<treectrl nocache="1" pos="160,220,%40,%85" margin="2,2,2,2" indent="30" checkBox="0" checkSkin="treecheck" toggleSkin="treetoggle" colorItemBkgnd="rgba(ff,00,ff,ff)" itemHeight="30" iconSkin="menuicons" ncSkin="DUI_Frame" sbSkin="ScrollBar">
 		<item text="treectrl" img="3" selImg="4" bCollapsed="1">
 			<item text="Q1" img="5" selImg="6">
-				<item text="1-1" img="7"/>
-					<item text="1-1-1" img="0" selImg="1">
-						<item text="1-1-1-1" img="2"/>
-						<item text="1-1-1-2" img="2"/>
-					</item>
-				<item text="1-2" img="2"/>
+				<item text="1-1" img="7" />
+				<item text="1-1-1" img="0" selImg="1">
+					<item text="1-1-1-1" img="2" />
+					<item text="1-1-1-2" img="2" />
+				</item>
+				<item text="1-2" img="2" />
 			</item>
 			<item text="Q2" img="0" selImg="1">
-				<item text="2-1" img="2"/>
-				<item text="2-2" img="2"/>
+				<item text="2-1" img="2" />
+				<item text="2-2" img="2" />
 			</item>
-        </item>
+		</item>
 		<item text="我的QQ群2" img="0" selImg="1" bCollapsed="1">
 			<item text="Q1" img="0" selImg="1">
-				<item text="1-1" img="2"/>
-					<item text="1-1-1" img="0" selImg="1">
-						<item text="1-1-1-1" img="2"/>
-						<item text="1-1-1-2" img="2"/>
-					</item>
-				<item text="1-2" img="2"/>
+				<item text="1-1" img="2" />
+				<item text="1-1-1" img="0" selImg="1">
+					<item text="1-1-1-1" img="2" />
+					<item text="1-1-1-2" img="2" />
+				</item>
+				<item text="1-2" img="2" />
 			</item>
 			<item text="Q2" img="0" selImg="1">
-				<item text="2-1" img="2"/>
-				<item text="2-2" img="2"/>
+				<item text="2-1" img="2" />
+				<item text="2-2" img="2" />
 			</item>
-        </item>
+		</item>
 	</treectrl>
-	
-	<HeaderCtrl pos="380,10,@244,@24" align="center" itemDelta="4"  itemSkin="listheader" bitemSwapEnable="1" bfixWidth="0" bsortHeader="1">
-          <items>
-            <item width="60" text="H1-可拖拽" />
+	<headerctrl pos="380,10,@244,@24" align="center" itemDelta="4" itemSkin="listheader" bitemSwapEnable="1" bfixWidth="0" bsortHeader="1">
+		<items>
+			<item width="60" text="H1-可拖拽" />
 			<item width="60" text="H2" />
 			<item width="60" text="H3" />
 			<item width="60" text="H4" />
-          </items>
-    </HeaderCtrl>
-	
-	<listctrl name="MyList" pos="%45,220,%75,%95"  ncSkin="DUI_Frame"  margin="2,2,2,2" sbSkin="ScrollBar">
-		<HeaderCtrl pos="380,10,@244,@24" align="center" itemDelta="4"  itemSkin="listheader" bitemSwapEnable="1" bfixWidth="0" bsortHeader="1">
-          <items>
-            <item width="60" text="ListCtrl" />
-			<item width="60" text="H2-可拖拽" />
-			<item width="60" text="H3" />
-			<item width="60" text="H4" />
-          </items>
-		</HeaderCtrl>
+		</items>
+	</headerctrl>
+	<listctrl name="MyList" pos="%45,220,%75,%95" ncSkin="DUI_Frame" margin="2,2,2,2" sbSkin="ScrollBar">
+		<headerctrl pos="380,10,@244,@24" align="center" itemDelta="4" itemSkin="listheader" bitemSwapEnable="1" bfixWidth="0" bsortHeader="1">
+			<items>
+				<item width="60" text="ListCtrl" />
+				<item width="60" text="H2-可拖拽" />
+				<item width="60" text="H3" />
+				<item width="60" text="H4" />
+			</items>
+		</headerctrl>
 	</listctrl>
-	
-	<realwnd pos="%85,100,-10,@100" name="mfcbtn" wndclass="button" wndname="real Button"/>
-	
-	
+	<realwnd pos="%85,100,-10,@100" name="mfcbtn" wndclass="button" wndname="real Button" />
 </sub>

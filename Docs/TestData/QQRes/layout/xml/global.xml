@@ -1,118 +1,103 @@
-﻿<global font="face:仿宋,size:14,weight:100">
+<?xml version="1.0"?>
+<global font="face:仿宋,size:14,weight:100">
 	<skin>
-		<scrollbar 	 id="scrollbar" 	     src="PNG:scrollbar"   		states="1"   margin="2,2,2,2"	commit="滚动条图"/>
-		<img9        id="bg" 		         src="PNG:bg"               states="1"   margin="482,260,0,0"   commit="主背景图"/>
-		<imglist 	 id="preview" 			 src="PNG:preview"   		states="1"   commit="主背景预览图"/>
-		<imglist 	 id="logo-QQ" 			 src="PNG:logo-QQ"   		states="1"   commit="右上角的QQLOG"/>
-		<imglist 	 id="btn_skin" 			 src="PNG:btn_skin"   		states="4"   commit="skin皮肤按钮"/>
-		<imglist 	 id="minbutton" 		 src="PNG:minbutton"   			states="3"   commit="最小化按扭"/>
-		<imglist 	 id="closebutton" 		 src="PNG:closebutton"   		states="3"   commit="关闭按扭"/>
-		<imglist 	 id="btn_MedalWall" 	 src="PNG:btn_MedalWall"   		states="4"   commit="郧章按钮"/>
-		<imglist 	 id="head" 				 src="PNG:head"   				states="3"   commit="头像"/>
-		<img9        id="btn_edit" 		     src="PNG:btn_edit"             states="2"   margin="2,2,2,2"   commit="edit的模拟按钮"/>
-		<img9        id="surface_search" 	 src="PNG:surface_search"        states="1"   margin="197,0,50,0"   commit="搜索edit的表层皮肤"/>
-		
-		<img9        id="tab_bg" 			src="PNG:tab_bg"                states="1"   margin="0,0,0,1"  />
-		<imglist 	 id="tab_1" 			src="PNG:tab_1"   				states="3"/>
-		<imglist 	 id="tab_2" 			src="PNG:tab_2"   				states="3"/>
-		<imglist 	 id="tab_3" 			src="PNG:tab_3"   				states="3"/>
-		<imglist 	 id="tab_4" 			src="PNG:tab_4"   				states="3"/>
-		<imglist 	 id="tab_5" 			src="PNG:tab_5"   				states="3"/>
-		
-		<imglist 	 id="tree_toggle" 	    src="PNG:tree_toggle"		    states="6" />
-		<imglist 	 id="tree_check" 	    src="PNG:tree_check"		    states="9" />
-		
-		 <!--list icon-->
-		 <scrollbar  id="list_scroll" 		src="PNG:list_scroll"   		states="1" margin="5,5,5,5"/>
-		 <img9	 	 id="list_header" 		src="PNG:list_header"   		states="4" margin="2,2,2,2"/>
-		 <imglist 	 id="list_qqvip" 		src="PNG:list_qqvip"   			states="2"/>
-		 <imglist 	 id="list_bg" 			src="PNG:list_bg"   			states="3"/>
-		 <imglist 	 id="list_icon1" 		src="PNG:list_icon1"   			states="1"/>
-		 <imglist 	 id="list_icon2" 		src="PNG:list_icon2"   			states="1"/>
-		 <imglist 	 id="list_icon3" 		src="PNG:list_icon3"   			states="1"/>
-		 <imglist 	 id="list_icon4" 		src="PNG:list_icon4"   			states="1"/>
-		 <imglist 	 id="list_icon5" 		src="PNG:list_icon5"   			states="1"/>
-		 <imglist 	 id="list_icon6" 		src="PNG:list_icon6"   			states="1"/>
-		 <imglist 	 id="list_icon7" 		src="PNG:list_icon7"   			states="1"/>
-		 
-		 <imglist 	 id="list_selicon1" 	src="PNG:list_selicon1"   		states="1"/>
-		 <imglist 	 id="list_selicon2" 	src="PNG:list_selicon2"   		states="1"/>
-		 <imglist 	 id="list_selicon3" 	src="PNG:list_selicon3"   		states="1"/>
-		 <imglist 	 id="list_selicon4" 	src="PNG:list_selicon4"   		states="1"/>
-		 <imglist 	 id="list_selicon5" 	src="PNG:list_selicon5"   		states="1"/>
-		 <imglist 	 id="list_selicon6" 	src="PNG:list_selicon6"   		states="1"/>
-		 <imglist 	 id="list_selicon7" 	src="PNG:list_selicon7"   		states="1"/>
-		 
-		 <!--skin-->
-		 <imglist 	 id="skin_midbg" 		src="PNG:skin_midbg"   			states="1"/>
-		 <imglist 	 id="skin_setbtn" 		src="PNG:skin_setbtn"   		states="3"/>
-		 <imglist 	 id="skin_outbtn" 		src="PNG:skin_outbtn"   		states="3"/> 
-		 
-		 <!--custom-->
-		 <img9       id="btncustom" 		 src="PNG:btncustom"            states="4"  margin="2,2,2,2" commit="通常的btn状态"/>
-		 <img9       id="bord" 				 src="PNG:bord"            		states="1"  margin="1,1,1,1" />
-		 <img9       id="dui_frame" 		 src="PNG:dui_frame"            states="2"  margin="2,2,2,2" />
-		 
-		 <!--tip-->
-		 <img9       id="tip_frame" 		 src="PNG:tipframe"             states="1"  margin="1,1,1,1" />
-		  
-		 <!--pnggif-->
-		 <imglist 	 id="4_png"				 src="gif:4_png" 				states="26"/>
+		<scrollbar id="scrollbar" src="PNG:scrollbar" states="1" margin="2,2,2,2" commit="滚动条图" />
+		<img9 id="bg" src="PNG:bg" states="1" margin="482,260,0,0" commit="主背景图" />
+		<imglist id="preview" src="PNG:preview" states="1" commit="主背景预览图" />
+		<imglist id="logo-QQ" src="PNG:logo-QQ" states="1" commit="右上角的QQLOG" />
+		<imglist id="btn_skin" src="PNG:btn_skin" states="4" commit="skin皮肤按钮" />
+		<imglist id="minbutton" src="PNG:minbutton" states="3" commit="最小化按扭" />
+		<imglist id="closebutton" src="PNG:closebutton" states="3" commit="关闭按扭" />
+		<imglist id="btn_MedalWall" src="PNG:btn_MedalWall" states="4" commit="郧章按钮" />
+		<imglist id="head" src="PNG:head" states="3" commit="头像" />
+		<img9 id="btn_edit" src="PNG:btn_edit" states="2" margin="2,2,2,2" commit="edit的模拟按钮" />
+		<img9 id="surface_search" src="PNG:surface_search" states="1" margin="197,0,50,0" commit="搜索edit的表层皮肤" />
+		<img9 id="tab_bg" src="PNG:tab_bg" states="1" margin="0,0,0,1" />
+		<imglist id="tab_1" src="PNG:tab_1" states="3" />
+		<imglist id="tab_2" src="PNG:tab_2" states="3" />
+		<imglist id="tab_3" src="PNG:tab_3" states="3" />
+		<imglist id="tab_4" src="PNG:tab_4" states="3" />
+		<imglist id="tab_5" src="PNG:tab_5" states="3" />
+		<imglist id="tree_toggle" src="PNG:tree_toggle" states="6" />
+		<imglist id="tree_check" src="PNG:tree_check" states="9" />
+		<!--list icon-->
+		<scrollbar id="list_scroll" src="PNG:list_scroll" states="1" margin="5,5,5,5" />
+		<img9 id="list_header" src="PNG:list_header" states="4" margin="2,2,2,2" />
+		<imglist id="list_qqvip" src="PNG:list_qqvip" states="2" />
+		<imglist id="list_bg" src="PNG:list_bg" states="3" />
+		<imglist id="list_icon1" src="PNG:list_icon1" states="1" />
+		<imglist id="list_icon2" src="PNG:list_icon2" states="1" />
+		<imglist id="list_icon3" src="PNG:list_icon3" states="1" />
+		<imglist id="list_icon4" src="PNG:list_icon4" states="1" />
+		<imglist id="list_icon5" src="PNG:list_icon5" states="1" />
+		<imglist id="list_icon6" src="PNG:list_icon6" states="1" />
+		<imglist id="list_icon7" src="PNG:list_icon7" states="1" />
+		<imglist id="list_selicon1" src="PNG:list_selicon1" states="1" />
+		<imglist id="list_selicon2" src="PNG:list_selicon2" states="1" />
+		<imglist id="list_selicon3" src="PNG:list_selicon3" states="1" />
+		<imglist id="list_selicon4" src="PNG:list_selicon4" states="1" />
+		<imglist id="list_selicon5" src="PNG:list_selicon5" states="1" />
+		<imglist id="list_selicon6" src="PNG:list_selicon6" states="1" />
+		<imglist id="list_selicon7" src="PNG:list_selicon7" states="1" />
+		<!--skin-->
+		<imglist id="skin_midbg" src="PNG:skin_midbg" states="1" />
+		<imglist id="skin_setbtn" src="PNG:skin_setbtn" states="3" />
+		<imglist id="skin_outbtn" src="PNG:skin_outbtn" states="3" />
+		<!--custom-->
+		<img9 id="btncustom" src="PNG:btncustom" states="4" margin="2,2,2,2" commit="通常的btn状态" />
+		<img9 id="bord" src="PNG:bord" states="1" margin="1,1,1,1" />
+		<img9 id="dui_frame" src="PNG:dui_frame" states="2" margin="2,2,2,2" />
+		<!--tip-->
+		<img9 id="tip_frame" src="PNG:tipframe" states="1" margin="1,1,1,1" />
+		<!--pnggif-->
+		<imglist id="4_png" src="gif:4_png" states="26" />
 	</skin>
 	<skin name="widgetprivate">
-		<imglist 	 id="closebutton" 			 src="PNG:Btn_Close"   			states="3"  commit="和全局的close标识一样，这时需要使用widgetprivate:closebutton来识别"/>
-		<imglist 	 id="Btn_Max"    			 src="PNG:Btn_Max"   			states="3"  commit="最大化按钮状态连图"/>
-		<imglist 	 id="Btn_Restore"  			 src="PNG:Btn_Restore"   		states="3"  commit="恢复按钮状态连图"/>
-		<imglist 	 id="Btn_Min"  				 src="PNG:Btn_Min"   	 		states="3"  commit="最小化按钮状态连图"/>
-		<imglist 	 id="Btn_Menu"  			 src="PNG:Btn_Menu"   			states="3"  commit="菜单按钮状态连图"/>
-		
-		<imglist 	 id="menuicons" 			 src="PNG:menuicons"     		states="12"/>
-		<imglist 	 id="menusep" 				 src="PNG:menusep"       		states="1"/>
-		<imglist 	 id="menucheck" 			 src="PNG:menucheck"    		states="2"/>
-		<imglist 	 id="menubigskin" 			 src="PNG:menubigskin"   		states="2"/>
-		<img9 		 id="menuitembg" 			 src="PNG:menuitembg"    		states="2"  margin="2,2,2,2"/>
-		<img9 		 id="menuitemselbg" 		 src="PNG:menuitemselbg"    	states="2"  margin="2,2,2,2"/>
-		
-		<imglist     id="tabbar_1" 		         src="PNG:tabbar_1"      		states="3" />
-		<imglist     id="tabbar_2" 		         src="PNG:tabbar_2"      		states="3" />
-		<imglist     id="tabbar_3" 		         src="PNG:tabbar_3"      		states="3" />
-		<imglist     id="tabbar_4" 		         src="PNG:tabbar_4"      		states="3" />
-		<imglist     id="tabbar_5" 		         src="PNG:tabbar_5"      		states="3" />
-		<imglist     id="tabbar_6" 		         src="PNG:tabbar_6"      		states="3" />
-		<imglist     id="tab_item" 		         src="PNG:tab_item"      		states="3" />
-		<img9    	 id="tab_pagebg" 		     src="PNG:tab_pagebg"      		states="1" margin="1,1,1,1"/>
-		
-		<imglist 	 id="360icon" 				 src="PNG:360icon"     			states="1"/>
-		<imglist 	 id="360logo" 				 src="PNG:360logo"     			states="1"/>
-		<imglist     id="checkbox" 		         src="PNG:checkbox"      		states="8" />
-		<imglist     id="radiobutton" 		     src="PNG:radiobutton"      	states="8" />
-		<imglist     id="iconbtn" 		         src="PNG:iconbtn"      		states="1" />
-		<imglist     id="comboxbtn" 		     src="PNG:comboxbtn"      		states="3" />
-		
-		<img9 		id="channel_hz" 			 src="PNG:channel_hz"    		states="1" margin="1,1,1,1"/>
-		<img9 		id="channel_vz" 			 src="PNG:channel_vz"    		states="1" margin="1,1,1,1"/>
-		<imglist 	id="thumb_hz" 			 	 src="PNG:thumb_hz"    		    states="4"/>
-		<imglist 	id="thumb_vz" 			 	 src="PNG:thumb_vz"    		    states="4"  bvert="1"/>
-		
-		<img9 		id="process_channel" 		 src="PNG:process_channel"    	states="1" margin="2,2,2,2"/>
-		<img9 		id="process_sel_hz" 		 src="PNG:process_sel_hz"       states="1" margin="2,2,2,2"/>
-		<img9 		id="process_sel_vz" 		 src="PNG:process_sel_vz"       states="1" margin="2,2,2,2"/>
-		
-		<imglist 	id="Webicon" 				 src="PNG:webicon"       		states="1"/>
-		<imglist 	id="WebBack" 				 src="PNG:webback"       		states="4"/>
-		<imglist 	id="webfront" 				 src="PNG:webfront"      		states="4"/>
-		<imglist 	id="webrefresh" 			 src="PNG:webrefresh"    		states="4"/>
-		<imglist 	id="splith" 				 src="PNG:splith" 				states="1" commint="split cur" />
-		<imglist 	id="splitv" 				 src="PNG:splitv" 				states="1" commint="split cur" />
-		
-		<img9 		id="calendar_left" 			 src="PNG:calendar_left" 		states="3" margin="4,4,4,4" />
-		<img9 		id="calendar_right" 		 src="PNG:calendar_right" 		states="3" margin="4,4,4,4" />
-		<img9 		id="calendar_cell" 			 src="PNG:calendar_cell" 		states="3" margin="3,3,3,3" />
-
-		<imglist    id="drag_move" 				 src="PNG:drag_move" 			states="2" commint="拖动时显示小图标"/>
+		<imglist id="closebutton" src="PNG:Btn_Close" states="3" commit="和全局的close标识一样，这时需要使用widgetprivate:closebutton来识别" />
+		<imglist id="Btn_Max" src="PNG:Btn_Max" states="3" commit="最大化按钮状态连图" />
+		<imglist id="Btn_Restore" src="PNG:Btn_Restore" states="3" commit="恢复按钮状态连图" />
+		<imglist id="Btn_Min" src="PNG:Btn_Min" states="3" commit="最小化按钮状态连图" />
+		<imglist id="Btn_Menu" src="PNG:Btn_Menu" states="3" commit="菜单按钮状态连图" />
+		<imglist id="menuicons" src="PNG:menuicons" states="12" />
+		<imglist id="menusep" src="PNG:menusep" states="1" />
+		<imglist id="menucheck" src="PNG:menucheck" states="2" />
+		<imglist id="menubigskin" src="PNG:menubigskin" states="2" />
+		<img9 id="menuitembg" src="PNG:menuitembg" states="2" margin="2,2,2,2" />
+		<img9 id="menuitemselbg" src="PNG:menuitemselbg" states="2" margin="2,2,2,2" />
+		<imglist id="tabbar_1" src="PNG:tabbar_1" states="3" />
+		<imglist id="tabbar_2" src="PNG:tabbar_2" states="3" />
+		<imglist id="tabbar_3" src="PNG:tabbar_3" states="3" />
+		<imglist id="tabbar_4" src="PNG:tabbar_4" states="3" />
+		<imglist id="tabbar_5" src="PNG:tabbar_5" states="3" />
+		<imglist id="tabbar_6" src="PNG:tabbar_6" states="3" />
+		<imglist id="tab_item" src="PNG:tab_item" states="3" />
+		<img9 id="tab_pagebg" src="PNG:tab_pagebg" states="1" margin="1,1,1,1" />
+		<imglist id="360icon" src="PNG:360icon" states="1" />
+		<imglist id="360logo" src="PNG:360logo" states="1" />
+		<imglist id="checkbox" src="PNG:checkbox" states="8" />
+		<imglist id="radiobutton" src="PNG:radiobutton" states="8" />
+		<imglist id="iconbtn" src="PNG:iconbtn" states="1" />
+		<imglist id="comboxbtn" src="PNG:comboxbtn" states="3" />
+		<img9 id="channel_hz" src="PNG:channel_hz" states="1" margin="1,1,1,1" />
+		<img9 id="channel_vz" src="PNG:channel_vz" states="1" margin="1,1,1,1" />
+		<imglist id="thumb_hz" src="PNG:thumb_hz" states="4" />
+		<imglist id="thumb_vz" src="PNG:thumb_vz" states="4" bvert="1" />
+		<img9 id="process_channel" src="PNG:process_channel" states="1" margin="2,2,2,2" />
+		<img9 id="process_sel_hz" src="PNG:process_sel_hz" states="1" margin="2,2,2,2" />
+		<img9 id="process_sel_vz" src="PNG:process_sel_vz" states="1" margin="2,2,2,2" />
+		<imglist id="Webicon" src="PNG:webicon" states="1" />
+		<imglist id="WebBack" src="PNG:webback" states="4" />
+		<imglist id="webfront" src="PNG:webfront" states="4" />
+		<imglist id="webrefresh" src="PNG:webrefresh" states="4" />
+		<imglist id="splith" src="PNG:splith" states="1" commint="split cur" />
+		<imglist id="splitv" src="PNG:splitv" states="1" commint="split cur" />
+		<img9 id="calendar_left" src="PNG:calendar_left" states="3" margin="4,4,4,4" />
+		<img9 id="calendar_right" src="PNG:calendar_right" states="3" margin="4,4,4,4" />
+		<img9 id="calendar_cell" src="PNG:calendar_cell" states="3" margin="3,3,3,3" />
+		<imglist id="drag_move" src="PNG:drag_move" states="2" commint="拖动时显示小图标" />
 	</skin>
 	<style>
-		<style id="custom"  skin="dui_frame" ncskin="dui_frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)"/>
-		<style id="static"  clrnc="pbgra(e2,b2,3e,ff)" ncmargin="1,1,1,1"/>
+		<style id="custom" skin="dui_frame" ncskin="dui_frame" clrtext="rgba(ff,00,ff,80)" clrtexthover="rgba(ff,00,00,80)" clrtextpush="rgba(dd,dd,00,ff)" />
+		<style id="static" clrnc="pbgra(e2,b2,3e,ff)" ncmargin="1,1,1,1" />
 	</style>
 </global>

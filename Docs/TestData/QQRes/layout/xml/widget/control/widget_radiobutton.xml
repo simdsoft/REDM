@@ -1,10 +1,11 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-radio" pos="0,0,-0,-0" text="tab切换radio" align="right">
-		<radiobutton name="radiobutton"  pos="0,0,@120,@20" text="Normal Style" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" skin="dui_frame" align="left"/>
-		<radiobutton name="radiobutton1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" bautogroup="0" bshowdrawfocus="1" radioskin="radiobutton" align="right"/>
-		<radiobutton name="radiobutton2" pos="0,50,@120,@40" text="Multiline\n Style" radioskin="radiobutton" bautogroup="0" bshowdrawfocus="1" bmultilines="1" align="left"/>
-		<radiobutton name="radiobutton3" pos="0,95,@120,@40" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn"/>
-		<radiobutton name="radiobutton4" pos="0,140,@120,@40" brightbox="1"  radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
-		<radiobutton name="radiobutton5" pos="0,185,@120,@20" text="Disable Style" radioskin="radiobutton" bdisable="1" bautogroup="0" bshowdrawfocus="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left"/>
+		<radiobutton name="radiobutton" pos="0,0,@120,@20" text="Normal Style" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" skin="dui_frame" align="left" />
+		<radiobutton name="radiobutton1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" bautogroup="0" bshowdrawfocus="1" radioskin="radiobutton" align="right" />
+		<radiobutton name="radiobutton2" pos="0,50,@120,@40" text="Multiline\n Style" radioskin="radiobutton" bautogroup="0" bshowdrawfocus="1" bmultilines="1" align="left" />
+		<radiobutton name="radiobutton3" pos="0,95,@120,@40" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
+		<radiobutton name="radiobutton4" pos="0,140,@120,@40" brightbox="1" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
+		<radiobutton name="radiobutton5" pos="0,185,@120,@20" text="Disable Style" radioskin="radiobutton" bdisable="1" bautogroup="0" bshowdrawfocus="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left" />
 	</group>
 </sub>

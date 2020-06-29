@@ -1,40 +1,37 @@
-﻿<dm name="mainWindow" initsize="600,600" minsize="600,600" bresize="1" translucent="1" alpha = "235">
-  <root>
-	<window name="spywnd" pos="0,0,-0,-0" text="辅助spy工具" valign="top" style="custom"  alpha="0xff">
-		<window pos="10,0,-0,36"  bdrag="1"><!--可拖动区-->
-			<button name="btn_close"   pos="-49,2,-4,19"    skin="Btn_Close"    banimate="1" nopresize="1" tiptext="close" />
-			<button name="btn_max"     pos="-75,2,-49,19"   skin="Btn_Max" accel="ctrl+enter" />
-			<button id="10"  		   pos="-75,2,-49,19"   skin="Btn_Restore"   accel="ctrl+enter" bvisible="0" />
-			<button name="btn_min"     pos="-101,2,-75,19"  skin="Btn_Min"  />
-			<button name="btn_menu"    pos="-127,2,-101,19" skin="Btn_Menu" />
-			<button name="btn_skin"    pos="-152,2,-132,22" skin="Btn_Skin" cursor="hand"/>
+<?xml version="1.0"?>
+<dm name="mainWindow" initsize="600,600" minsize="600,600" bresize="1" translucent="1" alpha="235">
+	<root>
+		<window name="spywnd" pos="0,0,-0,-0" text="辅助spy工具" valign="top" style="custom" alpha="0xff">
+			<window pos="10,0,-0,36" bdrag="1">
+				<!--可拖动区-->
+				<button name="btn_close" pos="-49,2,-4,19" skin="Btn_Close" banimate="1" nopresize="1" tiptext="close" />
+				<button name="btn_max" pos="-75,2,-49,19" skin="Btn_Max" accel="ctrl+enter" />
+				<button id="10" pos="-75,2,-49,19" skin="Btn_Restore" accel="ctrl+enter" bvisible="0" />
+				<button name="btn_min" pos="-101,2,-75,19" skin="Btn_Min" />
+				<button name="btn_menu" pos="-127,2,-101,19" skin="Btn_Menu" />
+				<button name="btn_skin" pos="-152,2,-132,22" skin="Btn_Skin" cursor="hand" />
+			</window>
 		</window>
-	</window>
-	<findbtn name="findbtn" pos="10,30,@32,@32" skin="spydrag" />
-	<static  name="search_sta" pos="44,30,@160,@32" style="style-static"  lineinter="2" text="请拖动左侧的指针到需要查看的窗口/控件上释放"/>
-	<static  pos="250,24,@80,@20" style="style-static" text="目标窗口句柄:"/>
-	<static  pos="250,44,@80,@20" style="style-static" text="目标进程ID:"/>
-	<static  pos="250,64,@80,@20" style="style-static" text="目标程序路径:"/>
-	<edit    name="edithwnd" pos="334,22,-4,@19" style="style-edit"/>
-	<edit    name="editpid"  pos="334,42,-4,@19" style="style-edit"/>
-	<edit    name="editpath" pos="334,62,-4,@19" style="style-edit"/>
-
-	<treectrl name="wnd_tree" pos="4,84,-4,%50" childoffset="20" itemHeight="16" toggleSkin="treetoggle" style="style-tree" clritemselbg="rgba(33,99,ff,ff)" iconskin="spyicon" sbSkin="ScrollBar">
-	</treectrl>
-	<richedit name="rich_edit" pos="4,%52,-4,-10" style="style-edit" font="face:新宋体,size:14,weight:100,underline:0,italic:0,strike:0" bmultilines="1" bvscroll="1" bwordwrap="1"  bautovscroll="1"  hscrollBar="1" bwantreturn="1" benabledrag="1"   sbskin="ScrollBar"/>
-  </root>
-  
-  <style name="spyprivate">
-    <!--局部style对象,外部可在窗口销毁时释放-->
-	<style id="style-static" font="face:新宋体,size:11,weight:100,underline:0,italic:0,strike:0" />
-	<style id="style-edit"   font="face:新宋体,size:13,weight:100,underline:0,italic:0,strike:0" ncmargin="1,1,1,1"  clrnc="rgba(80,00,80,80)"/>
-	<style id="style-tree"   font="face:新宋体,size:11,weight:100,underline:0,italic:0,strike:0" 
-							 fonthover="face:新宋体,size:11,weight:100,underline:1,italic:0,strike:0" 
-							 fontpush="face:新宋体,size:11,weight:100,underline:1,italic:0,strike:0"    cursor="hand" clrtexthover="rgba(33,99,ff,ff)" ncmargin="1,1,1,1"  clrnc="rgba(80,00,80,80)"  />
-  </style>
-   <skin name="spyprivate">
-    <!--局部skin对象,外部可在窗口销毁时释放-->
-	<imglist id="spydrag" 		src="png:spydrag" 		states="3"/>
-	<imglist id="spyicon" 		src="png:spyicon" 		states="4"/>
-  </skin>
+		<findbtn name="findbtn" pos="10,30,@32,@32" skin="spydrag" />
+		<label name="search_sta" pos="44,30,@160,@32" style="style-static" lineinter="2" text="请拖动左侧的指针到需要查看的窗口/控件上释放" />
+		<label pos="250,24,@80,@20" style="style-static" text="目标窗口句柄:" />
+		<label pos="250,44,@80,@20" style="style-static" text="目标进程ID:" />
+		<label pos="250,64,@80,@20" style="style-static" text="目标程序路径:" />
+		<edit name="edithwnd" pos="334,22,-4,@19" style="style-edit" />
+		<edit name="editpid" pos="334,42,-4,@19" style="style-edit" />
+		<edit name="editpath" pos="334,62,-4,@19" style="style-edit" />
+		<treectrl name="wnd_tree" pos="4,84,-4,%50" childoffset="20" itemHeight="16" toggleSkin="treetoggle" style="style-tree" clritemselbg="rgba(33,99,ff,ff)" iconskin="spyicon" sbSkin="ScrollBar" />
+		<richedit name="rich_edit" pos="4,%52,-4,-10" style="style-edit" font="face:新宋体,size:14,weight:100,underline:0,italic:0,strike:0" bmultilines="1" bvscroll="1" bwordwrap="1" bautovscroll="1" hscrollBar="1" bwantreturn="1" benabledrag="1" sbskin="ScrollBar" />
+	</root>
+	<style name="spyprivate">
+		<!--局部style对象,外部可在窗口销毁时释放-->
+		<style id="style-static" font="face:新宋体,size:11,weight:100,underline:0,italic:0,strike:0" />
+		<style id="style-edit" font="face:新宋体,size:13,weight:100,underline:0,italic:0,strike:0" ncmargin="1,1,1,1" clrnc="rgba(80,00,80,80)" />
+		<style id="style-tree" font="face:新宋体,size:11,weight:100,underline:0,italic:0,strike:0" fonthover="face:新宋体,size:11,weight:100,underline:1,italic:0,strike:0" fontpush="face:新宋体,size:11,weight:100,underline:1,italic:0,strike:0" cursor="hand" clrtexthover="rgba(33,99,ff,ff)" ncmargin="1,1,1,1" clrnc="rgba(80,00,80,80)" />
+	</style>
+	<skin name="spyprivate">
+		<!--局部skin对象,外部可在窗口销毁时释放-->
+		<imglist id="spydrag" src="png:spydrag" states="3" />
+		<imglist id="spyicon" src="png:spyicon" states="4" />
+	</skin>
 </dm>

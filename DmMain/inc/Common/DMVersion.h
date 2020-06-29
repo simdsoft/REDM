@@ -10,10 +10,10 @@
 // Create date: 2017-3-16
 // ----------------------------------------------------------------
 #pragma once
-#define VER_MAJOR		1
+#define VER_MAJOR		2
 #define VER_MINOR		0
 #define VER_SLAVE		0
-#define VER_BUILD		259
+#define VER_BUILD		0
 
 #define PRODUCTNAME     "DMMain"
 

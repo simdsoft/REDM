@@ -1,6 +1,7 @@
-﻿<sub>
-	<window name="ds_attr_pos_panel" pos="0,24,-0,-0" bvisible="1" >
-		<static pos="48,2,@30,@20" text="坐标" clrtextdisable="pbgra(c0,c0,c0,ff)" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-		<duipos name="ds_pos" pos="[2,2,@200,@22" clrbg="pbgra(59,59,59,ff)" ncmargin1="1,1,1,1" clrnc="pbgra(ff,ff,ff,ff)"/>
+<?xml version="1.0"?>
+<sub>
+	<window name="ds_attr_pos_panel" pos="0,24,-0,-0" bvisible="1">
+		<label pos="48,2,@30,@20" text="坐标" clrtextdisable="pbgra(c0,c0,c0,ff)" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+		<duipos name="ds_pos" pos="[2,2,@200,@22" clrbg="pbgra(59,59,59,ff)" ncmargin1="1,1,1,1" clrnc="pbgra(ff,ff,ff,ff)" />
 	</window>
 </sub>

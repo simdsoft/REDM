@@ -1,14 +1,16 @@
-﻿<dm  initsize="280,100" minsize="280,100" bresize="1" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(3d,3d,3d,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@35" bdrag="1"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,-0" text="增加皮肤池" bdot="1" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="280,100" minsize="280,100" bresize="1" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(3d,3d,3d,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@35" bdrag="1">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,-0" text="增加皮肤池" bdot="1" align="left" font="face:新宋体,size:20,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
 		<window pos="0,35,-0,-0" clrbg="pbgra(59,59,59,ff)">
-			<static  pos="0,5,@40,@22" text="名字:" align="right" font="face:新宋体,size:12,weight:400" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<limitedit name="ds_name" pos="[0,5,-10,@22" includechars="qwertyuiopasdfghjklzxcvbnm0123456789_-" firstincludechars="qwertyuiopasdfghjklzxcvbnm"
-			clrcaret="pbgra(ff,ff,ff,ff)" skin="ds_attreditframe" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)"/>
-			<button  id="1" pos="-70,-32,@60,@22"  text="确定" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="rgba(ff,ff,ff,ff)"/>
+			<label pos="0,5,@40,@22" text="名字:" align="right" font="face:新宋体,size:12,weight:400" clrtext="pbgra(ff,ff,ff,ff)" />
+			<limitedit name="ds_name" pos="[0,5,-10,@22" includechars="qwertyuiopasdfghjklzxcvbnm0123456789_-" firstincludechars="qwertyuiopasdfghjklzxcvbnm" clrcaret="pbgra(ff,ff,ff,ff)" skin="ds_attreditframe" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+			<button id="1" pos="-70,-32,@60,@22" text="确定" skin="ds_custombutton" font="face:新宋体,size:12,weight:100" clrtext="rgba(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

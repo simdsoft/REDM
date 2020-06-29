@@ -1,163 +1,176 @@
-﻿<sub>
-	<listctrlex name="listctrlex" pos="10,5,%40,%60" cursel="1" headerheight="20" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame"  sbskin="scrollbar">
-		<HeaderCtrl align="center" itemdelta="4"  itemskin="listheader" bswap="1" bfixwidth="0" bsort="1">
-			<item width="100" text="H1-可拖拽" skin="listheader"/>
+<?xml version="1.0"?>
+<sub>
+	<listctrlex name="listctrlex" pos="10,5,%40,%60" cursel="1" headerheight="20" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame" sbskin="scrollbar">
+		<headerctrl align="center" itemdelta="4" itemskin="listheader" bswap="1" bfixwidth="0" bsort="1">
+			<item width="100" text="H1-可拖拽" skin="listheader" />
 			<item width="120" text="H2-sort排序" />
 			<item width="120" text="H3" />
 			<item width="100" text="H4" />
-		</HeaderCtrl>
+		</headerctrl>
 		<item height="100" commit="多少列,就插入多少个子窗口">
-			<window><!--第一行第一列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第一列" tiptext="扩展控件"/>
-				<listbox pos="50,25,-1,@70"  ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar" >			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" >
+			<window>
+				<!--第一行第一列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第一列" tiptext="扩展控件" />
+				<listbox pos="50,25,-1,@70" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" &gt;
 					<item text="1" icon="1" data="100" height="30" />
 					<item text="2" icon="2" data="100" height="50" />
-					<item text="3" icon="3" data="103" height="40"/>
-					<item text="4" icon="4" data="100" height="60"/>
-					<item text="5" icon="5" data="105" height="30"/>
-					<item text="1" icon="6" data="100" height="60"/>
-					<item text="2" icon="7" data="100" height="60"/>
-					<item text="3" icon="8" data="105" height="50"/>
+					<item text="3" icon="3" data="103" height="40" />
+					<item text="4" icon="4" data="100" height="60" />
+					<item text="5" icon="5" data="105" height="30" />
+					<item text="1" icon="6" data="100" height="60" />
+					<item text="2" icon="7" data="100" height="60" />
+					<item text="3" icon="8" data="105" height="50" />
 				</listbox>
 			</window>
-			<window><!--第一行第二列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第二列"/>
-				<gif    pos="0,40,@100,@40" badjust="1"   gifskin="gif:4_gif"/>
+			<window>
+				<!--第一行第二列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第二列" />
+				<gif pos="0,40,@100,@40" badjust="1" gifskin="gif:4_gif" />
 			</window>
-			<window><!--第一行第三列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第三列"/>
+			<window>
+				<!--第一行第三列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第三列" />
 			</window>
-			<window><!--第一行第四列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第四列"/>
+			<window>
+				<!--第一行第四列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H1第四列" />
 			</window>
 		</item>
 		<item height="150">
-			<window><!--第二行第一列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第一列"/>
+			<window>
+				<!--第二行第一列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第一列" />
 			</window>
-			<window><!--第二行第二列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第二列"/>
-				<combobox  pos="1,22,-1,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn"  bhideedit="0" dropheight="100" animatetime="200"  >
-					<subedit  font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0"  sbskin="scrollbar"/>
-					<sublistbox ncskin="bord"  margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
-						<item text="0" icon="1" data="100"/>
-						<item text="1" icon="2" data="100" height="50"/>
-						<item text="2" icon="0" data="100" height="60"/>
-						<item text="3" icon="8" data="100" height="60"/>
-						<item text="4" icon="9" data="105" height="50"/>
-						<item text="5" icon="0" data="100"/>
+			<window>
+				<!--第二行第二列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第二列" />
+				<combobox pos="1,22,-1,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn" bhideedit="0" dropheight="100" animatetime="200">
+					<subedit font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0" sbskin="scrollbar" />
+					<sublistbox ncskin="bord" margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
+						<item text="0" icon="1" data="100" />
+						<item text="1" icon="2" data="100" height="50" />
+						<item text="2" icon="0" data="100" height="60" />
+						<item text="3" icon="8" data="100" height="60" />
+						<item text="4" icon="9" data="105" height="50" />
+						<item text="5" icon="0" data="100" />
 					</sublistbox>
 				</combobox>
 			</window>
-			<window><!--第二行第三列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第三列"/>
+			<window>
+				<!--第二行第三列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第三列" />
 			</window>
-			<window><!--第二行第四列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第四列"/>
+			<window>
+				<!--第二行第四列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H2第四列" />
 			</window>
 		</item>
 		<item height="90">
-			<window><!--第三行第一列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第一列"/>
-				<richedit pos="10,21,-1,@65"  text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
+			<window>
+				<!--第三行第一列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第一列" />
+				<richedit pos="10,21,-1,@65" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
 			</window>
-			<window><!--第三行第二列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第二列"/>
+			<window>
+				<!--第三行第二列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第二列" />
 			</window>
-			<window><!--第三行第三列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第三列"/>
+			<window>
+				<!--第三行第三列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第三列" />
 			</window>
-			<window><!--第三行第四列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第四列"/>
+			<window>
+				<!--第三行第四列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H3第四列" />
 			</window>
 		</item>
 		<item height="50">
-			<window><!--第四行第一列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第一列"/>
+			<window>
+				<!--第四行第一列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第一列" />
 			</window>
-			<window><!--第四行第二列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第二列"/>
+			<window>
+				<!--第四行第二列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第二列" />
 			</window>
-			<window><!--第四行第三列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第三列"/>
+			<window>
+				<!--第四行第三列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第三列" />
 			</window>
-			<window><!--第四行第四列-->
-				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第四列"/>
+			<window>
+				<!--第四行第四列-->
+				<window pos="1,1,@80,@20" skin="dui_frame" text="H4第四列" />
 			</window>
 		</item>
 	</listctrlex>
-	
 	<!---->
-	<listboxex pos="%41,5,-50,%40" cursel="1" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame"  sbskin="ScrollBar">
-         <item height="100">
-            <static  pos="5,2,60,20" style="style-Link"  text="组合面板1" />
-            <button  pos="100,0,@26,@17"  skin="Btn_Menu" tiptext="menu"/>
-            <link    pos="100,40,@40,@40" style="style-link" text="求助" href="www.hgy413.com"/>
-			<gif     pos="0,40,@100,@40" badjust="1"   gifskin="gif:4_gif"/>
-         </item>
-         <item height="150">
-            <static  pos="5,2,60,20" style="style-Link"  text="组合面板2"  />
-			<listbox pos="50,20,@120,@120"  ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar" >			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" >
+	<listboxex pos="%41,5,-50,%40" cursel="1" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(FF,00,FF,FF)" itemheight="50" ncmargin="2,2,2,2" ncskin="dui_frame" sbskin="ScrollBar">
+		<item height="100">
+			<label pos="5,2,60,20" style="style-Link" text="组合面板1" />
+			<button pos="100,0,@26,@17" skin="Btn_Menu" tiptext="menu" />
+			<link pos="100,40,@40,@40" style="style-link" text="求助" href="www.hgy413.com" />
+			<gif pos="0,40,@100,@40" badjust="1" gifskin="gif:4_gif" />
+		</item>
+		<item height="150">
+			<label pos="5,2,60,20" style="style-Link" text="组合面板2" />
+			<listbox pos="50,20,@120,@120" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" &gt;
 				<item text="1" icon="1" data="100" height="30" />
 				<item text="2" icon="2" data="100" height="50" />
-				<item text="3" icon="3" data="103" height="40"/>
-				<item text="4" icon="4" data="100" height="60"/>
-				<item text="5" icon="5" data="105" height="30"/>
-				<item text="1" icon="6" data="100" height="60"/>
-				<item text="2" icon="7" data="100" height="60"/>
-				<item text="3" icon="8" data="105" height="50"/>
+				<item text="3" icon="3" data="103" height="40" />
+				<item text="4" icon="4" data="100" height="60" />
+				<item text="5" icon="5" data="105" height="30" />
+				<item text="1" icon="6" data="100" height="60" />
+				<item text="2" icon="7" data="100" height="60" />
+				<item text="3" icon="8" data="105" height="50" />
 			</listbox>
-			<combobox pos="180,10,@200,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn"  bhideedit="0" dropheight="100" animatetime="200"  >
-				<subedit  font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0"  sbskin="scrollbar"/>
-				<sublistbox ncskin="bord"  margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
-					<item text="0" icon="1" data="100"/>
-					<item text="1" icon="2" data="100" height="50"/>
-					<item text="2" icon="0" data="100" height="60"/>
-					<item text="3" icon="8" data="100" height="60"/>
-					<item text="4" icon="9" data="105" height="50"/>
-					<item text="5" icon="0" data="100"/>
+			<combobox pos="180,10,@200,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn" bhideedit="0" dropheight="100" animatetime="200">
+				<subedit font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0" sbskin="scrollbar" />
+				<sublistbox ncskin="bord" margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
+					<item text="0" icon="1" data="100" />
+					<item text="1" icon="2" data="100" height="50" />
+					<item text="2" icon="0" data="100" height="60" />
+					<item text="3" icon="8" data="100" height="60" />
+					<item text="4" icon="9" data="105" height="50" />
+					<item text="5" icon="0" data="100" />
 				</sublistbox>
 			</combobox>
-         </item> 
-		 <item height="150">
-            <static  pos="5,2,60,20" style="style-Link"  text="组合面板3"  />
-			<richedit pos="10,21,@140,@85" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
-         </item>
-    </listboxex>
-	<treectrlex pos="10,%61,%60,%90" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" 
-    clritemhoverbg="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)"  
-	clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20"
-	bcheckbox="1" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons"  sbskin="ScrollBar">
-	<treeitem skin="dui_frame" bCollapsed="0" height="30" childoffset="0">
-		<treeitem  skin="dui_frame" bCollapsed="0" height="100" width="400" height="530" childoffset="0">
-			<static  pos="5,2,60,20" style="style-Link"  text="组合面板3"  />
-			<richedit pos="10,21,@140,@85" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
+		</item>
+		<item height="150">
+			<label pos="5,2,60,20" style="style-Link" text="组合面板3" />
+			<richedit pos="10,21,@140,@85" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
+		</item>
+	</listboxex>
+	<treectrlex pos="10,%61,%60,%90" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clritemhoverbg="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20" bcheckbox="1" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons" sbskin="ScrollBar">
+		<treeitem skin="dui_frame" bCollapsed="0" height="30" childoffset="0">
+			<treeitem skin="dui_frame" bCollapsed="0" height="100" width="400" height="530" childoffset="0">
+				<label pos="5,2,60,20" style="style-Link" text="组合面板3" />
+				<richedit pos="10,21,@140,@85" text="多行自动换行edit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
+			</treeitem>
 		</treeitem>
-	</treeitem>
-	<treeitem  skin="dui_frame" bCollapsed="0" width="400" height="150" childoffset="0">
-		<static  pos="5,2,60,20" style="style-Link"  text="组合面板2"  />
-			<listbox pos="50,20,@120,@120"  ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar" >			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" >
+		<treeitem skin="dui_frame" bCollapsed="0" width="400" height="150" childoffset="0">
+			<label pos="5,2,60,20" style="style-Link" text="组合面板2" />
+			<listbox pos="50,20,@120,@120" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">			ritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" &gt;
 				<item text="1" icon="1" data="100" height="30" />
 				<item text="2" icon="2" data="100" height="50" />
-				<item text="3" icon="3" data="103" height="40"/>
-				<item text="4" icon="4" data="100" height="60"/>
-				<item text="5" icon="5" data="105" height="30"/>
-				<item text="1" icon="6" data="100" height="60"/>
-				<item text="2" icon="7" data="100" height="60"/>
-				<item text="3" icon="8" data="105" height="50"/>
+				<item text="3" icon="3" data="103" height="40" />
+				<item text="4" icon="4" data="100" height="60" />
+				<item text="5" icon="5" data="105" height="30" />
+				<item text="1" icon="6" data="100" height="60" />
+				<item text="2" icon="7" data="100" height="60" />
+				<item text="3" icon="8" data="105" height="50" />
 			</listbox>
-			<combobox pos="180,10,@200,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn"  bhideedit="0" dropheight="100" animatetime="200"  >
-				<subedit  font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0"  sbskin="scrollbar"/>
-				<sublistbox ncskin="bord"  margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
-					<item text="0" icon="1" data="100"/>
-					<item text="1" icon="2" data="100" height="50"/>
-					<item text="2" icon="0" data="100" height="60"/>
-					<item text="3" icon="8" data="100" height="60"/>
-					<item text="4" icon="9" data="105" height="50"/>
-					<item text="5" icon="0" data="100"/>
+			<combobox pos="180,10,@200,@20" style="widgetprivate:style-edit" cursel="1" btnskin="comboxbtn" bhideedit="0" dropheight="100" animatetime="200">
+				<subedit font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" bmultilines="0" sbskin="scrollbar" />
+				<sublistbox ncskin="bord" margin="2,2,2,2" itemheight="30" bhottrack="1" iconskin="menuicons" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(cc,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,ff,ff)" sbskin="scrollbar">
+					<item text="0" icon="1" data="100" />
+					<item text="1" icon="2" data="100" height="50" />
+					<item text="2" icon="0" data="100" height="60" />
+					<item text="3" icon="8" data="100" height="60" />
+					<item text="4" icon="9" data="105" height="50" />
+					<item text="5" icon="0" data="100" />
 				</sublistbox>
 			</combobox>
-	</treeitem>
+		</treeitem>
 	</treectrlex>
 	<realwnd name="realwnd" pos="10,%60,@100,@100" />
 </sub>

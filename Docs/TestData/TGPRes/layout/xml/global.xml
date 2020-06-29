@@ -1,37 +1,32 @@
-﻿<global font="face:微软雅黑,size:14,weight:100">
+<?xml version="1.0"?>
+<global font="face:微软雅黑,size:14,weight:100">
 	<skin name="mainskin">
-		<imglist 	 id="main" 	    		src="PNG:main"		    		states="1" />
-		<imglist 	 id="logo" 	    		src="PNG:logo"		   		    states="1" />
-		<imglist 	 id="menu" 	    		src="PNG:menu"		    		states="3" />
-		<imglist 	 id="button_close" 	    src="PNG:button_close"		    states="3" />
-		<imglist 	 id="button_mini" 	    src="PNG:button_mini"		    states="3" />
-		
+		<imglist id="main" src="PNG:main" states="1" />
+		<imglist id="logo" src="PNG:logo" states="1" />
+		<imglist id="menu" src="PNG:menu" states="3" />
+		<imglist id="button_close" src="PNG:button_close" states="3" />
+		<imglist id="button_mini" src="PNG:button_mini" states="3" />
 		<!--menu-->
-		<imglist 	 id="main_menue_bg" 	src="PNG:main_menue_bg"		    states="1" />
-		<imglist 	 id="meue_item_bk" 		src="PNG:meue_item_bk"		    states="2" />
-		<imglist 	 id="meue_item_hold" 	src="PNG:meue_item_hold"		states="2" />
-		
+		<imglist id="main_menue_bg" src="PNG:main_menue_bg" states="1" />
+		<imglist id="meue_item_bk" src="PNG:meue_item_bk" states="2" />
+		<imglist id="meue_item_hold" src="PNG:meue_item_hold" states="2" />
 		<!--tab-->
-		<imglist 	 id="tab_mainbg" 		src="PNG:tab_mainbg"		    states="1" />
-		<imglist 	 id="tab_game" 			src="PNG:tab_game"		    	states="3" />
-		<imglist 	 id="tab_group" 		src="PNG:tab_group"		    	states="3" />
-		<imglist 	 id="tab_friend" 		src="PNG:tab_friend"		    states="3" />
-		
+		<imglist id="tab_mainbg" src="PNG:tab_mainbg" states="1" />
+		<imglist id="tab_game" src="PNG:tab_game" states="3" />
+		<imglist id="tab_group" src="PNG:tab_group" states="3" />
+		<imglist id="tab_friend" src="PNG:tab_friend" states="3" />
 		<!--listboxex-->
-		<img9 	 	id="lbx_itembg" 		src="PNG:lbx_itembg"		    states="3" margin="10,18,20,15" />
-		<imglist 	id="lbx_cflog" 			src="PNG:lbx_cflog"		    	states="1"  />
-		<imglist 	id="lbx_cfbg" 			src="PNG:lbx_cfbg"		    	states="1"  />
-		<imglist 	id="lbx_arr" 			src="PNG:lbx_arr"		    	states="3"  />
-		<imglist 	id="lbx_startgame" 		src="PNG:lbx_startgame"		    states="3"  />
-		<imglist 	id="lbx_bnsbg" 			src="PNG:lbx_bnsbg"		    	states="1"  />
-		<imglist 	id="lbx_lcbg" 			src="PNG:lbx_lcbg"		    	states="2"  />
-		<imglist 	id="lbx_lcshowbg" 		src="PNG:lbx_lcshowbg"		    states="3"  />
-		
-		<scrollbar 	id="scrollbar" 	    src="PNG:scrollbar"   			states="1"   margin="4,4,3,4"/>
-		<img9 	 	id="tips_bg" 		src="PNG:tips_bg"		    	states="1" 	 margin="6,6,6,6" />
-		<imglist 	id="comboxbtn" 			src="PNG:comboxbtn"		    	states="3"  />
+		<img9 id="lbx_itembg" src="PNG:lbx_itembg" states="3" margin="10,18,20,15" />
+		<imglist id="lbx_cflog" src="PNG:lbx_cflog" states="1" />
+		<imglist id="lbx_cfbg" src="PNG:lbx_cfbg" states="1" />
+		<imglist id="lbx_arr" src="PNG:lbx_arr" states="3" />
+		<imglist id="lbx_startgame" src="PNG:lbx_startgame" states="3" />
+		<imglist id="lbx_bnsbg" src="PNG:lbx_bnsbg" states="1" />
+		<imglist id="lbx_lcbg" src="PNG:lbx_lcbg" states="2" />
+		<imglist id="lbx_lcshowbg" src="PNG:lbx_lcshowbg" states="3" />
+		<scrollbar id="scrollbar" src="PNG:scrollbar" states="1" margin="4,4,3,4" />
+		<img9 id="tips_bg" src="PNG:tips_bg" states="1" margin="6,6,6,6" />
+		<imglist id="comboxbtn" src="PNG:comboxbtn" states="3" />
 	</skin>
-	<style>
-		
-	</style>
+	<style />
 </global>

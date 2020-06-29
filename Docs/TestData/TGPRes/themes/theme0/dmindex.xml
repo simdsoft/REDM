@@ -1,32 +1,40 @@
-﻿<resource>  
+<?xml version="1.0"?>
+<resource>
 	<png>
-		<file name="main" 			path="themes\theme0\image\main.png"/><!--来自TGP\Skins\pure1\main.png-->
-		<file name="logo" 			path="themes\theme0\image\logo.png"/><!--来自TGP\tpf_ui\res\\main\logo.png-->
-		<file name="menu" 			path="themes\theme0\image\menu.png"/>
-		<file name="button_close" 	path="themes\theme0\image\button_close.png"/><!--来自TGP\tpf_ui\res\button_close组合-->
-		<file name="button_mini" 	path="themes\theme0\image\button_mini.png"/><!--来自TGP\tpf_ui\res\cf_fake_tcls\mini_normal.png等组合-->
-		
-		<file name="main_menue_bg" 	path="themes\theme0\image\menu\main_menue_bg.png"/><!--来自TGP\tpf_ui\res\main_menue\-->
-		<file name="meue_item_bk" 	path="themes\theme0\image\menu\meue_item_bk.png"/><!--来自TGP\tpf_ui\res\main_menue\-->
-		<file name="meue_item_hold" path="themes\theme0\image\menu\meue_item_hold.png"/>
-		
-		<file name="tab_mainbg" 	path="themes\theme0\image\tab\tab_mainbg.png"/><!--来自\TGP\tpf_ui\res\main\-->
-		<file name="tab_game" 		path="themes\theme0\image\tab\tab_game.png"/><!--来自\TGP\tpf_ui\res\social_network-->
-		<file name="tab_group" 		path="themes\theme0\image\tab\tab_group.png"/><!--来自\TGP\tpf_ui\res\social_network-->
-		<file name="tab_friend" 	path="themes\theme0\image\tab\tab_friend.png"/><!--来自\TGP\tpf_ui\res\social_network-->
-		
-		<file name="lbx_itembg" 	path="themes\theme0\image\listboxex\lbx_itembg.png"/><!--来自\TGP\tpf_ui\res\main-->
-		<file name="lbx_cflog" 		path="themes\theme0\image\listboxex\lbx_cflog.png"/><!--来自\TGP\tpf_ui\res\cf_fake_tcls\CF_logo.png-->
-		<file name="lbx_cfbg" 		path="themes\theme0\image\listboxex\lbx_cfbg.png"/>
-		<file name="lbx_bnsbg" 		path="themes\theme0\image\listboxex\lbx_bnsbg.png"/>
-		<file name="lbx_lcbg" 		path="themes\theme0\image\listboxex\lbx_lcbg.png"/>
-		<file name="lbx_lcshowbg" 	path="themes\theme0\image\listboxex\lbx_lcshowbg.png"/>
-		
-		<file name="lbx_arr" 		path="themes\theme0\image\listboxex\lbx_arr.png"/>
-		<file name="lbx_startgame" 	path="themes\theme0\image\listboxex\lbx_startgame.png"/>
-		
-		<file name="scrollbar" 		path="themes\theme0\image\scrollbar.png"/>
-		<file name="tips_bg" 		path="themes\theme0\image\tips_bg.png"/>
-		<file name="comboxbtn" 		path="themes\theme0\image\comboxbtn.png"/>
+		<file name="main" path="themes\theme0\image\main.png" />
+		<!--来自TGP\Skins\pure1\main.png-->
+		<file name="logo" path="themes\theme0\image\logo.png" />
+		<!--来自TGP\tpf_ui\res\\main\logo.png-->
+		<file name="menu" path="themes\theme0\image\menu.png" />
+		<file name="button_close" path="themes\theme0\image\button_close.png" />
+		<!--来自TGP\tpf_ui\res\button_close组合-->
+		<file name="button_mini" path="themes\theme0\image\button_mini.png" />
+		<!--来自TGP\tpf_ui\res\cf_fake_tcls\mini_normal.png等组合-->
+		<file name="main_menue_bg" path="themes\theme0\image\menu\main_menue_bg.png" />
+		<!--来自TGP\tpf_ui\res\main_menue\-->
+		<file name="meue_item_bk" path="themes\theme0\image\menu\meue_item_bk.png" />
+		<!--来自TGP\tpf_ui\res\main_menue\-->
+		<file name="meue_item_hold" path="themes\theme0\image\menu\meue_item_hold.png" />
+		<file name="tab_mainbg" path="themes\theme0\image\tab\tab_mainbg.png" />
+		<!--来自\TGP\tpf_ui\res\main\-->
+		<file name="tab_game" path="themes\theme0\image\tab\tab_game.png" />
+		<!--来自\TGP\tpf_ui\res\social_network-->
+		<file name="tab_group" path="themes\theme0\image\tab\tab_group.png" />
+		<!--来自\TGP\tpf_ui\res\social_network-->
+		<file name="tab_friend" path="themes\theme0\image\tab\tab_friend.png" />
+		<!--来自\TGP\tpf_ui\res\social_network-->
+		<file name="lbx_itembg" path="themes\theme0\image\listboxex\lbx_itembg.png" />
+		<!--来自\TGP\tpf_ui\res\main-->
+		<file name="lbx_cflog" path="themes\theme0\image\listboxex\lbx_cflog.png" />
+		<!--来自\TGP\tpf_ui\res\cf_fake_tcls\CF_logo.png-->
+		<file name="lbx_cfbg" path="themes\theme0\image\listboxex\lbx_cfbg.png" />
+		<file name="lbx_bnsbg" path="themes\theme0\image\listboxex\lbx_bnsbg.png" />
+		<file name="lbx_lcbg" path="themes\theme0\image\listboxex\lbx_lcbg.png" />
+		<file name="lbx_lcshowbg" path="themes\theme0\image\listboxex\lbx_lcshowbg.png" />
+		<file name="lbx_arr" path="themes\theme0\image\listboxex\lbx_arr.png" />
+		<file name="lbx_startgame" path="themes\theme0\image\listboxex\lbx_startgame.png" />
+		<file name="scrollbar" path="themes\theme0\image\scrollbar.png" />
+		<file name="tips_bg" path="themes\theme0\image\tips_bg.png" />
+		<file name="comboxbtn" path="themes\theme0\image\comboxbtn.png" />
 	</png>
 </resource>

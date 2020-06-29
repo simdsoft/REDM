@@ -1,92 +1,84 @@
 <?xml version="1.0"?>
 <global font="face:新宋体,size:14,weight:100">
 	<skin name="ds_dmdesigner3432C589-C750-4064-B2A6-B2215B74D221">
-		<scrollbar id="ds_scrollbar" src="PNG:ds_scrollbar" states="1" margin="4,4,3,4" commit="通用滚动条"/>
-		
+		<scrollbar id="ds_scrollbar" src="PNG:ds_scrollbar" states="1" margin="4,4,3,4" commit="通用滚动条" />
 		<!--通用按钮图片-->
-		<imglist id="ds_closebutton"	src="PNG:ds_closebutton" 	states="3" commit="关闭"/>
-		<imglist id="ds_maxbutton" 		src="PNG:ds_maxbutton" 		states="3" commit="最大化"/>
-		<imglist id="ds_restorebutton"  src="PNG:ds_restorebutton"  states="3" commit="恢复"/>
-		<imglist id="ds_minbutton"      src="PNG:ds_minbutton" 		states="3" commit="最小化"/>
-		<img9 	 id="ds_custombutton"   src="PNG:ds_custombutton"   states="3" margin="4,4,4,4" commit="通用按钮"/>
-		<imglist id="ds_opendir" src="png:ds_opendir" states="2"  commit="打开文件夹"/>
+		<imglist id="ds_closebutton" src="PNG:ds_closebutton" states="3" commit="关闭" />
+		<imglist id="ds_maxbutton" src="PNG:ds_maxbutton" states="3" commit="最大化" />
+		<imglist id="ds_restorebutton" src="PNG:ds_restorebutton" states="3" commit="恢复" />
+		<imglist id="ds_minbutton" src="PNG:ds_minbutton" states="3" commit="最小化" />
+		<img9 id="ds_custombutton" src="PNG:ds_custombutton" states="3" margin="4,4,4,4" commit="通用按钮" />
+		<imglist id="ds_opendir" src="png:ds_opendir" states="2" commit="打开文件夹" />
 		<!--菜单图片-->
-		<img9 id="ds_menubg" 	src="PNG:ds_menubg" 	states="1" margin="1,1,1,1" commit="菜单背景"/>
-		<img9 id="ds_menuselbg" src="PNG:ds_menuselbg"  states="1" margin="4,0,4,0" commit="菜单选中背景"/>
-		<img9 id="ds_menustep"  src="PNG:ds_menustep"  states="1" margin="5,0,5,0"  commit="菜单step背景"/>
-		<imglist id="ds_menubarbutton"  src="PNG:ds_menubarbutton"  states="3"      commit="菜单按扭状态"/>
-		
+		<img9 id="ds_menubg" src="PNG:ds_menubg" states="1" margin="1,1,1,1" commit="菜单背景" />
+		<img9 id="ds_menuselbg" src="PNG:ds_menuselbg" states="1" margin="4,0,4,0" commit="菜单选中背景" />
+		<img9 id="ds_menustep" src="PNG:ds_menustep" states="1" margin="5,0,5,0" commit="菜单step背景" />
+		<imglist id="ds_menubarbutton" src="PNG:ds_menubarbutton" states="3" commit="菜单按扭状态" />
 		<!--左边树形控件图片-->
-		<imglist id="ds_toggle" 	src="PNG:ds_toggle" 	states="6" commit="小三角"/>
-		<img9 	 id="ds_databutton" src="PNG:ds_databutton" states="3" margin="4,4,4,4" commit="绑定数据的树形控件项"/>
-		<img9 	 id="ds_defbutton" 	src="PNG:ds_defbutton" 	states="3" margin="4,4,4,4" commit="默认项的绑定数据的树形控件项"/>
-		<imglist id="ds_showeye" 	src="PNG:ds_showeye" 	states="9" bvert="0" btitle="0" commit="项的小眼睛"/>
-		<imglist id="ds_lockeye" 	src="PNG:ds_lockeye" 	states="9" bvert="0" btitle="0" commit="项的小锁"/>
-		
+		<imglist id="ds_toggle" src="PNG:ds_toggle" states="6" commit="小三角" />
+		<img9 id="ds_databutton" src="PNG:ds_databutton" states="3" margin="4,4,4,4" commit="绑定数据的树形控件项" />
+		<img9 id="ds_defbutton" src="PNG:ds_defbutton" states="3" margin="4,4,4,4" commit="默认项的绑定数据的树形控件项" />
+		<imglist id="ds_showeye" src="PNG:ds_showeye" states="9" bvert="0" btitle="0" commit="项的小眼睛" />
+		<imglist id="ds_lockeye" src="PNG:ds_lockeye" states="9" bvert="0" btitle="0" commit="项的小锁" />
 		<!--toolbar图片-->
-		<imglist id="ds_preview" 	     src="PNG:ds_preview" 		 states="2" commint="预览眼睛" />
-		<imglist id="ds_tool_add" 		 src="PNG:ds_tool_add"  	 states="1" commint="Add模式" />
-		<imglist id="ds_tool_move"		 src="PNG:ds_tool_move"		 states="1" commint="Move模式"  />
-		<imglist id="ds_tool_selection"  src="PNG:ds_tool_selection" states="1" commint="Sel模式"/>
-		<imglist id="ds_tool_drag" 		 src="PNG:ds_tool_drag" 	 states="1" commint="Drag模式"/>
-		<imglist id="ds_tool_selbk" 	 src="PNG:ds_tool_selbk" 	 states="3" commint="toolbar滑动背景图"/>
-		
+		<imglist id="ds_preview" src="PNG:ds_preview" states="2" commint="预览眼睛" />
+		<imglist id="ds_tool_add" src="PNG:ds_tool_add" states="1" commint="Add模式" />
+		<imglist id="ds_tool_move" src="PNG:ds_tool_move" states="1" commint="Move模式" />
+		<imglist id="ds_tool_selection" src="PNG:ds_tool_selection" states="1" commint="Sel模式" />
+		<imglist id="ds_tool_drag" src="PNG:ds_tool_drag" states="1" commint="Drag模式" />
+		<imglist id="ds_tool_selbk" src="PNG:ds_tool_selbk" states="3" commint="toolbar滑动背景图" />
 		<!--cusror-->
 		<imglist id="ds_splith" src="PNG:ds_splith" states="1" commint="split cur" />
 		<imglist id="ds_splitv" src="PNG:ds_splitv" states="1" commint="split cur" />
 		<imglist id="ds_add" src="PNG:ds_add" states="1" commint="add cur" />
-		
 		<!--中间图片-->
-		<imglist id="ds_designbg" 	src="PNG:ds_designbg" states="1" btitle="1"	commit="中间主背景图（平铺）"/>
-		<img9 	 id="ds_hoverframe"  src="PNG:ds_hoverframe"  states="1" margin="3,3,3,3" commint="hover框图片(用于sel模式下)"/>
-		<img9 	 id="ds_addframe"  src="PNG:ds_addframe"  states="1" margin="8,8,8,8" commint="hover框图片(用于add模式下)"/>
-		<img9 	 id="ds_selframe"  src="PNG:ds_selframe"  states="1" margin="1,1,1,1" commint="选中框的图片(用于所有模式下)"/>
-		<imglist id="ds_drag_move" src="PNG:ds_drag_move" states="2" commint="拖动时显示小图标"/>
-		
+		<imglist id="ds_designbg" src="PNG:ds_designbg" states="1" btitle="1" commit="中间主背景图（平铺）" />
+		<img9 id="ds_hoverframe" src="PNG:ds_hoverframe" states="1" margin="3,3,3,3" commint="hover框图片(用于sel模式下)" />
+		<img9 id="ds_addframe" src="PNG:ds_addframe" states="1" margin="8,8,8,8" commint="hover框图片(用于add模式下)" />
+		<img9 id="ds_selframe" src="PNG:ds_selframe" states="1" margin="1,1,1,1" commint="选中框的图片(用于所有模式下)" />
+		<imglist id="ds_drag_move" src="PNG:ds_drag_move" states="2" commint="拖动时显示小图标" />
 		<!--右边图片-->
-		<imglist id="ds_comboxbtn" 	src="PNG:ds_comboxbtn"  states="3" commint="combox的下拉小三角"/>
-		<imglist id="ds_propcomboxbtn" 	src="PNG:ds_propcomboxbtn"  states="3" commint="propcombox的下拉小三角"/>
-		<imglist id="ds_checkbox" 	src="PNG:ds_checkbox"   states="8" commint="checkbox图标"/>
-		<imglist id="ds_attrname" 	src="PNG:ds_attrname"   states="1" commint="名字属性边上图标"/>
-		<img9 	id="ds_listbg" 		src="PNG:ds_listbg"     states="1"  margin="2,4,2,4"  commint="列表项的背景图"/>
-		<imglist id="ds_listarr" 	src="PNG:ds_listarr"    states="2" commint="列表项的小三角图"/>
-		<img9 id="ds_attreditframe" src="PNG:ds_attreditframe" states="1" margin="4,2,4,2" commint="属性的edit外框"/>
-		<imglist id="ds_expand" 	src="PNG:ds_expand"    states="2" commint="属性展开图"/>
-		<imglist id="ds_toolexpand" src="PNG:ds_toolexpand"    states="3" commint="属性展开图"/>
-		
+		<imglist id="ds_comboxbtn" src="PNG:ds_comboxbtn" states="3" commint="combox的下拉小三角" />
+		<imglist id="ds_propcomboxbtn" src="PNG:ds_propcomboxbtn" states="3" commint="propcombox的下拉小三角" />
+		<imglist id="ds_checkbox" src="PNG:ds_checkbox" states="8" commint="checkbox图标" />
+		<imglist id="ds_attrname" src="PNG:ds_attrname" states="1" commint="名字属性边上图标" />
+		<img9 id="ds_listbg" src="PNG:ds_listbg" states="1" margin="2,4,2,4" commint="列表项的背景图" />
+		<imglist id="ds_listarr" src="PNG:ds_listarr" states="2" commint="列表项的小三角图" />
+		<img9 id="ds_attreditframe" src="PNG:ds_attreditframe" states="1" margin="4,2,4,2" commint="属性的edit外框" />
+		<imglist id="ds_expand" src="PNG:ds_expand" states="2" commint="属性展开图" />
+		<imglist id="ds_toolexpand" src="PNG:ds_toolexpand" states="3" commint="属性展开图" />
 		<!--皮肤图片-->
-		<imglist id="ds_imgeditbg" 	src="PNG:ds_imgeditbg" states="1" btitle="1"	commit="图片编辑背景图（平铺）"/>
-		
+		<imglist id="ds_imgeditbg" src="PNG:ds_imgeditbg" states="1" btitle="1" commit="图片编辑背景图（平铺）" />
 		<!--add控件图片-->
-		<imglist id="ds_w_Window" src="ds_w_Window" states="2"/>
-		<imglist id="ds_w_Button" src="ds_w_Button" states="2"/>
-		<imglist id="ds_w_Static" src="ds_w_Static" states="2"/>
-		<imglist id="ds_w_Group" src="ds_w_Group" states="2"/>
-		<imglist id="ds_w_CheckBox" src="ds_w_CheckBox" states="2"/>
-		<imglist id="ds_w_Link" src="ds_w_Link" states="2"/>
-		<imglist id="ds_w_Combobox" src="ds_w_Combobox" states="2"/>
-		<imglist id="ds_w_HotKey" src="ds_w_HotKey" states="2"/>
-		<imglist id="ds_w_IPAddress" src="ds_w_IPAddress" states="2"/>
-		<imglist id="ds_w_RadioButton" src="ds_w_RadioButton" states="2"/>
-		<imglist id="ds_w_SliderCtrl" src="ds_w_SliderCtrl" states="2"/>
-		<imglist id="ds_w_ProcessCtrl" src="ds_w_ProcessCtrl" states="2"/>
-		<imglist id="ds_w_TabCtrl" src="ds_w_TabCtrl" states="2"/>
-		<imglist id="ds_w_ScrollBar" src="ds_w_ScrollBar" states="2"/>
-		<imglist id="ds_w_RichEdit" src="ds_w_RichEdit" states="2"/>
-		<imglist id="ds_w_Edit" src="ds_w_Edit" states="2"/>
-		<imglist id="ds_w_ListBox" src="ds_w_ListBox" states="2"/>
-		<imglist id="ds_w_TreeCtrl" src="ds_w_TreeCtrl" states="2"/>
-		<imglist id="ds_w_HeaderCtrl" src="ds_w_HeaderCtrl" states="2"/>
-		<imglist id="ds_w_ListCtrlEx" src="ds_w_ListCtrlEx" states="2"/>
-		<imglist id="ds_w_Gif" src="ds_w_Gif" states="2"/>
-		<imglist id="ds_w_IE" src="ds_w_IE" states="2"/>
-		<imglist id="ds_w_ListBoxEx" src="ds_w_ListBoxEx" states="2"/>
-		<imglist id="ds_w_MonthCalCtrl" src="ds_w_MonthCalCtrl" states="2"/>
-		<imglist id="ds_w_PngGif" src="ds_w_PngGif" states="2"/>
-		<imglist id="ds_w_SplitLayout" src="ds_w_SplitLayout" states="2"/>
-		<imglist id="ds_w_TabPage" src="ds_w_TabPage" states="2"/>
-		<imglist id="ds_w_TreeCtrlEx" src="ds_w_TreeCtrlEx" states="2"/>
-		<imglist id="ds_w_ScrollWnd" src="ds_w_ScrollWnd" states="2"/>
-		<imglist id="ds_w_RectTracker" src="ds_w_RectTracker" states="2"/>
+		<imglist id="ds_w_Window" src="ds_w_Window" states="2" />
+		<imglist id="ds_w_Button" src="ds_w_Button" states="2" />
+		<imglist id="ds_w_Label" src="ds_w_Label" states="2" />
+		<imglist id="ds_w_Group" src="ds_w_Group" states="2" />
+		<imglist id="ds_w_CheckBox" src="ds_w_CheckBox" states="2" />
+		<imglist id="ds_w_Link" src="ds_w_Link" states="2" />
+		<imglist id="ds_w_Combobox" src="ds_w_Combobox" states="2" />
+		<imglist id="ds_w_HotKey" src="ds_w_HotKey" states="2" />
+		<imglist id="ds_w_IPAddress" src="ds_w_IPAddress" states="2" />
+		<imglist id="ds_w_RadioButton" src="ds_w_RadioButton" states="2" />
+		<imglist id="ds_w_SliderCtrl" src="ds_w_SliderCtrl" states="2" />
+		<imglist id="ds_w_ProcessCtrl" src="ds_w_ProcessCtrl" states="2" />
+		<imglist id="ds_w_TabCtrl" src="ds_w_TabCtrl" states="2" />
+		<imglist id="ds_w_ScrollBar" src="ds_w_ScrollBar" states="2" />
+		<imglist id="ds_w_RichEdit" src="ds_w_RichEdit" states="2" />
+		<imglist id="ds_w_Edit" src="ds_w_Edit" states="2" />
+		<imglist id="ds_w_ListBox" src="ds_w_ListBox" states="2" />
+		<imglist id="ds_w_TreeCtrl" src="ds_w_TreeCtrl" states="2" />
+		<imglist id="ds_w_HeaderCtrl" src="ds_w_HeaderCtrl" states="2" />
+		<imglist id="ds_w_ListCtrlEx" src="ds_w_ListCtrlEx" states="2" />
+		<imglist id="ds_w_Gif" src="ds_w_Gif" states="2" />
+		<imglist id="ds_w_IE" src="ds_w_IE" states="2" />
+		<imglist id="ds_w_ListBoxEx" src="ds_w_ListBoxEx" states="2" />
+		<imglist id="ds_w_MonthCalCtrl" src="ds_w_MonthCalCtrl" states="2" />
+		<imglist id="ds_w_PngGif" src="ds_w_PngGif" states="2" />
+		<imglist id="ds_w_SplitLayout" src="ds_w_SplitLayout" states="2" />
+		<imglist id="ds_w_TabPage" src="ds_w_TabPage" states="2" />
+		<imglist id="ds_w_TreeCtrlEx" src="ds_w_TreeCtrlEx" states="2" />
+		<imglist id="ds_w_ScrollWnd" src="ds_w_ScrollWnd" states="2" />
+		<imglist id="ds_w_RectTracker" src="ds_w_RectTracker" states="2" />
 	</skin>
 </global>

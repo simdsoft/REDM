@@ -1,35 +1,33 @@
-﻿<dm  initsize="650,160" minsize="650,160" bresize="1" maxsize="-1,160" btranslucent="1" alpha = "255">
-	<root clrbg="pbgra(3d,3d,3d,ff)"><!--root做为唯一的标识,它等同于window Node-->
-		<window pos="0,0,-0,@36" bdrag="1"><!--标题区-->
-			<static name="ds_title" pos="5,2,-22,34" text="[LAYOUT]" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button id="2" pos="-22,1,@21,@15"  skin="ds_closebutton" 	tiptext="关闭"/>
+<?xml version="1.0"?>
+<dm initsize="650,160" minsize="650,160" bresize="1" maxsize="-1,160" btranslucent="1" alpha="255">
+	<root clrbg="pbgra(3d,3d,3d,ff)">
+		<!--root做为唯一的标识,它等同于window Node-->
+		<window pos="0,0,-0,@36" bdrag="1">
+			<!--标题区-->
+			<label name="ds_title" pos="5,2,-22,34" text="[LAYOUT]" align="left" font="face:新宋体,size:22,weight:700" bdot="1" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-22,1,@21,@15" skin="ds_closebutton" tiptext="关闭" />
 		</window>
-		<window pos="5,38,-5,-60" clrbg="pbgra(59,59,59,ff)"><!--左边区-->
-			<static pos="2,4,@34,@24" text="name:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<edit   name="ds_layout_name" pos="[4,4,-4,@24" skin="ds_attreditframe" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
-			
+		<window pos="5,38,-5,-60" clrbg="pbgra(59,59,59,ff)">
+			<!--左边区-->
+			<label pos="2,4,@34,@24" text="name:" align="left" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+			<edit name="ds_layout_name" pos="[4,4,-4,@24" skin="ds_attreditframe" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" clrbg="pbgra(00,00,00,00)" font="size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			<window pos="2,30,%50,@24" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@41,@24" text="目录:\" align="right"  font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit name="ds_layout_dir" pos="[0,0,-24,@24" text=""  breadonly="1"
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
-				<button name="ds_layout_opendir" pos="-40,0,-0,-0" text="..."  skin="ds_custombutton" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
+				<label pos="0,0,@41,@24" text="目录:\" align="right" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_layout_dir" pos="[0,0,-24,@24" text="" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<button name="ds_layout_opendir" pos="-40,0,-0,-0" text="..." skin="ds_custombutton" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
 			</window>
-			
 			<window pos="[2,30,-2,@24" clrnc="pbgra(cc,cc,cc,ff)" ncmargin="1,1,1,1">
-				<static pos="0,0,@48,@24" text="文件名:" align="right"  font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-				<edit name="ds_layout_filename" pos="[0,0,-40,@24" text=""
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
-				<edit name="ds_layout_fileafx" pos="[0,0,-0,@24" text=".xml"  breadonly="1"
-				clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<label pos="0,0,@48,@24" text="文件名:" align="right" font="face:新宋体,size:14,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+				<edit name="ds_layout_filename" pos="[0,0,-40,@24" text="" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
+				<edit name="ds_layout_fileafx" pos="[0,0,-0,@24" text=".xml" breadonly="1" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:14,weight:400" clrtext="rgba(ff,ff,ff,ff)" />
 			</window>
 		</window>
-		<richedit name="ds_layout_xml"  pos="0,-60,-0,@24" clrbg="pbgra(c8,8c,93,ff)" clrcaret="pbgra(cc,cc,cc,cc)" 
-		font="face:新宋体,size:12,weight:100" bwordwrap="0" breadonly="1" bwantreturn="1" bmultilines="1" caretanimatecount="5" 
-		clrtext="rgba(ff,ff,ff,ff)" bhscroll="1" sbskin="ds_scrollbar" arrowwidth="0"/>
-		<window pos="0,-36,-0,-0"><!--下边区-->
-			<static name="ds_layout_path" pos="0,0,-150,-0" text="layout\"  align="left" font="face:新宋体,size:22,weight:700" clrtext="pbgra(00,00,ff,ff)"/>
-			<button  id="1" pos="-150,10,@60,@24"  text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
-			<button  id="2" pos="-74,10,@60,@24"  text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
+		<richedit name="ds_layout_xml" pos="0,-60,-0,@24" clrbg="pbgra(c8,8c,93,ff)" clrcaret="pbgra(cc,cc,cc,cc)" font="face:新宋体,size:12,weight:100" bwordwrap="0" breadonly="1" bwantreturn="1" bmultilines="1" caretanimatecount="5" clrtext="rgba(ff,ff,ff,ff)" bhscroll="1" sbskin="ds_scrollbar" arrowwidth="0" />
+		<window pos="0,-36,-0,-0">
+			<!--下边区-->
+			<label name="ds_layout_path" pos="0,0,-150,-0" text="layout\" align="left" font="face:新宋体,size:22,weight:700" clrtext="pbgra(00,00,ff,ff)" />
+			<button id="1" pos="-150,10,@60,@24" text="确定" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<button id="2" pos="-74,10,@60,@24" text="取消" skin="ds_custombutton" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 		</window>
 	</root>
 </dm>

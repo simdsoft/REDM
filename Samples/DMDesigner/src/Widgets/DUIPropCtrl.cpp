@@ -136,10 +136,10 @@ namespace DM
 		do 
 		{
 			//1.´´½¨header
-			CStringW strWXml = L"<HeaderCtrl align=\"center\" itemdelta=\"4\"  itemskin=\"%s\" bswap=\"0\">"\
+			CStringW strWXml = L"<headerctrl align=\"center\" itemdelta=\"4\"  itemskin=\"%s\" bswap=\"0\">"\
 				L"<item text=\"Name\"/>"\
 				L"<item text=\"Value\"/>"\
-				L"</HeaderCtrl>";
+				L"</headerctrl>";
 			strWXml.Format(strWXml,m_strHeadItemSkin);
 			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument HeadDoc;

@@ -1,3 +1,3 @@
-﻿<menu itemhei="18" textoffset="0" stepoffset="0" sepskin="ds_menustep" clrtext="pbgra(ff,ff,ff,ff)" iconsize="0,0" bgskin="ds_menubg"  bshadow="0" itemselbgskin="ds_menuselbg" font="face:新宋体,size:12,weight:100">
-	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
-</menu>
+<?xml version="1.0"?>
+<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
+<menu itemhei="18" textoffset="0" stepoffset="0" sepskin="ds_menustep" clrtext="pbgra(ff,ff,ff,ff)" iconsize="0,0" bgskin="ds_menubg" bshadow="0" itemselbgskin="ds_menuselbg" font="face:新宋体,size:12,weight:100" />

@@ -1,22 +1,6 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-monthcalctrl" pos="0,0,-0,-0" text="monthcalctrl" align="left">
-		<MonthCalCtrl name="monthcalctrl" pos="0,50,@300,@300" ncmargin="2,2,2,2" clrnc="pbgra(93,f0,d2,ff)" clrbg="pbgra(ff,ff,ff,ff)"
-		font="face:微软雅黑,size:12,weight:400" 
-		
-		headerheight="24" btnoffset="4" clrheaderbg="pbgra(93,f0,d2,ff)"
-		leftbtnskin="calendar_left" rightbtnskin="calendar_right" 
-		clrheadertext="pbgra(ff,d3,80,ff)" headerfont="face:微软雅黑,size:18,weight:700" headertextformat="%04d年%02d月"	
-		
-		titleheight="24" clrtitlebg="pbgra(f0,f0,f0,ff)" 
-		weektitle="日,一, 二, 三, 四, 五, 六"
-		clrtitletext="pbgra(80,d3,ff,ff)" titlefont="face:微软雅黑,size:10,weight:400" 
-		
-		bhidegraycell="0" clrgraycelltext="pbgra(d2,d2,d2,ff)" clrtext="pbgra(00,00,00,ff)" 
-		clrcell="pbgra(f5,f5,f5,ff)" clrcellhover="pbgra(93,f0,ff,ff)" cellskin="calendar_cell"
-		bshowjieri="1" clrjieritext="pbgra(f0,80,1,ff)" jierifont="face:微软雅黑,size:8,weight:400" 
-		
-		todayheight="24" clrtodaytext="pbgra(00,00,00,ff)" clrtodaytexthover="pbgra(ff,00,ff,ff)" clrtodaytextpush="pbgra(f0,80,1,ff)"
-		>
-		</MonthCalCtrl>
+		<monthcalctrl name="monthcalctrl" pos="0,50,@300,@300" ncmargin="2,2,2,2" clrnc="pbgra(93,f0,d2,ff)" clrbg="pbgra(ff,ff,ff,ff)" font="face:微软雅黑,size:12,weight:400" headerheight="24" btnoffset="4" clrheaderbg="pbgra(93,f0,d2,ff)" leftbtnskin="calendar_left" rightbtnskin="calendar_right" clrheadertext="pbgra(ff,d3,80,ff)" headerfont="face:微软雅黑,size:18,weight:700" headertextformat="%04d年%02d月" titleheight="24" clrtitlebg="pbgra(f0,f0,f0,ff)" weektitle="日,一, 二, 三, 四, 五, 六" clrtitletext="pbgra(80,d3,ff,ff)" titlefont="face:微软雅黑,size:10,weight:400" bhidegraycell="0" clrgraycelltext="pbgra(d2,d2,d2,ff)" clrtext="pbgra(00,00,00,ff)" clrcell="pbgra(f5,f5,f5,ff)" clrcellhover="pbgra(93,f0,ff,ff)" cellskin="calendar_cell" bshowjieri="1" clrjieritext="pbgra(f0,80,1,ff)" jierifont="face:微软雅黑,size:8,weight:400" todayheight="24" clrtodaytext="pbgra(00,00,00,ff)" clrtodaytexthover="pbgra(ff,00,ff,ff)" clrtodaytextpush="pbgra(f0,80,1,ff)" />
 	</group>
 </sub>

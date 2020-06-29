@@ -1,55 +1,76 @@
+<?xml version="1.0"?>
 <sub>
-	<group pos="0,0,-0,-0" text="Layout" round="4" align="left" > 
+	<group pos="0,0,-0,-0" text="Layout" round="4" align="left">
 		<group name="group" pos="0,0,%30,%40" text="VLayout" align="center">
-			<vlayout pos="0,0,-0,-0"  childpaddlen="5">
-				<static text="高20,三边距均为10" ncmargin="1,1,1,1" clrbg="pbgra(cc,b2,3e,ff)"  height="20" rcpadd="0,10,10,10"/>
-				<static text="自动计算宽高度" ncmargin="1,1,1,1" clrbg="pbgra(e2,b2,3e,ff)" />
-				<static text="最高50,最宽300" ncmargin="1,1,1,1" clrbg="pbgra(e2,cc,ee,ff)" maxwidth="300" maxheight="50"/>
-				<static text="高16,最宽200" ncmargin="1,1,1,1" clrbg="pbgra(e2,b2,ee,ff)" maxwidth="200" height="16"/>
+			<vlayout pos="0,0,-0,-0" childpaddlen="5">
+				<label text="高20,三边距均为10" ncmargin="1,1,1,1" clrbg="pbgra(cc,b2,3e,ff)" height="20" rcpadd="0,10,10,10" />
+				<label text="自动计算宽高度" ncmargin="1,1,1,1" clrbg="pbgra(e2,b2,3e,ff)" />
+				<label text="最高50,最宽300" ncmargin="1,1,1,1" clrbg="pbgra(e2,cc,ee,ff)" maxwidth="300" maxheight="50" />
+				<label text="高16,最宽200" ncmargin="1,1,1,1" clrbg="pbgra(e2,b2,ee,ff)" maxwidth="200" height="16" />
 			</vlayout>
 		</group>
 		<group name="group" pos="[0,0,%60,%40" text="HLayout" align="center">
-			<hlayout pos="0,0,-0,-0"  childpaddlen="5">
-				<static  text="宽40,最高100" width="40" maxHeight="100"  bmultilines="1"  clrbg="rgba(00,c0,ff,ff)"/>
-				<static  text="水平布局2(自动变化宽高度)" bmultilines="1"  clrbg="rgba(00,c0,ff,ff)"/>
-				<static  text="宽60,最高150" width="60" maxHeight="150" bmultilines="1" clrbg="rgba(00,c0,cc,ff)"/>
+			<hlayout pos="0,0,-0,-0" childpaddlen="5">
+				<label text="宽40,最高100" width="40" maxHeight="100" bmultilines="1" clrbg="rgba(00,c0,ff,ff)" />
+				<label text="水平布局2(自动变化宽高度)" bmultilines="1" clrbg="rgba(00,c0,ff,ff)" />
+				<label text="宽60,最高150" width="60" maxHeight="150" bmultilines="1" clrbg="rgba(00,c0,cc,ff)" />
 			</hlayout>
 		</group>
 		<group name="group" pos="[0,0,-0,%40" text="tab" align="center">
 			<tablayout name="tablayout" pos="0,0,-0,-0" itemsize="35,25" childpaddLen="5">
-				<static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/>
-				<static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/>
-				<static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/>
-				<static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/>
-				<static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/><static skin="bg"/>
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
+				<label skin="bg" />
 			</tablayout>
 		</group>
 		<group name="group" pos="0,%41,%30,-0" text="wrap" align="center">
-			<WrapLayout pos="0,0,-0,-0" rcInset="10,5,5,5" childpaddLen="10" itemsize="60,40" clrbg="rgba(aa,aa,00,ff)">
-				<static  name="wrap" text="Wrap布局1"  bcache="1" clrbg="rgba(ff,c0,ff,ff)"/>
-				<static   text="Wrap布局2"  bcache="1" clrbg="rgba(ff,c0,ff,ff)"/>
-				<static   text="Wrap布局3"  bcache="1" clrbg="rgba(ff,c0,ff,ff)"/>
-				<static   text="4(自设高度)"  height="80" clrbg="rgba(ff,ff,ff,ff)"/>
-				<static   text="5(限制宽度)"  maxWidth="60" clrbg="rgba(ff,c0,ff,ff)"/>
-				<static   text="Wrap布局6"  clrbg="rgba(ff,c0,ff,ff)"/>
-				<static   text="7(混合模式)"  clrbg="rgba(ff,c0,ff,ff)">
-					<static   name="link_insert"  pos="5,%75,-1,%95" style="custom" clrbg="rgba(cc,c0,ff,ff)" text="嵌入锚点" href="www.hgy413.com" />
-				</static>
-				<static   text="Wrap布局8"  clrbg="rgba(ff,c0,ff,ff)"/>
-			</WrapLayout>
+			<wraplayout pos="0,0,-0,-0" rcInset="10,5,5,5" childpaddLen="10" itemsize="60,40" clrbg="rgba(aa,aa,00,ff)">
+				<label name="wrap" text="Wrap布局1" bcache="1" clrbg="rgba(ff,c0,ff,ff)" />
+				<label text="Wrap布局2" bcache="1" clrbg="rgba(ff,c0,ff,ff)" />
+				<label text="Wrap布局3" bcache="1" clrbg="rgba(ff,c0,ff,ff)" />
+				<label text="4(自设高度)" height="80" clrbg="rgba(ff,ff,ff,ff)" />
+				<label text="5(限制宽度)" maxWidth="60" clrbg="rgba(ff,c0,ff,ff)" />
+				<label text="Wrap布局6" clrbg="rgba(ff,c0,ff,ff)" />
+				<label text="7(混合模式)" clrbg="rgba(ff,c0,ff,ff)">
+					<label name="link_insert" pos="5,%75,-1,%95" style="custom" clrbg="rgba(cc,c0,ff,ff)" text="嵌入锚点" href="www.hgy413.com" />
+				</label>
+				<label text="Wrap布局8" clrbg="rgba(ff,c0,ff,ff)" />
+			</wraplayout>
 		</group>
 		<group name="group" pos="[0,%41,-0,-0" text="流式布局+锚定布局混合" align="center">
-			<vlayout pos="0,0,-0,-0" childpaddLen="10" clrbg="rgba(ff,00,ff,ff)">	
-				<window name="vitem" text="竖直布局1(最宽650)"  height="20"   maxWidth="650"  rcPadd="10,5,5,5"  clrbg="rgba(ff,c0,ff,ff)"/>
+			<vlayout pos="0,0,-0,-0" childpaddLen="10" clrbg="rgba(ff,00,ff,ff)">
+				<window name="vitem" text="竖直布局1(最宽650)" height="20" maxWidth="650" rcPadd="10,5,5,5" clrbg="rgba(ff,c0,ff,ff)" />
 				<hlayout text="竖直布局中的水平子布局" valign="top" rcPadd="5,5,5,5" childpaddLen="20" clrbg="rgba(ff,ff,ff,ff)">
-					<window  text="水平布局1" width="60" maxHeight="100" rcPadd="5,15,5,5" clrbg="rgba(00,c0,ff,ff)"/>
-					<window  text="水平布局2(自动变化宽高度)" rcPadd="5,15,5,15" clrbg="rgba(00,c0,ff,ff)">
-						<window   name="link_insert"  pos="10,%65,-10,%75" style="custom" clrbg="rgba(cc,c0,ff,ff)" text="中间加入锚点布局" />
+					<window text="水平布局1" width="60" maxHeight="100" rcPadd="5,15,5,5" clrbg="rgba(00,c0,ff,ff)" />
+					<window text="水平布局2(自动变化宽高度)" rcPadd="5,15,5,15" clrbg="rgba(00,c0,ff,ff)">
+						<window name="link_insert" pos="10,%65,-10,%75" style="custom" clrbg="rgba(cc,c0,ff,ff)" text="中间加入锚点布局" />
 					</window>
-					<window  text="水平布局3" width="60" maxHeight="550" rcPadd="5,15,5,5" clrbg="rgba(00,c0,cc,ff)"/>
+					<window text="水平布局3" width="60" maxHeight="550" rcPadd="5,15,5,5" clrbg="rgba(00,c0,cc,ff)" />
 				</hlayout>
-				<window text="竖直布局2"  height="25"  maxWidth="350"  rcPadd="10,5,5,5"  clrbg="rgba(aa,c0,ff,ff)"/>
+				<window text="竖直布局2" height="25" maxWidth="350" rcPadd="10,5,5,5" clrbg="rgba(aa,c0,ff,ff)" />
 			</vlayout>
 		</group>
-	</group>	
+	</group>
 </sub>

@@ -1,11 +1,13 @@
-﻿<sub> <!--必须以UTF8格式，不然中文无法识别-->
-	<link   pos="10,10,@48,@48" skin="Webicon" style="style-Link" href="www.hgy413.com" />
-	<button name="webback" pos="[7,30,@31,@27" skin="webback"/>
-	<button name="webrefresh" pos="[7,30,@31,@27" skin="webrefresh"/>
-	<button name="webfront" pos="[7,30,@31,@27" skin="webfront"/>
-	<window pos="66,4,@131,@27"  align="left" text="DM无窗口浏览器1.0" font="face:宋体,size:13,bold:0,strike:0,adding:10" colorText="rgba(48,4a,51,ff)"/>
-	<richedit name="web_url" pos="179,30,-10,@27" skin="dui_frame" brichtext="0" bautosel="1" bmultilines="0"  bwantreturn="1" benabledrag="1"  sbSkin="ScrollBar"/>
+<?xml version="1.0"?>
+<sub>
+	<!--必须以UTF8格式，不然中文无法识别-->
+	<link pos="10,10,@48,@48" skin="Webicon" style="style-Link" href="www.hgy413.com" />
+	<button name="webback" pos="[7,30,@31,@27" skin="webback" />
+	<button name="webrefresh" pos="[7,30,@31,@27" skin="webrefresh" />
+	<button name="webfront" pos="[7,30,@31,@27" skin="webfront" />
+	<window pos="66,4,@131,@27" align="left" text="DM无窗口浏览器1.0" font="face:宋体,size:13,bold:0,strike:0,adding:10" colorText="rgba(48,4a,51,ff)" />
+	<richedit name="web_url" pos="179,30,-10,@27" skin="dui_frame" brichtext="0" bautosel="1" bmultilines="0" bwantreturn="1" benabledrag="1" sbSkin="ScrollBar" />
 	<window pos="10,63,-10,-10" skin="tab_pagebg">
-	<webkit name="webobj" pos="1,1,-1,-1" alpha="200" />
+		<webkit name="webobj" pos="1,1,-1,-1" alpha="200" />
 	</window>
 </sub>

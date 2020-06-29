@@ -65,7 +65,7 @@ DMCode ObjXml::InitObjTree()
 			ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hDMTreeItem);
 			DUIRoot* pEditor = m_pObjEditor->InitDesignChild(hDMTreeItem);
 			DUIWindowPtr pDUI = pEditor;
-			DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root().FirstChild(L"Root");
+			DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root().FirstChild(L"root");
 			BindObjTreeData(pData->m_pDoc,pEditor,pDUI,XmlNode,hDMTreeItem);// 更新
 			// 解析生成子树
 			InitObjChildTree(hDMTreeItem);

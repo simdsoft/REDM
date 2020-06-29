@@ -1,13 +1,14 @@
-﻿<menu bgskin="main_menue_bg" maxwidth="166" bshadow="0" itemhei="30" clrtext="pbgra(ff,ff,ff,ff)" textoffset="58">
+<?xml version="1.0"?>
+<menu bgskin="main_menue_bg" maxwidth="166" bshadow="0" itemhei="30" clrtext="pbgra(ff,ff,ff,ff)" textoffset="58">
 	<!--id必须不为0，0在菜单TrackPopupMenu中表示fail-->
-	<item height="11"/>
-	<item id="1001" text="设置" skin="meue_item_bk"/>
-	<item id="1002" text="换肤" skin="meue_item_bk"/>
-	<item id="1003" text="添加游戏" skin="meue_item_bk"/>
-	<item id="1004" text="关于我们" skin="meue_item_bk"/>
-	<item id="1005" text="意见反馈" skin="meue_item_bk"/>
-	<item id="1006" text="软件升级" skin="meue_item_bk"/>
-	<item id="1007" text="切换用户" skin="meue_item_bk"/>
-	<item id="1008" text="退出" skin="meue_item_bk"/>
-	<item height="11"/>
+	<item height="11" />
+	<item id="1001" text="设置" skin="meue_item_bk" />
+	<item id="1002" text="换肤" skin="meue_item_bk" />
+	<item id="1003" text="添加游戏" skin="meue_item_bk" />
+	<item id="1004" text="关于我们" skin="meue_item_bk" />
+	<item id="1005" text="意见反馈" skin="meue_item_bk" />
+	<item id="1006" text="软件升级" skin="meue_item_bk" />
+	<item id="1007" text="切换用户" skin="meue_item_bk" />
+	<item id="1008" text="退出" skin="meue_item_bk" />
+	<item height="11" />
 </menu>

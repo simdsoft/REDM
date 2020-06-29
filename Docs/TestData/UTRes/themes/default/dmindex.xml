@@ -1,11 +1,12 @@
-<resource>  
-    <PNG>
-		<file name="Btn_Close" 		path="themes\default\image\btn_close.png"/>
-		<file name="Btn_Max"   		path="themes\default\image\btn_max.png"/>
-		<file name="Btn_Restore"    path="themes\default\image\btn_restore.png"/>
-		<file name="Btn_Min"   		path="themes\default\image\btn_min.png"/>
-		<file name="Btn_Menu"   	path="themes\default\image\btn_menu.png"/>
-		<file name="Border"   		path="themes\default\image\border.png"/>
-		<file name="ScrollBar"   	path="themes\default\image\scrollbar.png"/>
-	</PNG>
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="Btn_Close" path="themes\default\image\btn_close.png" />
+		<file name="Btn_Max" path="themes\default\image\btn_max.png" />
+		<file name="Btn_Restore" path="themes\default\image\btn_restore.png" />
+		<file name="Btn_Min" path="themes\default\image\btn_min.png" />
+		<file name="Btn_Menu" path="themes\default\image\btn_menu.png" />
+		<file name="Border" path="themes\default\image\border.png" />
+		<file name="ScrollBar" path="themes\default\image\scrollbar.png" />
+	</png>
 </resource>

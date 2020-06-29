@@ -1,21 +1,22 @@
-﻿<dm name="AttributeTestWnd" title="换肤" initsize="600,150" resizable="1" translucent="1" alpha = "0xff">
-	 <root skin="bg" alpha="0xff">
-		<window pos="0,0,-0,23" bdrag="1"><!--可拖动区-->
-			<button name="btn_attrtestclose"   pos="-49,2,-4,19"    skin="Btn_Close"    banimate="1" nopresize="1" tiptext="btn_attrtestclose" />
-			<static pos="100,0,-100,@20" text="如果你不清楚控件名称,请开启dmspy++查看!!" align="center"/>
+<?xml version="1.0"?>
+<dm name="AttributeTestWnd" title="换肤" initsize="600,150" resizable="1" translucent="1" alpha="0xff">
+	<root skin="bg" alpha="0xff">
+		<window pos="0,0,-0,23" bdrag="1">
+			<!--可拖动区-->
+			<button name="btn_attrtestclose" pos="-49,2,-4,19" skin="Btn_Close" banimate="1" nopresize="1" tiptext="btn_attrtestclose" />
+			<label pos="100,0,-100,@20" text="如果你不清楚控件名称,请开启dmspy++查看!!" align="center" />
 		</window>
-		<window pos="2,24,-2,-2" >
-			<group pos="0,-100,-0,-0" text="Test控制" round="4" rcinset="0,10,0,0" align="left" > 
-				<static pos="10,10,@100,@20" style="static" text="控件name:" align="right"/>
-				<static pos="10,35,@100,@20" style="static" text="属性名称:" align="right"/>
-				<static pos="10,60,@100,@20" style="static" text="属性新值:" align="right"/>
-				<edit  name="edit_ctrlname"  pos="115,10,@140,@20" surfacetext="控件名称" style="custom"  vscrollBar="1" wordWrap="1"  sbskin="ScrollBar"/>
-				<edit  name="edit_attrname"  pos="115,35,@140,@20" surfacetext="属性名称" style="custom"  vscrollBar="1" wordWrap="1"  sbskin="ScrollBar"/>
-				<edit  name="edit_attrvalue" pos="115,60,@140,@20" surfacetext="属性新值" style="custom"  vscrollBar="1" wordWrap="1"  sbskin="ScrollBar"/>
-				<button name="btn_testattr"  pos="260,10,@100,@70" text="点击测试属性" skin="DUI_Frame"/>
-				<richedit name="edit_testinfo" pos="370,10,-10,@70" style="custom" bmultilines="1" bvscroll="1" bwordWrap="1"  bautovscroll="1"  bhscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
+		<window pos="2,24,-2,-2">
+			<group pos="0,-100,-0,-0" text="Test控制" round="4" rcinset="0,10,0,0" align="left">
+				<label pos="10,10,@100,@20" style="static" text="控件name:" align="right" />
+				<label pos="10,35,@100,@20" style="static" text="属性名称:" align="right" />
+				<label pos="10,60,@100,@20" style="static" text="属性新值:" align="right" />
+				<edit name="edit_ctrlname" pos="115,10,@140,@20" surfacetext="控件名称" style="custom" vscrollBar="1" wordWrap="1" sbskin="ScrollBar" />
+				<edit name="edit_attrname" pos="115,35,@140,@20" surfacetext="属性名称" style="custom" vscrollBar="1" wordWrap="1" sbskin="ScrollBar" />
+				<edit name="edit_attrvalue" pos="115,60,@140,@20" surfacetext="属性新值" style="custom" vscrollBar="1" wordWrap="1" sbskin="ScrollBar" />
+				<button name="btn_testattr" pos="260,10,@100,@70" text="点击测试属性" skin="DUI_Frame" />
+				<richedit name="edit_testinfo" pos="370,10,-10,@70" style="custom" bmultilines="1" bvscroll="1" bwordWrap="1" bautovscroll="1" bhscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
 			</group>
 		</window>
 	</root>
-	
 </dm>
