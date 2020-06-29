@@ -6,7 +6,7 @@
 #      guoyou		2015-1-5	1.0
 #      k000     2017-07-11            修复项目作为子项目引入时PrecompiledHeader.cmake路径错误
 #-------------------------------------------------------
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.10)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # 工程名

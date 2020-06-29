@@ -84,7 +84,11 @@ SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O1 /Ob1 /D NDEBUG")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /Zi /O2 /Ob1 /D NDEBUG")
 endif()
   
-set_source_files_properties(src/Common/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+if (${CMAKE_CACHE_MAJOR_VERSION} GREATER_EQUAL 3 AND ${CMAKE_CACHE_MINOR_VERSION} GREATER_EQUAL 16)
+    set_source_files_properties(src/Common/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+else()
+    set_source_files_properties(src/Common/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
+endif()
 
 if(USE_DMDLL_)
 ADD_LIBRARY(DmMain SHARED
