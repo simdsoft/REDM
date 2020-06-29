@@ -20,7 +20,7 @@
 				<sub src="layout:ds_workspace" />
 			</window>
 			<window pos="0,-28,-0,-0" clrbg="pbgra(3a,3a,3a,ff)">
-				<label pos="5,0,@200,-0" text="Version:1.0" align="left" font="face:新宋体,size:24,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+				<label pos="5,0,@200,-0" text="Version:2.0" align="left" font="face:新宋体,size:24,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 				<label name="ds_tips" pos="205,0,-0,-0" text="" font="face:新宋体,size:24,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 			</window>
 		</window>
