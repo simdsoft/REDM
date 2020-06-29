@@ -28,7 +28,7 @@
 #define  XML_ID										 L"id"
 #define  XML_SRC									 L"src"
 #define  XML_TREEITEM                                L"treeitem"
-#define  XML_STATIC                                  L"static"
+#define  XML_STATIC                                  L"label"
 #define  XML_CHECKBOX                                L"checkbox"
 #define  XML_CHEKSKIN                                L"checkskin"
 #define  XML_TEXT                                    L"text"

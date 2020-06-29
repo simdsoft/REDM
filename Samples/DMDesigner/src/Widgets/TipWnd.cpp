@@ -33,7 +33,7 @@ MultStr g_AddInfo[] = \
 {
 	{L"window",		 L"基础控件",		L"系统基础窗口",		L""},
 	{L"button",		 L"基础控件",		L"通用的按钮",			L""},
-	{L"static",		 L"基础控件",		L"静态框",				L"静态框不响应消息"},
+	{L"label",		 L"基础控件",		L"标签",				L"标签不响应消息"},
 	{L"group",		 L"基础控件",		L"组框",				L""},
 	{L"checkbox",	 L"基础控件",		L"选择框",				L""},
 	{L"link",		 L"基础控件",		L"链接",				L""},

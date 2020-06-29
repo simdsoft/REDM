@@ -5,7 +5,7 @@
 		<imglist id="maxbutton" src="PNG:maxbutton" states="3" commit="最大化" />
 		<imglist id="restorebutton" src="PNG:restorebutton" states="3" commit="恢复" />
 		<imglist id="minbutton" src="PNG:minbutton" states="3" commit="最小化" />
-		<imglist id="custombutton" src="png:custombutton" states="3" commit="通用按钮"/>
+		<imglist id="custombutton" src="png:custombutton" states="3" commit="通用按钮" />
 	</skin>
 	<style />
 </global>

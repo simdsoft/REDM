@@ -1,31 +1,32 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-listbox" pos="0,0,-0,-0" text="listbox" align="right">
-		<button name="btn_listbox_insert" pos="10,13,@100,@24" text="插入" skin="btncustom" alpha="0x80" tiptext="限制最多插入五项"/>
-		<button name="btn_listbox_del" 	  pos="[10,13,@100,@24" text="删除" skin="btncustom" alpha="0x80" tiptext="依次删除插入的项"/>
-		<listbox name="listbox1" pos="10,50,-10,@200"  ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar" >
+		<button name="btn_listbox_insert" pos="10,13,@100,@24" text="插入" skin="btncustom" alpha="0x80" tiptext="限制最多插入五项" />
+		<button name="btn_listbox_del" pos="[10,13,@100,@24" text="删除" skin="btncustom" alpha="0x80" tiptext="依次删除插入的项" />
+		<listbox name="listbox1" pos="10,50,-10,@200" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">
 			<item text="1" icon="1" data="100" height="30" />
 			<item text="2" icon="2" data="100" height="50" />
-			<item text="3" icon="3" data="103" height="40"/>
-			<item text="4" icon="4" data="100" height="60"/>
-			<item text="5" icon="5" data="105" height="30"/>
-			<item text="1" icon="6" data="100" height="60"/>
-			<item text="2" icon="7" data="100" height="60"/>
-			<item text="3" icon="8" data="105" height="50"/>
+			<item text="3" icon="3" data="103" height="40" />
+			<item text="4" icon="4" data="100" height="60" />
+			<item text="5" icon="5" data="105" height="30" />
+			<item text="1" icon="6" data="100" height="60" />
+			<item text="2" icon="7" data="100" height="60" />
+			<item text="3" icon="8" data="105" height="50" />
 		</listbox>
 		<group pos="0,260,-0,-0" text="热键追踪listbox" align="right">
-			<listbox name="listbox1" pos="0,0,%49,-20"  bhottrack="1" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar" >
+			<listbox name="listbox1" pos="0,0,%49,-20" bhottrack="1" ncmargin="1,1,1,1" clritemhoverbg="pbgra(cc,cc,cc,ff)" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="pbgra(ff,00,00,ff)" clritemseltext="pbgra(FF,FF,FF,FF)" clritembg2="pbgra(CC,FF,FF,FF)" clritembg="pbgra(FF,FF,FF,FF)" clritemselbg="pbgra(00,00,FF,FF)" sbskin="scrollbar">
 				<item text="listbox1" icon="1" data="100" height="30" />
 				<item text="2" icon="2" data="100" height="50" />
-				<item text="3" icon="3" data="103" height="40"/>
-				<item text="4" icon="4" data="100" height="60"/>
-				<item text="5" icon="5" data="105" height="30"/>
-				<item text="6" icon="6" data="100"/>
-				<item text="7" icon="7" data="103"/>
-				<item text="8" icon="8" data="100"/>
-				<item text="9" icon="9" data="105"/>
-				<item text="1" icon="0" data="100" height="60"/>
-				<item text="2" icon="8" data="100" height="60"/>
-				<item text="3" icon="9" data="105" height="50"/>
+				<item text="3" icon="3" data="103" height="40" />
+				<item text="4" icon="4" data="100" height="60" />
+				<item text="5" icon="5" data="105" height="30" />
+				<item text="6" icon="6" data="100" />
+				<item text="7" icon="7" data="103" />
+				<item text="8" icon="8" data="100" />
+				<item text="9" icon="9" data="105" />
+				<item text="1" icon="0" data="100" height="60" />
+				<item text="2" icon="8" data="100" height="60" />
+				<item text="3" icon="9" data="105" height="50" />
 			</listbox>
 		</group>
 	</group>

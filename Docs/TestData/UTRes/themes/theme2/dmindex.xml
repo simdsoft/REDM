@@ -1,8 +1,9 @@
-<resource>  
-    <PNG>
-		<file name="Btn_Close" 		path="themes\theme2\image\btn_close.png"/>
-		<file name="Btn_Max"   		path="themes\theme2\image\btn_max.png"/>
-		<file name="Btn_Min"   		path="themes\theme2\image\btn_min.png"/>
-		<file name="Btn_Menu"   	path="themes\theme2\image\btn_menu.png"/>
-	</PNG>
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="Btn_Close" path="themes\theme2\image\btn_close.png" />
+		<file name="Btn_Max" path="themes\theme2\image\btn_max.png" />
+		<file name="Btn_Min" path="themes\theme2\image\btn_min.png" />
+		<file name="Btn_Menu" path="themes\theme2\image\btn_menu.png" />
+	</png>
 </resource>

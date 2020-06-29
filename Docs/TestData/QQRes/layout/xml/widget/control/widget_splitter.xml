@@ -1,31 +1,32 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-splitlayout" pos="0,0,-0,-0" text="splitlayout" align="right">
-		<group  pos="0,0,-0,%30" text="竖直splitlayout" align="right">
+		<group pos="0,0,-0,%30" text="竖直splitlayout" align="right">
 			<splitlayout pos="0,0,%49,-0" sliderwidth="2" bvert="1" sliderskin="channel_hz" cursor="splitv" firstchildwidth="80">
-				<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="第一个窗口随size变化"/>
-				<window clrbg="pbgra(ff,00,ff,ff)" text="坚直"/>
+				<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="第一个窗口随size变化" />
+				<window clrbg="pbgra(ff,00,ff,ff)" text="坚直" />
 			</splitlayout>
 			<splitlayout pos="%51,0,-0,-0" sliderwidth="2" bvert="1" sliderskin="channel_hz" cursor="splitv" firstchildwidth="20" bfirstchange="0">
-				<window clrbg="pbgra(ff,00,00,ff)" text="坚直"/>
-				<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化"/>
+				<window clrbg="pbgra(ff,00,00,ff)" text="坚直" />
+				<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化" />
 			</splitlayout>
 		</group>
-		<group  pos="0,%32,-0,%62" text="水平splitlayout" align="right">
-			<splitlayout pos="0,0,%49,-0"  sliderwidth="2" sliderskin="channel_vz" cursor="splith" firstchildwidth="70">
-				<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="第一个窗口随size变化"/>
-				<window clrbg="pbgra(ff,00,ff,ff)" text="水平"/>
+		<group pos="0,%32,-0,%62" text="水平splitlayout" align="right">
+			<splitlayout pos="0,0,%49,-0" sliderwidth="2" sliderskin="channel_vz" cursor="splith" firstchildwidth="70">
+				<window clrbg="pbgra(ff,00,00,ff)" clrtext="pbgra(ff,ff,ff,ff)" text="第一个窗口随size变化" />
+				<window clrbg="pbgra(ff,00,ff,ff)" text="水平" />
 			</splitlayout>
-			<splitlayout pos="%51,0,-0,-0" sliderwidth="2"  sliderskin="channel_vz" cursor="splith" firstchildwidth="50" bfirstchange="0">
-				<window clrbg="pbgra(ff,00,00,ff)" text="水平"/>
-				<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化"/>
+			<splitlayout pos="%51,0,-0,-0" sliderwidth="2" sliderskin="channel_vz" cursor="splith" firstchildwidth="50" bfirstchange="0">
+				<window clrbg="pbgra(ff,00,00,ff)" text="水平" />
+				<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化" />
 			</splitlayout>
 		</group>
-		<group  pos="0,[5,-0,-0" text="混合splitlayout" align="right">
+		<group pos="0,[5,-0,-0" text="混合splitlayout" align="right">
 			<splitlayout pos="0,0,-0,-0" sliderwidth="2" bvert="1" sliderskin="channel_hz" cursor="splitv" firstchildwidth="60">
-				<window clrbg="pbgra(CC,CC,CC,ff)" text="第一个窗口随size变化"/>
-				<splitlayout sliderwidth="2"  sliderskin="channel_vz" cursor="splith" firstchildwidth="70" bfirstchange="0">
-					<window clrbg="pbgra(A0,C0,00,ff)" text="水平"/>
-					<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化"/>
+				<window clrbg="pbgra(CC,CC,CC,ff)" text="第一个窗口随size变化" />
+				<splitlayout sliderwidth="2" sliderskin="channel_vz" cursor="splith" firstchildwidth="70" bfirstchange="0">
+					<window clrbg="pbgra(A0,C0,00,ff)" text="水平" />
+					<window clrbg="pbgra(ff,00,ff,ff)" text="第二个窗口随size变化" />
 				</splitlayout>
 			</splitlayout>
 		</group>

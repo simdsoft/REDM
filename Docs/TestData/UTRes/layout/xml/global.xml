@@ -1,15 +1,15 @@
-﻿<global>
+<?xml version="1.0"?>
+<global>
 	<skin>
-		<imglist 	 id="Btn_Close"  src="PNG:Btn_Close"  btile="1" states="3"  commit="状态连图"/>
-		<img9 	 	 id="DUI_Frame"  src="PNG:Border"     states="2"  margin="2,2,2,2"	commit="9宫格图"/>
-		<scrollbar 	 id="SCrollBar"  src="PNG:ScrollBar"   states="1"  margin="2,2,2,2"	commit="滚动条图"/>
+		<imglist id="Btn_Close" src="PNG:Btn_Close" btile="1" states="3" commit="状态连图" />
+		<img9 id="DUI_Frame" src="PNG:Border" states="2" margin="2,2,2,2" commit="9宫格图" />
+		<scrollbar id="SCrollBar" src="PNG:ScrollBar" states="1" margin="2,2,2,2" commit="滚动条图" />
 	</skin>
 	<skin>
-		<imglist 	 id="Btn_Close"  src="PNG:Btn_Close"  btile="1" states="3"  commit="状态连图"/>
+		<imglist id="Btn_Close" src="PNG:Btn_Close" btile="1" states="3" commit="状态连图" />
 	</skin>
 	<skin name="private">
-		<imglist 	 id="Btn_Close1"  src="PNG:Btn_Close"  btile="1" states="3"  commit="状态连图"/>
+		<imglist id="Btn_Close1" src="PNG:Btn_Close" btile="1" states="3" commit="状态连图" />
 	</skin>
-	<style>
-	</style>
+	<style />
 </global>

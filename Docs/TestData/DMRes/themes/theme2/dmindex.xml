@@ -1,24 +1,23 @@
-<resource>  
-  <PNG>
-	<file name="tranbg" 		path="themes\theme2\image\tranbg.png"/>
-	<file name="Border" 		path="themes\theme2\image\dui_border.png"/>
-	<file name="Btn_Skin" 		path="themes\theme2\image\btn_skin.png"/>
-	<file name="Btn_Close" 		path="themes\theme2\image\btn_close.png"/>
-	<file name="Btn_Max"   		path="themes\theme2\image\btn_max.png"/>
-	<file name="Btn_Restore"    path="themes\theme2\image\btn_restore.png"/>
-	<file name="Btn_Min"   		path="themes\theme2\image\btn_min.png"/>
-	<file name="Btn_Menu"  		path="themes\theme2\image\btn_menu.png"/>
-	<file name="ScrollBar" 		path="themes\theme2\image\scrollbar.png"/>
-	<file name="checkbox"    	path="themes\theme2\image\checkbox.png"/>
-	<file name="iconbtn"    	path="themes\theme2\image\iconbtn.png"/>
-	<file name="btncustom"      path="themes\theme2\image\btn_custom.png"/>
-	
-	<file name="menuitembg" 	path="themes\theme2\image\menu\menu_itembg.png"/>
-	<file name="menuicons" 		path="themes\theme2\image\menu\menu_icons.png"/>
-	<file name="menusep" 		path="themes\theme2\image\menu\menu_sep.png"/>
-	<file name="menucheck" 		path="themes\theme2\image\menu\menu_check.png"/>
-	<file name="menubigskin"    path="themes\theme2\image\menu\Menu_BigSkin.png"/>
-	
-	<file name="bg"         	path="themes\theme2\image\bg.png"/>
-  </PNG>
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="tranbg" path="themes\theme2\image\tranbg.png" />
+		<file name="Border" path="themes\theme2\image\dui_border.png" />
+		<file name="Btn_Skin" path="themes\theme2\image\btn_skin.png" />
+		<file name="Btn_Close" path="themes\theme2\image\btn_close.png" />
+		<file name="Btn_Max" path="themes\theme2\image\btn_max.png" />
+		<file name="Btn_Restore" path="themes\theme2\image\btn_restore.png" />
+		<file name="Btn_Min" path="themes\theme2\image\btn_min.png" />
+		<file name="Btn_Menu" path="themes\theme2\image\btn_menu.png" />
+		<file name="ScrollBar" path="themes\theme2\image\scrollbar.png" />
+		<file name="checkbox" path="themes\theme2\image\checkbox.png" />
+		<file name="iconbtn" path="themes\theme2\image\iconbtn.png" />
+		<file name="btncustom" path="themes\theme2\image\btn_custom.png" />
+		<file name="menuitembg" path="themes\theme2\image\menu\menu_itembg.png" />
+		<file name="menuicons" path="themes\theme2\image\menu\menu_icons.png" />
+		<file name="menusep" path="themes\theme2\image\menu\menu_sep.png" />
+		<file name="menucheck" path="themes\theme2\image\menu\menu_check.png" />
+		<file name="menubigskin" path="themes\theme2\image\menu\Menu_BigSkin.png" />
+		<file name="bg" path="themes\theme2\image\bg.png" />
+	</png>
 </resource>

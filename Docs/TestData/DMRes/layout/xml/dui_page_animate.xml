@@ -1,25 +1,25 @@
-﻿<sub>
-	<group pos="0,0,-0,-0" text="演示插件动画" round="4" align="left" > 
+<?xml version="1.0"?>
+<sub>
+	<group pos="0,0,-0,-0" text="演示插件动画" round="4" align="left">
 		<group pos="0,0,-0,@24" rcinset="2,2,2,2" clrline="pbgra(00,00,00,00)">
-			<radiobutton name="global_radio"  pos="%30,0,@120,@20" text="全局动画" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton"  align="left"/>
-			<radiobutton name="local_radio"  pos="[10,0,@120,@20" text="局部帧展示" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton"  align="left"/>
+			<radiobutton name="global_radio" pos="%30,0,@120,@20" text="全局动画" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" align="left" />
+			<radiobutton name="local_radio" pos="[10,0,@120,@20" text="局部帧展示" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" align="left" />
 		</group>
 		<group name="group" pos="0,30,@200,@180" text="3D变换" align="center">
-			<sliderctrl name="3d_x" pos="0,0,@183,@22" 	     tipformat="x当前%d度"	bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="20"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="3d_y" pos="0,24,@183,@22"  	 tipformat="y当前%d度"	bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="50"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="3d_z" pos="0,48,@183,@22"  	 tipformat="z当前%d度"	bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="40"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="3d_offset" pos="0,72,@183,@22" tipformat="当前z偏移%d"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,1000" value="150"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="3d_count" pos="0,96,@183,@22" tipformat="旋转次数%d"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="10,1000" value="80"  thumbwidth="11" channelhei="4"/>
-				
-			<button name="3dstartbtn" pos="0,120,@100,@30" text="Start" skin="btncustom"/>
+			<sliderctrl name="3d_x" pos="0,0,@183,@22" tipformat="x当前%d度" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="20" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="3d_y" pos="0,24,@183,@22" tipformat="y当前%d度" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="50" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="3d_z" pos="0,48,@183,@22" tipformat="z当前%d度" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,360" value="40" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="3d_offset" pos="0,72,@183,@22" tipformat="当前z偏移%d" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="0,1000" value="150" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="3d_count" pos="0,96,@183,@22" tipformat="旋转次数%d" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="10,1000" value="80" thumbwidth="11" channelhei="4" />
+			<button name="3dstartbtn" pos="0,120,@100,@30" text="Start" skin="btncustom" />
 		</group>
 		<group name="group" pos="0,230,@200,@40" rcinset="4,15,2,2" text="线条变换(请多次点击)" align="center">
-			<button name="line_openbtn" pos="0,0,@100,@20" text="OpenStart" skin="btncustom"/>
-			<button name="line_closetbtn" pos="[4,0,@100,@20" text="CloseStart" skin="btncustom"/>
+			<button name="line_openbtn" pos="0,0,@100,@20" text="OpenStart" skin="btncustom" />
+			<button name="line_closetbtn" pos="[4,0,@100,@20" text="CloseStart" skin="btncustom" />
 		</group>
 		<group name="group" pos="0,280,@200,@40" rcinset="4,15,2,2" text="全屏动画" align="center">
-			<button name="screen_4btn" pos="0,0,@100,@20" text="四分屏" skin="btncustom"/>
-			<button name="screen_meltbtn" pos="[4,0,@100,@20" text="错位" skin="btncustom"/>
+			<button name="screen_4btn" pos="0,0,@100,@20" text="四分屏" skin="btncustom" />
+			<button name="screen_meltbtn" pos="[4,0,@100,@20" text="错位" skin="btncustom" />
 		</group>
 		<group pos="300,30,-0,-0" rcinset="2,2,2,2" text="局部动画演示区">
 			<window cache="1" name="anishow" pos="50,50,@352,@220" />

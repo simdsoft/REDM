@@ -1,107 +1,104 @@
-﻿<sub>
-	<group name="group0" pos="0,0,-0,-0" text="Controls" round="4" align="left" > 
+<?xml version="1.0"?>
+<sub>
+	<group name="group0" pos="0,0,-0,-0" text="Controls" round="4" align="left">
 		<group name="group1" pos="0,0,@140,@230" text="checkbox" align="center">
-			<checkbox name="checkbox" pos="0,0,@120,@20" text="Normal Style" checkskin="checkbox" skin="dui_frame" align="left"/>
-			<checkbox name="checkbox1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" checkskin="checkbox" align="right"/>
-			<checkbox name="checkbox2" pos="0,50,@120,@40" text="Multiline\n Style" checkskin="checkbox" bmultilines="1" align="left"/>
-			<checkbox name="checkbox3" pos="0,95,@120,@40" checkskin="checkbox" iconskin="iconbtn"/>
-			<checkbox name="checkbox4" pos="0,140,@120,@40" brightbox="1"  checkskin="checkbox" iconskin="iconbtn" />
-			<checkbox name="checkbox5" pos="0,185,@120,@20" text="Disable Style" checkskin="checkbox" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left"/>
+			<checkbox name="checkbox" pos="0,0,@120,@20" text="Normal Style" checkskin="checkbox" skin="dui_frame" align="left" />
+			<checkbox name="checkbox1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" checkskin="checkbox" align="right" />
+			<checkbox name="checkbox2" pos="0,50,@120,@40" text="Multiline\n Style" checkskin="checkbox" bmultilines="1" align="left" />
+			<checkbox name="checkbox3" pos="0,95,@120,@40" checkskin="checkbox" iconskin="iconbtn" />
+			<checkbox name="checkbox4" pos="0,140,@120,@40" brightbox="1" checkskin="checkbox" iconskin="iconbtn" />
+			<checkbox name="checkbox5" pos="0,185,@120,@20" text="Disable Style" checkskin="checkbox" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left" />
 		</group>
 		<group name="group2" pos="[6,0,@140,@230" text="window" align="left">
-			<window name="window" pos="0,0,@120,@20" text="Normal " skin="dui_frame" align="left"/>
-			<window name="window1" pos="0,25,@120,@20"  text="LeftTopText " skin="dui_frame" align="left" valign="top"/>
-			<window name="window2" pos="0,50,@120,@20"  text="RightTopText " skin="dui_frame"  align="right" valign="top"/>
-			<window name="window3" pos="0,75,@120,@20"  text="MidText " skin="dui_frame" valign="center" align="center"/>
-			<window name="window4" pos="0,100,@120,@20"  text="LeftBtmText " skin="dui_frame" valign="bottom" align="left"/>
-			<window name="window5" pos="0,125,@120,@20"  text="RightBtmText " skin="dui_frame" valign="bottom" align="right"/>
-			<window name="window6" pos="0,150,@120,@20"  text="Disable Style " skin="dui_frame" valign="bottom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)"  align="right"/>
+			<window name="window" pos="0,0,@120,@20" text="Normal " skin="dui_frame" align="left" />
+			<window name="window1" pos="0,25,@120,@20" text="LeftTopText " skin="dui_frame" align="left" valign="top" />
+			<window name="window2" pos="0,50,@120,@20" text="RightTopText " skin="dui_frame" align="right" valign="top" />
+			<window name="window3" pos="0,75,@120,@20" text="MidText " skin="dui_frame" valign="center" align="center" />
+			<window name="window4" pos="0,100,@120,@20" text="LeftBtmText " skin="dui_frame" valign="bottom" align="left" />
+			<window name="window5" pos="0,125,@120,@20" text="RightBtmText " skin="dui_frame" valign="bottom" align="right" />
+			<window name="window6" pos="0,150,@120,@20" text="Disable Style " skin="dui_frame" valign="bottom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="right" />
 		</group>
 		<group name="group3" pos="[6,0,@140,@230" text="button" align="right">
-			<button name="button" pos="0,0,@120,@20" text="Defalut Style" skin="btncustom"/>
-			<button name="button1" pos="0,25,@120,@20"  text="Animate Style" alpha="0x80" banimate="1" animatesteps="250" skin="btncustom" align="left" valign="top"/>
-			<button name="button2" pos="0,50,@120,@40"  text="Multiline\n Style"  skin="btncustom" bmultilines="1" />
-			<button name="button3" pos="0,95,@120,@40"  skin="btncustom" iconskin="iconbtn" />
-			<button name="accelbtn" pos="0,140,@120,@40"  text="Accel Key\n:ctrl+f1"  bmultilines="1" skin="btncustom" accel="ctrl+f1" />
-			<button name="button4" pos="0,185,@120,@20"  text="Disable Style" skin="btncustom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" />
+			<button name="button" pos="0,0,@120,@20" text="Defalut Style" skin="btncustom" />
+			<button name="button1" pos="0,25,@120,@20" text="Animate Style" alpha="0x80" banimate="1" animatesteps="250" skin="btncustom" align="left" valign="top" />
+			<button name="button2" pos="0,50,@120,@40" text="Multiline\n Style" skin="btncustom" bmultilines="1" />
+			<button name="button3" pos="0,95,@120,@40" skin="btncustom" iconskin="iconbtn" />
+			<button name="accelbtn" pos="0,140,@120,@40" text="Accel Key\n:ctrl+f1" bmultilines="1" skin="btncustom" accel="ctrl+f1" />
+			<button name="button4" pos="0,185,@120,@20" text="Disable Style" skin="btncustom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" />
 		</group>
 		<group name="group4" pos="[6,0,@140,@230" text="tab切换radio" align="right">
-			<radiobutton name="radiobutton"  pos="0,0,@120,@20" text="Normal Style" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" skin="dui_frame" align="left"/>
-			<radiobutton name="radiobutton1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" bautogroup="0" bshowdrawfocus="1" radioskin="radiobutton" align="right"/>
-			<radiobutton name="radiobutton2" pos="0,50,@120,@40" text="Multiline\n Style" radioskin="radiobutton" bautogroup="0" bshowdrawfocus="1" bmultilines="1" align="left"/>
-			<radiobutton name="radiobutton3" pos="0,95,@120,@40" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn"/>
-			<radiobutton name="radiobutton4" pos="0,140,@120,@40" brightbox="1"  radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
-			<radiobutton name="radiobutton5" pos="0,185,@120,@20" text="Disable Style" radioskin="radiobutton" bdisable="1" bautogroup="0" bshowdrawfocus="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left"/>
+			<radiobutton name="radiobutton" pos="0,0,@120,@20" text="Normal Style" bshowdrawfocus="1" bautogroup="0" radioskin="radiobutton" skin="dui_frame" align="left" />
+			<radiobutton name="radiobutton1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" bautogroup="0" bshowdrawfocus="1" radioskin="radiobutton" align="right" />
+			<radiobutton name="radiobutton2" pos="0,50,@120,@40" text="Multiline\n Style" radioskin="radiobutton" bautogroup="0" bshowdrawfocus="1" bmultilines="1" align="left" />
+			<radiobutton name="radiobutton3" pos="0,95,@120,@40" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
+			<radiobutton name="radiobutton4" pos="0,140,@120,@40" brightbox="1" radioskin="radiobutton" bshowdrawfocus="1" bautogroup="0" iconskin="iconbtn" />
+			<radiobutton name="radiobutton5" pos="0,185,@120,@20" text="Disable Style" radioskin="radiobutton" bdisable="1" bautogroup="0" bshowdrawfocus="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left" />
 		</group>
 		<group name="group5" pos="[6,0,-0,@230" text="header、combo、tree" align="center">
-			<HeaderCtrl pos="0,0,-0,@20" align="center" itemdelta="4"  itemskin="listheader" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
-				<item width="60" text="可拖拽" skin="listheader"/>
+			<headerctrl pos="0,0,-0,@20" align="center" itemdelta="4" itemskin="listheader" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
+				<item width="60" text="可拖拽" skin="listheader" />
 				<item width="40" text="可变换" />
 				<item width="40" text="可排序" />
 				<item width="40" text="H4" />
-			</HeaderCtrl>
-			<combobox  pos="0,31,-0,@20" style="style-edit" curSel="1" btnSkin="combobtn"  bHideEdit="0" dropHeight="100" dotted="0" animateTime="200"  >
-				<subedit  font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" multiLines="0"  sbskin="ScrollBar"/>
-				<sublistbox ncSkin="DUI_Frame"  ncmargin="2,2,2,2" itemheight="30" bhotTrack="1" iconSkin="menuicons" clritemtext="rgba(00,00,ff,ff)" clritemseltext="rgba(FF,FF,FF,FF)" clritembg2="rgba(FF,FF,cc,FF)" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar">
-					<item text="combobox1" icon="1" data="100"/>
-					<item text="combobox2" icon="2" data="100" height="50"/>
-					<item text="0" icon="0" data="100" height="60"/>
-					<item text="8" icon="8" data="100" height="60"/>
-					<item text="9" icon="9" data="105" height="50"/>
-					<item text="0" icon="0" data="100"/>
+			</headerctrl>
+			<combobox pos="0,31,-0,@20" style="style-edit" curSel="1" btnSkin="combobtn" bHideEdit="0" dropHeight="100" dotted="0" animateTime="200">
+				<subedit font="face:宋体,size:16,bold:0,underline:0,italic:0,strike:0" align="left" multiLines="0" sbskin="ScrollBar" />
+				<sublistbox ncSkin="DUI_Frame" ncmargin="2,2,2,2" itemheight="30" bhotTrack="1" iconSkin="menuicons" clritemtext="rgba(00,00,ff,ff)" clritemseltext="rgba(FF,FF,FF,FF)" clritembg2="rgba(FF,FF,cc,FF)" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar">
+					<item text="combobox1" icon="1" data="100" />
+					<item text="combobox2" icon="2" data="100" height="50" />
+					<item text="0" icon="0" data="100" height="60" />
+					<item text="8" icon="8" data="100" height="60" />
+					<item text="9" icon="9" data="105" height="50" />
+					<item text="0" icon="0" data="100" />
 				</sublistbox>
 			</combobox>
-			
-			<treectrlex  name="treeex" cursor="hand" clritembg="pbgra(ff,ff,ff,ff)" clritemhoverbg="pbgra(ff,00,ff,ff)" clritemselbg="pbgra(ff,ff,00,ff)" pos="0,65,-0,-0" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" itemwidth="100" itemHeight="20" bcheckbox="1" checkSkin="treecheck" toggleSkin="treetoggle" sbSkin="ScrollBar">
+			<treectrlex name="treeex" cursor="hand" clritembg="pbgra(ff,ff,ff,ff)" clritemhoverbg="pbgra(ff,00,ff,ff)" clritemselbg="pbgra(ff,ff,00,ff)" pos="0,65,-0,-0" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" itemwidth="100" itemHeight="20" bcheckbox="1" checkSkin="treecheck" toggleSkin="treetoggle" sbSkin="ScrollBar">
 				<item skin="btncustom" text="treectrl" bCollapsed="0">
-					<item skin="btncustom" text="Q1" height="40" >
-						<gif pos="0,0,@40,-0"  badjust="1" gifskin="gif:4_gif"/>
-						<HeaderCtrl pos="40,0,-0,@20" align="center" itemdelta="4"  itemskin="listheader" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
-							<item width="60" text="可拖拽" skin="listheader"/>
+					<item skin="btncustom" text="Q1" height="40">
+						<gif pos="0,0,@40,-0" badjust="1" gifskin="gif:4_gif" />
+						<headerctrl pos="40,0,-0,@20" align="center" itemdelta="4" itemskin="listheader" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
+							<item width="60" text="可拖拽" skin="listheader" />
 							<item width="40" text="可变换" />
 							<item width="40" text="可排序" />
 							<item width="40" text="H4" />
-						</HeaderCtrl>
+						</headerctrl>
 					</item>
 					<item skin="btncustom" text="Q2" height="60">
-						<gif pos="0,0,-0,-0"  badjust="1" gifskin="gif:4_gif"/>
+						<gif pos="0,0,-0,-0" badjust="1" gifskin="gif:4_gif" />
 					</item>
 					<item skin="btncustom" text="Q3" icon="0" selicon="1">
-						<item skin="btncustom" text="2-1" icon="2"/>
-						<item skin="btncustom" text="2-2" icon="2"/>
+						<item skin="btncustom" text="2-1" icon="2" />
+						<item skin="btncustom" text="2-2" icon="2" />
 					</item>
 				</item>
-				<item skin="btncustom" text="我的QQ群2" icon="0" selicon="1" bCollapsed="0">
-				</item>
+				<item skin="btncustom" text="我的QQ群2" icon="0" selicon="1" bCollapsed="0" />
 			</treectrlex>
 		</group>
-		<group   pos="0,240,-1,-1" text="Arrow、home、end控制slider,Start、Stop播放动画、list" align="right">
-			<sliderctrl name="sliderctrl1" pos="0,0,@183,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="-100,100" value="0"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="sliderctrl2" pos="0,24,@183,@22"  bvert="0" thumbskin="thumb_hz" bShowTip="0" channelskin="channel_hz" range="-100,100" value="50"  thumbwidth="11" channelhei="10"/>
-			<sliderctrl name="sliderctrl3" pos="220,0,@22,@183"  bvert="1" thumbskin="thumb_vz" bShowTip="1" channelskin="channel_vz" range="-100,100" value="0"  thumbwidth="11" channelhei="4"/>
-			<sliderctrl name="sliderctrl4" pos="250,0,@22,@183"  bvert="1" thumbskin="thumb_vz" bShowTip="0" channelskin="channel_vz" range="-100,100" value="50"  thumbwidth="11" channelhei="10"/>
-			
-			<processctrl name="processctrl1" pos="0,48,@183,@25" bvert="0" bShowTip="1" selskin="process_sel_hz" channelskin="process_channel" range="-100,100" value="70"/>
-			<processctrl name="processctrl2" pos="280,0,@25,@183" bvert="1" selskin="process_sel_vz" channelskin="process_channel" range="0,600" value="70"/>
-
-			<scrollBase name="scrollbar1" pos="0,80,@199,@16"  sbskin="scrollbar" commit="其实应该两个滚动条都在,只是设置了16高度，所以刚好绘了边角出来"/>
-			<scrollBase name="scrollbar2" pos="310,0,@16,@199"  sbskin="scrollbar" commit="其实应该两个滚动条都在,只是设置了16高度，所以刚好绘了边角出来"/>
-			<richedit name="richedit" pos="335,0,@230,-0" text="richedit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultiLines="1" bvscroll="1" bwordWrap="0"  autoVscroll="1"  bhscroll="1" bwantreturn="1" benableDragdrop="1"   sbskin="ScrollBar"/>
-			<button name="startbtn" pos="0,100,@100,@30" text="Start" skin="btncustom"/>
-			<button name="stopbtn" pos="[10,100,@100,@30" text="Stop" skin="btncustom"/>
-			<listbox name="listbox" pos="570,0,-0,-0"  ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="rgba(00,00,ff,ff)" clritemseltext="rgba(FF,FF,FF,FF)" clritembg2="rgba(FF,FF,cc,FF)" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar" >
+		<group pos="0,240,-1,-1" text="Arrow、home、end控制slider,Start、Stop播放动画、list" align="right">
+			<sliderctrl name="sliderctrl1" pos="0,0,@183,@22" bvert="0" thumbskin="thumb_hz" bShowTip="1" channelskin="channel_hz" range="-100,100" value="0" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="sliderctrl2" pos="0,24,@183,@22" bvert="0" thumbskin="thumb_hz" bShowTip="0" channelskin="channel_hz" range="-100,100" value="50" thumbwidth="11" channelhei="10" />
+			<sliderctrl name="sliderctrl3" pos="220,0,@22,@183" bvert="1" thumbskin="thumb_vz" bShowTip="1" channelskin="channel_vz" range="-100,100" value="0" thumbwidth="11" channelhei="4" />
+			<sliderctrl name="sliderctrl4" pos="250,0,@22,@183" bvert="1" thumbskin="thumb_vz" bShowTip="0" channelskin="channel_vz" range="-100,100" value="50" thumbwidth="11" channelhei="10" />
+			<processctrl name="processctrl1" pos="0,48,@183,@25" bvert="0" bShowTip="1" selskin="process_sel_hz" channelskin="process_channel" range="-100,100" value="70" />
+			<processctrl name="processctrl2" pos="280,0,@25,@183" bvert="1" selskin="process_sel_vz" channelskin="process_channel" range="0,600" value="70" />
+			<scrollbase name="scrollbar1" pos="0,80,@199,@16" sbskin="scrollbar" commit="其实应该两个滚动条都在,只是设置了16高度，所以刚好绘了边角出来" />
+			<scrollbase name="scrollbar2" pos="310,0,@16,@199" sbskin="scrollbar" commit="其实应该两个滚动条都在,只是设置了16高度，所以刚好绘了边角出来" />
+			<richedit name="richedit" pos="335,0,@230,-0" text="richedit" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" font="face:宋体,size:20,weight:400" clrtext="rgba(00,00,00,ff)" bmultiLines="1" bvscroll="1" bwordWrap="0" autoVscroll="1" bhscroll="1" bwantreturn="1" benableDragdrop="1" sbskin="ScrollBar" />
+			<button name="startbtn" pos="0,100,@100,@30" text="Start" skin="btncustom" />
+			<button name="stopbtn" pos="[10,100,@100,@30" text="Stop" skin="btncustom" />
+			<listbox name="listbox" pos="570,0,-0,-0" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" itemheight="20" cursel="0" clritemtext="rgba(00,00,ff,ff)" clritemseltext="rgba(FF,FF,FF,FF)" clritembg2="rgba(FF,FF,cc,FF)" clritembg="rgba(FF,FF,FF,FF)" clritemselbg="rgba(ff,00,00,ff)" sbskin="SCrollBar">
 				<item text="listbox1" icon="1" data="100" height="30" />
 				<item text="2" icon="2" data="100" height="50" />
-				<item text="3" icon="3" data="103" height="40"/>
-				<item text="4" icon="4" data="100" height="60"/>
-				<item text="5" icon="5" data="105" height="30"/>
-				<item text="6" icon="6" data="100"/>
-				<item text="7" icon="7" data="103"/>
-				<item text="8" icon="8" data="100"/>
-				<item text="9" icon="9" data="105"/>
-				<item text="1" icon="0" data="100" height="60"/>
-				<item text="2" icon="8" data="100" height="60"/>
-				<item text="3" icon="9" data="105" height="50"/>
+				<item text="3" icon="3" data="103" height="40" />
+				<item text="4" icon="4" data="100" height="60" />
+				<item text="5" icon="5" data="105" height="30" />
+				<item text="6" icon="6" data="100" />
+				<item text="7" icon="7" data="103" />
+				<item text="8" icon="8" data="100" />
+				<item text="9" icon="9" data="105" />
+				<item text="1" icon="0" data="100" height="60" />
+				<item text="2" icon="8" data="100" height="60" />
+				<item text="3" icon="9" data="105" height="50" />
 			</listbox>
 		</group>
 	</group>

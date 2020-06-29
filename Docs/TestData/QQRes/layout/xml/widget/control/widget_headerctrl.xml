@@ -1,20 +1,21 @@
-﻿<sub>
-	<HeaderCtrl pos="%20,10,%80,@20" align="center" itemdelta="4"  itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
-		<item width="120" text="可拖拽" skin="list_header"/>
+<?xml version="1.0"?>
+<sub>
+	<headerctrl pos="%20,10,%80,@20" align="center" itemdelta="4" itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="0" bsort="1">
+		<item width="120" text="可拖拽" skin="list_header" />
 		<item width="100" text="可变换" />
 		<item width="100" text="可排序" />
 		<item width="60" text="H4" />
-	</HeaderCtrl>
-	<HeaderCtrl pos="%20,40,%80,@20" align="center" itemdelta="4"  itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="1" bsort="1">
-		<item width="120" text="固定大小" skin="list_header"/>
+	</headerctrl>
+	<headerctrl pos="%20,40,%80,@20" align="center" itemdelta="4" itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="1" bfixwidth="1" bsort="1">
+		<item width="120" text="固定大小" skin="list_header" />
 		<item width="100" text="可变换" />
 		<item width="100" text="可排序" />
 		<item width="60" text="H4" />
-	</HeaderCtrl>
-	<HeaderCtrl pos="%20,70,%80,@20" align="center" itemdelta="4"  itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="0" bfixwidth="1" bsort="1">
-		<item width="120" text="固定大小" skin="list_header"/>
+	</headerctrl>
+	<headerctrl pos="%20,70,%80,@20" align="center" itemdelta="4" itemskin="list_header" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" bswap="0" bfixwidth="1" bsort="1">
+		<item width="120" text="固定大小" skin="list_header" />
 		<item width="100" text="不可变换" />
 		<item width="100" text="可排序" />
 		<item width="60" text="H4" />
-	</HeaderCtrl>
+	</headerctrl>
 </sub>

@@ -1,23 +1,60 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<tablayout pos="0,0,-0,%20" itemsize="35,25" childpaddLen="5" skin="DUI_Frame">
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
 	</tablayout>
 	<gif name="biggif" pos="0,100,%79,-0" badjust="1" gifskin="gif:1_gif">
-		<button name="replaygifbtn" text="重新播放gif" pos="10,10,@80,@20" skin="DUI_Frame"/>
-		<button name="opengifbtn" text="打开gif文件" pos="10,100,@80,@20" skin="DUI_Frame"/>
+		<button name="replaygifbtn" text="重新播放gif" pos="10,10,@80,@20" skin="DUI_Frame" />
+		<button name="opengifbtn" text="打开gif文件" pos="10,100,@80,@20" skin="DUI_Frame" />
 	</gif>
-	<gif pos="650,190,@150,@100" badjust="1" gifskin="gif:3_gif"/>
-	<gif pos="%80,110,@112,@70" badjust="1" gifskin="gif:2_gif"/>
-	<gif pos="%80,300,@35,@25" badjust="1" gifskin="gif:4_gif"/>
+	<gif pos="650,190,@150,@100" badjust="1" gifskin="gif:3_gif" />
+	<gif pos="%80,110,@112,@70" badjust="1" gifskin="gif:2_gif" />
+	<gif pos="%80,300,@35,@25" badjust="1" gifskin="gif:4_gif" />
 </sub>

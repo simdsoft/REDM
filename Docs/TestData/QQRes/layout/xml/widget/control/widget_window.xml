@@ -1,11 +1,12 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-window" pos="0,0,-0,-0" text="window" align="left">
-		<window name="window" pos="0,0,@120,@20" text="Normal " skin="dui_frame" align="left"/>
-		<window name="window1" pos="0,25,@120,@20"  text="LeftTopText " skin="dui_frame" align="left" valign="top"/>
-		<window name="window2" pos="0,50,@120,@20"  text="RightTopText " skin="dui_frame"  align="right" valign="top"/>
-		<window name="window3" pos="0,75,@120,@20"  text="MidText " skin="dui_frame" valign="center" align="center"/>
-		<window name="window4" pos="0,100,@120,@20"  text="LeftBtmText " skin="dui_frame" valign="bottom" align="left"/>
-		<window name="window5" pos="0,125,@120,@20"  text="RightBtmText " skin="dui_frame" valign="bottom" align="right"/>
-		<window name="window6" pos="0,150,@120,@20"  text="Disable Style " skin="dui_frame" valign="bottom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)"  align="right"/>
+		<window name="window" pos="0,0,@120,@20" text="Normal " skin="dui_frame" align="left" />
+		<window name="window1" pos="0,25,@120,@20" text="LeftTopText " skin="dui_frame" align="left" valign="top" />
+		<window name="window2" pos="0,50,@120,@20" text="RightTopText " skin="dui_frame" align="right" valign="top" />
+		<window name="window3" pos="0,75,@120,@20" text="MidText " skin="dui_frame" valign="center" align="center" />
+		<window name="window4" pos="0,100,@120,@20" text="LeftBtmText " skin="dui_frame" valign="bottom" align="left" />
+		<window name="window5" pos="0,125,@120,@20" text="RightBtmText " skin="dui_frame" valign="bottom" align="right" />
+		<window name="window6" pos="0,150,@120,@20" text="Disable Style " skin="dui_frame" valign="bottom" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="right" />
 	</group>
 </sub>

@@ -1,37 +1,37 @@
-﻿<sub>
-	<treectrl pos="10,10,%30,%30" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clritemseltext="pbgra(00,00,00,ff)" clritemhovertext="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)"  clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20" bcheckbox="1" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons"  sbskin="ScrollBar">
-		<item text="第1行" icon="3"  bcollapsed="1">	
+<?xml version="1.0"?>
+<sub>
+	<treectrl pos="10,10,%30,%30" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clritemseltext="pbgra(00,00,00,ff)" clritemhovertext="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20" bcheckbox="1" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons" sbskin="ScrollBar">
+		<item text="第1行" icon="3" bcollapsed="1">
 			<item text="第1-1行" icon="2">
-				<item text="第1-1-1行" icon="4"/>
-				<item text="第1-1-2行" icon="5"/>
+				<item text="第1-1-1行" icon="4" />
+				<item text="第1-1-2行" icon="5" />
 			</item>
-			<item text="第1-2行" icon="6"/>
+			<item text="第1-2行" icon="6" />
 			<item text="第1-3行" icon="4">
-				<item text="第1-3-1行------------------" icon="5"/>
-				<item text="第1-3-2行------------------" icon="3"/>
+				<item text="第1-3-1行------------------" icon="5" />
+				<item text="第1-3-2行------------------" icon="3" />
 			</item>
 		</item>
-		<item text="第2行" icon="1" >
-			<item text="第2-1行" icon="2"/>
-			<item text="第2-2行" icon="2"/>
+		<item text="第2行" icon="1">
+			<item text="第2-1行" icon="2" />
+			<item text="第2-2行" icon="2" />
 		</item>
 	</treectrl>
-	
-	<treectrl pos="%31,10,%61,%30" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clritemseltext="pbgra(00,00,00,ff)" clritemhovertext="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)"  clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons"  sbskin="ScrollBar">
-		<item text="第1行" icon="3"  bcollapsed="1">	
+	<treectrl pos="%31,10,%61,%30" childoffset="20" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clritemseltext="pbgra(00,00,00,ff)" clritemhovertext="pbgra(c4,f0,fc,ff)" clritembg="pbgra(ff,ff,ff,00)" clritemselbg="pbgra(af,ed,fd,ff)" itemheight="20" checkskin="tree_check" toggleskin="tree_toggle" iconskin="menuicons" sbskin="ScrollBar">
+		<item text="第1行" icon="3" bcollapsed="1">
 			<item text="第1-1行" icon="2">
-				<item text="第1-1-1行" icon="4"/>
-				<item text="第1-1-2行" icon="5"/>
+				<item text="第1-1-1行" icon="4" />
+				<item text="第1-1-2行" icon="5" />
 			</item>
-			<item text="第1-2行" icon="6"/>
+			<item text="第1-2行" icon="6" />
 			<item text="第1-3行" icon="4">
-				<item text="第1-3-1行------------------" icon="5"/>
-				<item text="第1-3-2行------------------" icon="3"/>
+				<item text="第1-3-1行------------------" icon="5" />
+				<item text="第1-3-2行------------------" icon="3" />
 			</item>
 		</item>
-		<item text="第2行" icon="1" >
-			<item text="第2-1行" icon="2"/>
-			<item text="第2-2行" icon="2"/>
+		<item text="第2行" icon="1">
+			<item text="第2-1行" icon="2" />
+			<item text="第2-2行" icon="2" />
 		</item>
 	</treectrl>
 </sub>

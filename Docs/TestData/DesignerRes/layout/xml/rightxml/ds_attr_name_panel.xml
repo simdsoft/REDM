@@ -1,9 +1,10 @@
-﻿<sub>
-	<static pos="12,24,@24,@24" skin="ds_attrname"/>
-	<static pos="48,2,@30,@20" text="名称" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-	<edit name="ds_attr_name" pos="[2,2,-10,@20"  skin="ds_attreditframe" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)" clrbg="pbgra(33,33,33,ff)"/>
-	<static pos="48,24,@30,@20" text="ID" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-	<edit name="ds_attr_id" pos="[2,24,-10,@20"  clrcaret="pbgra(ff,ff,ff,ff)"  skin="ds_attreditframe" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)" bnumber="1"/>
-	<static pos="48,44,@30,@20" text="类型" align="left" bdot="1" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)"/>
-	<static name="ds_attr_clsname" pos="[2,44,-10,@20" text="window" align="left" bdot="1" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)"/>
+<?xml version="1.0"?>
+<sub>
+	<label pos="12,24,@24,@24" skin="ds_attrname" />
+	<label pos="48,2,@30,@20" text="名称" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+	<edit name="ds_attr_name" pos="[2,2,-10,@20" skin="ds_attreditframe" clrcaret="pbgra(ff,ff,ff,ff)" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)" clrbg="pbgra(33,33,33,ff)" />
+	<label pos="48,24,@30,@20" text="ID" bdot="1" align="left" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+	<edit name="ds_attr_id" pos="[2,24,-10,@20" clrcaret="pbgra(ff,ff,ff,ff)" skin="ds_attreditframe" caretanimatecount="5" font="face:新宋体,size:12,weight:400" clrtext="rgba(ff,ff,ff,ff)" bnumber="1" />
+	<label pos="48,44,@30,@20" text="类型" align="left" bdot="1" font="face:新宋体,size:12,weight:100" clrtext="pbgra(ff,ff,ff,ff)" />
+	<label name="ds_attr_clsname" pos="[2,44,-10,@20" text="window" align="left" bdot="1" font="face:新宋体,size:14,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 </sub>

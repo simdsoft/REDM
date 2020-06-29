@@ -1,11 +1,12 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-scrollwnd" pos="0,0,-0,-0" text="scrollwnd" align="left">
 		<scrollwnd pos="0,50,@300,@300" clrbg="pbgra(ff,ff,ff,ff)" sbskin="scrollbar">
-			<scrollFL>
-				<Button pos="10,10,@400,@30" text="子控件的大小可以超出父控件" clrbg="pbgra(80,ff,00,ff)" />
-				<Button pos="10,57,@500,@60" text="子控件大小，位置随意" clrbg="pbgra(00,ff,ff,ff)" />
-				<Button pos="220,250,@300,@100" text="ScrollWnd总是刚好覆盖所有子控件" clrbg="pbgra(80,80,ff,ff)" />
-			</scrollFL>
+			<scrollfl>
+				<button pos="10,10,@400,@30" text="子控件的大小可以超出父控件" clrbg="pbgra(80,ff,00,ff)" />
+				<button pos="10,57,@500,@60" text="子控件大小，位置随意" clrbg="pbgra(00,ff,ff,ff)" />
+				<button pos="220,250,@300,@100" text="ScrollWnd总是刚好覆盖所有子控件" clrbg="pbgra(80,80,ff,ff)" />
+			</scrollfl>
 		</scrollwnd>
 	</group>
 </sub>

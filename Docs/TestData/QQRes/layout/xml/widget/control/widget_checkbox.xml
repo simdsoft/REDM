@@ -1,10 +1,11 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-checkbox" pos="0,0,-0,-0" text="checkbox" align="center">
-		<checkbox name="checkbox" pos="0,0,@120,@20" text="Normal Style" checkskin="checkbox" skin="dui_frame" align="left"/>
-		<checkbox name="checkbox1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" checkskin="checkbox" align="right"/>
-		<checkbox name="checkbox2" pos="0,50,@120,@40" text="Multiline\n Style" checkskin="checkbox" bmultilines="1" align="left"/>
-		<checkbox name="checkbox3" pos="0,95,@120,@40" checkskin="checkbox" iconskin="iconbtn"/>
-		<checkbox name="checkbox4" pos="0,140,@120,@40" brightbox="1"  checkskin="checkbox" iconskin="iconbtn" />
-		<checkbox name="checkbox5" pos="0,185,@120,@20" text="Disable Style" checkskin="checkbox" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left"/>
+		<checkbox name="checkbox" pos="0,0,@120,@20" text="Normal Style" checkskin="checkbox" skin="dui_frame" align="left" />
+		<checkbox name="checkbox1" pos="0,25,@120,@20" brightbox="1" text="LeftText Style" checkskin="checkbox" align="right" />
+		<checkbox name="checkbox2" pos="0,50,@120,@40" text="Multiline\n Style" checkskin="checkbox" bmultilines="1" align="left" />
+		<checkbox name="checkbox3" pos="0,95,@120,@40" checkskin="checkbox" iconskin="iconbtn" />
+		<checkbox name="checkbox4" pos="0,140,@120,@40" brightbox="1" checkskin="checkbox" iconskin="iconbtn" />
+		<checkbox name="checkbox5" pos="0,185,@120,@20" text="Disable Style" checkskin="checkbox" bdisable="1" clrtextdisable="pbgra(ff,ff,ff,ff)" align="left" />
 	</group>
 </sub>

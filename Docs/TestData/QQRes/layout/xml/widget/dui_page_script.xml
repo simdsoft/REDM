@@ -1,11 +1,12 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<group name="group-button" pos="0,0,-0,-0" text="script" align="right">
-		<richedit name="lua_str_edit" pos="10,10,-10,%60" text="print(&quot;请点击 内存加载脚本按钮!! 或在此处直接输入脚本，点击 运行文本脚本 按钮&quot;)" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
-		<richedit name="lua_log_edit" pos="10,%65,-10,%85" breadonly="1" text="" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1"  bautowscroll="1" bwantreturn="1" benabledrag="1"   sbskin="scrollbar"/>
-		<button name="lua_buf_btn" pos="10,%90,@120,@20" text="内存加载脚本" skin="btncustom" tiptext="加载资源中test.lua"/>
-		<button name="lua_str_btn" pos="[10,%90,@120,@20" text="运行文本脚本" skin="btncustom" tiptext="你查修改上面的脚本，并运行"/>
+		<richedit name="lua_str_edit" pos="10,10,-10,%60" text="print(&quot;请点击 内存加载脚本按钮!! 或在此处直接输入脚本，点击 运行文本脚本 按钮&quot;)" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
+		<richedit name="lua_log_edit" pos="10,%65,-10,%85" breadonly="1" text="" clrbg="pbgra(00,00,00,00)" ncmargin="1,1,1,1" clrnc="pbgra(e2,b2,3e,ff)" clrtext="rgba(00,00,00,ff)" bmultilines="1" bvscroll="1" bwordwrap="1" bautowscroll="1" bwantreturn="1" benabledrag="1" sbskin="scrollbar" />
+		<button name="lua_buf_btn" pos="10,%90,@120,@20" text="内存加载脚本" skin="btncustom" tiptext="加载资源中test.lua" />
+		<button name="lua_str_btn" pos="[10,%90,@120,@20" text="运行文本脚本" skin="btncustom" tiptext="你查修改上面的脚本，并运行" />
 		<button name="lua_stop_btn" pos="[10,%90,@120,@20" text="停止脚本" skin="btncustom" />
-		<button name="lua_file_btn" pos="[10,%90,@120,@20" text="打开脚本文件" skin="btncustom"/>
-		<checkbox name="lua_check_box" pos="[15,%90,@120,@20" text="关闭消息事件" tiptext="勾选后,每次运行脚本,不会先发DMEVT_SCRIPT_START消息，从而打印正常的lua测试" checkskin="checkbox" align="left"/>
+		<button name="lua_file_btn" pos="[10,%90,@120,@20" text="打开脚本文件" skin="btncustom" />
+		<checkbox name="lua_check_box" pos="[15,%90,@120,@20" text="关闭消息事件" tiptext="勾选后,每次运行脚本,不会先发DMEVT_SCRIPT_START消息，从而打印正常的lua测试" checkskin="checkbox" align="left" />
 	</group>
 </sub>

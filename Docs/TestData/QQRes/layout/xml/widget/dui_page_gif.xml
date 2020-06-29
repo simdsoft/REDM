@@ -1,16 +1,26 @@
-﻿<sub>
+<?xml version="1.0"?>
+<sub>
 	<tablayout pos="%30,0,%70,%20" itemsize="35,25" childpaddLen="5" skin="dui_frame" alpha="0x80">
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
-		<gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/><gif  badjust="1" gifskin="gif:4_gif"/>
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
+		<gif badjust="1" gifskin="gif:4_gif" />
 	</tablayout>
-	<button name="btn_gif_replay" text="重新播放gif" pos="10,100,@80,@20" skin="dui_frame"/>
-	<button name="btn_gif_open" text="打开gif文件" pos="10,150,@80,@20" skin="dui_frame"/>
-	<gif name="biggif" pos="%10,100,%79,-0" badjust="1" gifskin="gif:1_gif"/>
-	<gif pos="%80,110,@112,@70" badjust="1" gifskin="gif:2_gif"/>
-	<gif pos="650,190,@150,@100" badjust="1" gifskin="gif:3_gif"/>
-	<gif pos="%80,300,@35,@25" badjust="1" gifskin="gif:4_gif"/>
-	<gif pos="%80,310,@102,@102" badjust="1" gifskin="gif:5_gif"/>
-	<gif pos="%80,380,@256,@64" badjust="1" gifskin="gif:allefant_gif"/>
-	<gif pos="%80,430,@40,@40" badjust="1" gifskin="gif:dispose_gif"/>
+	<button name="btn_gif_replay" text="重新播放gif" pos="10,100,@80,@20" skin="dui_frame" />
+	<button name="btn_gif_open" text="打开gif文件" pos="10,150,@80,@20" skin="dui_frame" />
+	<gif name="biggif" pos="%10,100,%79,-0" badjust="1" gifskin="gif:1_gif" />
+	<gif pos="%80,110,@112,@70" badjust="1" gifskin="gif:2_gif" />
+	<gif pos="650,190,@150,@100" badjust="1" gifskin="gif:3_gif" />
+	<gif pos="%80,300,@35,@25" badjust="1" gifskin="gif:4_gif" />
+	<gif pos="%80,310,@102,@102" badjust="1" gifskin="gif:5_gif" />
+	<gif pos="%80,380,@256,@64" badjust="1" gifskin="gif:allefant_gif" />
+	<gif pos="%80,430,@40,@40" badjust="1" gifskin="gif:dispose_gif" />
 </sub>

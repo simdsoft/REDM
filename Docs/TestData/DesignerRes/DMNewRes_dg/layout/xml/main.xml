@@ -2,13 +2,13 @@
 <dm initsize="600,400" minsize="200,200" bresize="1" btranslucent="1">
 	<root clrbg="pbgra(3a,3a,3a,ff)">
 		<window clrbg="pbgra(59,59,59,ff)" pos="0,0,-0,@33" bdrag="1">
-			<static pos="5,2,@180,-0" text="welcome!" align="left" font="size:30,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
+			<label pos="5,2,@180,-0" text="welcome!" align="left" font="size:30,weight:700" clrtext="pbgra(ff,ff,ff,ff)" />
 			<button name="closebutton" pos="-22,1,@21,@15" skin="dg:dg_closebtn" tiptext="关闭" />
 			<button name="maxbutton" pos="-42,1,@20,@15" skin="dg:dg_maxbtn" tiptext="最大化" />
 			<button name="restorebutton" pos="-42,1,@20,@15" skin="dg:dg_restorebtn" bvisible="0" tiptext="向下还原" />
 			<button name="minbutton" pos="-62,1,@20,@15" skin="dg:dg_minbtn" tiptext="最小化" />
 		</window>
-		<Button id="1" pos="301,318,@118,@31" text="Ok" skin="dg:dg_custombtn" />
-		<Button id="2" pos="462,318,@118,@31" text="Cancel" skin="dg:dg_custombtn" />
+		<button id="1" pos="301,318,@118,@31" text="Ok" skin="dg:dg_custombtn" />
+		<button id="2" pos="462,318,@118,@31" text="Cancel" skin="dg:dg_custombtn" />
 	</root>
 </dm>

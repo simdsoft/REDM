@@ -1,4 +1,5 @@
+<?xml version="1.0"?>
 <sub>
-	<processctrl name="processctrl1" align="left" textformat="自定义:%d" clrtext="pbgra(ff,00,ff,ff)" pos="0,48,@183,@25" bvert="0" bShowTip="1" selskin="process_sel_hz" channelskin="process_channel" range="-100,100" value="70"/>
-	<processctrl name="processctrl2" pos="280,0,@25,@183" bvert="1" selskin="process_sel_vz" channelskin="process_channel" range="0,600" value="70"/>
+	<processctrl name="processctrl1" align="left" textformat="自定义:%d" clrtext="pbgra(ff,00,ff,ff)" pos="0,48,@183,@25" bvert="0" bShowTip="1" selskin="process_sel_hz" channelskin="process_channel" range="-100,100" value="70" />
+	<processctrl name="processctrl2" pos="280,0,@25,@183" bvert="1" selskin="process_sel_vz" channelskin="process_channel" range="0,600" value="70" />
 </sub>

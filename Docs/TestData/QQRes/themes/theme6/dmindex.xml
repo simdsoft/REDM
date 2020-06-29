@@ -1,6 +1,7 @@
-﻿<resource>  
-	<PNG>
-		<file name="bg" 				path="themes\theme6\image\bg.png"/>
-		<file name="preview" 			path="themes\theme6\image\preview.png"/>
-    </PNG>
+<?xml version="1.0"?>
+<resource>
+	<png>
+		<file name="bg" path="themes\theme6\image\bg.png" />
+		<file name="preview" path="themes\theme6\image\preview.png" />
+	</png>
 </resource>

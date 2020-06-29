@@ -1,85 +1,86 @@
-﻿<xmlui>
-	<DuiWidget objectName="wtlWindow" fixPos="0,0,561,392" _bgColor="white" _skin="gmrprWndBackground.9" fixSize="-0,-0" _borderColor="#DBDBDB">
+<?xml version="1.0"?>
+<xmlui>
+	<duiwidget objectName="wtlWindow" fixPos="0,0,561,392" _bgColor="white" _skin="gmrprWndBackground.9" fixSize="-0,-0" _borderColor="#DBDBDB">
 		<layout objectName="PageStart" fixPos="0,0,-0,-0" _itemAlign="v" _borderColor="#DBDBDB" _skin="hallBackgroundWide.9" _skin2="hallBackground.9">
-			<layout objectName="captionStart" fixPos="0,0,-1,100" _bgColor="#F4F4F4" _borderColor="#DBDBDB" skin="hallBackgroundWideMid.9" >
+			<layout objectName="captionStart" fixPos="0,0,-1,100" _bgColor="#F4F4F4" _borderColor="#DBDBDB" skin="hallBackgroundWideMid.9">
 				this is text
-				<layout objectName="captionStartImageText" fixPos="90,10,-0,100" _fixPos="|-150,50,|,|" _bgColor="#F4F4F4" _borderColor="#DBDBDB" >
+				<layout objectName="captionStartImageText" fixPos="90,10,-0,100" _fixPos="|-150,50,|,|" _bgColor="#F4F4F4" _borderColor="#DBDBDB">
 					<image fixPos="0,0,76,76" skin="gamerpairIcoStart" />
-					<text objectName="repairTitle" fixPos="90,20,-0,50"  fontSize="18" font="fontRepairTitle" _borderColor="red" text="一键修复你的游戏问题"  />
+					<text objectName="repairTitle" fixPos="90,20,-0,50" fontSize="18" font="fontRepairTitle" _borderColor="red" text="一键修复你的游戏问题" />
 				</layout>
 			</layout>
-			<text objectName="repairTip1" fixPos="90,150,-0,30" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏加载失败的问题"/>
-			<text objectName="repairTip2" fixPos="90,200,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏黑屏白屏的问题"/>
-			<text objectName="repairTip3" fixPos="90,250,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复flash异常的问题"/>
-			<text objectName="repairTip4" fixPos="300,150,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏画面不全的问题"/>
-			<text objectName="repairTip5" fixPos="300,200,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏卡掉线的问题"/>
-			<text objectName="repairTip6" fixPos="300,250,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√提高大厅游戏运行速度"/>
-			<_text objectName="repairTip7" fixPos="|,|,-0,20" fontSize="9" borderColor="red" textColor="#808080" text="中点"/>
-			<imageButton objectName="btnOk" fixPos="|-76,300,200,100" font="fontDefault" _borderColor="red" skin="gamerpairBtnCheckRightNow" textColor="#474747" textAlign="AlignCenter" _text="立即诊断"/>
+			<text objectName="repairTip1" fixPos="90,150,-0,30" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏加载失败的问题" />
+			<text objectName="repairTip2" fixPos="90,200,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏黑屏白屏的问题" />
+			<text objectName="repairTip3" fixPos="90,250,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复flash异常的问题" />
+			<text objectName="repairTip4" fixPos="300,150,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏画面不全的问题" />
+			<text objectName="repairTip5" fixPos="300,200,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√修复游戏卡掉线的问题" />
+			<text objectName="repairTip6" fixPos="300,250,-0,20" font="fontRepairTitle" fontSize="11" _borderColor="red" textColor="#808080" text="√提高大厅游戏运行速度" />
+			<_text objectName="repairTip7" fixPos="|,|,-0,20" fontSize="9" borderColor="red" textColor="#808080" text="中点" />
+			<imagebutton objectName="btnOk" fixPos="|-76,300,200,100" font="fontDefault" _borderColor="red" skin="gamerpairBtnCheckRightNow" textColor="#474747" textAlign="AlignCenter" _text="立即诊断" />
 		</layout>
 		<layout objectName="PageRun" fixPos="0,0,-0,-0" visible="false" itemAlign="v" _borderColor="#DBDBDB">
-			<layout objectName="captionRun" _bgColor="#F4F4F4" fixPos="0,0,-1,90"  _borderColor="#DBDBDB" skin="hallBackgroundWideMid.9" >
+			<layout objectName="captionRun" _bgColor="#F4F4F4" fixPos="0,0,-1,90" _borderColor="#DBDBDB" skin="hallBackgroundWideMid.9">
 				<image id="19700701" objectName="repairRunIco" fixPos="25,20,64,58" skin="yy4.0com2_07" _borderColor="red" />
 				<progress objectName="bar" skin="yggamerepairprogress1" barSkin="yggamerepairprogress2" enablePosTip="0" _barColor="#38B3FB" _pos="20" fixPos="100,40,300,8" />
-				<text objectName="repairTipCaption2" fixPos="100,50,-0,20" fontSize="9" font="fontRepairTitle" text="共修复   项，还有  项问题待修复" textColor="#808080" visible="false"/>
-				<text objectName="repairTipCaptionCancelNum1" fixPos="138,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false"/>
-				<text objectName="repairTipCaptionCancelNum2" fixPos="202,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false"/>
-				<text objectName="repairTipCaptionCompleteNum1" fixPos="206,20,-0,20" font="fontRepairTitle" fontSize="10" text="0" textColor="#F38332" visible="false"/>
-				<text objectName="repairTipCaptionCompleteNum2" fixPos="138,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false"/>
-				<text objectName="cancelDiagnosis" fixPos="460,70,-0,20" fontSize="9" font="fontRepairTitle" text="取消诊断" styleId="hand" textColor="#26ACFD"/>
-				<text objectName="repairTipCaption1" fixPos="100,20,-0,20" fontSize="10" font="fontRepairTitle" _borderColor="red" text="正在诊断游戏环境：检测IE浏览器版本是否为最新"/>
-				<_text objectName="repairTip9" fixPos="200,20,-0,20" fontSize="9" font="fontBold" _borderColor="red" text=""/>
-				<imageButton objectName="btnBackstage" fixPos="440,30,100,100" font="fontRepairTitle" _borderColor="red" skin="gamerpairBtnBackCheck" _textColor="#474747" _textAlign="AlignCenter" _text="后台诊断"/>
+				<text objectName="repairTipCaption2" fixPos="100,50,-0,20" fontSize="9" font="fontRepairTitle" text="共修复   项，还有  项问题待修复" textColor="#808080" visible="false" />
+				<text objectName="repairTipCaptionCancelNum1" fixPos="138,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false" />
+				<text objectName="repairTipCaptionCancelNum2" fixPos="202,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false" />
+				<text objectName="repairTipCaptionCompleteNum1" fixPos="206,20,-0,20" font="fontRepairTitle" fontSize="10" text="0" textColor="#F38332" visible="false" />
+				<text objectName="repairTipCaptionCompleteNum2" fixPos="138,50,-0,20" font="fontRepairTitle" fontSize="9" text="0" textColor="#F38332" visible="false" />
+				<text objectName="cancelDiagnosis" fixPos="460,70,-0,20" fontSize="9" font="fontRepairTitle" text="取消诊断" styleId="hand" textColor="#26ACFD" />
+				<text objectName="repairTipCaption1" fixPos="100,20,-0,20" fontSize="10" font="fontRepairTitle" _borderColor="red" text="正在诊断游戏环境：检测IE浏览器版本是否为最新" />
+				<_text objectName="repairTip9" fixPos="200,20,-0,20" fontSize="9" font="fontBold" _borderColor="red" text="" />
+				<imagebutton objectName="btnBackstage" fixPos="440,30,100,100" font="fontRepairTitle" _borderColor="red" skin="gamerpairBtnBackCheck" _textColor="#474747" _textAlign="AlignCenter" _text="后台诊断" />
 			</layout>
-			<layout objectName="RunFlashVersion" fixPos="0,115,-0,50" _borderColor="green" >
-				<movie objectName="FlashVersionchecking" fixPos="20,20,22,22" anima="anim_loading" visible="false"/>
-				<check objectName="repairFlashVersion" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false"/>
-				<text objectName="repairTipFlashVersion1" fixPos="70,5,-0,20" font="fontRepairTitle" fontSize="9" _borderColor="red" text="检测Flash播放器版本是否太低"/>
-				<text objectName="repairTipFlashVersion2" fixPos="70,25,-0,20" font="fontRepairTitle" fontSize="9" _borderColor="red" textColor="#808080" text="该问题将导致游戏运行异常,修复过程中需退出大厅"/>
-				<text objectName="repairTipFlashVersion3" fixPos="465,15,100,100" font="fontRepairTitle" fontSize="9" _borderColor="red" text="无需升级" visible="false"/>
+			<layout objectName="RunFlashVersion" fixPos="0,115,-0,50" _borderColor="green">
+				<movie objectName="FlashVersionchecking" fixPos="20,20,22,22" anima="anim_loading" visible="false" />
+				<check objectName="repairFlashVersion" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false" />
+				<text objectName="repairTipFlashVersion1" fixPos="70,5,-0,20" font="fontRepairTitle" fontSize="9" _borderColor="red" text="检测Flash播放器版本是否太低" />
+				<text objectName="repairTipFlashVersion2" fixPos="70,25,-0,20" font="fontRepairTitle" fontSize="9" _borderColor="red" textColor="#808080" text="该问题将导致游戏运行异常,修复过程中需退出大厅" />
+				<text objectName="repairTipFlashVersion3" fixPos="465,15,100,100" font="fontRepairTitle" fontSize="9" _borderColor="red" text="无需升级" visible="false" />
 			</layout>
-			<layout objectName="RunFlashAbnormal" fixPos="0,165,-0,50" _borderColor="green" >
-				<movie objectName="FlashAbnormalchecking" fixPos="20,20,22,22" anima="anim_loading" visible="false"/>
-				<check objectName="repairFlashAbnormal" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false"/>
-				<text objectName="repairTipFlashAbnormal1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测Flash控件是否存在异常"/>
-				<text objectName="repairTipFlashAbnormal2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="Flash控件异常将导致游戏画面黑屏左上角有红叉"/>
-				<text objectName="repairTipFlashAbnormal3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false"/>
+			<layout objectName="RunFlashAbnormal" fixPos="0,165,-0,50" _borderColor="green">
+				<movie objectName="FlashAbnormalchecking" fixPos="20,20,22,22" anima="anim_loading" visible="false" />
+				<check objectName="repairFlashAbnormal" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false" />
+				<text objectName="repairTipFlashAbnormal1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测Flash控件是否存在异常" />
+				<text objectName="repairTipFlashAbnormal2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="Flash控件异常将导致游戏画面黑屏左上角有红叉" />
+				<text objectName="repairTipFlashAbnormal3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false" />
 			</layout>
-			<layout objectName="RunFlashCache" fixPos="0,215,-0,50" _borderColor="green" >
-				<movie objectName="FlashCachechecking" fixPos="20,20,22,22" anima="anim_loading" visible="false"/>
-				<check objectName="repairFlashCache" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false"/>
-				<text objectName="repairTipFlashCache1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测是否有多余Flash缓存"/>
-				<text objectName="repairTipFlashCache2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="清理flash缓存可修复游戏加载问题，清理前请先退出游戏"/>
-				<text objectName="repairTipFlashCache3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false"/>
+			<layout objectName="RunFlashCache" fixPos="0,215,-0,50" _borderColor="green">
+				<movie objectName="FlashCachechecking" fixPos="20,20,22,22" anima="anim_loading" visible="false" />
+				<check objectName="repairFlashCache" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false" />
+				<text objectName="repairTipFlashCache1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测是否有多余Flash缓存" />
+				<text objectName="repairTipFlashCache2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="清理flash缓存可修复游戏加载问题，清理前请先退出游戏" />
+				<text objectName="repairTipFlashCache3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false" />
 			</layout>
-			<layout objectName="RunIECache" fixPos="0,265,-0,50" _borderColor="green" >
-				<movie objectName="IECachechecking" fixPos="20,20,22,22" anima="anim_loading" visible="false"/>
-				<check objectName="repairIECache" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false"/>
-				<text objectName="repairTipIECache1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测IE浏览器是否有多余缓存"/>
-				<text objectName="repairTipIECache2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="清理IE缓存可修复部分游戏卡的问题，清理前请先退出游戏"/>
-				<text objectName="repairTipIECache3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false"/>
+			<layout objectName="RunIECache" fixPos="0,265,-0,50" _borderColor="green">
+				<movie objectName="IECachechecking" fixPos="20,20,22,22" anima="anim_loading" visible="false" />
+				<check objectName="repairIECache" fixPos="40,15,20,20" _borderColor="#FF00dd" fontSize="9" textColor="#474747" checkBoxIcon="hall_checkbox" iconSpacing="6" check="1" fixSize="*,22" visible="false" />
+				<text objectName="repairTipIECache1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测IE浏览器是否有多余缓存" />
+				<text objectName="repairTipIECache2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="清理IE缓存可修复部分游戏卡的问题，清理前请先退出游戏" />
+				<text objectName="repairTipIECache3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false" />
 			</layout>
-			<layout objectName="RunIEVersion" fixPos="0,315,-0,50" _borderColor="green" >
+			<layout objectName="RunIEVersion" fixPos="0,315,-0,50" _borderColor="green">
 				<movie objectName="IEVersionchecking" fixPos="20,20,22,22" anima="anim_loading" />
-				<text objectName="repairTipIEVersion1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测IE浏览器版本是否为最新"/>
-				<text objectName="repairTipIEVersion2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="升级IE版本可获得更好的游戏体验"/>
-				<text objectName="repairTipIEVersion3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false"/>
-				<text objectName="repairTipIECache3_link" fixPos="465,15,100,100" font="fontUnderLine" styleId="hand" fontSize="9" _borderColor="red" text="建议升级" _visible="false" textColor="#26ACFD"/>
+				<text objectName="repairTipIEVersion1" fixPos="70,5,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" text="检测IE浏览器版本是否为最新" />
+				<text objectName="repairTipIEVersion2" fixPos="70,25,-0,20" fontSize="9" font="fontRepairTitle" _borderColor="red" textColor="#808080" text="升级IE版本可获得更好的游戏体验" />
+				<text objectName="repairTipIEVersion3" fixPos="465,15,100,100" fontSize="9" font="fontRepairTitle" _borderColor="red" text="无需升级" visible="false" />
+				<text objectName="repairTipIECache3_link" fixPos="465,15,100,100" font="fontUnderLine" styleId="hand" fontSize="9" _borderColor="red" text="建议升级" _visible="false" textColor="#26ACFD" />
 			</layout>
 		</layout>
-		<layout  objectName="PageEnd" fixPos="0,0,-0,-0" visible="false" _borderColor="#DBDBDB">
+		<layout objectName="PageEnd" fixPos="0,0,-0,-0" visible="false" _borderColor="#DBDBDB">
 			<image fixPos="|-58,60,116,116" skin="gamerpairIcoComplete" />
-			<linearLayout objectName="clearTip4" fixPos="120,160,-0,30" _borderColor="green" itemAlign="h" >
-				<text objectName="repairEndTip1" fixPos="0,0,*,30" fontSize="18" font="fontRepairTitle" _borderColor="red" text="诊断完成，没有需修复的项目！"/>
-			</linearLayout>
-			<linearLayout objectName="clearTip4" fixPos="180,190,-0,20" _borderColor="green" itemAlign="h" >
-				<text objectName="clearTip4" textAlign="AlignVCenter" font="fontRepairTitle" textColor="#808080" fontSize="9" _borderColor="red" fixSize="*,-0"  text="如果你的游戏还存在问题，请"/>
-				<text objectName="contactCustomerService" textAlign="AlignVCenter" font="fontRepairNormal" fontSize="9" _borderColor="red" fixSize="*,-0" text="联系客服" styleId="hand" textColor="#26ACFD"/>
-				<_text objectName="clearTip4" textAlign="AlignVCenter" font="fontRepairTitle" textColor="#808080" fontSize="9" _borderColor="red" fixWidth="*" text="或"/>
-				<_text objectName="feedBack" textAlign="AlignVCenter" font="fontRepairTitle" fontSize="9" _borderColor="red" fixWidth="*" text="给我们反馈" styleId="hand" textColor="#26ACFD"/>
-			</linearLayout>
-			<imageButton objectName="btnComplete" fixPos="|-76,250,200,100" font="fontRepairTitle" _borderColor="red" skin="gamerpairBtnRepairComplete" textColor="#474747" textAlign="AlignCenter" _text="完成"/>
-			<text font="fontRepairTitle" objectName="reDiagnosis" fixPos="|-20,300,*,20" fontSize="9" _borderColor="red" marginTop="5" text="重新诊断" styleId="hand" textColor="#26ACFD"/>
+			<linearlayout objectName="clearTip4" fixPos="120,160,-0,30" _borderColor="green" itemAlign="h">
+				<text objectName="repairEndTip1" fixPos="0,0,*,30" fontSize="18" font="fontRepairTitle" _borderColor="red" text="诊断完成，没有需修复的项目！" />
+			</linearlayout>
+			<linearlayout objectName="clearTip4" fixPos="180,190,-0,20" _borderColor="green" itemAlign="h">
+				<text objectName="clearTip4" textAlign="AlignVCenter" font="fontRepairTitle" textColor="#808080" fontSize="9" _borderColor="red" fixSize="*,-0" text="如果你的游戏还存在问题，请" />
+				<text objectName="contactCustomerService" textAlign="AlignVCenter" font="fontRepairNormal" fontSize="9" _borderColor="red" fixSize="*,-0" text="联系客服" styleId="hand" textColor="#26ACFD" />
+				<_text objectName="clearTip4" textAlign="AlignVCenter" font="fontRepairTitle" textColor="#808080" fontSize="9" _borderColor="red" fixWidth="*" text="或" />
+				<_text objectName="feedBack" textAlign="AlignVCenter" font="fontRepairTitle" fontSize="9" _borderColor="red" fixWidth="*" text="给我们反馈" styleId="hand" textColor="#26ACFD" />
+			</linearlayout>
+			<imagebutton objectName="btnComplete" fixPos="|-76,250,200,100" font="fontRepairTitle" _borderColor="red" skin="gamerpairBtnRepairComplete" textColor="#474747" textAlign="AlignCenter" _text="完成" />
+			<text font="fontRepairTitle" objectName="reDiagnosis" fixPos="|-20,300,*,20" fontSize="9" _borderColor="red" marginTop="5" text="重新诊断" styleId="hand" textColor="#26ACFD" />
 		</layout>
-	</DuiWidget>
+	</duiwidget>
 </xmlui>

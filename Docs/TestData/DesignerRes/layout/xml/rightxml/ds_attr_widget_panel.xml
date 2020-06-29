@@ -1,11 +1,9 @@
-﻿<sub>
-	<window name="ds_attr_widget_panel" pos="0,24,-0,-0" bvisible="1" >
-		<window  pos="0,0,@34,-0" clrbg="pbgra(22,22,22,ff)">
-			<button name="ds_widget_expand" pos="0,0,@34,@34" skin="ds_toolexpand"/>
+<?xml version="1.0"?>
+<sub>
+	<window name="ds_attr_widget_panel" pos="0,24,-0,-0" bvisible="1">
+		<window pos="0,0,@34,-0" clrbg="pbgra(22,22,22,ff)">
+			<button name="ds_widget_expand" pos="0,0,@34,@34" skin="ds_toolexpand" />
 		</window>
-		<propframe name="ds_widget_prop" pos="36,0,-2,-0" expandskin="ds_expand" rowhei="24" itembgskin="ds_custombutton" clrtextdisable="pbgra(c0,c0,c0,ff)" bshowhead="0" deschei="85" leftcolwid="120"
-		sbskin="ds_scrollbar" arrowwidth="0">
-
-		</propframe>
+		<propframe name="ds_widget_prop" pos="36,0,-2,-0" expandskin="ds_expand" rowhei="24" itembgskin="ds_custombutton" clrtextdisable="pbgra(c0,c0,c0,ff)" bshowhead="0" deschei="85" leftcolwid="120" sbskin="ds_scrollbar" arrowwidth="0" />
 	</window>
 </sub>

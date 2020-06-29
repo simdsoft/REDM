@@ -1,8 +1,9 @@
-﻿<sub>
-	<button  name="ds_preview" 	pos="5,5,@24,@24" skin="ds_preview" tiptext="预览"/>
-	<tabctrl name="ds_tool" bfocusable="0"	pos="0,34,-0,@102" CurSel="0" bfocusable="0" clrText="rgba(38,63,82,ff)" itembgskin="ds_tool_selbk" ItemSize="34,34" FirstItemOffset="0" tabAlign="left" focusable="1" ItemSpace="0">
-		<tabPage  itemskin="ds_tool_move" tiptext="Move"/>
-		<tabPage  itemskin="ds_tool_selection" tiptext="Select"/>
-		<tabPage  itemskin="ds_toolexpand" tiptext="展开控件列表"/>
+<?xml version="1.0"?>
+<sub>
+	<button name="ds_preview" pos="5,5,@24,@24" skin="ds_preview" tiptext="预览" />
+	<tabctrl name="ds_tool" bfocusable="0" pos="0,34,-0,@102" CurSel="0" bfocusable="0" clrText="rgba(38,63,82,ff)" itembgskin="ds_tool_selbk" ItemSize="34,34" FirstItemOffset="0" tabAlign="left" focusable="1" ItemSpace="0">
+		<tabpage itemskin="ds_tool_move" tiptext="Move" />
+		<tabpage itemskin="ds_tool_selection" tiptext="Select" />
+		<tabpage itemskin="ds_toolexpand" tiptext="展开控件列表" />
 	</tabctrl>
 </sub>
