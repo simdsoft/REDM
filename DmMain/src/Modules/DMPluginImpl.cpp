@@ -22,7 +22,7 @@
 #include "DUIListBox.h"
 #include "DUIListBoxEx.h"
 #include "DUIEdit.h"
-#include "DUIStatic.h"
+#include "DUILabel.h"
 #include "DUILink.h"
 #include "DUIComboBox.h"
 #include "DUIActiveX.h"
@@ -141,7 +141,7 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIRichEdit>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIEdit>(),true);
 		new DUIEditHelper;// ºÍeditÏà¹Ø
-		iErr = g_pDMApp->Register(DMRegHelperT<DUIStatic>(),true);
+		iErr = g_pDMApp->Register(DMRegHelperT<DUILabel>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUILink>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIComboBox>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGif>(),true);

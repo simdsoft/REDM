@@ -2,8 +2,8 @@
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
-// File Name: DUIStatic.h 
-// File Des: 内置static实现
+// File Name: DUILabel.h 
+// File Des: 内置Label实现
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,27 +17,27 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIStatic"/>的xml属性定义
+	///		<see cref="DM::DUILabel"/>的xml属性定义
 	/// </summary>
-	class DUIStaticAttr:public DUIWindowAttr
+	class DUILabelAttr:public DUIWindowAttr
 	{
 	public:
 		static wchar_t* bool_bmultiLines;                                     ///< 是否支持多行,示例:bmultiLines="1"
 		static wchar_t* INT_lineinter;                                        ///< 行间距,默认为5，示例:lineinter="5"
 	};
-	DMAttrValueInit(DUIStaticAttr,bool_bmultiLines)DMAttrValueInit(DUIStaticAttr,INT_lineinter)
+	DMAttrValueInit(DUILabelAttr,bool_bmultiLines)DMAttrValueInit(DUILabelAttr,INT_lineinter)
 }
 
 namespace DM
 {
 	/// <summary>
-	///		 DUIStatic的内置实现
+	///		 DUILabel的内置实现
 	/// </summary>
-	class DM_EXPORT DUIStatic:public DUIWindow
+	class DM_EXPORT DUILabel :public DUIWindow
 	{
-		DMDECLARE_CLASS_NAME(DUIStatic,DUINAME_Static,DMREG_Window);
+		DMDECLARE_CLASS_NAME(DUILabel,DUINAME_Label,DMREG_Window);
 	public:
-		DUIStatic();
+		DUILabel();
 
 		//---------------------------------------------------
 		// Function Des: 重载DUIWindow
@@ -46,12 +46,15 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_bool_ATTRIBUTE(DMAttr::DUIStaticAttr::bool_bmultiLines, m_bMultiLines, DM_ECODE_OK)
-			DM_INT_ATTRIBUTE(DMAttr::DUIStaticAttr::INT_lineinter, m_nLineInter, DM_ECODE_OK)
+			DM_bool_ATTRIBUTE(DMAttr::DUILabelAttr::bool_bmultiLines, m_bMultiLines, DM_ECODE_OK)
+			DM_INT_ATTRIBUTE(DMAttr::DUILabelAttr::INT_lineinter, m_nLineInter, DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 	public:
 		bool                                m_bMultiLines;
 		int                                 m_nLineInter;
 	};
+
+	// [deprecated]
+	typedef DUILabel DUIStatic;
 
 }//namespace DM

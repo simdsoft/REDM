@@ -25,5 +25,5 @@ using namespace DM;
 #include "DUITreeCtrl.h"
 #include "DUIGif.h"
 #include "DMResFolderImpl.h"
-#include "DUIStatic.h"
+#include "DUILabel.h"
 #include "TGPMenu.h"

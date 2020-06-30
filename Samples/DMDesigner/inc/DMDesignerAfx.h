@@ -20,7 +20,7 @@
 #include "DUICheckBox.h"
 #include "DUIEdit.h"
 #include "DUIMenu.h"
-#include "DUIStatic.h"
+#include "DUILabel.h"
 #include "DUITabCtrl.h"
 #include "DUIFlowLayout.h"
 #include "DUIListBoxEx.h"

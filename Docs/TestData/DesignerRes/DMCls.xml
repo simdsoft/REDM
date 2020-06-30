@@ -34,7 +34,7 @@
 		<duistyleattr />
 	</window>
 	<label>
-		<duistaticattr />
+		<duilabelattr />
 		<duiwindowattr />
 		<duistyleattr />
 	</label>

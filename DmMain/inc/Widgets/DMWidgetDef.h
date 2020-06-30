@@ -18,7 +18,7 @@ namespace DM
 {
 // ----------------------------------------------------
 // 内置窗口定义
-#define      DUINAME_Static     L"label"                       // DUI Static
+#define      DUINAME_Label     L"label"                       // DUI Label
 #define      DUINAME_Group      L"group"                        // DUI Group
 #define      DUINAME_CheckBox   L"checkbox"                     // DUI CheckBox
 #define      DUINAME_Link       L"link"                         // DUI Link

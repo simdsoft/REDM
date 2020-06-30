@@ -616,7 +616,7 @@ void WidgetAttr::InitSpecialValue(CStringW& strValue, DMXmlInitAttrPtr pInitAttr
 	{
 		strInitValue = L"0";
 	}
-	if (0 == m_strList[0].CompareNoCase(L"DUIStaticAttr") && 0 == _wcsicmp(pInitAttr->m_pAttr->GetName(),L"bool_bmsgnohandle"))
+	if (0 == m_strList[0].CompareNoCase(L"DUILabelAttr") && 0 == _wcsicmp(pInitAttr->m_pAttr->GetName(),L"bool_bmsgnohandle"))
 	{
 		strInitValue = L"1";
 	}   
