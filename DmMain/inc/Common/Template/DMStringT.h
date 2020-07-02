@@ -1684,9 +1684,9 @@ namespace DM
         if (len == -1) len = strlen(lpsz);
         int nSize = ::MultiByteToWideChar(CodePage, 0, lpsz, len, NULL, 0);
         if (nSize > 0)
-        {
+        { // nSize without '\0'
             CStringW strw;
-            auto pBuf = strw.GetBufferSetLength(nSize + 1);
+            auto pBuf = strw.GetBufferSetLength(nSize);
             ::MultiByteToWideChar(CodePage, 0, lpsz, len, pBuf, nSize);
             return strw;
         }
