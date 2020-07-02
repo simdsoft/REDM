@@ -1676,29 +1676,26 @@ namespace DM
     typedef CStringA                        CStringT;
 #endif
 
+    /// <summary>
+    ///	用于脚本中char*直接转CStringW
+    /// </summary>
+    static CStringW DMCA2W(LPCSTR lpsz, int len = -1,  UINT CodePage = CP_ACP)
+    {
+        if (len == -1) len = strlen(lpsz);
+        int nSize = ::MultiByteToWideChar(CodePage, 0, lpsz, len, NULL, 0);
+        if (nSize > 0)
+        {
+            CStringW strw;
+            auto pBuf = strw.GetBufferSetLength(nSize + 1);
+            ::MultiByteToWideChar(CodePage, 0, lpsz, len, pBuf, nSize);
+            return strw;
+        }
+        return L"";
+    }
+
 	static CStringW DMA2W(const CStringA &str, UINT CodePage=CP_ACP)
 	{
-		int nSize = ::MultiByteToWideChar(CodePage, 0, str, str.GetLength(), NULL, 0);		
-		if (nSize>0)
-		{
-			 wchar_t *pBuf=new wchar_t[nSize];
-			 ::MultiByteToWideChar(CodePage, 0, str, str.GetLength(), pBuf, nSize);
-			 CStringW strw(pBuf, nSize);
-			 delete []pBuf;
-			 pBuf = NULL;
-			 return strw;
-		}
-		return L"";
-	}
-
-	/// <summary>
-	///	用于脚本中char*直接转CStringW
-	/// </summary>
-	static CStringW DMCA2W(LPCSTR lpsz, UINT CodePage=CP_ACP)
-	{
-		CStringA str = lpsz;
-		CStringW strw = DMA2W(str, CodePage);
-		return strw;
+        return DMCA2W((LPCSTR)str, str.GetLength(), CodePage);
 	}
 
 	static CStringA DMW2A(const CStringW &str, UINT CodePage=CP_ACP)

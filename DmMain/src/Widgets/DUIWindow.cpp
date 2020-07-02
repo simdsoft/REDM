@@ -1421,13 +1421,22 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIWindow::DV_SetWindowText(LPCWSTR lpszText)
+    void DUIWindow::SetTextW(const CStringW& text)
 	{
-		m_pDUIXmlInfo->m_strText = lpszText;
+		m_pDUIXmlInfo->m_strText = text;
 		if (DM_IsVisible(true))
 		{
 			DM_Invalidate();
 		}
+	}
+
+	CStringW DUIWindow::GetTextW() const {
+		return m_pDUIXmlInfo->m_strText;
+	}
+
+	DMCode DUIWindow::DV_SetWindowText(LPCWSTR lpszText)
+	{
+		SetTextW(lpszText);
 		return DM_ECODE_OK;
 	}
 

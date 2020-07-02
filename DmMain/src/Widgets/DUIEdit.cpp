@@ -64,14 +64,25 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: 对外接口
-	CStringW DUIRichEdit::GetWindowText()
+	void DUIRichEdit::SetTextW(const CStringW& text)
 	{
+		DM_SendMessage(WM_SETTEXT, 0, (LPARAM)(LPCWSTR)text);
+	}
+
+	CStringW DUIRichEdit::GetTextW() const
+	{
+		DUIRichEdit* thiz = const_cast<DUIRichEdit*>(this);
 		CStringW strRet;
-		int nLen = (int)DM_SendMessage(WM_GETTEXTLENGTH);
-		wchar_t *pBuf = strRet.GetBufferSetLength(nLen+1);
-		DM_SendMessage(WM_GETTEXT,(WPARAM)nLen+1,(LPARAM)pBuf);
+		int nLen = (int)thiz->DM_SendMessage(WM_GETTEXTLENGTH);
+		wchar_t* pBuf = strRet.GetBufferSetLength(nLen + 1);
+		thiz->DM_SendMessage(WM_GETTEXT, (WPARAM)nLen + 1, (LPARAM)pBuf);
 		strRet.ReleaseBuffer();
 		return strRet;
+	}
+
+	CStringW DUIRichEdit::GetWindowText()
+	{
+		return GetTextW();
 	}
 
 	int DUIRichEdit::GetWindowText(LPWSTR lpString,int nMaxCount)
@@ -93,11 +104,6 @@ namespace DM
 	int DUIRichEdit::GetWindowTextLength()
 	{
 		return (int)DM_SendMessage(WM_GETTEXTLENGTH);
-	}
-
-	void DUIRichEdit::SetWindowText(LPCWSTR lpszText)
-	{
-		DM_SendMessage(WM_SETTEXT,0,(LPARAM)lpszText);
 	}
 
 	DWORD DUIRichEdit::GetEventMask()
