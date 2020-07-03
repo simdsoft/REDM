@@ -1679,12 +1679,12 @@ namespace DM
     /// <summary>
     ///	用于脚本中char*直接转CStringW
     /// </summary>
-    static CStringW DMCA2W(LPCSTR lpsz, int len = -1,  UINT CodePage = CP_ACP)
+    static CStringW DMCA2W(LPCSTR lpsz, int len /*=-1*/, UINT CodePage/* = CP_ACP*/)
     {
-        if (len == -1) len = strlen(lpsz);
+        if (len == -1) len = lstrlenA(lpsz);
         int nSize = ::MultiByteToWideChar(CodePage, 0, lpsz, len, NULL, 0);
         if (nSize > 0)
-        { // nSize without '\0'
+        { // nSize doesn't contains '\0'
             CStringW strw;
             auto pBuf = strw.GetBufferSetLength(nSize);
             ::MultiByteToWideChar(CodePage, 0, lpsz, len, pBuf, nSize);
@@ -1698,20 +1698,24 @@ namespace DM
         return DMCA2W((LPCSTR)str, str.GetLength(), CodePage);
 	}
 
-	static CStringA DMW2A(const CStringW &str, UINT CodePage=CP_ACP)
+	static CStringA DMWC2A(LPCWSTR lpsz, int len /*=-1*/, UINT CodePage /*=CP_ACP*/)
 	{
-		int nSize = ::WideCharToMultiByte(CodePage,0,str, str.GetLength(), NULL, 0, NULL, NULL);
-		if (nSize>0)
-		{
-			char *pBuf = new char[nSize];
-			::WideCharToMultiByte(CodePage,0,str, str.GetLength(), pBuf, nSize, NULL, NULL);
-			CStringA stra(pBuf,nSize);
-			delete []pBuf;
-			pBuf = NULL;
+        if (len == -1) len = lstrlenW(lpsz);
+		int nSize = ::WideCharToMultiByte(CodePage, 0, lpsz, len, NULL, 0, NULL, NULL);
+		if (nSize > 0)
+		{ // nSize doesn't contains L'\0'
+            CStringA stra;
+            auto pBuf = stra.GetBufferSetLength(nSize);
+			::WideCharToMultiByte(CodePage, 0, lpsz, len, pBuf, nSize, NULL, NULL);
 			return stra;
 		}
 		return "";
 	}
+
+    static CStringA DMW2A(const CStringW& str, UINT CodePage = CP_ACP)
+    {
+        return DMWC2A((LPCWSTR)str, str.GetLength(), CodePage);
+    }
 
 	static CStringW DMW2W(const CStringW &str)
 	{
