@@ -64,12 +64,12 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: 对外接口
-	void DUIRichEdit::SetTextW(const CStringW& text)
+	void DUIRichEdit::SetText(const CStringW& text)
 	{
 		DM_SendMessage(WM_SETTEXT, 0, (LPARAM)(LPCWSTR)text);
 	}
 
-	CStringW DUIRichEdit::GetTextW() const
+	CStringW DUIRichEdit::GetText() const
 	{
 		DUIRichEdit* thiz = const_cast<DUIRichEdit*>(this);
 		CStringW strRet;
@@ -83,7 +83,7 @@ namespace DM
 
 	CStringW DUIRichEdit::GetWindowText()
 	{
-		return GetTextW();
+		return GetText();
 	}
 
 	int DUIRichEdit::GetWindowText(LPWSTR lpString,int nMaxCount)

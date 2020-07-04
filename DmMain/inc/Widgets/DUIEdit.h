@@ -92,11 +92,11 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 对外接口
 		//---------------------------------------------------
-		void SetTextW(const CStringW& text) override;
-		CStringW GetTextW() const override;
+		void SetText(const CStringW& text) override;
+		CStringW GetText() const override;
 
 		// [deprecated] 参看afxcmn.inl，和CRichEditCtrl保持一致
-		void SetWindowText(LPCWSTR lpszText) { SetTextW(lpszText); }
+		void SetWindowText(LPCWSTR lpszText) { SetText(lpszText); }
 		CStringW GetWindowText();
 		int GetWindowText(LPWSTR lpString, int nMaxCount);
 		int GetWindowTextLength();

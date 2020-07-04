@@ -1421,7 +1421,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-    void DUIWindow::SetTextW(const CStringW& text)
+    void DUIWindow::SetText(const CStringW& text)
 	{
 		m_pDUIXmlInfo->m_strText = text;
 		if (DM_IsVisible(true))
@@ -1430,13 +1430,13 @@ namespace DM
 		}
 	}
 
-	CStringW DUIWindow::GetTextW() const {
+	CStringW DUIWindow::GetText() const {
 		return m_pDUIXmlInfo->m_strText;
 	}
 
 	DMCode DUIWindow::DV_SetWindowText(LPCWSTR lpszText)
 	{
-		SetTextW(lpszText);
+		SetText(lpszText);
 		return DM_ECODE_OK;
 	}
 
