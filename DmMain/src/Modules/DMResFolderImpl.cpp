@@ -342,8 +342,8 @@ namespace DM
 				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
+					CStringW lpszName = XmlFileNode.Attribute(L"name");
+					CStringW lpszFilePath = XmlFileNode.Attribute(L"path");
 					wchar_t szPath[MAX_PATH] = {0};
 					if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
 					{
@@ -415,13 +415,13 @@ namespace DM
 			XmlNode = XmlNode.FirstChild();
 			while (XmlNode.IsValid())
 			{
-				LPCWSTR lpszType = XmlNode.GetName();
+				CStringW lpszType = XmlNode.GetName();
 				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
-					if (NULL!=lpszFilePath&&0!=wcslen(lpszFilePath))
+					CStringW lpszName = XmlFileNode.Attribute(L"name");
+					CStringW lpszFilePath = XmlFileNode.Attribute(L"path");
+					if (!lpszFilePath.IsEmpty())
 					{
 						wchar_t szPath[MAX_PATH] = {0};
 						if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
