@@ -60,7 +60,7 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Tools/CMake)
 INCLUDE(PrecompiledHeader)
 
 # --- The compiler flags
-message("-- Building yasio with cpp${_CXX_STD} support")
+message("-- Building REDM with cpp${_CXX_STD} support")
 if ( IOS )
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_CXX_FLAGS")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_C_FLAGS")
@@ -82,10 +82,10 @@ if (NOT WIN32 OR CYGWIN)
     endif()
 else()
     if(_CXX_STD EQUAL 17)
-        # target_compile_features(yasio PUBLIC cxx_std_17) works
+        # target_compile_features(REDM PUBLIC cxx_std_17) works
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17" CACHE INTERNAL "CMAKE_CXX_FLAGS")
     elseif(_CXX_STD EQUAL 14)
-        # target_compile_features(yasio PUBLIC cxx_std_14) not works
+        # target_compile_features(REDM PUBLIC cxx_std_14) not works
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++14" CACHE INTERNAL "CMAKE_CXX_FLAGS")
     endif()
 endif()
