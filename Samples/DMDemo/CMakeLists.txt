@@ -27,7 +27,8 @@ INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/DmMain/inc
 					${DM_SOURCE_DIR}/DmMain/inc/Core/Event;
 					${DM_SOURCE_DIR}/DmMain/inc/IDmMain;
 					${DM_SOURCE_DIR}/DmMain/inc/Modules;
-					${DM_SOURCE_DIR}/DmMain/inc/Widgets;)
+					${DM_SOURCE_DIR}/DmMain/inc/Widgets;
+                    ${DM_SOURCE_DIR}/External;)
 					
 # 引用Plugin_Expand的头文件
 INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Expand/inc)
