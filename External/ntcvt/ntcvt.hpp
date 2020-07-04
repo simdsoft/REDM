@@ -15,11 +15,13 @@ enum code_page
 // different with resize, not all of fill new memory with '\0'
 namespace buffer_traits
 {
-  template <typename _Elem> class string : public std::basic_string<_Elem>
+template <class _Elem, class _Traits = std::char_traits<_Elem>,
+          class _Alloc = std::allocator<_Elem>>
+class string : public std::basic_string<_Elem, _Traits, _Alloc>
   {
   public:
 #if _MSC_VER > 1900 // VS2017 or later
-      using _Alty = std::_Rebind_alloc_t<std::basic_string<_Elem>::allocator_type, _Elem>;
+      using _Alty = std::_Rebind_alloc_t<_Alloc, _Elem>;
       using _Alty_traits = std::allocator_traits<_Alty>;
 
       using _Scary_val = std::_String_val<std::conditional_t<std::_Is_simple_alloc_v<_Alty>, std::_Simple_types<_Elem>,
@@ -82,12 +84,12 @@ inline _StringContType mcbs2w(const char* mcb, int len, UINT cp = code_page_acp)
 #if _HAS_CXX17
 inline std::string from_chars(const std::wstring_view& wcb, UINT cp = code_page_acp)
 {
-  return wcbs2a(wcb.data(), wcb.length(), cp);
+  return wcbs2a<std::string>(wcb.data(), wcb.length(), cp);
 }
 
 inline std::wstring from_chars(const std::string_view& mcb, UINT cp = code_page_acp)
 {
-  return mcbs2w(mcb.data(), mcb.length(), cp);
+  return mcbs2w<std::wstring>(mcb.data(), mcb.length(), cp);
 }
 #else
 inline std::string from_chars(const wchar_t* str, UINT cp = code_page_acp)
