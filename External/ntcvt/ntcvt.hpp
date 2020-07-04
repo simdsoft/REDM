@@ -28,7 +28,13 @@ class string : public std::basic_string<_Elem, _Traits, _Alloc>
           std::_String_iter_types<_Elem, typename _Alty_traits::size_type, typename _Alty_traits::difference_type,
           typename _Alty_traits::pointer, typename _Alty_traits::const_pointer, _Elem&, const _Elem&>>>;
 #endif
-    _Elem* setnbuf(int len) // just like afc CString::GetBufferSetLength
+    // See also afxmfc CString::GetBufferSetLength
+    // Why do this hack?
+	// stupid: because the default c++ standard resize always fill with '\0'
+	// std::string: use memset (usually implemented with SIMD)
+	// std::wstring: for loop (slow performance)
+	// only works on msvc currently
+    _Elem* setnbuf(int len)
     {
       this->reserve(len);
 #if _MSC_VER > 1900 // VS2017 or later
@@ -115,11 +121,11 @@ inline std::wstring from_chars(const std::string& mcb, UINT cp = code_page_acp)
 
 // ntcs or std::string to CStringW
 #if defined(_AFX)
+inline std::string from_chars(const CStringW& wcb, UINT cp = CP_ACP)
+{
+    return wcbs2a<std::string>(wcb.GetString(), wcb.GetLength(), cp);
+}
 namespace afx {
-    inline std::string from_chars(const CStringW& wcb, UINT cp = CP_ACP)
-    {
-        return wcbs2a<std::string>(wcb.GetString(), wcb.GetLength(), cp);
-    }
 #if _HAS_CXX17
     inline CStringW from_chars(std::string_view mcb, UINT cp = CP_ACP)
     {

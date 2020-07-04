@@ -1750,6 +1750,10 @@ namespace ntcvt {
             return str.GetBufferSetLength(size);
         }
     }
+    inline std::string from_chars(const DM::CStringW& wcb, UINT cp = CP_ACP)
+    {
+        return wcbs2a<std::string>((LPCWSTR)wcb, wcb.GetLength(), cp);
+    }
 }
 
 namespace DM {
