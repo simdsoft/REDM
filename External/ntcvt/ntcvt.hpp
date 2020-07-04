@@ -18,22 +18,27 @@ namespace buffer_traits
   template <typename _Elem> class string : public std::basic_string<_Elem>
   {
   public:
+#if _MSC_VER > 1900 // VS2017 or later
       using _Alty = std::_Rebind_alloc_t<std::basic_string<_Elem>::allocator_type, _Elem>;
       using _Alty_traits = std::allocator_traits<_Alty>;
 
       using _Scary_val = std::_String_val<std::conditional_t<std::_Is_simple_alloc_v<_Alty>, std::_Simple_types<_Elem>,
           std::_String_iter_types<_Elem, typename _Alty_traits::size_type, typename _Alty_traits::difference_type,
           typename _Alty_traits::pointer, typename _Alty_traits::const_pointer, _Elem&, const _Elem&>>>;
-
+#endif
     _Elem* setnbuf(int len) // just like afc CString::GetBufferSetLength
     {
       this->reserve(len);
-
+#if _MSC_VER > 1900 // VS2017 or later
       std::_Compressed_pair<_Alty, _Scary_val>* _Myval = (std::_Compressed_pair<_Alty, _Scary_val> *)this;
       _Myval->_Myval2._Mysize = len;
       auto front = &this->front();
       front[len] = '\0';
       return front;
+#else
+      this->_Eos(len);
+      return &this->front();
+#endif
     }
   };
 
