@@ -98,16 +98,6 @@ inline std::wstring from_chars(const std::string_view& mcb, UINT cp = code_page_
   return mcbs2w<std::wstring>(mcb.data(), mcb.length(), cp);
 }
 #else
-inline std::string from_chars(const wchar_t* str, UINT cp = code_page_acp)
-{
-    return wcbs2a<std::string>(str, -1, cp);
-}
-
-inline std::wstring from_chars(const char* str, UINT cp = code_page_acp)
-{
-    return mcbs2w<std::wstring>(str, -1, cp);
-}
-
 inline std::string from_chars(const std::wstring& wcb, UINT cp = code_page_acp)
 {
   return wcbs2a<std::string>(wcb.c_str(), wcb.length(), cp);
@@ -118,6 +108,16 @@ inline std::wstring from_chars(const std::string& mcb, UINT cp = code_page_acp)
   return mcbs2w<std::wstring>(mcb.c_str(), mcb.length(), cp);
 }
 #endif
+
+inline std::string from_chars(const wchar_t* str, UINT cp = code_page_acp)
+{
+    return wcbs2a<std::string>(str, -1, cp);
+}
+
+inline std::wstring from_chars(const char* str, UINT cp = code_page_acp)
+{
+    return mcbs2w<std::wstring>(str, -1, cp);
+}
 
 // ntcs or std::string to CStringW
 #if defined(_AFX)
