@@ -59,6 +59,37 @@ OPTION(USE_DMSKIA_  "DM user skia render draw"    OFF)
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Tools/CMake)
 INCLUDE(PrecompiledHeader)
 
+# --- The compiler flags
+message("-- Building yasio with cpp${_CXX_STD} support")
+if ( IOS )
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_C_FLAGS")
+endif ()
+if (NOT WIN32 OR CYGWIN)
+    if (_CXX_STD EQUAL 17)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+        if ( IOS )
+            # Aligned deallocation function of type 'void (void *, std::align_val_t) noexcept' is only available on iOS 11 or newer
+            # most of time, low level malloc will alloc a aligned address for new operator,
+            # so it's ok to add -faligned-allocation, certainly, still need find a ios9.0 device
+            # to test does it works well?
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -faligned-allocation" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+        endif()
+    elseif(_CXX_STD EQUAL 14)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+    else()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+    endif()
+else()
+    if(_CXX_STD EQUAL 17)
+        # target_compile_features(yasio PUBLIC cxx_std_17) works
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+    elseif(_CXX_STD EQUAL 14)
+        # target_compile_features(yasio PUBLIC cxx_std_14) not works
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++14" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+    endif()
+endif()
+
 # 增加子文件夹
 ADD_SUBDIRECTORY(${PROJDIR}/DmMain)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
