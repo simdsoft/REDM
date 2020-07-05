@@ -53,7 +53,7 @@ namespace DM
 				{
 					if (!pItem->IsKeyExist(strId))
 					{// key不存在时才加入
-						LPCWSTR lpszClassName = XmlSkin.GetName();  
+						CStringW lpszClassName = XmlSkin.GetName();  
 						IDMSkinPtr pSkinPtr = NULL;
 						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
 						{
@@ -231,7 +231,7 @@ namespace DM
 			}
 
 			//4.创建skin对象
-			LPCWSTR lpszClassName = XmlNode.GetName();
+			CStringW lpszClassName = XmlNode.GetName();
 			IDMSkinPtr pSkinPtr = NULL;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
 			{

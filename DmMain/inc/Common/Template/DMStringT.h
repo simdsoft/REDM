@@ -19,6 +19,8 @@
 #define TSTRING_PADDING 0
 #endif
 
+#include "ntcvt/ntcvt.hpp"
+
 namespace DM
 {
 	__pragma(warning(push))
@@ -1676,74 +1678,6 @@ namespace DM
     typedef CStringA                        CStringT;
 #endif
 
-	static CStringW DMA2W(const CStringA &str, UINT CodePage=CP_ACP)
-	{
-		int nSize = ::MultiByteToWideChar(CodePage, 0, str, str.GetLength(), NULL, 0);		
-		if (nSize>0)
-		{
-			 wchar_t *pBuf=new wchar_t[nSize];
-			 ::MultiByteToWideChar(CodePage, 0, str, str.GetLength(), pBuf, nSize);
-			 CStringW strw(pBuf, nSize);
-			 delete []pBuf;
-			 pBuf = NULL;
-			 return strw;
-		}
-		return L"";
-	}
-
-	/// <summary>
-	///	用于脚本中char*直接转CStringW
-	/// </summary>
-	static CStringW DMCA2W(LPCSTR lpsz, UINT CodePage=CP_ACP)
-	{
-		CStringA str = lpsz;
-		CStringW strw = DMA2W(str, CodePage);
-		return strw;
-	}
-
-	static CStringA DMW2A(const CStringW &str, UINT CodePage=CP_ACP)
-	{
-		int nSize = ::WideCharToMultiByte(CodePage,0,str, str.GetLength(), NULL, 0, NULL, NULL);
-		if (nSize>0)
-		{
-			char *pBuf = new char[nSize];
-			::WideCharToMultiByte(CodePage,0,str, str.GetLength(), pBuf, nSize, NULL, NULL);
-			CStringA stra(pBuf,nSize);
-			delete []pBuf;
-			pBuf = NULL;
-			return stra;
-		}
-		return "";
-	}
-
-	static CStringW DMW2W(const CStringW &str)
-	{
-		return str;
-	}
-
-	static CStringA DMA2A(const CStringA &str, UINT CodePageFrom=CP_UTF8, UINT CodePageTo=CP_ACP)
-	{
-		if (CodePageFrom == CodePageTo)
-		{
-			return str;
-		}
-		CStringW strw = DMA2W(str,CodePageFrom);
-		return DMW2A(strw, CodePageTo);
-	}
-
-
-#ifdef UNICODE
-#define  DMA2T		DMA2W
-#define  DMW2T      DMW2W
-#define  DMT2A      DMW2A
-#define  DMT2W      DMW2W
-#else
-#define  DMA2T		DMA2A
-#define  DMW2T      DMW2A
-#define  DMT2A      DMA2A
-#define  DMT2W      DMA2W
-#endif
-
     template< typename T >
     class SStringElementTraits
     {
@@ -1807,3 +1741,68 @@ namespace DM
 
 }//end of namespace
 
+namespace ntcvt {
+    namespace buffer_traits {
+        inline char* inplaced(DM::CStringA& str, int size) {
+            return str.GetBufferSetLength(size);
+        }
+        inline wchar_t* inplaced(DM::CStringW& str, int size) {
+            return str.GetBufferSetLength(size);
+        }
+    }
+    inline std::string from_chars(const DM::CStringW& wcb, UINT cp = CP_ACP)
+    {
+        return wcbs2a<std::string>((LPCWSTR)wcb, wcb.GetLength(), cp);
+    }
+}
+
+namespace DM {
+    /// <summary>
+    ///	用于脚本中char*直接转CStringW
+    /// </summary>
+    static CStringW DMCA2W(LPCSTR lpsz, int len /*=-1*/, UINT CodePage/* = CP_ACP*/)
+    {
+        return ntcvt::mcbs2w<CStringW>(lpsz, len, CodePage);
+    }
+
+    static CStringW DMA2W(const CStringA& str, UINT CodePage = CP_ACP)
+    {
+        return DMCA2W((LPCSTR)str, str.GetLength(), CodePage);
+    }
+
+    static CStringA DMWC2A(LPCWSTR lpsz, int len /*=-1*/, UINT CodePage /*=CP_ACP*/)
+    {
+        return ntcvt::wcbs2a<CStringA>(lpsz, len, CodePage);
+    }
+
+    static CStringA DMW2A(const CStringW& str, UINT CodePage = CP_ACP)
+    {
+        return DMWC2A((LPCWSTR)str, str.GetLength(), CodePage);
+    }
+
+    static CStringW DMW2W(const CStringW& str)
+    {
+        return str;
+    }
+
+    static CStringA DMA2A(const CStringA& str, UINT CodePageFrom = CP_UTF8, UINT CodePageTo = CP_ACP)
+    {
+        if (CodePageFrom == CodePageTo)
+            return str;
+        CStringW strw = DMA2W(str, CodePageFrom);
+        return DMW2A(strw, CodePageTo);
+    }
+
+
+#ifdef UNICODE
+#define  DMA2T		DMA2W
+#define  DMW2T      DMW2W
+#define  DMT2A      DMW2A
+#define  DMT2W      DMW2W
+#else
+#define  DMA2T		DMA2A
+#define  DMW2T      DMW2A
+#define  DMT2A      DMA2A
+#define  DMT2W      DMA2W
+#endif
+}

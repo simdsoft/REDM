@@ -62,7 +62,7 @@ namespace DM
 			{
 				pNewItem->pSkin = m_pItemSkin;
 			}
-			strValue = (LPWSTR)XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_text);
+			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_text);
 			pNewItem->lpszText	 = _wcsdup(strValue);
 			pNewItem->cchTextMax = strValue.GetLength();
 			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_data);

@@ -90,12 +90,16 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: 对外接口,参看afxcmn.inl，和CRichEditCtrl保持一致
+		// Function Des: 对外接口
 		//---------------------------------------------------
+		void SetText(const CStringW& text) override;
+		CStringW GetText() const override;
+
+		// [deprecated] 参看afxcmn.inl，和CRichEditCtrl保持一致
+		void SetWindowText(LPCWSTR lpszText) { SetText(lpszText); }
 		CStringW GetWindowText();
-		int GetWindowText(LPWSTR lpString,int nMaxCount);
+		int GetWindowText(LPWSTR lpString, int nMaxCount);
 		int GetWindowTextLength();
-		void SetWindowText(LPCWSTR lpszText);
 
 		DWORD GetEventMask();										
 		DWORD SetEventMask(DWORD dwEventMask);						///< 设置需要接收的事件类型 SetEventMask(ENM_OBJECTPOSITIONS | ENM_PROTECTED | ENM_DROPFILES | ENM_CHANGE | ENM_LINK | ENM_SELCHANGE | ENM_DRAGDROPDONE);

@@ -64,14 +64,26 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: 对外接口
+	void DUIRichEdit::SetText(const CStringW& text)
+	{
+		DM_SendMessage(WM_SETTEXT, 0, (LPARAM)(LPCWSTR)text);
+	}
+
+	CStringW DUIRichEdit::GetText() const
+	{
+		DUIRichEdit* thiz = const_cast<DUIRichEdit*>(this);
+		CStringW strRet;
+		int nLen = (int)thiz->DM_SendMessage(WM_GETTEXTLENGTH);
+		if (nLen > 0) {
+			wchar_t* pBuf = strRet.GetBufferSetLength(nLen); // 内部会预留'\0'的空间
+			thiz->DM_SendMessage(WM_GETTEXT, (WPARAM)nLen + 1, (LPARAM)pBuf);
+		}
+		return strRet;
+	}
+
 	CStringW DUIRichEdit::GetWindowText()
 	{
-		CStringW strRet;
-		int nLen = (int)DM_SendMessage(WM_GETTEXTLENGTH);
-		wchar_t *pBuf = strRet.GetBufferSetLength(nLen+1);
-		DM_SendMessage(WM_GETTEXT,(WPARAM)nLen+1,(LPARAM)pBuf);
-		strRet.ReleaseBuffer();
-		return strRet;
+		return GetText();
 	}
 
 	int DUIRichEdit::GetWindowText(LPWSTR lpString,int nMaxCount)
@@ -93,11 +105,6 @@ namespace DM
 	int DUIRichEdit::GetWindowTextLength()
 	{
 		return (int)DM_SendMessage(WM_GETTEXTLENGTH);
-	}
-
-	void DUIRichEdit::SetWindowText(LPCWSTR lpszText)
-	{
-		DM_SendMessage(WM_SETTEXT,0,(LPARAM)lpszText);
 	}
 
 	DWORD DUIRichEdit::GetEventMask()
@@ -151,16 +158,18 @@ namespace DM
 
 	CStringW DUIRichEdit::GetLineText(int nLine /*= -1*/)
 	{
-		CStringW strRet;
-		int nLen = LineLength(nLine)+1;
-		wchar_t *pBuf = strRet.GetBufferSetLength(nLen);
-		*(LPINT)pBuf = nLen;
 		if (-1 == nLine)
-		{
 			nLine = LineFromChar(-1);
+
+		CStringW strRet;
+		int nLen = LineLength(nLine);
+		if (nLen > 0) {
+			wchar_t* pBuf = strRet.GetBuffer(max(nLen, sizeof(INT) - 1));
+			*(LPINT)pBuf = nLen; // windowsx Edit_GetLine, mfc CRichEdit::GetLine
+
+			DM_SendMessage(EM_GETLINE, nLine, (LPARAM)pBuf);
+			strRet.SetLength(nLen);
 		}
-		DM_SendMessage(EM_GETLINE,nLine,(LPARAM)pBuf);
-		strRet.ReleaseBuffer();
 		return strRet;
 	}
 

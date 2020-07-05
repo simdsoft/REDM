@@ -196,8 +196,21 @@ namespace DM
 		virtual DMCode DV_OnStateChanged(DWORD dwOldState,DWORD dwNewState);		    ///< 状态改变时绘制
 
 		/// 文字相关
-		virtual DMCode DV_SetWindowText(LPCWSTR lpszText);							    ///< 设置文本
-		virtual const CStringW& DV_GetWindowText() const;
+#if _HAS_CXX17
+		void SetText(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
+#else
+		void SetText(const char* text, UINT cp = CP_UTF8) { SetText(DMCA2W(text, -1, cp)); }
+#endif
+		virtual void SetText(const CStringW& text);
+
+		CStringA GetTextA(UINT cp = CP_UTF8) { return DM::DMW2A(GetText(), cp); }
+		virtual CStringW GetText() const;
+
+		// [deprecated]
+	    DMCode DV_SetWindowText(LPCWSTR lpszText);							    ///< 设置文本
+	    const CStringW& DV_GetWindowText() const;
+		
+		// Draw文字
 		virtual DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);						///< 绘制文字,在WM_PAINT中触发
 		virtual DMCode DV_DrawMultText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat,int nLineInter);   ///< 示例代码,用于xml中的字符串\R\N解析
 		
