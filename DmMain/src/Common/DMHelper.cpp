@@ -103,54 +103,16 @@ namespace DM
 
 	bool CheckFileExistW(const wchar_t *pszFilePath)
 	{
-		bool bRet = false;
-		do 
-		{
-			if (NULL == pszFilePath
-				|| 0 == wcslen(pszFilePath))
-			{
-				break;
-			}
-
-			FILE *fp = NULL;
-			_wfopen_s(&fp, pszFilePath, L"rb");
-			if (!fp)
-			{
-				break;
-			}
-
-			fclose(fp);
-			bRet = true;
-		} while (FALSE);
-		return bRet;
+		WIN32_FILE_ATTRIBUTE_DATA fattr = { 0 };
+		return GetFileAttributesExW(pszFilePath, GetFileExInfoStandard, &fattr) && 0 == (fattr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
 	}
 
 	DWORD GetFileSizeW(const wchar_t *pszFilePath)
 	{
-		DWORD dwSize = 0;
-		do 
-		{
-			if (NULL == pszFilePath
-				||0 == wcslen(pszFilePath))
-			{
-				break;
-			}
-
-			FILE *fp = NULL;
-			_wfopen_s(&fp, pszFilePath, L"rb");
-			if (!fp)
-			{
-				break;
-			}
-
-			DWORD pos = ftell(fp);
-			fseek(fp, 0, SEEK_END);
-			dwSize    = ftell(fp);
-			fseek(fp, pos, SEEK_SET);
-
-			fclose(fp);
-		} while (FALSE);
-		return dwSize;
+		struct _stat64 st;
+		if (0 == _wstat64(pszFilePath, &st))
+			return st.st_size;
+		return 0;
 	}
 
 	bool GetFileBufW(const wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize)
