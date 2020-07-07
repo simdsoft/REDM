@@ -11,18 +11,18 @@ namespace DM
 			HMODULE hMod = GetModuleHandleW(NULL);
 			if (NULL == hMod)
 			{
-				LOG_ERR("[mid]hMod is NULL\n");
-				break;
+LOG_ERR("[mid]hMod is NULL\n");
+break;
 			}
 
-			wchar_t szPath[MAX_PATH] = {0};
+			wchar_t szPath[MAX_PATH] = { 0 };
 			if (NULL == GetModuleFileNameW(hMod, szPath, MAX_PATH))
 			{
 				LOG_ERR("[mid]GetModuleFileNameW fail\n");
 				break;
 			}
 
-			if (wcslen(szPath)>=dwSize)
+			if (wcslen(szPath) >= dwSize)
 			{
 				LOG_ERR("[mid]dwSize too small\n");
 				break;
@@ -35,10 +35,10 @@ namespace DM
 		return bRet;
 	}
 
-	bool GetRootDirW(wchar_t *pszPath, DWORD dwSize)
+	bool GetRootDirW(wchar_t* pszPath, DWORD dwSize)
 	{
 		bool bRet = false;
-		do 
+		do
 		{
 			HMODULE hMod = GetModuleHandleW(NULL);
 			if (NULL == hMod)
@@ -47,21 +47,21 @@ namespace DM
 				break;
 			}
 
-			wchar_t szPath[MAX_PATH] = {0};
+			wchar_t szPath[MAX_PATH] = { 0 };
 			if (NULL == GetModuleFileNameW(hMod, szPath, MAX_PATH))
 			{
 				LOG_ERR("[mid]GetModuleFileNameW fail\n");
 				break;
 			}
-			wchar_t *p = wcsrchr(szPath,L'\\');
+			wchar_t* p = wcsrchr(szPath, L'\\');
 			if (NULL == p)
 			{
 				LOG_ERR("[mid]wcsrchr fail\n");
 				break;
 			}
-			*(++p)='\0';
+			*(++p) = '\0';
 
-			if (wcslen(szPath)>=dwSize)
+			if (wcslen(szPath) >= dwSize)
 			{
 				LOG_ERR("[mid]dwSize too small\n");
 				break;
@@ -74,16 +74,16 @@ namespace DM
 		return bRet;
 	}
 
-	bool GetRootFullPath(const wchar_t *pszSrcPath, wchar_t *pszDestPath, DWORD dwSize)
+	bool GetRootFullPath(const wchar_t* pszSrcPath, wchar_t* pszDestPath, DWORD dwSize)
 	{
 		bool bRet = false;
-		do 
+		do
 		{
-			if (NULL == pszSrcPath||NULL == pszDestPath ||0 >= dwSize)
+			if (NULL == pszSrcPath || NULL == pszDestPath || 0 >= dwSize)
 			{
 				break;
 			}
-			wchar_t szExeDir[MAX_PATH] = {0};
+			wchar_t szExeDir[MAX_PATH] = { 0 };
 			if (!GetRootDirW(szExeDir, MAX_PATH))
 			{
 				LOG_ERR("[mid]-GetRootDirW fail\n");
@@ -101,17 +101,21 @@ namespace DM
 		return bRet;
 	}
 
-	bool CheckFileExistW(const wchar_t *pszFilePath)
+	bool CheckFileExistW(const wchar_t* pszFilePath)
 	{
 		WIN32_FILE_ATTRIBUTE_DATA fattr = { 0 };
 		return GetFileAttributesExW(pszFilePath, GetFileExInfoStandard, &fattr) && 0 == (fattr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
 	}
 
-	DWORD GetFileSizeW(const wchar_t *pszFilePath)
+	DWORD GetFileSizeW(const wchar_t* pszFilePath)
 	{
-		struct _stat64 st;
-		if (0 == _wstat64(pszFilePath, &st))
-			return st.st_size;
+		WIN32_FILE_ATTRIBUTE_DATA fattr = { 0 };
+		LARGE_INTEGER size;
+		if (GetFileAttributesExW(pszFilePath, GetFileExInfoStandard, &fattr) && 0 == (fattr.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+			size.LowPart = fattr.nFileSizeLow;
+			size.HighPart = fattr.nFileSizeHigh;
+			return size.QuadPart;
+		}
 		return 0;
 	}
 
@@ -127,14 +131,13 @@ namespace DM
 				break;
 			}
 
-			FILE *fp = NULL;
-			_wfopen_s(&fp, pszFilePath, L"rb");
-			if (!fp)
-			{
+			HANDLE fileHandle = ::CreateFileW(pszFilePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, nullptr);
+			if (fileHandle == INVALID_HANDLE_VALUE)
 				break;
-			}
-			dwReadSize = (DWORD)fread(*ppBuf, 1, dwSize, fp);
-			fclose(fp);
+			
+			DWORD bytesRead = 0;
+			dwReadSize = ::ReadFile(fileHandle, *ppBuf, dwSize, &bytesRead, nullptr);
+			CloseHandle(fileHandle);
 
 			bRet = true;
 		} while (FALSE);
