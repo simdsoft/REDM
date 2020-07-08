@@ -33,13 +33,12 @@ namespace DM
 		}
 
 		if(DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hWndParent, bShadow ? NWSDS_DWMSHADOW : NWSDS_NULL))
-		{	
-			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//发送init消息
-
-			// 修改滞后消息，让业务机会在InitDialog调整窗口大小滞后还能居中
+		{
 			GetClientRect(rect);
 			if (!rect.IsRectEmpty())
 				CenterWindow();
+
+			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//发送init消息
 
 			/*
 			解决安装qq五笔导致“退出提醒窗口”无法出现的问题---此问题在yggui中出现
