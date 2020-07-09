@@ -3,7 +3,7 @@
 
 AttrBase::AttrBase()
 {
-	m_pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>(L"ds_objtree");DMASSERT(m_pObjTree); 
+	m_pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>("ds_objtree");DMASSERT(m_pObjTree); 
 	m_pObjXml  = g_pMainWnd->m_pDesignerXml;
 	m_hObjSel  = NULL;
 	m_bMuted   = false;

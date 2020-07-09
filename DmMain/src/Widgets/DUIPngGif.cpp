@@ -14,7 +14,7 @@ namespace DM
 	}
 
 	// 把序列帧解析，填入
-	DMCode DUIPngGif::OnAttrPngGif(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIPngGif::OnAttrPngGif(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -79,7 +79,7 @@ namespace DM
 	}
 
 	// 填充动画间隔时间
-	DMCode DUIPngGif::OnAttrElapse(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIPngGif::OnAttrElapse(LPCSTR lpszValue, bool bLoadXml)
 	{
 		int temp = 0;
 		dm_parseint(lpszValue,temp);

@@ -22,11 +22,11 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT DMHDialog:public DMHWnd
 	{
-		DMDECLARE_CLASS_NAME(DMHDialog,L"hdialog",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DMHDialog,"hdialog",DMREG_Window);
 	public:
 		DMHDialog();
 
-		virtual INT_PTR DoModal(LPCWSTR lpszXmlId, HWND hParent=NULL, bool bShadow=false,DM::CRect rect=DM::CRect(0,0,0,0));
+		virtual INT_PTR DoModal(LPCSTR lpszXmlId, HWND hParent=NULL, bool bShadow=false,DM::CRect rect=DM::CRect(0,0,0,0));
 		void EndDialog(INT_PTR nResult);
 
 	protected:

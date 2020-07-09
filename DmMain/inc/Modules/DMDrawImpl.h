@@ -25,7 +25,7 @@ namespace DM
 	/// </summary>
 	class DMDrawImpl:public IDMDraw
 	{
-		DMDECLARE_CLASS_NAME(DMDrawImpl,L"DMDrawImpl",DMREG_Draw);
+		DMDECLARE_CLASS_NAME(DMDrawImpl,"DMDrawImpl",DMREG_Draw);
 	public:
 		DMDrawImpl();
 

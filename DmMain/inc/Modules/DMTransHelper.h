@@ -13,12 +13,12 @@
 
 namespace DM
 {
-#define  DMLAG_ROOT                         L"dmlg"
-#define  DMLAG_NAME                         L"name"
-#define  DMLAG_NODE                         L"node"
-#define  DMLAG_ITEM                         L"item"
-#define  DMLAG_SRC                          L"src"
-#define  DMLAG_TRANS                        L"trans"
+#define  DMLAG_ROOT                         "dmlg"
+#define  DMLAG_NAME                         "name"
+#define  DMLAG_NODE                         "node"
+#define  DMLAG_ITEM                         "item"
+#define  DMLAG_SRC                          "src"
+#define  DMLAG_TRANS                        "trans"
 
 
 	/// <summary>

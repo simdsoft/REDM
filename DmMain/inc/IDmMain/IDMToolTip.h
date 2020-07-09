@@ -39,7 +39,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT IDMToolTip:public DMBase,public IDMMessageFilter
 	{
-		DMDECLARE_CLASS_NAME(IDMToolTip,L"IDMToolTip",DMREG_ToolTip);
+		DMDECLARE_CLASS_NAME(IDMToolTip,"IDMToolTip",DMREG_ToolTip);
 	public:
 		virtual DMCode Update(PDMToolTipInfo pInfo) = 0;					///< 更新并启用显示定时器
 		virtual DMCode Hide() = 0;											///< 直接隐藏

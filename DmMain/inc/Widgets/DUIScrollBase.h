@@ -22,15 +22,15 @@ namespace DMAttr
 	class DUIScrollBaseAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* SKIN_sbskin;								    ///< 滚动条图片,示例:sbskin="ScrollBar"
-		static wchar_t* INT_sbwidth;									///< 滚动条的宽度，默认为-1(滚动条图片宽/9),示例:sbwidth="16"
-		static wchar_t* INT_arrowwidth;                                 ///< 上下（左右）箭头的高度(宽度),示例:arrowwidth="10"
-		static wchar_t* INT_minithumblen;								///< 最小滚轮高度, 默认18, 示例:minithumblen="18"
-		static wchar_t* OPTION_sbenable;							    ///< 是否启用滚动条,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT,示例:sbenable="1"
-		static wchar_t* SIZE_range;                                     ///< 滚动范围,示例:range="1,100"
-		static wchar_t* POINT_curpos;                                   ///< 当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos="10,20"
-		static wchar_t* bool_bnowheelscroll;                            ///< 禁用滚轮滚动，示例:bnowheelscroll="1"
-		static wchar_t* bool_bpagesplit;                                ///< 默认为true,此时区分SB_PAGEUP+SB_PAGEDOWN(上下滑槽区域),为false表示(滑槽区域=上滑槽+滚动块+下滑槽),示例:bpagesplit="1"
+		static char* SKIN_sbskin;								    ///< 滚动条图片,示例:sbskin="ScrollBar"
+		static char* INT_sbwidth;									///< 滚动条的宽度，默认为-1(滚动条图片宽/9),示例:sbwidth="16"
+		static char* INT_arrowwidth;                                 ///< 上下（左右）箭头的高度(宽度),示例:arrowwidth="10"
+		static char* INT_minithumblen;								///< 最小滚轮高度, 默认18, 示例:minithumblen="18"
+		static char* OPTION_sbenable;							    ///< 是否启用滚动条,对应宏DMSB_NULL、DMSB_HORZ、DMSB_VERT,示例:sbenable="1"
+		static char* SIZE_range;                                     ///< 滚动范围,示例:range="1,100"
+		static char* POINT_curpos;                                   ///< 当前滚动位置,x指向水平scroll的nPos,y指向竖直scroll的nPos,示例:curpos="10,20"
+		static char* bool_bnowheelscroll;                            ///< 禁用滚轮滚动，示例:bnowheelscroll="1"
+		static char* bool_bpagesplit;                                ///< 默认为true,此时区分SB_PAGEUP+SB_PAGEDOWN(上下滑槽区域),为false表示(滑槽区域=上滑槽+滚动块+下滑槽),示例:bpagesplit="1"
 	};
 	DMAttrValueInit(DUIScrollBaseAttr,SKIN_sbskin)DMAttrValueInit(DUIScrollBaseAttr,INT_sbwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_arrowwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_minithumblen)
 	DMAttrValueInit(DUIScrollBaseAttr,OPTION_sbenable)DMAttrValueInit(DUIScrollBaseAttr,SIZE_range)
@@ -143,11 +143,11 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIScrollBaseAttr::POINT_curpos,OnAttributePos)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributesbSkin(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributesbWidth(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributesbEnable(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributePos(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributesbSkin(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributesbWidth(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributesbEnable(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeRange(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributePos(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
 		bool                        m_bnowheelscroll;   ///< 禁止通过滚轮滚动

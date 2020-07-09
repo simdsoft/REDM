@@ -947,7 +947,7 @@ namespace DM
 		return rcSlider;
 	}
 
-	DMCode DUISplitLayout::OnAttributeFirstChildWidth(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUISplitLayout::OnAttributeFirstChildWidth(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -971,25 +971,25 @@ namespace DM
 	}
 
 
-	DMCode DUISplitLayout::OnAttributeFirstChildPercent(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUISplitLayout::OnAttributeFirstChildPercent(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strValue = lpszValue;
+			CStringA strValue = lpszValue;
 			if (strValue.IsEmpty())
 			{
 				break;
 			}
 
-			if (0 == strValue.CompareNoCase(L"-1"))
+			if (0 == strValue.CompareNoCase("-1"))
 			{
 				m_iFirstChildPercent = -1;
 				iErr = DM_ECODE_OK;
 				break;
 			}
 
-			if (strValue[0] != L'%')
+			if (strValue[0] != '%')
 			{
 				break;
 			}

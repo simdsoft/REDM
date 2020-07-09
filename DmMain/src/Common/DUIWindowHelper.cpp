@@ -47,7 +47,7 @@ namespace DM
 		DMASSERT(NULL!=m_pStyle);
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributeVisible(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIWindow_XmlInfo::OnAttributeVisible(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -67,7 +67,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributeDisable(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIWindow_XmlInfo::OnAttributeDisable(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -94,7 +94,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributePlaceHolder(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIWindow_XmlInfo::OnAttributePlaceHolder(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -113,7 +113,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributeCache(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIWindow_XmlInfo::OnAttributeCache(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -138,7 +138,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
+	DMCode DUIWindow_XmlInfo::OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr)
 	{	
 		if (m_pOwner)
 		{
@@ -147,7 +147,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow_XmlInfo::OnAttributeStyle(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIWindow_XmlInfo::OnAttributeStyle(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

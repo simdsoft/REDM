@@ -19,17 +19,17 @@ namespace DMAttr
 	class PropGridAttr 
 	{
 	public:
-		static wchar_t* ITEM_name;													 ///< 项的名字,示例:name="name0"
-		static wchar_t* ITEM_value;													 ///< 项的名字,示例:value="value0"
-		static wchar_t* ITEM_desc;													 ///< 项的描述,示例:desc="cccc"
-		static wchar_t* ITEM_bgroup;                                                 ///< 是否为group，group是没有值可编辑的,示例:bgroup="1"
+		static char* ITEM_name;													 ///< 项的名字,示例:name="name0"
+		static char* ITEM_value;													 ///< 项的名字,示例:value="value0"
+		static char* ITEM_desc;													 ///< 项的描述,示例:desc="cccc"
+		static char* ITEM_bgroup;                                                 ///< 是否为group，group是没有值可编辑的,示例:bgroup="1"
 	};
 	DMAttrValueInit(PropGridAttr,ITEM_name)DMAttrValueInit(PropGridAttr,ITEM_value)DMAttrValueInit(PropGridAttr,ITEM_desc)
 	DMAttrValueInit(PropGridAttr,ITEM_bgroup)
 	class PropOptionAttr
 	{
 	public:
-		static wchar_t* ITME_options;                                                 ///< 下拉选择项的类型，示例:option="1|2|3"
+		static char* ITME_options;                                                 ///< 下拉选择项的类型，示例:option="1|2|3"
 	};
 	DMAttrValueInit(PropOptionAttr,ITME_options)
 }
@@ -42,7 +42,7 @@ namespace DM
 	/// </summary>
 	class PropGrid : public IProp
 	{
-		DMDECLARE_CLASS_NAME(PropGrid,L"propgrid",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropGrid,"propgrid",DMREG_Unknown);
 	public:
 		PropGrid();
 		~PropGrid();
@@ -72,8 +72,8 @@ namespace DM
 		void SetData(LPARAM lpData);
 		IProp* FindSubItemByData(LPARAM lpData);
 		void UpdateSubXml(DMXmlNode &XmlNode);
-		CStringW GetName();
-		CStringW GetValue();
+		CStringA GetName();
+		CStringA GetValue();
 
 		DMCode InitDMData(DMXmlNode &XmlNode);	
 
@@ -97,9 +97,9 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_STRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_name, m_strName, DM_ECODE_OK)
-			DM_STRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_value, m_strValue, DM_ECODE_OK)
-			DM_STRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_desc, m_strDescr, DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_name, m_strName, DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_value, m_strValue, DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_desc, m_strDescr, DM_ECODE_OK)
 			DM_bool_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_bgroup, m_bGroup, DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 
@@ -133,7 +133,7 @@ namespace DM
 	/// </summary>
 	class PropString : public PropGrid
 	{
-		DMDECLARE_CLASS_NAME(PropString,L"propstring",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropString,"propstring",DMREG_Unknown);
 	public:
 		virtual DMCode OnDrawName(IDMCanvas* pCanvas, CRect rcName);
 		virtual DMCode OnDrawValue(IDMCanvas* pCanvas, CRect rcValue);
@@ -147,7 +147,7 @@ namespace DM
 	/// </summary>
 	class PropInt : public  PropString
 	{
-		DMDECLARE_CLASS_NAME(PropInt,L"propint",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropInt,"propint",DMREG_Unknown);
 	public:
 		virtual DMCode OnCreateInPlaceCtrl();
 	};
@@ -157,7 +157,7 @@ namespace DM
 	/// </summary>
 	class PropByte : public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropByte,L"propbyte",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropByte,"propbyte",DMREG_Unknown);
 	public:
 		virtual DMCode OnCreateInPlaceCtrl();
 		DMCode OnEditChange(DMEventArgs* pEvt);
@@ -168,7 +168,7 @@ namespace DM
 	/// </summary>
 	class PropOption :public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropGrid,L"propoption",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropGrid,"propoption",DMREG_Unknown);
 	public:
 		PropOption();
 		virtual DMCode OnDrawValue(IDMCanvas* pCanvas, CRect rcValue);
@@ -179,7 +179,7 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_STRING_ATTRIBUTE(DMAttr::PropOptionAttr::ITME_options,m_strOptions,DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::PropOptionAttr::ITME_options,m_strOptions,DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 		CStringW                                    m_strOptions;		///< Comboxbox的选择项
 		DUIComboBox*                                m_pValueCbx;		///< 属性中出现的Comboxbox下拉框
@@ -190,7 +190,7 @@ namespace DM
 	/// </summary>
 	class PropClr :public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropClr,L"propclr",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropClr,"propclr",DMREG_Unknown);
 	public:
 		PropClr();
 		virtual DMCode Reposition(int& y);
@@ -221,7 +221,7 @@ namespace DM
 	/// </summary>
 	class PropRect : public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropRect,L"proprect",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropRect,"proprect",DMREG_Unknown);
 	public:
 		PropRect();
 		virtual DMCode Reposition(int& y);
@@ -246,7 +246,7 @@ namespace DM
 	/// </summary>
 	class PropSize : public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropRect,L"propsize",DMREG_Unknown)
+		DMDECLARE_CLASS_NAME(PropRect,"propsize",DMREG_Unknown)
 	public:
 		PropSize();
 		virtual DMCode Reposition(int& y);
@@ -271,7 +271,7 @@ namespace DM
 	/// </summary>
 	class PropFont : public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropFont,L"propfont",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropFont,"propfont",DMREG_Unknown);
 	public:
 		PropFont();
 		virtual DMCode Reposition(int& y);
@@ -299,7 +299,7 @@ namespace DM
 	/// </summary>
 	class PropAccel : public PropString
 	{
-		DMDECLARE_CLASS_NAME(PropAccel,L"propaccel",DMREG_Unknown);
+		DMDECLARE_CLASS_NAME(PropAccel,"propaccel",DMREG_Unknown);
 	public:
 		PropAccel();
 		virtual DMCode Reposition(int& y);

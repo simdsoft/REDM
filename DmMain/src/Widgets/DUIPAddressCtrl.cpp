@@ -246,12 +246,12 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strAttr;
+			CStringA strAttr;
 			int iLeft = 0;
 			for (int i=0;i<4;i++)
 			{
-				strAttr.Format(L"%d,0,@%d,-0",iLeft,iEditWid);
-				m_pEdit[i]->SetAttribute(L"pos",strAttr,false);
+				strAttr.Format("%d,0,@%d,-0",iLeft,iEditWid);
+				m_pEdit[i]->SetAttribute("pos",strAttr,false);
 				iLeft += iEditWid;
 				iLeft += EDIT_DELTA;
 			}
@@ -268,11 +268,11 @@ namespace DM
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
-		CStringW strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
-		CStringW strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
-		CStringW strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
-		CStringW strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
-		CStringW strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
+		CStringA strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
+		CStringA strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
+		CStringA strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
+		CStringA strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
+		CStringA strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
 		for (int i=0;i<4;i++)
 		{
 			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], DUINAME_IPEdit,DMREG_Window);
@@ -308,7 +308,7 @@ namespace DM
 	}
 
 	//
-	DMCode DUIPAddressCtrl::OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrTextColor(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -320,7 +320,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -332,7 +332,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrTextFont(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrTextFont(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -344,7 +344,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -357,7 +357,7 @@ namespace DM
 	}
 
 
-	DMCode DUIPAddressCtrl::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrAlign(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{

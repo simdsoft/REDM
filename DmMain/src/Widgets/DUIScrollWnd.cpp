@@ -43,7 +43,7 @@ namespace DM
 			DUIWindow *pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (0 != _wcsicmp(pChild->V_GetClassName(),DUINAME_RectTracker))
+				if (0 != dm_xmlstrcmp(pChild->V_GetClassName(),DUINAME_RectTracker))
 				{// ¹ýÂËÏðÆ¤Ìõ¿Ø¼þ
 					CRect rcChild;
 					pChild->DV_GetWindowRect(rcChild);

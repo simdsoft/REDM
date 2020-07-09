@@ -24,7 +24,7 @@ namespace DM
 	/// </remarks>
 	class IDMStyle:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMStyle,L"IDMStyle",DMREG_Style);
+		DMDECLARE_CLASS_NAME(IDMStyle,"IDMStyle",DMREG_Style);
 	public:
 		/// -------------------------------------------------
 		/// @brief			取得每个实例化Style对象的唯一ID    

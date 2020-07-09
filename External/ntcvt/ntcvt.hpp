@@ -90,6 +90,32 @@ inline _StringContType mcbs2w(const char* mcb, int len, UINT cp = code_page_acp)
   return buffer;
 }
 
+inline int mcbs2w(const char* mcb, int len, wchar_t* wbuf, int wbuf_len, UINT cp = code_page_acp)
+{
+    if (len == -1)
+        len = lstrlenA(mcb);
+    int cch;
+    if (len > 0 && (cch = ::MultiByteToWideChar(cp, 0, mcb, len, NULL, 0)) > 0)
+        return ::MultiByteToWideChar(cp, 0, mcb, len, wbuf, wbuf_len);
+
+    return 0;
+}
+
+inline wchar_t* mcbs2wdup(const char* mcb, int len, int* wbuf_len, UINT cp = code_page_acp)
+{
+    if (len == -1)
+        len = lstrlenA(mcb);
+    int cch;
+    if (len > 0 && (cch = ::MultiByteToWideChar(cp, 0, mcb, len, NULL, 0)) > 0) {
+        wchar_t* wbuf = (wchar_t*)calloc(cch + 1, 2);
+        *wbuf_len = ::MultiByteToWideChar(cp, 0, mcb, len, wbuf, cch);
+        return wbuf;
+    }
+
+    return (wchar_t*)calloc(1, 2);
+}
+
+
 #if _HAS_CXX17
 inline std::string from_chars(const std::wstring_view& wcb, UINT cp = code_page_acp)
 {

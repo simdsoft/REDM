@@ -28,7 +28,7 @@ namespace DM
 		m_crTextGray   = GetSysColor(COLOR_GRAYTEXT)|0xff000000;
 	}
 
-	DMCode DUIMenu_XmlInfo::OnAttrMaxWidth(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIMenu_XmlInfo::OnAttrMaxWidth(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMAttributeDispatch::ParseInt(pszValue,m_MaxWidth);
 		if (m_MaxWidth>0)

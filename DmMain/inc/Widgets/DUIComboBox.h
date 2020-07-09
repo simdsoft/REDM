@@ -23,8 +23,8 @@ namespace DMAttr
 	class DUIComboBoxAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static wchar_t* STRING_clslistbox;                                            ///< 指定listbox创建使用的类名,即允许你自定义listbox，默认使用内置
-		static wchar_t* ITEM_sublistbox;                                              ///< 子控件listbox的XML标识
+		static char* STRING_clslistbox;                                            ///< 指定listbox创建使用的类名,即允许你自定义listbox，默认使用内置
+		static char* ITEM_sublistbox;                                              ///< 子控件listbox的XML标识
 	};
 	DMAttrValueInit(DUIComboBoxAttr,STRING_clslistbox)DMAttrValueInit(DUIComboBoxAttr,ITEM_sublistbox)
 }
@@ -80,7 +80,7 @@ namespace DM
 		DM_END_ATTRIBUTES()
 	public:
 		DMSmartPtrT<DUIListBox>					m_pListBox; 
-		CStringW                                m_strClsListBox;
+		CStringA                                m_strClsListBox;
 	};
 	
 

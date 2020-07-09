@@ -19,7 +19,7 @@ namespace DM
 	/// </summary>
 	class DMTransImpl : public IDMTrans,public DMArrayT<DMLanguageItemPtr>
 	{
-		DMDECLARE_CLASS_NAME(DMTransImpl,L"DMTransImpl",DMREG_Trans);
+		DMDECLARE_CLASS_NAME(DMTransImpl,"DMTransImpl",DMREG_Trans);
 	public:
 		DMTransImpl();
 		~DMTransImpl();

@@ -32,13 +32,13 @@ namespace DM
         DUIAccel(UINT vKey=0,bool bCtrl=false,bool bAlt=false,bool bShift=false);///< UINT vKey与Ctrl组合、与Alt组合、与Shilft组合
         ~DUIAccel(void);
 
-        CStringW GetKeyName(WORD vk);					    ///< 将键盘值转换为对应的字符串
-        CStringW FormatHotkey();						    ///< 获得当前加速键的字符串形式
+        CStringA GetKeyName(WORD vk);					    ///< 将键盘值转换为对应的字符串
+        CStringA FormatHotkey();						    ///< 获得当前加速键的字符串形式
 
         WORD GetModifier() const {return m_wModifier;}	    ///< 获得加速键的修饰位
         WORD GetKey() const {return m_wVK;}				    ///< 获得加速键的主键
 	
-        static DWORD TranslateAccelKey(LPCWSTR lpszAccelKey);	///< 解析与字符串对应的加速键值
+        static DWORD TranslateAccelKey(LPCSTR lpszAccelKey);	///< 解析与字符串对应的加速键值
 
     protected:
         WORD					 m_wModifier;

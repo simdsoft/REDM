@@ -33,7 +33,7 @@ namespace DM
 	/// </remarks>
 	class IDMLog:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMLog,L"IDMLog",DMREG_Log);
+		DMDECLARE_CLASS_NAME(IDMLog,"IDMLog",DMREG_Log);
 	public:
 		/// @brief 打印LOG接口
 		/// @param[in]		 iLevel			LOG类型<see cref="DMLOGLEVEL"/>

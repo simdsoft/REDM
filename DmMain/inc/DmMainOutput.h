@@ -47,6 +47,13 @@ __pragma(warning(disable: 4275))
 #pragma comment(lib, "shlwapi.lib")// 此文件比较小，基本不影响编译大小
 #pragma comment(lib,"msimg32.lib")
 
+#define dm_stricmp _stricmp
+#define dm_strnicmp _strnicmp
+#define dm_xmlstrcmp _stricmp
+#define dm_xmlstrncmp _strnicmp
+#define DM_XNTEXT(s) s
+#define dm_isnilstr(s) (!s || !*s)
+
 // 1 宏定义
 #include "DMDef.h"
 #include "DMError.h"

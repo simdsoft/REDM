@@ -255,20 +255,20 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strAttr;
+			CStringA strAttr;
 			int iLeft = 0;
 			for (int i=0;i<4;i++)
 			{
-				strAttr.Format(L"%d,0,@%d,-0",iLeft,iEditWid);
+				strAttr.Format("%d,0,@%d,-0",iLeft,iEditWid);
 				m_pEdit[i]->SetAttribute(XML_POS,strAttr,false);
 
-				strAttr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_clrText.b,m_clrText.g,m_clrText.r,m_clrText.a);
+				strAttr.Format("pbgra(%02x,%02x,%02x,%02x)",m_clrText.b,m_clrText.g,m_clrText.r,m_clrText.a);
 				m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,strAttr,false);
 
-				strAttr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_clrCaret.b,m_clrCaret.g,m_clrCaret.r,m_clrCaret.a);
+				strAttr.Format("pbgra(%02x,%02x,%02x,%02x)",m_clrCaret.b,m_clrCaret.g,m_clrCaret.r,m_clrCaret.a);
 				m_pEdit[i]->OnAttrCuretClr(strAttr,false);
 
-				strAttr.Format(L"%d",m_iCaretAniCount);
+				strAttr.Format("%d",m_iCaretAniCount);
 				m_pEdit[i]->OnAttrCuretAnimateCount(strAttr,false);
 	
 				iLeft += iEditWid;
@@ -282,14 +282,13 @@ namespace DM
 	DMCode DUIRect::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringW strWXml = L"<edit textalign=\"center\" bautosel=\"1\"/>";
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
+		CStringA strXml = "<edit textalign=\"center\" bautosel=\"1\"/>";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
 		for (int i=0;i<4;i++)
 		{
-			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], L"dsedit",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], "dsedit",DMREG_Window);
 			if (m_pEdit[i])
 			{
 				DM_InsertChild(m_pEdit[i]);
@@ -301,7 +300,7 @@ namespace DM
 	}
 
 	//
-	DMCode DUIRect::OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRect::OnAttrTextColor(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
@@ -317,7 +316,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRect::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRect::OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
@@ -333,7 +332,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRect::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRect::OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{

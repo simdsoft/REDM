@@ -33,7 +33,7 @@ namespace DM
 		virtual DUIMenuItem* NewMenuItem();
 
 	public:
-		bool LoadMenu(LPCWSTR lpszType,LPCWSTR lpszResName);								   ///< 通过指定xml资源加载
+		bool LoadMenu(LPCSTR lpszType,LPCSTR lpszResName);								   ///< 通过指定xml资源加载
 		bool LoadMenu(DMXmlNode &XmlNode);													   ///< 通过xml直接加载
 
 	public:

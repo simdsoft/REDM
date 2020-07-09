@@ -43,7 +43,7 @@ namespace DM
 		m_L             = 100;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeMinSize(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeMinSize(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -85,7 +85,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeMaxSize(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeMaxSize(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -127,7 +127,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeResize(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeResize(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -151,7 +151,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeTranslucent(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeTranslucent(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -202,7 +202,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeAlpha(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeAlpha(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -237,7 +237,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeH(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeH(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -259,7 +259,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeS(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeS(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -281,7 +281,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeL(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeL(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -303,7 +303,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMHWnd_XmlInfo::OnAttributeRegDraw(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMHWnd_XmlInfo::OnAttributeRegDraw(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -311,14 +311,14 @@ namespace DM
 			DMSmartPtrT<IDMDraw> pDraw;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pDraw,lpszValue,DMREG_Draw)))
 			{
-				CStringW szInfo = lpszValue;
-				szInfo += L"×¢²ádrawÊ§°Ü";
+				CStringA szInfo = lpszValue;
+				szInfo += "×¢²ádrawÊ§°Ü";
 				DMASSERT_EXPR(0,szInfo);
 				break;
 			}
 
 			m_pOwner->m_pDraw.reset(pDraw.get());
-			m_strRegDraw = lpszValue;
+			m_strRegDraw = DMCA2W(lpszValue, -1, CP_UTF8);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;

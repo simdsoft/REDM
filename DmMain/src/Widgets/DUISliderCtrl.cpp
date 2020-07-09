@@ -405,7 +405,7 @@ namespace DM
 	}
 
 	///
-	DMCode DUISliderCtrl::OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUISliderCtrl::OnAttributeRange(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -435,7 +435,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUISliderCtrl::OnAttributeValue(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUISliderCtrl::OnAttributeValue(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

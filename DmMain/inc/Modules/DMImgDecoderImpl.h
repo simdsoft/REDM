@@ -37,7 +37,7 @@ namespace DM
 	class DMImgDecoderImpl:public IDMImgDecoder
 						   ,public DMArrayT<DMImgFrameImplPtr>
 	{
-		DMDECLARE_CLASS_NAME(DMImgDecoderImpl,L"DMImgDecoderImpl",DMREG_ImgDecoder);
+		DMDECLARE_CLASS_NAME(DMImgDecoderImpl,"DMImgDecoderImpl",DMREG_ImgDecoder);
 	public:
 		DMImgDecoderImpl();
 		virtual~DMImgDecoderImpl();

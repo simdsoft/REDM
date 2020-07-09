@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "ImgDlg.h"
 
 BEGIN_MSG_MAP(ImgDlg)   
@@ -8,15 +8,15 @@ BEGIN_MSG_MAP(ImgDlg)
 	CHAIN_MSG_MAP(DMHDialog)
 END_MSG_MAP() 
 BEGIN_EVENT_MAP(ImgDlg)
-	EVENT_NAME_HANDLER(L"ds_img_bmult",DMEVT_CHECKCHANGING,OnCheckChange)
-	EVENT_NAME_HANDLER(L"ds_img_bvert",DMEVT_CHECKCHANGING,OnCheckChange)
-	EVENT_NAME_HANDLER(L"ds_img_name",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_img_dir",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_img_filename",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_img_fileafx",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_COMMAND(L"ds_img_save",OnSaveBtn)
-	EVENT_NAME_COMMAND(L"ds_img_clean",OnClearBtn)
-	EVENT_NAME_COMMAND(L"ds_img_opendir",OnOpenDir)
+	EVENT_NAME_HANDLER("ds_img_bmult",DMEVT_CHECKCHANGING,OnCheckChange)
+	EVENT_NAME_HANDLER("ds_img_bvert",DMEVT_CHECKCHANGING,OnCheckChange)
+	EVENT_NAME_HANDLER("ds_img_name",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_img_dir",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_img_filename",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_img_fileafx",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_COMMAND("ds_img_save",OnSaveBtn)
+	EVENT_NAME_COMMAND("ds_img_clean",OnClearBtn)
+	EVENT_NAME_COMMAND("ds_img_opendir",OnOpenDir)
 END_EVENT_MAP()
 ImgDlg*  ImgDlg::ms_pthis = NULL;
 ImgDlg::ImgDlg(bool bEditMode)
@@ -34,31 +34,31 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	DragAcceptFiles(TRUE);
 
-	//1.∏¸–¬±ÍÃ‚
-	m_pTitle = FindChildByNameT<DUIStatic>(L"ds_title");
-	m_strTitle = m_bEditMode?L"[±‡º≠IMG]":L"[–¬º”IMG]";
+	//1.Êõ¥Êñ∞Ê†áÈ¢ò
+	m_pTitle = FindChildByNameT<DUIStatic>("ds_title");
+	m_strTitle = m_bEditMode?L"[ÁºñËæëIMG]":L"[Êñ∞Âä†IMG]";
 	m_pTitle->DV_SetWindowText(m_strTitle);
 
-	// 2.≥ı ºªØøÿº˛±‰¡ø
-	m_pImgPath = FindChildByNameT<DUIStatic>(L"ds_img_path");
+	// 2.ÂàùÂßãÂåñÊéß‰ª∂ÂèòÈáè
+	m_pImgPath = FindChildByNameT<DUIStatic>("ds_img_path");
 	ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
-	m_pImgEditor = FindChildByNameT<DUImgEditor>(L"ds_img_editor");DMASSERT(m_pImgEditor);
-	m_pbMultImg  = FindChildByNameT<DUICheckBox>(L"ds_img_bmult");DMASSERT(m_pbMultImg);
-	m_pbVert     = FindChildByNameT<DUICheckBox>(L"ds_img_bvert");DMASSERT(m_pbVert);
-	m_pSave      = FindChildByNameT<DUIButton>(L"ds_img_save");DMASSERT(m_pSave);
-	m_pClean     = FindChildByNameT<DUIButton>(L"ds_img_clean");DMASSERT(m_pClean);
-	m_pImgName	 = FindChildByNameT<DUIEdit>(L"ds_img_name");DMASSERT(m_pImgName);
-	m_pImgDir	 = FindChildByNameT<DUIEdit>(L"ds_img_dir");DMASSERT(m_pImgDir);
-	m_pImgFileName = FindChildByNameT<DUIEdit>(L"ds_img_filename");DMASSERT(m_pImgFileName);
-	m_pImgFileAfx  = FindChildByNameT<DUIEdit>(L"ds_img_fileafx");DMASSERT(m_pImgFileAfx);
-	m_pXml = FindChildByNameT<DUIRichEdit>(L"ds_img_xml");DMASSERT(m_pXml);
+	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
+	m_pImgEditor = FindChildByNameT<DUImgEditor>("ds_img_editor");DMASSERT(m_pImgEditor);
+	m_pbMultImg  = FindChildByNameT<DUICheckBox>("ds_img_bmult");DMASSERT(m_pbMultImg);
+	m_pbVert     = FindChildByNameT<DUICheckBox>("ds_img_bvert");DMASSERT(m_pbVert);
+	m_pSave      = FindChildByNameT<DUIButton>("ds_img_save");DMASSERT(m_pSave);
+	m_pClean     = FindChildByNameT<DUIButton>("ds_img_clean");DMASSERT(m_pClean);
+	m_pImgName	 = FindChildByNameT<DUIEdit>("ds_img_name");DMASSERT(m_pImgName);
+	m_pImgDir	 = FindChildByNameT<DUIEdit>("ds_img_dir");DMASSERT(m_pImgDir);
+	m_pImgFileName = FindChildByNameT<DUIEdit>("ds_img_filename");DMASSERT(m_pImgFileName);
+	m_pImgFileAfx  = FindChildByNameT<DUIEdit>("ds_img_fileafx");DMASSERT(m_pImgFileAfx);
+	m_pXml = FindChildByNameT<DUIRichEdit>("ds_img_xml");DMASSERT(m_pXml);
 	m_pImgName->SetEventMask(ENM_CHANGE|m_pImgName->GetEventMask());
 	m_pImgDir->SetEventMask(ENM_CHANGE|m_pImgDir->GetEventMask());
 	m_pImgFileName->SetEventMask(ENM_CHANGE|m_pImgFileName->GetEventMask());
 	m_pImgFileAfx->SetEventMask(ENM_CHANGE|m_pImgFileAfx->GetEventMask());
 
-	// 3.µ√µΩ÷˜Ã‚∞¸µƒnode
+	// 3.ÂæóÂà∞‰∏ªÈ¢òÂåÖÁöÑnode
 	HDMTREEITEM hTheme = NULL;
 	if (m_bEditMode)
 	{
@@ -71,12 +71,12 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	}
 
 	DMXmlNodePtr pThemeNode = (DMXmlNodePtr)pProjTree->GetItemData(hTheme);
-	m_strDirName = pThemeNode->Attribute(XML_PATH);
+	m_strDirName = DMA2W(pThemeNode->Attribute(XML_PATH));
 	m_strDirName = m_strDirName.Left(m_strDirName.ReverseFind(L'\\')+1);
 	m_strDir = pXml->m_strResDir + m_strDirName;
 	m_pImgPath->DV_SetWindowText(m_strDirName);
 
-	//3.∏¸–¬imgΩ·µ„
+	//3.Êõ¥Êñ∞imgÁªìÁÇπ
 	DMXmlNode XmlBase = m_ImgDoc.Base();
 	m_ImgNode = XmlBase.InsertChildNode(XML_FILE);
 
@@ -86,33 +86,33 @@ BOOL ImgDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		if (pNode)
 		{
 			// title
-			m_pImgName->SetWindowText(pNode->Attribute(XML_NAME));
-			CStringW strPath = pXml->m_strResDir + pNode->Attribute(XML_PATH);
+			m_pImgName->SetTextA(pNode->Attribute(XML_NAME));
+			CStringW strPath = pXml->m_strResDir + DMA2W(pNode->Attribute(XML_PATH));
 			m_pTitle->DV_SetWindowText(m_strTitle+strPath);
 
-			// ‘ˆº”Õº∆¨
+			// Â¢ûÂä†ÂõæÁâá
 			m_pImgEditor->AddImg(strPath);
 
-			// Õº∆¨√˚+∫Û◊∫
+			// ÂõæÁâáÂêç+ÂêéÁºÄ
 			CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
 			CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
 			strFileName = strFileName.Right(strFileName.GetLength()-1-strFileName.ReverseFind(L'\\'));
-			m_pImgFileAfx->SetAttribute(L"text",strFileAfx);m_pImgFileAfx->DM_EnableWindow(false);
-			m_pImgFileName->SetAttribute(L"text",strFileName);m_pImgFileName->DM_EnableWindow(false);
+			m_pImgFileAfx->SetAttribute("text",DMW2A(strFileAfx));m_pImgFileAfx->DM_EnableWindow(false);
+			m_pImgFileName->SetAttribute("text",DMW2A(strFileName));m_pImgFileName->DM_EnableWindow(false);
 			m_pbMultImg->DM_SetVisible(false,true);
 
-			// …Ë÷√ƒø¬º
+			// ËÆæÁΩÆÁõÆÂΩï
 			strPath = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
 			strPath = strPath.Left(strPath.ReverseFind(L'\\')+1);
 			m_pImgDir->SetWindowText(strPath);
-			DUIButton* pOpenDir = FindChildByNameT<DUIButton>(L"ds_img_opendir");
+			DUIButton* pOpenDir = FindChildByNameT<DUIButton>("ds_img_opendir");
 			if (pOpenDir)
 			{
 				pOpenDir->DM_SetVisible(false,true);
 			}
 
-			// img¬∑æ∂
-			m_pImgPath->SetAttribute(L"text",pNode->Attribute(XML_PATH));
+			// imgË∑ØÂæÑ
+			m_pImgPath->SetAttribute("text",pNode->Attribute(XML_PATH));
 		}
 	}
 	UpdateXml();
@@ -156,12 +156,12 @@ void ImgDlg::OnDropFiles(HDROP hDropInfo)
 		DragQueryFile(hDropInfo, 0, szPath,MAX_PATH);
 		if (IsDirectoryExist(szPath))
 		{
-			DM_MessageBox(L"≤ª÷ß≥÷Œƒº˛º–",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"‰∏çÊîØÊåÅÊñá‰ª∂Â§π",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
    
-		// ∏¸–¬µΩ”“±ﬂµƒœ‘ æ«¯
-		if (!m_pbMultImg->DM_IsChecked())// µ•Õºƒ£ Ω
+		// Êõ¥Êñ∞Âà∞Âè≥ËæπÁöÑÊòæÁ§∫Âå∫
+		if (!m_pbMultImg->DM_IsChecked())// ÂçïÂõæÊ®°Âºè
 		{
 			m_pImgEditor->Clear();
 			m_pImgEditor->AddImg(szPath);
@@ -171,20 +171,20 @@ void ImgDlg::OnDropFiles(HDROP hDropInfo)
 			m_pImgEditor->AddImg(szPath);
 		}
 
-		// ∏¸–¬µΩœ‘ æ«¯
+		// Êõ¥Êñ∞Âà∞ÊòæÁ§∫Âå∫
 		CStringW strPath = szPath;
 		CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
 		CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
 		strFileName = strFileName.Right(strFileName.GetLength()-1-strFileName.ReverseFind(L'\\'));
-		m_pImgFileAfx->SetAttribute(L"text",strFileAfx);
-		m_pImgFileName->SetAttribute(L"text",strFileName);
-		m_pImgName->SetAttribute(L"text",strFileName);
+		m_pImgFileAfx->SetAttribute("text",DMW2A(strFileAfx));
+		m_pImgFileName->SetAttribute("text", DMW2A(strFileName));
+		m_pImgName->SetAttribute("text", DMW2A(strFileName));
 		CStringW strTitle;
-		strTitle += L"[–¬º”IMG]";
+		strTitle += L"[Êñ∞Âä†IMG]";
 		strTitle += strPath;
-		m_pTitle->SetAttribute(L"text",strTitle);
+		m_pTitle->SetAttribute("text", DMW2A(strTitle));
 
-		// »Áπ˚Œƒº˛¬∑æ∂æÕ‘⁄±æ÷˜Ã‚∞¸ƒ⁄£¨‘Ú…Ë÷√Œƒº˛º–¬∑æ∂Œ™À¸‘≠ º¬∑æ∂
+		// Â¶ÇÊûúÊñá‰ª∂Ë∑ØÂæÑÂ∞±Âú®Êú¨‰∏ªÈ¢òÂåÖÂÜÖÔºåÂàôËÆæÁΩÆÊñá‰ª∂Â§πË∑ØÂæÑ‰∏∫ÂÆÉÂéüÂßãË∑ØÂæÑ
 		bool bMatch = false;
 		if (strPath.GetLength()>m_strDir.GetLength())
 		{
@@ -195,7 +195,7 @@ void ImgDlg::OnDropFiles(HDROP hDropInfo)
 			}
 		}
 
-		if (bMatch)// ≈–∂œ‘≠ ºŒƒº˛ «∑ÒæÕ‘⁄÷˜Ã‚∞¸¿Ô£¨»Áπ˚‘⁄£¨æÕ…Ë÷√±£≥÷Œª÷√≤ª±‰£¨µ±»ªƒ„“≤ø…“‘◊‘º∫»•∏ƒ±‰
+		if (bMatch)// Âà§Êñ≠ÂéüÂßãÊñá‰ª∂ÊòØÂê¶Â∞±Âú®‰∏ªÈ¢òÂåÖÈáåÔºåÂ¶ÇÊûúÂú®ÔºåÂ∞±ËÆæÁΩÆ‰øùÊåÅ‰ΩçÁΩÆ‰∏çÂèòÔºåÂΩìÁÑ∂‰Ω†‰πüÂèØ‰ª•Ëá™Â∑±ÂéªÊîπÂèò
 		{
 			CStringW strDir = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
 			strDir = strDir.Left(strDir.ReverseFind(L'\\'));
@@ -246,7 +246,7 @@ DMCode ImgDlg::OnEditChange(DMEventArgs *pEvt)
 			break;
 		}
 
-		// ∏¸–¬œ¬√Êµƒœ‘ æpath
+		// Êõ¥Êñ∞‰∏ãÈù¢ÁöÑÊòæÁ§∫path
 		if (pEvent->m_pSender == m_pImgName
 			||pEvent->m_pSender == m_pImgDir
 			||pEvent->m_pSender == m_pImgFileName
@@ -262,7 +262,7 @@ DMCode ImgDlg::OnEditChange(DMEventArgs *pEvt)
 	
 			strPath += m_pImgFileName->GetWindowText();
 			strPath += m_pImgFileAfx->GetWindowText();
-			m_pImgPath->SetAttribute(L"text",strPath);
+			m_pImgPath->SetAttribute("text", DMW2A(strPath));
 
 			UpdateXml();
 		}
@@ -299,9 +299,9 @@ DMCode ImgDlg::OnSaveBtn()
 DMCode ImgDlg::OnClearBtn()
 {
 	m_pImgEditor->Clear();
-	m_pImgName->SetAttribute(L"text",L"");
-	m_pImgFileName->SetAttribute(L"text",L"");
-	m_pImgFileAfx->SetAttribute(L"text",L"");
+	m_pImgName->SetAttribute("text","");
+	m_pImgFileName->SetAttribute("text","");
+	m_pImgFileAfx->SetAttribute("text","");
 	return DM_ECODE_OK;
 }
 
@@ -312,15 +312,15 @@ DMCode ImgDlg::OnOpenDir()
 	{
 		wchar_t path[MAX_PATH] = {0};
 		BROWSEINFOW bi = {0};
-		//hgy note: BIF_NEWDIALOGSTYLEª·”∞œÏBFFM_SETSTATUSTEXTŒﬁ∑®œ‘ æ
+		//hgy note: BIF_NEWDIALOGSTYLE‰ºöÂΩ±ÂìçBFFM_SETSTATUSTEXTÊó†Ê≥ïÊòæÁ§∫
 		bi.ulFlags	 = BIF_STATUSTEXT| BIF_RETURNONLYFSDIRS|BIF_VALIDATE/*|BIF_NEWDIALOGSTYLE*/;
-		bi.lpszTitle = L"Ωˆƒ‹‘⁄µ±«∞÷˜Ã‚∞¸◊”ƒø¬ºœ¬—°‘Ò";
-		bi.hwndOwner = m_hWnd;//…Ë÷√”µ”–¥∞ø⁄
-		bi.lpfn = ImgDlg::BrowseCallbackProc;//÷∏∂®ªÿµ˜∫Ø ˝µÿ÷∑
+		bi.lpszTitle = L"‰ªÖËÉΩÂú®ÂΩìÂâç‰∏ªÈ¢òÂåÖÂ≠êÁõÆÂΩï‰∏ãÈÄâÊã©";
+		bi.hwndOwner = m_hWnd;//ËÆæÁΩÆÊã•ÊúâÁ™óÂè£
+		bi.lpfn = ImgDlg::BrowseCallbackProc;//ÊåáÂÆöÂõûË∞ÉÂáΩÊï∞Âú∞ÂùÄ
 		ITEMIDLIST *pIDL = SHBrowseForFolderW(&bi);
 		if (pIDL!=NULL)
 		{
-			if (SHGetPathFromIDListW(pIDL,path) == TRUE) //±‰¡øpath÷–¥Ê¥¢¡Àæ≠π˝”√ªß—°‘Ò∫Ûµƒƒø¬ºµƒÕÍ’˚¬∑æ∂.
+			if (SHGetPathFromIDListW(pIDL,path) == TRUE) //ÂèòÈáèpath‰∏≠Â≠òÂÇ®‰∫ÜÁªèËøáÁî®Êà∑ÈÄâÊã©ÂêéÁöÑÁõÆÂΩïÁöÑÂÆåÊï¥Ë∑ØÂæÑ.
 			{
 				CStringW strPath = path;
 				strPath = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
@@ -351,9 +351,9 @@ DMCode ImgDlg::UpdateXml()
 		CStringW strImgPath = m_pImgPath->m_pDUIXmlInfo->m_strText;
 		m_ImgNode.SetAttribute(XML_PATH, strImgPath);
 
-		CStringW strXml;
+		CStringA strXml;
 		m_ImgNode.GetXmlContent(strXml);
-		m_pXml->SetWindowText(strXml);
+		m_pXml->SetTextA(strXml);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -365,14 +365,14 @@ int CALLBACK ImgDlg::BrowseCallbackProc(HWND hwnd,UINT uMsg,LPARAM lParam,LPARAM
 	CStringW strDir = ms_pthis->m_strDir;
 	switch (uMsg)
 	{
-	case BFFM_INITIALIZED:    //≥ı ºªØœ˚œ¢
+	case BFFM_INITIALIZED:    //ÂàùÂßãÂåñÊ∂àÊÅØ
 		{
 			strDir += ms_pthis->m_pImgDir->GetWindowText();
 			::SendMessageW(hwnd,BFFM_SETSELECTION,TRUE,(LPARAM)(LPWSTR)(LPCWSTR)strDir);  
 		}
 		break;
 
-	case BFFM_SELCHANGED: //—°‘Ò¬∑æ∂±‰ªØ
+	case BFFM_SELCHANGED: //ÈÄâÊã©Ë∑ØÂæÑÂèòÂåñ
 		{
 			wchar_t szPath[MAX_PATH];   
 			SHGetPathFromIDListW((LPCITEMIDLIST)lParam,szPath);   
@@ -405,31 +405,31 @@ DMCode ImgDlg::OnOK()
 	DMCode iErr = DM_ECODE_FAIL;
 	HDMTREEITEM hAdd = NULL;
 	ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+	ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 	do 
 	{
-		// 1.≈–∂œname «∑ÒŒ™ø’£¨≈–∂œ±æ÷˜Ã‚∞¸ «∑Ò“—∫¨”–¥Àname,◊¢“‚£¨≤¢√ª”–≈–∂œ¥ÀŒƒº˛”–√ª”–±ª∆‰À˚name’º”√
-		CStringW strImgName = m_pImgName->GetWindowText();
+		// 1.Âà§Êñ≠nameÊòØÂê¶‰∏∫Á©∫ÔºåÂà§Êñ≠Êú¨‰∏ªÈ¢òÂåÖÊòØÂê¶Â∑≤Âê´ÊúâÊ≠§name,Ê≥®ÊÑèÔºåÂπ∂Ê≤°ÊúâÂà§Êñ≠Ê≠§Êñá‰ª∂ÊúâÊ≤°ÊúâË¢´ÂÖ∂‰ªñnameÂç†Áî®
+		CStringA strImgName = m_pImgName->GetTextA();
 		if (strImgName.IsEmpty())
 		{
-			DM_MessageBox(L"Œ¥…Ë÷√name!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"Êú™ËÆæÁΩÆname!",MB_OK, L"MSG",m_hWnd);
 			m_pImgName->DV_SetFocusWnd();
 			break;
 		}
 
-		if (m_bEditMode)// ±‡º≠ƒ£ Ω
+		if (m_bEditMode)// ÁºñËæëÊ®°Âºè
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
 			bool bFind = false;
 			HDMTREEITEM hParentItem = pProjTree->GetParentItem(pXml->m_hProjSel);
-			//2. ≈–∂œname «∑Ò“—¥Ê‘⁄
+			//2. Âà§Êñ≠nameÊòØÂê¶Â∑≤Â≠òÂú®
 			if (hParentItem)
 			{
 				HDMTREEITEM hChildItem = pProjTree->GetChildItem(hParentItem);
 				while (hChildItem)
 				{
 					if (hChildItem != pXml->m_hProjSel)
-					{// Ã¯π˝±‡º≠◊‘…Ì
+					{// Ë∑≥ËøáÁºñËæëËá™Ë∫´
 						DMXmlNodePtr pChildNode = (DMXmlNodePtr)pProjTree->GetItemData(hChildItem);
 						if (0 == strImgName.CompareNoCase(pChildNode->Attribute(XML_NAME)))
 						{
@@ -442,13 +442,13 @@ DMCode ImgDlg::OnOK()
 			}
 			if (bFind)
 			{
-				DM_MessageBox(L"name“—¥Ê‘⁄,«Î÷ÿ–¬…Ë÷√!",MB_OK,L"MSG",m_hWnd);
+				DM_MessageBox(L"nameÂ∑≤Â≠òÂú®,ËØ∑ÈáçÊñ∞ËÆæÁΩÆ!",MB_OK,L"MSG",m_hWnd);
 				m_pImgName->DV_SetFocusWnd();
 				break;
 			}
 			
-			//3.≈–∂œ√˚◊÷ «∑Ò∫Õ“‘«∞œ‡Õ¨£¨»Á≤ªÕ¨£¨‘Ú…Ë÷√–¬√˚◊÷µΩpNode÷–£¨≤¢…Ë÷√Œ™Œ¥±£¥Ê◊¥Ã¨
-			CStringW strOldName = pNode->Attribute(XML_NAME);
+			//3.Âà§Êñ≠ÂêçÂ≠óÊòØÂê¶Âíå‰ª•ÂâçÁõ∏ÂêåÔºåÂ¶Ç‰∏çÂêåÔºåÂàôËÆæÁΩÆÊñ∞ÂêçÂ≠óÂà∞pNode‰∏≠ÔºåÂπ∂ËÆæÁΩÆ‰∏∫Êú™‰øùÂ≠òÁä∂ÊÄÅ
+			CStringA strOldName = pNode->Attribute(XML_NAME);
 			if (0 != strOldName.CompareNoCase(strImgName))
 			{
 				pNode->SetAttribute(XML_NAME,strImgName);
@@ -457,66 +457,66 @@ DMCode ImgDlg::OnOK()
 			
 			iErr = DM_ECODE_OK;
 			EndDialog(IDOK);
-			break;// ÷–º‰Ã¯≥ˆ£¨∫Û–¯Œ™–¬Ω®ƒ£ Ω
+			break;// ‰∏≠Èó¥Ë∑≥Âá∫ÔºåÂêéÁª≠‰∏∫Êñ∞Âª∫Ê®°Âºè
 		}
 		
 		DMXmlNodePtr pTypeNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
-		CStringW strType = pTypeNode->GetName();
+		CStringA strType = pTypeNode->GetName();
 		HDMTREEITEM hTheme = pProjTree->GetParentItem(pXml->m_hProjSel);
 		DMXmlNodePtr pThemeNode = (DMXmlNodePtr)pProjTree->GetItemData(hTheme);
-		CStringW strThemeName = pThemeNode->Attribute(XML_NAME);
-		DMAutoResetT<bool> AutoNoLoop(&pXml->m_pRes->m_bThemeLoop,false);// ≤ª±È¿˙∆‰À˚÷˜Ã‚∞¸≤È’“
+		CStringA strThemeName = pThemeNode->Attribute(XML_NAME);
+		DMAutoResetT<bool> AutoNoLoop(&pXml->m_pRes->m_bThemeLoop,false);// ‰∏çÈÅçÂéÜÂÖ∂‰ªñ‰∏ªÈ¢òÂåÖÊü•Êâæ
 		if (DMSUCCEEDED(pXml->m_pRes->IsItemExists(strType,strImgName,strThemeName)))
 		{
-			DM_MessageBox(L"±æ÷˜Ã‚∞¸“—¥Ê‘⁄¥Àname!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"Êú¨‰∏ªÈ¢òÂåÖÂ∑≤Â≠òÂú®Ê≠§name!",MB_OK, L"MSG",m_hWnd);
 			m_pImgName->DV_SetFocusWnd();
 			break;
 		}
-		//2.≈–∂œƒø¬ºŒƒº˛√˚ «∑ÒŒ™ø’£¨≈–∂œ «∑Ò√ª”–Õœ»ÎŒƒº˛
+		//2.Âà§Êñ≠ÁõÆÂΩïÊñá‰ª∂ÂêçÊòØÂê¶‰∏∫Á©∫ÔºåÂà§Êñ≠ÊòØÂê¶Ê≤°ÊúâÊãñÂÖ•Êñá‰ª∂
 		CStringW strImgFileName = m_pImgFileName->GetWindowText();
 		if (strImgFileName.IsEmpty())
 		{
-			DM_MessageBox(L"Œƒº˛√˚Œ™ø’!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"Êñá‰ª∂Âêç‰∏∫Á©∫!",MB_OK, L"MSG",m_hWnd);
 			m_pImgFileName->DV_SetFocusWnd();
 			break;
 		}
 
 		CStringW strImgSrc = m_pTitle->m_pDUIXmlInfo->m_strText;
-		strImgSrc = strImgSrc.Right(strImgSrc.GetLength()-7);//L"[–¬º”IMG]";
-		if (!PathFileExistsW(strImgSrc))//Àµ√˜√ª”–Õœ»ÎŒƒº˛
+		strImgSrc = strImgSrc.Right(strImgSrc.GetLength()-7);//L"[Êñ∞Âä†IMG]";
+		if (!PathFileExistsW(strImgSrc))//ËØ¥ÊòéÊ≤°ÊúâÊãñÂÖ•Êñá‰ª∂
 		{
-			DM_MessageBox(L"Œ¥Õœ»ÎŒƒº˛!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"Êú™ÊãñÂÖ•Êñá‰ª∂!",MB_OK, L"MSG",m_hWnd);
 			break;
 		}
 		
-		// 3.±£¥ÊÕº∆¨,»Áπ˚ «∂‡∏ˆÕº∆¨£®◊¢“‚ «∂‡Õº∆¨£¨±»»Áƒ„Õœ»Î“ª∏ˆpng£¨“ª∏ˆxml£¨ƒ«“≤÷ª”–“ª∏ˆÕº∆¨£©£¨æÕ“‘∂‡Õº∆¨÷±Ω”±£¥Ê≥…(∏Ò Ω”…◊Ó∫Û“ª’≈Õº∆¨µƒ∫Û◊∫)£¨»Áπ˚ «µ•Õº∆¨£¨ƒ«√¥æÕ≤…”√µ•Œƒº˛Õ¨—˘µƒ∑Ω Ω£¨÷±Ω”øΩ±¥
-		CStringW strPath = pXml->m_strResDir + m_ImgNode.Attribute(XML_PATH);
-		if (m_pbMultImg->DM_IsChecked() && m_pImgEditor->GetImgCount()>1)// ∂‡Õº∆¨◊È∫œ
+		// 3.‰øùÂ≠òÂõæÁâá,Â¶ÇÊûúÊòØÂ§ö‰∏™ÂõæÁâáÔºàÊ≥®ÊÑèÊòØÂ§öÂõæÁâáÔºåÊØîÂ¶Ç‰Ω†ÊãñÂÖ•‰∏Ä‰∏™pngÔºå‰∏Ä‰∏™xmlÔºåÈÇ£‰πüÂè™Êúâ‰∏Ä‰∏™ÂõæÁâáÔºâÔºåÂ∞±‰ª•Â§öÂõæÁâáÁõ¥Êé•‰øùÂ≠òÊàê(Ê†ºÂºèÁî±ÊúÄÂêé‰∏ÄÂº†ÂõæÁâáÁöÑÂêéÁºÄ)ÔºåÂ¶ÇÊûúÊòØÂçïÂõæÁâáÔºåÈÇ£‰πàÂ∞±ÈááÁî®ÂçïÊñá‰ª∂ÂêåÊ†∑ÁöÑÊñπÂºèÔºåÁõ¥Êé•Êã∑Ë¥ù
+		CStringW strPath = pXml->m_strResDir + DMA2W(m_ImgNode.Attribute(XML_PATH));
+		if (m_pbMultImg->DM_IsChecked() && m_pImgEditor->GetImgCount()>1)// Â§öÂõæÁâáÁªÑÂêà
 		{
 			m_pImgEditor->Save(strPath);
 		}
 		else
 		{
 			CStringW strImgSrc = m_pTitle->m_pDUIXmlInfo->m_strText;
-			strImgSrc = strImgSrc.Right(strImgSrc.GetLength()-7);//L"[–¬º”IMG]";
+			strImgSrc = strImgSrc.Right(strImgSrc.GetLength()-7);//L"[Êñ∞Âä†IMG]";
 			if (!PathFileExistsW(strImgSrc))
 			{
-				DM_MessageBox(L"Œƒº˛≤ª¥Ê‘⁄!",MB_OK, L"MSG",m_hWnd);
+				DM_MessageBox(L"Êñá‰ª∂‰∏çÂ≠òÂú®!",MB_OK, L"MSG",m_hWnd);
 			}
 			CopyFileW(strImgSrc,strPath,FALSE);
 		}
 
-		//4.º”»ÎResΩ‚Œˆ∆˜÷–
+		//4.Âä†ÂÖ•ResËß£ÊûêÂô®‰∏≠
 		if (!DMSUCCEEDED(pXml->m_pRes->AddResItem(strType,strImgName,strPath,strThemeName)))
 		{
-			DM_MessageBox(L"º”»ÎRes ß∞‹!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"Âä†ÂÖ•ResÂ§±Ë¥•!",MB_OK, L"MSG",m_hWnd);
 			break;
 		}
 
-		//5.–¥»Îxml÷–
+		//5.ÂÜôÂÖ•xml‰∏≠
 		DMXmlNode XmlNode = pTypeNode->InsertCopyChildNode(&m_ImgNode);
 
-		//6.‘ˆº” ˜–ŒΩ·µ„
+		//6.Â¢ûÂä†Ê†ëÂΩ¢ÁªìÁÇπ
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		pXml->InitProjTreeNode(DataNode,true);
@@ -524,7 +524,7 @@ DMCode ImgDlg::OnOK()
 		hAdd = pXml->InsertProjTreeItem(DataNode,strName,pXml->m_hProjSel);
 		pXml->BindProjTreeData(XmlNode,hAdd);
 
-		//7.…Ë÷√xmlŒ™Œ¥±£¥Ê◊¥Ã¨
+		//7.ËÆæÁΩÆxml‰∏∫Êú™‰øùÂ≠òÁä∂ÊÄÅ
 		pXml->SetDocUnSave(pTypeNode);
 
 		EndDialog(IDOK);

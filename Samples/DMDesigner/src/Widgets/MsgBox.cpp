@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "MsgBox.h"
 
 struct MsgBtn_Info 
@@ -13,12 +13,12 @@ struct MsgBox_Info
 };
 MsgBox_Info g_MsgBox_Info[] = \
 {
-	{1,{{IDOK,L"»∑∂®"},{0,L""},{0,L""}}},						 //MB_OK
-	{2,{{IDOK,L"»∑∂®"},{IDCANCEL,L"»°œ˚"},{0,L""}}},			 //MB_OKCANCEL
-	{3,{{IDABORT,L"÷–÷π"},{IDRETRY,L"÷ÿ ‘"},{IDIGNORE,L"∫ˆ¬‘"}}},//MB_ABORTRETRYIGNORE
-	{3,{{IDYES,L" «"},{IDNO,L"∑Ò"},{IDCANCEL,L"»°œ˚"}}},		 //MB_YESNOCANCEL
-	{2,{{IDYES,L" «"},{IDNO,L"∑Ò"},{0,L""}}},					 //MB_YESNO
-	{2,{{IDRETRY,L"÷ÿ ‘"},{IDCANCEL,L"»°œ˚"},{0,L""}}}			 //MB_RETRYCANCEL
+	{1,{{IDOK,L"Á°ÆÂÆö"},{0,L""},{0,L""}}},						 //MB_OK
+	{2,{{IDOK,L"Á°ÆÂÆö"},{IDCANCEL,L"ÂèñÊ∂à"},{0,L""}}},			 //MB_OKCANCEL
+	{3,{{IDABORT,L"‰∏≠Ê≠¢"},{IDRETRY,L"ÈáçËØï"},{IDIGNORE,L"ÂøΩÁï•"}}},//MB_ABORTRETRYIGNORE
+	{3,{{IDYES,L"ÊòØ"},{IDNO,L"Âê¶"},{IDCANCEL,L"ÂèñÊ∂à"}}},		 //MB_YESNOCANCEL
+	{2,{{IDYES,L"ÊòØ"},{IDNO,L"Âê¶"},{0,L""}}},					 //MB_YESNO
+	{2,{{IDRETRY,L"ÈáçËØï"},{IDCANCEL,L"ÂèñÊ∂à"},{0,L""}}}			 //MB_RETRYCANCEL
 };
 
 BEGIN_MSG_MAP(MsgBox)
@@ -43,12 +43,12 @@ int MsgBox::MessageBox(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType)
 	m_strCaption = lpCaption;
 	m_strText = lpText;
 	m_uType = uType;
-	return  (int)DoModal(m_strXmlId,hWnd,true);
+	return  (int)DoModal(DMW2A(m_strXmlId),hWnd,true);
 } 
 
 BOOL MsgBox::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	DUITabCtrl *pTab = FindChildByNameT<DUITabCtrl>(L"ds_msgtabctrl");
+	DUITabCtrl *pTab = FindChildByNameT<DUITabCtrl>("ds_msgtabctrl");
 	if (pTab) 
 	{
 		int iNum = g_MsgBox_Info[m_uType].iNum;
@@ -56,21 +56,21 @@ BOOL MsgBox::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		DUITabPage* pCurPage = pTab->GetItem(pTab->GetCurSel());
 		if (pCurPage)
 		{
-			DMASSERT(pCurPage->DM_GetChildCount() == iNum);///< ±ÿ–Î±£÷§œ‡µ»
+			DMASSERT(pCurPage->DM_GetChildCount() == iNum);///< ÂøÖÈ°ª‰øùËØÅÁõ∏Á≠â
 			DUIWindow* pChild = pCurPage->DM_GetWindow(GDW_FIRSTCHILD);
 			for (int i=0; i<iNum; i++)
 			{
 				pChild->SetID(g_MsgBox_Info[m_uType].BtnInfo[i].id);
-				pChild->SetAttribute(L"text",g_MsgBox_Info[m_uType].BtnInfo[i].strText);
+				pChild->SetAttribute("text",DMW2A(g_MsgBox_Info[m_uType].BtnInfo[i].strText));
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
 		}
 	}
 
-	FindChildByNameT<DUIRichEdit>(L"ds_msgtext")->SetWindowText(m_strText);
+	FindChildByNameT<DUIRichEdit>("ds_msgtext")->SetWindowText(m_strText);
 	if (m_strCaption)
 	{
-		FindChildByName(L"ds_msgtitle")->DV_SetWindowText(m_strCaption);
+		FindChildByName("ds_msgtitle")->DV_SetWindowText(m_strCaption);
 	}
  
 	return TRUE;

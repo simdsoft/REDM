@@ -30,8 +30,8 @@ namespace DM
 		virtual IDMRegPtr Clone() = 0;           ///< 复制自身
 
 		// 取得基于DMBase注册类的标识、父类的标识、注册类型，建议使用DMDECLARE_CLASS_NAME宏
-		virtual LPCWSTR GetClassName() = 0;		///< 取得注册类名
-		virtual LPCWSTR GetBaseClassName() = 0; ///< 取得注册类父类名
+		virtual LPCSTR GetClassName() = 0;		///< 取得注册类名
+		virtual LPCSTR GetBaseClassName() = 0; ///< 取得注册类父类名
 		virtual int     GetClassType() = 0;     ///< 取得注册类型
 	};
 
@@ -55,12 +55,12 @@ namespace DM
 			return new DMRegHelperT<T>;
 		}
 
-		virtual LPCWSTR GetClassName()
+		virtual LPCSTR GetClassName()
 		{
 			return T::GetClassName();
 		}
 
-		virtual LPCWSTR GetBaseClassName()
+		virtual LPCSTR GetBaseClassName()
 		{
 			return T::GetBaseClassName();
 		}

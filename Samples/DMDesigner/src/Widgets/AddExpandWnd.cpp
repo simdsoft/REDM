@@ -12,24 +12,24 @@ END_EVENT_MAP()
 BOOL AddExpandWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	// 默认初始态为m_pRadioBtn指向Button
-	FindChildByName(L"ds_w_Button")->DM_SetCheck(true);
+	FindChildByName("ds_w_Button")->DM_SetCheck(true);
 	return TRUE;
 }
 
 void AddExpandWnd::OnLButtonUp(UINT nFlags,CPoint pt)
 {
-	DUITabLayout* pLayout = FindChildByNameT<DUITabLayout>(L"ds_w_tablayout");DMASSERT(pLayout);
+	DUITabLayout* pLayout = FindChildByNameT<DUITabLayout>("ds_w_tablayout");DMASSERT(pLayout);
 	DUIWindow* pChild = pLayout->DM_GetWindow(GDW_FIRSTCHILD);
 	while (pChild)
 	{
 		if (pChild->DM_IsChecked())
 		{
-			DUICheckBox* pCbx = g_pMainWnd->FindChildByNameT<DUICheckBox>(L"ds_w_widget");
-			CStringW strSkin = pChild->m_pDUIXmlInfo->m_strText;
-			strSkin.Format(L"ds_w_%s",strSkin);
-			pCbx->SetAttribute(L"checkskin",strSkin);
-			pCbx->SetAttribute(L"text",pChild->m_pDUIXmlInfo->m_strText);
-			pCbx->SetAttribute(L"tiptext",pChild->m_pDUIXmlInfo->m_strText);
+			DUICheckBox* pCbx = g_pMainWnd->FindChildByNameT<DUICheckBox>("ds_w_widget");
+			CStringA strSkin = DMW2A(pChild->m_pDUIXmlInfo->m_strText);
+			strSkin.Format("ds_w_%s",strSkin);
+			pCbx->SetAttribute("checkskin",strSkin);
+			pCbx->SetAttribute("text", DMW2A(pChild->m_pDUIXmlInfo->m_strText));
+			pCbx->SetAttribute("tiptext", DMW2A(pChild->m_pDUIXmlInfo->m_strText));
 			Hide();
 			break;
 		}

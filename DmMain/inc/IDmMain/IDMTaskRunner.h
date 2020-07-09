@@ -40,17 +40,17 @@ namespace DM
 	/// </summary>
 	class IDMTaskRunner : public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMTaskRunner,L"IDMEvent",DMREG_TaskRunner);
+		DMDECLARE_CLASS_NAME(IDMTaskRunner,"IDMEvent",DMREG_TaskRunner);
 	public:
 		virtual DMCode InitEvent(DWORD dwUIThreadId) = 0;											     ///< 初始化并指定UI线程ID,所有的UI TASK都会Post到此线程处理,此函数要求在UI线程中进行初始化
 		virtual DMCode UninstallEvent() = 0;															 ///< 反初始化
-		virtual bool   IsEventExists(LPCWSTR lpszEventName) = 0;										 ///< 事件是否已存在
-		virtual DMCode RemoveEvent(LPCWSTR lpszEventName) = 0;											 ///< 移除某个事件对应的事件槽
+		virtual bool   IsEventExists(LPCSTR lpszEventName) = 0;										 ///< 事件是否已存在
+		virtual DMCode RemoveEvent(LPCSTR lpszEventName) = 0;											 ///< 移除某个事件对应的事件槽
 		virtual DMCode RemoveEventIfThis(void* pThis) = 0;												 ///< 移除某个对象的所有关联事件槽(不包括静态成员函数)
 		virtual DMCode RemoveAllEvents() = 0;															 ///< 移除所有事件槽
-		virtual DMCode ConnectEvent(DMTaskType tty, LPCWSTR lpszEventName, const DMSlot& slot, int group = 100) = 0;///< 绑定一个事件槽,此事件槽在FireEvent时(同步,异步UI线程,异步工作线程)触发,同一个lpszEventName,group越大越迟调用(优先级越低,group内部会转成正值)
-		virtual DMCode FireEvent(LPCWSTR lpszEventName) = 0;											  ///< 触发绑定的事件槽
-		virtual DMCode FireEvent(LPCWSTR lpszEventName, DMBundle& args) = 0;							  ///< 传入参数,触发绑定的事件槽
+		virtual DMCode ConnectEvent(DMTaskType tty, LPCSTR lpszEventName, const DMSlot& slot, int group = 100) = 0;///< 绑定一个事件槽,此事件槽在FireEvent时(同步,异步UI线程,异步工作线程)触发,同一个lpszEventName,group越大越迟调用(优先级越低,group内部会转成正值)
+		virtual DMCode FireEvent(LPCSTR lpszEventName) = 0;											  ///< 触发绑定的事件槽
+		virtual DMCode FireEvent(LPCSTR lpszEventName, DMBundle& args) = 0;							  ///< 传入参数,触发绑定的事件槽
 
 		virtual DMCode PostTask(DMTaskType tty, IDMTaskPtr pTask) = 0;                                    ///< 无需绑定，直接把一个函数Post到(同步,异步UI线程,异步工作线程)触发
 	};

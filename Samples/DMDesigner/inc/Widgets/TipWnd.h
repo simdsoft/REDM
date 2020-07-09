@@ -20,5 +20,5 @@ public:
 class AddTipWnd : public DMHWnd
 {
 public:
-	bool InitAdd(CStringW strInfo);
+	bool InitAdd(CStringA strInfo);
 };

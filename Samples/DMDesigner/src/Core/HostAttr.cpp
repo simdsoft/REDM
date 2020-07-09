@@ -5,15 +5,15 @@ BEGIN_MSG_MAP(HostAttr)
 	MSG_WM_LBUTTONDOWN(OnLButtonDown)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(HostAttr)
-	EVENT_NAME_COMMAND(L"ds_host_expand", OnExpand)
+	EVENT_NAME_COMMAND("ds_host_expand", OnExpand)
 END_EVENT_INBASE()
 
 HostAttr*  HostAttr::ms_pthis = NULL;
 HostAttr::HostAttr()
 {  
-	m_pPanel     = m_pObjXml->m_pRighXml->m_pList->FindChildByName(L"ds_attr_host_panel",true);DMASSERT(m_pPanel);
-	m_pExpandBtn = m_pObjXml->m_pRighXml->m_pList->FindChildByNameT<DUIButton>(L"ds_host_expand",true);DMASSERT(m_pExpandBtn);
-	m_pPropFrame = m_pObjXml->m_pRighXml->m_pList->FindChildByNameT<DUIPropFrame>(L"ds_host_prop",true);DMASSERT(m_pPropFrame);
+	m_pPanel     = m_pObjXml->m_pRighXml->m_pList->FindChildByName("ds_attr_host_panel",true);DMASSERT(m_pPanel);
+	m_pExpandBtn = m_pObjXml->m_pRighXml->m_pList->FindChildByNameT<DUIButton>("ds_host_expand",true);DMASSERT(m_pExpandBtn);
+	m_pPropFrame = m_pObjXml->m_pRighXml->m_pList->FindChildByNameT<DUIPropFrame>("ds_host_prop",true);DMASSERT(m_pPropFrame);
 	m_pPropFrame->m_pPropList->m_EventMgr.SubscribeEvent(DM::PropValueChangedArgs::EventID, Subscriber(&HostAttr::OnPropValueChanged, this));
 	m_pPropFrame->m_pPropList->m_EventMgr.SubscribeEvent(DM::PropDelingArgs::EventID, Subscriber(&HostAttr::OnPropDeling, this));
 	m_pPropFrame->m_pPropList->m_EventMgr.SubscribeEvent(DM::PropDelArgs::EventID, Subscriber(&HostAttr::OnPropDel, this));
@@ -82,7 +82,7 @@ DMCode HostAttr::OnExpand()
 		if (m_pExpandWnd.isNull())
 		{
 			m_pExpandWnd.Attach(new AttrExpandWnd(this));
-			m_pExpandWnd->DM_CreateWindowEx(L"ds_expandwnd",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,g_pMainWnd->m_hWnd,NULL,false);
+			m_pExpandWnd->DM_CreateWindowEx("ds_expandwnd",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,g_pMainWnd->m_hWnd,NULL,false);
 			m_pExpandWnd->SendMessage(WM_INITDIALOG);
 		} 
 
@@ -119,8 +119,8 @@ DMCode HostAttr::OnPropValueChanged(DMEventArgs *pEvt)
 		}
 
 		PropValueChangedArgs* pEvent = (PropValueChangedArgs*)pEvt;
-		CStringW strName  = pEvent->m_pSel->GetName();
-		CStringW strValue = pEvent->m_pSel->GetValue();
+		CStringA strName  = (pEvent->m_pSel->GetName());
+		CStringA strValue = (pEvent->m_pSel->GetValue());
 
 		iErr = m_pHost->SetAttribute(strName,strValue);
 		if (!DMSUCCEEDED(iErr))
@@ -177,7 +177,7 @@ DMCode HostAttr::OnPropDel(DMEventArgs *pEvt)
 		pInitAttr->m_bUse = false;///< 移除后设置为未使用状态
 	
 		//1.尝试取得默认的value参数设置进去
-		CStringW strType,strName,strValue,strDesc;
+		CStringA strType,strName,strValue,strDesc;
 		g_pAttr->Parse(pInitAttr->m_pAttr,strType,strName,strValue,strDesc);
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 		iErr = pData->m_pRootWnd->SetAttribute(strName,strValue);
@@ -317,7 +317,7 @@ DMCode HostAttr::OnTreeSel(AttrTree* pTree)
 		//更新到XML中,因为新加的为默认值，所以不调用SetAttribute
 		if (m_hObjSel)
 		{
-			CStringW strType,strName,strValue,strDesc;
+			CStringA strType,strName,strValue,strDesc;
 			g_pAttr->Parse(pInitAttr->m_pAttr,strType,strName,strValue,strDesc);
 			ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 			pData->m_pDoc->m_pXmlDoc->Root().SetAttribute(strName,strValue);
@@ -352,7 +352,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 {
 	ReleaseProp();
 	m_pInitSize = NULL;
-	DMXmlNode XmlRoot = g_pAttr->GetAttrNode(L"DMHWndAttr");
+	DMXmlNode XmlRoot = g_pAttr->GetAttrNode("DMHWndAttr");
 	DMXmlAttribute XmlAttribute = XmlRoot.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{
@@ -366,8 +366,8 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 	XmlAttribute = XmlNode.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{
-		CStringW strName = XmlAttribute.GetName();
-		CStringW strValue = XmlAttribute.GetValue();
+		CStringA strName = XmlAttribute.GetName();
+		CStringA strValue = XmlAttribute.GetValue();
 		DMXmlInitAttrPtr pInitAttr = FindAttrByName(strName);
 		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
 		if (pInitAttr)
@@ -386,7 +386,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 	return DM_ECODE_OK;
 }
 
-DMXmlInitAttrPtr HostAttr::FindAttrByName(CStringW strName)
+DMXmlInitAttrPtr HostAttr::FindAttrByName(CStringA strName)
 {
 	DMXmlInitAttrPtr pInitAttr = NULL;
 	do 
@@ -400,7 +400,7 @@ DMXmlInitAttrPtr HostAttr::FindAttrByName(CStringW strName)
 		for (int i=0;i<iCount;i++)
 		{
 			DMXmlInitAttrPtr ptr = GetObj(i);
-			CStringW strTempType,strTempName;
+			CStringA strTempType,strTempName;
 			g_pAttr->ParseName(ptr->m_pAttr,strTempType,strTempName);
 			if (0 == strName.CompareNoCase(strTempName))
 			{

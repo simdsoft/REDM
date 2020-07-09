@@ -927,7 +927,7 @@ namespace DM
 
 #pragma endregion
 
-	DMCode DUIMonthCalCtrl::OnAttributeHeaderHeight(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIMonthCalCtrl::OnAttributeHeaderHeight(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -945,7 +945,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIMonthCalCtrl::OnAttributeTitleHeight(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIMonthCalCtrl::OnAttributeTitleHeight(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -963,7 +963,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIMonthCalCtrl::OnAttributeTodayHeight(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIMonthCalCtrl::OnAttributeTodayHeight(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -981,12 +981,12 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIMonthCalCtrl::OnAttributeWeekTitle(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIMonthCalCtrl::OnAttributeWeekTitle(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strValue = lpszValue;
+			CStringW strValue = DMCA2W(lpszValue, -1, CP_UTF8);
 			if (strValue.IsEmpty())
 			{
 				break;
@@ -994,7 +994,7 @@ namespace DM
 
 			strValue.Trim();
 			CStringWList strList;
-			SplitStringT(strValue,L',',strList);
+			SplitStringT(strValue,',',strList);
 			for (int i=0; i<(int)strList.GetCount()&&i<CALENDAR_COLUMNS; i++)
 			{
 				m_strWeekTitle[i] = strList[i];
@@ -1006,7 +1006,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIMonthCalCtrl::OnAttributebHideGrayCell(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIMonthCalCtrl::OnAttributebHideGrayCell(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

@@ -52,7 +52,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	bool DMTaskRunnerImpl::IsEventExists(LPCWSTR lpszEventName)
+	bool DMTaskRunnerImpl::IsEventExists(LPCSTR lpszEventName)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -61,7 +61,7 @@ namespace DM
 		return false;
 	}
 
-	DMCode DMTaskRunnerImpl::RemoveEvent(LPCWSTR lpszEventName)
+	DMCode DMTaskRunnerImpl::RemoveEvent(LPCSTR lpszEventName)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -75,7 +75,7 @@ namespace DM
 		POSITION pos = m_Map.GetStartPosition();
 		while(pos)
 		{
-			DM::CMap<CStringW, RefEventSlot>::CPair *p = m_Map.GetNext(pos);
+			DM::CMap<CStringA, RefEventSlot>::CPair *p = m_Map.GetNext(pos);
 			RefEventSlot refEventSlot = p->m_value;
 			if (refEventSlot.isValid())
 			{
@@ -92,7 +92,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DMTaskRunnerImpl::ConnectEvent(DMTaskType tty, LPCWSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
+	DMCode DMTaskRunnerImpl::ConnectEvent(DMTaskType tty, LPCSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		switch (tty)
@@ -105,7 +105,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMTaskRunnerImpl::FireEvent(LPCWSTR lpszEventName)
+	DMCode DMTaskRunnerImpl::FireEvent(LPCSTR lpszEventName)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -117,7 +117,7 @@ namespace DM
 		return DM_ECODE_FAIL;
 	}
 
-	DMCode DMTaskRunnerImpl::FireEvent(LPCWSTR lpszEventName, DMBundle& args)
+	DMCode DMTaskRunnerImpl::FireEvent(LPCSTR lpszEventName, DMBundle& args)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -142,7 +142,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMTaskRunnerImpl::ConnectSyncEvent(LPCWSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
+	DMCode DMTaskRunnerImpl::ConnectSyncEvent(LPCSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -154,7 +154,7 @@ namespace DM
 		return DM_ECODE_FAIL;
 	}
 
-	DMCode DMTaskRunnerImpl::ConnectUiEvent(LPCWSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
+	DMCode DMTaskRunnerImpl::ConnectUiEvent(LPCSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -167,7 +167,7 @@ namespace DM
 		return DM_ECODE_FAIL;
 	}
 
-	DMCode DMTaskRunnerImpl::ConnectWorkEvent(LPCWSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
+	DMCode DMTaskRunnerImpl::ConnectWorkEvent(LPCSTR lpszEventName, const DMSlot& slot, int group /*= 100*/)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -215,7 +215,7 @@ namespace DM
 		return DM_ECODE_FAIL;
 	}
 
-	void DMTaskRunnerImpl::AddEvent(LPCWSTR lpszEventName)
+	void DMTaskRunnerImpl::AddEvent(LPCSTR lpszEventName)
 	{
 		if (IsValidString(lpszEventName) && !IsEventExists(lpszEventName)) 
 		{
@@ -224,7 +224,7 @@ namespace DM
 		}
 	}
 
-	RefEventSlot DMTaskRunnerImpl::GetEventObject(LPCWSTR lpszEventName, bool bAutoAdd /*= false*/)
+	RefEventSlot DMTaskRunnerImpl::GetEventObject(LPCSTR lpszEventName, bool bAutoAdd /*= false*/)
 	{
 		if (IsValidString(lpszEventName))
 		{
@@ -298,7 +298,7 @@ namespace DM
 		return m_bInitWorkTaskHandler;
 	}
 
-	void DMTaskRunnerImpl::FireEventImpl(LPCWSTR lpszEventName, DMEventSender& sender, DMBundle& args)
+	void DMTaskRunnerImpl::FireEventImpl(LPCSTR lpszEventName, DMEventSender& sender, DMBundle& args)
 	{
 		RefEventSlot refEventSlot = GetEventObject(lpszEventName);
 		if (refEventSlot.isValid()) 

@@ -35,7 +35,7 @@ namespace DM
 		m_crItemSelText.SetTextInvalid();
 
 		m_bHotTrack      = false;
-		m_pDUIXmlInfo->m_pStyle->SetAttribute(L"align",L"left",false);    ///Align_Left
+		m_pDUIXmlInfo->m_pStyle->SetAttribute("align","left",false);    ///Align_Left
 
 
 		// listbox
@@ -790,7 +790,7 @@ namespace DM
 				int nHeight = 0;
 				DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_height),nHeight);
 				pItem.nHeight = (nHeight==0) ? m_nDefItemHei : nHeight; 
-				pItem.strText = XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_text);
+				pItem.strText = DMA2W(XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_text));
 				DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIListBoxAttr::ITEM_icon),pItem.nImage);
 				
 				int lParam = (int)pItem.lParam;
@@ -838,7 +838,7 @@ namespace DM
 		return iRet;
 	}
 
-	DMCode DUIListBox::OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIListBox::OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

@@ -23,7 +23,7 @@ namespace DM
 {
 	class DM_EXPORT DMTooltipImpl:public IDMToolTip,public DMCWnd
 	{
-		DMDECLARE_CLASS_NAME(DMTooltipImpl,L"DMTooltipImpl",DMREG_ToolTip);
+		DMDECLARE_CLASS_NAME(DMTooltipImpl,"DMTooltipImpl",DMREG_ToolTip);
 	public:
 		DMTooltipImpl(void);
 		virtual ~DMTooltipImpl(void);

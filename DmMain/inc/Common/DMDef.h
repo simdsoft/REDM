@@ -197,13 +197,13 @@ enum DMOLEDCFLAGS
 
 // ----------------------------------------------------
 //  XML节点宏
-#define    RES_GLOBAL                               L"global"                   ///< 全局
-#define	   RES_LAYOUT								L"layout"					///< 布局
-#define    RES_THEMES								L"themes"					///< 主题包列表
+#define    RES_GLOBAL                               "global"                   ///< 全局
+#define	   RES_LAYOUT								"layout"					///< 布局
+#define    RES_THEMES								"themes"					///< 主题包列表
 
-#define	   MAINWND_NODE								L"dm"                       ///< 每个主窗口的起始Section名
-#define    DUIROOT_NODE								L"root"                     ///< 解析根结点
-#define    SUB_NODE								    L"sub"                      ///< 支持sub结点
+#define	   MAINWND_NODE								"dm"                       ///< 每个主窗口的起始Section名
+#define    DUIROOT_NODE								"root"                     ///< 解析根结点
+#define    SUB_NODE								    "sub"                      ///< 支持sub结点
 
 // ----------------------------------------------------
 // DUIWindow消息部分

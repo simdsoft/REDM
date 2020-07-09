@@ -18,7 +18,7 @@ namespace DM
 {
 	class DMLogImpl:public IDMLog
 	{
-		DMDECLARE_CLASS_NAME(DMLogImpl,L"DMLogImpl",DMREG_Log);
+		DMDECLARE_CLASS_NAME(DMLogImpl,"DMLogImpl",DMREG_Log);
 	public:
 		virtual DMCode LogW(DMLOGLEVEL iLevel,LPCWSTR lpszFuncName, LPCWSTR lpszFileName, int iLine,LPCWSTR szLogBuf);
 	};

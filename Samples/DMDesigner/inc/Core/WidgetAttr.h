@@ -29,13 +29,13 @@ public:
 	virtual DMCode OnTreeEnd(AttrTree* pTree);
 
 	DMCode InitAttrArray();
-	IPropPtr FindPropByName(CStringW strName);
-	DMXmlInitAttrPtr FindAttrByName(CStringW strName);
+	IPropPtr FindPropByName(CStringA strName);
+	DMXmlInitAttrPtr FindAttrByName(CStringA strName);
 	virtual void PreArrayObjRemove(const DMXmlInitAttrPtr &obj);
 
 private:
 	void ReleaseProp();
-	void InitSpecialValue(CStringW& strValue, DMXmlInitAttrPtr pInitAttr);
+	void InitSpecialValue(CStringA& strValue, DMXmlInitAttrPtr pInitAttr);
 
 public:
 	static DMCode s_DMHandleEvent(DM::DMEventArgs *pEvt);
@@ -47,7 +47,7 @@ public:
 	DUIButton*										   m_pExpandBtn;
 	DUIPropFrame*									   m_pPropFrame;
 	DUIWindow*										   m_pCurDUI;
-	CStringWList                                       m_strList;
+	CStringAList                                       m_strList;
 	PropString*                                        m_pPropStyle;      ///< 用于对style特殊处理
 	// 用于转发消息
 	static WidgetAttr*                                 ms_pthis;

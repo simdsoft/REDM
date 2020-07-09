@@ -36,7 +36,7 @@ namespace DM
 		pdmmi->itemInfo.iconOffset = m_pDUIMenuXmlInfo->m_IconOffset;
 		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_iconoffset),pdmmi->itemInfo.iconOffset);
 		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_icon),pdmmi->itemInfo.iIcon);
-		pdmmi->itemInfo.strText = XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_text);
+		pdmmi->itemInfo.strText = DMCA2W(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_text), -1, CP_UTF8);
 		pdmmi->itemInfo.textOffset = m_pDUIMenuXmlInfo->m_TextOffset;
 		DMAttributeDispatch::ParseInt(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_textoffset),pdmmi->itemInfo.textOffset);
 		pdmmi->itemInfo.pSkin = g_pDMApp->GetSkin(XmlItem.Attribute(DMAttr::DUIMenuAttr::ITEM_skin));
@@ -70,7 +70,7 @@ namespace DM
 		return new DUIMenuItem();
 	}
 
-	bool DUIMenu::LoadMenu(LPCWSTR lpszType,LPCWSTR lpszResName)
+	bool DUIMenu::LoadMenu(LPCSTR lpszType,LPCSTR lpszResName)
 	{
 		bool bRet = false;
 		do 
@@ -335,11 +335,11 @@ namespace DM
 		DMXmlNode XmlItem = xmlNode.FirstChild();
 		while (XmlItem.IsValid())
 		{
-			if (0 == _wcsicmp(DMAttr::DUIMenuAttr::NODE_sep,XmlItem.GetName()))
+			if (0 == dm_xmlstrcmp(DMAttr::DUIMenuAttr::NODE_sep,XmlItem.GetName()))
 			{
 				AppendMenu(menuPopup,MF_SEPARATOR|MF_OWNERDRAW,(UINT_PTR)0,(LPCTSTR)NULL);
 			}
-			else if(0 == _wcsicmp(DMAttr::DUIMenuAttr::NODE_item,XmlItem.GetName()))
+			else if(0 == dm_xmlstrcmp(DMAttr::DUIMenuAttr::NODE_item,XmlItem.GetName()))
 			{
 				DMMenuItemData *pdmmi = ParseItem(XmlItem);
 				if (NULL == pdmmi)

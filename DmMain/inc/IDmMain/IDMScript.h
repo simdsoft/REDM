@@ -20,7 +20,7 @@ namespace DM
 	/// </summary>
 	class IDMScript : public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMAnimate,L"IDMScript",DMREG_Script);
+		DMDECLARE_CLASS_NAME(IDMAnimate,"IDMScript",DMREG_Script);
 	public:
 		virtual DMCode InitScript() = 0;                            ///< 用于初始化,(也可以方便绑定运行时才能绑定的全局变量）
 		virtual DMCode RunString(LPCSTR lpszString) = 0;			///< 通过文本运行脚本

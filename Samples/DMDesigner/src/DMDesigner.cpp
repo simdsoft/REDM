@@ -13,6 +13,39 @@
 #include "Plugin.h"   
 #include <dbghelp.h> 
 #pragma comment(lib,  "dbghelp.lib")
+#include <chrono>
+
+namespace yasio
+{
+	// typedefs
+	typedef long long highp_time_t;
+	typedef std::chrono::high_resolution_clock steady_clock_t;
+	typedef std::chrono::system_clock system_clock_t;
+
+	// The high precision nano seconds timestamp
+	template <typename _Ty = steady_clock_t> inline long long xhighp_clock()
+	{
+		auto duration = _Ty::now().time_since_epoch();
+		return std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
+	}
+	// The high precision micro seconds timestamp
+	template <typename _Ty = steady_clock_t> inline long long highp_clock()
+	{
+		return xhighp_clock<_Ty>() / 1000LL;
+	}
+
+#if YASIO__HAS_CXX17
+	using std::clamp;
+#else
+	template <typename _Ty> const _Ty& clamp(const _Ty& v, const _Ty& lo, const _Ty& hi)
+	{
+		assert(!(hi < lo));
+		return v < lo ? lo : hi < v ? hi : v;
+	}
+#endif
+
+	template <typename _Ty> inline void invoke_dtor(_Ty* p) { p->~_Ty(); }
+} // namespace yasio
 
 LONG __stdcall _UnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo)
 {
@@ -66,16 +99,40 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #endif//DLL_DMMAIN
 
 	theApp.LoadResPack((WPARAM)(L"DesignerRes"),NULL,NULL);					
-	theApp.InitGlobal(L"ds_global");	
+	theApp.InitGlobal("ds_global");	
 
 #if   0 
 	DMSmartPtrT<LayoutDlg> pMainWnd; 
 	pMainWnd.Attach(new LayoutDlg());
 	pMainWnd->DoModal(L"ds_layoutdlg",NULL,true);
 #else
+
+	// int callCount = 2;
+	// while (true) {
+	// 
+	// 	if (--callCount >= 1) {
+	// 		DMSmartPtrT<DMDesignerWnd> pMainWnd;
+	// 		pMainWnd.Attach(new DMDesignerWnd());
+	// 		auto start = yasio::highp_clock();
+	// 		pMainWnd->DM_CreateWindow("ds_mainwnd", 0, 0, 0, 0, NULL, false);			// 创建主窗口
+	// 		auto diff = yasio::highp_clock() - start;
+	// 
+	// 		char buf[128];
+	// 		sprintf(buf, "-----------> load cost %lf (ms)\n", diff / 1000.0);
+	// 		OutputDebugStringA(buf);
+	// 	}
+	// 
+	// 	Sleep(1000);
+	// }
 	DMSmartPtrT<DMDesignerWnd> pMainWnd;
 	pMainWnd.Attach(new DMDesignerWnd());
-	pMainWnd->DM_CreateWindow(L"ds_mainwnd",0,0,0,0,NULL,false);			// 创建主窗口
+	auto start = yasio::highp_clock();
+	pMainWnd->DM_CreateWindow("ds_mainwnd", 0, 0, 0, 0, NULL, false);			// 创建主窗口
+	auto diff = yasio::highp_clock() - start;
+
+	char buf[128];
+	sprintf(buf, "-----------> load cost %lf (ms)\n", diff / 1000.0);
+	OutputDebugStringA(buf);
 	pMainWnd->SendMessage(WM_INITDIALOG);
 	pMainWnd->CenterWindow();
 	pMainWnd->ShowWindow(SW_SHOW);

@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "PoolDlg.h"
 
 BEGIN_MSG_MAP(PoolDlg)   
@@ -16,27 +16,27 @@ PoolDlg::PoolDlg(bool bSkinPool,bool bEditMode,CStringW strName)
 
 BOOL PoolDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam )
 {
-	DUIStatic* pTitle = FindChildByNameT<DUIStatic>(L"ds_title");
+	DUIStatic* pTitle = FindChildByNameT<DUIStatic>("ds_title");
 	CStringW strTitle;
 	if (false == m_bEditMode)
 	{
-		strTitle = L"Ôö¼Ó";
+		strTitle = L"å¢žåŠ ";
 	}
 	else
 	{
-		strTitle = L"±à¼­";
+		strTitle = L"ç¼–è¾‘";
 	}
 
 	if (false == m_bSkinPool)
 	{
-		strTitle += L"ÑùÊ½³Ø";
+		strTitle += L"æ ·å¼æ± ";
 	}
 	else
 	{
-		strTitle += L"Æ¤·ô³Ø";
+		strTitle += L"çš®è‚¤æ± ";
 	}
 	pTitle->DV_SetWindowText(strTitle);
-	DUIEdit* pEdit = FindChildByNameT<DUIEdit>(L"ds_name");
+	DUIEdit* pEdit = FindChildByNameT<DUIEdit>("ds_name");
 	if (m_bEditMode)
 	{
 		pEdit->SetWindowText(m_strName);
@@ -66,13 +66,13 @@ DMCode PoolDlg::OnOK()
 	do 
 	{
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 		if (NULL == pXml||NULL == pProjTree)
 		{
 			break;
 		}
-		DUIEdit* pEdit = FindChildByNameT<DUIEdit>(L"ds_name");
-		CStringW strName = pEdit->GetWindowText();
+		DUIEdit* pEdit = FindChildByNameT<DUIEdit>("ds_name");
+		CStringA strName = pEdit->GetTextA();
 		strName.Trim();
 		HDMTREEITEM hSel = pXml->m_hProjSel;
 		DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(hSel);
@@ -80,26 +80,26 @@ DMCode PoolDlg::OnOK()
 		{
 			break;
 		}
-		// ±à¼­Ä£Ê½ ------------------------------
+		// ç¼–è¾‘æ¨¡å¼ ------------------------------
 		if (m_bEditMode)
 		{
-			CStringW strOldName = pNode->Attribute(XML_NAME);
-			//1. È¡µÃÔ­Ê¼Ãû×Ö,²¢Óëµ±Ç°Ãû×Ö±È½Ï
+			CStringA strOldName = pNode->Attribute(XML_NAME);
+			//1. å–å¾—åŽŸå§‹åå­—,å¹¶ä¸Žå½“å‰åå­—æ¯”è¾ƒ
 			if (strOldName != strName)
 			{
-				//2. ÐÞ¸ÄNodeµÄName
+				//2. ä¿®æ”¹Nodeçš„Name
 				pNode->SetAttribute(XML_NAME,strName);
 
-				//3. ÐÞ¸ÄtreeµÄÏÔÊ¾Name
+				//3. ä¿®æ”¹treeçš„æ˜¾ç¤ºName
 				if (strName.IsEmpty())
 				{
 					strName = m_bSkinPool? XML_SKIN:XML_STYLE;
 				}
 				DM::LPTVITEMEX pData = pProjTree->GetItem(hSel);
-				pData->pPanel->m_pDUIXmlInfo->m_strText = strName;
+				pData->pPanel->m_pDUIXmlInfo->m_strText = DMA2W(strName);
 				pProjTree->UpdateItemRect(hSel);
 
-				//4. ½«¶ÔÓ¦xmlÉèÖÃÎªÎ´±£´æ×´Ì¬
+				//4. å°†å¯¹åº”xmlè®¾ç½®ä¸ºæœªä¿å­˜çŠ¶æ€
 				pXml->SetDocUnSave(pNode);
 			}
 
@@ -109,23 +109,23 @@ DMCode PoolDlg::OnOK()
 		}
 
 
-		// ÐÂ½¨Ä£Ê½ ------------------------------
+		// æ–°å»ºæ¨¡å¼ ------------------------------
 		if (strName.IsEmpty())
 		{
-			if (IDCANCEL == DM_MessageBox(L"Ãû×ÖÎª¿Õ,ÊÇ·ñ¼ÌÐø£¿",MB_OKCANCEL,L"MSG",m_hWnd))
+			if (IDCANCEL == DM_MessageBox(L"åå­—ä¸ºç©º,æ˜¯å¦ç»§ç»­ï¼Ÿ",MB_OKCANCEL,L"MSG",m_hWnd))
 			{
 				break;
 			}
 		}
 	
-		// 1.²åÈëXML½áµã
-		DMXmlNode XmlNode = pNode->InsertChildNode(m_bSkinPool?L"skin":L"style");
+		// 1.æ’å…¥XMLç»“ç‚¹
+		DMXmlNode XmlNode = pNode->InsertChildNode(m_bSkinPool?"skin":"style");
 		if (!strName.IsEmpty())
 		{
 			XmlNode.SetAttribute(XML_NAME,strName);
 		}
 		
-		// 2.²åÈëtree½áµã
+		// 2.æ’å…¥treeç»“ç‚¹
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		pXml->InitProjTreeNode(DataNode,true);
@@ -136,7 +136,7 @@ DMCode PoolDlg::OnOK()
 		hAdd = pXml->InsertProjTreeItem(DataNode,strName,hSel);
 		pXml->BindProjTreeData(XmlNode,hAdd);
 
-		// 3.½«¶ÔÓ¦xmlÉèÖÃÎªÎ´±£´æ
+		// 3.å°†å¯¹åº”xmlè®¾ç½®ä¸ºæœªä¿å­˜
 		pXml->SetDocUnSave(pNode);
 
 		iErr = DM_ECODE_OK;

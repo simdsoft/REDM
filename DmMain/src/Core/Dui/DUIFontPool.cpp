@@ -83,7 +83,8 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			CStringW szFont = strFont;
+			// TODO: complete
+			CStringA szFont = DMW2A(strFont, CP_UTF8);
 			szFont.Trim();
 			szFont.MakeLower();
 			if (szFont.IsEmpty()||NULL==lpLogFont)// 为NULL
@@ -93,17 +94,17 @@ namespace DM
 
 			// 解析并创建
 			bool bItalic=0,bUnderline=0,bStrike=0;   
-			CStringW strFace = L""; int lFontSize=0;int lWightSize=0;int lCharSet=0;
+			CStringW strFace; int lFontSize=0;int lWightSize=0;int lCharSet=0;
 
 			//------------------------------------------
-			int nPosBegin = szFont.Find(L"face:");                     
+			int nPosBegin = szFont.Find("face:");                     
 			if(nPosBegin!=-1)                                         
 			{                                                         
 				nPosBegin+=5;                                             
-				int nPosEnd=szFont.Find(L";",nPosBegin);
-				if(nPosEnd==-1) nPosEnd=szFont.Find(L",",nPosBegin);
+				int nPosEnd=szFont.Find(";",nPosBegin);
+				if(nPosEnd==-1) nPosEnd=szFont.Find(",",nPosBegin);
 				if(nPosEnd==-1) nPosEnd=szFont.GetLength();
-				strFace=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
+				strFace=DMA2W(szFont.Mid(nPosBegin,nPosEnd-nPosBegin), CP_UTF8);
 			} 
 			else
 			{
@@ -111,10 +112,10 @@ namespace DM
 			}
 
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"underline:");                    
+			nPosBegin=szFont.Find("underline:");                    
 			if(nPosBegin!=-1)                                         
 			{                                                         
-				bUnderline=szFont.Mid(nPosBegin+10,1)!=L"0";             
+				bUnderline=szFont.Mid(nPosBegin+10,1)!="0";             
 			}
 			else
 			{
@@ -122,10 +123,10 @@ namespace DM
 			}
 
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"italic:");                       
+			nPosBegin=szFont.Find("italic:");                       
 			if(nPosBegin!=-1)                                         
 			{                                                         
-				bItalic=szFont.Mid(nPosBegin+7,1)!=L"0";                 
+				bItalic=szFont.Mid(nPosBegin+7,1)!="0";                 
 			}
 			else
 			{
@@ -133,10 +134,10 @@ namespace DM
 			}
 
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"strike:");                       
+			nPosBegin=szFont.Find("strike:");                       
 			if(nPosBegin!=-1)                                         
 			{                                                         
-				bStrike=szFont.Mid(nPosBegin+7,1)!=L"0";                 
+				bStrike=szFont.Mid(nPosBegin+7,1)!="0";                 
 			}
 			else
 			{
@@ -144,14 +145,14 @@ namespace DM
 			}
 
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"size:");
+			nPosBegin=szFont.Find("size:");
 			if (nPosBegin!=-1)
 			{
 				nPosBegin+=5;                                             
-				int nPosEnd=szFont.Find(L";",nPosBegin);
-				if(nPosEnd==-1) nPosEnd=szFont.Find(L",",nPosBegin);
+				int nPosEnd=szFont.Find(";",nPosBegin);
+				if(nPosEnd==-1) nPosEnd=szFont.Find(",",nPosBegin);
 				if(nPosEnd==-1) nPosEnd=szFont.GetLength();
-				CStringW strFontSize=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
+				CStringA strFontSize=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
 				lFontSize = DMABS(m_lfDefault.lfHeight);
 				DMAttributeDispatch::ParseInt(strFontSize,lFontSize);
 			}
@@ -161,14 +162,14 @@ namespace DM
 			}
 
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"weight:");
+			nPosBegin=szFont.Find("weight:");
 			if (nPosBegin!=-1)
 			{
 				nPosBegin+=7;                                             
-				int nPosEnd=szFont.Find(L";",nPosBegin);
-				if(nPosEnd==-1) nPosEnd=szFont.Find(L",",nPosBegin);
+				int nPosEnd=szFont.Find(";",nPosBegin);
+				if(nPosEnd==-1) nPosEnd=szFont.Find(",",nPosBegin);
 				if(nPosEnd==-1) nPosEnd=szFont.GetLength();
-				CStringW strWeightSize=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
+				CStringA strWeightSize=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
 				lWightSize = DMABS(m_lfDefault.lfWeight);
 				DMAttributeDispatch::ParseInt(strWeightSize,lWightSize);
 			}
@@ -177,14 +178,14 @@ namespace DM
 				lWightSize = DMABS(m_lfDefault.lfWeight);
 			}
 			//------------------------------------------
-			nPosBegin=szFont.Find(L"charset:");
+			nPosBegin=szFont.Find("charset:");
 			if (nPosBegin!=-1)
 			{
 				nPosBegin+=8;  
-				int nPosEnd=szFont.Find(L";",nPosBegin);
-				if(nPosEnd==-1) nPosEnd=szFont.Find(L",",nPosBegin);
+				int nPosEnd=szFont.Find(";",nPosBegin);
+				if(nPosEnd==-1) nPosEnd=szFont.Find(",",nPosBegin);
 				if(nPosEnd==-1) nPosEnd=szFont.GetLength();
-				CStringW strCharSet=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
+				CStringA strCharSet=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
 				lCharSet = DMABS(m_lfDefault.lfCharSet);
 				DMAttributeDispatch::ParseInt(strCharSet,lCharSet);
 			}

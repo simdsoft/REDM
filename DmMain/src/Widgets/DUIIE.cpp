@@ -500,7 +500,7 @@ namespace DM
 		,m_bShowScroll(false)	
 		,m_bShowContext(true)
 		,m_bDisableScriptWarn(false)
-		,m_Refreshkey(DUIAccel::TranslateAccelKey(L"f5"))
+		,m_Refreshkey(DUIAccel::TranslateAccelKey("f5"))
 	{		
 		m_ClsId = CLSID_WebBrowser;
 	}
@@ -1170,7 +1170,7 @@ namespace DM
 		return S_OK;
 	}
 
-	HRESULT DUIIE::WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
+	HRESULT DUIIE::WebSetAttribute(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml)
 	{
 		if (DMSUCCEEDED(SetAttribute(pszAttribute,pszValue,bLoadXml)))
 		{
@@ -1179,9 +1179,9 @@ namespace DM
 		return S_FALSE;
 	}
 
-	DMCode DUIIE::OnAttributeUrl(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIIE::OnAttributeUrl(LPCSTR pszValue, bool bLoadXml)
 	{
-		m_strUrl = pszValue;
+		m_strUrl = DMCA2W(pszValue, -1, CP_UTF8);
 		if (!bLoadXml)
 		{
 			OpenUrl(m_strUrl);
@@ -1189,7 +1189,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIIE::OnAttributeShowScroll(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIIE::OnAttributeShowScroll(LPCSTR pszValue, bool bLoadXml)
 	{
 		dm_parsebool(pszValue,m_bShowScroll);
 		SetScrollBarShow(m_bShowScroll);
@@ -1201,7 +1201,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIIE::OnAttributeShowContext(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIIE::OnAttributeShowContext(LPCSTR pszValue, bool bLoadXml)
 	{
 		dm_parsebool(pszValue,m_bShowContext);
 		SetContextMenuShow(m_bShowContext);
@@ -1213,17 +1213,16 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIIE::OnAttributeDisableScriptWarn(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIIE::OnAttributeDisableScriptWarn(LPCSTR pszValue, bool bLoadXml)
 	{
 		dm_parsebool(pszValue,m_bDisableScriptWarn);
 		DisableScriptWarning(m_bDisableScriptWarn);
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIIE::OnAttributeRefreshKey(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIIE::OnAttributeRefreshKey(LPCSTR pszValue, bool bLoadXml)
 	{
-		CStringW strValue = pszValue;
-		m_Refreshkey = DUIAccel::TranslateAccelKey(strValue);
+		m_Refreshkey = DUIAccel::TranslateAccelKey(pszValue);
 		return DM_ECODE_OK;
 	}
 

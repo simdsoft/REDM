@@ -49,7 +49,7 @@ DMCode RightXml::InitRightXml()
 		m_pNameAttr = new NameAttr;
 	
 		//2.attr listÇø
-		m_pList = g_pMainWnd->FindChildByNameT<DUIList>(L"ds_attr_list");DMASSERT(m_pList);
+		m_pList = g_pMainWnd->FindChildByNameT<DUIList>("ds_attr_list");DMASSERT(m_pList);
 		m_pList->DM_SetVisible(false,true);
 		m_pHostAttr = new HostAttr;
 		m_pWidgetAttr = new WidgetAttr;

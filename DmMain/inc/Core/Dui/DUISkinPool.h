@@ -19,7 +19,7 @@ namespace DM
 	/// <summary>
 	///		Skin的池对象,用于支持局部skin
 	/// </summary>
-	class DMSkinPoolItem:public DMRefNum,public DMMapT<CStringW,IDMSkinPtr>
+	class DMSkinPoolItem:public DMRefNum,public DMMapT<CStringA,IDMSkinPtr>
 	{
 	public:
 		virtual ~DMSkinPoolItem();
@@ -35,7 +35,7 @@ namespace DM
 	/// <remarks>
 	///		采用池列表的好处是可以移除某些局部的池,如某个skin池中所有对象只用某个窗口，当窗口销毁后，就可以考虑把这个池移除
 	/// </remarks>
-	class DM_EXPORT DUISkinPool:public DMMapT<CStringW, DMSkinPoolItemPtr>
+	class DM_EXPORT DUISkinPool:public DMMapT<CStringA, DMSkinPoolItemPtr>
 	{
 	public:
 		~DUISkinPool();
@@ -50,13 +50,13 @@ namespace DM
 		/// @brief  移除一个skin池，如skin池已存在,则加入解析的项
 		/// @param[in]  lpszName	skin池的名称
 		/// @return  DMCode
-		DMCode RemoveSkinPoolItem(LPCWSTR lpszName);
+		DMCode RemoveSkinPoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
 		/// @brief  删除所有的skin池，除了指定的key以外
 		/// @param[in]  lpszName			被排除的skin池的名称
 		/// @return DMCode
-		DMCode RemoveAllSkinPoolItemExcept(LPCWSTR lpszName);
+		DMCode RemoveAllSkinPoolItemExcept(LPCSTR lpszName);
 		
 		/// -------------------------------------------------
 		/// @brief  用于换肤
@@ -74,8 +74,8 @@ namespace DM
 		/// @param[in]		pszType				图片类型，一般默认为png
 		/// @param[in]		lpszXml				描述skin的xml
 		/// @param[in]		lpszPoolName		skin池名称
-		DMCode AddSkin(void *pBuf,size_t bufLen,LPCWSTR pszType,
-			LPCWSTR lpszXml,LPCWSTR lpszPoolName=NULL);
+		DMCode AddSkin(void *pBuf,size_t bufLen,LPCSTR pszType,
+			LPCSTR lpszXml,LPCSTR lpszPoolName=NULL);
 
 		/// -------------------------------------------------
 		/// @brief  移除skin
@@ -83,13 +83,13 @@ namespace DM
 		/// @param[in]  lpszName		用于查找skin池的name
 		/// @remark 默认先在lpszName的skin池中移除，如果找不到,而且bLoopFind为真，就全部遍历找到并移除
 		/// @return 从skin池中移除skin,并将引用计数减1
-		DMCode RemoveSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
+		DMCode RemoveSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief  全部遍历删除skin
 		/// @param[in]  lpszKey			用于查找skin的key
 		/// @return IDMSkinPtr，为NULL表示失败
-		DMCode RemoveSkinFromAll(LPCWSTR lpszKey);
+		DMCode RemoveSkinFromAll(LPCSTR lpszKey);
 
 		/// -------------------------------------------------
 		/// @brief  查找skin
@@ -97,19 +97,19 @@ namespace DM
 		/// @param[in]  lpszName		用于查找skin池的name
 		/// @remark 默认先在lpszName的skin池中找，如果找不到,而且bLoopFind为真，就全部遍历找
 		/// @return IDMSkinPtr，为NULL表示失败
-		IDMSkinPtr FindSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
+		IDMSkinPtr FindSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief  找查找skin
 		/// @param[in]  lpszBuf			skin池的名称:skin的key
 		/// @return IDMSkinPtr，为NULL表示失败
-		IDMSkinPtr FindSkin(LPCWSTR lpszBuf,bool bLoopFind = true);
+		IDMSkinPtr FindSkin(LPCSTR lpszBuf,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief  全部遍历找查找skin
 		/// @param[in]  lpszKey			用于查找skin的key
 		/// @return IDMSkinPtr，为NULL表示失败
-		IDMSkinPtr FindSkinFromAll(LPCWSTR lpszKey);
+		IDMSkinPtr FindSkinFromAll(LPCSTR lpszKey);
 
 	public:
 		virtual void PreMapKeyRemove(const DMSkinPoolItemPtr &obj);

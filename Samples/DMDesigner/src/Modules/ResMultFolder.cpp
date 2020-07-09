@@ -14,7 +14,7 @@ DMCode ResMultFolder::LoadResPack(WPARAM wp, LPARAM lp)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	ResFolderPtr pItem = new ResFolder;
-	pItem->SetAttribute(L"bassert",L"0");
+	pItem->SetAttribute("bassert","0");
 	do 
 	{
 		if (!DMSUCCEEDED(pItem->LoadResPack(wp,lp)))
@@ -32,7 +32,7 @@ DMCode ResMultFolder::LoadResPack(WPARAM wp, LPARAM lp)
 	return iErr;
 }
 
-DMCode ResMultFolder::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName/*=NULL*/)
+DMCode ResMultFolder::IsItemExists(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName/*=NULL*/)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
@@ -43,7 +43,7 @@ DMCode ResMultFolder::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lp
 	return iErr;
 }
 
-DMCode ResMultFolder::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName/*=NULL*/)
+DMCode ResMultFolder::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize, LPCSTR lpszThemeName/*=NULL*/)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
@@ -53,25 +53,25 @@ DMCode ResMultFolder::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned l
 	} while (false);
 	if (!DMSUCCEEDED(iErr))
 	{
-		CStringW strInfo;
-		strInfo.Format(L"Res资源中%s:%s获取size失败",lpszType,lpszName);
+		CStringA strInfo;
+		strInfo.Format("Res资源中%s:%s获取size失败",lpszType,lpszName);
 		DMASSERT_EXPR(0,strInfo);
 	}
 	return iErr;
 }
 
-DMCode ResMultFolder::GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName/*=NULL*/)
+DMCode ResMultFolder::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>& pBuf, PULONG lpULSize, LPCSTR lpszThemeName)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
 		ResFolderPtr pItem = GetResFolderPtr(lpszName);
-		iErr = pItem->GetItemBuf(lpszType,lpszName, lpBuf,ulSize,lpszThemeName);
+		iErr = pItem->GetItemBuf(lpszType,lpszName, pBuf, lpULSize,lpszThemeName);
 	} while (false);
 	if (!DMSUCCEEDED(iErr))
 	{
-		CStringW strInfo;
-		strInfo.Format(L"Res资源中%s:%s获取buf失败",lpszType,lpszName);
+		CStringA strInfo;
+		strInfo.Format("Res资源中%s:%s获取buf失败",lpszType,lpszName);
 		DMASSERT_EXPR(0,strInfo);
 	}
 	return iErr;
@@ -82,7 +82,7 @@ DMCode ResMultFolder::LoadTheme(WPARAM wp, LPARAM lp)
 	return DM_ECODE_OK;
 }
 
-DMCode ResMultFolder::SetCurTheme(LPCWSTR lpszName, LPCWSTR lpszOldName/*=NULL*/)
+DMCode ResMultFolder::SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName/*=NULL*/)
 {
 	return DM_ECODE_OK;
 }
@@ -97,30 +97,17 @@ void ResMultFolder::PreArrayObjRemove(const ResFolderPtr &obj)
 	obj->Release();
 }
 
-bool ResMultFolder::IsDMDesignerRes(CStringW strName)
+bool ResMultFolder::IsDMDesignerRes(const char* pszName)
 {
-	bool bRet = false;
-	do 
-	{
-		if (strName.GetLength()<=3)
-		{
-			break;
-		}
-		if (strName.Left(3).CompareNoCase(L"ds_")
-			||(g_pMainWnd && g_pMainWnd->m_pDesignerXml && 0 == g_pMainWnd->m_pDesignerXml->m_strGlobalName.CompareNoCase(L"ds_global"))//支持DesignerRes自身编辑
-			)
-		{
-			break;
-		}
-		bRet = true;
-	} while (false);
-	return bRet;
+	return (strlen(pszName) > 3 && memcmp(pszName, "ds_", 3) == 0) &&
+		// 支持编辑自身
+		(!g_pMainWnd || !g_pMainWnd->m_pDesignerXml || g_pMainWnd->m_pDesignerXml->m_strGlobalName.CompareNoCase("ds_global") != 0);
 }
 
-ResFolderPtr ResMultFolder::GetResFolderPtr(CStringW strName)
+ResFolderPtr ResMultFolder::GetResFolderPtr(const char* pszName)
 {
 	ResFolderPtr pItem = GetObj(0);
-	if (!IsDMDesignerRes(strName))
+	if (!IsDMDesignerRes(pszName))
 	{
 		if (2==(int)GetCount())
 		{

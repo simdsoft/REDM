@@ -4,7 +4,6 @@
 
 namespace DM
 {
-	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR);
 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc = NULL; 
 	DMApp::DMApp(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
@@ -30,7 +29,7 @@ namespace DM
 		}
 	}
 
-	DMCode DMApp::InitGlobal(LPCWSTR lpszXmlId/*=L"global"*/)
+	DMCode DMApp::InitGlobal(LPCSTR lpszXmlId/*=L"global"*/)
 	{
 		return g_pDMAppData->InitGlobal(lpszXmlId);
 	}
@@ -51,17 +50,17 @@ namespace DM
 		return g_pDMAppData->Register(RegObj, bReplace);
 	}
 
-	DMCode DMApp::CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType)
+	DMCode DMApp::CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType)
 	{
 		return g_pDMAppData->CreateRegObj(ppObj, lpszClassName, RegType);
 	}
 
-	DMCode DMApp::UnRegister(LPCWSTR lpszClassName,int RegType)
+	DMCode DMApp::UnRegister(LPCSTR lpszClassName,int RegType)
 	{
 		return g_pDMAppData->UnRegister(lpszClassName,RegType);
 	}
 
-	DMCode DMApp::SetDefRegObj(LPCWSTR lpszClassName,int RegType)
+	DMCode DMApp::SetDefRegObj(LPCSTR lpszClassName,int RegType)
 	{
 		return g_pDMAppData->SetDefRegObj(lpszClassName,RegType);
 	}
@@ -71,9 +70,9 @@ namespace DM
 		return g_pDMAppData->GetDefRegObj(ppObj,RegType);
 	}
 
-	LPCWSTR DMApp::GetDefRegObj(int RegType)
+	CStringA DMApp::GetDefRegObj(int RegType)
 	{
-		CStringW szName = L"";
+		CStringA szName = "";
 		DMCode iErr = g_pDMAppData->GetDefRegObj(szName, RegType);
 		return szName;
 	}
@@ -110,7 +109,7 @@ namespace DM
 	}
 
 	/// ½âÎö×ÊÔ´Res--------------------------------------
-	DMCode DMApp::LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName)
+	DMCode DMApp::LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName)
 	{
 		return g_pDMAppData->LoadResPack(wp, lp, lpszClassName);
 	}
@@ -121,12 +120,12 @@ namespace DM
 		return g_pDMSkinPool->AddSkinPoolItem(XmlNode);
 	}
 
-	DMCode DMApp::RemoveSkinPoolItem(LPCWSTR lpszName)
+	DMCode DMApp::RemoveSkinPoolItem(LPCSTR lpszName)
 	{
 		return g_pDMSkinPool->RemoveSkinPoolItem(lpszName);
 	}
 
-	DMCode DMApp::RemoveAllSkinPoolItemExcept(LPCWSTR lpszName)
+	DMCode DMApp::RemoveAllSkinPoolItemExcept(LPCSTR lpszName)
 	{
 		return g_pDMSkinPool->RemoveAllSkinPoolItemExcept(lpszName);
 	}
@@ -136,7 +135,7 @@ namespace DM
 		return g_pDMStylePool->AddStylePoolItem(XmlNode);
 	}
 
-	DMCode DMApp::RemoveStylePoolItem(LPCWSTR lpszName)
+	DMCode DMApp::RemoveStylePoolItem(LPCSTR lpszName)
 	{
 		return g_pDMStylePool->RemoveStylePoolItem(lpszName);
 	}
@@ -151,24 +150,24 @@ namespace DM
 		return g_pDMFontPool->GetFont(lpszFont);
 	}
 
-	IDMSkin* DMApp::GetSkin(LPCWSTR lpszSkin)
+	IDMSkin* DMApp::GetSkin(LPCSTR lpszSkin)
 	{
 		return g_pDMSkinPool->FindSkin(lpszSkin);
 	}
 
-	DMCode DMApp::AddSkin(void *pBuf,size_t bufLen, LPCWSTR pszType,
-		LPCWSTR lpszXml,LPCWSTR lpszPoolName/*=NULL*/)
+	DMCode DMApp::AddSkin(void *pBuf,size_t bufLen, LPCSTR pszType,
+		LPCSTR lpszXml, LPCSTR lpszPoolName/*=NULL*/)
 	{
 		return g_pDMSkinPool->AddSkin(pBuf,bufLen,pszType,lpszXml,lpszPoolName);
 	}
 
 
-	DMCode DMApp::RemoveSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind /*= true*/)
+	DMCode DMApp::RemoveSkin(LPCSTR lpszKey, LPCSTR lpszName,bool bLoopFind /*= true*/)
 	{
 		return g_pDMSkinPool->RemoveSkin(lpszKey,lpszName,bLoopFind);
 	}
 
-	DMXmlNode DMApp::GetStyle(LPCWSTR lpszStyle)
+	DMXmlNode DMApp::GetStyle(LPCSTR lpszStyle)
 	{
 		return g_pDMStylePool->FindStyle(lpszStyle);
 	}
@@ -197,15 +196,15 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strValue;
-			strValue.Format(L"%d",ivalue);
-			CStringW strType;
+			CStringA strValue;
+			strValue.Format("%d",ivalue);
+			CStringA strType;
 			switch (iType)
 			{
-			case DM_H: strType = L"h";break;
-			case DM_S: strType = L"s";break;
-			case DM_L: strType = L"l";break;
-			case DM_A: strType = L"alpha";break;
+			case DM_H: strType = "h";break;
+			case DM_S: strType = "s";break;
+			case DM_L: strType = "l";break;
+			case DM_A: strType = "alpha";break;
 			default:break;
 			}
 			int iCount = (int)g_pDMDWndPool->m_MainDUIWndArray.GetCount();
@@ -305,7 +304,7 @@ namespace DM
 		return g_pDMMsgLoopTool->AddMessageLoop(pMsgLoop);
 	}
 
-	DMCode DMApp::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCWSTR lpszType,LPCWSTR lpszResName)
+	DMCode DMApp::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName)
 	{
 		return g_pDMAppData->InitDMXmlDocument(XmlDoc,lpszType,lpszResName);
 	}

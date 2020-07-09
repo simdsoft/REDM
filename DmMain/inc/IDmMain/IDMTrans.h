@@ -18,7 +18,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT IDMTrans : public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMTrans,L"IDMTrans",DMREG_Trans);
+		DMDECLARE_CLASS_NAME(IDMTrans,"IDMTrans",DMREG_Trans);
 	public:
 		/// -------------------------------------------------
 		/// @brief 加载翻译包扩展接口

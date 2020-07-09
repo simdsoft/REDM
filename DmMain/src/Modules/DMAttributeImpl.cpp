@@ -4,18 +4,18 @@
 namespace DM
 {
 
-	DMCode DMAttributeImpl::ParseInt(LPCWSTR lpszValue,int&Obj)
+	DMCode DMAttributeImpl::ParseInt(LPCSTR lpszValue,int&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue||0 == wcslen(lpszValue))
+			if (NULL == lpszValue||0 == strlen(lpszValue))
 			{
 				break;
 			}
 
 			int iRet = 0;
-			if (FALSE == ::StrToIntExW(lpszValue,STIF_SUPPORT_HEX,&iRet))
+			if (FALSE == ::StrToIntExA(lpszValue,STIF_SUPPORT_HEX,&iRet))
 			{
 				break;
 			}
@@ -26,18 +26,18 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMAttributeImpl::ParseBool(LPCWSTR lpszValue,bool&Obj)
+	DMCode DMAttributeImpl::ParseBool(LPCSTR lpszValue,bool&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue|| 0 == wcslen(lpszValue))
+			if (NULL == lpszValue|| 0 == strlen(lpszValue))
 			{
 				break;
 			}
 
-			if (0 == _wcsicmp(lpszValue, L"yes")
-				|| 0 == _wcsicmp(lpszValue, L"true"))
+			if (0 == dm_xmlstrcmp(lpszValue, "yes")
+				|| 0 == dm_xmlstrcmp(lpszValue, "true"))
 			{
 				Obj = true;
 				iErr = DM_ECODE_OK;
@@ -57,17 +57,17 @@ namespace DM
 	}
 
 	// #ffffff或rgb(ff,ff,ff)或rgba(ff,ff,ff,ff)
-	DMCode DMAttributeImpl::ParseColor(LPCWSTR lpszValue,DMColor&Obj)
+	DMCode DMAttributeImpl::ParseColor(LPCSTR lpszValue,DMColor&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue|| 0 == wcslen(lpszValue))
+			if (NULL == lpszValue|| 0 == strlen(lpszValue))
 			{
 				break;
 			}
 
-			if (0 == _wcsicmp(lpszValue, L"white"))//白色
+			if (0 == dm_xmlstrcmp(lpszValue, "white"))//白色
 			{
 				Obj = 0xFFFFFFFF;
 				iErr = DM_ECODE_OK;
@@ -82,19 +82,19 @@ namespace DM
 			int nSuccessNum = 0;
 			if (L'#' == lpszValue[0])
 			{
-				nSuccessNum = swscanf_s(lpszValue,L"#%02x%02x%02x%02x",&r,&g,&b,&a);
+				nSuccessNum = sscanf_s(lpszValue,"#%02x%02x%02x%02x",&r,&g,&b,&a);
 				if (4!= nSuccessNum)//没有转换4个
 				{
 					break;
 				}
 			}
-			else if (wcslen(lpszValue)>5)
+			else if (strlen(lpszValue)>5)
 			{
-				if (0 == _wcsnicmp(lpszValue, L"rgb", 3))
+				if (0 == dm_xmlstrncmp(lpszValue, "rgb", 3))
 				{
 					if (L'a' == lpszValue[3]||L'A' == lpszValue[3])
 					{
-						nSuccessNum = swscanf_s(lpszValue,L"rgba(%02x,%02x,%02x,%02x)",&r,&g,&b,&a);
+						nSuccessNum = sscanf_s(lpszValue,"rgba(%02x,%02x,%02x,%02x)",&r,&g,&b,&a);
 						if (4 != nSuccessNum)//没有转换4个
 						{
 							break;
@@ -102,16 +102,16 @@ namespace DM
 					}
 					else
 					{
-						nSuccessNum = swscanf_s(lpszValue,L"rgb(%02x,%02x,%02x)",&r,&g,&b);
+						nSuccessNum = sscanf_s(lpszValue,"rgb(%02x,%02x,%02x)",&r,&g,&b);
 						if (3 != nSuccessNum)//没有转换3个
 						{
 							break;
 						}
 					}
 				}
-				else if (0 == _wcsnicmp(lpszValue, L"pbgra", 5))
+				else if (0 == dm_xmlstrncmp(lpszValue, "pbgra", 5))
 				{
-					nSuccessNum = swscanf_s(lpszValue,L"pbgra(%02x,%02x,%02x,%02x)",&b,&g,&r,&a);
+					nSuccessNum = sscanf_s(lpszValue,"pbgra(%02x,%02x,%02x,%02x)",&b,&g,&r,&a);
 					if (4 != nSuccessNum)//没有转换4个
 					{
 						break;
@@ -127,19 +127,19 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMAttributeImpl::ParseSize(LPCWSTR lpszValue,DM::CSize&Obj)
+	DMCode DMAttributeImpl::ParseSize(LPCSTR lpszValue,DM::CSize&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue||0 == wcslen(lpszValue))
+			if (NULL == lpszValue||0 == strlen(lpszValue))
 			{
 				break;
 			}
 
 			int dx = 0;
 			int dy = 0;
-			int nSuccessNum = swscanf_s(lpszValue,L"%d,%d",&dx,&dy);
+			int nSuccessNum = sscanf_s(lpszValue,"%d,%d",&dx,&dy);
 			if (2 != nSuccessNum)
 			{
 				break;
@@ -152,19 +152,19 @@ namespace DM
 		return iErr;;
 	}
 
-	DMCode DMAttributeImpl::ParsePoint(LPCWSTR lpszValue,DM::CPoint&Obj)
+	DMCode DMAttributeImpl::ParsePoint(LPCSTR lpszValue,DM::CPoint&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue||0 == wcslen(lpszValue))
+			if (NULL == lpszValue||0 == strlen(lpszValue))
 			{
 				break;
 			}
 
 			int dx = 0;
 			int dy = 0;
-			int nSuccessNum = swscanf_s(lpszValue,L"%d,%d",&dx,&dy);
+			int nSuccessNum = sscanf_s(lpszValue,"%d,%d",&dx,&dy);
 			if (2 != nSuccessNum)
 			{
 				break;
@@ -177,12 +177,12 @@ namespace DM
 		return iErr;;
 	}
 
-	DMCode DMAttributeImpl::ParseRect(LPCWSTR lpszValue,DM::CRect&Obj)
+	DMCode DMAttributeImpl::ParseRect(LPCSTR lpszValue,DM::CRect&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszValue||0 == wcslen(lpszValue))
+			if (NULL == lpszValue||0 == strlen(lpszValue))
 			{
 				break;
 			}
@@ -190,7 +190,7 @@ namespace DM
 			int top		= 0;
 			int right	= 0;
 			int bottom  = 0;
-			int nSuccessNum = swscanf_s(lpszValue,L"%d,%d,%d,%d",&left,&top,&right,&bottom);
+			int nSuccessNum = sscanf_s(lpszValue,"%d,%d,%d,%d",&left,&top,&right,&bottom);
 			if (4 != nSuccessNum)
 			{
 				break;

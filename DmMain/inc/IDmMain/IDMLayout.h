@@ -20,7 +20,7 @@ namespace DM
 	/// </summary>
 	class IDMLayout:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMLayout,L"IDMLayout",DMREG_Layout);
+		DMDECLARE_CLASS_NAME(IDMLayout,"IDMLayout",DMREG_Layout);
 	public:
 		virtual  DMCode SetOwner(LPVOID lpWnd) = 0;									///< 设置拥有此layout的DUI窗口
 		virtual  DMCode UpdateLayout(LPRECT prcContainer, CRect &rcWindow) = 0;		///< 更新自身大小

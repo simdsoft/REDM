@@ -1,6 +1,11 @@
 #include "DmMainAfx.h"
 #include "DMTransImpl.h"
 
+#define _TS_STR(s) DMCA2W(s, -1, CP_UTF8)
+#define DM_ENABLE_BUILTIN_TRANS 1
+
+#if DM_ENABLE_BUILTIN_TRANS
+
 namespace DM
 {
 	DMTransImpl::DMTransImpl()
@@ -27,7 +32,7 @@ namespace DM
 			DMXmlDocument XmlDoc;
 			if (0 == lp)
 			{
-				LPWSTR lpszXmlId = (LPWSTR)wp;
+				LPCSTR lpszXmlId = (LPCSTR)wp;
 				if (!DMSUCCEEDED(g_pDMApp->InitDMXmlDocument(XmlDoc,RES_LAYOUT,lpszXmlId)))
 				{
 					break;
@@ -55,10 +60,10 @@ namespace DM
 			}
 
 			//3.获得语言包对象
-			DMLanguageItemPtr pLanguageItem = FindLanguageItemPtr(XmlLanguage.Attribute(DMLAG_NAME));
+			DMLanguageItemPtr pLanguageItem = FindLanguageItemPtr(_TS_STR(XmlLanguage.Attribute(DMLAG_NAME)));
 			if (NULL == pLanguageItem)// 如果原来不存在这个语言包对象，就新建一个，并加入
 			{
-				pLanguageItem = new DMLanguageItem(XmlLanguage.Attribute(DMLAG_NAME));
+				pLanguageItem = new DMLanguageItem(_TS_STR(XmlLanguage.Attribute(DMLAG_NAME)));
 				AddObj(pLanguageItem);
 			}
 
@@ -66,19 +71,19 @@ namespace DM
 			DMXmlNode XmlNode = XmlLanguage.FirstChild(DMLAG_NODE);// loop 1
 			while (XmlNode.IsValid())
 			{
-				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(XmlNode.Attribute(DMLAG_NAME));
+				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(_TS_STR(XmlNode.Attribute(DMLAG_NAME)));
 				if (NULL == pNode)// 如果此Node不存在，就创建并加入
 				{
-					pNode = new DMTransNode(XmlNode.Attribute(DMLAG_NAME));
+					pNode = new DMTransNode(_TS_STR(XmlNode.Attribute(DMLAG_NAME)));
 					pLanguageItem->AddObj(pNode);
 				}
 
 				//5. 添加node的item
 				DMXmlNode XmlItem = XmlNode.FirstChild(DMLAG_ITEM);// loop 2
 				while (XmlItem.IsValid())
-				{
-					CStringW strSrc = XmlItem.Attribute(DMLAG_SRC);
-					CStringW strTrans = XmlItem.Attribute(DMLAG_TRANS);
+				{ // TODO: mui/i18n translate
+					CStringW strSrc = _TS_STR(XmlItem.Attribute(DMLAG_SRC));
+					CStringW strTrans = _TS_STR(XmlItem.Attribute(DMLAG_TRANS));
 					if (pNode->IsKeyExist(strSrc))
 					{// 以最后一个为准
 						pNode->RemoveKey(strSrc);
@@ -272,3 +277,5 @@ namespace DM
 	}
 
 }//namespace DM
+
+#endif

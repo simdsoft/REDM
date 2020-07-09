@@ -1,22 +1,22 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ObjXml.h"
 
 DesignMenu g_ObjMenuItem[] = \
 {
-	{OBJMENU_OPENDIR,			L"     ´ò¿ª¿Ø¼şËùÔÚxml"},//0 
-	{OBJMENU_PASTE,				L"     Õ³Ìù"},//1 
-	{OBJMENU_COPY,				L"     ¸´ÖÆ"},//2
-	{OBJMENU_LOCKALLCHILD,		L"     Ëø¶¨ËùÓĞ×Ó¿Ø¼ş(Ò»²ã)"},//3
-	{OBJMENU_UNLOCKALLCHILD,	L"     ½âËøËùÓĞ×Ó¿Ø¼ş(Ò»²ã)"},//4
-	{OBJMENU_DEL,				L"     É¾³ı¿Ø¼ş"},//5 
+	{OBJMENU_OPENDIR,			"     æ‰“å¼€æ§ä»¶æ‰€åœ¨xml"},//0 
+	{OBJMENU_PASTE,				"     ç²˜è´´"},//1 
+	{OBJMENU_COPY,				"     å¤åˆ¶"},//2
+	{OBJMENU_LOCKALLCHILD,		"     é”å®šæ‰€æœ‰å­æ§ä»¶(ä¸€å±‚)"},//3
+	{OBJMENU_UNLOCKALLCHILD,	"     è§£é”æ‰€æœ‰å­æ§ä»¶(ä¸€å±‚)"},//4
+	{OBJMENU_DEL,				"     åˆ é™¤æ§ä»¶"},//5 
 };
 
 ObjXml::ObjXml()
 { 
 	m_bInitObjTree = false;
-	m_pObjEditor  = g_pMainWnd->FindChildByNameT<DUIObjEditor>(L"ds_objeditor");DMASSERT(m_pObjEditor);
-	m_pObjTree    = g_pMainWnd->FindChildByNameT<ObjTree>(L"ds_objtree");DMASSERT(m_pObjTree); 
-	m_pbPanelCheck= g_pMainWnd->FindChildByNameT<DUICheckBox>(L"ds_w_bpanel");DMASSERT(m_pbPanelCheck); 
+	m_pObjEditor  = g_pMainWnd->FindChildByNameT<DUIObjEditor>("ds_objeditor");DMASSERT(m_pObjEditor);
+	m_pObjTree    = g_pMainWnd->FindChildByNameT<ObjTree>("ds_objtree");DMASSERT(m_pObjTree); 
+	m_pbPanelCheck= g_pMainWnd->FindChildByNameT<DUICheckBox>("ds_w_bpanel");DMASSERT(m_pbPanelCheck); 
 	m_pObjTree->m_EventMgr.SubscribeEvent(DMEventTCSelChangedArgs::EventID, Subscriber(&ObjXml::OnObjTreeChanged, this));
 	m_hObjSel = NULL;
 	m_pRighXml = NULL;
@@ -25,7 +25,7 @@ ObjXml::ObjXml()
 
 ObjXml::~ObjXml()
 {
-	m_pObjTree->m_EventMgr.UnSubscribeEvent(DMEventTCSelChangedArgs::EventID, Subscriber(&ObjXml::OnObjTreeChanged, this));//±ØĞë·´×¢²á,²»È»µÚ¶ş´Î´ò¿ª¶ÔÏóÊÓÍ¼Ê±£¬×¢²á»áÊ§°Ü
+	m_pObjTree->m_EventMgr.UnSubscribeEvent(DMEventTCSelChangedArgs::EventID, Subscriber(&ObjXml::OnObjTreeChanged, this));//å¿…é¡»åæ³¨å†Œ,ä¸ç„¶ç¬¬äºŒæ¬¡æ‰“å¼€å¯¹è±¡è§†å›¾æ—¶ï¼Œæ³¨å†Œä¼šå¤±è´¥
 	ReleaseObjTree();
 }
 
@@ -34,17 +34,17 @@ DMCode ObjXml::InitObjTree()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		//1.×ÊÔ´°üÎ´¼ÓÔØ£¬ËµÃ÷¹¤³ÌÊÓÍ¼¶¼Î´¼ÓÔØ
+		//1.èµ„æºåŒ…æœªåŠ è½½ï¼Œè¯´æ˜å·¥ç¨‹è§†å›¾éƒ½æœªåŠ è½½
 		if (m_pRes.isNull())
 		{
 			break;
 		}
 
-		//2.³õÊ¼»¯ÓÒ±ßÊôĞÔÇø
+		//2.åˆå§‹åŒ–å³è¾¹å±æ€§åŒº
 		m_pRighXml = new RightXml;
 		m_pRighXml->InitRightXml();
 
-		//3.¸ü»»×ÊÔ´°ü
+		//3.æ›´æ¢èµ„æºåŒ…
 		g_pRes->RemoveObj(1);
 		g_pRes->AddObj(m_pRes);m_pRes->AddRef();
 
@@ -52,38 +52,38 @@ DMCode ObjXml::InitObjTree()
 		g_pDMApp->InitGlobal(m_strGlobalName);
 		g_pDMApp->SetSubXmlDocCallBack(NULL);
 
-		//4.³õÊ¼»¯objeditor
+		//4.åˆå§‹åŒ–objeditor
 		m_pObjEditor->InitObjEditor();
 		
-		//5.½âÎö³öËùÓĞµÄDM¿ªÊ¼µÄXML,²¢Éú³É³õÊ¼Ê÷ĞÎ¿Ø¼ş¸ùÁĞ±í
+		//5.è§£æå‡ºæ‰€æœ‰çš„DMå¼€å§‹çš„XML,å¹¶ç”Ÿæˆåˆå§‹æ ‘å½¢æ§ä»¶æ ¹åˆ—è¡¨
 		InitObjRootTree();
 
-		//6.±éÀú³õÊ¼Ê÷ĞÎ¿Ø¼ş£¬´´½¨Ïà¶Ô×ÓÊ÷ºÍ×Ó´°¿Ú
+		//6.éå†åˆå§‹æ ‘å½¢æ§ä»¶ï¼Œåˆ›å»ºç›¸å¯¹å­æ ‘å’Œå­çª—å£
 		HDMTREEITEM hDMTreeItem = m_pObjTree->GetRootItem();
 		while (NULL != hDMTreeItem)
 		{
 			ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hDMTreeItem);
 			DUIRoot* pEditor = m_pObjEditor->InitDesignChild(hDMTreeItem);
 			DUIWindowPtr pDUI = pEditor;
-			DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root().FirstChild(L"root");
-			BindObjTreeData(pData->m_pDoc,pEditor,pDUI,XmlNode,hDMTreeItem);// ¸üĞÂ
-			// ½âÎöÉú³É×ÓÊ÷
+			DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root().FirstChild("root");
+			BindObjTreeData(pData->m_pDoc,pEditor,pDUI,XmlNode,hDMTreeItem);// æ›´æ–°
+			// è§£æç”Ÿæˆå­æ ‘
 			InitObjChildTree(hDMTreeItem);
-			m_pObjTree->SetLockState(hDMTreeItem,false);// Ä¬ÈÏ³õÊ¼È«²»Ëø
+			m_pObjTree->SetLockState(hDMTreeItem,false);// é»˜è®¤åˆå§‹å…¨ä¸é”
 			hDMTreeItem = m_pObjTree->GetNextSiblingItem(hDMTreeItem);
 		}
 
-		//7.³õÊ¼»¯±äÁ¿
+		//7.åˆå§‹åŒ–å˜é‡
 		m_bInitObjTree = true;
 
-		//8.°ÑprojtreeµÄË½ÓĞÑùÊ½Æ¤·ôÁĞ±í×ÓÏîÈ«¸üĞÂ
+		//8.æŠŠprojtreeçš„ç§æœ‰æ ·å¼çš®è‚¤åˆ—è¡¨å­é¡¹å…¨æ›´æ–°
 		InitSubXmlList();
   
-		//9.³õÊ¼»¯AddÊôĞÔÇø
+		//9.åˆå§‹åŒ–Addå±æ€§åŒº
 		m_pAddXml = new AddXml;
 		m_pAddXml->InitAddXml();
 
-		//10.½ûÓÃÃæ°åÑ¡Ôñ
+		//10.ç¦ç”¨é¢æ¿é€‰æ‹©
 		m_pbPanelCheck->DM_EnableWindow(FALSE,true);
 
 		m_pObjTree->SelectItem(m_pObjTree->GetRootItem());
@@ -97,46 +97,46 @@ DMCode ObjXml::ReleaseObjTree()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		//0.¸ÉµôAddÊôĞÔÇø
+		//0.å¹²æ‰Addå±æ€§åŒº
 		if (m_pAddXml)
 		{
 			m_pAddXml->UnInitAddXml();
 			DM_DELETE(m_pAddXml);
 		}
 
-		//1.¸ÉµôÓÒ±ßÊôĞÔÇø
+		//1.å¹²æ‰å³è¾¹å±æ€§åŒº
 		if (m_pRighXml)
 		{
 			m_pRighXml->UnInitRightXml();
 			DM_DELETE(m_pRighXml);
 		}
 
-		//2.¸ÉµôÔ¤ÀÀ´°¿Ú
+		//2.å¹²æ‰é¢„è§ˆçª—å£
 		if (m_pPreWnd&&m_pPreWnd->IsWindow())
 		{
 			m_pPreWnd->DestroyWindow();
 		}
 		m_pPreWnd.Release();
 
-		//3.·´³õÊ¼»¯objeditor,Í¬Ê±ÒÆ³ıËüËùÓĞµÄ×ÓÏî
+		//3.ååˆå§‹åŒ–objeditor,åŒæ—¶ç§»é™¤å®ƒæ‰€æœ‰çš„å­é¡¹
 		if (m_pObjEditor)
 		{
 			m_pObjEditor->UnInitObjEditor();
 		}
 
-		//4.ÒÆ³ıÈ«¾Ö×ÊÔ´,ds_dmdesigner3432C589-C750-4064-B2A6-B2215B74D221ÎªÉè¼ÆÆ÷×ÔÉíµÄskin³ØÃû
-		g_pDMApp->RemoveAllSkinPoolItemExcept(L"ds_dmdesigner3432C589-C750-4064-B2A6-B2215B74D221");
+		//4.ç§»é™¤å…¨å±€èµ„æº,ds_dmdesigner3432C589-C750-4064-B2A6-B2215B74D221ä¸ºè®¾è®¡å™¨è‡ªèº«çš„skinæ± å
+		g_pDMApp->RemoveAllSkinPoolItemExcept("ds_dmdesigner3432C589-C750-4064-B2A6-B2215B74D221");
 		g_pDMApp->RemoveAllStylePoolItem();
 		g_pRes->RemoveObj(1);
 
-		//5. ÊÍ·Å×ÔÉí×ÊÔ´
+		//5. é‡Šæ”¾è‡ªèº«èµ„æº
 		m_pObjTree->RemoveAllItems();
 		DMMapT<HDMTREEITEM,ObjTreeDataPtr>::RemoveAll();
 
-		//6.³õÊ¼»¯±äÁ¿
+		//6.åˆå§‹åŒ–å˜é‡
 		m_bInitObjTree = false;
 
-		//7.»Ö¸´Ãæ°åÑ¡Ôñ
+		//7.æ¢å¤é¢æ¿é€‰æ‹©
 		m_pbPanelCheck->DM_EnableWindow(TRUE,true);
 		m_hObjSel = NULL;
 		iErr = DM_ECODE_OK;
@@ -182,7 +182,7 @@ DMCode ObjXml::PopObjTreeMenu(HDMTREEITEM hSel)
 		m_hProjSel = hSel;
 
 		DMXmlDocument Doc;
-		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,L"ds_menu_proj");
+		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,"ds_menu_proj");
 		DMXmlNode XmlNode = Doc.Root();
 		InitCopyObjMenu(XmlNode);
 		InitCustomObjMenu(XmlNode);
@@ -244,7 +244,7 @@ DMCode ObjXml::OnObjTreeChanged(DMEventArgs* pEvt)
 	DMEventTCSelChangedArgs* pEvent = (DMEventTCSelChangedArgs*)pEvt;
 	if (m_hObjSel != pEvent->m_hNewSel)
 	{
-		//¸ÉµôÔ¤ÀÀ´°¿Ú
+		//å¹²æ‰é¢„è§ˆçª—å£
 		if (m_pPreWnd&&m_pPreWnd->IsWindow())
 		{
 			m_pPreWnd->DestroyWindow();
@@ -265,13 +265,13 @@ DMCode ObjXml::OnObjTreeChanged(DMEventArgs* pEvt)
 DMCode ObjXml::InitObjTreeNode(DUIWindow*pWnd, DMXmlNode& TreeNode,bool IsDMXml)
 {
 	TreeNode = TreeNode.InsertChildNode(XML_TREEITEM);
-	TreeNode.SetAttribute(XML_CHILDOFFSET,L"0");
+	TreeNode.SetAttribute(XML_CHILDOFFSET,"0");
 	DMXmlNode StaticNode = TreeNode.InsertChildNode(XML_STATIC);
-	StaticNode.SetAttribute(XML_POS,L"3,0,-36,-0");
+	StaticNode.SetAttribute(XML_POS,"3,0,-36,-0");
 	StaticNode.SetAttribute(XML_SKIN,IsDMXml? XML_DEFSKIN:XML_DATASKIN);
-	StaticNode.SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,ff,ff)");
+	StaticNode.SetAttribute(XML_CLRTEXT,"pbgra(ff,ff,ff,ff)");
 
-	if (!IsDMXml && !IsDeletable(pWnd))//¹æ±ÜÖ÷´°¿ÚºÍpanel´°¿Ú
+	if (!IsDMXml && !IsDeletable(pWnd))//è§„é¿ä¸»çª—å£å’Œpanelçª—å£
 	{
 		StaticNode.SetAttribute(XML_SKIN,XML_CUSTOMSKIN);
 	}
@@ -291,16 +291,16 @@ DMCode ObjXml::BindObjTreeData(DocDataPtr pDoc,DUIRoot* pEditor,DUIWindowPtr pDU
 			break;
 		}
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hTreeItem);
-		if (pData)// ¸üĞÂÊı¾İ
+		if (pData)// æ›´æ–°æ•°æ®
 		{
 			pData->SetData(pDoc,pEditor,pDUI,Node,bPanel);
 		}
-		else// ĞÂÔö°ó¶¨
+		else// æ–°å¢ç»‘å®š
 		{
 			pData = new ObjTreeData(pDoc,pEditor,pDUI,Node,bPanel);
 			if (!DMMapT<HDMTREEITEM,ObjTreeDataPtr>::AddKey(hTreeItem,pData))
 			{
-				DM_MessageBox(L"´ËdataÒÑ¼ÓÈë¹ı!");
+				DM_MessageBox(L"æ­¤dataå·²åŠ å…¥è¿‡!");
 				break;
 			}
 			m_pObjTree->SetItemData(hTreeItem,(LPARAM)pData);	
@@ -310,7 +310,7 @@ DMCode ObjXml::BindObjTreeData(DocDataPtr pDoc,DUIRoot* pEditor,DUIWindowPtr pDU
 	return iErr;
 }  
 
-HDMTREEITEM ObjXml::InsertObjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTREEITEM hParent /*=DMTVI_ROOT*/)
+HDMTREEITEM ObjXml::InsertObjTreeItem(DMXmlNode& TreeNode,CStringA strText,HDMTREEITEM hParent /*=DMTVI_ROOT*/)
 {
 	DMXmlNode StaticNode = TreeNode.FirstChild(XML_STATIC);
 	DMASSERT(StaticNode.IsValid());
@@ -318,7 +318,7 @@ HDMTREEITEM ObjXml::InsertObjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTR
 	return m_pObjTree->InsertItem(TreeNode,hParent);
 }
 
-HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
+HDMTREEITEM ObjXml::FindStyle(CStringA strStyle)
 {
 	HDMTREEITEM hRet = NULL;
 	do 
@@ -327,10 +327,10 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 		{
 			break;
 		}
-		//1.²ğ·Östyle
-		CStringWList strList;
-		CStringW strName;
-		CStringW strKey;
+		//1.æ‹†åˆ†style
+		CStringAList strList;
+		CStringA strName;
+		CStringA strKey;
 		int nCount = (int)SplitStringT(strStyle,L':',strList);
 		if (1==nCount)
 		{
@@ -343,13 +343,13 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 		}
 		else
 		{
-			CStringW strInfo;
-			strInfo.Format(L"style-%sÉèÖÃ´íÎó",strStyle);
+			CStringA strInfo;
+			strInfo.Format("style-%sè®¾ç½®é”™è¯¯", (LPCSTR)strStyle);
 			DM_MessageBox(strInfo);
 			break;
 		}
 
-		//2.´ÓÈ«¾ÖµÄglobal.xmlÖĞ²éÕÒ
+		//2.ä»å…¨å±€çš„global.xmlä¸­æŸ¥æ‰¾
 		if (m_hProjGlobalStyles)
 		{
 			hRet = _FindStyle(m_hProjGlobalStyles,strName,strKey);
@@ -359,7 +359,7 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 			}
 		}
 		
-		//3.´Ó×ÔÉíËùÔÚµÄ¸ù½áµãµÄdmxmlÖĞ²éÕÒ
+		//3.ä»è‡ªèº«æ‰€åœ¨çš„æ ¹ç»“ç‚¹çš„dmxmlä¸­æŸ¥æ‰¾
 		if (NULL == m_pObjEditor->m_pShow)
 		{
 			break;
@@ -370,7 +370,7 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 		while (hDM)
 		{
 			DMXmlNodePtr pDMNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hDM);
-			CStringW strDMPath = m_strResDir + pDMNode->Attribute(XML_PATH);
+			CStringW strDMPath = m_strResDir + DMCA2W(pDMNode->Attribute(XML_PATH));
 			if (0 == strRootXmlPath.CompareNoCase(strDMPath))
 			{
 				HDMTREEITEM hChild = m_pProjTree->GetChildItem(hDM);
@@ -378,7 +378,7 @@ HDMTREEITEM ObjXml::FindStyle(CStringW strStyle)
 				{
 					CStringW strText = GetProjTreeItemText(hChild);
 					if (0 == strText.CompareNoCase(PROJTREE_PRIVSTYLES))
-					{// ÕÒµ½PROJTREE_PRIVSTYLESËùÔÚµÄ½ÚµãÁË
+					{// æ‰¾åˆ°PROJTREE_PRIVSTYLESæ‰€åœ¨çš„èŠ‚ç‚¹äº†
 						break;
 					}
 					hChild = m_pProjTree->GetNextSiblingItem(hChild);
@@ -414,26 +414,26 @@ DMCode ObjXml::InitCopyObjMenu(DMXmlNode& XmlNode)
 
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 		if (NULL == pData||!pData->IsValid()||0 == m_pObjTree->GetParentItem(m_hObjSel))
-		{// DM¸ù½áµã²»Ê¹ÓÃ¸´ÖÆ,Õ³Ìù²Ëµ¥
+		{// DMæ ¹ç»“ç‚¹ä¸ä½¿ç”¨å¤åˆ¶,ç²˜è´´èœå•
 			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
 			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 		if (MoveMode == m_pObjEditor->m_DesignMod)
-		{// moveÄ£Ê½ÏÂ²»Ö§³Ö
+		{// moveæ¨¡å¼ä¸‹ä¸æ”¯æŒ
 			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
 			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 		if (pData->m_bPanel)
-		{// panelÏÂ²»Ö§³Ö
+		{// panelä¸‹ä¸æ”¯æŒ
 			XmlPaste.SetAttributeInt(XML_BDISABLE,1);
 			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
 
 		if (pData->m_pRootWnd == pData->m_pDUIWnd)
-		{// root²ãÒ²²»Ê¹ÓÃ¸´ÖÆ²Ëµ¥,µ«¿ÉÒÔÕ³Ìù
+		{// rootå±‚ä¹Ÿä¸ä½¿ç”¨å¤åˆ¶èœå•,ä½†å¯ä»¥ç²˜è´´
 			XmlCopy.SetAttributeInt(XML_BDISABLE,1);
 			break;
 		}
@@ -468,7 +468,7 @@ DMCode ObjXml::InitCustomObjMenu(DMXmlNode& XmlNode)
 			XmlItem.SetAttributeInt(XML_BDISABLE,1);
 		}
 
-		// ÌØÊâ×Ó¿Ø¼ş²»ÔÊĞí±»É¾³ı
+		// ç‰¹æ®Šå­æ§ä»¶ä¸å…è®¸è¢«åˆ é™¤
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)pTviData->lParam;
 		if (NULL != pData&&pData->IsValid()&&NULL != pData->m_pDUIWnd)
 		{
@@ -523,32 +523,32 @@ DMCode ObjXml::ObjMenu_Paste()
 		DM::LPTVITEMEX pTviData = m_pObjTree->GetItem(m_hObjSel);
 		if (DMTVEXLock_UnLocked != pTviData->iLockValue)
 		{
-			SetLogInfo(L"²»ÄÜÔÚËø¶¨×´Ì¬ÏÂÕ³Ìù");
+			SetLogInfo(L"ä¸èƒ½åœ¨é”å®šçŠ¶æ€ä¸‹ç²˜è´´");
 			break;
 		}
 
 		DUIWindow* pParentWnd = pData->m_pDUIWnd;
-		//2. ÅĞ¶Ï´°¿ÚÊÇ·ñÖ§³Ö²åÈë×Ó´°¿Ú
-		CStringW strReg = g_pAttr->m_CopyNode.GetName();
+		//2. åˆ¤æ–­çª—å£æ˜¯å¦æ”¯æŒæ’å…¥å­çª—å£
+		CStringA strReg = g_pAttr->m_CopyNode.GetName();
 		if (!DUIRoot::IsSupportAddChild(pParentWnd,strReg))
 		{ 
 			break;
 		}
-		//3. ´´½¨ĞÂ´°¿Ú
+		//3. åˆ›å»ºæ–°çª—å£
 		DUIWindow* pChild = DUIRoot::CreateAddChild(pParentWnd,strReg);
 		if (NULL == pChild)
 		{
 			break;
 		}
 
-		//4. ³õÊ¼»¯Í¨ÓÃÊôĞÔ
+		//4. åˆå§‹åŒ–é€šç”¨å±æ€§
 		POINT pt;
 		GetCursorPos(&pt);
 		::ScreenToClient(g_pMainWnd->m_hWnd,&pt);
 		CRect rcParent;
 		pParentWnd->DV_GetChildMeasureLayout(rcParent);
 		CPoint ptFirst = rcParent.TopLeft();
-		if (rcParent.PtInRect(pt))// Êó±êÔÚ´°¿ÚÄÚ£¬ËµÃ÷ÊÇ´°¿ÚÄÚÓÒ¼üÕ³Ìù
+		if (rcParent.PtInRect(pt))// é¼ æ ‡åœ¨çª—å£å†…ï¼Œè¯´æ˜æ˜¯çª—å£å†…å³é”®ç²˜è´´
 		{
 			ptFirst = pt;
 		}
@@ -566,10 +566,10 @@ DMCode ObjXml::ObjMenu_Paste()
 			break;
 		}
 
-		//5.Ã¶¾Ù¼ÓÈë
+		//5.æšä¸¾åŠ å…¥
 		EnumChildTreeItem(pData->m_pRootWnd,pChild,m_hObjSel);
 
-		//6.Ñ¡ÖĞ×îºóÒ»¸ö×ÓÏî,¼´ĞÂ¼ÓÈëµÄ×ÓÏî
+		//6.é€‰ä¸­æœ€åä¸€ä¸ªå­é¡¹,å³æ–°åŠ å…¥çš„å­é¡¹
 		pParentWnd->DV_UpdateChildLayout();
 		m_pObjTree->SelectItem(m_pObjTree->GetChildItem(m_hObjSel,false));
 		iErr = DM_ECODE_OK;
@@ -636,13 +636,13 @@ DMCode ObjXml::ObjMenu_Del()
 		}
 
 		CStringW strInfo;
-		strInfo.Format(L"ÄãÈ·ÈÏÉ¾³ı[%s][%s]¿Ø¼ş?´Ë²Ù×÷²»¿É»Ö¸´",pData->m_pDUIWnd->V_GetClassName(),pData->m_pDUIWnd->GetName());
+		strInfo.Format(L"ä½ ç¡®è®¤åˆ é™¤[%s][%s]æ§ä»¶?æ­¤æ“ä½œä¸å¯æ¢å¤",pData->m_pDUIWnd->V_GetClassName(),pData->m_pDUIWnd->GetName());
 		if (IDOK != DM_MessageBox(strInfo,MB_OKCANCEL))
 		{
 			break;
 		}
 
-		// 1.ÕÒµ½¸¸¿Ø¼ş
+		// 1.æ‰¾åˆ°çˆ¶æ§ä»¶
 		DUIWindowPtr pParent = NULL;
 		if (pData->m_bPanel)
 		{
@@ -657,8 +657,8 @@ DMCode ObjXml::ObjMenu_Del()
 			break;
 		}
 
-		// 2.´Ó¸¸¿Ø¼şÖĞÒÆ³ı×Ó¿Ø¼ş,ÌØÊâÇé¿öÌØÊâ´¦Àí
-		if (0 == _wcsicmp(pParent->V_GetClassName(),DUITabCtrl::GetClassName()))
+		// 2.ä»çˆ¶æ§ä»¶ä¸­ç§»é™¤å­æ§ä»¶,ç‰¹æ®Šæƒ…å†µç‰¹æ®Šå¤„ç†
+		if (0 == dm_xmlstrcmp(pParent->V_GetClassName(),DUITabCtrl::GetClassName()))
 		{
 			DUITabCtrl* pTabCtrl = dynamic_cast<DUITabCtrl*>(pParent);
 			pTabCtrl->RemoveItem(pData->m_pDUIWnd);
@@ -666,20 +666,20 @@ DMCode ObjXml::ObjMenu_Del()
 		else if (pData->m_bPanel)
 		{
 			DUIItemPanel* pPanel = dynamic_cast<DUIItemPanel*>(pData->m_pDUIWnd);
-			if (0 == _wcsicmp(pParent->V_GetClassName(),DUIListBoxEx::GetClassName()))
+			if (0 == dm_xmlstrcmp(pParent->V_GetClassName(),DUIListBoxEx::GetClassName()))
 			{
 				DUIListBoxEx* pListBoxEx = dynamic_cast<DUIListBoxEx*>(pParent);
 				pListBoxEx->DeleteItem((int)pPanel->m_dwItemId);
 			}
-			if (0 == _wcsicmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName()))
+			if (0 == dm_xmlstrcmp(pParent->V_GetClassName(),DUIListCtrlEx::GetClassName()))
 			{
 				DUIListCtrlEx* pListCtrlEx = dynamic_cast<DUIListCtrlEx*>(pParent);
 				pListCtrlEx->DeleteItem((int)pPanel->m_dwItemId);
 			}
 			else
 			{
-				SetLogInfo(L"²»Ö§³ÖÉ¾³ı");
-				break;// ÆäÓàµÄ²»Ö§³Ö
+				SetLogInfo(L"ä¸æ”¯æŒåˆ é™¤");
+				break;// å…¶ä½™çš„ä¸æ”¯æŒ
 			}
 		}
 		else
@@ -687,11 +687,11 @@ DMCode ObjXml::ObjMenu_Del()
 			pParent->DM_DestroyChildWnd(pData->m_pDUIWnd);
 		}
 
-		// 3.´ÓxmlÖĞÒÆ³ı´Ënode
+		// 3.ä»xmlä¸­ç§»é™¤æ­¤node
 		HDMTREEITEM hTreeParent = m_pObjTree->GetParentItem(m_hObjSel);
 		ObjTreeDataPtr pParentData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hTreeParent);
 		if (pParentData->m_pDoc != pData->m_pDoc)
-		{// ×Ó¿Ø¼şÎªsubÁĞ±íµÄ×îÉÏ²ã¿Ø¼ş£¬Ö±½Ó´ÓsubÖĞÒÆ³ı¼´¿É
+		{// å­æ§ä»¶ä¸ºsubåˆ—è¡¨çš„æœ€ä¸Šå±‚æ§ä»¶ï¼Œç›´æ¥ä»subä¸­ç§»é™¤å³å¯
 			pData->m_pDoc->m_pXmlDoc->Root().RemoveChildNode(pData->m_pXmlNode);
 		}
 		else
@@ -700,11 +700,11 @@ DMCode ObjXml::ObjMenu_Del()
 		}
 		pData->m_pDoc->m_bChange = true;
 
-		// 4.´ÓÊ÷ĞÎ¿Ø¼şÖĞÒÆ³ı´Ëtree,²¢ÒÆ³ımap
+		// 4.ä»æ ‘å½¢æ§ä»¶ä¸­ç§»é™¤æ­¤tree,å¹¶ç§»é™¤map
 		RemoveObjTreeItemMap(m_hObjSel);
 		m_pObjTree->RemoveItem(m_hObjSel);
 
-		// Ñ¡ÖĞ¸¸´°¿Ú
+		// é€‰ä¸­çˆ¶çª—å£
 		m_pObjTree->SelectItem(hTreeParent);
 		
 		iErr = DM_ECODE_OK;
@@ -721,7 +721,7 @@ DMCode ObjXml::InitObjRootTree()
 	int nCount = (int)pLayout->GetCount();
 	for (int i=0; i<nCount; i++)
 	{
-		//1.²éÕÒÒÔdmÎª¸ù½áµãµÄxml£¨Ö»ÓĞÒÔdmÎª¸ù½áµãµÄ²ÅÄÜ´´½¨´°¿Ú£©
+		//1.æŸ¥æ‰¾ä»¥dmä¸ºæ ¹ç»“ç‚¹çš„xmlï¼ˆåªæœ‰ä»¥dmä¸ºæ ¹ç»“ç‚¹çš„æ‰èƒ½åˆ›å»ºçª—å£ï¼‰
 		ResItemPtr pItem = pLayout->GetObj(i);
 		unsigned long dwSize = GetFileSizeW(pItem->m_szPath);
 		if (dwSize<=0)
@@ -746,7 +746,7 @@ DMCode ObjXml::InitObjRootTree()
 			continue;
 		}
 
-		//2.´ÓprojxmlÖĞ³¢ÊÔ»ñÈ¡xml£¬Èç¹ûÃ»ÓĞ£¬¾Í¼ÓÈë
+		//2.ä»projxmlä¸­å°è¯•è·å–xmlï¼Œå¦‚æœæ²¡æœ‰ï¼Œå°±åŠ å…¥
 		DocDataPtr pDoc = FindDocData(pItem->m_szPath);
 		if (NULL == pDoc)
 		{
@@ -762,13 +762,13 @@ DMCode ObjXml::InitObjRootTree()
 			continue;
 		}
 
-		//3.³¢ÊÔ²åÈëµ½Ê÷ĞÎ¿Ø¼şÖĞ
+		//3.å°è¯•æ’å…¥åˆ°æ ‘å½¢æ§ä»¶ä¸­
 		DMXmlDocument TreeDoc;
 		DMXmlNode TreeNode = TreeDoc.Base();
 		InitObjTreeNode(NULL,TreeNode,true);
 		HDMTREEITEM hDMTree  = InsertObjTreeItem(TreeNode,pItem->m_szName);
 
-		//4.°ó¶¨data
+		//4.ç»‘å®šdata
 		DMXmlNode TempNode;
 		BindObjTreeData(pDoc,NULL, NULL,TempNode,hDMTree);
 		iErr = DM_ECODE_OK;
@@ -795,37 +795,37 @@ DMCode ObjXml::EnumChildTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM 
 			break;
 		}
 
-		//1.»ñµÃXmlNodeÎ»ÓÚÄÄ¸öpDocÖĞ
+		//1.è·å¾—XmlNodeä½äºå“ªä¸ªpDocä¸­
 		DocDataPtr pDoc = FindDocData(&pWnd->m_XmlNode);
-		if (NULL == pDoc)//¹ıÂËµôÄÇĞ©insert½øÀ´µÄchild£¬µ«µ÷ÓÃÁËInitDMData£¬ÈçDUIPAddressCtrlµÄ×ÓÏîIPEdit
+		if (NULL == pDoc)//è¿‡æ»¤æ‰é‚£äº›insertè¿›æ¥çš„childï¼Œä½†è°ƒç”¨äº†InitDMDataï¼Œå¦‚DUIPAddressCtrlçš„å­é¡¹IPEdit
 		{
 			break;
 		}
 
-		//2. ²åÈë×Ó½áµã²¢°ó¶¨Êı¾İ
+		//2. æ’å…¥å­ç»“ç‚¹å¹¶ç»‘å®šæ•°æ®
 		DMXmlDocument TreeDoc;
 		DMXmlNode TreeNode = TreeDoc.Base();
 		InitObjTreeNode(pWnd,TreeNode,bPanel);
-		CStringW strText = pWnd->V_GetClassName();
+		CStringA strText = pWnd->V_GetClassName();
 		if (bPanel)
 		{
-			strText = L"ItemPanel";
+			strText = "ItemPanel";
 		}
-		CStringW strName = pWnd->GetName();
+		CStringA strName = pWnd->GetName();
 		if (!strName.IsEmpty())
 		{
-			strText.Format(L"%s[%s]",strText,strName);
+			strText.Format("%s[%s]", (LPCSTR)strText, (LPCSTR)strName);
 		}
 		HDMTREEITEM hChild = InsertObjTreeItem(TreeNode,strText,hTreeItem);
 		BindObjTreeData(pDoc,pMainWnd,pWnd,pWnd->m_XmlNode,hChild,bPanel);
 
-		//3. ×Ó½áµãµİ¹é
+		//3. å­ç»“ç‚¹é€’å½’
 		DUIWindow* pChild = pWnd->DM_GetWindow(GDW_FIRSTCHILD);
 		while (pChild)
 		{
-			if (pChild->m_XmlNode.IsValid())//1. ¹ıÂËµôÄÇĞ©insert½øÀ´µÄchild£¬²¢ÇÒ²»µ÷ÓÃInitDMDataµÄ,¹æ±ÜÔÚinsert½øÀ´µÄchildÖ®ºóÓĞxml´´½¨µÄ´°¿Ú
+			if (pChild->m_XmlNode.IsValid())//1. è¿‡æ»¤æ‰é‚£äº›insertè¿›æ¥çš„childï¼Œå¹¶ä¸”ä¸è°ƒç”¨InitDMDataçš„,è§„é¿åœ¨insertè¿›æ¥çš„childä¹‹åæœ‰xmlåˆ›å»ºçš„çª—å£
 			{
-				EnumChildTreeItem(pMainWnd,pChild,hChild,false);// ½øÈëÏÂÒ»²ã
+				EnumChildTreeItem(pMainWnd,pChild,hChild,false);// è¿›å…¥ä¸‹ä¸€å±‚
 			}
 			pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 		}
@@ -846,9 +846,9 @@ DMCode ObjXml::EnumPanelTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM 
 			break;
 		}
 
-		//1.»ñµÃXmlNodeÎ»ÓÚÄÄ¸öpDocÖĞ
+		//1.è·å¾—XmlNodeä½äºå“ªä¸ªpDocä¸­
 		DocDataPtr pDoc = FindDocData(&pWnd->m_XmlNode);
-		if (NULL == pDoc)//¹ıÂËµôÄÇĞ©insert½øÀ´µÄchild£¬µ«µ÷ÓÃÁËInitDMData£¬ÈçDUIPAddressCtrlµÄ×ÓÏîIPEdit
+		if (NULL == pDoc)//è¿‡æ»¤æ‰é‚£äº›insertè¿›æ¥çš„childï¼Œä½†è°ƒç”¨äº†InitDMDataï¼Œå¦‚DUIPAddressCtrlçš„å­é¡¹IPEdit
 		{
 			break;
 		}
@@ -892,35 +892,35 @@ bool ObjXml::IsDeletable(DUIWindow* pWnd)
 			break;
 		}
 
-		CStringW strClassName = pWnd->V_GetClassName();
-		bool bPanel = (0 == _wcsicmp(strClassName, L"ItemPanel"));
+		CStringA strClassName = pWnd->V_GetClassName();
+		bool bPanel = (0 == dm_xmlstrcmp(strClassName, "ItemPanel"));
 
-		// 1.ÕÒµ½¸¸¿Ø¼ş
+		// 1.æ‰¾åˆ°çˆ¶æ§ä»¶
 		DUIWindowPtr pParent = bPanel? pWnd->DM_GetWindow(GDW_PANELPARENT):pWnd->DM_GetWindow(GDW_PARENT);
 		if (NULL == pParent)
 		{
 			break;
 		}
 		
-		CStringW strParentClassName = pParent->V_GetClassName();
+		CStringA strParentClassName = pParent->V_GetClassName();
 
-		if (0 == _wcsicmp(strClassName,DUIHeaderCtrl::GetClassName())
-			&& (0 == _wcsicmp(strParentClassName,DUIListCtrlEx::GetClassName())))
+		if (0 == dm_xmlstrcmp(strClassName,DUIHeaderCtrl::GetClassName())
+			&& (0 == dm_xmlstrcmp(strParentClassName,DUIListCtrlEx::GetClassName())))
 		{
-			SetLogInfo(L"ListCtrlµÄDUIHeaderCtrl²»ÄÜ±»É¾³ı");
+			SetLogInfo(L"ListCtrlçš„DUIHeaderCtrlä¸èƒ½è¢«åˆ é™¤");
 			break;
 		}
 
-		if (0 == _wcsicmp(strParentClassName,DUISplitLayout::GetClassName()))
+		if (0 == dm_xmlstrcmp(strParentClassName,DUISplitLayout::GetClassName()))
 		{
-			SetLogInfo(L"DUISplitLayoutµÄ×Ó¿Ø¼ş²»ÄÜ±»É¾³ı");
+			SetLogInfo(L"DUISplitLayoutçš„å­æ§ä»¶ä¸èƒ½è¢«åˆ é™¤");
 			break;
 		}
 
-		if (0 == _wcsicmp(strClassName,DUIScrollFL::GetClassName())
-			&& (0 == _wcsicmp(strParentClassName,DUIScrollWnd::GetClassName())))
+		if (0 == dm_xmlstrcmp(strClassName,DUIScrollFL::GetClassName())
+			&& (0 == dm_xmlstrcmp(strParentClassName,DUIScrollWnd::GetClassName())))
 		{
-			SetLogInfo(L"ScrollWndµÄScrollFL²»ÄÜ±»É¾³ı");
+			SetLogInfo(L"ScrollWndçš„ScrollFLä¸èƒ½è¢«åˆ é™¤");
 			break;
 		}
 		bRet = true;
@@ -928,7 +928,7 @@ bool ObjXml::IsDeletable(DUIWindow* pWnd)
 	return bRet;
 }
 
-HDMTREEITEM ObjXml::_FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CStringW strKey)
+HDMTREEITEM ObjXml::_FindStyle(HDMTREEITEM hStylePoolParent,CStringA strName,CStringA strKey)
 {
 	HDMTREEITEM hRet = NULL;
 	HDMTREEITEM hStylePool = m_pProjTree->GetChildItem(hStylePoolParent);
@@ -938,7 +938,7 @@ HDMTREEITEM ObjXml::_FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CSt
 		if (pStylePoolNode)
 		{
 			if (strName.IsEmpty()||0 == strName.CompareNoCase(pStylePoolNode->Attribute(XML_NAME)))
-			{// Î´Ö¸¶¨style³ØÃû»òstyle³ØÃûÆ¥Åä
+			{// æœªæŒ‡å®šstyleæ± åæˆ–styleæ± ååŒ¹é…
 				HDMTREEITEM hStyle =  m_pProjTree->GetChildItem(hStylePool);
 				while (hStyle)
 				{
@@ -946,12 +946,12 @@ HDMTREEITEM ObjXml::_FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CSt
 					if (pStyleNode && 0 == strKey.CompareNoCase(pStyleNode->Attribute(XML_ID)))
 					{
 						hRet = hStyle;
-						break;// ½öÌø³öÄÚ²ãwhile
+						break;// ä»…è·³å‡ºå†…å±‚while
 					}
 					hStyle = m_pProjTree->GetNextSiblingItem(hStyle);
 				}
 			}
-			if (hRet)// ÔÙ´ÎÌø³öwhile
+			if (hRet)// å†æ¬¡è·³å‡ºwhile
 			{
 				break;
 			}

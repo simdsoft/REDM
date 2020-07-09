@@ -23,7 +23,7 @@ namespace DMAttr
 	class DMScrollBarSkinImplAttr:public DMImgListSkinImplAttr
 	{
 	public:
-		static wchar_t* RECT_margin;                            ///< scroll为9宫格绘制,指定绘制的四边框,margin="1,1,1,1"
+		static char* RECT_margin;                            ///< scroll为9宫格绘制,指定绘制的四边框,margin="1,1,1,1"
 
 	};
 	DMAttrValueInit(DMScrollBarSkinImplAttr,RECT_margin);
@@ -36,7 +36,7 @@ namespace DM
 	/// </summary>
 	class DMScrollBarSkinImpl:public DMImgListSkinImpl
 	{
-		DMDECLARE_CLASS_NAME(DMScrollBarSkinImpl,L"scrollbar",DMREG_Skin);
+		DMDECLARE_CLASS_NAME(DMScrollBarSkinImpl,"scrollbar",DMREG_Skin);
 	public:
 		DMCode Draw(IDMCanvas *pCanvas, LPCRECT lpRectDraw, int iState,BYTE alpha=0xFF); 
 

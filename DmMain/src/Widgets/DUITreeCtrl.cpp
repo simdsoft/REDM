@@ -945,13 +945,13 @@ namespace DM
 		while (XmlItem.IsValid())
 		{
 			HDMTREEITEM hItem = InsertItem(XmlItem,hParent);// 返回当前插入结点
-			DMXmlNode XmlChild = XmlItem.FirstChild(L"item");
+			DMXmlNode XmlChild = XmlItem.FirstChild("item");
 			if (XmlChild.IsValid()) 
 			{// 子分支递归
 				LoadBranch(hItem,XmlChild);
 			}
 
-			XmlItem = XmlItem.NextSibling(L"item");
+			XmlItem = XmlItem.NextSibling("item");
 		}
 	}
 
@@ -960,32 +960,32 @@ namespace DM
 		DMXmlAttribute Attr = XmlItem.FirstAttribute();
 		while (Attr.IsValid())
 		{
-			LPCWSTR lpszName = Attr.GetName();
-			if (lpszName&& wcslen(lpszName))
+			LPCSTR lpszName = Attr.GetName();
+			if (lpszName&& strlen(lpszName))
 			{
-				if (0 == _wcsicmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_text))
+				if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_text))
 				{
-					pItem->strText = Attr.GetValue();
+					pItem->strText = DMCA2W(Attr.GetValue(), -1, CP_UTF8);
 				}
-				else if (0 == _wcsicmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_bcollapsed))
+				else if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_bcollapsed))
 				{
 					bool bCollapsed=false; 
 					DMAttributeDispatch::ParseBool(Attr.GetValue(),bCollapsed);
 					pItem->bCollapsed = bCollapsed;
 				}
-				else if (0 == _wcsicmp(lpszName ,DMAttr::DUITreeCtrlAttr::ITEM_icon))
+				else if (0 == dm_xmlstrcmp(lpszName ,DMAttr::DUITreeCtrlAttr::ITEM_icon))
 				{
 					int nImage = 0;
 					DMAttributeDispatch::ParseInt(Attr.GetValue(),nImage);
 					pItem->nImage = nImage;
 				}
-				else if (0 == _wcsicmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_selicon))
+				else if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_selicon))
 				{
 					int nSelectedImage = 0;
 					DMAttributeDispatch::ParseInt(Attr.GetValue(),nSelectedImage);
 					pItem->nSelectedImage = nSelectedImage;
 				}
-				else if (0 == _wcsicmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_data))
+				else if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_data))
 				{
 					int lParam = 0;
 					DMAttributeDispatch::ParseInt(Attr.GetValue(),lParam);
@@ -1537,7 +1537,7 @@ namespace DM
 		return nHitTestBtn;
 	}
 
-	DMCode DUITreeCtrl::OnAttrCustomEx(LPCWSTR lpszAttribute, LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUITreeCtrl::OnAttrCustomEx(LPCSTR lpszAttribute, LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		bool bCalcWid = false;
@@ -1547,23 +1547,23 @@ namespace DM
 			{
 				break;
 			}
-			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::bool_bcheckbox))
+			if (0 == dm_xmlstrcmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::bool_bcheckbox))
 			{
 				dm_parsebool(lpszValue,m_bCheckBox);
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_toggleskin))
+			if (0 == dm_xmlstrcmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_toggleskin))
 			{
 				m_pToggleSkin = g_pDMApp->GetSkin(lpszValue);
 				break;
 			}
-			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_checkskin))
+			if (0 == dm_xmlstrcmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_checkskin))
 			{
 				m_pCheckSkin = g_pDMApp->GetSkin(lpszValue);
 				break;
 			}
-			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_iconskin))
+			if (0 == dm_xmlstrcmp(lpszAttribute, DMAttr::DUITreeCtrlAttr::SKIN_iconskin))
 			{
 				m_pIconSkin = g_pDMApp->GetSkin(lpszValue);
 				bCalcWid = true;

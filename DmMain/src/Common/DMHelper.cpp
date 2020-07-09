@@ -89,7 +89,7 @@ break;
 				LOG_ERR("[mid]-GetRootDirW fail\n");
 				break;
 			}
-			wmemset(pszDestPath, 0, dwSize);
+			ZeroMemory(pszDestPath, dwSize * 2);
 			if (0 == PathCombineW(pszDestPath, szExeDir, pszSrcPath))
 			{
 				LOG_ERR("[mid]-PathCombineW fail\n");
@@ -121,27 +121,15 @@ break;
 
 	bool GetFileBufW(const wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize)
 	{
-		bool bRet =  false;
-		do 
-		{
-			if (NULL == pszFilePath
-				||0 == wcslen(pszFilePath)
-				||NULL == *ppBuf)
-			{
-				break;
-			}
-
-			HANDLE fileHandle = ::CreateFileW(pszFilePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, nullptr);
-			if (fileHandle == INVALID_HANDLE_VALUE)
-				break;
+		HANDLE fileHandle = ::CreateFileW(pszFilePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, nullptr);
+		if (fileHandle == INVALID_HANDLE_VALUE)
+			return false;
 			
-			DWORD bytesRead = 0;
-			dwReadSize = ::ReadFile(fileHandle, *ppBuf, dwSize, &bytesRead, nullptr);
-			CloseHandle(fileHandle);
+		DWORD bytesRead = 0;
+		dwReadSize = ::ReadFile(fileHandle, *ppBuf, dwSize, &bytesRead, nullptr);
+		CloseHandle(fileHandle);
 
-			bRet = true;
-		} while (FALSE);
-		return bRet;
+		return true;
 	}
 
 	bool UnicodeToAscii(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen)

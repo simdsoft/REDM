@@ -1,35 +1,37 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "DMDesignerWnd.h"
 #include "NewResDlg.h"
 
+#pragma execution_character_set("utf-8")
+
 DesignMenu g_GlbMenuItem[] = \
 {
-	{GLBMENU_NEW,			  L" –¬Ω® ctrl+n"},//0 
-	{GLBMENU_SAVE,			  L" ±£¥Ê ctrl+s"},//1 
-	{GLBMENU_CLOSE,			  L" πÿ±’"},//2 
-	{GLBMENU_EXIT,		      L" ÕÀ≥ˆ"},//3 
+	{GLBMENU_NEW,			  " Êñ∞Âª∫ ctrl+n"},//0 
+	{GLBMENU_SAVE,			  " ‰øùÂ≠ò ctrl+s"},//1 
+	{GLBMENU_CLOSE,			  " ÂÖ≥Èó≠"},//2 
+	{GLBMENU_EXIT,		      " ÈÄÄÂá∫"},//3 
 
-	{GLBMENU_UNDO,			  L" ≥∑œ˙ ctrl+z" }, //4
-	{GLBMENU_REDO,			  L" ÷ÿ◊ˆ ctrl+r" }, //5
+	{GLBMENU_UNDO,			  " Êí§ÈîÄ ctrl+z" }, //4
+	{GLBMENU_REDO,			  " ÈáçÂÅö ctrl+r" }, //5
 
-	{GLBMENU_OPTOBJPROJ,	  L" «–ªª∂‘œÛ ”Õº ctrl+q"},//6 
-	{GLBMENU_RELOAD,		  L" ÷ÿ–¬º”‘ÿ     f5"},//7
+	{GLBMENU_OPTOBJPROJ,	  " ÂàáÊç¢ÂØπË±°ËßÜÂõæ ctrl+q"},//6 
+	{GLBMENU_RELOAD,		  " ÈáçÊñ∞Âä†ËΩΩ     f5"},//7
 
-	{GLBMENU_MOVEMODE,		  L" Moveƒ£ Ω ctrl+1"},//8
-	{GLBMENU_SELMODE,		  L" Selƒ£ Ω  ctrl+2"},//9
-	{GLBMENU_ADDMODE,		  L" Addƒ£ Ω  ctrl+3"},//10
+	{GLBMENU_MOVEMODE,		  " MoveÊ®°Âºè ctrl+1"},//8
+	{GLBMENU_SELMODE,		  " SelÊ®°Âºè  ctrl+2"},//9
+	{GLBMENU_ADDMODE,		  " AddÊ®°Âºè  ctrl+3"},//10
 
-	{GLBMENU_HELPDOC,		  L" ∞Ô÷˙Œƒµµ"},//11
-	{GLBMENU_ONLINEHELP,	  L" ‘⁄œﬂΩÃ≥Ã"},//12
+	{GLBMENU_HELPDOC,		  " Â∏ÆÂä©ÊñáÊ°£"},//11
+	{GLBMENU_ONLINEHELP,	  " Âú®Á∫øÊïôÁ®ã"},//12
 };
 enum
 {
 	GLBMENUBTN_ID_MIN          = 100,
-	GLBMENUBTN_ID_FILE,							///< Œƒº˛
-	GLBMENUBTN_ID_EDIT,							///< ±‡º≠
-	GLBMENUBTN_ID_VIEW,							///<  ”Õº
-	GLBMENUBTN_ID_MODE,							///< ƒ£ Ω
-	GLBMENUBTN_ID_HELP,							///< ∞Ô÷˙
+	GLBMENUBTN_ID_FILE,							///< Êñá‰ª∂
+	GLBMENUBTN_ID_EDIT,							///< ÁºñËæë
+	GLBMENUBTN_ID_VIEW,							///< ËßÜÂõæ
+	GLBMENUBTN_ID_MODE,							///< Ê®°Âºè
+	GLBMENUBTN_ID_HELP,							///< Â∏ÆÂä©
 	//
 	GLBMENUBTN_ID_MAX		   = 110
 };
@@ -47,15 +49,15 @@ BEGIN_MSG_MAP(DMDesignerWnd)
 	MSG_WM_DROPFILES(OnDropFiles)
 	MSG_WM_COMMAND(OnCommand)
 	MSG_WM_TIMER(OnTimer) 
-	CHAIN_MSG_MAP(DMHWnd)// Ω´Œ¥¥¶¿Ìµƒœ˚œ¢Ωª”…DMHWnd¥¶¿Ì
+	CHAIN_MSG_MAP(DMHWnd)// Â∞ÜÊú™Â§ÑÁêÜÁöÑÊ∂àÊÅØ‰∫§Áî±DMHWndÂ§ÑÁêÜ
 	REFLECT_NOTIFICATIONS_EX()
 END_MSG_MAP() 
 BEGIN_EVENT_MAP(DMDesignerWnd)
-	EVENT_NAME_COMMAND(L"ds_closebutton",	OnClose)
-	EVENT_NAME_COMMAND(L"ds_maxbutton",		OnMaximize)
-	EVENT_NAME_COMMAND(L"ds_restorebutton", OnRestore)
-	EVENT_NAME_COMMAND(L"ds_minbutton",		OnMinimize)
-	EVENT_NAME_HANDLER(L"ds_preview",DMEVT_CMD,OnPreview)
+	EVENT_NAME_COMMAND("ds_closebutton",	OnClose)
+	EVENT_NAME_COMMAND("ds_maxbutton",		OnMaximize)
+	EVENT_NAME_COMMAND("ds_restorebutton", OnRestore)
+	EVENT_NAME_COMMAND("ds_minbutton",		OnMinimize)
+	EVENT_NAME_HANDLER("ds_preview",DMEVT_CMD,OnPreview)
 	EVENT_ID_COMMAND_RANGE(GLBMENUBTN_ID_MIN,GLBMENUBTN_ID_MAX,OnGlobalMenuBtn)	
 	CHAIN_EVENT_STATIC_MAP(RightXml,s_DMHandleEvent)
 	CHAIN_EVENT_STATIC_MAP(AddXml,s_DMHandleEvent)
@@ -63,35 +65,35 @@ END_EVENT_MAP()
 
 CStringW g_Tips[] = \
 {
-	L"µ„ª˜F5÷ÿ–¬¥”¥≈≈Ã÷–º”‘ÿ◊ ‘¥Œƒº˛",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L" π”√Ctrl+N¥Úø™–¬Ω®◊ ‘¥¥∞ø⁄“‘º∞¿˙ ∑º«¬º",
-	L" π”√Ctrl+SÀÊ ±±£¥Ê◊ ‘¥Œƒº˛µΩ¥≈≈Ã÷–",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L" π”√Ctrl+Q‘⁄Ω®¡¢∂‘œÛ ”Õº∫Õœ˙ªŸ∂‘œÛ ”Õºº‰«–ªª",
-	L"‘⁄π§≥Ã/∂‘œÛ ”Õº÷–µ„ª˜”“º¸ø…“‘øÏÀŸÃ¯◊™µΩœ‡πÿŒƒº˛",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"‘⁄∂‘œÛ ”Õº÷–µ„ª˜–°À¯Õº±Í¿¥À¯∂®øÿº˛≤ª±ª∏ƒ±‰",
-	L"‘⁄∂‘œÛ ”Õº÷–µ„ª˜–°—€æ¶Õº±Í¿¥¡Ÿ ±“˛≤ÿøÿº˛",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"‘⁄∂‘œÛ ”Õº÷–µƒøÿº˛…œ”“º¸∏¥÷∆/’≥Ã˘ø…“‘øÏÀŸ∏¥÷∆/’≥Ã˘øÿº˛",
-	L"‘⁄∂‘œÛ ”Õº÷–π¥—°÷ß≥÷Panelø…“‘ø™∆ÙPanel÷ß≥÷",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"‘⁄SELƒ£ Ωœ¬£¨œ‘ æ≥…ª“…´µƒDOT≤ªø…Õœ∂Ø",
-	L"‘⁄SELƒ£ Ωœ¬£¨◊Û/”“ª˜æ˘ø…øÏÀŸ—°÷–øÿº˛",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L" π”√DELETEøÏΩ›º¸ø…“‘…æ≥˝”“≤‡µƒPROPœÓ",
-	L"À˘”–µƒœ‘ æ«¯”Ú∂º÷ß≥÷Õœ∂Ø¿¥∏ƒ±‰¥Û–°",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"”“±ﬂ Ù–‘¡–±Ìµƒ÷–º‰“≤÷ß≥÷Õœ∂Ø¿¥∏ƒ±‰◊Û”“¥Û–°",
-	L"‘⁄π§≥Ã ”Õº÷–£¨Œ¥∞Û∂®XMLµƒΩ·µ„Œ™ª“…´",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"‘⁄∂‘œÛ ”Õº÷–£¨ItemPanelœÓœ‘ æ≥…∫Ï…´",
-	L"CTRL+1ø…“‘øÏÀŸ«–ªªµΩMOVEƒ£ Ω",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
-	L"CTRL+2ø…“‘øÏÀŸ«–ªªµΩSELƒ£ Ω",
-	L"CTRL+3ø…“‘øÏÀŸ«–ªªµΩAddƒ£ Ω",
-	L"∏¸∂‡≤Ÿ◊˜œ∏Ω⁄«Îµ„ª˜≤Àµ•->∞Ô÷˙->∞Ô÷˙Œƒµµ",
+	L"ÁÇπÂáªF5ÈáçÊñ∞‰ªéÁ£ÅÁõò‰∏≠Âä†ËΩΩËµÑÊ∫êÊñá‰ª∂",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"‰ΩøÁî®Ctrl+NÊâìÂºÄÊñ∞Âª∫ËµÑÊ∫êÁ™óÂè£‰ª•ÂèäÂéÜÂè≤ËÆ∞ÂΩï",
+	L"‰ΩøÁî®Ctrl+SÈöèÊó∂‰øùÂ≠òËµÑÊ∫êÊñá‰ª∂Âà∞Á£ÅÁõò‰∏≠",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"‰ΩøÁî®Ctrl+QÂú®Âª∫Á´ãÂØπË±°ËßÜÂõæÂíåÈîÄÊØÅÂØπË±°ËßÜÂõæÈó¥ÂàáÊç¢",
+	L"Âú®Â∑•Á®ã/ÂØπË±°ËßÜÂõæ‰∏≠ÁÇπÂáªÂè≥ÈîÆÂèØ‰ª•Âø´ÈÄüË∑≥ËΩ¨Âà∞Áõ∏ÂÖ≥Êñá‰ª∂",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"Âú®ÂØπË±°ËßÜÂõæ‰∏≠ÁÇπÂáªÂ∞èÈîÅÂõæÊ†áÊù•ÈîÅÂÆöÊéß‰ª∂‰∏çË¢´ÊîπÂèò",
+	L"Âú®ÂØπË±°ËßÜÂõæ‰∏≠ÁÇπÂáªÂ∞èÁúºÁùõÂõæÊ†áÊù•‰∏¥Êó∂ÈöêËóèÊéß‰ª∂",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"Âú®ÂØπË±°ËßÜÂõæ‰∏≠ÁöÑÊéß‰ª∂‰∏äÂè≥ÈîÆÂ§çÂà∂/Á≤òË¥¥ÂèØ‰ª•Âø´ÈÄüÂ§çÂà∂/Á≤òË¥¥Êéß‰ª∂",
+	L"Âú®ÂØπË±°ËßÜÂõæ‰∏≠ÂãæÈÄâÊîØÊåÅPanelÂèØ‰ª•ÂºÄÂêØPanelÊîØÊåÅ",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"Âú®SELÊ®°Âºè‰∏ãÔºåÊòæÁ§∫ÊàêÁÅ∞Ëâ≤ÁöÑDOT‰∏çÂèØÊãñÂä®",
+	L"Âú®SELÊ®°Âºè‰∏ãÔºåÂ∑¶/Âè≥ÂáªÂùáÂèØÂø´ÈÄüÈÄâ‰∏≠Êéß‰ª∂",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"‰ΩøÁî®DELETEÂø´Êç∑ÈîÆÂèØ‰ª•Âà†Èô§Âè≥‰æßÁöÑPROPÈ°π",
+	L"ÊâÄÊúâÁöÑÊòæÁ§∫Âå∫ÂüüÈÉΩÊîØÊåÅÊãñÂä®Êù•ÊîπÂèòÂ§ßÂ∞è",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"Âè≥ËæπÂ±ûÊÄßÂàóË°®ÁöÑ‰∏≠Èó¥‰πüÊîØÊåÅÊãñÂä®Êù•ÊîπÂèòÂ∑¶Âè≥Â§ßÂ∞è",
+	L"Âú®Â∑•Á®ãËßÜÂõæ‰∏≠ÔºåÊú™ÁªëÂÆöXMLÁöÑÁªìÁÇπ‰∏∫ÁÅ∞Ëâ≤",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"Âú®ÂØπË±°ËßÜÂõæ‰∏≠ÔºåItemPanelÈ°πÊòæÁ§∫ÊàêÁ∫¢Ëâ≤",
+	L"CTRL+1ÂèØ‰ª•Âø´ÈÄüÂàáÊç¢Âà∞MOVEÊ®°Âºè",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
+	L"CTRL+2ÂèØ‰ª•Âø´ÈÄüÂàáÊç¢Âà∞SELÊ®°Âºè",
+	L"CTRL+3ÂèØ‰ª•Âø´ÈÄüÂàáÊç¢Âà∞AddÊ®°Âºè",
+	L"Êõ¥Â§öÊìç‰ΩúÁªÜËäÇËØ∑ÁÇπÂáªËèúÂçï->Â∏ÆÂä©->Â∏ÆÂä©ÊñáÊ°£",
 };
 #define  TIMER_TIPS                                  110
 DMDesignerWnd::DMDesignerWnd()
@@ -99,7 +101,7 @@ DMDesignerWnd::DMDesignerWnd()
 	g_pMainWnd = this;
 	g_pDMApp->GetDefRegObj((void**)&g_pRes, DMREG_Res);
 	m_pDesignerXml = NULL;
-	SetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1",L"440A2781-8BC2-4AC4-8225-9AC451FE42B4");
+	SetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1","440A2781-8BC2-4AC4-8225-9AC451FE42B4");
 }
 
 DMDesignerWnd::~DMDesignerWnd()
@@ -107,41 +109,41 @@ DMDesignerWnd::~DMDesignerWnd()
 	m_pDesignerXml = NULL;
 }
 
-// œ˚œ¢∑÷∑¢
+// Ê∂àÊÅØÂàÜÂèë
 BOOL DMDesignerWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	DragAcceptFiles(TRUE);
 
-	DWORD accel = DUIAccel::TranslateAccelKey(L"ctrl+n");
+	DWORD accel = DUIAccel::TranslateAccelKey("ctrl+n");
 	DUIAccel acc(accel);
 	GetAccelMgr()->RegisterAccel(acc,this);
-	accel = DUIAccel::TranslateAccelKey(L"ctrl+s");
+	accel = DUIAccel::TranslateAccelKey("ctrl+s");
 	
 	DUIAccel accsave(accel);
 	GetAccelMgr()->RegisterAccel(accsave,this);
 
-	accel = DUIAccel::TranslateAccelKey(L"ctrl+q");
+	accel = DUIAccel::TranslateAccelKey("ctrl+q");
 	DUIAccel accobjtree(accel);
 	GetAccelMgr()->RegisterAccel(accobjtree,this);
 
-	CStringW strAcc;
+	CStringA strAcc;
 	for (int i=1;i<=4;i++)
 	{
-		strAcc.Format(L"ctrl+%d",i);
+		strAcc.Format("ctrl+%d",i);
 		accel = DUIAccel::TranslateAccelKey(strAcc);
 		DUIAccel acctemp(accel);
 		GetAccelMgr()->RegisterAccel(acctemp,this);		
 	}
 
-	accel = DUIAccel::TranslateAccelKey(L"f5");
+	accel = DUIAccel::TranslateAccelKey("f5");
 	DUIAccel accf5(accel);
 	GetAccelMgr()->RegisterAccel(accf5,this);
 
-	accel = DUIAccel::TranslateAccelKey(L"ctrl+z");
+	accel = DUIAccel::TranslateAccelKey("ctrl+z");
 	DUIAccel accCtrlZ(accel);
 	GetAccelMgr()->RegisterAccel(accCtrlZ, this);
 
-	accel = DUIAccel::TranslateAccelKey(L"ctrl+r");
+	accel = DUIAccel::TranslateAccelKey("ctrl+r");
 	DUIAccel accCtrlR(accel);
 	GetAccelMgr()->RegisterAccel(accCtrlR, this);
 
@@ -166,8 +168,8 @@ void DMDesignerWnd::OnLButtonDbClick(UINT nFlags,CPoint pt)
 			break;
 		}
 
-		DUIWindow*pMaxWnd     = FindChildByName(L"ds_maxbutton");
-		DUIWindow*pRestoreWnd = FindChildByName(L"ds_restorebutton");
+		DUIWindow*pMaxWnd     = FindChildByName("ds_maxbutton");
+		DUIWindow*pRestoreWnd = FindChildByName("ds_restorebutton");
 		if (pMaxWnd->DM_IsVisible())
 		{
 			OnMaximize();
@@ -182,8 +184,8 @@ void DMDesignerWnd::OnLButtonDbClick(UINT nFlags,CPoint pt)
 
 void DMDesignerWnd::OnSize(UINT nType, CSize size)
 {
-	DUIWindow*pMaxWnd     = FindChildByName(L"ds_maxbutton");
-	DUIWindow*pRestoreWnd = FindChildByName(L"ds_restorebutton");
+	DUIWindow*pMaxWnd     = FindChildByName("ds_maxbutton");
+	DUIWindow*pRestoreWnd = FindChildByName("ds_restorebutton");
 	if (!IsIconic())  
 	{
 		CRect rcWnd;
@@ -225,7 +227,7 @@ void DMDesignerWnd::OnDropFiles(HDROP hDropInfo)
 		wchar_t szPath[MAX_PATH] = {0};
 		DragQueryFile(hDropInfo, 0,(LPWSTR)szPath,MAX_PATH);
 
-		// ≈–∂œ «∑ÒŒ™ƒø¬º
+		// Âà§Êñ≠ÊòØÂê¶‰∏∫ÁõÆÂΩï
 		if (IsDirectoryExist(szPath))
 		{
 			OnParseRes(szPath);
@@ -264,12 +266,12 @@ void DMDesignerWnd::OnTimer(UINT_PTR idEvent)
 		{
 			i = 0;
 		}
-		FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(00,ff,ff,ff)");
-		FindChildByNameT<DUIStatic>(L"ds_tips")->DV_SetWindowText(g_Tips[i++]);
+		FindChildByNameT<DUIStatic>("ds_tips")->SetAttribute(XML_CLRTEXT,"pbgra(00,ff,ff,ff)");
+		FindChildByNameT<DUIStatic>("ds_tips")->DV_SetWindowText(g_Tips[i++]);
 	} while (false);
 }
 
-//  ¬º˛∑÷∑¢
+// ‰∫ã‰ª∂ÂàÜÂèë
 DMCode DMDesignerWnd::OnClose()
 {
 	if (m_pDesignerXml)
@@ -316,40 +318,40 @@ DMCode DMDesignerWnd::OnPreview(DMEventArgs *pEvt)
 bool DMDesignerWnd::OnAccelPressed(const DUIAccel& Accel)
 {
 	DUIAccel acc = Accel;
-	CStringW str = acc.FormatHotkey();
-	if (0 == str.CompareNoCase(L"CTRL+N"))
+	CStringA str = acc.FormatHotkey();
+	if (0 == str.CompareNoCase("CTRL+N"))
 	{
 		OpenNewProj();
 	}
-	else if (0 == str.CompareNoCase(L"CTRL+S"))
+	else if (0 == str.CompareNoCase("CTRL+S"))
 	{
 		if (m_pDesignerXml)
 		{
 			m_pDesignerXml->SaveRes();
 		}
 	}
-	else if (0 == str.CompareNoCase(L"CTRL+Q"))
+	else if (0 == str.CompareNoCase("CTRL+Q"))
 	{
 		OptionObjProj();
 	}
-	else if (0 == str.CompareNoCase(L"CTRL+1")
-			||0 == str.CompareNoCase(L"CTRL+2")
-			||0 == str.CompareNoCase(L"CTRL+3")
+	else if (0 == str.CompareNoCase("CTRL+1")
+			||0 == str.CompareNoCase("CTRL+2")
+			||0 == str.CompareNoCase("CTRL+3")
 			)
 	{
 		int iSel = 0;
-		swscanf_s((LPCWSTR)str,L"Ctrl+%d",&iSel);
-		FindChildByNameT<DUITabCtrl>(L"ds_tool")->SetCurSel(iSel-1);
+		sscanf_s((LPCSTR)str,"Ctrl+%d",&iSel);
+		FindChildByNameT<DUITabCtrl>("ds_tool")->SetCurSel(iSel-1);
 	}
-	else if (0 == str.CompareNoCase(L"f5"))
+	else if (0 == str.CompareNoCase("f5"))
 	{
 		ReloadProj();
 	}
-	else if (0 == str.CompareNoCase(L"Ctrl+Z"))
+	else if (0 == str.CompareNoCase("Ctrl+Z"))
 	{
 		HandleGlobalMenu(GLBMENU_UNDO);
 	}
-	else if (0 == str.CompareNoCase(L"Ctrl+R"))
+	else if (0 == str.CompareNoCase("Ctrl+R"))
 	{
 		HandleGlobalMenu(GLBMENU_REDO);
 	}
@@ -371,7 +373,7 @@ DMCode DMDesignerWnd::OnParseRes(CStringW strResDir)
 			DM_Invalidate();
 			break;
 		}
-		FindChildByNameT<DUIStatic>(L"ds_resdirsta")->DV_SetWindowText(strResDir);
+		FindChildByNameT<DUIStatic>("ds_resdirsta")->DV_SetWindowText(strResDir);
 		g_pAttr->AddRecentResDir(strResDir);
 	} while (false);
 	if (!DMSUCCEEDED(iErr))
@@ -393,10 +395,10 @@ DMCode DMDesignerWnd::OnGlobalMenuBtn(int idFrom)
 		}
 		
 		DMXmlDocument Doc;
-		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,L"ds_menu_proj");
+		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,"ds_menu_proj");
 		DMXmlNode XmlNode = Doc.Root();
 		XmlNode.SetAttributeInt(XML_BSHADOW,1);
-		XmlNode.SetAttribute(L"clrtext",L"pbgra(ff,ff,00,ff)");
+		XmlNode.SetAttribute("clrtext","pbgra(ff,ff,00,ff)");
 		InitFileMenu(XmlNode,idFrom);
 		InitEditMenu(XmlNode,idFrom);
 		InitViewMenu(XmlNode,idFrom);
@@ -474,7 +476,7 @@ DMCode DMDesignerWnd::HandleGlobalMenu(int nID)
 	case GLBMENU_ADDMODE:
 		{
 			int iSel = nID-GLBMENU_MOVEMODE;
-			FindChildByNameT<DUITabCtrl>(L"ds_tool")->SetCurSel(iSel);
+			FindChildByNameT<DUITabCtrl>("ds_tool")->SetCurSel(iSel);
 		}
 		break;
 
@@ -518,13 +520,15 @@ DMCode DMDesignerWnd::InitFileMenu(DMXmlNode& XmlNode,int idFrom)
 		}
 		
 		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].id));
+
+		XmlItem.SetAttribute(XML_TEXT,(g_GlbMenuItem[GLBMENU_NEW-GLBMENU_BASE].text));
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_SAVE-GLBMENU_BASE].text));XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_CLOSE-GLBMENU_BASE].text));XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_EXIT-GLBMENU_BASE].text));
 		Init_Debug_XmlBuf(XmlNode);
 
 		iErr = DM_ECODE_OK;
@@ -544,10 +548,10 @@ DMCode DMDesignerWnd::InitEditMenu(DMXmlNode& XmlNode, int idFrom)
 		}
 
 		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID, IntToString(g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].id)); XmlItem.SetAttribute(XML_TEXT, g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID, g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].id); XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_UNDO - GLBMENU_BASE].text));
 		XmlItem.SetAttributeInt(XML_BDISABLE, m_ActionSlotMgr.IsExistPrevSiblingSteps() ? 0 : 1);
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID, IntToString(g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].id)); XmlItem.SetAttribute(XML_TEXT, g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID, g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].id); XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_REDO - GLBMENU_BASE].text));
 		XmlItem.SetAttributeInt(XML_BDISABLE, m_ActionSlotMgr.IsExistNextSiblingSteps() ? 0 : 1);
 		Init_Debug_XmlBuf(XmlNode);
 
@@ -567,9 +571,9 @@ DMCode DMDesignerWnd::InitViewMenu(DMXmlNode& XmlNode,int idFrom)
 		}
 
 		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_OPTOBJPROJ-GLBMENU_BASE].text));XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].text);XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_RELOAD-GLBMENU_BASE].text));XmlItem.SetAttributeInt(XML_BDISABLE,m_pDesignerXml?0:1);
 		Init_Debug_XmlBuf(XmlNode);
 
 		iErr = DM_ECODE_OK;
@@ -588,11 +592,11 @@ DMCode DMDesignerWnd::InitModeMenu(DMXmlNode& XmlNode,int idFrom)
 		}
 
 		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_MOVEMODE-GLBMENU_BASE].text));
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_SELMODE-GLBMENU_BASE].text));
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_ADDMODE-GLBMENU_BASE].text));
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
@@ -609,9 +613,9 @@ DMCode DMDesignerWnd::InitHelpMenu(DMXmlNode& XmlNode,int idFrom)
 		}
 
 		DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_HELPDOC-GLBMENU_BASE].text));
 		XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-		XmlItem.SetAttribute(XML_ID,IntToString(g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].text);
+		XmlItem.SetAttributeInt(XML_ID,(g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT, (g_GlbMenuItem[GLBMENU_ONLINEHELP-GLBMENU_BASE].text));
 		Init_Debug_XmlBuf(XmlNode);
 
 		iErr = DM_ECODE_OK;
@@ -623,7 +627,7 @@ DMCode DMDesignerWnd::OpenNewProj()
 {
 	DMSmartPtrT<NewResDlg> pDlg;
 	pDlg.Attach(new NewResDlg());
-	if (IDOK == pDlg->DoModal(L"ds_newdlg",m_hWnd,true))
+	if (IDOK == pDlg->DoModal("ds_newdlg",m_hWnd,true))
 	{
 		OnParseRes(pDlg->m_strResDir);
 	}
@@ -637,7 +641,7 @@ DMCode DMDesignerWnd::CloseProj()
 		m_pDesignerXml->SaveRes(false);
 	}
 	DM_DELETE(m_pDesignerXml);
-	FindChildByNameT<DUIStatic>(L"ds_resdirsta")->DV_SetWindowText(L"ctrl+n¥Úø™◊ÓΩ¸¡–±ÌªÚÕœ◊ßResŒƒº˛Ω¯¿¥");
+	FindChildByNameT<DUIStatic>("ds_resdirsta")->SetText(L"ctrl+nÊâìÂºÄÊúÄËøëÂàóË°®ÊàñÊãñÊãΩResÊñá‰ª∂ËøõÊù•");
 	return DM_ECODE_OK;
 }
 
@@ -647,15 +651,15 @@ DMCode DMDesignerWnd::OptionObjProj()
 	{
 		if (m_pDesignerXml->m_bInitObjTree)
 		{
-			if (IDOK == DM_MessageBox(L"»∑»œπÿ±’∂‘œÛ ”Õº?\r\n",MB_OKCANCEL))
+			if (IDOK == DM_MessageBox(L"Á°ÆËÆ§ÂÖ≥Èó≠ÂØπË±°ËßÜÂõæ?\r\n",MB_OKCANCEL))
 			{
-				m_ActionSlotMgr.FreeAllActionSlot();//»•µÙÀ˘”–∂Ø◊˜º‡øÿ
+				m_ActionSlotMgr.FreeAllActionSlot();//ÂéªÊéâÊâÄÊúâÂä®‰ΩúÁõëÊéß
 				m_pDesignerXml->ReleaseObjTree();
 			}
 		}
 		else
 		{
-			if (IDOK == DM_MessageBox(L"»∑»œº”‘ÿ∂‘œÛ ”Õº?\r\n",MB_OKCANCEL))
+			if (IDOK == DM_MessageBox(L"Á°ÆËÆ§Âä†ËΩΩÂØπË±°ËßÜÂõæ?\r\n",MB_OKCANCEL))
 			{
 				m_pDesignerXml->InitObjTree();
 			}

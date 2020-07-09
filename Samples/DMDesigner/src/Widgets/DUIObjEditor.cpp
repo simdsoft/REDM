@@ -20,12 +20,12 @@ DMCode DUIObjEditor::InitObjEditor()
 	do 
 	{ 
 		m_pObjXml      = g_pMainWnd->m_pDesignerXml;
-		m_pHoverlFrame = g_pMainWnd->FindChildByNameT<DUIStatic>(L"ds_hoverframe");DMASSERT(m_pHoverlFrame);
-		m_pSelFrame    = g_pMainWnd->FindChildByNameT<DUIStatic>(L"ds_selframe");DMASSERT(m_pSelFrame);
-		m_pDragFrame   = g_pMainWnd->FindChildByNameT<DUIDragFrame>(L"ds_dragframe");DMASSERT(m_pDragFrame);
-		m_pTools       = g_pMainWnd->FindChildByNameT<DUITabCtrl>(L"ds_tool");DMASSERT(m_pTools);
+		m_pHoverlFrame = g_pMainWnd->FindChildByNameT<DUIStatic>("ds_hoverframe");DMASSERT(m_pHoverlFrame);
+		m_pSelFrame    = g_pMainWnd->FindChildByNameT<DUIStatic>("ds_selframe");DMASSERT(m_pSelFrame);
+		m_pDragFrame   = g_pMainWnd->FindChildByNameT<DUIDragFrame>("ds_dragframe");DMASSERT(m_pDragFrame);
+		m_pTools       = g_pMainWnd->FindChildByNameT<DUITabCtrl>("ds_tool");DMASSERT(m_pTools);
 		m_pTools->m_EventMgr.SubscribeEvent(DMEventTabSelChangedArgs::EventID, Subscriber(&DUIObjEditor::OnDesignModeChanged, this));
-		m_pCheckBtn    = g_pMainWnd->FindChildByNameT<DUICheckBox>(L"ds_w_widget");DMASSERT(m_pCheckBtn);
+		m_pCheckBtn    = g_pMainWnd->FindChildByNameT<DUICheckBox>("ds_w_widget");DMASSERT(m_pCheckBtn);
 		m_pCheckBtn->DM_SetCheck(false);
 		m_pCheckBtn->m_EventMgr.SubscribeEvent(DMEventCheckChangingCmdArgs::EventID, Subscriber(&DUIObjEditor::OnCheckChanging, this));
 		m_pCheckBtn->m_EventMgr.SubscribeEvent(DMEventCheckChangedCmdArgs::EventID, Subscriber(&DUIObjEditor::OnCheckChanged, this));
@@ -107,7 +107,7 @@ DUIRoot* DUIObjEditor::GetShowDesignChild()
 	DUIWindow *pChild = m_Node.m_pFirstChild;
 	while (pChild)
 	{
-		if (pChild->DM_IsVisible()&&0 == _wcsicmp(pChild->V_GetClassName(),DUIRoot::GetClassName()))
+		if (pChild->DM_IsVisible()&&0 == dm_xmlstrcmp(pChild->V_GetClassName(),DUIRoot::GetClassName()))
 		{
 			break;
 		}
@@ -151,7 +151,7 @@ DMCode DUIObjEditor::RemoveAllDesignChild()
 	{
 		DUIWindow* pTemp = pChild;
 		pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
-		if (0 == _wcsicmp(pTemp->V_GetClassName(),DUIRoot::GetClassName()))
+		if (0 == dm_xmlstrcmp(pTemp->V_GetClassName(),DUIRoot::GetClassName()))
 		{
 			DM_DestroyChildWnd(pTemp);
 		}
@@ -242,12 +242,12 @@ DMCode DUIObjEditor::HoverInSelOrAddMode(DUIWindow* pDUIHover)
 		if (AddMode == m_DesignMod)
 		{
 			rcFrame.InflateRect(8,8,8,8);
-			m_pHoverlFrame->SetAttribute(L"skin",L"ds_addframe");
+			m_pHoverlFrame->SetAttribute("skin","ds_addframe");
 		}
 		else
 		{
 			rcFrame.InflateRect(3,3,3,3);
-			m_pHoverlFrame->SetAttribute(L"skin",L"ds_hoverframe");
+			m_pHoverlFrame->SetAttribute("skin","ds_hoverframe");
 		}
 		m_pHoverlFrame->DM_FloatLayout(rcFrame);
 		m_pHoverlFrame->DM_SetVisible(true,true);

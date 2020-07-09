@@ -106,11 +106,11 @@ bool DUIDragFrame::IsSupportPos(ObjTreeData* pData)
 		DMSmartPtrT<Layout>	pLayout;
 		pLayout = dynamic_cast<Layout*>(pData->m_pDUIWnd->m_pLayout.get());
 		DUIWindow* &pDUIWnd = pData->m_pDUIWnd;
-		if (0 == _wcsicmp(pData->m_pDUIWnd->V_GetClassName(),DUIRoot::GetClassName())// 切换到Root层
+		if (0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUIRoot::GetClassName())// 切换到Root层
 			||pData->m_pDUIWnd->m_bFloatLayout// 绝对布局
 			||pData->m_pDUIWnd->DM_IsParentFlowLayout()//流式布局的子项
 			||4 != pLayout->m_nCount// 不是四点式锚点布局
-			||0 == _wcsicmp(pData->m_pDUIWnd->V_GetClassName(),DUITabPage::GetClassName())// 切换到TabPage层
+			||0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUITabPage::GetClassName())// 切换到TabPage层
 			)
 		{
 			break;
@@ -209,7 +209,7 @@ void DUIDragFrame::InitDragMeta(CRect Rect,bool bMain,bool bAllGray)
 	m_dragMetas[9].m_Rect.left = m_dragMetas[2].m_Rect.left - 24;
 	m_dragMetas[9].m_Rect.top = m_dragMetas[2].m_Rect.top - 24;
 	m_dragMetas[9].m_Clr = PBGRA(0,0,0XFF,0XFF);
-	m_dragMetas[9].m_pSkin = g_pDMApp->GetSkin(L"ds_drag_move");
+	m_dragMetas[9].m_pSkin = g_pDMApp->GetSkin("ds_drag_move");
 
 	for (int i=0;i<m_dragMetaCount;i++)
 	{

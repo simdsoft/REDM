@@ -18,7 +18,7 @@ namespace DM
 {
 	class DMRenderImpl:public IDMRender
 	{
-		DMDECLARE_CLASS_NAME(DMRenderImpl,L"DMRenderImpl",DMREG_Render);
+		DMDECLARE_CLASS_NAME(DMRenderImpl,"DMRenderImpl",DMREG_Render);
 	public:
 		DMCode CreateBitmap(IDMBitmap** ppBitmap); 
 		DMCode CreateFont(const LPLOGFONTW plf,IDMFont** ppFont); 

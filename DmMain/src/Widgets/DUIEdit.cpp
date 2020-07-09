@@ -790,7 +790,7 @@ namespace DM
 
 	LRESULT DUIRichEdit::OnSetReadOnly(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		return (HRESULT)(SetAttribute(DMAttr::DUIRichEditAttr::bool_breadonly,wParam?L"1":L"0"));
+		return (HRESULT)(SetAttribute(DMAttr::DUIRichEditAttr::bool_breadonly,wParam?"1":"0"));
 	}
 
 	LRESULT DUIRichEdit::OnSetLimitText(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -888,8 +888,8 @@ namespace DM
 			m_pCaret->SetAniCount(m_iCaretAniCount);
 		}
 		DM_InsertChild(m_pCaret);
-		CStringW strValue = L"0,0,@0,@0";
-		m_pCaret->SetAttribute(L"pos",strValue,true);
+		CStringA strValue = "0,0,@0,@0";
+		m_pCaret->SetAttribute("pos",strValue,true);
 		m_pCaret->DM_SetVisible(false,false);
 		return iErr;
 	}
@@ -1271,7 +1271,7 @@ namespace DM
 		return evt.m_hr;
 	}
 
-	DMCode DUIRichEdit::OnAttrCustomEx(LPCWSTR lpszAttribute, LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrCustomEx(LPCSTR lpszAttribute, LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		DWORD dwBit  = 0;
@@ -1284,7 +1284,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::INT_editstyle))
+			if (0 == _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::INT_editstyle))
 			{// Ç¿ÖÆÊôÐÔ
 				int iStyle = 0;
 				DMAttributeDispatch::ParseInt(lpszValue,iStyle);
@@ -1296,7 +1296,7 @@ namespace DM
 				break;
 			}
 
-			if (0 ==  dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::INT_maxbuf))
+			if (0 ==  _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::INT_maxbuf))
 			{
 				int iMaxLen = g_InitTextMaxLen;
 				DMAttributeDispatch::ParseInt(lpszValue,iMaxLen);
@@ -1306,7 +1306,7 @@ namespace DM
 				break;
 			}
 			
-			if (0 ==  dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_brichtext))
+			if (0 ==  _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_brichtext))
 			{
 				bObj  = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1324,7 +1324,7 @@ namespace DM
 				break;
 			}
 
-			if (0 ==  dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_bwordwrap))
+			if (0 ==  _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_bwordwrap))
 			{// wordwrap
 				bObj  = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1341,7 +1341,7 @@ namespace DM
 				break;
 			}
 
-			if (0 ==  dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_ballowbeep))
+			if (0 ==  _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_ballowbeep))
 			{// allowbeep
 				bObj  = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1358,7 +1358,7 @@ namespace DM
 				break;
 			}
 
-			if (0 ==  dm_wcsicmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_bautowordsel))
+			if (0 ==  _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::bool_bautowordsel))
 			{// autowordsel
 				bObj  = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1375,7 +1375,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bmultilines))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bmultilines))
 			{// multilines
 				bObj  = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1397,7 +1397,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bhscroll))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bhscroll))
 			{// hscrollbar
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1414,7 +1414,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bvscroll))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bvscroll))
 			{// vscrollBar
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1431,7 +1431,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bautohscroll))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bautohscroll))
 			{// auto hscroll
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1448,7 +1448,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bautovscroll))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bautovscroll))
 			{// auto vscroll
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1466,7 +1466,7 @@ namespace DM
 			}
 
 			// readonly
-			if(0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_breadonly))
+			if(0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_breadonly))
 			{
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1484,7 +1484,7 @@ namespace DM
 			}
 
 			// want return
-			if(0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bwantreturn))
+			if(0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bwantreturn))
 			{
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1500,7 +1500,7 @@ namespace DM
 			}
 
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bpassword))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bpassword))
 			{// password
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1517,13 +1517,13 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::CHAR_passwordchar))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::CHAR_passwordchar))
 			{
 				m_chPasswordChar = lpszValue[0];
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bnumber))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_bnumber))
 			{// number
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1538,7 +1538,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_wcsicmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_benabledrag))
+			if (0 == _stricmp(lpszAttribute,DMAttr::DUIRichEditAttr::bool_benabledrag))
 			{// enabledragdrop
 				bObj = false;
 				DMAttributeDispatch::ParseBool(lpszValue,bObj);
@@ -1560,7 +1560,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIRichEdit::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
@@ -1574,7 +1574,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRichEdit::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
@@ -1620,14 +1620,14 @@ namespace DM
 		} while (false);
 	}
 
-	DMCode DUIRichEdit::OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrTextColor(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMColor Clr;
 		Clr.SetTextInvalid();
 		DMAttributeDispatch::ParseColor(pszValue,Clr);
 		if (!Clr.IsTextInvalid())
 		{
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrtext",pszValue,bLoadXml);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("clrtext",pszValue,bLoadXml);
 		}
 
 		if (!bLoadXml)
@@ -1637,9 +1637,9 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRichEdit::OnAttrTextFont(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrTextFont(LPCSTR pszValue, bool bLoadXml)
 	{
-		m_pDUIXmlInfo->m_pStyle->SetAttribute(L"font",pszValue,bLoadXml);
+		m_pDUIXmlInfo->m_pStyle->SetAttribute("font",pszValue,bLoadXml);
 		if (!bLoadXml)
 		{
 			DMSmartPtrT<IDMFont> pFont;
@@ -1695,22 +1695,22 @@ namespace DM
 	}
 
 
-	DMCode DUIRichEdit::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrAlign(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == pszValue||0 == wcslen(pszValue))
+			if (NULL == pszValue||0 == strlen(pszValue))
 			{
 				break;
 			}
 			m_dwEditStyle &= ~ES_CENTER;
 			m_dwEditStyle &= ~ES_RIGHT;
-			if (0 == _wcsicmp(pszValue,L"center"))
+			if (0 == _stricmp(pszValue,"center"))
 			{
 				m_dwEditStyle|=ES_CENTER;
 			}
-			else if (0 == _wcsicmp(pszValue,L"right"))
+			else if (0 == _stricmp(pszValue,"right"))
 			{
 				m_dwEditStyle|=ES_RIGHT;
 			}
@@ -1736,16 +1736,16 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIRichEdit::OnAttrText(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIRichEdit::OnAttrText(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
 			if (bLoadXml)
 			{
-				m_pDUIXmlInfo->m_strText = pszValue;
+				m_pDUIXmlInfo->m_strText = DMCA2W(pszValue, -1, CP_UTF8);
 				break;
 			}
-			SetWindowText(pszValue);
+			SetTextA(pszValue);
 		} while (false);
 		return DM_ECODE_OK;
 	}

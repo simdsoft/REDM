@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h" 
+ï»¿#include "DMDesignerAfx.h" 
 #include "ResFolder.h"
 
 namespace DM
@@ -32,7 +32,7 @@ namespace DM
 			{
 				break;
 			}
-			m_strDir = szPath;// ³õÊ¼»¯×ÊÔ´°üÎ»ÖÃ
+			m_strDir = szPath;// åˆå§‹åŒ–èµ„æºåŒ…ä½ç½®
 		
 			DM::CStringW strLayoutPathIndex = szPath;DM::CStringW strThemesPathIndex = szPath;
 			strLayoutPathIndex += DMRES_LAYOUT_FOLDER;strLayoutPathIndex += DMRES_DMINDEX;
@@ -40,28 +40,28 @@ namespace DM
 			LPCWSTR lpszLayoutPathIndex = strLayoutPathIndex;
 			if (!CheckFileExistW((wchar_t*)lpszLayoutPathIndex))
 			{
-				CStringW szErrInfo = strLayoutPathIndex;szErrInfo+=L"ÎÄ¼ş²»´æÔÚ";
+				CStringW szErrInfo = strLayoutPathIndex;szErrInfo+=L"æ–‡ä»¶ä¸å­˜åœ¨";
 				DMASSERT_EXPR(0, szErrInfo);
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
 
-			m_pLayout.Release();// ÏÈÊÍ·ÅÔ­Ê¼²¼¾ÖÏà¹Ø-----------£¡
-			m_pCurTheme = NULL; // µ±Ç°Ê¹ÓÃµÄÖ÷Ìâ°üÖÃ¿Õ---------£¡
-			RemoveAll();		// ÏÈÊÍ·ÅÔ­Ê¼themes-------------£¡
+			m_pLayout.Release();// å…ˆé‡Šæ”¾åŸå§‹å¸ƒå±€ç›¸å…³-----------ï¼
+			m_pCurTheme = NULL; // å½“å‰ä½¿ç”¨çš„ä¸»é¢˜åŒ…ç½®ç©º---------ï¼
+			RemoveAll();		// å…ˆé‡Šæ”¾åŸå§‹themes-------------ï¼
 			
-			// ½âÎöLayout
+			// è§£æLayout
 			m_pLayout.Attach(new ResFolderItem);
 			iErr = ParseIndex(lpszLayoutPathIndex, &m_pLayout);
 
-			// ½âÎöthemes
+			// è§£æthemes
 			LPCWSTR lpszThemesPathIndex = strThemesPathIndex;
 			iErr = ParseThemes(lpszThemesPathIndex);
 		} while (false);
 		return iErr;
 	}
 
-	DMCode ResFolder::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName)
+	DMCode ResFolder::IsItemExists(LPCSTR lpszType, LPCSTR lpszName,LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -70,8 +70,8 @@ namespace DM
 			{
 				break;
 			}
-			ResItem Item(lpszType, lpszName);// ÕâÀïÖØÔØÁËEqualArrayObj£¬Ö»ÒªÇ°Á½¸ö±äÁ¿ÏàµÈ£¬¾ÍÈÏÎªÒÑ´æÔÚ
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			ResItem Item(lpszType, lpszName);// è¿™é‡Œé‡è½½äº†EqualArrayObjï¼Œåªè¦å‰ä¸¤ä¸ªå˜é‡ç›¸ç­‰ï¼Œå°±è®¤ä¸ºå·²å­˜åœ¨
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout || DM_INVALID_VALUE == m_pLayout->FindObj(&Item))
 				{
@@ -87,7 +87,7 @@ namespace DM
 					{
 						break;
 					}
-					bool bFind = false;// ´ÓÕû¸öthemesÖĞ²éÕÒ
+					bool bFind = false;// ä»æ•´ä¸ªthemesä¸­æŸ¥æ‰¾
 					int nCount = (int)GetCount();
 					for (int i=0;i<nCount;i++)
 					{
@@ -113,7 +113,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode ResFolder::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName)
+	DMCode ResFolder::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize,LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		size_t size = 0;
@@ -137,13 +137,13 @@ namespace DM
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{
 			CStringW strInfo;
-			strInfo.Format(L"Res×ÊÔ´ÖĞ%s:%s»ñÈ¡sizeÊ§°Ü",lpszType,lpszName);
+			strInfo.Format(L"Resèµ„æºä¸­%s:%sè·å–sizeå¤±è´¥",lpszType,lpszName);
 			DMASSERT_EXPR(0,strInfo);
 		}
 		return iErr;
 	}
 
-	DMCode ResFolder::GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName)
+	DMCode ResFolder::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>& pBuf, PULONG lpULSize, LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		do 
@@ -155,8 +155,7 @@ namespace DM
 				break;
 			}
 
-			DWORD dwReadSize = 0;
-			if (false == DM::GetFileBufW((wchar_t*)lpszFilePath, &lpBuf, ulSize, dwReadSize))
+			if (!DMSUCCEEDED(ReadFileBuf(lpszFilePath, pBuf, lpULSize)))
 			{
 				iErr = DM_ECODE_FAIL;
 				break;
@@ -165,7 +164,7 @@ namespace DM
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{
 			CStringW strInfo;
-			strInfo.Format(L"Res×ÊÔ´ÖĞ%s:%s»ñÈ¡bufÊ§°Ü",lpszType,lpszName);
+			strInfo.Format(L"Resèµ„æºä¸­%s:%sè·å–bufå¤±è´¥",lpszType,lpszName);
 			DMASSERT_EXPR(0,strInfo);
 		}
 		return iErr;
@@ -194,7 +193,7 @@ namespace DM
 				pItem->Release();
 				break;
 			}
-			pItem->m_strThemeName = lpszName;
+			pItem->m_strThemeName = DMWC2A(lpszName);
 			if (AddObj(pItem))
 			{
 				iErr = DM_ECODE_OK;
@@ -202,7 +201,7 @@ namespace DM
 			else
 			{
 				CStringW szInfo = lpszName;
-				szInfo += L"Ö÷Ìâ°üÒÑ´æÔÚ,½«±»ºöÂÔ£¡";
+				szInfo += L"ä¸»é¢˜åŒ…å·²å­˜åœ¨,å°†è¢«å¿½ç•¥ï¼";
 				DMASSERT_EXPR(0,szInfo);
 				pItem->Release();
 			}
@@ -210,19 +209,19 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode ResFolder::SetCurTheme(LPCWSTR lpszName, LPCWSTR lpszOldName)
+	DMCode ResFolder::SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{	
 			if (lpszOldName)
-			{// ´«³ö¾ÉµÄthemeÃû³Æ,ÎŞÂÛ³É¹¦Óë·ñ£¬¶¼ÏÈÈ¡µÃ
+			{// ä¼ å‡ºæ—§çš„themeåç§°,æ— è®ºæˆåŠŸä¸å¦ï¼Œéƒ½å…ˆå–å¾—
 				memcpy((void*)lpszOldName,m_strCurTheme,m_strCurTheme.GetLength()*2);
 			}
 
 			ResFolderItemPtr pCurTheme=NULL;
-			CStringW strName = lpszName;
-			if (strName == m_strCurTheme// ÒªÉèÖÃµÄºÍµ±Ç°µÄÏàÍ¬
+			CStringA strName = lpszName;
+			if (strName == m_strCurTheme// è¦è®¾ç½®çš„å’Œå½“å‰çš„ç›¸åŒ
 				&&NULL != m_pCurTheme&&!m_bOutStyle)
 			{
 				iErr = DM_ECODE_OK;
@@ -237,47 +236,47 @@ namespace DM
 			ResFolderItemPtr	pOldTheme = m_pCurTheme;  
 			m_pCurTheme = pCurTheme;
 			m_strCurTheme = strName;
-			// 1.±È½ÏÁ½¸öthemesÖ®Ç°µÄindexµÄ²î±ğ£¬ÍêÈ«²»Í¬µÄÈÏÎªĞèÒª¸üĞÂ£¬±£ÁôÒª¸üĞÂµÄtype+name
+			// 1.æ¯”è¾ƒä¸¤ä¸ªthemesä¹‹å‰çš„indexçš„å·®åˆ«ï¼Œå®Œå…¨ä¸åŒçš„è®¤ä¸ºéœ€è¦æ›´æ–°ï¼Œä¿ç•™è¦æ›´æ–°çš„type+name
 			int nCount    = (int)m_pCurTheme->GetCount();
 			int nCmpCount = (int)pOldTheme->GetCount();
 			if (m_bOutStyle||NULL == pOldTheme)
 			{
-				nCmpCount = 0;// Íâ²¿Ä£Ê½£¬Ó¦¸ÃÒª¸üĞÂËùÓĞµÄtheme,ËùÒÔÖ±½Ó°Ñ±È½ÏÊıÉèÖÃÎª0
+				nCmpCount = 0;// å¤–éƒ¨æ¨¡å¼ï¼Œåº”è¯¥è¦æ›´æ–°æ‰€æœ‰çš„theme,æ‰€ä»¥ç›´æ¥æŠŠæ¯”è¾ƒæ•°è®¾ç½®ä¸º0
 			}
-			bool bFind = false;// ÊÇ·ñºÍÏÈÇ°themesÒ»Ñù
-			CStringW strUpdateInfo;
+			bool bFind = false;// æ˜¯å¦å’Œå…ˆå‰themesä¸€æ ·
+			CStringA strUpdateInfo;
 			for (int i=0;i<nCount;i++)
 			{
 				ResItemPtr &pItem = m_pCurTheme->m_DMArray[i];
 				for (int j=0;j<nCmpCount;j++)
 				{
-					bFind = false;// ÏÈÔ¤ÖÃÎªfalse
+					bFind = false;// å…ˆé¢„ç½®ä¸ºfalse
 					ResItemPtr &pCmpItem = pOldTheme->m_DMArray[j];
-					if (0 == _wcsicmp(pItem->m_szName,pCmpItem->m_szName)
-						&&0 == _wcsicmp(pItem->m_szType,pCmpItem->m_szType))
+					if (0 == dm_xmlstrcmp(pItem->m_szName,pCmpItem->m_szName)
+						&&0 == dm_xmlstrcmp(pItem->m_szType,pCmpItem->m_szType))
 					{
 						if (0 == _wcsicmp(pItem->m_szPath,pCmpItem->m_szPath))
 						{
 							bFind = true;
 						}
-						break;// Ìø³öÄÚÑ­»·
+						break;// è·³å‡ºå†…å¾ªç¯
 					}
 				}
 				if (false == bFind)
 				{
 					strUpdateInfo += pItem->m_szType;
-					strUpdateInfo += L':';
+					strUpdateInfo += ':';
 					strUpdateInfo += pItem->m_szName;
-					strUpdateInfo += L';';
+					strUpdateInfo += ';';
 				}
 			}
-			// TODO.¿ªÊ¼¹ã²¥ÏûÏ¢£¬¸ü»»Skin--
+			// TODO.å¼€å§‹å¹¿æ’­æ¶ˆæ¯ï¼Œæ›´æ¢Skin--
 			int nLen = strUpdateInfo.GetLength()+1;
 			DMBufT<wchar_t>pBuf;pBuf.Allocate(nLen);
-			memcpy(pBuf,strUpdateInfo.GetBuffer(),(nLen-1)*2);
+			memcpy(pBuf,strUpdateInfo.GetBuffer(),(nLen-1));
 			strUpdateInfo.ReleaseBuffer();
 			g_pDMApp->UpdateSkin((WPARAM)pBuf.get(),(LPARAM)nLen);
-			m_bOutStyle = false;// ²»ÔÙÊÇÍâ²¿Ä£Ê½ÁË
+			m_bOutStyle = false;// ä¸å†æ˜¯å¤–éƒ¨æ¨¡å¼äº†
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -288,13 +287,13 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strAllTheme;
+			CStringA strAllTheme;
 			int nCount = (int)GetCount();
 			for (int i=0; i<nCount; i++)
 			{
 				ResFolderItemPtr &pCur = GetObj(i);
-				CStringW strTheme = pCur->m_strThemeName;
-				strTheme += L";";
+				CStringA strTheme = pCur->m_strThemeName;
+				strTheme += ";";
 				strAllTheme += strTheme;
 			}
 			int nSize = 2*(strAllTheme.GetLength()+1);
@@ -317,7 +316,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	DMCode ResFolder::ParseThemes(LPCWSTR lpszIndexPath)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -338,12 +337,12 @@ namespace DM
 			XmlNode = XmlNode.FirstChild();
 			while (XmlNode.IsValid())
 			{
-				InitDMData(XmlNode);// Ê¹ÓÃxml½âÎöÌæ»»
-				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
+				InitDMData(XmlNode);// ä½¿ç”¨xmlè§£ææ›¿æ¢
+				DMXmlNode XmlFileNode = XmlNode.FirstChild("file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
+					LPCSTR lpszName = XmlFileNode.Attribute("name");
+					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"));
 					wchar_t szPath[MAX_PATH] = {0};
 					if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
 					{
@@ -353,8 +352,8 @@ namespace DM
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
 							{
-								CStringW szInfo = lpszName;
-								szInfo += L"Ö÷Ìâ°üÒÑ´æÔÚ,½«±»ºöÂÔ£¡";
+								CStringA szInfo = lpszName;
+								szInfo += "ä¸»é¢˜åŒ…å·²å­˜åœ¨,å°†è¢«å¿½ç•¥ï¼";
 								DMASSERT_EXPR(0,szInfo);
 								pItem->Release();
 							}
@@ -364,12 +363,12 @@ namespace DM
 							pItem->Release();
 						}
 					}
-					XmlFileNode = XmlFileNode.NextSibling(L"file");
+					XmlFileNode = XmlFileNode.NextSibling("file");
 				}
 				XmlNode = XmlNode.NextSibling();
 			}
 
-			// ³õÊ¼»¯µ±Ç°Ê¹ÓÃµÄtheme
+			// åˆå§‹åŒ–å½“å‰ä½¿ç”¨çš„theme
 			if ((int)GetCount()>=1)
 			{
 				m_pCurTheme = FindResItemObj(m_strCurTheme);
@@ -379,7 +378,7 @@ namespace DM
 					m_strCurTheme = m_pCurTheme->m_strThemeName;
 				}	
 			}
-			DMASSERT_EXPR(NULL!=m_pCurTheme,L"m_pCurTheme¾¹È»Îª¿Õ£¡£¡£¡£¡");
+			DMASSERT_EXPR(NULL!=m_pCurTheme,L"m_pCurThemeç«Ÿç„¶ä¸ºç©ºï¼ï¼ï¼ï¼");
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -396,7 +395,7 @@ namespace DM
 			}
 	
 			DMXmlDocument XmlDoc;
-			if (false == XmlDoc.LoadFromFile(lpszIndexPath))
+			if (!XmlDoc.LoadFromFile(lpszIndexPath))
 			{
 				CStringW strInfo;
 				strInfo.Format(L"xml LoadFromFile:%s fail",lpszIndexPath);
@@ -415,13 +414,13 @@ namespace DM
 			XmlNode = XmlNode.FirstChild();
 			while (XmlNode.IsValid())
 			{
-				LPCWSTR lpszType = XmlNode.GetName();
-				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
+				LPCSTR lpszType = XmlNode.GetName();
+				DMXmlNode XmlFileNode = XmlNode.FirstChild("file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
-					if (NULL!=lpszFilePath&&0!=wcslen(lpszFilePath))
+					LPCSTR lpszName = XmlFileNode.Attribute("name");
+					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"));
+					if (!lpszFilePath.IsEmpty())
 					{
 						wchar_t szPath[MAX_PATH] = {0};
 						if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
@@ -429,27 +428,27 @@ namespace DM
 #if defined(_DEBUG)
 							if (!CheckFileExistW(szPath))
 							{
-								CStringW szInfo = szPath;szInfo+=L"ÎÄ¼ş²»´æÔÚ£¡";
+								CStringW szInfo = szPath;szInfo+=L"æ–‡ä»¶ä¸å­˜åœ¨ï¼";
 								DMASSERT_EXPR(0,szInfo);
 							}
 #endif 
 							ResItem *pResItem = new ResItem(lpszType,lpszName,szPath);
-							(*ppItem)->AddObj(pResItem);// À´×ÔDMArrayT
+							(*ppItem)->AddObj(pResItem);// æ¥è‡ªDMArrayT
 						}
 					}
-					XmlFileNode = XmlFileNode.NextSibling(L"file");
+					XmlFileNode = XmlFileNode.NextSibling("file");
 				}
 
 				XmlNode = XmlNode.NextSibling();
 			}
 
-			(*ppItem)->m_DMArray;//¸ø¸ö¿ÉDEBUG²é¿´m_ArrayµÄµØ·½,watchÒ»ÏÂ¾ÍºÃÁË
+			(*ppItem)->m_DMArray;//ç»™ä¸ªå¯DEBUGæŸ¥çœ‹m_Arrayçš„åœ°æ–¹,watchä¸€ä¸‹å°±å¥½äº†
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
 
-	LPCWSTR ResFolder::GetItemPath(LPCWSTR lpszType,LPCWSTR lpszName,LPCWSTR lpszThemeName)
+	LPCWSTR ResFolder::GetItemPath(LPCSTR lpszType,LPCSTR lpszName,LPCSTR lpszThemeName)
 	{
 		LPCWSTR lpszPath = NULL;
 		do 
@@ -458,8 +457,8 @@ namespace DM
 			{
 				break;
 			}
-			ResItem Item(lpszType, lpszName);// ÕâÀïÖØÔØÁËEqualArrayObj£¬Ö»ÒªÇ°Á½¸ö±äÁ¿ÏàµÈ£¬¾ÍÈÏÎªÒÑ´æÔÚ
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			ResItem Item(lpszType, lpszName);// è¿™é‡Œé‡è½½äº†EqualArrayObjï¼Œåªè¦å‰ä¸¤ä¸ªå˜é‡ç›¸ç­‰ï¼Œå°±è®¤ä¸ºå·²å­˜åœ¨
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout)
 				{
@@ -486,7 +485,7 @@ namespace DM
 					{
 						break;
 					}
-					bool bFind = false;// ´ÓÕû¸öthemesÖĞ²éÕÒ
+					bool bFind = false;// ä»æ•´ä¸ªthemesä¸­æŸ¥æ‰¾
 					int nCount = (int)GetCount();
 					for (int i=0;i<nCount;i++)
 					{
@@ -517,7 +516,7 @@ namespace DM
 		return lpszPath;
 	}
 
-	ResFolderItemPtr ResFolder::FindResItemObj(LPCWSTR lpszName)
+	ResFolderItemPtr ResFolder::FindResItemObj(LPCSTR lpszName)
 	{
 		ResFolderItemPtr pFindItem = NULL;
 		do 
@@ -542,7 +541,7 @@ namespace DM
 		return pFindItem;
 	}
 
-	DMCode ResFolder::RemoveResItem(LPCWSTR lpszType,LPCWSTR lpszName,LPCWSTR lpszThemeName)
+	DMCode ResFolder::RemoveResItem(LPCSTR lpszType,LPCSTR lpszName,LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -551,8 +550,8 @@ namespace DM
 			{
 				break;
 			}
-			ResItem Item(lpszType, lpszName);// ÕâÀïÖØÔØÁËEqualArrayObj£¬Ö»ÒªÇ°Á½¸ö±äÁ¿ÏàµÈ£¬¾ÍÈÏÎªÒÑ´æÔÚ
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			ResItem Item(lpszType, lpszName);// è¿™é‡Œé‡è½½äº†EqualArrayObjï¼Œåªè¦å‰ä¸¤ä¸ªå˜é‡ç›¸ç­‰ï¼Œå°±è®¤ä¸ºå·²å­˜åœ¨
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout)
 				{
@@ -584,12 +583,12 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode ResFolder::AddResItem(LPCWSTR lpszType,LPCWSTR lpszName,LPCWSTR lpszPath,LPCWSTR lpszThemeName)
+	DMCode ResFolder::AddResItem(LPCSTR lpszType,LPCSTR lpszName,LPCWSTR lpszPath,LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				ResItem *pResItem = new ResItem(lpszType,lpszName,lpszPath);
 				m_pLayout->AddObj(pResItem);
@@ -614,7 +613,7 @@ namespace DM
 
 	void ResFolder::PreArrayObjRemove(const ResFolderItemPtr &obj)
 	{
-		obj->Release(); // ÈçÒıÓÃ¼ÆÊıÎª0£¬Ôò×Ô¶¯delete this
+		obj->Release(); // å¦‚å¼•ç”¨è®¡æ•°ä¸º0ï¼Œåˆ™è‡ªåŠ¨delete this
 	}
 
 }//namespace DM

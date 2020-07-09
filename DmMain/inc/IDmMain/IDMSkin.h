@@ -24,17 +24,17 @@ namespace DM
 	/// </remarks>
 	class IDMSkin:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMSkin,L"IDMSkin",DMREG_Skin);
+		DMDECLARE_CLASS_NAME(IDMSkin,"IDMSkin",DMREG_Skin);
 	public:
 		/// -------------------------------------------------
 		/// @brief			取得每个实例化Skin对象的唯一ID    
 		/// @return			DMCode
-		virtual DMCode GetID(wchar_t* lpszId, int iSize) = 0;											              
+		virtual DMCode GetID(char* lpszId, int iSize) = 0;											              
 		virtual	DMCode Draw(IDMCanvas *pCanvas, LPCRECT lpRectDraw, int iState,BYTE alpha=0xFF) = 0;	///<按状态绘制
 		virtual DMCode GetStateSize(SIZE &sz, int iState=0) = 0;                                        ///<取得指定状态的大小
 		virtual DMCode GetStates(int &iStates) = 0;													    ///<取得状态数
 		virtual DMCode GetBitmap(IDMBitmap** ppBitmap) = 0;                                             ///<取得bitmap
-		virtual DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCWSTR pszType) = 0;							///<通过内存设置bitmap
+		virtual DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;							///<通过内存设置bitmap
 		virtual DMCode UpdateSkin(WPARAM wp, LPARAM lp) = 0;										    ///<换肤
 		virtual DMCode IsValid() = 0;                                                                   ///<判断skin是否有效，如果无效,内部skin池将自动移除此skin
 	};

@@ -21,8 +21,8 @@ namespace DMAttr
 	{
 	public:
 		// 光标
-		static wchar_t* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
-		static wchar_t* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
+		static char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
+		static char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIHotKeyCtrlAttr,COLOR_clrcaret)DMAttrValueInit(DUIHotKeyCtrlAttr,INI_caretanimatecount)
 }
@@ -98,8 +98,8 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		bool                      m_bSetting;						///< 正在设置中
@@ -108,6 +108,7 @@ namespace DM
 		DUICaret*				  m_pCaret;
 		DMColor                   m_clrCaret;
 		int						  m_iCaretAniCount;
+		CStringW                  m_strHotkeyText;
 
 	};
 

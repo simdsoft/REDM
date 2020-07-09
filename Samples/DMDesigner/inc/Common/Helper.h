@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -11,23 +11,26 @@
 // ----------------------------------------------------------------
 #pragma once
 
-bool IsDirectoryExist(CStringW strDir);///< ÅĞ¶ÏÂ·¾¶ÊÇ·ñÎªÎÄ¼ş¼Ğ
-bool OpenFolderAndSelectFile(CStringW strFilePath);///< Èç¹ûÎÄ¼ş¼ĞÒÑ¾­´ò¿ª£¬¾Í²»ÓÃÔÙÖØĞÂ´ò¿ªÒ»´Î£¬Ö±½ÓÖÃ¶¥ÏÔÊ¾£¬²¢Ñ¡ÖĞÄ¿±êÎÄ¼şhttp://www.cnblogs.com/shankun/p/4088860.html
-bool CopyDirectory(CStringW strSrcDir,CStringW strDestDir);///< ¸´ÖÆÎÄ¼ş¼Ğ£¬×¢Òâ£¬Èç¹ûÄ¿±êÎÄ¼ş¼ĞÒÑ´æÔÚ£¬ÔòÔÚÔ´ÎÄ¼ş¼ĞÎªÃû¸´ÖÆµ½Ä¿±êÎÄ¼ş¼ĞµÄ×ÓÄ¿Â¼ÏÂ
-bool SetLogInfo(CStringW strInfo);
-DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName);///< »ñµÃÒÑ½âÎö¹ıµÄxml doc(Î´±£´æÊ±¿ÉÄÜºÍxmlÎÄ¼ş²»Í¬£©
+#pragma execution_character_set("utf-8")
 
+bool IsDirectoryExist(CStringW strDir);///< åˆ¤æ–­è·¯å¾„æ˜¯å¦ä¸ºæ–‡ä»¶å¤¹
+bool OpenFolderAndSelectFile(CStringW strFilePath);///< å¦‚æœæ–‡ä»¶å¤¹å·²ç»æ‰“å¼€ï¼Œå°±ä¸ç”¨å†é‡æ–°æ‰“å¼€ä¸€æ¬¡ï¼Œç›´æ¥ç½®é¡¶æ˜¾ç¤ºï¼Œå¹¶é€‰ä¸­ç›®æ ‡æ–‡ä»¶http://www.cnblogs.com/shankun/p/4088860.html
+bool CopyDirectory(CStringW strSrcDir,CStringW strDestDir);///< å¤åˆ¶æ–‡ä»¶å¤¹ï¼Œæ³¨æ„ï¼Œå¦‚æœç›®æ ‡æ–‡ä»¶å¤¹å·²å­˜åœ¨ï¼Œåˆ™åœ¨æºæ–‡ä»¶å¤¹ä¸ºåå¤åˆ¶åˆ°ç›®æ ‡æ–‡ä»¶å¤¹çš„å­ç›®å½•ä¸‹
+bool SetLogInfo(CStringW strInfo);
+DMXmlDocument* GetExistXmlDoc(LPCSTR lpszType,LPCSTR lpszResName);///< è·å¾—å·²è§£æè¿‡çš„xml doc(æœªä¿å­˜æ—¶å¯èƒ½å’Œxmlæ–‡ä»¶ä¸åŒï¼‰
+
+int DM_MessageBox(LPCSTR lpText, UINT uType = MB_OK, LPCSTR lpCaption = "MSG", HWND hWnd = NULL);
 int DM_MessageBox(LPCWSTR lpText,UINT uType = MB_OK, LPCWSTR lpCaption = L"MSG",HWND hWnd = NULL); 
 int StringToInt(CStringW str);
 CStringW IntToString(int id);
 bool IsUseDgSkin();
 
-// »æÖÆº¯Êı¶ş´Î·â×°
+// ç»˜åˆ¶å‡½æ•°äºŒæ¬¡å°è£…
 DMCode AutoDrawText(IDMCanvas*pCanvas,CStringW strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha=0xFF);
 DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,POINT &pt);
 DMCode AutoFillRoundRect(IDMCanvas*pCanvas,DMColor BrushClr,LPCRECT lpRect,POINT &pt);
 
-// Hook¶ş´Î·â×°,hook½öÓÃÓÚ´¦ÀípropµÄÏµÍ³µ¯³ö¿ò(ÑÕÉ«¿ò¡¢×ÖÌå¿ò),ÎŞ¹Ø´úÂë,ËùÒÔ´Ë²¿·Öhook²»¿ªÔ´
+// HookäºŒæ¬¡å°è£…,hookä»…ç”¨äºå¤„ç†propçš„ç³»ç»Ÿå¼¹å‡ºæ¡†(é¢œè‰²æ¡†ã€å­—ä½“æ¡†),æ— å…³ä»£ç ,æ‰€ä»¥æ­¤éƒ¨åˆ†hookä¸å¼€æº
 class DMHook
 {
 public:
@@ -36,7 +39,7 @@ public:
 	HMODULE m_hDll;
 };
 
-// Ã¿¸öxmlÊôĞÔ°ó¶¨Ò»¸öDMXmlInitAttr,ÓÃÓÚÇø·Ö´ËÊôĞÔÊÇ·ñÒÑ±»Ê¹ÓÃ,±»Ê¹ÓÃµÄÊôĞÔ²»»á³öÏÖÔÚexpand¿òÖĞ
+// æ¯ä¸ªxmlå±æ€§ç»‘å®šä¸€ä¸ªDMXmlInitAttr,ç”¨äºåŒºåˆ†æ­¤å±æ€§æ˜¯å¦å·²è¢«ä½¿ç”¨,è¢«ä½¿ç”¨çš„å±æ€§ä¸ä¼šå‡ºç°åœ¨expandæ¡†ä¸­
 class DMXmlInitAttr
 {
 public:
@@ -46,26 +49,26 @@ public:
 public:
 	DMXmlAttributePtr      m_pAttr;
 	bool                   m_bUse;
-	CStringW               m_strReserve;
+	CStringA               m_strReserve;
 };
 typedef DMXmlInitAttr* DMXmlInitAttrPtr;
 
-// DMAttr.xml¼ÇÂ¼ÁËËùÓĞÊôĞÔµÄpropÀàĞÍ,³õÊ¼Öµ,ÃèÊö,¿ÉÓÉDM¿â×Ô¶¯Éú³É.
-// DMCls.xml¼ÇÂ¼ÁË¿Ø¼ş->ÊôĞÔ¼¯ºÏ
-// DMAdd.xmlÓÃÓÚ¼ÇÂ¼addÄ£Ê½ÏÂÄ¬ÈÏµÄÊôĞÔ
-// DMDesigner.xml¼ÇÂ¼ÁË×î½ü´ò¿ªµÄÏîÄ¿
+// DMAttr.xmlè®°å½•äº†æ‰€æœ‰å±æ€§çš„propç±»å‹,åˆå§‹å€¼,æè¿°,å¯ç”±DMåº“è‡ªåŠ¨ç”Ÿæˆ.
+// DMCls.xmlè®°å½•äº†æ§ä»¶->å±æ€§é›†åˆ
+// DMAdd.xmlç”¨äºè®°å½•addæ¨¡å¼ä¸‹é»˜è®¤çš„å±æ€§
+// DMDesigner.xmlè®°å½•äº†æœ€è¿‘æ‰“å¼€çš„é¡¹ç›®
 class DMCtrlXml
 {
 public:
 	DMCtrlXml();
 	~DMCtrlXml();
 	
-	bool Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,CStringW& strValue,CStringW &strDesc);
-	bool ParseName(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName);
-	bool Parse(CStringW strClsName,CStringWList &strList);///< ´ÓclsÖĞ½âÎöÖĞ×é³ÉËüµÄ²»Í¬ÊôĞÔ¼¯Ãû
+	bool Parse(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName,CStringA& strValue,CStringA &strDesc);
+	bool ParseName(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName);
+	bool Parse(CStringA strClsName,CStringAList &strList);///< ä»clsä¸­è§£æä¸­ç»„æˆå®ƒçš„ä¸åŒå±æ€§é›†å
 
-	DMXmlNode Parse(CStringW strReg);///< ´Ó×¢²áÀàÃû·µ»ØËüµÄÄ¬ÈÏXmlNode
-	DMXmlNode GetAttrNode(CStringW strNode);
+	DMXmlNode Parse(CStringA strReg);///< ä»æ³¨å†Œç±»åè¿”å›å®ƒçš„é»˜è®¤XmlNode
+	DMXmlNode GetAttrNode(CStringA strNode);
 
 	bool SetCopyNode(DMXmlNodePtr pNode, CRect rcWnd);
 	
@@ -87,17 +90,17 @@ public:
 };
 
 static MultStr g_stAttrDesc[] = \
-{  // ÀàĞÍ       Ä¬ÈÏÃèÊö														propÀàĞÍ        Ä¬ÈÏÖµ
-	{L"COLOR",	 L"ÑÕÉ«Ê¹ÓÃÔ¤³Ë·½Ê½PBGRA:\r\n clr=\"PBGRA(ff,ff,ff,ff)\"",		L"propclr",		L"pbgra(ff,ff,ff,ff)"},
-	{L"INT",	 L"ÕûÊıĞÍÓĞ¸÷ÖÖÓÃÍ¾,ÓÃÓÚ²»¶¨ĞèÇó",								L"propint",		L"0"},
-	{L"RECT",	 L"Ò»°ãÓÃÓÚÖ¸¶¨ËÄ¸öÖµ,±ÈÈç9¹¬¸ñ,·Ç¿Í»§¶ËµÄËÄ±ßµÈ",				L"proprect",	L"0,0,0,0"},
-	{L"BYTE",	 L"×ÖĞÍÒ»°ãÓÃÓÚÖ¸¶¨alpha,ÏŞÖÆÔÚ[0-255]Ö®¼ä",					L"propbyte",	L"255"},
-	{L"FONT",	 L"×ÖÌåÊ¹ÓÃ×Ö·û´®À´ÃèÊö,ÒÔ¶ººÅ·Ö¸ô",							L"propfont",	L"weight:400,underline:0,italic:0,strike:0,size:14,face:ĞÂËÎÌå"},
-	{L"accel",   L"¿ì½İ¼üÏà¹ØÉèÖÃ",												L"propaccel",	L""},
-	{L"SIZE",    L"Ò»°ãÓÃÓÚÖ¸¶¨2¸öÖµ,±ÈÈç´óĞ¡",									L"propsize",	L"0,0"},
-	{L"POINT",   L"Ò»°ãÓÃÓÚÖ¸¶¨2¸öÖµ,±ÈÈç×ø±ê",									L"propsize",	L"0,0"},
-	{L"bool",    L"²¼¶ûĞÍ¿ÉÊ¹ÓÃ0»ò·Ç0,»ò×Ö·û´®yes»òno",							L"propoption",  L""},
-	{L"OPTION",	 L"¿ÉÑ¡ÏîÏŞÖÆÁËÑ¡ÔñµÄÀàĞÍ:\r\n align=\"left\"",					L"propoption",	L""},
-	{L"STRING",  L"×Ö·û´®ÓĞ¸÷ÖÖÓÃÍ¾,ÓÃÓÚ²»¶¨ĞèÇó",								L"propstring",	L""},
-	{L"SKIN",	 L"Æ¤·ôÖ¸Ã÷ÁËÄ³¸öÍ¼Æ¬µÄ»æÖÆ·½Ê½",								L"propstring",	L""},
+{  // ç±»å‹       é»˜è®¤æè¿°														propç±»å‹        é»˜è®¤å€¼
+	{"COLOR",	 "é¢œè‰²ä½¿ç”¨é¢„ä¹˜æ–¹å¼PBGRA:\r\n clr=\"PBGRA(ff,ff,ff,ff)\"",	"propclr",		"pbgra(ff,ff,ff,ff)"},
+	{"INT",	 "æ•´æ•°å‹æœ‰å„ç§ç”¨é€”,ç”¨äºä¸å®šéœ€æ±‚",								"propint",		"0"},
+	{"RECT",	 "ä¸€èˆ¬ç”¨äºæŒ‡å®šå››ä¸ªå€¼,æ¯”å¦‚9å®«æ ¼,éå®¢æˆ·ç«¯çš„å››è¾¹ç­‰",				"proprect",	"0,0,0,0"},
+	{"BYTE",	 "å­—å‹ä¸€èˆ¬ç”¨äºæŒ‡å®šalpha,é™åˆ¶åœ¨[0-255]ä¹‹é—´",					"propbyte",	"255"},
+	{"FONT",	 "å­—ä½“ä½¿ç”¨å­—ç¬¦ä¸²æ¥æè¿°,ä»¥é€—å·åˆ†éš”",							"propfont",	"weight:400,underline:0,italic:0,strike:0,size:14,face:æ–°å®‹ä½“"},
+	{"accel",   "å¿«æ·é”®ç›¸å…³è®¾ç½®",											"propaccel",	""},
+	{"SIZE",    "ä¸€èˆ¬ç”¨äºæŒ‡å®š2ä¸ªå€¼,æ¯”å¦‚å¤§å°",								"propsize",	"0,0"},
+	{"POINT",   "ä¸€èˆ¬ç”¨äºæŒ‡å®š2ä¸ªå€¼,æ¯”å¦‚åæ ‡",								"propsize",	"0,0"},
+	{"bool",    "å¸ƒå°”å‹å¯ä½¿ç”¨0æˆ–é0,æˆ–å­—ç¬¦ä¸²yesæˆ–no",						"propoption",  ""},
+	{"OPTION",	 "å¯é€‰é¡¹é™åˆ¶äº†é€‰æ‹©çš„ç±»å‹:\r\n align=\"left\"",				"propoption",	""},
+	{"STRING",  "å­—ç¬¦ä¸²æœ‰å„ç§ç”¨é€”,ç”¨äºä¸å®šéœ€æ±‚",								"propstring",	""},
+	{"SKIN",	 "çš®è‚¤æŒ‡æ˜äº†æŸä¸ªå›¾ç‰‡çš„ç»˜åˆ¶æ–¹å¼",								"propstring",	""},
 };

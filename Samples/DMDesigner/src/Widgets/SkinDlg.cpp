@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "SkinDlg.h"
 
 BEGIN_MSG_MAP(SkinDlg)
@@ -8,14 +8,14 @@ BEGIN_MSG_MAP(SkinDlg)
 	CHAIN_MSG_MAP(DMHDialog)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(SkinDlg)
-	EVENT_NAME_HANDLER(L"ds_skin_bvert",DMEVT_CHECKCHANGED,OnCheckChange)
-	EVENT_NAME_HANDLER(L"ds_skin_btitle",DMEVT_CHECKCHANGED,OnCheckChange)
-	EVENT_NAME_HANDLER(L"ds_skin_typecbx",DMEVT_CB_SELCHANGE,OnTypeCbxChange)
-	EVENT_NAME_HANDLER(L"ds_skin_themecbx",DMEVT_CB_SELCHANGE,OnThemeCbxChange)
-	EVENT_NAME_HANDLER(L"ds_skintree",DMEVT_TC_SELCHANGED,OnTreeChange)
-	EVENT_NAME_HANDLER(L"ds_skin_id",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_skin_state",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_skin_margin",DMEVT_DSRECT_CHANGED,OnDSRectChange)
+	EVENT_NAME_HANDLER("ds_skin_bvert",DMEVT_CHECKCHANGED,OnCheckChange)
+	EVENT_NAME_HANDLER("ds_skin_btitle",DMEVT_CHECKCHANGED,OnCheckChange)
+	EVENT_NAME_HANDLER("ds_skin_typecbx",DMEVT_CB_SELCHANGE,OnTypeCbxChange)
+	EVENT_NAME_HANDLER("ds_skin_themecbx",DMEVT_CB_SELCHANGE,OnThemeCbxChange)
+	EVENT_NAME_HANDLER("ds_skintree",DMEVT_TC_SELCHANGED,OnTreeChange)
+	EVENT_NAME_HANDLER("ds_skin_id",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_skin_state",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_skin_margin",DMEVT_DSRECT_CHANGED,OnDSRectChange)
 END_EVENT_MAP()
 SkinDlg::SkinDlg(bool bEditMode)
 {
@@ -30,18 +30,18 @@ SkinDlg::~SkinDlg()
 BOOL SkinDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	DragAcceptFiles(TRUE);
-	m_pTypeCbx	 = FindChildByNameT<DUIComboBox>(L"ds_skin_typecbx");
-	m_pThemeCbx  = FindChildByNameT<DUIComboBox>(L"ds_skin_themecbx");
-	m_pImg9		 = FindChildByName(L"ds_skin_img9");
-	m_pRect		 = FindChildByNameT<DUIRect>(L"ds_skin_margin");
-	m_pImgEditor = FindChildByNameT<DUImgEditor>(L"ds_skin_editor");
-	m_pVert		 = FindChildByNameT<DUICheckBox>(L"ds_skin_bvert");
-	m_pTitle	 = FindChildByNameT<DUICheckBox>(L"ds_skin_btitle");
-	m_pId        = FindChildByNameT<DUIEdit>(L"ds_skin_id");
-	m_pState     = FindChildByNameT<DUIEdit>(L"ds_skin_state");
-	m_pSkinTree  = FindChildByNameT<ProjTree>(L"ds_skintree");
+	m_pTypeCbx	 = FindChildByNameT<DUIComboBox>("ds_skin_typecbx");
+	m_pThemeCbx  = FindChildByNameT<DUIComboBox>("ds_skin_themecbx");
+	m_pImg9		 = FindChildByName("ds_skin_img9");
+	m_pRect		 = FindChildByNameT<DUIRect>("ds_skin_margin");
+	m_pImgEditor = FindChildByNameT<DUImgEditor>("ds_skin_editor");
+	m_pVert		 = FindChildByNameT<DUICheckBox>("ds_skin_bvert");
+	m_pTitle	 = FindChildByNameT<DUICheckBox>("ds_skin_btitle");
+	m_pId        = FindChildByNameT<DUIEdit>("ds_skin_id");
+	m_pState     = FindChildByNameT<DUIEdit>("ds_skin_state");
+	m_pSkinTree  = FindChildByNameT<ProjTree>("ds_skintree");
 	m_pObjXml    = g_pMainWnd->m_pDesignerXml;
-	m_pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+	m_pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 	if (!DMSUCCEEDED(InitThemeCbx()))
 	{
 		EndDialog(IDCANCEL);
@@ -51,16 +51,16 @@ BOOL SkinDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pRect->DM_SendMessage(EM_SETEVENTMASK,0,ENM_CHANGE);
 	m_pState->SetEventMask(ENM_CHANGE|m_pState->GetEventMask());
 
-	if (m_bEditMode)// ±à¼­Ä£Ê½£¬³õÊ¼»¯²¿·Ö±äÁ¿
+	if (m_bEditMode)// ç¼–è¾‘æ¨¡å¼ï¼Œåˆå§‹åŒ–éƒ¨åˆ†å˜é‡
 	{
 	
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
-		CStringW strName = pNode->GetName();
-		if (0 == strName.CompareNoCase(L"img9"))
+		CStringA strName = pNode->GetName();
+		if (0 == strName.CompareNoCase("img9"))
 		{
 			m_pTypeCbx->SetCurSel(1);
 		}
-		else if (0 == strName.CompareNoCase(L"scrollbar"))
+		else if (0 == strName.CompareNoCase("scrollbar"))
 		{
 			m_pTypeCbx->SetCurSel(2);
 		}
@@ -69,27 +69,27 @@ BOOL SkinDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 			m_pTypeCbx->SetCurSel(0);
 		}
 		// id
-		m_pId->SetWindowText(pNode->Attribute(XML_ID));
-		//m_pId->SetAttribute(L"breadonly",L"1");// ±à¼­Ä£Ê½ÏÂ²»ÔÊÐíÉèÖÃID
+		m_pId->SetTextA(pNode->Attribute(XML_ID));
+		//m_pId->SetAttribute(L"breadonly",L"1");// ç¼–è¾‘æ¨¡å¼ä¸‹ä¸å…è®¸è®¾ç½®ID
 
 		// bvert
-		CStringW strVert = pNode->Attribute(L"bvert");
+		CStringA strVert = pNode->Attribute("bvert");
 		bool bVert = false;
 		DMAttributeDispatch::ParseBool(strVert,bVert);
 		m_pVert->DM_SetCheck(bVert);
 
 		// btitle
-		CStringW strTitle = pNode->Attribute(L"btitle");
+		CStringA strTitle = pNode->Attribute("btitle");
 		bool bTitle = false;
 		DMAttributeDispatch::ParseBool(strTitle,bTitle);
 		m_pTitle->DM_SetCheck(bTitle);
 
 		// states
-		CStringW strStates = pNode->Attribute(L"states");
-		m_pState->SetWindowText(strStates);
+		CStringA strStates = pNode->Attribute("states");
+		m_pState->SetTextA(strStates);
 
 		// margin
-		CStringW strMargin = pNode->Attribute(L"margin");
+		CStringA strMargin = pNode->Attribute("margin");
 		CRect rcMargin;
 		DMAttributeDispatch::ParseRect(strMargin,rcMargin);
 		m_pRect->SetAddress(rcMargin);
@@ -97,7 +97,7 @@ BOOL SkinDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 
 	CStringW strName = m_pTypeCbx->GetLBText(m_pTypeCbx->GetCurSel());
 	DMXmlNode XmlBase = m_SkinDoc.Base();
-	m_SkinNode = XmlBase.InsertChildNode(strName);
+	m_SkinNode = XmlBase.InsertChildNode(DMW2A(strName));
 	UpdateXml();
 
 	return TRUE;
@@ -128,11 +128,11 @@ DMCode SkinDlg::OnTypeCbxChange(DMEventArgs *pEvt)
 	DMEventCBSelChangeArgs* pEvent = (DMEventCBSelChangeArgs*)pEvt;
 	if (0 == pEvent->m_nCurSel)//imglist
 	{
-		m_pImg9->SetAttribute(L"bvisible",L"0");
+		m_pImg9->SetAttribute("bvisible","0");
 	}
 	else
 	{
-		m_pImg9->SetAttribute(L"bvisible",L"1");
+		m_pImg9->SetAttribute("bvisible","1");
 	}  
 	UpdateXml();
 	return DM_ECODE_OK;
@@ -153,13 +153,13 @@ DMCode SkinDlg::OnThemeCbxChange(DMEventArgs *pEvt)
 			break;
 		}
 
-		CStringW strType, strName;
-		if (m_bEditMode) // ±à¼­Ä£Ê½ÏÂ£¬Ö»ÏÔÊ¾µ±Ç°Í¼Æ¬
+		CStringA strType, strName;
+		if (m_bEditMode) // ç¼–è¾‘æ¨¡å¼ä¸‹ï¼Œåªæ˜¾ç¤ºå½“å‰å›¾ç‰‡
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
-			CStringW strSrc = pNode->Attribute(XML_SRC);
-			CStringWList strList;
-			int nCount = (int)SplitStringT(strSrc,L':',strList);
+			CStringA strSrc = pNode->Attribute(XML_SRC);
+			CStringAList strList;
+			int nCount = (int)SplitStringT(strSrc,':',strList);
 			if (2 == nCount)
 			{
 				strType = strList[0];
@@ -167,7 +167,7 @@ DMCode SkinDlg::OnThemeCbxChange(DMEventArgs *pEvt)
 			}
 			else
 			{
-				strType = L"PNG";
+				strType = "PNG";
 				strName = strList[0];
 			}
 		}
@@ -177,15 +177,15 @@ DMCode SkinDlg::OnThemeCbxChange(DMEventArgs *pEvt)
 		m_pObjXml->InitProjTreeNode(DataNode,true);
 
 		DMXmlNodePtr pThemeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hTheme);
-		CStringW strThemeIndexPath = m_pObjXml->m_strResDir + pThemeNode->Attribute(XML_PATH);
+		CStringW strThemeIndexPath = m_pObjXml->m_strResDir + DMA2W(pThemeNode->Attribute(XML_PATH));
 		DocDataPtr pDoc = m_pObjXml->FindDocData(strThemeIndexPath);
 		if (NULL == pDoc)
 		{
 			break;
 		}
 
-		// ²åÈëxml
-		CStringW strText;
+		// æ’å…¥xml
+		CStringA strText;
 		DMXmlNode XmlImg = pDoc->m_XmlRoot.FirstChild();
 		while (XmlImg.IsValid())
 		{
@@ -193,21 +193,21 @@ DMCode SkinDlg::OnThemeCbxChange(DMEventArgs *pEvt)
 			HDMTREEITEM hRet0 = InsertSkinTreeItem(DataNode,strText);
 			BindSkinTreeData(XmlImg,hRet0);
 
-			// 10.±éÀúimgÎÄ¼þ
+			// 10.éåŽ†imgæ–‡ä»¶
 			DMXmlNode XmlFile = XmlImg.FirstChild(XML_FILE);
 			while (XmlFile.IsValid())
 			{
 				strText = XmlFile.Attribute(XML_PATH);
 				strText = strText.Right(strText.GetLength()-strText.ReverseFind(L'\\')-1);
-				CStringW strAfx = strText.Right(strText.GetLength()-strText.ReverseFind(L'.'));
-				if (0 == strAfx.CompareNoCase(L".bmp")
-					||0 == strAfx.CompareNoCase(L".png")
-					||0 == strAfx.CompareNoCase(L".jpg")
-					||0 == strAfx.CompareNoCase(L".jpeg")
-					||0 == strAfx.CompareNoCase(L".gif")
+				CStringA strAfx = strText.Right(strText.GetLength()-strText.ReverseFind(L'.'));
+				if (0 == strAfx.CompareNoCase(".bmp")
+					||0 == strAfx.CompareNoCase(".png")
+					||0 == strAfx.CompareNoCase(".jpg")
+					||0 == strAfx.CompareNoCase(".jpeg")
+					||0 == strAfx.CompareNoCase(".gif")
 					)
 				{
-					if (m_bEditMode)// ±à¼­Ä£Ê½ÏÂ£¬Ö»ÔÊÐí²åÈëÏàÆ¥ÅäµÄimg
+					if (m_bEditMode)// ç¼–è¾‘æ¨¡å¼ä¸‹ï¼Œåªå…è®¸æ’å…¥ç›¸åŒ¹é…çš„img
 					{
 						if (0 == strType.CompareNoCase(XmlImg.GetName())
 							&&0 == strName.CompareNoCase(XmlFile.Attribute(XML_NAME))
@@ -249,7 +249,7 @@ DMCode SkinDlg::OnTreeChange(DMEventArgs *pEvt)
 		}
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pSkinTree->GetItemData(pEvent->m_hNewSel);
 		m_pImgEditor->Clear();
-		CStringW strImgPath = m_pObjXml->m_strResDir + pNode->Attribute(XML_PATH);
+		CStringW strImgPath = m_pObjXml->m_strResDir + DMA2W(pNode->Attribute(XML_PATH));
 		m_pImgEditor->AddImg(strImgPath);
 		UpdateXml();
 		iErr = DM_ECODE_OK;
@@ -298,44 +298,44 @@ DMCode SkinDlg::OnOK()
 	HDMTREEITEM hAdd = NULL;
 	do 
 	{
-		// 1.ÅÐ¶ÏÊÇ·ñÑ¡ÔñÆ¤·ôµÄimg
-		CStringW strImgSrc = m_SkinNode.Attribute(XML_SRC);
-		CStringWList strList;
+		// 1.åˆ¤æ–­æ˜¯å¦é€‰æ‹©çš®è‚¤çš„img
+		CStringA strImgSrc = m_SkinNode.Attribute(XML_SRC);
+		CStringAList strList;
 		int nCount = (int)SplitStringT(strImgSrc,L':',strList);
 		if (strImgSrc.IsEmpty()
 			||2!=nCount)
 		{
-			DM_MessageBox(L"ÇëÏÈ´ÓskinÊ÷ÐÎ¿Ø¼þÖÐÑ¡ÔñÆ¤·ôÒªÊ¹ÓÃµÄimg!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"è¯·å…ˆä»Žskinæ ‘å½¢æŽ§ä»¶ä¸­é€‰æ‹©çš®è‚¤è¦ä½¿ç”¨çš„img!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
-		// 2.ÅÐ¶ÏÊÇ·ñÉèÖÃÆ¤·ôµÄid
-		CStringW strId = m_pId->GetWindowText();
+		// 2.åˆ¤æ–­æ˜¯å¦è®¾ç½®çš®è‚¤çš„id
+		CStringA strId = m_pId->GetTextA();
 		strId.Trim();
 		if (strId.IsEmpty())
 		{
-			DM_MessageBox(L"Î´ÉèÖÃid!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"æœªè®¾ç½®id!",MB_OK,L"MSG",m_hWnd);
 			m_pId->DV_SetFocusWnd();
 			break;
 		}
 
-		// 3.ÅÐ¶ÏÊÇ·ñÉèÖÃÆ¤·ôµÄ×´Ì¬Êý
-		CStringW strState = m_pState->GetWindowText();
+		// 3.åˆ¤æ–­æ˜¯å¦è®¾ç½®çš®è‚¤çš„çŠ¶æ€æ•°
+		CStringA strState = m_pState->GetTextA();
 		strState.Trim();
 		if (strState.IsEmpty())
 		{
-			DM_MessageBox(L"Î´ÉèÖÃ×´Ì¬Êý!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"æœªè®¾ç½®çŠ¶æ€æ•°!",MB_OK,L"MSG",m_hWnd);
 			m_pState->DV_SetFocusWnd();
 			break;
 		}
 
-		if (m_bEditMode)// ±à¼­Ä£Ê½
+		if (m_bEditMode)// ç¼–è¾‘æ¨¡å¼
 		{
-			//4.¸üÐÂxml½áµãÊý¾Ý
+			//4.æ›´æ–°xmlç»“ç‚¹æ•°æ®
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 
-			//5. ÅÐ¶ÏidÊÇ·ñÒÑ´æÔÚ
-			if (0 != strId.CompareNoCase(pNode->Attribute(XML_ID)))
+			//5. åˆ¤æ–­idæ˜¯å¦å·²å­˜åœ¨
+			if (0 != strId.CompareNoCase((pNode->Attribute(XML_ID))))
 			{
 				bool bFind = false;
 				HDMTREEITEM hParentItem = m_pProjTree->GetParentItem(m_pObjXml->m_hProjSel);
@@ -345,9 +345,9 @@ DMCode SkinDlg::OnOK()
 					while (hChildItem)
 					{
 						if (hChildItem != m_pObjXml->m_hProjSel)
-						{// Ìø¹ý±à¼­×ÔÉí
+						{// è·³è¿‡ç¼–è¾‘è‡ªèº«
 							DMXmlNodePtr pChildNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hChildItem);
-							if (0 == strId.CompareNoCase(pChildNode->Attribute(XML_ID)))
+							if (0 == strId.CompareNoCase((pChildNode->Attribute(XML_ID))))
 							{
 								bFind = true;
 								break;
@@ -358,20 +358,20 @@ DMCode SkinDlg::OnOK()
 				}
 				if (bFind)
 				{
-					DM_MessageBox(L"idÒÑ´æÔÚ,ÇëÖØÐÂÉèÖÃ!",MB_OK,L"MSG",m_hWnd);
+					DM_MessageBox(L"idå·²å­˜åœ¨,è¯·é‡æ–°è®¾ç½®!",MB_OK,L"MSG",m_hWnd);
 					m_pId->DV_SetFocusWnd();
 					break;
 				}
 			}
 
-			CStringW strType = m_SkinNode.GetName();
-			CStringW strOldType = pNode->GetName();
-			CStringW strOldId = pNode->Attribute(XML_ID);
-			if (0 == strState.CompareNoCase(pNode->Attribute(L"states"))
+			CStringA strType = m_SkinNode.GetName();
+			CStringA strOldType = pNode->GetName();
+			CStringA strOldId = pNode->Attribute(XML_ID);
+			if (0 == strState.CompareNoCase(pNode->Attribute("states"))
 				&& 0 == strType.CompareNoCase(strOldType)
-				&& m_SkinNode.AttributeInt(L"bvert")==pNode->AttributeInt(L"bvert")
-				&& m_SkinNode.AttributeInt(L"btitle")==pNode->AttributeInt(L"btitle")
-				&& 0 == _wcsicmp(m_SkinNode.Attribute(L"margin"),pNode->Attribute(L"margin"))
+				&& m_SkinNode.AttributeInt("bvert")==pNode->AttributeInt("bvert")
+				&& m_SkinNode.AttributeInt("btitle")==pNode->AttributeInt("btitle")
+				&& 0 == dm_xmlstrcmp(m_SkinNode.Attribute("margin"),pNode->Attribute("margin"))
 				&& 0 == strId.CompareNoCase(strOldId)
 				)
 			{
@@ -380,22 +380,22 @@ DMCode SkinDlg::OnOK()
 			else
 			{
 				pNode->SetAttribute(XML_ID,strId);
-				pNode->SetAttribute(L"states",m_SkinNode.Attribute(L"states"));
+				pNode->SetAttribute("states",m_SkinNode.Attribute("states"));
 				pNode->SetName(strType);
-				pNode->SetAttribute(L"bvert",m_SkinNode.Attribute(L"bvert"));
-				pNode->SetAttribute(L"btitle",m_SkinNode.Attribute(L"btitle"));
-				pNode->SetAttribute(L"margin",m_SkinNode.Attribute(L"margin"));
+				pNode->SetAttribute("bvert",m_SkinNode.Attribute("bvert"));
+				pNode->SetAttribute("btitle",m_SkinNode.Attribute("btitle"));
+				pNode->SetAttribute("margin",m_SkinNode.Attribute("margin"));
 				m_pObjXml->SetDocUnSave(pNode);
 
-				//6. ¸üÐÂtree½áµãÏÔÊ¾
+				//6. æ›´æ–°treeç»“ç‚¹æ˜¾ç¤º
 				DM::LPTVITEMEX pData = m_pProjTree->GetItem(m_pObjXml->m_hProjSel);
-				pData->pPanel->m_pDUIXmlInfo->m_strText = pNode->Attribute(XML_ID);
+				pData->pPanel->m_pDUIXmlInfo->m_strText = DMCA2W(pNode->Attribute(XML_ID));
 				m_pProjTree->UpdateItemRect(m_pObjXml->m_hProjSel);
 
-				// ¶ÔÏóÊÓÍ¼´¦ÀíÄ£Ê½
+				// å¯¹è±¡è§†å›¾å¤„ç†æ¨¡å¼
 				if (m_pObjXml->m_bInitObjTree)
 				{
-					if (0 == strType.CompareNoCase(strOldType)&&0 == strId.CompareNoCase(strOldId))// Î´¸Ä±äÀàÐÍ,ID
+					if (0 == strType.CompareNoCase(strOldType)&&0 == strId.CompareNoCase(strOldId))// æœªæ”¹å˜ç±»åž‹,ID
 					{
 						IDMSkinPtr pSkin = g_pDMApp->GetSkin(pNode->Attribute(XML_SRC));
 						if (pSkin)
@@ -406,7 +406,7 @@ DMCode SkinDlg::OnOK()
 					}
 					else
 					{
-						DM_MessageBox(L"skinÀàÐÍ±»¸Ä±ä,Äã±ØÐëÖØÐÂ´ò¿ª¹¤³ÌÊÓÍ¼ÒÔ±£Ö¤×ÊÔ´Õý³£¼ÓÔØ",MB_OK,L"MSG",m_hWnd);
+						DM_MessageBox(L"skinç±»åž‹è¢«æ”¹å˜,ä½ å¿…é¡»é‡æ–°æ‰“å¼€å·¥ç¨‹è§†å›¾ä»¥ä¿è¯èµ„æºæ­£å¸¸åŠ è½½",MB_OK,L"MSG",m_hWnd);
 					}
 				}
 			}
@@ -416,7 +416,7 @@ DMCode SkinDlg::OnOK()
 		}
 
 
-		//4. ÅÐ¶ÏidÊÇ·ñÒÑ´æÔÚ
+		//4. åˆ¤æ–­idæ˜¯å¦å·²å­˜åœ¨
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 		DMXmlNode XmlNode = pNode->FirstChild();
 		bool bFind = false;
@@ -431,34 +431,34 @@ DMCode SkinDlg::OnOK()
 		}
 		if (bFind)
 		{
-			DM_MessageBox(L"idÒÑ´æÔÚ,ÇëÖØÐÂÉèÖÃ!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"idå·²å­˜åœ¨,è¯·é‡æ–°è®¾ç½®!",MB_OK,L"MSG",m_hWnd);
 			m_pId->DV_SetFocusWnd();
 			break;
 		}
 	
-		//5. °Ñxml½áµã²åÈëµ½xmlÖÐ
+		//5. æŠŠxmlç»“ç‚¹æ’å…¥åˆ°xmlä¸­
 		DMXmlNodePtr pSkinTypeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 		DMXmlNode XmlSkinNode = pSkinTypeNode->InsertCopyChildNode(&m_SkinNode);
 		
-		//6. ÔÚtreeÖÐ¼ÓÈë½áµã
+		//6. åœ¨treeä¸­åŠ å…¥ç»“ç‚¹
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		m_pObjXml->InitProjTreeNode(DataNode,true);
 		hAdd = m_pObjXml->InsertProjTreeItem(DataNode,strId,m_pObjXml->m_hProjSel);
 		m_pObjXml->BindProjTreeData(XmlSkinNode,hAdd);
 
-		//7. ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+		//7. è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 		m_pObjXml->SetDocUnSave(pSkinTypeNode);
 
 		
-		//´¦Àí¶ÔÏóÊÓÍ¼
+		//å¤„ç†å¯¹è±¡è§†å›¾
 		if (hAdd&&m_pObjXml->m_bInitObjTree)// 
 		{
-			//1. Ôö¼Óµ½skinÖÐ
+			//1. å¢žåŠ åˆ°skinä¸­
 			DMXmlDocument Doc;
 			DMXmlNode XmlBase = Doc.Base();
 			DMXmlNode XmlSkin = XmlBase.InsertChildNode(XML_SKIN);
-			XmlSkin.SetAttribute(XML_NAME,pSkinTypeNode->Attribute(XML_NAME));// ¸¸½áµãname¼´ÎªËùÊôskin³Øname
+			XmlSkin.SetAttribute(XML_NAME,pSkinTypeNode->Attribute(XML_NAME));// çˆ¶ç»“ç‚¹nameå³ä¸ºæ‰€å±žskinæ± name
 			XmlSkin.InsertCopyChildNode(&XmlSkinNode);
 			g_pDMApp->AddSkinPoolItem(XmlSkin);
 		}
@@ -484,25 +484,25 @@ DMCode SkinDlg::InitThemeCbx()
 			||NULL == m_pProjTree
 			)
 		{
-			DM_MessageBox(L"²»ÍêÕûµÄRes°ü",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox(L"ä¸å®Œæ•´çš„ResåŒ…",MB_OK,L"Error",m_hWnd);
 			break;
 		}  
 
 		int iChildCount = m_pProjTree->GetChildrenCount(m_pObjXml->m_hProjThemes);
 		if (0 == iChildCount)
 		{ 
-			DM_MessageBox(L"Ã»ÓÐÖ÷Ìâ°ü\r\nÇëÏÈ´´½¨Ö÷Ìâ°ü",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox(L"æ²¡æœ‰ä¸»é¢˜åŒ…\r\nè¯·å…ˆåˆ›å»ºä¸»é¢˜åŒ…",MB_OK,L"Error",m_hWnd);
 			break;
 		}
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjThemes);
-		CStringW strDefThemeName = pNode->Attribute(XML_NAME);
+		CStringA strDefThemeName = pNode->Attribute(XML_NAME);
 		bool bMatch = false;
 		HDMTREEITEM hTheme = m_pProjTree->GetChildItem(m_pObjXml->m_hProjThemes);
 		while (hTheme)
 		{
 			pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hTheme);
-			CStringW strThemeName = pNode->Attribute(XML_NAME);
-			int iIndex = m_pThemeCbx->InsertItem(-1,strThemeName,-1,-1,(LPARAM)hTheme);
+			CStringA strThemeName = pNode->Attribute(XML_NAME);
+			int iIndex = m_pThemeCbx->InsertItem(-1,DMCA2W(strThemeName),-1,-1,(LPARAM)hTheme);
 			if (!strDefThemeName.IsEmpty()&&0==strDefThemeName.CompareNoCase(strThemeName))
 			{
 				m_pThemeCbx->SetCurSel(iIndex);
@@ -545,6 +545,12 @@ HDMTREEITEM SkinDlg::InsertSkinTreeItem(DMXmlNode& TreeNode,CStringW strText,HDM
 	TreeNode.SetAttribute(XML_TEXT,strText);
 	return m_pSkinTree->InsertItem(TreeNode,hParent);
 }
+
+HDMTREEITEM SkinDlg::InsertSkinTreeItem(DMXmlNode& TreeNode, CStringA strText, HDMTREEITEM hParent /*=DMTVI_ROOT*/)
+{
+	TreeNode.SetAttribute(XML_TEXT, strText);
+	return m_pSkinTree->InsertItem(TreeNode, hParent);
+}
  
 DMCode SkinDlg::UpdateXml()
 {
@@ -552,15 +558,15 @@ DMCode SkinDlg::UpdateXml()
 	do  
 	{
 		CStringW strLBName = m_pTypeCbx->GetLBText(m_pTypeCbx->GetCurSel());
-		m_SkinNode.SetName(strLBName);
+		m_SkinNode.SetName(DMW2A(strLBName));
 		CStringW strId = m_pId->GetWindowText();
 		m_SkinNode.SetAttribute(XML_ID,strId);
 
-		// È¡µÃsrcºÍimg text
-		CStringW ImgText = L"[Î´Ñ¡ÖÐimg»òimgÎÞÐ§]";
+		// å–å¾—srcå’Œimg text
+		CStringA ImgText = "[æœªé€‰ä¸­imgæˆ–imgæ— æ•ˆ]";
 		m_SkinNode.SetAttribute(XML_SRC,L"");
 		HDMTREEITEM hSel = m_pSkinTree->GetSelectedItem();
-		if (NULL != hSel && 1 == m_pImgEditor->GetImgCount())// img¿ÉÒÔ±»½âÎö³öÀ´
+		if (NULL != hSel && 1 == m_pImgEditor->GetImgCount())// imgå¯ä»¥è¢«è§£æžå‡ºæ¥
 		{
 			HDMTREEITEM hParent = m_pSkinTree->GetParentItem(hSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pSkinTree->GetItemData(hParent);
@@ -574,14 +580,14 @@ DMCode SkinDlg::UpdateXml()
 		}  
 
 		CStringW strStates = m_pState->GetWindowText();
-		m_SkinNode.SetAttribute(L"states",strStates);
+		m_SkinNode.SetAttribute("states",strStates);
 
 		CStringW strVert;
 		strVert.Format(L"%d",m_pVert->DM_IsChecked());
-		m_SkinNode.SetAttribute(L"bvert",strVert);
+		m_SkinNode.SetAttribute("bvert",strVert);
 		CStringW strTitle;
 		strTitle.Format(L"%d",m_pTitle->DM_IsChecked());
-		m_SkinNode.SetAttribute(L"btitle",strTitle);
+		m_SkinNode.SetAttribute("btitle",strTitle);
 
 		if (m_pImg9->DM_IsVisible())
 		{ 
@@ -589,17 +595,17 @@ DMCode SkinDlg::UpdateXml()
 			m_pRect->GetAddress(rc);
 			CStringW strRc;
 			strRc.Format(L"%d,%d,%d,%d",rc.left,rc.top,rc.right,rc.bottom);
-			m_SkinNode.SetAttribute(L"margin",strRc);
+			m_SkinNode.SetAttribute("margin",strRc);
 		}
 		else  
 		{
-			m_SkinNode.RemoveAttribute(L"margin");
+			m_SkinNode.RemoveAttribute("margin");
 		}
 
-		CStringW strXml;
+		CStringA strXml;
 		m_SkinNode.GetXmlContent(strXml);
-		FindChildByNameT<DUIEdit>(L"ds_skin_xml")->SetWindowText(strXml);
-		FindChildByNameT<DUIEdit>(L"ds_skin_imgpath")->SetWindowText(ImgText);
+		FindChildByNameT<DUIEdit>("ds_skin_xml")->SetTextA(strXml);
+		FindChildByNameT<DUIEdit>("ds_skin_imgpath")->SetTextA(ImgText);
 
 		iErr = DM_ECODE_OK;
 	} while (false);

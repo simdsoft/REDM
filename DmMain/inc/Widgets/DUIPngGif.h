@@ -20,8 +20,8 @@ namespace DMAttr
 	class DUIPngGifAttr:public DUIGifAttr
 	{
 	public:
-		static wchar_t* SKIN_pnggifskin;                            ///< pnggif的资源,通过skin指定,区分于gifskin,示例:pnggifskin="png:4_png"                     
-		static wchar_t* INT_elapse;                                 ///< 轮播的时间间隔（单位1/100秒）,默认为10,示例:elapse="1"
+		static char* SKIN_pnggifskin;                            ///< pnggif的资源,通过skin指定,区分于gifskin,示例:pnggifskin="png:4_png"                     
+		static char* INT_elapse;                                 ///< 轮播的时间间隔（单位1/100秒）,默认为10,示例:elapse="1"
 	};
 	DMAttrValueInit(DUIPngGifAttr,SKIN_pnggifskin)DMAttrValueInit(DUIPngGifAttr,INT_elapse)
 }
@@ -33,7 +33,7 @@ namespace DM
 	/// </summary>
 	class DUIPngGif:public DUIGif
 	{
-		DMDECLARE_CLASS_NAME(DUIPngGif, L"pnggif",DMREG_Window)
+		DMDECLARE_CLASS_NAME(DUIPngGif, "pnggif",DMREG_Window)
 	public:
 		DUIPngGif();
 		~DUIPngGif();
@@ -45,8 +45,8 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttrPngGif(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttrElapse(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttrPngGif(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttrElapse(LPCSTR lpszValue, bool bLoadXml);
 
 	public:  
 		UINT                                         m_ulElapse;              ///< 换帧间隔		

@@ -14,7 +14,7 @@
 class ThemeDlg : public DMHDialog
 {
 public: 
-	ThemeDlg(bool bEditMode = false,CStringW strThemeName = L"",CStringW strDir = L"");
+	ThemeDlg(bool bEditMode = false,CStringA strThemeName = "",CStringW strDir = L"");
 	DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP() 
 
@@ -26,7 +26,7 @@ protected:
 
 private:
 	bool							m_bEditMode;
-	CStringW                        m_strThemeName;
+	CStringA                        m_strThemeName;
 	CStringW                        m_strDir;
 };
 

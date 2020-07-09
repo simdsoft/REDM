@@ -24,24 +24,24 @@ namespace DMAttr
 	class DUITabPageAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* OPTION_animatetype;										    ///< 动画类型,示例:animatetype="1",1:边展开,2:中心扩大,3:中心缩小
-		static wchar_t* STRING_title;											    ///< tab页的标题,示例：title="标签1"
-		static wchar_t* SKIN_itemskin;                                              ///< 标签项的皮肤，示例: itemskin="skin"
+		static char* OPTION_animatetype;										    ///< 动画类型,示例:animatetype="1",1:边展开,2:中心扩大,3:中心缩小
+		static char* STRING_title;											    ///< tab页的标题,示例：title="标签1"
+		static char* SKIN_itemskin;                                              ///< 标签项的皮肤，示例: itemskin="skin"
 	};
 	DMAttrValueInit(DUITabPageAttr,OPTION_animatetype)DMAttrValueInit(DUITabPageAttr,STRING_title)DMAttrValueInit(DUITabPageAttr,SKIN_itemskin)
 
 	class DUITabCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* POINT_textpoint;                                           ///< 相对于主标签区域的左上角偏移，默认为-1，-1，其中-1表示此方向居中，示例textpoint="-1,-1"
-		static wchar_t* OPTION_tabalign;										   ///< tab页的排列方式,分为top、left、right、buttom,示例:tabalign="top"
-		static wchar_t* SKIN_mainbgskin;							               ///< 整个item(标签列表)所在区的背景,不包括page区,示例:mainbgskin="TabCtrl_Item"
-		static wchar_t* SKIN_itembgskin;										   ///< 每个item(标签)的skin，即在DUITabPageAttr::SKIN_itemskin之下先绘一次,用于所有item的hover-sel为同一状态时简化截图,示例:itembgskin="skin"
-		static wchar_t* INT_firstitemoffset;                                       ///< 第一个Item(标签)的相对于边框的偏移，示例:firstitemoffset="10"
-		static wchar_t* INT_itemspace;                                             ///< Item之间的间距，示例:itemspace="10"
-		static wchar_t* INT_cursel;                                                ///< 当前选中项, 示例:cursel="1"
-		static wchar_t* INT_animatesteps;                                          ///< 整个动画图以多少次渐渐显示出来, 仅在设置了动画类型时有效，示例:animatesteps="20"
-		static wchar_t* SIZE_itemsize;                                             ///< Item(标签)项的大小，示例:itemsize="78,30"
+		static char* POINT_textpoint;                                           ///< 相对于主标签区域的左上角偏移，默认为-1，-1，其中-1表示此方向居中，示例textpoint="-1,-1"
+		static char* OPTION_tabalign;										   ///< tab页的排列方式,分为top、left、right、buttom,示例:tabalign="top"
+		static char* SKIN_mainbgskin;							               ///< 整个item(标签列表)所在区的背景,不包括page区,示例:mainbgskin="TabCtrl_Item"
+		static char* SKIN_itembgskin;										   ///< 每个item(标签)的skin，即在DUITabPageAttr::SKIN_itemskin之下先绘一次,用于所有item的hover-sel为同一状态时简化截图,示例:itembgskin="skin"
+		static char* INT_firstitemoffset;                                       ///< 第一个Item(标签)的相对于边框的偏移，示例:firstitemoffset="10"
+		static char* INT_itemspace;                                             ///< Item之间的间距，示例:itemspace="10"
+		static char* INT_cursel;                                                ///< 当前选中项, 示例:cursel="1"
+		static char* INT_animatesteps;                                          ///< 整个动画图以多少次渐渐显示出来, 仅在设置了动画类型时有效，示例:animatesteps="20"
+		static char* SIZE_itemsize;                                             ///< Item(标签)项的大小，示例:itemsize="78,30"
 	};
 	DMAttrValueInit(DUITabCtrlAttr,POINT_textpoint)DMAttrValueInit(DUITabCtrlAttr,OPTION_tabalign)DMAttrValueInit(DUITabCtrlAttr,SKIN_mainbgskin)DMAttrValueInit(DUITabCtrlAttr,SKIN_itembgskin)
 	DMAttrValueInit(DUITabCtrlAttr,INT_firstitemoffset)DMAttrValueInit(DUITabCtrlAttr,INT_itemspace)DMAttrValueInit(DUITabCtrlAttr,INT_cursel)
@@ -63,7 +63,7 @@ namespace DM
 		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_STRING_ATTRIBUTE(DMAttr::DUITabPageAttr::STRING_title, m_strTitle, DM_ECODE_NOXMLLOADPARENTREFRESH)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUITabPageAttr::STRING_title, m_strTitle, DM_ECODE_NOXMLLOADPARENTREFRESH)
 			DM_INT_ATTRIBUTE(DMAttr::DUITabPageAttr::OPTION_animatetype, m_TabAniType, DM_ECODE_NOXMLLOADREFRESH)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITabPageAttr::SKIN_itemskin, m_pItemSkin, DM_ECODE_NOXMLLOADPARENTREFRESH)
 		DM_END_ATTRIBUTES()
@@ -152,14 +152,14 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUITabCtrlAttr::INT_cursel, OnCurSel)
 			DM_SIZE_ATTRIBUTE(DMAttr::DUITabCtrlAttr::SIZE_itemsize,m_ItemSize, DM_ECODE_NOXMLLOADREFRESH)
 			DM_ENUM_BEGIN(DMAttr::DUITabCtrlAttr::OPTION_tabalign, int, DM_ECODE_NOXMLRELAYOUT)
-				DM_ENUM_VALUE(L"top", AlignTop)
-				DM_ENUM_VALUE(L"left", AlignLeft)
-				DM_ENUM_VALUE(L"right", AlignRight)
-				DM_ENUM_VALUE(L"bottom", AlignBottom)
+				DM_ENUM_VALUE("top", AlignTop)
+				DM_ENUM_VALUE("left", AlignLeft)
+				DM_ENUM_VALUE("right", AlignRight)
+				DM_ENUM_VALUE("bottom", AlignBottom)
 			DM_ENUM_END(m_nTabAlign)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnCurSel(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnCurSel(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		CArray<DUITabPage*>						m_PageArray;			 ///< tab标签页面链表 

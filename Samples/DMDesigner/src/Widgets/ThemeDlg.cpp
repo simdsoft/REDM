@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ThemeDlg.h"
 
 BEGIN_MSG_MAP(ThemeDlg)
@@ -8,7 +8,7 @@ BEGIN_MSG_MAP(ThemeDlg)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(ThemeDlg)
 END_EVENT_MAP()
-ThemeDlg::ThemeDlg(bool bEditMode,CStringW strThemeName,CStringW strDir)
+ThemeDlg::ThemeDlg(bool bEditMode,CStringA strThemeName,CStringW strDir)
 {
 	m_bEditMode = bEditMode;
 	m_strThemeName = strThemeName;
@@ -17,26 +17,26 @@ ThemeDlg::ThemeDlg(bool bEditMode,CStringW strThemeName,CStringW strDir)
 
 BOOL ThemeDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	DUIStatic* pTitle = FindChildByNameT<DUIStatic>(L"ds_title");
+	DUIStatic* pTitle = FindChildByNameT<DUIStatic>("ds_title");
 	CStringW strTitle;
 	if (false == m_bEditMode)
 	{
-		strTitle = L"Ôö¼Ó";
+		strTitle = L"å¢žåŠ ";
 	}
 	else
 	{
-		strTitle = L"±à¼­";
+		strTitle = L"ç¼–è¾‘";
 	}
 
-	strTitle += L"Ö÷Ìâ°ü";
+	strTitle += L"ä¸»é¢˜åŒ…";
 	pTitle->DV_SetWindowText(strTitle);
 
-	DUIEdit* pThemeNameEdit = FindChildByNameT<DUIEdit>(L"ds_themename");
+	DUIEdit* pThemeNameEdit = FindChildByNameT<DUIEdit>("ds_themename");
 	if (m_bEditMode)
 	{
-		pThemeNameEdit->SetWindowText(m_strThemeName);
+		pThemeNameEdit->SetTextA(m_strThemeName);
 
-		DUIEdit* pDirNameEdit = FindChildByNameT<DUIEdit>(L"ds_dirname");
+		DUIEdit* pDirNameEdit = FindChildByNameT<DUIEdit>("ds_dirname");
 		pDirNameEdit->SetWindowText(m_strDir);
 		pDirNameEdit->SetReadOnly(true);
 	}
@@ -65,38 +65,38 @@ DMCode ThemeDlg::OnOK()
 	HDMTREEITEM hAdd = NULL;
 	do 
 	{
-		//1.Ö÷Ìâ°üÃûºÍÖ÷Ìâ°üÎÄ¼þ¼ÐÃûÊÇ·ñÎª¿Õ
+		//1.ä¸»é¢˜åŒ…åå’Œä¸»é¢˜åŒ…æ–‡ä»¶å¤¹åæ˜¯å¦ä¸ºç©º
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 		if (NULL == pXml||NULL == pProjTree)
 		{
 			break;
 		}
-		DUIEdit* pThemeNameEdit = FindChildByNameT<DUIEdit>(L"ds_themename");
-		DUIEdit* pDirNameEdit = FindChildByNameT<DUIEdit>(L"ds_dirname");
-		CStringW strThemeName = pThemeNameEdit->GetWindowText();
+		DUIEdit* pThemeNameEdit = FindChildByNameT<DUIEdit>("ds_themename");
+		DUIEdit* pDirNameEdit = FindChildByNameT<DUIEdit>("ds_dirname");
+		CStringA strThemeName = pThemeNameEdit->GetTextA();
 		CStringW strDir		  = pDirNameEdit->GetWindowText();
 
 		if (strThemeName.IsEmpty())
 		{
-			DM_MessageBox(L"Ö÷Ìâ°üÃû×Ö²»ÄÜÎª¿Õ",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox("ä¸»é¢˜åŒ…åå­—ä¸èƒ½ä¸ºç©º",MB_OK,"Error",m_hWnd);
 			pThemeNameEdit->DV_SetFocusWnd();
 			break;
 		}
 
 		if (strDir.IsEmpty())
 		{
-			DM_MessageBox(L"Ö÷Ìâ°üÎÄ¼þ¼ÐÃû²»ÄÜÎª¿Õ",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox(L"ä¸»é¢˜åŒ…æ–‡ä»¶å¤¹åä¸èƒ½ä¸ºç©º",MB_OK,L"Error",m_hWnd);
 			pDirNameEdit->DV_SetFocusWnd();
 			break;
 		}
-		// ±à¼­Ä£Ê½ ------------------------------
+		// ç¼–è¾‘æ¨¡å¼ ------------------------------
 		if (m_bEditMode)
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
 			if (m_strThemeName != strThemeName)
 			{
-				//2.ÅÐ¶ÏÖ÷Ìâ°üÖ÷ÌâÃûÊÇ·ñÒÑ±»ÆäËûÖ÷Ìâ°üÊ¹ÓÃ
+				//2.åˆ¤æ–­ä¸»é¢˜åŒ…ä¸»é¢˜åæ˜¯å¦å·²è¢«å…¶ä»–ä¸»é¢˜åŒ…ä½¿ç”¨
 				bool bFind = false;
 				HDMTREEITEM hParentItem = pProjTree->GetParentItem(pXml->m_hProjSel);
 				if (hParentItem)
@@ -105,7 +105,7 @@ DMCode ThemeDlg::OnOK()
 					while (hChildItem)
 					{
 						if (hChildItem != pXml->m_hProjSel)
-						{// Ìø¹ý±à¼­×ÔÉí
+						{// è·³è¿‡ç¼–è¾‘è‡ªèº«
 							DMXmlNodePtr pChildNode = (DMXmlNodePtr)pProjTree->GetItemData(hChildItem);
 							if (0 == strThemeName.CompareNoCase(pChildNode->Attribute(XML_NAME)))
 							{
@@ -118,30 +118,30 @@ DMCode ThemeDlg::OnOK()
 				}
 				if (bFind)
 				{
-					DM_MessageBox(L"Ö÷Ìâ°üÃû×ÖÒÑ±»Õ¼ÓÃ",MB_OK,L"MSG",m_hWnd);
+					DM_MessageBox(L"ä¸»é¢˜åŒ…åå­—å·²è¢«å ç”¨",MB_OK,L"MSG",m_hWnd);
 					pThemeNameEdit->DV_SetFocusWnd();
 					break;
 				}
 
 
-				//3. ¸üÐÂxml½áµã
+				//3. æ›´æ–°xmlç»“ç‚¹
 				pNode->SetAttribute(XML_NAME,strThemeName);
-				//4. ÅÐ¶ÏÊÇ·ñÎªÄ¬ÈÏÖ÷Ìâ°ü,Èç¹ûÊÇ,¾Í¸üÐÂ¸¸½ÚµãµÄnameÊôÐÔ
+				//4. åˆ¤æ–­æ˜¯å¦ä¸ºé»˜è®¤ä¸»é¢˜åŒ…,å¦‚æžœæ˜¯,å°±æ›´æ–°çˆ¶èŠ‚ç‚¹çš„nameå±žæ€§
 				DMXmlNodePtr pParentNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjThemes);
-				CStringW strDefThemeName = pParentNode->Attribute(XML_NAME);
+				CStringA strDefThemeName = pParentNode->Attribute(XML_NAME);
 				if (0 == strDefThemeName.CompareNoCase(m_strThemeName))
 				{
 					pParentNode->SetAttribute(XML_NAME,strThemeName);
 				} 
 
-				//5. ¸üÐÂtree½áµãÏÔÊ¾
+				//5. æ›´æ–°treeç»“ç‚¹æ˜¾ç¤º
 				DM::LPTVITEMEX pData = pProjTree->GetItem(pXml->m_hProjSel);
-				pData->pPanel->m_pDUIXmlInfo->m_strText = strThemeName;
+				pData->pPanel->m_pDUIXmlInfo->m_strText = DMCA2W(strThemeName);
 				pProjTree->UpdateItemRect(pXml->m_hProjSel);
 
 				CStringW strPath = pXml->m_strResDir;
 				strPath += XML_THEMES_DMINDEX;
-				//6. ½«themes xmlÉèÖÃÎªÎ´±£´æ×´Ì¬
+				//6. å°†themes xmlè®¾ç½®ä¸ºæœªä¿å­˜çŠ¶æ€
 				pXml->SetDocUnSave(strPath);
 			}
 			
@@ -149,31 +149,31 @@ DMCode ThemeDlg::OnOK()
 			break;
 		}
 
-		// ÐÂ½¨Ä£Ê½ ------------------------------
-		//2.ÅÐ¶ÏÖ÷Ìâ°üÎÄ¼þ¼Ð»òÖ÷ÌâÃûÊÇ·ñÒÑ±»ÆäËûÖ÷Ìâ°üÊ¹ÓÃ
+		// æ–°å»ºæ¨¡å¼ ------------------------------
+		//2.åˆ¤æ–­ä¸»é¢˜åŒ…æ–‡ä»¶å¤¹æˆ–ä¸»é¢˜åæ˜¯å¦å·²è¢«å…¶ä»–ä¸»é¢˜åŒ…ä½¿ç”¨
 		bool bFind = false;
 		HDMTREEITEM hThemes = pXml->m_hProjThemes;
 		HDMTREEITEM hChild = pProjTree->GetChildItem(hThemes);
 		while (hChild)
 		{
 			DMXmlNodePtr pChildNode = (DMXmlNodePtr)pProjTree->GetItemData(hChild);
-			CStringW strOtherThemeName = pChildNode->Attribute(XML_NAME);
+			CStringA strOtherThemeName = pChildNode->Attribute(XML_NAME);
 			if (0 == strOtherThemeName.CompareNoCase(strThemeName))
 			{
-				DM_MessageBox(L"Ö÷Ìâ°üÃû×ÖÒÑ±»Õ¼ÓÃ",MB_OK,L"MSG",m_hWnd);
+				DM_MessageBox(L"ä¸»é¢˜åŒ…åå­—å·²è¢«å ç”¨",MB_OK,L"MSG",m_hWnd);
 				pThemeNameEdit->DV_SetFocusWnd();
 				bFind = true;
 				break;
 			}
 
-			CStringW strOtherDir = pChildNode->Attribute(XML_PATH);
+			CStringW strOtherDir = DMCA2W(pChildNode->Attribute(XML_PATH));
 			strOtherDir = strOtherDir.Left(strOtherDir.ReverseFind(L'\\'));
 			strOtherDir = strOtherDir.Right(strOtherDir.GetLength()-strOtherDir.ReverseFind(L'\\')-1);
 			if (0 == strOtherDir.CompareNoCase(strDir))
 			{
-				CStringW strInfo;
-				strInfo.Format(L"ÎÄ¼þ¼ÐÒÑ±»[%s]-Ö÷Ìâ°üÊ¹ÓÃ",strOtherThemeName);
-				DM_MessageBox(strInfo,MB_OK,L"MSG",m_hWnd);
+				CStringA strInfo;
+				strInfo.Format("æ–‡ä»¶å¤¹å·²è¢«[%s]-ä¸»é¢˜åŒ…ä½¿ç”¨", (LPCSTR)strOtherThemeName);
+				DM_MessageBox(strInfo,MB_OK,"MSG",m_hWnd);
 				pDirNameEdit->DV_SetFocusWnd();
 				bFind = true;
 				break;
@@ -186,47 +186,47 @@ DMCode ThemeDlg::OnOK()
 			break;
 		}
 
-		//3. ´´½¨Ö÷Ìâ°üÎÄ¼þ¼Ð
-		CStringW strPath = pXml->m_strResDir + XML_THEMES;
+		//3. åˆ›å»ºä¸»é¢˜åŒ…æ–‡ä»¶å¤¹
+		CStringW strPath = pXml->m_strResDir + _TEXT(XML_THEMES);
 		strPath += L"\\";
 		strPath += strDir;
 		if (0 == CreateDirectoryW(strPath,NULL)&&ERROR_ALREADY_EXISTS != GetLastError())
 		{
-			DM_MessageBox(L"´´½¨ÎÄ¼þ¼ÐÊ§°Ü",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"åˆ›å»ºæ–‡ä»¶å¤¹å¤±è´¥",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
-		//4. ´´½¨Ö÷Ìâ°üdmindex.xmlÎÄ¼þ
+		//4. åˆ›å»ºä¸»é¢˜åŒ…dmindex.xmlæ–‡ä»¶
 		DMXmlDocument Doc;
 		DMXmlNode XmlNode = Doc.Base();
-		XmlNode = XmlNode.InsertChildNode(L"resource");
+		XmlNode = XmlNode.InsertChildNode("resource");
 		strPath += L"\\dmindex.xml";
 		if (!Doc.SaveXml(strPath))
 		{
-			DM_MessageBox(L"´´½¨dmindex.xmlÊ§°Ü",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"åˆ›å»ºdmindex.xmlå¤±è´¥",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 		DocDataPtr pDoc = new DocData(strPath);
 		if (!pDoc->IsValid())
 		{
-			DM_MessageBox(L"¼ÓÔØdmindex.xmlÊ§°Ü",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"åŠ è½½dmindex.xmlå¤±è´¥",MB_OK,L"MSG",m_hWnd);
 			DM_DELETE(pDoc);
 			break;
 		}
 		pXml->AddObj(pDoc);
 
-		//5. themes¶ÔÓ¦xml²åÈëtheme node
+		//5. themeså¯¹åº”xmlæ’å…¥theme node
 		DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(hThemes); 
 		DMXmlNode XmlFile  = pNode->InsertChildNode(XML_FILE);
 		XmlFile.SetAttribute(XML_NAME,strThemeName);
-		CStringW strRelative = XML_THEMES;
+		CStringW strRelative = _TEXT(XML_THEMES);
 		strRelative += L"\\";
 		strRelative += strDir;
 		strRelative += L"\\dmindex.xml";
 		XmlFile.SetAttribute(XML_PATH,strRelative);
 		Init_Debug_XmlBuf(*pNode);
 
-		//6. ¼ÓÈëtree,²¢¼ÓÒÔ°ó¶¨
+		//6. åŠ å…¥tree,å¹¶åŠ ä»¥ç»‘å®š
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		pXml->InitProjTreeNode(DataNode,true);
@@ -235,12 +235,12 @@ DMCode ThemeDlg::OnOK()
 
 		strPath = pXml->m_strResDir;
 		strPath += XML_THEMES_DMINDEX;
-		//7. ½«themesµÄdmindex.xmlÉèÖÃÎªÎ´±£´æ
+		//7. å°†themesçš„dmindex.xmlè®¾ç½®ä¸ºæœªä¿å­˜
 		pXml->SetDocUnSave(strPath);
 
-		//8.Res½âÎöÆ÷Ôö¼ÓÒ»¸öÐÂÖ÷Ìâ°ü
+		//8.Resè§£æžå™¨å¢žåŠ ä¸€ä¸ªæ–°ä¸»é¢˜åŒ…
 		ResFolderItemPtr pItem = new ResFolderItem;
-		pItem->m_strThemeName = strThemeName;
+		pItem->m_strThemeName = (strThemeName);
 		pXml->m_pRes->AddObj(pItem);
 		
 		EndDialog(IDOK);

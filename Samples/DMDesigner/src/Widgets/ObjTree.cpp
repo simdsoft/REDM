@@ -94,7 +94,7 @@ void ObjTree::OnRButtonDown(UINT nFlags, CPoint pt)
 			break;
 		}
 
-		ObjTree* pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>(L"ds_objtree");DMASSERT(pObjTree);
+		ObjTree* pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>("ds_objtree");DMASSERT(pObjTree);
 		if (this == pObjTree)
 		{
 			g_pMainWnd->m_pDesignerXml->PopObjTreeMenu(m_hHoverItem);

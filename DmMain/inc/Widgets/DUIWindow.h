@@ -15,6 +15,8 @@
 #pragma once
 #include "DUIWindowHelper.h"
 
+#define DM_BUILD_FOR_DESIGNER 1
+
 namespace DM
 {
 	#define DMTR(str)									DV_GetTransText(str)          
@@ -31,7 +33,7 @@ namespace DM
 	class DM_EXPORT DUIWindow:public DMBase
 							 ,public DUIMsgHandler
 	{
-		DMDECLARE_CLASS_NAME(DUIWindow,L"window",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DUIWindow,"window",DMREG_Window);
 	public:
 		DUIWindow();
 		virtual~DUIWindow();
@@ -39,13 +41,13 @@ namespace DM
 	public:
 		//---------------------------------------------------
 		// Function Des:基础属性
-		LPCWSTR GetName();																///< 使用名字做为唯一标识
+		LPCSTR GetName();																///< 使用名字做为唯一标识
 		int GetID();																	///< 使用数字做为唯一标识
 		DMCode SetID(int id);															///< 设置id
 
-		DUIWindow* FindChildByName(LPCWSTR lpszName,bool bPanelFind = false);			///< 通过名字查找DUI窗口
+		DUIWindow* FindChildByName(LPCSTR lpszName,bool bPanelFind = false);			///< 通过名字查找DUI窗口
 		DUIWindow* FindChildById(int ID,bool bPanelFind = false);						///< 通过ID查找DUI窗口
-		DUIWindow* FindPanelChildByName(LPCWSTR lpszName,bool bPanelFind = false);		///< 通过名字从子panel列中查找DUI窗口
+		DUIWindow* FindPanelChildByName(LPCSTR lpszName,bool bPanelFind = false);		///< 通过名字从子panel列中查找DUI窗口
 		DUIWindow* FindPanelChildById(int ID,bool bPanelFind = false);					///< 通过ID从子panel列中查找DUI窗口
 
 
@@ -54,8 +56,8 @@ namespace DM
 
 		//---------------------------------------------------
 		// 用户数据
-		DMCode SetData(CStringW strKey, CStringW strValue, bool bReplace = true);       ///< CStringW也可以指定某个指针（指针和字符串互转）,strValue传空表示清空strKey
-		CStringW GetData(CStringW strKey);
+		DMCode SetData(CStringA strKey, CStringA strValue, bool bReplace = true);       ///< CStringW也可以指定某个指针（指针和字符串互转）,strValue传空表示清空strKey
+		CStringA GetData(CStringA strKey);
 		
 		//---------------------------------------------------
 		// Function Des:初始化
@@ -197,10 +199,12 @@ namespace DM
 
 		/// 文字相关
 #if _HAS_CXX17
-		void SetText(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
+		void SetTextA(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
 #else
-		void SetText(const char* text, UINT cp = CP_UTF8) { SetText(DMCA2W(text, -1, cp)); }
+		void SetTextA(const char* text, UINT cp = CP_UTF8) { SetText(DMCA2W(text, -1, cp)); }
 #endif
+		void SetTextA(const CStringA& text, UINT cp = CP_UTF8) { return SetText(DMA2W(text)); }
+
 		virtual void SetText(const CStringW& text);
 
 		CStringA GetTextA(UINT cp = CP_UTF8) { return DM::DMW2A(GetText(), cp); }
@@ -279,7 +283,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 模板
 		template<class T> 
-		T* FindChildByNameT(LPCWSTR lpszName,bool bPanelFind = false)						//< 和扩展接口<see cref="FindChildByName"/>取得一样，强制转换模板
+		T* FindChildByNameT(LPCSTR lpszName,bool bPanelFind = false)						//< 和扩展接口<see cref="FindChildByName"/>取得一样，强制转换模板
 		{	
 			DUIWindow *pFindWnd = FindChildByName(lpszName,bPanelFind);
 			if (NULL == pFindWnd) return NULL;
@@ -295,7 +299,7 @@ namespace DM
 
 	public:
 		virtual BOOL DV_WndProc(UINT uMsg,WPARAM wParam,LPARAM lParam, LRESULT& lResult);	///< DUI消息最后处理函数
-		virtual DMCode OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr);
+		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);
 	
 	public:
 		DM_BEGIN_ATTRIBUTES()
@@ -304,7 +308,7 @@ namespace DM
 		DM_END_ATTRIBUTES()
 	
 	public:
-		DMCode DM_Layout(LPCWSTR lpszAttribute,LPCWSTR lpszValue,bool bLoadXml);			///< 用于非初始化时,通过属性调整布局
+		DMCode DM_Layout(LPCSTR lpszAttribute, LPCSTR lpszValue,bool bLoadXml);			///< 用于非初始化时,通过属性调整布局
 
 	public:
 		DUIWND                                  m_hDUIWnd;									///< 类似m_hWnd，DUI窗口的唯一标识    
@@ -323,11 +327,16 @@ namespace DM
 		DMSmartPtrT<IDMLayout>                  m_pLayout;									///< 锚点布局对象
 		bool                                    m_bFloatLayout;								///< 绝对坐标
 
-		CMap<CStringW,CStringW>					m_StrDataMap;
+		CMap<CStringA,CStringA>					m_StrDataMap;
 		CArray<DUIWindowPtr>					m_ChildPanelArray;							///< 控件中包含的子容器列表
 	
+#if defined(_DEBUG)
+		CStringA								m_strXml;									///< 仅debug下有效,可提供给spy++显示
+#endif
+
+#if DM_BUILD_FOR_DESIGNER
 		//-----------------------------------------------------------------------------------------------
-		CStringW								m_strXml;									///< 仅debug下有效,可提供给spy++显示
 		DMXmlNode                               m_XmlNode;                                  ///< 仅设置_DMDesigner_宏时有效,design中xmldoc一直是有效的，所有它的对象也会一直有效
+#endif
 	};
 }//namespace DM

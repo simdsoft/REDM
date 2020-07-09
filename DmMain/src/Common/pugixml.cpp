@@ -3162,7 +3162,7 @@ PUGI__NS_BEGIN
 			PUGI__SCANWHILE(PUGI__IS_CHARTYPE(*s, ct_symbol));
 			PUGI__CHECK_ERROR(status_bad_pi, s);
 
-			// determine node type; stricmp / strcasecmp is not portable
+			// determine node type; dm_xmlstrcmp / strcasecmp is not portable
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s;
 
 			if (declaration ? PUGI__OPTSET(parse_declaration) : PUGI__OPTSET(parse_pi))

@@ -1,26 +1,28 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "TipWnd.h"
+
+#pragma execution_character_set("utf-8")
 
 bool AttrTipWnd::InitAttr(DMXmlInitAttrPtr ptr)
 {
 	bool bRet = false;
 	do 
 	{
-		CStringW strType,strName,strValue,strDesc;
-		FindChildByNameT<DUIStatic>(L"ds_attr")->SetAttribute(L"text",L"Î´ÖªÊôĞÔ");
-		FindChildByNameT<DUIStatic>(L"ds_type")->SetAttribute(L"text",strType);
-		FindChildByNameT<DUIStatic>(L"ds_name")->SetAttribute(L"text",strName);
-		FindChildByNameT<DUIStatic>(L"ds_desc")->SetAttribute(L"text",strDesc);
+		CStringA strType,strName,strValue,strDesc;
+		FindChildByNameT<DUIStatic>("ds_attr")->SetAttribute("text","nil");
+		FindChildByNameT<DUIStatic>("ds_type")->SetAttribute("text",strType);
+		FindChildByNameT<DUIStatic>("ds_name")->SetAttribute("text",strName);
+		FindChildByNameT<DUIStatic>("ds_desc")->SetAttribute("text",strDesc);
 		if (NULL == ptr)
 		{
 			break;
 		}
 	
 		g_pAttr->Parse(ptr->m_pAttr,strType,strName,strValue,strDesc);
-		FindChildByNameT<DUIStatic>(L"ds_attr")->SetAttribute(L"text",ptr->m_pAttr->GetName());
-		FindChildByNameT<DUIStatic>(L"ds_type")->SetAttribute(L"text",strType);
-		FindChildByNameT<DUIStatic>(L"ds_name")->SetAttribute(L"text",strName);
-		FindChildByNameT<DUIStatic>(L"ds_desc")->SetAttribute(L"text",strDesc);
+		FindChildByNameT<DUIStatic>("ds_attr")->SetAttribute("text",ptr->m_pAttr->GetName());
+		FindChildByNameT<DUIStatic>("ds_type")->SetAttribute("text",strType);
+		FindChildByNameT<DUIStatic>("ds_name")->SetAttribute("text",strName);
+		FindChildByNameT<DUIStatic>("ds_desc")->SetAttribute("text",strDesc);
 
 		bRet = true;
 	} while (false);
@@ -31,37 +33,37 @@ bool AttrTipWnd::InitAttr(DMXmlInitAttrPtr ptr)
 //AddTipWnd---------------------------------------------------
 MultStr g_AddInfo[] = \
 {
-	{L"window",		 L"»ù´¡¿Ø¼ş",		L"ÏµÍ³»ù´¡´°¿Ú",		L""},
-	{L"button",		 L"»ù´¡¿Ø¼ş",		L"Í¨ÓÃµÄ°´Å¥",			L""},
-	{L"label",		 L"»ù´¡¿Ø¼ş",		L"±êÇ©",				L"±êÇ©²»ÏìÓ¦ÏûÏ¢"},
-	{L"group",		 L"»ù´¡¿Ø¼ş",		L"×é¿ò",				L""},
-	{L"checkbox",	 L"»ù´¡¿Ø¼ş",		L"Ñ¡Ôñ¿ò",				L""},
-	{L"link",		 L"»ù´¡¿Ø¼ş",		L"Á´½Ó",				L""},
-	{L"combobox",	 L"»ù´¡¿Ø¼ş",		L"¸´ºÏ¿ò",				L""},
-	{L"hotkey",		 L"»ù´¡¿Ø¼ş",		L"ÈÈ¼ü",				L""},
+	{"window",		 "åŸºç¡€æ§ä»¶",		"ç³»ç»ŸåŸºç¡€çª—å£",		    ""},
+	{"button",		 "åŸºç¡€æ§ä»¶",		"é€šç”¨çš„æŒ‰é’®",			""},
+	{"label",		 "åŸºç¡€æ§ä»¶",		"æ ‡ç­¾",				    "æ ‡ç­¾ä¸å“åº”æ¶ˆæ¯"},
+	{"group",		 "åŸºç¡€æ§ä»¶",		"ç»„æ¡†",				    ""},
+	{"checkbox",	 "åŸºç¡€æ§ä»¶",		"é€‰æ‹©æ¡†",				""},
+	{"link",		 "åŸºç¡€æ§ä»¶",		"é“¾æ¥",				    ""},
+	{"combobox",	 "åŸºç¡€æ§ä»¶",		"å¤åˆæ¡†",				""},
+	{"hotkey",		 "åŸºç¡€æ§ä»¶",		"çƒ­é”®",				    ""},
 
-	{L"ipaddress",	 L"»ù´¡¿Ø¼ş",		L"IP¿ò",				L""},
-	{L"radiobutton", L"»ù´¡¿Ø¼ş",		L"µ¥Ñ¡¿ò",				L""},
-	{L"sliderctrl",	 L"»ù´¡¿Ø¼ş",		L"»¬¶¯Ìõ",				L""},
-	{L"processctrl", L"»ù´¡¿Ø¼ş",		L"½ø¶ÈÌõ",				L""},
-	{L"tabctrl",	 L"»ù´¡¿Ø¼ş",		L"Tab¿Ø¼ş",				L""},
-	{L"tabpage",	 L"»ù´¡¿Ø¼ş",		L"TabÒ³",				L"½öÓÃÓÚ²åÈëµ½TabCtrl"},
-	{L"richedit",	 L"»ù´¡¿Ø¼ş",		L"±à¼­¿ò(Ö§³Ö¶àĞĞ)",	L""},
-	{L"edit",		 L"»ù´¡¿Ø¼ş",		L"±à¼­¿ò",				L""},
-	{L"listbox",	 L"»ù´¡¿Ø¼ş",		L"ÁĞ±í¿ò",				L"ÎŞË®Æ½¹ö¶¯Ìõ"},
-	{L"listboxex",	 L"À©Õ¹¿Ø¼ş",		L"À©Õ¹ÁĞ±í¿ò",			L""},
-	{L"treectrl",	 L"»ù´¡¿Ø¼ş",		L"Ê÷ĞÎ¿Ø¼ş",			L""},
-	{L"treectrlex",	 L"À©Õ¹¿Ø¼ş",		L"À©Õ¹Ê÷ĞÎ¿Ø¼ş",		L""},
-	{L"headerctrl",	 L"»ù´¡¿Ø¼ş",		L"ÁĞ±íÍ·",				L""},
-	{L"listctrlex",	 L"À©Õ¹¿Ø¼ş",		L"À©Õ¹ÁĞ±íview",		L""},
-	{L"gif",		 L"»ù´¡¿Ø¼ş",		L"Gif¶¯»­",				L""},
-	{L"pnggif",		 L"»ù´¡¿Ø¼ş",		L"PngGif¿Ø¼ş",		    L""},
-	{L"ie",			 L"»ù´¡¿Ø¼ş",		L"IE¿Ø¼ş",				L""},
-	{L"splitlayout", L"»ù´¡¿Ø¼ş",		L"SplitLayout¿Ø¼ş",		L"·Ö¸ôÁ½¸ö´°¿Ú"},
-	{L"monthcalctrl", L"»ù´¡¿Ø¼ş",		L"ÈÕÀú¿Ø¼ş",			L""}, 
-	{L"scrollwnd",	L"»ù´¡¿Ø¼ş",		L"¹ö¶¯ÌõÈİÆ÷¿Ø¼ş",		L"ÔÊĞí²åÈë¶à¸ö³¬¹ıÈİÆ÷·¶Î§µÄ×Ó´°¿Ú"}, 
+	{"ipaddress",	 "åŸºç¡€æ§ä»¶",		"IPæ¡†",			    	""},
+	{"radiobutton", "åŸºç¡€æ§ä»¶",		"å•é€‰æ¡†",				""},
+	{"sliderctrl",	 "åŸºç¡€æ§ä»¶",		"æ»‘åŠ¨æ¡",				""},
+	{"processctrl", "åŸºç¡€æ§ä»¶",		"è¿›åº¦æ¡",				""},
+	{"tabctrl",	 "åŸºç¡€æ§ä»¶",		"Tabæ§ä»¶",				""},
+	{"tabpage",	 "åŸºç¡€æ§ä»¶",		"Tabé¡µ",				"ä»…ç”¨äºæ’å…¥åˆ°TabCtrl"},
+	{"richedit",	 "åŸºç¡€æ§ä»¶",		"ç¼–è¾‘æ¡†(æ”¯æŒå¤šè¡Œ)",	    ""},
+	{"edit",		 "åŸºç¡€æ§ä»¶",		"ç¼–è¾‘æ¡†",				""},
+	{"listbox",	 "åŸºç¡€æ§ä»¶",		"åˆ—è¡¨æ¡†",				"æ— æ°´å¹³æ»šåŠ¨æ¡"},
+	{"listboxex",	 "æ‰©å±•æ§ä»¶",		"æ‰©å±•åˆ—è¡¨æ¡†",			""},
+	{"treectrl",	 "åŸºç¡€æ§ä»¶",		"æ ‘å½¢æ§ä»¶",			    ""},
+	{"treectrlex",	 "æ‰©å±•æ§ä»¶",		"æ‰©å±•æ ‘å½¢æ§ä»¶",		    ""},
+	{"headerctrl",	 "åŸºç¡€æ§ä»¶",		"åˆ—è¡¨å¤´",				""},
+	{"listctrlex",	 "æ‰©å±•æ§ä»¶",		"æ‰©å±•åˆ—è¡¨view",	    	""},
+	{"gif",		 "åŸºç¡€æ§ä»¶",		"GifåŠ¨ç”»",				""},
+	{"pnggif",		 "åŸºç¡€æ§ä»¶",		"PngGifæ§ä»¶",		    ""},
+	{"ie",			 "åŸºç¡€æ§ä»¶",		"IEæ§ä»¶",				""},
+	{"splitlayout", "åŸºç¡€æ§ä»¶",		"SplitLayoutæ§ä»¶",		"åˆ†éš”ä¸¤ä¸ªçª—å£"},
+	{"monthcalctrl", "åŸºç¡€æ§ä»¶",		"æ—¥å†æ§ä»¶",		    	""}, 
+	{"scrollwnd",	  "åŸºç¡€æ§ä»¶",		"æ»šåŠ¨æ¡å®¹å™¨æ§ä»¶",	    	"å…è®¸æ’å…¥å¤šä¸ªè¶…è¿‡å®¹å™¨èŒƒå›´çš„å­çª—å£"}, 
 }; 
-bool AddTipWnd::InitAdd(CStringW strInfo)
+bool AddTipWnd::InitAdd(CStringA strInfo)
 {
 	bool bFind = false;
 	int nCount = countof(g_AddInfo);
@@ -69,19 +71,19 @@ bool AddTipWnd::InitAdd(CStringW strInfo)
 	{
 		if (0 == g_AddInfo[i].strOne.CompareNoCase(strInfo))
 		{
-			FindChildByNameT<DUIStatic>(L"ds_add_text1")->DV_SetWindowText(g_AddInfo[i].strOne);
-			FindChildByNameT<DUIStatic>(L"ds_add_text2")->DV_SetWindowText(g_AddInfo[i].strTwo);
-			FindChildByNameT<DUIStatic>(L"ds_add_text3")->DV_SetWindowText(g_AddInfo[i].strThree);
-			FindChildByNameT<DUIStatic>(L"ds_add_text4")->DV_SetWindowText(g_AddInfo[i].strFour);
+			FindChildByNameT<DUIStatic>("ds_add_text1")->SetTextA(g_AddInfo[i].strOne);
+			FindChildByNameT<DUIStatic>("ds_add_text2")->SetTextA(g_AddInfo[i].strTwo);
+			FindChildByNameT<DUIStatic>("ds_add_text3")->SetTextA(g_AddInfo[i].strThree);
+			FindChildByNameT<DUIStatic>("ds_add_text4")->SetTextA(g_AddInfo[i].strFour);
 			bFind = true;
 		}
 	}
 	if (!bFind)
 	{
-		FindChildByNameT<DUIStatic>(L"ds_add_text1")->DV_SetWindowText(strInfo);
-		FindChildByNameT<DUIStatic>(L"ds_add_text2")->DV_SetWindowText(L"»ù´¡¿Ø¼ş");
-		FindChildByNameT<DUIStatic>(L"ds_add_text3")->DV_SetWindowText(L"»ù´¡¿Ø¼ş");
-		FindChildByNameT<DUIStatic>(L"ds_add_text4")->DV_SetWindowText(L"");
+		FindChildByNameT<DUIStatic>("ds_add_text1")->SetTextA(strInfo);
+		FindChildByNameT<DUIStatic>("ds_add_text2")->SetText(L"åŸºç¡€æ§ä»¶");
+		FindChildByNameT<DUIStatic>("ds_add_text3")->SetText(L"åŸºç¡€æ§ä»¶");
+		FindChildByNameT<DUIStatic>("ds_add_text4")->SetText(L"");
 	}
 	return true;
 }

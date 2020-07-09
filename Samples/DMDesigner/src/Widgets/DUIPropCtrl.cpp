@@ -18,12 +18,12 @@ namespace DM
 		m_pPropDesc   = NULL;
 	}
 
-	IPropPtr DUIPropFrame::AddInitAttrProperty(DMXmlInitAttrPtr pInitAttr,IPropPtr pParent, CStringW strValue)
+	IPropPtr DUIPropFrame::AddInitAttrProperty(DMXmlInitAttrPtr pInitAttr,IPropPtr pParent, CStringA strValue)
 	{
 		IPropPtr pNew = NULL;
 		do 
 		{
-			CStringW strType,strName,strTempValue,strDesc;
+			CStringA strType,strName,strTempValue,strDesc;
 			g_pAttr->Parse(pInitAttr->m_pAttr,strType,strName,strTempValue,strDesc);
 			if (strValue.IsEmpty())// 如果外部没有指定，就使用预置的值
 			{
@@ -31,7 +31,7 @@ namespace DM
 			}
 			DMXmlDocument doc;
 			DMXmlNode XmlBase = doc.Base();
-			DMXmlNode XmlRoot = XmlBase.InsertChildNode(L"root");
+			DMXmlNode XmlRoot = XmlBase.InsertChildNode("root");
 			DMXmlNode XmlNode;
 			bool bMatch = false;
 			int nCount = countof(g_stAttrDesc);  
@@ -43,32 +43,32 @@ namespace DM
 					strTempValue = g_stAttrDesc[i].strFour;
 					bMatch = true;
 
-					if (0 == strType.CompareNoCase(L"bool"))
+					if (0 == strType.CompareNoCase("bool"))
 					{
-						XmlNode.SetAttribute(XML_OPTIONS,L"0|1");
+						XmlNode.SetAttribute(XML_OPTIONS,"0|1");
 					}
-					else if (0 == strType.CompareNoCase(L"OPTION"))// 特殊处理
+					else if (0 == strType.CompareNoCase("OPTION"))// 特殊处理
 					{
-						if (0 == strName.CompareNoCase(L"align")||0 == strName.CompareNoCase(L"surfacealign")) 
+						if (0 == strName.CompareNoCase("align")||0 == strName.CompareNoCase("surfacealign")) 
 						{
-							XmlNode.SetAttribute(XML_OPTIONS,L"left|center|right");
-							strTempValue = L"center";
+							XmlNode.SetAttribute(XML_OPTIONS,"left|center|right");
+							strTempValue = "center";
 						}
-						else if (0 == strName.CompareNoCase(L"valign"))
+						else if (0 == strName.CompareNoCase("valign"))
 						{
-							XmlNode.SetAttribute(XML_OPTIONS,L"top|middle|bottom");
-							strTempValue = L"middle";
+							XmlNode.SetAttribute(XML_OPTIONS,"top|middle|bottom");
+							strTempValue = "middle";
 						}
-						else if (0 == strName.CompareNoCase(L"tabalign"))
+						else if (0 == strName.CompareNoCase("tabalign"))
 						{
-							XmlNode.SetAttribute(XML_OPTIONS,L"top|left|right|bottom");
-							strTempValue = L"top";
+							XmlNode.SetAttribute(XML_OPTIONS,"top|left|right|bottom");
+							strTempValue = "top";
 						}
-						else if (0 == strName.CompareNoCase(L"sbenable")
-							||0 == strName.CompareNoCase(L"animatetype"))
+						else if (0 == strName.CompareNoCase("sbenable")
+							||0 == strName.CompareNoCase("animatetype"))
 						{
-							XmlNode.SetAttribute(XML_OPTIONS,L"0|1|2|3");
-							strTempValue = L"3";
+							XmlNode.SetAttribute(XML_OPTIONS,"0|1|2|3");
+							strTempValue = "3";
 						}
 					}
 					break;
@@ -76,7 +76,7 @@ namespace DM
 			}
 			if (!bMatch)
 			{
-				XmlNode = XmlRoot.InsertChildNode(L"propstring");
+				XmlNode = XmlRoot.InsertChildNode("propstring");
 			}
  
 			if (strValue.IsEmpty())// 如果外部没有指定value，就使用预置的值
@@ -217,8 +217,8 @@ namespace DM
 			{
 				int iFirstChildWidth = rcSplit.Height()-m_iDescHei;
 				iFirstChildWidth = iFirstChildWidth?iFirstChildWidth:10;
-				CStringW str;str.Format(L"%d",iFirstChildWidth);
-				m_pSplit->SetAttribute(L"firstchildwidth",str);
+				CStringA str;str.Format("%d",iFirstChildWidth);
+				m_pSplit->SetAttribute("firstchildwidth",str);
 					
 				m_bFirst = false;
 			}
@@ -340,7 +340,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIPropList::CreateRegObj(void** ppObj, LPCWSTR lpszClassName)
+	DMCode DUIPropList::CreateRegObj(void** ppObj, LPCSTR lpszClassName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -368,7 +368,7 @@ namespace DM
 
 			for (int i=0; i<count; i++)
 			{
-				if (0 == _wcsicmp(lpszClassName, GetObj(i)->GetClassName()))
+				if (0 == dm_xmlstrcmp(lpszClassName, GetObj(i)->GetClassName()))
 				{
 					*ppObj = (void**)GetObj(i)->NewObj();
 					iErr = DM_ECODE_OK;
@@ -737,7 +737,7 @@ namespace DM
 
 			if (0 == m_accel)
 			{
-				m_accel = DUIAccel::TranslateAccelKey(L"delete");
+				m_accel = DUIAccel::TranslateAccelKey("delete");
 				DUIAccel acc(m_accel);
 				GetContainer()->GetAccelMgr()->RegisterAccel(acc,this);
 			}
@@ -772,7 +772,7 @@ namespace DM
 
 	bool DUIPropList::EqualArrayObj(const IDMRegPtr &objsrc, const IDMRegPtr &objdest)
 	{
-		return (0==_wcsicmp(objsrc->GetClassName(), objdest->GetClassName()));
+		return (0==dm_xmlstrcmp(objsrc->GetClassName(), objdest->GetClassName()));
 	}
 
 	void DUIPropList::PreArrayObjRemove(const IDMRegPtr &obj)

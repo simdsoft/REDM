@@ -116,6 +116,7 @@ namespace DM
 
 	void DMSpyTool::EnumTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel,bool bPanel)
 	{
+#if 0 // TODO: complete
 		do 
 		{
 			Init_Debug_XmlBuf(m_XmlBase);
@@ -157,6 +158,7 @@ namespace DM
 			EnumPanelTreeItem(pWnd,ChildNode,tempLevel);
 			Init_Debug_XmlBuf(m_XmlBase);
 		} while (false);
+#endif
 	}
 
 	void DMSpyTool::EnumPanelTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel)
@@ -191,6 +193,7 @@ namespace DM
 
 	void DMSpyTool::EnumInfo(DUIWindow*pWnd,PDMSpyEnum m_pSpyEnum)
 	{
+#if 0 // TODO: complete
 		m_pSpyEnum->info.bVisible = pWnd->DM_IsVisible(true);
 		m_pSpyEnum->info.hDUIWnd  = pWnd->GetDUIWnd();
 		m_pSpyEnum->info.iId      = pWnd->GetID();
@@ -230,6 +233,7 @@ namespace DM
 			wcscpy_s(m_pSpyEnum->info.szXml,L"[XML过长,无法显示!]");
 		}
 #endif 
+#endif
 	}
 
 	//---------------------------------------------------------

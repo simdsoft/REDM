@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -11,45 +11,47 @@
 // ----------------------------------------------------------------
 #pragma once
 
+#pragma execution_character_set("utf-8")
+
 // ----------------
-// ∫Í
+// ÂÆè
 #define  XML_LAYOUT_DMINDEX                          L"layout\\dmindex.xml"
 #define  XML_THEMES_DMINDEX                          L"themes\\dmindex.xml"
-#define  XML_GLOBAL                                  L"global"
-#define  XML_THEMES                                  L"themes"
-#define  XML_SKIN                                    L"skin"
-#define  XML_STYLE                                   L"style"
-#define  XML_FILE                                    L"file"
-#define  XML_PATH                                    L"path"
-#define  XML_NAME                                    L"name"
-#define  XML_DESC                                    L"desc"
-#define  XML_VALUE                                   L"value"
-#define  XML_OPTIONS                                 L"options"
-#define  XML_ID										 L"id"
-#define  XML_SRC									 L"src"
-#define  XML_TREEITEM                                L"treeitem"
-#define  XML_STATIC                                  L"label"
-#define  XML_CHECKBOX                                L"checkbox"
-#define  XML_CHEKSKIN                                L"checkskin"
-#define  XML_TEXT                                    L"text"
-#define  XML_LAYOUT                                  L"layout"
-#define  XML_CLRTEXT                                 L"clrtext"
-#define  XML_POS                                     L"pos"
-#define  XML_CUSTOMSKIN                              L"ds_custombutton"
-#define  XML_DATASKIN								 L"ds_databutton"
-#define  XML_DEFSKIN								 L"ds_defbutton"
-#define  XML_DM										 L"dm"
-#define  XML_BRESIZE                                 L"bresize"
-#define  XML_BTRANSLUCENT							 L"btranslucent"
-#define  XML_CHILDOFFSET                             L"childoffset"
-#define  XML_FONT									 L"font"
-#define  XML_ITEM									 L"item"
-#define  XML_SEP									 L"sep"
-#define  XML_ALPHA                                   L"alpha"
-#define  XML_BSHADOW                                 L"bshadow"
-#define  XML_BDISABLE                                L"bdisable"
+#define  XML_GLOBAL                                  "global"
+#define  XML_THEMES                                  "themes"
+#define  XML_SKIN                                    "skin"
+#define  XML_STYLE                                   "style"
+#define  XML_FILE                                    "file"
+#define  XML_PATH                                    "path"
+#define  XML_NAME                                    "name"
+#define  XML_DESC                                    "desc"
+#define  XML_VALUE                                   "value"
+#define  XML_OPTIONS                                 "options"
+#define  XML_ID										 "id"
+#define  XML_SRC									 "src"
+#define  XML_TREEITEM                                "treeitem"
+#define  XML_STATIC                                  "label"
+#define  XML_CHECKBOX                                "checkbox"
+#define  XML_CHEKSKIN                                "checkskin"
+#define  XML_TEXT                                    "text"
+#define  XML_LAYOUT                                  "layout"
+#define  XML_CLRTEXT                                 "clrtext"
+#define  XML_POS                                     "pos"
+#define  XML_CUSTOMSKIN                              "ds_custombutton"
+#define  XML_DATASKIN								 "ds_databutton"
+#define  XML_DEFSKIN								 "ds_defbutton"
+#define  XML_DM										 "dm"
+#define  XML_BRESIZE                                 "bresize"
+#define  XML_BTRANSLUCENT							 "btranslucent"
+#define  XML_CHILDOFFSET                             "childoffset"
+#define  XML_FONT									 "font"
+#define  XML_ITEM									 "item"
+#define  XML_SEP									 "sep"
+#define  XML_ALPHA                                   "alpha"
+#define  XML_BSHADOW                                 "bshadow"
+#define  XML_BDISABLE                                "bdisable"
 
-//  Ù–‘xml
+// Â±ûÊÄßxml
 #define  ATTR_FILE									 L".\\DesignerRes\\DMAttr.xml"
 #define  CLS_FILE									 L".\\DesignerRes\\DMCls.xml"
 #define  ADD_FILE									 L".\\DesignerRes\\DMAdd.xml"
@@ -58,18 +60,18 @@
 #define  NEW_DIR                                     L".\\DesignerRes\\DMNewRes"
 #define  NEW_DG_DIR                                  L".\\DesignerRes\\DMNewRes_dg"
 
-#define  PROJTREE_THEMES                             L"÷˜Ã‚∞¸¡–±Ì"
-#define  PROJTREE_LAYOUTFILES                        L"Œƒº˛¡–±Ì"
-#define  PROJTREE_GLOBALSTYLESKINS                   L"—˘ Ω-∆§∑Ù(»´æ÷)¡–±Ì"
-#define  PROJTREE_GLOBALSTYLS                        L"—˘ Ω≥ÿ(»´æ÷)¡–±Ì"
-#define  PROJTREE_GLOBALSKINS                        L"∆§∑Ù≥ÿ(»´æ÷)¡–±Ì"
+#define  PROJTREE_THEMES                             L"‰∏ªÈ¢òÂåÖÂàóË°®"
+#define  PROJTREE_LAYOUTFILES                        L"Êñá‰ª∂ÂàóË°®"
+#define  PROJTREE_GLOBALSTYLESKINS                   L"Ê†∑Âºè-ÁöÆËÇ§(ÂÖ®Â±Ä)ÂàóË°®"
+#define  PROJTREE_GLOBALSTYLS                        L"Ê†∑ÂºèÊ±†(ÂÖ®Â±Ä)ÂàóË°®"
+#define  PROJTREE_GLOBALSKINS                        L"ÁöÆËÇ§Ê±†(ÂÖ®Â±Ä)ÂàóË°®"
 
-#define  PROJTREE_PRIVSTYLESKINS                     L"—˘ Ω-∆§∑Ù(ÀΩ”–)¡–±Ì"
-#define  PROJTREE_PRIVSTYLES                         L"—˘ Ω≥ÿ(ÀΩ”–)¡–±Ì"
-#define  PROJTREE_PRIVSKINS                          L"∆§∑Ù≥ÿ(ÀΩ”–)¡–±Ì"
+#define  PROJTREE_PRIVSTYLESKINS                     L"Ê†∑Âºè-ÁöÆËÇ§(ÁßÅÊúâ)ÂàóË°®"
+#define  PROJTREE_PRIVSTYLES                         L"Ê†∑ÂºèÊ±†(ÁßÅÊúâ)ÂàóË°®"
+#define  PROJTREE_PRIVSKINS                          L"ÁöÆËÇ§Ê±†(ÁßÅÊúâ)ÂàóË°®"
 
 // ----------------
-// √∂æŸ
+// Êûö‰∏æ
 enum ProjMenuId
 {
 	PROJMENU_BASE    = 8000,
@@ -141,7 +143,7 @@ enum GlbMenuId
 	GLBMENU_ONLINEHELP,
 };
 
-// ÷∏∂®ListµƒœÓÀ˜“˝
+// ÊåáÂÆöListÁöÑÈ°πÁ¥¢Âºï
 enum
 {
 	HOST_ATTR = 0,
@@ -149,22 +151,22 @@ enum
 	POS_ATTR = 2,
 };
 
-// ToolBarµƒ…Ëº∆ƒ£ Ω
+// ToolBarÁöÑËÆæËÆ°Ê®°Âºè
 enum DesignMode {NoneMode=-1, MoveMode,SelectMode,AddMode};
 
 // ----------------
-// Ω·ππÃÂ
+// ÁªìÊûÑ‰Ωì
 struct DesignMenu
 {
 	int        id;
-	CStringW   text;
+	CStringA   text;
 };
 
 struct MultStr
 {
-	CStringW strOne;
-	CStringW strTwo;
-	CStringW strThree;
-	CStringW strFour;
+	CStringA strOne;
+	CStringA strTwo;
+	CStringA strThree;
+	CStringA strFour;
 };
 

@@ -293,21 +293,20 @@ DMCode DUIRealXml::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 		m_pXmlEditor->ClearAll();
 		m_pXmlEditor->EmptyUndoBuffer();
 
-		CStringW strWXml;
+		CStringA strAXml;
 		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// 切换到最上层了，默认为DMHWnd窗口
 		{
-			pData->m_pDoc->m_pXmlDoc->Base().GetXmlContent(strWXml);
+			pData->m_pDoc->m_pXmlDoc->Base().GetXmlContent(strAXml);
 		}
 		else
 		{
-			pData->m_pXmlNode->GetXmlContent(strWXml);
+			pData->m_pXmlNode->GetXmlContent(strAXml);
 		}
 
 		//Tell the control not to maintain any undo info while we stream the data 
 		m_pXmlEditor->Cancel();
 		m_pXmlEditor->SetUndoCollection(false);
 
-		CStringA strAXml = DMW2A(strWXml,CP_UTF8);
 		m_pXmlEditor->AddText(strAXml.GetLength(),strAXml.GetBuffer());strAXml.ReleaseBuffer();
 
 		m_pXmlEditor->SetUndoCollection(true);

@@ -193,7 +193,7 @@ namespace DM
 	}
 
 	///
-	DMCode DUIProcessCtrl::OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIProcessCtrl::OnAttributeRange(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -223,7 +223,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIProcessCtrl::OnAttributeValue(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIProcessCtrl::OnAttributeValue(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

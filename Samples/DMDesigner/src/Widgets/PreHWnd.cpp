@@ -1,7 +1,7 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "PreHWnd.h"
 
-DMXmlDocument* GetPreSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
+DMXmlDocument* GetPreSubXmlDoc(LPCSTR lpszType,LPCSTR lpszResName)
 {
 	DMXmlDocument* pXmlDoc = NULL;
 	do 
@@ -15,7 +15,7 @@ DMXmlDocument* GetPreSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 			break;
 		}
 		DMSmartPtrT<ResFolder>pRes = g_pMainWnd->m_pDesignerXml->m_pRes;
-		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,L"");
+		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,"");
 		DocDataPtr pData = g_pMainWnd->m_pDesignerXml->FindDocData(strPath);
 		if (pData&&pData->IsValid())
 		{
@@ -27,37 +27,37 @@ DMXmlDocument* GetPreSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 
 BEGIN_MSG_MAP(PreHWnd)  
 	MSG_WM_KEYDOWN(OnKeyDown)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP() 
 HWND PreHWnd::ObjCreateWindow(DMXmlDocument &XmlDoc)
 {
 	do 
 	{
-		// ´°¿ÚÒÑ´´½¨
+		// çª—å£å·²åˆ›å»º
 		if (m_hWnd)
 		{
 			break;
 		}
 
-		ATOM Atom = g_pDMApp->GetClassAtom();  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
-		// ´´½¨Ê±»áÏÈµ÷ÓÃµ½OnNcCreateÀ´½âÎöXML×ÊÔ´£¬ÈçOnNcCreate·µ»ØÊ§°Ü,Ôò´´½¨Ê§°Ü£¬m_hWndÎªNULL
+		ATOM Atom = g_pDMApp->GetClassAtom();  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
+		// åˆ›å»ºæ—¶ä¼šå…ˆè°ƒç”¨åˆ°OnNcCreateæ¥è§£æžXMLèµ„æºï¼Œå¦‚OnNcCreateè¿”å›žå¤±è´¥,åˆ™åˆ›å»ºå¤±è´¥ï¼Œm_hWndä¸ºNULL
 		DMCWnd::CreateWindowEx((LPCWSTR)Atom,DM_DEF_WINDOW_NAME, DM_DEF_STYLE, 0, 0, 0, 0, 0, g_pMainWnd->m_hWnd, NULL);
 		if (NULL == m_hWnd)
 		{
 			break;
 		}
 
-		// ½âÎöxml
+		// è§£æžxml
 		g_pDMApp->SetSubXmlDocCallBack(GetPreSubXmlDoc);
 		LoadDMData(XmlDoc);
 		g_pDMApp->SetSubXmlDocCallBack(NULL);
 	} while (false);
 	if (m_hWnd)
 	{
-		// ¿ªÊ¼²¼¾Ö
+		// å¼€å§‹å¸ƒå±€
 		InitFromDMData();			
 
-		// ×¢²á¿ÉÍÏ¶¯
+		// æ³¨å†Œå¯æ‹–åŠ¨
 		::RegisterDragDrop(m_hWnd, &m_DropTarget);
 	}
 
@@ -75,29 +75,29 @@ DMCode PreHWnd::LoadDMData(DMXmlDocument &XmlDoc)
 			break;
 		}
 
-		m_pHWndXmlInfo->ResetXmlInfo();                // ÖØÉèÖÃXMLÊý¾Ý
+		m_pHWndXmlInfo->ResetXmlInfo();                // é‡è®¾ç½®XMLæ•°æ®
 
-		// ½âÎöË½ÓÐSkin½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü---------------
-		DMXmlNode XmlSkin = XmlNode.FirstChild(L"skin");
+		// è§£æžç§æœ‰SkinèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ---------------
+		DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 		while (XmlSkin.IsValid())
 		{
 			g_pDMApp->AddSkinPoolItem(XmlSkin);
-			XmlSkin = XmlSkin.NextSibling(L"skin");
+			XmlSkin = XmlSkin.NextSibling("skin");
 		}
 
-		// ½âÎöË½ÓÐStyle½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü--------------
-		DMXmlNode XmlStyle = XmlNode.FirstChild(L"style");
+		// è§£æžç§æœ‰StyleèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ--------------
+		DMXmlNode XmlStyle = XmlNode.FirstChild("style");
 		while (XmlStyle.IsValid())
 		{
 			g_pDMApp->AddStylePoolItem(XmlStyle);
-			XmlStyle = XmlStyle.NextSibling(L"style");
+			XmlStyle = XmlStyle.NextSibling("style");
 		}
 
-		// ½âÎö×ÔÉíµÄXML-Attribute-----------------------
+		// è§£æžè‡ªèº«çš„XML-Attribute-----------------------
 		DMBase::InitDMData(XmlNode);
 
-		// Ñ­»·½âÎöDUIµÄXML -----------------------------
-		// root½Úµã±¾ÉíÒ²ÊÇÒ»¸öDUIWindow´°¿Ú¶ÔÏó£¬µ«ÊÇÔÚÕâÀï±ØÐëÊÇ"root"²ÅÄÜÊ¶±ð£¬ÔÚÕâ¸ö½ÚµãÖÐ¿ÉÒÔÓÐDUIWindowµÄ¸÷ÖÖÊôÐÔ£¬µ«ÊÇºÍ²¼¾ÖÎ»ÖÃÏà¹ØµÄÊôÐÔ×Ô¶¯ÎÞÐ§£¬ÒòÎª¸Ã´°¿Ú×ÜÊÇ³äÂúÕû¸öËÞÖ÷´°¿Ú¡£
+		// å¾ªçŽ¯è§£æžDUIçš„XML -----------------------------
+		// rootèŠ‚ç‚¹æœ¬èº«ä¹Ÿæ˜¯ä¸€ä¸ªDUIWindowçª—å£å¯¹è±¡ï¼Œä½†æ˜¯åœ¨è¿™é‡Œå¿…é¡»æ˜¯"root"æ‰èƒ½è¯†åˆ«ï¼Œåœ¨è¿™ä¸ªèŠ‚ç‚¹ä¸­å¯ä»¥æœ‰DUIWindowçš„å„ç§å±žæ€§ï¼Œä½†æ˜¯å’Œå¸ƒå±€ä½ç½®ç›¸å…³çš„å±žæ€§è‡ªåŠ¨æ— æ•ˆï¼Œå› ä¸ºè¯¥çª—å£æ€»æ˜¯å……æ»¡æ•´ä¸ªå®¿ä¸»çª—å£ã€‚
 		DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 	} while (false);
 	return iErr;

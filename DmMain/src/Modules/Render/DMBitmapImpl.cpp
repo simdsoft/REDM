@@ -71,7 +71,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMBitmapImpl::LoadFromFile(LPCWSTR pszFileName,LPCWSTR pszType)
+	DMCode DMBitmapImpl::LoadFromFile(LPCWSTR pszFileName,LPCSTR /*pszType*/)
 	{
 		m_DibHelper.DIBRelease();
 		DMCode iErr = DM_ECODE_FAIL;
@@ -104,7 +104,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMBitmapImpl::LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCWSTR pszType)
+	DMCode DMBitmapImpl::LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR /*pszType*/)
 	{
 		m_DibHelper.DIBRelease();
 		DMCode iErr = DM_ECODE_FAIL;

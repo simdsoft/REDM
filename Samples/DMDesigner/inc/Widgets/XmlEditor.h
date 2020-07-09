@@ -55,7 +55,7 @@ public:
 /// </summary>
 class DUIRealXml : public IDUIRealWnd, public AttrBase
 {
-	DMDECLARE_CLASS_NAME(DUIWindow,L"xmleditor",DMREG_Window);
+	DMDECLARE_CLASS_NAME(DUIWindow,"xmleditor",DMREG_Window);
 public:
 	DUIRealXml();
 

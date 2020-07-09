@@ -23,10 +23,14 @@ namespace DM
 	{
 	public:
 		virtual DMCode InitDMData(DMXmlNode &XmlNode);															///<加载、解析XML数据
-		virtual DMCode OnAttributeStart(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);					///<解析XML的属性数据前触发
-		virtual DMCode SetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);						///<解析XML的属性数据
-		virtual DMCode OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr);    ///<解析完一个XML属性后触发
-		virtual DMCode DefAttributeProc(LPCWSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml);					///<默认解析XML的属性数据
+		virtual DMCode OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);					///<解析XML的属性数据前触发
+	    DMCode SetAttribute(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<解析XML的属性数据
+		{
+			return SetAttribute(pszAttribute, DMW2A(pszValue), bLoadXml);
+		}
+		virtual DMCode SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);						///<解析XML的属性数据
+		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);    ///<解析完一个XML属性后触发
+		virtual DMCode DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml);					///<默认解析XML的属性数据
 		virtual DMCode OnFinished(DMXmlNode &XmlNode);															///<数据全部解析完后处理
 		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;}							///<扩展接口
 	};
@@ -37,10 +41,10 @@ namespace DM
 	class DM_EXPORT DMBase:public DMDataBase
 	{
 	public:
-		static LPCWSTR GetClassName();			///<取得注册类名
-		virtual LPCWSTR V_GetClassName();       ///<取得注册类名, 这是虚函数
-		static LPCWSTR GetBaseClassName();		///<取得注册类父类名
-		virtual bool IsClass(LPCWSTR lpszName);	///<是否属于此窗口类向上链
+		static LPCSTR GetClassName();			///<取得注册类名
+		virtual LPCSTR V_GetClassName();       ///<取得注册类名, 这是虚函数
+		static LPCSTR GetBaseClassName();		///<取得注册类父类名
+		virtual bool IsClass(LPCSTR lpszName);	///<是否属于此窗口类向上链
 		static int GetClassType();              ///<取得窗口类型
 		virtual int V_GetClassType();			///<取得窗口类型，和GetClassType一样，但这是个虚函数，用于基指针指向子类时动态调用
 	};
@@ -77,21 +81,21 @@ namespace DM
 /// 所有基于DMBase的子类必须定义此宏,前两个static,后两个由子类重载了classtype只允许使用DMREGTYPE中的类型
 #define DMDECLARE_CLASS_NAME(theclass, classname, classtype) \
 public: \
-	static LPCWSTR GetClassName() \
+	static LPCSTR GetClassName() \
 	{ \
 		return classname; \
 	} \
-	virtual LPCWSTR V_GetClassName() \
+	virtual LPCSTR V_GetClassName() \
 	{ \
 		return classname; \
 	} \
-	static LPCWSTR GetBaseClassName() \
+	static LPCSTR GetBaseClassName() \
 	{ \
 		return __super::GetClassName(); \
 	} \
-	virtual bool IsClass(LPCWSTR lpszName) \
+	virtual bool IsClass(LPCSTR lpszName) \
 	{ \
-		if (0 == _wcsicmp(GetClassName(), lpszName)) \
+		if (0 == dm_xmlstrcmp(GetClassName(), lpszName)) \
 			return true; \
 		return __super::IsClass(lpszName);\
 	} \

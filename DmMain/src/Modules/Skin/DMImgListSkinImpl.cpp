@@ -10,7 +10,7 @@ namespace DM
 		m_bVert		= false;
 	}
 
-	DMCode DMImgListSkinImpl::GetID(wchar_t* lpszId, int iSize)
+	DMCode DMImgListSkinImpl::GetID(char* lpszId, int iSize)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -31,7 +31,7 @@ namespace DM
 				break;
 			}
 			memset(lpszId, 0, iSize);
-			swprintf_s(lpszId, iSize, L"%s", (LPCWSTR)m_strID);
+			sprintf_s(lpszId, iSize, "%s", (LPCSTR)m_strID);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -133,7 +133,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMImgListSkinImpl::SetBitmap(LPBYTE pBuf,size_t szLen,LPCWSTR pszType)
+	DMCode DMImgListSkinImpl::SetBitmap(LPBYTE pBuf,size_t szLen,LPCSTR pszType)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -170,18 +170,17 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			LPCWSTR lpszPath = (LPCWSTR)wp;
+			LPCSTR lpszPath = (LPCSTR)wp;
 			if (NULL == lpszPath)
 			{
 				break;
 			}
-			CStringW  strValue = lpszPath;
-			if (0!=m_strRes.CompareNoCase(strValue))
+			if (0!=m_strRes.CompareNoCase(lpszPath))
 			{
 				break;
 			}
 
-			iErr = OnAttributeGetImage(strValue,true);
+			iErr = OnAttributeGetImage(lpszPath,true);
 		} while (false);
 		return iErr;
 	}
@@ -202,15 +201,15 @@ namespace DM
 	}
 
 	///----------------------------
-	DMCode DMImgListSkinImpl::OnAttributeGetImage(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DMImgListSkinImpl::OnAttributeGetImage(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW  strValue = pszValue;
-			CStringW strType;
-			CStringW strResName;
-			int iFind = strValue.ReverseFind(_T(':'));
+			CStringA  strValue = pszValue;
+			CStringA strType;
+			CStringA strResName;
+			int iFind = strValue.ReverseFind((':'));
 			if (-1 != iFind)// 可能是PNG:IDR_BTN
 			{
 				strType = strValue.Left(iFind);
@@ -218,7 +217,7 @@ namespace DM
 			}
 			else// 也可能是IDR_BTN
 			{	
-				strType = L"PNG";  // 默认为PNG
+				strType = "PNG";  // 默认为PNG
 				strResName = strValue;
 			}
 
@@ -241,20 +240,23 @@ namespace DM
 			DMSmartPtrT<IDMBitmap> pBitmap;
 			pRender->CreateBitmap(&pBitmap);
 
+			// if (!DMSUCCEEDED(pRes->GetItemSize(strType,strResName,ulSize)))
+			// {
+			// 	CStringA szInfo = "DMImgListSkinImpl:OnAttributeGetImage获取";
+			// 	szInfo += strType;szInfo+=strResName;szInfo += "失败";
+			// 	DMASSERT_EXPR(0,szInfo);
+			// 	break;
+			// }
+			// 
+			// DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
+			// if (!DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize)))
+			// {
+			// 	break;
+			// }
+			DMBufT<byte> pBuf;
 			unsigned long ulSize = 0;
-			if (!DMSUCCEEDED(pRes->GetItemSize(strType,strResName,ulSize)))
-			{
-				CStringW szInfo = L"DMImgListSkinImpl:OnAttributeGetImage获取";
-				szInfo += strType;szInfo+=strResName;szInfo += L"失败";
-				DMASSERT_EXPR(0,szInfo);
+			if(!DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
 				break;
-			}
-
-			DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-			if (!DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize)))
-			{
-				break;
-			}
 
 			if (!DMSUCCEEDED(pBitmap->LoadFromMemory(pBuf, ulSize,strType)))
 			{

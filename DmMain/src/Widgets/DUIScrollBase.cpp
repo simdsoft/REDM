@@ -1162,7 +1162,7 @@ namespace DM
 	}
 
 	//------------------------------------
-	DMCode DUIScrollBase::OnAttributesbSkin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIScrollBase::OnAttributesbSkin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -1195,7 +1195,7 @@ namespace DM
 		} while (false);
 		return iErr;
 	}
-	DMCode DUIScrollBase::OnAttributesbWidth(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIScrollBase::OnAttributesbWidth(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -1217,7 +1217,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIScrollBase::OnAttributesbEnable(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIScrollBase::OnAttributesbEnable(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -1239,7 +1239,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIScrollBase::OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIScrollBase::OnAttributeRange(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -1260,7 +1260,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIScrollBase::OnAttributePos(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIScrollBase::OnAttributePos(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

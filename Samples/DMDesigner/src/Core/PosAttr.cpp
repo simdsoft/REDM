@@ -7,8 +7,8 @@ END_EVENT_INBASE()
 PosAttr*  PosAttr::ms_pthis = NULL;
 PosAttr::PosAttr()
 {
-	m_pPanel = m_pObjXml->m_pRighXml->m_pList->FindChildByName(L"ds_attr_pos_panel",true);DMASSERT(m_pPanel);
-	m_pPos   = m_pPanel->FindChildByNameT<DUIPos>(L"ds_pos",true);DMASSERT(m_pPos);
+	m_pPanel = m_pObjXml->m_pRighXml->m_pList->FindChildByName("ds_attr_pos_panel",true);DMASSERT(m_pPanel);
+	m_pPos   = m_pPanel->FindChildByNameT<DUIPos>("ds_pos",true);DMASSERT(m_pPos);
 	ms_pthis = this; 
 	m_pCurDUI  = NULL;
 }

@@ -1,8 +1,8 @@
- #include "DMDesignerAfx.h"
+ï»¿ #include "DMDesignerAfx.h"
 #include "DUIRoot.h"
        
 DocDataPtr g_pCurDoc = NULL;
-DMXmlDocument* GetSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
+DMXmlDocument* GetSubXmlDoc(LPCSTR lpszType,LPCSTR lpszResName)
 {
 	DMXmlDocument* pXmlDoc = NULL;
 	do 
@@ -13,15 +13,15 @@ DMXmlDocument* GetSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 		}
 
 		DMSmartPtrT<ResFolder>pRes = g_pMainWnd->m_pDesignerXml->m_pRes;
-		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,L"");
+		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,"");
 		if (!PathFileExists(strPath))
 		{
 			break;
 		}
 		DocDataPtr pSubData = g_pMainWnd->m_pDesignerXml->FindDocData(strPath);
-		if (pSubData&&pSubData->IsValid())// Ô­À´ÒÑ½âÎö¹ýÁË
+		if (pSubData&&pSubData->IsValid())// åŽŸæ¥å·²è§£æžè¿‡äº†
 		{
-			g_pCurDoc->AddObj(pSubData);// ¼ÓÈëÖ÷xml£¬ÐÎ³ÉÖ÷xml-¶à¸ösub  xml
+			g_pCurDoc->AddObj(pSubData);// åŠ å…¥ä¸»xmlï¼Œå½¢æˆä¸»xml-å¤šä¸ªsub  xml
 			pXmlDoc = pSubData->m_pXmlDoc;
 			break;
 		}
@@ -32,7 +32,7 @@ DMXmlDocument* GetSubXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 			break;
 		}
 		g_pMainWnd->m_pDesignerXml->AddObj(pSubData);
-		g_pCurDoc->AddObj(pSubData);// ¼ÓÈëÖ÷xml£¬ÐÎ³ÉÖ÷xml-¶à¸ösub  xml
+		g_pCurDoc->AddObj(pSubData);// åŠ å…¥ä¸»xmlï¼Œå½¢æˆä¸»xml-å¤šä¸ªsub  xml
 		pXmlDoc = pSubData->m_pXmlDoc;
 	} while (false);
 	return pXmlDoc;
@@ -42,7 +42,7 @@ DUIRoot::DUIRoot()
 {
 	m_pParent  = NULL;
 	m_hRoot    = NULL;
-	m_pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>(L"ds_objtree");DMASSERT(m_pObjTree); 
+	m_pObjTree = g_pMainWnd->FindChildByNameT<ObjTree>("ds_objtree");DMASSERT(m_pObjTree); 
 	m_pObjXml  = g_pMainWnd->m_pDesignerXml;
 	m_bDown = false;	
 	m_pAddWnd  = NULL;
@@ -54,7 +54,7 @@ DMCode DUIRoot::InitDesignEditor(HDMTREEITEM hRootTree)
 	do 
 	{
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hRootTree);
-		if (NULL == pData||NULL == pData->m_pDoc||!pData->m_pDoc->IsValid())// ²»ÒªÊ¹ÓÃpData->IsValid()×öÅÐ¶Ï,ÒòÎª´ËÊ±DUI´°¿Ú»¹Ã»ÓÐ´´½¨
+		if (NULL == pData||NULL == pData->m_pDoc||!pData->m_pDoc->IsValid())// ä¸è¦ä½¿ç”¨pData->IsValid()åšåˆ¤æ–­,å› ä¸ºæ­¤æ—¶DUIçª—å£è¿˜æ²¡æœ‰åˆ›å»º
 		{
 			break; 
 		} 
@@ -63,26 +63,26 @@ DMCode DUIRoot::InitDesignEditor(HDMTREEITEM hRootTree)
 		{
 			break;
 		}
-		// ½âÎöË½ÓÐSkin½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü---------------
-		DMXmlNode XmlSkin = m_XmlNode.FirstChild(L"skin");
+		// è§£æžç§æœ‰SkinèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ---------------
+		DMXmlNode XmlSkin = m_XmlNode.FirstChild("skin");
 		while (XmlSkin.IsValid())
 		{
 			g_pDMApp->AddSkinPoolItem(XmlSkin);
-			XmlSkin = XmlSkin.NextSibling(L"skin");
+			XmlSkin = XmlSkin.NextSibling("skin");
 		}
 
-		// ½âÎöË½ÓÐStyle½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü--------------
-		DMXmlNode XmlStyle = m_XmlNode.FirstChild(L"style");
+		// è§£æžç§æœ‰StyleèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ--------------
+		DMXmlNode XmlStyle = m_XmlNode.FirstChild("style");
 		while (XmlStyle.IsValid())
 		{
 			g_pDMApp->AddStylePoolItem(XmlStyle);
-			XmlStyle = XmlStyle.NextSibling(L"style");
+			XmlStyle = XmlStyle.NextSibling("style");
 		}
 
-		//1. ÔÚOnAttributeFinishedÖÐÉèÖÃÁË´óÐ¡
+		//1. åœ¨OnAttributeFinishedä¸­è®¾ç½®äº†å¤§å°
 		DMBase::InitDMData(m_XmlNode);
 
-		//2.½âÎö×Ó¿Ø¼þ
+		//2.è§£æžå­æŽ§ä»¶
 		g_pCurDoc = pData->m_pDoc;
 		g_pDMApp->SetSubXmlDocCallBack(GetSubXmlDoc);
 		InitDMData(m_XmlNode.FirstChild(DUIROOT_NODE));
@@ -133,30 +133,30 @@ void DUIRoot::OnLButtonUp(UINT nFlags,CPoint pt)
 	{
 		if (m_pAddWnd)
 		{
-			if (0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUISplitLayout::GetClassName()))
+			if (0 == dm_xmlstrcmp(m_pAddWnd->V_GetClassName(),DUISplitLayout::GetClassName()))
 			{
-				// Õë¶ÔspliteÌØÊâ´¦Àí,spliteÓ¦¸ÃÔÚÍÏÀ­Íê³ÉºóÔÙÖ´ÐÐ³õÊ¼»¯
+				// é’ˆå¯¹spliteç‰¹æ®Šå¤„ç†,spliteåº”è¯¥åœ¨æ‹–æ‹‰å®ŒæˆåŽå†æ‰§è¡Œåˆå§‹åŒ–
 				DUISplitLayout* pSplit = (DUISplitLayout*)m_pAddWnd;
 				pSplit->m_iFixWid = -1;
 				pSplit->DV_UpdateChildLayout();
 			}
 			
-			if (0 == _wcsicmp(m_pAddWnd->V_GetClassName(),DUIRectTracker::GetClassName()))
+			if (0 == dm_xmlstrcmp(m_pAddWnd->V_GetClassName(),DUIRectTracker::GetClassName()))
 			{
-				// Õë¶ÔDUIRectTrackerÌØÊâ´¦Àí,×ÜÊÇÏÞÖÆÎª100*100
+				// é’ˆå¯¹DUIRectTrackerç‰¹æ®Šå¤„ç†,æ€»æ˜¯é™åˆ¶ä¸º100*100
 				DUIRectTracker* pRectTracker = (DUIRectTracker*)m_pAddWnd;
 				
 				CRect rcWnd = pRectTracker->m_rcWindow;
-				rcWnd.SetRect(rcWnd.left,rcWnd.top, rcWnd.left+100, rcWnd.top+100);// ×ÜÊÇÏÞ¶¨Îª100*100
+				rcWnd.SetRect(rcWnd.left,rcWnd.top, rcWnd.left+100, rcWnd.top+100);// æ€»æ˜¯é™å®šä¸º100*100
 				CRect rcBox = pRectTracker->CalcBoxRect(rcWnd);
 				pRectTracker->SetBoxRect(rcBox,false);
 
-				// ¸üÐÂposµ½xmlÄÚ´æÖÐ£¬¶ÔÓ¦Ô¤ÀÀ
+				// æ›´æ–°posåˆ°xmlå†…å­˜ä¸­ï¼Œå¯¹åº”é¢„è§ˆ
 				CRect rcParent = pRectTracker->DM_GetWindow(GDW_PARENT)->m_rcWindow;
 				rcWnd.OffsetRect(-rcParent.TopLeft());
-				CStringW strPos; 
-				strPos.Format(L"%d,%d,@%d,@%d",rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height());
-				pRectTracker->m_XmlNode.SetAttribute(L"pos",strPos);
+				CStringA strPos; 
+				strPos.Format("%d,%d,@%d,@%d",rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height());
+				pRectTracker->m_XmlNode.SetAttribute("pos",strPos);
 			}
 		}  
 	}
@@ -199,15 +199,15 @@ void DUIRoot::OnMouseMove(UINT nFlags,CPoint pt)
 				m_pParent->DM_Invalidate();
 			}
 		}
-		SetAttribute(L"cursor",L"ds_tool_move");
+		SetAttribute("cursor","ds_tool_move");
 	}
 	else if (SelectMode == m_DesignMod)
 	{
-		SetAttribute(L"cursor",L"arrow");
+		SetAttribute("cursor","arrow");
 	}
 	else if (AddMode == m_DesignMod)
 	{
-		SetAttribute(L"cursor",L"ds_add");
+		SetAttribute("cursor","ds_add");
 		if (m_bDown)
 		{
 			m_TrackDragPt = pt;
@@ -267,7 +267,7 @@ HDMTREEITEM DUIRoot::SelOrHoverTreeItemByDUIWnd(HDMTREEITEM hRoot,DUIWindow* pDU
 		{
 			if (hTreeItem == m_hRoot)
 			{
-				hTreeItem = m_pObjTree->GetChildItem(m_hRoot);//hoverÖ»ÔÊÐíÍ£ÁôÔÚRoot²ã,²»Í£ÔÚÖ÷´°¿Ú²ã
+				hTreeItem = m_pObjTree->GetChildItem(m_hRoot);//hoveråªå…è®¸åœç•™åœ¨Rootå±‚,ä¸åœåœ¨ä¸»çª—å£å±‚
 			}
 			m_pObjTree->HoverItem(hTreeItem,false);
 		}
@@ -283,7 +283,7 @@ bool DUIRoot::MLDownInSelMode(CPoint pt,DUIWindow* pCurSelWnd)
 	{
 		DUIWND hDUIHoverWnd = __super::HitTestPoint(pt,true);
 		DUIWindow* pHoverWnd = g_pDMApp->FindDUIWnd(hDUIHoverWnd);
-		if (pCurSelWnd == pHoverWnd||NULL == pHoverWnd)// ÏàµÈ»òÎ´ÕÒµ½·µ»Øfalse,dragframe»æÖÆËüµÄÄÚ±ß¿ò
+		if (pCurSelWnd == pHoverWnd||NULL == pHoverWnd)// ç›¸ç­‰æˆ–æœªæ‰¾åˆ°è¿”å›žfalse,dragframeç»˜åˆ¶å®ƒçš„å†…è¾¹æ¡†
 		{
 			break;
 		}
@@ -321,28 +321,28 @@ bool DUIRoot::MLDownInAddMode(CPoint pt)
 	return bRet;
 } 
 
-bool DUIRoot::IsSupportAddChild(DUIWindow* pParentWnd,CStringW strReg)
+bool DUIRoot::IsSupportAddChild(DUIWindow* pParentWnd,CStringA strReg)
 {
 	bool bRet = true;
-	CStringW strParent = pParentWnd->V_GetClassName();
+	CStringA strParent = pParentWnd->V_GetClassName();
 	do 
 	{
-		if (0 == strParent.CompareNoCase(L"TabCtrl")&&0 != strReg.CompareNoCase(L"TabPage")
-			||0 == strReg.CompareNoCase(L"TabPage")&&0 != strParent.CompareNoCase(L"TabCtrl"))
+		if (0 == strParent.CompareNoCase("TabCtrl")&&0 != strReg.CompareNoCase("TabPage")
+			||0 == strReg.CompareNoCase("TabPage")&&0 != strParent.CompareNoCase("TabCtrl"))
 		{
 			bRet = false;
 			break;
 		}
 
-		if (0 == strParent.CompareNoCase(L"ListBox")
-			||0 == strParent.CompareNoCase(L"ListBoxEx")
-			||0 == strParent.CompareNoCase(L"TreeCtrl")
-			||0 == strParent.CompareNoCase(L"TreeCtrlEx")
-			||0 == strParent.CompareNoCase(L"ListCtrlEx")
-			||0 == strParent.CompareNoCase(L"item")
-			||0 == strParent.CompareNoCase(L"treeitem")
-			||0 == strParent.CompareNoCase(L"splitlayout")
-			||0 == strParent.CompareNoCase(L"scrollwnd")
+		if (0 == strParent.CompareNoCase("ListBox")
+			||0 == strParent.CompareNoCase("ListBoxEx")
+			||0 == strParent.CompareNoCase("TreeCtrl")
+			||0 == strParent.CompareNoCase("TreeCtrlEx")
+			||0 == strParent.CompareNoCase("ListCtrlEx")
+			||0 == strParent.CompareNoCase("item")
+			||0 == strParent.CompareNoCase("treeitem")
+			||0 == strParent.CompareNoCase("splitlayout")
+			||0 == strParent.CompareNoCase("scrollwnd")
 			)
 		{
 			bRet = false;
@@ -352,19 +352,19 @@ bool DUIRoot::IsSupportAddChild(DUIWindow* pParentWnd,CStringW strReg)
 	if (false == bRet)
 	{
 		CStringW strInfo;
-		strInfo.Format(L"[%s]²»ÔÊÐí×öÎª×Ó¿Ø¼þÌí¼Óµ½[%s]ÖÐ",strReg,strParent);
+		strInfo.Format(L"[%s]ä¸å…è®¸åšä¸ºå­æŽ§ä»¶æ·»åŠ åˆ°[%s]ä¸­",strReg,strParent);
 		SetLogInfo(strInfo);
 	}
 	return bRet;
 }
 
-DUIWindow* DUIRoot::CreateAddChild(DUIWindow* pParentWnd,CStringW strReg)
+DUIWindow* DUIRoot::CreateAddChild(DUIWindow* pParentWnd,CStringA strReg)
 {
 	DUIWindow *pChild = NULL;
 	do 
 	{
 		if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pChild, strReg,DMREG_FlowLayout)))
-		{// Á÷Ê½²¼¾ÖÒ²ÊÇduiwindow,ËùÒÔÏÈÅÐ¶ÏÊÇ·ñÎªÁ÷Ê½²¼¾Ö¶ÔÏó
+		{// æµå¼å¸ƒå±€ä¹Ÿæ˜¯duiwindow,æ‰€ä»¥å…ˆåˆ¤æ–­æ˜¯å¦ä¸ºæµå¼å¸ƒå±€å¯¹è±¡
 			g_pDMApp->CreateRegObj((void**)&pChild,strReg,DMREG_Window);
 		}      
 
@@ -397,21 +397,21 @@ bool DUIRoot::InitAddChild(ObjTreeData* pParentData,DUIWindow* pWnd,CRect rcDrag
 		CRect rcMeasure;
 		pParentData->m_pDUIWnd->DV_GetChildMeasureLayout(rcMeasure);
 		m_pAddParentPt = rcMeasure.TopLeft();
-		bool bTabPage = 0 == _wcsicmp(pWnd->V_GetClassName(),L"TabPage");
+		bool bTabPage = 0 == dm_xmlstrcmp(pWnd->V_GetClassName(),"TabPage");
 		CStringW strPos = L"0,0,-0,-0"; 
 		if (false == bTabPage)
 		{
 			CPoint ptFirst = rcDrag.TopLeft() - m_pAddParentPt;
 			strPos.Format(L"%d,%d,@%d,@%d",ptFirst.x,ptFirst.y,rcDrag.Width(),rcDrag.Height());
 		}
-		XmlNode.SetAttribute(L"pos",strPos,false);
+		XmlNode.SetAttribute("pos",strPos,false);
 		DMXmlNode ChildNode = pParentData->m_pXmlNode->InsertCopyChildNode(&XmlNode);
 		pParentData->m_pDoc->m_bChange = true;
 
-		// ·ÀÖ¹¸´ÖÆµÄ×ÓnodeÖÐÓÐsub²ÎÊý
+		// é˜²æ­¢å¤åˆ¶çš„å­nodeä¸­æœ‰subå‚æ•°
 		g_pCurDoc = pParentData->m_pDoc;
 		g_pDMApp->SetSubXmlDocCallBack(GetSubXmlDoc);
-		pWnd->InitDMData(ChildNode);// Ê¹ÓÃChildNode£¬²»Ê¹ÓÃÁÙÊ±XmlNode,ÒòÎª±ØÐë±£Ö¤xmlnodeÎªpdocËùÓµÓÐ
+		pWnd->InitDMData(ChildNode);// ä½¿ç”¨ChildNodeï¼Œä¸ä½¿ç”¨ä¸´æ—¶XmlNode,å› ä¸ºå¿…é¡»ä¿è¯xmlnodeä¸ºpdocæ‰€æ‹¥æœ‰
 		g_pDMApp->SetSubXmlDocCallBack(NULL);
 
 		if (bTabPage)
@@ -443,42 +443,42 @@ DUIWindow* DUIRoot::GetAddChild()
 			break;
 		}
 
-		//1.ÅÐ¶ÏÊÇ·ñ±»ËøÁË
+		//1.åˆ¤æ–­æ˜¯å¦è¢«é”äº†
 		DM::LPTVITEMEX pTviData = m_pObjTree->GetItem(hHoverItem);
 		if (DMTVEXLock_UnLocked != pTviData->iLockValue)
 		{
-			SetLogInfo(L"¿Ø¼þ´¦ÓÚ±»Ëø¶¨×´Ì¬£¬ÎÞ·¨Ôö¼Ó×Ó¿Ø¼þ!");
+			SetLogInfo(L"æŽ§ä»¶å¤„äºŽè¢«é”å®šçŠ¶æ€ï¼Œæ— æ³•å¢žåŠ å­æŽ§ä»¶!");
 			break;
 		}
 
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hHoverItem);
 		DUIWindow* pHoverWnd = pData->m_pDUIWnd;
-		//2. ÅÐ¶Ï´°¿ÚÊÇ·ñÖ§³Ö²åÈë×Ó´°¿Ú
-		CStringW strReg = m_pParent->m_pCheckBtn->m_pDUIXmlInfo->m_strText;
+		//2. åˆ¤æ–­çª—å£æ˜¯å¦æ”¯æŒæ’å…¥å­çª—å£
+		CStringA strReg = DMW2A(m_pParent->m_pCheckBtn->m_pDUIXmlInfo->m_strText);
 		if (!IsSupportAddChild(pHoverWnd,strReg))
 		{ 
 			break;
 		}
 
-		//3. ´´½¨ÐÂ´°¿Ú
+		//3. åˆ›å»ºæ–°çª—å£
 		DUIWindow *pChild = CreateAddChild(pHoverWnd,strReg);
 		if (NULL == pChild)
 		{ 
 			break;
 		}
 
-		//4. ³õÊ¼»¯Í¨ÓÃÊôÐÔ
+		//4. åˆå§‹åŒ–é€šç”¨å±žæ€§
 		InitAddChild(pData,pChild,rcDrag);
 
-		//5.Ã¶¾Ù¼ÓÈë
+		//5.æžšä¸¾åŠ å…¥
 		m_pObjXml->EnumChildTreeItem(this,pChild,hHoverItem);
 	
-		//6.Ñ¡ÖÐ×îºóÒ»¸ö×ÓÏî,¼´ÐÂ¼ÓÈëµÄ×ÓÏî
+		//6.é€‰ä¸­æœ€åŽä¸€ä¸ªå­é¡¹,å³æ–°åŠ å…¥çš„å­é¡¹
 		m_pObjTree->SelectItem(m_pObjTree->GetChildItem(hHoverItem,false));
 
-		if (0 == strReg.CompareNoCase(L"ie"))
+		if (0 == strReg.CompareNoCase("ie"))
 		{
-			pChild->DM_SetVisible(true,true);// µ÷ÓÃÒ»´Î£¬ÈÃÑÓ³Ù¼ÓÔØµÄieÇ¿ÖÆ³õÊ¼»¯
+			pChild->DM_SetVisible(true,true);// è°ƒç”¨ä¸€æ¬¡ï¼Œè®©å»¶è¿ŸåŠ è½½çš„ieå¼ºåˆ¶åˆå§‹åŒ–
 		}
 		
 		pAdd = pChild;
@@ -486,26 +486,26 @@ DUIWindow* DUIRoot::GetAddChild()
 	return pAdd;
 }
 
-DMCode DUIRoot::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
+DMCode DUIRoot::OnAttributeFinished(LPCSTR pszAttribute,LPCSTR pszValue,bool bLoadXml,DMCode iErr)
 {
-	// DMHWndµÄÊôÐÔ£¬ÓÃÓÚÄ£ÄâÖ§³ÖHostAttrµÄSetAttribute
-	if (0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_minsize)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_maxsize)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::bool_bresize)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::bool_btranslucent)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::BYTE_alpha)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::INT_h)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::INT_s)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::INT_l)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::RECT_maxinset)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_title)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regtip)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regdraw)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::STRING_transid)
-		||0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_initsize)
+	// DMHWndçš„å±žæ€§ï¼Œç”¨äºŽæ¨¡æ‹Ÿæ”¯æŒHostAttrçš„SetAttribute
+	if (0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_minsize)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_maxsize)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::bool_bresize)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::bool_btranslucent)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::BYTE_alpha)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::INT_h)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::INT_s)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::INT_l)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::RECT_maxinset)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::STRING_title)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regtip)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::STRING_regdraw)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::STRING_transid)
+		||0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_initsize)
 		)
 	{
-		if (0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_initsize))
+		if (0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::SIZE_initsize))
 		{
 			CSize szInit;
 			dm_parsesize(pszValue,szInit);
@@ -513,7 +513,7 @@ DMCode DUIRoot::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool b
 			if (bLoadXml)
 			{
 				rcWnd.OffsetRect(m_pParent->m_rcWindow.TopLeft());
-				rcWnd.OffsetRect(100,100);//²»ÔÚ×óÉÏ½ÇÏÔÊ¾ÁË
+				rcWnd.OffsetRect(100,100);//ä¸åœ¨å·¦ä¸Šè§’æ˜¾ç¤ºäº†
 			}
 			else
 			{
@@ -527,8 +527,8 @@ DMCode DUIRoot::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool b
 			m_pParent->DM_Invalidate();
 		}
 
-		if (0 == dm_wcsicmp(pszAttribute, DMAttr::DMHWndAttr::BYTE_alpha))
-		{// ÀûÓÃDUIµÄalphaÀ´Ä£ÄâResÖÐÖ÷´°¿ÚµÄalpha
+		if (0 == dm_xmlstrcmp(pszAttribute, DMAttr::DMHWndAttr::BYTE_alpha))
+		{// åˆ©ç”¨DUIçš„alphaæ¥æ¨¡æ‹ŸResä¸­ä¸»çª—å£çš„alpha
 			m_pDUIXmlInfo->m_pStyle->SetAttribute(DMAttr::DMHWndAttr::BYTE_alpha,pszValue,bLoadXml);
 			if (!bLoadXml)
 			{

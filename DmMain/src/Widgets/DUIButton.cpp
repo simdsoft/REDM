@@ -34,16 +34,16 @@ namespace DM
 			// 设置新的alpha
 			byte byAlphaBk = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(byAlphaBk);
-			CStringW strValue;
+			CStringA strValue;
 			byte byCurAlpha = m_byCurAlpha*byAlphaBk/255;
-			strValue.Format(L"%d",byCurAlpha);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",byCurAlpha);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 
 			bRet = __super::DM_OnEraseBkgnd(pCanvas);
 
 			// 恢复原有alpha
-			strValue.Format(L"%d",byAlphaBk);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",byAlphaBk);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 		} while (false);
 		return bRet;
 	}
@@ -63,16 +63,16 @@ namespace DM
 			}
 			// 设置新的alpha
 			byte byAlphaBk = alpha;
-			CStringW strValue;
+			CStringA strValue;
 			alpha = m_byCurAlpha*byAlphaBk/255;
-			strValue.Format(L"%d",alpha);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",alpha);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 
 			__super::DM_OnPaint(pCanvas);
 
 			// 恢复原有alpha
-			strValue.Format(L"%d",byAlphaBk);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",byAlphaBk);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 
 			if (GetTickCount()-m_dwPreFrameTime>10)
 			{
@@ -116,16 +116,16 @@ namespace DM
 			// 设置新的alpha
 			byte byAlphaBk = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(byAlphaBk);
-			CStringW strValue;
+			CStringA strValue;
 			byte byCurAlpha = m_byCurAlpha*byAlphaBk/255;
-			strValue.Format(L"%d",byCurAlpha);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",byCurAlpha);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 
 			__super::DM_OnNcPaint(pCanvas);
 
 			// 恢复原有alpha
-			strValue.Format(L"%d",byAlphaBk);
-			m_pDUIXmlInfo->m_pStyle->SetAttribute(L"alpha",strValue,true);
+			strValue.Format("%d",byAlphaBk);
+			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 		} while (false);	
 	}
 
@@ -289,9 +289,9 @@ namespace DM
 		m_byCurAlpha = 0xff;
 	}
 
-	DMCode DUIButton::OnAttributeAccel(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIButton::OnAttributeAccel(LPCSTR pszValue, bool bLoadXml)
 	{
-		 CStringW strValue = pszValue;
+		 CStringA strValue = pszValue;
 		 m_accel = DUIAccel::TranslateAccelKey(strValue);
 		 if (m_accel)
 		 {

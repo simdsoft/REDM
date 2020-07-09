@@ -86,8 +86,8 @@ namespace DM
 
 		//
 		m_pDUIXmlInfo->m_bFocusable       = true;
-		m_pDUIXmlInfo->m_pStyle->SetAttribute(L"align",L"left",false);    ///Align_Left
-		m_pDUIXmlInfo->m_pStyle->SetAttribute(L"valign",L"middle",false); ///VAlign_Middle
+		m_pDUIXmlInfo->m_pStyle->SetAttribute("align","left",false);    ///Align_Left
+		m_pDUIXmlInfo->m_pStyle->SetAttribute("valign","middle",false); ///VAlign_Middle
 	}
 
 	void DUIComboBoxBase::UnInit()
@@ -297,9 +297,9 @@ namespace DM
 				m_pEdit->m_EventMgr.SetMuted(false);
 
 				// 重设位置
-				CStringW strPos;
-				strPos.Format(L"0,0,-%d,-0",szBtn.cx);
-				m_pEdit->SetAttribute(L"pos",strPos,true);
+				CStringA strPos;
+				strPos.Format("0,0,-%d,-0",szBtn.cx);
+				m_pEdit->SetAttribute("pos",strPos,true);
 				m_pEdit->SetID(CB_EDIT_ID);
 				m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 			}
@@ -498,7 +498,7 @@ namespace DM
 		}
 	}
 
-	DMCode DUIComboBoxBase::OnAttributeHideEdit(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIComboBoxBase::OnAttributeHideEdit(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -534,9 +534,9 @@ namespace DM
 						m_pEdit->m_EventMgr.SetMuted(false);
 
 						// 重设位置
-						CStringW strPos;
-						strPos.Format(L"0,0,-%d,-0",rcBtn.Width());
-						m_pEdit->SetAttribute(L"pos",strPos,true);
+						CStringA strPos;
+						strPos.Format("0,0,-%d,-0",rcBtn.Width());
+						m_pEdit->SetAttribute("pos",strPos,true);
 						m_pEdit->SetID(CB_EDIT_ID);
 						m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 					}
@@ -558,7 +558,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIComboBoxBase::OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIComboBoxBase::OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -579,7 +579,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIComboBoxBase::OnAttributeBtnSize(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIComboBoxBase::OnAttributeBtnSize(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -595,10 +595,10 @@ namespace DM
 			{
 				if (m_pEdit)
 				{
-					CStringW strPos;
+					CStringA strPos;
 					CRect rcBtn = CalcBtnRect();
-					strPos.Format(L"0,0,-%d,-0",rcBtn.Width());
-					m_pEdit->SetAttribute(L"pos",strPos,true);
+					strPos.Format("0,0,-%d,-0",rcBtn.Width());
+					m_pEdit->SetAttribute("pos",strPos,true);
 				}
 				DM_Invalidate();
 			}

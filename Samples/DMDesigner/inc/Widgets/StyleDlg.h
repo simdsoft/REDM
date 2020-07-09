@@ -35,7 +35,7 @@ public:
 	DMCode OnExpand();
 	DMCode InitAttrArray();
 	virtual void PreArrayObjRemove(const DMXmlInitAttrPtr &obj);
-	DMXmlInitAttrPtr FindByName(CStringW strName);
+	DMXmlInitAttrPtr FindByName(CStringA strName);
 
 protected: 
 	DMCode OnOK();

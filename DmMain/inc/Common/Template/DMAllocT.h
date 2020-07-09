@@ -75,7 +75,7 @@ namespace DM
 		{
 			if (m_p&&m_p != DMCastT<T*>(m_abFixedBuffer))
 			{
-				DM_DELETE_ARRAY(m_p);
+				free(m_p);
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace DM
 			//DMASSERT(m_p == NULL);
 			if (nBytes > t_nFixedBytes)
 			{
-				m_p = reinterpret_cast<T*>(new BYTE[nBytes]);/// 不使用static_cast,static_cast是显式类型转换，有可能不能转换，reinterpret_cast是低层解释
+				m_p = reinterpret_cast<T*>(malloc(nBytes));/// 不使用static_cast,static_cast是显式类型转换，有可能不能转换，reinterpret_cast是低层解释
 			}
 			else
 			{

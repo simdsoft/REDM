@@ -25,8 +25,8 @@ namespace DM
 	public://À©Õ¹½Ó¿Ú
 		DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL);
 		DMCode InitFromFrame(IDMImgFrame *pImgFrame);
-		DMCode LoadFromFile(LPCWSTR pszFileName,LPCWSTR pszType);
-		DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCWSTR pszType);
+		DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType);
+		DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType);
 
 	    DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL);
 		DMCode ResetHsl();

@@ -1,19 +1,19 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "DUIPos.h"
 
 namespace DM
 {
 	#define  POSITEM_DELTA           4
 	CStringW g_Tips[] = \
-	{// ”ÎPIT±£≥÷“ª÷¬
-		L"’˝∫≈“‘◊Û(…œ)Œ™≤Œøºµ„,∏∫∫≈“‘”“œ¬Œ™≤Œøºµ„\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:-10±Ì æ“‘”“(œ¬)±ﬂ◊Û(…œ)“∆10∏ˆœÒÀÿ", //0 
-		L"≤Œøº∏∏¥∞ø⁄÷––ƒ\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:|-10±Ì æ“‘∏∏¥∞ø⁄÷––ƒ◊Û(…œ)“∆10∏ˆœÒÀÿ",						   //1 
-		L"≤…”√∏∏¥∞ø⁄µƒ∞Ÿ∑÷±»\n∏∫∫≈±ª∫ˆ¬‘\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:%10±Ì æ∏∏¥∞ø⁄µƒ◊Û(…œ)∆œÚ”“(œ¬£©∆´“∆10%µƒŒª÷√",//2
-		L"≤Œøº«∞“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫Ω¸µƒ±ﬂ\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:[10±Ì æ«∞“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫Ω¸µƒ±ﬂ”“(œ¬)“∆10∏ˆœÒÀÿ",//3 
-		L"≤Œøºœ¬“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫Ω¸µƒ±ﬂ\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:]-10±Ì æ∫Û“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫Ω¸µƒ±ﬂ◊Û(…œ)“∆10∏ˆœÒÀÿ",//4
-		L"≤Œøº«∞“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫‘∂µƒ±ﬂ\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:[10±Ì æ«∞“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫‘∂µƒ±ﬂ”“(œ¬)“∆10∏ˆœÒÀÿ",//5
-		L"≤Œøºœ¬“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫‘∂µƒ±ﬂ\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:]-10±Ì æ∫Û“ª∏ˆ–÷µ‹¥∞ø⁄”Î◊‘º∫‘∂µƒ±ﬂ◊Û(…œ)“∆10∏ˆœÒÀÿ",//6 
-		L"‘⁄pos Ù–‘÷–∂®“Â¥∞ø⁄µƒsize\n∏∫∫≈◊Û(…œ)“∆,’˝∫≈”“(œ¬)“∆\n¿˝»Á:@100±Ì æøÌ(∏ﬂ)100œÒÀÿ",//7 
+	{// ‰∏éPIT‰øùÊåÅ‰∏ÄËá¥
+		L"Ê≠£Âè∑‰ª•Â∑¶(‰∏ä)‰∏∫ÂèÇËÄÉÁÇπ,Ë¥üÂè∑‰ª•Âè≥‰∏ã‰∏∫ÂèÇËÄÉÁÇπ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:-10Ë°®Á§∫‰ª•Âè≥(‰∏ã)ËæπÂ∑¶(‰∏ä)Áßª10‰∏™ÂÉèÁ¥†", //0 
+		L"ÂèÇËÄÉÁà∂Á™óÂè£‰∏≠ÂøÉ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:|-10Ë°®Á§∫‰ª•Áà∂Á™óÂè£‰∏≠ÂøÉÂ∑¶(‰∏ä)Áßª10‰∏™ÂÉèÁ¥†",						   //1 
+		L"ÈááÁî®Áà∂Á™óÂè£ÁöÑÁôæÂàÜÊØî\nË¥üÂè∑Ë¢´ÂøΩÁï•\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:%10Ë°®Á§∫Áà∂Á™óÂè£ÁöÑÂ∑¶(‰∏ä)Ëµ∑ÂêëÂè≥(‰∏ãÔºâÂÅèÁßª10%ÁöÑ‰ΩçÁΩÆ",//2
+		L"ÂèÇËÄÉÂâç‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøëÁöÑËæπ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:[10Ë°®Á§∫Ââç‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøëÁöÑËæπÂè≥(‰∏ã)Áßª10‰∏™ÂÉèÁ¥†",//3 
+		L"ÂèÇËÄÉ‰∏ã‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøëÁöÑËæπ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:]-10Ë°®Á§∫Âêé‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøëÁöÑËæπÂ∑¶(‰∏ä)Áßª10‰∏™ÂÉèÁ¥†",//4
+		L"ÂèÇËÄÉÂâç‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøúÁöÑËæπ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:[10Ë°®Á§∫Ââç‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøúÁöÑËæπÂè≥(‰∏ã)Áßª10‰∏™ÂÉèÁ¥†",//5
+		L"ÂèÇËÄÉ‰∏ã‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøúÁöÑËæπ\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:]-10Ë°®Á§∫Âêé‰∏Ä‰∏™ÂÖÑÂºüÁ™óÂè£‰∏éËá™Â∑±ËøúÁöÑËæπÂ∑¶(‰∏ä)Áßª10‰∏™ÂÉèÁ¥†",//6 
+		L"Âú®posÂ±ûÊÄß‰∏≠ÂÆö‰πâÁ™óÂè£ÁöÑsize\nË¥üÂè∑Â∑¶(‰∏ä)Áßª,Ê≠£Âè∑Âè≥(‰∏ã)Áßª\n‰æãÂ¶Ç:@100Ë°®Á§∫ÂÆΩ(È´ò)100ÂÉèÁ¥†",//7 
 	};
 
 	CRect PosList::GetItemRect(int iItem)
@@ -68,7 +68,7 @@ namespace DM
 		if (0 == isdigit(nChar)&&nChar!='-')
 		{
 			if (0 == GetWindowTextLength())
-			{// ÷¡…Ÿ”–“ªŒª◊÷∑˚
+			{// Ëá≥Â∞ëÊúâ‰∏Ä‰ΩçÂ≠óÁ¨¶
 				SetWindowText(L"0");
 				SetSel(MAKELONG(-1,-1));
 			}
@@ -79,7 +79,7 @@ namespace DM
 
 	LRESULT PosEdit::OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		DM_MessageBox(L"≤ª“™ π”√ ‰»Î∑® ‰»Î!,«Î«–ªªµΩ”¢Œƒƒ£ Ω");
+		DM_MessageBox(L"‰∏çË¶Å‰ΩøÁî®ËæìÂÖ•Ê≥ïËæìÂÖ•!,ËØ∑ÂàáÊç¢Âà∞Ëã±ÊñáÊ®°Âºè");
 		return 0;
 	}
 
@@ -90,12 +90,12 @@ namespace DM
 		bool bInit = false;
 		if (0 == iValue)
 		{
-			if (strValue.Left(1) == L"-" && zDelta>0)// ‘≠¿¥ «-0
+			if (strValue.Left(1) == L"-" && zDelta>0)// ÂéüÊù•ÊòØ-0
 			{
 				strValue = L"0";
 				bInit = true;
 			}
-			else if(strValue.Left(1) != L"-" && zDelta<0)// ‘≠¿¥ «0
+			else if(strValue.Left(1) != L"-" && zDelta<0)// ÂéüÊù•ÊòØ0
 			{
 				strValue = L"-0";
 				bInit = true;
@@ -129,18 +129,18 @@ namespace DM
 		
 			m_pItem   = pItem;
 			m_pLayout = pLayout;
-			m_pCbx->GetListBox()->m_EventMgr.SetMuted(true);// ¥∞ø⁄«–ªª ±£¨≤ª”∞œÏœ˚œ¢
+			m_pCbx->GetListBox()->m_EventMgr.SetMuted(true);// Á™óÂè£ÂàáÊç¢Êó∂Ôºå‰∏çÂΩ±ÂìçÊ∂àÊÅØ
 			m_pEdit->m_EventMgr.SetMuted(true);
 			
 			m_pCbx->SetCurSel(m_pItem->pit);
 			CStringW strValue = IntToString(DMABS((int)m_pItem->nPos));
-			if (m_pItem->bMinus)// ÷ß≥÷-0
+			if (m_pItem->bMinus)// ÊîØÊåÅ-0
 			{
 				strValue = strValue.Format(L"-%s",strValue);
 			}
 			m_pEdit->SetWindowText(strValue);
 			m_pCbx->GetListBox()->m_EventMgr.SetMuted(false);
-			m_pEdit->m_EventMgr.SetMuted(false);// ¥∞ø⁄«–ªª ±£¨≤ª”∞œÏœ˚œ¢
+			m_pEdit->m_EventMgr.SetMuted(false);// Á™óÂè£ÂàáÊç¢Êó∂Ôºå‰∏çÂΩ±ÂìçÊ∂àÊÅØ
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -151,12 +151,12 @@ namespace DM
 	{
 		m_pItem = NULL;
 		m_pLayout = NULL;
-		m_pCbx->GetListBox()->m_EventMgr.SetMuted(true);// ¥∞ø⁄«–ªª ±£¨≤ª”∞œÏœ˚œ¢
+		m_pCbx->GetListBox()->m_EventMgr.SetMuted(true);// Á™óÂè£ÂàáÊç¢Êó∂Ôºå‰∏çÂΩ±ÂìçÊ∂àÊÅØ
 		m_pEdit->m_EventMgr.SetMuted(true);
 		m_pCbx->SetCurSel(0);
 		m_pEdit->SetWindowText(L"0");
 		m_pCbx->GetListBox()->m_EventMgr.SetMuted(false);
-		m_pEdit->m_EventMgr.SetMuted(false);// ¥∞ø⁄«–ªª ±£¨≤ª”∞œÏœ˚œ¢
+		m_pEdit->m_EventMgr.SetMuted(false);// Á™óÂè£ÂàáÊç¢Êó∂Ôºå‰∏çÂΩ±ÂìçÊ∂àÊÅØ
 		return DM_ECODE_OK;
 	}
 
@@ -165,7 +165,7 @@ namespace DM
 		DMEventLBSelChangedArgs* pEvent = (DMEventLBSelChangedArgs*)pEvt;
 		if (-1!=pEvent->m_nNewSel)
 		{
-			m_pCbx->SetAttribute(DMAttr::DUIWindowAttr::STRING_tiptext,g_Tips[pEvent->m_nNewSel]);// …Ë÷√tips
+			m_pCbx->SetAttribute(DMAttr::DUIWindowAttr::STRING_tiptext,DMW2A(g_Tips[pEvent->m_nNewSel]));// ËÆæÁΩÆtips
 			OnItemChange();
 		}
 		return DM_ECODE_OK;
@@ -188,52 +188,52 @@ namespace DM
 			return DM_ECODE_FAIL;
 		}
 
-		// 1.¡Ÿ ±±∏∑›
+		// 1.‰∏¥Êó∂Â§á‰ªΩ
 		POS_ITEM Pos_Copy;
 		memcpy(&Pos_Copy,m_pItem,sizeof(POS_ITEM));
-		if (!pItem)// ¥´NULL±Ì æ π”√UI≥ı ºªØ,pItem÷∏œÚm_pItem◊‘…Ì,≤ªŒ™NULL±Ì æŒ™dragframe¥´»Î
+		if (!pItem)// ‰º†NULLË°®Á§∫‰ΩøÁî®UIÂàùÂßãÂåñ,pItemÊåáÂêëm_pItemËá™Ë∫´,‰∏ç‰∏∫NULLË°®Á§∫‰∏∫dragframe‰º†ÂÖ•
 		{
 			m_pItem->pit		= (PIT)m_pCbx->GetCurSel();
 			CStringW strValue   = m_pEdit->GetWindowText();
 			int iValue			= StringToInt(strValue);
-			m_pItem->bMinus		= (strValue.Left(1) == L"-");// ÷ß≥÷-0
+			m_pItem->bMinus		= (strValue.Left(1) == L"-");// ÊîØÊåÅ-0
 			m_pItem->nPos		= (float)DMABS(iValue);
 			pItem               = m_pItem;
 		}
 
-		if (pItem->pit != Pos_Copy.pit// ≤ªœ‡µ»
+		if (pItem->pit != Pos_Copy.pit// ‰∏çÁõ∏Á≠â
 			||pItem->nPos != Pos_Copy.nPos
-			||(PIT_PERCENT!=pItem->pit&&PIT_OFFSET!=pItem->pit&&pItem->bMinus != Pos_Copy.bMinus))//%ªÚ@ ±Œﬁ ”-∫≈
+			||(PIT_PERCENT!=pItem->pit&&PIT_OFFSET!=pItem->pit&&pItem->bMinus != Pos_Copy.bMinus))//%Êàñ@Êó∂Êó†ËßÜ-Âè∑
 		{
-			if (pItem != m_pItem)//≤ªŒ™NULL±Ì æŒ™dragframe¥´»Î
+			if (pItem != m_pItem)//‰∏ç‰∏∫NULLË°®Á§∫‰∏∫dragframe‰º†ÂÖ•
 			{
 				memcpy(m_pItem,pItem,sizeof(POS_ITEM));
 			}
 			
 			if (m_pLayout->m_pOwner && m_pLayout->m_pOwner->m_Node.m_pParent)
 			{
-				//2.…Ë÷√Pos
+				//2.ËÆæÁΩÆPos
 				if (DMSUCCEEDED(m_pLayout->m_pOwner->m_Node.m_pParent->DV_UpdateChildLayout()))
 				{
 					g_pMainWnd->m_pDesignerXml->m_pObjEditor->DragFrameInSelMode();
-					//3.∏¸–¬xml
-					CStringW strPos = m_pLayout->GetPosString();
+					//3.Êõ¥Êñ∞xml
+					CStringA strPos = m_pLayout->GetPosString();
 					ObjTreeDataPtr pData = (ObjTreeDataPtr)g_pMainWnd->m_pDesignerXml->m_pObjTree->GetItemData(g_pMainWnd->m_pDesignerXml->m_hObjSel);
 					if (pData)
 					{
 						pData->m_pXmlNode->SetAttribute(XML_POS,strPos);
-						pData->m_pDoc->m_bChange = (0 != strPos.CompareNoCase(m_pLayout->m_strPosValue));// ±‰ªØ∫Û∑¢œ÷∫Õ‘≠ º ˝æ›œ‡Õ¨£¨‘Ú…Ë÷√Œ™Œ¥±‰ªØ◊¥Ã¨
+						pData->m_pDoc->m_bChange = (0 != strPos.CompareNoCase(m_pLayout->m_strPosValue));// ÂèòÂåñÂêéÂèëÁé∞ÂíåÂéüÂßãÊï∞ÊçÆÁõ∏ÂêåÔºåÂàôËÆæÁΩÆ‰∏∫Êú™ÂèòÂåñÁä∂ÊÄÅ
 					}
 					if (pItem != m_pItem)
 					{
-						InitPosItem(m_pItem,m_pLayout);// ≤ªƒ‹÷±Ω”¥´pItem£¨m_pItem◊‹ «“™∫ÕLayoutπÿ¡™
+						InitPosItem(m_pItem,m_pLayout);// ‰∏çËÉΩÁõ¥Êé•‰º†pItemÔºåm_pItemÊÄªÊòØË¶ÅÂíåLayoutÂÖ≥ËÅî
 					}	
 				}
 				else
 				{
-					DM_MessageBox(L"…Ë÷√◊¯±Í ß∞‹,Ω´ªÿπˆ◊¯±Í");
+					DM_MessageBox(L"ËÆæÁΩÆÂùêÊ†áÂ§±Ë¥•,Â∞ÜÂõûÊªöÂùêÊ†á");
 					memcpy(m_pItem,&Pos_Copy,sizeof(POS_ITEM));
-					if (pItem == m_pItem)// ¥´NULL±Ì æ π”√UI≥ı ºªØ
+					if (pItem == m_pItem)// ‰º†NULLË°®Á§∫‰ΩøÁî®UIÂàùÂßãÂåñ
 					{
 						InitPosItem(m_pItem,m_pLayout);
 					}
@@ -248,8 +248,8 @@ namespace DM
 		__super::OnSize(nType,size);
 		if (m_pEdit&&m_pCbx)
 		{
-			m_pCbx->SetAttribute(XML_POS,L"0,0,@15,-0",false);
-			m_pEdit->SetAttribute(XML_POS,L"[2,0,-0,-0");
+			m_pCbx->SetAttribute(XML_POS,"0,0,@15,-0",false);
+			m_pEdit->SetAttribute(XML_POS,"[2,0,-0,-0");
 		}
 	} 
 
@@ -257,13 +257,12 @@ namespace DM
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 
-		// ¥¥Ω®“ª∏ˆcombox+edit
-		CStringW strWXml = L"<combobox clslistbox=\"poslist\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrtext=\"pbgra(F0,F0,F0,FF)\"  clrbg=\"pbgra(00,00,00,ff)\" textoffset=\"5\" bhideedit=\"1\" bfocusable=\"0\" dropheight=\"200\">"\
-			L"<subedit clrtext=\"pbgra(F0,F0,F0,FF)\" font=\"face:–¬ÀŒÃÂ,size:14,weight:100\" />"\
-			L"<sublistbox textpoint=\"5,-1\" clrbg=\"pbgra(00,00,00,ff)\" clritemtext=\"pbgra(F0,F0,F0,FF)\" bhottrack=\"1\" clritemselbg=\"pbgra(bd,bd,bd,ff)\" clritemseltext=\"pbgra(33,33,33,ff)\"/>"\
-			L"</combobox>";
+		// ÂàõÂª∫‰∏Ä‰∏™combox+edit
+		CStringA strXml = "<combobox clslistbox=\"poslist\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrtext=\"pbgra(F0,F0,F0,FF)\"  clrbg=\"pbgra(00,00,00,ff)\" textoffset=\"5\" bhideedit=\"1\" bfocusable=\"0\" dropheight=\"200\">"\
+			"<subedit clrtext=\"pbgra(F0,F0,F0,FF)\" font=\"face:Êñ∞ÂÆã‰Ωì,size:14,weight:100\" />"\
+			"<sublistbox textpoint=\"5,-1\" clrbg=\"pbgra(00,00,00,ff)\" clritemtext=\"pbgra(F0,F0,F0,FF)\" bhottrack=\"1\" clritemselbg=\"pbgra(bd,bd,bd,ff)\" clritemseltext=\"pbgra(33,33,33,ff)\"/>"\
+			"</combobox>";
 
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
 		DMXmlDocument *pDoc = new DMXmlDocument;;
 		pDoc->LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = pDoc->Root();
@@ -273,14 +272,14 @@ namespace DM
 		m_pCbx->InitDMData(EditNode);
 		m_pCbx->GetListBox()->m_EventMgr.SubscribeEvent(DMEventLBSelChangedArgs::EventID,Subscriber(&PosItem::OnSelChange, this));
 
-		strWXml = L"<posedit clrtext=\"pbgra(ff,ff,ff,ff)\" bnumber=\"1\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\" bautosel=\"1\"/>";
-		strXml = DMW2A(strWXml,CP_UTF8);
+		strXml = "<posedit clrtext=\"pbgra(ff,ff,ff,ff)\" bnumber=\"1\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\" bautosel=\"1\"/>";
+
 		DM_DELETE(pDoc);
 		pDoc = new DMXmlDocument;
 		pDoc->LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		EditNode = pDoc->Root();
 
-		g_pDMApp->CreateRegObj((void**)&m_pEdit, L"posedit",DMREG_Window);
+		g_pDMApp->CreateRegObj((void**)&m_pEdit, "posedit",DMREG_Window);
 		DM_InsertChild(m_pEdit);
 		m_pEdit->InitDMData(EditNode);
 		m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
@@ -304,7 +303,7 @@ namespace DM
 			InitItem();
 	
 			m_pLayout = dynamic_cast<Layout*>(pLayout);
-			//1.Ω‚ŒˆµΩÀƒ∏ˆ±ﬂøÚ÷–
+			//1.Ëß£ÊûêÂà∞Âõõ‰∏™ËæπÊ°Ü‰∏≠
 			m_pItem[0]->InitPosItem(&m_pLayout->m_Left,m_pLayout);
 			m_pItem[1]->InitPosItem(&m_pLayout->m_Top,m_pLayout);
 			m_pItem[2]->InitPosItem(&m_pLayout->m_Right,m_pLayout);
@@ -379,11 +378,11 @@ namespace DM
 			{
 				break;
 			}   
-			CStringW strAttr;
+			CStringA strAttr;
 			int iLeft = 0;
 			for (int i=0;i<4;i++)
 			{
-				strAttr.Format(L"%d,0,@%d,-0",iLeft,iItemWid);
+				strAttr.Format("%d,0,@%d,-0",iLeft,iItemWid);
 				m_pItem[i]->SetAttribute(XML_POS,strAttr,false);
 				iLeft += iItemWid;
 				iLeft += POSITEM_DELTA;
@@ -402,15 +401,15 @@ namespace DM
 			for (int i=0;i<4;i++)
 			{
 				if (m_pItem[i]->m_pCbx&&0 == m_pItem[i]->m_pCbx->m_pListBox->GetCount())
-				{// µ⁄“ª¥Œ≥ı ºªØPOSFLAG,∫ÕPIT±£≥÷“ª÷¬
-					CStringW 
-						strAdd = POSFLAG_NULL;			m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_REFCENTER;		m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_PERCENT;		m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_REFPREV_NEAR;	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_REFNEXT_NEAR;	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_REFPREV_FAR;	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
-					strAdd = POSFLAG_REFNEXT_FAR;	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+				{// Á¨¨‰∏ÄÊ¨°ÂàùÂßãÂåñPOSFLAG,ÂíåPIT‰øùÊåÅ‰∏ÄËá¥
+					CStringW strAdd = _TEXT(POSFLAG_NULL);			
+					m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_REFCENTER);		m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_PERCENT);		m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_REFPREV_NEAR);	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_REFNEXT_NEAR);	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_REFPREV_FAR);	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
+					strAdd = _TEXT(POSFLAG_REFNEXT_FAR);	m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
 					if (i>1)
 					{
 						strAdd = POSFLAG_DEFSIZE;m_pItem[i]->m_pCbx->m_pListBox->AddString(strAdd);
@@ -426,14 +425,13 @@ namespace DM
 	DMCode DUIPos::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringW strWXml = L"<positem skin=\"ds_attreditframe\" />";
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
+		CStringA strXml = "<positem skin=\"ds_attreditframe\" />";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode ItemNode = doc.Root();
 		for (int i=0;i<4;i++)
 		{
-			g_pDMApp->CreateRegObj((void**)&m_pItem[i], L"positem",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pItem[i], "positem",DMREG_Window);
 			if (m_pItem[i])
 			{
 				DM_InsertChild(m_pItem[i]);

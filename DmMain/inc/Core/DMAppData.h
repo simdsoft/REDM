@@ -36,10 +36,10 @@ namespace DMAttr
 	class DMGlobalAttr
 	{
 	public:
-		static wchar_t* XMLNODE_global;                              ///< 全局xml指定的默认NODE名，示例:..global font="face:仿宋,size:14,weight:100"..(..代表尖括号)
-		static wchar_t* XMLATTR_font;                                ///< 全局xml的默认字体属性，如果不设置，内置默认字体为宋体，字高14，其余属性和DEFAULT_GUI_FONT一致，示例:font="face:宋体,size:15"
-		static wchar_t* XMLNODE_skin;                                ///< 全局xml指定全局皮肤NODE名，支持多份,示例:..skin..(..代表尖括号)
-		static wchar_t* XMLNODE_style;                               ///< 全局xml指定全局属性NODE名，支持多份,示例:..style..(..代表尖括号)
+		static char* XMLNODE_global;                              ///< 全局xml指定的默认NODE名，示例:..global font="face:仿宋,size:14,weight:100"..(..代表尖括号)
+		static char* XMLATTR_font;                                ///< 全局xml的默认字体属性，如果不设置，内置默认字体为宋体，字高14，其余属性和DEFAULT_GUI_FONT一致，示例:font="face:宋体,size:15"
+		static char* XMLNODE_skin;                                ///< 全局xml指定全局皮肤NODE名，支持多份,示例:..skin..(..代表尖括号)
+		static char* XMLNODE_style;                               ///< 全局xml指定全局属性NODE名，支持多份,示例:..style..(..代表尖括号)
 	};
 	DMAttrValueInit(DMGlobalAttr,XMLNODE_global)DMAttrValueInit(DMGlobalAttr,XMLATTR_font)DMAttrValueInit(DMGlobalAttr,XMLNODE_skin)DMAttrValueInit(DMGlobalAttr,XMLNODE_style)
 }
@@ -70,18 +70,18 @@ namespace DM
 		DMAppData(HINSTANCE hInst = GetModuleHandle(NULL));
 		virtual~DMAppData();
 
-		DMCode InitGlobal(LPCWSTR lpszXmlId);
+		DMCode InitGlobal(LPCSTR lpszXmlId);
 		DMCode Run(HWND hWnd);
 		DMCode IsRun(HWND hWnd);
 		//---------------------------------------------------
 		// Function Des: 注册类
 		//---------------------------------------------------
 		DMCode Register(IDMReg &RegObj, bool bReplace=false);
-		DMCode CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType);
-		DMCode UnRegister(LPCWSTR lpszClassName,int RegType);
-		DMCode SetDefRegObj(LPCWSTR lpszClassName,int RegType); 
+		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
+		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
+		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 		DMCode GetDefRegObj(void** ppObj,int RegType);
-		DMCode GetDefRegObj(CStringW &szName,int RegType);
+		DMCode GetDefRegObj(CStringA &szName,int RegType);
 
 		//---------------------------------------------------
 		// Function Des: 注册插件
@@ -96,12 +96,12 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 解析资源Res
 		//---------------------------------------------------
-		DMCode LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName);
+		DMCode LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName);
 
 		//---------------------------------------------------
 		// Function Des: 内部辅助
 		//---------------------------------------------------
-		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCWSTR lpszType,LPCWSTR lpszResName);	
+		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName);	
 		bool   IsNeedUpdateSkin(IDMSkinPtr pSkin,int type=DMREG_Skin);  ///< 当前skin指针是否需要更新
 		DMCode ClearUpdateSkinArray();									///< 清空需更新的skin列表 
 

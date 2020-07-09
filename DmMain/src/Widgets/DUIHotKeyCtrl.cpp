@@ -14,13 +14,14 @@ namespace DM
 		m_clrCaret           = PBGRA(0,0,0,0xff);
 		m_iCaretAniCount     = 6;
 		m_pCaret             = NULL;
-		SetAttribute(L"align",L"left",false);
+		SetAttribute("align","left",false);
 	}
 
 	void DUIHotKeyCtrl::SetHotKey(WORD wVirtualKeyCode, WORD wModifiers)
 	{
 		m_wVK = wVirtualKeyCode;
 		m_wModifier = wModifiers;
+		m_strHotkeyText = DMA2W(FormatHotkey());
 		UpdateCaret();
 		DM_Invalidate();
 	}
@@ -106,7 +107,6 @@ namespace DM
 		CRect rcText;
 		DV_GetClientRect(&rcText);
 		
-		CStringW strText = FormatHotkey();
 		UINT ulAlgin = 0;
 		m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlgin);
 		if (ulAlgin&DT_CENTER)
@@ -122,7 +122,7 @@ namespace DM
 		{
 			rcText.OffsetRect(CARET_OFFSET,0);
 		}
-		DV_DrawText(pCanvas, strText, strText.GetLength(),rcText, ulAlgin|DT_VCENTER|DT_SINGLELINE);
+		DV_DrawText(pCanvas, m_strHotkeyText, m_strHotkeyText.GetLength(),rcText, ulAlgin|DT_VCENTER|DT_SINGLELINE);
 		DV_PopDrawEnviron(pCanvas, DrawEnviron);
 	}
 
@@ -136,7 +136,7 @@ namespace DM
 				m_wVK = 0;
 				m_wModifier = m_wInvalidModifiers;
 			}
-			CStringW strKey = DUIAccel::GetKeyName(nChar);
+			CStringA strKey = DUIAccel::GetKeyName(nChar);
 			if (!strKey.IsEmpty())///< 有效键值
 			{
 				m_wVK = nChar;
@@ -224,8 +224,8 @@ namespace DM
 			m_pCaret->SetAniCount(m_iCaretAniCount);
 		}
 		DM_InsertChild(m_pCaret);
-		CStringW strValue = L"0,0,@0,@0";
-		m_pCaret->SetAttribute(L"pos",strValue,true);
+		LPCSTR strValue = "0,0,@0,@0";
+		m_pCaret->SetAttribute("pos",strValue,true);
 		m_pCaret->DM_SetVisible(false,false);
 		return iErr;
 	}
@@ -274,12 +274,14 @@ namespace DM
 		{
 			m_wModifier = m_wInvalidModifiers;
 		}
+
+		m_strHotkeyText = DMA2W(FormatHotkey());
 	}
 
 	void DUIHotKeyCtrl::UpdateCaret()
 	{
 		// 计算文本大小
-		CStringW strText = FormatHotkey();
+		CStringW strText = m_strHotkeyText;
 		CSize szFont;
 		IDMCanvas *pCanvas = DM_GetCanvas(m_rcWindow,DMOLEDC_NODRAW);
 		DUIDrawEnviron DrawEnviron;
@@ -315,7 +317,7 @@ namespace DM
 		DM_ReleaseCanvas(pCanvas);
 	}
 
-	DMCode DUIHotKeyCtrl::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIHotKeyCtrl::OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
@@ -329,7 +331,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIHotKeyCtrl::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIHotKeyCtrl::OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{

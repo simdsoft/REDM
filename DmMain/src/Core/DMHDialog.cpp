@@ -20,7 +20,7 @@ namespace DM
 		m_nRetCode = -1;
 	}
 
-	INT_PTR DMHDialog::DoModal(LPCWSTR lpszXmlId, HWND hWndParent/*=NULL*/, bool bShadow/*=false*/, DM::CRect rect/* = NULL*/)
+	INT_PTR DMHDialog::DoModal(LPCSTR lpszXmlId, HWND hWndParent/*=NULL*/, bool bShadow/*=false*/, DM::CRect rect/* = NULL*/)
 	{
 		BOOL bEnableParent = FALSE;
 		if(NULL == hWndParent)
@@ -33,7 +33,7 @@ namespace DM
 		}
 
 		if(DM_CreateWindow(lpszXmlId, rect.left,rect.top,rect.Width(),rect.Height(), hWndParent, bShadow ? NWSDS_DWMSHADOW : NWSDS_NULL))
-		{
+		{	
 			GetClientRect(rect);
 			if (!rect.IsRectEmpty())
 				CenterWindow();
