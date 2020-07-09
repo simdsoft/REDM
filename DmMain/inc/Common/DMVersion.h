@@ -12,8 +12,8 @@
 #pragma once
 #define VER_MAJOR		1
 #define VER_MINOR		0
-#define VER_SLAVE		0
-#define VER_BUILD		259
+#define VER_SLAVE		2
+#define VER_BUILD		260
 
 #define PRODUCTNAME     "DMMain"
 
