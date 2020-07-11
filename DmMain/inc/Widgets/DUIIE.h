@@ -198,7 +198,7 @@ namespace DM
 
 		/// @brief 获得当前页面
 		/// @param[in]		pszURL		接收当前url的字符串缓冲区
-		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
+		/// @param[in]		nMaxLen		字符串缓冲区的最大长度, 不包括0结束符
 		/// @return HRESULT，失败为S_FALSE
 		HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen);
 		CStringW GetUrl();

@@ -757,23 +757,21 @@ namespace DM
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
-			{
 				break;
-			}
+
 			BSTR _bsURL = NULL;
 			hr = pWeb->get_LocationURL(&_bsURL);
 			if (!SUCCEEDED(hr) || _bsURL == NULL)
 				break;
-			CStringA strUrlA =_com_util::ConvertBSTRToString(_bsURL) ;
-			CStringW strUrlW = DMA2W(strUrlA, CP_UTF8);
-			if (nMaxLen < strUrlW.GetLength())
-			{
-				break;
-			}
-			ZeroMemory(pszUrl, nMaxLen*sizeof(wchar_t));
-			memcpy(pszUrl, strUrlW, strUrlW.GetLength()*sizeof(wchar_t));
 
-			hr = S_OK;
+			UINT maxLenInbytes = nMaxLen * sizeof(wchar_t);
+			UINT bytesLen = ::SysStringByteLen(_bsURL);
+
+			if (maxLenInbytes >= (bytesLen)) {
+				memcpy(pszUrl, _bsURL, bytesLen);
+				hr = S_OK;
+			}
+			::SysFreeString(_bsURL);
 		} while (false);
 		return hr;
 	}
@@ -785,15 +783,14 @@ namespace DM
 		{
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
-			{
 				break;
-			}
+
 			BSTR _bsURL = NULL;
 			HRESULT hr = pWeb->get_LocationURL(&_bsURL);
 			if (!SUCCEEDED(hr) || _bsURL == NULL)
 				break;
-			CStringA strUrlA =_com_util::ConvertBSTRToString(_bsURL) ;
-			strUrl = DMA2W(strUrlA, CP_UTF8);
+			strUrl.Append(_bsURL, ::SysStringLen(_bsURL));
+			::SysFreeString(_bsURL);
 		} while (false);
 		return strUrl;
 	}
@@ -1131,12 +1128,10 @@ namespace DM
 
 			if (strResult != NULL && _varErr.vt == VT_BSTR)
 			{
-				CStringA strResultA =_com_util::ConvertBSTRToString(_varErr.bstrVal) ;
-				CStringW strResultW = DMA2W(strResultA, CP_UTF8);
-				if (nMaxLen > strResultW.GetLength())
+				if (nMaxLen > ::SysStringLen(_varErr.bstrVal))
 				{
 					ZeroMemory(strResult, nMaxLen*sizeof(wchar_t));
-					memcpy(strResult, strResultW, strResultW.GetLength()*sizeof(wchar_t));
+					memcpy(strResult, _varErr.bstrVal, ::SysStringByteLen(_varErr.bstrVal));
 				}
 			}
 		} while (false);
