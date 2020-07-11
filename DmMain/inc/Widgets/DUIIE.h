@@ -198,7 +198,7 @@ namespace DM
 
 		/// @brief 获得当前页面
 		/// @param[in]		pszURL		接收当前url的字符串缓冲区
-		/// @param[in]		nMaxLen		字符串缓冲区的最大长度
+		/// @param[in]		nMaxLen		字符串缓冲区的最大长度, 需要为L'\0'预留空间
 		/// @return HRESULT，失败为S_FALSE
 		HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen);
 		CStringW GetUrl();
@@ -261,7 +261,7 @@ namespace DM
 		/// @param[in]		 strFun			指定要脚本执行的函数名称
 		/// @param[in]		 vecParams		给定要脚本执行的函数的参数列表
 		/// @param[out]		 strResult		返回脚本函数执行的结果
-		/// @param[in]		 nMaxLen		返回脚本函数执行的结果缓冲区的最大长度
+		/// @param[in]		 nMaxLen		返回脚本函数执行的结果缓冲区的最大长度, 需要为L'\0'预留空间
 		/// @return HRESULT，失败为E_FAIL
 		HRESULT ExecuteScriptFuntion( 
 			LPCWSTR pszFun, 
