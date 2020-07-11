@@ -764,11 +764,10 @@ namespace DM
 			if (!SUCCEEDED(hr) || _bsURL == NULL)
 				break;
 
-			UINT maxLenInbytes = nMaxLen * sizeof(wchar_t);
-			UINT bytesLen = ::SysStringByteLen(_bsURL);
-
-			if (maxLenInbytes >= (bytesLen)) {
-				memcpy(pszUrl, _bsURL, bytesLen);
+			UINT cch = ::SysStringLen(_bsURL);
+			if (nMaxLen > cch) {
+				memcpy(pszUrl, _bsURL, cch * sizeof(wchar_t));
+				pszUrl[cch] = L'\0';
 				hr = S_OK;
 			}
 			::SysFreeString(_bsURL);
@@ -1128,10 +1127,11 @@ namespace DM
 
 			if (strResult != NULL && _varErr.vt == VT_BSTR)
 			{
-				if (nMaxLen > ::SysStringLen(_varErr.bstrVal))
+				int cch = ::SysStringLen(_varErr.bstrVal);
+				if (nMaxLen > cch)
 				{
-					ZeroMemory(strResult, nMaxLen*sizeof(wchar_t));
-					memcpy(strResult, _varErr.bstrVal, ::SysStringByteLen(_varErr.bstrVal));
+					memcpy(strResult, _varErr.bstrVal, cch * sizeof(wchar_t));
+					strResult[cch] = L'\0';
 				}
 			}
 		} while (false);
