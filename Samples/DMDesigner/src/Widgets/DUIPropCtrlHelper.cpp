@@ -733,7 +733,7 @@ namespace DM
 			}
 
 			// 增加一个显示值的edit
-			CStringA strXml = "<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:新宋体,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
+			LiteralString strXml = "<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:新宋体,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -1107,7 +1107,7 @@ namespace DM
 				break;
 			} 
 
-			CStringA strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -1253,7 +1253,7 @@ namespace DM
 				break;
 			} 
 
-			CStringA strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -1385,7 +1385,7 @@ namespace DM
 				break;
 			} 
 
-			CStringA strXml = "<duisize bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duisize bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -1524,7 +1524,7 @@ namespace DM
 			}
 
 			// 创建小按钮
-			CStringA strXml = "<button skin=\"ds_custombutton\" text=\"...\"/>";
+			LiteralString strXml = "<button skin=\"ds_custombutton\" text=\"...\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -1712,7 +1712,7 @@ namespace DM
 				break;
 			} 
 
-			CStringA strXml = "<hotkey bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<hotkey bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());

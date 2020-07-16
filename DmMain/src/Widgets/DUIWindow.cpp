@@ -794,10 +794,12 @@ namespace DM
 
 	CStringW DUIWindow::DV_GetTransText(CStringW strSrc)
 	{
+#if !defined(DM_EXCLUDE_MUI)
 		if (m_pContainer)
 		{
 			return g_pDMApp->GetTrans(strSrc, m_pContainer->OnGetTransId());;
 		}
+#endif
 		return strSrc;
 	}
 

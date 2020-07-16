@@ -282,7 +282,7 @@ namespace DM
 	DMCode DUIRect::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringA strXml = "<edit textalign=\"center\" bautosel=\"1\"/>";
+		LiteralString strXml = "<edit textalign=\"center\" bautosel=\"1\"/>";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();

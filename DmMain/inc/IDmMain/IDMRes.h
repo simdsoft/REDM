@@ -60,7 +60,7 @@ namespace DM
 		/// @return DM_ECODE_OK为成功
 		virtual DMCode GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&, PULONG lpULSize, LPCSTR lpszThemeName = NULL) = 0;
 
-		DMCode ReadFileBuf(LPCWSTR lpszFilePath, DMBufT<byte>&, PULONG lpULSize);
+		static DMCode ReadFileBuf(LPCWSTR lpszFilePath, DMBufT<byte>&, PULONG lpULSize);
 
 		/// -------------------------------------------------
 		/// @brief 加载主题包

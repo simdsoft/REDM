@@ -210,8 +210,8 @@ namespace DM
 			}
 
 			//2.ÅÐ¶ÏskinµÄidÊÇ·ñÎª¿Õ
-			CStringA strId = XmlNode.Attribute("id");strId.MakeLower();
-			if (strId.IsEmpty())
+			LPCSTR strId = XmlNode.Attribute("id");
+			if (!*strId)
 			{
 				CStringA szInfo; 
 				XmlNode.GetXmlContent(szInfo);

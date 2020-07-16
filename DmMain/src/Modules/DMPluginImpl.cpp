@@ -11,7 +11,9 @@
 #include "DMStyleImpl.h"
 #include "DMLayoutImpl.h"
 #include "DMTooltipImpl.h"
+#if !defined(DM_EXCLUDE_MUI)
 #include "DMTransImpl.h"
+#endif
 #include "DMTaskRunnerImpl.h"
 
 #include "DUIButton.h"
@@ -25,11 +27,14 @@
 #include "DUILabel.h"
 #include "DUILink.h"
 #include "DUIComboBox.h"
-#include "DUIActiveX.h"
 #include "DUIGif.h"
 #include "DUIPngGif.h"
+#if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIFlash.h"
+#endif
+#if !defined(DM_EXCLUDE_IE)
 #include "DUIIE.h"
+#endif
 #include "DUIHeaderCtrl.h"
 #include "DUIListCtrlEx.h"
 #include "DUIGroup.h"
@@ -117,10 +122,12 @@ namespace DM
 		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMTooltipImpl失败!");
 		iErr = g_pDMApp->SetDefRegObj(DMTooltipImpl::GetClassName(),DMTooltipImpl::GetClassType());
 
+#if !defined(DM_EXCLUDE_MUI)
 		// 内置Trans ---------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTransImpl>(),true);
 		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMTransImpl失败!");
 		iErr = g_pDMApp->SetDefRegObj(DMTransImpl::GetClassName(),DMTransImpl::GetClassType());
+#endif
 
 		// 内置TaskRunner-----------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTaskRunnerImpl>(),true);
@@ -147,9 +154,13 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGif>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIPngGif>(),true);
 #if !defined(_WIN64)// flash暂不支持X64,后续调整下
+#if !defined(DM_EXCLUDE_ACTIVEX)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIFlash>(),true);
 #endif
+#endif
+#if !defined(DM_EXCLUDE_IE)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIIE>(),true);
+#endif
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIHeaderCtrl>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIListCtrlEx>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGroup>(),true);

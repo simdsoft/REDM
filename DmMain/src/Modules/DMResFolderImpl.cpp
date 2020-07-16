@@ -387,7 +387,7 @@ namespace DM
 				while (XmlFileNode.IsValid())
 				{
 					LPCSTR lpszName = XmlFileNode.Attribute("name");
-					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"), -1, CP_UTF8);
+					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"));
 					wchar_t szPath[MAX_PATH] = {0};
 					if (0 != PathCombineW(szPath, m_strDir, lpszFilePath))
 					{
@@ -464,7 +464,7 @@ namespace DM
 				while (XmlFileNode.IsValid())
 				{
 					LPCSTR lpszName = XmlFileNode.Attribute("name");
-					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"), -1, CP_UTF8);
+					CStringW lpszFilePath = DMCA2W(XmlFileNode.Attribute("path"));
 					if (!lpszFilePath.IsEmpty())
 					{
 						wchar_t szPath[MAX_PATH] = {0};

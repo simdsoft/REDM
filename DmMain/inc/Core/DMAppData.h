@@ -119,7 +119,9 @@ namespace DM
 	public:
 		DMLazyT<DMRegMgr>			m_RegMgr;									///< 注册类管理
 		DMLazyT<DMPluginsTool>		m_PluginsTool;								///< 注册Plugin与Plugin-dll管理
+#if !defined(DM_EXCLUDE_SPY)
 		DMLazyT<DMSpyTool>          m_SpyTool;                                  ///< 辅助Spy工具
+#endif
 		
 	public:// DUI窗口辅助
 		DMLazyT<DUIWndPool>			m_DUIWndPool;                               ///< DUIWindow-句柄的映射关系管理池

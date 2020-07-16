@@ -1,4 +1,6 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIActiveX.h"
 
 namespace DM
@@ -216,3 +218,4 @@ namespace DM
 	}
 }// namespace DM
 
+#endif

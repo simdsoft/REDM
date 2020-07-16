@@ -69,7 +69,7 @@ namespace DM
 			}
 
 			CStringA strName = XmlNode.Attribute("name");strName.MakeLower();
-			if (false == GetObjByKey(strName, pItem))
+			if (!GetObjByKey(strName, pItem))
 			{
 				pItem = new DMStylePoolItem(strName,XmlNode);
 				AddKey(strName,pItem);

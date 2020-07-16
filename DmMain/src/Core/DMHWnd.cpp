@@ -35,8 +35,9 @@ namespace DM
 		MESSAGE_RANGE_HANDLER_EX(WM_IME_STARTCOMPOSITION,WM_IME_KEYLAST,OnKeyEvent)
 		MESSAGE_HANDLER_EX(WM_IME_CHAR, OnKeyEvent)
 		MESSAGE_HANDLER_EX(WM_ACTIVATEAPP,OnHostMsg)
-
+#if !defined(DM_EXCLUDE_SPY)
 		MESSAGE_HANDLER_EX(WM_DMSPY,OnSpy)
+#endif
 	END_MSG_MAP()
 
 	BEGIN_EVENT_MAP(DMHWnd)
@@ -1253,6 +1254,7 @@ namespace DM
 		return m_pHWndXmlInfo->m_strTransId;
 	}
 
+#if !defined(DM_EXCLUDE_SPY)
 	//---------------------------------------------------
 	// Function Des: spy++²¿·Ö
 	LRESULT DMHWnd::OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -1263,6 +1265,7 @@ namespace DM
 		}
 		return g_pDMSpyTool->OnSpy(uMsg, wParam, lParam);
 	}
+#endif
 
 	DMCode DMHWnd::DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect)
 	{

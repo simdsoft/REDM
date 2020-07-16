@@ -1,7 +1,9 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_IE)
+
 #include "DUIIE.h"
 #include <mshtmlc.h>
-
 
 namespace DM
 {
@@ -1227,3 +1229,5 @@ namespace DM
 	}
 
 }//namespace DM
+
+#endif

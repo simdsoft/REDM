@@ -263,16 +263,15 @@ namespace DM
 	DMCode DUIPAddressCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringW strWXml = L"<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
+		LiteralString strXml = "<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
-		CStringA strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
-		CStringA strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
-		CStringA strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
-		CStringA strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
-		CStringA strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
+		LPCSTR strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
+		LPCSTR strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
+		LPCSTR strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
+		LPCSTR strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
+		LPCSTR strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
 		for (int i=0;i<4;i++)
 		{
 			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], DUINAME_IPEdit,DMREG_Window);
@@ -282,23 +281,23 @@ namespace DM
 				m_pEdit[i]->AddRef();
 				m_pEdit[i]->InitDMData(EditNode);
 				m_pEdit[i]->SetLimitText(3);
-				if (!strTextFont.IsEmpty())
+				if (*strTextFont)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::FONT_font,strTextFont,false);
 				}
-				if (!strTextClr.IsEmpty())
+				if (*strTextClr)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,strTextClr,false);
 				}
-				if (!strCaretClr.IsEmpty())
+				if (*strCaretClr)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrcaret,strCaretClr,false);
 				}
-				if (!strCaretAniCount.IsEmpty())
+				if (*strCaretAniCount)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::INI_caretanimatecount,strCaretAniCount,false);
 				}
-				if (!strAlign.IsEmpty())
+				if (*strAlign)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::OPTION_align,strAlign,false);
 				}

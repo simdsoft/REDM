@@ -1,4 +1,7 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_ACTIVEX)
+
 #include "DUIFlash.h"
 
 namespace DM
@@ -46,9 +49,6 @@ namespace DM
 				}
 				else// 本地资源包,使用内存方式播放
 				{
-					// ULONG ulSize = 0;
-					// pRes->GetItemSize(strType,strResName,ulSize);
-
 					DMBufT<byte> pBuf;
 					ULONG ulSize = 0;
 					if (DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
@@ -57,12 +57,9 @@ namespace DM
 					}
 					else
 					{
-						DWORD dwSize = GetFileSizeW((LPCWSTR)m_strUrl);
 						DMBufT<byte> pBuf;
-						pBuf.Allocate(dwSize);
-						DWORD dwRead;
-						GetFileBufW((LPCWSTR)m_strUrl,(void**)&pBuf,dwSize,dwRead);
-						if (pBuf && dwSize)
+						DWORD dwSize = 0;
+						if (DMSUCCEEDED(IDMRes::ReadFileBuf(m_strUrl, pBuf, &dwSize)))
 						{
 							Play(pBuf, dwSize);
 						}
@@ -236,3 +233,5 @@ namespace DM
 		return iErr;
 	}
 }//namespace DM
+
+#endif

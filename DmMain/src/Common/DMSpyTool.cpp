@@ -1,4 +1,6 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_SPY)
 #include "DMSpyTool.h"
 
 namespace DM
@@ -356,3 +358,5 @@ namespace DM
 		return true;
 	}
 }//namespace DM
+
+#endif

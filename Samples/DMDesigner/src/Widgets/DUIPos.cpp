@@ -258,7 +258,7 @@ namespace DM
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 
 		// 创建一个combox+edit
-		CStringA strXml = "<combobox clslistbox=\"poslist\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrtext=\"pbgra(F0,F0,F0,FF)\"  clrbg=\"pbgra(00,00,00,ff)\" textoffset=\"5\" bhideedit=\"1\" bfocusable=\"0\" dropheight=\"200\">"\
+		LiteralString strXml = "<combobox clslistbox=\"poslist\" clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrtext=\"pbgra(F0,F0,F0,FF)\"  clrbg=\"pbgra(00,00,00,ff)\" textoffset=\"5\" bhideedit=\"1\" bfocusable=\"0\" dropheight=\"200\">"\
 			"<subedit clrtext=\"pbgra(F0,F0,F0,FF)\" font=\"face:新宋体,size:14,weight:100\" />"\
 			"<sublistbox textpoint=\"5,-1\" clrbg=\"pbgra(00,00,00,ff)\" clritemtext=\"pbgra(F0,F0,F0,FF)\" bhottrack=\"1\" clritemselbg=\"pbgra(bd,bd,bd,ff)\" clritemseltext=\"pbgra(33,33,33,ff)\"/>"\
 			"</combobox>";
@@ -425,7 +425,7 @@ namespace DM
 	DMCode DUIPos::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringA strXml = "<positem skin=\"ds_attreditframe\" />";
+		LiteralString strXml = "<positem skin=\"ds_attreditframe\" />";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode ItemNode = doc.Root();

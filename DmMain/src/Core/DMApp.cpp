@@ -337,6 +337,9 @@ namespace DM
 
 	CStringW DMApp::GetTrans(CStringW strSrc,CStringW strNodeName,CStringW strLanguageName)
 	{
+#if !defined(DM_EXCLUDE_MUI)
 		return g_pDMTrans->GetTrans(strSrc,strNodeName,strLanguageName);
+#endif
+		return strSrc;
 	}
 }//namespace DM

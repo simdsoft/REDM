@@ -1739,6 +1739,28 @@ namespace DM
     };
 	#pragma warning(pop)
 
+    // The literal string view
+    class LiteralString {
+    public:
+        template<int size>
+        LiteralString(const char(&str)[size])
+        {
+            _str = str;
+            _len = size - 1;
+        }
+        template<int size>
+        void operator=(const char(&str)[size]) {
+            _str = str;
+            _len = size - 1;
+        }
+
+        operator const char*const () const { return _str; }
+        int GetLength() const { return _len; }
+    private:
+        const char* _str;
+        int _len;
+    };
+
 }//end of namespace
 
 namespace ntcvt {
