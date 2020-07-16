@@ -17,7 +17,7 @@
 
 class DUIRealWnd:public IDUIRealWnd
 {
-	DMDECLARE_CLASS_NAME(DUIWindow,L"realwnd",DMREG_Window);
+	DMDECLARE_CLASS_NAME(DUIWindow,"realwnd",DMREG_Window);
 
 public:
 	 HWND OnCreateRealWnd(LPCWSTR atom,HWND hWndParent);

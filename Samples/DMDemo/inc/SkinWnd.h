@@ -45,7 +45,7 @@ protected:
 
 public:
 	CMainWnd*               m_pMainWnd;
-	wchar_t					m_szCurThemes[100];
+	char					m_szCurThemes[100];
 	DUISliderCtrl*          m_pH;
 	DUISliderCtrl*          m_pS;
 	DUISliderCtrl*          m_pL;
