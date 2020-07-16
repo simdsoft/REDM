@@ -965,7 +965,7 @@ namespace DM
 			{
 				if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_text))
 				{
-					pItem->strText = DMCA2W(Attr.GetValue(), -1, CP_UTF8);
+					pItem->strText = DMCA2W(Attr.GetValue());
 				}
 				else if (0 == dm_xmlstrcmp(lpszName, DMAttr::DUITreeCtrlAttr::ITEM_bcollapsed))
 				{

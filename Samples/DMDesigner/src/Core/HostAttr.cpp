@@ -366,7 +366,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 	XmlAttribute = XmlNode.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{
-		CStringA strName = XmlAttribute.GetName();
+		LPCSTR strName = XmlAttribute.GetName();
 		CStringA strValue = XmlAttribute.GetValue();
 		DMXmlInitAttrPtr pInitAttr = FindAttrByName(strName);
 		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
@@ -374,7 +374,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 		{
 			IPropPtr pPropTemp = m_pPropFrame->AddInitAttrProperty(pInitAttr,pProp,strValue);
 			pInitAttr->m_bUse = true;// 初始化过的，不会在expand窗口中出现
-			if (0 == strName.CompareNoCase(DMAttr::DMHWndAttr::SIZE_initsize))
+			if (0 == dm_xmlstrcmp(strName, DMAttr::DMHWndAttr::SIZE_initsize))
 			{
 				m_pInitSize = dynamic_cast<PropSize*>(pPropTemp);
 			}

@@ -313,10 +313,10 @@ DMCode StyleDlg::OnOK()
 			DMXmlAttribute XmlAttribute = m_StyleNode.FirstAttribute();
 			while (XmlAttribute.IsValid())
 			{
-				CStringA strName = XmlAttribute.GetName();
-				CStringA strValue = XmlAttribute.GetValue();
-				CStringA strOldValue = pNode->Attribute(strName);
-				if (0 != strValue.CompareNoCase(strOldValue))
+				LPCSTR strName = XmlAttribute.GetName();
+				LPCSTR strValue = XmlAttribute.GetValue();
+				LPCSTR strOldValue = pNode->Attribute(strName);
+				if (0 != dm_xmlstrcmp(strValue, strOldValue))
 				{
 					bChanged = true;
 					//3. 更新style xml节点中被改变的属性
