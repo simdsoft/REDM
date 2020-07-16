@@ -59,6 +59,14 @@ OPTION(USE_DMSKIA_  "DM user skia render draw"    OFF)
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Tools/CMake)
 INCLUDE(PrecompiledHeader)
 
+# Use extern pugixml
+option(USE_EXTERN_PUGIXML "Use extern pugixml" OFF)
+set(USE_EXTERN_PUGIXML ${USE_EXTERN_PUGIXML} CACHE INTERNAL "Use extern pugixml")
+
+if(NOT USE_EXTERN_PUGIXML)
+ADD_DEFINITIONS(-DPUGIXML_API=)
+endif()
+
 # --- The compiler flags
 message("-- Building REDM with cpp${_CXX_STD} support")
 if ( IOS )

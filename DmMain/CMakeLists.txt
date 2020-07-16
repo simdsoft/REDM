@@ -42,6 +42,12 @@ FILE(GLOB MODULES_SKIN_SOURCE    						src/Modules/Skin/*.cpp;src/Modules/Skin/*
 FILE(GLOB MODULES_TASK_SOURCE    						src/Modules/Task/*.cpp;src/Modules/Task/*.c)
 FILE(GLOB WIDGETS_SOURCE    							src/Widgets/*.cpp;src/Widgets/*.c)
 
+if(NOT USE_EXTERN_PUGIXML)
+FILE(GLOB PUGIXML_SOURCE                                ../External/pugixml/*.cpp)
+else()
+set(PUGIXML_SOURCE "")
+endif()
+
 SOURCE_GROUP("inc" 								FILES 	${ROOT_HEADER})
 SOURCE_GROUP("inc\\Common" 						FILES 	${COMMON_HEADER})
 SOURCE_GROUP("inc\\Common\\Template" 			FILES 	${COMMON_TEMPLATE_HEADER})
@@ -74,6 +80,10 @@ SOURCE_GROUP("src\\Modules\\Skin"				FILES 	${MODULES_SKIN_SOURCE})
 SOURCE_GROUP("src\\Modules\\Task"				FILES 	${MODULES_TASK_SOURCE})
 SOURCE_GROUP("src\\Widgets"						FILES 	${WIDGETS_SOURCE})
 
+if(NOT USE_EXTERN_PUGIXML)
+SOURCE_GROUP("..\\External\\pugixml"			FILES 	${PUGIXML_SOURCE})
+endif()
+
 # 输出设置
 add_definitions(-DUNICODE -D_UNICODE)  # unicode版本
 set(CMAKE_DEBUG_POSTFIX "_d")# Debug下生成文件增加后缀,对exe无效.
@@ -84,10 +94,16 @@ SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O1 /Ob1 /D NDEBUG")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /Zi /O2 /Ob1 /D NDEBUG")
 endif()
   
+# if (${CMAKE_MAJOR_VERSION} GREATER_EQUAL 3 AND ${CMAKE_MINOR_VERSION} GREATER_EQUAL 16)
+#     set_source_files_properties(src/Common/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+# else()
+#     set_source_files_properties(src/Common/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
+# endif()
+
 if (${CMAKE_MAJOR_VERSION} GREATER_EQUAL 3 AND ${CMAKE_MINOR_VERSION} GREATER_EQUAL 16)
-    set_source_files_properties(src/Common/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+    set_source_files_properties(../External/pugixml/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 else()
-    set_source_files_properties(src/Common/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
+    set_source_files_properties(../External/pugixml/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
 endif()
 
 if(USE_DMDLL_)
@@ -123,6 +139,7 @@ ADD_LIBRARY(DmMain SHARED
 			${MODULES_SKIN_SOURCE};
 			${MODULES_TASK_SOURCE};
 			${WIDGETS_SOURCE};
+            ${PUGIXML_SOURCE};
 			)
 else()
 ADD_LIBRARY(DmMain STATIC

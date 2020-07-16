@@ -13,7 +13,7 @@
 //      guoyou		2014-10-22	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "pugixml.hpp"
+#include "pugixml/pugixml.hpp"
 
 namespace DM
 {
