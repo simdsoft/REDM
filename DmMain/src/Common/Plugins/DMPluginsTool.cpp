@@ -253,7 +253,7 @@ namespace DM
 			DMXmlNode directory = body.FirstChild("directory");
 			while (directory.IsValid())
 			{
-				CStringW pDir = DMCA2W(directory.Attribute("name"), -1, CP_UTF8);
+				CStringW pDir = DMCA2W(directory.Attribute("name"));
 				wchar_t szPluginDir[MAX_PATH] = {0};
 				if (NULL == PathCombineW(szPluginDir, szExeDir, pDir))
 				{
@@ -269,7 +269,7 @@ namespace DM
 						strDir += L'\\';
 					}
 
-					CStringW pPluginName = DMCA2W(item.Attribute("name"), -1, CP_UTF8);
+					CStringW pPluginName = DMCA2W(item.Attribute("name"));
 					LoadPlugin(strDir+pPluginName);
 					item = item.NextSibling("item");
 				}
