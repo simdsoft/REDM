@@ -40,14 +40,14 @@ TEST_F(DMSkinTest, imglist_Test)
 {
 	DMXmlDocument doc;
 	EXPECT_EQ(doc.LoadFromFile(L"UTRes\\UTTest\\SkinTest.xml"), true);
-	DMXmlNode XmlNode = doc.Root(L"skin");
-	XmlNode = XmlNode.FirstChild(L"imglist");
+	DMXmlNode XmlNode = doc.Root("skin");
+	XmlNode = XmlNode.FirstChild("imglist");
 	while (XmlNode.IsValid())
 	{
 		DMSmartPtrT<IDMSkin> m_pSkin;
-		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, L"imglist",DMREG_Skin)),true);
+		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, "imglist",DMREG_Skin)),true);
 		m_pSkin->InitDMData(XmlNode);
-		wchar_t szId[MAX_PATH] = {0};
+		char szId[MAX_PATH] = {0};
 		m_pSkin->GetID(szId, MAX_PATH);		// 取得对象唯一ID名
 		int iStates = 0;m_pSkin->GetStates(iStates); // 取得状态数
 		SIZE sz;
@@ -66,7 +66,7 @@ TEST_F(DMSkinTest, imglist_Test)
 		pCanvas->ReleaseDC(dcMem);
 #endif
 
-		XmlNode = XmlNode.NextSibling(L"imglist");
+		XmlNode = XmlNode.NextSibling("imglist");
 	}	
 }
 
@@ -75,14 +75,14 @@ TEST_F(DMSkinTest, img9_Test)
 {
 	DMXmlDocument doc;
 	EXPECT_EQ(doc.LoadFromFile(L"UTRes\\UTTest\\SkinTest.xml"), true);
-	DMXmlNode XmlNode = doc.Root(L"skin");
-	XmlNode = XmlNode.FirstChild(L"img9");
+	DMXmlNode XmlNode = doc.Root("skin");
+	XmlNode = XmlNode.FirstChild("img9");
 	while (XmlNode.IsValid())
 	{
 		DMSmartPtrT<IDMSkin> m_pSkin;
-		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, L"img9",DMREG_Skin)),true);
+		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, "img9",DMREG_Skin)),true);
 		m_pSkin->InitDMData(XmlNode);
-		wchar_t szId[MAX_PATH] = {0};
+		char szId[MAX_PATH] = {0};
 		m_pSkin->GetID(szId, MAX_PATH);		// 取得对象唯一ID名
 		int iStates = 0;m_pSkin->GetStates(iStates); // 取得状态数
 		SIZE sz;
@@ -103,7 +103,7 @@ TEST_F(DMSkinTest, img9_Test)
 		bool bRet = ::AlphaBlend(hdc, 901, 0,100,100,dcMem, 0, 0,100,100,bf);
 		pCanvas->ReleaseDC(dcMem);
 #endif
-		XmlNode = XmlNode.NextSibling(L"img9");
+		XmlNode = XmlNode.NextSibling("img9");
 	}	
 }
 
@@ -112,12 +112,12 @@ TEST_F(DMSkinTest, scroll_Test)
 {
 	DMXmlDocument doc;
 	EXPECT_EQ(doc.LoadFromFile(L"UTRes\\UTTest\\SkinTest.xml"), true);
-	DMXmlNode XmlNode = doc.Root(L"skin");
-	XmlNode = XmlNode.FirstChild(L"scrollbar");
+	DMXmlNode XmlNode = doc.Root("skin");
+	XmlNode = XmlNode.FirstChild("scrollbar");
 	while (XmlNode.IsValid())
 	{
 		DMSmartPtrT<IDMSkin> m_pSkin;
-		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, L"scrollbar",DMREG_Skin)),true);
+		EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pSkin, "scrollbar",DMREG_Skin)),true);
 		m_pSkin->InitDMData(XmlNode);
 
 		DMSmartPtrT<IDMCanvas> pCanvas;
@@ -157,6 +157,6 @@ TEST_F(DMSkinTest, scroll_Test)
 		pCanvas->ReleaseDC(dcMem);
 #endif
 
-		XmlNode = XmlNode.NextSibling(L"scrollbar");
+		XmlNode = XmlNode.NextSibling("scrollbar");
 	}	
 }

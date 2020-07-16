@@ -6,7 +6,7 @@ namespace DM
 	enum{DMSCREEN_4=0,DMSCREEN_MELT=1,};
 	class DMScreenAnimate:public IDMAnimate,public DMAnimateWndBase
 	{
-		DMDECLARE_CLASS_NAME(DMScreenAnimate,L"DMScreenAnimate",DMREG_Animate);
+		DMDECLARE_CLASS_NAME(DMScreenAnimate,"DMScreenAnimate",DMREG_Animate);
 	public:
 		DMScreenAnimate();
 	public:

@@ -17,7 +17,7 @@ namespace DM
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		DMResZipImplPtr pItem = new DMResZipImpl;
-		pItem->SetAttribute(L"bassert",L"0");
+		pItem->SetAttribute("bassert","0");
 		do 
 		{
 			if (!DMSUCCEEDED(pItem->LoadResPack(wp,lp)))
@@ -49,7 +49,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResMultZipImpl::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName/*=NULL*/)
+	DMCode DMResMultZipImpl::IsItemExists(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		int iCount = (int)GetCount();
@@ -68,7 +68,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResMultZipImpl::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName/*=NULL*/)
+	DMCode DMResMultZipImpl::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize, LPCSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		int iCount = (int)GetCount();
@@ -87,7 +87,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResMultZipImpl::GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName/*=NULL*/)
+	DMCode DMResMultZipImpl::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>& lpBuf, PULONG lpULSize, LPCSTR lpszThemeName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		int iCount = (int)GetCount();
@@ -96,7 +96,7 @@ namespace DM
 			DMResZipImplPtr pItem = NULL;
 			if (GetObj(i, pItem))
 			{
-				iErr = pItem->GetItemBuf(lpszType,lpszName, lpBuf,ulSize,lpszThemeName);
+				iErr = pItem->GetItemBuf(lpszType,lpszName, lpBuf, lpULSize,lpszThemeName);
 				if (DMSUCCEEDED(iErr))
 				{
 					break;// 查找到一个就退出
@@ -111,7 +111,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DMResMultZipImpl::SetCurTheme(LPCWSTR lpszName, LPCWSTR lpszOldName/*=NULL*/)
+	DMCode DMResMultZipImpl::SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName/*=NULL*/)
 	{
 		return DM_ECODE_OK;
 	}

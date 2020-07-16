@@ -186,7 +186,7 @@ enum DMOLEDCFLAGS
 #define	   __STR2WSTR(str)						     L##str
 #endif
 
-#define	   ID2NAME(x)								 L#x
+#define	   ID2NAME(x)								 #x
 #define    DMABS(x)                                 ((x)>=0?(x):-(x))
 #define	   DMMAX(a,b)								(((a) > (b)) ? (a) : (b))
 #define    DMMIN(a,b)							    (((a) < (b)) ? (a) : (b))

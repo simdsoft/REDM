@@ -45,8 +45,8 @@ public:
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode XmlNode = doc.Root();
-		XmlNode.SetAttribute(L"name1",L"value");
-		XmlNode.SetAttributeInt(L"name2",222);
+		XmlNode.SetAttribute("name1","value");
+		XmlNode.SetAttributeInt("name2",222);
 		bundle.PutXmlNode(L"15", XmlNode);
 		
 		return bundle;
