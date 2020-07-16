@@ -183,7 +183,7 @@ namespace DM
 				break;
 			}
 
-			if (!ReadFileBuf(lpszFilePath, buf, lpULSize)) {
+			if (DM_ECODE_OK != ReadFileBuf(lpszFilePath, buf, lpULSize)) {
 				iErr = DM_ECODE_FAIL;
 			    break;
 			}
