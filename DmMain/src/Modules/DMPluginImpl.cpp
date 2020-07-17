@@ -158,7 +158,7 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIFlash>(),true);
 #endif
 #endif
-#if !defined(DM_EXCLUDE_IE)
+#if !defined(DM_EXCLUDE_ACTIVEX) && !defined(DM_EXCLUDE_IE)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIIE>(),true);
 #endif
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIHeaderCtrl>(),true);
