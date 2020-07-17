@@ -173,7 +173,9 @@ namespace DM
 			{
 				break;
 			}
-			if (lpULSize) *lpULSize = zf.GetSize();
+			DWORD dataSize = zf.GetSize();
+			if (lpULSize) *lpULSize = dataSize;
+			lpBuf.AllocateBytes(dataSize);
 			memcpy(lpBuf,zf.GetData(),zf.GetSize());
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -332,12 +334,11 @@ namespace DM
 				while (XmlFileNode.IsValid())
 				{
 					LPCSTR lpszName = (XmlFileNode.Attribute("name"));
-					CStringW lpszFilePath = DMA2W(XmlFileNode.Attribute("path"));
-					wchar_t szPath[MAX_PATH] = {0};
-					if (0 != lpszFilePath)
+					CStringW strFilePath = DMA2W(XmlFileNode.Attribute("path"));
+					if (!strFilePath.IsEmpty())
 					{
 						DMZipItemArrayPtr pItem = new DMZipItemArray;
-						if (DMSUCCEEDED(ParseIndex(lpszFilePath,&pItem)))
+						if (DMSUCCEEDED(ParseIndex(strFilePath,&pItem)))
 						{
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
@@ -416,18 +417,18 @@ namespace DM
 				while (XmlFileNode.IsValid())
 				{
 					LPCSTR lpszName = (XmlFileNode.Attribute("name"));
-					CStringW lpszFilePath = DMA2W(XmlFileNode.Attribute("path"));
-					if (NULL!=lpszFilePath&&0!=wcslen(lpszFilePath))
+					CStringW filePath = DMA2W(XmlFileNode.Attribute("path"));
+					if (!filePath.IsEmpty())
 					{
 #if defined(_DEBUG)
 						CDMZipFile zftemp;
-						if (!m_zipFile.GetFile(lpszFilePath,zftemp))
+						if (!m_zipFile.GetFile(filePath,zftemp))
 						{
-							CStringW szInfo = lpszFilePath;szInfo+=L"文件不存在！";DMASSERT_EXPR(0,szInfo);
+							CStringW szInfo = filePath;szInfo+=L"文件不存在！";DMASSERT_EXPR(0,szInfo);
 						}
 						zftemp.Close();
 #endif
-						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName,lpszFilePath);
+						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName, filePath);
 						(*ppItem)->AddObj(pResItem);// 来自DMArrayT
 					}
 					XmlFileNode = XmlFileNode.NextSibling("file");

@@ -17,33 +17,33 @@ void DMScriptHelper::InitScriptHelper(DMHWnd* pMainWnd)
 	m_pMainWnd = pMainWnd;
 	if (m_pMainWnd)
 	{
-		DUIButton* pStrBtn = pMainWnd->FindChildByNameT<DUIButton>(L"lua_str_btn");
+		DUIButton* pStrBtn = pMainWnd->FindChildByNameT<DUIButton>("lua_str_btn");
 		if (pStrBtn)
 		{
 			pStrBtn->m_EventMgr.SubscribeEvent(DMEventCmdArgs::EventID,Subscriber(&DMScriptHelper::OnStrBtn,this));
 		}
 
-		DUIButton* pFileBtn = pMainWnd->FindChildByNameT<DUIButton>(L"lua_file_btn");
+		DUIButton* pFileBtn = pMainWnd->FindChildByNameT<DUIButton>("lua_file_btn");
 		if (pFileBtn)
 		{
 			pFileBtn->m_EventMgr.SubscribeEvent(DMEventCmdArgs::EventID,Subscriber(&DMScriptHelper::OnFileBtn,this));
 		}
 
-		DUIButton* pBufBtn = pMainWnd->FindChildByNameT<DUIButton>(L"lua_buf_btn");
+		DUIButton* pBufBtn = pMainWnd->FindChildByNameT<DUIButton>("lua_buf_btn");
 		if (pBufBtn)
 		{
 			pBufBtn->m_EventMgr.SubscribeEvent(DMEventCmdArgs::EventID,Subscriber(&DMScriptHelper::OnBufBtn,this));
 		}
 
-		DUIButton* pStopBtn = pMainWnd->FindChildByNameT<DUIButton>(L"lua_stop_btn");
+		DUIButton* pStopBtn = pMainWnd->FindChildByNameT<DUIButton>("lua_stop_btn");
 		if (pStopBtn)
 		{
 			pStopBtn->m_EventMgr.SubscribeEvent(DMEventCmdArgs::EventID,Subscriber(&DMScriptHelper::OnStopBtn,this));
 		}
 
-		m_pLogEdit = pMainWnd->FindChildByNameT<DUIRichEdit>(L"lua_log_edit");
-		m_pStrEdit = pMainWnd->FindChildByNameT<DUIRichEdit>(L"lua_str_edit");
-		m_pCheckBox =  pMainWnd->FindChildByNameT<DUICheckBox>(L"lua_check_box");
+		m_pLogEdit = pMainWnd->FindChildByNameT<DUIRichEdit>("lua_log_edit");
+		m_pStrEdit = pMainWnd->FindChildByNameT<DUIRichEdit>("lua_str_edit");
+		m_pCheckBox =  pMainWnd->FindChildByNameT<DUICheckBox>("lua_check_box");
 
 		pMainWnd->DMADDEVENT(DMEventScriptStartArgs::EventID);
 		pMainWnd->DMADDEVENT(DMEventScriptEndArgs::EventID);
@@ -167,13 +167,13 @@ DMCode DMScriptHelper::OnBufBtn(DMEventArgs* pEvent)
 		}
 
 		unsigned long ulSize = 0;
-		if(!DMSUCCEEDED(pRes->GetItemSize(RES_LAYOUT,L"test_lua",ulSize)))
+		if(!DMSUCCEEDED(pRes->GetItemSize(RES_LAYOUT,"test_lua",ulSize)))
 		{
 			break;
 		}
 
-		DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-		if(!DMSUCCEEDED(pRes->GetItemBuf(RES_LAYOUT,L"test_lua", pBuf, ulSize)))
+		DMBufT<byte>pBuf;
+		if(!DMSUCCEEDED(pRes->GetItemBuf(RES_LAYOUT,"test_lua", pBuf, &ulSize)))
 		{
 			break;
 		}

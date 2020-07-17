@@ -705,14 +705,13 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 			pWnd->m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
 			if (NULL == pSkin)
 			{
-				pWnd->m_pDUIXmlInfo->m_pStyle->SetAttribute("skin",L"1",false);
+				pWnd->m_pDUIXmlInfo->m_pStyle->SetAttribute("skin","1",false);
 				pWnd->m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
 			}
 			if (pSkin)
 			{
 				// œ»ª÷∏¥
-				CStringW strWXml = L"<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
-				CStringA strXml = DMW2A(strWXml,CP_UTF8);
+				CStringA strXml = "<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
 				DMXmlDocument doc;
 				doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 				DMXmlNode XmlNode = doc.Root();

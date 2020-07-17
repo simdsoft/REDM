@@ -13,7 +13,7 @@ DMCode ListBox_Test::OnInsert(DMEventArgs *pEvt)
 			break;
 		}
 
-		DUIListBox* pListBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIListBox>(L"listbox1");
+		DUIListBox* pListBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIListBox>("listbox1");
 		if (!pListBox)
 		{
 			break;
@@ -36,7 +36,7 @@ DMCode ListBox_Test::OnDelete(DMEventArgs *pEvt)
 		{
 			break;
 		}
-		DUIListBox* pListBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIListBox>(L"listbox1");
+		DUIListBox* pListBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIListBox>("listbox1");
 		if (!pListBox)
 		{
 			break;

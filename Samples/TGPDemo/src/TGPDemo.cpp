@@ -41,16 +41,16 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #ifdef DLL_DMMAIN// DLL下演示插件支持多zip提前加载，提前释放----------------------------------------------------------
 		//1. login窗口登陆 
 		DMResZipParam ziploginres(L"TGPRes\\zips\\zip_login.zip"); 
-		theApp.LoadResPack((WPARAM)(&ziploginres),(LPARAM)L"loginzip",L"DMResMultZipImpl");		///< 注册loginzip为key的zip包
+		theApp.LoadResPack((WPARAM)(&ziploginres),(LPARAM)L"loginzip","DMResMultZipImpl");		///< 注册loginzip为key的zip包
 
 		// main窗口资源可以提前加入，当然为了节省，内存你也可以在使用时再加入
 		DMResZipParam zipres(L"TGPRes\\zips\\zip_main.zip");
-		theApp.LoadResPack((WPARAM)(&zipres),(LPARAM)L"mainzip",L"DMResMultZipImpl");			///< 注册mainzip为key的zip包
+		theApp.LoadResPack((WPARAM)(&zipres),(LPARAM)L"mainzip","DMResMultZipImpl");			///< 注册mainzip为key的zip包
 
-		theApp.InitGlobal(L"global_login");	
+		theApp.InitGlobal("global_login");	
 		DMSmartPtrT<CTGPLoginWnd> pLoginWnd; 
 		pLoginWnd.Attach(new CTGPLoginWnd());
-		pLoginWnd->DM_CreateWindow(L"dui_loginwnd",0,0,0,0,NULL,false);							///< 创建登陆窗口
+		pLoginWnd->DM_CreateWindow("dui_loginwnd",0,0,0,0,NULL,false);							///< 创建登陆窗口
 		pLoginWnd->SendMessage(WM_INITDIALOG);
 		pLoginWnd->CenterWindow();
 		pLoginWnd->ShowWindow(SW_SHOW);
@@ -72,7 +72,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 		DMSmartPtrT<CTGPMainWnd> pMainWnd;
 		pMainWnd.Attach(new CTGPMainWnd());
-		pMainWnd->DM_CreateWindow(L"dui_mainwnd",0,0,0,0,NULL,false);							///< 创建主窗口
+		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);							///< 创建主窗口
 		g_pMainWnd =  pMainWnd;
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();

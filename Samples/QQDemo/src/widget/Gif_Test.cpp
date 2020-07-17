@@ -6,7 +6,7 @@ extern CQQMainWnd* g_pMainWnd;
 
 DMCode Gif_Test::OnOpenGif(DMEventArgs *pEvt)
 {
-	DUIGif *pGifWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIGif>(L"biggif");
+	DUIGif *pGifWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIGif>("biggif");
 	if (pGifWnd)
 	{
 		wchar_t szFileTitle[_MAX_FNAME] = {0};  
@@ -35,7 +35,7 @@ DMCode Gif_Test::OnOpenGif(DMEventArgs *pEvt)
 
 DMCode Gif_Test::OnReplayGif(DMEventArgs *pEvt)
 {
-	DUIGif *pGifWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIGif>(L"biggif");
+	DUIGif *pGifWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIGif>("biggif");
 	if (pGifWnd)
 	{
 		pGifWnd->Restart();

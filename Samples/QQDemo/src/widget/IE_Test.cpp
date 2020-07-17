@@ -56,7 +56,7 @@ DMCode IE_Test::IERefreshWeb(DMEventArgs* pEvent)
 		{
 			break;
 		}
-		DUIRichEdit *pRichEdit = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIRichEdit>(L"ieurl");
+		DUIRichEdit *pRichEdit = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIRichEdit>("ieurl");
 		if (!pRichEdit)
 		{
 			break;
@@ -123,12 +123,12 @@ IDUIWeb* IE_Test::GetIeObj()
 	IDUIWeb* pIE = NULL;
 	do 
 	{
-		IERealWnd * pIEWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<IERealWnd>(L"ieobj");
+		IERealWnd * pIEWnd = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<IERealWnd>("ieobj");
 		if (!pIEWnd)
 		{
 			break;
 		}
-		pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>(L"ie");
+		pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>("ie");
 		if (!pIE)
 		{
 			break;

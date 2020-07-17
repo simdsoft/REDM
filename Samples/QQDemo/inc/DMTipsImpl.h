@@ -32,7 +32,7 @@ namespace DM
 	/// </summary>
 	class DMTipsImpl:public IDMToolTip,public DMCWnd
 	{
-		DMDECLARE_CLASS_NAME(DMTipsImpl,L"DMTipsImpl",DMREG_ToolTip);
+		DMDECLARE_CLASS_NAME(DMTipsImpl,"DMTipsImpl",DMREG_ToolTip);
 
 	public:
 		DMTipsImpl(void);

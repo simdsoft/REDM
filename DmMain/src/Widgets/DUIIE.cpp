@@ -1,6 +1,6 @@
 #include "DmMainAfx.h"
 
-#if !defined(DM_EXCLUDE_IE)
+#if !defined(DM_EXCLUDE_ACTIVEX) && !defined(DM_EXCLUDE_IE)
 
 #include "DUIIE.h"
 #include <mshtmlc.h>

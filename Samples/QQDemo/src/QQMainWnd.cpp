@@ -16,12 +16,12 @@ BEGIN_MSG_MAP(CQQMainWnd)
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CQQMainWnd)
-	EVENT_NAME_COMMAND(L"minbutton", OnMinimize)
-	EVENT_NAME_COMMAND(L"closebutton",OnClose)
-	EVENT_NAME_COMMAND(L"name_edit_btn",OnNameEditBtn)
-	EVENT_NAME_COMMAND(L"btn_spy",OnSpy)
-	EVENT_NAME_COMMAND(L"btn_skin",OnSkin)
-	EVENT_NAME_COMMAND(L"btn_widget",OnWidget)
+	EVENT_NAME_COMMAND("minbutton", OnMinimize)
+	EVENT_NAME_COMMAND("closebutton",OnClose)
+	EVENT_NAME_COMMAND("name_edit_btn",OnNameEditBtn)
+	EVENT_NAME_COMMAND("btn_spy",OnSpy)
+	EVENT_NAME_COMMAND("btn_skin",OnSkin)
+	EVENT_NAME_COMMAND("btn_widget",OnWidget)
 END_EVENT_MAP()
 
 CQQMainWnd::CQQMainWnd()	
@@ -57,31 +57,31 @@ BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	SetIcon(hIcon,FALSE);
 
 	// 注册nameedit失去焦点事件
-	DUIEdit* pNameEdit = FindChildByNameT<DUIEdit>(L"name_edit");
+	DUIEdit* pNameEdit = FindChildByNameT<DUIEdit>("name_edit");
 	if (pNameEdit)
 	{
 		// 示例绑定动态分配数据
 		byte* pBuf = new byte[100];
-		pNameEdit->SetData(L"key1",CStringW((wchar_t*)&pBuf,sizeof(LONG_PTR)));// strValue中记录的前四位内存值即pBuf地址
-		CStringW strValue = pNameEdit->GetData(L"key1");
+		pNameEdit->SetData("key1",CStringA((char*)&pBuf,sizeof(LONG_PTR)));// strValue中记录的前四位内存值即pBuf地址
+		CStringA strValue = pNameEdit->GetData("key1");
 		byte* pByte = (byte*)(*(LONG_PTR*)strValue.GetBuffer());// 取前四位内存值转换成指针
 		assert (pByte == pBuf);
 		DM_DELETE_ARRAY(pByte);
-		pNameEdit->SetData(L"key1",L"");// 传空值清空key1
+		pNameEdit->SetData("key1","");// 传空值清空key1
 
 		pNameEdit->m_EventMgr.SubscribeEvent(DM::DMEventRENotifyArgs::EventID, Subscriber(&CQQMainWnd::OnNameEditKillFocus, this));
 	}
 
 	// 模拟展开收缩小三角
-	m_pListEx = FindChildByNameT<DUIListBoxEx>(L"listex");
+	m_pListEx = FindChildByNameT<DUIListBoxEx>("listex");
 	if (m_pListEx)
 	{
-		LPLBITEMEX pItemEx = m_pListEx->GetObj(0);m_pSubListTree[0] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>(L"listex_tree0");
-		pItemEx = m_pListEx->GetObj(1);m_pSubListEx[0]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>(L"listex_listex0");
-		pItemEx = m_pListEx->GetObj(2);m_pSubListTree[1] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>(L"listex_tree1");
-		pItemEx = m_pListEx->GetObj(3);m_pSubListEx[1]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>(L"listex_listex1");
-		pItemEx = m_pListEx->GetObj(4);m_pSubListTree[2] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>(L"listex_tree2");
-		pItemEx = m_pListEx->GetObj(5);m_pSubListEx[2]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>(L"listex_listex2");
+		LPLBITEMEX pItemEx = m_pListEx->GetObj(0);m_pSubListTree[0] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>("listex_tree0");
+		pItemEx = m_pListEx->GetObj(1);m_pSubListEx[0]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>("listex_listex0");
+		pItemEx = m_pListEx->GetObj(2);m_pSubListTree[1] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>("listex_tree1");
+		pItemEx = m_pListEx->GetObj(3);m_pSubListEx[1]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>("listex_listex1");
+		pItemEx = m_pListEx->GetObj(4);m_pSubListTree[2] = pItemEx->pPanel->FindChildByNameT<DUITreeCtrl>("listex_tree2");
+		pItemEx = m_pListEx->GetObj(5);m_pSubListEx[2]	 = pItemEx->pPanel->FindChildByNameT<DUIListBoxEx>("listex_listex2");
 	}
 	DMASSERT(m_pListEx&&m_pSubListTree[0]&&m_pSubListTree[1]&&m_pSubListTree[2]&&m_pSubListEx[0]&&m_pSubListEx[1]&&m_pSubListEx[2]);
 	for (int i=0;i<3;i++)
@@ -112,13 +112,13 @@ void CQQMainWnd::OnSize(UINT nType, CSize size)
 		SetWindowRgn(hWndRgn, TRUE);
 		::DeleteObject(hWndRgn);
 
-		DUITabCtrl* pTab = FindChildByNameT<DUITabCtrl>(L"maintab");
+		DUITabCtrl* pTab = FindChildByNameT<DUITabCtrl>("maintab");
 		if (pTab)
 		{
 			int itemspace = (rcWnd.Width()-50*5)/4;
-			CStringW strValue;
-			strValue.Format(L"%d\n",itemspace);
-			pTab->SetAttribute(L"itemspace",strValue,false);
+			CStringA strValue;
+			strValue.Format("%d\n",itemspace);
+			pTab->SetAttribute("itemspace",strValue,false);
 		}
 	}
 	m_WndShadow.SetPosition(0, 0);
@@ -141,7 +141,7 @@ int CQQMainWnd::OnTrayOnRButtonUp(UINT uMsg, WPARAM wParam, LPARAM lParam)
 LRESULT CQQMainWnd::OnShowTrayMenu(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	DUIMenu Menu;
-	Menu.LoadMenu(L"LayOut",L"dui_exitmenu");
+	Menu.LoadMenu("LayOut","dui_exitmenu");
 	POINT pt;
 	GetCursorPos(&pt);
 	Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
@@ -194,8 +194,8 @@ DMCode CQQMainWnd::OnMinimize()
 
 DMCode CQQMainWnd::OnNameEditBtn()
 {
-	DUIButton* pNameEditBtn = FindChildByNameT<DUIButton>(L"name_edit_btn");
-	DUIEdit* pNameEdit = FindChildByNameT<DUIEdit>(L"name_edit");
+	DUIButton* pNameEditBtn = FindChildByNameT<DUIButton>("name_edit_btn");
+	DUIEdit* pNameEdit = FindChildByNameT<DUIEdit>("name_edit");
 	if (pNameEditBtn)
 	{
 		pNameEditBtn->DM_SetVisible(false,true);
@@ -218,7 +218,7 @@ DMCode CQQMainWnd::OnSkin()
 		}
 		m_pSkinWnd.Release();
 		m_pSkinWnd.Attach(new CSkinWnd(this));
-		m_pSkinWnd->DM_CreateWindow(L"dui_skin");				// 创建主窗口
+		m_pSkinWnd->DM_CreateWindow("dui_skin");				// 创建主窗口
 		m_pSkinWnd->SendMessage(WM_INITDIALOG);
 		m_pSkinWnd->CenterWindow();
 		m_pSkinWnd->ShowWindow(SW_SHOW);
@@ -238,7 +238,7 @@ DMCode CQQMainWnd::OnSpy()
 		}
 		m_pSpyWnd.Release();
 		m_pSpyWnd.Attach(new CSpyWnd());
-		m_pSpyWnd->DM_CreateWindow(L"dui_spy");				// 创建主窗口
+		m_pSpyWnd->DM_CreateWindow("dui_spy");				// 创建主窗口
 		m_pSpyWnd->SendMessage(WM_INITDIALOG);
 		m_pSpyWnd->CenterWindow();
 		m_pSpyWnd->ShowWindow(SW_SHOW);
@@ -258,7 +258,7 @@ DMCode CQQMainWnd::OnWidget()
 		}
 		m_pWidgetWnd.Release();
 		m_pWidgetWnd.Attach(new CWidgetWnd());
-		m_pWidgetWnd->DM_CreateWindow(L"dui_widget");				// 创建主窗口
+		m_pWidgetWnd->DM_CreateWindow("dui_widget");				// 创建主窗口
 		m_pWidgetWnd->SendMessage(WM_INITDIALOG);
 		m_pWidgetWnd->CenterWindow();
 		m_pWidgetWnd->ShowWindow(SW_SHOW);
@@ -284,7 +284,7 @@ DMCode CQQMainWnd::OnNameEditKillFocus(DMEventArgs* pEvent)
 			}
 			bRetry = true;
 			pNameEdit->DM_SetVisible(false,true);// 此函数会引发多次进入EN_KILLFOCUS，所以加判断
-			DUIButton* pNameEditBtn = FindChildByNameT<DUIButton>(L"name_edit_btn");
+			DUIButton* pNameEditBtn = FindChildByNameT<DUIButton>("name_edit_btn");
 			if (pNameEditBtn)
 			{
 				pNameEditBtn->DV_SetWindowText(strInfo);

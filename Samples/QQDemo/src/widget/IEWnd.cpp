@@ -26,7 +26,7 @@ HWND IERealWnd::OnCreateRealWnd(LPCWSTR atom,HWND hWndParent)
 	do 
 	{
 		m_pIEWnd.Attach(new CIEWnd);
-		if (NULL == m_pIEWnd->DM_CreateWindow(L"dui_ie",0,0,0,0,hWndParent))
+		if (NULL == m_pIEWnd->DM_CreateWindow("dui_ie",0,0,0,0,hWndParent))
 		{
 			break;
 		}
@@ -34,9 +34,9 @@ HWND IERealWnd::OnCreateRealWnd(LPCWSTR atom,HWND hWndParent)
 		hWnd      = m_pIEWnd->m_hWnd;
 		if (g_pMainWnd->m_pWidgetWnd&&0xff!=g_pMainWnd->m_pWidgetWnd->m_pHWndXmlInfo->m_byAlpha)
 		{
-			CStringW strValue;
-			strValue.Format(L"%d\n",g_pMainWnd->m_pHWndXmlInfo->m_byAlpha);
-			m_pIEWnd->SetAttribute(L"alpha",strValue);
+			CStringA strValue;
+			strValue.Format("%d\n",g_pMainWnd->m_pHWndXmlInfo->m_byAlpha);
+			m_pIEWnd->SetAttribute("alpha",strValue);
 		}
 	} while (false);
 	return hWnd;

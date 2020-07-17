@@ -7,8 +7,8 @@ BEGIN_MSG_MAP(CTGPLoginWnd)
 END_MSG_MAP()
  
 BEGIN_EVENT_MAP(CTGPLoginWnd)
-	EVENT_NAME_COMMAND(L"button_mini", OnMinimize)  
-	EVENT_NAME_COMMAND(L"button_close",OnClose)
+	EVENT_NAME_COMMAND("button_mini", OnMinimize)  
+	EVENT_NAME_COMMAND("button_close",OnClose)
 END_EVENT_MAP()
 
 

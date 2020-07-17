@@ -126,7 +126,7 @@ bool TGPComboboxEx::CreateListBox(DMXmlNode &XmlNode)
 
 		m_pListBox->SetContainer(GetContainer());
 		DMCode dwCode =	m_pListBox->InitDMData(XmlNode.FirstChild(DMAttr::DUIComboBoxExAttr::ITEM_sublistboxex));
-		m_pListBox->SetAttribute(L"pos",L"0,0,-0,-0",true);
+		m_pListBox->SetAttribute("pos","0,0,-0,-0",true);
 		m_pListBox->DM_SetOwnerWnd(this);				// chain notify message to combobox
 		m_pListBox->SetID(CB_LIST_ID);
 		m_pListBox->DM_SetVisible(false);				// 只在下拉时才显示，此时也没有初始化完layout
@@ -168,8 +168,8 @@ void TGPComboboxEx::OnSelChanged()
 			DMXmlNode StaticXmlNode =  XmlNode.FirstChild();
 			if (StaticXmlNode.IsValid())
 			{
-				CStringW strText = StaticXmlNode.Attribute(L"text");
-				m_Node.m_pFirstChild->SetAttribute(L"text",strText);
+				LPCSTR strText = StaticXmlNode.Attribute("text");
+				m_Node.m_pFirstChild->SetAttribute("text",strText);
 			}
 		}
 
@@ -178,14 +178,14 @@ void TGPComboboxEx::OnSelChanged()
 			DMXmlNode MsXmlNode =  XmlNode.FirstChild().NextSibling();
 			if (MsXmlNode.IsValid())
 			{
-				CStringW strText = MsXmlNode.Attribute(L"text");
-				m_Node.m_pLastChild->SetAttribute(L"text",strText);
+				LPCSTR strText = MsXmlNode.Attribute("text");
+				m_Node.m_pLastChild->SetAttribute("text",strText);
 
 				//todo.设置tips文件路径
 				wchar_t szTipsPath[MAX_PATH] = {0};
 				GetRootFullPath(L"TGPRes\\layout\\xml\\tips\\dui_cftips1.xml",szTipsPath,MAX_PATH);
-				m_Node.m_pLastChild->SetAttribute(L"tipxmlid",szTipsPath);
-				m_Node.m_pLastChild->SetAttribute(L"tipflags",L"0,0,0,1");// 参数属性参看TGPTipsImpl::ShowTips
+				m_Node.m_pLastChild->SetAttribute("tipxmlid",DMW2A(szTipsPath));
+				m_Node.m_pLastChild->SetAttribute("tipflags","0,0,0,1");// 参数属性参看TGPTipsImpl::ShowTips
 			}
 		}
 

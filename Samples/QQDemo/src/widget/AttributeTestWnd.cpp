@@ -24,11 +24,11 @@ CAttributeTestWnd::~CAttributeTestWnd()
 
 BOOL CAttributeTestWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pNameEdit = FindChildByNameT<DUIEdit>(L"edit_ctrlname");
-	m_pAttrNameEdit = FindChildByNameT<DUIEdit>(L"edit_attrname");
-	m_pAttrValueEdit = FindChildByNameT<DUIEdit>(L"edit_attrvalue");
-	m_pBtn = FindChildByNameT<DUIButton>(L"btn_testattr");
-	m_pInfoEdit = FindChildByNameT<DUIRichEdit>(L"edit_testinfo");
+	m_pNameEdit = FindChildByNameT<DUIEdit>("edit_ctrlname");
+	m_pAttrNameEdit = FindChildByNameT<DUIEdit>("edit_attrname");
+	m_pAttrValueEdit = FindChildByNameT<DUIEdit>("edit_attrvalue");
+	m_pBtn = FindChildByNameT<DUIButton>("btn_testattr");
+	m_pInfoEdit = FindChildByNameT<DUIRichEdit>("edit_testinfo");
 	DMASSERT(NULL!=m_pNameEdit&&NULL!=m_pAttrNameEdit&&NULL!=m_pAttrValueEdit&&NULL!=m_pBtn&&NULL!=m_pInfoEdit);
 	return TRUE;
 }
@@ -44,16 +44,14 @@ DMCode CAttributeTestWnd::OnSetAttribute()
 {
 	do 
 	{
-		CStringW szName;
-		wchar_t *pBuf = szName.GetBufferSetLength(MAX_PATH);
-		m_pNameEdit->GetWindowText(pBuf,-1);
+		CStringA szName = m_pNameEdit->GetTextA();
 		szName.Trim();
 		if (szName.IsEmpty())
 		{
 			m_pInfoEdit->SetWindowText(L"控件名字为空");
 			break;
 		}
-		CStringW strMainName = m_pWidgetWnd->GetName();
+		CStringA strMainName = m_pWidgetWnd->GetName();
 		DUIWindow* pWnd = NULL;
 		if (0==strMainName.CompareNoCase(szName))
 		{
@@ -69,16 +67,14 @@ DMCode CAttributeTestWnd::OnSetAttribute()
 			break;
 		}
 
-		CStringW szAttrName;
-		m_pAttrNameEdit->GetWindowText(szAttrName.GetBuffer(100),-1);
+		CStringA szAttrName = m_pAttrNameEdit->GetTextA();
 		if (szAttrName.IsEmpty())
 		{
 			m_pInfoEdit->SetWindowText(L"控件属性名称为空");
 			break;
 		}
 
-		CStringW szAttrValue;
-		m_pAttrValueEdit->GetWindowText(szAttrValue.GetBuffer(100),-1);
+		CStringA szAttrValue = m_pAttrValueEdit->GetTextA();
 		if (szAttrValue.IsEmpty())
 		{
 			m_pInfoEdit->SetWindowText(L"控件属性值为空");

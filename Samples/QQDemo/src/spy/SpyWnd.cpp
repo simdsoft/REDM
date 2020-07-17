@@ -1,15 +1,17 @@
 #include "QQDemoAfx.h"
 #include "SpyWnd.h"
 
+#pragma execution_character_set("utf-8")
+
 BEGIN_MSG_MAP(CSpyWnd)
 	MSG_WM_INITDIALOG(OnInitDialog)
 	CHAIN_MSG_MAP(DMHWnd)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(CSpyWnd)
-	EVENT_NAME_COMMAND(L"spy_minbutton", OnMinimize)
-	EVENT_NAME_COMMAND(L"spy_closebutton",OnClose)
-	EVENT_NAME_HANDLER(L"spyfindbtn",DMSpyInitArgs::EventID,OnSpyInitEvent)
-	EVENT_NAME_HANDLER(L"spytree",DMEventTCSelChangedArgs::EventID,OnTreeSelChanged)
+	EVENT_NAME_COMMAND("spy_minbutton", OnMinimize)
+	EVENT_NAME_COMMAND("spy_closebutton",OnClose)
+	EVENT_NAME_HANDLER("spyfindbtn",DMSpyInitArgs::EventID,OnSpyInitEvent)
+	EVENT_NAME_HANDLER("spytree",DMEventTCSelChangedArgs::EventID,OnTreeSelChanged)
 END_EVENT_MAP()
 CSpyWnd::CSpyWnd()
 {
@@ -43,9 +45,9 @@ DMCode CSpyWnd::OnClose()
 
 BOOL CSpyWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pTreeCtrl  = FindChildByNameT<DUITreeCtrl>(L"spytree");
-	m_pTreeEdit  = FindChildByNameT<DUIRichEdit>(L"spyedit");
-	m_pSearchSta = FindChildByNameT<DUIStatic>(L"search_sta");
+	m_pTreeCtrl  = FindChildByNameT<DUITreeCtrl>("spytree");
+	m_pTreeEdit  = FindChildByNameT<DUIRichEdit>("spyedit");
+	m_pSearchSta = FindChildByNameT<DUIStatic>("search_sta");
 	m_pSearchSta->DV_SetWindowText(L"请拖动左侧的指针到需要查看的窗口/控件上释放");
 	DMASSERT(m_pTreeCtrl);DMASSERT(m_pTreeEdit);DMASSERT(m_pSearchSta);
 
@@ -175,25 +177,26 @@ void CSpyWnd::InitTreeCtrl(HWND hRootWnd)
 
 void CSpyWnd::InsertTreeItem(DMXmlNode &XmlNode,HDMTREEITEM hParentItem)
 {
-	int duiwnd = XmlNode.AttributeInt(L"duiwnd");
-	int bsee = XmlNode.AttributeInt(L"bsee");
-	int bPanel = XmlNode.AttributeInt(L"bpanel");
-	CStringW classname = XmlNode.Attribute(L"classname");
-	CStringW name = XmlNode.Attribute(L"name");
-	CStringW id = XmlNode.Attribute(L"id");
-	CStringW level = XmlNode.Attribute(L"level");
+	int duiwnd = XmlNode.AttributeInt("duiwnd");
+	int bsee = XmlNode.AttributeInt("bsee");
+	int bPanel = XmlNode.AttributeInt("bpanel");
+	LPCSTR classname = XmlNode.Attribute("classname");
+	LPCSTR name = XmlNode.Attribute("name");
+	LPCSTR id = XmlNode.Attribute("id");
+	LPCSTR level = XmlNode.Attribute("level");
 
-	CStringW strTree;
+	CStringA strTree;
 	if (1 == bPanel)
 	{
-		strTree.Format(L"(panel)窗口level(%s) ID:%d Name:%s 类名:%s",level,duiwnd,name,classname);
+		strTree.Format("(panel)窗口level(%s) ID:%d Name:%s 类名:%s",level,duiwnd,name,classname);
 	}
 	else
 	{
-		strTree.Format(L"窗口level(%s) ID:%d Name:%s 类名:%s",level,duiwnd,name,classname);
+		strTree.Format("窗口level(%s) ID:%d Name:%s 类名:%s",level,duiwnd,name,classname);
 	}
 	int iIcon = bsee?1:0;
-	HDMTREEITEM hChildItem = m_pTreeCtrl->InsertItem(strTree,iIcon,iIcon,(LPARAM)duiwnd,hParentItem);
+	CStringW strTreeW = DMA2W(strTree);
+	HDMTREEITEM hChildItem = m_pTreeCtrl->InsertItem(strTreeW,iIcon,iIcon,(LPARAM)duiwnd,hParentItem);
 	for (DMXmlNode XmlChildNode = XmlNode.FirstChild(); XmlChildNode.IsValid(); XmlChildNode=XmlChildNode.NextSibling())
 	{
 		InsertTreeItem(XmlChildNode,hChildItem);

@@ -58,7 +58,7 @@ namespace DM
 			m_pWnd.Attach(new DMTipHWnd);
 			if (!m_strXmlId.IsEmpty())
 			{
-				if (NULL == m_pWnd->DM_CreateWindowEx(m_strXmlId,L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// 创建主窗口
+				if (NULL == m_pWnd->DM_CreateWindowEx(DMW2A(m_strXmlId),L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// 创建主窗口
 				{
 					break;
 				}

@@ -30,7 +30,7 @@ template<class T,int RegType>T* DMDefRegT()
 /// </summary>
 class DMScriptImpl : public IDMScript
 {
-	DMDECLARE_CLASS_NAME(DMScriptImpl,L"DMScriptImpl",DMREG_Script);
+	DMDECLARE_CLASS_NAME(DMScriptImpl,"DMScriptImpl",DMREG_Script);
 public:
 	DMScriptImpl();
 	DMCode InitScript();

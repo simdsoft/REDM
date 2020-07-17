@@ -18,35 +18,35 @@ BEGIN_MSG_MAP(CWidgetWnd)
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CWidgetWnd)
-	EVENT_NAME_COMMAND(L"btn_close",OnClose)
-	EVENT_NAME_COMMAND(L"btn_max", OnMaximize)
+	EVENT_NAME_COMMAND("btn_close",OnClose)
+	EVENT_NAME_COMMAND("btn_max", OnMaximize)
 	EVENT_ID_COMMAND(10, OnRestore)
-	EVENT_NAME_COMMAND(L"btn_min", OnMinimize)
-	EVENT_NAME_COMMAND(L"btn_menu",OnBtnMenu)
-	EVENT_NAME_COMMAND(L"btn_attrtest",OnAttrTest)
+	EVENT_NAME_COMMAND("btn_min", OnMinimize)
+	EVENT_NAME_COMMAND("btn_menu",OnBtnMenu)
+	EVENT_NAME_COMMAND("btn_attrtest",OnAttrTest)
 
 	// 控件测试
-	EVENT_NAME_HANDLER(L"btn_tabctrl_insert",DMEVT_CMD,TabCtrl_Test::OnInsert);
-	EVENT_NAME_HANDLER(L"btn_tabctrl_del",DMEVT_CMD,TabCtrl_Test::OnDelete);
-	EVENT_NAME_HANDLER(L"tabmain", DMEVT_TAB_SELCHANGING, TabCtrl_Test::OnSelChanging)
-	EVENT_NAME_HANDLER(L"btn_listbox_insert",DMEVT_CMD,ListBox_Test::OnInsert);
-	EVENT_NAME_HANDLER(L"btn_listbox_del",DMEVT_CMD,ListBox_Test::OnDelete);
-	EVENT_NAME_HANDLER(L"btn_combobox_sel",DMEVT_CMD,ComboBox_Test::OnSel);
+	EVENT_NAME_HANDLER("btn_tabctrl_insert",DMEVT_CMD,TabCtrl_Test::OnInsert);
+	EVENT_NAME_HANDLER("btn_tabctrl_del",DMEVT_CMD,TabCtrl_Test::OnDelete);
+	EVENT_NAME_HANDLER("tabmain", DMEVT_TAB_SELCHANGING, TabCtrl_Test::OnSelChanging)
+	EVENT_NAME_HANDLER("btn_listbox_insert",DMEVT_CMD,ListBox_Test::OnInsert);
+	EVENT_NAME_HANDLER("btn_listbox_del",DMEVT_CMD,ListBox_Test::OnDelete);
+	EVENT_NAME_HANDLER("btn_combobox_sel",DMEVT_CMD,ComboBox_Test::OnSel);
 
-	EVENT_NAME_HANDLER(L"btn_gif_open",DMEVT_CMD,Gif_Test::OnOpenGif);
-	EVENT_NAME_HANDLER(L"btn_gif_replay",DMEVT_CMD,Gif_Test::OnReplayGif);
+	EVENT_NAME_HANDLER("btn_gif_open",DMEVT_CMD,Gif_Test::OnOpenGif);
+	EVENT_NAME_HANDLER("btn_gif_replay",DMEVT_CMD,Gif_Test::OnReplayGif);
 
-	EVENT_NAME_COMMAND(L"webback",OnBtnWebBack)
-	EVENT_NAME_COMMAND(L"webrefresh",OnBtnWebRefresh)
-	EVENT_NAME_COMMAND(L"webfront",OnBtnWebfront)
+	EVENT_NAME_COMMAND("webback",OnBtnWebBack)
+	EVENT_NAME_COMMAND("webrefresh",OnBtnWebRefresh)
+	EVENT_NAME_COMMAND("webfront",OnBtnWebfront)
 
-	EVENT_NAME_COMMAND(L"ieback",IE_Test::OnBtnIeBack)
-	EVENT_NAME_COMMAND(L"ierefresh",IE_Test::OnBtnIeRefresh)
-	EVENT_NAME_COMMAND(L"iefront",IE_Test::OnBtnIefront)
-	EVENT_NAME_COMMAND(L"iejstest",IE_Test::OnBtnIeJsTest)
+	EVENT_NAME_COMMAND("ieback",IE_Test::OnBtnIeBack)
+	EVENT_NAME_COMMAND("ierefresh",IE_Test::OnBtnIeRefresh)
+	EVENT_NAME_COMMAND("iefront",IE_Test::OnBtnIefront)
+	EVENT_NAME_COMMAND("iejstest",IE_Test::OnBtnIeJsTest)
 
-	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"richedit1",DMEVT_RBUTTONMENU,OnEditRButtonMenu)
+	EVENT_NAME_HANDLER("richedit1",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("richedit1",DMEVT_RBUTTONMENU,OnEditRButtonMenu)
 END_EVENT_MAP()
 CWidgetWnd::CWidgetWnd()
 {
@@ -56,7 +56,7 @@ CWidgetWnd::CWidgetWnd()
 BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	// 加下richedit的变字体大小，颜色，下划线, 字符通知事件,示例
-	DUIRichEdit* pEdit = FindChildByNameT<DUIRichEdit>(L"richedit1");
+	DUIRichEdit* pEdit = FindChildByNameT<DUIRichEdit>("richedit1");
 	if (pEdit)
 	{
 		CHARFORMAT2W cf;
@@ -80,15 +80,15 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	}
 
 	// 增加ListCtrlEx排序示例
-	DUIListCtrlEx *pList = FindChildByNameT<DUIListCtrlEx>(L"listctrlex");
+	DUIListCtrlEx *pList = FindChildByNameT<DUIListCtrlEx>("listctrlex");
 	if (pList)
 	{
 		pList->m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderClickArgs::EventID, Subscriber(&CWidgetWnd::ListCtrlExHeaderClick, this));
 	}
 	
 
-	m_pWebkit = FindChildByNameT<DUIWebKit>(L"webobj");
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"web_url");
+	m_pWebkit = FindChildByNameT<DUIWebKit>("webobj");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("web_url");
 	if (pRichEdit)
 	{
 		pRichEdit->SetWindowText(L"http://ka.duowan.com/");
@@ -107,17 +107,17 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pWebkit->GetWebView()->loadURL(L"http://ka.duowan.com/");
 	}
 
-	IERealWnd * pIEWnd = FindChildByNameT<IERealWnd>(L"ieobj");
+	IERealWnd * pIEWnd = FindChildByNameT<IERealWnd>("ieobj");
 	if (pIEWnd)
 	{
-		IDUIWeb* pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>(L"ie");
+		IDUIWeb* pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>("ie");
 		if (pIE)
 		{
 			pIE->SetEvtHandler(this);
 		}
 	}
 
-	DUIRichEdit* pRichEditIE = FindChildByNameT<DUIRichEdit>(L"ieurl");
+	DUIRichEdit* pRichEditIE = FindChildByNameT<DUIRichEdit>("ieurl");
 	if (pRichEditIE)
 	{
 		pRichEditIE->m_EventMgr.SubscribeEvent(DM::DMEventREWantReturnArgs::EventID, Subscriber(&IE_Test::IERefreshWeb));
@@ -137,7 +137,7 @@ void CWidgetWnd::OnSize(UINT nType, CSize size)
 	}
 	if (SIZE_MAXIMIZED == nType)
 	{
-		DUIWindow*pMaxWnd     = FindChildByName(L"btn_max");
+		DUIWindow*pMaxWnd     = FindChildByName("btn_max");
 		DUIWindow*pRestoreWnd = FindChildById(10);
 		if (pMaxWnd&&pRestoreWnd)
 		{
@@ -147,7 +147,7 @@ void CWidgetWnd::OnSize(UINT nType, CSize size)
 	}
 	else if (SIZE_RESTORED == nType)
 	{
-		DUIWindow*pMaxWnd     = FindChildByName(L"btn_max");
+		DUIWindow*pMaxWnd     = FindChildByName("btn_max");
 		DUIWindow*pRestoreWnd = FindChildById(10);
 		if (pMaxWnd&&pRestoreWnd)
 		{
@@ -215,7 +215,7 @@ DMCode CWidgetWnd::OnMinimize()
 DMCode CWidgetWnd::OnBtnMenu()
 {
 	DUIMenu Menu;
-	Menu.LoadMenu(L"LayOut",L"dui_menu");
+	Menu.LoadMenu("LayOut","dui_menu");
 	POINT pt;
 	GetCursorPos(&pt);
 	Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
@@ -230,7 +230,7 @@ DMCode CWidgetWnd::OnAttrTest()
 	}
 	m_pAttrTestWnd.Release();
 	m_pAttrTestWnd.Attach(new CAttributeTestWnd(this));
-	m_pAttrTestWnd->DM_CreateWindow(L"dui_attrtest",0,0,0,0,m_hWnd);				// 创建主窗口
+	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// 创建主窗口
 	m_pAttrTestWnd->SendMessage(WM_INITDIALOG);
 	m_pAttrTestWnd->CenterWindow();
 	m_pAttrTestWnd->ShowWindow(SW_SHOW);
@@ -271,7 +271,7 @@ DMCode CWidgetWnd::OnEditRButtonMenu(DMEventArgs *pEvt)
 	if (pRMenuEvt)
 	{
 		DUIMenu Menu;
-		Menu.LoadMenu(L"LayOut",L"dui_editmenu");
+		Menu.LoadMenu("LayOut","dui_editmenu");
 
 		DUIRichEdit *pEdit = dynamic_cast<DUIRichEdit*> (pRMenuEvt->m_pSender);
 		if (pEdit)
@@ -383,7 +383,7 @@ DMCode CWidgetWnd::OnBtnWebfront()
 
 DMCode CWidgetWnd::RefreshWeb(DMEventArgs* pEvent)
 {
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"web_url");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("web_url");
 	if (pRichEdit&&m_pWebkit)
 	{
 		CStringW szUrl = pRichEdit->GetWindowText();
@@ -404,8 +404,8 @@ void CWidgetWnd::OnTitleChanged(const DMClientHandler*, DMString title)
 void CWidgetWnd::OnURLChanged(const DMClientHandler*handler, DMString url)
 {
 	CWidgetWnd *pWnd = (CWidgetWnd *)handler->pdata;
-	DUIRichEdit *pRichEdit = pWnd->FindChildByNameT<DUIRichEdit>(L"web_url");
-	DUIWebKit *pWebKit = pWnd->FindChildByNameT<DUIWebKit>(L"webobj");
+	DUIRichEdit *pRichEdit = pWnd->FindChildByNameT<DUIRichEdit>("web_url");
+	DUIWebKit *pWebKit = pWnd->FindChildByNameT<DUIWebKit>("webobj");
 	if (pRichEdit&&pWebKit)
 	{
 		pRichEdit->SetWindowText(pWebKit->GetWebView()->toStringW(url));
@@ -415,7 +415,7 @@ void CWidgetWnd::OnURLChanged(const DMClientHandler*handler, DMString url)
 // ie
 HRESULT CWidgetWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
 {
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"ieurl");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("ieurl");
 	if (pRichEdit)
 	{
 		pRichEdit->SetWindowText(pUrl);

@@ -118,7 +118,6 @@ namespace DM
 
 	void DMSpyTool::EnumTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel,bool bPanel)
 	{
-#if 0 // TODO: complete
 		do 
 		{
 			Init_Debug_XmlBuf(m_XmlBase);
@@ -129,22 +128,22 @@ namespace DM
 			}
 
 			// 插入子结点
-			CStringW bsee;bsee.Format(L"%d",pWnd->DM_IsVisible(true));
-			CStringW id;id.Format(L"%d",pWnd->GetID());
-			CStringW name = pWnd->GetName();
-			CStringW classname = pWnd->V_GetClassName();
-			DMXmlNode ChildNode = XmlNode.InsertChildNode(L"N",NULL);
+			CStringA bsee;bsee.Format("%d",pWnd->DM_IsVisible(true));
+			CStringA id;id.Format("%d",pWnd->GetID());
+			CStringA name = pWnd->GetName();
+			CStringA classname = pWnd->V_GetClassName();
+			DMXmlNode ChildNode = XmlNode.InsertChildNode("N",NULL);
 
-			CStringW duiwnd;duiwnd.Format(L"%d",pWnd->GetDUIWnd());
-			ChildNode.SetAttribute(L"duiwnd",duiwnd);
-			CStringW nl;nl.Format(L"%d",nL);
-			ChildNode.SetAttribute(L"level",nl);
-			ChildNode.SetAttribute(L"bpanel",bPanel?L"1":L"0");
+			CStringA duiwnd;duiwnd.Format("%d",pWnd->GetDUIWnd());
+			ChildNode.SetAttribute("duiwnd",duiwnd);
+			CStringA nl;nl.Format("%d",nL);
+			ChildNode.SetAttribute("level",nl);
+			ChildNode.SetAttribute("bpanel",bPanel?"1":"0");
 
-			ChildNode.SetAttribute(L"classname", classname);
-			ChildNode.SetAttribute(L"bsee",bsee);
-			ChildNode.SetAttribute(L"id", id);
-			ChildNode.SetAttribute(L"name", name);
+			ChildNode.SetAttribute("classname", classname);
+			ChildNode.SetAttribute("bsee",bsee);
+			ChildNode.SetAttribute("id", id);
+			ChildNode.SetAttribute("name", name);
 
 			// 子结点递归
 			DUIWindow* pChild = pWnd->m_Node.m_pFirstChild;
@@ -160,7 +159,6 @@ namespace DM
 			EnumPanelTreeItem(pWnd,ChildNode,tempLevel);
 			Init_Debug_XmlBuf(m_XmlBase);
 		} while (false);
-#endif
 	}
 
 	void DMSpyTool::EnumPanelTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel)

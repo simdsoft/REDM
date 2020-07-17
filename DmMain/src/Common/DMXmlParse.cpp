@@ -6,7 +6,6 @@ namespace DM
 
 	void Init_Debug_XmlBuf(DMXmlNode &XmlNode)
 	{
-#if 1 // TODO: complete
 #if defined(_DEBUG)
 		DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
 		if (NULL == pMain																													 // 加载插件时机,主窗口未初始化
@@ -15,7 +14,6 @@ namespace DM
 			XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
 		}
 #endif	
-#endif
 	}
 #define INIT_DEBUG_XMLBUF(XmlNode) Init_Debug_XmlBuf(XmlNode);
 
@@ -408,7 +406,7 @@ namespace DM
 	}
 
 	bool DMXmlNode::GetXmlContent(CStringA &strDebug)
-	{// TODO: complete
+	{
 		class xml_string_writer : public pugi::xml_writer
 		{
 		public:

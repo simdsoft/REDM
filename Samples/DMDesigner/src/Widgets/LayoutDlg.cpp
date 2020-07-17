@@ -110,7 +110,7 @@ void LayoutDlg::OnDropFiles(HDROP hDropInfo)
 		CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
 		CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
 		strFileName = strFileName.Right(strFileName.GetLength()-1-strFileName.ReverseFind(L'\\'));
-		static_cast<DMDataBase*>(m_pLayoutFileAfx)->SetAttribute("text",strFileAfx, false);
+		static_cast<DMDataBase*>(m_pLayoutFileAfx)->SetAttributeW("text",strFileAfx, false);
 		m_pLayoutFileName->SetAttribute("text",DMW2A(strFileName));
 		m_pLayoutName->SetAttribute("text", DMW2A(strFileName));
 		CStringW strTitle;

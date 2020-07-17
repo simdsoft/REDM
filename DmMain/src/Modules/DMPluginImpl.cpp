@@ -31,9 +31,9 @@
 #include "DUIPngGif.h"
 #if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIFlash.h"
-#endif
 #if !defined(DM_EXCLUDE_IE)
 #include "DUIIE.h"
+#endif
 #endif
 #include "DUIHeaderCtrl.h"
 #include "DUIListCtrlEx.h"

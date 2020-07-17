@@ -12,8 +12,8 @@ BEGIN_MSG_MAP(CSkinWnd)
 	CHAIN_MSG_MAP(DMHWnd)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(CSkinWnd)
-	EVENT_NAME_COMMAND(L"skin_closebtn",OnClose)
-	EVENT_NAME_COMMAND(L"skin_outbtn",OnOutSkin)
+	EVENT_NAME_COMMAND("skin_closebtn",OnClose)
+	EVENT_NAME_COMMAND("skin_outbtn",OnOutSkin)
 END_EVENT_MAP()
 
 
@@ -26,43 +26,43 @@ CSkinWnd::CSkinWnd(CQQMainWnd*pOwner)
 BOOL CSkinWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
 	// 这里初始化子项
-	DUIWindow* pTab = FindChildByNameT<DUIWindow>(L"tablayout");  // 主题
+	DUIWindow* pTab = FindChildByNameT<DUIWindow>("tablayout");  // 主题
 	DMASSERT(pTab);
 	DMSmartPtrT<IDMRes> pRes;
 	g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
-	if (0 == _wcsicmp(L"DMResFolderImpl",pRes->V_GetClassName())
-		||0 == _wcsicmp(L"DMResZipImpl",pRes->V_GetClassName()))
+	if (0 == dm_xmlstrcmp("DMResFolderImpl",pRes->V_GetClassName())
+		||0 == dm_xmlstrcmp("DMResZipImpl",pRes->V_GetClassName()))
 	{
 		int  iAllThemeSize = NULL;
 		pRes->SendExpandInfo((WPARAM)&iAllThemeSize,NULL);
 		DMBufT<byte>pBuf; pBuf.Allocate(iAllThemeSize);
 		pRes->SendExpandInfo((WPARAM)(LPVOID)pBuf, (LPARAM)iAllThemeSize);
-		CStringW strValue = (wchar_t*)pBuf.get();
-		CStringWList strUpdateList;
-		int nCount = (int)SplitStringT(strValue,L';',strUpdateList);
-		CStringW strType = L"png";CStringW strResName=L"preview";
+		CStringA strValue = (char*)pBuf.get();
+		CStringAList strUpdateList;
+		int nCount = (int)SplitStringT(strValue,';',strUpdateList);
+		CStringA strType = "png";CStringA strResName="preview";
 		for (int i=0;i<nCount;i++)
 		{
 			unsigned long ulSize = 0;
-			CStringW strTemp = strUpdateList[i];
+			CStringA strTemp = strUpdateList[i];
 			if (DMSUCCEEDED(pRes->GetItemSize(strType,strResName,ulSize,strTemp)))
 			{
-				DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-				if (DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize,strTemp)))
+				DMBufT<byte>pBuf;
+				if (DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, &ulSize,strTemp)))
 				{
 					// 创建预览skin
 					DMSmartPtrT<IDMSkin> pSkin;
-					g_pDMApp->CreateRegObj((void**)&pSkin,L"imglist",DMREG_Skin);
+					g_pDMApp->CreateRegObj((void**)&pSkin,"imglist",DMREG_Skin);
 					pSkin->SetBitmap(pBuf,ulSize,strType);
 				
 					SkinPreview *pChild = NULL;
-					g_pDMApp->CreateRegObj((void**)&pChild, L"SkinPreview",DMREG_Window);
+					g_pDMApp->CreateRegObj((void**)&pChild, "SkinPreview",DMREG_Window);
 					if (pChild)
 					{
 						pChild->m_pSkin = pSkin;
-						pChild->m_strThemeName = strTemp;
-						pChild->SetAttribute(L"tiptext",strTemp);
-						pChild->SetAttribute(L"cursor",L"hand");
+						pChild->m_strThemeName = DMA2W(strTemp);
+						pChild->SetAttribute("tiptext",strTemp);
+						pChild->SetAttribute("cursor","hand");
 						pTab->DM_InsertChild(pChild);
 					}
 				}
@@ -106,7 +106,7 @@ DMCode CSkinWnd::OnOutSkin()
 		ofn.hwndOwner = m_hWnd;
 		if (::GetOpenFileNameW(&ofn))
 		{// todo.hgy413 note:GetOpenFileNameW点击后WM_LBUTTTONUP消息会发送给dui，所以不要随意只处理WM_LBUTTONUP
-			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"bg");
+			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("bg");
 			if (pSkin)
 			{
 				DMSmartPtrT<IDMBitmap> pBitmap;
@@ -119,11 +119,11 @@ DMCode CSkinWnd::OnOutSkin()
 						DMBufT<byte>pBuf;pBuf.Allocate(dwSize);
 						DWORD dwRead = 0;
 						DM::GetFileBufW(szFileName,(void**)&pBuf,dwSize,dwRead);
-						pBitmap->LoadFromMemory(pBuf,dwSize,L"");
+						pBitmap->LoadFromMemory(pBuf,dwSize,"");
 					}
 					DMSmartPtrT<IDMRes> pRes;
 					g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
-					pRes->SetAttribute(L"boutstyle",L"1",false);// 外部设置模式
+					pRes->SetAttribute("boutstyle","1",false);// 外部设置模式
 					g_pDMApp->RedrawAll();
 				}
 			}

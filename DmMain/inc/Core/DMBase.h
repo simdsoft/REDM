@@ -24,7 +24,7 @@ namespace DM
 	public:
 		virtual DMCode InitDMData(DMXmlNode &XmlNode);															///<加载、解析XML数据
 		virtual DMCode OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);					///<解析XML的属性数据前触发
-	    DMCode SetAttribute(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<解析XML的属性数据
+	    DMCode SetAttributeW(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<解析XML的属性数据
 		{
 			return SetAttribute(pszAttribute, DMW2A(pszValue), bLoadXml);
 		}

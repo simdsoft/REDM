@@ -23,15 +23,15 @@ namespace DMAttr
 	class DUIComboBoxExAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static wchar_t* ITEM_subshow;													///< 初始显示的XML标识
-		static wchar_t* ITEM_sublistboxex;                                              ///< 子控件listbox的XML标识
+		static char* ITEM_subshow;													///< 初始显示的XML标识
+		static char* ITEM_sublistboxex;                                              ///< 子控件listbox的XML标识
 	};
 	DMAttrValueInit(DUIComboBoxExAttr,ITEM_sublistboxex)DMAttrValueInit(DUIComboBoxExAttr,ITEM_subshow)
 }
 
 class TGPComboboxEx: public DUIComboBoxBase
 {
-	DMDECLARE_CLASS_NAME(TGPComboboxEx, L"tgpcomboxex" ,DMREG_Window)
+	DMDECLARE_CLASS_NAME(TGPComboboxEx, "tgpcomboxex" ,DMREG_Window)
 public:
 	int InsertItem(int nIndex, DMXmlNode&XmlNode);
 	TGPListBoxEx* GetListBox(); 

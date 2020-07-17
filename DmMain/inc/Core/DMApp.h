@@ -308,6 +308,7 @@ namespace DM
 		/// @return			 DMCode
 		DMCode SetSubXmlDocCallBack(fun_cbGetSubXmlDoc);
 
+		// TODO: unify LoadXXX(WPARAM wp, LPARAM lp) LPCSTR or LPCWSTR
 		/// -------------------------------------------------
 		/// @brief 加载翻译包扩展接口
 		/// @param[in]		 wp					传入内部使用的参数1，如翻译XML路径等，和自己扩展实现相关，内置为xml的ld或xml全路径
