@@ -73,7 +73,7 @@ namespace DM
 			}
 
 			// 设置默认文本---------------------------
-			CStringW strFont = DMCA2W(XmlNode.Attribute(DMAttr::DMGlobalAttr::XMLATTR_font));
+			CStringA strFont = XmlNode.Attribute(DMAttr::DMGlobalAttr::XMLATTR_font);
 			if (!strFont.IsEmpty())
 			{
 				m_FontPool->SetDefaultFont(strFont);

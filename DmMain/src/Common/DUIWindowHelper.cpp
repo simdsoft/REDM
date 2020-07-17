@@ -126,7 +126,7 @@ namespace DM
 					if(!m_pOwner->m_pCacheCanvas)
 					{
 						g_pDMRender->CreateCanvas(m_pOwner->m_rcWindow.Width(),m_pOwner->m_rcWindow.Height(),&m_pOwner->m_pCacheCanvas);
-						m_pOwner->m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(L""));
+						m_pOwner->m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(""));
 						m_pOwner->DM_MarkCacheDirty(true);
 						m_pOwner->DM_Invalidate();
 					}

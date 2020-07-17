@@ -1095,7 +1095,7 @@ namespace DM
 			CRect rc = lpRect;
 			g_pDMRender->CreateCanvas(rc.Width(), rc.Height(),ppCanvas);
 			(*ppCanvas)->OffsetViewportOrg(-rc.left,-rc.top);
-			(*ppCanvas)->SelectObject(g_pDMFontPool->GetFont(L""));
+			(*ppCanvas)->SelectObject(g_pDMFontPool->GetFont(""));
 			(*ppCanvas)->SetTextColor(PBGRA(0,0,0,0xFF));
 
 			if(!(dcFlags & DMOLEDC_NODRAW))

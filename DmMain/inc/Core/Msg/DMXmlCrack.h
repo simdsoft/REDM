@@ -218,8 +218,7 @@ namespace DM
 #define  DM_FONTPTR_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
 		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_FONTPTR_ATTRIBUTEºê*/\
 		{\
-            CStringW lpszValue = DMCA2W(pszValue, -1, CP_UTF8); \
-			OUT_Variable = g_pDMApp->GetFont(lpszValue);\
+			OUT_Variable = g_pDMApp->GetFont(pszValue);\
 			iErr = IN_IsBreak;\
 			break;\
 		}			

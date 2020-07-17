@@ -2,6 +2,8 @@
 #include "DUIPropCtrlHelper.h"
 #include "DUIPropCtrl.h"
 
+#pragma execution_character_set("utf-8")
+
 namespace DM
 { 
 #define PROP_SE_FRAMECLR        PBGRA(22,22,22,0xff)// 绘制选中边框
@@ -526,11 +528,11 @@ namespace DM
 			//3.绘name字符
 			CRect rcName = rcDesc;
 			rcName.bottom = rcDesc.top + szChar.cy + 15;
-			AutoDrawText(pCanvas,L"face:新宋体,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:新宋体,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
 			//4.绘desc字符
 			rcDesc.top = rcName.bottom;
-			AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:新宋体,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -681,7 +683,7 @@ namespace DM
 
 			rcName.right-=5;
 			pCanvas->DrawText(m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER|DT_END_ELLIPSIS);
-			//AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
+			//AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -709,7 +711,7 @@ namespace DM
 				CRect rcEdit = m_pValueEdit->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -887,7 +889,7 @@ namespace DM
 				CRect rcEdit = m_pValueCbx->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left += 10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1043,7 +1045,7 @@ namespace DM
 				CRect rcText = m_rcText;
 				rcText.DeflateRect(4,3,4,3);
 				rcText.right+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1230,7 +1232,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1362,7 +1364,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1490,7 +1492,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1578,7 +1580,7 @@ namespace DM
 	DMCode PropFont::OnBtnClick(DMEventArgs* pEvt)
 	{
 		DMHook hook;
-		IDMFont* pFont = g_pDMApp->GetFont(m_pValueEdit->GetWindowText());
+		IDMFont* pFont = g_pDMApp->GetFont(m_pValueEdit->GetTextA());
 
 		CHOOSEFONTW cf;
 		LOGFONTW lfw = {0};
@@ -1689,7 +1691,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;

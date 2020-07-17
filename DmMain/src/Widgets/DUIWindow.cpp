@@ -2090,7 +2090,7 @@ namespace DM
 			if(!m_pCacheCanvas)
 			{
 				g_pDMRender->CreateCanvas(m_rcWindow.Width(),m_rcWindow.Height(),&m_pCacheCanvas);
-				m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(L""));
+				m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(""));
 				DM_MarkCacheDirty(true);
 			}
 			else

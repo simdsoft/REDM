@@ -202,7 +202,7 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief			获取指定字体
 		/// @param[in]		lpszFont	      字体对应的str
-		IDMFont* GetFont(LPCWSTR lpszFont);
+		IDMFont* GetFont(LPCSTR lpszFont);
 
 		/// -------------------------------------------------
 		/// @brief			获取指定Skin,从所有skin池中

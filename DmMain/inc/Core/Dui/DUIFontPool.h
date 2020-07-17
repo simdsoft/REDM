@@ -23,22 +23,22 @@ namespace DM
 	/// <remarks>
 	///		导出仅为了方便gtest测试
 	/// </remarks>
-	class DM_EXPORT DUIFontPool:public DMMapT<CStringW,IDMFontPtr>
+	class DM_EXPORT DUIFontPool:public DMMapT<CStringA,IDMFontPtr>
 	{
 	public:
 		DUIFontPool();
 		~DUIFontPool();
 
 	public:
-		bool SetDefaultFont(const CStringW& strFont);				///< 设置默认字体
-		IDMFontPtr GetFont(const CStringW& strFont);				///< 获取字体,如strFont为NULL表示获取默认字体
+		bool SetDefaultFont(const CStringA& strFont);				///< 设置默认字体
+		IDMFontPtr GetFont(const CStringA& strFont);				///< 获取字体,如strFont为NULL表示获取默认字体
 		
 	public:// 辅助
 		virtual void PreMapKeyRemove(const IDMFontPtr &obj);
 
 	protected:
-		CStringW GetFontKey(const LPLOGFONTW lpLogFont);
-		bool GetLogFont(const CStringW& strFont,LPLOGFONTW lpLogFont);
+		CStringA GetFontKey(const LPLOGFONTW lpLogFont);
+		bool GetLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont);
 
 	protected:
 		LOGFONTW				m_lfDefault;					   ///< 默认字体

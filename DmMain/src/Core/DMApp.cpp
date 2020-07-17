@@ -145,7 +145,7 @@ namespace DM
 		return g_pDMStylePool->RemoveAllStylePoolItem();
 	}
 
-	IDMFont* DMApp::GetFont(LPCWSTR lpszFont)
+	IDMFont* DMApp::GetFont(LPCSTR lpszFont)
 	{
 		return g_pDMFontPool->GetFont(lpszFont);
 	}

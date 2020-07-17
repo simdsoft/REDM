@@ -530,7 +530,7 @@ namespace DM
 						pLineChild->DV_Measure(szWrap);
 						if (POS_INIT == szWrap.cy)
 						{// 子项没有设置高度！,设置成默认字体高度，这个后续重构再改
-							IDMFontPtr pDefultFont = g_pDMFontPool->GetFont(L"");
+							IDMFontPtr pDefultFont = g_pDMFontPool->GetFont("");
 							szWrap.cy = DMABS(pDefultFont->GetLogFont()->lfHeight)+10;
 						}
 						if (nMinWidth!=-1&&

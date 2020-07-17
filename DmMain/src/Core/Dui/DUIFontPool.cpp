@@ -17,7 +17,7 @@ namespace DM
 	}
 
 	// font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位
-	bool DUIFontPool::SetDefaultFont(const CStringW& strFont)
+	bool DUIFontPool::SetDefaultFont(const CStringA& strFont)
 	{
 		bool bRet = false;
 		do 
@@ -34,14 +34,14 @@ namespace DM
 		return bRet;
 	}
 
-	IDMFontPtr DUIFontPool::GetFont(const CStringW& strFont)
+	IDMFontPtr DUIFontPool::GetFont(const CStringA& strFont)
 	{
 		IDMFontPtr pFont = NULL;
 		do 
 		{
 			// 解析并创建
 			LOGFONTW lf={0};
-			CStringW szFont = strFont;
+			CStringA szFont = strFont;
 			szFont.Trim();
 			szFont.MakeLower();
 			if (false == GetLogFont(szFont,&lf))
@@ -55,7 +55,7 @@ namespace DM
 				break;// 已找到
 			}
 			
-			CStringW szKey  = GetFontKey(&lf); // 生成标准key
+			CStringA szKey  = GetFontKey(&lf); // 生成标准key
 			if (GetObjByKey(szKey,pFont))
 			{
 				break;// 已找到
@@ -70,21 +70,20 @@ namespace DM
 		return pFont;
 	}
 
-	CStringW DUIFontPool::GetFontKey(const LPLOGFONTW lpLogFont)
+	CStringA DUIFontPool::GetFontKey(const LPLOGFONTW lpLogFont)
 	{
-		CStringW szKey;
-		CStringW strFaceName = lpLogFont->lfFaceName;strFaceName.MakeLower();
-		szKey.Format(L"weight:%d,charset:%d,underline:%d,italic:%d,strike:%d,size:%d,face:%s",lpLogFont->lfWeight,lpLogFont->lfCharSet,lpLogFont->lfUnderline,lpLogFont->lfItalic,lpLogFont->lfStrikeOut,lpLogFont->lfHeight,strFaceName);
+		CStringA szKey;
+		CStringA strFaceName = DMW2A(lpLogFont->lfFaceName);strFaceName.MakeLower();
+		szKey.Format("weight:%d,charset:%d,underline:%d,italic:%d,strike:%d,size:%d,face:%s",lpLogFont->lfWeight,lpLogFont->lfCharSet,lpLogFont->lfUnderline,lpLogFont->lfItalic,lpLogFont->lfStrikeOut,lpLogFont->lfHeight,strFaceName);
 		return szKey;
 	}
 
-	bool DUIFontPool::GetLogFont(const CStringW& strFont,LPLOGFONTW lpLogFont)
+	bool DUIFontPool::GetLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont)
 	{
 		bool bRet = false;
 		do 
 		{
-			// TODO: complete
-			CStringA szFont = DMW2A(strFont, CP_UTF8);
+			CStringA szFont = strFont;
 			szFont.Trim();
 			szFont.MakeLower();
 			if (szFont.IsEmpty()||NULL==lpLogFont)// 为NULL

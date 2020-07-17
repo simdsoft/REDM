@@ -25,7 +25,7 @@ namespace DM
 		}
 
 		// 保证normal是有值的.
-		m_ftText[0] = g_pDMFontPool->GetFont(L"");
+		m_ftText[0] = g_pDMFontPool->GetFont("");
 		m_crText[0].SetRGBA(0,0,0,0xff);
 	}
 
@@ -69,7 +69,7 @@ namespace DM
 			{
 				if (0 == i)// 0被赋了默认值
 				{
-					if (pCopy->m_ftText[0] == g_pDMFontPool->GetFont(L""))
+					if (pCopy->m_ftText[0] == g_pDMFontPool->GetFont(""))
 					{
 						pCopy->m_ftText[0] = m_ftText[0];
 					}
