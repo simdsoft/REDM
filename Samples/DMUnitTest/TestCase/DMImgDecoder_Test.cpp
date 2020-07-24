@@ -73,7 +73,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_PNG)
 	GetFileBufW(szPath, (void**)&pBuf, dwSize,dwRead);
 	EXPECT_EQ(dwRead == dwSize, true);
 
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -103,7 +103,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_PNG)
 // 测试文件加载接口是否OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_PNG)
 {
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -145,7 +145,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_JPG)
 	GetFileBufW(szPath, (void**)&pBuf, dwSize,dwRead);
 	EXPECT_EQ(dwRead == dwSize, true);
 
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -175,7 +175,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_JPG)
 // 测试文件加载接口是否OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_JPG)
 {
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -217,7 +217,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_BMP)
 	GetFileBufW(szPath, (void**)&pBuf, dwSize,dwRead);
 	EXPECT_EQ(dwRead == dwSize, true);
 
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -247,7 +247,7 @@ TEST_F(ImgDecoderTest, LoadFromMemoryIsSuccess_BMP)
 // 测试文件加载接口是否OK
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_BMP)
 {
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -289,7 +289,7 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 	GetFileBufW(szPath, (void**)&pBuf, dwSize,dwRead);
 	EXPECT_EQ(dwRead == dwSize, true);
 
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);
@@ -340,7 +340,7 @@ TEST_F(ImgDecoderTest,LoadFromMemoryIsSuccess_GIF)
 
 TEST_F(ImgDecoderTest, LoadFromFileIsSuccess_GIF)
 {
-	LPCWSTR lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
+	CStringA lpDefName = g_pDMApp->GetDefRegObj(DMREG_ImgDecoder);
 	printf("lpDefName:%ws\n",lpDefName);
 	DMSmartPtrT<IDMImgDecoder> pImgDecoder;
 	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,lpDefName,DMREG_ImgDecoder)),true);

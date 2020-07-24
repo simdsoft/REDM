@@ -15,6 +15,8 @@
 #pragma once
 #include "DMUintTestAfx.h"
 
+#pragma execution_character_set("utf-8")
+
 class DMStyleTest:public::testing::Test
 {
 public:
@@ -39,16 +41,15 @@ protected:
 TEST_F(DMStyleTest, 测试)
 {
 	DMSmartPtrT<IDMStyle>     pStyle;
-	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStyle,L"style",DMREG_Style)),true);
+	EXPECT_EQ(DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pStyle,"style",DMREG_Style)),true);
 
-	CStringW strWXml = L"<style id=\"custom\" "\
-					L"clrtext=\"rgba(ff,ff,ff,ff)\" clrtexthover=\"rgba(ff,00,ff,ff)\" clrtextpush=\"rgba(ff,ff,00,ff)\" clrtextdisable=\"rgba(00,ff,ff,ff)\" clrtextnoactive=\"rgba(00,00,ff,ff)\" "\
-					L"font=\"face:宋体,size:10,weight:400,charset:0,underline:0,italic:1,strike:1\" "\
-					L"fonthover=\"face:黑体,size:11,weight:401,underline:1,italic:1,strike:1\" skin=\"DM_Frame \" NCskin=\"Btn_Close \" "\
-					L"clrbg=\"rgba(fc,fc,fc,fc)\" align=\"right\" clrnc=\"rgba(fd,fd,fd,fd)\" ncmargin=\"1,2,3,4\" cursor=\" sizewe\" "\
-					L"skin1=\"DM_Frame\" />";
+	LiteralString strXml = "<style id=\"custom\" "\
+					"clrtext=\"rgba(ff,ff,ff,ff)\" clrtexthover=\"rgba(ff,00,ff,ff)\" clrtextpush=\"rgba(ff,ff,00,ff)\" clrtextdisable=\"rgba(00,ff,ff,ff)\" clrtextnoactive=\"rgba(00,00,ff,ff)\" "\
+					"font=\"face:宋体,size:10,weight:400,charset:0,underline:0,italic:1,strike:1\" "\
+					"fonthover=\"face:黑体,size:11,weight:401,underline:1,italic:1,strike:1\" skin=\"DM_Frame \" NCskin=\"Btn_Close \" "\
+					"clrbg=\"rgba(fc,fc,fc,fc)\" align=\"right\" clrnc=\"rgba(fd,fd,fd,fd)\" ncmargin=\"1,2,3,4\" cursor=\" sizewe\" "\
+					"skin1=\"DM_Frame\" />";
 	
-	CStringA strXml = DMW2A(strWXml,CP_UTF8);
 	DMXmlDocument doc;
 	doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 	DMXmlNode XmlNode = doc.Root();

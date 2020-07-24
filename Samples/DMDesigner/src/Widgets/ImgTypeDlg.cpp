@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ImgTypeDlg.h"
 
 BEGIN_MSG_MAP(ImgTypeDlg)   
@@ -14,28 +14,28 @@ ImgTypeDlg::ImgTypeDlg(bool bEditMode,CStringW strName)
  
 BOOL ImgTypeDlg::OnInitDialog( HWND wndFocus, LPARAM lInitParam )
 {
-	DUIStatic* pTitle = FindChildByNameT<DUIStatic>(L"ds_title");
-	CStringW strTitle;
+	DUIStatic* pTitle = FindChildByNameT<DUIStatic>("ds_title");
+	CStringA strTitle;
 	if (false == m_bEditMode)
 	{
-		strTitle = L"[";
+		strTitle = "[";
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 		DMXmlNodePtr pThemeData = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
 		strTitle += pThemeData->Attribute(XML_NAME);
-		strTitle += L"]";
+		strTitle += "]";
 	}
 	
 	if (false == m_bEditMode)
 	{
-		strTitle += L"Ôö¼ÓImgÀàÐÍ";
+		strTitle += "å¢žåŠ Imgç±»åž‹";
 	}
 	else
 	{
-		strTitle += L"±à¼­ImgÀàÐÍ";
+		strTitle += "ç¼–è¾‘Imgç±»åž‹";
 	}
-	pTitle->DV_SetWindowText(strTitle);
-	DUIEdit* pEdit = FindChildByNameT<DUIEdit>(L"ds_name");
+	pTitle->SetTextA(strTitle);
+	DUIEdit* pEdit = FindChildByNameT<DUIEdit>("ds_name");
 	if (m_bEditMode)
 	{
 		pEdit->SetWindowText(m_strName);
@@ -65,13 +65,13 @@ DMCode ImgTypeDlg::OnOK()
 	do 
 	{
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 		if (NULL == pXml||NULL == pProjTree)
 		{
 			break;
 		}
-		DUIEdit* pEdit = FindChildByNameT<DUIEdit>(L"ds_name");
-		CStringW strName = pEdit->GetWindowText();
+		DUIEdit* pEdit = FindChildByNameT<DUIEdit>("ds_name");
+		CStringA strName = pEdit->GetTextA();
 		strName.Trim();
 		HDMTREEITEM hSel = pXml->m_hProjSel;
 		DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(hSel);
@@ -81,24 +81,24 @@ DMCode ImgTypeDlg::OnOK()
 		}
 		if (strName.IsEmpty())
 		{
-			DM_MessageBox(L"Ãû×Ö²»ÄÜÎª¿Õ",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox(L"åå­—ä¸èƒ½ä¸ºç©º",MB_OK,L"Error",m_hWnd);
 			pEdit->DV_SetFocusWnd();
 			break;
 		}
 
-		// ±à¼­Ä£Ê½ ------------------------------
+		// ç¼–è¾‘æ¨¡å¼ ------------------------------
 		if (m_bEditMode)
 		{
-			CStringW strOldName = pNode->GetName();
+			CStringA strOldName = pNode->GetName();
 			if (strOldName != strName)
 			{
-				// ÐÞ¸ÄNodeµÄName
+				// ä¿®æ”¹Nodeçš„Name
 				pNode->SetName(strName);
 				DM::LPTVITEMEX pData = pProjTree->GetItem(hSel);
-				pData->pPanel->m_pDUIXmlInfo->m_strText = strName;
+				pData->pPanel->m_pDUIXmlInfo->m_strText = DMCA2W(strName);
 				pProjTree->UpdateItemRect(hSel);
 
-				// ½«¶ÔÓ¦xmlÉèÖÃÎªÎ´±£´æ
+				// å°†å¯¹åº”xmlè®¾ç½®ä¸ºæœªä¿å­˜
 				pXml->SetDocUnSave(pNode);
 			}
 
@@ -107,27 +107,27 @@ DMCode ImgTypeDlg::OnOK()
 			break;
 		}
 
-		// ÐÂ½¨Ä£Ê½ ------------------------------
-		CStringW strPath = pXml->m_strResDir + pNode->Attribute(XML_PATH);
+		// æ–°å»ºæ¨¡å¼ ------------------------------
+		CStringW strPath = pXml->m_strResDir + DMCA2W(pNode->Attribute(XML_PATH));
 		DocDataPtr pDoc = pXml->FindDocData(strPath);
 		if (NULL == pDoc)
 		{
-			DM_MessageBox(L"´ËÖ÷Ìâ°üÎª¿Õ,ÇëÏÈÉ¨Ãè´íÎó",MB_OK,L"Error",m_hWnd);
+			DM_MessageBox(L"æ­¤ä¸»é¢˜åŒ…ä¸ºç©º,è¯·å…ˆæ‰«æé”™è¯¯",MB_OK,L"Error",m_hWnd);
 			EndDialog(IDCANCEL);
 			break;
 		}
 
-		//1.²åÈëxml½áµã
+		//1.æ’å…¥xmlç»“ç‚¹
 		DMXmlNode XmlNode = pDoc->m_XmlRoot.InsertChildNode(strName);
 
-		//2.²åÈëtree½áµã,²¢°ó¶¨Êý¾Ý
+		//2.æ’å…¥treeç»“ç‚¹,å¹¶ç»‘å®šæ•°æ®
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		pXml->InitProjTreeNode(DataNode,true);
 		hAdd = pXml->InsertProjTreeItem(DataNode,strName,hSel);
 		pXml->BindProjTreeData(XmlNode,hAdd);
 
-		//3.½«¶ÔÓ¦xmlÉèÖÃÎªÎ´±£´æ×´Ì¬
+		//3.å°†å¯¹åº”xmlè®¾ç½®ä¸ºæœªä¿å­˜çŠ¶æ€
 		pXml->SetDocUnSave(strPath);
 
 		iErr = DM_ECODE_OK;

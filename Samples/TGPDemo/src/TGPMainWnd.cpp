@@ -9,15 +9,15 @@ BEGIN_MSG_MAP(CTGPMainWnd)
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CTGPMainWnd)
-	EVENT_NAME_COMMAND(L"button_mini", OnMinimize)
-	EVENT_NAME_COMMAND(L"button_close",OnClose)
-	EVENT_NAME_COMMAND(L"button_menu",OnMenu)
+	EVENT_NAME_COMMAND("button_mini", OnMinimize)
+	EVENT_NAME_COMMAND("button_close",OnClose)
+	EVENT_NAME_COMMAND("button_menu",OnMenu)
 	EVENT_HANDLER(DMEVT_OFPANEL,OnListBoxEx)
 END_EVENT_MAP()
 
 BOOL CTGPMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {    
-	m_CfMenu.LoadMenu(L"LayOut",L"dui_cfmenu");
+	m_CfMenu.LoadMenu("LayOut","dui_cfmenu");
 	return TRUE;
 }   
 
@@ -42,9 +42,9 @@ DMCode CTGPMainWnd::OnMinimize()
 DMCode CTGPMainWnd::OnMenu()
 { 
 	TGPMenu Menu;
-	Menu.LoadMenu(L"LayOut",L"dui_mainmenu");
+	Menu.LoadMenu("LayOut","dui_mainmenu");
 	CRect rcMenu;
-	DUIButton* pMenuBtn = FindChildByNameT<DUIButton>(L"button_menu");
+	DUIButton* pMenuBtn = FindChildByNameT<DUIButton>("button_menu");
 	pMenuBtn->DV_GetWindowRect(rcMenu);
 	ClientToScreen(rcMenu);
 	POINT pt;
@@ -58,7 +58,7 @@ DMCode CTGPMainWnd::OnListBoxEx(DMEventArgs *pEvt)
 	DMEventOfPanelArgs* pEvtOf = (DMEventOfPanelArgs*)pEvt;
 	if (pEvtOf&&pEvtOf->m_pOrgEvt)
 	{
-		if (IsValidString(pEvtOf->m_pOrgEvt->m_szNameFrom) &&0 ==_wcsicmp(pEvtOf->m_pOrgEvt->m_szNameFrom,L"cf_menu"))
+		if (IsValidString(pEvtOf->m_pOrgEvt->m_szNameFrom) &&0 ==dm_xmlstrcmp(pEvtOf->m_pOrgEvt->m_szNameFrom,"cf_menu"))
 		{
 			CRect rcMenu;
 			DUIWindow* pMenuBtn = pEvtOf->m_pOrgEvt->m_pSender;

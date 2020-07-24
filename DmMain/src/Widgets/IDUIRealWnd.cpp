@@ -17,7 +17,7 @@ namespace DM
 		m_hRealWnd = OnCreateRealWnd(wcClassName,hWndParent);// 初始化
 		if (NULL == m_hRealWnd)
 		{
-			DMASSERT_EXPR(0,L"创建realwnd失败");
+			DMFAIL_MSG("create realwnd fail");
 			return 1;// 失败
 		}
 		g_pDMDWndPool->AddRealDUIWnd(GetDUIWnd());

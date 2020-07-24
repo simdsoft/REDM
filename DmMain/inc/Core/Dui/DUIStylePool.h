@@ -19,18 +19,18 @@ namespace DM
 	/// <summary>
 	///		Style的池对象,用于支持局部Style
 	/// </summary>
-	class DMStylePoolItem:public DMRefNum, public DMMapT<CStringW,DMXmlNode>
+	class DMStylePoolItem:public DMRefNum, public DMMapT<CStringA,DMXmlNode>
 	{
 	public:
-		DMStylePoolItem(CStringW strName,DMXmlNode &xmlNodes);
+		DMStylePoolItem(CStringA strName,DMXmlNode &xmlNodes);
 
 	public:
 		void AddStyles(DMXmlNode &XmlStyles);
-		DMXmlNode GetStyle(CStringW strId);
+		DMXmlNode GetStyle(CStringA strId);
 
 	public:
 		DMXmlDocument               m_Doc;
-		CStringW                    m_strName;
+		CStringA                    m_strName;
 	};
 	typedef DMStylePoolItem* DMStylePoolItemPtr; 
 
@@ -40,7 +40,7 @@ namespace DM
 	/// <remarks>
 	///		采用池列表的好处是可以移除某些局部的池,如某个Style池中所有对象只用某个窗口，当窗口销毁后，就可以考虑把这个池移除
 	/// </remarks>
-	class DM_EXPORT DUIStylePool:public DMMapT<CStringW, DMStylePoolItemPtr>
+	class DM_EXPORT DUIStylePool:public DMMapT<CStringA, DMStylePoolItemPtr>
 	{
 	public:
 		~DUIStylePool();
@@ -55,7 +55,7 @@ namespace DM
 		/// @brief  移除一个style池
 		/// @param[in]  lpszName	style池的名称
 		/// @return  DMCode
-		DMCode RemoveStylePoolItem(LPCWSTR lpszName);
+		DMCode RemoveStylePoolItem(LPCSTR lpszName);
 	
 		/// -------------------------------------------------
 		/// @brief  移除所有的style池
@@ -69,19 +69,19 @@ namespace DM
 		/// @param[in]  bLoopFind		是否遍历所有池查找
 		/// @remark 默认先在lpszName的style池中找，如果找不到,而且bLoopFind为真，就全部遍历找
 		/// @return style的xmlnode
-		DMXmlNode FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
+		DMXmlNode FindStyle(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief   查找style
 		/// @param[in]  lpszBuf			style池的名称:style的key
 		/// @return style的xmlnode
-		DMXmlNode FindStyle(LPCWSTR lpszBuf,bool bLoopFind = true);
+		DMXmlNode FindStyle(LPCSTR lpszBuf,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief  全部遍历找查找style
 		/// @param[in]  lpszKey			用于查找style的key
 		/// @return style的xmlnode
-		DMXmlNode FindStyleFromAll(LPCWSTR lpszKey);
+		DMXmlNode FindStyleFromAll(LPCSTR lpszKey);
 
 	public:
 		virtual void PreMapKeyRemove(const DMStylePoolItemPtr &obj);

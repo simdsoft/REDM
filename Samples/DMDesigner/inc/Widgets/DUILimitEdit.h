@@ -16,11 +16,11 @@ namespace DMAttr
 	class DUILimitEditAttr:public DUIEditAttr
 	{
 	public:
-		static wchar_t* STRING_includechars;									///< 指定只能输入它指定的文字,示例:includechars="123456789"
-		static wchar_t* STRING_excludechars;									///< 指定排除它指定的文字,示例:excludechars="123456789"
-		static wchar_t* STRING_firstincludechars;								///< 指定首字符只能输入它指定的文字,示例:firstincludechars="123456789"
-		static wchar_t* STRING_firstexcludechars;								///< 指定首字符排除它指定的文字,示例:firstexcludechars="123456789"
-		static wchar_t* bool_bnocase;                                           ///< 无视大小写,默认为1,示例:bnocase = "1"
+		static char* STRING_includechars;									///< 指定只能输入它指定的文字,示例:includechars="123456789"
+		static char* STRING_excludechars;									///< 指定排除它指定的文字,示例:excludechars="123456789"
+		static char* STRING_firstincludechars;								///< 指定首字符只能输入它指定的文字,示例:firstincludechars="123456789"
+		static char* STRING_firstexcludechars;								///< 指定首字符排除它指定的文字,示例:firstexcludechars="123456789"
+		static char* bool_bnocase;                                           ///< 无视大小写,默认为1,示例:bnocase = "1"
 	}; 
 	DMAttrValueInit(DUILimitEditAttr,STRING_includechars)DMAttrValueInit(DUILimitEditAttr,STRING_excludechars)
 	DMAttrValueInit(DUILimitEditAttr,STRING_firstincludechars)DMAttrValueInit(DUILimitEditAttr,STRING_firstexcludechars)DMAttrValueInit(DUILimitEditAttr,bool_bnocase)
@@ -28,7 +28,7 @@ namespace DMAttr
 
 class DUILimitEdit : public DUIEdit
 {
-	DMDECLARE_CLASS_NAME(DUIEdit, L"limitedit", DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUIEdit, "limitedit", DMREG_Window)
 public:
 	DUILimitEdit();
 
@@ -45,10 +45,10 @@ public:
 
 public:
 	DM_BEGIN_ATTRIBUTES()
-		DM_STRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_includechars,m_strIncludeChars,DM_ECODE_NOXMLLOADREFRESH)
-		DM_STRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_excludechars,m_strExcludeChars,DM_ECODE_NOXMLLOADREFRESH)
-		DM_STRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_firstincludechars,m_strFirstIncludeChars,DM_ECODE_NOXMLLOADREFRESH)
-		DM_STRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_firstexcludechars,m_strFirstExcludeChars,DM_ECODE_NOXMLLOADREFRESH)
+		DM_WSTRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_includechars,m_strIncludeChars,DM_ECODE_NOXMLLOADREFRESH)
+		DM_WSTRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_excludechars,m_strExcludeChars,DM_ECODE_NOXMLLOADREFRESH)
+		DM_WSTRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_firstincludechars,m_strFirstIncludeChars,DM_ECODE_NOXMLLOADREFRESH)
+		DM_WSTRING_ATTRIBUTE(DMAttr::DUILimitEditAttr::STRING_firstexcludechars,m_strFirstExcludeChars,DM_ECODE_NOXMLLOADREFRESH)
 	DM_END_ATTRIBUTES()
 
 public: 

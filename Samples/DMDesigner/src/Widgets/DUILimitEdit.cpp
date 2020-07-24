@@ -76,12 +76,12 @@ BOOL DUILimitEdit::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
 	if (DV_IsFocusable()&&m_dwEditStyle&ES_NUMBER) // Êý×Ö
 	{
-		CStringW strValue = GetWindowText();
+		CStringA strValue = GetTextA();
 		int iValue = 0;
 		dm_parseint(strValue,iValue);
 		iValue += (zDelta>0?1:-1);
-		strValue.Format(L"%d",iValue);
-		SetWindowText(strValue);
+		strValue.Format("%d",iValue);
+		SetTextA(strValue);
 		SetSel(MAKELONG(-1,-1));
 	}
 	else

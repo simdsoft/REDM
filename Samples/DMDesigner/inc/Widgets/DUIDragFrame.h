@@ -55,7 +55,7 @@ class ObjTreeData;
 class RightXml;
 class DUIDragFrame : public DUIWindow
 {
-	DMDECLARE_CLASS_NAME(DUIDragFrame,L"duidragframe",DMREG_Window);
+	DMDECLARE_CLASS_NAME(DUIDragFrame,"duidragframe",DMREG_Window);
 public:
 	DUIDragFrame();
 

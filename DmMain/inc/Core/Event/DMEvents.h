@@ -32,7 +32,7 @@ namespace DM
 	public:
 		int								     m_iHandleCount;  ///< 当事件被处理时，m_iHandleCount增加
 		int									 m_IdFrom;        ///< 事件发送者ID
-		LPCWSTR								 m_szNameFrom;    ///< 事件发送者name
+		LPCSTR								 m_szNameFrom;    ///< 事件发送者name
 		DUIWindow*							 m_pSender;       ///< 产生事件的原始窗口对象
 	};
 

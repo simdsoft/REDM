@@ -71,7 +71,7 @@ namespace DM
 						break;
 					}
 				}
-				else if (NULL == m_pWnd->DM_CreateWindowEx(m_strXmlId,L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,false))// 创建主窗口
+				else if (NULL == m_pWnd->DM_CreateWindowEx(DMW2A(m_strXmlId),L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,false))// 创建主窗口
 				{
 					break;
 				}

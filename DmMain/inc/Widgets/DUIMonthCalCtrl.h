@@ -23,46 +23,46 @@ namespace DMAttr
 	class DUIMonthCalCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* INT_headerheight;												  ///< 头部的高度,默认为24,示例:headerheight="24"
-		static wchar_t* INT_btnoffset;													  ///< 头部左右小三角相对于边框的偏移，默认为4,示例:btnoffset="4"
-		static wchar_t* COLOR_clrheaderbg;												  ///< 头部的背景色,示例:clrheaderbg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_headerbgskin;                                                ///< 头部的背景图,示例:headerbgskin="bgskin"
-		static wchar_t* SKIN_leftbtnskin;                                                 ///< 左边的小三角按钮皮肤，示例:leftbtnskin="skinbtn"
-		static wchar_t* SKIN_rightbtnskin;                                                ///< 右边的小三角按钮皮肤，示例:rightbtnskin="skinbtn"
-		static wchar_t* SIZE_btnsize;													  ///< 小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize="-1,-1"
-		static wchar_t* COLOR_clrheadertext;                                              ///< 头部中间的文本颜色,示例:clrheadertext="pbgra(ff,ff,ff,ff)"
-		static wchar_t* FONT_headerfont;												  ///< 头部中间的文本字体,示例:headerfont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
-		static wchar_t* STRING_headertextformat;                                          ///< 头部中间的文本format,带有格示化数字的符号,示例:headertextformat="%04d年%02d月"				
+		static char* INT_headerheight;												  ///< 头部的高度,默认为24,示例:headerheight="24"
+		static char* INT_btnoffset;													  ///< 头部左右小三角相对于边框的偏移，默认为4,示例:btnoffset="4"
+		static char* COLOR_clrheaderbg;												  ///< 头部的背景色,示例:clrheaderbg="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_headerbgskin;                                                ///< 头部的背景图,示例:headerbgskin="bgskin"
+		static char* SKIN_leftbtnskin;                                                 ///< 左边的小三角按钮皮肤，示例:leftbtnskin="skinbtn"
+		static char* SKIN_rightbtnskin;                                                ///< 右边的小三角按钮皮肤，示例:rightbtnskin="skinbtn"
+		static char* SIZE_btnsize;													  ///< 小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize="-1,-1"
+		static char* COLOR_clrheadertext;                                              ///< 头部中间的文本颜色,示例:clrheadertext="pbgra(ff,ff,ff,ff)"
+		static char* FONT_headerfont;												  ///< 头部中间的文本字体,示例:headerfont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static char* STRING_headertextformat;                                          ///< 头部中间的文本format,带有格示化数字的符号,示例:headertextformat="%04d年%02d月"				
 		//
-		static wchar_t* INT_titleheight;												  ///< title的高度,默认为24,示例:titleheight="24"
-		static wchar_t* STRING_weektitle;												  ///< 七天的表示法,以逗号分隔,示例:weektitle="日,一, 二, 三, 四, 五, 六"
-		static wchar_t* COLOR_clrtitletext;												  ///< title的字体色,示例:clrtitletext="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtitlebg;												  ///< title的背景色,示例:clrtitlebg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_titlebgskin;                                                 ///< title的背景图,示例:titlebgskin="bgskin"
-		static wchar_t* FONT_titlefont;													  ///< title的文本字体,示例:titlefont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static char* INT_titleheight;												  ///< title的高度,默认为24,示例:titleheight="24"
+		static char* STRING_weektitle;												  ///< 七天的表示法,以逗号分隔,示例:weektitle="日,一, 二, 三, 四, 五, 六"
+		static char* COLOR_clrtitletext;												  ///< title的字体色,示例:clrtitletext="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtitlebg;												  ///< title的背景色,示例:clrtitlebg="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_titlebgskin;                                                 ///< title的背景图,示例:titlebgskin="bgskin"
+		static char* FONT_titlefont;													  ///< title的文本字体,示例:titlefont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
 		//
-		static wchar_t* bool_bhidegraycell;                                               ///< 是否隐藏gray cell,示例:bhidegraycell="0"
-		static wchar_t* COLOR_clrgraycelltext;											  ///< graycell的normarl文本色(上下月的cell为greycell),示例:clrgraycelltext="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrgraycelltexthover;									      ///< graycell的hover文本色(上下月的cell为greycell),示例:clrgraycelltexthover="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrgraycelltextpush;									      ///< graycell的push文本色(上下月的cell为greycell),示例:clrgraycelltextpush="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrcell;													  ///< 所有cell的背景色,示例:clrcell="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrcellhover;												  ///< 所有cell的hover背景色,示例:clrcellhover="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrcellpush;												  ///< 所有cell的push背景色,示例:clrcellpush="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_cellskin;                                                    ///< 所有cell的三态背景图,示例:cellskin="skin"
-		static wchar_t* bool_bshowjieri;									    		  ///< 是否显示节日,如果显示,则cell的文本占上方的2/3,节日占下方1/3,示例:bshowjieri="1"
-		static wchar_t* COLOR_clrjieritext;												  ///< 节日的字体色,示例:clrjieritext="pbgra(ff,ff,ff,ff)"
-		static wchar_t* FONT_jierifont;													  ///< 节日的文本字体,示例:jierifont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static char* bool_bhidegraycell;                                               ///< 是否隐藏gray cell,示例:bhidegraycell="0"
+		static char* COLOR_clrgraycelltext;											  ///< graycell的normarl文本色(上下月的cell为greycell),示例:clrgraycelltext="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrgraycelltexthover;									      ///< graycell的hover文本色(上下月的cell为greycell),示例:clrgraycelltexthover="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrgraycelltextpush;									      ///< graycell的push文本色(上下月的cell为greycell),示例:clrgraycelltextpush="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrcell;													  ///< 所有cell的背景色,示例:clrcell="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrcellhover;												  ///< 所有cell的hover背景色,示例:clrcellhover="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrcellpush;												  ///< 所有cell的push背景色,示例:clrcellpush="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_cellskin;                                                    ///< 所有cell的三态背景图,示例:cellskin="skin"
+		static char* bool_bshowjieri;									    		  ///< 是否显示节日,如果显示,则cell的文本占上方的2/3,节日占下方1/3,示例:bshowjieri="1"
+		static char* COLOR_clrjieritext;												  ///< 节日的字体色,示例:clrjieritext="pbgra(ff,ff,ff,ff)"
+		static char* FONT_jierifont;													  ///< 节日的文本字体,示例:jierifont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
 		//
-		static wchar_t* INT_todayheight;												  ///< today的高度,默认为24,示例:todayheight="24"
-		static wchar_t* COLOR_clrtodaytext;												  ///< today的normarl文本色,示例:clrtodaytext="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtodaytexthover;									      ///< today的hover文本色,示例:clrtodaytexthover="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtodaytextpush;											  ///< today的push文本色,示例:clrtodaytextpush="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtoday;													  ///< today的背景色,示例:clrtoday="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtodayhover;											  ///< today的hover背景色,示例:clrtodayhover="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtodaypush;												  ///< today的push背景色,示例:clrtodaypush="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_todayskin;                                                   ///< 每个today的三态背景图,示例:todayskin="skin"
-		static wchar_t* FONT_todayfont;													  ///< today的文本字体,示例:todayfont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
-		static wchar_t* STRING_todaytextformat;                                           ///< today的文本format,带有格示化数字的符号,示例:todaytextformat="今天:%04d/%02d/%02d"			
+		static char* INT_todayheight;												  ///< today的高度,默认为24,示例:todayheight="24"
+		static char* COLOR_clrtodaytext;												  ///< today的normarl文本色,示例:clrtodaytext="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtodaytexthover;									      ///< today的hover文本色,示例:clrtodaytexthover="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtodaytextpush;											  ///< today的push文本色,示例:clrtodaytextpush="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtoday;													  ///< today的背景色,示例:clrtoday="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtodayhover;											  ///< today的hover背景色,示例:clrtodayhover="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtodaypush;												  ///< today的push背景色,示例:clrtodaypush="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_todayskin;                                                   ///< 每个today的三态背景图,示例:todayskin="skin"
+		static char* FONT_todayfont;													  ///< today的文本字体,示例:todayfont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static char* STRING_todaytextformat;                                           ///< today的文本format,带有格示化数字的符号,示例:todaytextformat="今天:%04d/%02d/%02d"			
 
 	};
 	DMAttrValueInit(DUIMonthCalCtrlAttr,INT_headerheight)DMAttrValueInit(DUIMonthCalCtrlAttr,INT_btnoffset)DMAttrValueInit(DUIMonthCalCtrlAttr,COLOR_clrheaderbg)
@@ -167,7 +167,7 @@ namespace DM
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::SKIN_rightbtnskin, m_pBtnSkin[1], DM_ECODE_NOXMLLOADREFRESH)
 			DM_SIZE_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::SIZE_btnsize, m_BtnSize, DM_ECODE_NOXMLLOADREFRESH)
 			DM_FONTPTR_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::FONT_headerfont, m_ftHeader, DM_ECODE_NOXMLLOADREFRESH)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::STRING_headertextformat, m_strHeaderTextFormat, DM_ECODE_NOXMLLOADREFRESH)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::STRING_headertextformat, m_strHeaderTextFormat, DM_ECODE_NOXMLLOADREFRESH)
 
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::INT_titleheight, OnAttributeTitleHeight)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::STRING_weektitle, OnAttributeWeekTitle)
@@ -197,15 +197,15 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::COLOR_clrtodaypush, m_crToday[2], DM_ECODE_NOXMLLOADREFRESH)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::SKIN_todayskin, m_pTodaySkin, DM_ECODE_NOXMLLOADREFRESH)
 			DM_FONTPTR_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::FONT_todayfont, m_ftToday, DM_ECODE_NOXMLLOADREFRESH)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::STRING_todaytextformat, m_strTodayTextFormat, DM_ECODE_NOXMLLOADREFRESH)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIMonthCalCtrlAttr::STRING_todaytextformat, m_strTodayTextFormat, DM_ECODE_NOXMLLOADREFRESH)
 
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributeHeaderHeight(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeTitleHeight(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeTodayHeight(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeWeekTitle(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributebHideGrayCell(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeHeaderHeight(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeTitleHeight(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeTodayHeight(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeWeekTitle(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributebHideGrayCell(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
 		int									   m_iHeaderHei;						 ///< 头部高度 

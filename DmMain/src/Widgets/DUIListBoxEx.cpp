@@ -38,10 +38,10 @@ namespace DM
 				nIndex = GetCount();
 			}
 			LPLBITEMEX pNewItem = new LBITEMEX(XmlNode,this);
-			CStringW strHei		= XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_height);
+			LPCSTR strHei		= XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_height);
 			pNewItem->nHeight   = m_iDefItemHei;
 			DMAttributeDispatch::ParseInt(strHei,pNewItem->nHeight);
-			CStringW strData    = XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_data);
+			LPCSTR strData    = XmlNode.Attribute(DMAttr::DUIListBoxExAttr::ITEM_data);
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
@@ -713,21 +713,21 @@ namespace DM
 	{
 		if (pPanel)
 		{
-			CStringW strClr;
+			CStringA strClr;
 			if (!m_crItemBg[0].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbg",strClr,false);
 			}
 			if (!m_crItemBg[1].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbghover",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbghover",strClr,false);
 			}
 			if (!m_crItemBg[2].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbgpush",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbgpush",strClr,false);
 			}
 		}
 	}
@@ -744,9 +744,9 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strClr;
-			strClr.Format(L"rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
-			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+			CStringA strClr;
+			strClr.Format("rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
+			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbg",strClr,false);
 		} while (false);
 	}
 #pragma endregion
@@ -1010,7 +1010,7 @@ namespace DM
 		return lRet;
 	}
 
-	DMCode DUIListBoxEx::OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIListBoxEx::OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

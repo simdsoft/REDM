@@ -24,13 +24,13 @@ namespace DMAttr
 	class DUIRadioButtonAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* bool_bautogroup;                                ///< 是否自动加入组,同一个父窗口下的组radio不会被tab切换焦点,示例:bautogroup="1"
-		static wchar_t* bool_brightbox;                                 ///< box图标是否在右边,示例:brightbox="1"
-		static wchar_t* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
-		static wchar_t* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
-		static wchar_t* SKIN_radioskin;                                 ///< radio图,8分图或2分图或1分图,前4为未选中四种状态，后4为选中时四种状态,示例:radioskin="PNG:radiobutton"
-		static wchar_t* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
-		static wchar_t* INT_textoffset;                                 ///< 文本距离icon的偏移，默认为0,示例:textoffset="10"
+		static char* bool_bautogroup;                                ///< 是否自动加入组,同一个父窗口下的组radio不会被tab切换焦点,示例:bautogroup="1"
+		static char* bool_brightbox;                                 ///< box图标是否在右边,示例:brightbox="1"
+		static char* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
+		static char* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
+		static char* SKIN_radioskin;                                 ///< radio图,8分图或2分图或1分图,前4为未选中四种状态，后4为选中时四种状态,示例:radioskin="PNG:radiobutton"
+		static char* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
+		static char* INT_textoffset;                                 ///< 文本距离icon的偏移，默认为0,示例:textoffset="10"
 	};
 	DMAttrValueInit(DUIRadioButtonAttr,bool_bautogroup)
 	DMAttrValueInit(DUIRadioButtonAttr,bool_brightbox)

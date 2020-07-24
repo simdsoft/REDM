@@ -46,10 +46,10 @@ namespace DM
 			}
 
 			LPLCITEMEX pNewItem = new LCITEMEX(XmlNode,this);
-			CStringW strHei		= XmlNode.Attribute(DMAttr::DUIListCtrlExAttr::ITEM_height);
+			LPCSTR strHei		= XmlNode.Attribute(DMAttr::DUIListCtrlExAttr::ITEM_height);
 			pNewItem->nHeight   = m_iDefItemHei;
 			DMAttributeDispatch::ParseInt(strHei,pNewItem->nHeight);
-			CStringW strData    = XmlNode.Attribute(DMAttr::DUIListCtrlExAttr::ITEM_data);
+			LPCSTR strData    = XmlNode.Attribute(DMAttr::DUIListCtrlExAttr::ITEM_data);
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
@@ -490,23 +490,23 @@ namespace DM
 			m_pHeaderCtrl = dynamic_cast<DUIHeaderCtrl*>(DM_GetWindow(GDW_FIRSTCHILD));
 			if (NULL == m_pHeaderCtrl)
 			{
-				DMASSERT_EXPR(0,L"listctrlex必须有headctrl");
+				DMFAIL_MSG("listctrlex miss headctrl");
 				break;
 			}
-			CStringW strPos;
-			strPos.Format(L"0,0,-0,%d",m_iHeaderHei);
-			m_pHeaderCtrl->SetAttribute(L"pos",strPos,true);
+			CStringA strPos;
+			strPos.Format("0,0,-0,%d",m_iHeaderHei);
+			m_pHeaderCtrl->SetAttribute("pos",strPos,true);
 
 			//2.dragframe
 			m_pWndRectangle = m_pHeaderCtrl->DM_GetWindow(GDW_NEXTSIBLING);
 			if (!m_pWndRectangle)
 			{
 				m_pWndRectangle = new DUIWindow();
-				m_pWndRectangle->SetAttribute(L"clrbg",L"pbgra(ff,ff,ff,80)",true);
+				m_pWndRectangle->SetAttribute("clrbg","pbgra(ff,ff,ff,80)",true);
 				DM_InsertChild(m_pWndRectangle,DUIWND_FIRST);
 			}
-			m_pWndRectangle->SetAttribute(L"bmsgnohandle",L"1",true);
-			m_pWndRectangle->SetAttribute(L"bvisible",L"0",true);
+			m_pWndRectangle->SetAttribute("bmsgnohandle","1",true);
+			m_pWndRectangle->SetAttribute("bvisible","0",true);
 
 			// 设置接收header消息
 			m_pHeaderCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangedArgs::EventID, Subscriber(&DUIListCtrlEx::OnHeaderSizeChanged, this));
@@ -886,21 +886,21 @@ namespace DM
 	{
 		if (pPanel)
 		{
-			CStringW strClr;
+			CStringA strClr;
 			if (!m_crItemBg[0].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[0].b,m_crItemBg[0].g,m_crItemBg[0].r,m_crItemBg[0].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbg",strClr,false);
 			}
 			if (!m_crItemBg[1].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbghover",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[1].b,m_crItemBg[1].g,m_crItemBg[1].r,m_crItemBg[1].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbghover",strClr,false);
 			}
 			if (!m_crItemBg[2].IsTextInvalid())
 			{
-				strClr.Format(L"pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
-				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbgpush",strClr,false);
+				strClr.Format("pbgra(%02x,%02x,%02x,%02x)",m_crItemBg[2].b,m_crItemBg[2].g,m_crItemBg[2].r,m_crItemBg[2].a);
+				pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbgpush",strClr,false);
 			}
 		}
 	}
@@ -1344,7 +1344,7 @@ namespace DM
 		return lRet;
 	}
 
-	DMCode DUIListCtrlEx::OnAttributeHeaderHei(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIListCtrlEx::OnAttributeHeaderHei(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -1359,9 +1359,9 @@ namespace DM
 			{
 				if (m_pHeaderCtrl)
 				{
-					CStringW strPos;
-					strPos.Format(L"0,0,-0,%d",m_iHeaderHei);
-					m_pHeaderCtrl->SetAttribute(L"pos",strPos,true);
+					CStringA strPos;
+					strPos.Format("0,0,-0,%d",m_iHeaderHei);
+					m_pHeaderCtrl->SetAttribute("pos",strPos,true);
 				}
 			}
 			iErr = DM_ECODE_OK;
@@ -1369,7 +1369,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIListCtrlEx::OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIListCtrlEx::OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

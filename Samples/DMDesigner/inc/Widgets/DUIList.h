@@ -22,16 +22,16 @@ namespace DMAttr
 	class DUIListAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static wchar_t* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
-		static wchar_t* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
-		static wchar_t* SKIN_expandarrskin;                                       ///< 收缩，展开小三角,示例:expandarrskin="skin"
+		static char* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
+		static char* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
+		static char* SKIN_expandarrskin;                                       ///< 收缩，展开小三角,示例:expandarrskin="skin"
 	
-		static wchar_t* NODE_item;                                                ///< 项结点 
-		static wchar_t* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
-		static wchar_t* ITEM_bexpand;                                             ///< 项是否初始展开,示例:bexpand="1"
-		static wchar_t* ITEM_expandheight;                                        ///< 项的展开高度,示例:expandheight="100"
-		static wchar_t* ITEM_data;                                                ///< 项的数据,示例:data="10"
-		static wchar_t* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
+		static char* NODE_item;                                                ///< 项结点 
+		static char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
+		static char* ITEM_bexpand;                                             ///< 项是否初始展开,示例:bexpand="1"
+		static char* ITEM_expandheight;                                        ///< 项的展开高度,示例:expandheight="100"
+		static char* ITEM_data;                                                ///< 项的数据,示例:data="10"
+		static char* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
 		
 	};
 	DMAttrValueInit(DUIListAttr,INT_itemheight)DMAttrValueInit(DUIListAttr,INT_cursel)DMAttrValueInit(DUIListAttr,SKIN_expandarrskin)
@@ -69,7 +69,7 @@ namespace DM
 		,public IDMItemPanelOwner
 		,public DMArrayT<LPDSLBITEMEX>
 	{
-		DMDECLARE_CLASS_NAME(DUIList, L"DUIList",DMREG_Window)
+		DMDECLARE_CLASS_NAME(DUIList, "DUIList",DMREG_Window)
 	public: 
 		DUIList();  
 		~DUIList();    

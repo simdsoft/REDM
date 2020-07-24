@@ -23,7 +23,7 @@ namespace DM
 	HWND DMCWnd::CreateWindowEx(LPCWSTR lpClassName, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle,
 								 int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam)
 	{
-		DMASSERT_EXPR((NULL == m_hWnd), L"当前窗口已创建");
+		DMASSERT((NULL == m_hWnd));
 		ms_pThis = this;// 此处初始化ms_pThis;
 		MsgThunkInit();
 		m_hWnd = ::CreateWindowExW(dwExStyle, lpClassName, 
@@ -122,7 +122,7 @@ namespace DM
 		LRESULT lRes;
 		BOOL bRet = pThis->ProcessWindowMessage(pThis->m_hWnd, uMsg, wParam, lParam, lRes, 0);
 		// restore saved value for the current message
-		DMASSERT_EXPR((pThis->m_pCurrentMsg == &msg), L"当前消息不相等");
+		DMASSERT((pThis->m_pCurrentMsg == &msg));
 		pThis->m_pCurrentMsg = pOldMsg;
 		// do the default processing if message was not handled
 		if (!bRet)

@@ -29,8 +29,8 @@ public:
 	DMCode OnObjTreeChanged(DMEventArgs* pEvt);
 	DMCode InitObjTreeNode(DUIWindow*pWnd, DMXmlNode& TreeNode, bool IsDMXml = false);
 	DMCode BindObjTreeData(DocDataPtr pDoc,DUIRoot* pEditor,DUIWindowPtr pDUI, DMXmlNode& Node, HDMTREEITEM hTreeItem,bool bPanel = false);
-	HDMTREEITEM InsertObjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTREEITEM hParent =DMTVI_ROOT);
-	HDMTREEITEM FindStyle(CStringW strStyle);// 注意,这里找到的HDMTREEITEM为ProjTree中的项
+	HDMTREEITEM InsertObjTreeItem(DMXmlNode& TreeNode,CStringA strText,HDMTREEITEM hParent =DMTVI_ROOT);
+	HDMTREEITEM FindStyle(CStringA strStyle);// 注意,这里找到的HDMTREEITEM为ProjTree中的项
 protected:
 	// Menu项初始化
 	DMCode InitCopyObjMenu(DMXmlNode& XmlNode);
@@ -52,7 +52,7 @@ public:
 	bool  IsDeletable(DUIWindow* pWnd);
 
 private:
-	HDMTREEITEM _FindStyle(HDMTREEITEM hStylePoolParent,CStringW strName,CStringW strKey);
+	HDMTREEITEM _FindStyle(HDMTREEITEM hStylePoolParent,CStringA strName,CStringA strKey);
 	virtual void PreMapKeyRemove(const ObjTreeDataPtr &obj);
 
 public:

@@ -8,7 +8,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			DMASSERT_EXPR(0 != m_nStates,L"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
+			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
 			if (NULL == pCanvas
 				|| NULL == lpRectDraw
 				|| NULL == m_pBitmap

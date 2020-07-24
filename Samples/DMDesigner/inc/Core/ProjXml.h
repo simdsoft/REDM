@@ -33,6 +33,7 @@ public:
 	DMCode InitProjTreeNode(DMXmlNode& TreeNode,bool IsData = false);
 	DMCode BindProjTreeData(DMXmlNode& DataNode,HDMTREEITEM hTreeItem);
 	HDMTREEITEM InsertProjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTREEITEM hParent =DMTVI_ROOT);
+	HDMTREEITEM InsertProjTreeItem(DMXmlNode& TreeNode, CStringA strText, HDMTREEITEM hParent = DMTVI_ROOT);
 	DocDataPtr FindDocData(CStringW strPath);
 	DocDataPtr FindDocData(DMXmlNodePtr pNode);
 	CStringW GetProjTreeItemText(HDMTREEITEM hSel);
@@ -87,7 +88,7 @@ private:
 public:
 	DMSmartPtrT<ResFolder>								m_pRes;				///< 资源包,预览窗口由此资源包提供资源
 	CStringW											m_strResDir;		///< 资源包路径,最后带"\"
-	CStringW											m_strGlobalName;	///< 全局资源包名字
+	CStringA											m_strGlobalName;	///< 全局资源包名字
 
 	// 树形控件
 	ProjTree*											m_pProjTree;	

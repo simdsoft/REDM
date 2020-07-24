@@ -24,7 +24,7 @@ namespace DMAttr
 	class DUIFlashAttr
 	{
 	public:
-		static wchar_t* STRING_url;									   ///< flash的资源,支持相对路径加载或Res方式加载,示例:url="http://www.hgy413.com/swf/2.swf"
+		static char* STRING_url;									   ///< flash的资源,支持相对路径加载或Res方式加载,示例:url="http://www.hgy413.com/swf/2.swf"
 	};
 	DMAttrValueInit(DUIFlashAttr,STRING_url)
 }
@@ -66,7 +66,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIFlashAttr::STRING_url,OnAttrUrl)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttrUrl(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttrUrl(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		long                                               m_curFrame;                                        

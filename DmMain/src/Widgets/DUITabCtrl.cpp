@@ -48,7 +48,7 @@ namespace DM
 			{
 				m_pTabAnimate->StopFrame();
 			}
-			if (_wcsicmp(XmlNode.GetName(), DUITabPage::GetClassName()))
+			if (dm_xmlstrcmp(XmlNode.GetName(), DUITabPage::GetClassName()))
 			{
 				iRealInsert = -1;
 				break;
@@ -69,7 +69,7 @@ namespace DM
 			DM_InsertChild(pChild);
 			m_PageArray.InsertAt(iRealInsert, pChild);
 			pChild->InitDMData(XmlNode);
-			pChild->SetAttribute(L"pos",L"0,0,-0,-0",bLoading);
+			pChild->SetAttribute("pos","0,0,-0,-0",bLoading);
 			pChild->DM_SetVisible(false,true);
 			if (!bLoading && m_nCurSelItem>=iRealInsert)
 			{
@@ -636,7 +636,7 @@ namespace DM
 		return true;
 	}
 
-	DMCode DUITabCtrl::OnCurSel(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUITabCtrl::OnCurSel(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

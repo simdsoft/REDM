@@ -12,35 +12,35 @@ BEGIN_MSG_MAP(CMainWnd)
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CMainWnd)
-	EVENT_NAME_COMMAND(L"test", OnTest)
-	EVENT_NAME_COMMAND(L"btn_close",OnClose)
-	EVENT_NAME_COMMAND(L"btn_max", OnMaximize)
+	EVENT_NAME_COMMAND("test", OnTest)
+	EVENT_NAME_COMMAND("btn_close",OnClose)
+	EVENT_NAME_COMMAND("btn_max", OnMaximize)
 	EVENT_ID_COMMAND(10, OnRestore)
-	EVENT_NAME_COMMAND(L"btn_min", OnMinimize)
-	EVENT_NAME_COMMAND(L"btn_skin",OnSkin)
-	EVENT_NAME_COMMAND(L"btn_attrtest",OnAttrTest)
-	EVENT_NAME_COMMAND(L"dlgtest",OnDlgTest)
-	EVENT_NAME_COMMAND(L"accelbtn",OnDlgTest)
-	EVENT_NAME_COMMAND(L"listtest",OnListTest)
-	EVENT_NAME_COMMAND(L"replaygifbtn",OnReplayGif)
-	EVENT_NAME_COMMAND(L"opengifbtn",OnOpenGif)
-	EVENT_NAME_COMMAND(L"btn_menu",OnBtnMenu)
-	EVENT_NAME_COMMAND(L"startbtn",OnStartBtn)
-	EVENT_NAME_COMMAND(L"stopbtn",OnStopBtn)
+	EVENT_NAME_COMMAND("btn_min", OnMinimize)
+	EVENT_NAME_COMMAND("btn_skin",OnSkin)
+	EVENT_NAME_COMMAND("btn_attrtest",OnAttrTest)
+	EVENT_NAME_COMMAND("dlgtest",OnDlgTest)
+	EVENT_NAME_COMMAND("accelbtn",OnDlgTest)
+	EVENT_NAME_COMMAND("listtest",OnListTest)
+	EVENT_NAME_COMMAND("replaygifbtn",OnReplayGif)
+	EVENT_NAME_COMMAND("opengifbtn",OnOpenGif)
+	EVENT_NAME_COMMAND("btn_menu",OnBtnMenu)
+	EVENT_NAME_COMMAND("startbtn",OnStartBtn)
+	EVENT_NAME_COMMAND("stopbtn",OnStopBtn)
 
-	EVENT_NAME_COMMAND(L"webback",OnBtnWebBack)
-	EVENT_NAME_COMMAND(L"webrefresh",OnBtnWebRefresh)
-	EVENT_NAME_COMMAND(L"webfront",OnBtnWebfront)
+	EVENT_NAME_COMMAND("webback",OnBtnWebBack)
+	EVENT_NAME_COMMAND("webrefresh",OnBtnWebRefresh)
+	EVENT_NAME_COMMAND("webfront",OnBtnWebfront)
 
-	EVENT_NAME_COMMAND(L"ieback",OnBtnIeBack)
-	EVENT_NAME_COMMAND(L"ierefresh",OnBtnIeRefresh)
-	EVENT_NAME_COMMAND(L"iefront",OnBtnIefront)
+	EVENT_NAME_COMMAND("ieback",OnBtnIeBack)
+	EVENT_NAME_COMMAND("ierefresh",OnBtnIeRefresh)
+	EVENT_NAME_COMMAND("iefront",OnBtnIefront)
 	// 动画
-	EVENT_NAME_COMMAND(L"screen_4btn",OnScreen4Start)
-	EVENT_NAME_COMMAND(L"screen_meltbtn",OnScreenMeltStart)
-	EVENT_NAME_COMMAND(L"line_openbtn",OnLineOpenAnimateStart)
-	EVENT_NAME_COMMAND(L"line_closetbtn",OnLineCloseAnimateStart)
-	EVENT_NAME_COMMAND(L"3dstartbtn",On3DAnimateStart)
+	EVENT_NAME_COMMAND("screen_4btn",OnScreen4Start)
+	EVENT_NAME_COMMAND("screen_meltbtn",OnScreenMeltStart)
+	EVENT_NAME_COMMAND("line_openbtn",OnLineOpenAnimateStart)
+	EVENT_NAME_COMMAND("line_closetbtn",OnLineCloseAnimateStart)
+	EVENT_NAME_COMMAND("3dstartbtn",On3DAnimateStart)
 
 END_EVENT_MAP()
 
@@ -61,8 +61,8 @@ CMainWnd::~CMainWnd()
 
 BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pWebkit = FindChildByNameT<DUIWebKit>(L"webobj");
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"web_url");
+	m_pWebkit = FindChildByNameT<DUIWebKit>("webobj");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("web_url");
 	if (pRichEdit)
 	{
 		pRichEdit->SetWindowText(L"http://ka.duowan.com/");
@@ -81,25 +81,25 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pWebkit->GetWebView()->loadURL(L"http://ka.duowan.com/");
 	}
 
-	IERealWnd * pIEWnd = FindChildByNameT<IERealWnd>(L"ieobj");
+	IERealWnd * pIEWnd = FindChildByNameT<IERealWnd>("ieobj");
 	if (pIEWnd)
 	{
-		m_pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>(L"ie");
+		m_pIE = pIEWnd->m_pIEWnd->FindChildByNameT<IDUIWeb>("ie");
 		if (m_pIE)
 		{
 			m_pIE->SetEvtHandler(this);
 		}
 	}
-	DUIRichEdit* pRichEditIE = FindChildByNameT<DUIRichEdit>(L"ieurl");
+	DUIRichEdit* pRichEditIE = FindChildByNameT<DUIRichEdit>("ieurl");
 	if (pRichEditIE)
 	{
 		pRichEditIE->m_EventMgr.SubscribeEvent(DM::DMEventREWantReturnArgs::EventID, Subscriber(&CMainWnd::IERefreshWeb, this));
 	}
 
-	CStringW strScroll = L"";
+	CStringA strScroll;
 	for (int i=0;i<2;i++)
 	{
-		strScroll.Format(L"scrollbar%d",i+1);
+		strScroll.Format("scrollbar%d",i+1);
 		DUIScrollBase* pScrollBar = FindChildByNameT<DUIScrollBase>(strScroll);
 		if (pScrollBar)
 		{
@@ -108,16 +108,16 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		}
 	}
 
-	DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>(L"global_radio");
+	DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>("global_radio");
 	if (pR)
 	{
 		pR->DM_SetCheck(true);
 	}
 
-	DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>(L"3d_x");
-	DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>(L"3d_y");
-	DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>(L"3d_z");
-	DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>(L"3d_offset");
+	DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>("3d_x");
+	DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>("3d_y");
+	DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>("3d_z");
+	DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>("3d_offset");
 	DMASSERT(NULL!=px&&NULL!=py&&NULL!=pz&&NULL!=pf);
 	px->m_EventMgr.SubscribeEvent(DM::DMEventSDChangedArgs::EventID,Subscriber(&CMainWnd::On3Dx,this));
 	py->m_EventMgr.SubscribeEvent(DM::DMEventSDChangedArgs::EventID,Subscriber(&CMainWnd::On3Dy,this));
@@ -138,7 +138,7 @@ void CMainWnd::OnSize(UINT nType, CSize size)
 	}
 	if (SIZE_MAXIMIZED == nType)
 	{
-		DUIWindow*pMaxWnd     = FindChildByName(L"btn_max");
+		DUIWindow*pMaxWnd     = FindChildByName("btn_max");
 		DUIWindow*pRestoreWnd = FindChildById(10);
 		if (pMaxWnd&&pRestoreWnd)
 		{
@@ -148,7 +148,7 @@ void CMainWnd::OnSize(UINT nType, CSize size)
 	}
 	else if (SIZE_RESTORED == nType)
 	{
-		DUIWindow*pMaxWnd     = FindChildByName(L"btn_max");
+		DUIWindow*pMaxWnd     = FindChildByName("btn_max");
 		DUIWindow*pRestoreWnd = FindChildById(10);
 		if (pMaxWnd&&pRestoreWnd)
 		{
@@ -160,7 +160,7 @@ void CMainWnd::OnSize(UINT nType, CSize size)
 
 DMCode CMainWnd::OnTest()
 {
-	DUIScrollBase *pScrollBase = FindChildByNameT<DUIScrollBase>(L"test");
+	DUIScrollBase *pScrollBase = FindChildByNameT<DUIScrollBase>("test");
 	if (pScrollBase)
 	{
 		pScrollBase->ShowScrollBar(DMSB_VERT,true);
@@ -217,7 +217,7 @@ DMCode CMainWnd::OnSkin()
 	}
 	m_pSkinWnd.Release();
 	m_pSkinWnd.Attach(new CSkinWnd(this));
-	m_pSkinWnd->DM_CreateWindow(L"dui_skin");				// 创建主窗口
+	m_pSkinWnd->DM_CreateWindow("dui_skin");				// 创建主窗口
 	m_pSkinWnd->SendMessage(WM_INITDIALOG);
 	m_pSkinWnd->CenterWindow();
 	CRect rcWindow = m_rcWindow;
@@ -235,7 +235,7 @@ DMCode CMainWnd::OnAttrTest()
 	}
 	m_pAttrTestWnd.Release();
 	m_pAttrTestWnd.Attach(new CAttributeTestWnd(this));
-	m_pAttrTestWnd->DM_CreateWindow(L"dui_attrtest",0,0,0,0,m_hWnd);				// 创建主窗口
+	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// 创建主窗口
 	m_pAttrTestWnd->SendMessage(WM_INITDIALOG);
 	m_pAttrTestWnd->CenterWindow();
 	m_pAttrTestWnd->ShowWindow(SW_SHOW);
@@ -246,13 +246,13 @@ DMCode CMainWnd::OnDlgTest()
 {
 	DMSmartPtrT<DMHDialog> pDlg;
 	pDlg.Attach(new DMHDialog());
-	pDlg->DoModal(L"dui_dlgtest",m_hWnd);
+	pDlg->DoModal("dui_dlgtest",m_hWnd);
 	return DM_ECODE_OK;
 }
 
 DMCode CMainWnd::OnListTest()
 {
-	DUIListBox *pList = FindChildByNameT<DUIListBox>(L"listbox");
+	DUIListBox *pList = FindChildByNameT<DUIListBox>("listbox");
 	if (pList)
 	{
 		pList->EnsureVisible(3);
@@ -262,7 +262,7 @@ DMCode CMainWnd::OnListTest()
 
 DMCode CMainWnd::OnReplayGif()
 {
-	DUIGif *pGifWnd = FindChildByNameT<DUIGif>(L"biggif");
+	DUIGif *pGifWnd = FindChildByNameT<DUIGif>("biggif");
 	if (pGifWnd)
 	{
 		pGifWnd->Restart();
@@ -272,7 +272,7 @@ DMCode CMainWnd::OnReplayGif()
 
 DMCode CMainWnd::OnOpenGif()
 {
-	DUIGif *pGifWnd = FindChildByNameT<DUIGif>(L"biggif");
+	DUIGif *pGifWnd = FindChildByNameT<DUIGif>("biggif");
 	if (pGifWnd)
 	{
 		wchar_t szFileTitle[_MAX_FNAME] = {0};  
@@ -302,7 +302,7 @@ DMCode CMainWnd::OnOpenGif()
 DMCode CMainWnd::OnBtnMenu()
 {
 	DUIMenu Menu;
-	Menu.LoadMenu(L"LayOut",L"Dui_MENU");
+	Menu.LoadMenu("LayOut","Dui_MENU");
 	POINT pt;
 	GetCursorPos(&pt);
 	Menu.TrackPopupMenu(0,pt.x,pt.y,m_hWnd);
@@ -373,7 +373,7 @@ DMCode CMainWnd::OnBtnWebfront()
 
 DMCode CMainWnd::RefreshWeb(DMEventArgs* pEvent)
 {
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"web_url");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("web_url");
 	if (pRichEdit&&m_pWebkit)
 	{
 		CStringW szUrl = pRichEdit->GetWindowText();
@@ -419,7 +419,7 @@ DMCode CMainWnd::OnBtnIefront()
 
 DM::DMCode CMainWnd::IERefreshWeb( DMEventArgs* pEvent )
 {
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"ieurl");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("ieurl");
 	if (pRichEdit && m_pIE)
 	{
 		CStringW szUrl;
@@ -437,7 +437,7 @@ DM::DMCode CMainWnd::IERefreshWeb( DMEventArgs* pEvent )
 
 HRESULT CMainWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl)
 {
-	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>(L"ieurl");
+	DUIRichEdit *pRichEdit = FindChildByNameT<DUIRichEdit>("ieurl");
 	if (pRichEdit&&m_pIE)
 	{
 		pRichEdit->SetWindowText(pUrl);
@@ -447,10 +447,10 @@ HRESULT CMainWnd::NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar
 
 DMCode CMainWnd::MyTimer()
 {
-	CStringW strSlider = L"";
+	CStringA strSlider;
 	for (int i=0;i<4;i++)
 	{
-		strSlider.Format(L"sliderctrl%d",i+1);
+		strSlider.Format("sliderctrl%d",i+1);
 		DUISliderCtrl* pSlider = FindChildByNameT<DUISliderCtrl>(strSlider);
 		if (pSlider)
 		{
@@ -467,10 +467,10 @@ DMCode CMainWnd::MyTimer()
 		}
 	}
 
-	CStringW strProcess = L"";
+	CStringA strProcess;
 	for (int i=0;i<2;i++)
 	{
-		strProcess.Format(L"processctrl%d",i+1);
+		strProcess.Format("processctrl%d",i+1);
 		DUIProcessCtrl* pProcess = FindChildByNameT<DUIProcessCtrl>(strProcess);
 		if (pProcess)
 		{
@@ -486,10 +486,10 @@ DMCode CMainWnd::MyTimer()
 			pProcess->SetPos(iValue);
 		}
 	}
-	CStringW strScroll = L"";
+	CStringA strScroll;
 	for (int i=0;i<2;i++)
 	{
-		strScroll.Format(L"scrollbar%d",i+1);
+		strScroll.Format("scrollbar%d",i+1);
 		DUIScrollBase* pScrollBar = FindChildByNameT<DUIScrollBase>(strScroll);
 		if (pScrollBar)
 		{
@@ -525,8 +525,8 @@ void CMainWnd::OnTitleChanged(const DMClientHandler*, DMString title)
 void CMainWnd::OnURLChanged(const DMClientHandler*handler, DMString url)
 {
 	CMainWnd *pWnd = (CMainWnd *)handler->pdata;
-	DUIRichEdit *pRichEdit = pWnd->FindChildByNameT<DUIRichEdit>(L"web_url");
-	DUIWebKit *pWebKit = pWnd->FindChildByNameT<DUIWebKit>(L"webobj");
+	DUIRichEdit *pRichEdit = pWnd->FindChildByNameT<DUIRichEdit>("web_url");
+	DUIWebKit *pWebKit = pWnd->FindChildByNameT<DUIWebKit>("webobj");
 	if (pRichEdit&&pWebKit)
 	{
 		pRichEdit->SetWindowText(pWebKit->GetWebView()->toStringW(url));
@@ -561,12 +561,12 @@ DMCode CMainWnd::OnScreen4Start()
 	do 
 	{
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DMScreenAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DMScreenAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
 		}
-		DUIWindow*pIE = FindChildByName(L"ie");
+		DUIWindow*pIE = FindChildByName("ie");
 		if (pIE&&pIE->DM_IsVisible(true))
 		{
 			pIE->DM_SendMessage(WM_PAINT,(WPARAM)m_pShowCanvas.get(),0);
@@ -582,12 +582,12 @@ DMCode CMainWnd::OnScreenMeltStart()
 	do 
 	{
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DMScreenAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DMScreenAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
 		}
-		DUIWindow*pIE = FindChildByName(L"ie");
+		DUIWindow*pIE = FindChildByName("ie");
 		if (pIE&&pIE->DM_IsVisible(true))
 		{
 			pIE->DM_SendMessage(WM_PAINT,(WPARAM)m_pShowCanvas.get(),0);
@@ -603,7 +603,7 @@ DMCode CMainWnd::OnLineOpenAnimateStart()
 	do 
 	{
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DMLineAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DMLineAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
@@ -619,7 +619,7 @@ DMCode CMainWnd::OnLineCloseAnimateStart()
 	do 
 	{
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DMLineAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DMLineAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
@@ -636,29 +636,29 @@ DMCode CMainWnd::On3DAnimateStart()
 	do 
 	{
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DM3DAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DM3DAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
 		}
 
 		bool bGlobal = true;
-		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>(L"global_radio");
+		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>("global_radio");
 		if (pR&&!pR->DM_IsChecked())// 非全局
 		{
 			bGlobal = false;
 		}
 
 		PARAM3D data;int iCount = 0;
-		DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>(L"3d_x");data.x = px->GetPos();
-		DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>(L"3d_y");data.y = py->GetPos();
-		DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>(L"3d_z");data.z = pz->GetPos();
-		DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>(L"3d_offset");data.f = pf->GetPos();
-		DUISliderCtrl *pc = FindChildByNameT<DUISliderCtrl>(L"3d_count");iCount = pc->GetPos();
+		DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>("3d_x");data.x = px->GetPos();
+		DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>("3d_y");data.y = py->GetPos();
+		DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>("3d_z");data.z = pz->GetPos();
+		DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>("3d_offset");data.f = pf->GetPos();
+		DUISliderCtrl *pc = FindChildByNameT<DUISliderCtrl>("3d_count");iCount = pc->GetPos();
 
 		if (bGlobal)
 		{
-			DUIWindow*pIE = FindChildByName(L"ie");
+			DUIWindow*pIE = FindChildByName("ie");
 			if (pIE&&pIE->DM_IsVisible(true))
 			{
 				pIE->DM_SendMessage(WM_PAINT,(WPARAM)m_pShowCanvas.get(),0);
@@ -681,23 +681,23 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 {
 	do 
 	{
-		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>(L"global_radio");
+		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>("global_radio");
 		if (pR&&pR->DM_IsChecked())// 全局
 		{
 			break;
 		}
 		m_pAnimate.Release();
-		g_pDMApp->CreateRegObj((void**)&m_pAnimate,L"DM3DAnimate",DMREG_Animate);
+		g_pDMApp->CreateRegObj((void**)&m_pAnimate,"DM3DAnimate",DMREG_Animate);
 		if (m_pAnimate.isNull())
 		{
 			break;
 		}
 		PARAM3D data;
-		DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>(L"3d_x");data.x = px->GetPos();
-		DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>(L"3d_y");data.y = py->GetPos();
-		DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>(L"3d_z");data.z = pz->GetPos();
-		DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>(L"3d_offset");data.f = pf->GetPos();
-		DUIWindow *pWnd = FindChildByName(L"anishow");
+		DUISliderCtrl *px = FindChildByNameT<DUISliderCtrl>("3d_x");data.x = px->GetPos();
+		DUISliderCtrl *py = FindChildByNameT<DUISliderCtrl>("3d_y");data.y = py->GetPos();
+		DUISliderCtrl *pz = FindChildByNameT<DUISliderCtrl>("3d_z");data.z = pz->GetPos();
+		DUISliderCtrl *pf = FindChildByNameT<DUISliderCtrl>("3d_offset");data.f = pf->GetPos();
+		DUIWindow *pWnd = FindChildByName("anishow");
 		if (pWnd)
 		{
 		
@@ -705,14 +705,13 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 			pWnd->m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
 			if (NULL == pSkin)
 			{
-				pWnd->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"skin",L"1",false);
+				pWnd->m_pDUIXmlInfo->m_pStyle->SetAttribute("skin","1",false);
 				pWnd->m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
 			}
 			if (pSkin)
 			{
 				// 先恢复
-				CStringW strWXml = L"<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
-				CStringA strXml = DMW2A(strWXml,CP_UTF8);
+				CStringA strXml = "<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
 				DMXmlDocument doc;
 				doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 				DMXmlNode XmlNode = doc.Root();

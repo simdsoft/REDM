@@ -59,18 +59,18 @@ namespace DM
 		typedef DMSmartPtrT<DMSyncSlot>		   Connection;
 		typedef	int							   Group;
 	public:
-		DMEventSlot(LPCWSTR lpszEventName);
+		DMEventSlot(LPCSTR lpszEventName);
 		void operator()(DMEventSender& sender, DMBundle& args);
 		~DMEventSlot();
 
 	public:
-		const CStringW& GetName(void) const;
+		const CStringA& GetName(void) const;
 		bool EmptySlot(void) const;
 		Connection ConnectSlot(const DMSyncSlot& slot, Group group = -1);
 		bool DisconnectIfThis(void* pThis);
 
 	public:
-		CStringW								m_strEventName;					   ///< 事件名
+		CStringA								m_strEventName;					   ///< 事件名
 		DM::CMap<int, DM::CArray<Connection>>   m_slotContainer;                   ///< 事件槽容器，组别越大越优先调用,MAP会自动把数字按从小到大排序
 	};
 	typedef DMSmartPtrT<DMEventSlot>			RefEventSlot;

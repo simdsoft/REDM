@@ -518,9 +518,9 @@ namespace DM
 			{// 说明m_rcWindow过小.
 #if defined(_DEBUG)
 				DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
-				if (pMain && (0 != pMain->GetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase(L"440A2781-8BC2-4AC4-8225-9AC451FE42B4"))) // 设计器debug下不弹框
+				if (pMain && (0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4"))) // 设计器debug下不弹框
 				{
-					DMASSERT_EXPR(0,L"不要把DUIRectTracker的区域设置得过小");
+					DMFAIL_MSG("DUIRectTracker rect too small");
 				}
 #endif	
 				m_rcWindow = rcTracker;
@@ -530,7 +530,7 @@ namespace DM
 	}
 #pragma endregion
 
-	DMCode DUIRectTracker::OnAttributeMoveSkin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeMoveSkin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		m_pMoveSkin = g_pDMApp->GetSkin(lpszValue);
 		if (!bLoadXml)
@@ -541,7 +541,7 @@ namespace DM
 		return DM_ECODE_NOXMLLOADPARENTREFRESH;
 	}
 
-	DMCode DUIRectTracker::OnAttributeDotClr(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeDotClr(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMColor clrFill = m_crDot[0];
 		dm_parsecolor(lpszValue,m_crDot[0]);
@@ -556,7 +556,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeDotGrayClr(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeDotGrayClr(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMColor clrFill = m_crDot[1];
 		dm_parsecolor(lpszValue,m_crDot[1]);
@@ -571,7 +571,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeBoxSolidClr(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeBoxSolidClr(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMColor clrBox = m_crBox[0];
 		dm_parsecolor(lpszValue,m_crBox[0]);
@@ -586,7 +586,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeBoxDashClr(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeBoxDashClr(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMColor clrBox = m_crBox[1];
 		dm_parsecolor(lpszValue, m_crBox[1]);
@@ -601,7 +601,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeDotWidth(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeDotWidth(LPCSTR lpszValue, bool bLoadXml)
 	{
 		int dotWidth = m_dotWidth;
 		dm_parseint(lpszValue, m_dotWidth);
@@ -614,7 +614,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeIsMain(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeIsMain(LPCSTR lpszValue, bool bLoadXml)
 	{
 		bool bMain = m_bMain;
 		dm_parsebool(lpszValue,m_bMain);
@@ -627,7 +627,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIRectTracker::OnAttributeIsAllGray(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIRectTracker::OnAttributeIsAllGray(LPCSTR lpszValue, bool bLoadXml)
 	{
 		bool bAllGray = m_bAllGray;
 		dm_parsebool(lpszValue,m_bAllGray);

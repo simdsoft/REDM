@@ -31,15 +31,15 @@ BEGIN_MSG_MAP(NewResDlg)
 	CHAIN_MSG_MAP(DMHDialog)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(NewResDlg)
-	EVENT_NAME_COMMAND(L"ds_openrespath",OnOpenResPath)
-	EVENT_NAME_HANDLER(L"ds_recentlist",DMEVT_DRLISTBOX_DBLCLICK,OnOpenRecentDir)
+	EVENT_NAME_COMMAND("ds_openrespath",OnOpenResPath)
+	EVENT_NAME_HANDLER("ds_recentlist",DMEVT_DRLISTBOX_DBLCLICK,OnOpenRecentDir)
 END_EVENT_MAP()
 
 BOOL NewResDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pResNameEdit = FindChildByNameT<DUIEdit>(L"ds_resnameedit");DMASSERT(m_pResNameEdit);
-	m_pResPathEdit = FindChildByNameT<DUIEdit>(L"ds_respathedit");DMASSERT(m_pResPathEdit);
-	m_pRecentList  = FindChildByNameT<DUIListBox>(L"ds_recentlist");DMASSERT(m_pRecentList);
+	m_pResNameEdit = FindChildByNameT<DUIEdit>("ds_resnameedit");DMASSERT(m_pResNameEdit);
+	m_pResPathEdit = FindChildByNameT<DUIEdit>("ds_respathedit");DMASSERT(m_pResPathEdit);
+	m_pRecentList  = FindChildByNameT<DUIListBox>("ds_recentlist");DMASSERT(m_pRecentList);
 	m_pResNameEdit->DV_SetFocusWnd();
 
 	// 更新最近list列表
@@ -49,7 +49,7 @@ BOOL NewResDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		DMXmlNode XmlNode = XmlRoot.FirstChild();
 		while (XmlNode.IsValid())
 		{
-			CStringW strDir = XmlNode.Attribute(XML_PATH);
+			CStringW strDir = DMCA2W(XmlNode.Attribute(XML_PATH));
 			if (!strDir.IsEmpty())
 			{
 				m_pRecentList->AddString(strDir);
@@ -58,6 +58,10 @@ BOOL NewResDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 			XmlNode = XmlNode.NextSibling();
 		}
 	}
+
+	/*SendMessage(WM_PAINT, 0, 0);
+	ShowWindow(SW_SHOWNORMAL);
+	UpdateWindow();*/
 
 	return TRUE;
 }
@@ -95,7 +99,7 @@ DMCode NewResDlg::OnOpenRecentDir(DMEventArgs *pEvt)
 
 	if (g_pMainWnd)
 	{
-		DUIStatic *pSta = g_pMainWnd->FindChildByNameT<DUIStatic>(L"ds_resdirsta");
+		DUIStatic *pSta = g_pMainWnd->FindChildByNameT<DUIStatic>("ds_resdirsta");
 		CStringW strCurDir = pSta->m_pDUIXmlInfo->m_strText;
 		if (0 == strCurDir.CompareNoCase(strDir))
 		{
@@ -166,7 +170,7 @@ DMCode NewResDlg::CreateResDir()
 	do 
 	{
 		wchar_t szSrcPath[MAX_PATH] = {0};
-		DM::GetRootFullPath(FindChildByName(L"ds_useskin")->DM_IsChecked()?NEW_DG_DIR:NEW_DIR,szSrcPath,MAX_PATH);
+		DM::GetRootFullPath(FindChildByName("ds_useskin")->DM_IsChecked()?NEW_DG_DIR:NEW_DIR,szSrcPath,MAX_PATH);
 		if (false == CopyDirectory(szSrcPath,m_strResDir))
 		{
 			break;

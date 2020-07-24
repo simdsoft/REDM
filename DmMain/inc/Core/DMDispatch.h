@@ -24,12 +24,12 @@ namespace DM
 	{
 	public:
 		static void SetAttributeDispatch(IDMAttribute* pAttributeObj);
-		static DMCode ParseInt(LPCWSTR lpszValue,int&Obj);				
-		static DMCode ParseBool(LPCWSTR lpszValue,bool&Obj);			
-		static DMCode ParseColor(LPCWSTR lpszValue,DMColor&Obj);		
-		static DMCode ParseSize(LPCWSTR lpszValue,DM::CSize&Obj);		
-		static DMCode ParsePoint(LPCWSTR lpszValue,DM::CPoint&Obj);	
-		static DMCode ParseRect(LPCWSTR lpszValue,DM::CRect&Obj);		
+		static DMCode ParseInt(LPCSTR lpszValue,int&Obj);
+		static DMCode ParseBool(LPCSTR lpszValue,bool&Obj);
+		static DMCode ParseColor(LPCSTR lpszValue,DMColor&Obj);
+		static DMCode ParseSize(LPCSTR lpszValue,DM::CSize&Obj);
+		static DMCode ParsePoint(LPCSTR lpszValue,DM::CPoint&Obj);
+		static DMCode ParseRect(LPCSTR lpszValue,DM::CRect&Obj);
 	public: static IDMAttribute *m_pAttributeObj;
 	};
 
@@ -52,6 +52,6 @@ namespace DMAttr
 	class DM_EXPORT DMInitAttrDispatch
 	{
 	public:
-		static wchar_t* GetAttrValue(wchar_t* cls,wchar_t *pBuf);
+		static char* GetAttrValue(char* cls,char *pBuf);
 	};
 }

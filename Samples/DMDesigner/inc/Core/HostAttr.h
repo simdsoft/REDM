@@ -31,7 +31,7 @@ public:
 	virtual DMCode OnTreeEnd(AttrTree* pTree);
 
 	DMCode InitAttrArray(ObjTreeDataPtr pData);
-	DMXmlInitAttrPtr FindAttrByName(CStringW strName);
+	DMXmlInitAttrPtr FindAttrByName(CStringA strName);
 	virtual void PreArrayObjRemove(const DMXmlInitAttrPtr &obj);
 
 private:

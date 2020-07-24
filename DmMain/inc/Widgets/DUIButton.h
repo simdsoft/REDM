@@ -24,12 +24,12 @@ namespace DMAttr
 	class DUIButtonAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* bool_banimate;								    ///< 是否启用渐显示动画,示例:banimate="1"
-		static wchar_t* INT_animatesteps;                               ///< 在启用渐显示动画时,设置分多少次显示(每次间隔10ms）,示例:animatesteps="1"
-		static wchar_t* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
-		static wchar_t* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
-		static wchar_t* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
-		static wchar_t* ACCEL_accel;                                    ///< 加速键,btn使用加速键触发点击消息,示例:accel="ctrl+enter"
+		static char* bool_banimate;								    ///< 是否启用渐显示动画,示例:banimate="1"
+		static char* INT_animatesteps;                               ///< 在启用渐显示动画时,设置分多少次显示(每次间隔10ms）,示例:animatesteps="1"
+		static char* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
+		static char* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
+		static char* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
+		static char* ACCEL_accel;                                    ///< 加速键,btn使用加速键触发点击消息,示例:accel="ctrl+enter"
 	};
 	DMAttrValueInit(DUIButtonAttr,bool_banimate)DMAttrValueInit(DUIButtonAttr,INT_animatesteps)
 	DMAttrValueInit(DUIButtonAttr,bool_bmultilines)DMAttrValueInit(DUIButtonAttr,INT_lineinter)
@@ -93,7 +93,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIButtonAttr::ACCEL_accel, OnAttributeAccel)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributeAccel(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeAccel(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		bool							    m_bAnimate;				///< 启用alpha渐变动画

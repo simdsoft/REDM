@@ -8,43 +8,43 @@ namespace DM
 	IDMAttribute *DMAttributeDispatch::m_pAttributeObj=NULL;
 	void DMAttributeDispatch::SetAttributeDispatch(IDMAttribute* pAttributeObj)
 	{
-		DMASSERT_EXPR(NULL!=pAttributeObj, L"m_pAttributeObj为空!");
+		DMASSERT(NULL!=pAttributeObj);
 		m_pAttributeObj = pAttributeObj;
 	}
 
-	DMCode DMAttributeDispatch::ParseInt(LPCWSTR lpszValue,int&Obj)
+	DMCode DMAttributeDispatch::ParseInt(LPCSTR lpszValue,int&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParseInt(lpszValue, Obj);
 	}
 
-	DMCode DMAttributeDispatch::ParseBool(LPCWSTR lpszValue,bool&Obj)
+	DMCode DMAttributeDispatch::ParseBool(LPCSTR lpszValue,bool&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParseBool(lpszValue, Obj);
 	}
 
-	DMCode DMAttributeDispatch::ParseColor(LPCWSTR lpszValue,DMColor&Obj)
+	DMCode DMAttributeDispatch::ParseColor(LPCSTR lpszValue,DMColor&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParseColor(lpszValue, Obj);
 	}
 
-	DMCode DMAttributeDispatch::ParseSize(LPCWSTR lpszValue,DM::CSize&Obj)
+	DMCode DMAttributeDispatch::ParseSize(LPCSTR lpszValue,DM::CSize&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParseSize(lpszValue, Obj);
 	}
 
-	DMCode DMAttributeDispatch::ParsePoint(LPCWSTR lpszValue,DM::CPoint&Obj)
+	DMCode DMAttributeDispatch::ParsePoint(LPCSTR lpszValue,DM::CPoint&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParsePoint(lpszValue, Obj);
 	}
 
-	DMCode DMAttributeDispatch::ParseRect(LPCWSTR lpszValue,DM::CRect&Obj)
+	DMCode DMAttributeDispatch::ParseRect(LPCSTR lpszValue,DM::CRect&Obj)
 	{
-		DMASSERT_EXPR(NULL!=m_pAttributeObj, L"m_pAttributeObj未初始化!");
+		DMASSERT(NULL!=m_pAttributeObj);
 		return m_pAttributeObj->ParseRect(lpszValue, Obj);
 	}
 
@@ -84,10 +84,10 @@ namespace DMAttr
 {
 	// ----------------------------------------------------
 	// 内部强制规定XML属性字符串定义方式
-	wchar_t* DMInitAttrDispatch::GetAttrValue(wchar_t* cls,wchar_t *pBuf)
+	char* DMInitAttrDispatch::GetAttrValue(char* cls, char*pBuf)
 	{  
-		wchar_t*pLow = wcsstr(pBuf,L"_");
-		if (!pLow){DMASSERT_EXPR(0,L"请使用类型_定义方式,如INT_ihei");}
+		char*pLow = strstr(pBuf,"_");
+		DMASSERT_EXPRA(!!pLow, "type_method,INT_ihei");
 		pLow++;
 		return pLow;
 	}

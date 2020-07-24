@@ -4,10 +4,10 @@
 namespace DM
 {
 
-	DMStylePoolItem::DMStylePoolItem(CStringW strName,DMXmlNode &xmlNodes)
+	DMStylePoolItem::DMStylePoolItem(CStringA strName,DMXmlNode &xmlNodes)
 	{
 		m_strName = strName;
-		m_Doc.Base().InsertChildNode(L"root");
+		m_Doc.Base().InsertChildNode("root");
 		AddStyles(xmlNodes);
 	}
 
@@ -24,13 +24,10 @@ namespace DM
 			DMXmlNode XmlStyle = XmlNode.FirstChild();
 			while (XmlStyle.IsValid())
 			{
-				CStringW strId = XmlStyle.Attribute(L"id");strId.MakeLower();
+				CStringA strId = XmlStyle.Attribute("id");strId.MakeLower();
 				if (strId.IsEmpty())
 				{
-					CStringW szInfo; 
-					XmlStyle.GetXmlContent(szInfo);
-					szInfo += L"(style)未设置id,将自动忽视";
-					DMASSERT_EXPR(0, szInfo);
+					DMFAIL_MSG("no style id, ignored");
 				}
 				else
 				{
@@ -44,7 +41,7 @@ namespace DM
 		} while (false);
 	}
 
-	DMXmlNode DMStylePoolItem::GetStyle(CStringW strId)
+	DMXmlNode DMStylePoolItem::GetStyle(CStringA strId)
 	{
 		DMXmlNode XmlStyle;
 		GetObjByKey(strId, XmlStyle);
@@ -68,8 +65,8 @@ namespace DM
 				break;
 			}
 
-			CStringW strName = XmlNode.Attribute(L"name");strName.MakeLower();
-			if (false == GetObjByKey(strName, pItem))
+			CStringA strName = XmlNode.Attribute("name");strName.MakeLower();
+			if (!GetObjByKey(strName, pItem))
 			{
 				pItem = new DMStylePoolItem(strName,XmlNode);
 				AddKey(strName,pItem);
@@ -86,9 +83,9 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIStylePool::RemoveStylePoolItem(LPCWSTR lpszName)
+	DMCode DUIStylePool::RemoveStylePoolItem(LPCSTR lpszName)
 	{
-		CStringW szKey = lpszName;szKey.MakeLower();
+		CStringA szKey = lpszName;szKey.MakeLower();
 		RemoveKey(szKey);
 		return DM_ECODE_OK;
 	}
@@ -99,19 +96,19 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMXmlNode DUIStylePool::FindStyle(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind)
+	DMXmlNode DUIStylePool::FindStyle(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind)
 	{
 		DMXmlNode XmlStyle;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
 
 			DMStylePoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;strName.MakeLower();
-			CStringW strKey = lpszKey;  strKey.MakeLower();
+			CStringA strName = lpszName;strName.MakeLower();
+			CStringA strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
@@ -136,21 +133,21 @@ namespace DM
 		return XmlStyle;
 	}
 
-	DMXmlNode DUIStylePool::FindStyle(LPCWSTR lpszBuf,bool bLoopFind)
+	DMXmlNode DUIStylePool::FindStyle(LPCSTR lpszBuf,bool bLoopFind)
 	{
 		DMXmlNode XmlStyle;
 		do 
 		{
-			if (NULL == lpszBuf||wcslen(lpszBuf)<=0)
+			if (NULL == lpszBuf||strlen(lpszBuf)<=0)
 			{
 				break;
 			}
 
-			CStringW strValue = lpszBuf;
-			CStringWList strList;
-			CStringW strName;
-			CStringW strKey;
-			int nCount = (int)SplitStringT(strValue,L':',strList);
+			CStringA strValue = lpszBuf;
+			CStringAList strList;
+			CStringA strName;
+			CStringA strKey;
+			int nCount = (int)SplitStringT(strValue,':',strList);
 			if (1==nCount)
 			{
 				strKey = strValue;
@@ -162,9 +159,7 @@ namespace DM
 			}
 			else
 			{
-				CStringW strInfo;
-				strInfo.Format(L"style-%s设置错误",strValue);
-				DMASSERT_EXPR(0,strInfo);
+				DMFAIL_MSG_FMT("style-%s error", (LPCSTR)strValue);
 				break;
 			}
 
@@ -173,21 +168,21 @@ namespace DM
 		return XmlStyle;
 	}
 
-	DMXmlNode DUIStylePool::FindStyleFromAll(LPCWSTR lpszKey)
+	DMXmlNode DUIStylePool::FindStyleFromAll(LPCSTR lpszKey)
 	{
 		DMXmlNode XmlStyle;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
 
-			CStringW strKey = lpszKey;strKey.MakeLower();
+			CStringA strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
-				DM::CMap<CStringW,DMStylePoolItemPtr>::CPair *p = m_Map.GetNext(pos);
+				DM::CMap<CStringA,DMStylePoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMStylePoolItemPtr &pCur = p->m_value;
 				if (pCur->GetObjByKey(strKey,XmlStyle))
 				{

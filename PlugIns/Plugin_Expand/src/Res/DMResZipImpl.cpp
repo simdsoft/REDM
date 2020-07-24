@@ -66,7 +66,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResZipImpl::IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName)
+	DMCode DMResZipImpl::IsItemExists(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -76,7 +76,7 @@ namespace DM
 				break;
 			}
 			DMZipItem Item(lpszType, lpszName);// 这里重载了EqualArrayObj，只要前两个变量相等，就认为已存在
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout || DM_INVALID_VALUE == m_pLayout->FindObj(&Item))
 				{
@@ -118,7 +118,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResZipImpl::GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName)
+	DMCode DMResZipImpl::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize, LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		size_t size = 0;
@@ -153,7 +153,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMResZipImpl::GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName)
+	DMCode DMResZipImpl::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>& lpBuf, PULONG lpULSize, LPCSTR lpszThemeName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -173,10 +173,9 @@ namespace DM
 			{
 				break;
 			}
-			if (ulSize<zf.GetSize())
-			{
-				break;
-			}
+			DWORD dataSize = zf.GetSize();
+			if (lpULSize) *lpULSize = dataSize;
+			lpBuf.AllocateBytes(dataSize);
 			memcpy(lpBuf,zf.GetData(),zf.GetSize());
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -194,7 +193,7 @@ namespace DM
 		return DM_ECODE_NOTIMPL;
 	}
 
-	DMCode DMResZipImpl::SetCurTheme(LPCWSTR lpszName, LPCWSTR lpszOldName)
+	DMCode DMResZipImpl::SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -205,7 +204,7 @@ namespace DM
 			}
 
 			DMZipItemArrayPtr pCurTheme=NULL;
-			CStringW strName = lpszName;
+			CStringA strName = lpszName;
 			if (strName == m_strCurTheme// 要设置的和当前的相同
 				&&NULL != m_pCurTheme&&!m_bOutStyle)
 			{
@@ -229,7 +228,7 @@ namespace DM
 				nCmpCount = 0;// 外部模式，应该要更新所有的theme,所以直接把比较数设置为0
 			}
 			bool bFind = false;// 是否和先前themes一样
-			CStringW strUpdateInfo;
+			CStringA strUpdateInfo;
 			for (int i=0;i<nCount;i++)
 			{
 				DMZipItemPtr &pItem = m_pCurTheme->m_DMArray[i];
@@ -237,8 +236,8 @@ namespace DM
 				{
 					bFind = false;// 先预置为false
 					DMZipItemPtr &pCmpItem = pOldTheme->m_DMArray[j];
-					if (0 == _wcsicmp(pItem->m_szName,pCmpItem->m_szName)
-						&&0 == _wcsicmp(pItem->m_szType,pCmpItem->m_szType))
+					if (0 == dm_xmlstrcmp(pItem->m_szName,pCmpItem->m_szName)
+						&&0 == dm_xmlstrcmp(pItem->m_szType,pCmpItem->m_szType))
 					{
 						if (0 == _wcsicmp(pItem->m_szPath,pCmpItem->m_szPath))
 						{
@@ -250,17 +249,13 @@ namespace DM
 				if (false == bFind)
 				{
 					strUpdateInfo += pItem->m_szType;
-					strUpdateInfo += L':';
+					strUpdateInfo += ':';
 					strUpdateInfo += pItem->m_szName;
-					strUpdateInfo += L';';
+					strUpdateInfo += ';';
 				}
 			}
 			// TODO.开始广播消息，更换Skin--
-			int nLen = strUpdateInfo.GetLength()+1;
-			DMBufT<wchar_t>pBuf;pBuf.Allocate(nLen);
-			memcpy(pBuf,strUpdateInfo.GetBuffer(),(nLen-1)*2);
-			strUpdateInfo.ReleaseBuffer();
-			g_pDMApp->UpdateSkin((WPARAM)pBuf.get(),(LPARAM)nLen);
+			g_pDMApp->UpdateSkin((WPARAM)(LPCSTR)strUpdateInfo,(LPARAM)strUpdateInfo.GetLength());
 			m_bOutStyle = false;// 不再是外部模式了
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -272,13 +267,13 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strAllTheme;
+			CStringA strAllTheme;
 			int nCount = (int)GetCount();
 			for (int i=0; i<nCount; i++)
 			{
 				DMZipItemArrayPtr &pCur = GetObj(i);
-				CStringW strTheme = pCur->m_strThemeName;
-				strTheme += L";";
+				CStringA strTheme = pCur->m_strThemeName;
+				strTheme += ";";
 				strAllTheme += strTheme;
 			}
 			int nSize = 2*(strAllTheme.GetLength()+1);
@@ -335,21 +330,20 @@ namespace DM
 			while (XmlNode.IsValid())
 			{
 				InitDMData(XmlNode);// 使用xml解析替换
-				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
+				DMXmlNode XmlFileNode = XmlNode.FirstChild("file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
-					wchar_t szPath[MAX_PATH] = {0};
-					if (0 != lpszFilePath)
+					LPCSTR lpszName = (XmlFileNode.Attribute("name"));
+					CStringW strFilePath = DMA2W(XmlFileNode.Attribute("path"));
+					if (!strFilePath.IsEmpty())
 					{
 						DMZipItemArrayPtr pItem = new DMZipItemArray;
-						if (DMSUCCEEDED(ParseIndex(lpszFilePath,&pItem)))
+						if (DMSUCCEEDED(ParseIndex(strFilePath,&pItem)))
 						{
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
 							{
-								CStringW szInfo = lpszName;szInfo += L"主题包已存在,将被忽略！";DMASSERT_EXPR(0,szInfo);
+								CStringA szInfo = lpszName;szInfo += "主题包已存在,将被忽略！";DMASSERT_EXPR(0,szInfo);
 								pItem->Release();
 							}
 						}
@@ -358,7 +352,7 @@ namespace DM
 							pItem->Release();
 						}
 					}
-					XmlFileNode = XmlFileNode.NextSibling(L"file");
+					XmlFileNode = XmlFileNode.NextSibling("file");
 				}
 				XmlNode = XmlNode.NextSibling();
 			}
@@ -418,26 +412,26 @@ namespace DM
 			XmlNode = XmlNode.FirstChild();
 			while (XmlNode.IsValid())
 			{
-				LPCWSTR lpszType = XmlNode.GetName();
-				DMXmlNode XmlFileNode = XmlNode.FirstChild(L"file");
+				LPCSTR lpszType = (XmlNode.GetName());
+				DMXmlNode XmlFileNode = XmlNode.FirstChild("file");
 				while (XmlFileNode.IsValid())
 				{
-					LPCWSTR lpszName = XmlFileNode.Attribute(L"name");
-					LPCWSTR lpszFilePath = XmlFileNode.Attribute(L"path");
-					if (NULL!=lpszFilePath&&0!=wcslen(lpszFilePath))
+					LPCSTR lpszName = (XmlFileNode.Attribute("name"));
+					CStringW filePath = DMA2W(XmlFileNode.Attribute("path"));
+					if (!filePath.IsEmpty())
 					{
 #if defined(_DEBUG)
 						CDMZipFile zftemp;
-						if (!m_zipFile.GetFile(lpszFilePath,zftemp))
+						if (!m_zipFile.GetFile(filePath,zftemp))
 						{
-							CStringW szInfo = lpszFilePath;szInfo+=L"文件不存在！";DMASSERT_EXPR(0,szInfo);
+							CStringW szInfo = filePath;szInfo+=L"文件不存在！";DMASSERT_EXPR(0,szInfo);
 						}
 						zftemp.Close();
 #endif
-						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName,lpszFilePath);
+						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName, filePath);
 						(*ppItem)->AddObj(pResItem);// 来自DMArrayT
 					}
-					XmlFileNode = XmlFileNode.NextSibling(L"file");
+					XmlFileNode = XmlFileNode.NextSibling("file");
 				}
 
 				XmlNode = XmlNode.NextSibling();
@@ -449,7 +443,7 @@ namespace DM
 		return iErr;
 	}
 
-	LPCWSTR DMResZipImpl::GetItemPath(LPCWSTR lpszType,LPCWSTR lpszName,LPCWSTR lpszThemeName)
+	LPCWSTR DMResZipImpl::GetItemPath(LPCSTR lpszType,LPCSTR lpszName,LPCSTR lpszThemeName)
 	{
 		LPCWSTR lpszPath = NULL;
 		do 
@@ -459,7 +453,7 @@ namespace DM
 				break;
 			}
 			DMZipItem Item(lpszType, lpszName);// 这里重载了EqualArrayObj，只要前两个变量相等，就认为已存在
-			if (0 == _wcsicmp(lpszType, RES_LAYOUT)||0 == _wcsicmp(lpszType, RES_GLOBAL))
+			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout)
 				{
@@ -517,7 +511,7 @@ namespace DM
 		return lpszPath;
 	}
 
-	DMZipItemArrayPtr DMResZipImpl::FindResItemObj(LPCWSTR lpszName)
+	DMZipItemArrayPtr DMResZipImpl::FindResItemObj(LPCSTR lpszName)
 	{
 		DMZipItemArrayPtr pFindItem = NULL;
 		do 

@@ -22,45 +22,45 @@ namespace DMAttr
 	class DUIMenuAttr
 	{
 	public:
-		static wchar_t* SKIN_bgskin;											///< 整个菜单的背景图,示例:bgskin="menubg"
-		static wchar_t* SKIN_itemselbgskin;										///< 选中菜单项背景皮肤,示例:itemselbgskin="menuselbg"
-		static wchar_t* SKIN_iconskin;											///< 菜单图标连图,示例:iconskin="menuicons"
-		static wchar_t* SKIN_sepskin;											///< 分割栏皮肤,示例:sepskin="sepskin"
-		static wchar_t* SKIN_checkskin;											///< 选中状态,包含两种状态:勾选+圈选,示例:checkSkin="menucheck"
-		static wchar_t* INT_itemhei;											///< 菜单项高度,不设置时默认为16,如菜单项含有图片或高度，则以图片或高度的最大值为准,示例:itemhei="16"
-		static wchar_t* INT_iconoffset;											///< 图标左边缘偏移,示例:iconoffset="10"
-		static wchar_t* INT_textoffset;											///< 文本左边缘偏移,示例:textoffset="10"
-		static wchar_t* INT_stepoffset;											///< Step左边缘偏移,示例:stepoffset="10"
-		static wchar_t* INT_stephei;											///< Step的高度，默认为1,示例:stephei="10"
-		static wchar_t* INT_maxwidth;											///< 菜单项的最大宽度,默认为-1表示自动计算,示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
-		static wchar_t* bool_bshadow;											///< 菜单阴影是否开启，默认为0,示例:bshadow="0"
-		static wchar_t* bool_bhideframe;                                        ///< 是否隐藏菜单的主边框,默认为0,如果隐藏,则菜单项item的左右和主边框的左右相同,示例:bhideframe="1"
-		static wchar_t* SIZE_iconsize;											///< 图标尺寸，默认为16*16,示例:iconsize="16,16"
-		static wchar_t* SIZE_roundsize;											///< 圆角尺寸，默认为0*0,示例:roundsize="1,1"
-		static wchar_t* COLOR_clrbg;											///< 整个菜单的背景色,在背景图不存在时使用,示例:clrbg="pbgra(ff,00,ff,ff)"
-		static wchar_t* COLOR_clrselbg;                                         ///< 选中菜单的背景色,在背景图不存在时使用,示例:clrselbg="pbgra(ff,00,ff,ff)"
-		static wchar_t* COLOR_clrstep;											///< 分割栏的背景色,在背景图不存在时使用,示例:clrstep="pbgra(ff,00,ff,ff)"
-		static wchar_t* COLOR_clrtext;											///< 正常文本颜色,示例:clrtext="pbgra(ff,00,ff,ff)"
-		static wchar_t* COLOR_clrtextsel;										///< 选中文本颜色,示例:clrtextsel="pbgra(ff,00,ff,ff)"
-		static wchar_t* COLOR_clrtextgray;										///< 灰度文本颜色,示例:clrtextgray="pbgra(ff,00,ff,ff)"
-		static wchar_t* FONT_font;												///< 菜单默认字体,目前菜单不同状态使用了相同字体,如有需要,可自己扩展,示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
-		static wchar_t* BYTE_alpha;											    ///< 窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha="0xc0"
-		static wchar_t* STRING_transid;										    ///< 使用的transid,为NULL使用默认custom 示例:transid="custom"
+		static char* SKIN_bgskin;											///< 整个菜单的背景图,示例:bgskin="menubg"
+		static char* SKIN_itemselbgskin;										///< 选中菜单项背景皮肤,示例:itemselbgskin="menuselbg"
+		static char* SKIN_iconskin;											///< 菜单图标连图,示例:iconskin="menuicons"
+		static char* SKIN_sepskin;											///< 分割栏皮肤,示例:sepskin="sepskin"
+		static char* SKIN_checkskin;											///< 选中状态,包含两种状态:勾选+圈选,示例:checkSkin="menucheck"
+		static char* INT_itemhei;											///< 菜单项高度,不设置时默认为16,如菜单项含有图片或高度，则以图片或高度的最大值为准,示例:itemhei="16"
+		static char* INT_iconoffset;											///< 图标左边缘偏移,示例:iconoffset="10"
+		static char* INT_textoffset;											///< 文本左边缘偏移,示例:textoffset="10"
+		static char* INT_stepoffset;											///< Step左边缘偏移,示例:stepoffset="10"
+		static char* INT_stephei;											///< Step的高度，默认为1,示例:stephei="10"
+		static char* INT_maxwidth;											///< 菜单项的最大宽度,默认为-1表示自动计算,示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
+		static char* bool_bshadow;											///< 菜单阴影是否开启，默认为0,示例:bshadow="0"
+		static char* bool_bhideframe;                                        ///< 是否隐藏菜单的主边框,默认为0,如果隐藏,则菜单项item的左右和主边框的左右相同,示例:bhideframe="1"
+		static char* SIZE_iconsize;											///< 图标尺寸，默认为16*16,示例:iconsize="16,16"
+		static char* SIZE_roundsize;											///< 圆角尺寸，默认为0*0,示例:roundsize="1,1"
+		static char* COLOR_clrbg;											///< 整个菜单的背景色,在背景图不存在时使用,示例:clrbg="pbgra(ff,00,ff,ff)"
+		static char* COLOR_clrselbg;                                         ///< 选中菜单的背景色,在背景图不存在时使用,示例:clrselbg="pbgra(ff,00,ff,ff)"
+		static char* COLOR_clrstep;											///< 分割栏的背景色,在背景图不存在时使用,示例:clrstep="pbgra(ff,00,ff,ff)"
+		static char* COLOR_clrtext;											///< 正常文本颜色,示例:clrtext="pbgra(ff,00,ff,ff)"
+		static char* COLOR_clrtextsel;										///< 选中文本颜色,示例:clrtextsel="pbgra(ff,00,ff,ff)"
+		static char* COLOR_clrtextgray;										///< 灰度文本颜色,示例:clrtextgray="pbgra(ff,00,ff,ff)"
+		static char* FONT_font;												///< 菜单默认字体,目前菜单不同状态使用了相同字体,如有需要,可自己扩展,示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static char* BYTE_alpha;											    ///< 窗口透明度,透明窗口有两种,详见http://hgy413.com/1865.html 示例:alpha="0xc0"
+		static char* STRING_transid;										    ///< 使用的transid,为NULL使用默认custom 示例:transid="custom"
 
-		static wchar_t* NODE_sep;												///< 菜单的xml项结点名(对应一条分隔栏)
-		static wchar_t* NODE_item;                                              ///< 菜单的xml项结点名(对应一条菜单项)
-		static wchar_t* ITEM_height;                                            ///< 菜单项的高度(可选)，如果菜单项高度小于菜单项的背景连图的高度，则以背景连图高度为准, 示例:height="20"
-		static wchar_t* ITEM_maxwidth;											///< 菜单项的最大宽度(可选),示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
-		static wchar_t* ITEM_icon;                                              ///< 菜单项的icon位置（-1表示没有icon）示例:icon="1"
-		static wchar_t* ITEM_text;                                              ///< 菜单项的文本  示例:text="打开PE文件..."
-		static wchar_t* ITEM_iconsize;											///< 菜单项的图标尺寸(可选)，默认为16*16,如果有,就覆盖INT_iconsize,示例:iconsize="16,16"
-		static wchar_t* ITEM_iconoffset;										///< 菜单项的图标左边缘偏移(可选),如果有,就覆盖INT_iconoffset,示例:iconoffset="10"
-		static wchar_t* ITEM_textoffset;										///< 菜单项的文本文本左边缘偏移(可选),如果有,就覆盖INT_textoffset,示例:textoffset="10"
-		static wchar_t* ITEM_skin;                                              ///< 菜单项的背景连图(正常-选中-灰掉)，还有一个作用,在使用自动计算宽度时,当skin存在,并且没有设置ITEM_maxwidth时,会取当前的skin作为当前菜单的宽度,如果父子菜单需要不同的宽度,可以通过这种方式来指定, 示例:skin="itemskin"
-		static wchar_t* ITEM_id;												///< 菜单项的id(不能为0,在1到65535之间)，用于点击时发送消息  示例:id="10"
-		static wchar_t* ITEM_bcheck;                                            ///< 菜单项的check项（配合SKIN_checkskin）  示例:bcheck="1"
-		static wchar_t* ITEM_bradio;                                            ///< 菜单项的radio项（配合SKIN_checkskin，和check项二选一）  示例:bradio="1"
-		static wchar_t* ITEM_bdisable;                                          ///< 禁用菜单项  示例:bdisable="1"
+		static char* NODE_sep;												///< 菜单的xml项结点名(对应一条分隔栏)
+		static char* NODE_item;                                              ///< 菜单的xml项结点名(对应一条菜单项)
+		static char* ITEM_height;                                            ///< 菜单项的高度(可选)，如果菜单项高度小于菜单项的背景连图的高度，则以背景连图高度为准, 示例:height="20"
+		static char* ITEM_maxwidth;											///< 菜单项的最大宽度(可选),示例:maxwidth="10",要注意绘制窗口宽度会比这个设置大14（系统设置的）
+		static char* ITEM_icon;                                              ///< 菜单项的icon位置（-1表示没有icon）示例:icon="1"
+		static char* ITEM_text;                                              ///< 菜单项的文本  示例:text="打开PE文件..."
+		static char* ITEM_iconsize;											///< 菜单项的图标尺寸(可选)，默认为16*16,如果有,就覆盖INT_iconsize,示例:iconsize="16,16"
+		static char* ITEM_iconoffset;										///< 菜单项的图标左边缘偏移(可选),如果有,就覆盖INT_iconoffset,示例:iconoffset="10"
+		static char* ITEM_textoffset;										///< 菜单项的文本文本左边缘偏移(可选),如果有,就覆盖INT_textoffset,示例:textoffset="10"
+		static char* ITEM_skin;                                              ///< 菜单项的背景连图(正常-选中-灰掉)，还有一个作用,在使用自动计算宽度时,当skin存在,并且没有设置ITEM_maxwidth时,会取当前的skin作为当前菜单的宽度,如果父子菜单需要不同的宽度,可以通过这种方式来指定, 示例:skin="itemskin"
+		static char* ITEM_id;												///< 菜单项的id(不能为0,在1到65535之间)，用于点击时发送消息  示例:id="10"
+		static char* ITEM_bcheck;                                            ///< 菜单项的check项（配合SKIN_checkskin）  示例:bcheck="1"
+		static char* ITEM_bradio;                                            ///< 菜单项的radio项（配合SKIN_checkskin，和check项二选一）  示例:bradio="1"
+		static char* ITEM_bdisable;                                          ///< 禁用菜单项  示例:bdisable="1"
 	};
 	DMAttrValueInit(DUIMenuAttr,SKIN_bgskin)DMAttrValueInit(DUIMenuAttr,SKIN_itemselbgskin)DMAttrValueInit(DUIMenuAttr,SKIN_iconskin)
 	DMAttrValueInit(DUIMenuAttr,SKIN_sepskin)DMAttrValueInit(DUIMenuAttr,SKIN_checkskin)DMAttrValueInit(DUIMenuAttr,INT_itemhei)
@@ -135,11 +135,11 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIMenuAttr::COLOR_clrtextgray,m_crTextGray,DM_ECODE_OK);
 			DM_FONTPTR_ATTRIBUTE(DMAttr::DUIMenuAttr::FONT_font,m_hFont,DM_ECODE_OK)
 			DM_UINT_ATTRIBUTE(DMAttr::DUIMenuAttr::BYTE_alpha, m_byAlpha, DM_ECODE_OK)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIMenuAttr::STRING_transid,m_strTransId,DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIMenuAttr::STRING_transid,m_strTransId,DM_ECODE_OK)
 
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttrMaxWidth(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttrMaxWidth(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		IDMSkin*                    m_pBgSkin;       ///< 整个菜单的背景图

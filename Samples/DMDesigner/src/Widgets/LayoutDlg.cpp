@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "LayoutDlg.h"
 
 BEGIN_MSG_MAP(LayoutDlg)   
@@ -8,11 +8,11 @@ BEGIN_MSG_MAP(LayoutDlg)
 	CHAIN_MSG_MAP(DMHDialog)
 END_MSG_MAP() 
 BEGIN_EVENT_MAP(LayoutDlg)
-	EVENT_NAME_HANDLER(L"ds_layout_name",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_layout_dir",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_layout_filename",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_HANDLER(L"ds_layout_fileafx",DMEVT_RENOTIFY,OnEditChange)
-	EVENT_NAME_COMMAND(L"ds_layout_opendir",OnOpenDir)
+	EVENT_NAME_HANDLER("ds_layout_name",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_layout_dir",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_layout_filename",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_HANDLER("ds_layout_fileafx",DMEVT_RENOTIFY,OnEditChange)
+	EVENT_NAME_COMMAND("ds_layout_opendir",OnOpenDir)
 END_EVENT_MAP()
 LayoutDlg*  LayoutDlg::ms_pthis = NULL;
 LayoutDlg::LayoutDlg(bool bEditMode)
@@ -31,26 +31,26 @@ BOOL LayoutDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_strDir = g_pMainWnd->m_pDesignerXml->m_strResDir; 
 	m_strDir += L"Layout\\";
 
-	m_pTitle         = FindChildByNameT<DUIStatic>(L"ds_title");DMASSERT(m_pTitle);
-	m_pLayoutPath	 = FindChildByNameT<DUIStatic>(L"ds_layout_path");DMASSERT(m_pLayoutPath);
-	m_pLayoutName	 = FindChildByNameT<DUIEdit>(L"ds_layout_name");DMASSERT(m_pLayoutName);
-	m_pLayoutDir	 = FindChildByNameT<DUIEdit>(L"ds_layout_dir");DMASSERT(m_pLayoutDir);
-	m_pLayoutFileName = FindChildByNameT<DUIEdit>(L"ds_layout_filename");DMASSERT(m_pLayoutFileName);
-	m_pLayoutFileAfx  = FindChildByNameT<DUIEdit>(L"ds_layout_fileafx");DMASSERT(m_pLayoutFileAfx);
-	m_pXml           = FindChildByNameT<DUIRichEdit>(L"ds_layout_xml");DMASSERT(m_pXml);
+	m_pTitle         = FindChildByNameT<DUIStatic>("ds_title");DMASSERT(m_pTitle);
+	m_pLayoutPath	 = FindChildByNameT<DUIStatic>("ds_layout_path");DMASSERT(m_pLayoutPath);
+	m_pLayoutName	 = FindChildByNameT<DUIEdit>("ds_layout_name");DMASSERT(m_pLayoutName);
+	m_pLayoutDir	 = FindChildByNameT<DUIEdit>("ds_layout_dir");DMASSERT(m_pLayoutDir);
+	m_pLayoutFileName = FindChildByNameT<DUIEdit>("ds_layout_filename");DMASSERT(m_pLayoutFileName);
+	m_pLayoutFileAfx  = FindChildByNameT<DUIEdit>("ds_layout_fileafx");DMASSERT(m_pLayoutFileAfx);
+	m_pXml           = FindChildByNameT<DUIRichEdit>("ds_layout_xml");DMASSERT(m_pXml);
 
 	m_pLayoutName->SetEventMask(ENM_CHANGE|m_pLayoutName->GetEventMask());
 	m_pLayoutDir->SetEventMask(ENM_CHANGE|m_pLayoutDir->GetEventMask());
 	m_pLayoutFileName->SetEventMask(ENM_CHANGE|m_pLayoutFileName->GetEventMask());
 	m_pLayoutFileAfx->SetEventMask(ENM_CHANGE|m_pLayoutFileAfx->GetEventMask());
 
-	if (m_bEditMode)// ³õÊ¼»¯²¿·Ö±äÁ¿
+	if (m_bEditMode)// åˆå§‹åŒ–éƒ¨åˆ†å˜é‡
 	{
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 		DMXmlNodePtr pFileNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
-		m_pLayoutName->SetWindowText(pFileNode->Attribute(XML_NAME));
-		CStringW strPath = pXml->m_strResDir + pFileNode->Attribute(XML_PATH);
+		m_pLayoutName->SetTextA(pFileNode->Attribute(XML_NAME));
+		CStringW strPath = pXml->m_strResDir + DMCA2W(pFileNode->Attribute(XML_PATH));
 		CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
 		CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
 		CStringW strDir = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
@@ -60,7 +60,7 @@ BOOL LayoutDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pLayoutFileAfx->SetWindowText(strFileAfx);
 		m_pLayoutDir->SetWindowText(strDir);
 
-		m_pLayoutFileName->SetAttribute(L"breadonly",L"1");// ±à¼­Ä£Ê½ÏÂ²»ÔÊÐíÉèÖÃÎÄ¼þÃû
+		m_pLayoutFileName->SetAttribute("breadonly","1");// ç¼–è¾‘æ¨¡å¼ä¸‹ä¸å…è®¸è®¾ç½®æ–‡ä»¶å
 	}
 
 	DMXmlNode XmlBase = m_LayoutDoc.Base();
@@ -101,24 +101,24 @@ void LayoutDlg::OnDropFiles(HDROP hDropInfo)
 		DragQueryFile(hDropInfo, 0, szPath,MAX_PATH);
 		if (IsDirectoryExist(szPath))
 		{
-			DM_MessageBox(L"²»Ö§³ÖÎÄ¼þ¼Ð",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"ä¸æ”¯æŒæ–‡ä»¶å¤¹",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
-		// ¸üÐÂµ½ÏÔÊ¾Çø
+		// æ›´æ–°åˆ°æ˜¾ç¤ºåŒº
 		CStringW strPath = szPath;
 		CStringW strFileAfx = strPath.Right(strPath.GetLength()-strPath.ReverseFind(L'.'));
 		CStringW strFileName =  strPath.Left(strPath.ReverseFind(L'.'));
 		strFileName = strFileName.Right(strFileName.GetLength()-1-strFileName.ReverseFind(L'\\'));
-		m_pLayoutFileAfx->SetAttribute(L"text",strFileAfx);
-		m_pLayoutFileName->SetAttribute(L"text",strFileName);
-		m_pLayoutName->SetAttribute(L"text",strFileName);
+		static_cast<DMDataBase*>(m_pLayoutFileAfx)->SetAttributeW("text",strFileAfx, false);
+		m_pLayoutFileName->SetAttribute("text",DMW2A(strFileName));
+		m_pLayoutName->SetAttribute("text", DMW2A(strFileName));
 		CStringW strTitle;
 		strTitle += L"[LAYOUT]";
 		strTitle += strPath;
-		m_pTitle->SetAttribute(L"text",strTitle);
+		m_pTitle->SetAttribute("text", DMW2A(strTitle));
 
-		// Èç¹ûÎÄ¼þÂ·¾¶¾ÍÔÚ±¾LAYOUT°üÄÚ£¬ÔòÉèÖÃÎÄ¼þ¼ÐÂ·¾¶ÎªËüÔ­Ê¼Â·¾¶
+		// å¦‚æžœæ–‡ä»¶è·¯å¾„å°±åœ¨æœ¬LAYOUTåŒ…å†…ï¼Œåˆ™è®¾ç½®æ–‡ä»¶å¤¹è·¯å¾„ä¸ºå®ƒåŽŸå§‹è·¯å¾„
 		bool bMatch = false;
 		if (strPath.GetLength()>m_strDir.GetLength())
 		{
@@ -129,7 +129,7 @@ void LayoutDlg::OnDropFiles(HDROP hDropInfo)
 			}
 		} 
 
-		if (bMatch)// ÅÐ¶ÏÔ­Ê¼ÎÄ¼þÊÇ·ñ¾ÍÔÚLAYOUT°üÀï£¬Èç¹ûÔÚ£¬¾ÍÉèÖÃ±£³ÖÎ»ÖÃ²»±ä£¬µ±È»ÄãÒ²¿ÉÒÔ×Ô¼ºÈ¥¸Ä±ä
+		if (bMatch)// åˆ¤æ–­åŽŸå§‹æ–‡ä»¶æ˜¯å¦å°±åœ¨LAYOUTåŒ…é‡Œï¼Œå¦‚æžœåœ¨ï¼Œå°±è®¾ç½®ä¿æŒä½ç½®ä¸å˜ï¼Œå½“ç„¶ä½ ä¹Ÿå¯ä»¥è‡ªå·±åŽ»æ”¹å˜
 		{
 			CStringW strDir = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
 			strDir = strDir.Left(strDir.ReverseFind(L'\\'));
@@ -149,7 +149,7 @@ DMCode LayoutDlg::OnEditChange(DMEventArgs *pEvt)
 			break;
 		}
 
-		// ¸üÐÂÏÂÃæµÄÏÔÊ¾path
+		// æ›´æ–°ä¸‹é¢çš„æ˜¾ç¤ºpath
 		if (pEvent->m_pSender == m_pLayoutName
 			||pEvent->m_pSender == m_pLayoutDir
 			||pEvent->m_pSender == m_pLayoutFileName
@@ -165,7 +165,7 @@ DMCode LayoutDlg::OnEditChange(DMEventArgs *pEvt)
 			strPath += m_pLayoutFileName->GetWindowText();
 			strPath += m_pLayoutFileAfx->GetWindowText();
 	
-			m_pLayoutPath->SetAttribute(L"text",strPath);
+			m_pLayoutPath->SetAttribute("text",DMW2A(strPath));
 
 			UpdateXml();
 		}
@@ -186,9 +186,9 @@ DMCode LayoutDlg::UpdateXml()
 		CStringW strLayoutPath = m_pLayoutPath->m_pDUIXmlInfo->m_strText;
 		m_LayoutNode.SetAttribute(XML_PATH, strLayoutPath);
 
-		CStringW strXml;
+		CStringA strXml;
 		m_LayoutNode.GetXmlContent(strXml);
-		m_pXml->SetWindowText(strXml);
+		m_pXml->SetTextA(strXml);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -206,15 +206,15 @@ DMCode LayoutDlg::OnOpenDir()
 		}
 		wchar_t path[MAX_PATH] = {0};
 		BROWSEINFOW bi = {0};
-		//hgy note: BIF_NEWDIALOGSTYLE»áÓ°ÏìBFFM_SETSTATUSTEXTÎÞ·¨ÏÔÊ¾
+		//hgy note: BIF_NEWDIALOGSTYLEä¼šå½±å“BFFM_SETSTATUSTEXTæ— æ³•æ˜¾ç¤º
 		bi.ulFlags	 = BIF_STATUSTEXT| BIF_RETURNONLYFSDIRS|BIF_VALIDATE/*|BIF_NEWDIALOGSTYLE*/;
-		bi.lpszTitle = L"½öÄÜÔÚµ±Ç°Layout×ÓÄ¿Â¼ÏÂÑ¡Ôñ";
-		bi.hwndOwner = m_hWnd;//ÉèÖÃÓµÓÐ´°¿Ú
-		bi.lpfn = LayoutDlg::BrowseCallbackProc;//Ö¸¶¨»Øµ÷º¯ÊýµØÖ·
+		bi.lpszTitle = L"ä»…èƒ½åœ¨å½“å‰Layoutå­ç›®å½•ä¸‹é€‰æ‹©";
+		bi.hwndOwner = m_hWnd;//è®¾ç½®æ‹¥æœ‰çª—å£
+		bi.lpfn = LayoutDlg::BrowseCallbackProc;//æŒ‡å®šå›žè°ƒå‡½æ•°åœ°å€
 		ITEMIDLIST *pIDL = SHBrowseForFolderW(&bi);
 		if (pIDL!=NULL)
 		{
-			if (SHGetPathFromIDListW(pIDL,path) == TRUE) //±äÁ¿pathÖÐ´æ´¢ÁË¾­¹ýÓÃ»§Ñ¡ÔñºóµÄÄ¿Â¼µÄÍêÕûÂ·¾¶.
+			if (SHGetPathFromIDListW(pIDL,path) == TRUE) //å˜é‡pathä¸­å­˜å‚¨äº†ç»è¿‡ç”¨æˆ·é€‰æ‹©åŽçš„ç›®å½•çš„å®Œæ•´è·¯å¾„.
 			{
 				CStringW strPath = path;
 				strPath = strPath.Right(strPath.GetLength()-m_strDir.GetLength());
@@ -239,14 +239,14 @@ int CALLBACK LayoutDlg::BrowseCallbackProc(HWND hwnd,UINT uMsg,LPARAM lParam,LPA
 	CStringW strDir = ms_pthis->m_strDir;
 	switch (uMsg)
 	{
-	case BFFM_INITIALIZED:    //³õÊ¼»¯ÏûÏ¢
+	case BFFM_INITIALIZED:    //åˆå§‹åŒ–æ¶ˆæ¯
 		{
 			strDir += ms_pthis->m_pLayoutDir->GetWindowText();
 			::SendMessageW(hwnd,BFFM_SETSELECTION,TRUE,(LPARAM)(LPWSTR)(LPCWSTR)strDir);  
 		}
 		break;
 
-	case BFFM_SELCHANGED: //Ñ¡ÔñÂ·¾¶±ä»¯
+	case BFFM_SELCHANGED: //é€‰æ‹©è·¯å¾„å˜åŒ–
 		{
 			wchar_t szPath[MAX_PATH];   
 			SHGetPathFromIDListW((LPCITEMIDLIST)lParam,szPath);   
@@ -281,27 +281,27 @@ DMCode LayoutDlg::OnOK()
 	do 
 	{
 		ObjXml* pXml = g_pMainWnd->m_pDesignerXml;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 
-		//1.ÅÐ¶ÏnameÊÇ·ñÎª¿Õ£¬ÅÐ¶Ï±¾layout°üÊÇ·ñÒÑº¬ÓÐ´Ëname
-		CStringW strLayoutName = m_pLayoutName->GetWindowText();
+		//1.åˆ¤æ–­nameæ˜¯å¦ä¸ºç©ºï¼Œåˆ¤æ–­æœ¬layoutåŒ…æ˜¯å¦å·²å«æœ‰æ­¤name
+		CStringA strLayoutName = m_pLayoutName->GetTextA();
 		if (strLayoutName.IsEmpty())
 		{
-			DM_MessageBox(L"Î´ÉèÖÃname!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"æœªè®¾ç½®name!",MB_OK, L"MSG",m_hWnd);
 			m_pLayoutName->DV_SetFocusWnd();
 			break;
 		}
 
 		if (m_bEditMode)
 		{
-			//2. ÅÐ¶ÏnameÊÇ·ñ±»Õ¼ÓÃ
+			//2. åˆ¤æ–­nameæ˜¯å¦è¢«å ç”¨
 			HDMTREEITEM hParent = pProjTree->GetParentItem(pXml->m_hProjSel);
 			bool bFind = false;
 			HDMTREEITEM hChild = pProjTree->GetChildItem(hParent);
 			while (hChild)
 			{
 				DMXmlNodePtr pFileNode = (DMXmlNodePtr)pProjTree->GetItemData(hChild);
-				CStringW strName = pFileNode->Attribute(XML_NAME);
+				CStringA strName = pFileNode->Attribute(XML_NAME);
 				if (hChild != pXml->m_hProjSel&&0 == strName.CompareNoCase(strLayoutName))
 				{
 					bFind = true;
@@ -311,12 +311,12 @@ DMCode LayoutDlg::OnOK()
 			}
 			if (bFind)
 			{
-				DM_MessageBox(L"±¾LAYOUT°üÒÑ´æÔÚ´Ëname!",MB_OK, L"MSG",m_hWnd);
+				DM_MessageBox(L"æœ¬LAYOUTåŒ…å·²å­˜åœ¨æ­¤name!",MB_OK, L"MSG",m_hWnd);
 				m_pLayoutName->DV_SetFocusWnd();
 				break;
 			}
 
-			//3. ¸üÐÂlayoutµÄname
+			//3. æ›´æ–°layoutçš„name
 			DMXmlNodePtr pNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
 			if (0 != strLayoutName.CompareNoCase(pNode->Attribute(XML_NAME)))
 			{
@@ -329,13 +329,13 @@ DMCode LayoutDlg::OnOK()
 			break;
 		}
 
-		//2. ÅÐ¶ÏnameÊÇ·ñ±»Õ¼ÓÃ
+		//2. åˆ¤æ–­nameæ˜¯å¦è¢«å ç”¨
 		bool bFind = false;
 		HDMTREEITEM hChild = pProjTree->GetChildItem(pXml->m_hProjSel);
 		while (hChild)
 		{
 			DMXmlNodePtr pFileNode = (DMXmlNodePtr)pProjTree->GetItemData(hChild);
-			CStringW strName = pFileNode->Attribute(XML_NAME);
+			CStringA strName = pFileNode->Attribute(XML_NAME);
 			if (0 == strName.CompareNoCase(strLayoutName))
 			{
 				bFind = true;
@@ -345,31 +345,31 @@ DMCode LayoutDlg::OnOK()
 		}
 		if (bFind)
 		{
-			DM_MessageBox(L"±¾LAYOUT°üÒÑ´æÔÚ´Ëname!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"æœ¬LAYOUTåŒ…å·²å­˜åœ¨æ­¤name!",MB_OK, L"MSG",m_hWnd);
 			m_pLayoutName->DV_SetFocusWnd();
 			break;
 		}
 
-		//3.ÅÐ¶ÏÄ¿Â¼ÎÄ¼þÃûÊÇ·ñÎª¿Õ£¬ÅÐ¶ÏÊÇ·ñÃ»ÓÐÍÏÈëÎÄ¼þ
+		//3.åˆ¤æ–­ç›®å½•æ–‡ä»¶åæ˜¯å¦ä¸ºç©ºï¼Œåˆ¤æ–­æ˜¯å¦æ²¡æœ‰æ‹–å…¥æ–‡ä»¶
 		CStringW strLayoutFileName = m_pLayoutFileName->GetWindowText();
 		if (strLayoutFileName.IsEmpty())
 		{
-			DM_MessageBox(L"ÎÄ¼þÃûÎª¿Õ!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"æ–‡ä»¶åä¸ºç©º!",MB_OK, L"MSG",m_hWnd);
 			m_pLayoutFileName->DV_SetFocusWnd();
 			break;
 		} 
 
-		//4.±£´æxml£¬Èç¹û²»´æÔÚ,ÔòÊ¹ÓÃoutdata\\dui_addwnd.xmlÎªÄ£°å¿½±´
+		//4.ä¿å­˜xmlï¼Œå¦‚æžœä¸å­˜åœ¨,åˆ™ä½¿ç”¨outdata\\dui_addwnd.xmlä¸ºæ¨¡æ¿æ‹·è´
 		CStringW strLayoutSrc = m_pTitle->m_pDUIXmlInfo->m_strText;
 		strLayoutSrc = strLayoutSrc.Right(strLayoutSrc.GetLength()-8);//L"[LAYOUT]";
-		CStringW strPath = pXml->m_strResDir + m_LayoutNode.Attribute(XML_PATH);
-		if (!PathFileExistsW(strLayoutSrc))//ËµÃ÷Ã»ÓÐÍÏÈëÎÄ¼þ
+		CStringW strPath = pXml->m_strResDir + DMA2W(m_LayoutNode.Attribute(XML_PATH));
+		if (!PathFileExistsW(strLayoutSrc))//è¯´æ˜Žæ²¡æœ‰æ‹–å…¥æ–‡ä»¶
 		{
-			if (IDOK != DM_MessageBox(L"Î´ÍÏÈëÎÄ¼þ,ÊÇ·ñÐÂ½¨Ò»¸öDM´°¿ÚÎÄ¼þ?",MB_OKCANCEL,L"MSG",m_hWnd))
+			if (IDOK != DM_MessageBox(L"æœªæ‹–å…¥æ–‡ä»¶,æ˜¯å¦æ–°å»ºä¸€ä¸ªDMçª—å£æ–‡ä»¶?",MB_OKCANCEL,L"MSG",m_hWnd))
 			{
 				break;
 			}
-			// ÐÂ½¨Ò»¸ölayout.xml
+			// æ–°å»ºä¸€ä¸ªlayout.xml
 			wchar_t szPath[MAX_PATH] = {0};
 			GetRootFullPath(L".\\DesignerRes\\outdata\\dui_addwnd.xml",szPath,MAX_PATH);
 			if (PathFileExistsW(szPath))
@@ -380,17 +380,17 @@ DMCode LayoutDlg::OnOK()
 			{
 				DMXmlDocument doc;
 				DMXmlNode XmlBase = doc.Base();
-				DMXmlNode XmlDM = XmlBase.InsertChildNode(L"dm");
-				XmlDM.SetAttribute(DMAttr::DMHWndAttr::SIZE_initsize,L"800,600");
-				XmlDM.SetAttribute(DMAttr::DMHWndAttr::SIZE_minsize,L"800,600");
-				XmlDM.SetAttribute(DMAttr::DMHWndAttr::bool_bresize,L"1");
-				XmlDM.SetAttribute(DMAttr::DMHWndAttr::bool_btranslucent,L"1");
-				XmlDM.SetAttribute(DMAttr::DMHWndAttr::BYTE_alpha,L"255");
-				DMXmlNode XmlRoot = XmlDM.InsertChildNode(L"root");
-				XmlRoot.SetAttribute(L"clrbg",L"pbgra(3d,3d,3d,ff)");
-				DMXmlNode XmlDrag = XmlRoot.InsertChildNode(L"window");
-				XmlDrag.SetAttribute(L"clrbg",L"pbgra(59,59,59,ff)");
-				XmlDrag.SetAttribute(L"pos",L"0,0,-0,@36");
+				DMXmlNode XmlDM = XmlBase.InsertChildNode("dm");
+				XmlDM.SetAttribute(DMAttr::DMHWndAttr::SIZE_initsize,"800,600");
+				XmlDM.SetAttribute(DMAttr::DMHWndAttr::SIZE_minsize,"800,600");
+				XmlDM.SetAttribute(DMAttr::DMHWndAttr::bool_bresize,"1");
+				XmlDM.SetAttribute(DMAttr::DMHWndAttr::bool_btranslucent,"1");
+				XmlDM.SetAttribute(DMAttr::DMHWndAttr::BYTE_alpha,"255");
+				DMXmlNode XmlRoot = XmlDM.InsertChildNode("root");
+				XmlRoot.SetAttribute("clrbg","pbgra(3d,3d,3d,ff)");
+				DMXmlNode XmlDrag = XmlRoot.InsertChildNode("window");
+				XmlDrag.SetAttribute("clrbg","pbgra(59,59,59,ff)");
+				XmlDrag.SetAttribute("pos","0,0,-0,@36");
 				doc.SaveXml(strPath);
 			}
 		}
@@ -399,18 +399,18 @@ DMCode LayoutDlg::OnOK()
 			CopyFileW(strLayoutSrc,strPath,FALSE);
 		}
 
-		//5.Ð´ÈëRes½âÎöÆ÷ÖÐ
+		//5.å†™å…¥Resè§£æžå™¨ä¸­
 		if (!DMSUCCEEDED(pXml->m_pRes->AddResItem(RES_LAYOUT,strLayoutName,strPath,NULL)))
 		{
-			DM_MessageBox(L"¼ÓÈëResÊ§°Ü!",MB_OK, L"MSG",m_hWnd);
+			DM_MessageBox(L"åŠ å…¥Reså¤±è´¥!",MB_OK, L"MSG",m_hWnd);
 			break;
 		}
 
-		//6.Ð´ÈëxmlÖÐ
+		//6.å†™å…¥xmlä¸­
 		DMXmlNodePtr pLayoutNode = (DMXmlNodePtr)pProjTree->GetItemData(pXml->m_hProjSel);
 		DMXmlNode XmlNode = pLayoutNode->InsertCopyChildNode(&m_LayoutNode);
 
-		//7.Ôö¼ÓÊ÷ÐÎ½áµã
+		//7.å¢žåŠ æ ‘å½¢ç»“ç‚¹
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		pXml->InitProjTreeNode(DataNode,true);
@@ -418,7 +418,7 @@ DMCode LayoutDlg::OnOK()
 		hAdd = pXml->InsertProjTreeItem(DataNode,strName,pXml->m_hProjSel);
 		pXml->BindProjTreeData(XmlNode,hAdd);
 
-		//8.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+		//8.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 		pXml->SetDocUnSave(pLayoutNode);
 
 		EndDialog(IDOK);

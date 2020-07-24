@@ -28,7 +28,7 @@ namespace DMAttr
 		///  @remark 示例6:pos="0,1,]-10,@100",四个点分别代表了左:0，上:1，右:距下一个兄弟窗口左移10(-10),高:100--->']'参考下一个兄弟窗口与自己近的边（没有兄弟窗口就参考父窗口的可用布局空间）
 		///  @remark -->'{'参考下一个兄弟窗口与自己近的边，与示例5类型，-->'}'参考下一个兄弟窗口与自己远的边,与示例6类似
 		///  @remark 示例7:pos="%10,%20,%30,%40",四个点分别代表了左:父窗口布局空间的%10，上：父窗口布局空间的%20，右：父窗口布局空间的%30，下：父窗口布局空间的%40--->'%'采用在父窗口的百分比定义坐标
-		static wchar_t* POS_pos;	
+		static char* POS_pos;	
 
 		/// -------------------------------------------------
 		///  @brief 指定位置,在pos坐标小于四时，结合pos使用,示例:
@@ -37,21 +37,21 @@ namespace DMAttr
 		///  @remark 示例3:pos="%10,%20" possize="-1,100"，pos不为空,同时possize大小为-1，100,（-1)表示根据内容布局,高度100,使用DV_GetDesiredSize，possize前一值为横向，后一值为竖直
 		///  @remark 示例4:pos="" possize="-1,-1",pos为空,possize大小为-1，-1，填满父窗口
 		///  @remark 示例4:pos="" possize="x,x",pos为空,x不全为-1，-1，使用自动排序,前-1表示填满横向父窗口，后-1表示填满坚向父窗口
-		static wchar_t* SIZE_possize;                                                        
+		static char* SIZE_possize;                                                        
 	};
 	DMAttrValueInit(PosLayoutAttr,POS_pos)DMAttrValueInit(PosLayoutAttr,SIZE_possize)
 }
 
 namespace DM
 {
-#define POSFLAG_NULL           L""			 // 正常坐标,负号表示以右(下)为参考
-#define POSFLAG_REFCENTER      L'|'          // 参考父窗口中心
-#define POSFLAG_PERCENT        L'%'          // 采用在父窗口的百分比定义坐标
-#define POSFLAG_REFPREV_NEAR   L'['          // 参考前一个兄弟窗口与自己近的边
-#define POSFLAG_REFNEXT_NEAR   L']'          // 参考下一个兄弟窗口与自己近的边
-#define POSFLAG_REFPREV_FAR    L'{'          // 参考前一个兄弟窗口与自己远的边
-#define POSFLAG_REFNEXT_FAR    L'}'          // 参考下一个兄弟窗口与自己远的边
-#define POSFLAG_DEFSIZE        L'@'          // 在pos属性中定义窗口的size，只在在定义x2,y2时有效
+#define POSFLAG_NULL           ""			 // 正常坐标,负号表示以右(下)为参考
+#define POSFLAG_REFCENTER      '|'          // 参考父窗口中心
+#define POSFLAG_PERCENT        '%'          // 采用在父窗口的百分比定义坐标
+#define POSFLAG_REFPREV_NEAR   '['          // 参考前一个兄弟窗口与自己近的边
+#define POSFLAG_REFNEXT_NEAR   ']'          // 参考下一个兄弟窗口与自己近的边
+#define POSFLAG_REFPREV_FAR    '{'          // 参考前一个兄弟窗口与自己远的边
+#define POSFLAG_REFNEXT_FAR    '}'          // 参考下一个兄弟窗口与自己远的边
+#define POSFLAG_DEFSIZE        '@'          // 在pos属性中定义窗口的size，只在在定义x2,y2时有效
 
 	enum POS_TYPE// 坐标属性
 	{
@@ -90,7 +90,7 @@ namespace DM
 	/// </summary>
 	class Layout:public IDMLayout
 	{
-		DMDECLARE_CLASS_NAME(Layout,L"Layout",DMREG_Layout);
+		DMDECLARE_CLASS_NAME(Layout,"Layout",DMREG_Layout);
 	public:
 		Layout();
 
@@ -102,7 +102,7 @@ namespace DM
 	public:// 辅助
 		bool ParsePostion();
 		bool ParsePostionType();
-		bool ParseItem(CStringW &strPos, POS_ITEM &item);
+		bool ParseItem(CStringA &strPos, POS_ITEM &item);
 		bool ParseChildPosition(DM::CList<DUIWindow*> *pList);
 		int ParseItemValue(const POS_ITEM &item,int nMin, int nMax,bool bX);//返回POS_WAIT表示布局依赖的前或后窗口未完成布局，bX表示横坐标
 		bool Update4(LPRECT lpRcContainer,OUT CRect &rcWindow);
@@ -113,9 +113,9 @@ namespace DM
 		CSize CalcSize(LPRECT pRcContainer);//  计算窗口大小
 
 		// 设计器增加
-		CStringW GetPit(PIT pit);
-		CStringW GetItem(POS_ITEM* pItem);
-		CStringW GetPosString();// 根据4个pos生成string,如失败,返回空
+		CStringA GetPit(PIT pit);
+		CStringA GetItem(POS_ITEM* pItem);
+		CStringA GetPosString();// 根据4个pos生成string,如失败,返回空
 		bool ParseItemByRect(CRect& rect,POS_ITEM& PosLeft,POS_ITEM& PosTop,POS_ITEM& PosRight,POS_ITEM& PosBtm);
 		bool ParseItemPos(POS_ITEM &item,int nMin, int nMax,bool bX,int nRet);
 
@@ -125,10 +125,10 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::PosLayoutAttr::SIZE_possize, OnAttributePosSize)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributePos(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttributePosSize(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttributePos(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttributePosSize(LPCSTR pszValue, bool bLoadXml);
 	public:
-		CStringW				 m_strPosValue;			
+		CStringA				 m_strPosValue;			
 
 		DUIWindow*				 m_pOwner;			   // layout的宿主 
 		int					     m_nCount;			   // 定义的坐标个数

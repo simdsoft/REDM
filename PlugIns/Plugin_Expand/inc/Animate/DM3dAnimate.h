@@ -8,7 +8,7 @@ namespace DM
 	struct PARAM3DOFF{int  x;int y; int   z;int  f;};///3DÃ¿´ÎÆ«ÒÆÁ¿
 	class DM3DAnimate:public IDMAnimate,public DMAnimateWndBase
 	{
-		DMDECLARE_CLASS_NAME(DM3DAnimate,L"DM3DAnimate",DMREG_Animate);
+		DMDECLARE_CLASS_NAME(DM3DAnimate,"DM3DAnimate",DMREG_Animate);
 	public:
 		DM3DAnimate();
 

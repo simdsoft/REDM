@@ -23,16 +23,16 @@ namespace DMAttr
 	class DUIProcessCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
-		static wchar_t* INT_value;									   ///< 范围当前值,示例:value="0"
-		static wchar_t* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
-		static wchar_t* bool_bshowtip;                                 ///< 是否显示tip
+		static char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
+		static char* INT_value;									   ///< 范围当前值,示例:value="0"
+		static char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
+		static char* bool_bshowtip;                                 ///< 是否显示tip
 
-		static wchar_t* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
-		static wchar_t* COLOR_clrchannel;							   ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_selskin;                                  ///< 选中部分图,示例:selskin="PNG:iconbtn"
-		static wchar_t* COLOR_clrsel;                                  ///< 选中颜色,在选中图无效时使用,示例:clrsel="pbgra(ff,ff,ff,ff)"
-		static wchar_t* STRING_textformat;                             ///< 需要显示的进度文字format,示例:textformat="进度:%d"
+		static char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
+		static char* COLOR_clrchannel;							   ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_selskin;                                  ///< 选中部分图,示例:selskin="PNG:iconbtn"
+		static char* COLOR_clrsel;                                  ///< 选中颜色,在选中图无效时使用,示例:clrsel="pbgra(ff,ff,ff,ff)"
+		static char* STRING_textformat;                             ///< 需要显示的进度文字format,示例:textformat="进度:%d"
 	};
 	DMAttrValueInit(DUIProcessCtrlAttr,SIZE_range)DMAttrValueInit(DUIProcessCtrlAttr,INT_value)
 	DMAttrValueInit(DUIProcessCtrlAttr,bool_bvert)DMAttrValueInit(DUIProcessCtrlAttr,SKIN_channelskin)DMAttrValueInit(DUIProcessCtrlAttr,COLOR_clrchannel)
@@ -86,13 +86,13 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::COLOR_clrchannel,m_crChannel,DM_ECODE_NOXMLLOADREFRESH)
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::SKIN_selskin,m_pSelSkin,DM_ECODE_NOXMLLOADREFRESH)
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::COLOR_clrsel,m_crSel,DM_ECODE_NOXMLLOADREFRESH)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::STRING_textformat,m_strTextFormat,DM_ECODE_NOXMLLOADREFRESH)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::STRING_textformat,m_strTextFormat,DM_ECODE_NOXMLLOADREFRESH)
 		DM_END_ATTRIBUTES()
 		//------------------------------------------
 		// 简化,在水平状态下，总是使channel等于客户区
 	public:
-		DMCode OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeValue(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeRange(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeValue(LPCSTR lpszValue, bool bLoadXml);
 	public:
 		CSize                            m_szRange;              ///< x为最小值,y为最大值
 		int                              m_iValue;               ///< 当前值

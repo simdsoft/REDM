@@ -6,7 +6,7 @@ BEGIN_MSG_MAP(AddXml)
 	MSG_WM_LBUTTONDOWN(OnLButtonDown)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(AddXml)
-	EVENT_NAME_COMMAND(L"ds_tool",OnExpand)
+	EVENT_NAME_COMMAND("ds_tool",OnExpand)
 END_EVENT_INBASE()// »ùÀà
 
 AddXml*  AddXml::ms_pthis = NULL;
@@ -32,7 +32,7 @@ DMCode AddXml::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 
 DMCode AddXml::InitAddXml()
 {
-	m_pTools = g_pMainWnd->FindChildByNameT<DUITabCtrl>(L"ds_tool");DMASSERT(m_pTools);
+	m_pTools = g_pMainWnd->FindChildByNameT<DUITabCtrl>("ds_tool");DMASSERT(m_pTools);
 	return DM_ECODE_OK;
 }
 
@@ -60,7 +60,7 @@ DMCode AddXml::OnExpand()
 		if (m_pExpandWnd.isNull())
 		{
 			m_pExpandWnd.Attach(new AddExpandWnd());
-			m_pExpandWnd->DM_CreateWindowEx(L"ds_add_dlg",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,g_pMainWnd->m_hWnd,NULL,false);
+			m_pExpandWnd->DM_CreateWindowEx("ds_add_dlg",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,g_pMainWnd->m_hWnd,NULL,false);
 			m_pExpandWnd->SendMessage(WM_INITDIALOG);
 		} 
 

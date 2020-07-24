@@ -18,7 +18,7 @@ namespace DM
 	/// </summary>
 	class IDMDraw:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMDraw,L"IDMDraw",DMREG_Draw);
+		DMDECLARE_CLASS_NAME(IDMDraw,"IDMDraw",DMREG_Draw);
 	public:
 		// DUI通用绘制
 		virtual  DMCode DrawBackground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 			///< 绘制背景

@@ -66,8 +66,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #endif//DLL_DMMAIN
 
 	theApp.LoadResPack((WPARAM)(L"DesignerRes"),NULL,NULL);					
-	theApp.InitGlobal(L"ds_global");	
-
+	theApp.InitGlobal("ds_global");	
 #if   0 
 	DMSmartPtrT<LayoutDlg> pMainWnd; 
 	pMainWnd.Attach(new LayoutDlg());
@@ -75,7 +74,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #else
 	DMSmartPtrT<DMDesignerWnd> pMainWnd;
 	pMainWnd.Attach(new DMDesignerWnd());
-	pMainWnd->DM_CreateWindow(L"ds_mainwnd",0,0,0,0,NULL,false);			// 创建主窗口
+	pMainWnd->DM_CreateWindow("ds_mainwnd",0,0,0,0,NULL,false);			// 创建主窗口
 	pMainWnd->SendMessage(WM_INITDIALOG);
 	pMainWnd->CenterWindow();
 	pMainWnd->ShowWindow(SW_SHOW);

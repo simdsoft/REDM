@@ -3,7 +3,6 @@
 
 namespace DM
 {
-	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR);
 	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
 	DUIWindow::DUIWindow()
 	{
@@ -42,7 +41,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des:基础属性
-	LPCWSTR DUIWindow::GetName()
+	LPCSTR DUIWindow::GetName()
 	{
 		return m_pDUIXmlInfo->m_strName;
 	}
@@ -58,7 +57,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DUIWindow* DUIWindow::FindChildByName(LPCWSTR lpszName,bool bPanelFind/* = false*/)
+	DUIWindow* DUIWindow::FindChildByName(LPCSTR lpszName,bool bPanelFind/* = false*/)
 	{
 		DUIWindow* pFindWnd = NULL;
 		do 
@@ -126,7 +125,7 @@ namespace DM
 		return pFindWnd;
 	}
 
-	DUIWindow* DUIWindow::FindPanelChildByName(LPCWSTR lpszName,bool bPanelFind/* = false*/)
+	DUIWindow* DUIWindow::FindPanelChildByName(LPCSTR lpszName,bool bPanelFind/* = false*/)
 	{
 		DUIWindow* pFindWnd = NULL;
 		do 
@@ -190,7 +189,7 @@ namespace DM
 		return pFindWnd;
 	}
 
-	DMCode DUIWindow::SetData(CStringW strKey, CStringW strValue, bool bReplace/* = true*/)
+	DMCode DUIWindow::SetData(CStringA strKey, CStringA strValue, bool bReplace/* = true*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -220,9 +219,9 @@ namespace DM
 		return iErr;
 	}
 
-	CStringW DUIWindow::GetData(CStringW strKey)
+	CStringA DUIWindow::GetData(CStringA strKey)
 	{
-		CStringW strValue;
+		CStringA strValue;
 		do 
 		{
 			if (NULL != m_StrDataMap.Lookup(strKey))
@@ -279,12 +278,12 @@ namespace DM
 	{
 		for (DMXmlNode XmlChildNode = XmlNode.FirstChild(); XmlChildNode.IsValid(); XmlChildNode=XmlChildNode.NextSibling())
 		{
-			if (0 == _wcsicmp(XmlChildNode.GetName(),SUB_NODE))// 在窗口布局中支持sub标签
+			if (0 == dm_xmlstrcmp(XmlChildNode.GetName(),SUB_NODE))// 在窗口布局中支持sub标签
 			{
 				// todo.
-				CStringW  strValue = XmlChildNode.Attribute(L"src");
-				CStringW strType;
-				CStringW strResName;
+				CStringA  strValue = XmlChildNode.Attribute("src");
+				CStringA strType;
+				CStringA strResName;
 				int iFind = strValue.ReverseFind(_T(':'));
 				if (-1 != iFind)// 可能是LAYOUT:xxx
 				{
@@ -299,7 +298,7 @@ namespace DM
 
 				DMXmlDocument* pDoc = NULL;
 				if (g_pGetSubXmlDoc
-					&&NULL!=(pDoc = g_pGetSubXmlDoc(strType,strResName)))// 支持外部生成Doc传入
+					&&NULL!=(pDoc = g_pGetSubXmlDoc(strType, strResName)))// 支持外部生成Doc传入
 				{
 					DMXmlNode XmlIncludeNode = pDoc->Root(SUB_NODE);
 					if (XmlIncludeNode.IsValid())
@@ -356,10 +355,10 @@ namespace DM
 			m_strXml = XmlNode.m_strDebugBuf;	
 #endif //_DEBUG
 			DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
-			if (pMain && 0 == pMain->GetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase(L"440A2781-8BC2-4AC4-8225-9AC451FE42B4"))
-			{
-				m_XmlNode = XmlNode;
-			}
+			 if (pMain && 0 == pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4"))
+			 {
+			 	m_XmlNode = XmlNode;
+			 }
 
 			DMBase::InitDMData(XmlNode);	 // 子类先处理，未处理的交由DUIWindow自身m_pDUIXmlInfo处理，这样子类如设置相同的属性值，子类优先处理完
 			if (0!=DM_SendMessage(WM_CREATE))// 不为0表示创建失败
@@ -386,7 +385,7 @@ namespace DM
 	// Function Des:容器
 	IDMContainerPtr DUIWindow::GetContainer()
 	{
-		DMASSERT_EXPR(NULL!=m_pContainer,L"m_pContainer为空!");
+		DMASSERT(NULL!=m_pContainer);
 		return m_pContainer;
 	}
 
@@ -579,12 +578,12 @@ namespace DM
 		{
 			if (DMREG_FlowLayout == V_GetClassType())
 			{
-				DMASSERT_EXPR(0,L"流式布局请重载DV_UpdateChildLayout!");
+				DMFAIL_MSG("flow layout need override DV_UpdateChildLayout!");
 				break;
 			}
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("The wnd not finish self layout");
 			}
 			iErr = m_pLayout->UpdateChildLayout();
 
@@ -795,10 +794,12 @@ namespace DM
 
 	CStringW DUIWindow::DV_GetTransText(CStringW strSrc)
 	{
+#if !defined(DM_EXCLUDE_MUI)
 		if (m_pContainer)
 		{
 			return g_pDMApp->GetTrans(strSrc, m_pContainer->OnGetTransId());;
 		}
+#endif
 		return strSrc;
 	}
 
@@ -1641,7 +1642,7 @@ namespace DM
 		{
 			if (-1 != m_DUIData.m_dcFlags||NULL == m_pContainer)
 			{
-				DMASSERT_EXPR(0,L"亲,弹这个框是告诉你,你的DM_GetCanvas和DM_ReleaseCanvas没有配对使用!");
+				DMFAIL_MSG("DM_GetCanvas/DM_ReleaseCanvas mismatch");
 				break;
 			}
 
@@ -2089,7 +2090,7 @@ namespace DM
 			if(!m_pCacheCanvas)
 			{
 				g_pDMRender->CreateCanvas(m_rcWindow.Width(),m_rcWindow.Height(),&m_pCacheCanvas);
-				m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(L""));
+				m_pCacheCanvas->SelectObject(g_pDMFontPool->GetFont(""));
 				DM_MarkCacheDirty(true);
 			}
 			else
@@ -2257,7 +2258,7 @@ namespace DM
 		return FALSE;
 	}
 
-	DMCode DUIWindow::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
+	DMCode DUIWindow::OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr)
 	{
 		do 
 		{
@@ -2304,7 +2305,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIWindow::DM_Layout(LPCWSTR lpszAttribute,LPCWSTR lpszValue,bool bLoadXml)
+	DMCode DUIWindow::DM_Layout(LPCSTR lpszAttribute, LPCSTR lpszValue,bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

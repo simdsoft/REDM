@@ -18,7 +18,7 @@ namespace DM
 	/// </summary>
 	class PosList : public DUIListBox
 	{
-		DMDECLARE_CLASS_NAME(PosList,L"poslist",DMREG_Window);
+		DMDECLARE_CLASS_NAME(PosList,"poslist",DMREG_Window);
 	public:
 		CRect GetItemRect(int iItem);
 		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);	
@@ -29,7 +29,7 @@ namespace DM
 	/// </summary>
 	class PosEdit : public DUIEdit
 	{
-		DMDECLARE_CLASS_NAME(PosEdit,L"posedit",DMREG_Window);
+		DMDECLARE_CLASS_NAME(PosEdit,"posedit",DMREG_Window);
 	public:
 		DM_BEGIN_MSG_MAP()
 			MSG_WM_CHAR(OnChar)
@@ -47,7 +47,7 @@ namespace DM
 	/// </summary>   
 	class PosItem : public DUIWindow
 	{
-		DMDECLARE_CLASS_NAME(PosItem,L"positem",DMREG_Window);
+		DMDECLARE_CLASS_NAME(PosItem,"positem",DMREG_Window);
 	public:
 		PosItem();
 
@@ -84,7 +84,7 @@ namespace DM
 	/// </summary>
 	class DUIPos: public DUIWindow
 	{
-		DMDECLARE_CLASS_NAME(DUIPos,L"duipos",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DUIPos,"duipos",DMREG_Window);
 	public:
 		DMCode InitLayout(IDMLayout* pLayout);
 		DMCode UnInitLayout();

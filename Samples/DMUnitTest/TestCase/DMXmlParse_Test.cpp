@@ -36,20 +36,20 @@ TEST_F(DMXmlParseTest,test1)
 
 	// 用于打印Xml内容
 	// 先做遍历
-	DMXmlNode XmlElementNoFind = doc.Root(L"hgy");
+	DMXmlNode XmlElementNoFind = doc.Root("hgy");
 	EXPECT_EQ(XmlElementNoFind.IsValid(), false);// 并没有hgy这个节
 	DMXmlNode XmlElementRoot = doc.Root();
-	XmlElementRoot.SetAttributeInt64(L"I64",123456789012);// 设置一个I64
-	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"I64"),123456789012);
-	XmlElementRoot.SetAttribute(L"0x64",L"0x9876543210");// 以字符串的方式设置一个I64
-	EXPECT_EQ(XmlElementRoot.AttributeInt64(L"0x64"),0x9876543210);
-	DMXmlNode XmlElementRoot1 = doc.Root(L"xmlui");
+	XmlElementRoot.SetAttributeInt64("I64",123456789012);// 设置一个I64
+	EXPECT_EQ(XmlElementRoot.AttributeInt64("I64"),123456789012);
+	XmlElementRoot.SetAttribute("0x64","0x9876543210");// 以字符串的方式设置一个I64
+	EXPECT_EQ(XmlElementRoot.AttributeInt64("0x64"),0x9876543210);
+	DMXmlNode XmlElementRoot1 = doc.Root("xmlui");
 	EXPECT_EQ(XmlElementRoot.IsEqual(XmlElementRoot1), true);
 	EXPECT_EQ(XmlElementRoot.IsEqual(XmlElementNoFind), false);
 
 	DMXmlNode XmlElement = XmlElementRoot.FirstChild().FirstChild().FirstChild();
-	LPCWSTR szName = XmlElement.GetName();
-	LPCWSTR szValue = XmlElement.GetValue();
+	LPCSTR szName = XmlElement.GetName();
+	LPCSTR szValue = XmlElement.GetValue();
 	XmlElement = XmlElement.NextSibling();
 
 	DMXmlAttribute XmlAttribute;

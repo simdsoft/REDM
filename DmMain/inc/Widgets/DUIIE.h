@@ -26,11 +26,11 @@ namespace DMAttr
 	class DUIIEAttr
 	{
 	public:
-		static wchar_t* STRING_url;                                    ///< 指定IE的默认加载URL,示例:url="www.baidu.com"
-		static wchar_t* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
-		static wchar_t* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
-		static wchar_t* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
-		static wchar_t* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:refreshkey="ctrl+f5"
+		static char* STRING_url;                                    ///< 指定IE的默认加载URL,示例:url="www.baidu.com"
+		static char* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
+		static char* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
+		static char* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
+		static char* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:refreshkey="ctrl+f5"
 	};
 	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bshowcontext)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
 }
@@ -286,7 +286,7 @@ namespace DM
 
 		/// @brief 转发IE的设置属性
 		/// @return
-		HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml);
+		HRESULT WebSetAttribute(LPCSTR pszAttribute,LPCSTR pszValue,bool bLoadXml);
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
@@ -298,11 +298,11 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttributeUrl(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttributeShowScroll(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttributeShowContext(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttributeDisableScriptWarn(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttributeRefreshKey(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeUrl(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeShowScroll(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeShowContext(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeDisableScriptWarn(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttributeRefreshKey(LPCSTR pszValue, bool bLoadXml);
 
 	public:
 		CStringW				    m_strUrl;

@@ -408,9 +408,9 @@ BOOL DUIWebKit::OnIdle()
 	return TRUE;
 }
 
-bool DUIWebKit::OnAttrUrl(LPCWSTR lpszValue, bool bLoadXml)
+bool DUIWebKit::OnAttrUrl(LPCSTR lpszValue, bool bLoadXml)
 {
-	m_strUrl = lpszValue;
+	m_strUrl = DMA2W(lpszValue);
 	if (!bLoadXml) 
 	{	
 		if (NULL == m_pWebView||NULL == m_pHelper)

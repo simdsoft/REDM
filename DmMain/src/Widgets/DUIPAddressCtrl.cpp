@@ -246,12 +246,12 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strAttr;
+			CStringA strAttr;
 			int iLeft = 0;
 			for (int i=0;i<4;i++)
 			{
-				strAttr.Format(L"%d,0,@%d,-0",iLeft,iEditWid);
-				m_pEdit[i]->SetAttribute(L"pos",strAttr,false);
+				strAttr.Format("%d,0,@%d,-0",iLeft,iEditWid);
+				m_pEdit[i]->SetAttribute("pos",strAttr,false);
 				iLeft += iEditWid;
 				iLeft += EDIT_DELTA;
 			}
@@ -263,16 +263,15 @@ namespace DM
 	DMCode DUIPAddressCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
-		CStringW strWXml = L"<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
+		LiteralString strXml = "<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode EditNode = doc.Root();
-		CStringW strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
-		CStringW strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
-		CStringW strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
-		CStringW strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
-		CStringW strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
+		LPCSTR strTextFont = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::FONT_font);
+		LPCSTR strTextClr =  XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrtext);
+		LPCSTR strCaretClr = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::COLOR_clrcaret);
+		LPCSTR strCaretAniCount = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::INI_caretanimatecount);
+		LPCSTR strAlign = XmlNode.Attribute(DMAttr::DUIPAddressCtrlAttr::OPTION_align);
 		for (int i=0;i<4;i++)
 		{
 			g_pDMApp->CreateRegObj((void**)&m_pEdit[i], DUINAME_IPEdit,DMREG_Window);
@@ -282,23 +281,23 @@ namespace DM
 				m_pEdit[i]->AddRef();
 				m_pEdit[i]->InitDMData(EditNode);
 				m_pEdit[i]->SetLimitText(3);
-				if (!strTextFont.IsEmpty())
+				if (*strTextFont)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::FONT_font,strTextFont,false);
 				}
-				if (!strTextClr.IsEmpty())
+				if (*strTextClr)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrtext,strTextClr,false);
 				}
-				if (!strCaretClr.IsEmpty())
+				if (*strCaretClr)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::COLOR_clrcaret,strCaretClr,false);
 				}
-				if (!strCaretAniCount.IsEmpty())
+				if (*strCaretAniCount)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::INI_caretanimatecount,strCaretAniCount,false);
 				}
-				if (!strAlign.IsEmpty())
+				if (*strAlign)
 				{
 					m_pEdit[i]->SetAttribute(DMAttr::DUIRichEditAttr::OPTION_align,strAlign,false);
 				}
@@ -308,7 +307,7 @@ namespace DM
 	}
 
 	//
-	DMCode DUIPAddressCtrl::OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrTextColor(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -320,7 +319,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -332,7 +331,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrTextFont(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrTextFont(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -344,7 +343,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIPAddressCtrl::OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{
@@ -357,7 +356,7 @@ namespace DM
 	}
 
 
-	DMCode DUIPAddressCtrl::OnAttrAlign(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIPAddressCtrl::OnAttrAlign(LPCSTR pszValue, bool bLoadXml)
 	{
 		for (int i=0;i<4;i++)
 		{

@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ScanDlg.h"
 
 BEGIN_MSG_MAP(ScanDlg)    
@@ -21,26 +21,26 @@ void ScanDlg::OnSize(UINT nType, CSize size)
 
 DMCode ScanDlg::OnOK()
 {
-	DUITabCtrl *pTab = FindChildByNameT<DUITabCtrl>(L"ds_scantabctrl");
+	DUITabCtrl *pTab = FindChildByNameT<DUITabCtrl>("ds_scantabctrl");
 	int iCurSel = pTab->GetCurSel();
-	if (0 == iCurSel)//0.µã»÷ ¿ªÊ¼Ìå¼ì°´Å¥
+	if (0 == iCurSel)//0.ç‚¹å‡» å¼€å§‹ä½“æ£€æŒ‰é’®
 	{
 		pTab->SetCurSel(2);
 		SetWindowPos(NULL,0,0,500,200,SWP_NOMOVE|SWP_NOACTIVATE|SWP_NOZORDER);  
 		
 		Scan();
-		if (false == m_bExistErr)//1.ÌáÊ¾ÎÞ´íÎó
+		if (false == m_bExistErr)//1.æç¤ºæ— é”™è¯¯
 		{
 			pTab->SetCurSel(1);
 			SetWindowPos(NULL,0,0,400,100,SWP_NOMOVE|SWP_NOACTIVATE|SWP_NOZORDER);  
 		}
 	}
-	else if (2 == iCurSel)//2.µã»÷ Á¢¼´ÐÞ¸´°´Å¥
+	else if (2 == iCurSel)//2.ç‚¹å‡» ç«‹å³ä¿®å¤æŒ‰é’®
 	{
 		Scan(true);
 		pTab->SetCurSel(3);
 	}
-	else if (3 == iCurSel||1==iCurSel)// ÍË³ö
+	else if (3 == iCurSel||1==iCurSel)// é€€å‡º
 	{
 		EndDialog(IDOK); 
 	}
@@ -56,46 +56,46 @@ DMCode ScanDlg::Scan(bool bRepair)
 		ObjXml* pXml		 = g_pMainWnd->m_pDesignerXml;
 		CStringW strResDir	 = pXml->m_strResDir;
 		DMSmartPtrT<ResFolder>pRes = pXml->m_pRes;
-		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
-		DUIListBox* pListBox = FindChildByNameT<DUIListBox>(bRepair?L"ds_repairlist":L"ds_scanlist");
+		ProjTree* pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
+		DUIListBox* pListBox = FindChildByNameT<DUIListBox>(bRepair?"ds_repairlist":"ds_scanlist");
 		pListBox->DeleteAll();
 
 		DMXmlNodePtr pData = NULL;
 		CStringW strPath,strErrText;
-		//1.É¨Ãè²¼¾ÖÎÄ¼þÁÐ±í£¬ÅÐ¶ÏËüÃÇµÄIDÊÇ·ñÓÐÐ§
+		//1.æ‰«æå¸ƒå±€æ–‡ä»¶åˆ—è¡¨ï¼Œåˆ¤æ–­å®ƒä»¬çš„IDæ˜¯å¦æœ‰æ•ˆ
 		HDMTREEITEM hLayoutFiles = pXml->m_hProjLayoutFiles;
 		HDMTREEITEM hGlobal		 = pXml->m_hProjGlobal;
 
 		if (hGlobal)
 		{
 			pData		  = (DMXmlNodePtr) pProjTree->GetItemData(hGlobal);
-			strPath		  = strResDir + pData->Attribute(XML_PATH);
+			strPath		  = strResDir + DMCA2W(pData->Attribute(XML_PATH));
 			
-			//1.1.0.ÅÐ¶ÏglobalÎÄ¼þÊÇ·ñ´æÔÚ
+			//1.1.0.åˆ¤æ–­globalæ–‡ä»¶æ˜¯å¦å­˜åœ¨
 			if (!CheckFileExistW((wchar_t*)(const wchar_t*)strPath))
 			{
-				strErrText.Format(L"[global]ÎÄ¼þÎ´ÕÒµ½:%s",strPath);
+				strErrText.Format(L"[global]æ–‡ä»¶æœªæ‰¾åˆ°:%s",strPath);
 				m_bExistErr = true;
 				if (bRepair)
 				{
-					//1.1.1.´Ó¸¸xml½ÚµãÒÆ³ýglobal½Úµã
+					//1.1.1.ä»Žçˆ¶xmlèŠ‚ç‚¹ç§»é™¤globalèŠ‚ç‚¹
 					HDMTREEITEM hParent = pProjTree->GetParentItem(hGlobal);
 					DMXmlNodePtr pParentData = (DMXmlNodePtr) pProjTree->GetItemData(hParent);
 					pParentData->RemoveChildNode(pData);
 
-					//1.1.2.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+					//1.1.2.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 					strPath = strResDir + XML_LAYOUT_DMINDEX;
 					pXml->SetDocUnSave(strPath);
 
-					//1.1.3.´ÓRes½âÎöÆ÷ÖÐ°ÑglobalÒÆ³ý
-					pRes->RemoveResItem(XML_GLOBAL,pData->Attribute(XML_NAME),L"");
+					//1.1.3.ä»ŽResè§£æžå™¨ä¸­æŠŠglobalç§»é™¤
+					pRes->RemoveResItem(XML_GLOBAL,pData->Attribute(XML_NAME),"");
 	
-					strErrText += L"[ÒÑÒÆ³ý]";
+					strErrText += L"[å·²ç§»é™¤]";
 
-					//1.1.4.´ÓmapÖÐÒÆ³ý
+					//1.1.4.ä»Žmapä¸­ç§»é™¤
 					pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hGlobal);
 
-					//1.1.5.´ÓtreeÖÐÒÆ³ý´Ëglobal½áµã£¬²¢°Ñglobal³ÉÔ±±äÁ¿Çå0
+					//1.1.5.ä»Žtreeä¸­ç§»é™¤æ­¤globalç»“ç‚¹ï¼Œå¹¶æŠŠglobalæˆå‘˜å˜é‡æ¸…0
 					pProjTree->RemoveItem(hGlobal);
 					pXml->m_hProjGlobal = NULL;		
 				}
@@ -103,7 +103,7 @@ DMCode ScanDlg::Scan(bool bRepair)
 			}
 		}
 
-		//1.2.0.ÅÐ¶ÏlayoutÎÄ¼þÊÇ·ñ´æÔÚ
+		//1.2.0.åˆ¤æ–­layoutæ–‡ä»¶æ˜¯å¦å­˜åœ¨
 		HDMTREEITEM hLayout = pProjTree->GetChildItem(hLayoutFiles,false);
 		if (hLayout)
 		{
@@ -113,32 +113,32 @@ DMCode ScanDlg::Scan(bool bRepair)
 				pData = (DMXmlNodePtr) pProjTree->GetItemData(hChild);
 				HDMTREEITEM hTemp = pProjTree->GetNextSiblingItem(hChild);
 
-				strPath = strResDir + pData->Attribute(XML_PATH);
+				strPath = strResDir + DMCA2W(pData->Attribute(XML_PATH));
 
-				//1.2.0.ÅÐ¶ÏlayoutÎÄ¼þÊÇ·ñ´æÔÚ
+				//1.2.0.åˆ¤æ–­layoutæ–‡ä»¶æ˜¯å¦å­˜åœ¨
 				if (!CheckFileExistW((wchar_t*)(const wchar_t*)strPath))
 				{
-					strErrText.Format(L"[layout]ÎÄ¼þÎ´ÕÒµ½:%s",strPath);
+					strErrText.Format(L"[layout]æ–‡ä»¶æœªæ‰¾åˆ°:%s",strPath);
 					m_bExistErr = true;
 					if (bRepair)
 					{
-						//1.2.1.´Ó¸¸xml½ÚµãÒÆ³ýlayout½Úµã
+						//1.2.1.ä»Žçˆ¶xmlèŠ‚ç‚¹ç§»é™¤layoutèŠ‚ç‚¹
 						DMXmlNodePtr pParentData = (DMXmlNodePtr) pProjTree->GetItemData(hLayout);
 						pParentData->RemoveChildNode(pData);
 
-						//1.2.2.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+						//1.2.2.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 						strPath = strResDir + XML_LAYOUT_DMINDEX;
 						pXml->SetDocUnSave(strPath);
 
-						//1.2.3.´ÓRes½âÎöÆ÷ÖÐ°ÑlayoutÒÆ³ý
-						pRes->RemoveResItem(XML_LAYOUT,pData->Attribute(XML_NAME),L"");
+						//1.2.3.ä»ŽResè§£æžå™¨ä¸­æŠŠlayoutç§»é™¤
+						pRes->RemoveResItem(XML_LAYOUT,pData->Attribute(XML_NAME),"");
 
-						strErrText += L"[ÒÑÒÆ³ý]";
+						strErrText += L"[å·²ç§»é™¤]";
 
-						//1.2.4.´ÓmapÖÐÒÆ³ý
+						//1.2.4.ä»Žmapä¸­ç§»é™¤
 						pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hChild);
 
-						//1.2.5.´ÓtreeÖÐÒÆ³ý´Ëlayout½áµã
+						//1.2.5.ä»Žtreeä¸­ç§»é™¤æ­¤layoutç»“ç‚¹
 						pProjTree->RemoveItem(hChild);
 					}
 					pListBox->AddString(strErrText);
@@ -148,35 +148,35 @@ DMCode ScanDlg::Scan(bool bRepair)
 			}
 		}
 		
-		//2.É¨ÃèÖ÷Ìâ°üÁÐ±íÖÐµÄÖ÷ÌâÁÐ±í£¬ÅÐ¶ÏËüÃÇµÄdmindex.xmlÊÇ·ñ´æÔÚ
+		//2.æ‰«æä¸»é¢˜åŒ…åˆ—è¡¨ä¸­çš„ä¸»é¢˜åˆ—è¡¨ï¼Œåˆ¤æ–­å®ƒä»¬çš„dmindex.xmlæ˜¯å¦å­˜åœ¨
 		HDMTREEITEM hThemes = pXml->m_hProjThemes;
 		HDMTREEITEM hTheme = pProjTree->GetChildItem(hThemes);
 		while (hTheme)
 		{
 			HDMTREEITEM hTemp = pProjTree->GetNextSiblingItem(hTheme);
 			pData = (DMXmlNodePtr) pProjTree->GetItemData(hTheme);
-			strPath = strResDir + pData->Attribute(XML_PATH);
-			//2.1.Ä³¸öÖ÷ÌâµÄdmindex.xml²»´æÔÚ£¬»ò½âÎöÊ§°Ü
+			strPath = strResDir + DMCA2W(pData->Attribute(XML_PATH));
+			//2.1.æŸä¸ªä¸»é¢˜çš„dmindex.xmlä¸å­˜åœ¨ï¼Œæˆ–è§£æžå¤±è´¥
 			if (!pXml->FindDocData(strPath))
 			{
-				strErrText.Format(L"[theme]dmindex.xml½âÎöÊ§°Ü:%s",strPath);
+				strErrText.Format(L"[theme]dmindex.xmlè§£æžå¤±è´¥:%s",strPath);
 				m_bExistErr = true;
 				if (bRepair)
 				{
-					//2.2.´Ó¸¸xml½ÚµãÒÆ³ýtheme½Úµã
+					//2.2.ä»Žçˆ¶xmlèŠ‚ç‚¹ç§»é™¤themeèŠ‚ç‚¹
 					DMXmlNodePtr pParentData = (DMXmlNodePtr) pProjTree->GetItemData(hThemes);
 					pParentData->RemoveChildNode(pData);
 					
-					//2.3.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+					//2.3.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 					strPath = strResDir + XML_THEMES_DMINDEX;
 					pXml->SetDocUnSave(strPath);
 					
-					strErrText += L"[ÒÑÒÆ³ý]";
+					strErrText += L"[å·²ç§»é™¤]";
 
-					//2.4.´ÓmapÖÐÒÆ³ý
+					//2.4.ä»Žmapä¸­ç§»é™¤
 					pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hTheme);
 
-					// 2.5.´ÓtreeÖÐÒÆ³ý´Ëtheme½áµã
+					// 2.5.ä»Žtreeä¸­ç§»é™¤æ­¤themeç»“ç‚¹
 					pProjTree->RemoveItem(hTheme);
 				}
 				pListBox->AddString(strErrText);
@@ -184,7 +184,7 @@ DMCode ScanDlg::Scan(bool bRepair)
 			hTheme = hTemp;
 		}
 
-		//3.É¨Ãè¸÷Ö÷Ìâ°üÖÐµÄÎÄ¼þÁÐ±í£¬ÅÐ¶ÏËüÃÇµÄIDÊÇ·ñÓÐÐ§
+		//3.æ‰«æå„ä¸»é¢˜åŒ…ä¸­çš„æ–‡ä»¶åˆ—è¡¨ï¼Œåˆ¤æ–­å®ƒä»¬çš„IDæ˜¯å¦æœ‰æ•ˆ
 		hTheme = pProjTree->GetChildItem(hThemes);
 		while (hTheme)
 		{
@@ -196,32 +196,32 @@ DMCode ScanDlg::Scan(bool bRepair)
 				{
 					HDMTREEITEM hTemp = pProjTree->GetNextSiblingItem(hFile);
 					pData = (DMXmlNodePtr) pProjTree->GetItemData(hFile);
-					strPath = strResDir + pData->Attribute(XML_PATH);
-					//3.0.ÅÐ¶ÏfileÎÄ¼þÊÇ·ñ´æÔÚ
+					strPath = strResDir + DMCA2W(pData->Attribute(XML_PATH));
+					//3.0.åˆ¤æ–­fileæ–‡ä»¶æ˜¯å¦å­˜åœ¨
 					if (!CheckFileExistW((wchar_t*)(const wchar_t*)strPath))
 					{
-						strErrText.Format(L"[file]Î´ÕÒµ½:%s",strPath);
+						strErrText.Format(L"[file]æœªæ‰¾åˆ°:%s",strPath);
 						m_bExistErr = true;
 						if (bRepair)
 						{
-							//3.1.´Ó¸¸xml½ÚµãÒÆ³ýfile½Úµã
+							//3.1.ä»Žçˆ¶xmlèŠ‚ç‚¹ç§»é™¤fileèŠ‚ç‚¹
 							DMXmlNodePtr pParentData = (DMXmlNodePtr) pProjTree->GetItemData(hType);
 							pParentData->RemoveChildNode(pData);
 							
 							DMXmlNodePtr pThemeData = (DMXmlNodePtr) pProjTree->GetItemData(hTheme);
-							//3.2.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
-							strPath = strResDir + pThemeData->Attribute(XML_PATH);
+							//3.2.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
+							strPath = strResDir + DMCA2W(pThemeData->Attribute(XML_PATH));
 							pXml->SetDocUnSave(strPath);
 
-							//3.3.´ÓRes½âÎöÆ÷ÖÐ°ÑfileÒÆ³ý
+							//3.3.ä»ŽResè§£æžå™¨ä¸­æŠŠfileç§»é™¤
 							pRes->RemoveResItem(pParentData->GetName(),pData->Attribute(XML_NAME),pThemeData->Attribute(XML_NAME));
 
-							strErrText += L"[ÒÑÒÆ³ý]";
+							strErrText += L"[å·²ç§»é™¤]";
 
-							//3.4.´ÓmapÖÐÒÆ³ý
+							//3.4.ä»Žmapä¸­ç§»é™¤
 							pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hFile);
 
-							//3.5.´ÓtreeÖÐÒÆ³ý´Ëfile½áµã
+							//3.5.ä»Žtreeä¸­ç§»é™¤æ­¤fileç»“ç‚¹
 							pProjTree->RemoveItem(hFile);
 						}
 
@@ -236,7 +236,7 @@ DMCode ScanDlg::Scan(bool bRepair)
 			hTheme = pProjTree->GetNextSiblingItem(hTheme);
 		}
 
-		//4.É¨ÃèÈ«¾ÖÆ¤·ôÁÐ±í£¬ÅÐ¶ÏËüÃÇµÄIDÊÇ·ñÓÐÐ§
+		//4.æ‰«æå…¨å±€çš®è‚¤åˆ—è¡¨ï¼Œåˆ¤æ–­å®ƒä»¬çš„IDæ˜¯å¦æœ‰æ•ˆ
 		HDMTREEITEM hGlobalSkins = pXml->m_hProjGlobalSkins;
 		if (hGlobalSkins)
 		{
@@ -248,16 +248,16 @@ DMCode ScanDlg::Scan(bool bRepair)
 				{
 					HDMTREEITEM hTemp = pProjTree->GetNextSiblingItem(hGlobalSkinId);
 
-					//4.1.È¡µÃÆ¤·ôid
+					//4.1.å–å¾—çš®è‚¤id
 					pData = (DMXmlNodePtr) pProjTree->GetItemData(hGlobalSkinId);
-					CStringW strSrc = pData->Attribute(XML_SRC);
-					CStringWList strList;
-					CStringW strName;
-					CStringW strKey;
+					CStringA strSrc = pData->Attribute(XML_SRC);
+					CStringAList strList;
+					CStringA strName;
+					CStringA strKey;
 					int nCount = (int)SplitStringT(strSrc,L':',strList);
 					if (1==nCount)
 					{
-						strKey  = L"PNG";
+						strKey  = "PNG";
 						strName = strSrc;
 					}
 					else if (2 == nCount)
@@ -265,28 +265,28 @@ DMCode ScanDlg::Scan(bool bRepair)
 						strKey  = strList[0];
 						strName = strList[1];
 					}
-					//4.2.´ÓRes½âÎöÆ÷ÖÐÑ­»·²éÕÒ´ËidÊÇ·ñ´æÔÚ
-					if (!DMSUCCEEDED(pXml->m_pRes->IsItemExists(strKey,strName)))//Ñ­»·²éÕÒ
+					//4.2.ä»ŽResè§£æžå™¨ä¸­å¾ªçŽ¯æŸ¥æ‰¾æ­¤idæ˜¯å¦å­˜åœ¨
+					if (!DMSUCCEEDED(pXml->m_pRes->IsItemExists(strKey,strName)))//å¾ªçŽ¯æŸ¥æ‰¾
 					{
-						strErrText.Format(L"[global-skins]id:%s-src:%sÎ´ÕÒµ½¶ÔÓ¦Æ¤·ô",pData->Attribute(XML_ID),strSrc);
+						strErrText.Format(L"[global-skins]id:%s-src:%sæœªæ‰¾åˆ°å¯¹åº”çš®è‚¤",pData->Attribute(XML_ID),strSrc);
 						m_bExistErr = true;
 						if (bRepair)
 						{
-							//4.3.´Ó¸¸xml½ÚµãÒÆ³ýÆ¤·ô½áµã
+							//4.3.ä»Žçˆ¶xmlèŠ‚ç‚¹ç§»é™¤çš®è‚¤ç»“ç‚¹
 							DMXmlNodePtr pParentData = (DMXmlNodePtr) pProjTree->GetItemData(hGlobalSkin);
 							pParentData->RemoveChildNode(pData);
 
-							//4.4.ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+							//4.4.è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 							DMXmlNodePtr pGlobal = (DMXmlNodePtr) pProjTree->GetItemData(pXml->m_hProjGlobal);
-							strPath = strResDir + pGlobal->Attribute(XML_PATH);
+							strPath = strResDir + DMCA2W(pGlobal->Attribute(XML_PATH));
 							pXml->SetDocUnSave(strPath);
-							// ÒòÎªRes²»´æÔÚ£¬ËùÒÔ²»ÐèÒªÒÆ³ýRes
+							// å› ä¸ºResä¸å­˜åœ¨ï¼Œæ‰€ä»¥ä¸éœ€è¦ç§»é™¤Res
 							
-							strErrText += L"[ÒÑÒÆ³ý]";
-							//4.5.´ÓmapÖÐÒÆ³ý
+							strErrText += L"[å·²ç§»é™¤]";
+							//4.5.ä»Žmapä¸­ç§»é™¤
 							pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hGlobalSkinId);
 
-							//4.6.´ÓtreeÖÐÒÆ³ý´Ëskin½áµã
+							//4.6.ä»Žtreeä¸­ç§»é™¤æ­¤skinç»“ç‚¹
 							pProjTree->RemoveItem(hGlobalSkinId);
 						}
 
@@ -299,14 +299,14 @@ DMCode ScanDlg::Scan(bool bRepair)
 			}
 		}
 
-		//5.É¨ÃèË½ÓÐÆ¤·ôÁÐ±í£¬ÅÐ¶ÏËüÃÇµÄIDÊÇ·ñÓÐÐ§
+		//5.æ‰«æç§æœ‰çš®è‚¤åˆ—è¡¨ï¼Œåˆ¤æ–­å®ƒä»¬çš„IDæ˜¯å¦æœ‰æ•ˆ
 		HDMTREEITEM hPrivStyleSkins = pXml->m_hProjPrivStyleSkins;
 		if (hPrivStyleSkins)
 		{
 			HDMTREEITEM hDM = pProjTree->GetChildItem(hPrivStyleSkins);
 			while (hDM)
 			{
-				HDMTREEITEM hPrivSkins = pProjTree->GetChildItem(hDM,false);// ×îºóÒ»¸öÊÇskin
+				HDMTREEITEM hPrivSkins = pProjTree->GetChildItem(hDM,false);// æœ€åŽä¸€ä¸ªæ˜¯skin
 				if (hPrivSkins)
 				{
 					HDMTREEITEM hPrivSkin = pProjTree->GetChildItem(hPrivSkins);
@@ -317,14 +317,14 @@ DMCode ScanDlg::Scan(bool bRepair)
 						{
 							HDMTREEITEM hTemp = pProjTree->GetNextSiblingItem(hPrivSkinId);
 							pData = (DMXmlNodePtr) pProjTree->GetItemData(hPrivSkinId);
-							CStringW strSrc = pData->Attribute(XML_SRC);
-							CStringWList strList;
-							CStringW strName;
-							CStringW strKey;
-							int nCount = (int)SplitStringT(strSrc,L':',strList);
+							CStringA strSrc = pData->Attribute(XML_SRC);
+							CStringAList strList;
+							CStringA strName;
+							CStringA strKey;
+							int nCount = (int)SplitStringT(strSrc,':',strList);
 							if (1==nCount)
 							{
-								strKey = L"PNG";
+								strKey = "PNG";
 								strName = strSrc;
 							}
 							else if (2 == nCount)
@@ -332,9 +332,9 @@ DMCode ScanDlg::Scan(bool bRepair)
 								strKey = strList[0];
 								strName  = strList[1];
 							}
-							if (!DMSUCCEEDED(pXml->m_pRes->IsItemExists(strKey,strName)))//Ñ­»·²éÕÒ
+							if (!DMSUCCEEDED(pXml->m_pRes->IsItemExists(strKey,strName)))//å¾ªçŽ¯æŸ¥æ‰¾
 							{
-								strErrText.Format(L"[private-skins]id:%s-src:%sÎ´ÕÒµ½¶ÔÓ¦Æ¤·ô",pData->Attribute(XML_ID),strSrc);
+								strErrText.Format(L"[private-skins]id:%s-src:%sæœªæ‰¾åˆ°å¯¹åº”çš®è‚¤",pData->Attribute(XML_ID),strSrc);
 								m_bExistErr = true;
 								if (bRepair)
 								{
@@ -342,11 +342,11 @@ DMCode ScanDlg::Scan(bool bRepair)
 									pParentData->RemoveChildNode(pData);
 
 									DMXmlNodePtr pDM = (DMXmlNodePtr) pProjTree->GetItemData(hDM);
-									strPath = strResDir + pDM->Attribute(XML_PATH);
+									strPath = strResDir + DMCA2W(pDM->Attribute(XML_PATH));
 									pXml->SetDocUnSave(strPath);
-									// ÒòÎªRes²»´æÔÚ£¬ËùÒÔ²»ÐèÒªÒÆ³ýRes
+									// å› ä¸ºResä¸å­˜åœ¨ï¼Œæ‰€ä»¥ä¸éœ€è¦ç§»é™¤Res
 
-									strErrText += L"[ÒÑÒÆ³ý]";
+									strErrText += L"[å·²ç§»é™¤]";
 									pXml->DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveKey(hPrivSkinId);
 									pProjTree->RemoveItem(hPrivSkinId);
 

@@ -142,7 +142,7 @@ namespace DM
 
 		if(iCount == pList->GetCount())
 		{
-			DMASSERT_EXPR(0,L"亲,布局有问题,死锁了!");
+			DMFAIL_MSG("layout malformed");
 			return false;
 		}
 		else
@@ -153,11 +153,11 @@ namespace DM
 
 	bool DMLayoutImpl::ParsePostion()
 	{
-		CStringW strPos = m_strPosValue;
+		CStringA strPos = m_strPosValue;
 		bool bRet = false;
 		do 
 		{
-			CStringWList strPosList;
+			CStringAList strPosList;
 			SplitStringT(strPos,L',',strPosList);
 			m_nCount = (int)strPosList.GetCount();
 			if (2!=m_nCount&&4!=m_nCount)
@@ -174,7 +174,7 @@ namespace DM
 			}
 			if (PIT_OFFSET==item[0].pit||PIT_OFFSET==item[1].pit)
 			{
-				DMASSERT_EXPR(0,L"布局前两个参数不能使用@!");
+                DMFAIL_MSG("layout 1,2 param can't use @");
 				break;
 			}
 			m_Left = item[0];m_Top = item[1];m_Right = item[2]; m_Bottom = item[3];
@@ -249,18 +249,18 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMLayoutImpl::ParseItem(CStringW &strPos, POS_ITEM &item)
+	bool DMLayoutImpl::ParseItem(CStringA &strPos, POS_ITEM &item)
 	{
 		bool bRet = false;
 		do 
 		{
 			if (strPos.IsEmpty())
 			{
-				DMASSERT_EXPR(0,L"ParseItem项请不要使用空值");
+				DMFAIL_MSG("strPos can't be empty");
 				break;
 			}
 
-			LPCWSTR lpszPos = strPos;
+			LPCSTR lpszPos = strPos;
 			switch (lpszPos[0])
 			{
 			case POSFLAG_REFCENTER:		item.pit=PIT_CENTER,	lpszPos++;	break;		// 3.1.“|”代表参考父窗口的中心, PIT_CENTER:参考父窗口中心点,以"|"开始
@@ -282,10 +282,10 @@ namespace DM
 					item.bMinus = true;
 				}
 			}
-			item.nPos = (float)_wtof(lpszPos);
+			item.nPos = (float)atof(lpszPos);
 			if (item.nPos<0.0f && PIT_OFFSET == item.pit) 
 			{
-				DMASSERT_EXPR(0,L"在使用@时请不要使用负值,内部强制转成正值了");
+				DMFAIL_MSG("don't use neg-value");
 				item.nPos = DMABS(item.nPos);
 			}
 			bRet = true;
@@ -560,12 +560,12 @@ namespace DM
 		return sz;
 	}
 
-	DMCode DMLayoutImpl::OnAttributePos(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DMLayoutImpl::OnAttributePos(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strOldPosValue = m_strPosValue;
+			CStringA strOldPosValue = m_strPosValue;
 			m_strPosValue = pszValue;
 			if (!ParsePostion())
 			{
@@ -581,7 +581,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMLayoutImpl::OnAttributePosSize(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DMLayoutImpl::OnAttributePosSize(LPCSTR pszValue, bool bLoadXml)
 	{
 		dm_parsesize(pszValue,m_size);
 	

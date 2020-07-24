@@ -23,36 +23,36 @@ namespace DMAttr
 	class DUIWindowAttr
 	{
 	public:
-		static wchar_t* STRING_name;                                    ///< 窗口名，唯一标识, 示例:name="firstwnd"
-		static wchar_t* INT_id;											///< 窗口ID，唯一标识,示例:id="10"
+		static char* STRING_name;                                    ///< 窗口名，唯一标识, 示例:name="firstwnd"
+		static char* INT_id;											///< 窗口ID，唯一标识,示例:id="10"
 
-		static wchar_t* bool_bvisible;                                  ///< 窗口是否可见,示例:bvisible="1"
-		static wchar_t* bool_bdisable;                                  ///< 窗口是否禁用,示例:bdisable="1"
-		static wchar_t* bool_bplaceholder;                              ///< 窗口隐藏时是否占位,默认是占位!,不占位时启动重新布局,注意流式布局子控件隐藏时同样使用占位,示例:bplaceholder="1"
-		static wchar_t* bool_bcache;								    ///< 支持窗口内容的Cache标志,缓存画布建议用在不经常改变大小、背景色的地方,示例:bcache=="1"
+		static char* bool_bvisible;                                  ///< 窗口是否可见,示例:bvisible="1"
+		static char* bool_bdisable;                                  ///< 窗口是否禁用,示例:bdisable="1"
+		static char* bool_bplaceholder;                              ///< 窗口隐藏时是否占位,默认是占位!,不占位时启动重新布局,注意流式布局子控件隐藏时同样使用占位,示例:bplaceholder="1"
+		static char* bool_bcache;								    ///< 支持窗口内容的Cache标志,缓存画布建议用在不经常改变大小、背景色的地方,示例:bcache=="1"
 
-		static wchar_t* bool_bolnydrawclient;                           ///< 是否仅绘制客户区,示例:bolnydrawclient="1"
-		static wchar_t* bool_bfocusable;							    ///< 窗口是否可获得焦点,焦点窗口可使用tab切换窗口，示例:bfocusable=="1"
-		static wchar_t* bool_bshowdrawfocus;                            ///< 在有焦点窗口时,是否绘制焦点框，示例:bshowdrawfocus=="1"
-		static wchar_t* bool_bmsgnohandle;							    ///< 窗口是否不处理消息,如为true,在hittest中会直接忽视这个窗口,用于static等.示例:bmsgnohandle=="1"
-		static wchar_t* bool_bdrag;                                     ///< 窗口是否可拖动. 设置caption可拖动状态,示例:bdrag="1"
+		static char* bool_bolnydrawclient;                           ///< 是否仅绘制客户区,示例:bolnydrawclient="1"
+		static char* bool_bfocusable;							    ///< 窗口是否可获得焦点,焦点窗口可使用tab切换窗口，示例:bfocusable=="1"
+		static char* bool_bshowdrawfocus;                            ///< 在有焦点窗口时,是否绘制焦点框，示例:bshowdrawfocus=="1"
+		static char* bool_bmsgnohandle;							    ///< 窗口是否不处理消息,如为true,在hittest中会直接忽视这个窗口,用于static等.示例:bmsgnohandle=="1"
+		static char* bool_bdrag;                                     ///< 窗口是否可拖动. 设置caption可拖动状态,示例:bdrag="1"
 		
-		static wchar_t* STRING_style;                                   ///< 指定使用的style,示例:style="custom"
-		static wchar_t* STRING_text;                                    ///< 窗口文本,示例:text="OK"
-		static wchar_t* STRING_tiptext;                                 ///< 窗口tooltip提示语，示例:tiptext="close"
-		static wchar_t* STRING_tipxmlid;                                ///< 窗口tips的xmlid,示例:tipxmlid="dui_tips1"
-		static wchar_t* INT_tipdelay;                                   ///< 窗口tooltip提示语延迟显示时间(默认500ms)，示例:tipdelay="10"
-		static wchar_t* INT_tipspan;                                    ///< 窗口tooltip提示语显示停留时间(默认5000ms)，示例:tipspan="10"
-		static wchar_t* RECT_tipflags;                                  ///< 类似TrackPopupMenu的参数，前三项分别代表UINT uFlags, int x, int y，默认uFlags为-1,则无视此参数,示例:tipflags="0,100,10,0"
+		static char* STRING_style;                                   ///< 指定使用的style,示例:style="custom"
+		static char* STRING_text;                                    ///< 窗口文本,示例:text="OK"
+		static char* STRING_tiptext;                                 ///< 窗口tooltip提示语，示例:tiptext="close"
+		static char* STRING_tipxmlid;                                ///< 窗口tips的xmlid,示例:tipxmlid="dui_tips1"
+		static char* INT_tipdelay;                                   ///< 窗口tooltip提示语延迟显示时间(默认500ms)，示例:tipdelay="10"
+		static char* INT_tipspan;                                    ///< 窗口tooltip提示语显示停留时间(默认5000ms)，示例:tipspan="10"
+		static char* RECT_tipflags;                                  ///< 类似TrackPopupMenu的参数，前三项分别代表UINT uFlags, int x, int y，默认uFlags为-1,则无视此参数,示例:tipflags="0,100,10,0"
 
 		// FlowLayout，对一般的锚点布局和绝对布局无效
-		static wchar_t* INT_maxwidth;                                   ///< 仅用于流式布局的子控件,窗口的最大宽度,为-1表示使用自动计算,示例:maxwidth="10"
-		static wchar_t* INT_minwidth;                                   ///< 仅用于流式布局的子控件,窗口的最大小度,为-1表示使用自动计算,示例:INT_minwidth="10"
-		static wchar_t* INT_maxheight;                                  ///< 仅用于流式布局的子控件,窗口的最大高度,为-1表示使用自动计算,示例:maxheight="10"
-		static wchar_t* INT_minheight;                                  ///< 仅用于流式布局的子控件,窗口的最小高度,为-1表示使用自动计算,示例:minheight="10"
-		static wchar_t* INT_width;                                      ///< 仅用于流式布局的子控件,窗口的正常宽度,为-1表示使用自动计算,示例:width="10"
-		static wchar_t* INT_height;                                     ///< 仅用于流式布局的子控件,窗口的正常高度,为-1表示使用自动计算,示例:height="10"
-		static wchar_t* RECT_rcpadd;                                    ///< 仅用于流式布局的子控件,窗口的四个边的外边距,相当于把窗口四边扩大rcpadd，再放置到流式布局中,示例:rcPadd="10,5,5,5"
+		static char* INT_maxwidth;                                   ///< 仅用于流式布局的子控件,窗口的最大宽度,为-1表示使用自动计算,示例:maxwidth="10"
+		static char* INT_minwidth;                                   ///< 仅用于流式布局的子控件,窗口的最大小度,为-1表示使用自动计算,示例:INT_minwidth="10"
+		static char* INT_maxheight;                                  ///< 仅用于流式布局的子控件,窗口的最大高度,为-1表示使用自动计算,示例:maxheight="10"
+		static char* INT_minheight;                                  ///< 仅用于流式布局的子控件,窗口的最小高度,为-1表示使用自动计算,示例:minheight="10"
+		static char* INT_width;                                      ///< 仅用于流式布局的子控件,窗口的正常宽度,为-1表示使用自动计算,示例:width="10"
+		static char* INT_height;                                     ///< 仅用于流式布局的子控件,窗口的正常高度,为-1表示使用自动计算,示例:height="10"
+		static char* RECT_rcpadd;                                    ///< 仅用于流式布局的子控件,窗口的四个边的外边距,相当于把窗口四边扩大rcpadd，再放置到流式布局中,示例:rcPadd="10,5,5,5"
 
 	};
 	DMAttrValueInit(DUIWindowAttr,STRING_name)
@@ -118,9 +118,9 @@ namespace DM
 			DM_bool_ATTRIBUTE(DMAttr::DUIWindowAttr::bool_bmsgnohandle,m_bMsgNoHandle,DM_ECODE_OK)
 			DM_bool_ATTRIBUTE(DMAttr::DUIWindowAttr::bool_bdrag,m_bDrag,DM_ECODE_OK)
 
-			DM_STRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_text, m_strText,DM_ECODE_NOXMLLOADREFRESH)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_tiptext, m_strTooltipText,DM_ECODE_OK)
-			DM_STRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_tipxmlid, m_strTipsXmlId,DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_text, m_strText,DM_ECODE_NOXMLLOADREFRESH)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_tiptext, m_strTooltipText,DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_tipxmlid, m_strTipsXmlId,DM_ECODE_OK)
 			DM_INT_ATTRIBUTE(DMAttr::DUIWindowAttr::INT_tipdelay, m_iTooltipDelayTime, DM_ECODE_OK)
 			DM_INT_ATTRIBUTE(DMAttr::DUIWindowAttr::INT_tipspan, m_iTooltipSpanTime, DM_ECODE_OK)
 			DM_RECT_ATTRIBUTE(DMAttr::DUIWindowAttr::RECT_tipflags,m_rcTooltipPosFlags,DM_ECODE_OK);
@@ -139,18 +139,18 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttributeVisible(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeDisable(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributePlaceHolder(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeCache(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeStyle(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeVisible(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeDisable(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributePlaceHolder(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeCache(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeStyle(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		DMCode OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr);
+		DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);
 
 	public:
 		DUIWindow*          m_pOwner;                              ///< 拥有窗口
-		CStringW            m_strName;                             ///< 窗口名，唯一标识
+		CStringA            m_strName;                             ///< 窗口名，唯一标识
 		int                 m_iID;                                 ///< 窗口ID，唯一标识
 
 		bool				m_bVisible;							   ///< 窗口可见状态

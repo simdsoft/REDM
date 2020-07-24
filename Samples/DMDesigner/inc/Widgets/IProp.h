@@ -45,8 +45,8 @@ namespace DM
 		virtual void SetData(LPARAM lpData) = 0;
 		virtual IProp* FindSubItemByData(LPARAM lpData) = 0;
 		virtual void UpdateSubXml(DMXmlNode &XmlNode) = 0;
-		virtual CStringW GetName() = 0;
-		virtual CStringW GetValue() = 0;
+		virtual CStringA GetName() = 0;
+		virtual CStringA GetValue() = 0;
 	
 		// »æÖÆ
 		virtual DMCode OnRender(IDMCanvas* pCanvas) = 0;

@@ -48,10 +48,10 @@ namespace DM
 			}
 
 			LPTGPLBITEMEX pNewItem = new TGPLBITEMEX(XmlNode,this);
-			CStringW strHei		= XmlNode.Attribute(DMAttr::TGPListBoxExAttr::ITEM_height);
+			LPCSTR strHei		= XmlNode.Attribute(DMAttr::TGPListBoxExAttr::ITEM_height);
 			pNewItem->nHeight   = m_iDefItemHei;
 			DMAttributeDispatch::ParseInt(strHei,pNewItem->nHeight);
-			CStringW strData    = XmlNode.Attribute(DMAttr::TGPListBoxExAttr::ITEM_data);
+			LPCSTR strData    = XmlNode.Attribute(DMAttr::TGPListBoxExAttr::ITEM_data);
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
@@ -927,9 +927,9 @@ namespace DM
 			{
 				break;
 			}
-			CStringW strClr;
-			strClr.Format(L"rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
-			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute(L"clrbg",strClr,false);
+			CStringA strClr;
+			strClr.Format("rgba(%02x,%02x,%02x,%02x)",Clr.r,Clr.g,Clr.b,Clr.a);
+			pPanel->m_pDUIXmlInfo->m_pStyle->SetAttribute("clrbg",strClr,false);
 		} while (false);
 	}
 

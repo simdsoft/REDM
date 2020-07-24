@@ -33,7 +33,7 @@ namespace DM
 	/// </summary>
 	class IDMAnimate:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMAnimate,L"IDMAnimate",DMREG_Animate);
+		DMDECLARE_CLASS_NAME(IDMAnimate,"IDMAnimate",DMREG_Animate);
 	public:
 		virtual DMCode AnimateInit(IDMAnimateOwner*pOwner,IDMCanvas* pStartCanvas,IDMCanvas* pEndCanvas,WPARAM wp=0, LPARAM lp=0) = 0;   ///< 初始化动画
 		virtual DMCode AnimateBegin(WPARAM wp=0, LPARAM lp=0) = 0;																		 ///< 开始动画

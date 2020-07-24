@@ -11,7 +11,7 @@ namespace DM
 		m_uVAlign		 = VAlign_Middle;
 		m_nTextAlign	 = 0;
 		m_bDotted        = false;
-		m_strCursor      = L"arrow";
+		m_strCursor      = "arrow";
 		m_hCursor        = ::LoadCursor(NULL,IDC_ARROW);
 		m_bBmpCursor	 = false;
 		m_byAlpha        = 0xFF;
@@ -25,7 +25,7 @@ namespace DM
 		}
 
 		// 保证normal是有值的.
-		m_ftText[0] = g_pDMFontPool->GetFont(L"");
+		m_ftText[0] = g_pDMFontPool->GetFont("");
 		m_crText[0].SetRGBA(0,0,0,0xff);
 	}
 
@@ -69,7 +69,7 @@ namespace DM
 			{
 				if (0 == i)// 0被赋了默认值
 				{
-					if (pCopy->m_ftText[0] == g_pDMFontPool->GetFont(L""))
+					if (pCopy->m_ftText[0] == g_pDMFontPool->GetFont(""))
 					{
 						pCopy->m_ftText[0] = m_ftText[0];
 					}
@@ -102,7 +102,7 @@ namespace DM
 				pCopy->m_strNcSkinName = m_strNcSkinName;
 			}
 
-			if (0 == pCopy->m_strCursor.CompareNoCase(L"arrow"))
+			if (0 == pCopy->m_strCursor.CompareNoCase("arrow"))
 			{
 				pCopy->m_strCursor	   = m_strCursor;
 				pCopy->m_hCursor       = m_hCursor;		///< 由图片创建的icon可以DestroyIcon多次，后面会直接返回无效光标的错误，但不会报错
@@ -148,7 +148,7 @@ namespace DM
 			}
 			if (m_strID.IsEmpty())
 			{
-				DMASSERT_EXPR(0,L"DMImgListSkinImpl对象的ID竟然为空！");
+				DMFAIL_MSG("DMImgListSkinImpl id is empty");
 				break;
 			}
 
@@ -158,7 +158,7 @@ namespace DM
 				break;
 			}
 			memset(lpszId, 0, iSize);
-			swprintf_s(lpszId, iSize, L"%s", (LPCWSTR)m_strID);
+			swprintf_s(lpszId, iSize, L"%s", (LPCWSTR)DMA2W(m_strID));
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -280,9 +280,7 @@ namespace DM
 			pSkin = g_pDMApp->GetSkin(m_strSkinName);
 			if (NULL == pSkin)
 			{
-				CStringW szInfo = m_strSkinName;
-				szInfo += L"(skin类型)获取失败!";
-				DMASSERT_EXPR(0, szInfo);
+                DMFAIL_MSG_FMT("Get skin type failed", (LPCSTR)m_strSkinName);
 				break;
 			}
 	
@@ -361,12 +359,10 @@ namespace DM
 			}
 			m_strNcSkinName.Remove(VK_SPACE);
 			DMSmartPtrT<IDMSkin> pSkin;
-			pSkin = g_pDMApp->GetSkin(m_strNcSkinName);
+			pSkin = g_pDMApp->GetSkin((m_strNcSkinName));
 			if (NULL == pSkin)
 			{
-				CStringW szInfo = m_strNcSkinName;
-				szInfo += L"(skin类型)获取失败!";
-				DMASSERT_EXPR(0, szInfo);
+                DMFAIL_MSG_FMT("Get skin type failed", (LPCSTR)m_strNcSkinName);
 				break;
 			}
 			*ppSkin = pSkin;
@@ -383,7 +379,7 @@ namespace DM
 	}
 
 	//
-	DMCode DMStyleImpl::OnAttributeSkin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMStyleImpl::OnAttributeSkin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -399,7 +395,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMStyleImpl::OnAttributeNcSkin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMStyleImpl::OnAttributeNcSkin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -415,7 +411,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMStyleImpl::OnAttributeNcMargin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMStyleImpl::OnAttributeNcMargin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -431,12 +427,12 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMStyleImpl::OnAttributeCursor(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DMStyleImpl::OnAttributeCursor(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strCursor = lpszValue;
+			CStringA strCursor = lpszValue;
 			if (0 == m_strCursor.CompareNoCase(strCursor))
 			{
 				iErr = DM_ECODE_OK;
@@ -453,20 +449,20 @@ namespace DM
 			}
 			m_bBmpCursor = false;
 			m_strCursor.Remove(VK_SPACE);
-			if (0 == m_strCursor.CompareNoCase(L"arrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_ARROW);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"ibeam"))	   {m_hCursor = ::LoadCursor(NULL,IDC_IBEAM);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"wait"))	   {m_hCursor = ::LoadCursor(NULL,IDC_WAIT);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"cross"))	   {m_hCursor = ::LoadCursor(NULL,IDC_CROSS);   break;}
-			if (0 == m_strCursor.CompareNoCase(L"uparrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_UPARROW); break;}
-			if (0 == m_strCursor.CompareNoCase(L"size"))	   {m_hCursor = ::LoadCursor(NULL,IDC_SIZE);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizenwse"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENWSE);break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizenesw"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENESW);break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizewe"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZEWE);  break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizens"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZENS);  break;}
-			if (0 == m_strCursor.CompareNoCase(L"sizeall"))    {m_hCursor = ::LoadCursor(NULL,IDC_SIZEALL); break;}
-			if (0 == m_strCursor.CompareNoCase(L"no"))	       {m_hCursor = ::LoadCursor(NULL,IDC_NO);      break;}
-			if (0 == m_strCursor.CompareNoCase(L"hand"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HAND);    break;}
-			if (0 == m_strCursor.CompareNoCase(L"help"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HELP);    break;}
+			if (0 == m_strCursor.CompareNoCase("arrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_ARROW);   break;}
+			if (0 == m_strCursor.CompareNoCase("ibeam"))	   {m_hCursor = ::LoadCursor(NULL,IDC_IBEAM);   break;}
+			if (0 == m_strCursor.CompareNoCase("wait"))	   {m_hCursor = ::LoadCursor(NULL,IDC_WAIT);    break;}
+			if (0 == m_strCursor.CompareNoCase("cross"))	   {m_hCursor = ::LoadCursor(NULL,IDC_CROSS);   break;}
+			if (0 == m_strCursor.CompareNoCase("uparrow"))	   {m_hCursor = ::LoadCursor(NULL,IDC_UPARROW); break;}
+			if (0 == m_strCursor.CompareNoCase("size"))	   {m_hCursor = ::LoadCursor(NULL,IDC_SIZE);    break;}
+			if (0 == m_strCursor.CompareNoCase("sizenwse"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENWSE);break;}
+			if (0 == m_strCursor.CompareNoCase("sizenesw"))   {m_hCursor = ::LoadCursor(NULL,IDC_SIZENESW);break;}
+			if (0 == m_strCursor.CompareNoCase("sizewe"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZEWE);  break;}
+			if (0 == m_strCursor.CompareNoCase("sizens"))     {m_hCursor = ::LoadCursor(NULL,IDC_SIZENS);  break;}
+			if (0 == m_strCursor.CompareNoCase("sizeall"))    {m_hCursor = ::LoadCursor(NULL,IDC_SIZEALL); break;}
+			if (0 == m_strCursor.CompareNoCase("no"))	       {m_hCursor = ::LoadCursor(NULL,IDC_NO);      break;}
+			if (0 == m_strCursor.CompareNoCase("hand"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HAND);    break;}
+			if (0 == m_strCursor.CompareNoCase("help"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HELP);    break;}
 			// 支持图片生成HCURSOR
 			DMSmartPtrT<IDMSkin> pCursorSkin = g_pDMApp->GetSkin(m_strCursor);
 			if (pCursorSkin.isValid())

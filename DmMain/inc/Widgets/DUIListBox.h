@@ -23,26 +23,26 @@ namespace DMAttr
 	class DUIListBoxAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static wchar_t* INT_itemheight;                                       ///< 项的默认高度,默认为20,示例:itemheight="20"
-		static wchar_t* POINT_iconpoint;                                      ///< 相对于Item的左上角偏移,默认为-1，-1，其中-1表示使用默认高度的1/6,示例:iconpoint="-1,-1"
-		static wchar_t* POINT_textpoint;                                      ///< 相对于Item的左上角偏移，默认为-1，-1，其中-1表示此方向居中,示例:textpoint="-1,-1"
-		static wchar_t* SKIN_iconskin;                                        ///< 每项自带的ICON图案,一般为状态连图,示例:iconskin="skin"
-		static wchar_t* SKIN_itembgskin;                                      ///< 项所在的背景图案,示例：itembgskin="skin"
-		static wchar_t* COLOR_clritembg;                                      ///< 单数项item的背景色,示例:clritembg="pbgra(FF,FF,FF,FF)"
-		static wchar_t* COLOR_clritembg2;                                     ///< 双数项item的背景色,如不设置,则默认使用单数项的背景色,示例:clritembg2="pbgra(FF,FF,cc,FF)"
-		static wchar_t* COLOR_clritemhoverbg;                                 ///< item项的hover背景色,示例:clritemhoverbg="pbgra(ff,00,00,ff)"
-		static wchar_t* COLOR_clritemselbg;                                   ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,00,00,ff)"
-		static wchar_t* COLOR_clritemtext;                                    ///< item项的文本色,示例:clritemtext="pbgra(ff,00,00,ff)"
-		static wchar_t* COLOR_clritemhovertext;                                ///< item项的hover文本色,示例:clritemhoverext="pbgra(ff,00,00,ff)"
-		static wchar_t* COLOR_clritemseltext;                                 ///< item项的选中文本色,示例:clritemseltext="pbgra(ff,00,00,ff)"
-		static wchar_t* bool_bhottrack;                                       ///< 让指针下的项自动追踪选中显示,示例:bhottrack="1"
-		static wchar_t* INT_cursel;                                           ///< 此项为选中项，示例:cursel="1"
+		static char* INT_itemheight;                                       ///< 项的默认高度,默认为20,示例:itemheight="20"
+		static char* POINT_iconpoint;                                      ///< 相对于Item的左上角偏移,默认为-1，-1，其中-1表示使用默认高度的1/6,示例:iconpoint="-1,-1"
+		static char* POINT_textpoint;                                      ///< 相对于Item的左上角偏移，默认为-1，-1，其中-1表示此方向居中,示例:textpoint="-1,-1"
+		static char* SKIN_iconskin;                                        ///< 每项自带的ICON图案,一般为状态连图,示例:iconskin="skin"
+		static char* SKIN_itembgskin;                                      ///< 项所在的背景图案,示例：itembgskin="skin"
+		static char* COLOR_clritembg;                                      ///< 单数项item的背景色,示例:clritembg="pbgra(FF,FF,FF,FF)"
+		static char* COLOR_clritembg2;                                     ///< 双数项item的背景色,如不设置,则默认使用单数项的背景色,示例:clritembg2="pbgra(FF,FF,cc,FF)"
+		static char* COLOR_clritemhoverbg;                                 ///< item项的hover背景色,示例:clritemhoverbg="pbgra(ff,00,00,ff)"
+		static char* COLOR_clritemselbg;                                   ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,00,00,ff)"
+		static char* COLOR_clritemtext;                                    ///< item项的文本色,示例:clritemtext="pbgra(ff,00,00,ff)"
+		static char* COLOR_clritemhovertext;                                ///< item项的hover文本色,示例:clritemhoverext="pbgra(ff,00,00,ff)"
+		static char* COLOR_clritemseltext;                                 ///< item项的选中文本色,示例:clritemseltext="pbgra(ff,00,00,ff)"
+		static char* bool_bhottrack;                                       ///< 让指针下的项自动追踪选中显示,示例:bhottrack="1"
+		static char* INT_cursel;                                           ///< 此项为选中项，示例:cursel="1"
 		//
-		static wchar_t* NODE_item;                                            ///< ListBox的xml项结点名
-		static wchar_t* ITEM_height;                                          ///< 项的高度(可选),不指定则使用默认项,height="30"
-		static wchar_t* ITEM_text;                                            ///< 项的文本,示例:text="item0"
-		static wchar_t* ITEM_icon;                                            ///< 项的icon索引,-1表示不使用icon图,示例:icon="1"
-		static wchar_t* ITEM_data;                                            ///< 项的附加数据,示例:data="100"
+		static char* NODE_item;                                            ///< ListBox的xml项结点名
+		static char* ITEM_height;                                          ///< 项的高度(可选),不指定则使用默认项,height="30"
+		static char* ITEM_text;                                            ///< 项的文本,示例:text="item0"
+		static char* ITEM_icon;                                            ///< 项的icon索引,-1表示不使用icon图,示例:icon="1"
+		static char* ITEM_data;                                            ///< 项的附加数据,示例:data="100"
 	};
 	DMAttrValueInit(DUIListBoxAttr,INT_itemheight)DMAttrValueInit(DUIListBoxAttr,POINT_iconpoint)DMAttrValueInit(DUIListBoxAttr,POINT_textpoint)
 	DMAttrValueInit(DUIListBoxAttr,SKIN_iconskin)DMAttrValueInit(DUIListBoxAttr,SKIN_itembgskin)DMAttrValueInit(DUIListBoxAttr,COLOR_clritembg)
@@ -171,7 +171,7 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIListBoxAttr::INT_cursel,OnAttributeCurSel)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml);
 	public:
 		int									   m_iSelItem;						 ///< 当前选中项   
 		int									   m_iHoverItem;					 ///< 当前停留项

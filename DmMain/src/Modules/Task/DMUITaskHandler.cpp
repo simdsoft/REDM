@@ -63,7 +63,7 @@ namespace DM
 			{
 				if (::GetCurrentThreadId () != refObj->m_dwThreadId)
 				{
-					DMASSERT_EXPR(FALSE, L"强烈建议UninstallEvent在主UI线程中执行！！");
+					DMFAIL_MSG("recommand UninstallEvent at main ui thread");
 					refObj->PostMessage(WM_CLOSE);
 					Sleep(1000);
 				}

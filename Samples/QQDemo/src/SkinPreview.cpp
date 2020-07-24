@@ -59,7 +59,7 @@ void SkinPreview::OnLButtonUp(UINT nFlags,CPoint pt)
 		g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
 		if (pRes)
 		{
-			pRes->SetCurTheme(m_strThemeName);
+			pRes->SetCurTheme(DMW2A(m_strThemeName));
 		}
 	}
 	else
@@ -68,7 +68,7 @@ void SkinPreview::OnLButtonUp(UINT nFlags,CPoint pt)
 		m_pDUIXmlInfo->m_pStyle->GetBgColor(0,ClrBg);
 		if (!ClrBg.IsTextInvalid())
 		{
-			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"bg");
+			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("bg");
 			if (pSkin)
 			{
 				DMSmartPtrT<IDMBitmap> pBitmap;
@@ -84,7 +84,7 @@ void SkinPreview::OnLButtonUp(UINT nFlags,CPoint pt)
 					pCanvas->FillSolidRect(rcDraw,ClrBg);
 					DMSmartPtrT<IDMRes> pRes;
 					g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
-					pRes->SetAttribute(L"boutstyle",L"1",false);// 外部设置模式
+					pRes->SetAttribute("boutstyle","1",false);// 外部设置模式
 					g_pDMApp->RedrawAll();
 				}
 			}

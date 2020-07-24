@@ -11,7 +11,9 @@
 #include "DMStyleImpl.h"
 #include "DMLayoutImpl.h"
 #include "DMTooltipImpl.h"
+#if !defined(DM_EXCLUDE_MUI)
 #include "DMTransImpl.h"
+#endif
 #include "DMTaskRunnerImpl.h"
 
 #include "DUIButton.h"
@@ -25,11 +27,14 @@
 #include "DUILabel.h"
 #include "DUILink.h"
 #include "DUIComboBox.h"
-#include "DUIActiveX.h"
 #include "DUIGif.h"
 #include "DUIPngGif.h"
+#if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIFlash.h"
+#if !defined(DM_EXCLUDE_IE)
 #include "DUIIE.h"
+#endif
+#endif
 #include "DUIHeaderCtrl.h"
 #include "DUIListCtrlEx.h"
 #include "DUIGroup.h"
@@ -59,72 +64,74 @@ namespace DM
 		// 默认Log -----------------------------
 #ifdef DMLOG_ON
 		iErr = g_pDMApp->Register(DMRegHelperT<DMLogImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMLogImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "fail DMLogImpl");
 		iErr = g_pDMApp->SetDefRegObj(DMLogImpl::GetClassName(),DMLogImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMLogImpl为默认Log对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set Log obj fail");
 #endif //DMLOG_ON 
 
 		// 默认Attribute,必须在其他解析之前，因为其他解析的实例可能使用到它
 		iErr = g_pDMApp->Register(DMRegHelperT<DMAttributeImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMAttributeImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMAttributeImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMAttributeImpl::GetClassName(),DMAttributeImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMAttributeImpl为默认Attr对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMAttributeImpl fail");
 
 		// 默认解码器 ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMImgDecoderImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMImgDecoderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImgDecoderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMImgDecoderImpl::GetClassName(),DMImgDecoderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMImgDecoderImpl为默认Decoder对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMImgDecoderImpl fail");
 
 		// 默认Res -------------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMResFolderImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMResFolderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMResFolderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMResFolderImpl::GetClassName(),DMResFolderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMResFolderImpl为默认Res对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMResFolderImpl fail");
 
 		// 默认Render-----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMRenderImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMRenderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMRenderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMRenderImpl::GetClassName(),DMRenderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMRenderImpl为默认Render对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMRenderImpl fail");
 
 		// 默认Draw-----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMDrawImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMDrawImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMDrawImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMDrawImpl::GetClassName(),DMDrawImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"设置DMDrawImpl为默认Render对象失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMDrawImpl fail");
 
 		// 默认Skin -----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMImgListSkinImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMImgListSkinImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImgListSkinImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMImgListSkinImpl::GetClassName(),DMImgListSkinImpl::GetClassType());
 		iErr = g_pDMApp->Register(DMRegHelperT<DMImg9SkinImpl>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DMScrollBarSkinImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMImg9SkinImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImg9SkinImpl fail");
 
 		// 默认Style -----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMStyleImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMStyleImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMStyleImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMStyleImpl::GetClassName(),DMStyleImpl::GetClassType());
 
 		// 默认Layout ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMLayoutImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMLayoutImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMLayoutImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMLayoutImpl::GetClassName(),DMLayoutImpl::GetClassType());
 
 		// 内置Tooltip ---------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTooltipImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMTooltipImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTooltipImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTooltipImpl::GetClassName(),DMTooltipImpl::GetClassType());
 
+#if !defined(DM_EXCLUDE_MUI)
 		// 内置Trans ---------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTransImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMTransImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTransImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTransImpl::GetClassName(),DMTransImpl::GetClassType());
+#endif
 
 		// 内置TaskRunner-----------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTaskRunnerImpl>(),true);
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMTaskRunnerImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTaskRunnerImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTaskRunnerImpl::GetClassName(),DMTaskRunnerImpl::GetClassType());
 
 		// 内置Widget ----------------------------
@@ -147,9 +154,13 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGif>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIPngGif>(),true);
 #if !defined(_WIN64)// flash暂不支持X64,后续调整下
+#if !defined(DM_EXCLUDE_ACTIVEX)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIFlash>(),true);
 #endif
+#endif
+#if !defined(DM_EXCLUDE_ACTIVEX) && !defined(DM_EXCLUDE_IE)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIIE>(),true);
+#endif
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIHeaderCtrl>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIListCtrlEx>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGroup>(),true);
@@ -185,25 +196,25 @@ namespace DM
 		// 默认Log -----------------------------
 #ifdef DMLOG_ON
 		iErr = g_pDMApp->UnRegister(DMLogImpl::GetClassName(),DMLogImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMLogImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMLogImpl fail");
 #endif //DMLOG_ON 
 
 		// 默认Attribute,必须在其他解析之前，因为其他解析的实例可能使用到它
 		iErr = g_pDMApp->UnRegister(DMAttributeImpl::GetClassName(),DMAttributeImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMAttributeImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMAttributeImpl fail");
 		
 
 		// 默认解码器 ----------------------------
 		iErr = g_pDMApp->UnRegister(DMImgDecoderImpl::GetClassName(),DMImgDecoderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMImgDecoderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), L"unreg DMImgDecoderImpl fail");
 	
 		// 默认Res -------------------------------
 		iErr = g_pDMApp->UnRegister(DMResFolderImpl::GetClassName(),DMResFolderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"注册DMResFolderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMResFolderImpl fail");
 
 		// 默认Render-----------------------------
 		iErr = g_pDMApp->UnRegister(DMRenderImpl::GetClassName(),DMRenderImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMRenderImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMRenderImpl fail");
 
 		// 默认Skin -----------------------------
 		iErr = g_pDMApp->UnRegister(DMImgListSkinImpl::GetClassName(),DMImgListSkinImpl::GetClassType());
@@ -212,11 +223,11 @@ namespace DM
 
 		// 默认Style -----------------------------
 		iErr = g_pDMApp->UnRegister(DMStyleImpl::GetClassName(),DMStyleImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMStyleImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg fail DMStyleImpl fail");
 	
 		// 默认Layout ----------------------------
 		iErr = g_pDMApp->UnRegister(DMLayoutImpl::GetClassName(),DMLayoutImpl::GetClassType());
-		DMASSERT_EXPR(DMSUCCEEDED(iErr), L"反注册DMLayoutImpl失败!");
+		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg fail DMLayoutImpl fail");
 	
 		// 内置Widget ----------------------------
 		iErr = g_pDMApp->UnRegister(DUIWindow::GetClassName(),DUIWindow::GetClassType());

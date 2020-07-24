@@ -7,7 +7,7 @@ DMCode ComboBox_Test::OnSel(DMEventArgs *pEvt)
 {
 	do 
 	{
-		DUIComboBox* pComboBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIComboBox>(L"combobox1");
+		DUIComboBox* pComboBox = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUIComboBox>("combobox1");
 		if (NULL == pComboBox)
 		{
 			break;

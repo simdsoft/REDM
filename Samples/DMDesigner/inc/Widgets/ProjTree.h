@@ -13,7 +13,7 @@
 
 class ProjTree : public DUITreeEx
 {
-	DMDECLARE_CLASS_NAME(ProjTree, L"dsprojtree",DMREG_Window)
+	DMDECLARE_CLASS_NAME(ProjTree, "dsprojtree",DMREG_Window)
 public:
 	ProjTree();
 	HDMTREEITEM InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent=DMTVI_ROOT, HDMTREEITEM hInsertAfter=DMTVI_LAST,BOOL bEnsureVisible=FALSE);
@@ -27,7 +27,7 @@ public:
 
 class AttrTree : public ProjTree
 {
-	DMDECLARE_CLASS_NAME(AttrTree, L"dsattrtree",DMREG_Window)
+	DMDECLARE_CLASS_NAME(AttrTree, "dsattrtree",DMREG_Window)
 public:
 	DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 };

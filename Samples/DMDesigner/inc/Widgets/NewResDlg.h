@@ -13,7 +13,7 @@
 
 class DUIRecentListBox : public DUIListBox
 {
-	DMDECLARE_CLASS_NAME(RecentListBox, L"recentlist",DMREG_Window)
+	DMDECLARE_CLASS_NAME(RecentListBox, "recentlist",DMREG_Window)
 public: 
 	DUIRecentListBox();
 	DM_BEGIN_MSG_MAP()

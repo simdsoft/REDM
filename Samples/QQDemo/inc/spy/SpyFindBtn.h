@@ -32,7 +32,7 @@ public:
 
 class SpyFindBtn:public DUIWindow,public IDMTimeline
 {
-	DMDECLARE_CLASS_NAME(DUIWindow,L"spyfindbtn",DMREG_Window);
+	DMDECLARE_CLASS_NAME(DUIWindow,"spyfindbtn",DMREG_Window);
 public:
 	SpyFindBtn();
 

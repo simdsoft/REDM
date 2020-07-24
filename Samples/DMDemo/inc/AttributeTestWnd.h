@@ -34,8 +34,8 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
 	BEGIN_EVENT_MAPT(CAttributeTestWnd)
-		EVENT_NAME_COMMAND(L"btn_attrtestclose",OnClose)
-		EVENT_NAME_COMMAND(L"btn_testattr",OnSetAttribute)
+		EVENT_NAME_COMMAND("btn_attrtestclose",OnClose)
+		EVENT_NAME_COMMAND("btn_testattr",OnSetAttribute)
 	END_EVENT_MAP()
 
 public:

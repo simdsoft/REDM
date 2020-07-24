@@ -108,7 +108,7 @@ namespace DM
 			DLL_START_PLUGIN pFunc = (DLL_START_PLUGIN)pLib->GetSymbol("dllStartPlugin");
 			if (!pFunc)
 			{
-				DMASSERT_EXPR(NULL!=pFunc, L"未找到导出函数dllStartPlugin");
+				DMASSERT_MSG_FMT(NULL!=pFunc, "Can't locate imported function:dllStartPlugin");
 				//DMDynLibMgr::getSingletonPtr()->Unload(pLib);//直接卸载
 				iErr = DMPLUGINSTOOL_LOADPLUGIN_NOFIND_START_EXPORT;
 				break;
@@ -244,24 +244,24 @@ namespace DM
 				break;
 			}
 
-			DMXmlNode body = xmlDoc.Root(L"body");
+			DMXmlNode body = xmlDoc.Root("body");
 			if (false == body.IsValid())
 			{
 				break;
 			}
 
-			DMXmlNode directory = body.FirstChild(L"directory");
+			DMXmlNode directory = body.FirstChild("directory");
 			while (directory.IsValid())
 			{
-				CStringW pDir = directory.Attribute(L"name");
+				CStringW pDir = DMCA2W(directory.Attribute("name"));
 				wchar_t szPluginDir[MAX_PATH] = {0};
 				if (NULL == PathCombineW(szPluginDir, szExeDir, pDir))
 				{
-					directory = directory.NextSibling(L"directory");
+					directory = directory.NextSibling("directory");
 					continue;
 				}
 				CStringW strDir = szPluginDir;
-				DMXmlNode item = directory.FirstChild(L"item");
+				DMXmlNode item = directory.FirstChild("item");
 				while (!strDir.IsEmpty()&&item.IsValid())
 				{
 					if (strDir.Right(1)!=L'/'&&strDir.Right(1)!=L'\\')
@@ -269,12 +269,12 @@ namespace DM
 						strDir += L'\\';
 					}
 
-					CStringW pPluginName = item.Attribute(L"name");
+					CStringW pPluginName = DMCA2W(item.Attribute("name"));
 					LoadPlugin(strDir+pPluginName);
-					item = item.NextSibling(L"item");
+					item = item.NextSibling("item");
 				}
 
-				directory = directory.NextSibling(L"directory");
+				directory = directory.NextSibling("directory");
 			}
 		} while (false);
 	}

@@ -27,7 +27,7 @@ void ProjTree::OnRButtonDown(UINT nFlags, CPoint pt)
 			break;
 		}
 
-		ProjTree* pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");DMASSERT(pProjTree);
+		ProjTree* pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");DMASSERT(pProjTree);
 		if (this == pProjTree)// 此tree还可用于skin的选择
 		{
 			g_pMainWnd->m_pDesignerXml->PopProjTreeMenu(m_hHoverItem);

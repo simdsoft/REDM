@@ -54,7 +54,7 @@ namespace DM
 			pNewItem->mask      = 0xFFFFFFFF;
 
 			// ½âÎö
-			CStringW strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_width);
+			LPCSTR strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_width);
 			DMAttributeDispatch::ParseInt(strValue,pNewItem->cxy);
 			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_skin);
 			pNewItem->pSkin = g_pDMApp->GetSkin(strValue);
@@ -63,8 +63,8 @@ namespace DM
 				pNewItem->pSkin = m_pItemSkin;
 			}
 			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_text);
-			pNewItem->lpszText	 = _wcsdup(strValue);
-			pNewItem->cchTextMax = strValue.GetLength();
+			pNewItem->lpszText = ntcvt::mcbs2wdup(strValue, -1, &pNewItem->cchTextMax, CP_UTF8);// _wcsdup(strValue);
+			// pNewItem->cchTextMax = strValue.GetLength();
 			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_data);
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strValue, iData);
@@ -715,7 +715,7 @@ namespace DM
 		return rcItem;
 	}
 
-	DMCode DUIHeaderCtrl::OnAttributeItemSkin(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIHeaderCtrl::OnAttributeItemSkin(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

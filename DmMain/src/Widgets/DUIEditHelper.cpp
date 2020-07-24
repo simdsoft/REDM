@@ -25,7 +25,7 @@ namespace DM
 		}
 		else
 		{
-			DMASSERT_EXPR(0,L"¼ÓÔØriched20Ê§°ÜÁË£¡£¡");
+			DMFAIL_MSG("load riched20 fail");
 		}
 	}
 
@@ -122,9 +122,9 @@ namespace DM
 			}
 
 			m_pt = point;
-			CStringW strValue;
-			strValue.Format(L"%d,%d,@%d,@%d",m_pt.x,m_pt.y,m_Size.cx,m_Size.cy);
-			m_pLayout->SetAttribute(L"pos",strValue,false);
+			CStringA strValue;
+			strValue.Format("%d,%d,@%d,@%d",m_pt.x,m_pt.y,m_Size.cx,m_Size.cy);
+			m_pLayout->SetAttribute("pos",strValue,false);
 			DM_UpdateLayout(NULL);
 			m_rcWindow;
 		} while (false);

@@ -45,23 +45,23 @@ TEST_F(DMSkinPoolTest, 测试)
 	g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
 
 	unsigned long ulSize = 0;
-	CStringW strType = L"global";CStringW strResName=L"global";
+	CStringA strType = "global";CStringA strResName="global";
 	pRes->GetItemSize(strType,strResName,ulSize);
 	//byte *pBuf = new byte[ulSize];
-	DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-	pRes->GetItemBuf(strType,strResName, pBuf, ulSize);
+	DMBufT<byte>pBuf;
+	pRes->GetItemBuf(strType,strResName, pBuf, &ulSize);
 	DMXmlDocument doc;
 	doc.LoadFromBuffer(pBuf,ulSize);
-	DMXmlNode XmlNode = doc.Root(L"global");
+	DMXmlNode XmlNode = doc.Root("global");
 	EXPECT_EQ(XmlNode.IsValid(),true);
-	DMXmlNode XmlSkin = XmlNode.FirstChild(L"skin");
+	DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 	while (XmlSkin.IsValid())
 	{
 		m_pSkinPool.AddSkinPoolItem(XmlSkin);
-		XmlSkin = XmlSkin.NextSibling(L"skin");
+		XmlSkin = XmlSkin.NextSibling("skin");
 	}
 
-	CStringW strName = L"";CStringW strKey = L"Btn_Close";
+	CStringA strName = "";CStringA strKey = "Btn_Close";
 	IDMSkinPtr pSkin = m_pSkinPool.FindSkin(strKey,strName,true);
 
 	m_pSkinPool.RemoveSkinPoolItem(strName);

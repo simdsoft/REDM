@@ -32,7 +32,7 @@ namespace DM
 	/// </summary>
 	class TGPTipsImpl:public IDMToolTip,public DMCWnd
 	{
-		DMDECLARE_CLASS_NAME(TGPTipsImpl,L"TGPTipsImpl",DMREG_ToolTip);
+		DMDECLARE_CLASS_NAME(TGPTipsImpl,"TGPTipsImpl",DMREG_ToolTip);
 
 	public:
 		TGPTipsImpl(void);

@@ -631,22 +631,22 @@ namespace DM
 
 	void DUITreeCtrlEx::LoadItemAttribute(DMXmlNode &XmlItem, LPTVITEMEX pData)
 	{
-		CStringW strHei	= XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_height);
+		LPCSTR strHei	= XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_height);
 		pData->iHeight = m_iDefItemHei;
 		DMAttributeDispatch::ParseInt(strHei,pData->iHeight);
 
-		CStringW strWid	= XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_width);
+		LPCSTR strWid	= XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_width);
 		pData->iWidth = m_iDefItemWid;
 		DMAttributeDispatch::ParseInt(strWid,pData->iWidth);
 
-		CStringW strbcollapsed = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_bcollapsed);
+		LPCSTR strbcollapsed = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_bcollapsed);
 		DMAttributeDispatch::ParseBool(strbcollapsed,pData->bCollapsed);
 
-		CStringW strChildOffset = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_childoffset);
+		LPCSTR strChildOffset = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_childoffset);
 		pData->iChildOffset = m_iDefChildOffset;
 		DMAttributeDispatch::ParseInt(strChildOffset,pData->iChildOffset);
 
-		CStringW strData = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_data);
+		LPCSTR strData = XmlItem.Attribute(DMAttr::DUITreeCtrlExAttr::ITEM_data);
 		int iData = 0;
 		DMAttributeDispatch::ParseInt(strData,iData);
 		pData->lParam = (LPARAM)iData;
@@ -1691,7 +1691,7 @@ namespace DM
 #pragma endregion
 
 
-	DMCode DUITreeCtrlEx::OnAttributeToggleSkin(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUITreeCtrlEx::OnAttributeToggleSkin(LPCSTR pszValue, bool bLoadXml)
 	{
 		m_pToggleSkin = g_pDMApp->GetSkin(pszValue);
 		if (m_pToggleSkin)
@@ -1701,7 +1701,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUITreeCtrlEx::OnAttributeCheckSkin(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUITreeCtrlEx::OnAttributeCheckSkin(LPCSTR pszValue, bool bLoadXml)
 	{
 		m_pCheckSkin = g_pDMApp->GetSkin(pszValue);
 		if (m_pCheckSkin)

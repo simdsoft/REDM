@@ -13,7 +13,7 @@
 //      guoyou		2014-10-22	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "pugixml.hpp"
+#include "pugixml/pugixml.hpp"
 
 namespace DM
 {
@@ -41,12 +41,12 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief		取得attribute名字
 		/// @return		返回attribute名字
-		LPCWSTR GetName() const;
+		LPCSTR GetName() const;
 
 		/// -------------------------------------------------
 		/// @brief		取得attribute内容
 		/// @return		返回attribute内容
-		LPCWSTR GetValue() const;
+		LPCSTR GetValue() const;
 
 		/// -------------------------------------------------
 		/// @brief		取得下一个attribute
@@ -94,34 +94,34 @@ namespace DM
 		/// @brief		第一个子Node
 		/// @param[in]	XmlTag Node的名字
 		/// @return		第一个子Node
-		DMXmlNode FirstChild(LPCWSTR XmlTag = NULL) const;
+		DMXmlNode FirstChild(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
 		/// @brief		上一个兄弟Node
 		/// @param[in]	XmlTag Node的名字
 		/// @return		上一个兄弟Node
-		DMXmlNode PreviousSibling(LPCWSTR XmlTag = NULL) const;
+		DMXmlNode PreviousSibling(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
 		/// @brief		下一个兄弟Node
 		/// @param[in]	XmlTag Node的名字
 		/// @return		下一个兄弟Node
-		DMXmlNode NextSibling(LPCWSTR XmlTag = NULL) const;
+		DMXmlNode NextSibling(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
 		/// @brief		取得node名字
 		/// @return		返回node名字
-		LPCWSTR GetName() const;
+		LPCSTR GetName() const;
 
 		/// -------------------------------------------------
 		/// @brief		设置node名字
 		/// @return		返回true.false
-		bool SetName(LPCWSTR lpszName);
+		bool SetName(LPCSTR lpszName);
 
 		/// -------------------------------------------------
 		/// @brief		取得node内容
 		/// @return		返回node内容
-		LPCWSTR GetValue() const;
+		LPCSTR GetValue() const;
 
 		/// -------------------------------------------------
 		/// @brief		第一个attribute
@@ -133,19 +133,19 @@ namespace DM
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（LPCWSTR）
-		LPCWSTR Attribute(LPCWSTR name);
+		LPCSTR Attribute(LPCSTR name);
 
 		/// -------------------------------------------------
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（int）
-		int AttributeInt(LPCWSTR name);
+		int AttributeInt(LPCSTR name);
 
 		/// -------------------------------------------------
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（int64）
-		INT64 AttributeInt64(LPCWSTR name);
+		INT64 AttributeInt64(LPCSTR name);
 
 		/// -------------------------------------------------
 		/// @brief  插入一个新的节点
@@ -153,7 +153,7 @@ namespace DM
 		/// @param[in]	pXmlNode 被插入的旧结点，为NULL表示直接插入
 		/// @param[in]	bAfter 插入的旧结点前后
 		/// @return	新节点
-		DMXmlNode InsertChildNode(LPCWSTR name,DMXmlNode* pXmlNode = NULL,bool bAfter = true);
+		DMXmlNode InsertChildNode(LPCSTR name,DMXmlNode* pXmlNode = NULL,bool bAfter = true);
 
 		/// -------------------------------------------------
 		/// @brief  从其他地方插入一个新节点
@@ -179,22 +179,23 @@ namespace DM
 		/// @param[in]	name  属性的名字
 		/// @param[in]	value 属性的值
 		/// @return	新节点
-		bool SetAttribute(LPCWSTR name, LPCWSTR value,bool bAppend = true);
-		bool SetAttributeInt(LPCWSTR name, int value,bool bAppend = true);
-		bool SetAttributeInt64(LPCWSTR name, INT64 value,bool bAppend = true);
+		bool SetAttribute(LPCSTR name, LPCSTR value,bool bAppend = true);
+		bool SetAttribute(LPCSTR name, const CStringW& value, bool bAppend = true) { return SetAttribute(name, DMW2A(value), bAppend); }
+		bool SetAttributeInt(LPCSTR name, int value,bool bAppend = true);
+		bool SetAttributeInt64(LPCSTR name, INT64 value,bool bAppend = true);
 
 		/// -------------------------------------------------
 		/// @brief  移除name名字的属性
 		/// @param[in]	name  属性的名字
-		bool RemoveAttribute(LPCWSTR name);
+		bool RemoveAttribute(LPCSTR name);
 
 	public:/// 辅助,用于Debug打印XML内容
-		bool GetXmlContent(CStringW &strDebug);
+		bool GetXmlContent(CStringA &strDebug);
 
 	public:
 		pugi::xml_node				m_XmlNode;						///< 默认构造m_XmlNode._root为0
 #ifdef _DEBUG
-		CStringW                    m_strDebugBuf;					///< Debug下辅助调试,如调用了设置属性等改变xml的函数,并不会更新父node的m_strDebugBuf,需自己手动调用一次GetXmlContent去查看
+		CStringA                    m_strDebugBuf;					///< Debug下辅助调试,如调用了设置属性等改变xml的函数,并不会更新父node的m_strDebugBuf,需自己手动调用一次GetXmlContent去查看
 #endif 
 	};
 	typedef DMXmlNode* DMXmlNodePtr;
@@ -230,7 +231,7 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief  获得根Root，也就是遍历的起点
 		/// @return	返回根node
-		DMXmlNode Root(LPCWSTR XmlTag = NULL) const;
+		DMXmlNode Root(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
 		/// @brief  获得根Base，初始值

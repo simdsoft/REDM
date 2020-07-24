@@ -43,7 +43,7 @@ namespace DM
 			DUIWindow *pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (0 != _wcsicmp(pChild->V_GetClassName(),DUINAME_RectTracker))
+				if (0 != dm_xmlstrcmp(pChild->V_GetClassName(),DUINAME_RectTracker))
 				{// 过滤橡皮条控件
 					CRect rcChild;
 					pChild->DV_GetWindowRect(rcChild);
@@ -138,7 +138,7 @@ namespace DM
 			m_pFLChild = dynamic_cast<DUIScrollFL*>(DM_GetWindow(GDW_FIRSTCHILD));
 			if (NULL == m_pFLChild)
 			{
-				DMASSERT_EXPR(0,L"DUIScrollWnd必须有DUIScrollFL子窗口用于滚动布局");
+				DMFAIL_MSG("DUIScrollWnd must have DUIScrollFL for scroll");
 				break;
 			}
 			m_pFLChild->m_bFloatLayout = true;// 设置为绝对布局

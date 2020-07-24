@@ -23,7 +23,7 @@ AttrExpandWnd::~AttrExpandWnd()
 
 BOOL AttrExpandWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pAttrTree = FindChildByNameT<AttrTree>(L"ds_attrtree");DMASSERT(m_pAttrTree);
+	m_pAttrTree = FindChildByNameT<AttrTree>("ds_attrtree");DMASSERT(m_pAttrTree);
 	m_pAttrTree->m_EventMgr.SubscribeEvent(DM::DMEventTCDbClickArgs::EventID, Subscriber(&AttrExpandWnd::OnTreeDbChick, this));
 	
 	return TRUE;

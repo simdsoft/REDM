@@ -15,7 +15,7 @@ using namespace Gdiplus;
 
 class DUImgEditor : public DUIScrollBase
 {
-	DMDECLARE_CLASS_NAME(DUImgEditor, L"duimgeditor",DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUImgEditor, "duimgeditor",DMREG_Window)
 public:
 	DUImgEditor();
 	~DUImgEditor();

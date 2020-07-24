@@ -15,7 +15,7 @@
 class ObjXml;
 class DUIObjEditor : public DUIScrollBase
 {
-	DMDECLARE_CLASS_NAME(DUIObjEditor, L"dsobjeditor",DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUIObjEditor, "dsobjeditor",DMREG_Window)
 public:
 	DUIObjEditor();
 

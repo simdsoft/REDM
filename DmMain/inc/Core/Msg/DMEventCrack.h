@@ -91,7 +91,7 @@ public:\
 	}
 
 #define EVENT_NAME_HANDLER(name, cd, func)\
-	if (cd == uCode && IsValidString(pEvt->m_szNameFrom) && 0==_wcsicmp(pEvt->m_szNameFrom,name))\
+	if (cd == uCode && IsValidString(pEvt->m_szNameFrom) && 0==_stricmp(pEvt->m_szNameFrom,name))\
 	{\
 		iErr = func(pEvt);\
 		break;\
@@ -114,7 +114,7 @@ public:\
 	}
 
 #define EVENT_NAME_COMMAND(name, func)\
-	if (DM::DMEVT_CMD == uCode && IsValidString(pEvt->m_szNameFrom) && 0==_wcsicmp(pEvt->m_szNameFrom,name))\
+	if (DM::DMEVT_CMD == uCode && IsValidString(pEvt->m_szNameFrom) && 0==_stricmp(pEvt->m_szNameFrom,name))\
 	{\
 		iErr = func();\
 		break;\

@@ -22,7 +22,7 @@ namespace DMAttr
 	class DUILinkAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* STRING_href;                                 ///< 设置链接，点击后触发,示例:href="www.hgy413.com"
+		static char* STRING_href;                                 ///< 设置链接，点击后触发,示例:href="www.hgy413.com"
 	};
 	DMAttrValueInit(DUILinkAttr,STRING_href)
 }
@@ -61,7 +61,7 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_STRING_ATTRIBUTE(DMAttr::DUILinkAttr::STRING_href, m_strLinkUrl, DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUILinkAttr::STRING_href, m_strLinkUrl, DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 	public:
 		CRect                            m_rcText;					///< 文本显示所在位置

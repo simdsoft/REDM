@@ -106,7 +106,7 @@ public: \
 #define END_MSG_MAP() \
 	break; \
 		default: \
-			DMASSERT_EXPR(0, L"msgMapID不对,消息未被处理");\
+			DMFAIL_MSG("msgid incorrect");\
 			break; \
 		} \
 		return FALSE; \

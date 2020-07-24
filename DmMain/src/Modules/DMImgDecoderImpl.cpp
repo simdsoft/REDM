@@ -102,7 +102,7 @@ namespace DM
 					);
 				if (FAILED(hr))
 				{
-					DMASSERT_EXPR(0,L"CoCreateInstance都失败了,你OleInitialize了吗！");
+					DMFAIL_MSG("CoCreateInstance fail");
 					break;
 				}
 			}
@@ -263,7 +263,7 @@ namespace DM
 			GetFrameCount(ulFrameCount);
 			if (m_ulFrameCount != ulFrameCount)
 			{
-				DMASSERT_EXPR(m_ulFrameCount == ulFrameCount,L"部分帧没有解码出来！！！");
+				DMASSERT_MSG(m_ulFrameCount == ulFrameCount,"some frame can't decode");
 				m_ulFrameCount = ulFrameCount;
 			}
 
@@ -460,7 +460,7 @@ namespace DM
 			if (pObj->LoadFromMemory((BYTE*)pBuf, (int)bufLen))
 			{
 				LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
-				DMASSERT_EXPR(gi->frames==m_ulFrameCount,L"解析文件得到的frame数不同！！");
+				DMASSERT_MSG(gi->frames==m_ulFrameCount,"frameCount mismatch");
 				for (int i=0;i<(int)m_ulFrameCount;i++)
 				{
 					GIFFRAMEPTR fm = pObj->GetFrame(i);
@@ -497,7 +497,7 @@ namespace DM
 			if (pObj->LoadFromFile(pszFileName))
 			{
 				LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
-				DMASSERT_EXPR(gi->frames==m_ulFrameCount,L"解析文件得到的frame数不同！！");
+				DMASSERT_MSG(gi->frames==m_ulFrameCount,L"frameCount mismatch");
 				for (int i=0;i<(int)m_ulFrameCount;i++)
 				{
 					GIFFRAMEPTR fm = pObj->GetFrame(i);

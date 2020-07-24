@@ -1,4 +1,6 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_MUI)
 #include "DMTransImpl.h"
 
 namespace DM
@@ -27,7 +29,7 @@ namespace DM
 			DMXmlDocument XmlDoc;
 			if (0 == lp)
 			{
-				LPWSTR lpszXmlId = (LPWSTR)wp;
+				LPCSTR lpszXmlId = (LPCSTR)wp;
 				if (!DMSUCCEEDED(g_pDMApp->InitDMXmlDocument(XmlDoc,RES_LAYOUT,lpszXmlId)))
 				{
 					break;
@@ -55,10 +57,10 @@ namespace DM
 			}
 
 			//3.获得语言包对象
-			DMLanguageItemPtr pLanguageItem = FindLanguageItemPtr(XmlLanguage.Attribute(DMLAG_NAME));
+			DMLanguageItemPtr pLanguageItem = FindLanguageItemPtr(DMCA2W(XmlLanguage.Attribute(DMLAG_NAME)));
 			if (NULL == pLanguageItem)// 如果原来不存在这个语言包对象，就新建一个，并加入
 			{
-				pLanguageItem = new DMLanguageItem(XmlLanguage.Attribute(DMLAG_NAME));
+				pLanguageItem = new DMLanguageItem(DMCA2W(XmlLanguage.Attribute(DMLAG_NAME)));
 				AddObj(pLanguageItem);
 			}
 
@@ -66,19 +68,19 @@ namespace DM
 			DMXmlNode XmlNode = XmlLanguage.FirstChild(DMLAG_NODE);// loop 1
 			while (XmlNode.IsValid())
 			{
-				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(XmlNode.Attribute(DMLAG_NAME));
+				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(DMCA2W(XmlNode.Attribute(DMLAG_NAME)));
 				if (NULL == pNode)// 如果此Node不存在，就创建并加入
 				{
-					pNode = new DMTransNode(XmlNode.Attribute(DMLAG_NAME));
+					pNode = new DMTransNode(DMCA2W(XmlNode.Attribute(DMLAG_NAME)));
 					pLanguageItem->AddObj(pNode);
 				}
 
 				//5. 添加node的item
 				DMXmlNode XmlItem = XmlNode.FirstChild(DMLAG_ITEM);// loop 2
 				while (XmlItem.IsValid())
-				{
-					CStringW strSrc = XmlItem.Attribute(DMLAG_SRC);
-					CStringW strTrans = XmlItem.Attribute(DMLAG_TRANS);
+				{ // TODO: mui/i18n translate
+					CStringW strSrc = DMCA2W(XmlItem.Attribute(DMLAG_SRC));
+					CStringW strTrans = DMCA2W(XmlItem.Attribute(DMLAG_TRANS));
 					if (pNode->IsKeyExist(strSrc))
 					{// 以最后一个为准
 						pNode->RemoveKey(strSrc);
@@ -272,3 +274,6 @@ namespace DM
 	}
 
 }//namespace DM
+
+#endif
+

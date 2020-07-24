@@ -24,15 +24,15 @@ namespace DMAttr
 	class DUIListBoxExAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static wchar_t* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
-		static wchar_t* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
-		static wchar_t* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static char* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
+		static char* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
+		static char* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
 
-		static wchar_t* NODE_item;                                                ///< 项结点 
-		static wchar_t* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
-		static wchar_t* ITEM_data;                                                ///< 项的数据,示例:data="10"
+		static char* NODE_item;                                                ///< 项结点 
+		static char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
+		static char* ITEM_data;                                                ///< 项的数据,示例:data="10"
 	};
 	DMAttrValueInit(DUIListBoxExAttr,INT_itemheight)DMAttrValueInit(DUIListBoxExAttr,INT_cursel)DMAttrValueInit(DUIListBoxExAttr,COLOR_clritembg)
 	DMAttrValueInit(DUIListBoxExAttr,COLOR_clritemhoverbg)DMAttrValueInit(DUIListBoxExAttr,COLOR_clritemselbg)DMAttrValueInit(DUIListBoxExAttr,NODE_item)
@@ -169,7 +169,7 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIListBoxExAttr::COLOR_clritemselbg,m_crItemBg[2],  DM_ECODE_NOXMLLOADREFRESH)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttributeCurSel(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
 		int									   m_iSelItem;						 ///< 当前选中项

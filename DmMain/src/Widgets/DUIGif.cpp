@@ -97,7 +97,7 @@ namespace DM
 			{
 				bGif = true;
 				LPGLOBAL_INFO pGlobalInfo = pObj->GetGlobalInfo();
-				DMASSERT_EXPR(pGlobalInfo->frames==m_ulFrameCount,L"解码的帧不同!");
+				DMASSERT_MSG(pGlobalInfo->frames==m_ulFrameCount,"frameCount mismatch");
 				ulMaxWid = pGlobalInfo->scrWidth;
 				ulMaxHei = pGlobalInfo->scrHeight;
 			}
@@ -122,7 +122,7 @@ namespace DM
 				if (bGif)
 				{
 					memcpy(&pAnimateFrame->gifFrame,pObj->GetFrame(i),sizeof(GIFFRAME));
-					DMASSERT_EXPR(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,L"解码的延迟不同!");
+					DMASSERT_MSG(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,"delay mismatch");
 				}
 				else
 				{
@@ -456,25 +456,25 @@ namespace DM
 		return iState;
 	}
 
-	DMCode DUIGif::OnAttrGif(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUIGif::OnAttrGif(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{	
-			CStringW  strValue = lpszValue;
-			if (PathFileExistsW(strValue))// 这是一个文件绝对路径
+			CStringW  strValue = DMCA2W(lpszValue, -1, CP_UTF8);
+			if (DM::CheckFileExistW(strValue))// 这是一个文件绝对路径
 			{
 				iErr = LoadFromFile(strValue);
 				break;
 			}
 
-			CStringW strType;
-			CStringW strResName;
-			CStringWList strList;
-			int nCount = (int)SplitStringT(strValue,L':',strList);
+			CStringA strType;
+			CStringA strResName;
+			CStringAList strList;
+			int nCount = (int)SplitStringT(CStringA(lpszValue),':',strList);
 			if (1== nCount)// 可能是GIF:IDR_GIF
 			{
-				strType    = L"GIF";
+				strType    = "GIF";
 				strResName = strList[0];
 			}
 			else if(2 == nCount)
@@ -484,9 +484,7 @@ namespace DM
 			}
 			else
 			{
-				CStringW strInfo;
-				strInfo.Format(L"gifskin参数%s设置错误",lpszValue);
-				DMASSERT_EXPR(0,L"gifskin设置错误!");
+				DMFAIL_MSG_FMT("gifskin param %s error", lpszValue);
 				break;
 			}
 			DMSmartPtrT<IDMRes> pRes;
@@ -495,17 +493,10 @@ namespace DM
 			{
 				break;
 			}
-			ULONG ulSize = 0;
-			pRes->GetItemSize(strType,strResName,ulSize);
-			if (0>=ulSize)
-			{
+			DMBufT<byte> pBuf;
+			unsigned long ulSize = 0;
+			if (!DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
 				break;
-			}
-			DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-			if (!DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize)))
-			{
-				break;
-			}
 			iErr = LoadFromMemory(pBuf,ulSize); 
 		} while (false);
 		if (DMSUCCEEDED(iErr))

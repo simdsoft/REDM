@@ -15,7 +15,7 @@ namespace DM
 		m_byAlpha     = 0xff;
 		m_StepHei     = 1;
 		m_MaxWidth	  = -1;
-		m_hFont		  = g_pDMApp->GetFont(L"");
+		m_hFont		  = g_pDMApp->GetFont("");
 		m_bShadow     = false;
 		m_bHideFrame  = false;
 		m_bAutoCalc	  = true;
@@ -28,7 +28,7 @@ namespace DM
 		m_crTextGray   = GetSysColor(COLOR_GRAYTEXT)|0xff000000;
 	}
 
-	DMCode DUIMenu_XmlInfo::OnAttrMaxWidth(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIMenu_XmlInfo::OnAttrMaxWidth(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMAttributeDispatch::ParseInt(pszValue,m_MaxWidth);
 		if (m_MaxWidth>0)

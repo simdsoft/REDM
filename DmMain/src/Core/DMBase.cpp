@@ -14,8 +14,8 @@ namespace DM
 				iErr = DMDATABASE_LOADDMDATA_PARAM_INVALID;
 				break;
 			}
-			CStringW strValue = XmlNode.Attribute(DMAttr::DUIWindowAttr::STRING_style);
-			if (!strValue.IsEmpty()&&0 != _wcsicmp(XmlNode.FirstAttribute().GetName(),DMAttr::DUIWindowAttr::STRING_style))
+			LPCSTR strValue = XmlNode.Attribute(DMAttr::DUIWindowAttr::STRING_style);
+			if (*strValue  && 0 != dm_xmlstrcmp(XmlNode.FirstAttribute().GetName(),DMAttr::DUIWindowAttr::STRING_style))
 			{
 				XmlNode.RemoveAttribute(DMAttr::DUIWindowAttr::STRING_style);
 				XmlNode.SetAttribute(DMAttr::DUIWindowAttr::STRING_style,strValue,false);// 把style插到最前面处理
@@ -32,22 +32,22 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMDataBase::OnAttributeStart(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml)
+	DMCode DMDataBase::OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml)
 	{
 		return DM_ECODE_FAIL;
 	}
 
-	DMCode DMDataBase::SetAttribute(LPCWSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)
+	DMCode DMDataBase::SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml)
 	{
 		return DefAttributeProc(pszAttribute, pszValue, bLoadXml);
 	}
 
-	DMCode DMDataBase::OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr)
+	DMCode DMDataBase::OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr)
 	{
 		return iErr;
 	}
 
-	DMCode DMDataBase::DefAttributeProc(LPCWSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)
+	DMCode DMDataBase::DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml)
 	{
 		return DM_ECODE_FAIL;//未解析
 	}
@@ -58,17 +58,17 @@ namespace DM
 	}
 
 	// DMBase------------------------------------------
-	LPCWSTR DMBase::GetClassName()
+	LPCSTR DMBase::GetClassName()
 	{
 		return NULL;
 	}
 
-	LPCWSTR DMBase::V_GetClassName()
+	LPCSTR DMBase::V_GetClassName()
 	{
 		return NULL;
 	}
 
-	LPCWSTR DMBase::GetBaseClassName()
+	LPCSTR DMBase::GetBaseClassName()
 	{
 		return NULL;
 	}
@@ -83,7 +83,7 @@ namespace DM
 		return DMREG_Unknown;
 	}
 
-	bool DMBase::IsClass(LPCWSTR lpszName)
+	bool DMBase::IsClass(LPCSTR lpszName)
 	{
 		return false;
 	}

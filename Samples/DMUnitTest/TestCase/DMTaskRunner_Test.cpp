@@ -86,7 +86,7 @@ public:// 辅助
 		if (m_pTaskRunner)
 		{
 			// 无需FireEvent，直接把一个函数Post到(同步,异步UI线程,异步工作线程)触发
-			CStringW str = L"abc";
+			CStringA str = "abc";
 			m_pTaskRunner->PostTask(DMTT_SYNC,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
 			m_pTaskRunner->PostTask(DMTT_ASYN_UI,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
 			m_pTaskRunner->PostTask(DMTT_ASYN_WORK,DMNewRunnableMethod(&TaskRunnerTest::UiFun, this, 10, str , 5.67));
@@ -123,13 +123,12 @@ public:// 辅助
 		bundle.PutSize(L"12", CSize(10,9));
 		bundle.PutRect(L"13", CRect(1,2,3,4));
 		bundle.PutVoidPtr(L"14", (void*)0x12233);
-		CStringW strWXml = L"<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
-		CStringA strXml = DMW2A(strWXml,CP_UTF8);
+		LiteralString strXml = "<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
 		DMXmlDocument doc;
 		doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 		DMXmlNode XmlNode = doc.Root();
-		XmlNode.SetAttribute(L"name1",L"value");
-		XmlNode.SetAttributeInt(L"name2",222);
+		XmlNode.SetAttribute("name1","value");
+		XmlNode.SetAttributeInt("name2",222);
 		bundle.PutXmlNode(L"15", XmlNode);
 
 		return bundle;
@@ -191,7 +190,7 @@ public:// 测试
 		return true;
 	}
 
-	void TaskRunnerTest::UiFun(int a, CStringW b, double c)
+	void TaskRunnerTest::UiFun(int a, CStringA b, double c)
 	{
 		int cd; 
 	}

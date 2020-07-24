@@ -40,7 +40,7 @@ namespace DM
 			break;
 		default:
 			{
-				DMASSERT_EXPR((0), L"要移除的class类型不对");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -69,12 +69,12 @@ namespace DM
 		case DMREG_Trans:
 		case DMREG_TaskRunner:
 			{
-				bRet = (0==_wcsicmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class作为唯一的标识，肯定不为空字符串
+				bRet = (0== dm_xmlstrcmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class作为唯一的标识，肯定不为空字符串
 			}
 			break;
 		default:
 			{
-				DMASSERT_EXPR((0), L"注册的class类型不对");
+                DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -114,7 +114,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"注册类型错误");
+                DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -122,7 +122,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType)
+	DMCode DMRegMgr::CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType)
 	{
 		LOG_DEBUG("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
 		DMCode iErr = DM_ECODE_OK;
@@ -148,7 +148,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"注册的class类型错误");
+				DMFAIL_MSG("Invalid Class");
 			}
 			break;
 		}
@@ -157,7 +157,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::UnRegister(LPCWSTR lpszClassName,int RegType)
+	DMCode DMRegMgr::UnRegister(LPCSTR lpszClassName,int RegType)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		switch (RegType)
@@ -181,14 +181,14 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"反注册的class类型错误");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
 		return iErr;
 	}
 
-	DMCode DMRegMgr::SetDefRegObj(LPCWSTR lpszClassName,int RegType)
+	DMCode DMRegMgr::SetDefRegObj(LPCSTR lpszClassName,int RegType)
 	{
 		LOG_DEBUG("[start]lpszClassName:%s,RegType:%d\n",lpszClassName, RegType);
 		DMCode iErr = DM_ECODE_OK;
@@ -213,7 +213,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"设置当前注册项的class类型错误");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -221,7 +221,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::GetDefRegObj(CStringW &szName,int RegType)
+	DMCode DMRegMgr::GetDefRegObj(CStringA &szName,int RegType)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		switch (RegType)
@@ -245,7 +245,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"获取当前注册项的class类型错误");
+				DMFAIL_MSG("Invalid Class");
 			}
 			break;
 		}
@@ -281,29 +281,29 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCWSTR lpszClassName)
+	DMCode DMRegMgr::CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCSTR lpszClassName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszClassName||0==wcslen(lpszClassName))
+			if (dm_isnilstr(lpszClassName))
 			{
 				lpszClassName = RtItem.m_DefRegName;
 			}
 
 			if (NULL == ppObj)
 			{
-				DMASSERT_EXPR(0,L"亲,是不是没传双指针进来！");
+				DMFAIL_MSG("missing ppObj");
 				iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
 				break;
 			}
 
-			if (NULL == lpszClassName)
-			{
-				DMASSERT_EXPR(0,L"亲,没设置类名啊！");
-				iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
-				break;
-			}
+			// if (NULL == lpszClassName)
+			// {
+			// 	DMASSERT_EXPR(0,L"亲,没设置类名啊！");
+			// 	iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
+			// 	break;
+			// }
 
 			int count = (int)RtItem.GetCount();
 			if (0 == count)
@@ -314,7 +314,7 @@ namespace DM
 
 			for (int i=0; i<count; i++)
 			{
-				if (0 == _wcsicmp(lpszClassName,  RtItem.GetObj(i)->GetClassName()))
+				if (0 == dm_xmlstrcmp(lpszClassName,  RtItem.GetObj(i)->GetClassName()))
 				{
 					*ppObj = (void**)RtItem.GetObj(i)->NewObj();
 					iErr = DM_ECODE_OK;
@@ -326,7 +326,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::UnRegisterByType(DMRegTypeItem &RtItem, LPCWSTR lpszClassName)
+	DMCode DMRegMgr::UnRegisterByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -339,7 +339,7 @@ namespace DM
 			int count = (int)RtItem.GetCount();
 			for (int i=0; i<count; i++)
 			{
-				if (0 == _wcsicmp(lpszClassName, RtItem.GetObj(i)->GetClassName()))
+				if (0 == dm_xmlstrcmp(lpszClassName, RtItem.GetObj(i)->GetClassName()))
 				{
 					RtItem.RemoveObj(i);
 					iErr = DM_ECODE_OK;
@@ -350,7 +350,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMRegMgr::SetDefRegObjByType(DMRegTypeItem &RtItem, LPCWSTR lpszClassName)
+	DMCode DMRegMgr::SetDefRegObjByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -364,7 +364,7 @@ namespace DM
 			int count = (int)RtItem.GetCount();
 			for (int i=0; i<count; i++)
 			{
-				if (0 == _wcsicmp(lpszClassName, RtItem.GetObj(i)->GetClassName()))
+				if (0 == dm_xmlstrcmp(lpszClassName, RtItem.GetObj(i)->GetClassName()))
 				{
 					RtItem.m_DefRegName = lpszClassName;
 					iErr = DM_ECODE_OK;

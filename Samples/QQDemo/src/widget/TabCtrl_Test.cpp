@@ -23,7 +23,7 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 		{
 			break;
 		}
-		DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>(L"tabctrl1");
+		DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabctrl1");
 		if (!pTab)
 		{
 			break;
@@ -31,7 +31,7 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 
 #if 0
 		// test 内存加载skin测试
-		DUIButton * pBtn = g_pMainWnd->FindChildByNameT<DUIButton>(L"closebutton");
+		DUIButton * pBtn = g_pMainWnd->FindChildByNameT<DUIButton>("closebutton");
 		if (pBtn)
 		{
 			
@@ -67,7 +67,7 @@ DMCode TabCtrl_Test::OnDelete(DMEventArgs *pEvt)
 			break;
 		}
 		
-		DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>(L"tabctrl1");
+		DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabctrl1");
 		if (!pTab)
 		{
 			break;
@@ -87,7 +87,7 @@ DMCode TabCtrl_Test::OnSelChanging(DMEventArgs *pEvt)
 		if (5 == pEvent->m_uOldSel)
 		{
 			// 删除子窗口
-			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>(L"tabmain");
+			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabmain");
 			if (!pTab)
 			{
 				break;
@@ -104,7 +104,7 @@ DMCode TabCtrl_Test::OnSelChanging(DMEventArgs *pEvt)
 		if (5 == pEvent->m_uNewSel)
 		{
 			// 增加子窗口
-			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>(L"tabmain");
+			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabmain");
 			if (!pTab)
 			{
 				break;

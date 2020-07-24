@@ -131,9 +131,9 @@ DMCode SpyFindBtn::OnTimeline()
 // ¸¨Öú
 void SpyFindBtn::RefreshFindInfo(HWND hWnd)
 {
-	DUIEdit *pHwndEdit = m_pSpyWnd->FindChildByNameT<DUIEdit>(L"edithwnd");
-	DUIEdit *pPidEdit  = m_pSpyWnd->FindChildByNameT<DUIEdit>(L"editpid");
-	DUIEdit *pPathEdit = m_pSpyWnd->FindChildByNameT<DUIEdit>(L"editpath");
+	DUIEdit *pHwndEdit = m_pSpyWnd->FindChildByNameT<DUIEdit>("edithwnd");
+	DUIEdit *pPidEdit  = m_pSpyWnd->FindChildByNameT<DUIEdit>("editpid");
+	DUIEdit *pPathEdit = m_pSpyWnd->FindChildByNameT<DUIEdit>("editpath");
 	if (NULL == pHwndEdit
 		||NULL == pPidEdit
 		||NULL == pPathEdit)

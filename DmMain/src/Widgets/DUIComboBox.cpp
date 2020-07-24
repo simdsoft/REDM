@@ -55,7 +55,7 @@ namespace DM
 	{
 		DMCode iErr = __super::OnDropDown(pDropDown);
 		//增加对下拉列表窗口是否透明属性控制---wzq add 20160729
-		pDropDown->SetAttribute(L"btranslucent", m_bDropTranslucent ? L"1" : L"0");
+		pDropDown->SetAttribute("btranslucent", m_bDropTranslucent ? "1" : "0");
 
 		pDropDown->DM_InsertChild(m_pListBox);
 		pDropDown->DV_UpdateChildLayout();
@@ -179,15 +179,15 @@ namespace DM
 			g_pDMApp->CreateRegObj((void**)&m_pListBox, m_strClsListBox,DMREG_Window);
 			if (NULL == m_pListBox)
 			{
-				DMASSERT_EXPR(0,L"EDIT的listbox创建失败");
+                DMFAIL_MSG("create EDIT listbox fail");
 				break;
 			}
 
 			m_pListBox->SetContainer(GetContainer());
 			DMCode dwCode =	m_pListBox->InitDMData(XmlNode.FirstChild(DMAttr::DUIComboBoxAttr::ITEM_sublistbox));
-			m_pListBox->SetAttribute(L"pos",L"0,0,-0,-0",true);
-			m_pListBox->SetAttribute(L"clrbg", L"pbgra(ff,ff,ff,ff)", true); //默认白色底图
-			m_pListBox->SetAttribute(L"hotTrack",L"1",true);// 不让它选中
+			m_pListBox->SetAttribute("pos","0,0,-0,-0",true);
+			m_pListBox->SetAttribute("clrbg", "pbgra(ff,ff,ff,ff)", true); //默认白色底图
+			m_pListBox->SetAttribute("hotTrack","1",true);// 不让它选中
 			m_pListBox->DM_SetOwnerWnd(this);				// chain notify message to combobox
 			m_pListBox->SetID(CB_LIST_ID);
 			m_pListBox->DM_SetVisible(false);				// 只在下拉时才显示，此时也没有初始化完layout

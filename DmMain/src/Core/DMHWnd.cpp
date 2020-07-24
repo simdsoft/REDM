@@ -35,8 +35,9 @@ namespace DM
 		MESSAGE_RANGE_HANDLER_EX(WM_IME_STARTCOMPOSITION,WM_IME_KEYLAST,OnKeyEvent)
 		MESSAGE_HANDLER_EX(WM_IME_CHAR, OnKeyEvent)
 		MESSAGE_HANDLER_EX(WM_ACTIVATEAPP,OnHostMsg)
-
+#if !defined(DM_EXCLUDE_SPY)
 		MESSAGE_HANDLER_EX(WM_DMSPY,OnSpy)
+#endif
 	END_MSG_MAP()
 
 	BEGIN_EVENT_MAP(DMHWnd)
@@ -62,7 +63,7 @@ namespace DM
 	/// @brief 创建窗口
 	/// @param shadowStyle 阴影风格！
 	/// @return  窗口资源句柄.
-	HWND DMHWnd::DM_CreateWindow(LPCWSTR lpszXmlId, int x/*=0*/, int y/*=0*/, int nWidth/*=0*/, int nHeight/*=0*/, HWND hWndParent/*=NULL*/, int shadowStyle/*=NWSDS_NULL*/)
+	HWND DMHWnd::DM_CreateWindow(LPCSTR lpszXmlId, int x/*=0*/, int y/*=0*/, int nWidth/*=0*/, int nHeight/*=0*/, HWND hWndParent/*=NULL*/, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
 		if (m_hWnd)
@@ -75,7 +76,7 @@ namespace DM
 		return m_hWnd;
 	}
 
-	HWND DMHWnd::DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle/*=NWSDS_NULL*/)
+	HWND DMHWnd::DM_CreateWindowEx(LPCSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
 		do
@@ -256,7 +257,7 @@ namespace DM
 	//---------------------------------------------------
 	// Function Des: XML
 	//---------------------------------------------------
-	DMCode DMHWnd::LoadDMData(LPCWSTR lpszXmlId)
+	DMCode DMHWnd::LoadDMData(LPCSTR lpszXmlId)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do
@@ -275,19 +276,19 @@ namespace DM
 			m_pHWndXmlInfo->ResetXmlInfo();                // 重设置XML数据
 
 			// 解析私有Skin节点,外部可以释放它---------------
-			DMXmlNode XmlSkin = XmlNode.FirstChild(L"skin");
+			DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 			while (XmlSkin.IsValid())
 			{
 				g_pDMSkinPool->AddSkinPoolItem(XmlSkin);
-				XmlSkin = XmlSkin.NextSibling(L"skin");
+				XmlSkin = XmlSkin.NextSibling("skin");
 			}
 
 			// 解析私有Style节点,外部可以释放它--------------
-			DMXmlNode XmlStyle = XmlNode.FirstChild(L"style");
+			DMXmlNode XmlStyle = XmlNode.FirstChild("style");
 			while (XmlStyle.IsValid())
 			{
 				g_pDMStylePool->AddStylePoolItem(XmlStyle);
-				XmlStyle = XmlStyle.NextSibling(L"style");
+				XmlStyle = XmlStyle.NextSibling("style");
 			}
 
 			// 解析自身的XML-Attribute-----------------------
@@ -323,19 +324,19 @@ namespace DM
 			m_pHWndXmlInfo->ResetXmlInfo();                // 重设置XML数据
 
 			// 解析私有Skin节点,外部可以释放它---------------
-			DMXmlNode XmlSkin = XmlNode.FirstChild(L"skin");
+			DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 			while (XmlSkin.IsValid())
 			{
 				g_pDMSkinPool->AddSkinPoolItem(XmlSkin);
-				XmlSkin = XmlSkin.NextSibling(L"skin");
+				XmlSkin = XmlSkin.NextSibling("skin");
 			}
 
 			// 解析私有Style节点,外部可以释放它--------------
-			DMXmlNode XmlStyle = XmlNode.FirstChild(L"style");
+			DMXmlNode XmlStyle = XmlNode.FirstChild("style");
 			while (XmlStyle.IsValid())
 			{
 				g_pDMStylePool->AddStylePoolItem(XmlStyle);
-				XmlStyle = XmlStyle.NextSibling(L"style");
+				XmlStyle = XmlStyle.NextSibling("style");
 			}
 
 			// 解析自身的XML-Attribute-----------------------
@@ -361,9 +362,7 @@ namespace DM
 			m_pToolTip.Release();
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pToolTip,m_pHWndXmlInfo->m_strRegTip,DMREG_ToolTip)))
 			{
-				CStringW szInfo = m_pHWndXmlInfo->m_strRegTip;
-				szInfo += L"注册tooltip失败";
-				DMASSERT_EXPR(0,szInfo);
+				DMFAIL_MSG_FMT("Register tooltip fail: %s", (LPCSTR)m_pHWndXmlInfo->m_strRegTip);
 			}
 			m_pCurMsgLoop->AddMessageFilter(m_pToolTip.get());
 
@@ -1094,7 +1093,7 @@ namespace DM
 			CRect rc = lpRect;
 			g_pDMRender->CreateCanvas(rc.Width(), rc.Height(),ppCanvas);
 			(*ppCanvas)->OffsetViewportOrg(-rc.left,-rc.top);
-			(*ppCanvas)->SelectObject(g_pDMFontPool->GetFont(L""));
+			(*ppCanvas)->SelectObject(g_pDMFontPool->GetFont(""));
 			(*ppCanvas)->SetTextColor(PBGRA(0,0,0,0xFF));
 
 			if(!(dcFlags & DMOLEDC_NODRAW))
@@ -1253,6 +1252,7 @@ namespace DM
 		return m_pHWndXmlInfo->m_strTransId;
 	}
 
+#if !defined(DM_EXCLUDE_SPY)
 	//---------------------------------------------------
 	// Function Des: spy++部分
 	LRESULT DMHWnd::OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -1263,6 +1263,7 @@ namespace DM
 		}
 		return g_pDMSpyTool->OnSpy(uMsg, wParam, lParam);
 	}
+#endif
 
 	DMCode DMHWnd::DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect)
 	{

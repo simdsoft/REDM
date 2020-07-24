@@ -39,7 +39,7 @@ public:
 const char TM_TICKER = 1;
 class DUIWebKit : public DUIWindow, protected DUIWndWebHost, protected IDMIdleHandler
 {
-	DMDECLARE_CLASS_NAME(DUIWebKit, L"Webkit",DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUIWebKit, "Webkit",DMREG_Window)
 public:
 	DUIWebKit(void);
 	~DUIWebKit(void);
@@ -94,12 +94,12 @@ public:
 	virtual DMCode DV_OnSetCursor(const CPoint &pt);
 
 public:
-	bool OnAttrUrl(LPCWSTR lpszValue, bool bLoadXml);
+	bool OnAttrUrl(LPCSTR lpszValue, bool bLoadXml);
 public:
 	DM_BEGIN_ATTRIBUTES()
-		DM_CUSTOM_ATTRIBUTE(L"url",OnAttrUrl)
-		DM_INT_ATTRIBUTE(L"alpha",m_byAlpha,TRUE)
-		DM_bool_ATTRIBUTE(L"enablezoom",m_bEnableZoom, TRUE)
+		DM_CUSTOM_ATTRIBUTE("url",OnAttrUrl)
+		DM_INT_ATTRIBUTE("alpha",m_byAlpha,TRUE)
+		DM_bool_ATTRIBUTE("enablezoom",m_bEnableZoom, TRUE)
 		DM_END_ATTRIBUTES()
 
 protected:

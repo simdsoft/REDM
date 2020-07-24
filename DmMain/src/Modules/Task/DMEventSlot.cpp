@@ -76,7 +76,7 @@ namespace DM
 	}
 
 	///DMEventSlot---------------------------------------------------------------------------------------------
-	DMEventSlot::DMEventSlot(LPCWSTR lpszEventName) : m_strEventName(lpszEventName)
+	DMEventSlot::DMEventSlot(LPCSTR lpszEventName) : m_strEventName(lpszEventName)
 	{
 	}
 
@@ -117,7 +117,7 @@ namespace DM
 		m_slotContainer.RemoveAll();
 	}
 
-	const CStringW& DMEventSlot::GetName(void) const
+	const CStringA& DMEventSlot::GetName(void) const
 	{ 
 		return m_strEventName; 
 	}

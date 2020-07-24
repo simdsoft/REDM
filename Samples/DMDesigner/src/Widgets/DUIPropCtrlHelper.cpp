@@ -2,6 +2,8 @@
 #include "DUIPropCtrlHelper.h"
 #include "DUIPropCtrl.h"
 
+#pragma execution_character_set("utf-8")
+
 namespace DM
 { 
 #define PROP_SE_FRAMECLR        PBGRA(22,22,22,0xff)// 绘制选中边框
@@ -384,14 +386,14 @@ namespace DM
 		}
 	}
 
-	CStringW PropGrid::GetName()
+	CStringA PropGrid::GetName()
 	{
-		return m_strName;
+		return DMW2A(m_strName);
 	}
 
-	CStringW PropGrid::GetValue()
+	CStringA PropGrid::GetValue()
 	{
-		return m_strValue;
+		return DMW2A(m_strValue);
 	}
 
 	DMCode PropGrid::InitDMData(DMXmlNode &XmlNode)
@@ -526,11 +528,11 @@ namespace DM
 			//3.绘name字符
 			CRect rcName = rcDesc;
 			rcName.bottom = rcDesc.top + szChar.cy + 15;
-			AutoDrawText(pCanvas,L"face:新宋体,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:新宋体,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
 			//4.绘desc字符
 			rcDesc.top = rcName.bottom;
-			AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:新宋体,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -603,11 +605,11 @@ namespace DM
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, L"edit",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, "edit",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
-			m_pValueEdit->OnAttrCustomEx(L"bmultiLines", L"1", false);
+			m_pValueEdit->OnAttrCustomEx("bmultiLines", "1", false);
 			m_pValueEdit->SetWindowText(m_strValue);
 			m_pValueEdit->DM_SetVisible(false);
 
@@ -681,7 +683,7 @@ namespace DM
 
 			rcName.right-=5;
 			pCanvas->DrawText(m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER|DT_END_ELLIPSIS);
-			//AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
+			//AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -705,11 +707,11 @@ namespace DM
 
 			if (false == m_bInPlaceEdit&&m_pValueEdit)
 			{
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = m_pValueEdit->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -733,17 +735,16 @@ namespace DM
 			}
 
 			// 增加一个显示值的edit
-			CStringW strWXml = L"<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:新宋体,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
+			LiteralString strXml = "<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:新宋体,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, L"edit",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, "edit",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
-			m_pValueEdit->OnAttrCustomEx(L"bmultilines", L"1", false);
+			m_pValueEdit->OnAttrCustomEx("bmultilines", "1", false);
 			m_pValueEdit->SetWindowText(m_strValue);
 
 			iErr = DM_ECODE_OK;
@@ -792,13 +793,13 @@ namespace DM
 		do 
 		{
 			// 防止oxff这种出现
-			int iValue = 0;
-			dm_parseint(m_strValue,iValue);
+			int iValue = _wtoi(m_strValue);
+			//dm_parseint(m_strValue,iValue);
 			m_strValue.Format(L"%d",iValue);
 			__super::OnCreateInPlaceCtrl();
 			if (m_pValueEdit)
 			{
-				m_pValueEdit->SetAttribute(L"bnumber",L"1");
+				m_pValueEdit->SetAttribute("bnumber","1");
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -828,16 +829,15 @@ namespace DM
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, L"limitedit",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pValueEdit, "limitedit",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
 			// 防止oxff这种出现
-			int iValue = 0;
-			dm_parseint(m_strValue,iValue);
+			int iValue = _wtoi(m_strValue);
 			m_strValue.Format(L"%d",iValue);
 			m_pValueEdit->SetWindowText(m_strValue);
-			m_pValueEdit->SetAttribute(L"bnumber",L"1");
+			m_pValueEdit->SetAttribute("bnumber","1");
 			m_pValueEdit->SetEventMask(ENM_CHANGE|m_pValueEdit->GetEventMask());
 			m_pValueEdit->m_EventMgr.SubscribeEvent(DM::DMEventRENotifyArgs::EventID, Subscriber(&PropByte::OnEditChange, this));
 
@@ -885,11 +885,11 @@ namespace DM
 
 			if (false == m_bInPlaceEdit)
 			{
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = m_pValueCbx->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left += 10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1032,7 +1032,7 @@ namespace DM
 				AutoDrawRoundRect(pCanvas,PROP_SE_FRAMECLR,PS_SOLID,1,rcFrame,CPoint(4,4));
 			}
 
-			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 			CRect rcEdit = rcValue;
 			rcEdit.DeflateRect(4,1,4,1);
 			pSkin->Draw(pCanvas,rcEdit,0);
@@ -1045,7 +1045,7 @@ namespace DM
 				CRect rcText = m_rcText;
 				rcText.DeflateRect(4,3,4,3);
 				rcText.right+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1109,14 +1109,13 @@ namespace DM
 				break;
 			} 
 
-			CStringW strWXml = L"<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pcrRect, L"duirect",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pcrRect, "duirect",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pcrRect);
 			m_pcrRect->InitDMData(EditNode);
 			for (int i=0; i<4; i++)
@@ -1228,12 +1227,12 @@ namespace DM
 
 			if (false == m_bInPlaceEdit)
 			{
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = rcValue;
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1256,14 +1255,13 @@ namespace DM
 				break;
 			} 
 
-			CStringW strWXml = L"<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pRect, L"duirect",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pRect, "duirect",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pRect);
 			m_pRect->InitDMData(EditNode);
 			m_pRect->SetID(-1);
@@ -1361,12 +1359,12 @@ namespace DM
 			if (false == m_bInPlaceEdit)
 			{
 
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = rcValue;
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1389,14 +1387,13 @@ namespace DM
 				break;
 			} 
 
-			CStringW strWXml = L"<duisize bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<duisize bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pSize, L"duisize",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pSize, "duisize",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pSize);
 			m_pSize->InitDMData(EditNode);
 			m_pSize->SetID(-1);
@@ -1490,12 +1487,12 @@ namespace DM
 
 			if (false == m_bInPlaceEdit)
 			{
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = rcValue;
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1529,13 +1526,12 @@ namespace DM
 			}
 
 			// 创建小按钮
-			CStringW strWXml = L"<button skin=\"ds_custombutton\" text=\"...\"/>";
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
+			LiteralString strXml = "<button skin=\"ds_custombutton\" text=\"...\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pBtn, L"button",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pBtn, "button",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pBtn);
 			m_pBtn->InitDMData(EditNode);
 			m_pBtn->SetID(-2);
@@ -1584,7 +1580,7 @@ namespace DM
 	DMCode PropFont::OnBtnClick(DMEventArgs* pEvt)
 	{
 		DMHook hook;
-		IDMFont* pFont = g_pDMApp->GetFont(m_pValueEdit->GetWindowText());
+		IDMFont* pFont = g_pDMApp->GetFont(m_pValueEdit->GetTextA());
 
 		CHOOSEFONTW cf;
 		LOGFONTW lfw = {0};
@@ -1690,12 +1686,12 @@ namespace DM
 
 			if (false == m_bInPlaceEdit)
 			{
-				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin(L"ds_attreditframe");
+				DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("ds_attreditframe");
 				CRect rcEdit = rcValue;
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,L"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:新宋体,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1718,18 +1714,17 @@ namespace DM
 				break;
 			} 
 
-			CStringW strWXml = L"<hotkey bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
+			LiteralString strXml = "<hotkey bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
 			// 增加一个显示BGRA值的RECT
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
 
-			g_pDMApp->CreateRegObj((void**)&m_pHotkey, L"hotkey",DMREG_Window);
+			g_pDMApp->CreateRegObj((void**)&m_pHotkey, "hotkey",DMREG_Window);
 			m_pOwner->DM_InsertChild(m_pHotkey);
 			m_pHotkey->InitDMData(EditNode);
 			m_pHotkey->SetID(-1);
-			DWORD dwAccel = DUIAccel::TranslateAccelKey(m_strValue);
+			DWORD dwAccel = DUIAccel::TranslateAccelKey(DMW2A(m_strValue));
 			m_pHotkey->SetHotKey(LOWORD(dwAccel),HIWORD(dwAccel));
 			m_strValue = m_pHotkey->GetHotKeyName();
 

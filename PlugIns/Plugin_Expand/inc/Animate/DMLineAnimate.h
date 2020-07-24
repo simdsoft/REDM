@@ -4,7 +4,7 @@ namespace DM
 {
 	class DMLineAnimate:public IDMAnimate
 	{
-		DMDECLARE_CLASS_NAME(DMLineAnimate,L"DMLineAnimate",DMREG_Animate);
+		DMDECLARE_CLASS_NAME(DMLineAnimate,"DMLineAnimate",DMREG_Animate);
 	public:
 		DMLineAnimate();
 	public:

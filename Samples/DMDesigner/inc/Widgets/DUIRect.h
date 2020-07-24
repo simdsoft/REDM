@@ -17,11 +17,11 @@ namespace DMAttr
 	class DUIRectAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* COLOR_clrdot;                                   ///< dot颜色,示例:clrdot="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
+		static char* COLOR_clrdot;                                   ///< dot颜色,示例:clrdot="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
 		// 光标
-		static wchar_t* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
-		static wchar_t* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
+		static char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
+		static char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIRectAttr,COLOR_clrdot)DMAttrValueInit(DUIRectAttr,COLOR_clrtext)
 	DMAttrValueInit(DUIRectAttr,COLOR_clrcaret)DMAttrValueInit(DUIRectAttr,INI_caretanimatecount)
@@ -31,7 +31,7 @@ namespace DM
 {
 	class DSEdit:public DUIEdit
 	{
-		DMDECLARE_CLASS_NAME(DSEdit,L"dsedit",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DSEdit,"dsedit",DMREG_Window);
 	public:
 		DSEdit();
 		int GetField();
@@ -60,7 +60,7 @@ namespace DM
 	/// </summary>
 	class DUIRect: public DUIWindow
 	{
-		DMDECLARE_CLASS_NAME(DUIRect,L"duirect",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DUIRect,"duirect",DMREG_Window);
 	public:
 		DUIRect();
 		BOOL IsBlank() const;
@@ -95,9 +95,9 @@ namespace DM
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIRectAttr::INI_caretanimatecount,OnAttrCuretAnimateCount)
 		DM_END_ATTRIBUTES()
 	public:
-		DMCode OnAttrTextColor(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttrCuretClr(LPCWSTR pszValue, bool bLoadXml);
-		DMCode OnAttrCuretAnimateCount(LPCWSTR pszValue, bool bLoadXml);
+		DMCode OnAttrTextColor(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttrCuretClr(LPCSTR pszValue, bool bLoadXml);
+		DMCode OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml);
 	public:
 		DMSmartPtrT<DSEdit>                     m_pEdit[4];
 		DMColor                                 m_clrDot;

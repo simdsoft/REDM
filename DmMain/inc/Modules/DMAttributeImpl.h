@@ -18,14 +18,14 @@ namespace DM
 {
 	class DMAttributeImpl:public IDMAttribute
 	{
-		DMDECLARE_CLASS_NAME(DMAttributeImpl,L"DMAttributeImpl",DMREG_Attribute);
+		DMDECLARE_CLASS_NAME(DMAttributeImpl,"DMAttributeImpl",DMREG_Attribute);
 	public:
-		virtual DMCode ParseInt(LPCWSTR lpszValue,int&Obj);				
-		virtual DMCode ParseBool(LPCWSTR lpszValue,bool&Obj);			
-		virtual DMCode ParseColor(LPCWSTR lpszValue,DMColor&Obj);		
-		virtual DMCode ParseSize(LPCWSTR lpszValue,DM::CSize&Obj);		
-		virtual DMCode ParsePoint(LPCWSTR lpszValue,DM::CPoint&Obj);	
-		virtual DMCode ParseRect(LPCWSTR lpszValue,DM::CRect&Obj);		
+		virtual DMCode ParseInt(LPCSTR lpszValue,int&Obj);
+		virtual DMCode ParseBool(LPCSTR lpszValue,bool&Obj);
+		virtual DMCode ParseColor(LPCSTR lpszValue,DMColor&Obj);
+		virtual DMCode ParseSize(LPCSTR lpszValue,DM::CSize&Obj);
+		virtual DMCode ParsePoint(LPCSTR lpszValue,DM::CPoint&Obj);
+		virtual DMCode ParseRect(LPCSTR lpszValue,DM::CRect&Obj);
 	};
 
 }//namespace DM

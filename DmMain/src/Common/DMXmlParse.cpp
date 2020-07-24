@@ -9,11 +9,11 @@ namespace DM
 #if defined(_DEBUG)
 		DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
 		if (NULL == pMain																													 // 加载插件时机,主窗口未初始化
-			||(0 != pMain->GetData(L"1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase(L"440A2781-8BC2-4AC4-8225-9AC451FE42B4")))// 主窗口初始人后,非设计器模式
+			||(0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4")))// 主窗口初始人后,非设计器模式
 		{// 设计器模式下，仅建议在分析问题时开放此辅助，不然会严重影响设计效率
 			XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
 		}
-#endif									
+#endif	
 	}
 #define INIT_DEBUG_XMLBUF(XmlNode) Init_Debug_XmlBuf(XmlNode);
 
@@ -32,24 +32,24 @@ namespace DM
 		return (m_XmlAttrbute == other.m_XmlAttrbute);
 	}
 
-	LPCWSTR DMXmlAttribute::GetName() const
+	LPCSTR DMXmlAttribute::GetName() const
 	{
 		if (NULL == m_XmlAttrbute)
 		{
 			return NULL;
 		}
 
-		return (LPCWSTR) m_XmlAttrbute.name();
+		return m_XmlAttrbute.name();
 	}
 
-	LPCWSTR DMXmlAttribute::GetValue() const
+	LPCSTR DMXmlAttribute::GetValue() const
 	{
 		if (NULL == m_XmlAttrbute)
 		{
 			return NULL;
 		}
 
-		return (LPCWSTR) m_XmlAttrbute.value();
+		return m_XmlAttrbute.value();
 	}
 
 	DMXmlAttribute DMXmlAttribute::NextAttribute() const
@@ -116,7 +116,7 @@ namespace DM
 		return bRet;
 	}
 
-	DMXmlNode DMXmlNode::FirstChild(LPCWSTR XmlTag/* = NULL*/) const
+	DMXmlNode DMXmlNode::FirstChild(LPCSTR XmlTag/* = NULL*/) const
 	{
 		DMXmlNode XmlNode;
 		if (m_XmlNode)
@@ -135,7 +135,7 @@ namespace DM
 		return XmlNode;
 	}
 
-	DMXmlNode DMXmlNode::PreviousSibling(LPCWSTR XmlTag/* = NULL*/) const
+	DMXmlNode DMXmlNode::PreviousSibling(LPCSTR XmlTag/* = NULL*/) const
 	{
 		DMXmlNode XmlNode;
 		if (m_XmlNode)
@@ -154,7 +154,7 @@ namespace DM
 			return XmlNode;
 	}
 
-	DMXmlNode DMXmlNode::NextSibling(LPCWSTR XmlTag/* = NULL*/) const
+	DMXmlNode DMXmlNode::NextSibling(LPCSTR XmlTag/* = NULL*/) const
 	{
 		DMXmlNode XmlNode;
 		if (m_XmlNode)
@@ -173,18 +173,18 @@ namespace DM
 			return XmlNode;
 	}
 
-	LPCWSTR DMXmlNode::GetName() const
+	LPCSTR DMXmlNode::GetName() const
 	{
 		if (!m_XmlNode)
 		{
 			return NULL;
 		}
 
-		return (LPCWSTR)m_XmlNode.name();
+		return m_XmlNode.name();
 	}
 
 
-	bool DMXmlNode::SetName(LPCWSTR lpszName) 
+	bool DMXmlNode::SetName(LPCSTR lpszName)
 	{
 		bool bRet = false;
 		do 
@@ -198,14 +198,14 @@ namespace DM
 		return bRet;
 	}
 
-	LPCWSTR DMXmlNode::GetValue() const
+	LPCSTR DMXmlNode::GetValue() const
 	{
 		if (!m_XmlNode)
 		{
 			return NULL;
 		}
 		// 注意是text,用于得到<node>this is node<node/>中的this is node
-		return (LPCWSTR)m_XmlNode.text().as_string();
+		return m_XmlNode.text().as_string();
 	}
 
 	DMXmlAttribute DMXmlNode::FirstAttribute()
@@ -218,17 +218,17 @@ namespace DM
 		return Attribute;
 	}
 
-	LPCWSTR DMXmlNode::Attribute(LPCWSTR name)
+	LPCSTR DMXmlNode::Attribute(LPCSTR name)
 	{
 		if (!m_XmlNode)
 		{
 			return NULL;
 		}
 
-		return (LPCWSTR)m_XmlNode.attribute(name).as_string();
+		return m_XmlNode.attribute(name).as_string();
 	}
 
-	int DMXmlNode::AttributeInt(LPCWSTR name)
+	int DMXmlNode::AttributeInt(LPCSTR name)
 	{
 		if (!m_XmlNode)
 		{
@@ -238,7 +238,7 @@ namespace DM
 		return m_XmlNode.attribute(name).as_int();
 	}
 
-	INT64 DMXmlNode::AttributeInt64(LPCWSTR name)
+	INT64 DMXmlNode::AttributeInt64(LPCSTR name)
 	{
 		if (!m_XmlNode)
 		{
@@ -248,7 +248,7 @@ namespace DM
 		return m_XmlNode.attribute(name).as_llong();
 	}
 
-	DMXmlNode DMXmlNode::InsertChildNode(LPCWSTR name,DMXmlNode* pXmlNode,bool bAfter /*= true*/)
+	DMXmlNode DMXmlNode::InsertChildNode(LPCSTR name,DMXmlNode* pXmlNode,bool bAfter /*= true*/)
 	{
 		DMXmlNode XmlElement;
 
@@ -332,14 +332,14 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMXmlNode::SetAttribute(LPCWSTR name, LPCWSTR value,bool bAppend)
+	bool DMXmlNode::SetAttribute(LPCSTR name, LPCSTR value,bool bAppend)
 	{
 		bool bRet = false;
 		do 
 		{
 			if (!IsValid()
 				|| NULL == name
-				|| 0 == wcslen(name))
+				|| 0 == strlen(name))
 			{
 				break;
 			}
@@ -365,28 +365,28 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMXmlNode::SetAttributeInt(LPCWSTR name, int value,bool bAppend /*= true*/)
+	bool DMXmlNode::SetAttributeInt(LPCSTR name, int value,bool bAppend /*= true*/)
 	{
-		DMBufT<wchar_t> pBuf;pBuf.Allocate(20);
-		swprintf_s(pBuf.get(),20,L"%d",value);
+		DMBufT<char> pBuf;pBuf.Allocate(20);
+		sprintf_s(pBuf.get(),20,"%d",value);
 		return SetAttribute(name,pBuf.get(),bAppend);
 	}
 
-	bool DMXmlNode::SetAttributeInt64(LPCWSTR name, INT64 value,bool bAppend /*= true*/)
+	bool DMXmlNode::SetAttributeInt64(LPCSTR name, INT64 value,bool bAppend /*= true*/)
 	{
-		DMBufT<wchar_t> pBuf;pBuf.Allocate(40);
-		swprintf_s(pBuf.get(),40,L"%I64d",value);
+		DMBufT<char> pBuf;pBuf.Allocate(40);
+		sprintf_s(pBuf.get(),40,"%I64d",value);
 		return SetAttribute(name,pBuf.get(),bAppend);
 	}
 
-	bool DMXmlNode::RemoveAttribute(LPCWSTR name)
+	bool DMXmlNode::RemoveAttribute(LPCSTR name)
 	{
 		bool bRet = false;
 		do 
 		{
 			if (!IsValid()
 				|| NULL == name
-				|| 0 == wcslen(name))
+				|| 0 == strlen(name))
 			{
 				break;
 			}
@@ -405,24 +405,24 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMXmlNode::GetXmlContent(CStringW &strDebug)
+	bool DMXmlNode::GetXmlContent(CStringA &strDebug)
 	{
 		class xml_string_writer : public pugi::xml_writer
 		{
 		public:
-			xml_string_writer(CStringW& rbuf) : buffer(rbuf), pugi::xml_writer()
+			xml_string_writer(CStringA& rbuf) : buffer(rbuf), pugi::xml_writer()
 			{
 			}
-
+		
 			// Write memory chunk into stream/file/whatever
 			virtual void write(const void* data, size_t size) override
 			{
-				buffer.Append((const wchar_t*)data, size / sizeof(wchar_t));
+				buffer.Append((const char*)data, size);
 			}
-			CStringW& buffer;
+			CStringA& buffer;
 		};
 		xml_string_writer writer(strDebug);
-		m_XmlNode.print(writer, L"\t", pugi::format_default, pugi::encoding_utf16);
+		m_XmlNode.print(writer, "\t", pugi::format_default, pugi::encoding_utf8);
 		
 		return true;
 	}
@@ -496,7 +496,7 @@ namespace DM
 		return (m_pXmlDoc == other.m_pXmlDoc);
 	}
 
-	DMXmlNode DMXmlDocHandle::Root(LPCWSTR XmlTag/* = NULL*/) const
+	DMXmlNode DMXmlDocHandle::Root(LPCSTR XmlTag/* = NULL*/) const
 	{
 		DMXmlNode XmlElement;
 		if (NULL == XmlTag)

@@ -75,7 +75,7 @@ namespace DM
 		{
 			if (m_p&&m_p != DMCastT<T*>(m_abFixedBuffer))
 			{
-				DM_DELETE_ARRAY(m_p);
+				free(m_p);
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace DM
 			//DMASSERT(m_p == NULL);
 			if (nBytes > t_nFixedBytes)
 			{
-				m_p = reinterpret_cast<T*>(new BYTE[nBytes]);/// 不使用static_cast,static_cast是显式类型转换，有可能不能转换，reinterpret_cast是低层解释
+				m_p = reinterpret_cast<T*>(malloc(nBytes));/// 不使用static_cast,static_cast是显式类型转换，有可能不能转换，reinterpret_cast是低层解释
 			}
 			else
 			{
@@ -251,7 +251,7 @@ namespace DM
 		template<size_t N>
 		TPtr InitWithCopy(TPtr src) 
 		{
-			DMASSERT_EXPR(src, L"DMLazyBaseT::InitWithCopy");
+			DMASSERT_MSG(src, "DMLazyBaseT::InitWithCopy");
 			if (NULL == m_ptr) 
 			{
 				m_ptr = LazyTraits::NewWithCopy(m_storage, src);
@@ -292,7 +292,7 @@ namespace DM
 				}
 			}
 
-			DMASSERT_EXPR(this->IsValid(), L"DMLazyBaseT::Get");
+			DMASSERT_MSG(this->IsValid(), "DMLazyBaseT::Get");
 			return m_ptr; 
 		}
 
@@ -308,7 +308,7 @@ namespace DM
 					Init();
 				}
 			}
-			DMASSERT_EXPR(m_ptr, L"const DMLazyBaseT::->");
+			DMASSERT_MSG(m_ptr, "const DMLazyBaseT::->");
 			return m_ptr;
 		}
 
@@ -324,7 +324,7 @@ namespace DM
 					Init();
 				}
 			}
-			DMASSERT_EXPR(m_ptr, L"DMLazyBaseT::->");
+			DMASSERT_MSG(m_ptr, "DMLazyBaseT::->");
 			return m_ptr;
 		}
 

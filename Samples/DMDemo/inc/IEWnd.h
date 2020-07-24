@@ -23,7 +23,7 @@ public:
 
 class IERealWnd:public IDUIRealWnd
 {
-	DMDECLARE_CLASS_NAME(DUIWindow,L"ierealwnd",DMREG_Window);
+	DMDECLARE_CLASS_NAME(DUIWindow,"ierealwnd",DMREG_Window);
 public:
 	HWND OnCreateRealWnd(LPCWSTR atom,HWND hWndParent);
 	DMCode OnDestoryRealWnd();

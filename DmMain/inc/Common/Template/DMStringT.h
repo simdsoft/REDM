@@ -108,7 +108,7 @@ namespace DM
         }
         static int StrICmp(const char* psz1, const char* psz2)
         {
-            return stricmp(psz1, psz2);
+            return dm_stricmp(psz1, psz2);
         }
         static char* StrChr(const char* psz, char ch)
         {
@@ -1739,6 +1739,28 @@ namespace DM
     };
 	#pragma warning(pop)
 
+    // The literal string view
+    class LiteralString {
+    public:
+        template<int size>
+        LiteralString(const char(&str)[size])
+        {
+            _str = str;
+            _len = size - 1;
+        }
+        template<int size>
+        void operator=(const char(&str)[size]) {
+            _str = str;
+            _len = size - 1;
+        }
+
+        operator const char*const () const { return _str; }
+        int GetLength() const { return _len; }
+    private:
+        const char* _str;
+        int _len;
+    };
+
 }//end of namespace
 
 namespace ntcvt {
@@ -1760,22 +1782,22 @@ namespace DM {
     /// <summary>
     ///	用于脚本中char*直接转CStringW
     /// </summary>
-    static CStringW DMCA2W(LPCSTR lpsz, int len /*=-1*/, UINT CodePage/* = CP_ACP*/)
+    static CStringW DMCA2W(LPCSTR lpsz, int len = -1, UINT CodePage = CP_UTF8)
     {
         return ntcvt::mcbs2w<CStringW>(lpsz, len, CodePage);
     }
 
-    static CStringW DMA2W(const CStringA& str, UINT CodePage = CP_ACP)
+    static CStringW DMA2W(const CStringA& str, UINT CodePage = CP_UTF8)
     {
         return DMCA2W((LPCSTR)str, str.GetLength(), CodePage);
     }
 
-    static CStringA DMWC2A(LPCWSTR lpsz, int len /*=-1*/, UINT CodePage /*=CP_ACP*/)
+    static CStringA DMWC2A(LPCWSTR lpsz, int len =-1, UINT CodePage = CP_UTF8)
     {
         return ntcvt::wcbs2a<CStringA>(lpsz, len, CodePage);
     }
 
-    static CStringA DMW2A(const CStringW& str, UINT CodePage = CP_ACP)
+    static CStringA DMW2A(const CStringW& str, UINT CodePage = CP_UTF8)
     {
         return DMWC2A((LPCWSTR)str, str.GetLength(), CodePage);
     }

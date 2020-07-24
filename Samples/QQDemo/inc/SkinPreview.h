@@ -17,7 +17,7 @@
 
 class SkinPreview: public DUIWindow
 {
-	DMDECLARE_CLASS_NAME(SkinPreview,L"SkinPreview",DMREG_Window);
+	DMDECLARE_CLASS_NAME(SkinPreview,"SkinPreview",DMREG_Window);
 public:
 	SkinPreview();
 public:

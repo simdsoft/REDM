@@ -4,7 +4,6 @@
 
 namespace DM
 {
-	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR);
 	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
 	DMAppData::DMAppData(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
@@ -51,7 +50,7 @@ namespace DM
 		DM_DELETE(m_pPlugin);
 	}
 
-	DMCode DMAppData::InitGlobal(LPCWSTR lpszXmlId)
+	DMCode DMAppData::InitGlobal(LPCSTR lpszXmlId)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -74,7 +73,7 @@ namespace DM
 			}
 
 			// 设置默认文本---------------------------
-			CStringW strFont = XmlNode.Attribute(DMAttr::DMGlobalAttr::XMLATTR_font);
+			CStringA strFont = XmlNode.Attribute(DMAttr::DMGlobalAttr::XMLATTR_font);
 			if (!strFont.IsEmpty())
 			{
 				m_FontPool->SetDefaultFont(strFont);
@@ -174,17 +173,17 @@ namespace DM
 		return m_RegMgr->Register(RegObj, bReplace);
 	}
 
-	DMCode DMAppData::CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType)
+	DMCode DMAppData::CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType)
 	{
 		return m_RegMgr->CreateRegObj(ppObj, lpszClassName, RegType);
 	}
 
-	DMCode DMAppData::UnRegister(LPCWSTR lpszClassName,int RegType)
+	DMCode DMAppData::UnRegister(LPCSTR lpszClassName,int RegType)
 	{
 		return m_RegMgr->UnRegister(lpszClassName, RegType);
 	}
 
-	DMCode DMAppData::SetDefRegObj(LPCWSTR lpszClassName,int RegType)
+	DMCode DMAppData::SetDefRegObj(LPCSTR lpszClassName,int RegType)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		do 
@@ -262,7 +261,7 @@ namespace DM
 				break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"不支持设置默认对象的RegType");
+					DMFAIL_MSG("default object RegType not allowed"/*0,L"不支持设置默认对象的RegType"*/);
 				}
 				break;
 			}
@@ -290,7 +289,7 @@ namespace DM
 			case DMREG_TaskRunner:*ppObj = m_pTaskRunnerObj;m_pTaskRunnerObj->AddRef();break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans、DMREG_TaskRunner的RegType");
+				DMFAIL_MSG_FMT("Unsupported RegType %d", RegType/*0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans、DMREG_TaskRunner的RegType"*/);
 				}
 				break;
 			}
@@ -298,7 +297,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMAppData::GetDefRegObj(CStringW &szName,int RegType)
+	DMCode DMAppData::GetDefRegObj(CStringA &szName,int RegType)
 	{
 		return m_RegMgr->GetDefRegObj(szName, RegType);
 	}
@@ -337,7 +336,7 @@ namespace DM
 	}
 
 	/// 解析资源Res-----------------------------------------
-	DMCode DMAppData::LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName)
+	DMCode DMAppData::LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName)
 	{
 		LOG_INFO("[start]lpszClassName:%s\n",lpszClassName);
 		DMCode iErr = DM_ECODE_OK;
@@ -351,7 +350,7 @@ namespace DM
 
 			if (NULL!=lpszClassName) // 不为NULL时判断是否和当前默认的相当
 			{
-				CStringW szName;
+				CStringA szName;
 				m_RegMgr->GetDefRegObj(szName,DMREG_Res);
 				if (lpszClassName != szName)
 				{	
@@ -361,7 +360,7 @@ namespace DM
 
 			if (m_pResObj.isNull())
 			{
-				DMASSERT_EXPR(0,L"请先调用SetDefRegObj设置m_pResObj对象！！");
+				DMFAIL_MSG("please call SetDefRegObj firstly");
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
@@ -377,15 +376,15 @@ namespace DM
 	}
 
 	///  内部辅助------------------------------------------
-	DMCode DMAppData::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCWSTR lpszType,LPCWSTR lpszResName)
+	DMCode DMAppData::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName)
 	{
 		LOG_INFO("[start]lpszType:%s,lpszResName:%s\n",lpszType,lpszResName);
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
-		{
+		{ 
 			DMXmlDocument* pDoc = NULL;
 			if (g_pGetSubXmlDoc
-				&&NULL!=(pDoc = g_pGetSubXmlDoc(lpszType,lpszResName)))// 支持外部生成Doc传入,内部复制,目前用于设计器
+				&&NULL!=(pDoc = g_pGetSubXmlDoc(lpszType, lpszResName)))// 支持外部生成Doc传入,内部复制,目前用于设计器
 			{
 				DMXmlNode XmlBase = XmlDoc.Base();
 				DMXmlNode XmlCopy = pDoc->Root();
@@ -398,22 +397,14 @@ namespace DM
 			{
 				break;
 			}
+			DMBufT<byte> pBuf;
 			unsigned long ulSize = 0;
-			if(!DMSUCCEEDED(m_pResObj->GetItemSize(lpszType,lpszResName,ulSize)))
-			{
+			if (!DMSUCCEEDED(m_pResObj->GetItemBuf(lpszType, lpszResName, pBuf, &ulSize)))
 				break;
-			}
-			DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-			if(!DMSUCCEEDED(m_pResObj->GetItemBuf(lpszType,lpszResName, pBuf, ulSize)))
-			{
-				break;
-			}
 
 			if (false == XmlDoc.LoadFromBuffer(pBuf, ulSize))
 			{
-				CStringW strInfo;
-				strInfo.Format(L"%s:%s xml解码失败!请以utf-8格式保存,并保证xml格式完整",lpszType,lpszResName);
-				DMASSERT_EXPR(0,strInfo);
+				DMFAIL_MSG_FMT("%s:%s parse xml fail", lpszType, lpszResName);
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);

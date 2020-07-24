@@ -40,6 +40,7 @@ private:
 	DMCode InitThemeCbx();
 	DMCode BindSkinTreeData(DMXmlNode& DataNode,HDMTREEITEM hTreeItem);
 	HDMTREEITEM InsertSkinTreeItem(DMXmlNode& TreeNode,CStringW strText,HDMTREEITEM hParent =DMTVI_ROOT);
+	HDMTREEITEM InsertSkinTreeItem(DMXmlNode& TreeNode, CStringA strText, HDMTREEITEM hParent = DMTVI_ROOT);
 	DMCode UpdateXml();
 	virtual void PreMapKeyRemove(const DMXmlNodePtr &obj);
 

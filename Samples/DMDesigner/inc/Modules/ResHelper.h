@@ -25,11 +25,11 @@ namespace DM
 	class ResItem
 	{
 	public:
-		ResItem(LPCWSTR lpszType=L"", LPCWSTR lpszName=L"", LPCWSTR lpszPath = L"");
+		ResItem(LPCSTR lpszType="", LPCSTR lpszName="", LPCWSTR lpszPath = L"");
 
 	public:
-		wchar_t m_szType[MAX_RES_TYPE+1];			///< 资源类型,如png,jpg,bmp,gif,flash
-		wchar_t m_szName[MAX_RES_NAME+1];           ///< 资源名,同一资源类型下唯一标识此资源项
+		char m_szType[MAX_RES_TYPE+1];			///< 资源类型,如png,jpg,bmp,gif,flash
+		char m_szName[MAX_RES_NAME+1];           ///< 资源名,同一资源类型下唯一标识此资源项
 		wchar_t m_szPath[MAX_PATH];                 ///< 资源全路径
 	};
 
@@ -48,7 +48,7 @@ namespace DM
 		virtual void PreArrayObjRemove(const ResItemPtr &obj);
 		virtual bool EqualArrayObj(const ResItemPtr &objsrc, const ResItemPtr &objdest);
 	public:
-		CStringW        m_strThemeName;			 ///< 主题包名字
+		CStringA       m_strThemeName;			 ///< 主题包名字
 	};
 	typedef ResFolderItem* ResFolderItemPtr;
 

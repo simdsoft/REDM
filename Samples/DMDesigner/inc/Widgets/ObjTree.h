@@ -13,7 +13,7 @@
 
 class ObjTree : public DUITreeEx
 {
-	DMDECLARE_CLASS_NAME(ObjTree, L"dsobjtree",DMREG_Window)
+	DMDECLARE_CLASS_NAME(ObjTree, "dsobjtree",DMREG_Window)
 public:
 	HDMTREEITEM InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent=DMTVI_ROOT, HDMTREEITEM hInsertAfter=DMTVI_LAST,BOOL bEnsureVisible=FALSE);
 	DMCode UpdateItemRect(HDMTREEITEM hRet);

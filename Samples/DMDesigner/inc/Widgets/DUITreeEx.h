@@ -25,27 +25,27 @@ namespace DMAttr
 	class DUITreeAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static wchar_t* SKIN_toggleskin;								    ///< 展开、收起小三角图案,六种状态(收起三种+展开三种),示例:toggleskin="treetoggle"
-		static wchar_t* SKIN_checkskin;                                     ///< 选中、不选中，半选中图案,用于启用了checkbox状态，9种状态(正常三种+选中三种+半选中三种),示例:checkskin="treecheck"
-		static wchar_t* SKIN_eyeskin;                                       ///< 9种状态(正常三种+选中三种+半选中三种),示例:eyeskin="treecheck"
-		static wchar_t* SKIN_lockskin;                                      ///< 9种状态(正常三种+选中三种+半选中三种),示例:lockskin="treecheck"
+		static char* SKIN_toggleskin;								    ///< 展开、收起小三角图案,六种状态(收起三种+展开三种),示例:toggleskin="treetoggle"
+		static char* SKIN_checkskin;                                     ///< 选中、不选中，半选中图案,用于启用了checkbox状态，9种状态(正常三种+选中三种+半选中三种),示例:checkskin="treecheck"
+		static char* SKIN_eyeskin;                                       ///< 9种状态(正常三种+选中三种+半选中三种),示例:eyeskin="treecheck"
+		static char* SKIN_lockskin;                                      ///< 9种状态(正常三种+选中三种+半选中三种),示例:lockskin="treecheck"
 		
-		static wchar_t* SKIN_itembgskin;                                    ///< 项所在的背景图案,正常/停留/选中,示例:itembgskin="itembgskin"
-		static wchar_t* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static wchar_t* INT_childoffset;                                    ///< 子项相对于父项的偏移,可被具体项覆盖,示例:childoffset="20"
-		static wchar_t* INT_itemheight;									    ///< 每项高度,可被具体项覆盖,示例:itemheight="20"
-		static wchar_t* INT_itemwidth;									    ///< 每项宽度,可被具体项覆盖,示例:itemwidth="20"
-		static wchar_t* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
-		static wchar_t* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
+		static char* SKIN_itembgskin;                                    ///< 项所在的背景图案,正常/停留/选中,示例:itembgskin="itembgskin"
+		static char* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static char* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static char* INT_childoffset;                                    ///< 子项相对于父项的偏移,可被具体项覆盖,示例:childoffset="20"
+		static char* INT_itemheight;									    ///< 每项高度,可被具体项覆盖,示例:itemheight="20"
+		static char* INT_itemwidth;									    ///< 每项宽度,可被具体项覆盖,示例:itemwidth="20"
+		static char* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
+		static char* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
 
-		static wchar_t* NODE_treeitem;										///< treectrl的xml项结点名
-		static wchar_t* ITEM_bcollapsed;									///< 项是否收缩,示例:bcollapsed="1"
-		static wchar_t* ITEM_height;                                        ///< 项的高度(可选),示例:height="10"
-		static wchar_t* ITEM_width;                                         ///< 项的宽度(可选),示例:weidth="10"
-		static wchar_t* ITEM_childoffset;                                   ///< 项的宽度(可选),示例:childoffset="10"
-		static wchar_t* ITEM_data;											///< 项的数据,示例:data="1"
+		static char* NODE_treeitem;										///< treectrl的xml项结点名
+		static char* ITEM_bcollapsed;									///< 项是否收缩,示例:bcollapsed="1"
+		static char* ITEM_height;                                        ///< 项的高度(可选),示例:height="10"
+		static char* ITEM_width;                                         ///< 项的宽度(可选),示例:weidth="10"
+		static char* ITEM_childoffset;                                   ///< 项的宽度(可选),示例:childoffset="10"
+		static char* ITEM_data;											///< 项的数据,示例:data="1"
 	};
 	DMAttrValueInit(DUITreeAttr,SKIN_toggleskin)DMAttrValueInit(DUITreeAttr,SKIN_checkskin)DMAttrValueInit(DUITreeAttr,SKIN_eyeskin)DMAttrValueInit(DUITreeAttr,SKIN_lockskin)
 		DMAttrValueInit(DUITreeAttr,SKIN_itembgskin)DMAttrValueInit(DUITreeAttr,COLOR_clritembg)DMAttrValueInit(DUITreeAttr,COLOR_clritemhoverbg)
@@ -155,7 +155,7 @@ namespace DM
 		, public IDMItemPanelOwner
 		, public DMTreeT<LPTVITEMEX>
 	{
-		DMDECLARE_CLASS_NAME(DUITreeEx, L"treeex",DMREG_Window)
+		DMDECLARE_CLASS_NAME(DUITreeEx, "treeex",DMREG_Window)
 	public:
 		DUITreeEx();
 		~DUITreeEx();

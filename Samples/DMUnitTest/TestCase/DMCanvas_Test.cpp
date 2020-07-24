@@ -33,7 +33,7 @@ public:
 protected:
 	DMSmartPtrT<IDMRender> m_pRender;
 	DMSmartPtrT<IDMRender> m_pDefRender; // 内部的默认使用对象
-	LPCWSTR                m_pDefName;   // 内部使用的对象名
+	CStringA               m_pDefName;   // 内部使用的对象名
 	
 };
 

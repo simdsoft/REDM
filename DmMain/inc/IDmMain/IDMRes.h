@@ -20,7 +20,7 @@ namespace DM
 	/// </summary>
 	class DM_EXPORT IDMRes:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMRes,L"IDMRes",DMREG_Res);
+		DMDECLARE_CLASS_NAME(IDMRes,"IDMRes",DMREG_Res);
 	public:
 		/// -------------------------------------------------
 		/// @brief 加载资源扩展接口
@@ -37,7 +37,7 @@ namespace DM
 		/// @param[in]		 lpszThemeName     主题包名，如为NULL，则使用当前主题包，和自己扩展实现相关
 		/// @remark 
 		/// @return DM_ECODE_OK为成功
-		virtual DMCode IsItemExists(LPCWSTR lpszType, LPCWSTR lpszName,LPCWSTR lpszThemeName=NULL) = 0;
+		virtual DMCode IsItemExists(LPCSTR lpszType, LPCSTR lpszName,LPCSTR lpszThemeName=NULL) = 0;
 
 		/// -------------------------------------------------
 		/// @brief 获取 资源中某项的内存大小
@@ -47,7 +47,7 @@ namespace DM
 		/// @param[in]		 lpszThemeName     主题包名，如为NULL，则使用当前主题包，和自己扩展实现相关
 		/// @remark DMMain采用先获取大小，再分配大小，再拷贝内存的操作
 		/// @return DM_ECODE_OK为成功
-		virtual DMCode GetItemSize(LPCWSTR lpszType, LPCWSTR lpszName, unsigned long& ulSize,LPCWSTR lpszThemeName=NULL) = 0;
+		virtual DMCode GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize,LPCSTR lpszThemeName=NULL) = 0;
 
 		/// -------------------------------------------------
 		/// @brief 拷贝 资源中某项的内存
@@ -58,7 +58,9 @@ namespace DM
 			/// @param[in]		 lpszThemeName     主题包名，如为NULL，则使用当前主题包，和自己扩展实现相关
 		/// @remark DMMain采用先获取大小，再分配大小，再拷贝内存的操作，结合<see cref="GetItemSize"/>
 		/// @return DM_ECODE_OK为成功
-		virtual DMCode GetItemBuf(LPCWSTR lpszType, LPCWSTR lpszName, LPVOID lpBuf, unsigned long ulSize,LPCWSTR lpszThemeName=NULL) = 0;
+		virtual DMCode GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&, PULONG lpULSize, LPCSTR lpszThemeName = NULL) = 0;
+
+		static DMCode ReadFileBuf(LPCWSTR lpszFilePath, DMBufT<byte>&, PULONG lpULSize);
 
 		/// -------------------------------------------------
 		/// @brief 加载主题包
@@ -74,7 +76,7 @@ namespace DM
 		/// @param[in]		 lpszOldName  当前使用的主题包名字 ，请外部分配足够的buf
 		/// @remark 默认会使用名字为Default的主题包
 		/// @return DM_ECODE_OK为成功
-		virtual DMCode SetCurTheme(LPCWSTR lpszName, LPCWSTR lpszOldName=NULL) = 0;
+		virtual DMCode SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName=NULL) = 0;
 	};
 
 }//namespace DM

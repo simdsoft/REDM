@@ -16,7 +16,7 @@ namespace DM
 //DMLanguageItem --------------------------------------------------------------
 	DMLanguageItem::DMLanguageItem(CStringW strName)
 	{
-		DMASSERT_EXPR(!strName.IsEmpty(),L"语言包没有指定ID");
+		DMASSERT_MSG(!strName.IsEmpty(),"LangPack No ID");
 		m_strLanguageName = strName;
 	}
 

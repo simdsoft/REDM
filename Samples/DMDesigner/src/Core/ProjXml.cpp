@@ -1,47 +1,47 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ProjXml.h"
 
 DesignMenu g_ProjMenuItem[] = \
 {
-	{PROJMENU_OPENDIR,			L"     ´ò¿ªÄ¿Â¼"},//0 
-	{PROJMENU_SCAN,				L"     É¨Ãè´íÎó"},//1 
-	{PROJMENU_ADDSKINPOOL,		L"     Ôö¼ÓÆ¤·ô³Ø"},//2 
-	{PROJMENU_DELSKINPOOL,		L"     É¾³ıÆ¤·ô³Ø"},//3 
-	{PROJMENU_EDITSKINPOOL,		L"     ±à¼­Æ¤·ô³Ø"},//4 
+	{PROJMENU_OPENDIR,			"     æ‰“å¼€ç›®å½•"},//0 
+	{PROJMENU_SCAN,				"     æ‰«æé”™è¯¯"},//1 
+	{PROJMENU_ADDSKINPOOL,		"     å¢åŠ çš®è‚¤æ± "},//2 
+	{PROJMENU_DELSKINPOOL,		"     åˆ é™¤çš®è‚¤æ± "},//3 
+	{PROJMENU_EDITSKINPOOL,		"     ç¼–è¾‘çš®è‚¤æ± "},//4 
 
-	{PROJMENU_ADDSTYLEPOOL,		L"     Ôö¼ÓÑùÊ½³Ø"},//5 
-	{PROJMENU_DELSTYLEPOOL,		L"     É¾³ıÑùÊ½³Ø"},//6 
-	{PROJMENU_EDITSTYLEPOOL,	L"     ±à¼­ÑùÊ½³Ø"},//7 
+	{PROJMENU_ADDSTYLEPOOL,		"     å¢åŠ æ ·å¼æ± "},//5 
+	{PROJMENU_DELSTYLEPOOL,		"     åˆ é™¤æ ·å¼æ± "},//6 
+	{PROJMENU_EDITSTYLEPOOL,	"     ç¼–è¾‘æ ·å¼æ± "},//7 
 
-	{PROJMENU_ADDSKIN,			L"     Ôö¼ÓÆ¤·ô"},//8 
-	{PROJMENU_DELSKIN,			L"     É¾³ıÆ¤·ô"},//9 
-	{PROJMENU_EDITSKIN,			L"     ±à¼­Æ¤·ô"},//10 
+	{PROJMENU_ADDSKIN,			"     å¢åŠ çš®è‚¤"},//8 
+	{PROJMENU_DELSKIN,			"     åˆ é™¤çš®è‚¤"},//9 
+	{PROJMENU_EDITSKIN,			"     ç¼–è¾‘çš®è‚¤"},//10 
 
-	{PROJMENU_ADDSTYLE,			L"     Ôö¼ÓÑùÊ½"},//11
-	{PROJMENU_DELSTYLE,			L"     É¾³ıÑùÊ½"},//12
-	{PROJMENU_EDITSTYLE,		L"     ±à¼­ÑùÊ½"},//13 
+	{PROJMENU_ADDSTYLE,			"     å¢åŠ æ ·å¼"},//11
+	{PROJMENU_DELSTYLE,			"     åˆ é™¤æ ·å¼"},//12
+	{PROJMENU_EDITSTYLE,		"     ç¼–è¾‘æ ·å¼"},//13 
 
-	{PROJMENU_ADDIMGTYPE,		L"     Ôö¼ÓimgÀàĞÍ"},//14 
-	{PROJMENU_DELIMGTYPE,		L"     É¾³ıimgÀàĞÍ"},//15 
-	{PROJMENU_EDITIMGTYPE,		L"     ±à¼­imgÀàĞÍ"},//16 
+	{PROJMENU_ADDIMGTYPE,		"     å¢åŠ imgç±»å‹"},//14 
+	{PROJMENU_DELIMGTYPE,		"     åˆ é™¤imgç±»å‹"},//15 
+	{PROJMENU_EDITIMGTYPE,		"     ç¼–è¾‘imgç±»å‹"},//16 
 
-	{PROJMENU_ADDTHEME,			L"     Ôö¼ÓÖ÷Ìâ°ü"},//17 
-	{PROJMENU_DELTHEME,			L"     É¾³ıÖ÷Ìâ°ü"},//18 
-	{PROJMENU_EDITTHEME,		L"     ±à¼­Ö÷Ìâ°ü"},//19
-	{PROJMENU_SETDEFTHEME,		L"     ÉèÖÃÄ¬ÈÏÖ÷Ìâ°ü"},//20
+	{PROJMENU_ADDTHEME,			"     å¢åŠ ä¸»é¢˜åŒ…"},//17 
+	{PROJMENU_DELTHEME,			"     åˆ é™¤ä¸»é¢˜åŒ…"},//18 
+	{PROJMENU_EDITTHEME,		"     ç¼–è¾‘ä¸»é¢˜åŒ…"},//19
+	{PROJMENU_SETDEFTHEME,		"     è®¾ç½®é»˜è®¤ä¸»é¢˜åŒ…"},//20
 
-	{PROJMENU_ADDIMG,			L"     Ôö¼ÓIMG"},//21 
-	{PROJMENU_DELIMG,			L"     É¾³ıIMG"},//22
-	{PROJMENU_EDITIMG,			L"     ±à¼­IMG"},//23
+	{PROJMENU_ADDIMG,			"     å¢åŠ IMG"},//21 
+	{PROJMENU_DELIMG,			"     åˆ é™¤IMG"},//22
+	{PROJMENU_EDITIMG,			"     ç¼–è¾‘IMG"},//23
 
-	{PROJMENU_ADDLAYOUT,		L"     Ôö¼ÓLAYOUT"},//24
-	{PROJMENU_DELLAYOUT,		L"     É¾³ıLAYOUT"},//25
-	{PROJMENU_EDITLAYOUT,		L"     ±à¼­LAYOUT"},//26
+	{PROJMENU_ADDLAYOUT,		"     å¢åŠ LAYOUT"},//24
+	{PROJMENU_DELLAYOUT,		"     åˆ é™¤LAYOUT"},//25
+	{PROJMENU_EDITLAYOUT,		"     ç¼–è¾‘LAYOUT"},//26
 };
 
 ProjXml::ProjXml()
 {
-	m_pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");DMASSERT(m_pProjTree);
+	m_pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");DMASSERT(m_pProjTree);
 	m_hProjLayouts = m_hProjThemes = m_hProjLayoutFiles = m_hProjGlobal = 
 	m_hProjGlobalStyleSkins = m_hProjPrivStyleSkins = m_hProjGlobalStyles = m_hProjGlobalSkins = m_hProjSel = m_hProjDefTheme = NULL;
 	m_bSubInit  = false;
@@ -100,10 +100,10 @@ DMCode ProjXml::SaveRes(bool bCheck)
 	{
 		if (bCheck &&false == IsNeedSave())
 		{
-			DM_MessageBox(L"ÎÄ¼ş²»ĞèÒª±£´æ");
+			DM_MessageBox(L"æ–‡ä»¶ä¸éœ€è¦ä¿å­˜");
 			break;
 		}
-		if (IDOK == DM_MessageBox(L"È·ÈÏ±£´æĞŞ¸Äµ½×ÊÔ´°üÖĞ?\r\n",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"ç¡®è®¤ä¿å­˜ä¿®æ”¹åˆ°èµ„æºåŒ…ä¸­?\r\n",MB_OKCANCEL))
 		{
 			int iCount = (int)m_DMArray.GetCount();
 			for (int i=0;i<iCount;i++)
@@ -127,7 +127,7 @@ DMCode ProjXml::InitProjTree()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		// 1.³õÊ¼»¯Ê÷ĞÎ¿Ø¼ş½áµãNODE
+		// 1.åˆå§‹åŒ–æ ‘å½¢æ§ä»¶ç»“ç‚¹NODE
 		DMXmlDocument doc;
 		DMXmlNode NoDataNode = doc.Base();
 		DMXmlNode DataNode = doc.Base();
@@ -135,14 +135,15 @@ DMCode ProjXml::InitProjTree()
 		InitProjTreeNode(DataNode,true);
 
 		DMXmlNode XmlNode,XmlFile,XmlImg,XmlStyle,XmlSkin;
-		CStringW strText,strPath,strName,strInfo;
+		CStringA strText,strName,strInfo;
+		CStringW strPath;
 		HDMTREEITEM hRet0,hRet1,hRet2,hRet3;
 
-		// 3.²åÈëÁ½¸ö¸±±êÌâ:ÑùÊ½-Æ¤·ô-²¼¾ÖÎÄ¼şÓëÖ÷Ìâ°üÁĞ±í
-		m_hProjLayouts = InsertProjTreeItem(NoDataNode,L"ÑùÊ½-Æ¤·ô-ÎÄ¼şÁĞ±í");
+		// 3.æ’å…¥ä¸¤ä¸ªå‰¯æ ‡é¢˜:æ ·å¼-çš®è‚¤-å¸ƒå±€æ–‡ä»¶ä¸ä¸»é¢˜åŒ…åˆ—è¡¨
+		m_hProjLayouts = InsertProjTreeItem(NoDataNode,L"æ ·å¼-çš®è‚¤-æ–‡ä»¶åˆ—è¡¨");
 		m_hProjThemes = InsertProjTreeItem(DataNode,PROJTREE_THEMES);
 
-		// 4.½âÎö²¼¾ÖÎÄ¼şÁĞ±í
+		// 4.è§£æå¸ƒå±€æ–‡ä»¶åˆ—è¡¨
 		strPath = m_strResDir + XML_LAYOUT_DMINDEX;
 		DocDataPtr pDoc = new DocData(strPath);
 		if (!pDoc->IsValid())
@@ -152,11 +153,11 @@ DMCode ProjXml::InitProjTree()
 		}
 		AddObj(pDoc);
 
-		// 5.²åÈë±êÌâ:²¼¾ÖÎÄ¼şÁĞ±í
+		// 5.æ’å…¥æ ‡é¢˜:å¸ƒå±€æ–‡ä»¶åˆ—è¡¨
 		m_hProjLayoutFiles = InsertProjTreeItem(DataNode,PROJTREE_LAYOUTFILES,m_hProjLayouts);
 		BindProjTreeData(pDoc->m_XmlRoot,m_hProjLayoutFiles);
 
-		// 6.²åÈë²¼¾ÖÎÄ¼şÁĞ±í
+		// 6.æ’å…¥å¸ƒå±€æ–‡ä»¶åˆ—è¡¨
 		XmlNode = pDoc->m_XmlRoot.FirstChild();
 		while (XmlNode.IsValid())
 		{
@@ -164,18 +165,18 @@ DMCode ProjXml::InitProjTree()
 			hRet0 = InsertProjTreeItem(DataNode,strName,m_hProjLayoutFiles);
 			BindProjTreeData(XmlNode,hRet0);
 	
-			XmlFile = XmlNode.FirstChild(XML_FILE);// ×ÓÏî
+			XmlFile = XmlNode.FirstChild(XML_FILE);// å­é¡¹
 			while (XmlFile.IsValid())
 			{
 				strText = XmlFile.Attribute(XML_PATH);
 				strText = strText.Right(strText.GetLength()-strText.ReverseFind(L'\\')-1);
-				if (m_strGlobalName.IsEmpty() && 0 == strName.CompareNoCase(XML_GLOBAL))// °ó¶¨global,Èç¹ûÓĞ¶à·İglobal£¬ÔòÖ»°ó¶¨µÚÒ»·İglobal
+				if (m_strGlobalName.IsEmpty() && 0 == strName.CompareNoCase(XML_GLOBAL))// ç»‘å®šglobal,å¦‚æœæœ‰å¤šä»½globalï¼Œåˆ™åªç»‘å®šç¬¬ä¸€ä»½global
 				{
 					m_strGlobalName = XmlFile.Attribute(XML_NAME);
 					m_hProjGlobal = InsertProjTreeItem(DataNode,strText,hRet0);
 					BindProjTreeData(XmlFile,m_hProjGlobal);
 				}
-				else// °ó¶¨layout
+				else// ç»‘å®šlayout
 				{
 					hRet1 = InsertProjTreeItem(DataNode,strText,hRet0);
 					BindProjTreeData(XmlFile,hRet1);
@@ -189,11 +190,11 @@ DMCode ProjXml::InitProjTree()
 			hRet0 = m_pProjTree->GetParentItem(m_hProjGlobal);
 			if (m_pProjTree->GetChildrenCount(hRet0)>1)
 			{
-				DM_MessageBox(L"¼ì²âµ½¶à·İglobal.xml,ÇëºÏ²¢ºóÔÙ´ò¿ª¹¤³ÌÊÓÍ¼");
+				DM_MessageBox(L"æ£€æµ‹åˆ°å¤šä»½global.xml,è¯·åˆå¹¶åå†æ‰“å¼€å·¥ç¨‹è§†å›¾");
 			}
 		}
 
-		// 7.Ö÷ÌâÁĞ±í°ó¶¨Êı¾İ
+		// 7.ä¸»é¢˜åˆ—è¡¨ç»‘å®šæ•°æ®
 		strPath = m_strResDir + XML_THEMES_DMINDEX;
 		pDoc = new DocData(strPath);
 		if (!pDoc->IsValid())
@@ -205,16 +206,16 @@ DMCode ProjXml::InitProjTree()
 
 		XmlNode = pDoc->m_XmlRoot.FirstChild(XML_THEMES);
 		BindProjTreeData(XmlNode,m_hProjThemes);
-		CStringW strDefThemeName = XmlNode.Attribute(XML_NAME);
+		CStringA strDefThemeName = XmlNode.Attribute(XML_NAME);
 
 		DMXmlNode ThemeNode = XmlNode.FirstChild(XML_FILE);
-		while (ThemeNode.IsValid())// ±éÀúÖ÷ÌâÁĞ±í
+		while (ThemeNode.IsValid())// éå†ä¸»é¢˜åˆ—è¡¨
 		{
-			// 8.±éÀú²åÈëÖ÷Ìâ°ü
+			// 8.éå†æ’å…¥ä¸»é¢˜åŒ…
 			strText = ThemeNode.Attribute(XML_NAME);
-			strPath = m_strResDir + ThemeNode.Attribute(XML_PATH);
+			strPath = m_strResDir + DMCA2W(ThemeNode.Attribute(XML_PATH));
 
-			if (0 == strText.CompareNoCase(strDefThemeName))// Ä¬ÈÏÖ÷Ìâ°ü
+			if (0 == strText.CompareNoCase(strDefThemeName))// é»˜è®¤ä¸»é¢˜åŒ…
 			{
 				DataNode.SetAttribute(XML_SKIN,XML_DEFSKIN);
 			}
@@ -224,7 +225,7 @@ DMCode ProjXml::InitProjTree()
 			}
 
 			hRet0 = InsertProjTreeItem(DataNode,strText,m_hProjThemes);
-			if (0 == strText.CompareNoCase(strDefThemeName))// Ä¬ÈÏÖ÷Ìâ°ü
+			if (0 == strText.CompareNoCase(strDefThemeName))// é»˜è®¤ä¸»é¢˜åŒ…
 			{
 				m_hProjDefTheme = hRet0;
 			}
@@ -238,7 +239,7 @@ DMCode ProjXml::InitProjTree()
 			}
 			AddObj(pDoc);
 
-			// 9.±éÀúimgÀàĞÍ
+			// 9.éå†imgç±»å‹
 			DataNode.SetAttribute(XML_SKIN,XML_DATASKIN);
 			XmlImg = pDoc->m_XmlRoot.FirstChild();
 			while (XmlImg.IsValid())
@@ -247,7 +248,7 @@ DMCode ProjXml::InitProjTree()
 				hRet1 = InsertProjTreeItem(DataNode,strText,hRet0);
 				BindProjTreeData(XmlImg,hRet1);
 
-				// 10.±éÀúimgÎÄ¼ş
+				// 10.éå†imgæ–‡ä»¶
 			    XmlFile = XmlImg.FirstChild(XML_FILE);
 				while (XmlFile.IsValid())
 				{
@@ -264,16 +265,16 @@ DMCode ProjXml::InitProjTree()
 		}   
 		DataNode.SetAttribute(XML_SKIN,XML_DATASKIN);
 	
-		// 11.²åÈë½áµã:È«¾ÖÑùÊ½Æ¤·ôÁĞ±í,Ë½ÓĞÑùÊ½Æ¤·ôÁĞ±í
+		// 11.æ’å…¥ç»“ç‚¹:å…¨å±€æ ·å¼çš®è‚¤åˆ—è¡¨,ç§æœ‰æ ·å¼çš®è‚¤åˆ—è¡¨
 		m_hProjGlobalStyleSkins = InsertProjTreeItem(DataNode,PROJTREE_GLOBALSTYLESKINS,m_hProjLayouts);
 		m_hProjPrivStyleSkins = InsertProjTreeItem(NoDataNode,PROJTREE_PRIVSTYLESKINS,m_hProjLayouts);
 		m_hProjGlobalStyles = InsertProjTreeItem(DataNode,PROJTREE_GLOBALSTYLS,m_hProjGlobalStyleSkins);
 		m_hProjGlobalSkins = InsertProjTreeItem(DataNode,PROJTREE_GLOBALSKINS,m_hProjGlobalStyleSkins);
 
-		// 12.¶ÁÈ¡È«¾ÖxmlµÄÊı¾İ
+		// 12.è¯»å–å…¨å±€xmlçš„æ•°æ®
 		DMXmlNodePtr pData = GetObjByKey(m_hProjGlobal);
 		BindProjTreeData(*pData,m_hProjGlobalStyleSkins);
-		strPath = m_strResDir + pData->Attribute(XML_PATH);
+		strPath = m_strResDir + DMCA2W(pData->Attribute(XML_PATH));
 		pDoc = new DocData(strPath);
 		if (!pDoc->IsValid())
 		{
@@ -284,11 +285,11 @@ DMCode ProjXml::InitProjTree()
 		BindProjTreeData(pDoc->m_XmlRoot,m_hProjGlobalStyles);
 		BindProjTreeData(pDoc->m_XmlRoot,m_hProjGlobalSkins);
 
-		// 13.²åÈë½áµã:È«¾ÖÑùÊ½ÁĞ±í
+		// 13.æ’å…¥ç»“ç‚¹:å…¨å±€æ ·å¼åˆ—è¡¨
 		XmlNode = pDoc->m_XmlRoot.FirstChild(XML_STYLE);
 		while (XmlNode.IsValid())
 		{
-			strText = XmlNode.Attribute(XML_NAME);// ¿ÉÎª¿Õ
+			strText = XmlNode.Attribute(XML_NAME);// å¯ä¸ºç©º
 			if (strText.IsEmpty())
 			{
 				strText = XML_STYLE;
@@ -296,7 +297,7 @@ DMCode ProjXml::InitProjTree()
 			hRet0 = InsertProjTreeItem(DataNode,strText,m_hProjGlobalStyles);
 			BindProjTreeData(XmlNode,hRet0);
 			
-			// ¶ÁÈ¡styleÁĞ±íÊı¾İ
+			// è¯»å–styleåˆ—è¡¨æ•°æ®
 			XmlStyle = XmlNode.FirstChild(XML_STYLE);
 			while (XmlStyle.IsValid())
 			{
@@ -310,11 +311,11 @@ DMCode ProjXml::InitProjTree()
 			XmlNode = XmlNode.NextSibling(XML_STYLE);
 		}
 
-		// 14.²åÈë½áµã:È«¾ÖÆ¤·ôÁĞ±í
+		// 14.æ’å…¥ç»“ç‚¹:å…¨å±€çš®è‚¤åˆ—è¡¨
 		XmlNode = pDoc->m_XmlRoot.FirstChild(XML_SKIN);
 		while (XmlNode.IsValid())
 		{
-			strText = XmlNode.Attribute(XML_NAME);// ¿ÉÎª¿Õ
+			strText = XmlNode.Attribute(XML_NAME);// å¯ä¸ºç©º
 			if (strText.IsEmpty())
 			{
 				strText = XML_SKIN;
@@ -322,7 +323,7 @@ DMCode ProjXml::InitProjTree()
 			hRet0 = InsertProjTreeItem(DataNode,strText,m_hProjGlobalSkins);
 			BindProjTreeData(XmlNode,hRet0);
 
-			// ¶ÁÈ¡skinÁĞ±íÊı¾İ
+			// è¯»å–skinåˆ—è¡¨æ•°æ®
 			XmlSkin = XmlNode.FirstChild();
 			while (XmlSkin.IsValid())
 			{
@@ -336,7 +337,7 @@ DMCode ProjXml::InitProjTree()
 			XmlNode = XmlNode.NextSibling(XML_SKIN);
 		}
 
-		// 15.²åÈë½áµã:DM XmlÁĞ±í
+		// 15.æ’å…¥ç»“ç‚¹:DM Xmlåˆ—è¡¨
 		DMSmartPtrT<ResFolderItem> pLayout = m_pRes->m_pLayout;
 		int nCount = (int)pLayout->GetCount();
 		for (int i=0; i<nCount; i++)
@@ -359,20 +360,20 @@ DMCode ProjXml::InitProjTree()
 			{
 				continue;
 			}
-			DMXmlNode XmlNode = doc.Root(XML_DM);// Ö»ÓĞÒÔdmÎª¸ù½áµãµÄ²ÅÄÜ´´½¨´°¿Ú
+			DMXmlNode XmlNode = doc.Root(XML_DM);// åªæœ‰ä»¥dmä¸ºæ ¹ç»“ç‚¹çš„æ‰èƒ½åˆ›å»ºçª—å£
 			if (!XmlNode.IsValid())
 			{
 				continue;
 			} 
 
-			// Ç°ÃæÅĞ¶ÏÍê³Éºó£¬¿ªÊ¼¼ÓÈëÁĞ±í
+			// å‰é¢åˆ¤æ–­å®Œæˆåï¼Œå¼€å§‹åŠ å…¥åˆ—è¡¨
 			pDoc = new DocData(pItem->m_szPath);
 			if (!AddObj(pDoc))
 			{
 				DM_DELETE(pDoc);
 			}
 
-			// ²åÈëDM´°¿Úid,²¢°ó¶¨µ½layouts
+			// æ’å…¥DMçª—å£id,å¹¶ç»‘å®šåˆ°layouts
 			strText = pItem->m_szName;
 			strPath = m_strResDir + XML_LAYOUT_DMINDEX;
 			DocDataPtr pLayoutDoc = FindDocData(strPath);
@@ -394,18 +395,18 @@ DMCode ProjXml::InitProjTree()
 			}
 			hRet0 = InsertProjTreeItem(DataNode,strText,m_hProjPrivStyleSkins);
 			BindProjTreeData(XmlFile,hRet0);
-			//16.²åÈë½áµã:sub´°¿ÚxmlÁĞ±í
-			InsertProjTreeItem(NoDataNode,L"sub´°¿ÚxmlÁĞ±í",hRet0);
+			//16.æ’å…¥ç»“ç‚¹:subçª—å£xmlåˆ—è¡¨
+			InsertProjTreeItem(NoDataNode,L"subçª—å£xmlåˆ—è¡¨",hRet0);
 
-			//17.²åÈë½áµã:Ë½ÓĞÑùÊ½ÁĞ±í
+			//17.æ’å…¥ç»“ç‚¹:ç§æœ‰æ ·å¼åˆ—è¡¨
 			hRet1 =	InsertProjTreeItem(DataNode,PROJTREE_PRIVSTYLES,hRet0);
 			BindProjTreeData(pDoc->m_XmlRoot,hRet1);
 
-			//18.²åÈë½áµã:Ë½ÓĞÑùÊ½ÀàĞÍ
+			//18.æ’å…¥ç»“ç‚¹:ç§æœ‰æ ·å¼ç±»å‹
 			XmlNode = pDoc->m_XmlRoot.FirstChild(XML_STYLE);
 			while (XmlNode.IsValid())
 			{
-				strText = XmlNode.Attribute(XML_NAME);// ¿ÉÎª¿Õ
+				strText = XmlNode.Attribute(XML_NAME);// å¯ä¸ºç©º
 				if (strText.IsEmpty())
 				{
 					strText = XML_STYLE;
@@ -413,7 +414,7 @@ DMCode ProjXml::InitProjTree()
 				hRet2 = InsertProjTreeItem(DataNode,strText,hRet1);
 				BindProjTreeData(XmlNode,hRet2);
 
-				// ¶ÁÈ¡styleÁĞ±íÊı¾İ
+				// è¯»å–styleåˆ—è¡¨æ•°æ®
 				XmlStyle = XmlNode.FirstChild(XML_STYLE);
 				while (XmlStyle.IsValid())
 				{
@@ -427,14 +428,14 @@ DMCode ProjXml::InitProjTree()
 				XmlNode = XmlNode.NextSibling(XML_STYLE);
 			}
 
-			// 19.²åÈë½áµã:Ë½ÓĞÆ¤·ôÁĞ±í
+			// 19.æ’å…¥ç»“ç‚¹:ç§æœ‰çš®è‚¤åˆ—è¡¨
 			hRet1 =	InsertProjTreeItem(DataNode,PROJTREE_PRIVSKINS,hRet0);
 			BindProjTreeData(pDoc->m_XmlRoot,hRet1);
-			// 20.²åÈë½áµã:Ë½ÓĞskinÀàĞÍ
+			// 20.æ’å…¥ç»“ç‚¹:ç§æœ‰skinç±»å‹
 			XmlNode = pDoc->m_XmlRoot.FirstChild(XML_SKIN);
 			while (XmlNode.IsValid())
 			{
-				strText = XmlNode.Attribute(XML_NAME);// ¿ÉÎª¿Õ
+				strText = XmlNode.Attribute(XML_NAME);// å¯ä¸ºç©º
 				if (strText.IsEmpty())
 				{
 					strText = XML_SKIN;
@@ -442,7 +443,7 @@ DMCode ProjXml::InitProjTree()
 				hRet2 = InsertProjTreeItem(DataNode,strText,hRet1);
 				BindProjTreeData(XmlNode,hRet2);
 
-				// ¶ÁÈ¡skinÁĞ±íÊı¾İ
+				// è¯»å–skinåˆ—è¡¨æ•°æ®
 				XmlSkin = XmlNode.FirstChild();
 				while (XmlSkin.IsValid())
 				{
@@ -460,8 +461,8 @@ DMCode ProjXml::InitProjTree()
 		m_pProjTree->Expand(m_hProjLayouts,DMTVEX_COLLAPSE);
 		m_pProjTree->Expand(m_hProjThemes,DMTVEX_COLLAPSE);
 
-		// É¨Ãè
-		if (IDOK == DM_MessageBox(L"ÊÇ·ñ½øĞĞÍêÕûĞÔÌå¼ì?",MB_OKCANCEL))
+		// æ‰«æ
+		if (IDOK == DM_MessageBox(L"æ˜¯å¦è¿›è¡Œå®Œæ•´æ€§ä½“æ£€?",MB_OKCANCEL))
 		{
 			ProjMenu_Scan();
 		}	
@@ -480,7 +481,7 @@ DMCode ProjXml::ReleaseProjTree()
 		m_pProjTree->RemoveAllItems();
 		DMArrayT<DocDataPtr>::RemoveAll();
 		DMMapT<HDMTREEITEM,DMXmlNodePtr>::RemoveAll();
-		m_strGlobalName = L"";
+		m_strGlobalName = "";
 		m_bSubInit = false;
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -495,7 +496,7 @@ DMCode ProjXml::PopProjTreeMenu(HDMTREEITEM hSel)
 		m_hProjSel = hSel;
 
 		DMXmlDocument Doc;
-		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,L"ds_menu_proj");
+		g_pDMApp->InitDMXmlDocument(Doc, XML_LAYOUT,"ds_menu_proj");
 		DMXmlNode XmlNode = Doc.Root();
 		InitCustomProjMenu(XmlNode);
 		InitSkinPoolsProjMenu(XmlNode);
@@ -705,7 +706,7 @@ DMCode ProjXml::InitSubXmlList()
 			DMXmlNodePtr pData = (DMXmlNodePtr)m_pProjTree->GetItemData(hDMTreeItem);
 			if (pData)
 			{
-				CStringW strPath = m_strResDir + pData->Attribute(XML_PATH);
+				CStringW strPath = m_strResDir + DMCA2W(pData->Attribute(XML_PATH));
 				DocDataPtr pDoc = FindDocData(strPath);
 				if (pDoc)
 				{
@@ -717,7 +718,7 @@ DMCode ProjXml::InitSubXmlList()
 						DMXmlNode DataNode = doc.Base();
 						InitProjTreeNode(DataNode,true);
 						CStringW strSubPath = pSub->m_strXmlPath;
-						// ²éÕÒµ½´Ëpath¶ÔÓ¦µÄxml id
+						// æŸ¥æ‰¾åˆ°æ­¤pathå¯¹åº”çš„xml id
 						HDMTREEITEM hLayout = m_pProjTree->GetChildItem(m_hProjLayoutFiles,false);
 						HDMTREEITEM hFile = m_pProjTree->GetChildItem(hLayout);
 						DMXmlNodePtr pFileData = NULL;
@@ -725,7 +726,7 @@ DMCode ProjXml::InitSubXmlList()
 						while (hFile)
 						{
 							pFileData = (DMXmlNodePtr)m_pProjTree->GetItemData(hFile);
-							CStringW strTempPath = m_strResDir + pFileData->Attribute(XML_PATH);
+							CStringW strTempPath = m_strResDir + DMCA2W(pFileData->Attribute(XML_PATH));
 							if (0 == strTempPath.CompareNoCase(strSubPath))
 							{
 								bFind = true;
@@ -795,7 +796,7 @@ DMCode ProjXml::InitProjTreeNode(DMXmlNode& TreeNode,bool IsData)
 	TreeNode = TreeNode.InsertChildNode(XML_TREEITEM);
 	TreeNode.SetAttribute(XML_SKIN,IsData? XML_DATASKIN:XML_CUSTOMSKIN);
 	TreeNode.SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,ff,ff)");
-	TreeNode.SetAttribute(XML_FONT,L"face:ĞÂËÎÌå,size:12,weight:100");
+	TreeNode.SetAttribute(XML_FONT,L"face:æ–°å®‹ä½“,size:12,weight:100");
 	TreeNode.SetAttribute(XML_CHILDOFFSET,L"0");
 	return DM_ECODE_OK;
 }
@@ -825,6 +826,12 @@ HDMTREEITEM ProjXml::InsertProjTreeItem(DMXmlNode& TreeNode,CStringW strText,HDM
 {
 	TreeNode.SetAttribute(XML_TEXT,strText);
 	return m_pProjTree->InsertItem(TreeNode,hParent);
+}
+
+HDMTREEITEM ProjXml::InsertProjTreeItem(DMXmlNode& TreeNode, CStringA strText, HDMTREEITEM hParent)
+{
+	TreeNode.SetAttribute(XML_TEXT, strText);
+	return m_pProjTree->InsertItem(TreeNode, hParent);
 }
 
 DocDataPtr ProjXml::FindDocData(CStringW strPath)
@@ -901,7 +908,7 @@ DMCode ProjXml::ProjMenu_OpenDir()
 			break;
 		}
 		
-		//1.²¼¾ÖÎÄ¼şÁĞ±í»òËüµÄ×ÓÏî(½öÒ»²ã)£¬´ò¿ªlayoutÎÄ¼ş¼ĞÏÂµÄdmindex.xml
+		//1.å¸ƒå±€æ–‡ä»¶åˆ—è¡¨æˆ–å®ƒçš„å­é¡¹(ä»…ä¸€å±‚)ï¼Œæ‰“å¼€layoutæ–‡ä»¶å¤¹ä¸‹çš„dmindex.xml
 		if (m_hProjLayoutFiles == m_hProjSel
 			||m_hProjLayoutFiles == hPTreeItem)
 		{
@@ -909,32 +916,32 @@ DMCode ProjXml::ProjMenu_OpenDir()
 			break;
 		}
 
-		//2.¸¸½áµãµÄ¸¸½áµãÊÇ²¼¾ÖÎÄ¼şÁĞ±í£¬´ò¿ª×ÔÉí±êÊ¶µÄÎÄ¼ş
+		//2.çˆ¶ç»“ç‚¹çš„çˆ¶ç»“ç‚¹æ˜¯å¸ƒå±€æ–‡ä»¶åˆ—è¡¨ï¼Œæ‰“å¼€è‡ªèº«æ ‡è¯†çš„æ–‡ä»¶
 		if (m_hProjLayoutFiles == hP_PTreeItem)
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-			CStringW strRelativePath = pNode->Attribute(XML_PATH);
+			CStringW strRelativePath = DMCA2W(pNode->Attribute(XML_PATH));
 			strPath += strRelativePath;
 			break;
 		}
 
-		//3.ÑùÊ½-Æ¤·ô(È«¾Ö)ÁĞ±í¼°ÆäËùÓĞ×ÓÏî£¬´ò¿ª¼ÓÔØµÄÈ«¾Öglobal.xmlÎÄ¼ş
+		//3.æ ·å¼-çš®è‚¤(å…¨å±€)åˆ—è¡¨åŠå…¶æ‰€æœ‰å­é¡¹ï¼Œæ‰“å¼€åŠ è½½çš„å…¨å±€global.xmlæ–‡ä»¶
 		if (m_pProjTree->IsAncestor(m_hProjGlobalStyleSkins,m_hProjSel))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjGlobalStyleSkins);
-			CStringW strRelativePath = pNode->Attribute(XML_PATH);
+			CStringW strRelativePath = DMCA2W(pNode->Attribute(XML_PATH));
 			strPath += strRelativePath;
 			break;
 		}
 
-		if (m_hProjPrivStyleSkins!=m_hProjSel && m_pProjTree->IsAncestor(m_hProjPrivStyleSkins,m_hProjSel))//4. ÑùÊ½-Æ¤·ô(Ë½ÓĞ)ÁĞ±íµÄ×Ó½áµã
+		if (m_hProjPrivStyleSkins!=m_hProjSel && m_pProjTree->IsAncestor(m_hProjPrivStyleSkins,m_hProjSel))//4. æ ·å¼-çš®è‚¤(ç§æœ‰)åˆ—è¡¨çš„å­ç»“ç‚¹
 		{
 			HDMTREEITEM hRet = NULL;
-			if (m_hProjPrivStyleSkins == hPTreeItem)//4.1 DM ´°¿Ú¼°ËüµÄË½ÓĞÑùÊ½£¬Ë½ÓĞÆ¤·ô£¬sub´°¿ÚÁĞ±í£¬´ò¿ª¶ÔÓ¦µÄ²¼¾ÖxmlÎÄ¼ş
+			if (m_hProjPrivStyleSkins == hPTreeItem)//4.1 DM çª—å£åŠå®ƒçš„ç§æœ‰æ ·å¼ï¼Œç§æœ‰çš®è‚¤ï¼Œsubçª—å£åˆ—è¡¨ï¼Œæ‰“å¼€å¯¹åº”çš„å¸ƒå±€xmlæ–‡ä»¶
 			{
 				hRet = m_hProjSel;
 			}
-			else if (m_hProjPrivStyleSkins == hP_PTreeItem)//4.2 sub ´°¿ÚÁĞ±í×ÓÏî,´ò¿ªËü×ÔÉíµÄsub xmlÎÄ¼ş
+			else if (m_hProjPrivStyleSkins == hP_PTreeItem)//4.2 sub çª—å£åˆ—è¡¨å­é¡¹,æ‰“å¼€å®ƒè‡ªèº«çš„sub xmlæ–‡ä»¶
 			{
 				hRet = hPTreeItem;
 			}
@@ -946,28 +953,28 @@ DMCode ProjXml::ProjMenu_OpenDir()
 					hRet = m_hProjSel;
 				}
 			}
-			else// ×ÓÁĞµÄ×ÓÁĞ
+			else// å­åˆ—çš„å­åˆ—
 			{
 				hRet = hP_P_PTreeItem;
 			}
 
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hRet);
-			CStringW strRelativePath = pNode->Attribute(XML_PATH);
+			CStringW strRelativePath = DMCA2W(pNode->Attribute(XML_PATH));
 			strPath += strRelativePath;
 			break;
 		}
 
-		//5.Ö÷Ìâ°üÁĞ±í£¬´ò¿ªthemesÎÄ¼ş¼ĞÏÂµÄdmindex.xml
+		//5.ä¸»é¢˜åŒ…åˆ—è¡¨ï¼Œæ‰“å¼€themesæ–‡ä»¶å¤¹ä¸‹çš„dmindex.xml
 		if (m_hProjThemes == m_hProjSel)
 		{
 			strPath += XML_THEMES_DMINDEX;
 			break;
 		}
 
-		if (m_pProjTree->IsAncestor(m_hProjThemes,m_hProjSel))// Ç°Ãæ¹ıÂËÁËÖ÷Ìâ°üÁĞ±í
+		if (m_pProjTree->IsAncestor(m_hProjThemes,m_hProjSel))// å‰é¢è¿‡æ»¤äº†ä¸»é¢˜åŒ…åˆ—è¡¨
 		{
 			HDMTREEITEM hRet = NULL;
-			if (m_hProjThemes == hPTreeItem)//6.¸÷Ö÷Ìâ°ü¼°ËüµÄ×ÓÏîÀàĞÍ,´ò¿ª×Ô¼ºÎÄ¼ş¼ĞÏÂµÄdmindex.xml
+			if (m_hProjThemes == hPTreeItem)//6.å„ä¸»é¢˜åŒ…åŠå®ƒçš„å­é¡¹ç±»å‹,æ‰“å¼€è‡ªå·±æ–‡ä»¶å¤¹ä¸‹çš„dmindex.xml
 			{
 				hRet = m_hProjSel;
 			}
@@ -975,21 +982,21 @@ DMCode ProjXml::ProjMenu_OpenDir()
 			{
 				hRet = hPTreeItem;
 			}
-			else if (m_hProjThemes == hP_P_PTreeItem)//7. ¸÷Ö÷Ìâ°üµÄÎÄ¼ş(Í¼Æ¬),´ò¿ª×ÔÉíÎÄ¼ş
+			else if (m_hProjThemes == hP_P_PTreeItem)//7. å„ä¸»é¢˜åŒ…çš„æ–‡ä»¶(å›¾ç‰‡),æ‰“å¼€è‡ªèº«æ–‡ä»¶
 			{
 				DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-				CStringW strRelativePath = pNode->Attribute(XML_PATH);
+				CStringW strRelativePath = DMCA2W(pNode->Attribute(XML_PATH));
 				strPath += strRelativePath;
 				break;
 			}
 
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hRet);
-			CStringW strRelativePath = pNode->Attribute(XML_PATH);
+			CStringW strRelativePath = DMCA2W(pNode->Attribute(XML_PATH));
 			strPath += strRelativePath;
 			break;
 		}
 	} while (false);
-	//8. ÆäÓàÈ«²¿Ä¬ÈÏ´ò¿ª¸ùÎÄ¼ş¼ĞÄ¿Â¼
+	//8. å…¶ä½™å…¨éƒ¨é»˜è®¤æ‰“å¼€æ ¹æ–‡ä»¶å¤¹ç›®å½•
 	OpenFolderAndSelectFile(strPath);
 	return DM_ECODE_OK;
 }
@@ -1000,7 +1007,7 @@ DMCode ProjXml::ProjMenu_Scan()
 	do 
 	{     
 		DMSmartPtrT<ScanDlg> pScanDlg;pScanDlg.Attach(new ScanDlg);
-		pScanDlg->DoModal(L"ds_scandlg",g_pMainWnd->m_hWnd,true);
+		pScanDlg->DoModal("ds_scandlg",g_pMainWnd->m_hWnd,true);
 		    
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1013,7 +1020,7 @@ DMCode ProjXml::ProjMenu_AddSkinPool()
 	do 
 	{  
 		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg);
-		pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal("ds_pooldlg",g_pMainWnd->m_hWnd,true);
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
@@ -1024,14 +1031,14 @@ DMCode ProjXml::ProjMenu_DelSkinPool()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{  
-		if (IDOK == DM_MessageBox(L"É¾³ıÆ¤·ô³ØÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËÆ¤·ô³ØÖĞÆ¤·ôÎ´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤çš®è‚¤æ± æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤çš®è‚¤æ± ä¸­çš®è‚¤æœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
-			//1.È¡µÃ´ËÆ¤·ô³Ø¸¸½áµã
+			//1.å–å¾—æ­¤çš®è‚¤æ± çˆ¶ç»“ç‚¹
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hParent);
 	
-			//2. ÒÆ³ı×ÔÉíµÄÈ«²¿×Ó½áµãµÄmap
+			//2. ç§»é™¤è‡ªèº«çš„å…¨éƒ¨å­ç»“ç‚¹çš„map
 			HDMTREEITEM hChild = m_pProjTree->GetChildItem(m_hProjSel);
 			while (hChild)
 			{
@@ -1039,13 +1046,13 @@ DMCode ProjXml::ProjMenu_DelSkinPool()
 				hChild = m_pProjTree->GetNextSiblingItem(hChild);
 			}
 			
-			//3.´Ó¸¸xml½ÚµãÒÆ³ıÆ¤·ô³Ø½áµã
+			//3.ä»çˆ¶xmlèŠ‚ç‚¹ç§»é™¤çš®è‚¤æ± ç»“ç‚¹
 			pParentNode->RemoveChildNode(pNode);
 
-			//4.½«¶ÔÓ¦xmlÉèÖÃÎªÎ´±£´æ
+			//4.å°†å¯¹åº”xmlè®¾ç½®ä¸ºæœªä¿å­˜
 			SetDocUnSave(pParentNode);
 
-			//5.ÒÆ³ı×ÔÉíµÄmap+tree
+			//5.ç§»é™¤è‡ªèº«çš„map+tree
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 		}
@@ -1061,8 +1068,8 @@ DMCode ProjXml::ProjMenu_EditSkinPool()
 	do 
 	{
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg(true,true,pNode->Attribute(XML_NAME)));
-		pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg(true,true,DMCA2W(pNode->Attribute(XML_NAME))));
+		pDlg->DoModal(DM_XNTEXT("ds_pooldlg"),g_pMainWnd->m_hWnd,true);
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
@@ -1074,7 +1081,7 @@ DMCode ProjXml::ProjMenu_AddStylePool()
 	do 
 	{
 		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg(false));
-		pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_pooldlg"),g_pMainWnd->m_hWnd,true);
 		iErr = DM_ECODE_OK;
 	} while (false);
 	return iErr;
@@ -1085,7 +1092,7 @@ DMCode ProjXml::ProjMenu_DelStylePool()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıÑùÊ½³ØÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËÑùÊ½³ØÖĞÑùÊ½Î´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤æ ·å¼æ± æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤æ ·å¼æ± ä¸­æ ·å¼æœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
@@ -1116,8 +1123,8 @@ DMCode ProjXml::ProjMenu_EditStylePool()
 	do 
 	{
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg(false,true,pNode->Attribute(XML_NAME)));
-		pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+		DMSmartPtrT<PoolDlg> pDlg;pDlg.Attach(new PoolDlg(false,true,DMCA2W(pNode->Attribute(XML_NAME))));
+		pDlg->DoModal(DM_XNTEXT("ds_pooldlg"),g_pMainWnd->m_hWnd,true);
 		iErr = DM_ECODE_OK;
 
 		iErr = DM_ECODE_OK;
@@ -1131,7 +1138,7 @@ DMCode ProjXml::ProjMenu_AddSkin()
 	do 
 	{
 		DMSmartPtrT<SkinDlg> pSkinDlg;pSkinDlg.Attach(new SkinDlg());
-		pSkinDlg->DoModal(L"ds_skindlg",g_pMainWnd->m_hWnd,true);
+		pSkinDlg->DoModal(DM_XNTEXT("ds_skindlg"),g_pMainWnd->m_hWnd,true);
 			
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1143,19 +1150,19 @@ DMCode ProjXml::ProjMenu_DelSkin()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıÆ¤·ôÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËÆ¤·ôÎ´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤çš®è‚¤æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤çš®è‚¤æœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
-			//1. ´ÓËùÊôÆ¤·ô³ØÖĞÒÆ³ıxml½áµã
+			//1. ä»æ‰€å±çš®è‚¤æ± ä¸­ç§»é™¤xmlç»“ç‚¹
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hParent);
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			pParentNode->RemoveChildNode(pNode);
 			
-			//2. ´Ó¸¸treeÖĞÉ¾³ı´ËÆ¤·ô½áµã
+			//2. ä»çˆ¶treeä¸­åˆ é™¤æ­¤çš®è‚¤ç»“ç‚¹
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 
-			//3. ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+			//3. è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 			SetDocUnSave(pParentNode);
 		}
 
@@ -1170,7 +1177,7 @@ DMCode ProjXml::ProjMenu_EditSkin()
 	do 
 	{ 
 		DMSmartPtrT<SkinDlg> pSkinDlg;pSkinDlg.Attach(new SkinDlg(true));
-		pSkinDlg->DoModal(L"ds_skindlg",g_pMainWnd->m_hWnd,true);
+		pSkinDlg->DoModal(DM_XNTEXT("ds_skindlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1183,7 +1190,7 @@ DMCode ProjXml::ProjMenu_AddStyle()
 	do 
 	{
 		DMSmartPtrT<StyleDlg> pStyleDlg;pStyleDlg.Attach(new StyleDlg(false));
-		pStyleDlg->DoModal(L"ds_styledlg",g_pMainWnd->m_hWnd,true);
+		pStyleDlg->DoModal(DM_XNTEXT("ds_styledlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1195,19 +1202,19 @@ DMCode ProjXml::ProjMenu_DelStyle()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıÑùÊ½ÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËÑùÊ½Î´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤æ ·å¼æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤æ ·å¼æœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
-			//1. ´ÓËùÊôÑùÊ½³ØÖĞÒÆ³ıxml½Úµã
+			//1. ä»æ‰€å±æ ·å¼æ± ä¸­ç§»é™¤xmlèŠ‚ç‚¹
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hParent);
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			pParentNode->RemoveChildNode(pNode);
 
-			//2. ´Ó¸¸treeÖĞÉ¾³ı´Ë½áµã
+			//2. ä»çˆ¶treeä¸­åˆ é™¤æ­¤ç»“ç‚¹
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 
-			//3. ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+			//3. è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 			SetDocUnSave(pParentNode);
 		}
 
@@ -1222,7 +1229,7 @@ DMCode ProjXml::ProjMenu_EditStyle()
 	do 
 	{
 		DMSmartPtrT<StyleDlg> pStyleDlg;pStyleDlg.Attach(new StyleDlg(true));
-		pStyleDlg->DoModal(L"ds_styledlg",g_pMainWnd->m_hWnd,true);
+		pStyleDlg->DoModal(DM_XNTEXT("ds_styledlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1235,7 +1242,7 @@ DMCode ProjXml::ProjMenu_AddImgType()
 	do 
 	{
 		DMSmartPtrT<ImgTypeDlg> pDlg;pDlg.Attach(new ImgTypeDlg());
-		pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_pooldlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1247,21 +1254,21 @@ DMCode ProjXml::ProjMenu_DelImgType()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıImgÀàĞÍÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËImgÀàĞÍÖĞImgÎ´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤Imgç±»å‹æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤Imgç±»å‹ä¸­Imgæœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hParent);
-			CStringW strPath = m_strResDir + pParentNode->Attribute(XML_PATH);
+			CStringW strPath = m_strResDir + DMCA2W(pParentNode->Attribute(XML_PATH));
 			DocDataPtr pDoc  = FindDocData(strPath);
-			CStringW strThemeName = pParentNode->Attribute(XML_NAME);
+			CStringA strThemeName = pParentNode->Attribute(XML_NAME);
 			if (NULL == pDoc)
 			{
-				DM_MessageBox(L"´ËÖ÷Ìâ°üÎª¿Õ,ÇëÏÈÉ¨Ãè´íÎó",MB_OK);
+				DM_MessageBox(L"æ­¤ä¸»é¢˜åŒ…ä¸ºç©º,è¯·å…ˆæ‰«æé”™è¯¯",MB_OK);
 				break;
 			}
-			//1.ÒÆ³ı×ÔÉíµÄÈ«²¿×Ó½áµãµÄmap,Í¬Ê±ÒÆ³ıResÖĞµÄÏî
-			CStringW strType = pNode->GetName();
+			//1.ç§»é™¤è‡ªèº«çš„å…¨éƒ¨å­ç»“ç‚¹çš„map,åŒæ—¶ç§»é™¤Resä¸­çš„é¡¹
+			CStringA strType = pNode->GetName();
 			HDMTREEITEM hChild = m_pProjTree->GetChildItem(m_hProjSel);
 			while (hChild)
 			{
@@ -1271,17 +1278,17 @@ DMCode ProjXml::ProjMenu_DelImgType()
 				hChild = m_pProjTree->GetNextSiblingItem(hChild);
 			}
 
-			//2.ÒÆ³ı×ÔÉíxml½Úµã£¬²¢ÉèÖÃxmlÎªÎ´±£´æ×´Ì¬
+			//2.ç§»é™¤è‡ªèº«xmlèŠ‚ç‚¹ï¼Œå¹¶è®¾ç½®xmlä¸ºæœªä¿å­˜çŠ¶æ€
 			pDoc->m_XmlRoot.RemoveChildNode(pNode);
 			SetDocUnSave(strPath);
 
-			//3.ÒÆ³ı×ÔÉíµÄmapºÍtree½áµã
+			//3.ç§»é™¤è‡ªèº«çš„mapå’Œtreeç»“ç‚¹
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 
-			//4. ×Ô¶¯Ìå¼ì
+			//4. è‡ªåŠ¨ä½“æ£€
 			DMSmartPtrT<ScanDlg> pScanDlg;pScanDlg.Attach(new ScanDlg);
-			pScanDlg->DoModal(L"ds_scandlg",g_pMainWnd->m_hWnd,true);
+			pScanDlg->DoModal(DM_XNTEXT("ds_scandlg"),g_pMainWnd->m_hWnd,true);
 		}
 
 		iErr = DM_ECODE_OK;
@@ -1294,11 +1301,11 @@ DMCode ProjXml::ProjMenu_EditImgType()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"¸Ä±äImgÀàĞÍÊÇ¼«¶ËÎ£ÏÕµÄ!!\r\nÇëÈ·ÈÏËüµÄËùÓĞ×ÓÏî´ÓÎ´±»ÈÎºÎskinÊ¹ÓÃ¹ı!!\r\nĞŞ¸Ä±£´æºóÇëÖØĞÂ¼ÓÔØRes",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"æ”¹å˜Imgç±»å‹æ˜¯æç«¯å±é™©çš„!!\r\nè¯·ç¡®è®¤å®ƒçš„æ‰€æœ‰å­é¡¹ä»æœªè¢«ä»»ä½•skinä½¿ç”¨è¿‡!!\r\nä¿®æ”¹ä¿å­˜åè¯·é‡æ–°åŠ è½½Res",MB_OKCANCEL))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-			DMSmartPtrT<ImgTypeDlg> pDlg;pDlg.Attach(new ImgTypeDlg(true,pNode->GetName()));
-			pDlg->DoModal(L"ds_pooldlg",g_pMainWnd->m_hWnd,true);
+			DMSmartPtrT<ImgTypeDlg> pDlg;pDlg.Attach(new ImgTypeDlg(true, DMCA2W(pNode->GetName())));
+			pDlg->DoModal(DM_XNTEXT("ds_pooldlg"),g_pMainWnd->m_hWnd,true);
 		} 
 
 		iErr = DM_ECODE_OK;
@@ -1312,7 +1319,7 @@ DMCode ProjXml::ProjMenu_AddTheme()
 	do 
 	{
 		DMSmartPtrT<ThemeDlg> pDlg;pDlg.Attach(new ThemeDlg());
-		pDlg->DoModal(L"ds_themedlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_themedlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1324,16 +1331,16 @@ DMCode ProjXml::ProjMenu_DelTheme()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıÖ÷Ìâ°üÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËÖ÷Ìâ°üÖĞÍ¼Æ¬Î´±»skinÊ¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤ä¸»é¢˜åŒ…æ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤ä¸»é¢˜åŒ…ä¸­å›¾ç‰‡æœªè¢«skinä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
-			//1.È¡µÃ¸¸½áµã,´Ó¸¸½áµãµÄxmlÖĞÒÆ³ı´ËÖ÷Ìâ°ü½áµã
+			//1.å–å¾—çˆ¶ç»“ç‚¹,ä»çˆ¶ç»“ç‚¹çš„xmlä¸­ç§»é™¤æ­¤ä¸»é¢˜åŒ…ç»“ç‚¹
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hParent = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pParentNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hParent);
 			pParentNode->RemoveChildNode(pNode);
 
-			//2.Èç¹ûÉ¾³ıµÄÊÇÊÇÄ¬ÈÏÖ÷Ìâ°ü,Ôò°Ñ¸¸½áµãµÄÏà¹ØÊôĞÔÇå¿Õ
-			CStringW strThemeName = pNode->Attribute(XML_NAME);
+			//2.å¦‚æœåˆ é™¤çš„æ˜¯æ˜¯é»˜è®¤ä¸»é¢˜åŒ…,åˆ™æŠŠçˆ¶ç»“ç‚¹çš„ç›¸å…³å±æ€§æ¸…ç©º
+			CStringA strThemeName = pNode->Attribute(XML_NAME);
 			if (m_hProjDefTheme == m_hProjSel)
 			{
 				pParentNode->RemoveAttribute(XML_NAME);
@@ -1341,12 +1348,12 @@ DMCode ProjXml::ProjMenu_DelTheme()
 			}
 		
 
-			//3.ÒÆ³ı×ÔÉíµÄÈ«²¿×Ó½áµãµÄmap,Í¬Ê±ÒÆ³ıResÖĞµÄÏî
+			//3.ç§»é™¤è‡ªèº«çš„å…¨éƒ¨å­ç»“ç‚¹çš„map,åŒæ—¶ç§»é™¤Resä¸­çš„é¡¹
 			HDMTREEITEM hType = m_pProjTree->GetChildItem(m_hProjSel);
 			while (hType)
 			{
 				DMXmlNodePtr pTypeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hType);
-				CStringW strType = pTypeNode->GetName();
+				CStringA strType = pTypeNode->GetName();
 				HDMTREEITEM hImg = m_pProjTree->GetChildItem(hType);
 				while (hImg)
 				{
@@ -1359,16 +1366,16 @@ DMCode ProjXml::ProjMenu_DelTheme()
 				hType = m_pProjTree->GetNextSiblingItem(hType);
 			}
 
-			//4.ÉèÖÃnodeËùÔÚxmlÎ´±£´æ×´Ì¬
+			//4.è®¾ç½®nodeæ‰€åœ¨xmlæœªä¿å­˜çŠ¶æ€
 			SetDocUnSave(pParentNode);
 
-			//5.ÒÆ³ı×ÔÉíµÄmap+tree
+			//5.ç§»é™¤è‡ªèº«çš„map+tree
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 
-			//6.×Ô¶¯Ìå¼ì
+			//6.è‡ªåŠ¨ä½“æ£€
 			DMSmartPtrT<ScanDlg> pScanDlg;pScanDlg.Attach(new ScanDlg);
-			pScanDlg->DoModal(L"ds_scandlg",g_pMainWnd->m_hWnd,true);
+			pScanDlg->DoModal(DM_XNTEXT("ds_scandlg"),g_pMainWnd->m_hWnd,true);
 		}
 
 		iErr = DM_ECODE_OK;
@@ -1382,12 +1389,12 @@ DMCode ProjXml::ProjMenu_EditTheme()
 	do 
 	{
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-		CStringW strThemeName = pNode->Attribute(XML_NAME);
-		CStringW strDir = pNode->Attribute(XML_PATH);
+		CStringA strThemeName = pNode->Attribute(XML_NAME);
+		CStringW strDir = DMCA2W(pNode->Attribute(XML_PATH));
 		strDir = strDir.Left(strDir.ReverseFind(L'\\'));
 		strDir = strDir.Right(strDir.GetLength()-strDir.ReverseFind(L'\\')-1);
 		DMSmartPtrT<ThemeDlg> pDlg;pDlg.Attach(new ThemeDlg(true,strThemeName,strDir));
-		pDlg->DoModal(L"ds_themedlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_themedlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1399,9 +1406,9 @@ DMCode ProjXml::ProjMenu_SetDefTheme()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		//1. ¸Ä±ätreeÉÏµÄÄ¬ÈÏÖ÷ÌâÏÔÊ¾Æ¤·ô
+		//1. æ”¹å˜treeä¸Šçš„é»˜è®¤ä¸»é¢˜æ˜¾ç¤ºçš®è‚¤
 		DMXmlNodePtr pThemesNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjThemes);
-		CStringW strDefThemeName = pThemesNode->Attribute(XML_NAME);
+		CStringA strDefThemeName = pThemesNode->Attribute(XML_NAME);
 		if (NULL != m_hProjDefTheme)
 		{
 			DM::LPTVITEMEX pDefData = m_pProjTree->GetItem(m_hProjDefTheme);
@@ -1411,16 +1418,16 @@ DMCode ProjXml::ProjMenu_SetDefTheme()
 		DM::LPTVITEMEX pData = m_pProjTree->GetItem(m_hProjSel);
 		pData->pPanel->SetAttribute(XML_SKIN,XML_DEFSKIN);
 
-		// 2.¸üĞÂ¸¸xml½áµãÄ¬ÈÏÖ÷Ìâ°üÃû³Æ
+		// 2.æ›´æ–°çˆ¶xmlç»“ç‚¹é»˜è®¤ä¸»é¢˜åŒ…åç§°
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 		pThemesNode->SetAttribute(XML_NAME,pNode->Attribute(XML_NAME));
 
 		m_hProjDefTheme = m_hProjSel;
 
-		// 3.½«themesµÄdmindex.xmlÉèÖÃÎªÎ´±£´æ×´Ì¬
+		// 3.å°†themesçš„dmindex.xmlè®¾ç½®ä¸ºæœªä¿å­˜çŠ¶æ€
 		SetDocUnSave(pThemesNode);
 
-		// 4.°ÑRes½âÎöÆ÷ÖĞÄ¬ÈÏÖ÷ÌâµÄÃû×Ö»»µô
+		// 4.æŠŠResè§£æå™¨ä¸­é»˜è®¤ä¸»é¢˜çš„åå­—æ¢æ‰
 		m_pRes->SetCurTheme(pNode->Attribute(XML_NAME));
 
 		iErr = DM_ECODE_OK;
@@ -1435,7 +1442,7 @@ DMCode ProjXml::ProjMenu_AddImg()
 	{
 
 		DMSmartPtrT<ImgDlg> pDlg;pDlg.Attach(new ImgDlg());
-		pDlg->DoModal(L"ds_imgdlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_imgdlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1447,7 +1454,7 @@ DMCode ProjXml::ProjMenu_DelImg()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıImgÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËImgÎ´±»skinÊ¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤Imgæ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤Imgæœªè¢«skinä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hType = m_pProjTree->GetParentItem(m_hProjSel);
@@ -1455,22 +1462,22 @@ DMCode ProjXml::ProjMenu_DelImg()
 			HDMTREEITEM hTheme = m_pProjTree->GetParentItem(hType);
 			DMXmlNodePtr pThemeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hTheme);
 
-			//1.´Ó¸¸xmlÖĞÒÆ³ı×ÔÉí,²¢ÉèÖÃ³ÉÎ´±£´æ×´Ì¬
+			//1.ä»çˆ¶xmlä¸­ç§»é™¤è‡ªèº«,å¹¶è®¾ç½®æˆæœªä¿å­˜çŠ¶æ€
 			pTypeNode->RemoveChildNode(pNode);
 			SetDocUnSave(pTypeNode);
 
-			//2.´ÓRes½âÎöÆ÷ÖĞÒÆ³ı
-			CStringW strType = pTypeNode->GetName();
-			CStringW strThemeName = pThemeNode->Attribute(XML_NAME);
+			//2.ä»Resè§£æå™¨ä¸­ç§»é™¤
+			CStringA strType = pTypeNode->GetName();
+			CStringA strThemeName = pThemeNode->Attribute(XML_NAME);
 			m_pRes->RemoveResItem(strType,pNode->Attribute(XML_NAME),strThemeName);
 
-			//3.ÒÆ³ı×ÔÉímap+tree
+			//3.ç§»é™¤è‡ªèº«map+tree
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 
-			//4.×Ô¶¯Ìå¼ì
+			//4.è‡ªåŠ¨ä½“æ£€
 			DMSmartPtrT<ScanDlg> pScanDlg;pScanDlg.Attach(new ScanDlg);
-			pScanDlg->DoModal(L"ds_scandlg",g_pMainWnd->m_hWnd,true);
+			pScanDlg->DoModal(DM_XNTEXT("ds_scandlg"),g_pMainWnd->m_hWnd,true);
 		}
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1482,10 +1489,10 @@ DMCode ProjXml::ProjMenu_EditImg()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"¸Ä±äImgÊÇÎ£ÏÕµÄ!!\r\nÇëÈ·ÈÏËü´ÓÎ´±»ÈÎºÎskinÊ¹ÓÃ¹ı!!",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"æ”¹å˜Imgæ˜¯å±é™©çš„!!\r\nè¯·ç¡®è®¤å®ƒä»æœªè¢«ä»»ä½•skinä½¿ç”¨è¿‡!!",MB_OKCANCEL))
 		{
 			DMSmartPtrT<ImgDlg> pDlg;pDlg.Attach(new ImgDlg(true));
-			pDlg->DoModal(L"ds_imgdlg",g_pMainWnd->m_hWnd,true);
+			pDlg->DoModal(DM_XNTEXT("ds_imgdlg"),g_pMainWnd->m_hWnd,true);
 		} 
 
 		iErr = DM_ECODE_OK;
@@ -1499,7 +1506,7 @@ DMCode ProjXml::ProjMenu_AddLayout()
 	do 
 	{
 		DMSmartPtrT<LayoutDlg> pDlg;pDlg.Attach(new LayoutDlg());
-		pDlg->DoModal(L"ds_layoutdlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_layoutdlg"),g_pMainWnd->m_hWnd,true);
 	
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1511,21 +1518,21 @@ DMCode ProjXml::ProjMenu_DelLayout()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		if (IDOK == DM_MessageBox(L"É¾³ıLAYOUTÊÇÓĞ·çÏÕµÄ\r\nÇëÈ·ÈÏ´ËLAYOUTÎ´±»Ê¹ÓÃ£¿",MB_OKCANCEL))
+		if (IDOK == DM_MessageBox(L"åˆ é™¤LAYOUTæ˜¯æœ‰é£é™©çš„\r\nè¯·ç¡®è®¤æ­¤LAYOUTæœªè¢«ä½¿ç”¨ï¼Ÿ",MB_OKCANCEL))
 		{
 			DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
 			HDMTREEITEM hType = m_pProjTree->GetParentItem(m_hProjSel);
 			DMXmlNodePtr pTypeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hType);
 
-			//1.´Ó¸¸xmlÖĞÒÆ³ı×ÔÉí,²¢ÉèÖÃ³ÉÎ´±£´æ×´Ì¬
+			//1.ä»çˆ¶xmlä¸­ç§»é™¤è‡ªèº«,å¹¶è®¾ç½®æˆæœªä¿å­˜çŠ¶æ€
 			pTypeNode->RemoveChildNode(pNode);
 			SetDocUnSave(pTypeNode);
 
-			//2.´ÓRes½âÎöÆ÷ÖĞÒÆ³ı
-			CStringW strType = pTypeNode->GetName();
+			//2.ä»Resè§£æå™¨ä¸­ç§»é™¤
+			CStringA strType = pTypeNode->GetName();
 			m_pRes->RemoveResItem(strType,pNode->Attribute(XML_NAME),NULL);
 
-			//3.ÒÆ³ı×ÔÉímap+tree
+			//3.ç§»é™¤è‡ªèº«map+tree
 			RemoveKey(m_hProjSel);
 			m_pProjTree->RemoveItem(m_hProjSel);
 		}
@@ -1541,7 +1548,7 @@ DMCode ProjXml::ProjMenu_EditLayout()
 	do 
 	{
 		DMSmartPtrT<LayoutDlg> pDlg;pDlg.Attach(new LayoutDlg(true));
-		pDlg->DoModal(L"ds_layoutdlg",g_pMainWnd->m_hWnd,true);
+		pDlg->DoModal(DM_XNTEXT("ds_layoutdlg"),g_pMainWnd->m_hWnd,true);
 
 		iErr = DM_ECODE_OK;
 	} while (false);
@@ -1816,14 +1823,14 @@ DMCode ProjXml::InitThemeMenu(DMXmlNode& XmlNode)
 				XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_EDITTHEME-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_EDITTHEME-PROJMENU_BASE].text);
 				
 				DMXmlNodePtr pThemesNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjThemes);
-				CStringW strDefThemeName = pThemesNode->Attribute(XML_NAME);
+				CStringA strDefThemeName = pThemesNode->Attribute(XML_NAME);
 				DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_hProjSel);
-				CStringW strThemeName = pNode->Attribute(XML_NAME);
+				CStringA strThemeName = pNode->Attribute(XML_NAME);
 				XmlItem = XmlNode.InsertChildNode(XML_ITEM);
 				XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_SETDEFTHEME-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_SETDEFTHEME-PROJMENU_BASE].text);
 				if (0 == strDefThemeName.CompareNoCase(strThemeName))
 				{
-					XmlItem.SetAttribute(L"bdisable",L"1");
+					XmlItem.SetAttribute("bdisable","1");
 				}
 
 				Init_Debug_XmlBuf(XmlNode);
@@ -1900,10 +1907,10 @@ DMCode ProjXml::InitLayoutMenu(DMXmlNode& XmlNode)
 		if (hParent)
 		{
 			CStringW strText = GetProjTreeItemText(hParent);
-			if (0 == strText.CompareNoCase(PROJTREE_LAYOUTFILES))// ¸¸´°¿ÚÎª²¼¾ÖÎÄ¼şÁĞ±í
+			if (0 == strText.CompareNoCase(PROJTREE_LAYOUTFILES))// çˆ¶çª—å£ä¸ºå¸ƒå±€æ–‡ä»¶åˆ—è¡¨
 			{
 				strText = GetProjTreeItemText(m_hProjSel);
-				if (0 == strText.CompareNoCase(XML_LAYOUT))// ×ÔÉí´°¿ÚÎªLAYOUT
+				if (0 == strText.CompareNoCase(_TEXT(XML_LAYOUT)))// è‡ªèº«çª—å£ä¸ºLAYOUT
 				{
 					XmlNode.InsertChildNode(XML_SEP);
 					DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
@@ -1919,17 +1926,17 @@ DMCode ProjXml::InitLayoutMenu(DMXmlNode& XmlNode)
 		if (hParentParent)
 		{
 			CStringW strText = GetProjTreeItemText(hParentParent);
-			if (0 == strText.CompareNoCase(PROJTREE_LAYOUTFILES))// ¸¸´°¿ÚµÄ¸¸´°¿ÚÎª²¼¾ÖÎÄ¼şÁĞ±í
+			if (0 == strText.CompareNoCase(PROJTREE_LAYOUTFILES))// çˆ¶çª—å£çš„çˆ¶çª—å£ä¸ºå¸ƒå±€æ–‡ä»¶åˆ—è¡¨
 			{
 				strText = GetProjTreeItemText(hParent);
 				XmlNode.InsertChildNode(XML_SEP);
 				DMXmlNode XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-				XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_EDITLAYOUT-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_EDITLAYOUT-PROJMENU_BASE].text);
+				XmlItem.SetAttributeInt(XML_ID,(g_ProjMenuItem[PROJMENU_EDITLAYOUT-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_EDITLAYOUT-PROJMENU_BASE].text);
 				Init_Debug_XmlBuf(XmlNode);
-				if (0 == strText.CompareNoCase(XML_LAYOUT))// ×ÔÉí´°¿ÚÎªLAYOUTµÄ×Ó´°¿Ú
+				if (0 == strText.CompareNoCase(_TEXT(XML_LAYOUT))) // è‡ªèº«çª—å£ä¸ºLAYOUTçš„å­çª—å£
 				{
 					XmlItem = XmlNode.InsertChildNode(XML_ITEM);
-					XmlItem.SetAttribute(XML_ID,IntToString(g_ProjMenuItem[PROJMENU_DELLAYOUT-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_DELLAYOUT-PROJMENU_BASE].text);
+					XmlItem.SetAttributeInt(XML_ID,(g_ProjMenuItem[PROJMENU_DELLAYOUT-PROJMENU_BASE].id));XmlItem.SetAttribute(XML_TEXT,g_ProjMenuItem[PROJMENU_DELLAYOUT-PROJMENU_BASE].text);
 					Init_Debug_XmlBuf(XmlNode);
 				}
 				iErr = DM_ECODE_OK;

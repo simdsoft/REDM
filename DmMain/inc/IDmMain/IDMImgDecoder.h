@@ -39,7 +39,7 @@ namespace DM
 	/// </summary>
 	class IDMImgDecoder:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMImgDecoder,L"IDMImgDecoder",DMREG_ImgDecoder);
+		DMDECLARE_CLASS_NAME(IDMImgDecoder,"IDMImgDecoder",DMREG_ImgDecoder);
 	public:
 		virtual ~IDMImgDecoder(){};
 

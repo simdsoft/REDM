@@ -41,6 +41,25 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< 树形控件的定义
 #define DMASSERT									  assert
 #define DMASSERT_EXPR(expr, msg)                      _ASSERT_EXPR(expr, msg)   ///;LOG_ERR(msg)
 #define DM_INVALID_VALUE                              ((LONG_PTR)-1)			///< 通用的非法返回
+#define DMASSERT_EXPRA(expr, msg)                     _ASSERT_EXPR((expr), _CRT_WIDE(#expr))
+
+// ----------------------------------------------------
+// The DMASSERT_EXPRA_FMT/DMASSERT_EXPRA
+#if defined(_DEBUG)
+// short message ascii only
+#define DMASSERT_MSG_FMT(expr, fmt, ...) do { \
+ int n = _scprintf(fmt, ##__VA_ARGS__); \
+ char* buf = (char*)_malloca(n + 1); \
+ sprintf(buf, fmt, ##__VA_ARGS__); \
+ DMASSERT_EXPR(expr, (LPCWSTR)DMCA2W(buf)); \
+} while(false)
+#else
+#define DMASSERT_MSG_FMT(expr, fmt, ...) (void)0
+#endif
+#define DMASSERT_MSG(expr, msg) DMASSERT_MSG_FMT(expr, "%s", msg)
+
+#define DMFAIL_MSG_FMT(fmt, ...) DMASSERT_MSG_FMT(0, fmt, ##__VA_ARGS__)
+#define DMFAIL_MSG(msg) DMFAIL_MSG_FMT(0, "%s", msg)
 
 // ----------------------------------------------------
 // HSLA变化
@@ -186,7 +205,7 @@ enum DMOLEDCFLAGS
 #define	   __STR2WSTR(str)						     L##str
 #endif
 
-#define	   ID2NAME(x)								 L#x
+#define	   ID2NAME(x)								 #x
 #define    DMABS(x)                                 ((x)>=0?(x):-(x))
 #define	   DMMAX(a,b)								(((a) > (b)) ? (a) : (b))
 #define    DMMIN(a,b)							    (((a) < (b)) ? (a) : (b))
@@ -197,13 +216,13 @@ enum DMOLEDCFLAGS
 
 // ----------------------------------------------------
 //  XML节点宏
-#define    RES_GLOBAL                               L"global"                   ///< 全局
-#define	   RES_LAYOUT								L"layout"					///< 布局
-#define    RES_THEMES								L"themes"					///< 主题包列表
+#define    RES_GLOBAL                               "global"                   ///< 全局
+#define	   RES_LAYOUT								"layout"					///< 布局
+#define    RES_THEMES								"themes"					///< 主题包列表
 
-#define	   MAINWND_NODE								L"dm"                       ///< 每个主窗口的起始Section名
-#define    DUIROOT_NODE								L"root"                     ///< 解析根结点
-#define    SUB_NODE								    L"sub"                      ///< 支持sub结点
+#define	   MAINWND_NODE								"dm"                       ///< 每个主窗口的起始Section名
+#define    DUIROOT_NODE								"root"                     ///< 解析根结点
+#define    SUB_NODE								    "sub"                      ///< 支持sub结点
 
 // ----------------------------------------------------
 // DUIWindow消息部分

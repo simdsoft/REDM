@@ -88,13 +88,13 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		theApp.Register(DMRegHelperT<DMScriptImpl>(),true);						// 初始化外部的脚本实现
 
 		// 增加语言包两种，在widget中可使用菜单切换
-		theApp.LoadTrans((WPARAM)L"dmlg_fh");
-		theApp.LoadTrans((WPARAM)L"dmlg_en");
+		theApp.LoadTrans((WPARAM)"dmlg_fh");
+		theApp.LoadTrans((WPARAM)"dmlg_en");
 		//theApp.SetTrans(L"dmlg_en");                                            // 默认使用dmlg_en语言包
 
 		DMSmartPtrT<CQQMainWnd> pMainWnd;
 		pMainWnd.Attach(new CQQMainWnd());
-		pMainWnd->DM_CreateWindow(L"dui_mainwnd",0,0,0,0,NULL,false);			// 创建主窗口
+		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);			// 创建主窗口
 		g_pMainWnd =  pMainWnd;
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();

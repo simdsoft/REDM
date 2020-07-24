@@ -109,14 +109,14 @@ bool SetLogInfo(CStringW strInfo)
 {
 	if (g_pMainWnd)
 	{
-		g_pMainWnd->FindChildByNameT<DUIStatic>(L"ds_tips")->SetAttribute(XML_CLRTEXT,L"pbgra(0,0,ff,ff)");
-		g_pMainWnd->FindChildByNameT<DUIStatic>(L"ds_tips")->DV_SetWindowText(strInfo);
+		g_pMainWnd->FindChildByNameT<DUIStatic>("ds_tips")->SetAttribute(XML_CLRTEXT,"pbgra(0,0,ff,ff)");
+		g_pMainWnd->FindChildByNameT<DUIStatic>("ds_tips")->DV_SetWindowText(strInfo);
 		return true;
 	}
 	return false;
 }
 
-DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
+DMXmlDocument* GetExistXmlDoc(LPCSTR lpszType,LPCSTR lpszResName)
 {
 	DMXmlDocument* pXmlDoc = NULL;
 	do 
@@ -127,8 +127,8 @@ DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 		}
 
 		DMSmartPtrT<ResFolder>pRes = g_pMainWnd->m_pDesignerXml->m_pRes;
-		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,L"");
-		if (!PathFileExists(strPath))
+		CStringW strPath = pRes->GetItemPath(lpszType,lpszResName,"");
+		if (!CheckFileExistW(strPath))
 		{
 			break;
 		}
@@ -140,6 +140,13 @@ DMXmlDocument* GetExistXmlDoc(LPCWSTR lpszType,LPCWSTR lpszResName)
 		}
 	} while (false);
 	return pXmlDoc;
+}
+
+int DM_MessageBox(LPCSTR lpText, UINT uType, LPCSTR lpCaption, HWND hWnd)
+{
+	CStringW text = DMCA2W(lpText);
+	CStringW caption = DMCA2W(lpCaption);
+	return DM_MessageBox(text, uType, caption, hWnd);
 }
 
 int DM_MessageBox(LPCWSTR lpText, UINT uType, LPCWSTR lpCaption,HWND hWnd)
@@ -159,9 +166,10 @@ int DM_MessageBox(LPCWSTR lpText, UINT uType, LPCWSTR lpCaption,HWND hWnd)
 
 int StringToInt(CStringW str)
 {
-	int iRet = 0;
+	/*int iRet = 0;
 	dm_parseint(str,iRet);
-	return iRet;
+	return iRet;*/
+	return _wtoi(str);
 }
 
 CStringW IntToString(int id)
@@ -189,7 +197,7 @@ bool IsUseDgSkin()
 	return bRet;
 }
 
-DMCode AutoDrawText(IDMCanvas*pCanvas,CStringW strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha/*=0xFF*/)
+DMCode AutoDrawText(IDMCanvas*pCanvas,LPCSTR strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha/*=0xFF*/)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
@@ -336,14 +344,14 @@ DMCtrlXml::DMCtrlXml()
 
 	// 初始化Copy Node，临时保存的xml
 	DMXmlNode BaseNode = m_CopyDoc.Base();
-	BaseNode.InsertChildNode(L"root");
+	BaseNode.InsertChildNode("root");
 
 	// 初始化DMDesigner.xml
 	DM::GetRootFullPath(REC_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
 		DMXmlNode NewNode = m_RecentDoc.Base();
-		NewNode.InsertChildNode(L"recently");
+		NewNode.InsertChildNode("recently");
 		m_RecentDoc.SaveXml(szPath);
 	}
 	else
@@ -359,7 +367,7 @@ DMCtrlXml::~DMCtrlXml()
 	m_RecentDoc.SaveXml(szPath);
 }
 
-bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,CStringW& strValue,CStringW &strDesc)
+bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName,CStringA& strValue,CStringA &strDesc)
 {
 	bool bRet = false;
 	do 
@@ -368,9 +376,9 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		{
 			break;
 		}
-		CStringW AttrName = ptr->GetName();
-		CStringWList strList;
-		int nCount = (int)SplitStringT(AttrName,L'_',strList);
+		CStringA AttrName = ptr->GetName();
+		CStringAList strList;
+		int nCount = (int)SplitStringT(AttrName,'_',strList);
 		DMASSERT(2==nCount);
 
 		//0.指定desc
@@ -379,7 +387,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		strDesc = ptr->GetValue();
 
 		//1.初始化type
-		CStringW tempDesc;
+		CStringA tempDesc;
 		nCount = countof(g_stAttrDesc);
 		for (int i=0; i<nCount; i++)
 		{
@@ -391,7 +399,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		}
 		if (tempDesc.IsEmpty())
 		{
-			tempDesc = L"未知描述";
+			tempDesc = "nil";
 		}
 	
 		// 4种状态:1.{value}desc 2.desc 3.{value} 4.空
@@ -401,14 +409,14 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 		}
 		else
 		{
-			CStringWList strValueList;
-			nCount = (int)SplitStringT(strDesc,L'}',strValueList);
-			if (strDesc.Left(1) == L'{'&& 2 == nCount)//1
+			CStringAList strValueList;
+			nCount = (int)SplitStringT(strDesc,'}',strValueList);
+			if (strDesc.Left(1) == '{'&& 2 == nCount)//1
 			{
 				strValue = strValueList[0].Mid(1,strValueList[0].GetLength()-1);
 				strDesc = strValueList[1];
 			}
-			else if (strDesc.Left(1) == L'{'&& 1 == nCount)//3
+			else if (strDesc.Left(1) == '{'&& 1 == nCount)//3
 			{
 				strValue = strValueList[0].Mid(1,strValueList[0].GetLength()-1);
 				strDesc = tempDesc;
@@ -424,7 +432,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName,
 	return bRet;
 }
 
-bool DMCtrlXml::ParseName(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strName)
+bool DMCtrlXml::ParseName(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName)
 {
 	bool bRet = false;
 	do 
@@ -433,9 +441,9 @@ bool DMCtrlXml::ParseName(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strN
 		{
 			break;
 		}
-		CStringW AttrName = ptr->GetName();
-		CStringWList strList;
-		int nCount = (int)SplitStringT(AttrName,L'_',strList);
+		CStringA AttrName = (ptr->GetName());
+		CStringAList strList;
+		int nCount = (int)SplitStringT(AttrName,'_',strList);
 		DMASSERT(2==nCount);
 	
 		strType = strList[0];
@@ -446,7 +454,7 @@ bool DMCtrlXml::ParseName(DMXmlAttributePtr ptr,CStringW &strType,CStringW &strN
 	return bRet;
 }
 
-bool DMCtrlXml::Parse(CStringW strClsName,CStringWList &strList)
+bool DMCtrlXml::Parse(CStringA strClsName,CStringAList &strList)
 {
 	bool bRet = false;
 	do 
@@ -457,7 +465,7 @@ bool DMCtrlXml::Parse(CStringW strClsName,CStringWList &strList)
 			break;
 		}
 
-		DMXmlNode XmlNode = XmlRoot.FirstChild(strClsName);
+		DMXmlNode XmlNode = XmlRoot.FirstChild((strClsName));
 		if (!XmlNode.IsValid())
 		{
 			break;
@@ -466,7 +474,7 @@ bool DMCtrlXml::Parse(CStringW strClsName,CStringWList &strList)
 		DMXmlNode XmlChild = XmlNode.FirstChild();
 		while (XmlChild.IsValid())
 		{
-			strList.Add(XmlChild.GetName());
+			strList.Add((XmlChild.GetName()));
 
 			XmlChild = XmlChild.NextSibling();
 		}
@@ -475,7 +483,7 @@ bool DMCtrlXml::Parse(CStringW strClsName,CStringWList &strList)
 	return bRet;
 }
 
-DMXmlNode DMCtrlXml::Parse(CStringW strReg)
+DMXmlNode DMCtrlXml::Parse(CStringA strReg)
 {
 	DMXmlNode XmlNode;
 	do 
@@ -490,20 +498,22 @@ DMXmlNode DMCtrlXml::Parse(CStringW strReg)
 		{
 			break;
 		}
-		XmlNode = RootNode.FirstChild(strReg);
+
+		CStringA strk = (strReg);
+		XmlNode = RootNode.FirstChild(strk);
 		if (!XmlNode.IsValid())
 		{// 不存在就自建一个默认的
-			XmlNode = RootNode.InsertChildNode(strReg);
-			XmlNode.SetAttribute(L"ncmargin",L"1,1,1,1");
-			XmlNode.SetAttribute(L"clrnc",L"pbgra(00,00,00,ff)");
-			XmlNode.SetAttribute(L"clrbg",L"pbgra(dd,dd,dd,ff)");
-			XmlNode.SetAttribute(L"text",strReg);
+			XmlNode = RootNode.InsertChildNode(strk);
+			XmlNode.SetAttribute("ncmargin","1,1,1,1");
+			XmlNode.SetAttribute("clrnc","pbgra(00,00,00,ff)");
+			XmlNode.SetAttribute("clrbg","pbgra(dd,dd,dd,ff)");
+			XmlNode.SetAttribute("text", strk);
 		}
 	} while (false);
 	return XmlNode;
 }
 
-DMXmlNode DMCtrlXml::GetAttrNode(CStringW strNode)
+DMXmlNode DMCtrlXml::GetAttrNode(CStringA strNode)
 {
 	DMXmlNode XmlNode;
 	do 
@@ -567,7 +577,7 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 		DMXmlNode XmlNode = XmlRoot.FirstChild();
 		while (XmlNode.IsValid())
 		{
-			CStringW strDir = XmlNode.Attribute(XML_PATH);
+			CStringW strDir = DMCA2W(XmlNode.Attribute(XML_PATH));
 			if (strDir.Right(1)!=L"\\")
 			{
 				strDir += L"\\";
@@ -596,8 +606,8 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 		}
 
 		DMXmlNode XmlFirst = XmlRoot.FirstChild();
-		DMXmlNode XmlNewNode = XmlRoot.InsertChildNode(L"item",&XmlFirst,false);
-		XmlNewNode.SetAttribute(XML_PATH,strNewDir);
+		DMXmlNode XmlNewNode = XmlRoot.InsertChildNode("item",&XmlFirst,false);
+		XmlNewNode.SetAttribute(XML_PATH,DMW2A(strNewDir));
 		bRet = true;
 	} while (false);
 	return bRet;
@@ -610,10 +620,11 @@ bool DMCtrlXml::RemoveRecentResDir(CStringW strNewDir)
 	{
 		DMXmlNode XmlRoot = m_RecentDoc.Root();
 		DMXmlNode XmlNode = XmlRoot.FirstChild();
+		CStringA astrNewDir = DMW2A(strNewDir);
 		while (XmlNode.IsValid())
 		{
-			CStringW strDir = XmlNode.Attribute(XML_PATH);
-			if (0 == strNewDir.CompareNoCase(strDir))
+			LPCSTR strDir = XmlNode.Attribute(XML_PATH);
+			if (0 == astrNewDir.CompareNoCase(strDir))
 			{
 				XmlRoot.RemoveChildNode(&XmlNode);
 				break;

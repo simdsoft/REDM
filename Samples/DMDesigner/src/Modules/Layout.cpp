@@ -153,12 +153,12 @@ namespace DM
 
 	bool Layout::ParsePostion()
 	{
-		CStringW strPos = m_strPosValue;
+		CStringA strPos = m_strPosValue;
 		bool bRet = false;
 		do 
 		{
-			CStringWList strPosList;
-			SplitStringT(strPos,L',',strPosList);
+			CStringAList strPosList;
+			SplitStringT(strPos,',',strPosList);
 			m_nCount = (int)strPosList.GetCount();
 			if (2!=m_nCount&&4!=m_nCount)
 			{
@@ -249,7 +249,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool Layout::ParseItem(CStringW &strPos, POS_ITEM &item)
+	bool Layout::ParseItem(CStringA &strPos, POS_ITEM &item)
 	{
 		bool bRet = false;
 		do 
@@ -260,7 +260,7 @@ namespace DM
 				break;
 			}
 
-			LPCWSTR lpszPos = strPos;
+			LPCSTR lpszPos = strPos;
 			switch (lpszPos[0])
 			{
 			case POSFLAG_REFCENTER:		item.pit=PIT_CENTER,	lpszPos++;	break;		// 3.1.“|”代表参考父窗口的中心, PIT_CENTER:参考父窗口中心点,以"|"开始
@@ -282,7 +282,7 @@ namespace DM
 					item.bMinus = true;
 				}
 			}
-			item.nPos = (float)_wtof(lpszPos);
+			item.nPos = (float)atof(lpszPos);
 			if (item.nPos<0.0f && PIT_OFFSET == item.pit) 
 			{
 				DMASSERT_EXPR(0,L"在使用@时请不要使用负值,内部强制转成正值了");
@@ -560,52 +560,52 @@ namespace DM
 		return sz;
 	}
 
-	CStringW Layout::GetPit(PIT pit)
+	CStringA Layout::GetPit(PIT pit)
 	{
-		CStringW strPit;
+		CStringA strPit;
 		switch (pit)
 		{
 		case PIT_NORMAL:break;
-		case PIT_CENTER:strPit = L"|";break;
-		case PIT_PERCENT:strPit = L"%";break;
-		case PIT_PREV_NEAR:strPit = L"[";break;
-		case PIT_NEXT_NEAR:strPit = L"]";break;
-		case PIT_PREV_FAR:strPit = L"{";break;
-		case PIT_NEXT_FAR:strPit = L"}";break;
-		case PIT_OFFSET:strPit = L"@";break;
+		case PIT_CENTER:strPit = "|";break;
+		case PIT_PERCENT:strPit = "%";break;
+		case PIT_PREV_NEAR:strPit = "[";break;
+		case PIT_NEXT_NEAR:strPit = "]";break;
+		case PIT_PREV_FAR:strPit = "{";break;
+		case PIT_NEXT_FAR:strPit = "}";break;
+		case PIT_OFFSET:strPit = "@";break;
 		default:
 			break;
 		}
 		return strPit;
 	}
 
-	CStringW Layout::GetItem(POS_ITEM* pItem)
+	CStringA Layout::GetItem(POS_ITEM* pItem)
 	{
-		CStringW strItem;
+		CStringA strItem;
 		strItem = GetPit(pItem->pit);
 		if (PIT_PERCENT != pItem->pit&&PIT_OFFSET != pItem->pit)
 		{
 			if (pItem->bMinus)
 			{
-				strItem += L"-";
+				strItem += "-";
 			}
 		}
-		strItem += IntToString((int)pItem->nPos);
+		strItem.AppendFormat("%d", (int)pItem->nPos);
 		return strItem;
 	}
 
-	CStringW Layout::GetPosString()
+	CStringA Layout::GetPosString()
 	{
-		CStringW strPos;
+		CStringA strPos;
 		do 
 		{
 			if (4!=m_nCount)
 			{
 				break;
 			}
-			strPos += GetItem(&m_Left);strPos += L",";
-			strPos += GetItem(&m_Top);strPos += L",";
-			strPos += GetItem(&m_Right);strPos += L",";
+			strPos += GetItem(&m_Left);strPos += ",";
+			strPos += GetItem(&m_Top);strPos += ",";
+			strPos += GetItem(&m_Right);strPos += ",";
 			strPos += GetItem(&m_Bottom);
 		} while (false);
 		return strPos;
@@ -795,12 +795,12 @@ namespace DM
 		return true;
 	}
 
-	DMCode Layout::OnAttributePos(LPCWSTR pszValue, bool bLoadXml)
+	DMCode Layout::OnAttributePos(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			CStringW strOldPosValue = m_strPosValue;
+			CStringA strOldPosValue = m_strPosValue;
 			m_strPosValue = pszValue;
 			if (!ParsePostion())
 			{
@@ -816,7 +816,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode Layout::OnAttributePosSize(LPCWSTR pszValue, bool bLoadXml)
+	DMCode Layout::OnAttributePosSize(LPCSTR pszValue, bool bLoadXml)
 	{
 		dm_parsesize(pszValue,m_size);
 

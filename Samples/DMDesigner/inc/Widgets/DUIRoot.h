@@ -16,7 +16,7 @@ class ObjXml;
 class ObjTree;
 class DUIRoot:public DUIWindow
 {
-	DMDECLARE_CLASS_NAME(DUIRoot, L"root",DMREG_Window)
+	DMDECLARE_CLASS_NAME(DUIRoot, "root",DMREG_Window)
 public:
 	DUIRoot();
 
@@ -44,8 +44,8 @@ public:
 
 public:
 	// AddMode下的操作
-	static bool IsSupportAddChild(DUIWindow* pParentWnd,CStringW strReg);								///< 是否支持Add 子控件
-	static DUIWindow* CreateAddChild(DUIWindow* pParentWnd,CStringW strReg);							///< 创建子控件
+	static bool IsSupportAddChild(DUIWindow* pParentWnd,CStringA strReg);								///< 是否支持Add 子控件
+	static DUIWindow* CreateAddChild(DUIWindow* pParentWnd,CStringA strReg);							///< 创建子控件
 	static bool InitAddChild(ObjTreeData* pParentData,DUIWindow* pWnd,CRect rcDrag,bool bRight=false);	///< 初始化子控件
 	DUIWindow* GetAddChild();
 	
@@ -54,7 +54,7 @@ public:
 	DM_BEGIN_ATTRIBUTES()
 		DM_CHAIN_ATTRIBUTTE(m_pDUIXmlInfo)
 	DM_END_ATTRIBUTES()		
-	DMCode OnAttributeFinished(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml,DMCode iErr);
+	DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);
 
 	//
 	DUIObjEditor*										m_pParent;

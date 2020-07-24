@@ -30,7 +30,7 @@ namespace DM
 				break;
 			}
 
-			CStringW strName = XmlNode.Attribute(L"name");strName.MakeLower();
+			CStringA strName = XmlNode.Attribute("name");strName.MakeLower();
 			bool bExist = true;
 			if (false == GetObjByKey(strName, pItem))
 			{
@@ -41,28 +41,23 @@ namespace DM
 			DMXmlNode XmlSkin = XmlNode.FirstChild();
 			while (XmlSkin.IsValid())
 			{
-				CStringW strId = XmlSkin.Attribute(L"id");strId.MakeLower();
+				CStringA strId = XmlSkin.Attribute("id");strId.MakeLower();
 				if (strId.IsEmpty())
 				{
-					CStringW szInfo; 
-					XmlSkin.GetXmlContent(szInfo);
-					szInfo += L"(skin)未设置id,将自动忽视";
-					DMASSERT_EXPR(0, szInfo);
+					DMFAIL_MSG_FMT("no skin id, ignore");
 				}
 				else
 				{
 					if (!pItem->IsKeyExist(strId))
 					{// key不存在时才加入
-						CStringW lpszClassName = XmlSkin.GetName();  
+						LPCSTR lpszClassName = XmlSkin.GetName();  
 						IDMSkinPtr pSkinPtr = NULL;
 						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
 						{
 							pSkinPtr->InitDMData(XmlSkin);
 							if (!DMSUCCEEDED(pSkinPtr->IsValid()))
 							{
-								CStringW szInfo = lpszClassName;
-								szInfo += L"(skin)无效！,将自动移除";
-								DMASSERT_EXPR(0, szInfo);
+								DMFAIL_MSG_FMT("%s skin invalid, auto removed", lpszClassName);
 								pSkinPtr->Release();
 							}
 							else
@@ -72,9 +67,7 @@ namespace DM
 						}
 						else
 						{
-							CStringW szInfo = lpszClassName;
-							szInfo += L"(skinpool)类型无法解析！,请查看是否写错";
-							DMASSERT_EXPR(0, szInfo);
+							DMFAIL_MSG_FMT("%s parse skinpool type fail", lpszClassName);
 						}
 					}
 				}
@@ -90,17 +83,17 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUISkinPool::RemoveSkinPoolItem(LPCWSTR lpszName)
+	DMCode DUISkinPool::RemoveSkinPoolItem(LPCSTR lpszName)
 	{
-		CStringW szKey = lpszName;szKey.MakeLower();
+		CStringA szKey = lpszName;szKey.MakeLower();
 		RemoveKey(szKey);
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUISkinPool::RemoveAllSkinPoolItemExcept(LPCWSTR lpszName)
+	DMCode DUISkinPool::RemoveAllSkinPoolItemExcept(LPCSTR lpszName)
 	{
 		DMSkinPoolItemPtr pItem = NULL;
-		CStringW strKey = lpszName;strKey.MakeLower();
+		CStringA strKey = lpszName;strKey.MakeLower();
 		if (GetObjByKey(strKey, pItem))
 		{
 			pItem->AddRef();// 防止被删除
@@ -118,32 +111,31 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			LPCWSTR lpSrc = (LPCWSTR)wp;
+			LPCSTR lpSrc = (LPCSTR)wp;
 			int nLen = (int)lp;
 			if (NULL == lpSrc||0>=nLen)
 			{
 				break;
 			}
 
-			wchar_t *pBuf = new wchar_t[nLen];
-			memcpy(pBuf,lpSrc,nLen*2);
-			CStringW strValue = pBuf;
-			CStringWList strUpdateList;
-			int nCount = (int)SplitStringT(strValue,L';',strUpdateList);
+			// halx99: optimized, no need copy buffer
+			CStringA strValue = lpSrc;
+			CStringAList strUpdateList;
+			int nCount = (int)SplitStringT(strValue,';',strUpdateList);
 			// 1. 更新所有需更新的skin
 			m_UpdateSkinArray.RemoveAll();
 			for (int i=0;i<nCount;i++)
 			{
-				LPCWSTR lpszUpdate = strUpdateList[i];
+				LPCSTR lpszUpdate = strUpdateList[i];
 				POSITION pos = m_Map.GetStartPosition();
 				while (pos)
 				{
-					DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
+					DM::CMap<CStringA,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 					DMSkinPoolItemPtr &pCur = p->m_value;
 					POSITION poscur = pCur->m_Map.GetStartPosition();
 					while(poscur)
 					{
-						DM::CMap<CStringW,IDMSkinPtr>::CPair *pcur = pCur->m_Map.GetNext(poscur);
+						DM::CMap<CStringA,IDMSkinPtr>::CPair *pcur = pCur->m_Map.GetNext(poscur);
 						IDMSkinPtr &pTemp = pcur->m_value;
 						if (DMSUCCEEDED(pTemp->UpdateSkin((WPARAM)lpszUpdate,0)))
 						{
@@ -154,7 +146,7 @@ namespace DM
 			}
 			// 2.通知所有使用这些skin的DUI窗口刷新自己区域
 			iErr = g_pDMDWndPool->UpdateSkin(0,DMREG_Skin);
-			DM_DELETE_ARRAY(pBuf);
+
 		} while (false);
 		return iErr;
 	}
@@ -183,8 +175,8 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUISkinPool::AddSkin(void *pBuf,size_t bufLen,LPCWSTR pszType,
-		LPCWSTR lpszXml,LPCWSTR lpszPoolName/*=NULL*/)
+	DMCode DUISkinPool::AddSkin(void *pBuf,size_t bufLen,LPCSTR pszType,
+		LPCSTR lpszXml,LPCSTR lpszPoolName/*=NULL*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -197,10 +189,10 @@ namespace DM
 			}
 
 			//1. 加载xml，如L"<imglist id=\"1\" states=\"1\" />";
-			CStringW strWXml(lpszXml);
-			CStringA strXml = DMW2A(strWXml,CP_UTF8);
+			//CStringW strWXml(lpszXml);
+			//CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
-			if (false == doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength()))
+			if (false == doc.LoadFromBuffer((const PVOID)(LPCSTR)lpszXml, strlen(lpszXml)))
 			{
 				break;
 			}
@@ -211,39 +203,32 @@ namespace DM
 			}
 
 			//2.判断skin的id是否为空
-			CStringW strId = XmlNode.Attribute(L"id");strId.MakeLower();
-			if (strId.IsEmpty())
+			LPCSTR strId = XmlNode.Attribute("id");
+			if (!*strId)
 			{
-				CStringW szInfo; 
-				XmlNode.GetXmlContent(szInfo);
-				szInfo += L"(skin)未设置id,将自动忽视";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG("skin id not set, ignored");
 				break;
 			}
 
 			//3.判断skin的id是否存在
 			if (FindSkinFromAll(strId))				// 默认从所有skin池中查找
 			{
-				CStringW szInfo = strId;
-				szInfo += L"(skinpool)此skin名已存在";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG_FMT("the skin %s already exist", strId);
 				break;// 名字已存在
 			}
 
 			//4.创建skin对象
-			CStringW lpszClassName = XmlNode.GetName();
+			LPCSTR lpszClassName = XmlNode.GetName();
 			IDMSkinPtr pSkinPtr = NULL;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
 			{
-				CStringW szInfo = lpszClassName;
-				szInfo += L"(skinpool)类型无法解析！,请查看是否写错";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG_FMT("(skinpool)parse type fail", lpszClassName);
 				break;
 			}
 			pSkinPtr->InitDMData(XmlNode);
 
 			//5.初始化skin的图元
-			CStringW strType = (NULL==pszType)?L"png":pszType;
+			CStringA strType = (NULL==pszType)?"png":pszType;
 			if (!DMSUCCEEDED(pSkinPtr->SetBitmap((LPBYTE)pBuf,bufLen,strType)))
 			{
 				pSkinPtr->Release();
@@ -252,7 +237,7 @@ namespace DM
 
 			//6.判断skinpool是否存在，不存在则创建加入
 			bool bExist = true;
-			CStringW strName = lpszPoolName;strName.MakeLower();
+			CStringA strName = lpszPoolName;strName.MakeLower();
 			DMSkinPoolItemPtr pItem = NULL;
 			if (false == GetObjByKey(strName, pItem))
 			{
@@ -270,19 +255,19 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUISkinPool::RemoveSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind /*= true*/)
+	DMCode DUISkinPool::RemoveSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind /*= true*/)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
 
 			DMSkinPoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;strName.MakeLower();
-			CStringW strKey = lpszKey;  strKey.MakeLower();
+			CStringA strName = lpszName;strName.MakeLower();
+			CStringA strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
@@ -307,20 +292,20 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUISkinPool::RemoveSkinFromAll(LPCWSTR lpszKey)
+	DMCode DUISkinPool::RemoveSkinFromAll(LPCSTR lpszKey)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
-			CStringW strKey = lpszKey;strKey.MakeLower();
+			CStringA strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
-				DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
+				DM::CMap<CStringA,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMSkinPoolItemPtr &pCur = p->m_value;
 				if (pCur->RemoveKey(strKey))
 				{
@@ -331,19 +316,19 @@ namespace DM
 		return iErr;
 	}
 
-	IDMSkinPtr DUISkinPool::FindSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind)
+	IDMSkinPtr DUISkinPool::FindSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind)
 	{
 		IDMSkinPtr  pSkin = NULL;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
 
 			DMSkinPoolItemPtr pCur = NULL;
-			CStringW strName = lpszName;strName.MakeLower();
-			CStringW strKey = lpszKey;  strKey.MakeLower();
+			CStringA strName = lpszName;strName.MakeLower();
+			CStringA strKey = lpszKey;  strKey.MakeLower();
 			if (false == GetObjByKey(strName, pCur))
 			{
 				if (bLoopFind)
@@ -368,20 +353,20 @@ namespace DM
 		return pSkin;
 	}
 
-	IDMSkinPtr DUISkinPool::FindSkin(LPCWSTR lpszBuf,bool bLoopFind/* = true*/)
+	IDMSkinPtr DUISkinPool::FindSkin(LPCSTR lpszBuf,bool bLoopFind/* = true*/)
 	{
 		IDMSkinPtr  pSkin = NULL;
 		do 
 		{
-			if (NULL == lpszBuf||wcslen(lpszBuf)<=0)
+			if (NULL == lpszBuf||strlen(lpszBuf)<=0)
 			{
 				break;
 			}
 
-			CStringW strValue = lpszBuf;
-			CStringWList strList;
-			CStringW strName;
-			CStringW strKey;
+			CStringA strValue = lpszBuf;
+			CStringAList strList;
+			CStringA strName;
+			CStringA strKey;
 			int nCount = (int)SplitStringT(strValue,L':',strList);
 			if (1==nCount)
 			{
@@ -394,9 +379,7 @@ namespace DM
 			}
 			else
 			{
-				CStringW strInfo;
-				strInfo.Format(L"skin-%s设置错误",strValue);
-				DMASSERT_EXPR(0,strInfo);
+                DMFAIL_MSG_FMT("skin-%s error", (LPCSTR)strValue);
 				break;
 			}
 
@@ -405,21 +388,21 @@ namespace DM
 		return pSkin;
 	}
 
-	IDMSkinPtr DUISkinPool::FindSkinFromAll(LPCWSTR lpszKey)
+	IDMSkinPtr DUISkinPool::FindSkinFromAll(LPCSTR lpszKey)
 	{
 		IDMSkinPtr  pSkin = NULL;
 		do 
 		{
-			if (NULL == lpszKey||wcslen(lpszKey)<=0)
+			if (NULL == lpszKey||strlen(lpszKey)<=0)
 			{
 				break;
 			}
 
-			CStringW strKey = lpszKey;strKey.MakeLower();
+			CStringA strKey = lpszKey;strKey.MakeLower();
 			POSITION pos = m_Map.GetStartPosition();
 			while (pos)
 			{
-				DM::CMap<CStringW,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
+				DM::CMap<CStringA,DMSkinPoolItemPtr>::CPair *p = m_Map.GetNext(pos);
 				DMSkinPoolItemPtr &pCur = p->m_value;
 				if (pCur->GetObjByKey(strKey,pSkin))
 				{

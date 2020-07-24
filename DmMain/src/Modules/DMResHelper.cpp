@@ -4,17 +4,17 @@
 namespace DM
 {
 	/// DMResItem---------------------------------------
-	DMResItem::DMResItem(LPCWSTR lpszType, LPCWSTR lpszName, LPCWSTR lpszPath)
+	DMResItem::DMResItem(LPCSTR lpszType, LPCSTR lpszName, LPCWSTR lpszPath)
 	{
 		memset(this,0,sizeof(DMResItem));
 		if (lpszType)
 		{
-			wcscpy_s(m_szType,MAX_RES_TYPE,lpszType);
+			strcpy_s(m_szType,MAX_RES_TYPE,lpszType);
 		}
 
 		if (lpszName) 
 		{
-			wcscpy_s(m_szName,MAX_RES_NAME,lpszName);
+			strcpy_s(m_szName,MAX_RES_NAME,lpszName);
 		}
 
 		if (lpszPath)
@@ -22,8 +22,8 @@ namespace DM
 			wcscpy_s(m_szPath,MAX_PATH,lpszPath);
 		}
 
-		_wcslwr_s(m_szType);
-		_wcslwr_s(m_szName);
+		_strlwr_s(m_szType);
+		_strlwr_s(m_szName);
 		_wcslwr_s(m_szPath);
 	}
 
@@ -40,8 +40,8 @@ namespace DM
 
 	bool DMResFolderItem::EqualArrayObj(const DMResItemPtr &objsrc, const DMResItemPtr &objdest)
 	{
-		if (0 == _wcsicmp(objsrc->m_szType,objdest->m_szType)
-			&& 0 == _wcsicmp(objsrc->m_szName,objdest->m_szName))
+		if (0 == dm_xmlstrcmp(objsrc->m_szType,objdest->m_szType)
+			&& 0 == dm_xmlstrcmp(objsrc->m_szName,objdest->m_szName))
 		{
 			return true;
 		}

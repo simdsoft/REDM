@@ -19,6 +19,9 @@ namespace DM
 	/// 简易宏定义-------------------------------------------
 	#define  g_pDMApp                                   DMApp::getSingletonPtr()
 
+	/// 外部xmlDoc
+	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCSTR /*pszType*/, LPCSTR /*pszName*/);
+
 	/// <summary>
 	///		此为最重要主Data类，一个应用程序应该只有一个此类的全局对象
 	/// </summary>
@@ -42,7 +45,7 @@ namespace DM
 		/// @param[in]		lpszXmlId		 在资源中的名字
 		/// @remark         应该在资源加载后再调用
 		/// @return			DMCode
-		DMCode InitGlobal(LPCWSTR lpszXmlId=L"global");
+		DMCode InitGlobal(LPCSTR lpszXmlId="global");
 
 		/// -------------------------------------------------
 		/// @brief			运行消息循环
@@ -77,21 +80,21 @@ namespace DM
 		/// @param[in]		RegType			  注册类型<see cref="DMREGTYPE"/>
 		/// @remark         这个函数用于内部根据xml指定创建对象，开放仅方便gtest测试,由于是内部分配对象,不建议外部获取
 		/// @return			DMCode
-		DMCode CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType);
+		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
 		/// @brief			反注册
 		/// @param[in]		lpszClassName	  注册类名
 		/// @param[in]		RegType			  注册类型<see cref="DMREGTYPE"/>
 		/// @return			DMCode
-		DMCode UnRegister(LPCWSTR lpszClassName,int RegType);
+		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
 		/// @brief			对于内部仅只能选择使用一种的注册类，指定一种（如render、log、atrribute）
 		/// @param[in]		lpszClassName	  注册类名
 		/// @param[in]		RegType			  注册类型<see cref="DMREGTYPE"/>
 		/// @return			DMCode
-		DMCode SetDefRegObj(LPCWSTR lpszClassName,int RegType);
+		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
 		/// @brief			取得内部仅只能选择使用一种的注册类当前使用对象，指定一种（如render、log、atrribute）
@@ -105,7 +108,7 @@ namespace DM
 		/// @brief			取得注册类当前使用的默认类名，指定一种（如render、log、atrribute）
 		/// @param[in]		RegType			  注册类型<see cref="DMREGTYPE"/>
 		/// @return			LPCWSTR
-		LPCWSTR GetDefRegObj(int RegType);
+		CStringA GetDefRegObj(int RegType);
 
 		//----------------------------------------------------------------------
 		// Function Des: 插件相关,为保证安全,请在创建主窗口前或销毁主窗口后使用它们!
@@ -156,7 +159,7 @@ namespace DM
 		/// @param[in]		lpszClassName	  指定默认的方式（如为NULL,则使用系统内置方式）
 		/// @remark         不同的解析方式使用不同的传入参数,具体参看demo
 		/// @return			DMCode
-		DMCode LoadResPack(WPARAM wp, LPARAM lp,LPCWSTR lpszClassName);
+		DMCode LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName);
 
 		//----------------------------------------------------------------------
 		// Function Des: 属性相关
@@ -171,13 +174,13 @@ namespace DM
 		/// @brief			移除指定的Skin队列
 		/// @param[in]		lpszName	      对应skin的name属性
 		/// @param[in]		DMCode
-		DMCode RemoveSkinPoolItem(LPCWSTR lpszName);
+		DMCode RemoveSkinPoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
 		/// @brief			删除所有的skin池，除了指定的key以外
 		/// @param[in]		lpszName		  被排除的skin池的名称
 		/// @return			DMCode
-		DMCode RemoveAllSkinPoolItemExcept(LPCWSTR lpszName);
+		DMCode RemoveAllSkinPoolItemExcept(LPCSTR lpszName);
 
 		/// -------------------------------------------------
 		/// @brief  加入一个style池，如style池已存在,则加入解析的项
@@ -189,7 +192,7 @@ namespace DM
 		/// @brief			移除指定的Style队列
 		/// @param[in]		lpszName	      对应style的name属性
 		/// @param[in]		DMCode
-		DMCode RemoveStylePoolItem(LPCWSTR lpszName);
+		DMCode RemoveStylePoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
 		/// @brief			移除所有的style池
@@ -199,12 +202,12 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief			获取指定字体
 		/// @param[in]		lpszFont	      字体对应的str
-		IDMFont* GetFont(LPCWSTR lpszFont);
+		IDMFont* GetFont(LPCSTR lpszFont);
 
 		/// -------------------------------------------------
 		/// @brief			获取指定Skin,从所有skin池中
 		/// @param[in]		lpszSkin	      Skin对应的str
-		IDMSkin* GetSkin(LPCWSTR lpszSkin);
+		IDMSkin* GetSkin(LPCSTR lpszSkin);
 
 		/// -------------------------------------------------
 		/// @brief			把指定buf设置到skin池中
@@ -213,8 +216,8 @@ namespace DM
 		/// @param[in]		pszType			  图片类型，一般默认为png
 		/// @param[in]		lpszXml			  描述skin的xml，xml中就不需要定义src了
 		/// @param[in]		lpszPoolName	  skin池名称
-		DMCode AddSkin(void *pBuf,size_t bufLen,LPCWSTR pszType,
-			LPCWSTR lpszXml,LPCWSTR lpszPoolName=NULL);
+		DMCode AddSkin(void *pBuf,size_t bufLen, LPCSTR pszType,
+			LPCSTR lpszXml, LPCSTR lpszPoolName=NULL);
 
 		/// -------------------------------------------------
 		/// @brief			移除skin
@@ -222,13 +225,13 @@ namespace DM
 		/// @param[in]		lpszName		  用于查找skin池的name
 		/// @remark			默认先在lpszName的skin池中移除，如果找不到,而且bLoopFind为真，就全部遍历找到并移除
 		/// @return			DMCode,从skin池中移除skin,并将引用计数减1
-		DMCode RemoveSkin(LPCWSTR lpszKey,LPCWSTR lpszName,bool bLoopFind = true);
+		DMCode RemoveSkin(LPCSTR lpszKey, LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
 		/// @brief			获取指定style,从所有style池中
 		/// @param[in]		lpszSkin		  Skin对应的str
 		/// @return			DMCode
-		DMXmlNode GetStyle(LPCWSTR lpszStyle);
+		DMXmlNode GetStyle(LPCSTR lpszStyle);
 
 		/// -------------------------------------------------
 		/// @brief			换肤
@@ -292,7 +295,7 @@ namespace DM
 		/// @param[in]		lpszType		 类型
 		/// @param[in]		lpszResName		 名称
 		/// @return			DMCode
-		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCWSTR lpszType,LPCWSTR lpszResName);	
+		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName);	
 
 		/// -------------------------------------------------
 		/// @brief			 找到DUI窗口
@@ -303,8 +306,9 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief			 允许外部指定sub xml的回调函数,外部传入xml句柄
 		/// @return			 DMCode
-		DMCode SetSubXmlDocCallBack(DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCWSTR,LPCWSTR));
+		DMCode SetSubXmlDocCallBack(fun_cbGetSubXmlDoc);
 
+		// TODO: unify LoadXXX(WPARAM wp, LPARAM lp) LPCSTR or LPCWSTR
 		/// -------------------------------------------------
 		/// @brief 加载翻译包扩展接口
 		/// @param[in]		 wp					传入内部使用的参数1，如翻译XML路径等，和自己扩展实现相关，内置为xml的ld或xml全路径

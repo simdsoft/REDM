@@ -23,18 +23,18 @@ namespace DMAttr
 	class DUISliderCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* STRING_tipformat;                              ///< tip提示语的设置格式,示例:tipformat="this is%d"
-		static wchar_t* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
-		static wchar_t* INT_value;									   ///< 范围当前值,示例:value="0"
-		static wchar_t* INT_thumbwidth;								   ///< thumb宽度,示例:thumbwidth="10"
-		static wchar_t* INT_channelhei;								   ///< channel高度,示例:channelhei="10"
-		static wchar_t* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
-		static wchar_t* bool_bshowtip;                                 ///< 是否显示tip,示例:bshowtip="1"
+		static char* STRING_tipformat;                              ///< tip提示语的设置格式,示例:tipformat="this is%d"
+		static char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
+		static char* INT_value;									   ///< 范围当前值,示例:value="0"
+		static char* INT_thumbwidth;								   ///< thumb宽度,示例:thumbwidth="10"
+		static char* INT_channelhei;								   ///< channel高度,示例:channelhei="10"
+		static char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
+		static char* bool_bshowtip;                                 ///< 是否显示tip,示例:bshowtip="1"
 
-		static wchar_t* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
-		static wchar_t* COLOR_clrchannel;                              ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
-		static wchar_t* SKIN_thumbskin;                                ///< thumb图,示例:thumbskin="PNG:iconbtn"
-		static wchar_t* COLOR_clrthumb;                                ///< thumb颜色,在thumb图无效时使用,示例:clrthumb="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
+		static char* COLOR_clrchannel;                              ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
+		static char* SKIN_thumbskin;                                ///< thumb图,示例:thumbskin="PNG:iconbtn"
+		static char* COLOR_clrthumb;                                ///< thumb颜色,在thumb图无效时使用,示例:clrthumb="pbgra(ff,ff,ff,ff)"
 	};
 	DMAttrValueInit(DUISliderCtrlAttr,STRING_tipformat)DMAttrValueInit(DUISliderCtrlAttr,SIZE_range)DMAttrValueInit(DUISliderCtrlAttr,INT_value)
 	DMAttrValueInit(DUISliderCtrlAttr,INT_thumbwidth)DMAttrValueInit(DUISliderCtrlAttr,INT_channelhei)DMAttrValueInit(DUISliderCtrlAttr,bool_bvert)
@@ -93,7 +93,7 @@ namespace DM
 
 	public:  
 		DM_BEGIN_ATTRIBUTES()
-			DM_STRING_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::STRING_tipformat,m_strTipFormat,DM_ECODE_OK)
+			DM_WSTRING_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::STRING_tipformat,m_strTipFormat,DM_ECODE_OK)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::SIZE_range,OnAttributeRange)
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::INT_value,OnAttributeValue)
 			DM_INT_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::INT_thumbwidth,m_iThumbWid,DM_ECODE_NOXMLLOADREFRESH)
@@ -108,8 +108,8 @@ namespace DM
 		//------------------------------------------
 		// 简化,在水平状态下，总是使thumb的高度和client高度相同，channel的宽度和wid相同
 	public:
-		DMCode OnAttributeRange(LPCWSTR lpszValue, bool bLoadXml);
-		DMCode OnAttributeValue(LPCWSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeRange(LPCSTR lpszValue, bool bLoadXml);
+		DMCode OnAttributeValue(LPCSTR lpszValue, bool bLoadXml);
 	public:
 		CStringW                         m_strTipFormat;
 		CSize                            m_szRange;              ///< x为最小值,y为最大值

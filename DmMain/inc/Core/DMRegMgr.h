@@ -32,7 +32,7 @@ namespace DM
 	    bool EqualArrayObj(const IDMRegPtr &objsrc, const IDMRegPtr &objdest);
 
 	public:
-		CStringW                    m_DefRegName;   ///< 定义默认注册类型类名
+		CStringA                    m_DefRegName;   ///< 定义默认注册类型类名
 	};
 
 	/// <summary>
@@ -45,16 +45,16 @@ namespace DM
 		~DMRegMgr();
 	public:
 		DMCode Register(IDMReg &RegObj, bool bReplace=false);
-		DMCode CreateRegObj(void** ppObj, LPCWSTR lpszClassName,int RegType);
-		DMCode UnRegister(LPCWSTR lpszClassName,int RegType);
-		DMCode SetDefRegObj(LPCWSTR lpszClassName,int RegType);
-		DMCode GetDefRegObj(CStringW &szName,int RegType);
+		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
+		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
+		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
+		DMCode GetDefRegObj(CStringA &szName,int RegType);
 
 	public:// 辅助
 		DMCode RegisterByType(DMRegTypeItem &RtItem, IDMReg &RegObj, bool bReplace);
-		DMCode CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCWSTR lpszClassName);
-		DMCode UnRegisterByType(DMRegTypeItem &RtItem, LPCWSTR lpszClassName);
-		DMCode SetDefRegObjByType(DMRegTypeItem &RtItem, LPCWSTR lpszClassName);
+		DMCode CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCSTR lpszClassName);
+		DMCode UnRegisterByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName);
+		DMCode SetDefRegObjByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName);
 
 	public:
 		DMRegTypeItem						m_RtSkin;

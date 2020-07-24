@@ -22,7 +22,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #endif
 #endif//DLL_DMMAIN
 
-	iErr = theApp.SetDefRegObj(L"DMResFolderImpl",DMREG_Res);// 设置使用内置的文件夹解析Res方式
+	iErr = theApp.SetDefRegObj("DMResFolderImpl",DMREG_Res);// 设置使用内置的文件夹解析Res方式
 	iErr = theApp.LoadResPack((WPARAM)(L"DMRes"),NULL,NULL); // 路径总是相对于生成目录
 	iErr = theApp.InitGlobal();								 // 初始化指定的全局skin、style、默认字体
 	iErr = theApp.Register(DMRegHelperT<IERealWnd>(),true);  // 初始化外部控制的Pop RealWnd
@@ -34,7 +34,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	{
 		pMainWnd.Attach(new CMainWnd());
 		g_pMainWnd = pMainWnd;
-		pMainWnd->DM_CreateWindow(L"dui_main",0,0,0,0,NULL,false);				// 创建主窗口
+		pMainWnd->DM_CreateWindow("dui_main",0,0,0,0,NULL,false);				// 创建主窗口
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();
 		pMainWnd->ShowWindow(SW_SHOW);

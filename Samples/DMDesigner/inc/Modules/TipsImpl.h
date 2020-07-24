@@ -24,7 +24,7 @@ namespace DM
 	/// </summary>
 	class TipsImpl:public IDMToolTip,public DMCWnd
 	{
-		DMDECLARE_CLASS_NAME(TipsImpl,L"TipsImpl",DMREG_ToolTip);
+		DMDECLARE_CLASS_NAME(TipsImpl,"TipsImpl",DMREG_ToolTip);
 
 	public:
 		TipsImpl(void);

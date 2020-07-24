@@ -1,4 +1,7 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_ACTIVEX)
+
 #include "DUIFlash.h"
 
 namespace DM
@@ -32,37 +35,31 @@ namespace DM
 				break;
 			}
 
-			CStringW strType;
-			CStringW strResName;
-			int iFind = m_strUrl.ReverseFind(_T(':'));
+			CStringA strType;
+			CStringA strResName;
+			CStringA strSource = DMW2A(m_strUrl, CP_UTF8);
+			int iFind = strSource.ReverseFind((':'));
 			if (-1 != iFind)
 			{
-				strType    = m_strUrl.Left(iFind);
-				strResName = m_strUrl.Right(m_strUrl.GetLength()-iFind-1);
-				if (-1!=strType.MakeLower().Find(L"http")||-1!=strType.MakeLower().Find(L"ftp"))// http在线url
+				strType    = strSource.Left(iFind);
+				strResName = strSource.Right(strSource.GetLength()-iFind-1);
+				if (-1!=strType.MakeLower().Find("http")||-1!=strType.MakeLower().Find("ftp"))// http在线url
 				{
 					Play(m_strUrl);
 				}
 				else// 本地资源包,使用内存方式播放
 				{
+					DMBufT<byte> pBuf;
 					ULONG ulSize = 0;
-					pRes->GetItemSize(strType,strResName,ulSize);
-					if (ulSize)
+					if (DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
 					{
-						DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-						if (DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize)))
-						{
-							Play(pBuf, ulSize);
-						}
+						Play(pBuf, ulSize);
 					}
 					else
 					{
-						DWORD dwSize = GetFileSizeW((LPCWSTR)m_strUrl);
 						DMBufT<byte> pBuf;
-						pBuf.Allocate(dwSize);
-						DWORD dwRead;
-						GetFileBufW((LPCWSTR)m_strUrl,(void**)&pBuf,dwSize,dwRead);
-						if (pBuf && dwSize)
+						DWORD dwSize = 0;
+						if (DMSUCCEEDED(IDMRes::ReadFileBuf(m_strUrl, pBuf, &dwSize)))
 						{
 							Play(pBuf, dwSize);
 						}
@@ -204,26 +201,27 @@ namespace DM
 		}
 	}
 
-	DMCode DUIFlash::OnAttrUrl(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIFlash::OnAttrUrl(LPCSTR pszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == pszValue||0 == wcslen(pszValue))
+			if (NULL == pszValue||0 == strlen(pszValue))
 			{
 				break;
 			}
 
+			CStringW wstrUrl = DMCA2W(pszValue, -1, CP_UTF8);
 			if (L'.' == pszValue[0])
 			{
 				wchar_t szPath[MAX_PATH] = {0};
 				GetRootDirW(szPath, MAX_PATH);
-				PathCombineW(szPath,szPath, pszValue);
+				PathCombineW(szPath,szPath, wstrUrl);
 				m_strUrl = szPath;
 			}
 			else
 			{
-				m_strUrl = pszValue;
+				m_strUrl = wstrUrl;
 			}
 
 			if(!bLoadXml)
@@ -235,3 +233,5 @@ namespace DM
 		return iErr;
 	}
 }//namespace DM
+
+#endif

@@ -1,4 +1,6 @@
 #include "DmMainAfx.h"
+
+#if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIActiveX.h"
 
 namespace DM
@@ -167,16 +169,16 @@ namespace DM
 		return lr;
 	}
 
-	DMCode DUIActiveX::OnAttrClsid(LPCWSTR pszValue, bool bLoadXml)
+	DMCode DUIActiveX::OnAttrClsid(LPCSTR pszValue, bool bLoadXml)
 	{
 		do 
 		{
-			if (NULL == pszValue||0 == wcslen(pszValue))
+			if (NULL == pszValue||0 == strlen(pszValue))
 			{
 				break;
 			}
 			OLECHAR szCLSID[200] = {0};
-			wcscpy_s(szCLSID,pszValue);
+			int len = ntcvt::mcbs2w(pszValue, -1, szCLSID, _ARRAYSIZE(szCLSID) - 1, CP_UTF8);
 
 			if (szCLSID[0] == L'{') 
 			{
@@ -216,3 +218,4 @@ namespace DM
 	}
 }// namespace DM
 
+#endif

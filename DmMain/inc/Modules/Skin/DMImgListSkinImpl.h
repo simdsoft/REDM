@@ -22,11 +22,11 @@ namespace DMAttr
 	class DMImgListSkinImplAttr
 	{
 	public:
-		static wchar_t* STRING_src;                            ///< 状态连图源，可以通过xml加载
-		static wchar_t* STRING_id;                             ///< 唯一标识skin类对象，示例：id="channel_vz"
-		static wchar_t* bool_btitle;                           ///< 是否平铺绘制，示例：btitle="1"
-		static wchar_t* bool_bvert;                            ///< 状态连图是否为竖直分布的，示例：bvert="1"
-		static wchar_t* INT_states;                            ///< 状态数，示例：states="1"
+		static char* STRING_src;                            ///< 状态连图源，可以通过xml加载
+		static char* STRING_id;                             ///< 唯一标识skin类对象，示例：id="channel_vz"
+		static char* bool_btitle;                           ///< 是否平铺绘制，示例：btitle="1"
+		static char* bool_bvert;                            ///< 状态连图是否为竖直分布的，示例：bvert="1"
+		static char* INT_states;                            ///< 状态数，示例：states="1"
 
 	};
 	DMAttrValueInit(DMImgListSkinImplAttr,STRING_src)DMAttrValueInit(DMImgListSkinImplAttr,STRING_id)
@@ -41,16 +41,16 @@ namespace DM
 	/// </summary>
 	class DMImgListSkinImpl:public IDMSkin
 	{
-		DMDECLARE_CLASS_NAME(DMImgListSkinImpl,L"imglist",DMREG_Skin);
+		DMDECLARE_CLASS_NAME(DMImgListSkinImpl,"imglist",DMREG_Skin);
 	public:
 		DMImgListSkinImpl();
 	public:
-		DMCode GetID(wchar_t* lpszId, int iSize);
+		DMCode GetID(char* lpszId, int iSize);
 		DMCode Draw(IDMCanvas *pCanvas, LPCRECT lpRectDraw, int iState,BYTE alpha=0xFF); 
 		DMCode GetStateSize(SIZE &sz, int iState=0);                                        
 		DMCode GetStates(int &iStates);	
 		DMCode GetBitmap(IDMBitmap** ppBitmap);
-		DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCWSTR pszType);
+		DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCSTR pszType);
 		DMCode UpdateSkin(WPARAM wp, LPARAM lp);
 		DMCode IsValid();
 
@@ -64,14 +64,14 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttributeGetImage(LPCWSTR pszValue, bool bLoadXml); // 初始化m_pBitmap
+		DMCode OnAttributeGetImage(LPCSTR pszValue, bool bLoadXml); // 初始化m_pBitmap
 			
 	protected:
 		DMSmartPtrT<IDMBitmap>						m_pBitmap;      ///< 状态图         
 		int											m_nStates;		///< 有多少种状态
 		bool										m_bTile;		///< 是否平铺绘制，flase表示拉伸绘制
 		bool										m_bVert;        ///< 子图是否垂直排列，0--水平排列(默认), 其它--垂直排列
-		CStringW                                    m_strID;        ///< 唯一标识
-		CStringW                                    m_strRes;       ///< 资源的唯一标识，用于换肤确认
+		CStringA                                    m_strID;        ///< 唯一标识
+		CStringA                                    m_strRes;       ///< 资源的唯一标识，用于换肤确认
 	};
 }//namespace DM

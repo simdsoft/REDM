@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "StyleDlg.h"
 
 BEGIN_MSG_MAP(StyleDlg)
@@ -9,7 +9,7 @@ BEGIN_MSG_MAP(StyleDlg)
 	CHAIN_MSG_MAP(DMHDialog)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(StyleDlg)
-	EVENT_NAME_COMMAND(L"ds_style_expand",	OnExpand)
+	EVENT_NAME_COMMAND("ds_style_expand",	OnExpand)
 END_EVENT_MAP()
 StyleDlg::StyleDlg(bool bEditMode /*= false*/)
 {
@@ -25,31 +25,31 @@ StyleDlg::~StyleDlg()
 
 BOOL StyleDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	m_pExpandBtn = FindChildByNameT<DUIButton>(L"ds_style_expand");
-	m_pPropFrame = FindChildByNameT<DUIPropFrame>(L"ds_style_prop");
+	m_pExpandBtn = FindChildByNameT<DUIButton>("ds_style_expand");
+	m_pPropFrame = FindChildByNameT<DUIPropFrame>("ds_style_prop");
 	m_pPropFrame->m_pPropList->m_EventMgr.SubscribeEvent(DM::PropDelingArgs::EventID, Subscriber(&StyleDlg::OnPropDeling, this));
 	m_pPropFrame->m_pPropList->m_EventMgr.SubscribeEvent(DM::PropDelArgs::EventID, Subscriber(&StyleDlg::OnPropDel, this));
-	// ≥ı ºªØ◊‹array
+	// ÂàùÂßãÂåñÊÄªarray
 	InitAttrArray();
 
 	m_pObjXml    = g_pMainWnd->m_pDesignerXml;
-	m_pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>(L"ds_projtree");
+	m_pProjTree  = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");
 	DMXmlNode XmlBase = m_StyleDoc.Base();
 	m_StyleNode = XmlBase.InsertChildNode(XML_STYLE);
-	if (m_bEditMode)// ±‡º≠ƒ£ Ω£¨≥ı ºªØ≤ø∑÷±‰¡ø
+	if (m_bEditMode)// ÁºñËæëÊ®°ÂºèÔºåÂàùÂßãÂåñÈÉ®ÂàÜÂèòÈáè
 	{
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
-		CStringW strId = pNode->Attribute(XML_ID);
+		CStringA strId = pNode->Attribute(XML_ID);
 		if (strId.IsEmpty())
 		{
-			pNode->SetAttribute(XML_ID,L"",false);///»Áπ˚id‘≠¿¥æÕ¥Ê‘⁄(÷ª «Œ™ø’),‘Ú≤ªª·≤Â»Î
+			pNode->SetAttribute(XML_ID,"",false);///Â¶ÇÊûúidÂéüÊù•Â∞±Â≠òÂú®(Âè™ÊòØ‰∏∫Á©∫),Âàô‰∏ç‰ºöÊèíÂÖ•
 			m_pObjXml->SetDocUnSave(pNode);
 		}
 		DMXmlAttribute XmlAttribute = pNode->FirstAttribute();
 		while (XmlAttribute.IsValid())
 		{
-			CStringW strName = XmlAttribute.GetName();
-			CStringW strValue = XmlAttribute.GetValue();
+			CStringA strName = XmlAttribute.GetName();
+			CStringA strValue = XmlAttribute.GetValue();
 			DMXmlInitAttrPtr pInitAttr = FindByName(strName);
 			IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
 			if (pInitAttr)
@@ -66,7 +66,7 @@ BOOL StyleDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		DMXmlInitAttrPtr pInitAttr = FindByName(XML_ID);
 		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
 		if (pInitAttr)
-		{// ±£÷§ID «±ÿ–Î¥Ê‘⁄µƒ
+		{// ‰øùËØÅIDÊòØÂøÖÈ°ªÂ≠òÂú®ÁöÑ
 			m_pPropFrame->AddInitAttrProperty(pInitAttr,pProp);
 			pInitAttr->m_bUse = true;
 		}
@@ -131,7 +131,7 @@ DMCode StyleDlg::OnTreeInit(AttrTree* pTree)
 		AttrExpandWnd::InitTreeNode(NoDataNode,false);
 		AttrExpandWnd::InitTreeNode(DataNode,true);
 
-		//1. ∏˘Ω·µ„
+		//1. Ê†πÁªìÁÇπ
 		NoDataNode.SetAttribute(XML_TEXT,L"DUIStyleAttr");
 		HDMTREEITEM hTreeRoot =  pTree->InsertItem(NoDataNode);
 
@@ -141,7 +141,7 @@ DMCode StyleDlg::OnTreeInit(AttrTree* pTree)
 			break;
 		}
 		
-		//2. ≤Â»Î◊”Ω·µ„
+		//2. ÊèíÂÖ•Â≠êÁªìÁÇπ
 		for (int i=0;i<iCount;i++)
 		{
 			DMXmlInitAttrPtr pInitAttr = GetObj(i);
@@ -170,7 +170,7 @@ DMCode StyleDlg::OnTreeSel(AttrTree* pTree)
 			break;
 		}
 		DMXmlInitAttrPtr pInitAttr = (DMXmlInitAttrPtr)pTree->GetItemData(hSel);
-		if (NULL == pInitAttr)// ‘⁄’€µ˛ ±£¨—°÷–µƒ «µ⁄“ª––£¨ «Œﬁ ˝æ›µƒ
+		if (NULL == pInitAttr)// Âú®ÊäòÂè†Êó∂ÔºåÈÄâ‰∏≠ÁöÑÊòØÁ¨¨‰∏ÄË°åÔºåÊòØÊó†Êï∞ÊçÆÁöÑ
 		{
 			break;
 		}
@@ -194,10 +194,10 @@ DMCode StyleDlg::OnPropDeling(DMEventArgs *pEvt)
 	PropDelingArgs* pEvent = (PropDelingArgs*)pEvt;
 	DMXmlInitAttrPtr pInitAttr = (DMXmlInitAttrPtr)pEvent->m_pSel->GetData();
 	if (NULL == pInitAttr
-		||0 == _wcsicmp(pInitAttr->m_pAttr->GetName(),L"STRING_ID"))
+		||0 == dm_xmlstrcmp(pInitAttr->m_pAttr->GetName(),"STRING_ID"))
 	{
-		DM_MessageBox(L"∏√œÓ≤ªø…±ª…æ≥˝");
-		pEvent->m_bCancel = true;// ≤ª…æ≥˝id∫Õ ◊––
+		DM_MessageBox(L"ËØ•È°π‰∏çÂèØË¢´Âà†Èô§");
+		pEvent->m_bCancel = true;// ‰∏çÂà†Èô§idÂíåÈ¶ñË°å
 	}
 	return DM_ECODE_OK;
 }
@@ -221,7 +221,7 @@ DMCode StyleDlg::OnExpand()
 		if (m_pExpandWnd.isNull())
 		{
 			m_pExpandWnd.Attach(new AttrExpandWnd(this));
-			m_pExpandWnd->DM_CreateWindowEx(L"ds_expandwnd",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,m_hWnd,NULL,false);
+			m_pExpandWnd->DM_CreateWindowEx("ds_expandwnd",DM_DEF_WINDOW_NAME,WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,m_hWnd,NULL,false);
 			m_pExpandWnd->SendMessage(WM_INITDIALOG);
 		} 
 
@@ -244,7 +244,7 @@ DMCode StyleDlg::OnExpand()
 
 DMCode StyleDlg::InitAttrArray()
 {
-	DMXmlNode XmlRoot = g_pAttr->GetAttrNode(L"DUIStyleAttr");
+	DMXmlNode XmlRoot = g_pAttr->GetAttrNode("DUIStyleAttr");
 	DMXmlAttribute XmlAttribute = XmlRoot.FirstAttribute();
 	while (XmlAttribute.IsValid())
 	{
@@ -266,23 +266,23 @@ DMCode StyleDlg::OnOK()
 	HDMTREEITEM hAdd = NULL;
 	do 
 	{
-		//1. …˙≥…style xmlΩ⁄µ„
+		//1. ÁîüÊàêstyle xmlËäÇÁÇπ
 		if (m_pPropFrame->m_pPropList->m_pSel)
 		{
 			m_pPropFrame->m_pPropList->m_pSel->OnInPlaceCtrlShow(false);
 		}
 		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
 		pProp->UpdateSubXml(m_StyleNode);
-		CStringW strId = m_StyleNode.Attribute(XML_ID);strId.Trim();
+		CStringA strId = m_StyleNode.Attribute(XML_ID);strId.Trim();
 		if (strId.IsEmpty())
 		{
-			DM_MessageBox(L"Œ¥…Ë÷√id!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"Êú™ËÆæÁΩÆid!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
-		if (m_bEditMode)// editƒ£ Ω
+		if (m_bEditMode)// editÊ®°Âºè
 		{
-			//2.≈–∂œid «∑Ò“—¥Ê‘⁄
+			//2.Âà§Êñ≠idÊòØÂê¶Â∑≤Â≠òÂú®
 			bool bFind = false;
 			HDMTREEITEM hParentItem = m_pProjTree->GetParentItem(m_pObjXml->m_hProjSel);
 			if (hParentItem)
@@ -291,7 +291,7 @@ DMCode StyleDlg::OnOK()
 				while (hChildItem)
 				{
 					if (hChildItem != m_pObjXml->m_hProjSel)
-					{// Ã¯π˝±‡º≠◊‘…Ì
+					{// Ë∑≥ËøáÁºñËæëËá™Ë∫´
 						DMXmlNodePtr pChildNode = (DMXmlNodePtr)m_pProjTree->GetItemData(hChildItem);
 						if (0 == strId.CompareNoCase(pChildNode->Attribute(XML_ID)))
 						{
@@ -304,7 +304,7 @@ DMCode StyleDlg::OnOK()
 			}
 			if (bFind)
 			{
-				DM_MessageBox(L"id“—¥Ê‘⁄,«Î÷ÿ–¬…Ë÷√!",MB_OK,L"MSG",m_hWnd);
+				DM_MessageBox(L"idÂ∑≤Â≠òÂú®,ËØ∑ÈáçÊñ∞ËÆæÁΩÆ!",MB_OK,L"MSG",m_hWnd);
 				break;
 			}
 
@@ -313,13 +313,13 @@ DMCode StyleDlg::OnOK()
 			DMXmlAttribute XmlAttribute = m_StyleNode.FirstAttribute();
 			while (XmlAttribute.IsValid())
 			{
-				CStringW strName = XmlAttribute.GetName();
-				CStringW strValue = XmlAttribute.GetValue();
-				CStringW strOldValue = pNode->Attribute(strName);
-				if (0 != strValue.CompareNoCase(strOldValue))
+				LPCSTR strName = XmlAttribute.GetName();
+				LPCSTR strValue = XmlAttribute.GetValue();
+				LPCSTR strOldValue = pNode->Attribute(strName);
+				if (0 != dm_xmlstrcmp(strValue, strOldValue))
 				{
 					bChanged = true;
-					//3. ∏¸–¬style xmlΩ⁄µ„÷–±ª∏ƒ±‰µƒ Ù–‘
+					//3. Êõ¥Êñ∞style xmlËäÇÁÇπ‰∏≠Ë¢´ÊîπÂèòÁöÑÂ±ûÊÄß
 					pNode->SetAttribute(strName,strValue);
 				}
 				XmlAttribute = XmlAttribute.NextAttribute();
@@ -329,9 +329,9 @@ DMCode StyleDlg::OnOK()
 				m_pObjXml->SetDocUnSave(pNode);
 			}
 
-			//4. ∏¸–¬treeΩ·µ„œ‘ æ
+			//4. Êõ¥Êñ∞treeÁªìÁÇπÊòæÁ§∫
 			DM::LPTVITEMEX pData = m_pProjTree->GetItem(m_pObjXml->m_hProjSel);
-			pData->pPanel->m_pDUIXmlInfo->m_strText = pNode->Attribute(XML_ID);
+			pData->pPanel->m_pDUIXmlInfo->m_strText = DMCA2W(pNode->Attribute(XML_ID));
 			m_pProjTree->UpdateItemRect(m_pObjXml->m_hProjSel);
 
 			iErr = DM_ECODE_OK;
@@ -339,7 +339,7 @@ DMCode StyleDlg::OnOK()
 			break;
 		}
 
-		//2.≈–∂œid «∑Ò“—¥Ê‘⁄
+		//2.Âà§Êñ≠idÊòØÂê¶Â∑≤Â≠òÂú®
 		DMXmlNodePtr pNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 		DMXmlNode XmlNode = pNode->FirstChild();
 		bool bFind = false;
@@ -354,32 +354,32 @@ DMCode StyleDlg::OnOK()
 		}
 		if (bFind)
 		{
-			DM_MessageBox(L"id“—¥Ê‘⁄,«Î÷ÿ–¬…Ë÷√!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"idÂ∑≤Â≠òÂú®,ËØ∑ÈáçÊñ∞ËÆæÁΩÆ!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
-		//3. ≤Â»ÎµΩxml÷–
+		//3. ÊèíÂÖ•Âà∞xml‰∏≠
 		DMXmlNodePtr pStyleTypeNode = (DMXmlNodePtr)m_pProjTree->GetItemData(m_pObjXml->m_hProjSel);
 		DMXmlNode XmlStyleNode = pStyleTypeNode->InsertCopyChildNode(&m_StyleNode);
 		
-		//4. ≤Â»ÎµΩtree÷–
+		//4. ÊèíÂÖ•Âà∞tree‰∏≠
 		DMXmlDocument doc;
 		DMXmlNode DataNode = doc.Base();
 		m_pObjXml->InitProjTreeNode(DataNode,true);
 		hAdd = m_pObjXml->InsertProjTreeItem(DataNode,strId,m_pObjXml->m_hProjSel);
 		m_pObjXml->BindProjTreeData(XmlStyleNode,hAdd);
 
-		//5. …Ë÷√xmlŒ™Œ¥±£¥Ê◊¥Ã¨
+		//5. ËÆæÁΩÆxml‰∏∫Êú™‰øùÂ≠òÁä∂ÊÄÅ
 		m_pObjXml->SetDocUnSave(pStyleTypeNode);
 
-		//¥¶¿Ì∂‘œÛ ”Õº
+		//Â§ÑÁêÜÂØπË±°ËßÜÂõæ
 		if (hAdd&&m_pObjXml->m_bInitObjTree)// 
 		{
-			//1. ‘ˆº”µΩstyle÷–
+			//1. Â¢ûÂä†Âà∞style‰∏≠
 			DMXmlDocument Doc;
 			DMXmlNode XmlBase = Doc.Base();
 			DMXmlNode XmlStyle = XmlBase.InsertChildNode(XML_STYLE);
-			XmlStyle.SetAttribute(XML_NAME,pStyleTypeNode->Attribute(XML_NAME));// ∏∏Ω·µ„nameº¥Œ™À˘ Ùstyle≥ÿname
+			XmlStyle.SetAttribute(XML_NAME,pStyleTypeNode->Attribute(XML_NAME));// Áà∂ÁªìÁÇπnameÂç≥‰∏∫ÊâÄÂ±ûstyleÊ±†name
 			XmlStyle.InsertCopyChildNode(&XmlStyleNode);
 			g_pDMApp->AddStylePoolItem(XmlStyle);
 		}
@@ -396,7 +396,7 @@ DMCode StyleDlg::OnOK()
 	return iErr;
 }
 
-DMXmlInitAttrPtr StyleDlg::FindByName(CStringW strName)
+DMXmlInitAttrPtr StyleDlg::FindByName(CStringA strName)
 {
 	DMXmlInitAttrPtr pInitAttr = NULL;
 	do 
@@ -410,7 +410,7 @@ DMXmlInitAttrPtr StyleDlg::FindByName(CStringW strName)
 		for (int i=0;i<iCount;i++)
 		{
 			DMXmlInitAttrPtr ptr = GetObj(i);
-			CStringW strTempType,strTempName;
+			CStringA strTempType,strTempName;
 			g_pAttr->ParseName(ptr->m_pAttr,strTempType,strTempName);
 			if (0 == strName.CompareNoCase(strTempName))
 			{

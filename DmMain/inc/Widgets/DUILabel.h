@@ -22,8 +22,8 @@ namespace DMAttr
 	class DUILabelAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* bool_bmultiLines;                                     ///< 是否支持多行,示例:bmultiLines="1"
-		static wchar_t* INT_lineinter;                                        ///< 行间距,默认为5，示例:lineinter="5"
+		static char* bool_bmultiLines;                                     ///< 是否支持多行,示例:bmultiLines="1"
+		static char* INT_lineinter;                                        ///< 行间距,默认为5，示例:lineinter="5"
 	};
 	DMAttrValueInit(DUILabelAttr,bool_bmultiLines)DMAttrValueInit(DUILabelAttr,INT_lineinter)
 }

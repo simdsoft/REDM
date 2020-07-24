@@ -33,7 +33,7 @@ namespace DM
 	/// </summary>
 	class IDMRender:public DMBase
 	{
-		DMDECLARE_CLASS_NAME(IDMRender,L"IDMRender",DMREG_Render);
+		DMDECLARE_CLASS_NAME(IDMRender,"IDMRender",DMREG_Render);
 	public:
 		IDMRender(){};
 		virtual~IDMRender(){};
@@ -88,8 +88,8 @@ namespace DM
 	public:
 		virtual DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL) = 0;				///<初始化
 		virtual DMCode InitFromFrame(IDMImgFrame *pImgFrame) = 0;						///<从<see cref="IDMImgFrame"/>中加载
-		virtual DMCode LoadFromFile(LPCWSTR pszFileName,LPCWSTR pszType) = 0;			///<从文件中加载
-		virtual DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCWSTR pszType) = 0;	///<从内存中加载
+		virtual DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType) = 0;			///<从文件中加载
+		virtual DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;	///<从内存中加载
 
 		virtual DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL) = 0;			///<调整HSL
 		virtual DMCode ResetHsl() = 0;												    ///<恢复未变换HSL前，清除HSL变换的像素阵列被清除

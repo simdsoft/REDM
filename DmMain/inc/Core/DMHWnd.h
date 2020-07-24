@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 //
 // File Name: DMHWnd.h
-// File Des: Ö÷´°¿ÚÀà,ÓÃÓÚCWndÏà¹ØCreate
-// File Summary:  ³ÉÔ±±äÁ¿×ÜÊÇ·ÅÔÚClassName_DataÀàÖĞ£¬XML±äÁ¿×ÜÊÇ·ÅÔÚClassName_XmlInfoÀàÖĞ
+// File Des: ä¸»çª—å£ç±»,ç”¨äºCWndç›¸å…³Create
+// File Summary:  æˆå‘˜å˜é‡æ€»æ˜¯æ”¾åœ¨ClassName_Dataç±»ä¸­ï¼ŒXMLå˜é‡æ€»æ˜¯æ”¾åœ¨ClassName_XmlInfoç±»ä¸­
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -22,102 +22,102 @@ namespace DM
 {
 	// The NativeWindow shadow style
 	enum {
-		// ÎŞÈÎºÎÒõÓ°Ğ§¹û
+		// æ— ä»»ä½•é˜´å½±æ•ˆæœ
 		NWSDS_NULL = 0,
 
-		// CS_DROPDOWNĞ§¹û, ½öÓÃÓÚ¶ÌÉúÃüÖÜÆÚµÄtop-level´°¿Ú, ÀıÈçmenuºÍtooltip
-		// top-level´°¿ÚÎ¢Èí¶¨Òå: ·ÇChild£¬ÎŞWS_CHILD·ç¸ñ, ÎŞParent, ÎŞOwner, »òÕßParentÊÇDesktopWindowµÄ´°¿Ú
+		// CS_DROPDOWNæ•ˆæœ, ä»…ç”¨äºçŸ­ç”Ÿå‘½å‘¨æœŸçš„top-levelçª—å£, ä¾‹å¦‚menuå’Œtooltip
+		// top-levelçª—å£å¾®è½¯å®šä¹‰: éChildï¼Œæ— WS_CHILDé£æ ¼, æ— Parent, æ— Owner, æˆ–è€…Parentæ˜¯DesktopWindowçš„çª—å£
 		NWSDS_DROPSHADOW = 1,
 
-		// dwmµÄËÄ±ßÒõÓ°Ğ§¹û, ÓÃÓÚÆÕÍ¨Dialog»òÖ÷´°¿Ú
+		// dwmçš„å››è¾¹é˜´å½±æ•ˆæœ, ç”¨äºæ™®é€šDialogæˆ–ä¸»çª—å£
 		NWSDS_DWMSHADOW = 2,
 	};
 
 	/// <summary>
-	///		´ËÎª×îÖØÒª´°¿ÚÖ÷Àà£¬ËùÓĞÊµÀıÖ÷´°¿Ú¶¼Ó¦¸ÃÖ±½Ó»ò¼ä½Ó¼Ì³ĞÓÚ´ËÀà,ÊôĞÔ£º<see cref="DMAttr::DMHWndAttr"/>
+	///		æ­¤ä¸ºæœ€é‡è¦çª—å£ä¸»ç±»ï¼Œæ‰€æœ‰å®ä¾‹ä¸»çª—å£éƒ½åº”è¯¥ç›´æ¥æˆ–é—´æ¥ç»§æ‰¿äºæ­¤ç±»,å±æ€§ï¼š<see cref="DMAttr::DMHWndAttr"/>
 	/// </summary>
 	/// <remarks>
-	///		ÄÚ²¿ÊµÏÖÁË¼ÓÔØ×ÊÔ´¡¢´´½¨´°¿Ú¡¢ÏûÏ¢·Ö·¢´¦ÀíµÈĞĞÎª
+	///		å†…éƒ¨å®ç°äº†åŠ è½½èµ„æºã€åˆ›å»ºçª—å£ã€æ¶ˆæ¯åˆ†å‘å¤„ç†ç­‰è¡Œä¸º
 	/// <remarks>
-	class DM_EXPORT DMHWnd:public DMCWnd          // ´°¿Ú»ù´¡ÏûÏ¢´¦Àí
-						  ,public DMContainerImpl // ÏûÏ¢·Ö·¢µ½×ÓDUI´°¿Ú
-						  ,public DUIWindow		  // Ö÷´°¿Ú×ÔÉíÎªDUI´°¿Ú
-						  ,public IDMAnimateOwner // ¶¯»­´°¿ÚµÄÓµÓĞÕß
+	class DM_EXPORT DMHWnd:public DMCWnd          // çª—å£åŸºç¡€æ¶ˆæ¯å¤„ç†
+						  ,public DMContainerImpl // æ¶ˆæ¯åˆ†å‘åˆ°å­DUIçª—å£
+						  ,public DUIWindow		  // ä¸»çª—å£è‡ªèº«ä¸ºDUIçª—å£
+						  ,public IDMAnimateOwner // åŠ¨ç”»çª—å£çš„æ‹¥æœ‰è€…
 	{
-		DMDECLARE_CLASS_NAME(DMHWnd,L"hwnd",DMREG_Window);
+		DMDECLARE_CLASS_NAME(DMHWnd,"hwnd",DMREG_Window);
 	public:
 		DMHWnd();
 	public:
 		//---------------------------------------------------
-		// Function Des: ´´½¨´°¿Ú½Ó¿Úº¯Êı
+		// Function Des: åˆ›å»ºçª—å£æ¥å£å‡½æ•°
 		//---------------------------------------------------
-		HWND DM_CreateWindow(LPCWSTR lpszXmlId,int x=0, int y=0, int nWidth=0, int nHeight=0, HWND hWndParent=NULL, int shadowStyle=NWSDS_NULL);///< ´´½¨´°¿Ú
+		HWND DM_CreateWindow(LPCSTR lpszXmlId,int x=0, int y=0, int nWidth=0, int nHeight=0, HWND hWndParent=NULL, int shadowStyle=NWSDS_NULL);///< åˆ›å»ºçª—å£
 
 		/// -------------------------------------------------
-		/// @brief			´´½¨´°¿Ú
-		/// @param[in]		lpszXmlId       Ê¹ÓÃµÄXMLÎÄ¼şÔÚdmindex.xmlÖĞµÄ±êÊ¶
-		/// @param[in]		lpWindowName	´°¿ÚÃû
-		/// @param[in]		dwStyle			ÑùÊ½
-		/// @param[in]		dwExStyle		À©Õ¹ÑùÊ½
-		/// @param[in]		x				x×ø±ê
-		/// @param[in]		y				y×ø±ê
-		/// @param[in]		nWidth			¿í¶È
-		/// @param[in]		nHeight			¸ß¶È
-		/// @param[in]		hWndParent		¸¸´°¿Ú
+		/// @brief			åˆ›å»ºçª—å£
+		/// @param[in]		lpszXmlId       ä½¿ç”¨çš„XMLæ–‡ä»¶åœ¨dmindex.xmlä¸­çš„æ ‡è¯†
+		/// @param[in]		lpWindowName	çª—å£å
+		/// @param[in]		dwStyle			æ ·å¼
+		/// @param[in]		dwExStyle		æ‰©å±•æ ·å¼
+		/// @param[in]		x				xåæ ‡
+		/// @param[in]		y				yåæ ‡
+		/// @param[in]		nWidth			å®½åº¦
+		/// @param[in]		nHeight			é«˜åº¦
+		/// @param[in]		hWndParent		çˆ¶çª—å£
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		shadowStyle     ´°¿ÚÒõÓ°·ç¸ñ, Ïê¼û: NativeWindowShadowStyle
+		/// @param[in]		shadowStyle     çª—å£é˜´å½±é£æ ¼, è¯¦è§: NativeWindowShadowStyle
 		/// @return			HWND
-		HWND DM_CreateWindowEx(LPCWSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
+		HWND DM_CreateWindowEx(LPCSTR lpszXmlId, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
 
 		/// -------------------------------------------------
-		/// @brief			´´½¨´°¿Ú
-		/// @param[in]		pXmlBuf         Ê¹ÓÃµÄXMLÎÄ¼şµÄbuf,Íâ²¿Çë×ª»»³Éutf8¸ñÊ½
-		/// @param[in]		bufLen          Ê¹ÓÃµÄXMLÎÄ¼şµÄbuf³¤¶È
-		/// @param[in]		lpWindowName	´°¿ÚÃû
-		/// @param[in]		dwStyle			ÑùÊ½
-		/// @param[in]		dwExStyle		À©Õ¹ÑùÊ½
-		/// @param[in]		x				x×ø±ê
-		/// @param[in]		y				y×ø±ê
-		/// @param[in]		nWidth			¿í¶È
-		/// @param[in]		nHeight			¸ß¶È
-		/// @param[in]		hWndParent		¸¸´°¿Ú
+		/// @brief			åˆ›å»ºçª—å£
+		/// @param[in]		pXmlBuf         ä½¿ç”¨çš„XMLæ–‡ä»¶çš„buf,å¤–éƒ¨è¯·è½¬æ¢æˆutf8æ ¼å¼
+		/// @param[in]		bufLen          ä½¿ç”¨çš„XMLæ–‡ä»¶çš„bufé•¿åº¦
+		/// @param[in]		lpWindowName	çª—å£å
+		/// @param[in]		dwStyle			æ ·å¼
+		/// @param[in]		dwExStyle		æ‰©å±•æ ·å¼
+		/// @param[in]		x				xåæ ‡
+		/// @param[in]		y				yåæ ‡
+		/// @param[in]		nWidth			å®½åº¦
+		/// @param[in]		nHeight			é«˜åº¦
+		/// @param[in]		hWndParent		çˆ¶çª—å£
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message
-		/// @param[in]		shadowStyle     ´°¿ÚÒõÓ°·ç¸ñ, Ïê¼û: NativeWindowShadowStyle
+		/// @param[in]		shadowStyle     çª—å£é˜´å½±é£æ ¼, è¯¦è§: NativeWindowShadowStyle
 		/// @return			HWND
 		HWND DM_CreateWindowEx(void *pXmlBuf, size_t bufLen, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam, int shadowStyle=NWSDS_NULL);
 
 
 		/// -------------------------------------------------
-		/// @brief		¸üĞÂ´°¿Úµ½HDCÉÏ
-		/// @param[in]  hdc              Òª¸üĞÂµÄhdc
-		/// @param[in]  rcInvalid        Òª¸üĞÂµÄÇøÓò
+		/// @brief		æ›´æ–°çª—å£åˆ°HDCä¸Š
+		/// @param[in]  hdc              è¦æ›´æ–°çš„hdc
+		/// @param[in]  rcInvalid        è¦æ›´æ–°çš„åŒºåŸŸ
 		virtual void UpdateHWnd(HDC hdc,const CRect &rcInvalid,bool bUpdate = false);
 		void RedrawAll();
 
 		//---------------------------------------------------
 		// Function Des: XML
 		//---------------------------------------------------
-		DMCode LoadDMData(LPCWSTR lpszXmlId);									///< ½âÎöXML
+		DMCode LoadDMData(LPCSTR lpszXmlId);									///< è§£æXML
 		DMCode LoadDMData(void *pXmlBuf, size_t bufLen);
-		DMCode InitFromDMData();												///< Í¨¹ıXMLÊı¾İ³õÊ¼»¯
+		DMCode InitFromDMData();												///< é€šè¿‡XMLæ•°æ®åˆå§‹åŒ–
 
 	public:
 
 		//---------------------------------------------------
-		// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnPaint(HDC hdc);
 		void OnPrint(HDC hdc, UINT uFlags);
-		void OnSize(UINT nType, CSize size);									///< ÖØÉè»­²¼´óĞ¡
+		void OnSize(UINT nType, CSize size);									///< é‡è®¾ç”»å¸ƒå¤§å°
 		void OnSizing(UINT nSide, LPRECT lpRect);
-		void OnGetMinMaxInfo(LPMINMAXINFO lpMMI);								///< ¿ØÖÆ×î´ó¡¢×îĞ¡´°¿Ú
+		void OnGetMinMaxInfo(LPMINMAXINFO lpMMI);								///< æ§åˆ¶æœ€å¤§ã€æœ€å°çª—å£
 		void OnDestroy();
 		void OnActivate(UINT nState, BOOL bMinimized, HWND wndOther);
 		void OnSetFocus(HWND wndOld);
 		void OnKillFocus(HWND wndFocus);
-		void OnTimer(UINT_PTR idEvent);											///< ·Ö·¢FastTimer
-		virtual void OnDUITimer(char id);										///< ÓÃÓÚÖ÷´°¿Ú×Ô¼º¶¨ÒåÁË¶¨Ê±Æ÷£¬ÖØÔØ´¦Àí
+		void OnTimer(UINT_PTR idEvent);											///< åˆ†å‘FastTimer
+		virtual void OnDUITimer(char id);										///< ç”¨äºä¸»çª—å£è‡ªå·±å®šä¹‰äº†å®šæ—¶å™¨ï¼Œé‡è½½å¤„ç†
 
 		void OnMove(CPoint pt);
 		void OnMouseMove(UINT nFlags, CPoint point);
@@ -128,24 +128,24 @@ namespace DM
 		BOOL OnSetCursor(HWND hWnd, UINT nHitTest, UINT message);
 		UINT OnNcHitTest(CPoint point);
 		int OnCreate(LPCREATESTRUCT lpCreateStruct);
-		LRESULT OnNcCreate(LPCREATESTRUCT lpCreateStruct);						///< Èç¹ûOnNcCreate·µ»Øfalse£¬´°¿Ú½«²»»á±»´´½¨£¡
+		LRESULT OnNcCreate(LPCREATESTRUCT lpCreateStruct);						///< å¦‚æœOnNcCreateè¿”å›falseï¼Œçª—å£å°†ä¸ä¼šè¢«åˆ›å»ºï¼
 		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);
-		LRESULT OnMouseEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< ÓÃÓÚ´¦ÀíÊó±êµã»÷ÏûÏ¢
-		LRESULT OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< ¼üÅÌÏûÏ¢´«µİ£¬Èç½¹µã
+		LRESULT OnMouseEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< ç”¨äºå¤„ç†é¼ æ ‡ç‚¹å‡»æ¶ˆæ¯
+		LRESULT OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam);			///< é”®ç›˜æ¶ˆæ¯ä¼ é€’ï¼Œå¦‚ç„¦ç‚¹
 		LRESULT OnHostMsg(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
 		//---------------------------------------------------
-		// Function Des: ¶¯»­
+		// Function Des: åŠ¨ç”»
 		//---------------------------------------------------
-		DMCode DM_AnimateWindow(DWORD dwTime,DWORD dwFlags);					    ///< ¶¯»­Ğ§¹û
+		DMCode DM_AnimateWindow(DWORD dwTime,DWORD dwFlags);					    ///< åŠ¨ç”»æ•ˆæœ
 		DUIWindow* GetAnimateOwnerWnd();
 		DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
 		DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
 		DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;};
 
 		//---------------------------------------------------
-		// Function Des: ÈİÆ÷²¿·Ö
+		// Function Des: å®¹å™¨éƒ¨åˆ†
 		//---------------------------------------------------
 		DMCode OnSetCaptureWnd(DUIWND DUIWnd,DUIWNDPtr pOldDUIWnd=NULL);
 		DMCode OnReleaseCaptureWnd();
@@ -166,19 +166,19 @@ namespace DM
 		CStringW OnGetTransId();
 
 		//---------------------------------------------------
-		// Function Des: spy++²¿·Ö
+		// Function Des: spy++éƒ¨åˆ†
 		//---------------------------------------------------
 		LRESULT OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMCode DM_UpdateLayeredWindow(IDMCanvas* pCanvas,BYTE byAlpha, LPRECT lpRect);
 		DMCode DM_UpdateShowCanvas(LPRECT lpRect);
 
 		BOOL DM_EnableShadowEffect(BOOL bEnabled = TRUE, int margin = 1);
 
   protected:
-		virtual void OnAfterCreated();							///< ´°¿Ú´´½¨³É¹¦ºóµ÷ÓÃ
-		virtual void OnAfterClosed();							///< ´°¿ÚÍË³öºó,ÄÚ²¿ÅĞ¶ÏÈç¹û´Ë´°¿ÚÔËĞĞÏûÏ¢Ñ­»·,×Ô¶¯·¢ËÍWM_QUITÏûÏ¢,ÓÃ»§¿ÉÖØÔØ´¦Àí
+		virtual void OnAfterCreated();							///< çª—å£åˆ›å»ºæˆåŠŸåè°ƒç”¨
+		virtual void OnAfterClosed();							///< çª—å£é€€å‡ºå,å†…éƒ¨åˆ¤æ–­å¦‚æœæ­¤çª—å£è¿è¡Œæ¶ˆæ¯å¾ªç¯,è‡ªåŠ¨å‘é€WM_QUITæ¶ˆæ¯,ç”¨æˆ·å¯é‡è½½å¤„ç†
 
 	public:
 		DECLARE_MSG_MAP()
@@ -189,22 +189,22 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		// »æÖÆÇø --------------------------------------------
+		// ç»˜åˆ¶åŒº --------------------------------------------
 		DMSmartPtrT<IDMCanvas>                  m_pShowCanvas;
 		DMSmartPtrT<IDMDraw>                    m_pDraw;
 
-		// °ëÍ¸Ã÷´°¿ÚÃÉ°æ ------------------------------------
+		// åŠé€æ˜çª—å£è’™ç‰ˆ ------------------------------------
 		DMDummyWnd								m_dummyWnd;
 
-		// ÆäËûÊôĞÔ ------------------------------------------
+		// å…¶ä»–å±æ€§ ------------------------------------------
 		DMHWnd_Data								m_HWndData;
 		DMSmartPtrT<DMHWnd_XmlInfo>			    m_pHWndXmlInfo;
 
 		DMSmartPtrT<IDMToolTip>                 m_pToolTip;
 
-		bool                                    m_bSizeChanging;///< size¸Ä±äµ½Ë¢ĞÂÆÚ¼ä,ÈÏÎªÊÇsize¸Ä±äÆÚ£¬´ËÊ±²»ÔÊĞíÇ¿ÖÆ¸üĞÂ»­²¼£¬ÒòÎª»­²¼´ËÊ±Çå0ÁË
+		bool                                    m_bSizeChanging;///< sizeæ”¹å˜åˆ°åˆ·æ–°æœŸé—´,è®¤ä¸ºæ˜¯sizeæ”¹å˜æœŸï¼Œæ­¤æ—¶ä¸å…è®¸å¼ºåˆ¶æ›´æ–°ç”»å¸ƒï¼Œå› ä¸ºç”»å¸ƒæ­¤æ—¶æ¸…0äº†
 
-		DMSmartPtrT<DMMsgLoop>                  m_pCurMsgLoop;  ///< µ±Ç°ÏûÏ¢Ñ­»·¶ÔÏó,²»ÅÅ³ıÓĞÊ¹ÓÃ¶àÏß³ÌµÄ
+		DMSmartPtrT<DMMsgLoop>                  m_pCurMsgLoop;  ///< å½“å‰æ¶ˆæ¯å¾ªç¯å¯¹è±¡,ä¸æ’é™¤æœ‰ä½¿ç”¨å¤šçº¿ç¨‹çš„
 
 	};
 }//namespace DM

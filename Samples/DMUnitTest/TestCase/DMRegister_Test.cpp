@@ -33,7 +33,7 @@ protected:
 
 class DMLogImplTest:public IDMLog
 {
-	DMDECLARE_CLASS_NAME(DMLogImplTest, L"DMLogImplTest",DMREG_Log);
+	DMDECLARE_CLASS_NAME(DMLogImplTest, "DMLogImplTest",DMREG_Log);
 public:
 	// todo.
 	DMCode LogW(DMLOGLEVEL iLevel,LPCWSTR lpszFuncName, LPCWSTR lpszFileName, int iLine,LPCWSTR szLogBuf){return DM_ECODE_OK;}
@@ -41,7 +41,7 @@ public:
 
 class DMLogImplTest1:public IDMLog
 {
-	DMDECLARE_CLASS_NAME(DMLogImplTest1, L"DMLogImplTest1",DMREG_Log);
+	DMDECLARE_CLASS_NAME(DMLogImplTest1, "DMLogImplTest1",DMREG_Log);
 public:
 	DMLogImplTest1()
 	{
@@ -67,14 +67,14 @@ TEST_F(DMRegisterTest, 测试注册功能)
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest>(),false)),false); // 非强制覆盖
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->Register(DMRegHelperT<DMLogImplTest1>(),true)),true);  // 强制覆盖
 
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->UnRegister(L"DMLogImplTest",DMREG_Log)),true);         // 反注册
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->UnRegister("DMLogImplTest",DMREG_Log)),true);         // 反注册
 	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->SetDefRegObj(DMLogImplTest1::GetClassName(),DMLogImplTest1::GetClassType())), true);
 
 	DMSmartPtrT<IDMLog>  m_pLogObj;
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, L"DMLogImplTest",IDMLog::GetClassType())),false);   // 这个类被反注册了，所以返回false
-	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, L"DMLogImplTest1",IDMLog::GetClassType())),true);
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, "DMLogImplTest",IDMLog::GetClassType())),false);   // 这个类被反注册了，所以返回false
+	EXPECT_EQ(DMSUCCEEDED(DM::g_pDMApp->CreateRegObj((void**)&m_pLogObj, "DMLogImplTest1",IDMLog::GetClassType())),true);
 
-	LPCWSTR lpszClassName = DM::g_pDMApp->GetDefRegObj(DMREG_Log);
+	CStringA lpszClassName = DM::g_pDMApp->GetDefRegObj(DMREG_Log);
 
 
 }

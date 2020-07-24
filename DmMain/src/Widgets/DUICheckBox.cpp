@@ -203,7 +203,7 @@ namespace DM
 		return rcDest;
 	}
 
-	DMCode DUICheckBox::OnAttributeChecked(LPCWSTR lpszValue, bool bLoadXml)
+	DMCode DUICheckBox::OnAttributeChecked(LPCSTR lpszValue, bool bLoadXml)
 	{
 		bool bCheck = false;
 		dm_parsebool(lpszValue,bCheck);
