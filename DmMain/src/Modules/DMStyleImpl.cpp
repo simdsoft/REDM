@@ -148,7 +148,7 @@ namespace DM
 			}
 			if (m_strID.IsEmpty())
 			{
-				DMASSERT_EXPR(0,L"DMImgListSkinImpl对象的ID竟然为空！");
+				DMFAIL_MSG("DMImgListSkinImpl id is empty");
 				break;
 			}
 
@@ -280,9 +280,7 @@ namespace DM
 			pSkin = g_pDMApp->GetSkin(m_strSkinName);
 			if (NULL == pSkin)
 			{
-				CStringA szInfo = m_strSkinName;
-				szInfo += "(skin类型)获取失败!";
-				DMASSERT_EXPR(0, szInfo);
+                DMFAIL_MSG_FMT("Get skin type failed", (LPCSTR)m_strSkinName);
 				break;
 			}
 	
@@ -364,9 +362,7 @@ namespace DM
 			pSkin = g_pDMApp->GetSkin((m_strNcSkinName));
 			if (NULL == pSkin)
 			{
-				CStringA szInfo = m_strNcSkinName;
-				szInfo += "(skin类型)获取失败!";
-				DMASSERT_EXPR(0, szInfo);
+                DMFAIL_MSG_FMT("Get skin type failed", (LPCSTR)m_strNcSkinName);
 				break;
 			}
 			*ppSkin = pSkin;

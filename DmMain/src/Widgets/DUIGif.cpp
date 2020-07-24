@@ -97,7 +97,7 @@ namespace DM
 			{
 				bGif = true;
 				LPGLOBAL_INFO pGlobalInfo = pObj->GetGlobalInfo();
-				DMASSERT_EXPR(pGlobalInfo->frames==m_ulFrameCount,L"解码的帧不同!");
+				DMASSERT_MSG(pGlobalInfo->frames==m_ulFrameCount,"frameCount mismatch");
 				ulMaxWid = pGlobalInfo->scrWidth;
 				ulMaxHei = pGlobalInfo->scrHeight;
 			}
@@ -122,7 +122,7 @@ namespace DM
 				if (bGif)
 				{
 					memcpy(&pAnimateFrame->gifFrame,pObj->GetFrame(i),sizeof(GIFFRAME));
-					DMASSERT_EXPR(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,L"解码的延迟不同!");
+					DMASSERT_MSG(ulDelay==pAnimateFrame->gifFrame.ctrlExt.delayTime*10,"delay mismatch");
 				}
 				else
 				{
@@ -484,9 +484,7 @@ namespace DM
 			}
 			else
 			{
-				CStringW strInfo;
-				strInfo.Format(L"gifskin参数%s设置错误",lpszValue);
-				DMASSERT_EXPR(0,L"gifskin设置错误!");
+				DMFAIL_MSG_FMT("gifskin param %s error", lpszValue);
 				break;
 			}
 			DMSmartPtrT<IDMRes> pRes;

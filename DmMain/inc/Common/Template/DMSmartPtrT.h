@@ -64,7 +64,7 @@ namespace DM
 
 		T * operator->() const throw()
 		{
-			DMASSERT_EXPR(NULL != m_ptr,L"m_ptr为空,请确定是否初始化!");
+			DMASSERT(NULL != m_ptr);
 			return m_ptr;
 		};
 

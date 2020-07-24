@@ -325,13 +325,13 @@ namespace DM
 		{
 			if (m_szRange.cx>=m_szRange.cy)
 			{
-				DMASSERT_EXPR(0,L"slidectrl max<=min!");
+				DMFAIL_MSG("slidectrl max<=min!");
 				break;
 			}
 
 			if (m_iValue<m_szRange.cx||m_iValue>m_szRange.cy)
 			{
-				DMASSERT_EXPR(0,L"slidectrl value越界了");
+				DMFAIL_MSG("slidectrl value out of range");
 				break;
 			}
 			if (m_iThumbWid<=0)
@@ -414,7 +414,7 @@ namespace DM
 			dm_parsesize(lpszValue,szRange);
 			if (szRange.cx>=szRange.cy)
 			{
-				DMASSERT_EXPR(0,L"slider范围设置错误");
+				DMFAIL_MSG("slider range error");
 				break;
 			}
 			m_szRange = szRange;

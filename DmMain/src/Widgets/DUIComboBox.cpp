@@ -179,7 +179,7 @@ namespace DM
 			g_pDMApp->CreateRegObj((void**)&m_pListBox, m_strClsListBox,DMREG_Window);
 			if (NULL == m_pListBox)
 			{
-				DMASSERT_EXPR(0,L"EDITµÄlistbox´´½¨Ê§°Ü");
+                DMFAIL_MSG("create EDIT listbox fail");
 				break;
 			}
 

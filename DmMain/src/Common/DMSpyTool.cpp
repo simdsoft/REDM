@@ -169,7 +169,7 @@ namespace DM
 			Init_Debug_XmlBuf(m_XmlBase);
 			if (true == m_PanelParseMap[pWnd->GetDUIWnd()])// 理论上我们不需要关心这个
 			{
-				DMASSERT_EXPR(false, L"难道算法错了！");
+				DMFAIL_MSG("unexpected!");
 				break;
 			}
 			m_PanelParseMap[pWnd->GetDUIWnd()] = true;//强加个标记,用于验证算法的正确性下次此窗口不再遍历panel
@@ -248,7 +248,7 @@ namespace DM
 			hSize = CreateFileMapping(NULL, NULL, PAGE_READWRITE, 0, sizeof(UINT),DMSPY_SHAREMEMORYSIZE);  
 			if ((hSize == NULL) || (hSize == INVALID_HANDLE_VALUE)) 
 			{
-				DMASSERT_EXPR(0,L"创建DMSPY_SHAREMEMORYSIZE共享内存失败");
+				DMFAIL_MSG("Create DMSPY_SHAREMEMORYSIZE fail");
 				break;
 			}
 			UINT *pSize = (UINT *)MapViewOfFile(hSize, FILE_MAP_WRITE, 0, 0, sizeof(UINT)); 
@@ -259,7 +259,7 @@ namespace DM
 			HANDLE hFileMapping = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, nSize, DMSPY_SHAREMEMORY);
 			if ((hFileMapping == NULL) || (hFileMapping == INVALID_HANDLE_VALUE))
 			{
-				DMASSERT_EXPR(0,L"创建DMSPY_SHAREMEMORY共享内存失败");
+				DMFAIL_MSG("Create DMSPY_SHAREMEMORY fail");
 				break;
 			}
 			bRet = true;

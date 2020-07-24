@@ -96,7 +96,7 @@ namespace DM
 		{
 			if (m_dwThreadId == ::GetCurrentThreadId()) 
 			{
-				DMASSERT_EXPR(false,L"任务服务线程不能向自己请求任务服务，否则会死锁！！！");
+                DMFAIL_MSG("task thread can't request service self, will lead dead-lock");
 				break;	
 			}
 			{// 若是空任务就不再执行

@@ -38,7 +38,7 @@ namespace DM
 		}
 		if (m_spWorkTaskHandler && m_spWorkTaskHandler->BelongsToThread(::GetCurrentThreadId()))
 		{
-			DMASSERT_EXPR(FALSE, L"亲,在Work线程执行UninstallEvent是不会关掉Task线程的!");
+			DMFAIL_MSG("UninstallEvent at work thread no effect");
 		}
 		else
 		{

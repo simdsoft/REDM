@@ -27,10 +27,7 @@ namespace DM
 				CStringA strId = XmlStyle.Attribute("id");strId.MakeLower();
 				if (strId.IsEmpty())
 				{
-					CStringA szInfo; 
-					XmlStyle.GetXmlContent(szInfo);
-					szInfo += "(style)未设置id,将自动忽视";
-					DMASSERT_EXPR(0, szInfo);
+					DMFAIL_MSG("no style id, ignored");
 				}
 				else
 				{
@@ -162,9 +159,7 @@ namespace DM
 			}
 			else
 			{
-				CStringA strInfo;
-				strInfo.Format("style-%s设置错误",strValue);
-				DMASSERT_EXPR(0,strInfo);
+				DMFAIL_MSG_FMT("style-%s error", (LPCSTR)strValue);
 				break;
 			}
 

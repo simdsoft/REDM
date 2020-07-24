@@ -108,7 +108,7 @@ namespace DM
 			DLL_START_PLUGIN pFunc = (DLL_START_PLUGIN)pLib->GetSymbol("dllStartPlugin");
 			if (!pFunc)
 			{
-				DMASSERT_EXPR(NULL!=pFunc, L"未找到导出函数dllStartPlugin");
+				DMASSERT_MSG_FMT(NULL!=pFunc, "Can't locate imported function:dllStartPlugin");
 				//DMDynLibMgr::getSingletonPtr()->Unload(pLib);//直接卸载
 				iErr = DMPLUGINSTOOL_LOADPLUGIN_NOFIND_START_EXPORT;
 				break;

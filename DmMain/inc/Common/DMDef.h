@@ -41,6 +41,25 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< 树形控件的定义
 #define DMASSERT									  assert
 #define DMASSERT_EXPR(expr, msg)                      _ASSERT_EXPR(expr, msg)   ///;LOG_ERR(msg)
 #define DM_INVALID_VALUE                              ((LONG_PTR)-1)			///< 通用的非法返回
+#define DMASSERT_EXPRA(expr, msg)                     _ASSERT_EXPR((expr), _CRT_WIDE(#expr))
+
+// ----------------------------------------------------
+// The DMASSERT_EXPRA_FMT/DMASSERT_EXPRA
+#if defined(_DEBUG)
+// short message ascii only
+#define DMASSERT_MSG_FMT(expr, fmt, ...) do { \
+ int n = _scprintf(fmt, ##__VA_ARGS__); \
+ char* buf = (char*)_malloca(n + 1); \
+ sprintf(buf, fmt, ##__VA_ARGS__); \
+ DMASSERT_EXPR(expr, (LPCWSTR)DMCA2W(buf)); \
+} while(false)
+#else
+#define DMASSERT_MSG_FMT(expr, fmt, ...) (void)0
+#endif
+#define DMASSERT_MSG(expr, msg) DMASSERT_MSG_FMT(expr, "%s", msg)
+
+#define DMFAIL_MSG_FMT(fmt, ...) DMASSERT_MSG_FMT(0, fmt, ##__VA_ARGS__)
+#define DMFAIL_MSG(msg) DMFAIL_MSG_FMT(0, "%s", msg)
 
 // ----------------------------------------------------
 // HSLA变化

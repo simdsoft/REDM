@@ -385,7 +385,7 @@ namespace DM
 	// Function Des:容器
 	IDMContainerPtr DUIWindow::GetContainer()
 	{
-		DMASSERT_EXPR(NULL!=m_pContainer,L"m_pContainer为空!");
+		DMASSERT(NULL!=m_pContainer);
 		return m_pContainer;
 	}
 
@@ -578,12 +578,12 @@ namespace DM
 		{
 			if (DMREG_FlowLayout == V_GetClassType())
 			{
-				DMASSERT_EXPR(0,L"流式布局请重载DV_UpdateChildLayout!");
+				DMFAIL_MSG("flow layout need override DV_UpdateChildLayout!");
 				break;
 			}
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("The wnd not finish self layout");
 			}
 			iErr = m_pLayout->UpdateChildLayout();
 
@@ -1642,7 +1642,7 @@ namespace DM
 		{
 			if (-1 != m_DUIData.m_dcFlags||NULL == m_pContainer)
 			{
-				DMASSERT_EXPR(0,L"亲,弹这个框是告诉你,你的DM_GetCanvas和DM_ReleaseCanvas没有配对使用!");
+				DMFAIL_MSG("DM_GetCanvas/DM_ReleaseCanvas mismatch");
 				break;
 			}
 

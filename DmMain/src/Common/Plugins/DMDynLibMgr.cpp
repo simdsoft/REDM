@@ -27,9 +27,7 @@ namespace DM
 			pLib = FindObj(strPluginPath);
 			if (NULL != pLib)
 			{
-				CStringW szName = pLib->GetName();
-				szName += L"此dll被尝试加载了两次";
-				DMASSERT_EXPR((0),szName);
+				DMFAIL_MSG_FMT("dup load dll:%s", (LPCSTR)DMW2A(pLib->GetName()));
 				break;
 			}
 

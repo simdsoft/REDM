@@ -344,7 +344,7 @@ namespace DM
 				DMMenuItemData *pdmmi = ParseItem(XmlItem);
 				if (NULL == pdmmi)
 				{
-					DMASSERT_EXPR(FALSE,L"½âÎöMenuµÄxmlÊ§°Ü£¡");
+					DMFAIL_MSG("parse menu xml fail");
 					XmlItem = XmlItem.NextSibling();
 					continue;
 				}

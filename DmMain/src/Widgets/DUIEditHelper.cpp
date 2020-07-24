@@ -25,7 +25,7 @@ namespace DM
 		}
 		else
 		{
-			DMASSERT_EXPR(0,L"º”‘ÿriched20 ß∞‹¡À£°£°");
+			DMFAIL_MSG("load riched20 fail");
 		}
 	}
 

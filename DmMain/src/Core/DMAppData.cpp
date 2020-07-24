@@ -261,7 +261,7 @@ namespace DM
 				break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"不支持设置默认对象的RegType");
+					DMFAIL_MSG("default object RegType not allowed"/*0,L"不支持设置默认对象的RegType"*/);
 				}
 				break;
 			}
@@ -289,7 +289,7 @@ namespace DM
 			case DMREG_TaskRunner:*ppObj = m_pTaskRunnerObj;m_pTaskRunnerObj->AddRef();break;
 			default:
 				{
-					DMASSERT_EXPR(0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans、DMREG_TaskRunner的RegType");
+				DMFAIL_MSG_FMT("Unsupported RegType %d", RegType/*0,L"仅支持取得DMREG_Attribute、DMREG_Log、DMREG_Res、DMREG_Render、DMREG_Trans、DMREG_TaskRunner的RegType"*/);
 				}
 				break;
 			}
@@ -360,7 +360,7 @@ namespace DM
 
 			if (m_pResObj.isNull())
 			{
-				DMASSERT_EXPR(0,L"请先调用SetDefRegObj设置m_pResObj对象！！");
+				DMFAIL_MSG("please call SetDefRegObj firstly");
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
@@ -404,9 +404,7 @@ namespace DM
 
 			if (false == XmlDoc.LoadFromBuffer(pBuf, ulSize))
 			{
-				CStringA strInfo;
-				strInfo.Format("%s:%s xml解码失败!请以utf-8格式保存,并保证xml格式完整",lpszType,lpszResName);
-				DMASSERT_EXPR(0,strInfo);
+				DMFAIL_MSG_FMT("%s:%s parse xml fail", lpszType, lpszResName);
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);

@@ -362,9 +362,7 @@ namespace DM
 			m_pToolTip.Release();
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pToolTip,m_pHWndXmlInfo->m_strRegTip,DMREG_ToolTip)))
 			{
-				CStringA szInfo = m_pHWndXmlInfo->m_strRegTip;
-				szInfo += "×¢²átooltipÊ§°Ü";
-				DMASSERT_EXPR(0,szInfo);
+				DMFAIL_MSG_FMT("Register tooltip fail: %s", (LPCSTR)m_pHWndXmlInfo->m_strRegTip);
 			}
 			m_pCurMsgLoop->AddMessageFilter(m_pToolTip.get());
 

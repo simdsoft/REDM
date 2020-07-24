@@ -30,7 +30,7 @@ namespace DM
 				m_hModule = ::LoadLibraryW(szPath);
 				if (NULL == m_hModule)
 				{
-					DMASSERT_EXPR(NULL != m_hModule,DynlibError());
+					DMASSERT(NULL != m_hModule);
 					break;
 				}
 			}

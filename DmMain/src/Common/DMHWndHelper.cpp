@@ -51,12 +51,12 @@ namespace DM
 			dm_parsesize(lpszValue,m_szMin);
 			if (-1!=m_szMax.cx&&m_szMin.cx>m_szMax.cx)
 			{
-				DMASSERT_EXPR(0,L"最小宽度大于最大宽度了！");
+				DMFAIL_MSG("min-width > max-width");
 				break;
 			}
 			if (-1!=m_szMax.cy&&m_szMin.cy>m_szMax.cy)
 			{
-				DMASSERT_EXPR(0,L"最小高度大于最大高度了！");
+				DMFAIL_MSG("min-height > max-height");
 				break;
 			}
 
@@ -93,12 +93,12 @@ namespace DM
 			dm_parsesize(lpszValue,m_szMax);
 			if (-1!=m_szMax.cx&&m_szMin.cx>m_szMax.cx)
 			{
-				DMASSERT_EXPR(0,L"最小宽度大于最大宽度了！");
+				DMFAIL_MSG("min-width > max-width");
 				break;
 			}
 			if (-1!=m_szMax.cy&&m_szMin.cy>m_szMax.cy)
 			{
-				DMASSERT_EXPR(0,L"最小高度大于最大高度了！");
+				DMFAIL_MSG("min-height > max-height");
 				break;
 			}
 
@@ -311,9 +311,7 @@ namespace DM
 			DMSmartPtrT<IDMDraw> pDraw;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pDraw,lpszValue,DMREG_Draw)))
 			{
-				CStringA szInfo = lpszValue;
-				szInfo += "注册draw失败";
-				DMASSERT_EXPR(0,szInfo);
+				DMFAIL_MSG_FMT("Register draw fail %s", lpszValue);
 				break;
 			}
 

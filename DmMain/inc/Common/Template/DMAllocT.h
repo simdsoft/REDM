@@ -251,7 +251,7 @@ namespace DM
 		template<size_t N>
 		TPtr InitWithCopy(TPtr src) 
 		{
-			DMASSERT_EXPR(src, L"DMLazyBaseT::InitWithCopy");
+			DMASSERT_MSG(src, "DMLazyBaseT::InitWithCopy");
 			if (NULL == m_ptr) 
 			{
 				m_ptr = LazyTraits::NewWithCopy(m_storage, src);
@@ -292,7 +292,7 @@ namespace DM
 				}
 			}
 
-			DMASSERT_EXPR(this->IsValid(), L"DMLazyBaseT::Get");
+			DMASSERT_MSG(this->IsValid(), "DMLazyBaseT::Get");
 			return m_ptr; 
 		}
 
@@ -308,7 +308,7 @@ namespace DM
 					Init();
 				}
 			}
-			DMASSERT_EXPR(m_ptr, L"const DMLazyBaseT::->");
+			DMASSERT_MSG(m_ptr, "const DMLazyBaseT::->");
 			return m_ptr;
 		}
 
@@ -324,7 +324,7 @@ namespace DM
 					Init();
 				}
 			}
-			DMASSERT_EXPR(m_ptr, L"DMLazyBaseT::->");
+			DMASSERT_MSG(m_ptr, "DMLazyBaseT::->");
 			return m_ptr;
 		}
 

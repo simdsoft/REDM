@@ -14,7 +14,7 @@ namespace DM
 		{
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("window layout not ready");
 				break;
 			}
 
@@ -197,7 +197,7 @@ namespace DM
 		{
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("window layout not ready");
 				break;
 			}
 			// 1.获得子控件的布局空间
@@ -365,7 +365,7 @@ namespace DM
 		{
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("window layout not ready");
 				break;
 			}
 			// 1.获得子控件的布局空间
@@ -438,7 +438,7 @@ namespace DM
 		{
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("window layout not ready");
 				break;
 			}
 			// 1.获得子控件的布局空间
@@ -648,7 +648,7 @@ namespace DM
 			iErr = __super::DV_CreateChildWnds(XmlNode);
 			if (2!=m_Node.m_nChildrenCount)
 			{
-				DMASSERT_EXPR(0,L"内置splitter仅支持两个子窗口");
+				DMFAIL_MSG("buitlin splitter only support 2 child window");
 				break;
 			}
 		} while (false);
@@ -731,7 +731,7 @@ namespace DM
 		{
 			if (!DM_IsLayoutFinished())
 			{ 
-				DMASSERT_EXPR(0,L"窗口未完成自身布局!");
+				DMFAIL_MSG("window layout not ready");
 				break;
 			} 
 			if (m_rcWindow.IsRectEmpty())
@@ -741,7 +741,7 @@ namespace DM
 
 			if (2!=m_Node.m_nChildrenCount)
 			{
-				DMASSERT_EXPR(0,L"内置splitter仅支持两个子窗口");
+				DMFAIL_MSG("buitlin splitter only support 2 child window");
 				break;
 			} 
 			if (m_bVert)// 坚直
@@ -881,10 +881,8 @@ namespace DM
 				m_iFixWid = m_Node.m_pFirstChild->m_rcWindow.Width();
 			}
 		}
-		if (0>m_iFixWid)
-		{
-			DMASSERT_EXPR(0,L"固定的m_iFixWid大小竟然小于0！");
-		}
+        
+        DMASSERT(m_iFixWid >= 0);
 
 		return DM_ECODE_OK;
 	}

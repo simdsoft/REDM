@@ -40,7 +40,7 @@ namespace DM
 			break;
 		default:
 			{
-				DMASSERT_EXPR((0), L"要移除的class类型不对");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -74,7 +74,7 @@ namespace DM
 			break;
 		default:
 			{
-				DMASSERT_EXPR((0), L"注册的class类型不对");
+                DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -114,7 +114,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"注册类型错误");
+                DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -148,7 +148,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"注册的class类型错误");
+				DMFAIL_MSG("Invalid Class");
 			}
 			break;
 		}
@@ -181,7 +181,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"反注册的class类型错误");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -213,7 +213,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"设置当前注册项的class类型错误");
+				DMFAIL_MSG("class type incorrect");
 			}
 			break;
 		}
@@ -245,7 +245,7 @@ namespace DM
 		default:
 			{
 				iErr = DM_ECODE_FAIL;
-				DMASSERT_EXPR((0), L"获取当前注册项的class类型错误");
+				DMFAIL_MSG("Invalid Class");
 			}
 			break;
 		}
@@ -293,7 +293,7 @@ namespace DM
 
 			if (NULL == ppObj)
 			{
-				DMASSERT_EXPR(0,L"亲,是不是没传双指针进来！");
+				DMFAIL_MSG("missing ppObj");
 				iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
 				break;
 			}

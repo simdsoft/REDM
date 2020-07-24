@@ -490,7 +490,7 @@ namespace DM
 			m_pHeaderCtrl = dynamic_cast<DUIHeaderCtrl*>(DM_GetWindow(GDW_FIRSTCHILD));
 			if (NULL == m_pHeaderCtrl)
 			{
-				DMASSERT_EXPR(0,L"listctrlex±ÿ–Î”–headctrl");
+				DMFAIL_MSG("listctrlex miss headctrl");
 				break;
 			}
 			CStringA strPos;

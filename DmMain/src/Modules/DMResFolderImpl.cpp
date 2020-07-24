@@ -40,8 +40,7 @@ namespace DM
 			LPCWSTR lpszLayoutPathIndex = strLayoutPathIndex;
 			if (!CheckFileExistW((wchar_t*)lpszLayoutPathIndex))
 			{
-				CStringW szErrInfo = strLayoutPathIndex;szErrInfo+=L"文件不存在";
-				DMASSERT_EXPR(0, szErrInfo);
+                DMFAIL_MSG_FMT("file not found: %s", (LPCSTR)DMW2A(strLayoutPathIndex));
 				iErr = DM_ECODE_FAIL;
 				break;
 			}
@@ -136,9 +135,7 @@ namespace DM
 		} while (false);
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{
-			CStringW strInfo;
-			strInfo.Format(L"Res资源中%s:%s获取size失败",lpszType,lpszName);
-			DMASSERT_EXPR(0,strInfo);
+            DMFAIL_MSG_FMT("Get Res %s:%s size fail",lpszType,lpszName);
 		}
 		return iErr;
 	}
@@ -191,9 +188,7 @@ namespace DM
 		} while (false);
 		if (!DMSUCCEEDED(iErr) && m_bAssert)
 		{
-			CStringW strInfo;
-			strInfo.Format(L"Res资源中%s:%s获取buf失败", lpszType, lpszName);
-			DMASSERT_EXPR(0, strInfo);
+            DMFAIL_MSG_FMT("Get Res %s:%s buf fail", lpszType, lpszName);
 		}
 		return iErr;
 	}
@@ -245,9 +240,7 @@ namespace DM
 			}
 			else
 			{
-				CStringA szInfo = lpszName;
-				szInfo += "主题包已存在,将被忽略！";
-				DMASSERT_EXPR(0,szInfo);
+				DMFAIL_MSG_FMT("ignore exist theme: %s", lpszName);
 				pItem->Release();
 			}
 		} while (false);
@@ -397,9 +390,7 @@ namespace DM
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
 							{
-								CStringA szInfo = lpszName;
-								szInfo += "主题包已存在,将被忽略！";
-								DMASSERT_EXPR(0,szInfo);
+								DMFAIL_MSG_FMT("ignore exist theme: %s", lpszName);
 								pItem->Release();
 							}
 						}
@@ -423,7 +414,7 @@ namespace DM
 					m_strCurTheme = m_pCurTheme->m_strThemeName;
 				}	
 			}
-			DMASSERT_EXPR(NULL!=m_pCurTheme,L"m_pCurTheme竟然为空！！！！");
+			DMASSERT(NULL!=m_pCurTheme);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -440,17 +431,15 @@ namespace DM
 			}
 	
 			DMXmlDocument XmlDoc;
-			if (false == XmlDoc.LoadFromFile(lpszIndexPath))
+			if (!XmlDoc.LoadFromFile(lpszIndexPath))
 			{
-				CStringW strInfo;
-				strInfo.Format(L"xml LoadFromFile:%s fail",lpszIndexPath);
-				DMASSERT_EXPR(0,strInfo);
+                DMFAIL_MSG_FMT("load xml %s fail", (LPCSTR)DMW2A(lpszIndexPath));
 				LOG_ERR("[mid]-xml LoadFromFile:%s fail\n",lpszIndexPath);
 				break;
 			}
 
 			DMXmlNode XmlNode = XmlDoc.Root();
-			if (false == XmlNode.IsValid())
+			if (!XmlNode.IsValid())
 			{
 				LOG_ERR("[mid]-xmlnode inValid\n");
 				break;
@@ -473,8 +462,7 @@ namespace DM
 #if defined(_DEBUG)
 							if (!CheckFileExistW(szPath))
 							{
-								CStringW szInfo = szPath;szInfo+=L"文件不存在！";
-								DMASSERT_EXPR(0,szInfo);
+                                DMFAIL_MSG_FMT("file not found: %s", (LPCSTR)DMW2A(szPath));
 							}
 #endif 
 							DMResItem *pResItem = new DMResItem(lpszType,lpszName,szPath);

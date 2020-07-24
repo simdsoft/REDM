@@ -21,7 +21,7 @@ namespace DM
 			}
 			if (m_strID.IsEmpty())
 			{
-				DMASSERT_EXPR(0,L"DMImgListSkinImpl对象的ID竟然为空！");
+				DMFAIL_MSG("DMImgListSkinImpl id is empty!");
 				break;
 			}
 
@@ -42,7 +42,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			DMASSERT_EXPR(0 != m_nStates,L"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
+			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
 			if (NULL == pCanvas
 				|| NULL == lpRectDraw
 				|| NULL == m_pBitmap
@@ -74,7 +74,7 @@ namespace DM
 
 	DMCode DMImgListSkinImpl::GetStateSize(SIZE &sz, int iState/*=0*/)
 	{
-		DMASSERT_EXPR(0 != m_nStates,L"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
+		DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // 状态图状态数肯定不能为0！
 		
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -145,7 +145,7 @@ namespace DM
 			DMSmartPtrT<IDMRender> pRender;
 			if (!DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&pRender, DMREG_Render)))
 			{
-				DMASSERT_EXPR(0,L"竟然获取默认Render失败,不太可能吧!");
+				DMFAIL_MSG("Got default render fail");
 				break;
 			}
 			DMSmartPtrT<IDMBitmap> pBitmap;
@@ -226,14 +226,14 @@ namespace DM
 			DMSmartPtrT<IDMRender> pRender;
 			if (!DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&pRender, DMREG_Render)))
 			{
-				DMASSERT_EXPR(0,L"竟然获取默认Render失败,不太可能吧!");
+				DMFAIL_MSG("Got default render fail");
 				break;
 			}
 
 			DMSmartPtrT<IDMRes> pRes;
 			if (!DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res)))
 			{
-				DMASSERT_EXPR(0,L"竟然获取默认Res失败,不太可能吧!");
+				DMFAIL_MSG("Got default Res fail");
 				break;
 			}
 

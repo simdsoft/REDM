@@ -54,7 +54,7 @@ namespace DM
 					SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
 			if (-1 == m_nRetCode)
 			{// 防止非EndDialog退出(如此窗口的父窗口不是主窗口,而主窗口关闭时)
-				DMASSERT_EXPR(0, L"此DoModel没有调用EndDialog就退出了!");
+				DMFAIL_MSG("Modal Dialog must ended by EndDialog");
 				::PostQuitMessage(1);
 			}
 		}
@@ -73,7 +73,7 @@ namespace DM
 
 	void DMHDialog::EndDialog( INT_PTR nResult )
 	{
-		DMASSERT_EXPR(-1!=nResult,L"EndDialog的返回值不能为-1!");
+		DMASSERT_MSG(-1!=nResult,"EndDialog can't be -1!");
 		m_nRetCode = (-1==nResult)?IDCANCEL:nResult;
 		PostMessage(WM_QUIT);
 	} 

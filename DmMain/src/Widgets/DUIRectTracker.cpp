@@ -520,7 +520,7 @@ namespace DM
 				DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
 				if (pMain && (0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4"))) // 设计器debug下不弹框
 				{
-					DMASSERT_EXPR(0,L"不要把DUIRectTracker的区域设置得过小");
+					DMFAIL_MSG("DUIRectTracker rect too small");
 				}
 #endif	
 				m_rcWindow = rcTracker;

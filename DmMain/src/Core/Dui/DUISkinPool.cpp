@@ -44,10 +44,7 @@ namespace DM
 				CStringA strId = XmlSkin.Attribute("id");strId.MakeLower();
 				if (strId.IsEmpty())
 				{
-					CStringA szInfo; 
-					XmlSkin.GetXmlContent(szInfo);
-					szInfo += "(skin)未设置id,将自动忽视";
-					DMASSERT_EXPR(0, szInfo);
+					DMFAIL_MSG_FMT("no skin id, ignore");
 				}
 				else
 				{
@@ -60,9 +57,7 @@ namespace DM
 							pSkinPtr->InitDMData(XmlSkin);
 							if (!DMSUCCEEDED(pSkinPtr->IsValid()))
 							{
-								CStringA szInfo = lpszClassName;
-								szInfo += "(skin)无效！,将自动移除";
-								DMASSERT_EXPR(0, szInfo);
+								DMFAIL_MSG_FMT("%s skin invalid, auto removed", lpszClassName);
 								pSkinPtr->Release();
 							}
 							else
@@ -72,9 +67,7 @@ namespace DM
 						}
 						else
 						{
-							CStringA szInfo = lpszClassName;
-							szInfo += "(skinpool)类型无法解析！,请查看是否写错";
-							DMASSERT_EXPR(0, szInfo);
+							DMFAIL_MSG_FMT("%s parse skinpool type fail", lpszClassName);
 						}
 					}
 				}
@@ -213,19 +206,14 @@ namespace DM
 			LPCSTR strId = XmlNode.Attribute("id");
 			if (!*strId)
 			{
-				CStringA szInfo; 
-				XmlNode.GetXmlContent(szInfo);
-				szInfo += "(skin)未设置id,将自动忽视";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG("skin id not set, ignored");
 				break;
 			}
 
 			//3.判断skin的id是否存在
 			if (FindSkinFromAll(strId))				// 默认从所有skin池中查找
 			{
-				CStringA szInfo = strId;
-				szInfo += "(skinpool)此skin名已存在";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG_FMT("the skin %s already exist", strId);
 				break;// 名字已存在
 			}
 
@@ -234,9 +222,7 @@ namespace DM
 			IDMSkinPtr pSkinPtr = NULL;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
 			{
-				CStringA szInfo = lpszClassName;
-				szInfo += "(skinpool)类型无法解析！,请查看是否写错";
-				DMASSERT_EXPR(0, szInfo);
+				DMFAIL_MSG_FMT("(skinpool)parse type fail", lpszClassName);
 				break;
 			}
 			pSkinPtr->InitDMData(XmlNode);
@@ -393,9 +379,7 @@ namespace DM
 			}
 			else
 			{
-				CStringA strInfo;
-				strInfo.Format("skin-%s设置错误", (LPCSTR)strValue);
-				DMASSERT_EXPR(0,strInfo);
+                DMFAIL_MSG_FMT("skin-%s error", (LPCSTR)strValue);
 				break;
 			}
 
