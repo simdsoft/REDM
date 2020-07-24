@@ -2,7 +2,7 @@
 ---
 
 [![Build status](https://ci.appveyor.com/api/projects/status/5dq8665euimtgfw7/branch/master?svg=true)](https://ci.appveyor.com/project/halx99/redm/branch/master)
-[![dev](https://img.shields.io/badge/v2.0.0.0-alpha-blue.svg)](https://github.com/simdsoft/REDM/releases)
+[![dev](https://img.shields.io/badge/v2.0.0.0-alpha6-blue.svg)](https://github.com/simdsoft/REDM/releases)
 
 ## 1. 为什么开源DM库
 * DM的部分代码，部分框架本来就是取之于各类开源，所以尝试开源DM库，取得于开源，回馈于开源，为开源软件业贡献自己的一份小小力量
