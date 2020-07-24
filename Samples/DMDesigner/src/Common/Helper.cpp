@@ -528,6 +528,7 @@ DMXmlNode DMCtrlXml::GetAttrNode(CStringA strNode)
 			break;
 		}
 
+		strNode.MakeLower();
 		XmlNode = RootNode.FirstChild(strNode);
 	} while (false);
 	return XmlNode;
