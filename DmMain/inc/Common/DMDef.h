@@ -3,7 +3,7 @@
 // All rights reserved.
 // 
 // File Name: DMDef.h 
-// File Des: »ù´¡ºê¶¨Òå
+// File Des: åŸºç¡€å®å®šä¹‰
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,12 +18,12 @@
 namespace DM
 {
 
-typedef int											  DMCode;					///< ´íÎóÂë±êÊ¶
-typedef unsigned long                                 DUIWND,*DUIWNDPtr;        ///< Ä£Äâ»æÖÆ´°¿Ú¾ä±ú£¬Ò²¿ÉÒÔÊÓÎªÄ£Äâ×Ó´°¿ÚµÄÎ¨Ò»±êÊ¶                 
-typedef ULONG_PTR									  HDMTREEITEM;				///< Ê÷ĞÎ¿Ø¼şµÄ¶¨Òå    
+typedef int											  DMCode;					///< é”™è¯¯ç æ ‡è¯†
+typedef unsigned long                                 DUIWND,*DUIWNDPtr;        ///< æ¨¡æ‹Ÿç»˜åˆ¶çª—å£å¥æŸ„ï¼Œä¹Ÿå¯ä»¥è§†ä¸ºæ¨¡æ‹Ÿå­çª—å£çš„å”¯ä¸€æ ‡è¯†                 
+typedef ULONG_PTR									  HDMTREEITEM;				///< æ ‘å½¢æ§ä»¶çš„å®šä¹‰    
 
 // ----------------------------------------------------
-// ÊäÈëÊä³ö
+// è¾“å…¥è¾“å‡º
 #define DMIN
 #define DMOUT
 #define DMINOUT
@@ -33,14 +33,14 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< Ê÷ĞÎ¿Ø¼şµÄ¶¨Òå
 #endif//_WIN64
 
 // ----------------------------------------------------
-// ¸¨Öú
-#define DMADDEVENT(EventId)                          m_EventMgr;//.AddEvent(EventId);///< Ä¬ÈÏ²»ĞèÒªÌáÇ°¼ÓÔØ                                    
+// è¾…åŠ©
+#define DMADDEVENT(EventId)                          m_EventMgr;//.AddEvent(EventId);///< é»˜è®¤ä¸éœ€è¦æå‰åŠ è½½                                    
 
 // ----------------------------------------------------
-// ´íÎó¸¨Öú¶¨Î»
+// é”™è¯¯è¾…åŠ©å®šä½
 #define DMASSERT									  assert
 #define DMASSERT_EXPR(expr, msg)                      _ASSERT_EXPR(expr, msg)   ///;LOG_ERR(msg)
-#define DM_INVALID_VALUE                              ((LONG_PTR)-1)			///< Í¨ÓÃµÄ·Ç·¨·µ»Ø
+#define DM_INVALID_VALUE                              ((LONG_PTR)-1)			///< é€šç”¨çš„éæ³•è¿”å›
 #define DMASSERT_EXPRA(expr, msg)                     _ASSERT_EXPR((expr), _CRT_WIDE(#expr))
 
 // ----------------------------------------------------
@@ -51,7 +51,7 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< Ê÷ĞÎ¿Ø¼şµÄ¶¨Òå
  int n = _scprintf(fmt, ##__VA_ARGS__); \
  char* buf = (char*)_malloca(n + 1); \
  sprintf(buf, fmt, ##__VA_ARGS__); \
- DMASSERT_EXPR(expr, (LPCWSTR)DMCA2W(buf)); \
+ DMASSERT_EXPR(expr, (LPCWSTR)DM::DMCA2W(buf)); \
 } while(false)
 #else
 #define DMASSERT_MSG_FMT(expr, fmt, ...) (void)0
@@ -62,23 +62,23 @@ typedef ULONG_PTR									  HDMTREEITEM;				///< Ê÷ĞÎ¿Ø¼şµÄ¶¨Òå
 #define DMFAIL_MSG(msg) DMFAIL_MSG_FMT(0, "%s", msg)
 
 // ----------------------------------------------------
-// HSLA±ä»¯
+// HSLAå˜åŒ–
 enum{DM_H=0,DM_S,DM_L,DM_A};
 
 // ----------------------------------------------------
-// ÏñËØºÍÂß¼­µ¥Î»×ª»»£¬
+// åƒç´ å’Œé€»è¾‘å•ä½è½¬æ¢ï¼Œ
 #define DMHIMETRIC_PER_INCH							 2540
 #define DMMAP_LOGHIM_TO_PIX(x,ppli)					 MulDiv((ppli), (x), DMHIMETRIC_PER_INCH)
 #define DMMAP_PIX_TO_LOGHIM(x,ppli)					 MulDiv(DMHIMETRIC_PER_INCH, (x), (ppli))
 
 // ----------------------------------------------------
-// SPY¸¨Öú¶¨Î»
-#define WM_DMSPY                                      WM_USER+1314              ///< spy++ÏûÏ¢
+// SPYè¾…åŠ©å®šä½
+#define WM_DMSPY                                      WM_USER+1314              ///< spy++æ¶ˆæ¯
 
 #define	EVEIDNAME(x)								  #x
 
-static LPCWSTR MSGSTR(UINT uMsg)												///< ´òÓ¡MSG
-{// ÈçOXC014¿ÉÄÜÎªIDLEÊ±ÏûÏ¢£¬µ÷ÓÃ£ºLOG_USER("[msg]:%s\n",MSGSTR(uMsg));
+static LPCWSTR MSGSTR(UINT uMsg)												///< æ‰“å°MSG
+{// å¦‚OXC014å¯èƒ½ä¸ºIDLEæ—¶æ¶ˆæ¯ï¼Œè°ƒç”¨ï¼šLOG_USER("[msg]:%s\n",MSGSTR(uMsg));
 #define MSGDEF(x) if(uMsg==x) return L#x
 	MSGDEF(WM_SETCURSOR);
 	MSGDEF(WM_NCHITTEST);
@@ -167,28 +167,28 @@ static LPCWSTR MSGSTR(UINT uMsg)												///< ´òÓ¡MSG
 }
 
 // ----------------------------------------------------
-// Àà´°¿Ú
-#define DM_DEF_CLASS_NAME							 L"DMClass"					///< Ä¬ÈÏÀàÃû
-#define DM_DEF_SHADOWCLASS_NAME						 L"DMShadowClass"		    ///< Ä¬ÈÏÒõÓ°ÀàÃû
-#define DM_DEF_WINDOW_NAME							 L"DMWindow"                ///< Ä¬ÈÏ´°¿ÚÃû
+// ç±»çª—å£
+#define DM_DEF_CLASS_NAME							 L"DMClass"					///< é»˜è®¤ç±»å
+#define DM_DEF_SHADOWCLASS_NAME						 L"DMShadowClass"		    ///< é»˜è®¤é˜´å½±ç±»å
+#define DM_DEF_WINDOW_NAME							 L"DMWindow"                ///< é»˜è®¤çª—å£å
 //#define DM_DEF_STYLE                                 WS_POPUP|WS_CLIPCHILDREN|WS_TABSTOP
 #define DM_DEF_STYLE                                 WS_POPUP|WS_CLIPCHILDREN|WS_TABSTOP|WS_MINIMIZEBOX
 
 enum
 {
-	NOMAL_PAINT = 0,       ///< ÆÕÍ¨´¦Àí»æÖÆ
-	DUMMY_PAINT = 1,       ///< ÃÉ°æ´¦Àí»æÖÆ
+	NOMAL_PAINT = 0,       ///< æ™®é€šå¤„ç†ç»˜åˆ¶
+	DUMMY_PAINT = 1,       ///< è’™ç‰ˆå¤„ç†ç»˜åˆ¶
 };
 
 enum DMOLEDCFLAGS
 {	
-	DMOLEDC_NODRAW		= 0x1,		///< »ñÈ¡»­²¼£¬×ª»»×ø±ê
-	DMOLEDC_PAINTBKGND	= 0x2,		///< ×¥±³¾°ÇøÓòÉú³É³õÊ¼µÄ»­²¼£¬×ª»»×ø±ê
-	DMOLEDC_OFFSCREEN	= 0x4       ///< ×¥´°¿ÚÇøÓòÉú³É³õÊ¼µÄ»­²¼£¬×ª»»×ø±ê
+	DMOLEDC_NODRAW		= 0x1,		///< è·å–ç”»å¸ƒï¼Œè½¬æ¢åæ ‡
+	DMOLEDC_PAINTBKGND	= 0x2,		///< æŠ“èƒŒæ™¯åŒºåŸŸç”Ÿæˆåˆå§‹çš„ç”»å¸ƒï¼Œè½¬æ¢åæ ‡
+	DMOLEDC_OFFSCREEN	= 0x4       ///< æŠ“çª—å£åŒºåŸŸç”Ÿæˆåˆå§‹çš„ç”»å¸ƒï¼Œè½¬æ¢åæ ‡
 };
 
 // ----------------------------------------------------
-// ×Ö·û´®
+// å­—ç¬¦ä¸²
 #ifndef	   countof
 #define    countof(x)								(sizeof(x) / sizeof((x)[0]))
 #endif
@@ -211,31 +211,31 @@ enum DMOLEDCFLAGS
 #define    DMMIN(a,b)							    (((a) < (b)) ? (a) : (b))
 
 // ----------------------------------------------------
-// ´úÀíDelegate,ÔİÎ´Ê¹ÓÃ,¹¦ÄÜ²âÊÔOK
-#define    DMDLBIND(_xxx_,_bbb_)					if(!_xxx_){_xxx_ = _bbb_;}	///< ·ÀÖ¹¸¸ÀàÖØÉè´úÀí
+// ä»£ç†Delegate,æš‚æœªä½¿ç”¨,åŠŸèƒ½æµ‹è¯•OK
+#define    DMDLBIND(_xxx_,_bbb_)					if(!_xxx_){_xxx_ = _bbb_;}	///< é˜²æ­¢çˆ¶ç±»é‡è®¾ä»£ç†
 
 // ----------------------------------------------------
-//  XML½Úµãºê
-#define    RES_GLOBAL                               "global"                   ///< È«¾Ö
-#define	   RES_LAYOUT								"layout"					///< ²¼¾Ö
-#define    RES_THEMES								"themes"					///< Ö÷Ìâ°üÁĞ±í
+//  XMLèŠ‚ç‚¹å®
+#define    RES_GLOBAL                               "global"                   ///< å…¨å±€
+#define	   RES_LAYOUT								"layout"					///< å¸ƒå±€
+#define    RES_THEMES								"themes"					///< ä¸»é¢˜åŒ…åˆ—è¡¨
 
-#define	   MAINWND_NODE								"dm"                       ///< Ã¿¸öÖ÷´°¿ÚµÄÆğÊ¼SectionÃû
-#define    DUIROOT_NODE								"root"                     ///< ½âÎö¸ù½áµã
-#define    SUB_NODE								    "sub"                      ///< Ö§³Ösub½áµã
+#define	   MAINWND_NODE								"dm"                       ///< æ¯ä¸ªä¸»çª—å£çš„èµ·å§‹Sectionå
+#define    DUIROOT_NODE								"root"                     ///< è§£ææ ¹ç»“ç‚¹
+#define    SUB_NODE								    "sub"                      ///< æ”¯æŒsubç»“ç‚¹
 
 // ----------------------------------------------------
-// DUIWindowÏûÏ¢²¿·Ö
+// DUIWindowæ¶ˆæ¯éƒ¨åˆ†
 #ifndef  WM_NCMOUSEFIRST
 #define  WM_NCMOUSEFIRST WM_NCMOUSEMOVE
 #define  WM_NCMOUSELAST  WM_NCMBUTTONDBLCLK
 #endif
 
-// È«¾Ö¶¨Ê±Æ÷,²»ÔÊĞí×ÓÀà¸²¸Ç!!
+// å…¨å±€å®šæ—¶å™¨,ä¸å…è®¸å­ç±»è¦†ç›–!!
 #define  TIMER_NEXTFRAME							2
 
 // ----------------------------------------------------
-// ½ûÓÃÀà²»ĞèÒªµÄ¸´ÖÆ¹¹Ôìº¯Êı¡¢¸´ÖÆ²Ù×÷·ûÒÔ¼°ÒşÊ½µÄ¹¹Ôìº¯Êı,À´×ÔChrome£ºsrc\base\basictypes.h
+// ç¦ç”¨ç±»ä¸éœ€è¦çš„å¤åˆ¶æ„é€ å‡½æ•°ã€å¤åˆ¶æ“ä½œç¬¦ä»¥åŠéšå¼çš„æ„é€ å‡½æ•°,æ¥è‡ªChromeï¼šsrc\base\basictypes.h
 #define DM_DISALLOW_COPY(TypeName)					TypeName(const TypeName&)
 #define DM_DISALLOW_ASSIGN(TypeName)				void operator=(const TypeName&)
 #define DM_DISALLOW_COPY_AND_ASSIGN(TypeName)       TypeName(const TypeName&); void operator=(const TypeName&)
@@ -260,11 +260,11 @@ enum DMOLEDCFLAGS
 #define  LOG_ERR(fmt, ...)
 #define  LOG_FATAL(fmt, ...)
 #endif//DMLOG_ON
-// LOG_USER·½±ãÔÚVSµ÷ÊÔÏÂ¶¨Î»ÎÊÌâÊ¹ÓÃ£¬Ê¹ÓÃÍê±ØĞëÇå³ı!!
+// LOG_USERæ–¹ä¾¿åœ¨VSè°ƒè¯•ä¸‹å®šä½é—®é¢˜ä½¿ç”¨ï¼Œä½¿ç”¨å®Œå¿…é¡»æ¸…é™¤!!
 #define  LOG_USER(fmt, ...)							 DMLogDispatch::LogW(DMLOG_INFO,__FUNCTIONW__,__FILEW__, __LINE__,__STR2WSTR(fmt),__VA_ARGS__)
 
 // ----------------------------------------------------
-// ³£ÓÃÉ¾³ıºê¶¨Òå
+// å¸¸ç”¨åˆ é™¤å®å®šä¹‰
 #define DM_DELETE_ARRAY(_xxx_) \
 {\
 	if (_xxx_) \
