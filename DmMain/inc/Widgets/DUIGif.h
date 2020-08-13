@@ -13,7 +13,7 @@
 //      guoyou		2015-3-5	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIAnimateHelper.h"
+#include "Widgets/DUIAnimateHelper.h"
 
 
 namespace DMAttr

@@ -13,7 +13,7 @@
 //      guoyou		2014-11-24	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIEditHelper.h"
+#include "Widgets/DUIEditHelper.h"
 
 namespace DMAttr
 {

@@ -13,7 +13,7 @@
 //      guoyou		2014-11-10	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DUIAccel.h"
+#include "Core/Dui/DUIAccel.h"
 
 namespace DM
 {

@@ -13,7 +13,7 @@
 //      guoyou		2015-3-3	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMGifParse.h"
+#include "Common/DMGifParse.h"
 
 namespace DM
 {

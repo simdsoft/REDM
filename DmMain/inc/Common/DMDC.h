@@ -10,7 +10,7 @@
 // Create date: 2016-9-7
 // ----------------------------------------------------------------
 #pragma once
-#include "DMRefNum.h"
+#include "Common/DMRefNum.h"
 
 namespace DM
 {

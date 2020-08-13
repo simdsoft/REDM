@@ -15,9 +15,9 @@
 //																		DM_CreateWindowEx after window is created.
 //-------------------------------------------------------
 #pragma once
-#include "DMContainerImpl.h"
-#include "DMHWndHelper.h"
-#include "DMMsgLoop.h"
+#include "Core/DMContainerImpl.h"
+#include "Common/DMHWndHelper.h"
+#include "Core/Msg/DMMsgLoop.h"
 namespace DM
 {
 	// The NativeWindow shadow style

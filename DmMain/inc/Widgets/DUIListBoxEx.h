@@ -13,8 +13,8 @@
 //      guoyou		2015-2-26	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DUIScrollBase.h"
-#include "DUIItemPanel.h"
+#include "Widgets/DUIScrollBase.h"
+#include "Widgets/DUIItemPanel.h"
 
 namespace DMAttr
 {

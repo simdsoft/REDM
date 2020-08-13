@@ -13,8 +13,8 @@
 //      guoyou		2015-3-5	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "IDUIWeb.h"
-#include "DUIActiveX.h"
+#include "Widgets/IDUIWeb.h"
+#include "Widgets/DUIActiveX.h"
 #include <ExDisp.h>
 #include <ExDispid.h>
 

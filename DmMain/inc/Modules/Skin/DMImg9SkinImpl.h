@@ -13,7 +13,7 @@
 //      guoyou		2015-1-28	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMImgListSkinImpl.h"
+#include "Modules/Skin/DMImgListSkinImpl.h"
 
 namespace DMAttr
 {

@@ -14,7 +14,7 @@
 //      guoyou		2014-11-17	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMActiveXHelper.h"
+#include "Common/ActiveX/DMActiveXHelper.h"
 
 namespace DM
 {

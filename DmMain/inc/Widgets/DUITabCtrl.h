@@ -13,8 +13,8 @@
 //      guoyou		2015-2-10	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMWidgetDef.h"
-#include "DUIAnimate.h"
+#include "Widgets/DMWidgetDef.h"
+#include "Widgets/DUIAnimate.h"
 
 namespace DMAttr
 {

@@ -13,8 +13,8 @@
 //      guoyou		2015-3-2	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIComboBoxHelper.h"
-#include "DUIListBox.h"
+#include "Widgets/DUIComboBoxHelper.h"
+#include "Widgets/DUIListBox.h"
 namespace DMAttr
 {
 	/// <summary>

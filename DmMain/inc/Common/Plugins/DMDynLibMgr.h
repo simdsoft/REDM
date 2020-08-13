@@ -13,7 +13,7 @@
 //      guoyou		2015-1-16	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMDynLib.h"
+#include "Common/Plugins/DMDynLib.h"
 
 namespace DM
 {

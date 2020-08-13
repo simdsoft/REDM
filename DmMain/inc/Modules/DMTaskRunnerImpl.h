@@ -10,10 +10,10 @@
 // Create date: 2019-2-26
 // ----------------------------------------------------------------
 #pragma once
-#include "IDMTaskRunner.h"
-#include "DMEventSlotEx.h"
-#include "DMUITaskHandler.h"
-#include "DMWorkTaskHandler.h"
+#include "IDmMain/IDMTaskRunner.h"
+#include "Modules/Task/DMEventSlotEx.h"
+#include "Modules/Task/DMUITaskHandler.h"
+#include "Modules/Task/DMWorkTaskHandler.h"
 
 
 namespace DM

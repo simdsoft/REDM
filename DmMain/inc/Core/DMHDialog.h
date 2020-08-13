@@ -13,7 +13,7 @@
 //      guoyou		2015-3-3	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMHWnd.h"
+#include "Core/DMHWnd.h"
 
 namespace DM
 {

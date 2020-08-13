@@ -13,7 +13,7 @@
 //      guoyou		2015-3-13	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMDragWnd.h"
+#include "Core/DMDragWnd.h"
 
 namespace DMAttr
 {

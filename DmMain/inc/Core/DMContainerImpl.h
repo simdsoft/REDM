@@ -13,8 +13,8 @@
 //      guoyou		2014-11-6	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DUIFocusMgr.h"
-#include "DUIDropTargetDispatch.h"
+#include "Core/Dui/DUIFocusMgr.h"
+#include "Core/Dui/DUIDropTargetDispatch.h"
 
 namespace DM
 {

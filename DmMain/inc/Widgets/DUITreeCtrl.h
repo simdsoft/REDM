@@ -1,6 +1,6 @@
 #pragma once
-#include "DUIScrollBase.h"
-#include "DMTreeT.h"
+#include "Widgets/DUIScrollBase.h"
+#include "Common/Template/DMTreeT.h"
 
 namespace DMAttr
 {
