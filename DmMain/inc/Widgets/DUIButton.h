@@ -13,7 +13,7 @@
 //      guoyou		2015-2-9	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMWidgetDef.h"
+#include "Widgets/DMWidgetDef.h"
 
 
 namespace DMAttr

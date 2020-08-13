@@ -38,5 +38,5 @@ __pragma(warning(disable: 4251 4355))
 #include "DmMainOutput.h"
 
 // 内部使用
-#include "DMAppData.h"
-#include "DMDIBHelper.h"
+#include "Core/DMAppData.h"
+#include "Common/DMDIBHelper.h"

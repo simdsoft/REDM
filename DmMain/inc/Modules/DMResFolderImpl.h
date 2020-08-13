@@ -13,7 +13,7 @@
 //      guoyou		2015-1-7	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMResHelper.h"
+#include "Modules/DMResHelper.h"
 
 namespace DM
 {

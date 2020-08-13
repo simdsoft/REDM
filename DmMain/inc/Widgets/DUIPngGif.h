@@ -10,7 +10,7 @@
 // Create date: 2018-1-24
 // ----------------------------------------------------------------
 #pragma once
-#include "DUIGif.h"
+#include "Widgets/DUIGif.h"
 
 namespace DMAttr
 {

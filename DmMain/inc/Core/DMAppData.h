@@ -13,17 +13,17 @@
 //      guoyou		2015-1-14	1.0		
 //-------------------------------------------------------
 #pragma once
-#include "DMRegMgr.h"
-#include "DMDispatch.h"
-#include "DMPluginsTool.h"
-#include "DMPluginImpl.h"
-#include "DUIWndPool.h"
-#include "DUIFontPool.h"
-#include "DUISkinPool.h"
-#include "DUIStylePool.h"
-#include "DMMsgLoop.h"
-#include "DUITimer.h"
-#include "DMSpyTool.h"
+#include "Core/DMRegMgr.h"
+#include "Core/DMDispatch.h"
+#include "Common/Plugins/DMPluginsTool.h"
+#include "Modules/DMPluginImpl.h"
+#include "Core/Dui/DUIWndPool.h"
+#include "Core/Dui/DUIFontPool.h"
+#include "Core/Dui/DUISkinPool.h"
+#include "Core/Dui/DUIStylePool.h"
+#include "Core/Msg/DMMsgLoop.h"
+#include "Core/Dui/DUITimer.h"
+#include "Common/DMSpyTool.h"
 
 namespace DMAttr
 {

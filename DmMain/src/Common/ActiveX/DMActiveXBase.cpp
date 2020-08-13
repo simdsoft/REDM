@@ -1,5 +1,5 @@
 #include "DmMainAfx.h"
-#include "DMActiveXBase.h "
+#include "DMActiveXBase.h"
 
 namespace DM
 {

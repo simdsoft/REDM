@@ -13,7 +13,7 @@
 //      guoyou		2015-1-30	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIWindowHelper.h"
+#include "Common/DUIWindowHelper.h"
 
 #define DM_BUILD_FOR_DESIGNER 1
 

@@ -13,7 +13,7 @@
 //      guoyou		2015-2-27	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIScrollBase.h"
+#include "Widgets/DUIScrollBase.h"
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")
 #include <Richedit.h>// 和TextServ.h的顺序不能变

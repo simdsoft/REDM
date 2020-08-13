@@ -14,7 +14,7 @@
 //      guoyou      2014-10-14  1.1           提取部分功能支持基本DIB操作
 //-------------------------------------------------------
 #pragma once
-#include "DMColor.h"
+#include "Common/DMColor.h"
 
 namespace DM
 {

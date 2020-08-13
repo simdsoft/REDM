@@ -24,7 +24,7 @@
 // Create date: 2019-03-02
 // ----------------------------------------------------------------
 #pragma once
-#include "DMTaskT.h"
+#include "Common/Template/DMTaskT.h"
 
 namespace DM
 {

@@ -14,7 +14,7 @@
 //      guoyou		2015-1-16	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMColor.h"
+#include "Common/DMColor.h"
 
 namespace DM
 {

@@ -13,7 +13,7 @@
 //      guoyou		2015-3-10	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIMenuHelper.h"
+#include "Widgets/DUIMenuHelper.h"
 
 namespace DM
 {

@@ -13,8 +13,8 @@
 //      guoyou		2019-6-19	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMWidgetDef.h"
-#include "DUIScrollBase.h"
+#include "Widgets/DMWidgetDef.h"
+#include "Widgets/DUIScrollBase.h"
 
 namespace DM
 {

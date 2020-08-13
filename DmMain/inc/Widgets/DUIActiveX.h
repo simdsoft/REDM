@@ -14,7 +14,7 @@
 //      guoyou		2015-3-5	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMActiveXBase.h"
+#include "Common/ActiveX/DMActiveXBase.h"
 
 namespace DMAttr
 {

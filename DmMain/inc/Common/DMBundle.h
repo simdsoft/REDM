@@ -14,8 +14,8 @@
 // Create date: 2019-2-24
 // ----------------------------------------------------------------
 #pragma once
-#include "DMSmartPtrT.h"
-#include "DMDelegate.h"
+#include "Template/DMSmartPtrT.h"
+#include "Common/DMDelegate.h"
 
 namespace DM
 {

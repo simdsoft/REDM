@@ -13,11 +13,11 @@
 //      guoyou		2015-1-23	1.0			
 //-------------------------------------------------------
 #pragma once
-#include "DMPenImpl.h"
-#include "DMFontImpl.h"
-#include "DMBrushImpl.h"
-#include "DMBitmapImpl.h"
-#include "DMRegionImpl.h"
+#include "Modules/Render/DMPenImpl.h"
+#include "Modules/Render/DMFontImpl.h"
+#include "Modules/Render/DMBrushImpl.h"
+#include "Modules/Render/DMBitmapImpl.h"
+#include "Modules/Render/DMRegionImpl.h"
 
 namespace DM
 {

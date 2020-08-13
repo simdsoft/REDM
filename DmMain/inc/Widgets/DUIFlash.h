@@ -14,7 +14,7 @@
 //      guoyou		2014-11-17	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DUIActiveX.h"
+#include "Widgets/DUIActiveX.h"
 
 namespace DMAttr
 {

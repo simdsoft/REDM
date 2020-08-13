@@ -13,8 +13,8 @@
 //      guoyou		2015-3-2	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMDropWnd.h"
-#include "DUIEdit.h"
+#include "Core/DMDropWnd.h"
+#include "Widgets/DUIEdit.h"
 
 namespace DMAttr
 {

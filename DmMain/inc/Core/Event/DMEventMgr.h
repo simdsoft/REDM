@@ -13,7 +13,7 @@
 //      guoyou		2014-11-12	1.0			
 //--------------------------------------------------------
 #pragma once
-#include "DMEventSubscriber.h"
+#include "Core/Event/DMEventSubscriber.h"
 
 namespace DM
 {
