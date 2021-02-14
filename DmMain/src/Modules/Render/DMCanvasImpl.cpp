@@ -362,38 +362,21 @@ namespace DM
 				{
 					for(int x=lpRectDest->left; x<lpRectDest->right; x+=nWidth)
 					{
-#if 1
 						if (::AlphaBlend(m_hdc,x,y,nWidth,nHeight,dcMem,lpRectSrc->left,lpRectSrc->top,nWidth,nHeight,bf))
 						{
 							iErr = DM_ECODE_OK; 
 						}
-#else
-						if (DMDIBHelper::AlphaBlend32(&m_pCurBitmap->m_DibHelper, x,y,nWidth,nHeight, &pGdiBitmap->m_DibHelper,
-							lpRectSrc->left,lpRectSrc->top,nWidth,nHeight,bf.SourceConstantAlpha))
-						 {
-							 iErr = DM_ECODE_OK; 
-						 }
-#endif 
 					}
 				}
 			}
 			else if (DEM_STRETCH == lowExpandMode)
 			{
-#if 1
 				if (::AlphaBlend(m_hdc,lpRectDest->left,lpRectDest->top,lpRectDest->right-lpRectDest->left,lpRectDest->bottom-lpRectDest->top,
 					dcMem,lpRectSrc->left,lpRectSrc->top,lpRectSrc->right-lpRectSrc->left,lpRectSrc->bottom-lpRectSrc->top,bf))
 				{
 					m_pCurBitmap;
 					iErr = DM_ECODE_OK; 
 				}
-#else
-				if (DMDIBHelper::AlphaBlend32(&m_pCurBitmap->m_DibHelper,lpRectDest->left,lpRectDest->top,lpRectDest->right-lpRectDest->left,lpRectDest->bottom-lpRectDest->top,
-					&pGdiBitmap->m_DibHelper,lpRectSrc->left,lpRectSrc->top,lpRectSrc->right-lpRectSrc->left,lpRectSrc->bottom-lpRectSrc->top,bf.SourceConstantAlpha))
-				{
-					m_pCurBitmap;
-					iErr = DM_ECODE_OK; 
-				}
-#endif
 			}
 
 			dcMem.DeleteDC(); //这里如果不释放，下次AlphaBlend就会失败！gtest测试结果
@@ -1229,66 +1212,29 @@ namespace DM
 		int nHei = m_RcTemp.Height();
 		if (m_DIBTemp.m_pPixelBits)
 		{
-#if 1
-		BYTE* p = m_DIBTemp.m_pPixelBits+3;
-		if (m_bCopyTemp)
-		{
-			for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+			BYTE* p = m_DIBTemp.m_pPixelBits+3;
+			if (m_bCopyTemp)
 			{
-				*p -= 1;
-				if (0 == *p)
+				for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
 				{
-					memset(p-3,0,3);// 仅xp,win7-32下需要使用此方式
+					*p -= 1;
+					if (0 == *p)
+					{
+						memset(p-3,0,3);// 仅xp,win7-32下需要使用此方式
+					}
+					//if(*p==0) *p=0xff;
+					//else memset(p-3,0,4);
 				}
-				//if(*p==0) *p=0xff;
-				//else memset(p-3,0,4);
 			}
-		}
-		else
-		{
-			for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+			else
 			{
-				*p -= 1;
+				for (int i=0; i<m_DIBTemp.m_nImageSize; i+=4,p+=4)
+				{
+					*p -= 1;
+				}
 			}
-		}
-#else// MMX只有在大图片时才会更高效,暂时不启用
-		byte* p = (byte*)m_DIBTemp.m_pPixelBits;
-		const UINT c_01000000 = 0x01000000;
-		__asm
-		{
-			movd   xmm0,c_01000000 
-			pshufd  xmm0,xmm0,0 
-		}
-		int mmxsize = m_DIBTemp.m_nImageSize - m_DIBTemp.m_nImageSize%16;
-		for (int i=0; i<mmxsize; i+=16)
-		{
-			__asm
-			{
-				pushad
-				mov         eax,dword ptr [i] 
-				mov         ecx,dword ptr [p] 
-				lea         edi,[ecx+eax]
-				movdqu      xmm1,xmmword ptr [edi] 
-				psubd       xmm1,xmm0 
-				movdqu      xmmword ptr [edi],xmm1 
-				popad
-			}
-		}
-		__asm
-		{
-			emms				;必要的!Empty MMX Status
-		}
-
-		p = m_DIBTemp.m_pPixelBits+mmxsize+3;
-		for (int j=mmxsize;j<m_DIBTemp.m_nImageSize;j+=4,p+=4)// 余下部分不足16位了，直接for循环
-		{
-			*p -= 0x1;
-		}
-#endif 
 		}//if (m_DIBTemp.m_pPixelBits)
 
-		//CRect rcDest = m_RcTemp;OffsetRect(rcDest,m_ptOrg.x,m_ptOrg.y);
-		//bool bRet = DMDIBHelper::AlphaBlend32(&m_pCurBitmap->m_DibHelper,rcDest.left, rcDest.top, nWid, nWid,&m_DIBTemp,0,0,nWid, nHei,alpha);
 		BLENDFUNCTION bf = {AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
 		BOOL bRet = ::AlphaBlend(m_hdc,m_RcTemp.left,m_RcTemp.top, nWid, nHei,
 			dcMem,m_RcTemp.left,m_RcTemp.top,nWid, nHei, bf);

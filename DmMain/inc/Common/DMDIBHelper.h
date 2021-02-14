@@ -39,8 +39,6 @@ namespace DM
 
 	public:
 		static HBITMAP CreateDIBSection(HDC hdc,int nWid,int nHei,void** ppBits);
-		static bool AlphaBlend32(DMDIBHelper* pDest, int nX, int nY, int nWd, int nHd, DMDIBHelper*pSrc,int nX2,int nY2,int nWs, int nHs,int nAlpha);
-
 	public:
 
 		/// <summary>
