@@ -63,15 +63,18 @@ INCLUDE(PrecompiledHeader)
 option(USE_EXTERN_PUGIXML "Use extern pugixml" OFF)
 set(USE_EXTERN_PUGIXML ${USE_EXTERN_PUGIXML} CACHE INTERNAL "Use extern pugixml")
 
-if(NOT USE_EXTERN_PUGIXML)
-ADD_DEFINITIONS(-DPUGIXML_API=)
+if(USE_EXTERN_PUGIXML)
+    # 使用外部动态pugixml库
+    ADD_DEFINITIONS(-DPUGIXML_API=__declspec\(dllimport\))
+else()
+    ADD_DEFINITIONS(-DPUGIXML_API=)
 endif()
 
 # --- The compiler flags
 message("-- Building REDM with cpp${_CXX_STD} support")
 if ( IOS )
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_CXX_FLAGS")
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_C_FLAGS")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_CXX_FLAGS")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fembed-bitcode" CACHE INTERNAL "CMAKE_C_FLAGS")
 endif ()
 if (NOT WIN32 OR CYGWIN)
     if (_CXX_STD EQUAL 17)
