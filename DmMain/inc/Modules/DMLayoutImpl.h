@@ -106,7 +106,7 @@ namespace DM
 	public:// 辅助
 		bool ParsePostion();
 		bool ParsePostionType();
-		bool ParseItem(CStringA &strPos, POS_ITEM &item);
+		bool ParseItem(LPCSTR lpszPos, POS_ITEM &item);
 		bool ParseChildPosition(DM::CList<DUIWindow*> *pList);
 		int ParseItemValue(const POS_ITEM &item,int nMin, int nMax,bool bX);//返回POS_WAIT表示布局依赖的前或后窗口未完成布局，bX表示横坐标
 		bool Update4(LPRECT lpRcContainer,OUT CRect &rcWindow);

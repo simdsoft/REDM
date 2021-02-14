@@ -2,6 +2,10 @@
 #include "DMAppData.h"
 #include "DMCWnd.h"
 
+#ifndef USER_DEFAULT_SCREEN_DPI
+#define USER_DEFAULT_SCREEN_DPI 96
+#endif
+
 namespace DM
 {
 	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
@@ -35,6 +39,16 @@ namespace DM
 			m_fun_DwmSetWindowAttribute = (fun_DwmSetWindowAttribute)GetProcAddress(m_hModuleDWM, "DwmSetWindowAttribute");
 			m_fun_DwmExtendFrameIntoClientArea = (fun_DwmExtendFrameIntoClientArea)GetProcAddress(m_hModuleDWM, "DwmExtendFrameIntoClientArea");
 		}
+
+		// DPI scale
+		UINT xdpi, ydpi;
+
+		const HDC dc = GetDC(NULL);
+		xdpi = GetDeviceCaps(dc, LOGPIXELSX);
+		ydpi = GetDeviceCaps(dc, LOGPIXELSY);
+		ReleaseDC(NULL, dc);
+
+		m_dpiScale = xdpi / (float)USER_DEFAULT_SCREEN_DPI;
 	}
 
 	DMAppData::~DMAppData()

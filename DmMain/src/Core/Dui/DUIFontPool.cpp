@@ -7,7 +7,7 @@ namespace DM
 	{
 		wcscpy_s(m_szDefFontFace, L"宋体");
 		::GetObjectW(::GetStockObject(DEFAULT_GUI_FONT), sizeof(LOGFONTW), &m_lfDefault);
-		m_lfDefault.lfHeight = -14;// 负值
+		m_lfDefault.lfHeight = -14 * g_pDMAppData->m_dpiScale; // 负值
 		wcscpy_s(m_lfDefault.lfFaceName, countof(m_lfDefault.lfFaceName), m_szDefFontFace);
 	}
 
@@ -23,7 +23,7 @@ namespace DM
 		do 
 		{
 			LOGFONTW lf = {0};
-			if (false == GetLogFont(strFont,&lf))
+			if (!ParseLogFont(strFont,&lf))
 			{
 				break;
 			}
@@ -44,7 +44,7 @@ namespace DM
 			CStringA szFont = strFont;
 			szFont.Trim();
 			szFont.MakeLower();
-			if (false == GetLogFont(szFont,&lf))
+			if (!ParseLogFont(szFont,&lf))
 			{
 				if (GetObjByKey(szFont,pFont))
 				{
@@ -78,7 +78,7 @@ namespace DM
 		return szKey;
 	}
 
-	bool DUIFontPool::GetLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont)
+	bool DUIFontPool::ParseLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont)
 	{
 		bool bRet = false;
 		do 
@@ -154,6 +154,7 @@ namespace DM
 				CStringA strFontSize=szFont.Mid(nPosBegin,nPosEnd-nPosBegin);
 				lFontSize = DMABS(m_lfDefault.lfHeight);
 				DMAttributeDispatch::ParseInt(strFontSize,lFontSize);
+				lFontSize *= g_pDMAppData->m_dpiScale;
 			}
 			else
 			{

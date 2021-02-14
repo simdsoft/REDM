@@ -145,7 +145,8 @@ namespace DM
 				break;
 			}
 
-			Obj.SetSize(dx,dy);
+			auto dpiScale = g_pDMAppData->m_dpiScale;
+			Obj.SetSize(dx* dpiScale,dy * dpiScale);
 			iErr = DM_ECODE_OK;
 		} while (false);
 
@@ -170,7 +171,8 @@ namespace DM
 				break;
 			}
 
-			Obj.SetPoint(dx,dy);
+			auto dpiScale = g_pDMAppData->m_dpiScale;
+			Obj.SetPoint(dx * dpiScale,dy * dpiScale);
 			iErr = DM_ECODE_OK;
 		} while (false);
 
@@ -196,7 +198,8 @@ namespace DM
 				break;
 			}
 
-			Obj.SetRect(left,top,right,bottom);
+			auto dpiScale = g_pDMAppData->m_dpiScale;
+			Obj.SetRect(left * dpiScale,top * dpiScale,right * dpiScale,bottom * dpiScale);
 			iErr = DM_ECODE_OK;
 		} while (false);
 

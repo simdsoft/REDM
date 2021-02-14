@@ -1,5 +1,6 @@
 #include "DmMainAfx.h"
 #include "DMLayoutImpl.h"
+#include "fastlib/fast_split.hpp"
 
 namespace DM
 {
@@ -153,36 +154,43 @@ namespace DM
 
 	bool DMLayoutImpl::ParsePostion()
 	{
-		CStringA strPos = m_strPosValue;
+		// CStringA strPos = m_strPosValue;
 		bool bRet = false;
 		do 
 		{
-			CStringAList strPosList;
-			SplitStringT(strPos,L',',strPosList);
-			m_nCount = (int)strPosList.GetCount();
-			if (2!=m_nCount&&4!=m_nCount)
+			const int nItems = 4;
+			POS_ITEM item[nItems];
+			memset(item, 0, sizeof(POS_ITEM) * nItems);
+			m_nCount = 0;
+			fastl::fast_split(m_strPosValue.GetBuffer(), m_strPosValue.GetLength(), ',', [&](char* start, char* end) {
+				assert(m_nCount < nItems);
+				char endCh = *end;
+				*end = '\0';
+				ParseItem(start, item[m_nCount++]);
+				*end = endCh;
+			});
+
+			if (PIT_OFFSET == item[0].pit || PIT_OFFSET == item[1].pit)
 			{
+				DMFAIL_MSG("layout 1,2 param can't use @");
 				break;
 			}
 
-			// 解析item-----------------------------
-			POS_ITEM item[4];
-			memset(item,0, sizeof(POS_ITEM)*4);
-			for (int i=0;i<m_nCount;i++)
+			m_Left = item[0]; m_Top = item[1]; m_Right = item[2]; m_Bottom = item[3];
+
+			// DPI scale support, add by halx99
+			auto dpiScale = g_pDMAppData->m_dpiScale;
+			m_Left.nPos *= dpiScale;
+			m_Top.nPos *= dpiScale;
+			m_Right.nPos *= dpiScale;
+			m_Bottom.nPos *= dpiScale;
+
+			if (2 == m_nCount)
 			{
-				ParseItem(strPosList[i],item[i]);
+				m_uPositionType = (m_uPositionType & ~SizeX_Mask) | SizeX_FitContent;
+				m_uPositionType = (m_uPositionType & ~SizeY_Mask) | SizeY_FitContent;
 			}
-			if (PIT_OFFSET==item[0].pit||PIT_OFFSET==item[1].pit)
-			{
-                DMFAIL_MSG("layout 1,2 param can't use @");
-				break;
-			}
-			m_Left = item[0];m_Top = item[1];m_Right = item[2]; m_Bottom = item[3];
-			if(2 == m_nCount)
-			{
-				m_uPositionType = (m_uPositionType&~SizeX_Mask) | SizeX_FitContent;
-				m_uPositionType = (m_uPositionType&~SizeY_Mask) | SizeY_FitContent;
-			}
+
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -249,18 +257,17 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMLayoutImpl::ParseItem(CStringA &strPos, POS_ITEM &item)
+	bool DMLayoutImpl::ParseItem(LPCSTR lpszPos, POS_ITEM &item)
 	{
 		bool bRet = false;
 		do 
 		{
-			if (strPos.IsEmpty())
+			if (!*lpszPos)
 			{
 				DMFAIL_MSG("strPos can't be empty");
 				break;
 			}
 
-			LPCSTR lpszPos = strPos;
 			switch (lpszPos[0])
 			{
 			case POSFLAG_REFCENTER:		item.pit=PIT_CENTER,	lpszPos++;	break;		// 3.1.“|”代表参考父窗口的中心, PIT_CENTER:参考父窗口中心点,以"|"开始

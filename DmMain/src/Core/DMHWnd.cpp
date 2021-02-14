@@ -386,11 +386,12 @@ namespace DM
 			// 设置窗口标题 ----------------------------
 			SetWindowText(m_pHWndXmlInfo->m_strTitle);
 
+			auto appData = g_pDMAppData;
 			// 创建透明窗口蒙版--这两者差别是UpdateLayeredWindow对比SetLayeredWindowAttributes，可参看资料：http://hgy413.com/1865.html
 			if (m_pHWndXmlInfo->m_bTranslucent)// 在创建蒙版时，alpha值只需在alpha混合时使用即可,这时使用UpdateLayeredWindow绘制
 			{
 				SetWindowLongPtr(GWL_EXSTYLE, GetWindowLongPtr(GWL_EXSTYLE)|WS_EX_LAYERED);
-				m_dummyWnd.CreateWindowEx(LPCWSTR(g_pDMAppData->m_Atom),L"DM_DUMMY_WND",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_NOACTIVATE,0,0,10,10,m_hWnd,NULL);
+				m_dummyWnd.CreateWindowEx(LPCWSTR(appData->m_Atom),L"DM_DUMMY_WND",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_NOACTIVATE,0,0,10,10,m_hWnd,NULL);
 				m_dummyWnd.SetWindowLongPtr(GWL_EXSTYLE,m_dummyWnd.GetWindowLongPtr(GWL_EXSTYLE) | WS_EX_LAYERED);
 				::SetLayeredWindowAttributes(m_dummyWnd.m_hWnd,0,0,LWA_ALPHA);
 				m_dummyWnd.ShowWindow(SW_SHOWNOACTIVATE);

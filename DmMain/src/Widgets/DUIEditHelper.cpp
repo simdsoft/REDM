@@ -122,9 +122,15 @@ namespace DM
 			}
 
 			m_pt = point;
-			CStringA strValue;
-			strValue.Format("%d,%d,@%d,@%d",m_pt.x,m_pt.y,m_Size.cx,m_Size.cy);
+
+			char strValue[128];
+			sprintf(strValue, "%d,%d,@%d,@%d",m_pt.x,m_pt.y,m_Size.cx,m_Size.cy);
+
+			auto dpiScale = g_pDMAppData->m_dpiScale;
+			g_pDMAppData->m_dpiScale = 1.0f;
 			m_pLayout->SetAttribute("pos",strValue,false);
+			g_pDMAppData->m_dpiScale = dpiScale;
+
 			DM_UpdateLayout(NULL);
 			m_rcWindow;
 		} while (false);

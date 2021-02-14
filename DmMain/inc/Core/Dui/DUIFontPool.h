@@ -38,7 +38,7 @@ namespace DM
 
 	protected:
 		CStringA GetFontKey(const LPLOGFONTW lpLogFont);
-		bool GetLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont);
+		bool ParseLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont);
 
 	protected:
 		LOGFONTW				m_lfDefault;					   ///< Ä¬ÈÏ×ÖÌå

@@ -152,6 +152,8 @@ namespace DM
 
 		HMODULE m_hModuleDWM;
 
+		float m_dpiScale;
+
 	public:
 		DM::CArray<HWND>            m_RunhWndArray;                             ///< 运行Run函数的hWnd队列
 
