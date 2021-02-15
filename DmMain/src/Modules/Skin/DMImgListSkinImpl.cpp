@@ -240,9 +240,8 @@ namespace DM
 			DMSmartPtrT<IDMBitmap> pBitmap;
 			pRender->CreateBitmap(&pBitmap);
 
-
 			DWORD fourccID = 0;
-			::memcpy(&fourccID, static_cast<const char*>(strType), (std::min)(sizeof(fourccID), (size_t)strType.GetLength()));
+			::memcpy(&fourccID, static_cast<const char*>(strType), DMMIN(sizeof(fourccID), (size_t)strType.GetLength()));
 			auto pfnLoadImageFunc = g_pDMAppData->GetCustomImageLoader(fourccID);
 			if (!pfnLoadImageFunc) {
 
