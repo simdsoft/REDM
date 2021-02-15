@@ -22,6 +22,8 @@ namespace DM
 	/// 外部xmlDoc
 	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCSTR /*pszType*/, LPCSTR /*pszName*/);
 
+	typedef HBITMAP(*DM_CUSTOM_IMAGELOADER)(DWORD fourccID, LPCWSTR fileName);
+
 	/// <summary>
 	///		此为最重要主Data类，一个应用程序应该只有一个此类的全局对象
 	/// </summary>
@@ -46,6 +48,8 @@ namespace DM
 		/// @remark         应该在资源加载后再调用
 		/// @return			DMCode
 		DMCode InitGlobal(LPCSTR lpszXmlId="global");
+
+		void AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn);
 
 		/// -------------------------------------------------
 		/// @brief			运行消息循环

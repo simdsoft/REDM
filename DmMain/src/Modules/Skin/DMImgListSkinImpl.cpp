@@ -217,7 +217,7 @@ namespace DM
 			}
 			else// 也可能是IDR_BTN
 			{	
-				strType = "PNG";  // 默认为PNG
+				strType = "png";  // 默认为png
 				strResName = strValue;
 			}
 
@@ -240,33 +240,35 @@ namespace DM
 			DMSmartPtrT<IDMBitmap> pBitmap;
 			pRender->CreateBitmap(&pBitmap);
 
-			// if (!DMSUCCEEDED(pRes->GetItemSize(strType,strResName,ulSize)))
-			// {
-			// 	CStringA szInfo = "DMImgListSkinImpl:OnAttributeGetImage获取";
-			// 	szInfo += strType;szInfo+=strResName;szInfo += "失败";
-			// 	DMASSERT_EXPR(0,szInfo);
-			// 	break;
-			// }
-			// 
-			// DMBufT<byte>pBuf;pBuf.Allocate(ulSize);
-			// if (!DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, ulSize)))
-			// {
-			// 	break;
-			// }
-			DMBufT<byte> pBuf;
-			unsigned long ulSize = 0;
-			if(!DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
-				break;
 
-			if (!DMSUCCEEDED(pBitmap->LoadFromMemory(pBuf, ulSize,strType)))
-			{
-				break;
+			DWORD fourccID = 0;
+			::memcpy(&fourccID, static_cast<const char*>(strType), (std::min)(sizeof(fourccID), (size_t)strType.GetLength()));
+			auto pfnLoadImageFunc = g_pDMAppData->GetCustomImageLoader(fourccID);
+			if (!pfnLoadImageFunc) {
+
+				DMBufT<byte> pBuf;
+				unsigned long ulSize = 0;
+				if (!DMSUCCEEDED(pRes->GetItemBuf(strType, strResName, pBuf, &ulSize)))
+					break;
+
+				if (!DMSUCCEEDED(pBitmap->LoadFromMemory(pBuf, ulSize, strType)))
+				{
+					break;
+				}
+
+				if (pBitmap)
+				{
+					m_pBitmap.reset(pBitmap);
+					iErr = DM_ECODE_OK;
+				}
 			}
-
-			if (pBitmap)
-			{
-				m_pBitmap.reset(pBitmap);
-				iErr = DM_ECODE_OK;
+			else {
+				auto fullPath = pRes->GetItemPath(strType, strResName, NULL);
+				HBITMAP hbit = pfnLoadImageFunc(fourccID, fullPath);
+				if (hbit) {
+					iErr = pBitmap->InitFromHBITMAP(hbit);
+					m_pBitmap.reset(pBitmap);
+				}
 			}
 
 		} while (false);

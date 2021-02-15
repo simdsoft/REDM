@@ -60,7 +60,6 @@ namespace DM
 	#define  g_pDMTrans                                  g_pDMAppData->m_pTransObj
 	#define  g_pDMTaskRunner                             g_pDMAppData->m_pTaskRunnerObj
 	
-
 	/// <summary>
 	///		封装管理所有的数据,建议仅供内部使用,如某功能需开放接口,请增加到DMApp中转发
 	/// </summary>
@@ -82,6 +81,12 @@ namespace DM
 		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 		DMCode GetDefRegObj(void** ppObj,int RegType);
 		DMCode GetDefRegObj(CStringA &szName,int RegType);
+
+		//---------------------------------------------------
+		// Function Des: 添加自定义图片解析
+		//---------------------------------------------------
+		void AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn);
+		DM_CUSTOM_IMAGELOADER GetCustomImageLoader(DWORD fourccID);
 
 		//---------------------------------------------------
 		// Function Des: 注册插件
@@ -157,6 +162,6 @@ namespace DM
 	public:
 		DM::CArray<HWND>            m_RunhWndArray;                             ///< 运行Run函数的hWnd队列
 
-
+		DMMapT<FOURCC, DM_CUSTOM_IMAGELOADER> m_customImageLoaders;
 	};
 }//namespace DM

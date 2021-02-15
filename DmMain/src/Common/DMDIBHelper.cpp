@@ -90,6 +90,36 @@ namespace DM
 		return hBmp;
 	}
 
+	void DMDIBHelper::AttachHBITMAP(HBITMAP hbit)
+	{
+		DIBRelease();
+
+		BITMAP bm;
+		if (GetObject(hbit, sizeof(bm), &bm))
+		{
+			m_hBitmap = hbit;
+
+			m_pBMI = new BITMAPINFO();
+			memset(m_pBMI, 0, sizeof(BITMAPINFO));
+			m_pBMI->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+			m_pBMI->bmiHeader.biWidth = bm.bmWidth;
+			m_pBMI->bmiHeader.biHeight = -DMABS(bm.bmHeight); // top-down image ，这时起始像素在m_pPixelBits,同时扫描线间的差值也和m_nBPS一样
+			m_pBMI->bmiHeader.biPlanes = 1;
+			m_pBMI->bmiHeader.biBitCount = 32;
+			m_pBMI->bmiHeader.biCompression = BI_RGB;
+			m_pBMI->bmiHeader.biSizeImage = 0;
+
+			m_nWidth = bm.bmWidth;
+			m_nHeight = bm.bmHeight;
+			m_nBPS = m_nWidth * 4;//(m_nWidth * m_nBitCount + 31) / 32 * 4;,32位下其实就是m_nWidth*4
+
+			if (0 == m_nImageSize)
+			{
+				m_nImageSize = m_nBPS * m_nHeight; //m_nBPS * m_nPlanes * m_nHeight;
+			}
+		}
+	}
+
 	HBITMAP DMDIBHelper::CreateDIBSection(HDC hdc, int nWid,int nHei)
 	{
 		DIBRelease();

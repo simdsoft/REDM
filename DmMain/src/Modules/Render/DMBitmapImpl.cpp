@@ -71,6 +71,12 @@ namespace DM
 		return iErr;
 	}
 
+	DMCode DMBitmapImpl::InitFromHBITMAP(HBITMAP hbit) 
+	{
+		m_DibHelper.AttachHBITMAP(hbit);
+		return DM_ECODE_OK;
+	}
+
 	DMCode DMBitmapImpl::LoadFromFile(LPCWSTR pszFileName,LPCSTR /*pszType*/)
 	{
 		m_DibHelper.DIBRelease();
@@ -109,9 +115,9 @@ namespace DM
 		m_DibHelper.DIBRelease();
 		DMCode iErr = DM_ECODE_FAIL;
 		DMSmartPtrT<IDMImgDecoder> pImgDecoder;
-		do 
+		do
 		{
-			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder,NULL,DMREG_ImgDecoder)))
+			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pImgDecoder, NULL, DMREG_ImgDecoder)))
 			{
 				break;
 			}

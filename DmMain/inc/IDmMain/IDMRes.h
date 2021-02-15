@@ -49,6 +49,8 @@ namespace DM
 		/// @return DM_ECODE_OK为成功
 		virtual DMCode GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize,LPCSTR lpszThemeName=NULL) = 0;
 
+		virtual LPCWSTR GetItemPath(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName) = 0;
+
 		/// -------------------------------------------------
 		/// @brief 拷贝 资源中某项的内存
 		/// @param[in]		 lpszType    传入内部使用的参数1，一般为项类型，和自己扩展实现相关

@@ -88,6 +88,7 @@ namespace DM
 	public:
 		virtual DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL) = 0;				///<初始化
 		virtual DMCode InitFromFrame(IDMImgFrame *pImgFrame) = 0;						///<从<see cref="IDMImgFrame"/>中加载
+		virtual DMCode InitFromHBITMAP(HBITMAP hbit) = 0;
 		virtual DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType) = 0;			///<从文件中加载
 		virtual DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;	///<从内存中加载
 

@@ -42,6 +42,12 @@ namespace DM
 	public:
 
 		/// <summary>
+		/// 根据已有hbit构造DMDIBHelper对象, 并接管对象管理权
+		/// </summary>
+		/// <param name="hbit"></param>
+		void AttachHBITMAP(HBITMAP hbit);
+
+		/// <summary>
 		///     创建DIBSection
 		/// </summary>
 		/// <returns>创建后的HBITMAP</returns>

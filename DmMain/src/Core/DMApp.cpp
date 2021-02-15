@@ -34,6 +34,11 @@ namespace DM
 		return g_pDMAppData->InitGlobal(lpszXmlId);
 	}
 
+	void DMApp::AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn)
+	{
+		g_pDMAppData->AddCustomImageLoader(fourccID, loaderFn);
+	}
+
 	DMCode DMApp::Run(HWND hWnd)
 	{
 		return g_pDMAppData->Run(hWnd);

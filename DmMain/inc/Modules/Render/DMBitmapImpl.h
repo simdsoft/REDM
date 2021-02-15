@@ -25,6 +25,7 @@ namespace DM
 	public://À©Õ¹½Ó¿Ú
 		DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL);
 		DMCode InitFromFrame(IDMImgFrame *pImgFrame);
+		DMCode InitFromHBITMAP(HBITMAP hbit);
 		DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType);
 		DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType);
 

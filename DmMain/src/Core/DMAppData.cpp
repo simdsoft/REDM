@@ -316,6 +316,17 @@ namespace DM
 		return m_RegMgr->GetDefRegObj(szName, RegType);
 	}
 
+	void DMAppData::AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn)
+	{
+		m_customImageLoaders.AddKey(fourccID, loaderFn);
+	}
+	DM_CUSTOM_IMAGELOADER DMAppData::GetCustomImageLoader(DWORD fourccID)
+	{
+		DM_CUSTOM_IMAGELOADER loader = nullptr;
+        m_customImageLoaders.GetObjByKey(fourccID, loader);
+		return loader;
+	}
+
 	/// ×¢²á²å¼þ-----------------------------------------
 	DMCode DMAppData::LoadPlugins(LPCWSTR lpszPluginsCfg)
 	{
