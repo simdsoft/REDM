@@ -49,7 +49,7 @@ namespace DM
 		/// @return DM_ECODE_OK为成功
 		virtual DMCode GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize,LPCSTR lpszThemeName=NULL) = 0;
 
-		virtual LPCWSTR GetItemPath(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName) = 0;
+		virtual LPCWSTR GetItemPath(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName) { return L""; };
 
 		/// -------------------------------------------------
 		/// @brief 拷贝 资源中某项的内存
