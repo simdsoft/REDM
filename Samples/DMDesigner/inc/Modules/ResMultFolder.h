@@ -26,6 +26,7 @@ public:
 	virtual DMCode LoadResPack(WPARAM wp, LPARAM lp);
 	virtual DMCode IsItemExists(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName=NULL);
 	virtual DMCode GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize, LPCSTR lpszThemeName=NULL);
+	virtual LPCWSTR GetItemPath(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName);
 	virtual DMCode GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&, PULONG lpULSize, LPCSTR lpszThemeName = NULL);
 	virtual DMCode LoadTheme(WPARAM wp, LPARAM lp);
 	virtual DMCode SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName=NULL);

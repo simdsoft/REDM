@@ -60,6 +60,12 @@ DMCode ResMultFolder::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned lon
 	return iErr;
 }
 
+LPCWSTR ResMultFolder::GetItemPath(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName)
+{
+	ResFolderPtr pItem = GetResFolderPtr(lpszName);
+	return pItem->GetItemPath(lpszType, lpszName, lpszThemeName);
+}
+
 DMCode ResMultFolder::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>& pBuf, PULONG lpULSize, LPCSTR lpszThemeName)
 {
 	DMCode iErr = DM_ECODE_FAIL;
