@@ -67,7 +67,7 @@ if(USE_EXTERN_PUGIXML)
     # 使用外部动态pugixml库
     ADD_DEFINITIONS(-DPUGIXML_API=__declspec\(dllimport\))
 else()
-    ADD_DEFINITIONS(-DPUGIXML_API=)
+    ADD_DEFINITIONS(-DPUGIXML_API=) 
 endif()
 
 # --- The compiler flags

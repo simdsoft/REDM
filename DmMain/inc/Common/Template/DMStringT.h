@@ -1765,10 +1765,10 @@ namespace DM
 
 namespace ntcvt {
     namespace buffer_traits {
-        inline char* inplaced(DM::CStringA& str, int size) {
+        inline char* prepare(DM::CStringA& str, int size) {
             return str.GetBufferSetLength(size);
         }
-        inline wchar_t* inplaced(DM::CStringW& str, int size) {
+        inline wchar_t* prepare(DM::CStringW& str, int size) {
             return str.GetBufferSetLength(size);
         }
     }

@@ -19,7 +19,8 @@
 
 namespace DM
 {
-	#define DMTR(str)									DV_GetTransText(str)          
+	#define DMTR(str)									DV_GetTransText(str)  
+	typedef CStringW(*SIMPLETRANSFUNC)(CStringW str);
 	class DUIWindow;
 	typedef DUIWindow* DUIWindowPtr;
 	/// <summary>
@@ -37,6 +38,8 @@ namespace DM
 	public:
 		DUIWindow();
 		virtual~DUIWindow();
+
+		static void SetSimpleTransFunc(SIMPLETRANSFUNC lpfnTransProc);
 
 	public:
 		//---------------------------------------------------
@@ -337,5 +340,7 @@ namespace DM
 		//-----------------------------------------------------------------------------------------------
 		DMXmlNode                               m_XmlNode;                                  ///< 仅设置_DMDesigner_宏时有效,design中xmldoc一直是有效的，所有它的对象也会一直有效
 #endif
+
+		static SIMPLETRANSFUNC                  s_simpleTransProc;
 	};
 }//namespace DM

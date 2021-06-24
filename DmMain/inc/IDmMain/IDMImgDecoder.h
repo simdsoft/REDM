@@ -43,7 +43,7 @@ namespace DM
 	public:
 		virtual ~IDMImgDecoder(){};
 
-		virtual DMCode LoadFromMemory(void *pBuf,size_t bufLen) = 0;		///< 从内存中加载
+		virtual DMCode LoadFromMemory(const void *pBuf,size_t bufLen) = 0;		///< 从内存中加载
 		virtual DMCode LoadFromFile(LPCWSTR pszFileName) = 0;				///< 从文件中加载
 		virtual DMCode GetFrameCount(UINT &ulCount) = 0;					///< 获得当前存储帧的数目
 

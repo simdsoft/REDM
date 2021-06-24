@@ -4,6 +4,14 @@
 namespace DM
 {
 	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
+
+	SIMPLETRANSFUNC DUIWindow::s_simpleTransProc = nullptr;
+
+	void DUIWindow::SetSimpleTransFunc(SIMPLETRANSFUNC lpfnTransFunc)
+	{
+		s_simpleTransProc = lpfnTransFunc;
+	}
+
 	DUIWindow::DUIWindow()
 	{
 		m_rcWindow.SetRect(POS_INIT,POS_INIT,POS_INIT,POS_INIT); // 未完成布局时初始值
@@ -799,6 +807,8 @@ namespace DM
 		{
 			return g_pDMApp->GetTrans(strSrc, m_pContainer->OnGetTransId());;
 		}
+#else
+		if (s_simpleTransProc) return s_simpleTransProc(strSrc);
 #endif
 		return strSrc;
 	}

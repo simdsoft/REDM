@@ -82,7 +82,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMGifParse::LoadFromMemory(BYTE *pBuf,int bufLen)
+	bool DMGifParse::LoadFromMemory(const BYTE *pBuf,int bufLen)
 	{
 		bool bRet = false;
 		do 
@@ -308,7 +308,7 @@ namespace DM
 	}
 
 #define CMPLEN(x,y)  if(x>y){return false;}
-	bool DMGifParse::GetAllFrames(BYTE *pBuf,int bufLen)
+	bool DMGifParse::GetAllFrames(const BYTE *pBuf,int bufLen)
 	{
 		bool bRet = true;
 		BYTE be;
@@ -354,7 +354,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool DMGifParse::ParseExtension(BYTE *pBuf,int bufLen,GCTRLEXT&ctrlExt)
+	bool DMGifParse::ParseExtension(const BYTE *pBuf,int bufLen,GCTRLEXT&ctrlExt)
 	{
 		bool bRet = true;
 		BYTE be;
@@ -425,7 +425,7 @@ namespace DM
 	}
 
 #define CMPLENDEL(x,y,z)  if(x>y){delete[]z;return false;}
-	bool DMGifParse::ParseFrame(BYTE *pBuf,int bufLen)
+	bool DMGifParse::ParseFrame(const BYTE *pBuf,int bufLen)
 	{
 		GIFFRAMEPTR pf = new GIFFRAME;
 

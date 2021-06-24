@@ -42,7 +42,7 @@ namespace DM
 		DMImgDecoderImpl();
 		virtual~DMImgDecoderImpl();
 	public:
-		virtual DMCode LoadFromMemory(void *pBuf,size_t bufLen);	
+		virtual DMCode LoadFromMemory(const void *pBuf,size_t bufLen);	
 		virtual DMCode LoadFromFile(LPCWSTR pszFileName);				
 		virtual DMCode GetFrameCount(UINT &ulCount);	
 		virtual DMCode GetTotalLoopCount(UINT &ulCount);		
@@ -59,7 +59,7 @@ namespace DM
 		 UINT GetTotalLoopCount(IWICBitmapDecoder* pBmpDecoder);// 这是全局数据，不是帧数据
 
 		 bool CheckFramesValid();
-		 void RepairFrames(void *pBuf,size_t bufLen);	 // 在XP下需要修复
+		 void RepairFrames(const void *pBuf,size_t bufLen);	 // 在XP下需要修复
 		 void RepairFrames(LPCWSTR pszFileName);
 
 

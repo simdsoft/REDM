@@ -1,9 +1,49 @@
 #include "DmMainAfx.h"
 #include "DMLayoutImpl.h"
-#include "fastlib/fast_split.hpp"
 
 namespace DM
 {
+	namespace internal {
+#define _REDIRECT_DELIM_INTRI(_From,_To,_CStr,_Delim) \
+    inline _CStr _To(_CStr s, _Delim d) \
+    { \
+        return _From(s, d); \
+    }
+
+		_REDIRECT_DELIM_INTRI(strchr, xstrchr, const char*, int)
+			_REDIRECT_DELIM_INTRI(strchr, xstrchr, char*, int)
+			_REDIRECT_DELIM_INTRI(wcschr, xstrchr, const wchar_t*, wchar_t)
+			_REDIRECT_DELIM_INTRI(wcschr, xstrchr, wchar_t*, wchar_t)
+
+			_REDIRECT_DELIM_INTRI(strstr, xstrstr, const char*, const char*)
+			_REDIRECT_DELIM_INTRI(strstr, xstrstr, char*, const char*)
+			_REDIRECT_DELIM_INTRI(wcsstr, xstrstr, const wchar_t*, const wchar_t*)
+			_REDIRECT_DELIM_INTRI(wcsstr, xstrstr, wchar_t*, const wchar_t*)
+
+			_REDIRECT_DELIM_INTRI(strpbrk, xstrpbrk, const char*, const char*)
+			_REDIRECT_DELIM_INTRI(strpbrk, xstrpbrk, char*, const char*)
+			_REDIRECT_DELIM_INTRI(wcspbrk, xstrpbrk, const wchar_t*, const wchar_t*)
+			_REDIRECT_DELIM_INTRI(wcspbrk, xstrpbrk, wchar_t*, const wchar_t*)
+	}
+
+	template<typename _CStr, typename _Fn> inline
+		void fast_split(_CStr s, size_t slen, typename std::remove_pointer<_CStr>::type delim, _Fn func)
+	{
+		auto _Start = s; // the start of every string
+		auto _Ptr = s; // source string iterator
+		auto _End = s + slen;
+		while ((_Ptr = internal::xstrchr(_Ptr, delim)))
+		{
+			if (_Start <= _Ptr)
+				func(_Start, _Ptr);
+			_Start = _Ptr + 1;
+			++_Ptr;
+		}
+		if (_Start <= _End) {
+			func(_Start, _End);
+		}
+	}
+
 	DMLayoutImpl::DMLayoutImpl()
 	{
 		m_pOwner		= NULL;
@@ -162,7 +202,7 @@ namespace DM
 			POS_ITEM item[nItems];
 			memset(item, 0, sizeof(POS_ITEM) * nItems);
 			m_nCount = 0;
-			fastl::fast_split(m_strPosValue.GetBuffer(), m_strPosValue.GetLength(), ',', [&](char* start, char* end) {
+			fast_split(m_strPosValue.GetBuffer(), m_strPosValue.GetLength(), ',', [&](char* start, char* end) {
 				assert(m_nCount < nItems);
 				char endCh = *end;
 				*end = '\0';

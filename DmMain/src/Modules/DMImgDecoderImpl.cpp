@@ -87,7 +87,7 @@ namespace DM
 		RemoveAll();
 	}
 
-	DMCode DMImgDecoderImpl::LoadFromMemory(void *pBuf,size_t bufLen)
+	DMCode DMImgDecoderImpl::LoadFromMemory(const void *pBuf,size_t bufLen)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -451,13 +451,13 @@ namespace DM
 		return bRet;
 	}
 
-	void DMImgDecoderImpl::RepairFrames(void *pBuf,size_t bufLen)
+	void DMImgDecoderImpl::RepairFrames(const void *pBuf,size_t bufLen)
 	{
 		do 
 		{
 			DMSmartPtrT<DMGifParse> pObj;
 			pObj.Attach(new DMGifParse);
-			if (pObj->LoadFromMemory((BYTE*)pBuf, (int)bufLen))
+			if (pObj->LoadFromMemory((const BYTE*)pBuf, (int)bufLen))
 			{
 				LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
 				DMASSERT_MSG(gi->frames==m_ulFrameCount,"frameCount mismatch");

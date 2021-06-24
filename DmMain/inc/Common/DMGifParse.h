@@ -74,7 +74,7 @@ namespace DM
 		/// @param[in]		 pBuf			gif的buf起始
 		/// @param[in]		 bufLen			gif的buf大小
 		/// @return true:解析成功
-		bool LoadFromMemory(BYTE *pBuf,int bufLen);
+		bool LoadFromMemory(const BYTE *pBuf,int bufLen);
 
 		/// -------------------------------------------------
 		/// @brief 取得指定帧
@@ -92,9 +92,9 @@ namespace DM
 		bool ParseExtension(FILE*fp,GCTRLEXT&ctrlExt);
 		bool ParseFrame(FILE*fp);
 		
-		bool GetAllFrames(BYTE *pBuf,int bufLen);
-		bool ParseExtension(BYTE *pBuf,int bufLen,GCTRLEXT&ctrlExt);
-		bool ParseFrame(BYTE *pBuf,int bufLen);
+		bool GetAllFrames(const BYTE *pBuf,int bufLen);
+		bool ParseExtension(const BYTE *pBuf,int bufLen,GCTRLEXT&ctrlExt);
+		bool ParseFrame(const BYTE *pBuf,int bufLen);
 
 	public:
 		virtual void PreArrayObjRemove(const GIFFRAMEPTR &obj);
