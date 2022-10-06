@@ -22,7 +22,7 @@ namespace DMAttr
 	class DUILinkAttr:public DUIWindowAttr
 	{
 	public:
-		static char* STRING_href;                                 ///< 设置链接，点击后触发,示例:href="www.hgy413.com"
+		static const char* STRING_href;                                 ///< 设置链接，点击后触发,示例:href="www.hgy413.com"
 	};
 	DMAttrValueInit(DUILinkAttr,STRING_href)
 }

@@ -24,9 +24,9 @@ namespace DMAttr
 	class DUIGifAttr:public DUIWindowAttr
 	{
 	public:
-		static char* GIF_gifskin;                                 ///< gif的资源，不是通过skin指定，而是直接通过文件标识指定,或以文件绝对路径指定,示例:gifskin="gif:4_gif",gifskin="c:\1.gif"                            
-		static char* bool_badjust;                                ///< 是否调整使图片自适应尺寸，也就是图片保持比例缩放，不会变形，默认为true,示例:badjust="1"
-		static char* bool_bcalcclip;                              ///< 计算并自动调整clip区包含整个绘制区,会损失绘制效率，适用于gif控件中包含子gif控件,如果子gif透明，则每次刷新只是父gif的一部分,示例:bcalcclip="1"
+		static const char* GIF_gifskin;                                 ///< gif的资源，不是通过skin指定，而是直接通过文件标识指定,或以文件绝对路径指定,示例:gifskin="gif:4_gif",gifskin="c:\1.gif"                            
+		static const char* bool_badjust;                                ///< 是否调整使图片自适应尺寸，也就是图片保持比例缩放，不会变形，默认为true,示例:badjust="1"
+		static const char* bool_bcalcclip;                              ///< 计算并自动调整clip区包含整个绘制区,会损失绘制效率，适用于gif控件中包含子gif控件,如果子gif透明，则每次刷新只是父gif的一部分,示例:bcalcclip="1"
 	};
 	DMAttrValueInit(DUIGifAttr,GIF_gifskin)DMAttrValueInit(DUIGifAttr,bool_badjust)DMAttrValueInit(DUIGifAttr,bool_bcalcclip)
 }

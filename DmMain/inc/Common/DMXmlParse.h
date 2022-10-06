@@ -127,25 +127,25 @@ namespace DM
 		/// @brief		第一个attribute
 		/// @remark		用于遍历所有attribute
 		/// @return		第一个attribute
-		DMXmlAttribute FirstAttribute();
+		DMXmlAttribute FirstAttribute() const;
 
 		/// -------------------------------------------------
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（LPCWSTR）
-		LPCSTR Attribute(LPCSTR name);
+		LPCSTR Attribute(LPCSTR name) const;
 
 		/// -------------------------------------------------
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（int）
-		int AttributeInt(LPCSTR name);
+		int AttributeInt(LPCSTR name) const;
 
 		/// -------------------------------------------------
 		/// @brief		指定名字的attribute的内容
 		/// @param[in]	name attribute的名字
 		/// @return		指定名字的attribute的内容（int64）
-		INT64 AttributeInt64(LPCSTR name);
+		INT64 AttributeInt64(LPCSTR name) const;
 
 		/// -------------------------------------------------
 		/// @brief  插入一个新的节点

@@ -2437,7 +2437,7 @@ namespace DM
 		bool Lookup( KINARGTYPE key, VOUTARGTYPE value ) const;
 		const CPair* Lookup( KINARGTYPE key ) const;
 		CPair* Lookup( KINARGTYPE key );
-		V& operator[]( KINARGTYPE key ) throw(...);
+		V& operator[]( KINARGTYPE key );
 
 		POSITION SetAt( KINARGTYPE key, VINARGTYPE value );
 		void SetValueAt( POSITION pos, VINARGTYPE value );
@@ -2494,7 +2494,7 @@ namespace DM
 		void FreeNode( CNode* pNode );
 		void FreePlexes();
 		CNode* GetNode( KINARGTYPE key, UINT& iBin, UINT& nHash, CNode*& pPrev ) const;
-		CNode* CreateNode( KINARGTYPE key, UINT iBin, UINT nHash ) throw(...);
+		CNode* CreateNode( KINARGTYPE key, UINT iBin, UINT nHash );
 		void RemoveNode( CNode* pNode, CNode* pPrev );
 		CNode* FindNextNode( CNode* pNode ) const;
 		void UpdateRehashThresholds();
@@ -2522,7 +2522,7 @@ namespace DM
 	}
 
 	template< typename K, typename V, class KTraits, class VTraits >
-	inline V& CMap< K, V, KTraits, VTraits >::operator[]( KINARGTYPE key ) throw(...)
+	inline V& CMap< K, V, KTraits, VTraits >::operator[]( KINARGTYPE key )
 	{
 		CNode* pNode;
 		UINT iBin;
@@ -2656,7 +2656,7 @@ namespace DM
 
 	template< typename K, typename V, class KTraits, class VTraits >
 	typename CMap< K, V, KTraits, VTraits >::CNode* CMap< K, V, KTraits, VTraits >::CreateNode(
-		KINARGTYPE key, UINT iBin, UINT nHash ) throw(...)
+		KINARGTYPE key, UINT iBin, UINT nHash )
 	{
 		CNode* pNode;
 

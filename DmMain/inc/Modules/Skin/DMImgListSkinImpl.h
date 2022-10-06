@@ -22,11 +22,11 @@ namespace DMAttr
 	class DMImgListSkinImplAttr
 	{
 	public:
-		static char* STRING_src;                            ///< 状态连图源，可以通过xml加载
-		static char* STRING_id;                             ///< 唯一标识skin类对象，示例：id="channel_vz"
-		static char* bool_btitle;                           ///< 是否平铺绘制，示例：btitle="1"
-		static char* bool_bvert;                            ///< 状态连图是否为竖直分布的，示例：bvert="1"
-		static char* INT_states;                            ///< 状态数，示例：states="1"
+		static const char* STRING_src;                            ///< 状态连图源，可以通过xml加载
+		static const char* STRING_id;                             ///< 唯一标识skin类对象，示例：id="channel_vz"
+		static const char* bool_btitle;                           ///< 是否平铺绘制，示例：btitle="1"
+		static const char* bool_bvert;                            ///< 状态连图是否为竖直分布的，示例：bvert="1"
+		static const char* INT_states;                            ///< 状态数，示例：states="1"
 
 	};
 	DMAttrValueInit(DMImgListSkinImplAttr,STRING_src)DMAttrValueInit(DMImgListSkinImplAttr,STRING_id)

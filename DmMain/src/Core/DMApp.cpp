@@ -50,7 +50,7 @@ namespace DM
 	}
 
 	/// ×¢²áÀà-----------------------------------------
-	DMCode DMApp::Register(IDMReg &RegObj, bool bReplace/*=false*/)
+	DMCode DMApp::Register(IDMReg &&RegObj, bool bReplace/*=false*/)
 	{
 		return g_pDMAppData->Register(RegObj, bReplace);
 	}

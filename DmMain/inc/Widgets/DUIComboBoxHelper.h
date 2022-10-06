@@ -24,18 +24,18 @@ namespace DMAttr
 	class DUIComboBoxBaseAttr:public DUIWindowAttr
 	{
 	public:
-		static char* bool_bhideedit;                                               ///< 是否不显示edit,示例：bhideedit="1"
-		static char* INT_dropheight;                                               ///< 下拉高度,取listbox的高度和此设置值的较小值显示,默认200，示例：dropheight="200"
-		static char* INT_dropemptyheight;                                          ///< 当listbox为空时的显示高度,默认0，示例：dropemptyheight="200"
-		static char* INT_animatetime;                                              ///< 下拉出来的时间，用于AnimateWindow,默认200,为0表示不使用下拉动画,示例：animatetime="200"
-		static char* SKIN_btnskin;                                                 ///< 下拉的小三角按钮皮肤，示例:btnskin="skinbtn"
-		static char* SIZE_btnsize;                                                 ///< 下拉小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize="-1,-1"
-		static char* INT_cursel;                                                   ///< 当前选中项，示例:cursel="1"
-		static char* INT_textoffset;                                 			  ///< 文本的偏移，默认为0,示例:textoffset="10"
-		static char* bool_bdroptranslucent;										  ///< 下拉列表窗口是否支持透明,默认为不透明,示例:bdroptranslucent="0"
+		static const char* bool_bhideedit;                                               ///< 是否不显示edit,示例：bhideedit="1"
+		static const char* INT_dropheight;                                               ///< 下拉高度,取listbox的高度和此设置值的较小值显示,默认200，示例：dropheight="200"
+		static const char* INT_dropemptyheight;                                          ///< 当listbox为空时的显示高度,默认0，示例：dropemptyheight="200"
+		static const char* INT_animatetime;                                              ///< 下拉出来的时间，用于AnimateWindow,默认200,为0表示不使用下拉动画,示例：animatetime="200"
+		static const char* SKIN_btnskin;                                                 ///< 下拉的小三角按钮皮肤，示例:btnskin="skinbtn"
+		static const char* SIZE_btnsize;                                                 ///< 下拉小三角的宽高,为-1,-1时表示使用btnskin的size,竖直居中,示例:btnsize="-1,-1"
+		static const char* INT_cursel;                                                   ///< 当前选中项，示例:cursel="1"
+		static const char* INT_textoffset;                                 			  ///< 文本的偏移，默认为0,示例:textoffset="10"
+		static const char* bool_bdroptranslucent;										  ///< 下拉列表窗口是否支持透明,默认为不透明,示例:bdroptranslucent="0"
 
 
-		static char* ITEM_subedit;												  ///< 子控件edit的XML标识
+		static const char* ITEM_subedit;												  ///< 子控件edit的XML标识
 	};
 	DMAttrValueInit(DUIComboBoxBaseAttr,bool_bhideedit)DMAttrValueInit(DUIComboBoxBaseAttr,INT_dropheight)DMAttrValueInit(DUIComboBoxBaseAttr, INT_dropemptyheight)DMAttrValueInit(DUIComboBoxBaseAttr,INT_animatetime)
 	DMAttrValueInit(DUIComboBoxBaseAttr,SKIN_btnskin)DMAttrValueInit(DUIComboBoxBaseAttr,SIZE_btnsize)DMAttrValueInit(DUIComboBoxBaseAttr,INT_cursel)DMAttrValueInit(DUIComboBoxBaseAttr,INT_textoffset)

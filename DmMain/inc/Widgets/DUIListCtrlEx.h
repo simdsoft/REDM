@@ -25,17 +25,17 @@ namespace DMAttr
 	class DUIListCtrlExAttr: public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_headerheight;                                        ///< 列表头的高度,示例:headerheight="20"
-		static char* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
-		static char* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
-		static char* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static char* bool_bmultisel;                                          ///< 是否支持多选,默认不支持,示例:bmultisel="1"
+		static const char* INT_headerheight;                                        ///< 列表头的高度,示例:headerheight="20"
+		static const char* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
+		static const char* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
+		static const char* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* bool_bmultisel;                                          ///< 是否支持多选,默认不支持,示例:bmultisel="1"
 
-		static char* NODE_item;                                               ///< listctrl的xml项结点名
-		static char* ITEM_height;                                             ///< 项的高度(可选), 示例:height="20"
-		static char* ITEM_data;                                               ///< 项的数据,示例:data="10"
+		static const char* NODE_item;                                               ///< listctrl的xml项结点名
+		static const char* ITEM_height;                                             ///< 项的高度(可选), 示例:height="20"
+		static const char* ITEM_data;                                               ///< 项的数据,示例:data="10"
 	};
 	DMAttrValueInit(DUIListCtrlExAttr,INT_headerheight)DMAttrValueInit(DUIListCtrlExAttr,INT_itemheight)
 	DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemhoverbg)

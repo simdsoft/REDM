@@ -63,7 +63,9 @@ namespace DM
 				break; 
 			}
 			pCanvas->SelectObject(pPen,(IDMMetaFile**)&pOldPen);
-			pCanvas->DrawRoundRect(rcGroup,CPoint(m_iRound,m_iRound));
+
+			CPoint ptxx(m_iRound, m_iRound);
+			pCanvas->DrawRoundRect(rcGroup, ptxx);
 			pCanvas->SelectObject(pOldPen);
 			
 			if (!m_pDUIXmlInfo->m_strText.IsEmpty())

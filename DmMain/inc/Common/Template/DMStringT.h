@@ -1765,11 +1765,13 @@ namespace DM
 
 namespace ntcvt {
     namespace buffer_traits {
-        inline char* prepare(DM::CStringA& str, int size) {
-            return str.GetBufferSetLength(size);
+        template<>
+        inline auto prepare<DM::CStringA>(DM::CStringA& str, size_t size) {
+            return str.GetBufferSetLength(static_cast<int>(size));
         }
-        inline wchar_t* prepare(DM::CStringW& str, int size) {
-            return str.GetBufferSetLength(size);
+        template<>
+        inline auto prepare<DM::CStringW>(DM::CStringW& str, size_t size) {
+            return str.GetBufferSetLength(static_cast<int>(size));
         }
     }
     inline std::string from_chars(const DM::CStringW& wcb, UINT cp = CP_ACP)

@@ -130,7 +130,7 @@ namespace DM
 			POSITION pos = m_Map.GetStartPosition();
 			while(pos)
 			{
-				DM::CMap<TKey,TObj>::CPair *p = m_Map.GetNext(pos);
+				auto p = m_Map.GetNext(pos);
 				PreMapKeyRemove(p->m_value);
 			}
 

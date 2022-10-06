@@ -23,16 +23,16 @@ namespace DMAttr
 	class DUIProcessCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
-		static char* INT_value;									   ///< 范围当前值,示例:value="0"
-		static char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
-		static char* bool_bshowtip;                                 ///< 是否显示tip
+		static const char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
+		static const char* INT_value;									   ///< 范围当前值,示例:value="0"
+		static const char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
+		static const char* bool_bshowtip;                                 ///< 是否显示tip
 
-		static char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
-		static char* COLOR_clrchannel;							   ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
-		static char* SKIN_selskin;                                  ///< 选中部分图,示例:selskin="PNG:iconbtn"
-		static char* COLOR_clrsel;                                  ///< 选中颜色,在选中图无效时使用,示例:clrsel="pbgra(ff,ff,ff,ff)"
-		static char* STRING_textformat;                             ///< 需要显示的进度文字format,示例:textformat="进度:%d"
+		static const char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
+		static const char* COLOR_clrchannel;							   ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_selskin;                                  ///< 选中部分图,示例:selskin="PNG:iconbtn"
+		static const char* COLOR_clrsel;                                  ///< 选中颜色,在选中图无效时使用,示例:clrsel="pbgra(ff,ff,ff,ff)"
+		static const char* STRING_textformat;                             ///< 需要显示的进度文字format,示例:textformat="进度:%d"
 	};
 	DMAttrValueInit(DUIProcessCtrlAttr,SIZE_range)DMAttrValueInit(DUIProcessCtrlAttr,INT_value)
 	DMAttrValueInit(DUIProcessCtrlAttr,bool_bvert)DMAttrValueInit(DUIProcessCtrlAttr,SKIN_channelskin)DMAttrValueInit(DUIProcessCtrlAttr,COLOR_clrchannel)

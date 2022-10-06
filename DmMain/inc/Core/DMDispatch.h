@@ -52,6 +52,6 @@ namespace DMAttr
 	class DM_EXPORT DMInitAttrDispatch
 	{
 	public:
-		static char* GetAttrValue(char* cls,char *pBuf);
+		static const char* GetAttrValue(const char* cls, const char *pBuf);
 	};
 }

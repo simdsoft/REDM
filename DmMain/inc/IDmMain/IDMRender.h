@@ -226,7 +226,7 @@ namespace DM
 		virtual DMCode FillSolidRect(LPCRECT lpRect,DMColor clr) = 0;
 		virtual DMCode ClearRect(LPCRECT lpRect,DMColor clr) = 0;
 		
-		virtual DMCode DrawRoundRect(LPCRECT lpRect,POINT &pt) = 0;
+		virtual DMCode DrawRoundRect(LPCRECT lpRect,const POINT &pt) = 0;
 		virtual DMCode FillRoundRect(LPCRECT lpRect,POINT &pt) = 0;
 
 		virtual DMCode DrawEllipse(LPCRECT lpRect) = 0;

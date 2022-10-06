@@ -1302,7 +1302,10 @@ namespace DM
 			if (FALSE == bRet)
 			{
 				DMAutoDC hdcDst;
-				bRet = ::UpdateLayeredWindow(m_hWnd,hdcDst,&rcWindow.TopLeft(),&rcWindow.Size(),dcMem,&CPoint(0,0),0,&bf,ULW_ALPHA);
+
+				CPoint pt;
+				auto winSize = rcWindow.Size();
+				bRet = ::UpdateLayeredWindow(m_hWnd,hdcDst,&rcWindow.TopLeft(),&winSize,dcMem,&pt,0,&bf,ULW_ALPHA);
 			}
 			pCanvas->ReleaseDC(dcMem);
 			if (bRet)
@@ -1343,7 +1346,7 @@ namespace DM
 			CSize size;
 			pMemCanvas->GetSize(size);
 			CRect rcCanvas(0,0,size.cx,size.cy);
-			CRect rcDest = (NULL==lpRect)?rcCanvas:lpRect;
+			CRect rcDest = (NULL==lpRect)?rcCanvas:static_cast<CRect>(lpRect);
 			IntersectRect(rcDest,rcDest,rcCanvas);
 			if (rcDest.IsRectEmpty())
 			{

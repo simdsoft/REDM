@@ -50,7 +50,8 @@ namespace DM
 			HDC dcMem  = pCanvas->GetDC();
 
 			BLENDFUNCTION bf = {AC_SRC_OVER,0,byAlpha,AC_SRC_ALPHA};
-			ms_pCurDragWnd->UpdateLayeredWindow(hdc,&CPoint(0,0),&sz,dcMem,&CPoint(0,0),crKey,&bf,LWA_ALPHA);
+			CPoint pt,pt1;
+			ms_pCurDragWnd->UpdateLayeredWindow(hdc,&pt,&sz,dcMem,&pt1,crKey,&bf,LWA_ALPHA);
 
 			pCanvas->ReleaseDC(dcMem);
 			ms_pCurDragWnd->ReleaseDC(hdc);

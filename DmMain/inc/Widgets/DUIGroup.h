@@ -22,10 +22,10 @@ namespace DMAttr
 	class DUIGroupAttr:public DUIWindowAttr
 	{
 	public:
-		static char* INT_round;								///< 设置group的圆角半径大小,示例:round="4"
-		static char* INT_linewid;                            ///< 线条的宽度,示例:linewid="1"
-		static char* RECT_rcinset;							///< 设置group的子窗口和外框的四边距,示例:rcinset="10,5,5,5"
-		static char* COLOR_clrline;							///< 设置group的线颜色,示例:clrline=pbgra(ff,00,00,80) 
+		static const char* INT_round;								///< 设置group的圆角半径大小,示例:round="4"
+		static const char* INT_linewid;                            ///< 线条的宽度,示例:linewid="1"
+		static const char* RECT_rcinset;							///< 设置group的子窗口和外框的四边距,示例:rcinset="10,5,5,5"
+		static const char* COLOR_clrline;							///< 设置group的线颜色,示例:clrline=pbgra(ff,00,00,80) 
 	};
 	DMAttrValueInit(DUIGroupAttr,INT_round)
 	DMAttrValueInit(DUIGroupAttr,INT_linewid)

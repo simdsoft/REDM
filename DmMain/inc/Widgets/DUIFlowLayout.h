@@ -23,7 +23,7 @@ namespace DMAttr
 	class DUIFlowLayoutAttr:public DUIWindowAttr
 	{
 	public:
-		static char* INT_childpaddlen;                                    ///< 子控件之间的额外间距,示例childpaddlen="10"
+		static const char* INT_childpaddlen;                                    ///< 子控件之间的额外间距,示例childpaddlen="10"
 	};
 	DMAttrValueInit(DUIFlowLayoutAttr,INT_childpaddlen)
 
@@ -34,14 +34,14 @@ namespace DMAttr
 	class DUITabLayoutAttr:public DUIFlowLayoutAttr
 	{
 	public:
-		static char* SIZE_itemsize;                                     ///< 控件的大小,示例itemsize="35,25"
+		static const char* SIZE_itemsize;                                     ///< 控件的大小,示例itemsize="35,25"
 	};
 	DMAttrValueInit(DUITabLayoutAttr,SIZE_itemsize)
 
 	class DUIWrapLayoutAttr:public DUITabLayoutAttr
 	{
 	public:
-		static char* INT_colcount;                                     ///< 一行的控件数目,示例colcount="10"
+		static const char* INT_colcount;                                     ///< 一行的控件数目,示例colcount="10"
 	};
 	DMAttrValueInit(DUIWrapLayoutAttr,INT_colcount)
 
@@ -51,15 +51,15 @@ namespace DMAttr
 	class DUISplitLayoutAttr:public DUIFlowLayoutAttr
 	{
 	public:
-		static char* bool_bvert;                                    ///< 是否是竖直的,示例:bvert="1"
-		static char* bool_bfirstchange;                             ///< 当整个外部窗口size变化时，第一个窗口变化,示例:bfirstchange="1"                          
-		static char* SKIN_sliderskin;                               ///< 中间可拖动块的皮肤,示例:sliderskin="sliderskin"
-		static char* COLOR_clrslider;                               ///< 中间可拖动块的背景色,示例:clrslider="pbgra(ff,ff,ff,ff)"
-		static char* INT_sliderwidth;                               ///< 中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth="10"
-		static char* INT_firstchildwidth;                           ///< 第一个窗口的开始宽度,示例:firstchildwidth="100"
-		static char* STRING_firstchildpercent;                      ///< 第一个窗口的开始宽度百分比,和INT_firstchildwidth同时使用时,优先使用百分比,示例:firstchildpercent="%50"
-		static char* INT_minimumwidth;							   ///< 非第一个变化窗口可拖拽最小宽度(水平)或高度(竖直) :minimumwidth="30"  lzlong add
-		static char* INT_maximumwidth;							   ///< 非第一个变化窗口可拖拽最大宽度(水平)或高度(竖直) :maximumwidth="300"  lzlong add
+		static const char* bool_bvert;                                    ///< 是否是竖直的,示例:bvert="1"
+		static const char* bool_bfirstchange;                             ///< 当整个外部窗口size变化时，第一个窗口变化,示例:bfirstchange="1"                          
+		static const char* SKIN_sliderskin;                               ///< 中间可拖动块的皮肤,示例:sliderskin="sliderskin"
+		static const char* COLOR_clrslider;                               ///< 中间可拖动块的背景色,示例:clrslider="pbgra(ff,ff,ff,ff)"
+		static const char* INT_sliderwidth;                               ///< 中间可拖动块的宽度(水平)或高度(竖直)，示例:sliderwidth="10"
+		static const char* INT_firstchildwidth;                           ///< 第一个窗口的开始宽度,示例:firstchildwidth="100"
+		static const char* STRING_firstchildpercent;                      ///< 第一个窗口的开始宽度百分比,和INT_firstchildwidth同时使用时,优先使用百分比,示例:firstchildpercent="%50"
+		static const char* INT_minimumwidth;							   ///< 非第一个变化窗口可拖拽最小宽度(水平)或高度(竖直) :minimumwidth="30"  lzlong add
+		static const char* INT_maximumwidth;							   ///< 非第一个变化窗口可拖拽最大宽度(水平)或高度(竖直) :maximumwidth="300"  lzlong add
 	};
 	DMAttrValueInit(DUISplitLayoutAttr,bool_bvert)DMAttrValueInit(DUISplitLayoutAttr,bool_bfirstchange)DMAttrValueInit(DUISplitLayoutAttr,INT_firstchildwidth)DMAttrValueInit(DUISplitLayoutAttr,STRING_firstchildpercent)
 		DMAttrValueInit(DUISplitLayoutAttr, SKIN_sliderskin)DMAttrValueInit(DUISplitLayoutAttr, COLOR_clrslider)DMAttrValueInit(DUISplitLayoutAttr, INT_sliderwidth)DMAttrValueInit(DUISplitLayoutAttr, INT_minimumwidth)

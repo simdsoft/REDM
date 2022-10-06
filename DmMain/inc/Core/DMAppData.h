@@ -36,10 +36,10 @@ namespace DMAttr
 	class DMGlobalAttr
 	{
 	public:
-		static char* XMLNODE_global;                              ///< 全局xml指定的默认NODE名，示例:..global font="face:仿宋,size:14,weight:100"..(..代表尖括号)
-		static char* XMLATTR_font;                                ///< 全局xml的默认字体属性，如果不设置，内置默认字体为宋体，字高14，其余属性和DEFAULT_GUI_FONT一致，示例:font="face:宋体,size:15"
-		static char* XMLNODE_skin;                                ///< 全局xml指定全局皮肤NODE名，支持多份,示例:..skin..(..代表尖括号)
-		static char* XMLNODE_style;                               ///< 全局xml指定全局属性NODE名，支持多份,示例:..style..(..代表尖括号)
+		static const char* XMLNODE_global;                              ///< 全局xml指定的默认NODE名，示例:..global font="face:仿宋,size:14,weight:100"..(..代表尖括号)
+		static const char* XMLATTR_font;                                ///< 全局xml的默认字体属性，如果不设置，内置默认字体为宋体，字高14，其余属性和DEFAULT_GUI_FONT一致，示例:font="face:宋体,size:15"
+		static const char* XMLNODE_skin;                                ///< 全局xml指定全局皮肤NODE名，支持多份,示例:..skin..(..代表尖括号)
+		static const char* XMLNODE_style;                               ///< 全局xml指定全局属性NODE名，支持多份,示例:..style..(..代表尖括号)
 	};
 	DMAttrValueInit(DMGlobalAttr,XMLNODE_global)DMAttrValueInit(DMGlobalAttr,XMLATTR_font)DMAttrValueInit(DMGlobalAttr,XMLNODE_skin)DMAttrValueInit(DMGlobalAttr,XMLNODE_style)
 }

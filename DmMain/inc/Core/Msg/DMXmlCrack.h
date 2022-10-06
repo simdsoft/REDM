@@ -257,5 +257,5 @@ namespace DM
 
 namespace DMAttr
 {
-#define  DMAttrValueInit(cls,x)						__declspec(selectany)   char*  cls::x = DMInitAttrDispatch::GetAttrValue(#cls,#x);
+#define  DMAttrValueInit(cls,x)						__declspec(selectany)   const char*  cls::x = DMInitAttrDispatch::GetAttrValue(#cls,#x);
 }

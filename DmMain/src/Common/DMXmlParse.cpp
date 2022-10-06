@@ -39,7 +39,7 @@ namespace DM
 			return NULL;
 		}
 
-		return m_XmlAttrbute.name();
+		return m_XmlAttrbute.name().data();
 	}
 
 	LPCSTR DMXmlAttribute::GetValue() const
@@ -49,7 +49,7 @@ namespace DM
 			return NULL;
 		}
 
-		return m_XmlAttrbute.value();
+		return m_XmlAttrbute.value().data();
 	}
 
 	DMXmlAttribute DMXmlAttribute::NextAttribute() const
@@ -180,7 +180,7 @@ namespace DM
 			return NULL;
 		}
 
-		return m_XmlNode.name();
+		return m_XmlNode.name().data();
 	}
 
 
@@ -205,10 +205,10 @@ namespace DM
 			return NULL;
 		}
 		// 注意是text,用于得到<node>this is node<node/>中的this is node
-		return m_XmlNode.text().as_string();
+		return m_XmlNode.text().as_string().data();
 	}
 
-	DMXmlAttribute DMXmlNode::FirstAttribute()
+	DMXmlAttribute DMXmlNode::FirstAttribute() const
 	{
 		DMXmlAttribute Attribute;
 		if (m_XmlNode)
@@ -218,17 +218,17 @@ namespace DM
 		return Attribute;
 	}
 
-	LPCSTR DMXmlNode::Attribute(LPCSTR name)
+	LPCSTR DMXmlNode::Attribute(LPCSTR name) const
 	{
 		if (!m_XmlNode)
 		{
 			return NULL;
 		}
 
-		return m_XmlNode.attribute(name).as_string();
+		return m_XmlNode.attribute(name).as_string().data();
 	}
 
-	int DMXmlNode::AttributeInt(LPCSTR name)
+	int DMXmlNode::AttributeInt(LPCSTR name) const
 	{
 		if (!m_XmlNode)
 		{
@@ -238,7 +238,7 @@ namespace DM
 		return m_XmlNode.attribute(name).as_int();
 	}
 
-	INT64 DMXmlNode::AttributeInt64(LPCSTR name)
+	INT64 DMXmlNode::AttributeInt64(LPCSTR name) const
 	{
 		if (!m_XmlNode)
 		{

@@ -122,11 +122,11 @@ namespace DM
 		static T* New(void* Storage) 
 		{
 			/// 注意，这样使用new，会以Storage做为起始地址
-			return new (DMCastT<T*>(Storage)) T;
+			return new (Storage) T;
 		}
 		static T* NewWithCopy(void* Storage, T* src)
 		{
-			return new (DMCastT<T*>(Storage)) (*src);
+			return new (Storage) T(*src);
 		}
 		static void	Delete(T* Storage)
 		{
@@ -142,12 +142,12 @@ namespace DM
 	{
 		static T* New(void* Storage) 
 		{
-			return new (DMCastT<T*>(Storage)) T;
+			return new (Storage) T;
 		}
 
 		static T* NewWithCopy(void* Storage, T* src)
 		{
-			return new (DMCastT<T*>(Storage)) (*src);
+			return new (Storage) T(*src);
 		}
 
 		static void	Delete(T* Storage)
@@ -156,59 +156,6 @@ namespace DM
 		}
 	};
 
-	template <typename T, bool bAutoInit,typename LazyTraits, int STORAGESIZE> class DMLazyBaseT;
-	/// <summary>
-	///		LayzT的代码抽离于SkTLazy.h+SkTypes.h,感谢zc的原始代码
-	/// </summary>
-	/// <remarks>
-	///		延迟初始化就是将对象的初始化延迟到第一次使用该对象时，从而提高程序的效率，使程序占用更少的内存
-	/// </remarks>
-	template<typename T, bool bAutoInit=true, typename LazyTraits = DMDefLazyTraits<T> > 
-	class DMLazyT
-		: public DMLazyBaseT<T, bAutoInit,LazyTraits, sizeof(T)>
-	{
-		typedef	DMLazyBaseT<T, bAutoInit,LazyTraits, sizeof(T)>	__baseClass;
-		typedef T*										TPtr;
-	public:
-		DMLazyT():__baseClass()
-		{
-		}
-
-		explicit DMLazyT(const TPtr src):__baseClass()
-		{
-			this->InitWithCopy(src);
-		}
-
-		DMLazyT(const DMLazyT<T>& src): __baseClass()
-		{
-			if (src.IsValid())
-			{
-				this->InitWithCopy(src.Get());
-			}
-		}
-	public:
-		/// -------------------------------------------------
-		/// @brief			初始化
-		/// @return			如果原始的已存在,则先销毁原始的，再创建新的
-		TPtr InitWithNew() 
-		{
-			this->destroy();
-			return this->Init();
-		}
-
-		/// -------------------------------------------------
-		/// @brief			设置
-		/// @return			复制一个源，并返回它的指针，会覆盖原始的（如果原来已初始化）
-		TPtr Set(const T& src)
-		{
-			if (!IsValid())
-			{
-				return __baseClass::InitWithCopy(&src);
-			}
-			*Get() = src;
-			return Get();
-		}
-	};
 
 	/// <summary>
 	///		DMLazyT的基类,预先分配内存并延时构造对象
@@ -353,6 +300,60 @@ namespace DM
 	protected:
 		TPtr		m_ptr;					///<要么为NULL，要么指向m_storage所在位
 		char		m_storage[STORAGESIZE]; ///<小数据默认使用栈存储
+	};
+
+	template <typename T, bool bAutoInit, typename LazyTraits, int STORAGESIZE> class DMLazyBaseT;
+	/// <summary>
+	///		LayzT的代码抽离于SkTLazy.h+SkTypes.h,感谢zc的原始代码
+	/// </summary>
+	/// <remarks>
+	///		延迟初始化就是将对象的初始化延迟到第一次使用该对象时，从而提高程序的效率，使程序占用更少的内存
+	/// </remarks>
+	template<typename T, bool bAutoInit = true, typename LazyTraits = DMDefLazyTraits<T> >
+	class DMLazyT
+		: public DMLazyBaseT<T, bAutoInit, LazyTraits, sizeof(T)>
+	{
+		typedef	DMLazyBaseT<T, bAutoInit, LazyTraits, sizeof(T)>	__baseClass;
+		typedef T* TPtr;
+	public:
+		DMLazyT() :__baseClass()
+		{
+		}
+
+		explicit DMLazyT(const TPtr src) :__baseClass()
+		{
+			this->InitWithCopy(src);
+		}
+
+		DMLazyT(const DMLazyT<T>& src) : __baseClass()
+		{
+			if (src.IsValid())
+			{
+				this->InitWithCopy(src.Get());
+			}
+		}
+	public:
+		/// -------------------------------------------------
+		/// @brief			初始化
+		/// @return			如果原始的已存在,则先销毁原始的，再创建新的
+		TPtr InitWithNew()
+		{
+			this->destroy();
+			return this->Init();
+		}
+
+		/// -------------------------------------------------
+		/// @brief			设置
+		/// @return			复制一个源，并返回它的指针，会覆盖原始的（如果原来已初始化）
+		TPtr Set(const T& src)
+		{
+			if (!this->IsValid())
+			{
+				return __baseClass::InitWithCopy(&src);
+			}
+			*this->Get() = src;
+			return this->Get();
+		}
 	};
 
 }//namespace DM

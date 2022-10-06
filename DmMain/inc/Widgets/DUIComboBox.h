@@ -23,8 +23,8 @@ namespace DMAttr
 	class DUIComboBoxAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static char* STRING_clslistbox;                                            ///< 指定listbox创建使用的类名,即允许你自定义listbox，默认使用内置
-		static char* ITEM_sublistbox;                                              ///< 子控件listbox的XML标识
+		static const char* STRING_clslistbox;                                            ///< 指定listbox创建使用的类名,即允许你自定义listbox，默认使用内置
+		static const char* ITEM_sublistbox;                                              ///< 子控件listbox的XML标识
 	};
 	DMAttrValueInit(DUIComboBoxAttr,STRING_clslistbox)DMAttrValueInit(DUIComboBoxAttr,ITEM_sublistbox)
 }

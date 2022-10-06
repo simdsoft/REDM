@@ -23,33 +23,33 @@ namespace DMAttr
 	class DUIRichEditAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_editstyle;								    ///< 通过值来设置richedit属性，如ES_MULTILINE=0x4,示例:editstyle="0x4"
-		static char* INT_maxbuf;										///< 设置edit最大字符数，示例:maxbuf="100"
-		static char* bool_bautosel;									///< 每次进入，默认选中所有内容，示例:bautosel="1"
-		static char* bool_brichtext;									///< RichEdit模式，示例:brichtext="1"
-		static char* bool_bwordwrap;									///< 在多行状态下支持自动换行，示例:bwordwrap="1"
-		static char* bool_ballowbeep;								///< If TRUE, beeping is enabled，示例:ballowbeep="1"
-		static char* bool_bautowordsel;								///< 在选中文本时，如为true,在结尾自动选中到行头，示例:bautowordsel="1"
-		static char* bool_bsinglevcenter;                            ///< 单行居中模式,仅在bmultilines="0"且brichtext="0"的状态下生效，示例:bsinglevcenter="1"
-		static char* bool_bmultilines;								///< 多行模式.示例:bmultilines="1"
-		static char* RECT_rcinsertmargin;                            ///< 字符串显示区四边框值.示例:rcinsertmargin="2,2,2,2"
-		static char* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
-		static char* FONT_font;										///< 默认文本字体,和style的font相同作用.示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
-		static char* OPTION_align;									///< 段落排布，和style的align相同作用,默认left,可设置center,right,示例:align="left"
-		static char* bool_bhscroll;									///< 显示水平滚动条,示例:bhscroll="1"
-		static char* bool_bvscroll;									///< 显示竖直滚动条,示例:bvscroll="1"
-		static char* bool_bautohscroll;								///< 支持水平滚动条自动滚动,示例:bautohscroll="1"
-		static char* bool_bautovscroll;								///< 支持竖直滚动条自动滚动,示例:bautovscroll="1"
-		static char* bool_breadonly;							     	///< 只读，此时插入符仍会出现,示例:breadonly="1"
-		static char* bool_bwantreturn;							    ///< 回车换行，不然如果外部对它处理了，可能是exe退出,示例:bwantreturn="1"
-		static char* bool_bpassword;								    ///< 加密显示，默认都以*显示,示例:bpassword="1"
-		static char* CHAR_passwordchar;								///< 配合加密，加密显示字符，取第一个字符，如为空，则使用默认*,示例:passwordchar="#"
-		static char* bool_bnumber;								    ///< 仅支持数字输入，此时无滚动条显示,示例:bnumber="1"
-		static char* bool_benabledrag;								///< 支持内容拖拽，默认不支持,示例:benabledrag="1"
+		static const char* INT_editstyle;								    ///< 通过值来设置richedit属性，如ES_MULTILINE=0x4,示例:editstyle="0x4"
+		static const char* INT_maxbuf;										///< 设置edit最大字符数，示例:maxbuf="100"
+		static const char* bool_bautosel;									///< 每次进入，默认选中所有内容，示例:bautosel="1"
+		static const char* bool_brichtext;									///< RichEdit模式，示例:brichtext="1"
+		static const char* bool_bwordwrap;									///< 在多行状态下支持自动换行，示例:bwordwrap="1"
+		static const char* bool_ballowbeep;								///< If TRUE, beeping is enabled，示例:ballowbeep="1"
+		static const char* bool_bautowordsel;								///< 在选中文本时，如为true,在结尾自动选中到行头，示例:bautowordsel="1"
+		static const char* bool_bsinglevcenter;                            ///< 单行居中模式,仅在bmultilines="0"且brichtext="0"的状态下生效，示例:bsinglevcenter="1"
+		static const char* bool_bmultilines;								///< 多行模式.示例:bmultilines="1"
+		static const char* RECT_rcinsertmargin;                            ///< 字符串显示区四边框值.示例:rcinsertmargin="2,2,2,2"
+		static const char* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
+		static const char* FONT_font;										///< 默认文本字体,和style的font相同作用.示例:font="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:、weight:后多位，其余:后限制1位,允许空格!内部做了空格去除操作
+		static const char* OPTION_align;									///< 段落排布，和style的align相同作用,默认left,可设置center,right,示例:align="left"
+		static const char* bool_bhscroll;									///< 显示水平滚动条,示例:bhscroll="1"
+		static const char* bool_bvscroll;									///< 显示竖直滚动条,示例:bvscroll="1"
+		static const char* bool_bautohscroll;								///< 支持水平滚动条自动滚动,示例:bautohscroll="1"
+		static const char* bool_bautovscroll;								///< 支持竖直滚动条自动滚动,示例:bautovscroll="1"
+		static const char* bool_breadonly;							     	///< 只读，此时插入符仍会出现,示例:breadonly="1"
+		static const char* bool_bwantreturn;							    ///< 回车换行，不然如果外部对它处理了，可能是exe退出,示例:bwantreturn="1"
+		static const char* bool_bpassword;								    ///< 加密显示，默认都以*显示,示例:bpassword="1"
+		static const char* CHAR_passwordchar;								///< 配合加密，加密显示字符，取第一个字符，如为空，则使用默认*,示例:passwordchar="#"
+		static const char* bool_bnumber;								    ///< 仅支持数字输入，此时无滚动条显示,示例:bnumber="1"
+		static const char* bool_benabledrag;								///< 支持内容拖拽，默认不支持,示例:benabledrag="1"
 
 		// 光标
-		static char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
-		static char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例:caretanimatecount="6"
+		static const char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例:caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIRichEditAttr,INT_editstyle)DMAttrValueInit(DUIRichEditAttr,INT_maxbuf)DMAttrValueInit(DUIRichEditAttr,bool_bautosel)
 	DMAttrValueInit(DUIRichEditAttr,bool_brichtext)DMAttrValueInit(DUIRichEditAttr,bool_bwordwrap)DMAttrValueInit(DUIRichEditAttr,bool_ballowbeep)
@@ -64,11 +64,11 @@ namespace DMAttr
 	class DUIEditAttr:public DUIRichEditAttr
 	{
 	public:
-		static char* SKIN_surfaceskin;                               ///< 表层背景皮肤，示例:surfaceskin="editskin"
-		static char* STRING_surfacetext;                             ///< 表层文字，当真实文字为空时，表层文字出现，示例:surfacetext="this is edit"
-		static char* COLOR_surfacetextclr;                           ///< 表层文字背景，示例:surfacetextclr="pbgra(00,00,ff,ff)"  
-		static char* FONT_surfacefont;                               ///< 表层文字字体，示例:surfacefont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1"
-		static char* OPTION_surfacealign;							///< 表层文字字体左中右, 默认居左, 示例:surfacealign="right"
+		static const char* SKIN_surfaceskin;                               ///< 表层背景皮肤，示例:surfaceskin="editskin"
+		static const char* STRING_surfacetext;                             ///< 表层文字，当真实文字为空时，表层文字出现，示例:surfacetext="this is edit"
+		static const char* COLOR_surfacetextclr;                           ///< 表层文字背景，示例:surfacetextclr="pbgra(00,00,ff,ff)"  
+		static const char* FONT_surfacefont;                               ///< 表层文字字体，示例:surfacefont="face:宋体,size:0,weight:400,charset:0,underline:1,italic:1,strike:1"
+		static const char* OPTION_surfacealign;							///< 表层文字字体左中右, 默认居左, 示例:surfacealign="right"
 	};
 	DMAttrValueInit(DUIEditAttr,SKIN_surfaceskin)DMAttrValueInit(DUIEditAttr,STRING_surfacetext)DMAttrValueInit(DUIEditAttr,COLOR_surfacetextclr)DMAttrValueInit(DUIEditAttr,FONT_surfacefont)DMAttrValueInit(DUIEditAttr,OPTION_surfacealign)
 

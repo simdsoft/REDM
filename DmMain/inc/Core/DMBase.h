@@ -22,7 +22,7 @@ namespace DM
 	class DM_EXPORT DMDataBase:public DMRefNum
 	{
 	public:
-		virtual DMCode InitDMData(DMXmlNode &XmlNode);															///<加载、解析XML数据
+		virtual DMCode InitDMData(DMXmlNode XmlNode);															///<加载、解析XML数据
 		virtual DMCode OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);					///<解析XML的属性数据前触发
 	    DMCode SetAttributeW(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<解析XML的属性数据
 		{
@@ -31,7 +31,7 @@ namespace DM
 		virtual DMCode SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);						///<解析XML的属性数据
 		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);    ///<解析完一个XML属性后触发
 		virtual DMCode DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml);					///<默认解析XML的属性数据
-		virtual DMCode OnFinished(DMXmlNode &XmlNode);															///<数据全部解析完后处理
+		virtual DMCode OnFinished(const DMXmlNode &XmlNode);															///<数据全部解析完后处理
 		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;}							///<扩展接口
 	};
 

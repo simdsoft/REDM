@@ -20,8 +20,8 @@ namespace DMAttr
 	class DUIPngGifAttr:public DUIGifAttr
 	{
 	public:
-		static char* SKIN_pnggifskin;                            ///< pnggif的资源,通过skin指定,区分于gifskin,示例:pnggifskin="png:4_png"                     
-		static char* INT_elapse;                                 ///< 轮播的时间间隔（单位1/100秒）,默认为10,示例:elapse="1"
+		static const char* SKIN_pnggifskin;                            ///< pnggif的资源,通过skin指定,区分于gifskin,示例:pnggifskin="png:4_png"                     
+		static const char* INT_elapse;                                 ///< 轮播的时间间隔（单位1/100秒）,默认为10,示例:elapse="1"
 	};
 	DMAttrValueInit(DUIPngGifAttr,SKIN_pnggifskin)DMAttrValueInit(DUIPngGifAttr,INT_elapse)
 }

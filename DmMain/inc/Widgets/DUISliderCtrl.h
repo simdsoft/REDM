@@ -23,18 +23,18 @@ namespace DMAttr
 	class DUISliderCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static char* STRING_tipformat;                              ///< tip提示语的设置格式,示例:tipformat="this is%d"
-		static char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
-		static char* INT_value;									   ///< 范围当前值,示例:value="0"
-		static char* INT_thumbwidth;								   ///< thumb宽度,示例:thumbwidth="10"
-		static char* INT_channelhei;								   ///< channel高度,示例:channelhei="10"
-		static char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
-		static char* bool_bshowtip;                                 ///< 是否显示tip,示例:bshowtip="1"
+		static const char* STRING_tipformat;                              ///< tip提示语的设置格式,示例:tipformat="this is%d"
+		static const char* SIZE_range;									   ///< 范围最小值,最大值,示例:range="0,100"
+		static const char* INT_value;									   ///< 范围当前值,示例:value="0"
+		static const char* INT_thumbwidth;								   ///< thumb宽度,示例:thumbwidth="10"
+		static const char* INT_channelhei;								   ///< channel高度,示例:channelhei="10"
+		static const char* bool_bvert;                                    ///< 是否是水平的,示例:bvert="1"
+		static const char* bool_bshowtip;                                 ///< 是否显示tip,示例:bshowtip="1"
 
-		static char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
-		static char* COLOR_clrchannel;                              ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
-		static char* SKIN_thumbskin;                                ///< thumb图,示例:thumbskin="PNG:iconbtn"
-		static char* COLOR_clrthumb;                                ///< thumb颜色,在thumb图无效时使用,示例:clrthumb="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_channelskin;                              ///< channel图,示例:channelskin="PNG:channel"
+		static const char* COLOR_clrchannel;                              ///< channel颜色,在channel图无效时使用,示例:clrchannel="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_thumbskin;                                ///< thumb图,示例:thumbskin="PNG:iconbtn"
+		static const char* COLOR_clrthumb;                                ///< thumb颜色,在thumb图无效时使用,示例:clrthumb="pbgra(ff,ff,ff,ff)"
 	};
 	DMAttrValueInit(DUISliderCtrlAttr,STRING_tipformat)DMAttrValueInit(DUISliderCtrlAttr,SIZE_range)DMAttrValueInit(DUISliderCtrlAttr,INT_value)
 	DMAttrValueInit(DUISliderCtrlAttr,INT_thumbwidth)DMAttrValueInit(DUISliderCtrlAttr,INT_channelhei)DMAttrValueInit(DUISliderCtrlAttr,bool_bvert)

@@ -21,8 +21,8 @@ namespace DMAttr
 	{
 	public:
 		// 光标
-		static char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
-		static char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
+		static const char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIHotKeyCtrlAttr,COLOR_clrcaret)DMAttrValueInit(DUIHotKeyCtrlAttr,INI_caretanimatecount)
 }

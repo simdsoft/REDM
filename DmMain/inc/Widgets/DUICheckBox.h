@@ -23,13 +23,13 @@ namespace DMAttr
 	class DUICheckBoxAttr :public DUIWindowAttr
 	{
 	public:
-		static char* bool_brightbox;                                 ///< box图标是否在右边,示例:brightbox="1"
-		static char* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
-		static char* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
-		static char* SKIN_checkskin;                                 ///< check图,8分图或2分图或1分图,8分图,前4为未选中四种状态，后4为选中时四种状态,示例:checkskin="PNG:checkbox"
-		static char* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
-		static char* INT_textoffset;                                 ///< 文本距离icon的偏移，默认为0,示例:textoffset=10
-		static char* bool_bchecked;									///< 是否默认被选中,示例:bchecked="1"
+		static const char* bool_brightbox;                                 ///< box图标是否在右边,示例:brightbox="1"
+		static const char* bool_bmultilines;								///< 是否支持多行,示例:bmultilines="1"
+		static const char* INT_lineinter;                                  ///< 在多行下,设置行间距,示例:lineinter="1"
+		static const char* SKIN_checkskin;                                 ///< check图,8分图或2分图或1分图,8分图,前4为未选中四种状态，后4为选中时四种状态,示例:checkskin="PNG:checkbox"
+		static const char* SKIN_iconskin;                                  ///< icon图,如使用了icon图,则text不再绘制,示例:iconskin="PNG:iconbtn"
+		static const char* INT_textoffset;                                 ///< 文本距离icon的偏移，默认为0,示例:textoffset=10
+		static const char* bool_bchecked;									///< 是否默认被选中,示例:bchecked="1"
 	};
 	DMAttrValueInit(DUICheckBoxAttr, bool_brightbox)
 	DMAttrValueInit(DUICheckBoxAttr, bool_bmultilines)

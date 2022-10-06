@@ -10,35 +10,35 @@ namespace DMAttr
 	class DUITreeCtrlAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* SKIN_toggleskin;								    ///< 展开、收起小三角图案,示例:toggleskin="treetoggle"
-		static char* SKIN_checkskin;                                     ///< 选中、不选中图案,用于启用了checkbox状态，示例:checkskin="treecheck"
-		static char* SKIN_iconskin;                                      ///< ICON连图，示例：iconSkin="menuicons"
-		static char* SKIN_itembgskin;                                    ///< 项所在的背景图案,示例:itembgskin="itembgskin"
-		static char* SKIN_itemhoverskin;                                 ///< 停留项的背景图案,示例:itemhoverskin="itembgskin"
-		static char* SKIN_itemselskin;                                   ///< 选中项的背景图案,示例:itemselskin="itemselskin"
+		static const char* SKIN_toggleskin;								    ///< 展开、收起小三角图案,示例:toggleskin="treetoggle"
+		static const char* SKIN_checkskin;                                     ///< 选中、不选中图案,用于启用了checkbox状态，示例:checkskin="treecheck"
+		static const char* SKIN_iconskin;                                      ///< ICON连图，示例：iconSkin="menuicons"
+		static const char* SKIN_itembgskin;                                    ///< 项所在的背景图案,示例:itembgskin="itembgskin"
+		static const char* SKIN_itemhoverskin;                                 ///< 停留项的背景图案,示例:itemhoverskin="itembgskin"
+		static const char* SKIN_itemselskin;                                   ///< 选中项的背景图案,示例:itemselskin="itemselskin"
 		
-		static char* INT_childoffset;                                    ///< 子项相对于父项的偏移,示例:childoffset="20"
+		static const char* INT_childoffset;                                    ///< 子项相对于父项的偏移,示例:childoffset="20"
 		
-		static char* INT_itemheight;									    ///< 每项高度,示例:itemheight="20"
-		static char* INT_itemmargin;                                     ///< 项的左右空白,示例:itemmargin="5"
+		static const char* INT_itemheight;									    ///< 每项高度,示例:itemheight="20"
+		static const char* INT_itemmargin;                                     ///< 项的左右空白,示例:itemmargin="5"
 		
-		static char* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemtext;                                  ///< item项的文本色,示例:clritemtext="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhovertext;                             ///< item项的停留文本色,示例:clritemhovertext="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemseltext;                               ///< item项的选中文本色,示例:clritemseltext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemtext;                                  ///< item项的文本色,示例:clritemtext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhovertext;                             ///< item项的停留文本色,示例:clritemhovertext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemseltext;                               ///< item项的选中文本色,示例:clritemseltext="pbgra(ff,ff,ff,ff)"
 
-		static char* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
-		static char* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
-		static char* bool_bhover;                                        ///< 是否支持hover,默认支持，面板中处理hover可能会出现透明，示例:bhover="1"
+		static const char* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
+		static const char* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
+		static const char* bool_bhover;                                        ///< 是否支持hover,默认支持，面板中处理hover可能会出现透明，示例:bhover="1"
 
-		static char* NODE_item;                                          ///< treectrl的xml项结点名
-		static char* ITEM_text;                                          ///< 项的文本,示例:text="2-1"
-		static char* ITEM_bcollapsed;                                    ///< 项是否收缩,示例:bcollapsed="1"
-		static char* ITEM_icon;                                          ///< 项的icon索引,-1表示不使用icon,示例:icon="0"
-		static char* ITEM_selicon;                                       ///< 项的选中icon索引,示例:selicon="0"
-		static char* ITEM_data;                                          ///< 项的数据,示例:data="1"
+		static const char* NODE_item;                                          ///< treectrl的xml项结点名
+		static const char* ITEM_text;                                          ///< 项的文本,示例:text="2-1"
+		static const char* ITEM_bcollapsed;                                    ///< 项是否收缩,示例:bcollapsed="1"
+		static const char* ITEM_icon;                                          ///< 项的icon索引,-1表示不使用icon,示例:icon="0"
+		static const char* ITEM_selicon;                                       ///< 项的选中icon索引,示例:selicon="0"
+		static const char* ITEM_data;                                          ///< 项的数据,示例:data="1"
 
 	};
 	DMAttrValueInit(DUITreeCtrlAttr,SKIN_toggleskin)DMAttrValueInit(DUITreeCtrlAttr,SKIN_checkskin)DMAttrValueInit(DUITreeCtrlAttr,SKIN_iconskin)

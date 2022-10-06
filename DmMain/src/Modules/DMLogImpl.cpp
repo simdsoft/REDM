@@ -3,7 +3,7 @@
 
 namespace DM
 {
-	static PWCHAR pszLogPrix[] = 
+	static const wchar_t* pszLogPrix[] = 
 	{
 		L"DMLOG_TRACE",		///<跟踪类型
 		L"DMLOG_DEBUG",		///<Debug类型

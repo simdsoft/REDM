@@ -111,6 +111,9 @@ namespace DM
 		STDMETHOD_(ULONG, Release)()= 0;
 	};
 
+	template<typename T>
+	class DMComPtr;
+
 	template <class T>
 	class DMComPtrBase
 	{
@@ -276,7 +279,7 @@ namespace DM
 		{
 			if(*this!=lp)
 			{
-				return static_cast<T*>(DMComPtrAssign((IUnknown**)&p, lp));
+				return static_cast<T*>(DMComPtrAssign((IUnknown**)&this->p, lp));
 			}
 			return *this;
 		}
@@ -285,7 +288,7 @@ namespace DM
 		{
 			if( !IsEqualObject(lp) )
 			{
-				return static_cast<T*>(DMComQIPtrAssign((IUnknown**)&p, lp, __uuidof(T)));
+				return static_cast<T*>(DMComQIPtrAssign((IUnknown**)&this->p, lp, __uuidof(T)));
 			}
 			return *this;
 		}
@@ -293,7 +296,7 @@ namespace DM
 		{
 			if(*this!=lp)
 			{
-				return static_cast<T*>(DMComPtrAssign((IUnknown**)&p, lp));
+				return static_cast<T*>(DMComPtrAssign((IUnknown**)&this->p, lp));
 			}
 			return *this;
 		}
@@ -488,13 +491,13 @@ namespace DM
 		DMComQIPtr( IUnknown* lp) throw()
 		{
 			if (lp != NULL)
-				lp->QueryInterface(*piid, (void **)&p);
+				lp->QueryInterface(*piid, (void **)&this->p);
 		}
 		T* operator=( T* lp) throw()
 		{
 			if(*this!=lp)
 			{
-				return static_cast<T*>(DMComPtrAssign((IUnknown**)&p, lp));
+				return static_cast<T*>(DMComPtrAssign((IUnknown**)&this->p, lp));
 			}
 			return *this;
 		}
@@ -502,7 +505,7 @@ namespace DM
 		{
 			if(*this!=lp)
 			{
-				return static_cast<T*>(DMComPtrAssign((IUnknown**)&p, lp.p));
+				return static_cast<T*>(DMComPtrAssign((IUnknown**)&this->p, lp.p));
 			}
 			return *this;
 		}
@@ -510,7 +513,7 @@ namespace DM
 		{
 			if(*this!=lp)
 			{
-				return static_cast<T*>(DMComQIPtrAssign((IUnknown**)&p, lp, *piid));
+				return static_cast<T*>(DMComQIPtrAssign((IUnknown**)&this->p, lp, *piid));
 			}
 			return *this;
 		}
@@ -528,7 +531,7 @@ namespace DM
 		{
 			//Actually do a QI to get identity
 			if (lp != NULL)
-				lp->QueryInterface(__uuidof(IUnknown), (void **)&p);
+				lp->QueryInterface(__uuidof(IUnknown), (void **)&this->p);
 		}
 		DMComQIPtr( const DMComQIPtr<IUnknown,&IID_IUnknown>& lp) throw() :
 		DMComPtr<IUnknown>(lp.p)
@@ -539,16 +542,16 @@ namespace DM
 			if(*this!=lp)
 			{
 				//Actually do a QI to get identity
-				return DMComQIPtrAssign((IUnknown**)&p, lp, __uuidof(IUnknown));
+				return DMComQIPtrAssign((IUnknown**)&this->p, lp, __uuidof(IUnknown));
 			}
 			return *this;
 		}
 
 		IUnknown* operator=( const DMComQIPtr<IUnknown,&IID_IUnknown>& lp) throw()
 		{
-			if(*this!=lp)
+			if(*this != lp)
 			{
-				return DMComPtrAssign((IUnknown**)&p, lp.p);
+				return DMComPtrAssign((IUnknown**)&this->p, lp.p);
 			}
 			return *this;
 		}

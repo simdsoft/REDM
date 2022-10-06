@@ -4,7 +4,7 @@
 namespace DM
 {
 	// DMDataBase------------------------------------------
-	DMCode DMDataBase::InitDMData(DMXmlNode &XmlNode)
+	DMCode DMDataBase::InitDMData(DMXmlNode XmlNode)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		do 
@@ -52,7 +52,7 @@ namespace DM
 		return DM_ECODE_FAIL;//Î´½âÎö
 	}
 
-	DMCode DMDataBase::OnFinished(DMXmlNode &XmlNode)
+	DMCode DMDataBase::OnFinished(const DMXmlNode &XmlNode)
 	{
 		return DM_ECODE_OK;
 	}

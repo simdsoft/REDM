@@ -16,14 +16,14 @@ namespace DMAttr
 	class DUIRectTrackerAttr: public DUIWindowAttr
 	{
 	public:
-		static char* SKIN_moveskin;                                                 ///< move小图标，示例:moveskin="bg"
-		static char* COLOR_clrdot;				                                   ///< dot正常颜色，示例:clrdot="pbgra(ff,00,ff,ff)"
-		static char* COLOR_clrdotgray;				                               ///< dot灰掉颜色，示例:clrdotgray="pbgra(ff,00,ff,ff)"
-		static char* COLOR_clrboxsolid;                                             ///< box的PS_SOLID绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxsolid="pbgra(ff,00,ff,ff)"
-		static char* COLOR_clrboxdash;                                              ///< box的PS_DASH绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxdash="pbgra(ff,00,ff,ff)"
-		static char* INT_dotwidth;												   ///< dot的宽高,默认为6,示例:dotwidth="6"
-		static char* bool_bmain;													   ///< 为true时只有右下角三个dot是可拖动,其余dot全为灰,示例:bmain="0"
-		static char* bool_ballgray;												   ///< 为true时,dot全为灰,示例:ballgray="0"
+		static const char* SKIN_moveskin;                                                 ///< move小图标，示例:moveskin="bg"
+		static const char* COLOR_clrdot;				                                   ///< dot正常颜色，示例:clrdot="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrdotgray;				                               ///< dot灰掉颜色，示例:clrdotgray="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrboxsolid;                                             ///< box的PS_SOLID绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxsolid="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrboxdash;                                              ///< box的PS_DASH绘制颜色,box会使用PS_SOLID绘制一次，再使用PS_DASH绘制一次,示例:clrboxdash="pbgra(ff,00,ff,ff)"
+		static const char* INT_dotwidth;												   ///< dot的宽高,默认为6,示例:dotwidth="6"
+		static const char* bool_bmain;													   ///< 为true时只有右下角三个dot是可拖动,其余dot全为灰,示例:bmain="0"
+		static const char* bool_ballgray;												   ///< 为true时,dot全为灰,示例:ballgray="0"
 	};
 	DMAttrValueInit(DUIRectTrackerAttr,SKIN_moveskin)DMAttrValueInit(DUIRectTrackerAttr,COLOR_clrdot)DMAttrValueInit(DUIRectTrackerAttr,COLOR_clrdotgray)
 	DMAttrValueInit(DUIRectTrackerAttr, COLOR_clrboxsolid)DMAttrValueInit(DUIRectTrackerAttr, COLOR_clrboxdash)
@@ -66,7 +66,7 @@ namespace DM
 		virtual void OnRenderCursor();												///< 绘制dot上显示的光标
 
 	public:// 辅助
-		DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,POINT &pt);
+		DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect, const POINT &pt);
 
 	public:
 		int									   m_Index;								 ///< 0为不含所有dot的矩形区（即控件区）,1为左中dot，顺时针8个点，9为左上角的mov小图标,对应DMDSDOT

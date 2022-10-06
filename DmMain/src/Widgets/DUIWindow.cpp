@@ -282,7 +282,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des:≥ı ºªØ
-	DMCode DUIWindow::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIWindow::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		for (DMXmlNode XmlChildNode = XmlNode.FirstChild(); XmlChildNode.IsValid(); XmlChildNode=XmlChildNode.NextSibling())
 		{
@@ -350,7 +350,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIWindow::InitDMData(DMXmlNode &XmlNode)
+	DMCode DUIWindow::InitDMData(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

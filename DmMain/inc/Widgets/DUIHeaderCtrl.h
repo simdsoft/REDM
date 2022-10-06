@@ -23,24 +23,24 @@ namespace DMAttr
 	class DUIHeaderCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static char* SKIN_itemskin;                                             ///< item状态图,示例:itemskin="itemskin"
-		static char* SKIN_sortskin;                                             ///< 默认的sort状态图(小三角),示例:sortskin="sortskin"
-		static char* COLOR_clritembg;										   ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhoverbg;									   ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                        ///< item项的按下背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static char* RECT_rcitemmargin;										   ///< item项的四边框,意思先缩小四边,再绘skin或颜色,示例:rcitemmargin="0,0,0,0"
-		static char* INT_itemdelta;                                             ///< 每个Item自己左右的差值距离,示例:itemdelta="2"
-		static char* bool_bfixwidth;											   ///< 固定宽度，默认是可变宽度的,示例:bfixwidth="1"
-		static char* bool_bswap;                                                ///< 允许交换列,允许拖动交换列,示例:bswap="1"
-		static char* bool_bsort;                                                ///< 允许排序sort,配合list发送排序消息,示例:bsort="1"
+		static const char* SKIN_itemskin;                                             ///< item状态图,示例:itemskin="itemskin"
+		static const char* SKIN_sortskin;                                             ///< 默认的sort状态图(小三角),示例:sortskin="sortskin"
+		static const char* COLOR_clritembg;										   ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;									   ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                        ///< item项的按下背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* RECT_rcitemmargin;										   ///< item项的四边框,意思先缩小四边,再绘skin或颜色,示例:rcitemmargin="0,0,0,0"
+		static const char* INT_itemdelta;                                             ///< 每个Item自己左右的差值距离,示例:itemdelta="2"
+		static const char* bool_bfixwidth;											   ///< 固定宽度，默认是可变宽度的,示例:bfixwidth="1"
+		static const char* bool_bswap;                                                ///< 允许交换列,允许拖动交换列,示例:bswap="1"
+		static const char* bool_bsort;                                                ///< 允许排序sort,配合list发送排序消息,示例:bsort="1"
 
 		/// item项相关
-		static char* NODE_item;                                                 ///< 项XML结点
-		static char* ITEM_width;                                                ///< 项的宽度,示例:width="100"
-		static char* ITEM_skin;                                                 ///< 项的状态连图,如不存在，则使用默认的item状态图,示例,skin="skin"
-		static char* ITEM_text;                                                 ///< 项的文本,示例:text="可拖动"
-		static char* ITEM_data;                                                 ///< 项的附加数据,示例:data="100"
-		static char* ITEM_stflag;                                               ///< 项的排序(结合list),分为正常0，从小到大1,从大到小2，示例:stflag="0"
+		static const char* NODE_item;                                                 ///< 项XML结点
+		static const char* ITEM_width;                                                ///< 项的宽度,示例:width="100"
+		static const char* ITEM_skin;                                                 ///< 项的状态连图,如不存在，则使用默认的item状态图,示例,skin="skin"
+		static const char* ITEM_text;                                                 ///< 项的文本,示例:text="可拖动"
+		static const char* ITEM_data;                                                 ///< 项的附加数据,示例:data="100"
+		static const char* ITEM_stflag;                                               ///< 项的排序(结合list),分为正常0，从小到大1,从大到小2，示例:stflag="0"
 	};
 	DMAttrValueInit(DUIHeaderCtrlAttr,SKIN_itemskin)DMAttrValueInit(DUIHeaderCtrlAttr,SKIN_sortskin)
 	DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritembg)DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritemhoverbg)DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritemselbg)

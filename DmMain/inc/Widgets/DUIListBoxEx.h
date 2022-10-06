@@ -24,15 +24,15 @@ namespace DMAttr
 	class DUIListBoxExAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
-		static char* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
-		static char* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* INT_itemheight;                                          ///< 项的默认高度,此值不支持动态变化,示例:itemheight="20"
+		static const char* INT_cursel;                                              ///< 当前选中项,示例:cursel="1"
+		static const char* COLOR_clritembg;                                         ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;									 ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                      ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
 
-		static char* NODE_item;                                                ///< 项结点 
-		static char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
-		static char* ITEM_data;                                                ///< 项的数据,示例:data="10"
+		static const char* NODE_item;                                                ///< 项结点 
+		static const char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
+		static const char* ITEM_data;                                                ///< 项的数据,示例:data="10"
 	};
 	DMAttrValueInit(DUIListBoxExAttr,INT_itemheight)DMAttrValueInit(DUIListBoxExAttr,INT_cursel)DMAttrValueInit(DUIListBoxExAttr,COLOR_clritembg)
 	DMAttrValueInit(DUIListBoxExAttr,COLOR_clritemhoverbg)DMAttrValueInit(DUIListBoxExAttr,COLOR_clritemselbg)DMAttrValueInit(DUIListBoxExAttr,NODE_item)

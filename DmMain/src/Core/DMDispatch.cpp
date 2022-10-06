@@ -84,9 +84,9 @@ namespace DMAttr
 {
 	// ----------------------------------------------------
 	// 内部强制规定XML属性字符串定义方式
-	char* DMInitAttrDispatch::GetAttrValue(char* cls, char*pBuf)
+	const char* DMInitAttrDispatch::GetAttrValue(const char* cls, const char*pBuf)
 	{  
-		char*pLow = strstr(pBuf,"_");
+		const char*pLow = strstr(pBuf,"_");
 		DMASSERT_EXPRA(!!pLow, "type_method,INT_ihei");
 		pLow++;
 		return pLow;

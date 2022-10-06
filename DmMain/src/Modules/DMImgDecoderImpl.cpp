@@ -287,6 +287,9 @@ namespace DM
 			DMSmartPtrT<IWICBitmapFrameDecode> pBmpFrameDecoder;
 			if (SUCCEEDED(pBmpDecoder->GetFrame(iFrame, &pBmpFrameDecoder)))
 			{
+				WICPixelFormatGUID pixelFormat;
+			    auto hr = pBmpFrameDecoder->GetPixelFormat(&pixelFormat);
+
 				unsigned int uFrameDelay = 0;        // ¶àÖ¡Ê¹ÓÃ
 				if (SUCCEEDED(
 					pFormatConvert->Initialize(

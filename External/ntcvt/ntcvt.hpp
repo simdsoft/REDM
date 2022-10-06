@@ -9,7 +9,7 @@
 #include <string>
 
 #if !defined(NTCVT_CP_DEFAULT)
-#define NTCVT_CP_DEFAULT CP_ACP
+#define NTCVT_CP_DEFAULT CP_UTF8
 #endif
 
 namespace ntcvt
@@ -40,7 +40,7 @@ public:
   // std::string: use memset (usually implemented with SIMD)
   // std::wstring: for loop (slow performance)
   // only works on msvc currently
-  _Elem* resize_nofill(int len)
+  _Elem* resize_nofill(size_t len)
   {
     this->reserve(len);
 #if _MSC_VER >= 1920 // VS2019+
@@ -57,15 +57,21 @@ public:
   }
 };
 
-template <typename _Elem> static _Elem* prepare(std::basic_string<_Elem>& str, int size)
+template <typename _Cont>
+auto prepare(_Cont& str, size_t size)
 {
+  using _Elem = typename _Cont::value_type;
   intrusive_string<_Elem>& helper = (intrusive_string<_Elem>&)str;
   return helper.resize_nofill(size);
 }
 #if defined(_AFX)
-template <typename _Elem> _Elem* prepare(CStringT<_Elem, StrTraitMFC_DLL<_Elem>>& str, int size)
-{
-  return str.GetBufferSetLength(size);
+template <>
+auto prepare<CStringW>(CStringW& str, size_t size) {
+    return str.GetBufferSetLength(static_cast<int>(size));
+}
+template <>
+auto prepare<CStringA>(CStringA& str, size_t size) {
+    return str.GetBufferSetLength(static_cast<int>(size));
 }
 #endif
 } // namespace buffer_traits
@@ -134,12 +140,12 @@ inline std::wstring from_chars(const std::string_view& mcb, UINT cp = NTCVT_CP_D
 #else
 inline std::string from_chars(const std::wstring& wcb, UINT cp = NTCVT_CP_DEFAULT)
 {
-  return wcbs2a<std::string>(wcb.c_str(), wcb.length(), cp);
+  return wcbs2a<std::string>(wcb.c_str(), static_cast<int>(wcb.length()), cp);
 }
 
 inline std::wstring from_chars(const std::string& mcb, UINT cp = NTCVT_CP_DEFAULT)
 {
-  return mcbs2w<std::wstring>(mcb.c_str(), mcb.length(), cp);
+  return mcbs2w<std::wstring>(mcb.c_str(), static_cast<int>(mcb.length()), cp);
 }
 #endif
 

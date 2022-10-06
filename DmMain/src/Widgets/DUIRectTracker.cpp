@@ -44,7 +44,7 @@ namespace DM
 		}
 	}
 
-	DMCode DMDragMeta::AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,POINT &pt)
+	DMCode DMDragMeta::AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect, const POINT &pt)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

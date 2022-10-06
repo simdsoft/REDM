@@ -171,7 +171,7 @@ namespace DM
 				break;
 			}
 			CRect rcWindow(0,0,m_nWidth,m_nHeight);
-			CRect rcDest = (NULL==lpRect)?rcWindow:lpRect;
+			CRect rcDest = (NULL==lpRect)?rcWindow: (CRect)lpRect;
 			IntersectRect(rcDest,rcDest,rcWindow);
 			if (rcDest.IsRectEmpty())
 			{
@@ -235,7 +235,7 @@ namespace DM
 		do 
 		{
 			CRect rcWindow(0,0,m_nWidth,m_nHeight);
-			CRect rcDest = (NULL==lpRect)?rcWindow:lpRect;
+			CRect rcDest = (NULL==lpRect)?rcWindow: (CRect)lpRect;
 			IntersectRect(rcDest,rcDest,rcWindow);
 			if (rcDest.IsRectEmpty())
 			{
@@ -362,7 +362,7 @@ namespace DM
 		do 
 		{
 			CRect rcWindow(0,0,m_nWidth,m_nHeight);
-			CRect rcDest = (NULL==lpRect)?rcWindow:lpRect;
+			CRect rcDest = (NULL==lpRect)?rcWindow:(CRect)lpRect;
 			IntersectRect(rcDest,rcDest,rcWindow);
 			if (rcDest.IsRectEmpty())
 			{

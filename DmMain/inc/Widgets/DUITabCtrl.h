@@ -24,24 +24,24 @@ namespace DMAttr
 	class DUITabPageAttr:public DUIWindowAttr
 	{
 	public:
-		static char* OPTION_animatetype;										    ///< 动画类型,示例:animatetype="1",1:边展开,2:中心扩大,3:中心缩小
-		static char* STRING_title;											    ///< tab页的标题,示例：title="标签1"
-		static char* SKIN_itemskin;                                              ///< 标签项的皮肤，示例: itemskin="skin"
+		static const char* OPTION_animatetype;										    ///< 动画类型,示例:animatetype="1",1:边展开,2:中心扩大,3:中心缩小
+		static const char* STRING_title;											    ///< tab页的标题,示例：title="标签1"
+		static const char* SKIN_itemskin;                                              ///< 标签项的皮肤，示例: itemskin="skin"
 	};
 	DMAttrValueInit(DUITabPageAttr,OPTION_animatetype)DMAttrValueInit(DUITabPageAttr,STRING_title)DMAttrValueInit(DUITabPageAttr,SKIN_itemskin)
 
 	class DUITabCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static char* POINT_textpoint;                                           ///< 相对于主标签区域的左上角偏移，默认为-1，-1，其中-1表示此方向居中，示例textpoint="-1,-1"
-		static char* OPTION_tabalign;										   ///< tab页的排列方式,分为top、left、right、buttom,示例:tabalign="top"
-		static char* SKIN_mainbgskin;							               ///< 整个item(标签列表)所在区的背景,不包括page区,示例:mainbgskin="TabCtrl_Item"
-		static char* SKIN_itembgskin;										   ///< 每个item(标签)的skin，即在DUITabPageAttr::SKIN_itemskin之下先绘一次,用于所有item的hover-sel为同一状态时简化截图,示例:itembgskin="skin"
-		static char* INT_firstitemoffset;                                       ///< 第一个Item(标签)的相对于边框的偏移，示例:firstitemoffset="10"
-		static char* INT_itemspace;                                             ///< Item之间的间距，示例:itemspace="10"
-		static char* INT_cursel;                                                ///< 当前选中项, 示例:cursel="1"
-		static char* INT_animatesteps;                                          ///< 整个动画图以多少次渐渐显示出来, 仅在设置了动画类型时有效，示例:animatesteps="20"
-		static char* SIZE_itemsize;                                             ///< Item(标签)项的大小，示例:itemsize="78,30"
+		static const char* POINT_textpoint;                                           ///< 相对于主标签区域的左上角偏移，默认为-1，-1，其中-1表示此方向居中，示例textpoint="-1,-1"
+		static const char* OPTION_tabalign;										   ///< tab页的排列方式,分为top、left、right、buttom,示例:tabalign="top"
+		static const char* SKIN_mainbgskin;							               ///< 整个item(标签列表)所在区的背景,不包括page区,示例:mainbgskin="TabCtrl_Item"
+		static const char* SKIN_itembgskin;										   ///< 每个item(标签)的skin，即在DUITabPageAttr::SKIN_itemskin之下先绘一次,用于所有item的hover-sel为同一状态时简化截图,示例:itembgskin="skin"
+		static const char* INT_firstitemoffset;                                       ///< 第一个Item(标签)的相对于边框的偏移，示例:firstitemoffset="10"
+		static const char* INT_itemspace;                                             ///< Item之间的间距，示例:itemspace="10"
+		static const char* INT_cursel;                                                ///< 当前选中项, 示例:cursel="1"
+		static const char* INT_animatesteps;                                          ///< 整个动画图以多少次渐渐显示出来, 仅在设置了动画类型时有效，示例:animatesteps="20"
+		static const char* SIZE_itemsize;                                             ///< Item(标签)项的大小，示例:itemsize="78,30"
 	};
 	DMAttrValueInit(DUITabCtrlAttr,POINT_textpoint)DMAttrValueInit(DUITabCtrlAttr,OPTION_tabalign)DMAttrValueInit(DUITabCtrlAttr,SKIN_mainbgskin)DMAttrValueInit(DUITabCtrlAttr,SKIN_itembgskin)
 	DMAttrValueInit(DUITabCtrlAttr,INT_firstitemoffset)DMAttrValueInit(DUITabCtrlAttr,INT_itemspace)DMAttrValueInit(DUITabCtrlAttr,INT_cursel)
