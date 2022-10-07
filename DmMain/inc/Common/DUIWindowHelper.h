@@ -14,6 +14,27 @@
 //-------------------------------------------------------
 #pragma once
 
+// Tests whether compiler has fully c++11 support
+// About preprocessor '_MSC_VER', please see:
+// https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=vs-2019
+#if defined(_MSC_VER)
+#  if _MSC_VER < 1900
+#    define noexcept throw()
+#    define DM__HAS_FULL_CXX11 0
+#  else
+#    define DM__HAS_FULL_CXX11 1
+#    if _MSC_VER > 1900 // VS2017 or later
+#      include <vcruntime.h>
+#      include <sdkddkver.h>
+#    endif
+#  endif
+#else
+#  define DM__HAS_FULL_CXX11 1
+#endif
+
+#if !(DM__HAS_FULL_CXX11)
+#define override
+#endif
 
 namespace DMAttr
 {

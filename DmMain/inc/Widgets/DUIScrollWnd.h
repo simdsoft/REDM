@@ -31,7 +31,7 @@ namespace DM
 
 	public:
 		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode OnChildLayoutFinishedEvent(DMEventArgs *pEvt);
 
 	public:
@@ -68,7 +68,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: DV methods
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual void OnRangeCurPosChanged(CPoint ptOld, CPoint ptNew);
 
 	public:

@@ -205,7 +205,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 可重载函数
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_OnSetCursor(const CPoint &pt);							    ///< 仅在项上时设置当前的光标
 		virtual void LoadBranch(HDMTREEITEM hParent,DMXmlNode &XmlItem);
 		virtual void LoadItemAttribute(DMXmlNode &XmlItem, LPTVITEM pItem);            

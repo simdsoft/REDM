@@ -67,7 +67,7 @@ namespace DM
 		virtual int GetCurSel()const;
 		virtual CStringW GetLBText(int iItem);
 		virtual bool SetCurSel(int iSel);
-		virtual bool CreateListBox(DMXmlNode &XmlNode);
+		virtual bool CreateListBox(const DMXmlNode &XmlNode) override;
 		virtual void OnSelChanged();
 
 		//---------------------------------------------------

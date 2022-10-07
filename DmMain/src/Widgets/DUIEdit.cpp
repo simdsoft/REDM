@@ -878,7 +878,7 @@ namespace DM
 		} while (false);
 	}
 
-	DMCode DUIRichEdit::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIRichEdit::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		if (NULL == m_pCaret)

@@ -97,7 +97,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: жиди
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_COLOR_ATTRIBUTE(DMAttr::DUIPAddressCtrlAttr::COLOR_clrdot,m_clrDot,DM_ECODE_NOXMLLOADREFRESH)

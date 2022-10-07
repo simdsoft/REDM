@@ -180,7 +180,10 @@ namespace DM
 			return NULL;
 		}
 
-		return m_XmlNode.name().data();
+		auto name = m_XmlNode.name();
+		if (name == "tabctrl")
+			return name.data();
+		return name.data();
 	}
 
 

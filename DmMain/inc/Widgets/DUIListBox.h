@@ -145,7 +145,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 	public:// ∏®÷˙
 		int HitTest(CPoint &pt);

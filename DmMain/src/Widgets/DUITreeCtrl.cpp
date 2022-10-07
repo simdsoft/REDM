@@ -898,7 +898,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
-	DMCode DUITreeCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUITreeCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 
 		{

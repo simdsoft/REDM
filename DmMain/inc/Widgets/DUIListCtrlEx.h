@@ -113,7 +113,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: DV methods
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 		virtual DMCode DV_OnSetCursor(const CPoint &pt);
 		virtual	void UpdateScrollBar();

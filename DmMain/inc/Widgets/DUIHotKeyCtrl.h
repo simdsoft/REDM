@@ -84,7 +84,7 @@ namespace DM
 		// Function Des: жиди
 		//---------------------------------------------------
 		UINT DV_OnGetDlgCode(){return (DMDLGC_WANTALLKEYS|DMDLGC_WANTSYSKEY) & (~DMDLGC_WANTTAB);}
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 
 	public:// ИЈжњ

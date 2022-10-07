@@ -774,7 +774,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
-	DMCode DUIListBox::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIListBox::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 
 		{

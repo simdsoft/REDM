@@ -482,7 +482,7 @@ namespace DM
 		}
 	}
 
-	DMCode DUITabCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUITabCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

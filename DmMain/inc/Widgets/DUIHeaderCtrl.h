@@ -150,7 +150,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 可重载函数
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	    DMCode DV_OnSetCursor(const CPoint &pt);             // 设置当前的光标,用于两个item之间变成IDC_SIZEWE光标
 
 

@@ -163,7 +163,7 @@ namespace DM
 		void OnMouseMove(UINT nFlags,CPoint pt);
 
 	public:
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode DV_UpdateChildLayout();		
 		DMCode DV_OnSetCursor(const CPoint &pt);
 

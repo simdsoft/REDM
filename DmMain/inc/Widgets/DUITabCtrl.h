@@ -127,7 +127,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: жиди
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTARROWS;};	
 		DMCode DV_GetChildMeasureLayout(LPRECT lpRect);	
 		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);

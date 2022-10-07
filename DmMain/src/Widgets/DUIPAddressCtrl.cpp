@@ -260,7 +260,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: жиди
-	DMCode DUIPAddressCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIPAddressCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		LiteralString strXml = "<edit textalign=\"center\" clrtext=\"pbgra(00,00,00,ff)\" clrcaret=\"pbgra(00,00,00,ff)\" caretanimatecount=\"6\" align=\"left\" bautosel=\"1\"/>";

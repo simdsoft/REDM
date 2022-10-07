@@ -476,7 +476,7 @@ namespace DM
 	// Function Des: DV methods
 	//---------------------------------------------------
 #pragma region DV
-	DMCode DUIListCtrlEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIListCtrlEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

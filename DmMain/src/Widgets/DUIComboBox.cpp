@@ -167,7 +167,7 @@ namespace DM
 		return bRet;
 	}
 
-	bool DUIComboBox::CreateListBox(DMXmlNode &XmlNode)
+	bool DUIComboBox::CreateListBox(const DMXmlNode &XmlNode)
 	{
 		bool bRet = false;
 		do 

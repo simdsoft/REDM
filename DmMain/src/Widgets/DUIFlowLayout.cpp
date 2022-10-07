@@ -640,7 +640,7 @@ namespace DM
 		m_ClrSlider.SetTextInvalid();
 	}
 
-	DMCode DUISplitLayout::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUISplitLayout::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		do 

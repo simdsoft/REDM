@@ -122,7 +122,7 @@ namespace DM
 		virtual CStringW GetLBText(int iItem)   = 0;								 ///< 取得listbox的文字
 	
 		virtual bool SetCurSel(int iSel)		= 0;
-		virtual bool CreateListBox(DMXmlNode &XmlNode) = 0;
+		virtual bool CreateListBox(const DMXmlNode &XmlNode) = 0;
 		virtual bool CalcPopupRect(int nHeight,CRect& rcPopup);						 ///< 计算弹出窗口位置,保存在rcPopup中，false表示向上弹！(virtual，允许外部定制弹窗口大小)			
 		virtual CRect CalcBtnRect();												 ///< 计算下拉小三角所在的位置(在combox中的坐标)
 		virtual void OnSelChanged();
@@ -132,7 +132,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 重载
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_GetTextRect(LPRECT lpRect);            
 		virtual DMCode DV_SetFocusWnd();											 ///< 得到焦点,解决ComboBox得到焦点时,子控件Edit得不到焦点的问题
 		virtual DMCode DV_FireEvent(DMEventArgs &Evt);

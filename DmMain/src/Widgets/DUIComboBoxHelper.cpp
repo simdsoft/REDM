@@ -256,7 +256,7 @@ namespace DM
 	}
 
 	// жиди
-	DMCode DUIComboBoxBase::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIComboBoxBase::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		bool bRet = false;
 		do 

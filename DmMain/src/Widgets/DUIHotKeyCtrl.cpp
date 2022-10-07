@@ -214,7 +214,7 @@ namespace DM
 	}
 
 	// жиди-----------------------------------------------
-	DMCode DUIHotKeyCtrl::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIHotKeyCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		if (NULL == m_pCaret)

@@ -190,7 +190,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 重载
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual UINT DV_OnGetDlgCode();   
 		virtual DMCode DV_OnSetCursor(const CPoint &pt);                                  // 设置当前的光标为I型
 		virtual bool OnScroll(bool bVert,UINT uCode,int nPos);                              // 

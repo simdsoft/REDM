@@ -530,7 +530,7 @@ namespace DM
 	// Function Des: DV methods
 	//---------------------------------------------------
 #pragma region DV
-	DMCode DUITreeCtrlEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUITreeCtrlEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 
 		{

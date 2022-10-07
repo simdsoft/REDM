@@ -19,7 +19,7 @@ namespace DM
 		return DM_ECODE_NOLOOP;
 	}
 
-	DMCode DUIScrollFL::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIScrollFL::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do
@@ -125,7 +125,7 @@ namespace DM
 	// Function Des: DV methods
 	//---------------------------------------------------
 #pragma region DV
-	DMCode DUIScrollWnd::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIScrollWnd::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do
