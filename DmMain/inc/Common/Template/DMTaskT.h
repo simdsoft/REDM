@@ -1235,14 +1235,4 @@ namespace DM
 		return new DMRunnableFunction<Function, DMTuple7<A, B, C, D, E, F, G> >(function,
 			DMMakeTuple(a, b, c, d, e, f, g));
 	}
-
-	template<class Function, class A, class B, class C, class D, class E,
-	class F, class G, class H>
-		inline IDMTask* DMNewRunnableFunction(Function function, const A& a, const B& b,
-		const C& c, const D& d, const E& e, const F& f,
-		const G& g, const H& h)
-	{
-		return new DMRunnableFunction<Function, Tuple8<A, B, C, D, E, F, G, H> >(
-			function, DMMakeTuple(a, b, c, d, e, f, g, h));
-	}
 }//namespace DM
