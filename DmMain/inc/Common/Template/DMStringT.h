@@ -1767,7 +1767,7 @@ namespace ntcvt {
     namespace detail {
         template <> struct buffer_traits<DM::CStringW>
         {
-            using container_type = DM::CStringW;
+			typedef DM::CStringW container_type;
             template <typename _Operation>
             static inline void resize_and_overwrite(container_type& str, size_t size, _Operation&& op)
             {
@@ -1779,7 +1779,7 @@ namespace ntcvt {
 
         template <> struct buffer_traits<DM::CStringA>
         {
-            using container_type = DM::CStringA;
+			typedef DM::CStringA container_type;
             template <typename _Operation>
             static inline void resize_and_overwrite(container_type& str, size_t size, _Operation&& op)
             {

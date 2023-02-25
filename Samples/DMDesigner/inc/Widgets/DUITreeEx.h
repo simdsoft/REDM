@@ -25,27 +25,27 @@ namespace DMAttr
 	class DUITreeAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* SKIN_toggleskin;								    ///< 展开、收起小三角图案,六种状态(收起三种+展开三种),示例:toggleskin="treetoggle"
-		static char* SKIN_checkskin;                                     ///< 选中、不选中，半选中图案,用于启用了checkbox状态，9种状态(正常三种+选中三种+半选中三种),示例:checkskin="treecheck"
-		static char* SKIN_eyeskin;                                       ///< 9种状态(正常三种+选中三种+半选中三种),示例:eyeskin="treecheck"
-		static char* SKIN_lockskin;                                      ///< 9种状态(正常三种+选中三种+半选中三种),示例:lockskin="treecheck"
+		static const char* SKIN_toggleskin;								    ///< 展开、收起小三角图案,六种状态(收起三种+展开三种),示例:toggleskin="treetoggle"
+		static const char* SKIN_checkskin;                                     ///< 选中、不选中，半选中图案,用于启用了checkbox状态，9种状态(正常三种+选中三种+半选中三种),示例:checkskin="treecheck"
+		static const char* SKIN_eyeskin;                                       ///< 9种状态(正常三种+选中三种+半选中三种),示例:eyeskin="treecheck"
+		static const char* SKIN_lockskin;                                      ///< 9种状态(正常三种+选中三种+半选中三种),示例:lockskin="treecheck"
 		
-		static char* SKIN_itembgskin;                                    ///< 项所在的背景图案,正常/停留/选中,示例:itembgskin="itembgskin"
-		static char* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static char* INT_childoffset;                                    ///< 子项相对于父项的偏移,可被具体项覆盖,示例:childoffset="20"
-		static char* INT_itemheight;									    ///< 每项高度,可被具体项覆盖,示例:itemheight="20"
-		static char* INT_itemwidth;									    ///< 每项宽度,可被具体项覆盖,示例:itemwidth="20"
-		static char* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
-		static char* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
+		static const char* SKIN_itembgskin;                                    ///< 项所在的背景图案,正常/停留/选中,示例:itembgskin="itembgskin"
+		static const char* COLOR_clritembg;                                    ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;                               ///< item项的停留背景色,示例:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                 ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* INT_childoffset;                                    ///< 子项相对于父项的偏移,可被具体项覆盖,示例:childoffset="20"
+		static const char* INT_itemheight;									    ///< 每项高度,可被具体项覆盖,示例:itemheight="20"
+		static const char* INT_itemwidth;									    ///< 每项宽度,可被具体项覆盖,示例:itemwidth="20"
+		static const char* bool_brightclicksel;                                ///< 是否支持右击选中,示例:brightclicksel="1"
+		static const char* bool_bcheckbox;                                     ///< 是否启用checkbox,示例:bcheckbox="1"
 
-		static char* NODE_treeitem;										///< treectrl的xml项结点名
-		static char* ITEM_bcollapsed;									///< 项是否收缩,示例:bcollapsed="1"
-		static char* ITEM_height;                                        ///< 项的高度(可选),示例:height="10"
-		static char* ITEM_width;                                         ///< 项的宽度(可选),示例:weidth="10"
-		static char* ITEM_childoffset;                                   ///< 项的宽度(可选),示例:childoffset="10"
-		static char* ITEM_data;											///< 项的数据,示例:data="1"
+		static const char* NODE_treeitem;										///< treectrl的xml项结点名
+		static const char* ITEM_bcollapsed;									///< 项是否收缩,示例:bcollapsed="1"
+		static const char* ITEM_height;                                        ///< 项的高度(可选),示例:height="10"
+		static const char* ITEM_width;                                         ///< 项的宽度(可选),示例:weidth="10"
+		static const char* ITEM_childoffset;                                   ///< 项的宽度(可选),示例:childoffset="10"
+		static const char* ITEM_data;											///< 项的数据,示例:data="1"
 	};
 	DMAttrValueInit(DUITreeAttr,SKIN_toggleskin)DMAttrValueInit(DUITreeAttr,SKIN_checkskin)DMAttrValueInit(DUITreeAttr,SKIN_eyeskin)DMAttrValueInit(DUITreeAttr,SKIN_lockskin)
 		DMAttrValueInit(DUITreeAttr,SKIN_itembgskin)DMAttrValueInit(DUITreeAttr,COLOR_clritembg)DMAttrValueInit(DUITreeAttr,COLOR_clritemhoverbg)

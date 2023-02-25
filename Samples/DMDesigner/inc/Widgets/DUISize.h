@@ -17,11 +17,11 @@ namespace DMAttr
 	class DUISizeAttr:public DUIWindowAttr
 	{
 	public:
-		static char* COLOR_clrdot;                                   ///< dot颜色,示例:clrdot="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
+		static const char* COLOR_clrdot;                                   ///< dot颜色,示例:clrdot="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtext;									///< 默认文本颜色，和style的clrtext相同作用.示例:clrtext="pbgra(00,00,00,ff)"
 		// 光标
-		static char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
-		static char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
+		static const char* COLOR_clrcaret;                                 ///< 光标颜色,示例:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< 光标渐隐渐显次数，1次为正常状态，默认为6次,示例： caretanimatecount="6"
 	};
 	DMAttrValueInit(DUISizeAttr,COLOR_clrdot)DMAttrValueInit(DUISizeAttr,COLOR_clrtext)
 		DMAttrValueInit(DUISizeAttr,COLOR_clrcaret)DMAttrValueInit(DUISizeAttr,INI_caretanimatecount)

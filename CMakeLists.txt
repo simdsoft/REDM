@@ -105,6 +105,9 @@ endif()
 
 # 增加子文件夹
 ADD_SUBDIRECTORY(${PROJDIR}/DmMain)
+if (DM_EXCLUDE_SPY)
+    target_compile_definitions(DmMain PUBLIC DM_EXCLUDE_SPY=1)
+endif()
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/QQDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMUnitTest)

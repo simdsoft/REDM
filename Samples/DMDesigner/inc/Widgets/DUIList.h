@@ -22,16 +22,16 @@ namespace DMAttr
 	class DUIListAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
-		static char* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
-		static char* SKIN_expandarrskin;                                       ///< 收缩，展开小三角,示例:expandarrskin="skin"
+		static const char* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
+		static const char* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
+		static const char* SKIN_expandarrskin;                                       ///< 收缩，展开小三角,示例:expandarrskin="skin"
 	
-		static char* NODE_item;                                                ///< 项结点 
-		static char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
-		static char* ITEM_bexpand;                                             ///< 项是否初始展开,示例:bexpand="1"
-		static char* ITEM_expandheight;                                        ///< 项的展开高度,示例:expandheight="100"
-		static char* ITEM_data;                                                ///< 项的数据,示例:data="10"
-		static char* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
+		static const char* NODE_item;                                                ///< 项结点 
+		static const char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
+		static const char* ITEM_bexpand;                                             ///< 项是否初始展开,示例:bexpand="1"
+		static const char* ITEM_expandheight;                                        ///< 项的展开高度,示例:expandheight="100"
+		static const char* ITEM_data;                                                ///< 项的数据,示例:data="10"
+		static const char* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
 		
 	};
 	DMAttrValueInit(DUIListAttr,INT_itemheight)DMAttrValueInit(DUIListAttr,INT_cursel)DMAttrValueInit(DUIListAttr,SKIN_expandarrskin)

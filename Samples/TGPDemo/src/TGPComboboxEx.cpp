@@ -108,7 +108,7 @@ int TGPComboboxEx::GetListBoxHeight()
 	return -1;
 }
 
-bool TGPComboboxEx::CreateListBox(DMXmlNode &XmlNode)
+bool TGPComboboxEx::CreateListBox(const DMXmlNode &XmlNode)
 {
 	bool bRet = false;
 	do 

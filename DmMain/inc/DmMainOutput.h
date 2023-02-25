@@ -47,7 +47,7 @@ __pragma(warning(disable: 4275))
 #pragma comment(lib, "shlwapi.lib")// 此文件比较小，基本不影响编译大小
 #pragma comment(lib,"msimg32.lib")
 
-#define DM_EXCLUDE_SPY 1
+//#define DM_EXCLUDE_SPY 1
 #define DM_EXCLUDE_MUI 1
 #define DM_EXCLUDE_ACTIVEX 1
 #define DM_EXCLUDE_IE 1

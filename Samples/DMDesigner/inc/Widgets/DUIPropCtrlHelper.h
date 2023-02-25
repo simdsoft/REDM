@@ -19,17 +19,17 @@ namespace DMAttr
 	class PropGridAttr 
 	{
 	public:
-		static char* ITEM_name;													 ///< 项的名字,示例:name="name0"
-		static char* ITEM_value;													 ///< 项的名字,示例:value="value0"
-		static char* ITEM_desc;													 ///< 项的描述,示例:desc="cccc"
-		static char* ITEM_bgroup;                                                 ///< 是否为group，group是没有值可编辑的,示例:bgroup="1"
+		static const char* ITEM_name;													 ///< 项的名字,示例:name="name0"
+		static const char* ITEM_value;													 ///< 项的名字,示例:value="value0"
+		static const char* ITEM_desc;													 ///< 项的描述,示例:desc="cccc"
+		static const char* ITEM_bgroup;                                                 ///< 是否为group，group是没有值可编辑的,示例:bgroup="1"
 	};
 	DMAttrValueInit(PropGridAttr,ITEM_name)DMAttrValueInit(PropGridAttr,ITEM_value)DMAttrValueInit(PropGridAttr,ITEM_desc)
 	DMAttrValueInit(PropGridAttr,ITEM_bgroup)
 	class PropOptionAttr
 	{
 	public:
-		static char* ITME_options;                                                 ///< 下拉选择项的类型，示例:option="1|2|3"
+		static const char* ITME_options;                                                 ///< 下拉选择项的类型，示例:option="1|2|3"
 	};
 	DMAttrValueInit(PropOptionAttr,ITME_options)
 }

@@ -55,7 +55,7 @@ DMCode ResMultFolder::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned lon
 	{
 		CStringA strInfo;
 		strInfo.Format("Res资源中%s:%s获取size失败",lpszType,lpszName);
-		DMASSERT_EXPR(0,strInfo);
+		DMASSERT_EXPR(0,ntcvt::from_chars(strInfo).c_str());
 	}
 	return iErr;
 }
@@ -78,7 +78,7 @@ DMCode ResMultFolder::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&
 	{
 		CStringA strInfo;
 		strInfo.Format("Res资源中%s:%s获取buf失败",lpszType,lpszName);
-		DMASSERT_EXPR(0,strInfo);
+		DMASSERT_EXPR(0,ntcvt::from_chars(strInfo).c_str());
 	}
 	return iErr;
 }

@@ -343,7 +343,7 @@ namespace DM
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
 							{
-								CStringA szInfo = lpszName;szInfo += "主题包已存在,将被忽略！";DMASSERT_EXPR(0,szInfo);
+								CStringA szInfo = lpszName;szInfo += "主题包已存在,将被忽略！";DMASSERT_EXPR(0,ntcvt::from_chars(szInfo).c_str());
 								pItem->Release();
 							}
 						}

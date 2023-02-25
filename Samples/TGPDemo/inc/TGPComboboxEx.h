@@ -23,8 +23,8 @@ namespace DMAttr
 	class DUIComboBoxExAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static char* ITEM_subshow;													///< 初始显示的XML标识
-		static char* ITEM_sublistboxex;                                              ///< 子控件listbox的XML标识
+		static const char* ITEM_subshow;													///< 初始显示的XML标识
+		static const char* ITEM_sublistboxex;                                              ///< 子控件listbox的XML标识
 	};
 	DMAttrValueInit(DUIComboBoxExAttr,ITEM_sublistboxex)DMAttrValueInit(DUIComboBoxExAttr,ITEM_subshow)
 }
@@ -54,7 +54,7 @@ public:
 	virtual int GetCount() const;
 	virtual CStringW GetLBText(int iItem);
 	virtual int GetListBoxHeight();
-	virtual bool CreateListBox(DMXmlNode &XmlNode);
+	virtual bool CreateListBox(const DMXmlNode &XmlNode);
 	virtual void OnSelChanged();
 
 	//---------------------------------------------------

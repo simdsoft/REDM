@@ -25,16 +25,16 @@ namespace DMAttr
 	class TGPListBoxExAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
-		static char* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
-		static char* COLOR_clritembg;                                          ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
-		static char* COLOR_clritemselbg;                                       ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static char* bool_bnodrawbg;                                           ///< 为QQdemo设置，不抓取背景，不然可能透明
+		static const char* INT_itemheight;                                           ///< 项的默认高度,示例:itemheight="10"
+		static const char* INT_cursel;                                               ///< 当前选项,示例:cursel="1"
+		static const char* COLOR_clritembg;                                          ///< item项的背景色,示例:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                       ///< item项的选中背景色,示例:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* bool_bnodrawbg;                                           ///< 为QQdemo设置，不抓取背景，不然可能透明
 
-		static char* NODE_item;                                                ///< 项结点 
-		static char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
-		static char* ITEM_data;                                                ///< 项的数据,示例:data="10"
-		static char* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
+		static const char* NODE_item;                                                ///< 项结点 
+		static const char* ITEM_height;                                              ///< 项的高度(可选),示例:height="10"
+		static const char* ITEM_data;                                                ///< 项的数据,示例:data="10"
+		static const char* bool_bswapline;											  ///< 允许交换行,允许拖动交换行,示例:bswapline="1"
 	};
 	DMAttrValueInit(TGPListBoxExAttr,INT_itemheight)DMAttrValueInit(TGPListBoxExAttr,INT_cursel)DMAttrValueInit(TGPListBoxExAttr,COLOR_clritembg)
 	DMAttrValueInit(TGPListBoxExAttr,bool_bnodrawbg)

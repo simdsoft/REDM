@@ -20,9 +20,9 @@ namespace DMAttr
 	class TGPMenuAttr
 	{
 	public:
-		static char* ITEM_holdskin;		
-		static char* ITEM_bhold;
-		static char* ITEM_bsel;
+		static const char* ITEM_holdskin;		
+		static const char* ITEM_bhold;
+		static const char* ITEM_bsel;
 	};
 	DMAttrValueInit(TGPMenuAttr,ITEM_holdskin)DMAttrValueInit(TGPMenuAttr,ITEM_bhold)DMAttrValueInit(TGPMenuAttr,ITEM_bsel)
 }

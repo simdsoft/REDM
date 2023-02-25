@@ -28,7 +28,7 @@ namespace DMAttr
 		///  @remark 示例6:pos="0,1,]-10,@100",四个点分别代表了左:0，上:1，右:距下一个兄弟窗口左移10(-10),高:100--->']'参考下一个兄弟窗口与自己近的边（没有兄弟窗口就参考父窗口的可用布局空间）
 		///  @remark -->'{'参考下一个兄弟窗口与自己近的边，与示例5类型，-->'}'参考下一个兄弟窗口与自己远的边,与示例6类似
 		///  @remark 示例7:pos="%10,%20,%30,%40",四个点分别代表了左:父窗口布局空间的%10，上：父窗口布局空间的%20，右：父窗口布局空间的%30，下：父窗口布局空间的%40--->'%'采用在父窗口的百分比定义坐标
-		static char* POS_pos;	
+		static const char* POS_pos;	
 
 		/// -------------------------------------------------
 		///  @brief 指定位置,在pos坐标小于四时，结合pos使用,示例:
@@ -37,7 +37,7 @@ namespace DMAttr
 		///  @remark 示例3:pos="%10,%20" possize="-1,100"，pos不为空,同时possize大小为-1，100,（-1)表示根据内容布局,高度100,使用DV_GetDesiredSize，possize前一值为横向，后一值为竖直
 		///  @remark 示例4:pos="" possize="-1,-1",pos为空,possize大小为-1，-1，填满父窗口
 		///  @remark 示例4:pos="" possize="x,x",pos为空,x不全为-1，-1，使用自动排序,前-1表示填满横向父窗口，后-1表示填满坚向父窗口
-		static char* SIZE_possize;                                                        
+		static const char* SIZE_possize;
 	};
 	DMAttrValueInit(PosLayoutAttr,POS_pos)DMAttrValueInit(PosLayoutAttr,SIZE_possize)
 }

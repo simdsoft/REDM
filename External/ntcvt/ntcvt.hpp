@@ -63,12 +63,12 @@ public:
 
 template <typename _Cont> struct buffer_traits
 {
-  using container_type = _Cont;
+  typedef _Cont container_type;
 
   template <typename _Operation>
   static inline void resize_and_overwrite(container_type& str, size_t size, _Operation&& op)
   {
-    using _Elem                     = typename container_type::value_type;
+    typedef typename container_type::value_type _Elem;
     intrusive_string<_Elem>& helper = (intrusive_string<_Elem>&)str;
     helper.resize_and_overwrite(size, std::move(op));
   }

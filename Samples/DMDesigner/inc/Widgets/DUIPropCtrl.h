@@ -40,21 +40,21 @@ namespace DMAttr
 	class DUIPropListAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_rowhei;													 ///< 项的高度,默认为20,示例:rowhei="20"
-		static char* INT_leftcolwid;												 ///< 左边值的默认宽度,默认为30,示例:leftcolwid="30"
-		static char* SKIN_expandskin;                                             ///< 展开收缩通用skin,示例:expandskin="skin"
-		static char* SKIN_itembgskin;                                             ///< 左右项的通用背景skin,示例:itembgskin="skin"
+		static const char* INT_rowhei;													 ///< 项的高度,默认为20,示例:rowhei="20"
+		static const char* INT_leftcolwid;												 ///< 左边值的默认宽度,默认为30,示例:leftcolwid="30"
+		static const char* SKIN_expandskin;                                             ///< 展开收缩通用skin,示例:expandskin="skin"
+		static const char* SKIN_itembgskin;                                             ///< 左右项的通用背景skin,示例:itembgskin="skin"
 	};
 	DMAttrValueInit(DUIPropListAttr,INT_rowhei)DMAttrValueInit(DUIPropListAttr,INT_leftcolwid)DMAttrValueInit(DUIPropListAttr,SKIN_expandskin)DMAttrValueInit(DUIPropListAttr,SKIN_itembgskin)
 
 	class DUIPropFrameAttr : public DUIScrollBaseAttr
 	{
 	public:
-		static char* INT_headhei;												 ///< 头部的高度,默认为24,示例:headhei="24"
-		static char* INT_deschei;												 ///< 描述区的默认高度,默认为20,示例:deschei="20"
-		static char* bool_bshowhead;												 ///< 是否显示头，示例:bshowhead="1"
-		static char* bool_bshowdesc;												 ///< 是否显示描述区,示例:bshowdesc="1"
-		static char* SKIN_headitemskin;                                           ///< head头的itemskin,示例:headitemskin="skin"
+		static const char* INT_headhei;												 ///< 头部的高度,默认为24,示例:headhei="24"
+		static const char* INT_deschei;												 ///< 描述区的默认高度,默认为20,示例:deschei="20"
+		static const char* bool_bshowhead;												 ///< 是否显示头，示例:bshowhead="1"
+		static const char* bool_bshowdesc;												 ///< 是否显示描述区,示例:bshowdesc="1"
+		static const char* SKIN_headitemskin;                                           ///< head头的itemskin,示例:headitemskin="skin"
 	};
 	DMAttrValueInit(DUIPropFrameAttr,INT_headhei)DMAttrValueInit(DUIPropFrameAttr,INT_deschei)
 	DMAttrValueInit(DUIPropFrameAttr,bool_bshowhead)DMAttrValueInit(DUIPropFrameAttr,bool_bshowdesc)DMAttrValueInit(DUIPropFrameAttr,SKIN_headitemskin)
