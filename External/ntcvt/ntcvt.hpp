@@ -1,4 +1,4 @@
-// v1.0 require C++11+
+// v1.0 works on vs2010 or later
 #ifndef SIMDSOFT__NTCVT_HPP
 #define SIMDSOFT__NTCVT_HPP
 
