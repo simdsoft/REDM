@@ -1764,15 +1764,30 @@ namespace DM
 }//end of namespace
 
 namespace ntcvt {
-    namespace buffer_traits {
-        template<>
-        inline auto prepare<DM::CStringA>(DM::CStringA& str, size_t size) {
-            return str.GetBufferSetLength(static_cast<int>(size));
-        }
-        template<>
-        inline auto prepare<DM::CStringW>(DM::CStringW& str, size_t size) {
-            return str.GetBufferSetLength(static_cast<int>(size));
-        }
+    namespace detail {
+        template <> struct buffer_traits<DM::CStringW>
+        {
+            using container_type = DM::CStringW;
+            template <typename _Operation>
+            static inline void resize_and_overwrite(container_type& str, size_t size, _Operation&& op)
+            {
+                auto ptr = str.GetBufferSetLength(static_cast<int>(size));
+                auto nret = op(ptr, size);
+                str.SetLength(nret);
+            }
+        };
+
+        template <> struct buffer_traits<DM::CStringA>
+        {
+            using container_type = DM::CStringA;
+            template <typename _Operation>
+            static inline void resize_and_overwrite(container_type& str, size_t size, _Operation&& op)
+            {
+                auto ptr = str.GetBufferSetLength(static_cast<int>(size));
+                auto nret = op(ptr, size);
+                str.SetLength(nret);
+            }
+        };
     }
     inline std::string from_chars(const DM::CStringW& wcb, UINT cp = CP_ACP)
     {
