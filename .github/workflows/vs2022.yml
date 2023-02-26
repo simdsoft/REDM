@@ -8,6 +8,7 @@ on:
 
 env:
   VS_VERSION: '2022'
+  BUILD_TYPE: 'Release'
 
 jobs:
   build:
