@@ -1,8 +1,13 @@
 # REDM  
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5dq8665euimtgfw7/branch/master?svg=true)](https://ci.appveyor.com/project/halx99/redm/branch/master)
-[![dev](https://img.shields.io/badge/v2.0.0-beta1-green.svg)](https://github.com/simdsoft/REDM/releases)
+[![Latest Release](https://img.shields.io/github/v/release/simdsoft/REDM?include_prereleases&label=Latest%20Release)](../../releases/latest)
+
+| Build | Status |
+|-------|-----------------|
+| Visual Studio 2022, C++17/20/23 |[![CI](https://github.com/simdsoft/REDM/actions/workflows/ci.yml/badge.svg)](https://github.com/simdsoft/REDM/actions/workflows/ci.yml)|
+| Visual Studio 2010,2013,2019 |[![Build status](https://ci.appveyor.com/api/projects/status/5dq8665euimtgfw7/branch/master?svg=true)](https://ci.appveyor.com/project/halx99/redm/branch/master)|
+
 
 ## 1. 为什么开源DM库
 * DM的部分代码，部分框架本来就是取之于各类开源，所以尝试开源DM库，取得于开源，回馈于开源，为开源软件业贡献自己的一份小小力量

@@ -1,4 +1,4 @@
-name: vs2022
+name: CI
 
 on:
   push:
