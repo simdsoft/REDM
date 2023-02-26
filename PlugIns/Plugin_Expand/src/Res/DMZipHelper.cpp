@@ -2,11 +2,6 @@
 #include "DMZipHelper.h"
 #include <zconf.h>
 #include <zlib.h>
-#ifdef _DEBUG
-#pragma comment(lib, "zlib_d.lib")
-#else
-#pragma comment(lib, "zlib.lib")
-#endif // _DEBUG
 
 namespace DM
 {

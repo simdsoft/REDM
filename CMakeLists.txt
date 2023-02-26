@@ -108,18 +108,31 @@ ADD_SUBDIRECTORY(${PROJDIR}/DmMain)
 if (DM_EXCLUDE_SPY)
     target_compile_definitions(DmMain PUBLIC DM_EXCLUDE_SPY=1)
 endif()
+
+set_target_properties(DmMain PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${DM_BINARY_DIR}/bin)
+
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/QQDemo)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMUnitTest)
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDesigner)
 
 ADD_SUBDIRECTORY(${PROJDIR}/Samples/TGPDemo)
+
+if(NOT USE_EXTERN_ZLIB)
+    set(ZLIB_BUILD_STATIC OFF CACHE BOOL "Build zlib static library" FORCE)
+    set(ZLIB_BUILD_SHARED ON CACHE BOOL "Build zlib shared library" FORCE)
+    set(ZLIB_BUILD_EXAMPLES OFF CACHE BOOL "Build zlib examples" FORCE)
+    set(ZLIB_INSTALL OFF CACHE BOOL "Create installation targets (chain builders may want to disable this)" FORCE)
+    ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/zlib EXCLUDE_FROM_ALL)
+    set_target_properties(zlib PROPERTIES 
+        RUNTIME_OUTPUT_DIRECTORY ${DM_BINARY_DIR}/bin
+        FOLDER "3rdParty"
+        )
+endif()
+
 if(USE_DMDLL_)# 仅dll模式下支持插件
 ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Expand)
 ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Designer)
-endif()
-if(NOT USE_EXTERN_ZLIB)
-    ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/zlib EXCLUDE_FROM_ALL)
 endif()
 ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/gtest)
 ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/lua)

@@ -61,13 +61,16 @@ INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/DmMain/inc
 					${DM_SOURCE_DIR}/DmMain/inc/IDmMain;
 					${DM_SOURCE_DIR}/DmMain/inc/Modules;
 					${DM_SOURCE_DIR}/DmMain/inc/Widgets;
-                    ${DM_SOURCE_DIR}/External;)
+                    ${DM_SOURCE_DIR}/3rdParty;)
 					
 # 引用Plugin_Expand的头文件
 INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/PlugIns/Plugin_Expand/inc)
 
 # 引用ZLIB的头文件
-INCLUDE_DIRECTORIES(${DM_SOURCE_DIR}/3rdParty/zlib)
+INCLUDE_DIRECTORIES(
+	${DM_SOURCE_DIR}/3rdParty/zlib
+	${CMAKE_BINARY_DIR}/3rdParty/zlib
+	)
 
 # 引用skia的头文件
 if(USE_DMSKIA_)
@@ -133,7 +136,11 @@ set_target_properties(Plugin_Expand PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELWITHD
 
 # 增加项目依赖项
 add_dependencies(Plugin_Expand  DmMain)
-add_dependencies(Plugin_Expand  zlib)
+
+if (TARGET zlib)
+    # add_dependencies(Plugin_Expand  zlib)
+    target_link_libraries(Plugin_Expand zlib)
+endif()
 if(USE_DMSKIA_)
 TARGET_LINK_LIBRARIES(Plugin_Expand  Usp10.lib;Opengl32.lib)
 endif()
