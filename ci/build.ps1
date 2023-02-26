@@ -54,4 +54,6 @@ Write-Output ("CONFIG_ALL_OPTIONS=$CONFIG_ALL_OPTIONS, Count={0}" -f $CONFIG_ALL
 cmake -B build_$BUILD_ARCH $CONFIG_ALL_OPTIONS
 
 ########## Build
-cmake --build build_$BUILD_ARCH --config $env:BUILD_TYPE
+$buildDir=$(if ($null -ne $env:BUILD_ARCH) {"$env:BUILD_ARCH"} else {'build'})
+$buildType=$(if ($null -ne $env:BUILD_TYPE) {"$env:BUILD_TYPE"} else {'Release'})
+cmake --build $buildDir --config $buildType
