@@ -1,0 +1,25 @@
+name: vs2022
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        config:
+          - {arch: x86, cxx_std: 17}
+          - {arch: x64, cxx_std: 17}
+          - {arch: x86, cxx_std: 20}
+          - {arch: x64, cxx_std: 20}
+          - {arch: x86, cxx_std: 23}
+          - {arch: x64, cxx_std: 23}
+    steps:
+    - uses: actions/checkout@v3
+    - name: build
+      run: cmake -B build -A ${{ matrix.config.arch }} -DCMAKE_CXX_STANDARD=${{ matrix.config.cxx_std }}
