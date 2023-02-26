@@ -182,7 +182,7 @@ namespace DM
 	}
 
 	/// ×¢²áÀà-----------------------------------------
-	DMCode DMAppData::Register(IDMReg &RegObj, bool bReplace/*=false*/)
+	DMCode DMAppData::Register(const IDMReg &RegObj, bool bReplace/*=false*/)
 	{
 		return m_RegMgr->Register(RegObj, bReplace);
 	}

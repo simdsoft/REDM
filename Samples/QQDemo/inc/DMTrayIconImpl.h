@@ -29,17 +29,17 @@ namespace DM
 {
 #define TRAYBEGIN_MSG_MAP(theClass) \
 	/* "handled" management for cracked handlers */ \
-	BOOL theClass::IsMsgHandled() \
+	BOOL IsMsgHandled() \
 	{ \
 	T* pT = static_cast<T*>(this);\
 	return pT->m_bMsgHandled; \
 	} \
-	void theClass::SetMsgHandled(BOOL bHandled) \
+	void SetMsgHandled(BOOL bHandled) \
 	{ \
 	T* pT = static_cast<T*>(this);\
 	pT->m_bMsgHandled = bHandled; \
 	} \
-	BOOL theClass:: ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID/* = 0*/) \
+	BOOL  ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID/* = 0*/) \
 	{ \
 	T* pT = static_cast<T*>(this);\
 	BOOL bOldMsgHandled = pT->m_bMsgHandled; \
@@ -47,7 +47,7 @@ namespace DM
 	pT->m_bMsgHandled = bOldMsgHandled; \
 	return bRet; \
 	} \
-	BOOL theClass::_ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID) \
+	BOOL _ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID) \
 	{ \
 	BOOL bHandled = TRUE; \
 	hWnd; \

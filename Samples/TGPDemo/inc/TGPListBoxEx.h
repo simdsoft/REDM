@@ -162,7 +162,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 		DMCode DV_OnSetCursor(const CPoint &pt);
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTALLKEYS;};

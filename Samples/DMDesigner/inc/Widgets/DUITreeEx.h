@@ -245,7 +245,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
 		//---------------------------------------------------
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_OnSetCursor(const CPoint &pt);
 		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 		virtual void LoadBranch(HDMTREEITEM hParent,DMXmlNode &XmlItem);

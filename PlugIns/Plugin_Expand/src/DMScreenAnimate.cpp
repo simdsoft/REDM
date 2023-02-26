@@ -300,7 +300,9 @@ namespace DM
 			{
 				bf.SourceConstantAlpha = (byte)m_byFadeAlpha;
 				HDC dcMem = m_pStartCanvas->GetDC();
-				::UpdateLayeredWindow(m_hWnd,hdcDst,&rcClient.TopLeft(),&rcClient.Size(),dcMem,&CPoint(0,0),0,&bf,ULW_ALPHA);
+				auto rcSize = rcClient.Size();
+				CPoint ptZero(0, 0);
+				::UpdateLayeredWindow(m_hWnd,hdcDst,&rcClient.TopLeft(),&rcSize,dcMem,&ptZero,0,&bf,ULW_ALPHA);
 				m_pStartCanvas->ReleaseDC(dcMem);
 				break;
 			}

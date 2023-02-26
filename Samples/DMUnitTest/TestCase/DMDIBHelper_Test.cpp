@@ -71,7 +71,7 @@ TEST_F(DMDibHelperTest, 测试DIB功能)
 	SetUp();
 	// HSL变换-------------------------------------------
 	EXPECT_EQ(m_pHelper->AdjustHSL32(150, 100, 100),true);
-	wchar_t *pszSaveFile = L".\\UTRes\\UTTest\\red-alpha50-hsl.bmp";
+	const wchar_t *pszSaveFile = L".\\UTRes\\UTTest\\red-alpha50-hsl.bmp";
 	wchar_t szPath[MAX_PATH]={0};
 	GetRootFullPath(pszSaveFile, szPath,MAX_PATH);
 	EXPECT_EQ(m_pHelper->SaveFile(szPath),true);

@@ -122,7 +122,8 @@ namespace DM
 		DMAutoDC hdcDst;
 		BLENDFUNCTION bf = {AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
 		HDC dcMem = pCanvas->GetDC();
-		::UpdateLayeredWindow(m_hWnd,hdcDst,&rcClient.TopLeft(),&rcClient.Size(),dcMem,&pt,0,&bf,ULW_ALPHA);
+		auto rcSize = rcClient.Size();
+		::UpdateLayeredWindow(m_hWnd,hdcDst,&rcClient.TopLeft(),&rcSize,dcMem,&pt,0,&bf,ULW_ALPHA);
 		pCanvas->ReleaseDC(dcMem);
 		return TRUE;
 	}

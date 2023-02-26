@@ -69,7 +69,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: жиди
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 	public: 
 		POS_ITEM*                        m_pItem;
@@ -105,7 +105,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: жиди
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 	public:
 		DMSmartPtrT<PosItem>                    m_pItem[4];

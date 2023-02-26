@@ -75,7 +75,7 @@ namespace DM
 		/// @param[in]		bReplace		  true:如内部已注册,强制替换,false:如内部已注册,返回<see cref="DMREGMGR_REGISTERBYTYPE_REG_EXIST"/>
 		/// @remark         注册函数为关键函数,为外部扩展类、插件的调用入口
 		/// @return			DMCode
-		DMCode Register(IDMReg &&RegObj, bool bReplace=false);
+		DMCode Register(const IDMReg &RegObj, bool bReplace=false);
 
 		/// -------------------------------------------------
 		/// @brief			从注册类中获得类对象指针(内部new)

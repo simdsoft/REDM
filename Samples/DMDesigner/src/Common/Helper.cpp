@@ -219,7 +219,7 @@ DMCode AutoDrawText(IDMCanvas*pCanvas,LPCSTR strFont,DMColor TextClr,LPCWSTR lpS
 	return iErr;
 }
 
-DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,POINT &pt)
+DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,const POINT &pt)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
@@ -240,7 +240,7 @@ DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth
 	return iErr;
 }
 
-DMCode AutoFillRoundRect(IDMCanvas*pCanvas,DMColor BrushClr,LPCRECT lpRect,POINT &pt)
+DMCode AutoFillRoundRect(IDMCanvas*pCanvas,DMColor BrushClr,LPCRECT lpRect,const POINT &pt)
 {
 	DMCode iErr = DM_ECODE_FAIL;
 	do 

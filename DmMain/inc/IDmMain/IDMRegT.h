@@ -27,12 +27,12 @@ namespace DM
 	public:
 		virtual ~IDMReg(){}
 		virtual PVOID NewObj() = 0;				 ///< 创建自身对象(NewObj)
-		virtual IDMRegPtr Clone() = 0;           ///< 复制自身
+		virtual IDMRegPtr Clone() const = 0;           ///< 复制自身
 
 		// 取得基于DMBase注册类的标识、父类的标识、注册类型，建议使用DMDECLARE_CLASS_NAME宏
 		virtual LPCSTR GetClassName() = 0;		///< 取得注册类名
 		virtual LPCSTR GetBaseClassName() = 0; ///< 取得注册类父类名
-		virtual int     GetClassType() = 0;     ///< 取得注册类型
+		virtual int     GetClassType() const = 0;     ///< 取得注册类型
 	};
 
 	/// <summary>
@@ -50,7 +50,7 @@ namespace DM
 			return new T;
 		}
 
-		virtual IDMRegPtr Clone()
+		virtual IDMRegPtr Clone() const
 		{
 			return new DMRegHelperT<T>;
 		}
@@ -65,7 +65,7 @@ namespace DM
 			return T::GetBaseClassName();
 		}
 
-		virtual int GetClassType()
+		virtual int GetClassType() const
 		{
 			return T::GetClassType();	///注意，此处使用的是静态GetClassType，另外还有个虚GetClassType
 		}

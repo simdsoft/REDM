@@ -26,11 +26,11 @@ namespace DMAttr
 	class DUIIEAttr
 	{
 	public:
-		static char* STRING_url;                                    ///< 指定IE的默认加载URL,示例:url="www.baidu.com"
-		static char* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
-		static char* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
-		static char* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
-		static char* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:refreshkey="ctrl+f5"
+		static const char* STRING_url;                                    ///< 指定IE的默认加载URL,示例:url="www.baidu.com"
+		static const char* bool_bshowscroll;                              ///< 是否显示或隐藏IE滚动条,默认隐藏,示例:bshowscroll="0"
+		static const char* bool_bshowcontext;                             ///< 是否显示或隐藏右键菜单,默认显示,示例:bshowcontext="0"
+		static const char* bool_bdisablescriptwarn;                       ///< 是否禁止脚本警告,默认不禁止,示例:bdisablescriptwarn="0"
+		static const char* ACCEL_refreshkey;                              ///< 刷新快捷捷,示例:refreshkey="ctrl+f5"
 	};
 	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bshowcontext)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
 }

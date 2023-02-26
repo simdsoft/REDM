@@ -275,7 +275,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: 重载
-	DMCode DUISize::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUISize::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		LiteralString strXml = "<edit textalign=\"center\" bautosel=\"1\"/>";

@@ -801,7 +801,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: ø…÷ÿ‘ÿ∫Ø ˝
-	DMCode TGPListBoxEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode TGPListBoxEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

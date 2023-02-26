@@ -350,7 +350,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	DMCode DUIWindow::InitDMData(const DMXmlNode &XmlNode)
+	DMCode DUIWindow::InitDMData(DMXmlNode XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

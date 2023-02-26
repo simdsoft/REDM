@@ -46,7 +46,7 @@ ADD_DEFINITIONS(-DDLL_DMMAIN)
 endif()
 
 # 开启MT模式
-OPTION(USE_ALLMT_ "Compile all projects as mt"   ON)
+OPTION(USE_ALLMT_ "Compile all projects as mt"   OFF)
 
 
 # 是否开启LOG功能

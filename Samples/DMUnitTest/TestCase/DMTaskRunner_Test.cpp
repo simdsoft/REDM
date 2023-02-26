@@ -135,62 +135,62 @@ public:// 辅助
 	}
 
 public:// 测试
-	static bool TaskRunnerTest::s_slotSyncEvent1(const DMEventSender& sender, const DMBundle& args)
+	static bool s_slotSyncEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	bool TaskRunnerTest::slotSyncEvent1(const DMEventSender& sender, const DMBundle& args)
+	bool slotSyncEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
 
-	bool TaskRunnerTest::slotSyncEvent2(const DMEventSender& sender, const DMBundle& args)
+	bool slotSyncEvent2(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	static bool TaskRunnerTest::s_slotUIEvent1(const DMEventSender& sender, const DMBundle& args)
+	static bool s_slotUIEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	bool TaskRunnerTest::slotUIEvent1(const DMEventSender& sender, const DMBundle& args)
+	bool slotUIEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	bool TaskRunnerTest::slotUIEvent2(const DMEventSender& sender, const DMBundle& args)
+	bool slotUIEvent2(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	static bool TaskRunnerTest::s_slotAyncEvent1(const DMEventSender& sender, const DMBundle& args)
+	static bool s_slotAyncEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	bool TaskRunnerTest::slotAyncEvent1(const DMEventSender& sender, const DMBundle& args)
+	bool slotAyncEvent1(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	bool TaskRunnerTest::slotAyncEvent2(const DMEventSender& sender, const DMBundle& args)
+	bool slotAyncEvent2(const DMEventSender& sender, const DMBundle& args)
 	{
 		DMXmlNode ret15 = args.GetXmlNode(L"15");
 		return true;
 	}
 
-	void TaskRunnerTest::UiFun(int a, CStringA b, double c)
+	void UiFun(int a, CStringA b, double c)
 	{
 		int cd; 
 	}

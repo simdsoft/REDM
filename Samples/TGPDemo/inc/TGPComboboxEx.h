@@ -47,7 +47,7 @@ public:
 	//---------------------------------------------------
 	// Function Des: жиди
 	//---------------------------------------------------
-	virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+	virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	virtual DMCode DV_GetTextRect(LPRECT lpRect);    
 	virtual bool SetCurSel(int iSel);
 	virtual int GetCurSel() const;

@@ -80,7 +80,7 @@ namespace DM
 		void OnDestroy();
 
 	public:
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode AdjustLayout();
 		DMCode OnHeaderSizeChanging(DMEventArgs *pEvt);
 
@@ -116,7 +116,7 @@ namespace DM
 		~DUIPropList();
 
 		DMCode AdjustLayout();
-		DMCode RegisterProp(IDMReg &RegObj,bool bReplace);
+		DMCode RegisterProp(const IDMReg &RegObj,bool bReplace);
 		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName);
 		int AddProperty(IPropPtr pProp, bool bRedraw = true);
 		bool DelProperty(IPropPtr pProp, bool bRedraw = true);
@@ -148,7 +148,7 @@ namespace DM
 		void DM_OnEnable(BOOL bEnable,UINT nStatus);
 
 	public:
-		virtual DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_OnSetCursor(const CPoint &pt); 
 		virtual bool EqualArrayObj(const IDMRegPtr &objsrc, const IDMRegPtr &objdest);
 		virtual void PreArrayObjRemove(const IDMRegPtr &obj);

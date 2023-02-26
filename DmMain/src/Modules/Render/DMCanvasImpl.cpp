@@ -658,7 +658,7 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DMCanvasImpl::FillRoundRect(LPCRECT lpRect,POINT &pt)
+	DMCode DMCanvasImpl::FillRoundRect(LPCRECT lpRect,const POINT &pt)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

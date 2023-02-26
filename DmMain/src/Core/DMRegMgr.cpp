@@ -89,7 +89,7 @@ namespace DM
 	{
 	}
 
-	DMCode DMRegMgr::Register(IDMReg &RegObj, bool bReplace/*=false*/)
+	DMCode DMRegMgr::Register(const IDMReg &RegObj, bool bReplace/*=false*/)
 	{
 		DMCode iErr = DM_ECODE_OK;
 		int RegType = RegObj.GetClassType();
@@ -253,12 +253,12 @@ namespace DM
 	}
 
 	// ¸¨Öú
-	DMCode DMRegMgr::RegisterByType(DMRegTypeItem &RtItem, IDMReg &RegObj, bool bReplace)
+	DMCode DMRegMgr::RegisterByType(DMRegTypeItem &RtItem, const IDMReg &RegObj, bool bReplace)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			int iElement = RtItem.FindObj(&RegObj);
+			int iElement = RtItem.FindObj(&const_cast<IDMReg&>(RegObj));
 			if (DM_INVALID_VALUE != iElement)// ÒÑ´æÔÚ
 			{
 				if (bReplace)

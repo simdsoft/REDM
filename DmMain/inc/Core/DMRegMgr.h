@@ -44,14 +44,14 @@ namespace DM
 		DMRegMgr();
 		~DMRegMgr();
 	public:
-		DMCode Register(IDMReg &RegObj, bool bReplace=false);
+		DMCode Register(const IDMReg &RegObj, bool bReplace=false);
 		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
 		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
 		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 		DMCode GetDefRegObj(CStringA &szName,int RegType);
 
 	public:// ¸¨Öú
-		DMCode RegisterByType(DMRegTypeItem &RtItem, IDMReg &RegObj, bool bReplace);
+		DMCode RegisterByType(DMRegTypeItem &RtItem, const IDMReg &RegObj, bool bReplace);
 		DMCode CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCSTR lpszClassName);
 		DMCode UnRegisterByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName);
 		DMCode SetDefRegObjByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName);

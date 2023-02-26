@@ -279,7 +279,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: жиди
-	DMCode DUIRect::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIRect::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		LiteralString strXml = "<edit textalign=\"center\" bautosel=\"1\"/>";

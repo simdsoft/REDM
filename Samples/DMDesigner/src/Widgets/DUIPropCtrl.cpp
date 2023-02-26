@@ -130,7 +130,7 @@ namespace DM
 		SetMsgHandled(FALSE);
 	}
 
-	DMCode DUIPropFrame::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIPropFrame::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -311,12 +311,12 @@ namespace DM
 		return iErr;
 	}
 
-	DMCode DUIPropList::RegisterProp(IDMReg &RegObj,bool bReplace)
+	DMCode DUIPropList::RegisterProp(const IDMReg &RegObj,bool bReplace)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			int iElement = FindObj(&RegObj);
+			int iElement = FindObj(&const_cast<IDMReg&>(RegObj));
 			if (DM_INVALID_VALUE != iElement)// ÒÑ´æÔÚ
 			{
 				if (bReplace)
@@ -329,7 +329,6 @@ namespace DM
 					break;
 				}
 			}
-
 			if (true == AddObj(RegObj.Clone()))
 			{
 				iErr = DM_ECODE_OK;
@@ -715,7 +714,7 @@ namespace DM
 		SetMsgHandled(FALSE);
 	}
 
-	DMCode DUIPropList::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIPropList::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 

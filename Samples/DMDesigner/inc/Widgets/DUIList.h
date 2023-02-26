@@ -144,7 +144,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: 可重载函数
 		//---------------------------------------------------
-		DMCode DV_CreateChildWnds(DMXmlNode &XmlNode);
+		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode DV_OnSetCursor(const CPoint &pt);
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTALLKEYS;};
 		void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);							  ///<  更新光标位置

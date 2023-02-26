@@ -48,9 +48,9 @@ __pragma(warning(disable: 4275))
 #pragma comment(lib,"msimg32.lib")
 
 //#define DM_EXCLUDE_SPY 1
-#define DM_EXCLUDE_MUI 1
-#define DM_EXCLUDE_ACTIVEX 1
-#define DM_EXCLUDE_IE 1
+//#define DM_EXCLUDE_MUI 1
+//#define DM_EXCLUDE_ACTIVEX 1
+//#define DM_EXCLUDE_IE 1
 
 #define dm_stricmp _stricmp
 #define dm_strnicmp _strnicmp

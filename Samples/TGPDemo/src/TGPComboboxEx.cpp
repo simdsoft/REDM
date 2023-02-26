@@ -41,7 +41,7 @@ DMCode TGPComboboxEx::OnCloseUp(DMDropWnd *pDropDown,UINT uCode)
 	return __super::OnCloseUp(pDropDown,uCode);
 }
 
-DMCode TGPComboboxEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
+DMCode TGPComboboxEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 {
 	// todo.初始显示信息,这里按TGP显示大区和延迟两个子控件处理
 	do 

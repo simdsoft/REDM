@@ -24,7 +24,7 @@ namespace DMAttr
 	class DUIFlashAttr
 	{
 	public:
-		static char* STRING_url;									   ///< flash的资源,支持相对路径加载或Res方式加载,示例:url="http://www.hgy413.com/swf/2.swf"
+		static const char* STRING_url;									   ///< flash的资源,支持相对路径加载或Res方式加载,示例:url="http://www.hgy413.com/swf/2.swf"
 	};
 	DMAttrValueInit(DUIFlashAttr,STRING_url)
 }

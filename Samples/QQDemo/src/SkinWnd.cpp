@@ -86,7 +86,7 @@ DMCode CSkinWnd::OnOutSkin()
 {
 	do 
 	{
-		LPWSTR lpszPath = L".\\QQRes\\outskin\\";
+		LPCWSTR lpszPath = L".\\QQRes\\outskin\\";
 		wchar_t szPath[MAX_PATH] = {0};
 		GetRootFullPath(lpszPath,szPath,MAX_PATH);
 

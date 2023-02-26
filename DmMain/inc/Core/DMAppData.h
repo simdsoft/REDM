@@ -75,7 +75,7 @@ namespace DM
 		//---------------------------------------------------
 		// Function Des: ×¢²áÀà
 		//---------------------------------------------------
-		DMCode Register(IDMReg &RegObj, bool bReplace=false);
+		DMCode Register(const IDMReg &RegObj, bool bReplace=false);
 		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
 		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
 		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);

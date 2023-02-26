@@ -67,7 +67,7 @@ namespace DM
 		DMCode ClearRect(LPCRECT lpRect,DMColor clr);
 
 		DMCode DrawRoundRect(LPCRECT lpRect,const POINT &pt);
-		DMCode FillRoundRect(LPCRECT lpRect,POINT &pt);
+		DMCode FillRoundRect(LPCRECT lpRect,const POINT &pt);
 
 		DMCode DrawEllipse(LPCRECT lpRect);
 		DMCode FillEllipse(LPCRECT lpRect);

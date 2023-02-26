@@ -396,7 +396,7 @@ namespace DM
 		return DMW2A(m_strValue);
 	}
 
-	DMCode PropGrid::InitDMData(DMXmlNode &XmlNode)
+	DMCode PropGrid::InitDMData(DMXmlNode XmlNode)
 	{
 		DMBase::InitDMData(XmlNode);
 

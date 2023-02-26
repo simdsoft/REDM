@@ -253,7 +253,7 @@ namespace DM
 		}
 	} 
 
-	DMCode PosItem::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode PosItem::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 
@@ -422,7 +422,7 @@ namespace DM
 		} while (false);
 	}
 
-	DMCode DUIPos::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIPos::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
 		LiteralString strXml = "<positem skin=\"ds_attreditframe\" />";

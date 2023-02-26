@@ -72,6 +72,11 @@ namespace DMLUA
 	void enum_stack(lua_State *L);
 	void print_error(lua_State *L, const char* fmt, ...);
 
+	// class helper
+	int meta_get(lua_State* L);
+	int meta_set(lua_State* L);
+	void push_meta(lua_State* L, const char* name);
+
 	/// <summary>
 	/// 动态类型扩展
 	/// </summary>
@@ -806,11 +811,6 @@ namespace DMLUA
 		lua_remove(L, -2);
 		return pop<RVal>(L);
 	}
-
-	// class helper
-	int meta_get(lua_State *L);
-	int meta_set(lua_State *L);
-	void push_meta(lua_State *L, const char* name);
 
 	// class init
 	template<typename T>

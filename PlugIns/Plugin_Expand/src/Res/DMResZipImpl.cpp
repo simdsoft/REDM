@@ -177,6 +177,7 @@ namespace DM
 			if (lpULSize) *lpULSize = dataSize;
 			lpBuf.AllocateBytes(dataSize);
 			memcpy(lpBuf,zf.GetData(),zf.GetSize());
+			// lpBuf.Free();
 			iErr = DM_ECODE_OK;
 		} while (false);
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)

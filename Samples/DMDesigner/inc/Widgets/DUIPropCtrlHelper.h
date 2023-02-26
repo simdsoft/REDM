@@ -75,7 +75,7 @@ namespace DM
 		CStringA GetName();
 		CStringA GetValue();
 
-		DMCode InitDMData(DMXmlNode &XmlNode);	
+		DMCode InitDMData(DMXmlNode XmlNode) override;	
 
 		// »æÖÆ
 		virtual DMCode OnRender(IDMCanvas* pCanvas);

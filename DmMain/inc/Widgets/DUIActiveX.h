@@ -24,10 +24,10 @@ namespace DMAttr
 	class DUIActiveXAttr
 	{
 	public:
-		static char* STRING_clsid;                                  ///< 指定CLSID,示例:clsid=""
-		static char* INT_clsctx;									   ///< 指定CLSCTX,默认为CLSCTX_ALL,示例:clsctx=""
-		static char* bool_bdelayinit;							   ///< 窗口显示时才加载,默认为true,示例:bdelayinit="1"
-		static char* bool_bsupportmulthread;						   ///< ACTIVEX是否支持多线程,默认为false,注意,此属性暂不支持动态改变,示例:bsupportmulthread="0"   
+		static const char* STRING_clsid;                                  ///< 指定CLSID,示例:clsid=""
+		static const char* INT_clsctx;									   ///< 指定CLSCTX,默认为CLSCTX_ALL,示例:clsctx=""
+		static const char* bool_bdelayinit;							   ///< 窗口显示时才加载,默认为true,示例:bdelayinit="1"
+		static const char* bool_bsupportmulthread;						   ///< ACTIVEX是否支持多线程,默认为false,注意,此属性暂不支持动态改变,示例:bsupportmulthread="0"   
 	};
 	DMAttrValueInit(DUIActiveXAttr,STRING_clsid)DMAttrValueInit(DUIActiveXAttr,INT_clsctx)DMAttrValueInit(DUIActiveXAttr,bool_bdelayinit)DMAttrValueInit(DUIActiveXAttr,bool_bsupportmulthread)
 }

@@ -27,8 +27,8 @@ bool IsUseDgSkin();
 
 // 绘制函数二次封装
 DMCode AutoDrawText(IDMCanvas*pCanvas,LPCSTR strFont,DMColor TextClr,LPCWSTR lpString, int nCount, LPRECT lpRect, UINT uFormat,BYTE alpha=0xFF);
-DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,POINT &pt);
-DMCode AutoFillRoundRect(IDMCanvas*pCanvas,DMColor BrushClr,LPCRECT lpRect,POINT &pt);
+DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect,const POINT &pt);
+DMCode AutoFillRoundRect(IDMCanvas*pCanvas,DMColor BrushClr,LPCRECT lpRect,const POINT &pt);
 
 // Hook二次封装,hook仅用于处理prop的系统弹出框(颜色框、字体框),无关代码,所以此部分hook不开源
 class DMHook

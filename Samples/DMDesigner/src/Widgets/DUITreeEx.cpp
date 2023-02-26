@@ -1130,7 +1130,7 @@ namespace DM
 	}
 
 	// 重载
-	DMCode DUITreeEx::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUITreeEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 
 		{

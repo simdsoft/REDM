@@ -773,7 +773,7 @@ namespace DM
 
 	//---------------------------------------------------
 	// Function Des: 可重载函数
-	DMCode DUIList::DV_CreateChildWnds(DMXmlNode &XmlNode)
+	DMCode DUIList::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
