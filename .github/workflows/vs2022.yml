@@ -13,11 +13,11 @@ jobs:
     strategy:
       matrix:
         config:
-          - {arch: x86, cxx_std: 17}
+          - {arch: Win32, cxx_std: 17}
           - {arch: x64, cxx_std: 17}
-          - {arch: x86, cxx_std: 20}
+          - {arch: Win32, cxx_std: 20}
           - {arch: x64, cxx_std: 20}
-          - {arch: x86, cxx_std: 23}
+          - {arch: Win32, cxx_std: 23}
           - {arch: x64, cxx_std: 23}
     steps:
     - uses: actions/checkout@v3
