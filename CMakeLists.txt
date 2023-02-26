@@ -106,10 +106,15 @@ else()
 endif()
 
 # 增加子文件夹
+macro(dm_config_pred target_name pred)
+    if(${pred})
+        target_compile_definitions(${target_name} PUBLIC ${pred}=1)
+    endif()
+endmacro()
 ADD_SUBDIRECTORY(${PROJDIR}/DmMain)
-if (DM_EXCLUDE_SPY)
-    target_compile_definitions(DmMain PUBLIC DM_EXCLUDE_SPY=1)
-endif()
+dm_config_pred(DmMain DM_EXCLUDE_MUI)
+dm_config_pred(DmMain DM_EXCLUDE_ACTIVEX)
+dm_config_pred(DmMain DM_EXCLUDE_IE)
 
 set_target_properties(DmMain PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${DM_BINARY_DIR}/bin)
 
