@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  VS_VERSION: '2022'
+
 jobs:
   build:
 
@@ -13,15 +16,16 @@ jobs:
     strategy:
       matrix:
         config:
-          - {arch: Win32, cxx_std: 17}
+          - {arch: x86, cxx_std: 17}
           - {arch: x64, cxx_std: 17}
-          - {arch: Win32, cxx_std: 20}
+          - {arch: x86, cxx_std: 20}
           - {arch: x64, cxx_std: 20}
-          - {arch: Win32, cxx_std: 23}
+          - {arch: x86, cxx_std: 23}
           - {arch: x64, cxx_std: 23}
+    env:
+      BUILD_ARCH: ${{ matrix.config.arch }}
+      CXX_STD: ${{ matrix.config.cxx_std }}
     steps:
     - uses: actions/checkout@v3
     - name: build
-      run: |
-        cmake -B build -A ${{ matrix.config.arch }} -DCMAKE_CXX_STANDARD=${{ matrix.config.cxx_std }}
-        cmake --build build
+      run: ci\build.ps1
