@@ -43,7 +43,7 @@ FILE(GLOB MODULES_TASK_SOURCE    						src/Modules/Task/*.cpp;src/Modules/Task/*
 FILE(GLOB WIDGETS_SOURCE    							src/Widgets/*.cpp;src/Widgets/*.c)
 
 if(NOT USE_EXTERN_PUGIXML)
-FILE(GLOB PUGIXML_SOURCE                                ../External/pugixml/*.cpp)
+FILE(GLOB PUGIXML_SOURCE                                ../3rdParty/pugixml/*.cpp)
 else()
 set(PUGIXML_SOURCE "")
 endif()
@@ -81,7 +81,7 @@ SOURCE_GROUP("src\\Modules\\Task"				FILES 	${MODULES_TASK_SOURCE})
 SOURCE_GROUP("src\\Widgets"						FILES 	${WIDGETS_SOURCE})
 
 if(NOT USE_EXTERN_PUGIXML)
-SOURCE_GROUP("..\\External\\pugixml"			FILES 	${PUGIXML_SOURCE})
+SOURCE_GROUP("..\\3rdParty\\pugixml"			FILES 	${PUGIXML_SOURCE})
 endif()
 
 #  ‰≥ˆ…Ë÷√
@@ -101,9 +101,9 @@ endif()
 # endif()
 
 if (${CMAKE_MAJOR_VERSION} GREATER_EQUAL 3 AND ${CMAKE_MINOR_VERSION} GREATER_EQUAL 16)
-    set_source_files_properties(../External/pugixml/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+    set_source_files_properties(../3rdParty/pugixml/pugixml.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 else()
-    set_source_files_properties(../External/pugixml/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
+    set_source_files_properties(../3rdParty/pugixml/pugixml.cpp PROPERTIES COMPILE_FLAGS /Y-)
 endif()
 
 if(USE_DMDLL_)
@@ -194,7 +194,7 @@ target_include_directories(DmMain
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Skin
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Modules/Task
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc/Widgets
-  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../External
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../3rdParty
 )
 SET_TARGET_PROPERTIES(DmMain PROPERTIES OUTPUT_NAME "DmMain")
 
