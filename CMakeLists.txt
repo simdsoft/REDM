@@ -9,6 +9,8 @@
 cmake_minimum_required(VERSION 3.10)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+cmake_policy(SET CMP0079 NEW)
+
 # 工程名
 PROJECT(DM)
 
@@ -111,12 +113,28 @@ endif()
 
 set_target_properties(DmMain PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${DM_BINARY_DIR}/bin)
 
-ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
-ADD_SUBDIRECTORY(${PROJDIR}/Samples/QQDemo)
-ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMUnitTest)
-ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDesigner)
+ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/gtest)
+ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/lua)
+ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/scintilla)
+if(USE_DMSKIA_)
+    ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/skia)
+endif()
 
-ADD_SUBDIRECTORY(${PROJDIR}/Samples/TGPDemo)
+option(DM_BUILD_DESIGNER "Build DM Designer" ON)
+if (DM_BUILD_DESIGNER)
+    ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDesigner)
+endif()
+
+option(DM_BUILD_TESTS "Build DM Tests" ON)
+if (DM_BUILD_TESTS)
+    ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMUnitTest)
+    target_link_libraries(DMUnitTest gtest)
+
+    ADD_SUBDIRECTORY(${PROJDIR}/Samples/DMDemo)
+    ADD_SUBDIRECTORY(${PROJDIR}/Samples/QQDemo)
+    ADD_SUBDIRECTORY(${PROJDIR}/Samples/TGPDemo)
+endif()
+
 
 if(NOT USE_EXTERN_ZLIB)
     set(ZLIB_BUILD_STATIC OFF CACHE BOOL "Build zlib static library" FORCE)
@@ -131,12 +149,6 @@ if(NOT USE_EXTERN_ZLIB)
 endif()
 
 if(USE_DMDLL_)# 仅dll模式下支持插件
-ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Expand)
-ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Designer)
-endif()
-ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/gtest)
-ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/lua)
-ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/scintilla)
-if(USE_DMSKIA_)
-ADD_SUBDIRECTORY(${PROJDIR}/3rdParty/skia)
+    ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Expand)
+    ADD_SUBDIRECTORY(${PROJDIR}/PlugIns/Plugin_Designer)
 endif()

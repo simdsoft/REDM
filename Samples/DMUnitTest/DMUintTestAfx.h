@@ -14,10 +14,8 @@
 
 // lib
 #ifdef _DEBUG
-#pragma comment(lib,"gtest_d.lib")
 #pragma comment(lib,"DmMain_d.lib")
 #else
-#pragma comment(lib,"gtest.lib")
 #pragma comment(lib,"DmMain.lib")
 #endif
 

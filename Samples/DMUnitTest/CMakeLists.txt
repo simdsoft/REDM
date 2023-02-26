@@ -23,7 +23,6 @@ SOURCE_GROUP("src\\TestCase" 					FILES 	${TESTCASE_SOURCE})
 # 增加头文件搜索路径
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/;
 					${CMAKE_CURRENT_SOURCE_DIR}/TestCase;
-					${CMAKE_CURRENT_SOURCE_DIR}/GtestInc;
 					)
 					
 # 引用DmMain的头文件
