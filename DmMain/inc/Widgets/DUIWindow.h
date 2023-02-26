@@ -202,7 +202,8 @@ namespace DM
 
 		/// ÎÄ×ÖÏà¹Ø
 #if _HAS_CXX17
-		void SetTextA(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
+		void FastSetText(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
+		void SetTextA(const CStringA& text, UINT cp = CP_UTF8) { return SetText(DMA2W(text, cp)); }
 #else
 		void SetTextA(const char* text, UINT cp = CP_UTF8) { SetText(DMCA2W(text, -1, cp)); }
 		void SetTextA(const CStringA& text, UINT cp = CP_UTF8) { return SetText(DMA2W(text, cp)); }
