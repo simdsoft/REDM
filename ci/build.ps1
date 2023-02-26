@@ -48,12 +48,13 @@ if ($env:GITHUB_ACTIONS -eq 'true') {
     $CONFIG_ALL_OPTIONS = ($env:GEN -split ',')
 }
 
-######### Configure
-
 Write-Output ("CONFIG_ALL_OPTIONS=$CONFIG_ALL_OPTIONS, Count={0}" -f $CONFIG_ALL_OPTIONS.Count)
-cmake -B build_$BUILD_ARCH $CONFIG_ALL_OPTIONS
+
+######### Configure
+$buildDir=$(if ($null -ne $env:BUILD_ARCH) {"$env:BUILD_ARCH"} else {'build'})
+cmake -B $buildDir $CONFIG_ALL_OPTIONS
 
 ########## Build
-$buildDir=$(if ($null -ne $env:BUILD_ARCH) {"$env:BUILD_ARCH"} else {'build'})
+
 $buildType=$(if ($null -ne $env:BUILD_TYPE) {"$env:BUILD_TYPE"} else {'Release'})
 cmake --build $buildDir --config $buildType
