@@ -55,7 +55,11 @@ Write-Output ("CONFIG_ALL_OPTIONS=$CONFIG_ALL_OPTIONS, Count={0}" -f $CONFIG_ALL
 
 ######### Configure
 
-cmake $CONFIG_ALL_OPTIONS
+if ($host.name -eq 'ConsoleHost') {
+    cmake $CONFIG_ALL_OPTIONS
+} else {
+    cmake $CONFIG_ALL_OPTIONS 2>$null
+}
 
 ########## Build
 
