@@ -361,7 +361,7 @@ namespace DM
 						break;
 					}
 
-					DMComQIPtr<IPersistStreamInit> spPSI = (DMComQIPtr<IPersistStreamInit>&)spControl;
+					DMComQIPtr<IPersistStreamInit> spPSI(spControl);
 					if (spPSI != NULL)
 					{
 						if (pStream != NULL)
@@ -390,7 +390,7 @@ namespace DM
 						break;
 					}
 
-					DMComQIPtr<IPersistStreamInit> spPSI = (DMComQIPtr<IPersistStreamInit>&)m_spControl;
+					DMComQIPtr<IPersistStreamInit> spPSI(m_spControl);
 					if (spPSI != NULL)
 					{
 						if (pStream != NULL)
@@ -435,7 +435,7 @@ namespace DM
 					if (m_dwMiscStatus & OLEMISC_SETCLIENTSITEFIRST) 
 					{
 						hr = spOleObject->SetClientSite(static_cast<IOleClientSite*>(this));
-						DMComQIPtr<IOleWindow> ole_window = (DMComQIPtr<IOleWindow>&)m_spGitControl;
+						DMComQIPtr<IOleWindow> ole_window(m_spGitControl);
 						HWND hWnd = NULL;
 						ole_window->GetWindow(&hWnd);
 
@@ -477,7 +477,7 @@ namespace DM
 					if (m_dwMiscStatus & OLEMISC_SETCLIENTSITEFIRST) 
 					{
 						hr = m_spOleObject->SetClientSite(static_cast<IOleClientSite*>(this));
-						DMComQIPtr<IOleWindow> ole_window = (DMComQIPtr<IOleWindow>&)m_spControl;
+						DMComQIPtr<IOleWindow> ole_window(m_spControl);
 						HWND hWnd = NULL;
 						ole_window->GetWindow(&hWnd);
 
@@ -1223,7 +1223,7 @@ namespace DM
 				{
 					// todo.
 				}
-				DMComQIPtr<IAdviseSink> advise_sink = (DMComQIPtr<IAdviseSink>&)m_spGitControl;
+				DMComQIPtr<IAdviseSink> advise_sink(m_spGitControl);
 				m_spGitOleObject->Advise(advise_sink, &m_dwOleObjSink);
 
 				if (m_spGitViewObject)
@@ -1257,7 +1257,7 @@ namespace DM
 						m_dwViewObjectType = 1;
 					}
 				}
-				DMComQIPtr<IAdviseSink> advise_sink = (DMComQIPtr<IAdviseSink>&)m_spControl;
+				DMComQIPtr<IAdviseSink> advise_sink(m_spControl);
 				m_spOleObject->Advise(advise_sink, &m_dwOleObjSink);
 
 				if (m_spViewObject)

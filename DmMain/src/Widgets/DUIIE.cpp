@@ -653,7 +653,7 @@ namespace DM
 				break;
 			}
 			
-			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject = (DMComQIPtr<IOleInPlaceActiveObject>&)pWeb;
+			DMComQIPtr<IOleInPlaceActiveObject> spInPlaceActiveObject(pWeb);
 			if (spInPlaceActiveObject)
 			{			
 				bRet =(S_OK == spInPlaceActiveObject->TranslateAccelerator(pMsg))?true:false;
@@ -676,7 +676,7 @@ namespace DM
 		HRESULT hr = E_FAIL;
 		do 
 		{
-			DMComQIPtr<IConnectionPointContainer> pCPC = (DMComQIPtr<IConnectionPointContainer>&)Ptr();
+			DMComQIPtr<IConnectionPointContainer> pCPC(Ptr());
 			if (!pCPC)
 			{
 				break;
@@ -844,7 +844,7 @@ namespace DM
 				break;
 			}
 
-			DMComQIPtr<IOleWindow> pOleWnd = (DMComQIPtr<IOleWindow>&)pUnknown;
+			DMComQIPtr<IOleWindow> pOleWnd(pUnknown);
 			if (NULL == pOleWnd)
 			{
 				break;
@@ -1062,7 +1062,8 @@ namespace DM
 					try 
 					{
 						_bstr_t _bsScript(pszScript);
-						hr = spWin->execScript(_bsScript, _bstr_t(L"JavaScript"), &vRetCode);
+						_bstr_t _bsScriptType(L"JavaScript");
+						hr = spWin->execScript(_bsScript, _bsScriptType, &vRetCode);
 					} 
 					catch(...) 
 					{

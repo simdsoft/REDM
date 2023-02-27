@@ -36,7 +36,7 @@ namespace DM
 			{
 				break;
 			}
-			DMComQIPtr<IOleWindow> pOleWnd = (DMComQIPtr<IOleWindow>&)pUnknown;
+			DMComQIPtr<IOleWindow> pOleWnd(pUnknown);
 			if (NULL == pOleWnd)
 			{
 				break;
