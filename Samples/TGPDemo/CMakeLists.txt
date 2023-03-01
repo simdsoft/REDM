@@ -76,12 +76,12 @@ endif()
 #增加事件后命令
 add_custom_command(TARGET TGPDemo 
 					PRE_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-TGPDemo.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-TGPDemo.cmd ${TargetDir}"
 					COMMENT "This command will be executed before build target TGPDemo"
 					)
 add_custom_command(TARGET TGPDemo 
 					POST_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd ${TargetDir}"
 					COMMENT "This command will be executed after build target TGPDemo"
 					)
 SET_TARGET_PROPERTIES(TGPDemo PROPERTIES FOLDER Samples)

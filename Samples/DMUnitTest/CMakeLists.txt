@@ -65,12 +65,12 @@ add_dependencies(DMUnitTest  gtest)
 #增加事件后命令
 add_custom_command(TARGET DMUnitTest 
 					PRE_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-ut.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-ut.cmd ${TargetDir}"
 					COMMENT "This command will be executed before build target DMUnitTest"
 					)
 add_custom_command(TARGET DMUnitTest 
 					POST_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd ${TargetDir}"
 					COMMENT "This command will be executed after build target DMUnitTest"
 					)
 

@@ -78,12 +78,12 @@ endif()
 #增加事件后命令
 add_custom_command(TARGET QQDemo 
 					PRE_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-QQDemo.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-QQDemo.cmd ${TargetDir}"
 					COMMENT "This command will be executed before build target QQDemo"
 					)
 add_custom_command(TARGET QQDemo 
 					POST_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd ${TargetDir}"
 					COMMENT "This command will be executed after build target QQDemo"
 					)
 SET_TARGET_PROPERTIES(QQDemo PROPERTIES FOLDER Samples)
