@@ -102,12 +102,12 @@ add_dependencies(DMDesigner  scintilla)
 #增加事件后命令
 add_custom_command(TARGET DMDesigner 
 					PRE_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-Designer.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PreBuild-Designer.cmd ${TargetDir}"
 					COMMENT "This command will be executed before build target DMDesigner"
 					)
 add_custom_command(TARGET DMDesigner 
 					POST_BUILD 
-					COMMAND call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd $(TargetDir)
+					COMMAND "call ${DM_SOURCE_DIR}/Tools/CMake/PostBuild.cmd ${TargetDir}"
 					COMMENT "This command will be executed after build target DMDesigner"
 					)
 SET_TARGET_PROPERTIES(DMDesigner PROPERTIES FOLDER Samples)
