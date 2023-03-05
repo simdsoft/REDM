@@ -5,7 +5,7 @@
 - 更换布局元素Static为label
 - 优化GetText/SetText，使之更易用，作为虚接口可作用于label, button, edit, richedit控件
 - 优化编码转换接口，统一为ntcvt实现，避免不必要的内存拷贝
-- CMake脚本增加C++标准选择， 例如: -D_CXX_STD=17
+- C++11至C++23编译支持
 - 优化BSTR使用，修复内存泄露
 - UTF-8: 解析；UTF-16: 文本渲染、路径处理、字体创建
 - 支持通过DM_EXCLUDE_XXX宏裁剪ActiveX等组件
