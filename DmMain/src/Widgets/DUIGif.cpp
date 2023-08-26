@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIGif.h"
 
 namespace DM
@@ -6,7 +6,7 @@ namespace DM
 	DUIGif::DUIGif()
 	{
 		Clear();
-		m_bAdjustPic  = true;    // Ä¬ÈÏËõ·Ågif×ÔÊÊÓ¦ÇøÓò
+		m_bAdjustPic  = true;    // é»˜è®¤ç¼©æ”¾gifè‡ªé€‚åº”åŒºåŸŸ
 		m_bCalcClip   = false;
 	}
 
@@ -64,7 +64,7 @@ namespace DM
 			pImgDecoder->GetTotalLoopCount(m_ulTotalLoopCount);
 			pImgDecoder->GetFrameCount(m_ulFrameCount);
 			if (1 == m_ulFrameCount)
-			{// µ¥Ö¡ÏÂ¿ÉÄÜÊÇGIF£¬Ò²¿ÉÄÜÊÇÆäËû¿É±»WIC½âÂëµÄÍ¼Æ¬
+			{// å•å¸§ä¸‹å¯èƒ½æ˜¯GIFï¼Œä¹Ÿå¯èƒ½æ˜¯å…¶ä»–å¯è¢«WICè§£ç çš„å›¾ç‰‡
 				DMAnimateFrame* pAnimateFrame = new DMAnimateFrame;
 				memset(pAnimateFrame,0,sizeof(DMAnimateFrame));
 				pRender->CreateBitmap(&pAnimateFrame->pBitmap);
@@ -88,7 +88,7 @@ namespace DM
 			{
 				break;
 			}
-			// gif½âÂë¸ñÊ½,wic¿ÉÒÔ½âÂëÖ¡£¬ËùÒÔ°ÑÍ¼ĞÎÊı¾İ²¿·ÖÈ¥µôÁË
+			// gifè§£ç æ ¼å¼,wicå¯ä»¥è§£ç å¸§ï¼Œæ‰€ä»¥æŠŠå›¾å½¢æ•°æ®éƒ¨åˆ†å»æ‰äº†
 			bool bGif = false;
 			DMSmartPtrT<DMGifParse> pObj;
 			pObj.Attach(new DMGifParse);
@@ -138,7 +138,7 @@ namespace DM
 				AddObj(pAnimateFrame);
 			}
 
-			m_ulFrameCount = (UINT)GetCount();// ÅÂ²»¶¨ËùÓĞÖ¡¶¼ÄÜ½âÎö³É¹¦
+			m_ulFrameCount = (UINT)GetCount();// æ€•ä¸å®šæ‰€æœ‰å¸§éƒ½èƒ½è§£ææˆåŠŸ
 			pRender->CreateCanvas(ulMaxWid,ulMaxHei,&m_pMemCanvas);
 			pRender->CreateCanvas(ulMaxWid, ulMaxHei, &m_pPreviousCanvas);
 			m_rcGif.SetRect(0,0,ulMaxWid,ulMaxHei);
@@ -156,7 +156,7 @@ namespace DM
 		Reset();
 		if (IsReady())
 		{
-			GetContainer()->OnRegisterTimeline(this);// ×¢²á
+			GetContainer()->OnRegisterTimeline(this);// æ³¨å†Œ
 		}
 		return DM_ECODE_OK;
 	}
@@ -172,7 +172,7 @@ namespace DM
 		m_bPause = false;
 		if (IsReady())
 		{
-			GetContainer()->OnRegisterTimeline(this);// ×¢²á
+			GetContainer()->OnRegisterTimeline(this);// æ³¨å†Œ
 		}
 		return DM_ECODE_OK;
 	}
@@ -182,8 +182,8 @@ namespace DM
 		m_ulCurFrame	     = 0;
 		m_ulFrameCount		 = 0;
 		m_ulCurLoop          = 0;
-		m_ulTotalLoopCount   = INFINITE;// Ä¬ÈÏÊÇÓÀ¾ÃÑ­»·
-		m_dwPreFrameTime     = 0;       // Ê±¼äË¢ĞÂÊ±³õÊ¼»¯
+		m_ulTotalLoopCount   = INFINITE;// é»˜è®¤æ˜¯æ°¸ä¹…å¾ªç¯
+		m_dwPreFrameTime     = 0;       // æ—¶é—´åˆ·æ–°æ—¶åˆå§‹åŒ–
 		m_bPause             = false;
 		m_pMemCanvas.Release();
 		m_pPreviousCanvas.Release();
@@ -197,7 +197,7 @@ namespace DM
 		{
 			__super::DM_OnPaint(pCanvas);
 			if (1 == m_ulFrameCount)
-			{// µ¥Ö¡ÏÂ¿ÉÄÜÊÇGIF£¬Ò²¿ÉÄÜÊÇÆäËû¿É±»WIC½âÂëµÄÍ¼Æ¬
+			{// å•å¸§ä¸‹å¯èƒ½æ˜¯GIFï¼Œä¹Ÿå¯èƒ½æ˜¯å…¶ä»–å¯è¢«WICè§£ç çš„å›¾ç‰‡
 				CRect rcClient;
 				DV_GetClientRect(rcClient);
 				PDMAnimateFrame pFrame = NULL;
@@ -225,9 +225,9 @@ namespace DM
 			}
 			if (DMGIF_LOOPEND == iState)
 			{
-				m_ulCurFrame = 0;// ÉèÖÃ»Ø³õÊ¼Ö¡
-				m_ulCurLoop  = 0;// ÉèÖÃ»Ø³õÊ¼loop
-				m_bPause = true; // EndÊ±ÉèÖÃÎª³õÊ¼Ö¡ÔİÍ£×´Ì¬,ÏÂ´Î¾ÍÊÇÖØĞÂ²¥·ÅÁË
+				m_ulCurFrame = 0;// è®¾ç½®å›åˆå§‹å¸§
+				m_ulCurLoop  = 0;// è®¾ç½®å›åˆå§‹loop
+				m_bPause = true; // Endæ—¶è®¾ç½®ä¸ºåˆå§‹å¸§æš‚åœçŠ¶æ€,ä¸‹æ¬¡å°±æ˜¯é‡æ–°æ’­æ”¾äº†
 			}
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
@@ -244,14 +244,14 @@ namespace DM
 					CRect rcInvalid;
 					pCanvas->GetClipBox(rcInvalid);
 					CRect rcDest = rcInvalid&rcClient;
-					if (!rcDest.IsRectEmpty()&&rcClient!=rcDest)// ÎŞĞ§ÇøºÍ»æÖÆÇøÓĞ½»¼¯
+					if (!rcDest.IsRectEmpty()&&rcClient!=rcDest)// æ— æ•ˆåŒºå’Œç»˜åˆ¶åŒºæœ‰äº¤é›†
 					{
 						bClip = true;
 						pCanvas->PushClip(rcClient,RGN_OR);
 					}
 				}
 
-				// »æÖÆ
+				// ç»˜åˆ¶
 				PDMAnimateFrame &pFrame = m_DMArray[m_ulCurFrame];
 				CRect rcFrame(pFrame->gifFrame.imageLPos, pFrame->gifFrame.imageTPos, 
 					pFrame->gifFrame.imageLPos+pFrame->gifFrame.imageWidth,pFrame->gifFrame.imageTPos+pFrame->gifFrame.imageHeight);
@@ -270,7 +270,7 @@ namespace DM
 					CRect rcPreFrame(pPreFrame->gifFrame.imageLPos, pPreFrame->gifFrame.imageTPos, 
 						pPreFrame->gifFrame.imageLPos+pPreFrame->gifFrame.imageWidth,pPreFrame->gifFrame.imageTPos+pPreFrame->gifFrame.imageHeight);
 
-					// dispoalMethod±íÊ¾»æÖÆÍêµ±Ç°Ö¡ºó£¬»æÖÆÏÂÒ»Ö¡Í¼Æ¬Ç°µÄ´¦Àí·½Ê½
+					// dispoalMethodè¡¨ç¤ºç»˜åˆ¶å®Œå½“å‰å¸§åï¼Œç»˜åˆ¶ä¸‹ä¸€å¸§å›¾ç‰‡å‰çš„å¤„ç†æ–¹å¼
 					// http://giflib.sourceforge.net/whatsinagif/animation_and_transparency.html
 					switch (pPreFrame->gifFrame.ctrlExt.disposalMethod)
 					{
@@ -279,10 +279,10 @@ namespace DM
 					case DM_NONE:
 						break;
 					case DM_BACKGROUND:
-						m_pMemCanvas->ClearRect(rcPreFrame,PBGRA(0,0,0,0));// Çå¿ÕframeËùÔÚÇøÓò
+						m_pMemCanvas->ClearRect(rcPreFrame,PBGRA(0,0,0,0));// æ¸…ç©ºframeæ‰€åœ¨åŒºåŸŸ
 						break;
 					case DM_PREVIOUS:
-						// »Ö¸´±¸·İÖ¡
+						// æ¢å¤å¤‡ä»½å¸§
 						m_pMemCanvas->BitBlt(m_pPreviousCanvas, m_rcGif.left, m_rcGif.top, m_rcGif);
 						break;
 					default:
@@ -296,21 +296,21 @@ namespace DM
 				{
 				case DM_UNDEFINED:
 				case DM_NONE:
-					// ±¸·İ¸ÃÖ¡
+					// å¤‡ä»½è¯¥å¸§
 					m_pPreviousCanvas->BitBlt(m_pMemCanvas, m_rcGif.left, m_rcGif.top, m_rcGif);
 					break;
 				case DM_BACKGROUND:
-					// ÔÚÏÂÒ»Ö¡»æÖÆÖ®Ç°´¦Àí£¬·ñÔòDMGIF_NOREADYÊ±»á»æÖÆ³öÖĞ¼ä¹ı¶ÉÖ¡£¬Ôì³ÉÉÁË¸
+					// åœ¨ä¸‹ä¸€å¸§ç»˜åˆ¶ä¹‹å‰å¤„ç†ï¼Œå¦åˆ™DMGIF_NOREADYæ—¶ä¼šç»˜åˆ¶å‡ºä¸­é—´è¿‡æ¸¡å¸§ï¼Œé€ æˆé—ªçƒ
 					break;
 				case DM_PREVIOUS:
-					// ÔÚÏÂÒ»Ö¡»æÖÆÖ®Ç°´¦Àí£¬·ñÔòDMGIF_NOREADYÊ±»á»æÖÆ³öÖĞ¼ä¹ı¶ÉÖ¡£¬Ôì³ÉÉÁË¸
+					// åœ¨ä¸‹ä¸€å¸§ç»˜åˆ¶ä¹‹å‰å¤„ç†ï¼Œå¦åˆ™DMGIF_NOREADYæ—¶ä¼šç»˜åˆ¶å‡ºä¸­é—´è¿‡æ¸¡å¸§ï¼Œé€ æˆé—ªçƒ
 					break;
 				default:
 					break; 
 				}
 
-				m_dwPreFrameTime = GetTickCount();// ÖØÉèÖÃÊ±¼ä
-				m_ulCurFrame++;					  // Ôö¼ÓÒıÓÃ¼ÆÊı
+				m_dwPreFrameTime = GetTickCount();// é‡è®¾ç½®æ—¶é—´
+				m_ulCurFrame++;					  // å¢åŠ å¼•ç”¨è®¡æ•°
 			}
 			pCanvas->AlphaBlend(m_pMemCanvas,m_rcGif, rcClient);
 			if (bClip)
@@ -366,11 +366,11 @@ namespace DM
 			{
 				break;
 			}
-			if (m_ulFrameCount<2)		// ÖÁÉÙ2Ö¡
+			if (m_ulFrameCount<2)		// è‡³å°‘2å¸§
 			{
 				break;
 			}
-			if (m_pMemCanvas.isNull())	// gif½âÎöÍêºó,»º´æÖ¡»­²¼±ØĞë³õÊ¼»¯
+			if (m_pMemCanvas.isNull())	// gifè§£æå®Œå,ç¼“å­˜å¸§ç”»å¸ƒå¿…é¡»åˆå§‹åŒ–
 			{
 				break;
 			}
@@ -394,7 +394,7 @@ namespace DM
 			}
 			m_ulCurFrame	     = 0;
 			m_ulCurLoop          = 0;
-			m_dwPreFrameTime     = 0;       // Ê±¼äË¢ĞÂÊ±³õÊ¼»¯
+			m_dwPreFrameTime     = 0;       // æ—¶é—´åˆ·æ–°æ—¶åˆå§‹åŒ–
 			m_pMemCanvas->ClearRect(m_rcGif,0);
 			m_pPreviousCanvas->ClearRect(m_rcGif, 0);
 			m_bPause             = false;
@@ -414,24 +414,24 @@ namespace DM
 				break;
 			}
 
-			//1. ÊÇ·ñÔİÍ£
+			//1. æ˜¯å¦æš‚åœ
 			if (m_bPause)
 			{
 				iState = DMGIF_PAUSE;
 				break;
 			}
 
-			//1. ¼ÆËãÑ­»·
+			//1. è®¡ç®—å¾ªç¯
 			if (m_ulCurFrame>=m_ulFrameCount)
 			{
-				m_ulCurFrame = 0; // Ñ­»·Ò»ÂÖ
+				m_ulCurFrame = 0; // å¾ªç¯ä¸€è½®
 				if (INFINITE!=m_ulTotalLoopCount)
 				{
 					m_ulCurLoop++;
 				}
 			}
 
-			//2. Ñ­»·´ÎÊıÒÑµ½ÔòÔİÍ£
+			//2. å¾ªç¯æ¬¡æ•°å·²åˆ°åˆ™æš‚åœ
 			if (INFINITE!=m_ulTotalLoopCount&&m_ulCurLoop>=m_ulTotalLoopCount)
 			{
 				iState = DMGIF_LOOPEND;
@@ -441,10 +441,10 @@ namespace DM
 			PDMAnimateFrame &pFrameObj = m_DMArray[m_ulCurFrame];
 			if (0 == pFrameObj->gifFrame.ctrlExt.delayTime)
 			{
-				pFrameObj->gifFrame.ctrlExt.delayTime = 10;// Ä¬ÈÏ0.1s°É
+				pFrameObj->gifFrame.ctrlExt.delayTime = 10;// é»˜è®¤0.1så§
 			}
 
-			//3. Ê±¼äÎ´µ½
+			//3. æ—¶é—´æœªåˆ°
 			if (GetTickCount()-m_dwPreFrameTime<(DWORD)m_DMArray[m_ulCurFrame]->gifFrame.ctrlExt.delayTime*10)
 			{
 				iState = DMGIF_NODELAY;
@@ -462,7 +462,7 @@ namespace DM
 		do 
 		{	
 			CStringW  strValue = DMCA2W(lpszValue, -1, CP_UTF8);
-			if (DM::CheckFileExistW(strValue))// ÕâÊÇÒ»¸öÎÄ¼ş¾ø¶ÔÂ·¾¶
+			if (DM::CheckFileExistW(strValue))// è¿™æ˜¯ä¸€ä¸ªæ–‡ä»¶ç»å¯¹è·¯å¾„
 			{
 				iErr = LoadFromFile(strValue);
 				break;
@@ -472,7 +472,7 @@ namespace DM
 			CStringA strResName;
 			CStringAList strList;
 			int nCount = (int)SplitStringT(CStringA(lpszValue),':',strList);
-			if (1== nCount)// ¿ÉÄÜÊÇGIF:IDR_GIF
+			if (1== nCount)// å¯èƒ½æ˜¯GIF:IDR_GIF
 			{
 				strType    = "GIF";
 				strResName = strList[0];
@@ -501,7 +501,7 @@ namespace DM
 		} while (false);
 		if (DMSUCCEEDED(iErr))
 		{
-			Start(); // ²¥·Å
+			Start(); // æ’­æ”¾
 		}
 		return iErr;
 	}

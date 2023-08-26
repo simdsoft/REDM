@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: SkinWnd.h 
-// File Des:  »»·ô×Ó´°¿Ú²âÊÔ
+// File Des:  æ¢è‚¤å­çª—å£æµ‹è¯•
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -23,7 +23,7 @@ public:
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	// Input Parameter:
 	// Output Parameter:
 	// return:
@@ -40,7 +40,7 @@ public:
 	DMCode OnChangeSkin3();
 
 protected:
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	DECLARE_EVENT_MAP()
 
 public:

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMWorkTaskHandler.h
 // File mark:   
-// File summary:ÄÚÖÃÒ»¸öÏß³Ì,±éÀú´¦ÀíTask
+// File summary:å†…ç½®ä¸€ä¸ªçº¿ç¨‹,éå†å¤„ç†Task
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-3-1
@@ -14,7 +14,7 @@
 namespace DM
 {
 	/// <summary>
-	///		¹¤×÷Ïß³Ì´¦ÀíTaskµÄÄÚÖÃÊµÏÖ
+	///		å·¥ä½œçº¿ç¨‹å¤„ç†Taskçš„å†…ç½®å®ç°
 	/// </summary>
 	class DMWorkTaskHandler : public DMRefNum
 	{
@@ -29,7 +29,7 @@ namespace DM
 		DMCode ExecTask(bool bSync=false, DWORD dwTimeOut=INFINITE);   
 		bool BelongsToThread(DWORD dwThreadId);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool InitTasksThread();
 		DWORD RunTasksThread();
 		bool UnInitTasksThread();
@@ -45,17 +45,17 @@ namespace DM
 		static unsigned int WINAPI s_ThreadProc(LPVOID lp);
 
 	public:
-		HANDLE										m_hThread;				///< Ïß³Ì¾ä±ú
+		HANDLE										m_hThread;				///< çº¿ç¨‹å¥æŸ„
 		typedef DM::CList<IDMTaskPtr>				t_lstTaskQueue;
-		t_lstTaskQueue								m_TaskWaitList;			///< ´ı´¦ÀíµÄÈÎÎñ¶ÓÁĞ
-		t_lstTaskQueue								m_TaskRunList;			///< ÕıÔÚ´¦ÀíµÄÈÎÎñ¶ÓÁĞ
-		DMLock										m_TaskLocker;			///< ÈÎÎñËø
-		DMLock*										m_pThreadLocker;        ///< Ïß³ÌËø
-		HANDLE										m_hTaskWaitEvent;		///< µÈ´ı´¦ÀíÈÎÎñÊÂ¼ş
-		HANDLE										m_hTaskFinishEvent;		///< µÈ´ıÈÎÎñ´¦ÀíÍê³ÉÊÂ¼ş
-		DWORD										m_dwThreadId;			///< ±¾Ïß³ÌµÄID
-		bool										m_bRunning;				///< ÊÇ·ñÔÚÔËĞĞÖĞ
-		volatile bool								m_bExitTaskThread;	    ///< ÊÇ·ñÍË³ö
-		DWORD										m_dwTimeOut;			///< ·şÎñÏß³Ì³¬Ê±Ê±¼ä
+		t_lstTaskQueue								m_TaskWaitList;			///< å¾…å¤„ç†çš„ä»»åŠ¡é˜Ÿåˆ—
+		t_lstTaskQueue								m_TaskRunList;			///< æ­£åœ¨å¤„ç†çš„ä»»åŠ¡é˜Ÿåˆ—
+		DMLock										m_TaskLocker;			///< ä»»åŠ¡é”
+		DMLock*										m_pThreadLocker;        ///< çº¿ç¨‹é”
+		HANDLE										m_hTaskWaitEvent;		///< ç­‰å¾…å¤„ç†ä»»åŠ¡äº‹ä»¶
+		HANDLE										m_hTaskFinishEvent;		///< ç­‰å¾…ä»»åŠ¡å¤„ç†å®Œæˆäº‹ä»¶
+		DWORD										m_dwThreadId;			///< æœ¬çº¿ç¨‹çš„ID
+		bool										m_bRunning;				///< æ˜¯å¦åœ¨è¿è¡Œä¸­
+		volatile bool								m_bExitTaskThread;	    ///< æ˜¯å¦é€€å‡º
+		DWORD										m_dwTimeOut;			///< æœåŠ¡çº¿ç¨‹è¶…æ—¶æ—¶é—´
 	};
 }//namespace DM

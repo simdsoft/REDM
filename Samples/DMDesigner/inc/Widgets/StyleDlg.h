@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	StyleDlg.h
 // File mark:   
-// File summary:Èı·İArrayÊµ¼ÊÖ»ÓĞÒ»·İ£¬m_ArrayUse+m_ArrayNoUse²»ÊÍ·Å×ÊÔ´
+// File summary:ä¸‰ä»½Arrayå®é™…åªæœ‰ä¸€ä»½ï¼Œm_ArrayUse+m_ArrayNoUseä¸é‡Šæ”¾èµ„æº
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-1
@@ -46,7 +46,7 @@ private:
 	DUIButton*                          m_pExpandBtn;
 	DUIPropFrame*                       m_pPropFrame;
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	ObjXml*								m_pObjXml;
 	ProjTree*							m_pProjTree;
 

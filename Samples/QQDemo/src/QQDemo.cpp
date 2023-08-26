@@ -1,8 +1,8 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
-// File Name: ²âÊÔ×¨ÓÃdemo
+// File Name: æµ‹è¯•ä¸“ç”¨demo
 // File Des:  
 // File Summary: 
 // Cur Version: 1.0
@@ -64,8 +64,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 {                      
 	SetUnhandledExceptionFilter(&_UnhandledExceptionFilter);
 	DMApp theApp(hInstance);
-	// °²×°plugin£¬Èç¹ûÓĞĞèÒª!
-#ifdef DLL_DMMAIN// lib¿âÏÂ²»Ö§³Ö²å¼ş
+	// å®‰è£…pluginï¼Œå¦‚æœæœ‰éœ€è¦!
+#ifdef DLL_DMMAIN// libåº“ä¸‹ä¸æ”¯æŒæ’ä»¶
 #ifdef _DEBUG
 	theApp.LoadPlugins(L"dmpluginsd.cfg");
 #else
@@ -77,29 +77,29 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	do 
 	{ 
 		//DMResZipParam zipres(L"QQRes.zip");
-		//theApp.LoadResPack((WPARAM)(&zipres),NULL,L"DMResZipImpl");			// Â·¾¶×ÜÊÇÏà¶ÔÓÚÉú³ÉÄ¿Â¼-zip·½Ê½
-		theApp.LoadResPack((WPARAM)(L"QQRes"),NULL,NULL);						// Â·¾¶×ÜÊÇÏà¶ÔÓÚÉú³ÉÄ¿Â¼
-		theApp.InitGlobal();													// ³õÊ¼»¯Ö¸¶¨µÄÈ«¾Öskin¡¢style¡¢Ä¬ÈÏ×ÖÌå
+		//theApp.LoadResPack((WPARAM)(&zipres),NULL,L"DMResZipImpl");			// è·¯å¾„æ€»æ˜¯ç›¸å¯¹äºç”Ÿæˆç›®å½•-zipæ–¹å¼
+		theApp.LoadResPack((WPARAM)(L"QQRes"),NULL,NULL);						// è·¯å¾„æ€»æ˜¯ç›¸å¯¹äºç”Ÿæˆç›®å½•
+		theApp.InitGlobal();													// åˆå§‹åŒ–æŒ‡å®šçš„å…¨å±€skinã€styleã€é»˜è®¤å­—ä½“
 		theApp.Register(DMRegHelperT<SkinPreview>(),true);
 		theApp.Register(DMRegHelperT<SpyFindBtn>(),true);
-		theApp.Register(DMRegHelperT<IERealWnd>(),true);						// ³õÊ¼»¯Íâ²¿¿ØÖÆµÄPop RealWnd
-		theApp.Register(DMRegHelperT<DUIWebKit>(),true);						// ³õÊ¼»¯Íâ²¿¿ØÖÆµÄWebkit
-		theApp.Register(DMRegHelperT<DMTipsImpl>(),true);                       // ³õÊ¼»¯Íâ²¿µÄtipÀàĞÍ
-		theApp.Register(DMRegHelperT<DMScriptImpl>(),true);						// ³õÊ¼»¯Íâ²¿µÄ½Å±¾ÊµÏÖ
+		theApp.Register(DMRegHelperT<IERealWnd>(),true);						// åˆå§‹åŒ–å¤–éƒ¨æ§åˆ¶çš„Pop RealWnd
+		theApp.Register(DMRegHelperT<DUIWebKit>(),true);						// åˆå§‹åŒ–å¤–éƒ¨æ§åˆ¶çš„Webkit
+		theApp.Register(DMRegHelperT<DMTipsImpl>(),true);                       // åˆå§‹åŒ–å¤–éƒ¨çš„tipç±»å‹
+		theApp.Register(DMRegHelperT<DMScriptImpl>(),true);						// åˆå§‹åŒ–å¤–éƒ¨çš„è„šæœ¬å®ç°
 
-		// Ôö¼ÓÓïÑÔ°üÁ½ÖÖ£¬ÔÚwidgetÖĞ¿ÉÊ¹ÓÃ²Ëµ¥ÇĞ»»
+		// å¢åŠ è¯­è¨€åŒ…ä¸¤ç§ï¼Œåœ¨widgetä¸­å¯ä½¿ç”¨èœå•åˆ‡æ¢
 		theApp.LoadTrans((WPARAM)"dmlg_fh");
 		theApp.LoadTrans((WPARAM)"dmlg_en");
-		//theApp.SetTrans(L"dmlg_en");                                            // Ä¬ÈÏÊ¹ÓÃdmlg_enÓïÑÔ°ü
+		//theApp.SetTrans(L"dmlg_en");                                            // é»˜è®¤ä½¿ç”¨dmlg_enè¯­è¨€åŒ…
 
 		DMSmartPtrT<CQQMainWnd> pMainWnd;
 		pMainWnd.Attach(new CQQMainWnd());
-		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);			// ´´½¨Ö÷´°¿Ú
+		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);			// åˆ›å»ºä¸»çª—å£
 		g_pMainWnd =  pMainWnd;
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();
 		pMainWnd->ShowWindow(SW_SHOW);
-		theApp.Run(pMainWnd->GetSafeHwnd());								    // ÔËĞĞµ±Ç°Ïß³ÌµÄÏûÏ¢Ñ­»·£¬²¢¼ÓÈëÏûÏ¢¶ÓÁĞ¹ÜÀíÖĞ
+		theApp.Run(pMainWnd->GetSafeHwnd());								    // è¿è¡Œå½“å‰çº¿ç¨‹çš„æ¶ˆæ¯å¾ªç¯ï¼Œå¹¶åŠ å…¥æ¶ˆæ¯é˜Ÿåˆ—ç®¡ç†ä¸­
 	} while (false);
 	
 	return (int) 0;

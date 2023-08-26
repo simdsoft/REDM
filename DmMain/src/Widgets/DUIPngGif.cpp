@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIPngGif.h"
 
 namespace DM
@@ -13,7 +13,7 @@ namespace DM
 		Clear();
 	}
 
-	// °ÑĞòÁĞÖ¡½âÎö£¬ÌîÈë
+	// æŠŠåºåˆ—å¸§è§£æï¼Œå¡«å…¥
 	DMCode DUIPngGif::OnAttrPngGif(LPCSTR lpszValue, bool bLoadXml)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -72,13 +72,13 @@ namespace DM
 			m_rcGif.SetRect(0,0,nDstX,nDstY);
 			m_ulTotalLoopCount = -1;
 
-			Start(); // ²¥·Å
+			Start(); // æ’­æ”¾
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
 	}
 
-	// Ìî³ä¶¯»­¼ä¸ôÊ±¼ä
+	// å¡«å……åŠ¨ç”»é—´éš”æ—¶é—´
 	DMCode DUIPngGif::OnAttrElapse(LPCSTR lpszValue, bool bLoadXml)
 	{
 		int temp = 0;

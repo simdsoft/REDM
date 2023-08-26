@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "DMScriptHelper.h"
 #include <commdlg.h>
 #include "QQMainWnd.h"
@@ -87,7 +87,7 @@ DMCode DMScriptHelper::OnStrBtn(DMEventArgs* pEvent)
 		
 		LogEnd();
 
-		// »Ö¸´EditµÄ½¹µã
+		// æ¢å¤Editçš„ç„¦ç‚¹
 		m_pStrEdit->SetSel(MAKELONG(-1,-1));
 		m_pStrEdit->DM_OnSetFocus();
 	} while (false);
@@ -146,7 +146,7 @@ DMCode DMScriptHelper::OnFileBtn(DMEventArgs* pEvent)
 		}
 		LogEnd();
 
-		// »Ö¸´EditµÄ½¹µã
+		// æ¢å¤Editçš„ç„¦ç‚¹
 		m_pStrEdit->SetSel(MAKELONG(-1,-1));
 		m_pStrEdit->DM_OnSetFocus();
 	} while (false);
@@ -193,7 +193,7 @@ DMCode DMScriptHelper::OnBufBtn(DMEventArgs* pEvent)
 		}
 		LogEnd();
 
-		// »Ö¸´EditµÄ½¹µã
+		// æ¢å¤Editçš„ç„¦ç‚¹
 		m_pStrEdit->SetSel(MAKELONG(-1,-1));
 		m_pStrEdit->DM_OnSetFocus();
 	} while (false);

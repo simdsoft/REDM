@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMLock.h 
-// File Des: ×Ô¶¯Ëø
+// File Des: è‡ªåŠ¨é”
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		Ëø¶¨Ä£°åÀà£¬Ê¹ÓÃ<see cref="DMAutoLock"/>ÊµÏÖ×Ô¶¯Ëø¶¨¡¢ÊÍ·Å
+	///		é”å®šæ¨¡æ¿ç±»ï¼Œä½¿ç”¨<see cref="DMAutoLock"/>å®ç°è‡ªåŠ¨é”å®šã€é‡Šæ”¾
 	/// </summary>
 	class DM_EXPORT DMLock
 	{
@@ -32,24 +32,24 @@ namespace DM
 		}
 	public:
 		/// -------------------------------------------------
-		/// @brief Ëø¶¨
-		/// @return Ëø¶¨
+		/// @brief é”å®š
+		/// @return é”å®š
 		void lock(void)
 		{
 			::EnterCriticalSection(&m_sesion);
 		}
 
 		/// -------------------------------------------------
-		/// @brief ½âËø
-		/// @return ½âËø
+		/// @brief è§£é”
+		/// @return è§£é”
 		void unlock(void)
 		{
 			::LeaveCriticalSection(&m_sesion);
 		}
 
 		/// -------------------------------------------------
-		/// @brief ³¢ÊÔËø¶¨
-		/// @return ³¢ÊÔËø¶¨
+		/// @brief å°è¯•é”å®š
+		/// @return å°è¯•é”å®š
 		bool tryLock()
 		{
 			return (TRUE==::TryEnterCriticalSection(&m_sesion));
@@ -60,10 +60,10 @@ namespace DM
 	};
 
 	/// <summary>
-	///		×Ô¶¯Ëø¶¨Ä£°åÀà£¬ÓÃÓÚ<see cref="DMLock"/>ÊµÏÖ×Ô¶¯Ëø¶¨¡¢ÊÍ·Å
+	///		è‡ªåŠ¨é”å®šæ¨¡æ¿ç±»ï¼Œç”¨äº<see cref="DMLock"/>å®ç°è‡ªåŠ¨é”å®šã€é‡Šæ”¾
 	/// </summary>
 	/// <remarks>
-	///		DMLock m_pLock,ÁÙÊ±ÉùÃ÷±äÁ¿DMAutoLock autolock(m_pLock);¿ÉÔÚ×÷ÓÃÓò¿ØÖÆ×Ô¶¯Ëø
+	///		DMLock m_pLock,ä¸´æ—¶å£°æ˜å˜é‡DMAutoLock autolock(m_pLock);å¯åœ¨ä½œç”¨åŸŸæ§åˆ¶è‡ªåŠ¨é”
 	/// </remarks>
 	class DM_EXPORT DMAutoLock
 	{

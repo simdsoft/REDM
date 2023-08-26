@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 
 #if !defined(DM_EXCLUDE_SPY)
 #include "DMSpyTool.h"
@@ -21,14 +21,14 @@ namespace DM
 		LRESULT lr = 0;
 		switch (wParam)
 		{
-		case DMSPY_INIT:// ׼��spy����Ϣ
+		case DMSPY_INIT:// 准备spy的信息
 			{
 				lr = DMSPY_INIT;
 				m_hSpyWnd = (HWND)lParam;
 				if (NULL == m_hSpyWnd||!::IsWindow(m_hSpyWnd))
 				{
 					m_hSpyWnd = NULL;
-					lr = 0;// ����
+					lr = 0;// 错误！
 				}
 				if (!m_pSpyEnum)
 				{
@@ -44,7 +44,7 @@ namespace DM
 				wchar_t szXmlPath[MAX_PATH] = {0};
 				DMSpyTool::ReadShareMemory(szXmlPath,MAX_PATH);
 
-				// ��ʼ����XMLTree.xml
+				// 开始构建XMLTree.xml
 				EnumDUITree(szXmlPath);
 			}
 			break;
@@ -111,7 +111,7 @@ namespace DM
 		m_XmlBase = doc.Base();
 		DUIWindow* pWnd = g_pDMDWndPool->FindDUIWnd(m_hMainDUIWnd);
 		int iLevel = 0;
-		EnumTreeItem(pWnd,m_XmlBase,iLevel,false); // ������
+		EnumTreeItem(pWnd,m_XmlBase,iLevel,false); // 插入结点
 		Init_Debug_XmlBuf(m_XmlBase);
 		doc.SaveXml(lpszPath);
 	}
@@ -127,7 +127,7 @@ namespace DM
 				break;
 			}
 
-			// �����ӽ��
+			// 插入子结点
 			CStringA bsee;bsee.Format("%d",pWnd->DM_IsVisible(true));
 			CStringA id;id.Format("%d",pWnd->GetID());
 			CStringA name = pWnd->GetName();
@@ -145,16 +145,16 @@ namespace DM
 			ChildNode.SetAttribute("id", id);
 			ChildNode.SetAttribute("name", name);
 
-			// �ӽ��ݹ�
+			// 子结点递归
 			DUIWindow* pChild = pWnd->m_Node.m_pFirstChild;
 			while (pChild)
 			{
 				int tempLevel = nL+1;
-				EnumTreeItem(pChild,ChildNode,tempLevel,false);// ������һ��
+				EnumTreeItem(pChild,ChildNode,tempLevel,false);// 进入下一层
 				pChild = pChild->m_Node.m_pNextSibling;
 			}
 
-			// ��panel���ݹ�
+			// 子panel结点递归
 			int tempLevel = nL+1;
 			EnumPanelTreeItem(pWnd,ChildNode,tempLevel);
 			Init_Debug_XmlBuf(m_XmlBase);
@@ -167,12 +167,12 @@ namespace DM
 		{
 			int nL = iLevel;
 			Init_Debug_XmlBuf(m_XmlBase);
-			if (true == m_PanelParseMap[pWnd->GetDUIWnd()])// ���������ǲ���Ҫ�������
+			if (true == m_PanelParseMap[pWnd->GetDUIWnd()])// 理论上我们不需要关心这个
 			{
 				DMFAIL_MSG("unexpected!");
 				break;
 			}
-			m_PanelParseMap[pWnd->GetDUIWnd()] = true;//ǿ�Ӹ����,������֤�㷨����ȷ���´δ˴��ڲ��ٱ���panel
+			m_PanelParseMap[pWnd->GetDUIWnd()] = true;//强加个标记,用于验证算法的正确性下次此窗口不再遍历panel
 			if (NULL == pWnd)
 			{
 				break;
@@ -209,7 +209,7 @@ namespace DM
 		}
 		else
 		{
-			wcscpy_s(m_pSpyEnum->info.szName,L"[���ֹ���,�޷���ʾ!]");
+			wcscpy_s(m_pSpyEnum->info.szName,L"[名字过长,无法显示!]");
 		}
 
 		CStringW strClassName = pWnd->V_GetClassName();
@@ -219,7 +219,7 @@ namespace DM
 		}
 		else
 		{
-			wcscpy_s(m_pSpyEnum->info.szClassName,L"[��������,�޷���ʾ!]");
+			wcscpy_s(m_pSpyEnum->info.szClassName,L"[类名过长,无法显示!]");
 		}
 
 		memset(m_pSpyEnum->info.szXml, 0, DMSPY_XML_LEN*2);
@@ -230,7 +230,7 @@ namespace DM
 		}
 		else
 		{
-			wcscpy_s(m_pSpyEnum->info.szXml,L"[XML����,�޷���ʾ!]");
+			wcscpy_s(m_pSpyEnum->info.szXml,L"[XML过长,无法显示!]");
 		}
 #endif 
 #endif
@@ -238,13 +238,13 @@ namespace DM
 
 	//---------------------------------------------------------
 	bool DMSpyTool::CreateSharedMemory(UINT nSize)
-	{/// spyʹ�ã��Ͳ����Ѵ����ж���
+	{/// spy使用，就不做已存在判断了
 		bool bRet = false;
 		HANDLE hSize = NULL;
 		HANDLE hFileMapping = NULL;
 		do 
 		{
-			// ����һ���ڴ��Ź����ڴ�Ĵ�С  
+			// 创建一块内存存放共享内存的大小  
 			hSize = CreateFileMapping(NULL, NULL, PAGE_READWRITE, 0, sizeof(UINT),DMSPY_SHAREMEMORYSIZE);  
 			if ((hSize == NULL) || (hSize == INVALID_HANDLE_VALUE)) 
 			{
@@ -255,7 +255,7 @@ namespace DM
 			memcpy(pSize, &nSize, sizeof(UINT));  
 			UnmapViewOfFile(pSize);  
 
-			// ���������ڴ�� 
+			// 创建共享内存块 
 			HANDLE hFileMapping = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, nSize, DMSPY_SHAREMEMORY);
 			if ((hFileMapping == NULL) || (hFileMapping == INVALID_HANDLE_VALUE))
 			{

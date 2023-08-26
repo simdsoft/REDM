@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name:
-// File Des: XML½âÎöºê
-// File Summary: ºê¶¨Òåº¯Êý¿ÉÊ¹ÓÃMacroTool»»³É¶àÐÐÔ´Âë£¬·½±ãµ÷ÊÔ
+// File Des: XMLè§£æžå®
+// File Summary: å®å®šä¹‰å‡½æ•°å¯ä½¿ç”¨MacroToolæ¢æˆå¤šè¡Œæºç ï¼Œæ–¹ä¾¿è°ƒè¯•
 // Cur Version: 1.1
 // Author:
 // Create Data:
@@ -16,7 +16,7 @@
 
 namespace DM
 {
-// XMLÊôÐÔÉùÃ÷ºê--------------------------------------------------------------------------------------------
+// XMLå±žæ€§å£°æ˜Žå®--------------------------------------------------------------------------------------------
 #define dm_parseint          DMAttributeDispatch::ParseInt  
 #define dm_parsebool         DMAttributeDispatch::ParseBool		
 #define dm_parsecolor        DMAttributeDispatch::ParseColor	
@@ -28,19 +28,19 @@ namespace DM
 #define dm_wcsicmp			_wcsicmp
 #define dm_wcsnicmp			_wcsnicmp
 
-// IN_AttributeFun:  ÊäÈëº¯Êý,ÏÈÌø×ªµ½º¯Êý´¦ÀíDMCode IN_AttributeFun(pszAttribute,pszValue,bLoadXml)
-// IN_AttributeName£ºÊäÈëAttribute NameÖµ£¬ÓÃÓÚ±È½Ï
+// IN_AttributeFun:  è¾“å…¥å‡½æ•°,å…ˆè·³è½¬åˆ°å‡½æ•°å¤„ç†DMCode IN_AttributeFun(pszAttribute,pszValue,bLoadXml)
+// IN_AttributeNameï¼šè¾“å…¥Attribute Nameå€¼ï¼Œç”¨äºŽæ¯”è¾ƒ
 // fun2_Value_Load: DMCode fun2(pszValue,bLoadXml)
-// fun3_Value_Load: DMCode fun3(pszAttribute,pszValue,bLoadXml)// ÓÃÓÚ¶à¸öfun2ÏàËÆ£¬Í³Ò»´¦Àí
-// Îª·ÀÖ¹×ª»»¹¤¾ß°Ñ×¢ÊÍÇå³ý£¬Ê¹ÓÃ/**/£¬ÇÒ·ÅÔÚ¶¨ÒåÊµÌåÖÐ¼ä,Í¬Ê±×¢ÊÍÖÐ²»»á³öÏÖºê¶¨ÒåÍ¬ÑùµÄÃû×Ö
-// OUT_VariableÎªÒª¸³ÖµµÄ±äÁ¿£¬IN_IsBreakÊÇ·ñÖÐ¶Ï½âÎö
-// In_EnumTypeÎªÃ¶¾ÙÀàÐÍ£¬In_EnumValueÎªÃ¶¾ÙÖµ£¬In_EnumString±êÊ¶In_EnumValue
+// fun3_Value_Load: DMCode fun3(pszAttribute,pszValue,bLoadXml)// ç”¨äºŽå¤šä¸ªfun2ç›¸ä¼¼ï¼Œç»Ÿä¸€å¤„ç†
+// ä¸ºé˜²æ­¢è½¬æ¢å·¥å…·æŠŠæ³¨é‡Šæ¸…é™¤ï¼Œä½¿ç”¨/**/ï¼Œä¸”æ”¾åœ¨å®šä¹‰å®žä½“ä¸­é—´,åŒæ—¶æ³¨é‡Šä¸­ä¸ä¼šå‡ºçŽ°å®å®šä¹‰åŒæ ·çš„åå­—
+// OUT_Variableä¸ºè¦èµ‹å€¼çš„å˜é‡ï¼ŒIN_IsBreakæ˜¯å¦ä¸­æ–­è§£æž
+// In_EnumTypeä¸ºæžšä¸¾ç±»åž‹ï¼ŒIn_EnumValueä¸ºæžšä¸¾å€¼ï¼ŒIn_EnumStringæ ‡è¯†In_EnumValue
 
 
 //-------------------------------------------------------
-// µ÷ÊÔÊ±¿ÉÊ¹ÓÃMacroTool×ª»»³É»»ÐÐµÄÔ´´úÂëµ÷ÊÔ
+// è°ƒè¯•æ—¶å¯ä½¿ç”¨MacroToolè½¬æ¢æˆæ¢è¡Œçš„æºä»£ç è°ƒè¯•
 #define DM_BEGIN_ATTRIBUTES()\
-	public:	/* _BEGIN_ATTRIBUTES()ºê*/\
+	public:	/* _BEGIN_ATTRIBUTES()å®*/\
 	virtual DMCode SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml = false)\
 	{\
 		DMCode iErr = DM_ECODE_FAIL;\
@@ -60,22 +60,22 @@ namespace DM
 			break;\
 		}
 //-------------------------------------------------------
-// ½áÊø
+// ç»“æŸ
 #define DM_END_ATTRIBUTES()\
 			iErr = __super::SetAttribute(pszAttribute, pszValue, bLoadXml);\
-		} while (false);/*_END_ATTRIBUTESºê*/\
+		} while (false);/*_END_ATTRIBUTESå®*/\
 		return OnAttributeFinished(pszAttribute, pszValue, bLoadXml,iErr);\
 	}
 				
 #define DM_END_BREAK()\
-		} while (false);/*_END_BREAKºê*/\
+		} while (false);/*_END_BREAKå®*/\
 		return OnAttributeFinished(pszAttribute, pszValue, bLoadXml,iErr);\
 	}
 
 //-------------------------------------------------------
-// Custom²¿·Ö
+// Customéƒ¨åˆ†
 #define DM_CUSTOM_ATTRIBUTE(IN_AttributeName,fun2_Value_Load)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))	/* _CUSTOM_ATTRIBUTE()ºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))	/* _CUSTOM_ATTRIBUTE()å®*/\
 		{\
 			iErr = fun2_Value_Load(pszValue,bLoadXml);\
 			break;\
@@ -83,7 +83,7 @@ namespace DM
 	
 
 #define DM_CUSTOMEX_ATTRIBUTE(IN_AttributeName,fun3_Value_Load)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))	/* _CUSTOM_ATTRIBUTE()ºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))	/* _CUSTOM_ATTRIBUTE()å®*/\
 		{\
 			iErr = fun3_Value_Load(pszAttribute,pszValue,bLoadXml);\
 			break;\
@@ -97,9 +97,9 @@ namespace DM
 		}																				   
 
 //-------------------------------------------------------
-// Int = %d StringW  »ò Int = 0x%Hex StringW,Ö§³Ö10½øÖÆ»ò16½øÖÆ±íÊ¾
+// Int = %d StringW  æˆ– Int = 0x%Hex StringW,æ”¯æŒ10è¿›åˆ¶æˆ–16è¿›åˆ¶è¡¨ç¤º
 #define DM_INT_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_INT_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_INT_ATTRIBUTEå®*/\
 		{\
 			int temp = OUT_Variable;\
 			dm_parseint(pszValue,temp);\
@@ -108,9 +108,9 @@ namespace DM
 			break;\
 		}																					
 
-// DWORD = %u StringW »ò DWORD = 0x%Hex StringW,Ö§³Ö10½øÖÆ»ò16½øÖÆ±íÊ¾
+// DWORD = %u StringW æˆ– DWORD = 0x%Hex StringW,æ”¯æŒ10è¿›åˆ¶æˆ–16è¿›åˆ¶è¡¨ç¤º
 #define DM_DWORD_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_DWORD_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_DWORD_ATTRIBUTEå®*/\
 		{\
 			int temp = OUT_Variable;\
 			dm_parseint(pszValue,temp);\
@@ -119,9 +119,9 @@ namespace DM
 			break;\
 		}																					
 
-// UINT = %u StringW »ò UINT = 0x%Hex StringW,Ö§³Ö10½øÖÆ»ò16½øÖÆ±íÊ¾
+// UINT = %u StringW æˆ– UINT = 0x%Hex StringW,æ”¯æŒ10è¿›åˆ¶æˆ–16è¿›åˆ¶è¡¨ç¤º
 #define DM_UINT_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_UINT_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_UINT_ATTRIBUTEå®*/\
 		{\
 			int temp = OUT_Variable;\
 			dm_parseint(pszValue,temp);\
@@ -130,9 +130,9 @@ namespace DM
 			break;\
 		}						
 
-// LONG = %u StringW »ò LONG = 0x%Hex StringW,Ö§³Ö10½øÖÆ»ò16½øÖÆ±íÊ¾
+// LONG = %u StringW æˆ– LONG = 0x%Hex StringW,æ”¯æŒ10è¿›åˆ¶æˆ–16è¿›åˆ¶è¡¨ç¤º
 #define DM_LONG_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-	if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_UINT_ATTRIBUTEºê*/\
+	if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_UINT_ATTRIBUTEå®*/\
 		{\
 			int temp = OUT_Variable;\
 			dm_parseint(pszValue,temp);\
@@ -141,9 +141,9 @@ namespace DM
 			break;\
 		}			
 
-// WORD = %u StringW »ò WORD = 0x%Hex StringW,Ö§³Ö10½øÖÆ»ò16½øÖÆ±íÊ¾
+// WORD = %u StringW æˆ– WORD = 0x%Hex StringW,æ”¯æŒ10è¿›åˆ¶æˆ–16è¿›åˆ¶è¡¨ç¤º
 #define DM_WORD_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_WORD_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_WORD_ATTRIBUTEå®*/\
 		{\
 			int temp = OUT_Variable;\
 			dm_parseint(pszValue,temp);\
@@ -152,9 +152,9 @@ namespace DM
 			break;\
 		}																								
 
-// ×Ö·û"yes"¡¢"true"±íÊ¾Õæ£¬ÆäÓàÏÈ×ª»»³ÉÊý×Ö£¬Èç>0ÔòÎªÕæ£¬·ñÔò¾ùÎª¼Ù
+// å­—ç¬¦"yes"ã€"true"è¡¨ç¤ºçœŸï¼Œå…¶ä½™å…ˆè½¬æ¢æˆæ•°å­—ï¼Œå¦‚>0åˆ™ä¸ºçœŸï¼Œå¦åˆ™å‡ä¸ºå‡
 #define DM_bool_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_BOOL_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_BOOL_ATTRIBUTEå®*/\
 		{\
 			dm_parsebool(pszValue,OUT_Variable);\
 			iErr = IN_IsBreak;\
@@ -162,45 +162,45 @@ namespace DM
 		}																								
 
 //-------------------------------------------------------
-// COLORREF_RGBA = #FFFFFFF »ò COLORREF_RGBA = rgb(ff,00,ff) »ò COLORREF_RGBA = rgba(ff,00,ff,ff),ÁíÖ§³ÖÒ»ÖÖÌØÊâ±íÊ¾COLORREF_RGBA = "white"
+// COLORREF_RGBA = #FFFFFFF æˆ– COLORREF_RGBA = rgb(ff,00,ff) æˆ– COLORREF_RGBA = rgba(ff,00,ff,ff),å¦æ”¯æŒä¸€ç§ç‰¹æ®Šè¡¨ç¤ºCOLORREF_RGBA = "white"
 #define DM_COLOR_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_COLOR_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_COLOR_ATTRIBUTEå®*/\
 		{\
-			dm_parsecolor(pszValue, OUT_Variable);/*ÈçÊ§°Ü,OUT_VariableÔ­À´µÄÖµ²»»á±»¸Ä±ä*/\
+			dm_parsecolor(pszValue, OUT_Variable);/*å¦‚å¤±è´¥,OUT_VariableåŽŸæ¥çš„å€¼ä¸ä¼šè¢«æ”¹å˜*/\
 			iErr = IN_IsBreak;\
 			break;\
 		}																								
 
 // Size = %d,%d
 #define DM_SIZE_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_SIZE_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_SIZE_ATTRIBUTEå®*/\
 		{\
-			dm_parsesize(pszValue, OUT_Variable);/*ÈçÊ§°Ü,OUT_VariableÔ­À´µÄÖµ²»»á±»¸Ä±ä*/\
+			dm_parsesize(pszValue, OUT_Variable);/*å¦‚å¤±è´¥,OUT_VariableåŽŸæ¥çš„å€¼ä¸ä¼šè¢«æ”¹å˜*/\
 			iErr = IN_IsBreak;\
 			break;\
 		}				
 
 // Point = %d,%d
 #define DM_POINT_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_POINT_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_POINT_ATTRIBUTEå®*/\
 		{\
-			dm_parsepoint(pszValue, OUT_Variable);/*ÈçÊ§°Ü,OUT_VariableÔ­À´µÄÖµ²»»á±»¸Ä±ä*/\
+			dm_parsepoint(pszValue, OUT_Variable);/*å¦‚å¤±è´¥,OUT_VariableåŽŸæ¥çš„å€¼ä¸ä¼šè¢«æ”¹å˜*/\
 			iErr = IN_IsBreak;\
 			break;\
 		}				
 
 // Rect = %d,%d,%d,%d
 #define DM_RECT_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_RECT_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_RECT_ATTRIBUTEå®*/\
 		{\
-			dm_parserect(pszValue, OUT_Variable);/*ÈçÊ§°Ü,OUT_VariableÔ­À´µÄÖµ²»»á±»¸Ä±ä*/\
+			dm_parserect(pszValue, OUT_Variable);/*å¦‚å¤±è´¥,OUT_VariableåŽŸæ¥çš„å€¼ä¸ä¼šè¢«æ”¹å˜*/\
 			iErr = IN_IsBreak;\
 			break;\
 		}																								
 
 // CStringW = CStringW
 #define  DM_STRING_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_STRING_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_STRING_ATTRIBUTEå®*/\
 		{\
 			OUT_Variable = pszValue;\
 			iErr = IN_IsBreak;\
@@ -208,7 +208,7 @@ namespace DM
 		}			
 
 #define  DM_WSTRING_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_STRING_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_STRING_ATTRIBUTEå®*/\
 		{\
 			OUT_Variable = DMCA2W(pszValue, -1, CP_UTF8);\
 			iErr = IN_IsBreak;\
@@ -216,7 +216,7 @@ namespace DM
 		}	
 		
 #define  DM_FONTPTR_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_FONTPTR_ATTRIBUTEºê*/\
+		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_FONTPTR_ATTRIBUTEå®*/\
 		{\
 			OUT_Variable = g_pDMApp->GetFont(pszValue);\
 			iErr = IN_IsBreak;\
@@ -224,7 +224,7 @@ namespace DM
 		}			
 
 #define  DM_SKINPTR_ATTRIBUTE(IN_AttributeName, OUT_Variable, IN_IsBreak)\
-	if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_FONTPTR_ATTRIBUTEºê*/\
+	if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))/*_FONTPTR_ATTRIBUTEå®*/\
 		{\
 			OUT_Variable = g_pDMApp->GetSkin(pszValue);\
 			iErr = IN_IsBreak;\
@@ -232,7 +232,7 @@ namespace DM
 		}			
 
 //-------------------------------------------------------
-// ENUM²¿·Ö
+// ENUMéƒ¨åˆ†
 #define DM_ENUM_BEGIN(IN_AttributeName, In_EnumType, IN_IsBreak)\
 		if (0 == dm_xmlstrcmp(IN_AttributeName, pszAttribute))\
 		{\

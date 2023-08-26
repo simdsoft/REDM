@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIRadioButton.h"
 
 namespace DM
@@ -17,7 +17,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIRadioButton::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
@@ -35,17 +35,17 @@ namespace DM
 				rcText.left = rcCheck.right+m_nTextOffset;
 			}
 
-			// 1. »æÖÆradioÍ¼±ê
+			// 1. ç»˜åˆ¶radioå›¾æ ‡
 			byte alpha = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(alpha);
 			if (NULL!=m_pRadioSkin)
 			{
 				int iStates = 0;
 				m_pRadioSkin->GetStates(iStates);
-				if (1 == iStates)// 1·ÖÍ¼
+				if (1 == iStates)// 1åˆ†å›¾
 				{
 				}
-				else if (2 == iStates)// 2·ÖÍ¼
+				else if (2 == iStates)// 2åˆ†å›¾
 				{
 					iStates = GetDrawState()/4;//[0-3][4-7]
 				}
@@ -56,7 +56,7 @@ namespace DM
 				m_pRadioSkin->Draw(pCanvas, rcCheck,iStates,alpha);
 			}
 
-			// 2.»æÖÆicon
+			// 2.ç»˜åˆ¶icon
 			if (m_pIconSkin)
 			{
 				CRect rcIcon = rcText;
@@ -64,10 +64,10 @@ namespace DM
 				m_pIconSkin->GetStateSize(sz);
 				MeetRect(rcIcon, sz);
 				m_pIconSkin->Draw(pCanvas, rcIcon,0,alpha);
-				break;// ÓĞICON¾Í²»»ætextÁË 
+				break;// æœ‰ICONå°±ä¸ç»˜textäº† 
 			}
 
-			// 2. »æÖÆÎÄ×Ö
+			// 2. ç»˜åˆ¶æ–‡å­—
 			DUIDrawEnviron DrawEnviron;
 			DV_PushDrawEnviron(pCanvas, DrawEnviron);
 
@@ -83,7 +83,7 @@ namespace DM
 		{
 			if (DM_IsFocusWnd())
 			{
-				// »æÖÆ½¹µã¿ò
+				// ç»˜åˆ¶ç„¦ç‚¹æ¡†
 				DV_DrawDefFocus(pCanvas);
 			}
 		}
@@ -108,7 +108,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÖØÔØDUIWindow
+	// Function Des: é‡è½½DUIWindow
 	DMCode DUIRadioButton::DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT pRect,UINT uFormat)
 	{
 		do 
@@ -178,10 +178,10 @@ namespace DM
 		return pWnd;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	int DUIRadioButton::GetDrawState()
 	{
-		int iState = 0;//8·ÖÍ¼,Ç°4ÎªÎ´Ñ¡ÖĞËÄÖÖ×´Ì¬£¬ºó4ÎªÑ¡ÖĞÊ±ËÄÖÖ×´Ì¬
+		int iState = 0;//8åˆ†å›¾,å‰4ä¸ºæœªé€‰ä¸­å››ç§çŠ¶æ€ï¼Œå4ä¸ºé€‰ä¸­æ—¶å››ç§çŠ¶æ€
 		do 
 		{
 			if (NULL==m_pRadioSkin)
@@ -231,7 +231,7 @@ namespace DM
 			{
 				rcDest.OffsetRect(rcClient.Width()-sz.cx,0);
 			}
-			// µ÷Õûsize
+			// è°ƒæ•´size
 			sz.cx = sz.cx<rcClient.Width()?sz.cx:rcClient.Width();
 			sz.cy = sz.cy<rcClient.Height()?sz.cy:rcClient.Height();
 			MeetRect(rcDest,sz);

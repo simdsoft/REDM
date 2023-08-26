@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "AttrExpandWnd.h"
 
 BEGIN_MSG_MAP(AttrExpandWnd)      
@@ -6,7 +6,7 @@ BEGIN_MSG_MAP(AttrExpandWnd)
 	MSG_WM_SIZE(OnSize)
 	MSG_WM_DESTROY(OnDestroy)
 	MSG_WM_SHOWWINDOW(OnShowWindow)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP() 
 
 AttrExpandWnd::AttrExpandWnd(IAttrExpandOwner* pOwner)
@@ -57,7 +57,7 @@ DMCode AttrExpandWnd::InitTreeNode(DMXmlNode& TreeNode,bool IsData)
 	TreeNode = TreeNode.InsertChildNode(XML_TREEITEM);
 	TreeNode.SetAttribute(XML_SKIN,IsData? XML_DATASKIN:XML_CUSTOMSKIN);
 	TreeNode.SetAttribute(XML_CLRTEXT,L"pbgra(ff,ff,ff,ff)");
-	TreeNode.SetAttribute(XML_FONT,L"face:ĞÂËÎÌå,size:12,weight:100");
+	TreeNode.SetAttribute(XML_FONT,L"face:æ–°å®‹ä½“,size:12,weight:100");
 	TreeNode.SetAttribute(XML_CHILDOFFSET,L"0");
 	return DM_ECODE_OK;
 }

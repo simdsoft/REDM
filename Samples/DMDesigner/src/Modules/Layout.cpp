@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+﻿#include "DMDesignerAfx.h"
 #include "Layout.h"
 
 namespace DM
@@ -21,10 +21,10 @@ namespace DM
 	DMCode Layout::UpdateLayout(LPRECT lpRcContainer,OUT CRect &rcWindow)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
-		int nRet = 0; // δ��ʼ���ɹ��Ĵ���
+		int nRet = 0; // 未初始化成功的次数
 		do 
 		{
-			rcWindow.SetRect(POS_INIT,POS_INIT,POS_INIT,POS_INIT);// ��ʹԭ����������Ч
+			rcWindow.SetRect(POS_INIT,POS_INIT,POS_INIT,POS_INIT);// 先使原窗口坐标无效
 			CRect rcContainer;
 			DUIWindow* pParent = m_pOwner->DM_GetWindow(GDW_PARENT);
 			if (!lpRcContainer)
@@ -38,7 +38,7 @@ namespace DM
 			}
 			rcContainer = lpRcContainer;
 
-			if (4 == m_nCount)// ָ����4������
+			if (4 == m_nCount)// 指定了4个坐标
 			{
 				if (!Update4(lpRcContainer,rcWindow))
 				{
@@ -47,14 +47,14 @@ namespace DM
 			}
 			else
 			{
-				if (2 == m_nCount)// ָ����2������
+				if (2 == m_nCount)// 指定了2个坐标
 				{
 					if (!Update2(lpRcContainer,rcWindow))
 					{
 						break;
 					}
 				}
-				else if (0 == m_nCount && // ʹ�����������ֿ��ÿռ䷽ʽ
+				else if (0 == m_nCount && // 使用了填满布局可用空间方式
 					((m_uPositionType&SizeX_FitParent)&&(m_uPositionType &SizeY_FitParent)))
 				{
 					if (!UpdateFull(lpRcContainer,rcWindow))
@@ -62,7 +62,7 @@ namespace DM
 						break;
 					}
 				}
-				else// �Զ��Ű�
+				else// 自动排版
 				{
 					if (!UpdateAuto(lpRcContainer,rcWindow))
 					{
@@ -76,13 +76,13 @@ namespace DM
 			{
 				CRect rcMeasure;
 				if (DM_ECODE_NOLOOP != pParent->DV_GetChildMeasureLayout(rcMeasure))
-				{// �����Ӵ��ڵ�������ڸ����ڵ�m_rcWindow����������֧�ָ����ڴ�����
-					rcWindow = rcWindow & rcContainer;// �����������ܳ�����������
+				{// 允许子窗口的区域大于父窗口的m_rcWindow，这样才能支持父窗口带滚动
+					rcWindow = rcWindow & rcContainer;// 锁定子区域不能超过容器区域
 				}
 			}
 			else
 			{
-				rcWindow = rcWindow & rcContainer;// �����������ܳ�����������
+				rcWindow = rcWindow & rcContainer;// 锁定子区域不能超过容器区域
 			}
 			
 			iErr = DM_ECODE_OK;
@@ -106,7 +106,7 @@ namespace DM
 				}
 				else
 				{
-					// �������겻��Ҫ����
+					// 绝对坐标不需要重置
 				}
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
@@ -118,7 +118,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ����--------------------------
+	// 辅助--------------------------
 	bool Layout::ParseChildPosition(DM::CList<DUIWindow*> *pList)
 	{
 		CRect rcContainer;
@@ -130,7 +130,7 @@ namespace DM
 			POSITION posOld	  = pos;
 			DUIWindow *pChild = pList->GetNext(pos);
 			//if (0 == pChild->DM_SendMessage(WM_WINDOWPOSCHANGED,0,(LPARAM)&rcContainer))
-			if (0 == pChild->DM_UpdateLayout(&rcContainer))// ������Ϣ�ˣ�ֱ�ӵ���
+			if (0 == pChild->DM_UpdateLayout(&rcContainer))// 不发消息了，直接调用
 			{
 				pList->RemoveAt(posOld);
 			}
@@ -142,12 +142,12 @@ namespace DM
 
 		if(iCount == pList->GetCount())
 		{
-			DMASSERT_EXPR(0,L"��,����������,������!");
+			DMASSERT_EXPR(0,L"亲,布局有问题,死锁了!");
 			return false;
 		}
 		else
 		{
-			return ParseChildPosition(pList);// �ݹ�
+			return ParseChildPosition(pList);// 递归
 		}
 	}
 
@@ -165,7 +165,7 @@ namespace DM
 				break;
 			}
 
-			// ����item-----------------------------
+			// 解析item-----------------------------
 			POS_ITEM item[4];
 			memset(item,0, sizeof(POS_ITEM)*4);
 			for (int i=0;i<m_nCount;i++)
@@ -174,7 +174,7 @@ namespace DM
 			}
 			if (PIT_OFFSET==item[0].pit||PIT_OFFSET==item[1].pit)
 			{
-				DMASSERT_EXPR(0,L"����ǰ������������ʹ��@!");
+				DMASSERT_EXPR(0,L"布局前两个参数不能使用@!");
 				break;
 			}
 			m_Left = item[0];m_Top = item[1];m_Right = item[2]; m_Bottom = item[3];
@@ -188,7 +188,7 @@ namespace DM
 		return bRet;
 	}
 
-	// ����ParsePostion������m_nCount<4ʱ����---------------------------- 
+	// 仅在ParsePostion解析后，m_nCount<4时调用---------------------------- 
 	bool Layout::ParsePostionType()
 	{
 		bool bRet = false;
@@ -205,27 +205,27 @@ namespace DM
 			}
 			int nWidValue = m_size.cx;
 			int nHeiValue = m_size.cy;
-			// �ȴ���width ------------------------
-			if (-1 == nWidValue && 0 == m_nCount)// ��������������
+			// 先处理width ------------------------
+			if (-1 == nWidValue && 0 == m_nCount)// 填满整个父窗口
 			{
 				m_pOwner->m_rcWindow.right = 0;
 				m_uPositionType			   = (m_uPositionType&~SizeX_Mask) | SizeX_FitParent;
 			}
 			else
 			{
-				if (nWidValue>=0)// ָ������
+				if (nWidValue>=0)// 指定宽度
 				{
 					m_pOwner->m_rcWindow.right = nWidValue;
 					m_uPositionType            = (m_uPositionType&~SizeX_Mask) | SizeX_Specify;
 				}
-				else if(-1 == nWidValue)// ʹ�����ݿ���
+				else if(-1 == nWidValue)// 使用内容宽度
 				{
 					m_pOwner->m_rcWindow.right = 0;
 					m_uPositionType			   = (m_uPositionType&~SizeX_Mask) | SizeX_FitContent;
 				}
 			}
 
-			// �ٴ���Height-----------------------
+			// 再处理Height-----------------------
 			if (-1 == nHeiValue&&0 == m_nCount)
 			{
 				m_pOwner->m_rcWindow.bottom = 0;
@@ -256,20 +256,20 @@ namespace DM
 		{
 			if (strPos.IsEmpty())
 			{
-				DMASSERT_EXPR(0,L"ParseItem���벻Ҫʹ�ÿ�ֵ");
+				DMASSERT_EXPR(0,L"ParseItem项请不要使用空值");
 				break;
 			}
 
 			LPCSTR lpszPos = strPos;
 			switch (lpszPos[0])
 			{
-			case POSFLAG_REFCENTER:		item.pit=PIT_CENTER,	lpszPos++;	break;		// 3.1.��|�������ο������ڵ�����, PIT_CENTER:�ο����������ĵ�,��"|"��ʼ
-			case POSFLAG_PERCENT:		item.pit=PIT_PERCENT,	lpszPos++;	break;		// 3.2. %�������ڸ����ڵİٷֱ�, PIT_PERCENT:ָ���ڸ�����������еİٷֱ�,��"%"��ͷ
-			case POSFLAG_REFPREV_NEAR:  item.pit=PIT_PREV_NEAR, lpszPos++;  break;		// 3.3.��[�������ǰһ�ֵܴ��ڡ�����Xʱ���ο�ǰһ�ֵܴ��ڵ�right������Yʱ�ο�ǰһ�ֵܴ��ڵ�bottom,PIT_PREV_NEAR:�ο�ǰһ���ֵܴ������Լ����ı�
-			case POSFLAG_REFNEXT_NEAR:  item.pit=PIT_NEXT_NEAR, lpszPos++;  break;		// 3.4.��]������ں�һ�ֵܴ��ڡ�����Xʱ���ο���һ�ֵܵ�left,����Yʱ�ο���һ�ֵܵ�top,PIT_NEXT_NEAR:�ο���һ���ֵܴ������Լ����ı�
-			case POSFLAG_REFPREV_FAR:   item.pit=PIT_PREV_FAR,	lpszPos++;  break;		// 3.5.��{�������ǰһ�ֵܴ��ڡ�����Xʱ���ο�ǰһ�ֵܴ��ڵ�left������Yʱ�ο�ǰһ�ֵܴ��ڵ�top,PIT_PREV_FAR:�ο�ǰһ���ֵܴ������Լ�Զ�ı�
-			case POSFLAG_REFNEXT_FAR:   item.pit=PIT_NEXT_FAR,	lpszPos++;	break;		// 3.6.��}������ں�һ�ֵܴ��ڡ�����Xʱ���ο���һ�ֵܵ�right,����Yʱ�ο���һ�ֵܵ�bottom,PIT_NEXT_FAR:�ο���һ���ֵܴ������Լ�Զ�ı�
-			case POSFLAG_DEFSIZE:		item.pit=PIT_OFFSET,	lpszPos++;	break;		// 3.7.@:ָ�����ڵ�size��ֻ������x2,y2������x2ʱ��ָ�����ڵ�width������y2ʱָ�����ڵ�height,PIT_OFFSET:�����ǰ��x1,y1��ƫ��,ֻ����x2,y2��ʹ�ã���@��ͷ
+			case POSFLAG_REFCENTER:		item.pit=PIT_CENTER,	lpszPos++;	break;		// 3.1.“|”代表参考父窗口的中心, PIT_CENTER:参考父窗口中心点,以"|"开始
+			case POSFLAG_PERCENT:		item.pit=PIT_PERCENT,	lpszPos++;	break;		// 3.2. %”代表在父窗口的百分比, PIT_PERCENT:指定在父窗口坐标的中的百分比,以"%"开头
+			case POSFLAG_REFPREV_NEAR:  item.pit=PIT_PREV_NEAR, lpszPos++;  break;		// 3.3.“[”相对于前一兄弟窗口。用于X时，参考前一兄弟窗口的right，用于Y时参考前一兄弟窗口的bottom,PIT_PREV_NEAR:参考前一个兄弟窗口与自己近的边
+			case POSFLAG_REFNEXT_NEAR:  item.pit=PIT_NEXT_NEAR, lpszPos++;  break;		// 3.4.“]”相对于后一兄弟窗口。用于X时，参考后一兄弟的left,用于Y时参考后一兄弟的top,PIT_NEXT_NEAR:参考下一个兄弟窗口与自己近的边
+			case POSFLAG_REFPREV_FAR:   item.pit=PIT_PREV_FAR,	lpszPos++;  break;		// 3.5.“{”相对于前一兄弟窗口。用于X时，参考前一兄弟窗口的left，用于Y时参考前一兄弟窗口的top,PIT_PREV_FAR:参考前一个兄弟窗口与自己远的边
+			case POSFLAG_REFNEXT_FAR:   item.pit=PIT_NEXT_FAR,	lpszPos++;	break;		// 3.6.“}”相对于后一兄弟窗口。用于X时，参考后一兄弟的right,用于Y时参考后一兄弟的bottom,PIT_NEXT_FAR:参考下一个兄弟窗口与自己远的边
+			case POSFLAG_DEFSIZE:		item.pit=PIT_OFFSET,	lpszPos++;	break;		// 3.7.@:指定窗口的size。只能用于x2,y2，用于x2时，指定窗口的width，用于y2时指定窗口的height,PIT_OFFSET:相对于前面x1,y1的偏移,只能在x2,y2中使用，以@开头
 			default: item.pit=PIT_NORMAL;break;
 			}
 
@@ -277,7 +277,7 @@ namespace DM
 			if (L'-' == lpszPos[0])
 			{
 				lpszPos++;
-				if (PIT_PERCENT != item.pit)// �ǰٷֱ�ֵ���ٷֱ�ֵ������ʹ�ø�ֵ
+				if (PIT_PERCENT != item.pit)// 非百分比值，百分比值不允许使用负值
 				{
 					item.bMinus = true;
 				}
@@ -285,7 +285,7 @@ namespace DM
 			item.nPos = (float)atof(lpszPos);
 			if (item.nPos<0.0f && PIT_OFFSET == item.pit) 
 			{
-				DMASSERT_EXPR(0,L"��ʹ��@ʱ�벻Ҫʹ�ø�ֵ,�ڲ�ǿ��ת����ֵ��");
+				DMASSERT_EXPR(0,L"在使用@时请不要使用负值,内部强制转成正值了");
 				item.nPos = DMABS(item.nPos);
 			}
 			bRet = true;
@@ -320,7 +320,7 @@ namespace DM
 		case PIT_PREV_NEAR:
 		case PIT_PREV_FAR:
 			{
-				// ���ǰһ���ֵܴ��ڣ�û�У���ȡ�ø�����
+				// 获得前一个兄弟窗口，没有，则取得父窗口
 				DUIWindow *pRefWnd = m_pOwner->DM_GetWindow(GDW_PREVSIBLING);
 				CRect rcRef;
 				if (pRefWnd)
@@ -334,14 +334,14 @@ namespace DM
 					{
 						pRefWnd->DV_GetChildMeasureLayout(&rcRef);
 						CRect rcTemp = rcRef;
-						rcRef.right = rcTemp.left;// �����ڵ�Զ�����ֵܴ����෴��
+						rcRef.right = rcTemp.left;// 父窗口的远近和兄弟窗口相反了
 						rcRef.left = rcTemp.right;
 						rcRef.top = rcTemp.bottom;
 						rcRef.bottom = rcTemp.top;
 					}
 				}
 
-				if (pRefWnd) //��Ҫȷ���ο������Ƿ���ɲ���
+				if (pRefWnd) //需要确定参考窗口是否完成布局
 				{
 					if (bX)
 					{
@@ -378,13 +378,13 @@ namespace DM
 					{
 						pRefWnd->DV_GetChildMeasureLayout(&rcRef);
 						CRect rcTemp = rcRef;
-						rcRef.right = rcTemp.left;// �����ڵ�Զ�����ֵܴ����෴��
+						rcRef.right = rcTemp.left;// 父窗口的远近和兄弟窗口相反了
 						rcRef.left = rcTemp.right;
 						rcRef.top = rcTemp.bottom;
 						rcRef.bottom = rcTemp.top;
 					}
 				}
-				if (pRefWnd)//��Ҫȷ���ο������Ƿ���ɲ���
+				if (pRefWnd)//需要确定参考窗口是否完成布局
 				{
 					if (bX)
 					{
@@ -425,7 +425,7 @@ namespace DM
 			{
 				if (!IsUnInitPos(rcWindow.left))
 				{
-					rcWindow.right = rcWindow.left+(LONG)m_Right.nPos;// ���PIT_OFFSET���Ǿ��Ǽ��Ͽ���
+					rcWindow.right = rcWindow.left+(LONG)m_Right.nPos;// 如果PIT_OFFSET，那就是加上宽度
 				}
 			}
 			else
@@ -439,7 +439,7 @@ namespace DM
 			{
 				if (!IsUnInitPos(rcWindow.top))
 				{
-					rcWindow.bottom = rcWindow.top+(LONG)m_Bottom.nPos;// ���PIT_OFFSET���Ǿ��Ǽ��ϸ߶�
+					rcWindow.bottom = rcWindow.top+(LONG)m_Bottom.nPos;// 如果PIT_OFFSET，那就是加上高度
 				}
 			}
 			else
@@ -618,7 +618,7 @@ namespace DM
 		{
 			CRect rcContainer;
 
-			// ֧�������ʾ,���԰�����ͳһת������Ļ����
+			// 支持面板显示,所以把它们统一转化成屏幕坐标
 			DUIWindow* pParent = m_pOwner->DM_GetWindow(GDW_PARENT);
 			DMCode iCode = pParent->DV_GetChildMeasureLayout(rcContainer);
 			if (m_pOwner->GetContainer() != g_pMainWnd->GetContainer())
@@ -628,7 +628,7 @@ namespace DM
 			}
 	
 			if (DM_ECODE_NOLOOP != iCode)
-			{// �����Ӵ��ڵ�������ڸ����ڵ�m_rcWindow����������֧�ָ����ڴ�����
+			{// 允许子窗口的区域大于父窗口的m_rcWindow，这样才能支持父窗口带滚动
 				rect.IntersectRect(rect,rcContainer);
 				if (rect.IsRectEmpty())
 				{
@@ -693,7 +693,7 @@ namespace DM
 		case PIT_PREV_NEAR:
 		case PIT_PREV_FAR:
 			{
-				// ���ǰһ���ֵܴ��ڣ�û�У���ȡ�ø�����
+				// 获得前一个兄弟窗口，没有，则取得父窗口
 				DUIWindow *pRefWnd = m_pOwner->DM_GetWindow(GDW_PREVSIBLING);
 				CRect rcRef;
 				if (pRefWnd)
@@ -707,20 +707,20 @@ namespace DM
 					{
 						pRefWnd->DV_GetChildMeasureLayout(&rcRef);
 						CRect rcTemp = rcRef;
-						rcRef.right = rcTemp.left;// �����ڵ�Զ�����ֵܴ����෴��
+						rcRef.right = rcTemp.left;// 父窗口的远近和兄弟窗口相反了
 						rcRef.left = rcTemp.right;
 						rcRef.top = rcTemp.bottom;
 						rcRef.bottom = rcTemp.top;
 					}
 				}
 
-				if (pRefWnd) //��Ҫȷ���ο������Ƿ���ɲ���
+				if (pRefWnd) //需要确定参考窗口是否完成布局
 				{
 					if (bX)
 					{
 						LONG refPos = (item.pit == PIT_PREV_NEAR)?rcRef.right:rcRef.left;
 						if (refPos == POS_INIT||refPos==POS_WAIT)
-							DM_MessageBox(L"���ο��Ĵ���δ��ɲ���");
+							DM_MessageBox(L"被参考的窗口未完成布局");
 						else
 						{
 							nPos = DMABS(nRet - refPos);
@@ -731,7 +731,7 @@ namespace DM
 					{
 						LONG refPos = (item.pit == PIT_PREV_NEAR)?rcRef.bottom:rcRef.top;
 						if(refPos == POS_INIT || refPos==POS_WAIT)
-							DM_MessageBox(L"���ο��Ĵ���δ��ɲ���");
+							DM_MessageBox(L"被参考的窗口未完成布局");
 						else
 						{
 							nPos = nRet - refPos;
@@ -757,19 +757,19 @@ namespace DM
 					{
 						pRefWnd->DV_GetChildMeasureLayout(&rcRef);
 						CRect rcTemp = rcRef;
-						rcRef.right = rcTemp.left;// �����ڵ�Զ�����ֵܴ����෴��
+						rcRef.right = rcTemp.left;// 父窗口的远近和兄弟窗口相反了
 						rcRef.left = rcTemp.right;
 						rcRef.top = rcTemp.bottom;
 						rcRef.bottom = rcTemp.top;
 					}
 				}
-				if (pRefWnd)//��Ҫȷ���ο������Ƿ���ɲ���
+				if (pRefWnd)//需要确定参考窗口是否完成布局
 				{
 					if (bX)
 					{
 						LONG refPos = (item.pit == PIT_NEXT_NEAR)?rcRef.left:rcRef.right;
 						if (refPos == POS_INIT || refPos==POS_WAIT)
-							DM_MessageBox(L"���ο��Ĵ���δ��ɲ���");
+							DM_MessageBox(L"被参考的窗口未完成布局");
 						else
 						{
 							nPos = nRet - refPos;
@@ -779,7 +779,7 @@ namespace DM
 					{
 						LONG refPos = (item.pit == PIT_NEXT_NEAR)?rcRef.top:rcRef.bottom;
 						if(refPos == POS_INIT || refPos==POS_WAIT)
-							DM_MessageBox(L"���ο��Ĵ���δ��ɲ���");
+							DM_MessageBox(L"被参考的窗口未完成布局");
 						else
 						{
 							nPos = nRet - refPos;

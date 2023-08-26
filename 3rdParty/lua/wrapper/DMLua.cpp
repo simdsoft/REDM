@@ -1,4 +1,4 @@
-extern "C" {
+ï»¿extern "C" {
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
@@ -7,7 +7,7 @@ extern "C" {
 #include "DMLua.h"
 namespace DMLUA
 {
-	// ¸¨Öúº¯Êı
+	// è¾…åŠ©å‡½æ•°
 	static int tostring_s64(lua_State *L)
 	{
 		char temp[64];
@@ -137,7 +137,7 @@ namespace DMLUA
 		lua_pushcclosure(L, tostring_u64, 0);
 		lua_rawset(L, -3);
 
-		// ±È½ÏÖ»»áÁ½±ßÔª±í¶¼ÊÇÏàÍ¬µÄÔªËØ²Å»á½øÈë±È½Ï
+		// æ¯”è¾ƒåªä¼šä¸¤è¾¹å…ƒè¡¨éƒ½æ˜¯ç›¸åŒçš„å…ƒç´ æ‰ä¼šè¿›å…¥æ¯”è¾ƒ
 		lua_pushstring(L, "__eq");
 		lua_pushcclosure(L, eq_u64, 0);
 		lua_rawset(L, -3);  
@@ -161,7 +161,7 @@ namespace DMLUA
 
 	void close(lua_State *L)
 	{
-		//Ïú»ÙÖ¸¶¨ Lua ×´Ì¬»úÖĞµÄËùÓĞ¶ÔÏó£¨Èç¹ûÓĞÀ¬»øÊÕ¼¯Ïà¹ØµÄÔª·½·¨µÄ»°£¬»áµ÷ÓÃËüÃÇ),²¢ÇÒÊÍ·Å×´Ì¬»úÖĞÊ¹ÓÃµÄËùÓĞ¶¯Ì¬ÄÚ´æ
+		//é”€æ¯æŒ‡å®š Lua çŠ¶æ€æœºä¸­çš„æ‰€æœ‰å¯¹è±¡ï¼ˆå¦‚æœæœ‰åƒåœ¾æ”¶é›†ç›¸å…³çš„å…ƒæ–¹æ³•çš„è¯ï¼Œä¼šè°ƒç”¨å®ƒä»¬),å¹¶ä¸”é‡Šæ”¾çŠ¶æ€æœºä¸­ä½¿ç”¨çš„æ‰€æœ‰åŠ¨æ€å†…å­˜
 		lua_close(L);
 	}
 
@@ -689,92 +689,92 @@ namespace DMLUA
 	// --------------------------------------------------------
 	int meta_get(lua_State *L)
 	{
-		// ´«Èë±í ºÍ Ë÷Òı²ÎÊı
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 
+		// ä¼ å…¥è¡¨ å’Œ ç´¢å¼•å‚æ•°
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 
 		lua_getmetatable(L,1);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table)
 		lua_pushvalue(L,2);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.±äÁ¿(string)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.å˜é‡(string)
 		lua_rawget(L,-2);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.meta[±äÁ¿]valueÖµ(userdata)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.meta[å˜é‡]valueå€¼(userdata)
 
-		// Èç¹û´æÔÚuserdata ´æÔÚ¸Ã±äÁ¿
+		// å¦‚æœå­˜åœ¨userdata å­˜åœ¨è¯¥å˜é‡
 		if(lua_isuserdata(L,-1))
 		{
 			user2type<var_base*>::invoke(L,-1)->get(L);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.meta[±äÁ¿]valueÖµ(userdata) 5.Êµ¼ÊÖµ
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.meta[å˜é‡]valueå€¼(userdata) 5.å®é™…å€¼
 			lua_remove(L, -2);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.Êµ¼ÊÖµ
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.å®é™…å€¼
 		}
 		else if(lua_isnil(L,-1))
 		{
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.nil
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.nil
 			lua_remove(L,-1);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 
 			invoke_parent(L);
 			// fix bug by fergus
-			// µ÷ÓÃ¸¸ÀàÒ²Ğèµ÷ÓÃget
+			// è°ƒç”¨çˆ¶ç±»ä¹Ÿéœ€è°ƒç”¨get
 			if(lua_isuserdata(L,-1))
 			{
-				// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.¸¸ÀàÖĞµÄ±äÁ¿(userdata) 
+				// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.çˆ¶ç±»ä¸­çš„å˜é‡(userdata) 
 				user2type<var_base*>::invoke(L,-1)->get(L);
-				// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.¸¸ÀàÖĞµÄ±äÁ¿(userdata) 5.Êµ¼ÊÖµ
+				// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.çˆ¶ç±»ä¸­çš„å˜é‡(userdata) 5.å®é™…å€¼
 				lua_remove(L, -2);
-				// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.Êµ¼ÊÖµ
+				// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.å®é™…å€¼
 			}
 			else if(lua_isnil(L,-1))
 			{
-				// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.meta(table) 4.nil
+				// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.meta(table) 4.nil
 				lua_pushfstring(L, "can't find '%s' class variable. (forgot registering class variable ?)", lua_tostring(L, 2));
 				lua_error(L);
 			}
 		} 
 
 		lua_remove(L,-2);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Êµ¼ÊÖµ
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.å®é™…å€¼
 
 		return 1;
 	}
 	
 	int meta_set(lua_State *L)
 	{
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼
 		lua_getmetatable(L,1);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table)
 		lua_pushvalue(L,2);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.±äÁ¿(string)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.å˜é‡(string)
 		lua_rawget(L,-2);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.meta[±äÁ¿](userdata mem_varÖ¸Õë)
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.meta[å˜é‡](userdata mem_varæŒ‡é’ˆ)
 
 		if(lua_isuserdata(L,-1))
 		{
 			user2type<var_base*>::invoke(L,-1)->set(L);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.meta[±äÁ¿](userdata mem_varÖ¸Õë)
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.meta[å˜é‡](userdata mem_varæŒ‡é’ˆ)
 		}
 		else if(lua_isnil(L, -1))
 		{
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.nil
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.nil
 			lua_remove(L,-1);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table)
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table)
 			lua_pushvalue(L,2);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.±äÁ¿(string)
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.å˜é‡(string)
 			lua_pushvalue(L,4);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.±äÁ¿(string) 6.Ààmeta(table)
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.å˜é‡(string) 6.ç±»meta(table)
 			invoke_parent(L);
-			// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.±äÁ¿(string) 6.Ààmeta(table) 7.»ñÈ¡µ½¸¸ÀàµÄ±äÁ¿(userdata mem_varÖ¸Õë)
+			// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.å˜é‡(string) 6.ç±»meta(table) 7.è·å–åˆ°çˆ¶ç±»çš„å˜é‡(userdata mem_varæŒ‡é’ˆ)
 			if(lua_isuserdata(L,-1))
 			{
 				user2type<var_base*>::invoke(L,-1)->set(L);
 			}
 			else if(lua_isnil(L,-1))
 			{
-				// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ 4.Ààmeta(table) 5.±äÁ¿(string) 6.Ààmeta(table) 7.nil
+				// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼ 4.ç±»meta(table) 5.å˜é‡(string) 6.ç±»meta(table) 7.nil
 				lua_pushfstring(L, "can't find '%s' class variable. (forgot registering class variable ?)", lua_tostring(L, 2));
 				lua_error(L);
 			}
 		}
 		lua_settop(L, 3);
-		// stack: 1.Àà(userdata) 2.±äÁ¿(string) 3.Òª¸³µÄÖµ
+		// stack: 1.ç±»(userdata) 2.å˜é‡(string) 3.è¦èµ‹çš„å€¼
 		return 0;
 	}
 

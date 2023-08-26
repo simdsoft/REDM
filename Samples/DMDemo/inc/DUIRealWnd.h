@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIRealWnd.h 
-// File Des: ÕæÊµ´°¿Ú
+// File Des: ØµÙˆØªÂµÂ´Â°ØŸØ¹
 // File Summary: 
 // Cur Version: 1.0
 // Author:

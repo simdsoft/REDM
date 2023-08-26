@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	IDMDraw.h
 // File mark:   
-// File summary:Ö¸¶¨»æÖÆÂß¼­£¬Ã¿¸öDMHWnd¿É×Ô¶¨ÒåÒ»¸ö×ÔÉíµÄ»æÖÆÂß¼­
+// File summary:æŒ‡å®šç»˜åˆ¶é€»è¾‘ï¼Œæ¯ä¸ªDMHWndå¯è‡ªå®šä¹‰ä¸€ä¸ªè‡ªèº«çš„ç»˜åˆ¶é€»è¾‘
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2015-3-10
@@ -14,25 +14,25 @@
 namespace DM
 {
 	/// <summary>
-	///		»æÖÆ¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Draw"/>
+	///		ç»˜åˆ¶å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Draw"/>
 	/// </summary>
 	class IDMDraw:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMDraw,"IDMDraw",DMREG_Draw);
 	public:
-		// DUIÍ¨ÓÃ»æÖÆ
-		virtual  DMCode DrawBackground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 			///< »æÖÆ±³¾°
-		virtual  DMCode DrawForeground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 			///< »æÖÆÇ°¾°
-		virtual  DMCode Draw(IDMCanvas* pCanvas, IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 					///< »æÖÆ,»æÖÆºóÒ»°ãÎŞĞ§Çø»á±»Çå¿Õ
+		// DUIé€šç”¨ç»˜åˆ¶
+		virtual  DMCode DrawBackground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 			///< ç»˜åˆ¶èƒŒæ™¯
+		virtual  DMCode DrawForeground(IDMCanvas* pCanvas,IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 			///< ç»˜åˆ¶å‰æ™¯
+		virtual  DMCode Draw(IDMCanvas* pCanvas, IDMRegion* lpRgn,DUIWindow* pWnd) = 0; 					///< ç»˜åˆ¶,ç»˜åˆ¶åä¸€èˆ¬æ— æ•ˆåŒºä¼šè¢«æ¸…ç©º
 		
-		// DMHWndÎŞĞ§Çø+×ÔÉí»æÖÆ
-		virtual  DMCode InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					    ///< ÉèÖÃÎŞĞ§Çø
-		virtual  int    GetInvalidateRect(DM::CArray<CRect>& Array) = 0;									///< µÃµ½ÎŞĞ§¾ØĞÎÁĞ±í,·µ»Ø¸öÊı
-		virtual  bool   IsInvalidate() = 0;																	///< ÊÇ·ñ´æÔÚÎŞĞ§Çø
-		virtual  DMCode Render(DUIWindow* pWnd) = 0;														///< ¸ù¾İÎŞĞ§ÇøÁĞ±í½øĞĞ»æÖÆ,pWndÒ»°ãÎªDMHWndËùÔÚDUIWindow
+		// DMHWndæ— æ•ˆåŒº+è‡ªèº«ç»˜åˆ¶
+		virtual  DMCode InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					    ///< è®¾ç½®æ— æ•ˆåŒº
+		virtual  int    GetInvalidateRect(DM::CArray<CRect>& Array) = 0;									///< å¾—åˆ°æ— æ•ˆçŸ©å½¢åˆ—è¡¨,è¿”å›ä¸ªæ•°
+		virtual  bool   IsInvalidate() = 0;																	///< æ˜¯å¦å­˜åœ¨æ— æ•ˆåŒº
+		virtual  DMCode Render(DUIWindow* pWnd) = 0;														///< æ ¹æ®æ— æ•ˆåŒºåˆ—è¡¨è¿›è¡Œç»˜åˆ¶,pWndä¸€èˆ¬ä¸ºDMHWndæ‰€åœ¨DUIWindow
 		
-		virtual  DMCode GetCanvas(IDMCanvas** ppCanvas) = 0;                                                ///< È¡µÃ»æÖÆ»­²¼,ÄÚ²¿»á×Ô¶¯Ôö¼ÓÒıÓÃ¼ÆÊı,ÇëÊ¹ÓÃÖÇÄÜÖ¸Õë
-		virtual  DMCode ResizeCanvas(SIZE size) = 0;														///< ÖØÉè»æÖÆ»­²¼´óĞ¡
+		virtual  DMCode GetCanvas(IDMCanvas** ppCanvas) = 0;                                                ///< å–å¾—ç»˜åˆ¶ç”»å¸ƒ,å†…éƒ¨ä¼šè‡ªåŠ¨å¢åŠ å¼•ç”¨è®¡æ•°,è¯·ä½¿ç”¨æ™ºèƒ½æŒ‡é’ˆ
+		virtual  DMCode ResizeCanvas(SIZE size) = 0;														///< é‡è®¾ç»˜åˆ¶ç”»å¸ƒå¤§å°
 
 	};
 

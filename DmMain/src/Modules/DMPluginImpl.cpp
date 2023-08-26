@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMPluginImpl.h"
 #include "DMLogImpl.h"
 #include "DMAttributeImpl.h"
@@ -61,7 +61,7 @@ namespace DM
 	void DMPluginImpl::Install()
 	{
 		DMCode iErr = DM_ECODE_OK;
-		// Ä¬ÈÏLog -----------------------------
+		// é»˜è®¤Log -----------------------------
 #ifdef DMLOG_ON
 		iErr = g_pDMApp->Register(DMRegHelperT<DMLogImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "fail DMLogImpl");
@@ -69,37 +69,37 @@ namespace DM
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set Log obj fail");
 #endif //DMLOG_ON 
 
-		// Ä¬ÈÏAttribute,±ØÐëÔÚÆäËû½âÎöÖ®Ç°£¬ÒòÎªÆäËû½âÎöµÄÊµÀý¿ÉÄÜÊ¹ÓÃµ½Ëü
+		// é»˜è®¤Attribute,å¿…é¡»åœ¨å…¶ä»–è§£æžä¹‹å‰ï¼Œå› ä¸ºå…¶ä»–è§£æžçš„å®žä¾‹å¯èƒ½ä½¿ç”¨åˆ°å®ƒ
 		iErr = g_pDMApp->Register(DMRegHelperT<DMAttributeImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMAttributeImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMAttributeImpl::GetClassName(),DMAttributeImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMAttributeImpl fail");
 
-		// Ä¬ÈÏ½âÂëÆ÷ ----------------------------
+		// é»˜è®¤è§£ç å™¨ ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMImgDecoderImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImgDecoderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMImgDecoderImpl::GetClassName(),DMImgDecoderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMImgDecoderImpl fail");
 
-		// Ä¬ÈÏRes -------------------------------
+		// é»˜è®¤Res -------------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMResFolderImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMResFolderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMResFolderImpl::GetClassName(),DMResFolderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMResFolderImpl fail");
 
-		// Ä¬ÈÏRender-----------------------------
+		// é»˜è®¤Render-----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMRenderImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMRenderImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMRenderImpl::GetClassName(),DMRenderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMRenderImpl fail");
 
-		// Ä¬ÈÏDraw-----------------------------
+		// é»˜è®¤Draw-----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMDrawImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMDrawImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMDrawImpl::GetClassName(),DMDrawImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "set DMDrawImpl fail");
 
-		// Ä¬ÈÏSkin -----------------------------
+		// é»˜è®¤Skin -----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMImgListSkinImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImgListSkinImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMImgListSkinImpl::GetClassName(),DMImgListSkinImpl::GetClassType());
@@ -107,34 +107,34 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DMScrollBarSkinImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMImg9SkinImpl fail");
 
-		// Ä¬ÈÏStyle -----------------------------
+		// é»˜è®¤Style -----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMStyleImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMStyleImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMStyleImpl::GetClassName(),DMStyleImpl::GetClassType());
 
-		// Ä¬ÈÏLayout ----------------------------
+		// é»˜è®¤Layout ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMLayoutImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMLayoutImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMLayoutImpl::GetClassName(),DMLayoutImpl::GetClassType());
 
-		// ÄÚÖÃTooltip ---------------------------
+		// å†…ç½®Tooltip ---------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTooltipImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTooltipImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTooltipImpl::GetClassName(),DMTooltipImpl::GetClassType());
 
 #if !defined(DM_EXCLUDE_MUI)
-		// ÄÚÖÃTrans ---------------------------
+		// å†…ç½®Trans ---------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTransImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTransImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTransImpl::GetClassName(),DMTransImpl::GetClassType());
 #endif
 
-		// ÄÚÖÃTaskRunner-----------------------
+		// å†…ç½®TaskRunner-----------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DMTaskRunnerImpl>(),true);
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "reg DMTaskRunnerImpl fail");
 		iErr = g_pDMApp->SetDefRegObj(DMTaskRunnerImpl::GetClassName(),DMTaskRunnerImpl::GetClassType());
 
-		// ÄÚÖÃWidget ----------------------------
+		// å†…ç½®Widget ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIWindow>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIButton>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIScrollBase>(),true);
@@ -147,13 +147,13 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIListBoxEx>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIRichEdit>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIEdit>(),true);
-		new DUIEditHelper;// ºÍeditÏà¹Ø
+		new DUIEditHelper;// å’Œeditç›¸å…³
 		iErr = g_pDMApp->Register(DMRegHelperT<DUILabel>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUILink>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIComboBox>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIGif>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIPngGif>(),true);
-#if !defined(_WIN64)// flashÔÝ²»Ö§³ÖX64,ºóÐøµ÷ÕûÏÂ
+#if !defined(_WIN64)// flashæš‚ä¸æ”¯æŒX64,åŽç»­è°ƒæ•´ä¸‹
 #if !defined(DM_EXCLUDE_ACTIVEX)
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIFlash>(),true);
 #endif
@@ -176,7 +176,7 @@ namespace DM
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIRectTracker>(),true);
 		
 
-		// ÄÚÖÃFlowLayout ----------------------------
+		// å†…ç½®FlowLayout ----------------------------
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIVLayout>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIHLayout>(),true);
 		iErr = g_pDMApp->Register(DMRegHelperT<DUIWrapLayout>(),true);
@@ -188,51 +188,51 @@ namespace DM
 	{
 		g_pDMApp->UnRegister(DUIRichEdit::GetClassName(),DUIRichEdit::GetClassType());
 		g_pDMApp->UnRegister(DUIEdit::GetClassName(),DUIEdit::GetClassType());
-		delete DUIEditHelper::getSingletonPtr();// ºÍeditÏà¹Ø
+		delete DUIEditHelper::getSingletonPtr();// å’Œeditç›¸å…³
 
 
-#if 0 // Ö»ÊÇ×ö¸öÊ¾Àý,Ä¬ÈÏ²»¿ªÆô£¡£¡£¡
+#if 0 // åªæ˜¯åšä¸ªç¤ºä¾‹,é»˜è®¤ä¸å¼€å¯ï¼ï¼ï¼
 		DMCode iErr = DM_ECODE_OK;
-		// Ä¬ÈÏLog -----------------------------
+		// é»˜è®¤Log -----------------------------
 #ifdef DMLOG_ON
 		iErr = g_pDMApp->UnRegister(DMLogImpl::GetClassName(),DMLogImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMLogImpl fail");
 #endif //DMLOG_ON 
 
-		// Ä¬ÈÏAttribute,±ØÐëÔÚÆäËû½âÎöÖ®Ç°£¬ÒòÎªÆäËû½âÎöµÄÊµÀý¿ÉÄÜÊ¹ÓÃµ½Ëü
+		// é»˜è®¤Attribute,å¿…é¡»åœ¨å…¶ä»–è§£æžä¹‹å‰ï¼Œå› ä¸ºå…¶ä»–è§£æžçš„å®žä¾‹å¯èƒ½ä½¿ç”¨åˆ°å®ƒ
 		iErr = g_pDMApp->UnRegister(DMAttributeImpl::GetClassName(),DMAttributeImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMAttributeImpl fail");
 		
 
-		// Ä¬ÈÏ½âÂëÆ÷ ----------------------------
+		// é»˜è®¤è§£ç å™¨ ----------------------------
 		iErr = g_pDMApp->UnRegister(DMImgDecoderImpl::GetClassName(),DMImgDecoderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), L"unreg DMImgDecoderImpl fail");
 	
-		// Ä¬ÈÏRes -------------------------------
+		// é»˜è®¤Res -------------------------------
 		iErr = g_pDMApp->UnRegister(DMResFolderImpl::GetClassName(),DMResFolderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMResFolderImpl fail");
 
-		// Ä¬ÈÏRender-----------------------------
+		// é»˜è®¤Render-----------------------------
 		iErr = g_pDMApp->UnRegister(DMRenderImpl::GetClassName(),DMRenderImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg DMRenderImpl fail");
 
-		// Ä¬ÈÏSkin -----------------------------
+		// é»˜è®¤Skin -----------------------------
 		iErr = g_pDMApp->UnRegister(DMImgListSkinImpl::GetClassName(),DMImgListSkinImpl::GetClassType());
 		iErr = g_pDMApp->UnRegister(DMImg9SkinImpl::GetClassName(),DMImg9SkinImpl::GetClassType());
 		iErr = g_pDMApp->UnRegister(DMScrollBarSkinImpl::GetClassName(),DMScrollBarSkinImpl::GetClassType());
 
-		// Ä¬ÈÏStyle -----------------------------
+		// é»˜è®¤Style -----------------------------
 		iErr = g_pDMApp->UnRegister(DMStyleImpl::GetClassName(),DMStyleImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg fail DMStyleImpl fail");
 	
-		// Ä¬ÈÏLayout ----------------------------
+		// é»˜è®¤Layout ----------------------------
 		iErr = g_pDMApp->UnRegister(DMLayoutImpl::GetClassName(),DMLayoutImpl::GetClassType());
 		DMASSERT_MSG(DMSUCCEEDED(iErr), "unreg fail DMLayoutImpl fail");
 	
-		// ÄÚÖÃWidget ----------------------------
+		// å†…ç½®Widget ----------------------------
 		iErr = g_pDMApp->UnRegister(DUIWindow::GetClassName(),DUIWindow::GetClassType());
 
-		// ÄÚÖÃFlowLayout ----------------------------
+		// å†…ç½®FlowLayout ----------------------------
 		iErr = g_pDMApp->UnRegister(DUIVLayout::GetClassName(),DUIVLayout::GetClassType());
 		iErr = g_pDMApp->UnRegister(DUIHLayout::GetClassName(),DUIHLayout::GetClassType());
 		iErr = g_pDMApp->UnRegister(DUIWrapLayout::GetClassName(),DUIWrapLayout::GetClassType());

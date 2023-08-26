@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMHDialog.h 
-// File Des: Ö÷´°¿ÚÀà,ÓÃÓÚCDialogÏà¹ØDoModal
+// File Des: ä¸»çª—å£ç±»,ç”¨äºCDialogç›¸å…³DoModal
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,7 +18,7 @@
 namespace DM
 {
 	/// <summary>
-	///		 Ö÷´°¿ÚÀà,ÓÃÓÚCDialogÏà¹ØDoModal
+	///		 ä¸»çª—å£ç±»,ç”¨äºCDialogç›¸å…³DoModal
 	/// </summary>
 	class DM_EXPORT DMHDialog:public DMHWnd
 	{
@@ -35,7 +35,7 @@ namespace DM
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 
 	protected:
-		DECLARE_MSG_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MSG_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 		DECLARE_EVENT_MAP()
 
 	protected:

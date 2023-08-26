@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIHeaderCtrl.h 
-// File Des: ÄÚÖÃÁĞ±íÍ·ÊµÏÖ
+// File Des: å†…ç½®åˆ—è¡¨å¤´å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,29 +18,29 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIHeaderCtrl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIHeaderCtrl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIHeaderCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* SKIN_itemskin;                                             ///< item×´Ì¬Í¼,Ê¾Àı:itemskin="itemskin"
-		static const char* SKIN_sortskin;                                             ///< Ä¬ÈÏµÄsort×´Ì¬Í¼(Ğ¡Èı½Ç),Ê¾Àı:sortskin="sortskin"
-		static const char* COLOR_clritembg;										   ///< itemÏîµÄ±³¾°É«,Ê¾Àı:clritembg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemhoverbg;									   ///< itemÏîµÄÍ£Áô±³¾°É«,Ê¾Àı:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemselbg;                                        ///< itemÏîµÄ°´ÏÂ±³¾°É«,Ê¾Àı:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static const char* RECT_rcitemmargin;										   ///< itemÏîµÄËÄ±ß¿ò,ÒâË¼ÏÈËõĞ¡ËÄ±ß,ÔÙ»æskin»òÑÕÉ«,Ê¾Àı:rcitemmargin="0,0,0,0"
-		static const char* INT_itemdelta;                                             ///< Ã¿¸öItem×Ô¼º×óÓÒµÄ²îÖµ¾àÀë,Ê¾Àı:itemdelta="2"
-		static const char* bool_bfixwidth;											   ///< ¹Ì¶¨¿í¶È£¬Ä¬ÈÏÊÇ¿É±ä¿í¶ÈµÄ,Ê¾Àı:bfixwidth="1"
-		static const char* bool_bswap;                                                ///< ÔÊĞí½»»»ÁĞ,ÔÊĞíÍÏ¶¯½»»»ÁĞ,Ê¾Àı:bswap="1"
-		static const char* bool_bsort;                                                ///< ÔÊĞíÅÅĞòsort,ÅäºÏlist·¢ËÍÅÅĞòÏûÏ¢,Ê¾Àı:bsort="1"
+		static const char* SKIN_itemskin;                                             ///< itemçŠ¶æ€å›¾,ç¤ºä¾‹:itemskin="itemskin"
+		static const char* SKIN_sortskin;                                             ///< é»˜è®¤çš„sortçŠ¶æ€å›¾(å°ä¸‰è§’),ç¤ºä¾‹:sortskin="sortskin"
+		static const char* COLOR_clritembg;										   ///< itemé¡¹çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;									   ///< itemé¡¹çš„åœç•™èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                        ///< itemé¡¹çš„æŒ‰ä¸‹èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* RECT_rcitemmargin;										   ///< itemé¡¹çš„å››è¾¹æ¡†,æ„æ€å…ˆç¼©å°å››è¾¹,å†ç»˜skinæˆ–é¢œè‰²,ç¤ºä¾‹:rcitemmargin="0,0,0,0"
+		static const char* INT_itemdelta;                                             ///< æ¯ä¸ªItemè‡ªå·±å·¦å³çš„å·®å€¼è·ç¦»,ç¤ºä¾‹:itemdelta="2"
+		static const char* bool_bfixwidth;											   ///< å›ºå®šå®½åº¦ï¼Œé»˜è®¤æ˜¯å¯å˜å®½åº¦çš„,ç¤ºä¾‹:bfixwidth="1"
+		static const char* bool_bswap;                                                ///< å…è®¸äº¤æ¢åˆ—,å…è®¸æ‹–åŠ¨äº¤æ¢åˆ—,ç¤ºä¾‹:bswap="1"
+		static const char* bool_bsort;                                                ///< å…è®¸æ’åºsort,é…åˆlistå‘é€æ’åºæ¶ˆæ¯,ç¤ºä¾‹:bsort="1"
 
-		/// itemÏîÏà¹Ø
-		static const char* NODE_item;                                                 ///< ÏîXML½áµã
-		static const char* ITEM_width;                                                ///< ÏîµÄ¿í¶È,Ê¾Àı:width="100"
-		static const char* ITEM_skin;                                                 ///< ÏîµÄ×´Ì¬Á¬Í¼,Èç²»´æÔÚ£¬ÔòÊ¹ÓÃÄ¬ÈÏµÄitem×´Ì¬Í¼,Ê¾Àı,skin="skin"
-		static const char* ITEM_text;                                                 ///< ÏîµÄÎÄ±¾,Ê¾Àı:text="¿ÉÍÏ¶¯"
-		static const char* ITEM_data;                                                 ///< ÏîµÄ¸½¼ÓÊı¾İ,Ê¾Àı:data="100"
-		static const char* ITEM_stflag;                                               ///< ÏîµÄÅÅĞò(½áºÏlist),·ÖÎªÕı³£0£¬´ÓĞ¡µ½´ó1,´Ó´óµ½Ğ¡2£¬Ê¾Àı:stflag="0"
+		/// itemé¡¹ç›¸å…³
+		static const char* NODE_item;                                                 ///< é¡¹XMLç»“ç‚¹
+		static const char* ITEM_width;                                                ///< é¡¹çš„å®½åº¦,ç¤ºä¾‹:width="100"
+		static const char* ITEM_skin;                                                 ///< é¡¹çš„çŠ¶æ€è¿å›¾,å¦‚ä¸å­˜åœ¨ï¼Œåˆ™ä½¿ç”¨é»˜è®¤çš„itemçŠ¶æ€å›¾,ç¤ºä¾‹,skin="skin"
+		static const char* ITEM_text;                                                 ///< é¡¹çš„æ–‡æœ¬,ç¤ºä¾‹:text="å¯æ‹–åŠ¨"
+		static const char* ITEM_data;                                                 ///< é¡¹çš„é™„åŠ æ•°æ®,ç¤ºä¾‹:data="100"
+		static const char* ITEM_stflag;                                               ///< é¡¹çš„æ’åº(ç»“åˆlist),åˆ†ä¸ºæ­£å¸¸0ï¼Œä»å°åˆ°å¤§1,ä»å¤§åˆ°å°2ï¼Œç¤ºä¾‹:stflag="0"
 	};
 	DMAttrValueInit(DUIHeaderCtrlAttr,SKIN_itemskin)DMAttrValueInit(DUIHeaderCtrlAttr,SKIN_sortskin)
 	DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritembg)DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritemhoverbg)DMAttrValueInit(DUIHeaderCtrlAttr,COLOR_clritemselbg)
@@ -58,7 +58,7 @@ namespace DM
 #define DMHDI_LPARAM              0x0008
 #define DMHDI_ORDER               0x0010
 	/// <summary>
-	///		 ¼ÇÂ¼µ±Ç°ÏîÅÅĞò×´Ì¬
+	///		 è®°å½•å½“å‰é¡¹æ’åºçŠ¶æ€
 	/// </summary>
 	typedef enum _DMHDSORTFLAG
 	{
@@ -67,7 +67,7 @@ namespace DM
 		DMT_DOWN,
 	}DMHDSORTFLAG;
 	/// <summary>
-	///		 ·ÂHDITEM,ÔÊĞíÃ¿¸öitemÊ¹ÓÃÒ»¸ö×´Ì¬Á¬Í¼,ulState¼ÇÂ¼ÁË×´Ì¬
+	///		 ä»¿HDITEM,å…è®¸æ¯ä¸ªitemä½¿ç”¨ä¸€ä¸ªçŠ¶æ€è¿å›¾,ulStateè®°å½•äº†çŠ¶æ€
 	/// </summary>
 	typedef struct _DMHDITEM
 	{
@@ -98,7 +98,7 @@ namespace DM
 	} DMHDITEM, *LPDMHDITEM;
 
 	/// <summary>
-	///		 DUIHeaderCtrlµÄÄÚÖÃÊµÏÖ
+	///		 DUIHeaderCtrlçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIHeaderCtrl: public DUIWindow,public DMArrayT<LPDMHDITEM>
 	{
@@ -108,7 +108,7 @@ namespace DM
 		~DUIHeaderCtrl();
 	public:
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æ¥å£
 		//---------------------------------------------------
 		int InsertItem(int nIndex, DMXmlNode&XmlNode);
 		bool GetItem(int iItem,DMHDITEM* pItem);
@@ -120,7 +120,7 @@ namespace DM
 		void DeleteAllItems();
 
 
-	public:// »æÖÆ£¡£¡£¡£¡
+	public:// ç»˜åˆ¶ï¼ï¼ï¼ï¼
 		virtual void DrawItem(IDMCanvas* pCanvas, CRect& rc, const LPDMHDITEM pItem);
 		void RedrawItem(int iItem);
 
@@ -136,7 +136,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnLButtonDown(UINT nFlags,CPoint pt);
@@ -148,17 +148,17 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¿ÉÖØÔØº¯Êı
+		// Function Des: å¯é‡è½½å‡½æ•°
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
-	    DMCode DV_OnSetCursor(const CPoint &pt);             // ÉèÖÃµ±Ç°µÄ¹â±ê,ÓÃÓÚÁ½¸öitemÖ®¼ä±ä³ÉIDC_SIZEWE¹â±ê
+	    DMCode DV_OnSetCursor(const CPoint &pt);             // è®¾ç½®å½“å‰çš„å…‰æ ‡,ç”¨äºä¸¤ä¸ªitemä¹‹é—´å˜æˆIDC_SIZEWEå…‰æ ‡
 
 
 	public:
 		void PreArrayObjRemove(const LPDMHDITEM &obj);
 
-	public:// ¸¨Öú
-		DWORD HitTest(CPoint pt);													 ///< Èç¹ûÎ»ÓÚÁ½¸öitemÖ®¼ä£¬¸ßÎ»ºÍµÍÎ»²»Í¬£¬·ñÔòÏàÍ¬
+	public:// è¾…åŠ©
+		DWORD HitTest(CPoint pt);													 ///< å¦‚æœä½äºä¸¤ä¸ªitemä¹‹é—´ï¼Œé«˜ä½å’Œä½ä½ä¸åŒï¼Œå¦åˆ™ç›¸åŒ
 		bool IsItemHover(DWORD dwHitTest);
 		void CreateDragCanvas(UINT iItem);
 	    void DrawDraggingState(DWORD dwDragTo);
@@ -180,21 +180,21 @@ namespace DM
 	public:
 		DMCode OnAttributeItemSkin(LPCSTR lpszValue, bool bLoadXml);
 	public:
-		IDMSkin*											m_pItemSkin;			///< ±íÍ·Ïî»æÖÆSkin
-		IDMSkin*											m_pSortSkin;			///< ÅÅĞò±êÖ¾Skin
-		DMColor											    m_crItemBg[3];          ///< item±³¾°µÄÈıÌ¬,ÔÚitemÃ»ÓĞskinÊ±Ê¹ÓÃ
-		CRect                                               m_rcItemMargin;			///< itemÏîµÄËÄ±ß¿ò,ÒâË¼ÏÈËõĞ¡ËÄ±ß,ÔÙ»æskin»òÑÕÉ«
-		bool											    m_bFixWidth;			///< ±íÏî¿í¶È¹Ì¶¨¿ª¹Ø
-		bool												m_bSort;				///< ±íÍ·¿ÉÒÔµã»÷ÅÅĞò
-		bool											    m_bSwap;				///< ÔÊĞíÍÏ¶¯µ÷ÕûÎ»ÖÃ¿ª¹Ø
+		IDMSkin*											m_pItemSkin;			///< è¡¨å¤´é¡¹ç»˜åˆ¶Skin
+		IDMSkin*											m_pSortSkin;			///< æ’åºæ ‡å¿—Skin
+		DMColor											    m_crItemBg[3];          ///< itemèƒŒæ™¯çš„ä¸‰æ€,åœ¨itemæ²¡æœ‰skinæ—¶ä½¿ç”¨
+		CRect                                               m_rcItemMargin;			///< itemé¡¹çš„å››è¾¹æ¡†,æ„æ€å…ˆç¼©å°å››è¾¹,å†ç»˜skinæˆ–é¢œè‰²
+		bool											    m_bFixWidth;			///< è¡¨é¡¹å®½åº¦å›ºå®šå¼€å…³
+		bool												m_bSort;				///< è¡¨å¤´å¯ä»¥ç‚¹å‡»æ’åº
+		bool											    m_bSwap;				///< å…è®¸æ‹–åŠ¨è°ƒæ•´ä½ç½®å¼€å…³
 
-		bool												m_bDragging;			///< ÕıÔÚÍÏ¶¯±êÖ¾
-		DMSmartPtrT<IDMCanvas>								m_pDragCanvas;		    ///< ÏÔÊ¾ÍÏ¶¯´°¿ÚµÄÁÙÊ±»­²¼
-		CPoint												m_ptClick;				///< µ±Ç°µã»÷×ø±ê
-		DWORD												m_dwHitTest;			///< Êó±êÎ»ÖÃ
-		DWORD												m_dwDragTo;				///< ÍÏ·ÅÄ¿±ê    
-		int													m_nAdjItemOldWidth;		///< ±£´æ±»ÍÏ¶¯ÏîµÄÔ­Ê¼¿í¶È
-		int													m_nItemDelta;           ///< Ã¿¸öItem×Ô¼º×óÓÒµÄĞ¡ÁôÏÂ²îÖµ,
+		bool												m_bDragging;			///< æ­£åœ¨æ‹–åŠ¨æ ‡å¿—
+		DMSmartPtrT<IDMCanvas>								m_pDragCanvas;		    ///< æ˜¾ç¤ºæ‹–åŠ¨çª—å£çš„ä¸´æ—¶ç”»å¸ƒ
+		CPoint												m_ptClick;				///< å½“å‰ç‚¹å‡»åæ ‡
+		DWORD												m_dwHitTest;			///< é¼ æ ‡ä½ç½®
+		DWORD												m_dwDragTo;				///< æ‹–æ”¾ç›®æ ‡    
+		int													m_nAdjItemOldWidth;		///< ä¿å­˜è¢«æ‹–åŠ¨é¡¹çš„åŸå§‹å®½åº¦
+		int													m_nItemDelta;           ///< æ¯ä¸ªItemè‡ªå·±å·¦å³çš„å°ç•™ä¸‹å·®å€¼,
 	};
 
 }//namespace DM

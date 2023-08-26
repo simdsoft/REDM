@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -32,7 +32,7 @@ namespace DM
 		virtual DMCode GetRectNum(int &iNum);
 		virtual DMCode GetRectArray(RECT* pRect,int iNum);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		HRGN GetRegion() const;
 		void SetRegion(const HRGN rgn);
 

@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUISkinPool.h"
 
 namespace DM
@@ -49,7 +49,7 @@ namespace DM
 				else
 				{
 					if (!pItem->IsKeyExist(strId))
-					{// key²»´æÔÚÊ±²Å¼ÓÈë
+					{// keyä¸å­˜åœ¨æ—¶æ‰åŠ å…¥
 						LPCSTR lpszClassName = XmlSkin.GetName();  
 						IDMSkinPtr pSkinPtr = NULL;
 						if (DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
@@ -96,9 +96,9 @@ namespace DM
 		CStringA strKey = lpszName;strKey.MakeLower();
 		if (GetObjByKey(strKey, pItem))
 		{
-			pItem->AddRef();// ·ÀÖ¹±»É¾³ı
+			pItem->AddRef();// é˜²æ­¢è¢«åˆ é™¤
 		}
-		RemoveAll();// ´Ë´¦pItem¼õ1,µ«²»»áÊÍ·Å 
+		RemoveAll();// æ­¤å¤„pItemå‡1,ä½†ä¸ä¼šé‡Šæ”¾ 
 		if (pItem)
 		{
 			AddKey(strKey,pItem);
@@ -122,7 +122,7 @@ namespace DM
 			CStringA strValue = lpSrc;
 			CStringAList strUpdateList;
 			int nCount = (int)SplitStringT(strValue,';',strUpdateList);
-			// 1. ¸üĞÂËùÓĞĞè¸üĞÂµÄskin
+			// 1. æ›´æ–°æ‰€æœ‰éœ€æ›´æ–°çš„skin
 			m_UpdateSkinArray.RemoveAll();
 			for (int i=0;i<nCount;i++)
 			{
@@ -144,7 +144,7 @@ namespace DM
 					}
 				}
 			}
-			// 2.Í¨ÖªËùÓĞÊ¹ÓÃÕâĞ©skinµÄDUI´°¿ÚË¢ĞÂ×Ô¼ºÇøÓò
+			// 2.é€šçŸ¥æ‰€æœ‰ä½¿ç”¨è¿™äº›skinçš„DUIçª—å£åˆ·æ–°è‡ªå·±åŒºåŸŸ
 			iErr = g_pDMDWndPool->UpdateSkin(0,DMREG_Skin);
 
 		} while (false);
@@ -162,7 +162,7 @@ namespace DM
 				if (pSkin == m_UpdateSkinArray[i])
 				{
 					bRet = true;
-					break;// Ìø³ö
+					break;// è·³å‡º
 				}
 			}
 		} while (false);
@@ -188,7 +188,7 @@ namespace DM
 				break;
 			}
 
-			//1. ¼ÓÔØxml£¬ÈçL"<imglist id=\"1\" states=\"1\" />";
+			//1. åŠ è½½xmlï¼Œå¦‚L"<imglist id=\"1\" states=\"1\" />";
 			//CStringW strWXml(lpszXml);
 			//CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
@@ -202,7 +202,7 @@ namespace DM
 				break;
 			}
 
-			//2.ÅĞ¶ÏskinµÄidÊÇ·ñÎª¿Õ
+			//2.åˆ¤æ–­skinçš„idæ˜¯å¦ä¸ºç©º
 			LPCSTR strId = XmlNode.Attribute("id");
 			if (!*strId)
 			{
@@ -210,14 +210,14 @@ namespace DM
 				break;
 			}
 
-			//3.ÅĞ¶ÏskinµÄidÊÇ·ñ´æÔÚ
-			if (FindSkinFromAll(strId))				// Ä¬ÈÏ´ÓËùÓĞskin³ØÖĞ²éÕÒ
+			//3.åˆ¤æ–­skinçš„idæ˜¯å¦å­˜åœ¨
+			if (FindSkinFromAll(strId))				// é»˜è®¤ä»æ‰€æœ‰skinæ± ä¸­æŸ¥æ‰¾
 			{
 				DMFAIL_MSG_FMT("the skin %s already exist", strId);
-				break;// Ãû×ÖÒÑ´æÔÚ
+				break;// åå­—å·²å­˜åœ¨
 			}
 
-			//4.´´½¨skin¶ÔÏó
+			//4.åˆ›å»ºskinå¯¹è±¡
 			LPCSTR lpszClassName = XmlNode.GetName();
 			IDMSkinPtr pSkinPtr = NULL;
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&pSkinPtr,lpszClassName,DMREG_Skin)))
@@ -227,7 +227,7 @@ namespace DM
 			}
 			pSkinPtr->InitDMData(XmlNode);
 
-			//5.³õÊ¼»¯skinµÄÍ¼Ôª
+			//5.åˆå§‹åŒ–skinçš„å›¾å…ƒ
 			CStringA strType = (NULL==pszType)?"png":pszType;
 			if (!DMSUCCEEDED(pSkinPtr->SetBitmap((LPBYTE)pBuf,bufLen,strType)))
 			{
@@ -235,7 +235,7 @@ namespace DM
 				break;
 			}
 
-			//6.ÅĞ¶ÏskinpoolÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò´´½¨¼ÓÈë
+			//6.åˆ¤æ–­skinpoolæ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ›å»ºåŠ å…¥
 			bool bExist = true;
 			CStringA strName = lpszPoolName;strName.MakeLower();
 			DMSkinPoolItemPtr pItem = NULL;
@@ -341,7 +341,7 @@ namespace DM
 			{
 				if (pCur->GetObjByKey(strKey,pSkin))
 				{
-					break;// ÒÑÕÒµ½
+					break;// å·²æ‰¾åˆ°
 				}
 
 				if (bLoopFind)

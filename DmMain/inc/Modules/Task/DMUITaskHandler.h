@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMUITaskHandler.h
 // File mark:   
-// File summary:ÄÚÖÃÒ»¸öÏûÏ¢´°¿Ú,±éÀú´¦ÀíTask
+// File summary:å†…ç½®ä¸€ä¸ªæ¶ˆæ¯çª—å£,éå†å¤„ç†Task
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-3-1
@@ -15,7 +15,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÄÚÖÃÒ»¸öÏûÏ¢´°¿Ú,±éÀú´¦ÀíTask
+	///		å†…ç½®ä¸€ä¸ªæ¶ˆæ¯çª—å£,éå†å¤„ç†Task
 	/// </summary>
 	class DMUITaskHandler : public DMCWnd
 	{

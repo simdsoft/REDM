@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIRadioButton.h 
-// File Des: ÄÚÖÃµ¥Ñ¡°´Å¥ÊµÏÖ
+// File Des: å†…ç½®å•é€‰æŒ‰é’®å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -19,18 +19,18 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIRadioButton"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIRadioButton"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIRadioButtonAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* bool_bautogroup;                                ///< ÊÇ·ñ×Ô¶¯¼ÓÈë×é,Í¬Ò»¸ö¸¸´°¿ÚÏÂµÄ×éradio²»»á±»tabÇĞ»»½¹µã,Ê¾Àı:bautogroup="1"
-		static const char* bool_brightbox;                                 ///< boxÍ¼±êÊÇ·ñÔÚÓÒ±ß,Ê¾Àı:brightbox="1"
-		static const char* bool_bmultilines;								///< ÊÇ·ñÖ§³Ö¶àĞĞ,Ê¾Àı:bmultilines="1"
-		static const char* INT_lineinter;                                  ///< ÔÚ¶àĞĞÏÂ,ÉèÖÃĞĞ¼ä¾à,Ê¾Àı:lineinter="1"
-		static const char* SKIN_radioskin;                                 ///< radioÍ¼,8·ÖÍ¼»ò2·ÖÍ¼»ò1·ÖÍ¼,Ç°4ÎªÎ´Ñ¡ÖĞËÄÖÖ×´Ì¬£¬ºó4ÎªÑ¡ÖĞÊ±ËÄÖÖ×´Ì¬,Ê¾Àı:radioskin="PNG:radiobutton"
-		static const char* SKIN_iconskin;                                  ///< iconÍ¼,ÈçÊ¹ÓÃÁËiconÍ¼,Ôòtext²»ÔÙ»æÖÆ,Ê¾Àı:iconskin="PNG:iconbtn"
-		static const char* INT_textoffset;                                 ///< ÎÄ±¾¾àÀëiconµÄÆ«ÒÆ£¬Ä¬ÈÏÎª0,Ê¾Àı:textoffset="10"
+		static const char* bool_bautogroup;                                ///< æ˜¯å¦è‡ªåŠ¨åŠ å…¥ç»„,åŒä¸€ä¸ªçˆ¶çª—å£ä¸‹çš„ç»„radioä¸ä¼šè¢«tabåˆ‡æ¢ç„¦ç‚¹,ç¤ºä¾‹:bautogroup="1"
+		static const char* bool_brightbox;                                 ///< boxå›¾æ ‡æ˜¯å¦åœ¨å³è¾¹,ç¤ºä¾‹:brightbox="1"
+		static const char* bool_bmultilines;								///< æ˜¯å¦æ”¯æŒå¤šè¡Œ,ç¤ºä¾‹:bmultilines="1"
+		static const char* INT_lineinter;                                  ///< åœ¨å¤šè¡Œä¸‹,è®¾ç½®è¡Œé—´è·,ç¤ºä¾‹:lineinter="1"
+		static const char* SKIN_radioskin;                                 ///< radioå›¾,8åˆ†å›¾æˆ–2åˆ†å›¾æˆ–1åˆ†å›¾,å‰4ä¸ºæœªé€‰ä¸­å››ç§çŠ¶æ€ï¼Œå4ä¸ºé€‰ä¸­æ—¶å››ç§çŠ¶æ€,ç¤ºä¾‹:radioskin="PNG:radiobutton"
+		static const char* SKIN_iconskin;                                  ///< iconå›¾,å¦‚ä½¿ç”¨äº†iconå›¾,åˆ™textä¸å†ç»˜åˆ¶,ç¤ºä¾‹:iconskin="PNG:iconbtn"
+		static const char* INT_textoffset;                                 ///< æ–‡æœ¬è·ç¦»iconçš„åç§»ï¼Œé»˜è®¤ä¸º0,ç¤ºä¾‹:textoffset="10"
 	};
 	DMAttrValueInit(DUIRadioButtonAttr,bool_bautogroup)
 	DMAttrValueInit(DUIRadioButtonAttr,bool_brightbox)
@@ -44,7 +44,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIRadioButtonµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIRadioButtonAttr"/>
+	///		 DUIRadioButtonçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIRadioButtonAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIRadioButton:public DUIWindow
 	{
@@ -60,7 +60,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		LRESULT DM_OnSetFocus(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -68,7 +68,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØDUIWindow
+		// Function Des: é‡è½½DUIWindow
 		//---------------------------------------------------
 		DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);
 		DMCode DV_OnStateChanged(DWORD dwOldState,DWORD dwNewState);
@@ -76,7 +76,7 @@ namespace DM
 		bool DV_IsStateChangeRedraw(){return true;}
 	    bool DV_IsSiblingsAutoGroup(){return m_bAutoGroup;}
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		int GetDrawState();
 		CRect GetRadioRect();
 		

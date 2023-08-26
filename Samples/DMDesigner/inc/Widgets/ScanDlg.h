@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ScanDlg.h
 // File mark:   
-// File summary:É¨Ãè´íÎó£¬²¢ĞŞÕı´íÎó
+// File summary:æ‰«æé”™è¯¯ï¼Œå¹¶ä¿®æ­£é”™è¯¯
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-14

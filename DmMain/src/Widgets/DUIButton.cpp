@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIButton.h"
 
 namespace DM
@@ -17,21 +17,21 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	BOOL DUIButton::DM_OnEraseBkgnd(IDMCanvas* pCanvas)
 	{
 		BOOL bRet = 0;
 		do 
 		{
 			if (!m_bAnimate
-				||0xff == m_byCurAlpha///< 0xffÊ±±íÊ¾Ã»ÓĞÆôÓÃ¶¯»­»ò¶¯»­½áÊøÁË
+				||0xff == m_byCurAlpha///< 0xffæ—¶è¡¨ç¤ºæ²¡æœ‰å¯ç”¨åŠ¨ç”»æˆ–åŠ¨ç”»ç»“æŸäº†
 				)
 			{
 				bRet = __super::DM_OnEraseBkgnd(pCanvas);
 				break;
 			}
 
-			// ÉèÖÃĞÂµÄalpha
+			// è®¾ç½®æ–°çš„alpha
 			byte byAlphaBk = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(byAlphaBk);
 			CStringA strValue;
@@ -41,7 +41,7 @@ namespace DM
 
 			bRet = __super::DM_OnEraseBkgnd(pCanvas);
 
-			// »Ö¸´Ô­ÓĞalpha
+			// æ¢å¤åŸæœ‰alpha
 			strValue.Format("%d",byAlphaBk);
 			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 		} while (false);
@@ -55,13 +55,13 @@ namespace DM
 		{
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(alpha);
 			if (!m_bAnimate
-				||0xff == m_byCurAlpha///< 0xffÊ±±íÊ¾Ã»ÓĞÆôÓÃ¶¯»­»ò¶¯»­½áÊøÁË
+				||0xff == m_byCurAlpha///< 0xffæ—¶è¡¨ç¤ºæ²¡æœ‰å¯ç”¨åŠ¨ç”»æˆ–åŠ¨ç”»ç»“æŸäº†
 				)
 			{
 				__super::DM_OnPaint(pCanvas);
 				break;
 			}
-			// ÉèÖÃĞÂµÄalpha
+			// è®¾ç½®æ–°çš„alpha
 			byte byAlphaBk = alpha;
 			CStringA strValue;
 			alpha = m_byCurAlpha*byAlphaBk/255;
@@ -70,13 +70,13 @@ namespace DM
 
 			__super::DM_OnPaint(pCanvas);
 
-			// »Ö¸´Ô­ÓĞalpha
+			// æ¢å¤åŸæœ‰alpha
 			strValue.Format("%d",byAlphaBk);
 			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 
 			if (GetTickCount()-m_dwPreFrameTime>10)
 			{
-				m_dwPreFrameTime = GetTickCount();// µ÷ÕûÊ±¼ä
+				m_dwPreFrameTime = GetTickCount();// è°ƒæ•´æ—¶é—´
 				if (255-m_byCurAlpha<m_iAnimateDelta)
 				{
 					m_byCurAlpha = 0xff;
@@ -106,14 +106,14 @@ namespace DM
 		do 
 		{
 			if (!m_bAnimate
-				||0xff == m_byCurAlpha///< 0xffÊ±±íÊ¾Ã»ÓĞÆôÓÃ¶¯»­»ò¶¯»­½áÊøÁË
+				||0xff == m_byCurAlpha///< 0xffæ—¶è¡¨ç¤ºæ²¡æœ‰å¯ç”¨åŠ¨ç”»æˆ–åŠ¨ç”»ç»“æŸäº†
 				)
 			{
 				__super::DM_OnNcPaint(pCanvas);
 				break;
 			}
 
-			// ÉèÖÃĞÂµÄalpha
+			// è®¾ç½®æ–°çš„alpha
 			byte byAlphaBk = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(byAlphaBk);
 			CStringA strValue;
@@ -123,7 +123,7 @@ namespace DM
 
 			__super::DM_OnNcPaint(pCanvas);
 
-			// »Ö¸´Ô­ÓĞalpha
+			// æ¢å¤åŸæœ‰alpha
 			strValue.Format("%d",byAlphaBk);
 			m_pDUIXmlInfo->m_pStyle->SetAttribute("alpha",strValue,true);
 		} while (false);	
@@ -140,12 +140,12 @@ namespace DM
 		__super::OnDestroy();
 	}
 
-	// ÖØÔØ
+	// é‡è½½
 	DMCode DUIButton::DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT pRect,UINT uFormat)
 	{
-		do //hgy: ÎªÊ²Ã´XMLÖĞ\R\N²»ÄÜ±»Ö±½ÓÊ¶±ğ£¬ÒòÎªXMLÎÄ¼şÖĞµÄ"/n",»á±»ÈÏÎªÊÇÒ»¸ö×Ö·û´®"///n"ÊÇÁ½¸ö×Ö·û'//'ºÍ'/n'£¬¶ø²»ÊÇ×ªÒå×Ö·û"/n",
+		do //hgy: ä¸ºä»€ä¹ˆXMLä¸­\R\Nä¸èƒ½è¢«ç›´æ¥è¯†åˆ«ï¼Œå› ä¸ºXMLæ–‡ä»¶ä¸­çš„"/n",ä¼šè¢«è®¤ä¸ºæ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²"///n"æ˜¯ä¸¤ä¸ªå­—ç¬¦'//'å’Œ'/n'ï¼Œè€Œä¸æ˜¯è½¬ä¹‰å­—ç¬¦"/n",
 		{
-			if (NULL != m_pIconSkin)// iconÏÂ²»»æÖÆÎÄ×Ö
+			if (NULL != m_pIconSkin)// iconä¸‹ä¸ç»˜åˆ¶æ–‡å­—
 			{
 				break;
 			}
@@ -168,8 +168,8 @@ namespace DM
 			return DM_ECODE_OK;
 		}
 		if (m_bAnimate && dwOldState==DUIWNDSTATE_Normal && dwNewState==DUIWNDSTATE_Hover)
-		{// Æô¶¯¶¯»­
-			m_byCurAlpha = 255/55;// ´Ó1/5¿ªÊ¼
+		{// å¯åŠ¨åŠ¨ç”»
+			m_byCurAlpha = 255/55;// ä»1/5å¼€å§‹
 			if (m_iAnimateSteps)
 			{
 				m_iAnimateDelta = (255-m_byCurAlpha)/m_iAnimateSteps;
@@ -252,19 +252,19 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: »»·ô
+	// Function Des: æ¢è‚¤
 	DMCode DUIButton::DV_UpdateSkin(WPARAM wp, LPARAM lp)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (lp == DMREG_Skin)// skin»»·ô
+			if (lp == DMREG_Skin)// skinæ¢è‚¤
 			{
 				DMSmartPtrT<IDMSkin> pSkin;
 				DMSmartPtrT<IDMSkin> pNcSkin;
 				m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pSkin);
 				m_pDUIXmlInfo->m_pStyle->GetBgSkin(&pNcSkin);
-				// È·ÈÏskinÊÇ·ñÔÚÒª¸üĞÂµÄÁĞ±íÖĞ
+				// ç¡®è®¤skinæ˜¯å¦åœ¨è¦æ›´æ–°çš„åˆ—è¡¨ä¸­
 				if (g_pDMApp->IsNeedUpdateSkin(pSkin)
 					||g_pDMApp->IsNeedUpdateSkin(pNcSkin))
 				{
@@ -278,7 +278,7 @@ namespace DM
 				}
 			}
 
-			// todo.ÆäÓà»»·ô
+			// todo.å…¶ä½™æ¢è‚¤
 		} while (false);
 		return iErr;
 	}

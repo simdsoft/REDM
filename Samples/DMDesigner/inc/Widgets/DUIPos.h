@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIPos.h
 // File mark:   
-// File summary:Ä£ËÆposµÄÃªµã²¼¾Ö×ø±êÏµ
+// File summary:æ¨¡ä¼¼posçš„é”šç‚¹å¸ƒå±€åæ ‡ç³»
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-29
@@ -14,7 +14,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÏÂÀ­list,Ö÷ÒªÓÃÓÚ¸üĞÂtooltips
+	///		ä¸‹æ‹‰list,ä¸»è¦ç”¨äºæ›´æ–°tooltips
 	/// </summary>
 	class PosList : public DUIListBox
 	{
@@ -25,7 +25,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		edit,¼ÓÈë¹ö¶¯±ä»¯Ğ§¹û
+	///		edit,åŠ å…¥æ»šåŠ¨å˜åŒ–æ•ˆæœ
 	/// </summary>
 	class PosEdit : public DUIEdit
 	{
@@ -43,7 +43,7 @@ namespace DM
 	}; 
 
 	/// <summary>
-	///		Ä£ÄâPOS_ITEM 
+	///		æ¨¡æ‹ŸPOS_ITEM 
 	/// </summary>   
 	class PosItem : public DUIWindow
 	{
@@ -67,20 +67,20 @@ namespace DM
 		void OnSize(UINT nType, CSize size);
 	public: 
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 	public: 
 		POS_ITEM*                        m_pItem;
-		DMSmartPtrT<Layout>				 m_pLayout;///< Ö¸ÏòÒª±à¼­µÄlayout
+		DMSmartPtrT<Layout>				 m_pLayout;///< æŒ‡å‘è¦ç¼–è¾‘çš„layout
 
 		PosEdit*			             m_pEdit;
 		DUIComboBox*                     m_pCbx;
 	};
 
 	/// <summary>   
-	///		Ä£ÄâÃªµãpos
+	///		æ¨¡æ‹Ÿé”šç‚¹pos
 	/// </summary>
 	class DUIPos: public DUIWindow
 	{
@@ -103,12 +103,12 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 	public:
 		DMSmartPtrT<PosItem>                    m_pItem[4];
-		DMSmartPtrT<Layout>						m_pLayout;///< Ö¸ÏòÒª±à¼­µÄlayout
+		DMSmartPtrT<Layout>						m_pLayout;///< æŒ‡å‘è¦ç¼–è¾‘çš„layout
 	};
 }

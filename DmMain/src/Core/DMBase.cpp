@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMBase.h"
 
 namespace DM
@@ -18,7 +18,7 @@ namespace DM
 			if (*strValue  && 0 != dm_xmlstrcmp(XmlNode.FirstAttribute().GetName(),DMAttr::DUIWindowAttr::STRING_style))
 			{
 				XmlNode.RemoveAttribute(DMAttr::DUIWindowAttr::STRING_style);
-				XmlNode.SetAttribute(DMAttr::DUIWindowAttr::STRING_style,strValue,false);// °Ñstyle²åµ½×îÇ°Ãæ´¦Àí
+				XmlNode.SetAttribute(DMAttr::DUIWindowAttr::STRING_style,strValue,false);// æŠŠstyleæ’åˆ°æœ€å‰é¢å¤„ç†
 			}
 
 			DMXmlAttribute XmlAttribute = XmlNode.FirstAttribute();
@@ -49,7 +49,7 @@ namespace DM
 
 	DMCode DMDataBase::DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml)
 	{
-		return DM_ECODE_FAIL;//Î´½âÎö
+		return DM_ECODE_FAIL;//æœªè§£æ
 	}
 
 	DMCode DMDataBase::OnFinished(const DMXmlNode &XmlNode)

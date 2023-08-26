@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+Ôªø#include "DmMainAfx.h"
 #include "DMTooltipImpl.h"
 
 namespace DM
@@ -34,7 +34,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			ATOM Atom = g_pDMApp->GetClassAtom(true);  //  «∑Ò π”√“ı”∞¥∞ø⁄¿‡¥¥Ω®
+			ATOM Atom = g_pDMApp->GetClassAtom(true);  // ÊòØÂê¶‰ΩøÁî®Èò¥ÂΩ±Á™óÂè£Á±ªÂàõÂª∫
 			HWND hWnd = DMCWnd::CreateWindowEx((LPCWSTR)Atom,L"tooltip",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL);
 			if (NULL == hWnd)
 			{
@@ -45,7 +45,7 @@ namespace DM
 			LOGFONTW lf;
 			GetObject(GetStockObject(DEFAULT_GUI_FONT),sizeof(lf),&lf);
 			lf.lfHeight = -12;
-			wcscpy_s(lf.lfFaceName, 32, L"ÀŒÃÂ");
+			wcscpy_s(lf.lfFaceName, 32, L"ÂÆã‰Ωì");
 			m_font = CreateFontIndirectW(&lf);
 			bRet = true;
 		} while (false);
@@ -117,10 +117,10 @@ namespace DM
 				}
 			}
 
-			/// ∏¸–¬ ˝æ›
+			/// Êõ¥Êñ∞Êï∞ÊçÆ
 			m_rcTarget = pInfo->rcTarget;
 			m_strTip   = pInfo->strTip;
-			m_strTip.Replace(L"\\r\\n",L"\r\n");// ≤√¥XML÷–\R\N≤ªƒ‹±ª÷±Ω” ∂±£¨“ÚŒ™XMLŒƒº˛÷–µƒ"/n",ª·±ª»œŒ™ «“ª∏ˆ◊÷∑˚¥Æ"///n" «¡Ω∏ˆ◊÷∑˚'//'∫Õ'/n'£¨∂¯≤ª «◊™“Â◊÷∑˚"/n",
+			m_strTip.Replace(L"\\r\\n",L"\r\n");//‰ªÄ‰πàXML‰∏≠\R\N‰∏çËÉΩË¢´Áõ¥Êé•ËØÜÂà´ÔºåÂõ†‰∏∫XMLÊñá‰ª∂‰∏≠ÁöÑ"/n",‰ºöË¢´ËÆ§‰∏∫ÊòØ‰∏Ä‰∏™Â≠óÁ¨¶‰∏≤"///n"ÊòØ‰∏§‰∏™Â≠óÁ¨¶'//'Âíå'/n'ÔºåËÄå‰∏çÊòØËΩ¨‰πâÂ≠óÁ¨¶"/n",
 			m_strTip.Replace(L"\\n",L"\\r");
 			m_iDelayTime = pInfo->iDelayTime;
 			m_iSpanTime  = pInfo->iSpanTime;
@@ -142,7 +142,7 @@ namespace DM
 		{
 			if (!IsWindow())
 			{
-				//if (!Create())// ’‚ ±≤ª“™¥¥Ω®¡À£¨“ÚŒ™“˛≤ÿ“≤ø…ƒ‹∑¢…˙‘⁄Àﬁ÷˜¥∞ø⁄œ˙ªŸ∫Û£¨’‚ ±œ˚œ¢—≠ª∑ø…ƒ‹√ª¥¶¿ÌÕÍ
+				//if (!Create())// ËøôÊó∂‰∏çË¶ÅÂàõÂª∫‰∫ÜÔºåÂõ†‰∏∫ÈöêËóè‰πüÂèØËÉΩÂèëÁîüÂú®ÂÆø‰∏ªÁ™óÂè£ÈîÄÊØÅÂêéÔºåËøôÊó∂Ê∂àÊÅØÂæ™ÁéØÂèØËÉΩÊ≤°Â§ÑÁêÜÂÆå
 				{
 					break;
 				}
@@ -174,14 +174,14 @@ namespace DM
 		case WM_RBUTTONUP:
 		case WM_MBUTTONUP:
 		case WM_MBUTTONDOWN:
-			OnTimer(TIMERID_SPAN);// ÷±Ω”“˛≤ÿ
+			OnTimer(TIMERID_SPAN);// Áõ¥Êé•ÈöêËóè
 			break;
 		case WM_MOUSEMOVE:
 			{
 				CPoint pt(GET_X_LPARAM(pMsg->lParam),GET_Y_LPARAM(pMsg->lParam));
 				if (!m_rcTarget.PtInRect(pt))
 				{
-					OnTimer(TIMERID_SPAN);// ÷±Ω”“˛≤ÿ
+					OnTimer(TIMERID_SPAN);// Áõ¥Êé•ÈöêËóè
 				}
 				else if (!IsWindowVisible() && !m_strTip.IsEmpty() && !m_bShowing)
 				{
@@ -198,7 +198,7 @@ namespace DM
 				CPoint pt(GET_X_LPARAM(pMsg->lParam),GET_Y_LPARAM(pMsg->lParam));
 				if (!m_rcTarget.PtInRect(pt))
 				{
-					OnTimer(TIMERID_SPAN);// ÷±Ω”“˛≤ÿ
+					OnTimer(TIMERID_SPAN);// Áõ¥Êé•ÈöêËóè
 				}
 			}
 			break;
@@ -241,7 +241,7 @@ namespace DM
 			DMAutoDC hdc;
 			CRect rcText(0,0,500,1000);
 			HFONT oldFont = (HFONT)SelectObject(hdc,m_font);
-			::DrawText(hdc,m_strTip,-1,&rcText,DT_CALCRECT|DT_LEFT|DT_WORDBREAK);// º∆À„Œƒ±æ¥Û–°
+			::DrawText(hdc,m_strTip,-1,&rcText,DT_CALCRECT|DT_LEFT|DT_WORDBREAK);// ËÆ°ÁÆóÊñáÊú¨Â§ßÂ∞è
 			SelectObject(hdc,oldFont);
 			CRect rcWnd;
 			GetWindowRect(&rcWnd);
@@ -254,7 +254,7 @@ namespace DM
 				::GetMonitorInfo(hMonitor, &mi);
 				CRect rcWork = mi.rcWork;
 				if (rcWork.left < rcWork.right)
-				{// ºÚµ•µƒ÷ß≥÷Œª“∆‘⁄∆¡ƒªƒ⁄
+				{// ÁÆÄÂçïÁöÑÊîØÊåÅ‰ΩçÁßªÂú®Â±èÂπïÂÜÖ
 					if (rcWnd.right > rcWork.right) 
 						rcWnd.OffsetRect(rcWork.right - rcWnd.right, 0);
 					if (rcWnd.bottom > rcWork.bottom)

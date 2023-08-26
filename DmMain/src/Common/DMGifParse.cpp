@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMGifParse.h"
 
 namespace DM
@@ -27,19 +27,19 @@ namespace DM
 				break;
 			}
 
-			/// ͷ��(6���ֽ�)
+			/// 头部(6个字节)
 			char szSignature[7] = {0};
-			fread(szSignature,1,6, fp);						// ��ʶ��(3 �ֽ�) ---GIF
-			if (0 != strncmp(szSignature,"GIF89a",6))		// �汾(3 �ֽ�)  89a-����ֻ֧��89�汾��hgy note
+			fread(szSignature,1,6, fp);						// 标识符(3 字节) ---GIF
+			if (0 != strncmp(szSignature,"GIF89a",6))		// 版本(3 字节)  89a-我们只支持89版本！hgy note
 			{
 				break;
 			}
 
-			fread((char*)&m_gInfo.scrWidth,1,2, fp);		// �߼���Ļ��(2�ֽ�)
-			fread((char*)&m_gInfo.scrHeight,1,2, fp);		// �߼���Ļ��(2�ֽ�)
+			fread((char*)&m_gInfo.scrWidth,1,2, fp);		// 逻辑屏幕宽(2字节)
+			fread((char*)&m_gInfo.scrHeight,1,2, fp);		// 逻辑屏幕高(2字节)
 
 			BYTE be;
-			fread((char*)&be,1,1,fp);						// Packed Fields, Global Color Table Flag(1�ֽ�)
+			fread((char*)&be,1,1,fp);						// Packed Fields, Global Color Table Flag(1字节)
 			if ((be&0x80) != 0)
 			{
 				m_gInfo.gFlag = true;
@@ -48,22 +48,22 @@ namespace DM
 			{
 				m_gInfo.gFlag = false;
 			}
-			m_gInfo.colorRes = ((be&0x70)>>4)+1;			// ɫ�ʷֱ���
+			m_gInfo.colorRes = ((be&0x70)>>4)+1;			// 色彩分辨率
 			if (m_gInfo.gFlag)
 			{	
 				if((be&0x08) != 0)
-					m_gInfo.gSort = true;					// ȫ�ֵ�ɫ���Ƿ���������
+					m_gInfo.gSort = true;					// 全局调色板是否按优先排序
 				else
 					m_gInfo.gSort = false;			
 				m_gInfo.gSize = 1;
 				m_gInfo.gSize <<= ((be&0x07)+1);
 			}
 			fread((char*)&be,1,1,fp);
-			m_gInfo.BKColorIdx = be;						// Background Color Index����ɫ�ĵ�ɫ������(1�ֽ�)
+			m_gInfo.BKColorIdx = be;						// Background Color Index背景色的调色板索引(1字节)
 			fread((char*)&be,1,1,fp);				
-			m_gInfo.pixelAspectRatio = be;					// Pixel Aspect Ratio���س�������(1�ֽ�)
+			m_gInfo.pixelAspectRatio = be;					// Pixel Aspect Ratio像素长宽比例(1字节)
 
-			// �����ȫ��ɫ���������߼�����������֮��ռ�õ��ֽ���Ϊ3*2^��ȫ��ɫ���ߴ�+1��
+			// 如果有全局色表，接着逻辑视屏描述块之后，占用的字节数为3*2^（全局色表尺寸+1）
 			if (m_gInfo.gFlag)
 			{	
 				fseek(fp, m_gInfo.gSize*3,SEEK_CUR);
@@ -93,18 +93,18 @@ namespace DM
 				break;
 			}
 
-			/// ͷ��(6���ֽ�)
+			/// 头部(6个字节)
 			if (0 != strncmp((char*)pBuf+m_nOffset,"GIF89a",6))
 			{
 				break;
 			}
 			m_nOffset += 6;
 
-			memcpy((void*)&m_gInfo.scrWidth, pBuf+m_nOffset,2);m_nOffset+=2;	// �߼���Ļ��(2�ֽ�)
-			memcpy((char*)&m_gInfo.scrHeight, pBuf+m_nOffset,2);m_nOffset+=2;	// �߼���Ļ��(2�ֽ�)
+			memcpy((void*)&m_gInfo.scrWidth, pBuf+m_nOffset,2);m_nOffset+=2;	// 逻辑屏幕宽(2字节)
+			memcpy((char*)&m_gInfo.scrHeight, pBuf+m_nOffset,2);m_nOffset+=2;	// 逻辑屏幕宽(2字节)
 
 			BYTE be;
-			memcpy((char*)&be, pBuf+m_nOffset,1);m_nOffset+=1;					// Packed Fields, Global Color Table Flag(1�ֽ�)
+			memcpy((char*)&be, pBuf+m_nOffset,1);m_nOffset+=1;					// Packed Fields, Global Color Table Flag(1字节)
 			if ((be&0x80) != 0)
 			{
 				m_gInfo.gFlag = true;
@@ -113,23 +113,23 @@ namespace DM
 			{
 				m_gInfo.gFlag = false;
 			}
-			m_gInfo.colorRes = ((be&0x70)>>4)+1;								// ɫ�ʷֱ��ʣ���ʹ�ã�
+			m_gInfo.colorRes = ((be&0x70)>>4)+1;								// 色彩分辨率（不使用）
 			if (m_gInfo.gFlag)
 			{	
 				if((be&0x08) != 0)
-					m_gInfo.gSort = true;										// ȫ�ֵ�ɫ���Ƿ���������
+					m_gInfo.gSort = true;										// 全局调色板是否按优先排序
 				else
 					m_gInfo.gSort = false;			
 				m_gInfo.gSize = 1;
 				m_gInfo.gSize <<= ((be&0x07)+1);
 			}
 			memcpy((char*)&be, pBuf+m_nOffset,1);m_nOffset+=1;
-			m_gInfo.BKColorIdx = be;											// Background Color Index����ɫ�ĵ�ɫ������(1�ֽ�)
+			m_gInfo.BKColorIdx = be;											// Background Color Index背景色的调色板索引(1字节)
 			//fread((char*)&be,1,1,fp);		
 			memcpy((char*)&be, pBuf+m_nOffset,1);m_nOffset+=1;
-			m_gInfo.pixelAspectRatio = be;										// Pixel Aspect Ratio���س�������(1�ֽ�)
+			m_gInfo.pixelAspectRatio = be;										// Pixel Aspect Ratio像素长宽比例(1字节)
 
-			// �����ȫ��ɫ���������߼�����������֮��ռ�õ��ֽ���Ϊ3*2^��ȫ��ɫ���ߴ�+1��
+			// 如果有全局色表，接着逻辑视屏描述块之后，占用的字节数为3*2^（全局色表尺寸+1）
 			if (m_gInfo.gFlag)
 			{	
 				m_nOffset+=m_gInfo.gSize*3;
@@ -155,13 +155,13 @@ namespace DM
 	{	
 		bool bRet = true;
 		BYTE be;
-		bool fileEnd = false;			// β��¼,����ָʾ���������Ľ�����ȡ�̶�ֵ0x3b.
+		bool fileEnd = false;			// 尾记录,用来指示该数据流的结束。取固定值0x3b.
 		while (!feof(fp)&&!fileEnd)
 		{
-			fread((char*)&be,1,1,fp);	//(1�ֽ�)
+			fread((char*)&be,1,1,fp);	//(1字节)
 			switch (be)
 			{	
-			case 0x21:					// Extension Introducer - ��ʶ����һ����չ�飬�̶�ֵ0��21,���Ǹ����п��޵Ŀ飬�еĻ���������
+			case 0x21:					// Extension Introducer - 标识这是一个扩展块，固定值0×21,这是个可有可无的块，有的话就跳过它
 				{
 					if (!ParseExtension(fp, m_ctrlExt))
 					{
@@ -169,7 +169,7 @@ namespace DM
 					}
 				}
 				break;
-			case 0x2c:				   // ͼ��ָ��� - ����ʶ��ͼ���������Ŀ�ʼ��ȡ�̶�ֵ0x2c
+			case 0x2c:				   // 图像分隔符 - 用于识别图像描述符的开始。取固定值0x2c
 				{
 					if (!ParseFrame(fp))
 					{
@@ -178,7 +178,7 @@ namespace DM
 				}
 				break;
 
-			case 0x3b:				  // β��¼,����ָʾ���������Ľ�����ȡ�̶�ֵ0x3b.
+			case 0x3b:				  // 尾记录,用来指示该数据流的结束。取固定值0x3b.
 				{
 					fileEnd = true;
 				}
@@ -202,17 +202,17 @@ namespace DM
 	{
 		bool bRet = true;
 		BYTE be;
-		fread((char*)&be,1,1,fp);//(1�ֽ�)
+		fread((char*)&be,1,1,fp);//(1字节)
 		switch (be)
 		{	
-		case 0xf9:// Graphic Control Label - ��ʶ����һ��ͼ�ο�����չ�飬�̶�ֵ0xF9
+		case 0xf9:// Graphic Control Label - 标识这是一个图形控制扩展块，固定值0xF9
 			{
 				while (!feof(fp))
 				{	
 					fread((char*)&be,1,1,fp);
-					if (0 == be)// ���սᣬ�̶�ֵ0
+					if (0 == be)// 块终结，固定值0
 						break;
-					if (4 == be)// Block Size - ���������ս������̶�ֵ4
+					if (4 == be)// Block Size - 不包括块终结器，固定值4
 					{
 						ctrlExt.active = true;
 						fread((char*)&be,1,1,fp);
@@ -225,18 +225,18 @@ namespace DM
 							ctrlExt.trsFlag = true;
 						else
 							ctrlExt.trsFlag = false;
-						fread((char*)&ctrlExt.delayTime,1,2,fp);//Delay Time - ��λ1/100��(2�ֽڣ�
+						fread((char*)&ctrlExt.delayTime,1,2,fp);//Delay Time - 单位1/100秒(2字节）
 						fread((char*)&be,1,1,fp);
 						ctrlExt.trsColorIndex = be;
 					}
 					else
-						fseek(fp, be, SEEK_CUR);// ����be���ֽ�
+						fseek(fp, be, SEEK_CUR);// 跳过be个字节
 				}
 			}
 			break;
-		case 0xfe:// Comment Label - ��ʶ����һ��ע�Ϳ飬�̶�ֵ0xFE
+		case 0xfe:// Comment Label - 标识这是一个注释块，固定值0xFE
 		case 0x01:
-		case 0xff:// Application Extension Label - ��ʶ����һ��Ӧ�ó�����չ�飬�̶�ֵ0xFF
+		case 0xff:// Application Extension Label - 标识这是一个应用程序扩展块，固定值0xFF
 			{
 				if (false == m_gInfo.bLoop)
 				{
@@ -253,12 +253,12 @@ namespace DM
 					fseek(fp, pos, SEEK_SET);
 				}
 			
-				while (!feof(fp)) // ����������һ�飬���ն����и����սᣬ�̶�ֵ0
+				while (!feof(fp)) // 无论上面哪一块，最终都会有个块终结，固定值0
 				{	
 					fread((char*)&be,1,1,fp);
-					if (0 == be)// ���սᣬ�̶�ֵ0
+					if (0 == be)// 块终结，固定值0
 						break;
-					fseek(fp, be, SEEK_CUR);// ����be���ֽ�
+					fseek(fp, be, SEEK_CUR);// 跳过be个字节
 				}
 			}
 			break;
@@ -285,7 +285,7 @@ namespace DM
 		fread((char*)&be,1,1,fp);
 		if ((be&0x80) != 0)
 			lFlag = true;
-		lSize <<= ((be&0x07)+1);// ��ɫ�б���λ��
+		lSize <<= ((be&0x07)+1);// 颜色列表的位数
 		if (lFlag)
 			fseek(fp,lSize*3,SEEK_CUR);
 		fread((char*)&be,1,1,fp);
@@ -294,7 +294,7 @@ namespace DM
 			fread((char*)&be,1,1,fp);
 			if (0 == be)
 				break;
-			fseek(fp, be, SEEK_CUR);// ����be���ֽ�
+			fseek(fp, be, SEEK_CUR);// 跳过be个字节
 		}
 
 		if(m_ctrlExt.active)
@@ -312,13 +312,13 @@ namespace DM
 	{
 		bool bRet = true;
 		BYTE be;
-		bool fileEnd = false;// β��¼,����ָʾ���������Ľ�����ȡ�̶�ֵ0x3b.
+		bool fileEnd = false;// 尾记录,用来指示该数据流的结束。取固定值0x3b.
 		while (m_nOffset<=bufLen&&!fileEnd)
 		{
-			memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;//(1�ֽ�)
+			memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;//(1字节)
 			switch (be)
 			{	
-			case 0x21:			// Extension Introducer - ��ʶ����һ����չ�飬�̶�ֵ0��21,���Ǹ����п��޵Ŀ飬�еĻ���������
+			case 0x21:			// Extension Introducer - 标识这是一个扩展块，固定值0×21,这是个可有可无的块，有的话就跳过它
 				{
 					if (!ParseExtension(pBuf,bufLen, m_ctrlExt))
 					{
@@ -326,7 +326,7 @@ namespace DM
 					}
 				}
 				break;
-			case 0x2c:         // ͼ��ָ��� - ����ʶ��ͼ���������Ŀ�ʼ��ȡ�̶�ֵ0x2c
+			case 0x2c:         // 图像分隔符 - 用于识别图像描述符的开始。取固定值0x2c
 				{
 					if (!ParseFrame(pBuf,bufLen))
 					{
@@ -335,7 +335,7 @@ namespace DM
 				}
 				break;
 
-			case 0x3b:		 // β��¼,����ָʾ���������Ľ�����ȡ�̶�ֵ0x3b.
+			case 0x3b:		 // 尾记录,用来指示该数据流的结束。取固定值0x3b.
 				{
 					fileEnd = true;
 				}
@@ -358,17 +358,17 @@ namespace DM
 	{
 		bool bRet = true;
 		BYTE be;
-		memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLEN(m_nOffset,bufLen);//(1�ֽ�)
+		memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLEN(m_nOffset,bufLen);//(1字节)
 		switch (be)
 		{	
-		case 0xf9:// Graphic Control Label - ��ʶ����һ��ͼ�ο�����չ�飬�̶�ֵ0xF9
+		case 0xf9:// Graphic Control Label - 标识这是一个图形控制扩展块，固定值0xF9
 			{
 				while (m_nOffset<=bufLen)
 				{	
 					memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;
-					if (0 == be)// ���սᣬ�̶�ֵ0
+					if (0 == be)// 块终结，固定值0
 						break;
-					if (4 == be)// Block Size - ���������ս������̶�ֵ4
+					if (4 == be)// Block Size - 不包括块终结器，固定值4
 					{
 						ctrlExt.active = true;
 						memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLEN(m_nOffset,bufLen);;
@@ -381,18 +381,18 @@ namespace DM
 							ctrlExt.trsFlag = true;
 						else
 							ctrlExt.trsFlag = false;
-						memcpy((char*)&ctrlExt.delayTime,pBuf+m_nOffset,2);m_nOffset+=2;CMPLEN(m_nOffset,bufLen);//Delay Time - ��λ1/100��(2�ֽڣ�
+						memcpy((char*)&ctrlExt.delayTime,pBuf+m_nOffset,2);m_nOffset+=2;CMPLEN(m_nOffset,bufLen);//Delay Time - 单位1/100秒(2字节）
 						memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLEN(m_nOffset,bufLen);
 						ctrlExt.trsColorIndex = be;
 					}
 					else
-						m_nOffset += (int)(byte)be;CMPLEN(m_nOffset,bufLen);// ����be���ֽ�
+						m_nOffset += (int)(byte)be;CMPLEN(m_nOffset,bufLen);// 跳过be个字节
 				}
 			}
 			break;
-		case 0xfe:// Comment Label - ��ʶ����һ��ע�Ϳ飬�̶�ֵ0xFE
+		case 0xfe:// Comment Label - 标识这是一个注释块，固定值0xFE
 		case 0x01:
-		case 0xff:// Application Extension Label - ��ʶ����һ��Ӧ�ó�����չ�飬�̶�ֵ0xFF
+		case 0xff:// Application Extension Label - 标识这是一个应用程序扩展块，固定值0xFF
 			{
 				if (false == m_gInfo.bLoop)
 				{
@@ -408,12 +408,12 @@ namespace DM
 					}
 				}
 
-				while (m_nOffset<=bufLen) // ����������һ�飬���ն����и����սᣬ�̶�ֵ0
+				while (m_nOffset<=bufLen) // 无论上面哪一块，最终都会有个块终结，固定值0
 				{	
 					memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLEN(m_nOffset,bufLen);
-					if (0 == be)// ���սᣬ�̶�ֵ0
+					if (0 == be)// 块终结，固定值0
 						break;
-					m_nOffset+=be;CMPLEN(m_nOffset,bufLen);// ����be���ֽ�
+					m_nOffset+=be;CMPLEN(m_nOffset,bufLen);// 跳过be个字节
 				}
 			}
 			break;
@@ -440,7 +440,7 @@ namespace DM
 		memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLENDEL(m_nOffset,bufLen,pf);
 		if ((be&0x80) != 0)
 			lFlag = true;
-		lSize <<= ((be&0x07)+1);// ��ɫ�б���λ��
+		lSize <<= ((be&0x07)+1);// 颜色列表的位数
 		if (lFlag)
 			m_nOffset+=lSize*3;CMPLENDEL(m_nOffset,bufLen,pf);
 		memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLENDEL(m_nOffset,bufLen,pf);
@@ -449,7 +449,7 @@ namespace DM
 			memcpy((char*)&be,pBuf+m_nOffset,1);m_nOffset+=1;CMPLENDEL(m_nOffset,bufLen,pf);
 			if (0 == be)
 				break;
-			m_nOffset+=be;CMPLENDEL(m_nOffset,bufLen,pf);// ����be���ֽ�
+			m_nOffset+=be;CMPLENDEL(m_nOffset,bufLen,pf);// 跳过be个字节
 		}
 
 		if(m_ctrlExt.active)

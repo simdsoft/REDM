@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUIObjEditor.h"             
 
 DUIObjEditor::DUIObjEditor()
@@ -72,7 +72,7 @@ DMCode DUIObjEditor::UnInitObjEditor()
 
 DMCode DUIObjEditor::SetDesignMode(DesignMode ds_mode)
 {
-	// 1.Ä¬ÈÏÒş²ØHover Frame
+	// 1.é»˜è®¤éšè—Hover Frame
 	m_pHoverlFrame->DM_SetVisible(false,true);
 	m_DesignMod = ds_mode;
 	if (m_pShow)
@@ -81,7 +81,7 @@ DMCode DUIObjEditor::SetDesignMode(DesignMode ds_mode)
 		SelFrameInAllMode();
 		m_pShow->SetDesignMode(m_DesignMod);
 	}
-	m_pCheckBtn->DM_SetCheck(AddMode == m_DesignMod);///< µ±²»ÊÇaddÄ£Ê½Ê±,×Ô¶¯È¡ÏûÑ¡ÖĞ
+	m_pCheckBtn->DM_SetCheck(AddMode == m_DesignMod);///< å½“ä¸æ˜¯addæ¨¡å¼æ—¶,è‡ªåŠ¨å–æ¶ˆé€‰ä¸­
 	return DM_ECODE_OK;
 }
 
@@ -162,13 +162,13 @@ DMCode DUIObjEditor::RemoveAllDesignChild()
 
 void DUIObjEditor::UpdateScrollRangeSize()
 {
-	// Ê¹ÓÃ¿É¼ûµÄObjDesignWndÀ´ÉèÖÃ¹ö¶¯Ìõ
+	// ä½¿ç”¨å¯è§çš„ObjDesignWndæ¥è®¾ç½®æ»šåŠ¨æ¡
 	DUIWindow *pChild = GetShowDesignChild();
 	if (pChild)
 	{
 		CRect rcChildWnd = pChild->m_rcWindow;
 		CRect rcParentWnd = m_rcWindow;
-		// ÍÏ¶¯µ½×óÉÏ½Ç²»³öÏÖ¹ö¶¯Ìõ
+		// æ‹–åŠ¨åˆ°å·¦ä¸Šè§’ä¸å‡ºç°æ»šåŠ¨æ¡
 		if (rcChildWnd.top<rcParentWnd.top)
 		{
 			rcChildWnd.top = rcParentWnd.top;
@@ -198,7 +198,7 @@ void DUIObjEditor::OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew)
 }
 
 DMCode DUIObjEditor::DV_GetChildMeasureLayout(LPRECT lpRect)
-{// ÔÚDV_ArrangeÖĞ£¬»áÍ¨¹ı¸¸´°¿ÚµÄ´óĞ¡À´ÏŞÖÆ×Ó´°¿Ú
+{// åœ¨DV_Arrangeä¸­ï¼Œä¼šé€šè¿‡çˆ¶çª—å£çš„å¤§å°æ¥é™åˆ¶å­çª—å£
 	*lpRect	= m_rcMeasure;
 	return DM_ECODE_NOLOOP;
 }
@@ -215,7 +215,7 @@ DMCode DUIObjEditor::OnCheckChanging(DMEventArgs* pEvt)
 	DMEventCheckChangingCmdArgs *pEvent = (DMEventCheckChangingCmdArgs*)pEvt;
 	if (AddMode == m_DesignMod&&false == pEvent->m_bChecking)
 	{
-		pEvent->m_bCancel = true;// ÔÚAddÄ£Ê½ÏÂ²»ÔÊĞíÖ±½ÓÈ¡Ïûcheck
+		pEvent->m_bCancel = true;// åœ¨Addæ¨¡å¼ä¸‹ä¸å…è®¸ç›´æ¥å–æ¶ˆcheck
 	}
 	return DM_ECODE_OK;
 }
@@ -278,7 +278,7 @@ DMCode DUIObjEditor::SelFrameInAllMode()
 		g_pMainWnd->ScreenToClient(rcFrame);
 		rcFrame.InflateRect(1,1,1,1);
 		m_pSelFrame->DM_FloatLayout(rcFrame);
-		m_pSelFrame->DM_SetVisible(pData->m_pDUIWnd->DM_IsVisible(true),true);// Òş²ØµÄ´°¿Ú¾Í²»¿òÑ¡ÁË
+		m_pSelFrame->DM_SetVisible(pData->m_pDUIWnd->DM_IsVisible(true),true);// éšè—çš„çª—å£å°±ä¸æ¡†é€‰äº†
 		DM_Invalidate();
 		iErr = DM_ECODE_OK;
 	} while (false);

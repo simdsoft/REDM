@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMEventSlot.h"
 
 namespace DM
@@ -158,27 +158,27 @@ namespace DM
 		{
 			DM::CMap<int, DM::CArray<Connection>>::CPair *p = m_slotContainer.GetNext(pos);
 			int iSize = (int)p->m_value.GetCount();
-			DM::CArray<int> RemoveArray; // Í³Ò»
+			DM::CArray<int> RemoveArray; // ç»Ÿä¸€
 			for (int i=0; i<iSize; i++)
 			{
 				Connection copySlot = p->m_value[i];
 				if (copySlot && copySlot->CompareIfThis(pThis))
 				{
-					copySlot->Disconnect();	// ÏÈ¶Ï¿ªÊÂ¼ş£¬ÔÙÒÆ³ı
+					copySlot->Disconnect();	// å…ˆæ–­å¼€äº‹ä»¶ï¼Œå†ç§»é™¤
 					RemoveArray.Add(i);
 					bRet = true;
 				}
 			}
 
 			int iRemoveSize = (int)RemoveArray.GetCount();
-			for (int j=iRemoveSize-1; j>=0; j--)// ´ÓºóÏòÇ°ÒÆ³ı
+			for (int j=iRemoveSize-1; j>=0; j--)// ä»åå‘å‰ç§»é™¤
 			{
 				p->m_value.RemoveAt(RemoveArray[j]);
 			}
 
-			if (p->m_value.IsEmpty())// Îª¿Õ¾Í´ÓMapÖĞÒÆ³ı
+			if (p->m_value.IsEmpty())// ä¸ºç©ºå°±ä»Mapä¸­ç§»é™¤
 			{
-				m_slotContainer.RemoveKey(p->m_key);// ×Ô²âÈ·ÈÏÕâÑùÖ±½ÓÒÆ³ı¶Ôm_slotContainerÕûÌå±éÀúÃ»ÓĞÓ°Ïì
+				m_slotContainer.RemoveKey(p->m_key);// è‡ªæµ‹ç¡®è®¤è¿™æ ·ç›´æ¥ç§»é™¤å¯¹m_slotContaineræ•´ä½“éå†æ²¡æœ‰å½±å“
 			}
 		}
 		return bRet;

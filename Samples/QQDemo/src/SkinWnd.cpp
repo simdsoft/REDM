@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "SkinWnd.h"
 #include "QQMainWnd.h"
 #include "SkinPreview.h"
@@ -25,8 +25,8 @@ CSkinWnd::CSkinWnd(CQQMainWnd*pOwner)
 
 BOOL CSkinWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	// ÕâÀï³õÊ¼»¯×ÓÏî
-	DUIWindow* pTab = FindChildByNameT<DUIWindow>("tablayout");  // Ö÷Ìâ
+	// è¿™é‡Œåˆå§‹åŒ–å­é¡¹
+	DUIWindow* pTab = FindChildByNameT<DUIWindow>("tablayout");  // ä¸»é¢˜
 	DMASSERT(pTab);
 	DMSmartPtrT<IDMRes> pRes;
 	g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
@@ -50,7 +50,7 @@ BOOL CSkinWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 				DMBufT<byte>pBuf;
 				if (DMSUCCEEDED(pRes->GetItemBuf(strType,strResName, pBuf, &ulSize,strTemp)))
 				{
-					// ´´½¨Ô¤ÀÀskin
+					// åˆ›å»ºé¢„è§ˆskin
 					DMSmartPtrT<IDMSkin> pSkin;
 					g_pDMApp->CreateRegObj((void**)&pSkin,"imglist",DMREG_Skin);
 					pSkin->SetBitmap(pBuf,ulSize,strType);
@@ -102,10 +102,10 @@ DMCode CSkinWnd::OnOutSkin()
 		ofn.lpstrFileTitle = (LPTSTR)szFileTitle;
 		ofn.nMaxFileTitle = _MAX_FNAME;
 		ofn.Flags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_EXPLORER | OFN_ENABLEHOOK | OFN_ENABLESIZING| OFN_NOCHANGEDIR;
-		ofn.lpstrFilter = L"Í¼ÏñÎÄ¼ş(*.bmp;*.jpg;*.png)\0*.bmp;*.jpg;*.png\0\0";
+		ofn.lpstrFilter = L"å›¾åƒæ–‡ä»¶(*.bmp;*.jpg;*.png)\0*.bmp;*.jpg;*.png\0\0";
 		ofn.hwndOwner = m_hWnd;
 		if (::GetOpenFileNameW(&ofn))
-		{// todo.hgy413 note:GetOpenFileNameWµã»÷ºóWM_LBUTTTONUPÏûÏ¢»á·¢ËÍ¸ødui£¬ËùÒÔ²»ÒªËæÒâÖ»´¦ÀíWM_LBUTTONUP
+		{// todo.hgy413 note:GetOpenFileNameWç‚¹å‡»åWM_LBUTTTONUPæ¶ˆæ¯ä¼šå‘é€ç»™duiï¼Œæ‰€ä»¥ä¸è¦éšæ„åªå¤„ç†WM_LBUTTONUP
 			DMSmartPtrT<IDMSkin> pSkin = g_pDMApp->GetSkin("bg");
 			if (pSkin)
 			{
@@ -123,7 +123,7 @@ DMCode CSkinWnd::OnOutSkin()
 					}
 					DMSmartPtrT<IDMRes> pRes;
 					g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
-					pRes->SetAttribute("boutstyle","1",false);// Íâ²¿ÉèÖÃÄ£Ê½
+					pRes->SetAttribute("boutstyle","1",false);// å¤–éƒ¨è®¾ç½®æ¨¡å¼
 					g_pDMApp->RedrawAll();
 				}
 			}

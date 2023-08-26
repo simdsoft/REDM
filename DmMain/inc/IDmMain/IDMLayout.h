@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -16,14 +16,14 @@
 namespace DM
 {
 	/// <summary>
-	///		Ãªµã²¼¾Ö¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Layout"/>
+	///		é”šç‚¹å¸ƒå±€å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Layout"/>
 	/// </summary>
 	class IDMLayout:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMLayout,"IDMLayout",DMREG_Layout);
 	public:
-		virtual  DMCode SetOwner(LPVOID lpWnd) = 0;									///< ÉèÖÃÓµÓĞ´ËlayoutµÄDUI´°¿Ú
-		virtual  DMCode UpdateLayout(LPRECT prcContainer, CRect &rcWindow) = 0;		///< ¸üĞÂ×ÔÉí´óĞ¡
-		virtual  DMCode UpdateChildLayout() = 0;									///< ¸üĞÂÓµÓĞ´ËlayoutµÄDUI´°¿ÚµÄËùÓĞ×Ó´°¿Ú´óĞ¡
+		virtual  DMCode SetOwner(LPVOID lpWnd) = 0;									///< è®¾ç½®æ‹¥æœ‰æ­¤layoutçš„DUIçª—å£
+		virtual  DMCode UpdateLayout(LPRECT prcContainer, CRect &rcWindow) = 0;		///< æ›´æ–°è‡ªèº«å¤§å°
+		virtual  DMCode UpdateChildLayout() = 0;									///< æ›´æ–°æ‹¥æœ‰æ­¤layoutçš„DUIçª—å£çš„æ‰€æœ‰å­çª—å£å¤§å°
 	};
 }//namespace DM

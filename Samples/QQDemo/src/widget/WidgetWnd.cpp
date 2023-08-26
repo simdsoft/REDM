@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "WidgetWnd.h"
 #include "DUIMenu.h"
 #include "DUIListCtrlEx.h"
@@ -25,7 +25,7 @@ BEGIN_EVENT_MAP(CWidgetWnd)
 	EVENT_NAME_COMMAND("btn_menu",OnBtnMenu)
 	EVENT_NAME_COMMAND("btn_attrtest",OnAttrTest)
 
-	// ¿Ø¼ş²âÊÔ
+	// æ§ä»¶æµ‹è¯•
 	EVENT_NAME_HANDLER("btn_tabctrl_insert",DMEVT_CMD,TabCtrl_Test::OnInsert);
 	EVENT_NAME_HANDLER("btn_tabctrl_del",DMEVT_CMD,TabCtrl_Test::OnDelete);
 	EVENT_NAME_HANDLER("tabmain", DMEVT_TAB_SELCHANGING, TabCtrl_Test::OnSelChanging)
@@ -55,7 +55,7 @@ CWidgetWnd::CWidgetWnd()
 
 BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	// ¼ÓÏÂricheditµÄ±ä×ÖÌå´óĞ¡£¬ÑÕÉ«£¬ÏÂ»®Ïß, ×Ö·ûÍ¨ÖªÊÂ¼ş,Ê¾Àı
+	// åŠ ä¸‹richeditçš„å˜å­—ä½“å¤§å°ï¼Œé¢œè‰²ï¼Œä¸‹åˆ’çº¿, å­—ç¬¦é€šçŸ¥äº‹ä»¶,ç¤ºä¾‹
 	DUIRichEdit* pEdit = FindChildByNameT<DUIRichEdit>("richedit1");
 	if (pEdit)
 	{
@@ -66,20 +66,20 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		cf.dwEffects = CFE_LINK|CFE_UNDERLINE;  
 		cf.yHeight = 500;
 		cf.crTextColor = RGB(255, 0, 0); 
-		pEdit->SetSel(MAKELONG(2,4));//Ñ¡È¡2-4×Ö·û
-		pEdit->DM_SendMessage(EM_SETCHARFORMAT,SCF_SELECTION,(LPARAM)&cf);// ÉèÖÃ´øÏÂ»®Ïß³¬Á´½Ó
+		pEdit->SetSel(MAKELONG(2,4));//é€‰å–2-4å­—ç¬¦
+		pEdit->DM_SendMessage(EM_SETCHARFORMAT,SCF_SELECTION,(LPARAM)&cf);// è®¾ç½®å¸¦ä¸‹åˆ’çº¿è¶…é“¾æ¥
 
 		cf.dwMask = CFM_COLOR|CFM_FACE|CFM_SIZE;
 		cf.yHeight = 100;
-		pEdit->SetSel(MAKELONG(5,8));//Ñ¡È¡5-8×Ö·û
+		pEdit->SetSel(MAKELONG(5,8));//é€‰å–5-8å­—ç¬¦
 		cf.crTextColor = RGB(255, 255, 0); 
 		pEdit->DM_SendMessage(EM_SETCHARFORMAT,SCF_SELECTION,(LPARAM)&cf);
 
-		// ×Ö·û±ä»¯Í¨Öª
+		// å­—ç¬¦å˜åŒ–é€šçŸ¥
 		pEdit->SetEventMask(ENM_CHANGE|pEdit->GetEventMask());
 	}
 
-	// Ôö¼ÓListCtrlExÅÅĞòÊ¾Àı
+	// å¢åŠ ListCtrlExæ’åºç¤ºä¾‹
 	DUIListCtrlEx *pList = FindChildByNameT<DUIListCtrlEx>("listctrlex");
 	if (pList)
 	{
@@ -101,9 +101,9 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_handler.onURLChanged = CWidgetWnd::OnURLChanged;
 		m_handler.pdata = this;
 		m_pWebkit->GetWebView()->setClientHandler(&m_handler);
-		//http://www.baidu.com/s?ie=utf-8&f=8&wd=ËØ²Ä
+		//http://www.baidu.com/s?ie=utf-8&f=8&wd=ç´ æ
 		//http://www.baidu.com/s?ie=utf-8&f=8&wd=%E7%B4%A0%E6%9D%90
-		//CStringA szUrl = "http://www.baidu.com/s?ie=utf-8&f=8&wd=ËØ²Ä";
+		//CStringA szUrl = "http://www.baidu.com/s?ie=utf-8&f=8&wd=ç´ æ";
 		m_pWebkit->GetWebView()->loadURL(L"http://ka.duowan.com/");
 	}
 
@@ -130,7 +130,7 @@ BOOL CWidgetWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 
 void CWidgetWnd::OnSize(UINT nType, CSize size)
 {
-	SetMsgHandled(FALSE);  // ÓÉDMHWnd¼ÌĞø´¦Àí
+	SetMsgHandled(FALSE);  // ç”±DMHWndç»§ç»­å¤„ç†
 	if (0 == size.cx||0 == size.cy)
 	{
 		return;
@@ -230,7 +230,7 @@ DMCode CWidgetWnd::OnAttrTest()
 	}
 	m_pAttrTestWnd.Release();
 	m_pAttrTestWnd.Attach(new CAttributeTestWnd(this));
-	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// ´´½¨Ö÷´°¿Ú
+	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// åˆ›å»ºä¸»çª—å£
 	m_pAttrTestWnd->SendMessage(WM_INITDIALOG);
 	m_pAttrTestWnd->CenterWindow();
 	m_pAttrTestWnd->ShowWindow(SW_SHOW);
@@ -242,24 +242,24 @@ DMCode CWidgetWnd::OnEditChange(DMEventArgs *pEvt)
 	DMEventRENotifyArgs *pEvent = (DMEventRENotifyArgs*)(pEvt);
 	if (EN_CHANGE == pEvent->m_iNotify)
 	{
-		LOG_USER("richedit1 ×Ö·û±ä»¯ÁË\n");
+		LOG_USER("richedit1 å­—ç¬¦å˜åŒ–äº†\n");
 	}
 	return DM_ECODE_OK;
 }
 
 void SortItems(DUIListCtrlEx* pList, int nCol)
 {
-	if (1 == nCol// Ö»ÓĞµã»÷1ÁĞÍ·Ê±²Å´¥·¢(0ÁĞ¿ªÊ¼)
+	if (1 == nCol// åªæœ‰ç‚¹å‡»1åˆ—å¤´æ—¶æ‰è§¦å‘(0åˆ—å¼€å§‹)
 		&&pList->GetItemCount()>=2)
 	{
-		// ¼òµ¥µÄÊ¾Àı,½»»»m_DMArray[0]ºÍm_DMArray[1]
-		// ÄãÒ²¿ÉÒÔÊ¹ÓÃqsort_sº¯ÊıÀ´ÊµÏÖ×Ô¼ºµÄ¿ìËÙÅÅĞò
-		// ×îÖÕÄ¿µÄÊÇµ÷Õûm_DMArrayÖĞ¸÷ÏîµÄË³Ğò
-		LPLCITEMEX  pItem = pList->m_DMArray[0]; //µÈÍ¬ÓÚpList->GetObj(0);
+		// ç®€å•çš„ç¤ºä¾‹,äº¤æ¢m_DMArray[0]å’Œm_DMArray[1]
+		// ä½ ä¹Ÿå¯ä»¥ä½¿ç”¨qsort_så‡½æ•°æ¥å®ç°è‡ªå·±çš„å¿«é€Ÿæ’åº
+		// æœ€ç»ˆç›®çš„æ˜¯è°ƒæ•´m_DMArrayä¸­å„é¡¹çš„é¡ºåº
+		LPLCITEMEX  pItem = pList->m_DMArray[0]; //ç­‰åŒäºpList->GetObj(0);
 		pList->m_DMArray.RemoveAt(0);
 		pList->m_DMArray.InsertAt(1,pItem);
 
-		// ×îºóÒª¸üĞÂÏÂpanelË÷ÒıºÍË¢ĞÂÒ»ÏÂ
+		// æœ€åè¦æ›´æ–°ä¸‹panelç´¢å¼•å’Œåˆ·æ–°ä¸€ä¸‹
 		pList->UpdateItemPanelId();
 		pList->DM_Invalidate();
 	}
@@ -278,13 +278,13 @@ DMCode CWidgetWnd::OnEditRButtonMenu(DMEventArgs *pEvt)
 		{
 			BOOL bCanPaste = (BOOL)pEdit->DM_SendMessage(EM_CANPASTE);// wParam:Specifies the clipboard format to try. Set this parameter to zero to try any format currently on the clipboard
 			int nStartChar=0,nEndChar=0;
-			pEdit->DM_SendMessage(EM_GETSEL,(WPARAM)&nStartChar,(LPARAM)&nEndChar);// ²Î¿´CEdit::GetSel
+			pEdit->DM_SendMessage(EM_GETSEL,(WPARAM)&nStartChar,(LPARAM)&nEndChar);// å‚çœ‹CEdit::GetSel
 			BOOL bCopy    = nStartChar<nEndChar;
 			BOOL bCut	  = (bCopy && !pEdit->GetReadOnly());
 			BOOL bCanUndo = (BOOL)pEdit->DM_SendMessage(EM_CANUNDO);
 			BOOL bSelAll  = pEdit->GetWindowTextLength()>0;
 
-			// ÕâÀïÒª×¢ÒâÒ»µã,step»áÕ¼ÓÃposµÄ,dui_editmenuÖ»ÑİÊ¾ÁËÎå¸ö²Ëµ¥Ïî
+			// è¿™é‡Œè¦æ³¨æ„ä¸€ç‚¹,stepä¼šå ç”¨posçš„,dui_editmenuåªæ¼”ç¤ºäº†äº”ä¸ªèœå•é¡¹
 			EnableMenuItem(Menu.m_hMenu,0,MF_BYPOSITION|(bCut?MF_ENABLED:MF_GRAYED));
 			EnableMenuItem(Menu.m_hMenu,1,MF_BYPOSITION|(bCopy?MF_ENABLED:MF_GRAYED));
 			EnableMenuItem(Menu.m_hMenu,2,MF_BYPOSITION|(bCanPaste?MF_ENABLED:MF_GRAYED));
@@ -320,7 +320,7 @@ DMCode CWidgetWnd::OnEditRButtonMenu(DMEventArgs *pEvt)
 			break;
 		case 8004:
 			{
-				pEdit->DM_SendMessage(EM_REPLACESEL,TRUE,(LPARAM)TEXT(""));///< CEdit::ReplaceSel,WPARAMÉèÖÃÎªtrue,Ö§³Öundo
+				pEdit->DM_SendMessage(EM_REPLACESEL,TRUE,(LPARAM)TEXT(""));///< CEdit::ReplaceSel,WPARAMè®¾ç½®ä¸ºtrue,æ”¯æŒundo
 			}
 			break;
 		case 8005:
@@ -347,7 +347,7 @@ DMCode CWidgetWnd::ListCtrlExHeaderClick(DMEventArgs* pEvt)
 		DMHDITEM hditem;
 		hditem.mask = DMHDI_ORDER;
 		pHeader->GetItem(pEvtCheck->m_iItem,&hditem);
-		SortItems(pList,hditem.iOrder);// iOrderÎª³õÊ¼headerµÄÁĞÍ·ĞòºÅ£¬´Ó0¿ªÊ¼
+		SortItems(pList,hditem.iOrder);// iOrderä¸ºåˆå§‹headerçš„åˆ—å¤´åºå·ï¼Œä»0å¼€å§‹
 	}
 
 	return DM_ECODE_OK;

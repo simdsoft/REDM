@@ -1,31 +1,31 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIPropCtrl.h 
 // File mark:   
 /*DUIPropFrame:
-1.´´½¨ÒÔÏÂ×Ó¿Ø¼ş:
+1.åˆ›å»ºä»¥ä¸‹å­æ§ä»¶:
 DUIHeaderCtrl+DUISplitLayout(DUIPropList + DUIPropDesc)
-2.¼ÇÂ¼ÒÔÏÂ²ÎÊı:
-m_iHeadHei:DUIHeaderCtrlµÄ¸ß¶È
-m_iDescHei:DUIPropDescµÄ³õÊ¼¸ß¶È
-m_iLeftColWid:DUIHeaderCtrl×ó±ßµÄ¿í¶È
-			  3.½»»¥ÏûÏ¢:
-OnHeaderSizeChanging:µ±DUIHeaderCtrl¸Ä±ä¿í¶ÈÊ±£¬±ØĞë±£Ö¤ËüÓÒ±ßÍ¬Ê±±ä»¯£¬Í¬Ê±Í¨Öªµ½DUIPropList
-						 4.²¼¾Ö£º
-						 DUIHeaderCtrl+DUISplitLayoutÊ¹ÓÃ¾ø¶Ô²¼¾Ö£¬ÔÚOnSizeÖĞ¸Ä±äÊ±ÖØĞÂ²¼¾Ö
+2.è®°å½•ä»¥ä¸‹å‚æ•°:
+m_iHeadHei:DUIHeaderCtrlçš„é«˜åº¦
+m_iDescHei:DUIPropDescçš„åˆå§‹é«˜åº¦
+m_iLeftColWid:DUIHeaderCtrlå·¦è¾¹çš„å®½åº¦
+			  3.äº¤äº’æ¶ˆæ¯:
+OnHeaderSizeChanging:å½“DUIHeaderCtrlæ”¹å˜å®½åº¦æ—¶ï¼Œå¿…é¡»ä¿è¯å®ƒå³è¾¹åŒæ—¶å˜åŒ–ï¼ŒåŒæ—¶é€šçŸ¥åˆ°DUIPropList
+						 4.å¸ƒå±€ï¼š
+						 DUIHeaderCtrl+DUISplitLayoutä½¿ç”¨ç»å¯¹å¸ƒå±€ï¼Œåœ¨OnSizeä¸­æ”¹å˜æ—¶é‡æ–°å¸ƒå±€
 
 
 						 DUIPropList
-						 1.¼ÇÂ¼ÒÔÏÂ²ÎÊı
-m_iRowHei:ĞĞ¸ß
-m_iLeftColWid:ÔÚDUIPropFrameµÄOnHeaderSizeChanging±ä»¯Ê±Í¬²½±ä»¯
-			  m_pExpandSkin£ºÕ¹¿ªÊÕËõµÄÍ¨ÓÃboxÆ¤·ô
+						 1.è®°å½•ä»¥ä¸‹å‚æ•°
+m_iRowHei:è¡Œé«˜
+m_iLeftColWid:åœ¨DUIPropFrameçš„OnHeaderSizeChangingå˜åŒ–æ—¶åŒæ­¥å˜åŒ–
+			  m_pExpandSkinï¼šå±•å¼€æ”¶ç¼©çš„é€šç”¨boxçš®è‚¤
 
-			  2.½»»¥ÏûÏ¢:
-					 µ±m_iLeftColWid¸Ä±äÊ±£¬±ØĞë±£Ö¤DUIHeaderCtrlÍ¬Ê±±»¸Ä±ä*/
-// File summary:Ä£·ÂMFCPropertyGridCtrl
+			  2.äº¤äº’æ¶ˆæ¯:
+					 å½“m_iLeftColWidæ”¹å˜æ—¶ï¼Œå¿…é¡»ä¿è¯DUIHeaderCtrlåŒæ—¶è¢«æ”¹å˜*/
+// File summary:æ¨¡ä»¿MFCPropertyGridCtrl
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-2
@@ -40,21 +40,21 @@ namespace DMAttr
 	class DUIPropListAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_rowhei;													 ///< ÏîµÄ¸ß¶È,Ä¬ÈÏÎª20,Ê¾Àı:rowhei="20"
-		static const char* INT_leftcolwid;												 ///< ×ó±ßÖµµÄÄ¬ÈÏ¿í¶È,Ä¬ÈÏÎª30,Ê¾Àı:leftcolwid="30"
-		static const char* SKIN_expandskin;                                             ///< Õ¹¿ªÊÕËõÍ¨ÓÃskin,Ê¾Àı:expandskin="skin"
-		static const char* SKIN_itembgskin;                                             ///< ×óÓÒÏîµÄÍ¨ÓÃ±³¾°skin,Ê¾Àı:itembgskin="skin"
+		static const char* INT_rowhei;													 ///< é¡¹çš„é«˜åº¦,é»˜è®¤ä¸º20,ç¤ºä¾‹:rowhei="20"
+		static const char* INT_leftcolwid;												 ///< å·¦è¾¹å€¼çš„é»˜è®¤å®½åº¦,é»˜è®¤ä¸º30,ç¤ºä¾‹:leftcolwid="30"
+		static const char* SKIN_expandskin;                                             ///< å±•å¼€æ”¶ç¼©é€šç”¨skin,ç¤ºä¾‹:expandskin="skin"
+		static const char* SKIN_itembgskin;                                             ///< å·¦å³é¡¹çš„é€šç”¨èƒŒæ™¯skin,ç¤ºä¾‹:itembgskin="skin"
 	};
 	DMAttrValueInit(DUIPropListAttr,INT_rowhei)DMAttrValueInit(DUIPropListAttr,INT_leftcolwid)DMAttrValueInit(DUIPropListAttr,SKIN_expandskin)DMAttrValueInit(DUIPropListAttr,SKIN_itembgskin)
 
 	class DUIPropFrameAttr : public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_headhei;												 ///< Í·²¿µÄ¸ß¶È,Ä¬ÈÏÎª24,Ê¾Àı:headhei="24"
-		static const char* INT_deschei;												 ///< ÃèÊöÇøµÄÄ¬ÈÏ¸ß¶È,Ä¬ÈÏÎª20,Ê¾Àı:deschei="20"
-		static const char* bool_bshowhead;												 ///< ÊÇ·ñÏÔÊ¾Í·£¬Ê¾Àı:bshowhead="1"
-		static const char* bool_bshowdesc;												 ///< ÊÇ·ñÏÔÊ¾ÃèÊöÇø,Ê¾Àı:bshowdesc="1"
-		static const char* SKIN_headitemskin;                                           ///< headÍ·µÄitemskin,Ê¾Àı:headitemskin="skin"
+		static const char* INT_headhei;												 ///< å¤´éƒ¨çš„é«˜åº¦,é»˜è®¤ä¸º24,ç¤ºä¾‹:headhei="24"
+		static const char* INT_deschei;												 ///< æè¿°åŒºçš„é»˜è®¤é«˜åº¦,é»˜è®¤ä¸º20,ç¤ºä¾‹:deschei="20"
+		static const char* bool_bshowhead;												 ///< æ˜¯å¦æ˜¾ç¤ºå¤´ï¼Œç¤ºä¾‹:bshowhead="1"
+		static const char* bool_bshowdesc;												 ///< æ˜¯å¦æ˜¾ç¤ºæè¿°åŒº,ç¤ºä¾‹:bshowdesc="1"
+		static const char* SKIN_headitemskin;                                           ///< headå¤´çš„itemskin,ç¤ºä¾‹:headitemskin="skin"
 	};
 	DMAttrValueInit(DUIPropFrameAttr,INT_headhei)DMAttrValueInit(DUIPropFrameAttr,INT_deschei)
 	DMAttrValueInit(DUIPropFrameAttr,bool_bshowhead)DMAttrValueInit(DUIPropFrameAttr,bool_bshowdesc)DMAttrValueInit(DUIPropFrameAttr,SKIN_headitemskin)
@@ -94,11 +94,11 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		int                                    m_iHeadHei;              ///< Í·¸ß
-		int                                    m_iDescHei;              ///< ÃèÊöÇø¸ß¶È
-		bool                                   m_bShowHead;             ///< ÊÇ·ñÏÔÊ¾Í·
-		bool                                   m_bShowDesc;             ///< ÊÇ·ñÏÔÊ¾desc
-		CStringW                               m_strHeadItemSkin;		///< ÓÃÓÚ´´½¨headÊ±Ê¹ÓÃ
+		int                                    m_iHeadHei;              ///< å¤´é«˜
+		int                                    m_iDescHei;              ///< æè¿°åŒºé«˜åº¦
+		bool                                   m_bShowHead;             ///< æ˜¯å¦æ˜¾ç¤ºå¤´
+		bool                                   m_bShowDesc;             ///< æ˜¯å¦æ˜¾ç¤ºdesc
+		CStringW                               m_strHeadItemSkin;		///< ç”¨äºåˆ›å»ºheadæ—¶ä½¿ç”¨
 
 		//
 		DUIHeaderCtrl*                         m_pHeadCtrl;
@@ -167,20 +167,20 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		int                                    m_iRowHei;               ///< ĞĞ¸ß
-		int                                    m_iLeftColWid;           ///< ×ó±ßnameµÄ¿í¶È
-		IDMSkinPtr                             m_pExpandSkin;			///< Õ¹¿ªÊÕËõµÄboxÆ¤·ô
-		IDMSkinPtr                             m_pItemBgSkin;			///< name£¬valueµÄÍ¨ÓÃ±³¾°Æ¤·ô
+		int                                    m_iRowHei;               ///< è¡Œé«˜
+		int                                    m_iLeftColWid;           ///< å·¦è¾¹nameçš„å®½åº¦
+		IDMSkinPtr                             m_pExpandSkin;			///< å±•å¼€æ”¶ç¼©çš„boxçš®è‚¤
+		IDMSkinPtr                             m_pItemBgSkin;			///< nameï¼Œvalueçš„é€šç”¨èƒŒæ™¯çš®è‚¤
 
-		DM::CList<IPropPtr>					   m_lstProps;				///< ÊôĞÔÁĞ±í
-		IPropPtr							   m_pSel;					///< µ±Ç°Ñ¡ÖĞµÄÊôĞÔÁĞ±í
+		DM::CList<IPropPtr>					   m_lstProps;				///< å±æ€§åˆ—è¡¨
+		IPropPtr							   m_pSel;					///< å½“å‰é€‰ä¸­çš„å±æ€§åˆ—è¡¨
 
 		CPoint                                 m_ptDrag;
 		bool                                   m_bDragging;
 		DUIPropFrame*                          m_pFrame;
 		DUIPropDesc*                           m_pDesc;
 
-		DWORD								   m_accel;					///< É¾³ı¼ü
+		DWORD								   m_accel;					///< åˆ é™¤é”®
 	};
 
 	class DUIPropDesc : public DUIWindow

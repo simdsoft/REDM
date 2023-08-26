@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: MainWnd.h 
-// File Des: Ö÷´°¿Ú
+// File Des: ä¸»çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -24,18 +24,18 @@ public:
 	CMainWnd();
 	~CMainWnd();
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
 
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	// Input Parameter:
 	// Output Parameter:
 	// return:
 	//---------------------------------------------------
-	DMCode OnTest(); // Í¨ÓÃµÄ²âÊÔ
+	DMCode OnTest(); // é€šç”¨çš„æµ‹è¯•
 	DMCode OnClose();
 	DMCode OnMaximize();
 	DMCode OnRestore();
@@ -48,21 +48,21 @@ public:
 	DMCode OnOpenGif();
 	DMCode OnBtnMenu();
 
-	// ¶¨Ê±Æ÷
+	// å®šæ—¶å™¨
 	DMCode OnStartBtn();
 	DMCode OnStopBtn();
 
-	// ²Ëµ¥²âÊÔ
+	// èœå•æµ‹è¯•
 	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);
 
-	// Webkit²âÊÔ
+	// Webkitæµ‹è¯•
 	DMCode OnBtnWebBack();
 	DMCode OnBtnWebRefresh(); 
 	DMCode OnBtnWebfront();
 	static void OnTitleChanged(const DMClientHandler*, DMString title);
 	static void OnURLChanged(const DMClientHandler*, DMString url);
 
-	// IE²âÊÔ
+	// IEæµ‹è¯•
 	DMCode OnBtnIeBack();
 	DMCode OnBtnIeRefresh();
 	DMCode OnBtnIefront();
@@ -70,7 +70,7 @@ public:
 
 	HRESULT NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
 
-	// ¶¯»­------------------------------------
+	// åŠ¨ç”»------------------------------------
 	DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp);		
 	DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp, LPARAM lp);
 	DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp);
@@ -92,7 +92,7 @@ public:
 	DMCode OnTimeline();
 
 protected:
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	DECLARE_EVENT_MAP()
 
 private:
@@ -107,9 +107,9 @@ public:
 	int                             m_LBk;
 	int                             m_ABk;
 
-	DMClientHandler					m_handler;// ±ØĞëÊÇÈ«¾ÖµÄ£¬²»È»»á±À
+	DMClientHandler					m_handler;// å¿…é¡»æ˜¯å…¨å±€çš„ï¼Œä¸ç„¶ä¼šå´©
 
-public:// ¶¯»­
+public:// åŠ¨ç”»
 	DMSmartPtrT<IDMAnimate>         m_pAnimate;
 
 };

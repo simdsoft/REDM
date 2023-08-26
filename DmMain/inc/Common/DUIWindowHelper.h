@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIWindowHelper.h 
-// File Des: DUI´°¿ÚÀàDUIWnd.hµÄ¸¨ÖúÊı¾İ
+// File Des: DUIçª—å£ç±»DUIWnd.hçš„è¾…åŠ©æ•°æ®
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -39,41 +39,41 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIWindow"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIWindow"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIWindowAttr
 	{
 	public:
-		static const char* STRING_name;                                    ///< ´°¿ÚÃû£¬Î¨Ò»±êÊ¶, Ê¾Àı:name="firstwnd"
-		static const char* INT_id;											///< ´°¿ÚID£¬Î¨Ò»±êÊ¶,Ê¾Àı:id="10"
+		static const char* STRING_name;                                    ///< çª—å£åï¼Œå”¯ä¸€æ ‡è¯†, ç¤ºä¾‹:name="firstwnd"
+		static const char* INT_id;											///< çª—å£IDï¼Œå”¯ä¸€æ ‡è¯†,ç¤ºä¾‹:id="10"
 
-		static const char* bool_bvisible;                                  ///< ´°¿ÚÊÇ·ñ¿É¼û,Ê¾Àı:bvisible="1"
-		static const char* bool_bdisable;                                  ///< ´°¿ÚÊÇ·ñ½ûÓÃ,Ê¾Àı:bdisable="1"
-		static const char* bool_bplaceholder;                              ///< ´°¿ÚÒş²ØÊ±ÊÇ·ñÕ¼Î»,Ä¬ÈÏÊÇÕ¼Î»!,²»Õ¼Î»Ê±Æô¶¯ÖØĞÂ²¼¾Ö,×¢ÒâÁ÷Ê½²¼¾Ö×Ó¿Ø¼şÒş²ØÊ±Í¬ÑùÊ¹ÓÃÕ¼Î»,Ê¾Àı:bplaceholder="1"
-		static const char* bool_bcache;								    ///< Ö§³Ö´°¿ÚÄÚÈİµÄCache±êÖ¾,»º´æ»­²¼½¨ÒéÓÃÔÚ²»¾­³£¸Ä±ä´óĞ¡¡¢±³¾°É«µÄµØ·½,Ê¾Àı:bcache=="1"
+		static const char* bool_bvisible;                                  ///< çª—å£æ˜¯å¦å¯è§,ç¤ºä¾‹:bvisible="1"
+		static const char* bool_bdisable;                                  ///< çª—å£æ˜¯å¦ç¦ç”¨,ç¤ºä¾‹:bdisable="1"
+		static const char* bool_bplaceholder;                              ///< çª—å£éšè—æ—¶æ˜¯å¦å ä½,é»˜è®¤æ˜¯å ä½!,ä¸å ä½æ—¶å¯åŠ¨é‡æ–°å¸ƒå±€,æ³¨æ„æµå¼å¸ƒå±€å­æ§ä»¶éšè—æ—¶åŒæ ·ä½¿ç”¨å ä½,ç¤ºä¾‹:bplaceholder="1"
+		static const char* bool_bcache;								    ///< æ”¯æŒçª—å£å†…å®¹çš„Cacheæ ‡å¿—,ç¼“å­˜ç”»å¸ƒå»ºè®®ç”¨åœ¨ä¸ç»å¸¸æ”¹å˜å¤§å°ã€èƒŒæ™¯è‰²çš„åœ°æ–¹,ç¤ºä¾‹:bcache=="1"
 
-		static const char* bool_bolnydrawclient;                           ///< ÊÇ·ñ½ö»æÖÆ¿Í»§Çø,Ê¾Àı:bolnydrawclient="1"
-		static const char* bool_bfocusable;							    ///< ´°¿ÚÊÇ·ñ¿É»ñµÃ½¹µã,½¹µã´°¿Ú¿ÉÊ¹ÓÃtabÇĞ»»´°¿Ú£¬Ê¾Àı:bfocusable=="1"
-		static const char* bool_bshowdrawfocus;                            ///< ÔÚÓĞ½¹µã´°¿ÚÊ±,ÊÇ·ñ»æÖÆ½¹µã¿ò£¬Ê¾Àı:bshowdrawfocus=="1"
-		static const char* bool_bmsgnohandle;							    ///< ´°¿ÚÊÇ·ñ²»´¦ÀíÏûÏ¢,ÈçÎªtrue,ÔÚhittestÖĞ»áÖ±½ÓºöÊÓÕâ¸ö´°¿Ú,ÓÃÓÚstaticµÈ.Ê¾Àı:bmsgnohandle=="1"
-		static const char* bool_bdrag;                                     ///< ´°¿ÚÊÇ·ñ¿ÉÍÏ¶¯. ÉèÖÃcaption¿ÉÍÏ¶¯×´Ì¬,Ê¾Àı:bdrag="1"
+		static const char* bool_bolnydrawclient;                           ///< æ˜¯å¦ä»…ç»˜åˆ¶å®¢æˆ·åŒº,ç¤ºä¾‹:bolnydrawclient="1"
+		static const char* bool_bfocusable;							    ///< çª—å£æ˜¯å¦å¯è·å¾—ç„¦ç‚¹,ç„¦ç‚¹çª—å£å¯ä½¿ç”¨tabåˆ‡æ¢çª—å£ï¼Œç¤ºä¾‹:bfocusable=="1"
+		static const char* bool_bshowdrawfocus;                            ///< åœ¨æœ‰ç„¦ç‚¹çª—å£æ—¶,æ˜¯å¦ç»˜åˆ¶ç„¦ç‚¹æ¡†ï¼Œç¤ºä¾‹:bshowdrawfocus=="1"
+		static const char* bool_bmsgnohandle;							    ///< çª—å£æ˜¯å¦ä¸å¤„ç†æ¶ˆæ¯,å¦‚ä¸ºtrue,åœ¨hittestä¸­ä¼šç›´æ¥å¿½è§†è¿™ä¸ªçª—å£,ç”¨äºstaticç­‰.ç¤ºä¾‹:bmsgnohandle=="1"
+		static const char* bool_bdrag;                                     ///< çª—å£æ˜¯å¦å¯æ‹–åŠ¨. è®¾ç½®captionå¯æ‹–åŠ¨çŠ¶æ€,ç¤ºä¾‹:bdrag="1"
 		
-		static const char* STRING_style;                                   ///< Ö¸¶¨Ê¹ÓÃµÄstyle,Ê¾Àı:style="custom"
-		static const char* STRING_text;                                    ///< ´°¿ÚÎÄ±¾,Ê¾Àı:text="OK"
-		static const char* STRING_tiptext;                                 ///< ´°¿ÚtooltipÌáÊ¾Óï£¬Ê¾Àı:tiptext="close"
-		static const char* STRING_tipxmlid;                                ///< ´°¿ÚtipsµÄxmlid,Ê¾Àı:tipxmlid="dui_tips1"
-		static const char* INT_tipdelay;                                   ///< ´°¿ÚtooltipÌáÊ¾ÓïÑÓ³ÙÏÔÊ¾Ê±¼ä(Ä¬ÈÏ500ms)£¬Ê¾Àı:tipdelay="10"
-		static const char* INT_tipspan;                                    ///< ´°¿ÚtooltipÌáÊ¾ÓïÏÔÊ¾Í£ÁôÊ±¼ä(Ä¬ÈÏ5000ms)£¬Ê¾Àı:tipspan="10"
-		static const char* RECT_tipflags;                                  ///< ÀàËÆTrackPopupMenuµÄ²ÎÊı£¬Ç°ÈıÏî·Ö±ğ´ú±íUINT uFlags, int x, int y£¬Ä¬ÈÏuFlagsÎª-1,ÔòÎŞÊÓ´Ë²ÎÊı,Ê¾Àı:tipflags="0,100,10,0"
+		static const char* STRING_style;                                   ///< æŒ‡å®šä½¿ç”¨çš„style,ç¤ºä¾‹:style="custom"
+		static const char* STRING_text;                                    ///< çª—å£æ–‡æœ¬,ç¤ºä¾‹:text="OK"
+		static const char* STRING_tiptext;                                 ///< çª—å£tooltipæç¤ºè¯­ï¼Œç¤ºä¾‹:tiptext="close"
+		static const char* STRING_tipxmlid;                                ///< çª—å£tipsçš„xmlid,ç¤ºä¾‹:tipxmlid="dui_tips1"
+		static const char* INT_tipdelay;                                   ///< çª—å£tooltipæç¤ºè¯­å»¶è¿Ÿæ˜¾ç¤ºæ—¶é—´(é»˜è®¤500ms)ï¼Œç¤ºä¾‹:tipdelay="10"
+		static const char* INT_tipspan;                                    ///< çª—å£tooltipæç¤ºè¯­æ˜¾ç¤ºåœç•™æ—¶é—´(é»˜è®¤5000ms)ï¼Œç¤ºä¾‹:tipspan="10"
+		static const char* RECT_tipflags;                                  ///< ç±»ä¼¼TrackPopupMenuçš„å‚æ•°ï¼Œå‰ä¸‰é¡¹åˆ†åˆ«ä»£è¡¨UINT uFlags, int x, int yï¼Œé»˜è®¤uFlagsä¸º-1,åˆ™æ— è§†æ­¤å‚æ•°,ç¤ºä¾‹:tipflags="0,100,10,0"
 
-		// FlowLayout£¬¶ÔÒ»°ãµÄÃªµã²¼¾ÖºÍ¾ø¶Ô²¼¾ÖÎŞĞ§
-		static const char* INT_maxwidth;                                   ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄ×î´ó¿í¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:maxwidth="10"
-		static const char* INT_minwidth;                                   ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄ×î´óĞ¡¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:INT_minwidth="10"
-		static const char* INT_maxheight;                                  ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄ×î´ó¸ß¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:maxheight="10"
-		static const char* INT_minheight;                                  ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄ×îĞ¡¸ß¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:minheight="10"
-		static const char* INT_width;                                      ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄÕı³£¿í¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:width="10"
-		static const char* INT_height;                                     ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄÕı³£¸ß¶È,Îª-1±íÊ¾Ê¹ÓÃ×Ô¶¯¼ÆËã,Ê¾Àı:height="10"
-		static const char* RECT_rcpadd;                                    ///< ½öÓÃÓÚÁ÷Ê½²¼¾ÖµÄ×Ó¿Ø¼ş,´°¿ÚµÄËÄ¸ö±ßµÄÍâ±ß¾à,Ïàµ±ÓÚ°Ñ´°¿ÚËÄ±ßÀ©´órcpadd£¬ÔÙ·ÅÖÃµ½Á÷Ê½²¼¾ÖÖĞ,Ê¾Àı:rcPadd="10,5,5,5"
+		// FlowLayoutï¼Œå¯¹ä¸€èˆ¬çš„é”šç‚¹å¸ƒå±€å’Œç»å¯¹å¸ƒå±€æ— æ•ˆ
+		static const char* INT_maxwidth;                                   ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æœ€å¤§å®½åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:maxwidth="10"
+		static const char* INT_minwidth;                                   ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æœ€å¤§å°åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:INT_minwidth="10"
+		static const char* INT_maxheight;                                  ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æœ€å¤§é«˜åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:maxheight="10"
+		static const char* INT_minheight;                                  ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æœ€å°é«˜åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:minheight="10"
+		static const char* INT_width;                                      ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æ­£å¸¸å®½åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:width="10"
+		static const char* INT_height;                                     ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„æ­£å¸¸é«˜åº¦,ä¸º-1è¡¨ç¤ºä½¿ç”¨è‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:height="10"
+		static const char* RECT_rcpadd;                                    ///< ä»…ç”¨äºæµå¼å¸ƒå±€çš„å­æ§ä»¶,çª—å£çš„å››ä¸ªè¾¹çš„å¤–è¾¹è·,ç›¸å½“äºæŠŠçª—å£å››è¾¹æ‰©å¤§rcpaddï¼Œå†æ”¾ç½®åˆ°æµå¼å¸ƒå±€ä¸­,ç¤ºä¾‹:rcPadd="10,5,5,5"
 
 	};
 	DMAttrValueInit(DUIWindowAttr,STRING_name)
@@ -99,7 +99,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		ËùÓĞDUI´°¿ÚÏûÏ¢·Ö·¢µÄ»ùÀà,º¯ÊıÃûºÍDMMsgCrack.h±£³ÖÒ»ÖÂ,·½±ãDMMsgCrack.hºÍDUIMsgCrack.h»ìÓÃ,ÔÚDUIÉÏ,Ê¹ÓÃm_bDuiMsgHandled,·ñÔòÊ¹ÓÃDMCWndµÄm_bMsgHandled
+	///		æ‰€æœ‰DUIçª—å£æ¶ˆæ¯åˆ†å‘çš„åŸºç±»,å‡½æ•°åå’ŒDMMsgCrack.hä¿æŒä¸€è‡´,æ–¹ä¾¿DMMsgCrack.hå’ŒDUIMsgCrack.hæ··ç”¨,åœ¨DUIä¸Š,ä½¿ç”¨m_bDuiMsgHandled,å¦åˆ™ä½¿ç”¨DMCWndçš„m_bMsgHandled
 	/// </summary>
 	class DM_EXPORT DUIMsgHandler
 	{
@@ -117,7 +117,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		<see cref="DUIWindow"/>µÄxml²ÎÊı
+	///		<see cref="DUIWindow"/>çš„xmlå‚æ•°
 	/// </summary>
 	class DM_EXPORT DUIWindow_XmlInfo:public DMDataBase
 	{
@@ -156,7 +156,7 @@ namespace DM
 
 			// Style
 			DM_CUSTOM_ATTRIBUTE(DMAttr::DUIWindowAttr::STRING_style, OnAttributeStyle)
-			DM_CHAIN_ATTRIBUTTE(m_pStyle)            // ÔÊĞíÖ±½Ó¶¨ÖÆstyle
+			DM_CHAIN_ATTRIBUTTE(m_pStyle)            // å…è®¸ç›´æ¥å®šåˆ¶style
 		DM_END_ATTRIBUTES()
 
 	public:
@@ -170,46 +170,46 @@ namespace DM
 		DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);
 
 	public:
-		DUIWindow*          m_pOwner;                              ///< ÓµÓĞ´°¿Ú
-		CStringA            m_strName;                             ///< ´°¿ÚÃû£¬Î¨Ò»±êÊ¶
-		int                 m_iID;                                 ///< ´°¿ÚID£¬Î¨Ò»±êÊ¶
+		DUIWindow*          m_pOwner;                              ///< æ‹¥æœ‰çª—å£
+		CStringA            m_strName;                             ///< çª—å£åï¼Œå”¯ä¸€æ ‡è¯†
+		int                 m_iID;                                 ///< çª—å£IDï¼Œå”¯ä¸€æ ‡è¯†
 
-		bool				m_bVisible;							   ///< ´°¿Ú¿É¼û×´Ì¬
-		bool				m_bDisable;							   ///< ´°¿Ú½ûÓÃ×´Ì¬
-		bool				m_bPlaceHolder;						   ///< ´°¿ÚÒş²ØÊ±ÊÇ·ñÕ¼Î»£¬²»Õ¼Î»Ê±Æô¶¯ÖØĞÂ²¼¾Ö
-		bool 				m_bCacheDraw;						   ///< Ö§³Ö´°¿ÚÄÚÈİµÄCache±êÖ¾,»º´æ»­²¼½¨ÒéÓÃÔÚ²»¾­³£¸Ä±ä´óĞ¡¡¢±³¾°É«µÄµØ·½
+		bool				m_bVisible;							   ///< çª—å£å¯è§çŠ¶æ€
+		bool				m_bDisable;							   ///< çª—å£ç¦ç”¨çŠ¶æ€
+		bool				m_bPlaceHolder;						   ///< çª—å£éšè—æ—¶æ˜¯å¦å ä½ï¼Œä¸å ä½æ—¶å¯åŠ¨é‡æ–°å¸ƒå±€
+		bool 				m_bCacheDraw;						   ///< æ”¯æŒçª—å£å†…å®¹çš„Cacheæ ‡å¿—,ç¼“å­˜ç”»å¸ƒå»ºè®®ç”¨åœ¨ä¸ç»å¸¸æ”¹å˜å¤§å°ã€èƒŒæ™¯è‰²çš„åœ°æ–¹
 
-		bool			    m_bOnlyDrawClient;					   ///< ´°¿Ú»æÖÆÊ±×öclip¿Í»§Çø´¦ÀíµÄ±êÖ¾,ÓÉÓÚclip¿ÉÄÜÔö¼Ó¼ÆËãÁ¿£¬Ö»ÔÚ»æÖÆ¿ÉÄÜ×ß³ö¿Í»§ÇøÊ±²ÅÉèÖÃ
-		bool				m_bFocusable;						   ///< ´°¿Ú¿É»ñµÃ½¹µã±êÖ¾
-		bool                m_bShowDrawFocus;                      ///< ÓĞ´°¿Ú½¹µãÊ±£¬ÊÇ·ñ»æÖÆ½¹µã¿ò
-		bool				m_bMsgNoHandle;					       ///< ½ÓÊÕÏûÏ¢±êÖ¾ TRUE-²»´¦ÀíÏûÏ¢
-		bool                m_bDrag;                               ///< ÉèÖÃcaption¿ÉÍÏ¶¯×´Ì¬
-		bool			    m_bNoPreSize;						   ///< ÊÇ·ñ²»Ê¹ÓÃPreSizeÅĞ¶ÏÔàÇø
+		bool			    m_bOnlyDrawClient;					   ///< çª—å£ç»˜åˆ¶æ—¶åšclipå®¢æˆ·åŒºå¤„ç†çš„æ ‡å¿—,ç”±äºclipå¯èƒ½å¢åŠ è®¡ç®—é‡ï¼Œåªåœ¨ç»˜åˆ¶å¯èƒ½èµ°å‡ºå®¢æˆ·åŒºæ—¶æ‰è®¾ç½®
+		bool				m_bFocusable;						   ///< çª—å£å¯è·å¾—ç„¦ç‚¹æ ‡å¿—
+		bool                m_bShowDrawFocus;                      ///< æœ‰çª—å£ç„¦ç‚¹æ—¶ï¼Œæ˜¯å¦ç»˜åˆ¶ç„¦ç‚¹æ¡†
+		bool				m_bMsgNoHandle;					       ///< æ¥æ”¶æ¶ˆæ¯æ ‡å¿— TRUE-ä¸å¤„ç†æ¶ˆæ¯
+		bool                m_bDrag;                               ///< è®¾ç½®captionå¯æ‹–åŠ¨çŠ¶æ€
+		bool			    m_bNoPreSize;						   ///< æ˜¯å¦ä¸ä½¿ç”¨PreSizeåˆ¤æ–­è„åŒº
 
-		CStringW            m_strText;							   ///< ´°¿ÚÎÄ×Ö
-		CStringW            m_strTooltipText;                      ///< ´°¿Ú¼òµ¥tooltip
-		CStringW            m_strTipsXmlId;						   ///< ´°¿ÚtipsµÄxml×ÊÔ´ID
-		int                 m_iTooltipDelayTime;                   ///< tooltipÑÓ³ÙÏÔÊ¾Ê±¼ä,ms
-		int                 m_iTooltipSpanTime;                    ///< tooltipÍ£ÁôÏÔÊ¾Ê±¼ä,ms
-		CRect               m_rcTooltipPosFlags;				   ///< ÀàËÆTrackPopupMenuµÄ²ÎÊı£¬Ç°ÈıÏî·Ö±ğ´ú±íUINT uFlags, int x, int y
+		CStringW            m_strText;							   ///< çª—å£æ–‡å­—
+		CStringW            m_strTooltipText;                      ///< çª—å£ç®€å•tooltip
+		CStringW            m_strTipsXmlId;						   ///< çª—å£tipsçš„xmlèµ„æºID
+		int                 m_iTooltipDelayTime;                   ///< tooltipå»¶è¿Ÿæ˜¾ç¤ºæ—¶é—´,ms
+		int                 m_iTooltipSpanTime;                    ///< tooltipåœç•™æ˜¾ç¤ºæ—¶é—´,ms
+		CRect               m_rcTooltipPosFlags;				   ///< ç±»ä¼¼TrackPopupMenuçš„å‚æ•°ï¼Œå‰ä¸‰é¡¹åˆ†åˆ«ä»£è¡¨UINT uFlags, int x, int y
 
-		DMSmartPtrT<IDMStyle> m_pStyle;							   ///< ´°¿ÚÊôĞÔ£¬ÄÚ²¿±£Ö¤ÁËËü×ÜÊÇ²»Îª¿Õ
+		DMSmartPtrT<IDMStyle> m_pStyle;							   ///< çª—å£å±æ€§ï¼Œå†…éƒ¨ä¿è¯äº†å®ƒæ€»æ˜¯ä¸ä¸ºç©º
 
 		//-------------FlowLayout----------------------------
-		int					m_nMaxWidth;						   ///< ×Ô¶¯¼ÆËã´óĞ¡Ê±£¬´°¿ÚµÄ×î´ó¿í¶È
-		int					m_nMaxHeight;						   ///< ×Ô¶¯¼ÆËã´óĞ¡Ê±£¬´°¿ÚµÄ×î´ó¸ß¶È
-		int					m_nMinWidth;						   ///< ×Ô¶¯¼ÆËã´óĞ¡Ê±£¬´°¿ÚµÄ×îĞ¡¿í¶È
-		int					m_nMinHeight;						   ///< ×Ô¶¯¼ÆËã´óĞ¡Ê±£¬´°¿ÚµÄ×îĞ¡¸ß¶È
+		int					m_nMaxWidth;						   ///< è‡ªåŠ¨è®¡ç®—å¤§å°æ—¶ï¼Œçª—å£çš„æœ€å¤§å®½åº¦
+		int					m_nMaxHeight;						   ///< è‡ªåŠ¨è®¡ç®—å¤§å°æ—¶ï¼Œçª—å£çš„æœ€å¤§é«˜åº¦
+		int					m_nMinWidth;						   ///< è‡ªåŠ¨è®¡ç®—å¤§å°æ—¶ï¼Œçª—å£çš„æœ€å°å®½åº¦
+		int					m_nMinHeight;						   ///< è‡ªåŠ¨è®¡ç®—å¤§å°æ—¶ï¼Œçª—å£çš„æœ€å°é«˜åº¦
 
-		int					m_iHeight;							   ///< ´°¿ÚµÄ¿í¶È
-		int					m_iWidth;							   ///< ´°¿ÚµÄ¸ß¶È
-		CRect				m_rcPadd;							   ///< ¿Ø¼ş±ß½çÓëÍâ½çµÄ¼äÏ¶£¬×¢ÒâÔÚWPFÖĞ£¬PaddingÖ¸µÄÊÇ¿Ø¼şÄÚ²¿ÄÚÈİÓë¿Ø¼ş±ß½çµÄ¼äÏ¶£¬µ«ÕâÀïÃ»ÓĞ±ØÒªÉèÖÃÄÚ²¿
+		int					m_iHeight;							   ///< çª—å£çš„å®½åº¦
+		int					m_iWidth;							   ///< çª—å£çš„é«˜åº¦
+		CRect				m_rcPadd;							   ///< æ§ä»¶è¾¹ç•Œä¸å¤–ç•Œçš„é—´éš™ï¼Œæ³¨æ„åœ¨WPFä¸­ï¼ŒPaddingæŒ‡çš„æ˜¯æ§ä»¶å†…éƒ¨å†…å®¹ä¸æ§ä»¶è¾¹ç•Œçš„é—´éš™ï¼Œä½†è¿™é‡Œæ²¡æœ‰å¿…è¦è®¾ç½®å†…éƒ¨
 
 	};
 
 	typedef struct stDUIWNDMSG{UINT uMsg;WPARAM	 wp;LPARAM lp;}DUIWNDMSG,*PDUIWNDMSG;
 	/// <summary>
-	///		DUIµÄÆäËû»ù´¡ÊôĞÔ
+	///		DUIçš„å…¶ä»–åŸºç¡€å±æ€§
 	/// </summary>
 	class DM_EXPORT DUIWindow_Data
 	{
@@ -217,13 +217,13 @@ namespace DM
 		DUIWindow_Data();
 
 	public:
-		bool			  m_bDirty;									///< »º´æ´°¿ÚÔà±êÖ¾ 
-		bool			  m_bUpdateLocked;							///< ÔİÊ±Ëø¶¨¸üĞÂ£¬Ëø¶¨ºó£¬²»ÏòËŞÖ÷·¢ËÍDM_Invalidate 
-		DUIWNDMSG        *m_pCurMsg;							    ///< µ±Ç°ÕıÔÚ´¦ÀíµÄ´°¿ÚÏûÏ¢
-		CSize             m_PreSize;                                ///< ÔÚÃ¿´Î²¼¾ÖÍê³Éºó£¬ÔÚ½ÓÊÕµÄWM_SIZEÖĞÅĞ¶ÏÊÇ·ñsize¸Ä±ä£¬ÈçsizeÎ´¸Ä±ä£¬Ä¬ÈÏ²»ÉèÖÃÔàÇø£¨»º´æ»­²¼£©
+		bool			  m_bDirty;									///< ç¼“å­˜çª—å£è„æ ‡å¿— 
+		bool			  m_bUpdateLocked;							///< æš‚æ—¶é”å®šæ›´æ–°ï¼Œé”å®šåï¼Œä¸å‘å®¿ä¸»å‘é€DM_Invalidate 
+		DUIWNDMSG        *m_pCurMsg;							    ///< å½“å‰æ­£åœ¨å¤„ç†çš„çª—å£æ¶ˆæ¯
+		CSize             m_PreSize;                                ///< åœ¨æ¯æ¬¡å¸ƒå±€å®Œæˆåï¼Œåœ¨æ¥æ”¶çš„WM_SIZEä¸­åˆ¤æ–­æ˜¯å¦sizeæ”¹å˜ï¼Œå¦‚sizeæœªæ”¹å˜ï¼Œé»˜è®¤ä¸è®¾ç½®è„åŒºï¼ˆç¼“å­˜ç”»å¸ƒï¼‰
 
-		// ÓÃÓÚDM_GetCanvas¡¢DM_ReleaseCanvas
-		CRect			 m_rcGetCanvas;								///< GetCanvasµÄ»æÖÆÇø
+		// ç”¨äºDM_GetCanvasã€DM_ReleaseCanvas
+		CRect			 m_rcGetCanvas;								///< GetCanvasçš„ç»˜åˆ¶åŒº
 		DWORD			 m_dcFlags;									///< DMOLEDCFLAGS
 		bool			 m_bClipCanvas;
 
@@ -231,25 +231,25 @@ namespace DM
 
 	class DUIWindow;
 	/// <summary>
-	///		DUIµÄÊ÷ĞÎ´°¿Ú¹ÜÀí
+	///		DUIçš„æ ‘å½¢çª—å£ç®¡ç†
 	/// </summary>
 	class DM_EXPORT DUIWindowNode
 	{
 	public:
 		DUIWindowNode();
 	public:
-		DUIWindow*			m_pOwner;								///< ÈİÆ÷Owner(Ò»°ã¿ÉÈÏÎªÊÇÕæÊµµÄÖ÷´°¿Ú)£¬ÊÂ¼ş·Ö·¢Ê±£¬»á°ÑÊÂ¼ş½»¸øOwner´¦Àí£¬ÈçComboxÖĞµÄlist
-		DUIWindow*			m_pParent;								///< ¸¸´°¿Ú 
-		DUIWindow*          m_pPanelParent;                         ///< Èç¹ûÊÇpanel£¬Ö¸¶¨ËüËùÊôµÄm_ChildPanelArray¸¸´°¿Ú
-		DUIWindow*			m_pFirstChild;							///< µÚÒ»×Ó´°¿Ú
-		DUIWindow*			m_pLastChild;							///< ×îºó´°¿Ú
-		DUIWindow*			m_pNextSibling;							///< Ç°Ò»ĞÖµÜ´°¿Ú
-		DUIWindow*			m_pPrevSibling;							///< ºóÒ»ĞÖµÜ´°¿Ú
-		int					m_nChildrenCount;						///< ×Ó´°¿ÚÊıÁ¿
+		DUIWindow*			m_pOwner;								///< å®¹å™¨Owner(ä¸€èˆ¬å¯è®¤ä¸ºæ˜¯çœŸå®çš„ä¸»çª—å£)ï¼Œäº‹ä»¶åˆ†å‘æ—¶ï¼Œä¼šæŠŠäº‹ä»¶äº¤ç»™Ownerå¤„ç†ï¼Œå¦‚Comboxä¸­çš„list
+		DUIWindow*			m_pParent;								///< çˆ¶çª—å£ 
+		DUIWindow*          m_pPanelParent;                         ///< å¦‚æœæ˜¯panelï¼ŒæŒ‡å®šå®ƒæ‰€å±çš„m_ChildPanelArrayçˆ¶çª—å£
+		DUIWindow*			m_pFirstChild;							///< ç¬¬ä¸€å­çª—å£
+		DUIWindow*			m_pLastChild;							///< æœ€åçª—å£
+		DUIWindow*			m_pNextSibling;							///< å‰ä¸€å…„å¼Ÿçª—å£
+		DUIWindow*			m_pPrevSibling;							///< åä¸€å…„å¼Ÿçª—å£
+		int					m_nChildrenCount;						///< å­çª—å£æ•°é‡
 	};
 
 	/// <summary>
-	///		DUIµÄ»æÖÆ»·¾³±¸·İ
+	///		DUIçš„ç»˜åˆ¶ç¯å¢ƒå¤‡ä»½
 	/// </summary>
 	class DM_EXPORT DUIDrawEnviron
 	{
@@ -258,11 +258,11 @@ namespace DM
 
 		DMSmartPtrT<IDMFont>		 m_pOldPen;
 		DMColor						 m_ClrOld;
-		LPARAM                       m_dwReserve;					///< ÆäËû
+		LPARAM                       m_dwReserve;					///< å…¶ä»–
 	};
 
 	// -----------------------------------------------
-	// ½á¹¹¶¨Òå
+	// ç»“æ„å®šä¹‰
 	typedef enum _GDW_CODE
 	{
 		GDW_FIRSTCHILD=0,
@@ -284,8 +284,8 @@ namespace DM
 		DUIWNDSTATE_Hover        = 0x00000001UL,
 		DUIWNDSTATE_PushDown     = 0x00000002UL,
 		DUIWNDSTATE_Check        = 0x00000004UL,
-		DUIWNDSTATE_Novisible    = 0x00000008UL, // ´Ë±êÖ¾ºÍ¸¸´°¿ÚÏà¹Ø£¬ÔÚ¸¸´°¿Ú²»¿É¼û£¬µ«m_bVisibleÎªtrueÊ±£¬Ó¦¸ÃÉèÖÃÕâ¸ö±êÖ¾£¨¸¸´°¿Ú¶¼Òş²ØÁË£¬¼´Ê¹×Ó´°¿Ú¿É¼û£¬½á¹ûµ±È»Ò²ÊÇ²»¿É¼û×´Ì¬£©
-		DUIWNDSTATE_Disable      = 0x00000010UL, // ´Ë±êÖ¾ÀàÍ¬ÓÚDUIWNDSTATE_Novisible
+		DUIWNDSTATE_Novisible    = 0x00000008UL, // æ­¤æ ‡å¿—å’Œçˆ¶çª—å£ç›¸å…³ï¼Œåœ¨çˆ¶çª—å£ä¸å¯è§ï¼Œä½†m_bVisibleä¸ºtrueæ—¶ï¼Œåº”è¯¥è®¾ç½®è¿™ä¸ªæ ‡å¿—ï¼ˆçˆ¶çª—å£éƒ½éšè—äº†ï¼Œå³ä½¿å­çª—å£å¯è§ï¼Œç»“æœå½“ç„¶ä¹Ÿæ˜¯ä¸å¯è§çŠ¶æ€ï¼‰
+		DUIWNDSTATE_Disable      = 0x00000010UL, // æ­¤æ ‡å¿—ç±»åŒäºDUIWNDSTATE_Novisible
 		DUIWNDSTATE_Noactive     = 0x00000020UL,
 		DUIWNDSTATE_FULL         = 0xffffffffUL,
 	}DUIWND_STATE;
@@ -302,18 +302,18 @@ namespace DM
 #define IIF_STATE5(the_state, normal_value, hover_value, pushdown_value, disable_value, noactive_value) \
 	(((the_state) & DUIWNDSTATE_Noactive) ? (noactive_value) : IIF_STATE4(the_state, normal_value, hover_value, pushdown_value, disable_value))
 
-#define  DMDLGC_WANTARROWS         0x0001 // ¼ıÍ·¼ü
+#define  DMDLGC_WANTARROWS         0x0001 // ç®­å¤´é”®
 #define  DMDLGC_WANTTAB            0x0002
 #define  DMDLGC_WANTRETURN         0x0004
 #define  DMDLGC_WANTCHARS          0x0008
 #define  DMDLGC_WANTALLKEYS        0xFFFF
 #define  DMDLGC_WANTSYSKEY         0x80000000
 
-	enum// ²¼¾Ö±êÖ¾
+	enum// å¸ƒå±€æ ‡å¿—
 	{
-		POS_INIT = 0x11000000,			  // ×ø±êµÄ³õÊ¼»¯Öµ
-		POS_WAIT = 0x12000000,			  // ×ø±êµÄ¼ÆËãÒÀÀµÓÚÆäËü´°¿ÚµÄ²¼¾Ö
+		POS_INIT = 0x11000000,			  // åæ ‡çš„åˆå§‹åŒ–å€¼
+		POS_WAIT = 0x12000000,			  // åæ ‡çš„è®¡ç®—ä¾èµ–äºå…¶å®ƒçª—å£çš„å¸ƒå±€
 	};
-	enum {NormalShow=0,ParentShow=1};     // Ìá¹©¸øWM_SHOWWINDOWÏûÏ¢Ê¶±ğÊÇ¸¸´°¿ÚÏÔÊ¾»¹ÊÇÒªÏÔÊ¾±¾´°¿Ú
-	enum {NormalEnable=0,ParentEnable=1}; // Ìá¹©¸øWM_ENABLEÏûÏ¢Ê¶±ğÊÇ¸¸´°¿Ú¿ÉÓÃ»¹ÊÇÖ±½Ó²Ù×÷µ±Ç°´°¿Ú
+	enum {NormalShow=0,ParentShow=1};     // æä¾›ç»™WM_SHOWWINDOWæ¶ˆæ¯è¯†åˆ«æ˜¯çˆ¶çª—å£æ˜¾ç¤ºè¿˜æ˜¯è¦æ˜¾ç¤ºæœ¬çª—å£
+	enum {NormalEnable=0,ParentEnable=1}; // æä¾›ç»™WM_ENABLEæ¶ˆæ¯è¯†åˆ«æ˜¯çˆ¶çª—å£å¯ç”¨è¿˜æ˜¯ç›´æ¥æ“ä½œå½“å‰çª—å£
 }//namespace DM

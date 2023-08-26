@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,44 +17,44 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIWindow"/>µÄstyle xmlÊôÐÔ¶¨Òå
+	///		<see cref="DM::DUIWindow"/>çš„style xmlå±žæ€§å®šä¹‰
 	/// </summary>
 	class DUIStyleAttr
 	{
 	public:
-		static const char* STRING_id;											///< styleID,Ïàµ±ÓÚ´°¿ÚµÄname£¬Î¨Ò»±êÊ¶,Ê¾Àý:id="style"
-		static const char* SKIN_skin;											///< ´°¿ÚµÄstyle±³¾°Í¼,Ê¾Àý:skin="checkbox"
-		static const char* SKIN_ncskin;										///< ´°¿ÚµÄstyleNC±³¾°Í¼,½öÔÚÉèÖÃÁËncmarginÊ±ÓÐÐ§,Ê¾Àý:ncskin="dui_frame"
-		static const char* RECT_ncmargin;                                      ///< ´°¿ÚµÄstyle·Ç¿Í»§ÇøËÄ±ß¾à,Ê¾Àý:ncmargin="2,2,2,2"
-		static const char* STRING_cursor;                                      ///< ´°¿ÚµÄstyleÄ¬ÈÏ¹â±ê,Ê¾Àý:cursor="hand"
-		static const char* COLOR_clrbg;                                        ///< ´°¿ÚµÄstyleÄ¬ÈÏ±³¾°É«,ÔÚ±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrbg="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrbghover;                                   ///< ´°¿ÚµÄstyleÄ¬ÈÏhover±³¾°É«,ÔÚ±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrbghover="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrbgpush;                                    ///< ´°¿ÚµÄstyleÄ¬ÈÏpush±³¾°É«,ÔÚ±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrbgpush="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrbgdisable;                                 ///< ´°¿ÚµÄstyleÄ¬ÈÏdisable±³¾°É«,ÔÚ±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrbgdisable="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrbgnoactive;                                ///< ´°¿ÚµÄstyleÄ¬ÈÏnoactive±³¾°É«,ÔÚ±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrbgnoactive="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrnc;                                        ///< ´°¿ÚµÄstyleÄ¬ÈÏNC±³¾°É«,ÔÚNC±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrnc="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrnchover;                                   ///< ´°¿ÚµÄstyleÄ¬ÈÏNC hover±³¾°É«,ÔÚNC±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrnchover="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrncpush;                                    ///< ´°¿ÚµÄstyleÄ¬ÈÏNC push±³¾°É«,ÔÚNC±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrncpush="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrncdisable;                                 ///< ´°¿ÚµÄstyleÄ¬ÈÏNC disable±³¾°É«,ÔÚNC±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrncdisable="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrncnoactive;                                ///< ´°¿ÚµÄstyleÄ¬ÈÏNC noactive±³¾°É«,ÔÚNC±³¾°Í¼Îª¿ÕÊ±Ê¹ÓÃ,Ê¾Àý:clrncnoactive="pbgra(ff,00,ff,ff)"
+		static const char* STRING_id;											///< styleID,ç›¸å½“äºŽçª—å£çš„nameï¼Œå”¯ä¸€æ ‡è¯†,ç¤ºä¾‹:id="style"
+		static const char* SKIN_skin;											///< çª—å£çš„styleèƒŒæ™¯å›¾,ç¤ºä¾‹:skin="checkbox"
+		static const char* SKIN_ncskin;										///< çª—å£çš„styleNCèƒŒæ™¯å›¾,ä»…åœ¨è®¾ç½®äº†ncmarginæ—¶æœ‰æ•ˆ,ç¤ºä¾‹:ncskin="dui_frame"
+		static const char* RECT_ncmargin;                                      ///< çª—å£çš„styleéžå®¢æˆ·åŒºå››è¾¹è·,ç¤ºä¾‹:ncmargin="2,2,2,2"
+		static const char* STRING_cursor;                                      ///< çª—å£çš„styleé»˜è®¤å…‰æ ‡,ç¤ºä¾‹:cursor="hand"
+		static const char* COLOR_clrbg;                                        ///< çª—å£çš„styleé»˜è®¤èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbg="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrbghover;                                   ///< çª—å£çš„styleé»˜è®¤hoverèƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbghover="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrbgpush;                                    ///< çª—å£çš„styleé»˜è®¤pushèƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbgpush="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrbgdisable;                                 ///< çª—å£çš„styleé»˜è®¤disableèƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbgdisable="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrbgnoactive;                                ///< çª—å£çš„styleé»˜è®¤noactiveèƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbgnoactive="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrnc;                                        ///< çª—å£çš„styleé»˜è®¤NCèƒŒæ™¯è‰²,åœ¨NCèƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrnc="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrnchover;                                   ///< çª—å£çš„styleé»˜è®¤NC hoverèƒŒæ™¯è‰²,åœ¨NCèƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrnchover="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrncpush;                                    ///< çª—å£çš„styleé»˜è®¤NC pushèƒŒæ™¯è‰²,åœ¨NCèƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrncpush="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrncdisable;                                 ///< çª—å£çš„styleé»˜è®¤NC disableèƒŒæ™¯è‰²,åœ¨NCèƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrncdisable="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrncnoactive;                                ///< çª—å£çš„styleé»˜è®¤NC noactiveèƒŒæ™¯è‰²,åœ¨NCèƒŒæ™¯å›¾ä¸ºç©ºæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrncnoactive="pbgra(ff,00,ff,ff)"
 		
-		static const char* BYTE_alpha;                                         ///< ´°¿ÚµÄstyleÍ¸Ã÷¶È,»áÔÚ±³¾°Í¼»ò±³¾°É«µÄalphaÖµÔÙ´ÎÔ¤³Ë,Ê¾Àý:alpha="0x80"
-		static const char* COLOR_clrtext;                                      ///< ´°¿ÚµÄstyleÄ¬ÈÏnormarlÎÄ±¾É«,Ê¾Àý:clrtext="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtexthover;                                 ///< ´°¿ÚµÄstyleÄ¬ÈÏhoverÎÄ±¾É«,Ê¾Àý:clrtexthover="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtextpush;									///< ´°¿ÚµÄstyleÄ¬ÈÏpushÎÄ±¾É«,Ê¾Àý:clrtextpush="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtextdisable;                               ///< ´°¿ÚµÄstyleÄ¬ÈÏdisableÎÄ±¾É«,Ê¾Àý:clrtextdisable="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtextnoactive;                              ///< ´°¿ÚµÄstyleÄ¬ÈÏnoactiveÎÄ±¾É«,Ê¾Àý:clrtextnoactive="pbgra(ff,00,ff,ff)"
+		static const char* BYTE_alpha;                                         ///< çª—å£çš„styleé€æ˜Žåº¦,ä¼šåœ¨èƒŒæ™¯å›¾æˆ–èƒŒæ™¯è‰²çš„alphaå€¼å†æ¬¡é¢„ä¹˜,ç¤ºä¾‹:alpha="0x80"
+		static const char* COLOR_clrtext;                                      ///< çª—å£çš„styleé»˜è®¤normarlæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtext="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtexthover;                                 ///< çª—å£çš„styleé»˜è®¤hoveræ–‡æœ¬è‰²,ç¤ºä¾‹:clrtexthover="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtextpush;									///< çª—å£çš„styleé»˜è®¤pushæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtextpush="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtextdisable;                               ///< çª—å£çš„styleé»˜è®¤disableæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtextdisable="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtextnoactive;                              ///< çª—å£çš„styleé»˜è®¤noactiveæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtextnoactive="pbgra(ff,00,ff,ff)"
 
-		static const char* FONT_font;											///< ´°¿ÚµÄstyleÄ¬ÈÏnormarl×ÖÌå,Ê¾Àý:font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»,ÔÊÐí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ý²Ù×÷
-		static const char* FONT_fonthover;										///< ´°¿ÚµÄstyleÄ¬ÈÏhover×ÖÌå,Ê¾Àý:fonthover="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»,ÔÊÐí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ý²Ù×÷
-		static const char* FONT_fontpush;										///< ´°¿ÚµÄstyleÄ¬ÈÏpush×ÖÌå,Ê¾Àý:fontpush="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»,ÔÊÐí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ý²Ù×÷
-		static const char* FONT_fontdisable;									///< ´°¿ÚµÄstyleÄ¬ÈÏdisable×ÖÌå,Ê¾Àý:fontdisable="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»,ÔÊÐí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ý²Ù×÷
-		static const char* FONT_fontnoactive;									///< ´°¿ÚµÄstyleÄ¬ÈÏnoactive×ÖÌå,Ê¾Àý:fontnoactive="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»,ÔÊÐí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ý²Ù×÷
+		static const char* FONT_font;											///< çª—å£çš„styleé»˜è®¤normarlå­—ä½“,ç¤ºä¾‹:font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼åŽ»é™¤æ“ä½œ
+		static const char* FONT_fonthover;										///< çª—å£çš„styleé»˜è®¤hoverå­—ä½“,ç¤ºä¾‹:fonthover="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼åŽ»é™¤æ“ä½œ
+		static const char* FONT_fontpush;										///< çª—å£çš„styleé»˜è®¤pushå­—ä½“,ç¤ºä¾‹:fontpush="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼åŽ»é™¤æ“ä½œ
+		static const char* FONT_fontdisable;									///< çª—å£çš„styleé»˜è®¤disableå­—ä½“,ç¤ºä¾‹:fontdisable="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼åŽ»é™¤æ“ä½œ
+		static const char* FONT_fontnoactive;									///< çª—å£çš„styleé»˜è®¤noactiveå­—ä½“,ç¤ºä¾‹:fontnoactive="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼åŽ»é™¤æ“ä½œ
 		
-		static const char* INT_textmode;                                       ///< ´°¿ÚµÄstyleÄ¬ÈÏtextalign,Ê¹ÓÃÊý×Ö±íÊ¾,Ê¾Àýtextmode="0x100"
-		static const char* OPTION_align;                                       ///< ´°¿ÚµÄstyleÄ¬ÈÏË®Æ½align,left¶ÔÓ¦Align_Left,center¶ÔÓ¦Align_Center,right¶ÔÓ¦Align_Right,Ê¾Àýalign="left"
-		static const char* OPTION_valign;                                      ///< ´°¿ÚµÄstyleÄ¬ÈÏÊúÖ±align,top¶ÔÓ¦VAlign_Top,middle¶ÔÓ¦VAlign_Middle,bottom¶ÔÓ¦VAlign_Bottom,Ê¾Àývalign="top"
-		static const char* bool_bdot;									    	///< ´°¿ÚµÄstyleÄ¬ÈÏÎÄ±¾¹ý³¤Ê±Ê¹ÓÃ...,Ê¾Àýbdot="1"
+		static const char* INT_textmode;                                       ///< çª—å£çš„styleé»˜è®¤textalign,ä½¿ç”¨æ•°å­—è¡¨ç¤º,ç¤ºä¾‹textmode="0x100"
+		static const char* OPTION_align;                                       ///< çª—å£çš„styleé»˜è®¤æ°´å¹³align,leftå¯¹åº”Align_Left,centerå¯¹åº”Align_Center,rightå¯¹åº”Align_Right,ç¤ºä¾‹align="left"
+		static const char* OPTION_valign;                                      ///< çª—å£çš„styleé»˜è®¤ç«–ç›´align,topå¯¹åº”VAlign_Top,middleå¯¹åº”VAlign_Middle,bottomå¯¹åº”VAlign_Bottom,ç¤ºä¾‹valign="top"
+		static const char* bool_bdot;									    	///< çª—å£çš„styleé»˜è®¤æ–‡æœ¬è¿‡é•¿æ—¶ä½¿ç”¨...,ç¤ºä¾‹bdot="1"
 	};
 	DMAttrValueInit(DUIStyleAttr,STRING_id)
 	DMAttrValueInit(DUIStyleAttr,SKIN_skin)DMAttrValueInit(DUIStyleAttr,SKIN_ncskin)DMAttrValueInit(DUIStyleAttr,RECT_ncmargin)
@@ -92,7 +92,7 @@ namespace DM
 		DMCode CopyData(IDMStyle* pStyle);
 
 		//---------------------------------------------------
-		// Function Des: ÎÄ±¾Ïà¹Ø
+		// Function Des: æ–‡æœ¬ç›¸å…³
 		//---------------------------------------------------
 		DMCode GetTextAlign(UINT &ulAlign);   
 		DMCode GetTextColor(int iState,DMColor &Clr);   
@@ -100,12 +100,12 @@ namespace DM
 		DMCode GetTextStates(int &iState);
 
 		//---------------------------------------------------
-		// Function Des: ¹â±êÏà¹Ø
+		// Function Des: å…‰æ ‡ç›¸å…³
 		//---------------------------------------------------
 		DMCode GetCursor(HCURSOR &hCursor);
 
 		//---------------------------------------------------
-		// Function Des: ´°¿ÚÏà¹Ø
+		// Function Des: çª—å£ç›¸å…³
 		//---------------------------------------------------
 		DMCode GetBgSkin(IDMSkin** ppSkin);	
 		DMCode GetBgColor(int iState, DMColor &Clr);
@@ -172,28 +172,28 @@ namespace DM
 		DMCode OnAttributeCursor(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		CStringA                                    m_strID;        ///< Î¨Ò»±êÊ¶
+		CStringA                                    m_strID;        ///< å”¯ä¸€æ ‡è¯†
 
-		DMColor										m_crBg[5];      ///< ±³¾°5ÖÖ×´Ì¬ÏÂµÄÑÕÉ«
-		DMColor                                     m_crNc[5];		///< ±ß¿ò5ÖÖ×´Ì¬ÏÂµÄÑÕÉ« 
-		CRect										m_rcNcMargin;   ///< ·Ç¿Í»§ÇøµÄËÄ±ß
+		DMColor										m_crBg[5];      ///< èƒŒæ™¯5ç§çŠ¶æ€ä¸‹çš„é¢œè‰²
+		DMColor                                     m_crNc[5];		///< è¾¹æ¡†5ç§çŠ¶æ€ä¸‹çš„é¢œè‰² 
+		CRect										m_rcNcMargin;   ///< éžå®¢æˆ·åŒºçš„å››è¾¹
 
-		DMColor                                     m_crText[5];    ///< ÎÄ×Ö5ÖÖ×´Ì¬ÏÂµÄÑÕÉ«
-		DMSmartPtrT<IDMFont>						m_ftText[5];    ///< ÎÄ×Ö5ÖÖ×´Ì¬ÏÂµÄ×ÖÌå
+		DMColor                                     m_crText[5];    ///< æ–‡å­—5ç§çŠ¶æ€ä¸‹çš„é¢œè‰²
+		DMSmartPtrT<IDMFont>						m_ftText[5];    ///< æ–‡å­—5ç§çŠ¶æ€ä¸‹çš„å­—ä½“
 
-		CStringA                                    m_strSkinName;  ///< SKIN NAME,ÓÃNAMEµÄÔ­ÒòÊÇ£¬ÔÚstyle¼ÓÔØÊ±£¬skin²»Ò»¶¨¼ÓÔØÁË£¡
-		CStringA									m_strNcSkinName;///< ·Ç¿Í»§ÇøSKIN NAME
+		CStringA                                    m_strSkinName;  ///< SKIN NAME,ç”¨NAMEçš„åŽŸå› æ˜¯ï¼Œåœ¨styleåŠ è½½æ—¶ï¼Œskinä¸ä¸€å®šåŠ è½½äº†ï¼
+		CStringA									m_strNcSkinName;///< éžå®¢æˆ·åŒºSKIN NAME
 		
-	    CStringA                                    m_strCursor;    ///< ¹â±êNAME
-		HCURSOR                                     m_hCursor;	    ///< µ±Ç°¹â±êÖµ		
-		bool                                        m_bBmpCursor;   ///< µ±Ç°¹â±êÊÇ·ñÓÉÍ¼Æ¬´´½¨
-		BYTE										m_byAlpha;      ///< ´°¿ÚÍ¸Ã÷¶È,Ö»½øÐÐÅäÖÃ£¬Ö§³ÖÒÀÀµÓÚ¿Ø¼þ
+	    CStringA                                    m_strCursor;    ///< å…‰æ ‡NAME
+		HCURSOR                                     m_hCursor;	    ///< å½“å‰å…‰æ ‡å€¼		
+		bool                                        m_bBmpCursor;   ///< å½“å‰å…‰æ ‡æ˜¯å¦ç”±å›¾ç‰‡åˆ›å»º
+		BYTE										m_byAlpha;      ///< çª—å£é€æ˜Žåº¦,åªè¿›è¡Œé…ç½®ï¼Œæ”¯æŒä¾èµ–äºŽæŽ§ä»¶
 
 		//-----------------------------
-		// ÎÄ±¾¶ÔÆëµÄ¼¸ÖÖ·½Ê½
-		UINT                                        m_nTextAlign;   ///< ÎÄ±¾¶ÔÆë
-		UINT									    m_uAlign;		///< Ë®Æ½¶ÔÆë
-		UINT										m_uVAlign;		///< ´¹Ö±¶ÔÆë
-		bool                                        m_bDotted;      ///< Ö§³ÖÊ¡ÂÔºÅÏÔÊ¾ÎÄ±¾	
+		// æ–‡æœ¬å¯¹é½çš„å‡ ç§æ–¹å¼
+		UINT                                        m_nTextAlign;   ///< æ–‡æœ¬å¯¹é½
+		UINT									    m_uAlign;		///< æ°´å¹³å¯¹é½
+		UINT										m_uVAlign;		///< åž‚ç›´å¯¹é½
+		bool                                        m_bDotted;      ///< æ”¯æŒçœç•¥å·æ˜¾ç¤ºæ–‡æœ¬	
 	};
 }//namespace DM

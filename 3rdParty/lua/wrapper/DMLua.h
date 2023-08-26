@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c) tencent 
 // All rights reserved.
 // 
 // File name:	DMLua.h 
-// File mark:   ×ÊÁÏ:https://github.com/zfengzhen/lua_tinker_5.2.git/
-// File summary:ÖØĞÂÕûÀí´úÂë
+// File mark:   èµ„æ–™:https://github.com/zfengzhen/lua_tinker_5.2.git/
+// File summary:é‡æ–°æ•´ç†ä»£ç 
 
 // Author:		guoyouhuang
 // Edition:     1.0
@@ -26,7 +26,7 @@ namespace DMLUA
 {
 
 	/// -------------------------------------------------
-	/// @brief ³õÊ¼»¯lua
+	/// @brief åˆå§‹åŒ–lua
 	/// @param[in]		 L
 	/// @remark 
 	/// @return
@@ -35,14 +35,14 @@ namespace DMLUA
 	void init_u64(lua_State *L);
 
 	/// -------------------------------------------------
-	/// @brief	´´½¨/¹Ø±ÕÒ»¸öLua×´Ì¬»ú
+	/// @brief	åˆ›å»º/å…³é—­ä¸€ä¸ªLuaçŠ¶æ€æœº
 	/// @remark 
-	/// @return Lua×´Ì¬»ú
+	/// @return LuaçŠ¶æ€æœº
 	lua_State *open();
 	void close(lua_State *L);
 
 	/// -------------------------------------------------
-	/// @brief ¿ªÆô»ù´¡¿â¡¢×Ö·û´®¿â¡¢ÊıÑ§¿â¡¢Ğ­³Ì¿â¡¢²Ù×÷ÏµÍ³¿â
+	/// @brief å¼€å¯åŸºç¡€åº“ã€å­—ç¬¦ä¸²åº“ã€æ•°å­¦åº“ã€åç¨‹åº“ã€æ“ä½œç³»ç»Ÿåº“
 	/// @param[in]		 L
 	/// @remark 
 	/// @return
@@ -53,7 +53,7 @@ namespace DMLUA
 	void open_os(lua_State *L);
 
 	/// -------------------------------------------------
-	/// @brief ÈıÖÖÖ´ĞĞ·½Ê½
+	/// @brief ä¸‰ç§æ‰§è¡Œæ–¹å¼
 	/// @param[in]		 L
 	/// @param[in]		 buff
 	/// @remark 
@@ -64,7 +64,7 @@ namespace DMLUA
 
 
 	/// -------------------------------------------------
-	/// @brief ´òÓ¡´íÎó
+	/// @brief æ‰“å°é”™è¯¯
 	/// @param[in]		 L
 	/// @remark 
 	/// @return
@@ -78,7 +78,7 @@ namespace DMLUA
 	void push_meta(lua_State* L, const char* name);
 
 	/// <summary>
-	/// ¶¯Ì¬ÀàĞÍÀ©Õ¹
+	/// åŠ¨æ€ç±»å‹æ‰©å±•
 	/// </summary>
 	class lua_value
 	{
@@ -1096,7 +1096,7 @@ namespace DMLUA
 
 
 	/// <summary>
-	///	¼òµ¥µÄ·â×°
+	///	ç®€å•çš„å°è£…
 	/// </summary>
 	class lua_context
 	{

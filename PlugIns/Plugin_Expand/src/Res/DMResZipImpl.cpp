@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMResZipImpl.h"
 #include "DMResZipParam.h"
 
@@ -27,7 +27,7 @@ namespace DM
 				break;
 			}
 			DMResZipParam *pZipParam = (DMResZipParam*)wp;
-			if (pZipParam->m_bPERes)// ÄÚÇ¶ÔÚexeÖĞµÄ
+			if (pZipParam->m_bPERes)// å†…åµŒåœ¨exeä¸­çš„
 			{
 				HINSTANCE hInst = (NULL == pZipParam->m_PEResInfo.hInst)?GetModuleHandle(NULL):pZipParam->m_PEResInfo.hInst;
 				if (!m_zipFile.LoadFromPE(hInst, pZipParam->m_PEResInfo.lpszResName,pZipParam->m_PEResInfo.lpszResType))
@@ -35,7 +35,7 @@ namespace DM
 					break;
 				}
 			}
-			else// Íâ²¿zip
+			else// å¤–éƒ¨zip
 			{
 				wchar_t szPath[MAX_PATH] = {0};
 				if (!GetRootFullPath((LPWSTR)pZipParam->m_lpszZipPath,szPath,MAX_PATH))
@@ -49,17 +49,17 @@ namespace DM
 			}
 			m_zipFile.SetPassword(pZipParam->m_lpszPsw);
 
-			m_pLayout.Release();// ÏÈÊÍ·ÅÔ­Ê¼²¼¾ÖÏà¹Ø-----------£¡
-			m_pCurTheme = NULL; // µ±Ç°Ê¹ÓÃµÄÖ÷Ìâ°üÖÃ¿Õ---------£¡
-			RemoveAll();		// ÏÈÊÍ·ÅÔ­Ê¼themes-------------£¡
+			m_pLayout.Release();// å…ˆé‡Šæ”¾åŸå§‹å¸ƒå±€ç›¸å…³-----------ï¼
+			m_pCurTheme = NULL; // å½“å‰ä½¿ç”¨çš„ä¸»é¢˜åŒ…ç½®ç©º---------ï¼
+			RemoveAll();		// å…ˆé‡Šæ”¾åŸå§‹themes-------------ï¼
 
-			// ½âÎöLayout
+			// è§£æLayout
 			m_pLayout.Attach(new DMZipItemArray);
 			CStringW strLayoutPathIndex = DMRES_LAYOUT_FOLDER;strLayoutPathIndex += DMRES_DMINDEX;
 			iErr = ParseIndex(strLayoutPathIndex, &m_pLayout);
 			
 
-			// ½âÎöthemes
+			// è§£æthemes
 			CStringW strThemesPathIndex = DMRES_THEMES_FOLDER;strThemesPathIndex += DMRES_DMINDEX;
 			iErr = ParseThemes(strThemesPathIndex);
 		} while (false);
@@ -75,7 +75,7 @@ namespace DM
 			{
 				break;
 			}
-			DMZipItem Item(lpszType, lpszName);// ÕâÀïÖØÔØÁËEqualArrayObj£¬Ö»ÒªÇ°Á½¸ö±äÁ¿ÏàµÈ£¬¾ÍÈÏÎªÒÑ´æÔÚ
+			DMZipItem Item(lpszType, lpszName);// è¿™é‡Œé‡è½½äº†EqualArrayObjï¼Œåªè¦å‰ä¸¤ä¸ªå˜é‡ç›¸ç­‰ï¼Œå°±è®¤ä¸ºå·²å­˜åœ¨
 			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout || DM_INVALID_VALUE == m_pLayout->FindObj(&Item))
@@ -92,7 +92,7 @@ namespace DM
 					{
 						break;
 					}
-					bool bFind = false;// ´ÓÕû¸öthemesÖĞ²éÕÒ
+					bool bFind = false;// ä»æ•´ä¸ªthemesä¸­æŸ¥æ‰¾
 					int nCount = (int)GetCount();
 					for (int i=0;i<nCount;i++)
 					{
@@ -129,7 +129,7 @@ namespace DM
 			{
 				break;
 			}
-			if (L'\\' == lpszFilePath[0]||L'/'==lpszFilePath[0])// ×îÇ°Ãæ²»ÄÜ´ø\\£¬²»È»ZIPÎŞ·¨Ê¶±ğ
+			if (L'\\' == lpszFilePath[0]||L'/'==lpszFilePath[0])// æœ€å‰é¢ä¸èƒ½å¸¦\\ï¼Œä¸ç„¶ZIPæ— æ³•è¯†åˆ«
 			{
 				lpszFilePath = lpszFilePath+1;
 			}
@@ -147,7 +147,7 @@ namespace DM
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{
 			CStringW strInfo;
-			strInfo.Format(L"Res×ÊÔ´ÖĞ%s:%s»ñÈ¡sizeÊ§°Ü",lpszType,lpszName);
+			strInfo.Format(L"Resèµ„æºä¸­%s:%sè·å–sizeå¤±è´¥",lpszType,lpszName);
 			DMASSERT_EXPR(0,strInfo);
 		}
 		return iErr;
@@ -163,7 +163,7 @@ namespace DM
 			{
 				break;
 			}
-			if (L'\\' == lpszFilePath[0]||L'/'==lpszFilePath[0])// ×îÇ°Ãæ²»ÄÜ´ø\\£¬²»È»ZIPÎŞ·¨Ê¶±ğ
+			if (L'\\' == lpszFilePath[0]||L'/'==lpszFilePath[0])// æœ€å‰é¢ä¸èƒ½å¸¦\\ï¼Œä¸ç„¶ZIPæ— æ³•è¯†åˆ«
 			{
 				lpszFilePath = lpszFilePath+1;
 			}
@@ -183,7 +183,7 @@ namespace DM
 		if (!DMSUCCEEDED(iErr)&&m_bAssert)
 		{
 			CStringW strInfo;
-			strInfo.Format(L"Res×ÊÔ´ÖĞ%s:%s»ñÈ¡bufÊ§°Ü",lpszType,lpszName);
+			strInfo.Format(L"Resèµ„æºä¸­%s:%sè·å–bufå¤±è´¥",lpszType,lpszName);
 			DMASSERT_EXPR(0,strInfo);
 		}
 		return iErr;
@@ -200,13 +200,13 @@ namespace DM
 		do 
 		{	
 			if (lpszOldName)
-			{// ´«³ö¾ÉµÄthemeÃû³Æ,ÎŞÂÛ³É¹¦Óë·ñ£¬¶¼ÏÈÈ¡µÃ
+			{// ä¼ å‡ºæ—§çš„themeåç§°,æ— è®ºæˆåŠŸä¸å¦ï¼Œéƒ½å…ˆå–å¾—
 				memcpy((void*)lpszOldName,m_strCurTheme,m_strCurTheme.GetLength()*2);
 			}
 
 			DMZipItemArrayPtr pCurTheme=NULL;
 			CStringA strName = lpszName;
-			if (strName == m_strCurTheme// ÒªÉèÖÃµÄºÍµ±Ç°µÄÏàÍ¬
+			if (strName == m_strCurTheme// è¦è®¾ç½®çš„å’Œå½“å‰çš„ç›¸åŒ
 				&&NULL != m_pCurTheme&&!m_bOutStyle)
 			{
 				iErr = DM_ECODE_OK;
@@ -221,21 +221,21 @@ namespace DM
 			DMZipItemArrayPtr	pOldTheme = m_pCurTheme;  
 			m_pCurTheme = pCurTheme;
 			m_strCurTheme = strName;
-			// 1.±È½ÏÁ½¸öthemesÖ®Ç°µÄindexµÄ²î±ğ£¬ÍêÈ«²»Í¬µÄÈÏÎªĞèÒª¸üĞÂ£¬±£ÁôÒª¸üĞÂµÄtype+name
+			// 1.æ¯”è¾ƒä¸¤ä¸ªthemesä¹‹å‰çš„indexçš„å·®åˆ«ï¼Œå®Œå…¨ä¸åŒçš„è®¤ä¸ºéœ€è¦æ›´æ–°ï¼Œä¿ç•™è¦æ›´æ–°çš„type+name
 			int nCount    = (int)m_pCurTheme->GetCount();
 			int nCmpCount = (int)pOldTheme->GetCount();
 			if (m_bOutStyle||NULL == pOldTheme)
 			{
-				nCmpCount = 0;// Íâ²¿Ä£Ê½£¬Ó¦¸ÃÒª¸üĞÂËùÓĞµÄtheme,ËùÒÔÖ±½Ó°Ñ±È½ÏÊıÉèÖÃÎª0
+				nCmpCount = 0;// å¤–éƒ¨æ¨¡å¼ï¼Œåº”è¯¥è¦æ›´æ–°æ‰€æœ‰çš„theme,æ‰€ä»¥ç›´æ¥æŠŠæ¯”è¾ƒæ•°è®¾ç½®ä¸º0
 			}
-			bool bFind = false;// ÊÇ·ñºÍÏÈÇ°themesÒ»Ñù
+			bool bFind = false;// æ˜¯å¦å’Œå…ˆå‰themesä¸€æ ·
 			CStringA strUpdateInfo;
 			for (int i=0;i<nCount;i++)
 			{
 				DMZipItemPtr &pItem = m_pCurTheme->m_DMArray[i];
 				for (int j=0;j<nCmpCount;j++)
 				{
-					bFind = false;// ÏÈÔ¤ÖÃÎªfalse
+					bFind = false;// å…ˆé¢„ç½®ä¸ºfalse
 					DMZipItemPtr &pCmpItem = pOldTheme->m_DMArray[j];
 					if (0 == dm_xmlstrcmp(pItem->m_szName,pCmpItem->m_szName)
 						&&0 == dm_xmlstrcmp(pItem->m_szType,pCmpItem->m_szType))
@@ -244,7 +244,7 @@ namespace DM
 						{
 							bFind = true;
 						}
-						break;// Ìø³öÄÚÑ­»·
+						break;// è·³å‡ºå†…å¾ªç¯
 					}
 				}
 				if (false == bFind)
@@ -255,9 +255,9 @@ namespace DM
 					strUpdateInfo += ';';
 				}
 			}
-			// TODO.¿ªÊ¼¹ã²¥ÏûÏ¢£¬¸ü»»Skin--
+			// TODO.å¼€å§‹å¹¿æ’­æ¶ˆæ¯ï¼Œæ›´æ¢Skin--
 			g_pDMApp->UpdateSkin((WPARAM)(LPCSTR)strUpdateInfo,(LPARAM)strUpdateInfo.GetLength());
-			m_bOutStyle = false;// ²»ÔÙÊÇÍâ²¿Ä£Ê½ÁË
+			m_bOutStyle = false;// ä¸å†æ˜¯å¤–éƒ¨æ¨¡å¼äº†
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -297,7 +297,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	DMCode DMResZipImpl::ParseThemes(LPCWSTR lpszIndexPath)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -307,7 +307,7 @@ namespace DM
 			{
 				break;
 			}
-			if (L'\\' == lpszIndexPath[0]||L'/'==lpszIndexPath[0])// ×îÇ°Ãæ²»ÄÜ´ø\\£¬²»È»ZIPÎŞ·¨Ê¶±ğ
+			if (L'\\' == lpszIndexPath[0]||L'/'==lpszIndexPath[0])// æœ€å‰é¢ä¸èƒ½å¸¦\\ï¼Œä¸ç„¶ZIPæ— æ³•è¯†åˆ«
 			{
 				lpszIndexPath = lpszIndexPath+1;
 			}
@@ -330,7 +330,7 @@ namespace DM
 			XmlNode = XmlNode.FirstChild();
 			while (XmlNode.IsValid())
 			{
-				InitDMData(XmlNode);// Ê¹ÓÃxml½âÎöÌæ»»
+				InitDMData(XmlNode);// ä½¿ç”¨xmlè§£ææ›¿æ¢
 				DMXmlNode XmlFileNode = XmlNode.FirstChild("file");
 				while (XmlFileNode.IsValid())
 				{
@@ -344,7 +344,7 @@ namespace DM
 							pItem->m_strThemeName = lpszName;
 							if (false == AddObj(pItem))
 							{
-								CStringA szInfo = lpszName;szInfo += "Ö÷Ìâ°üÒÑ´æÔÚ,½«±»ºöÂÔ£¡";DMASSERT_EXPR(0,ntcvt::from_chars(szInfo).c_str());
+								CStringA szInfo = lpszName;szInfo += "ä¸»é¢˜åŒ…å·²å­˜åœ¨,å°†è¢«å¿½ç•¥ï¼";DMASSERT_EXPR(0,ntcvt::from_chars(szInfo).c_str());
 								pItem->Release();
 							}
 						}
@@ -358,7 +358,7 @@ namespace DM
 				XmlNode = XmlNode.NextSibling();
 			}
 
-			// ³õÊ¼»¯µ±Ç°Ê¹ÓÃµÄtheme
+			// åˆå§‹åŒ–å½“å‰ä½¿ç”¨çš„theme
 			if ((int)GetCount()>=1)
 			{
 				m_pCurTheme = FindResItemObj(m_strCurTheme);
@@ -368,7 +368,7 @@ namespace DM
 					m_strCurTheme = m_pCurTheme->m_strThemeName;
 				}	
 			}
-			DMASSERT_EXPR(NULL!=m_pCurTheme,L"m_pCurTheme¾¹È»Îª¿Õ£¡£¡£¡£¡");
+			DMASSERT_EXPR(NULL!=m_pCurTheme,L"m_pCurThemeç«Ÿç„¶ä¸ºç©ºï¼ï¼ï¼ï¼");
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -384,7 +384,7 @@ namespace DM
 				break;
 			}
 
-			if (L'\\' == lpszIndexPath[0]||L'/'==lpszIndexPath[0])// ×îÇ°Ãæ²»ÄÜ´ø\\£¬²»È»ZIPÎŞ·¨Ê¶±ğ
+			if (L'\\' == lpszIndexPath[0]||L'/'==lpszIndexPath[0])// æœ€å‰é¢ä¸èƒ½å¸¦\\ï¼Œä¸ç„¶ZIPæ— æ³•è¯†åˆ«
 			{
 				lpszIndexPath = lpszIndexPath+1;
 			}
@@ -425,12 +425,12 @@ namespace DM
 						CDMZipFile zftemp;
 						if (!m_zipFile.GetFile(filePath,zftemp))
 						{
-							CStringW szInfo = filePath;szInfo+=L"ÎÄ¼ş²»´æÔÚ£¡";DMASSERT_EXPR(0,szInfo);
+							CStringW szInfo = filePath;szInfo+=L"æ–‡ä»¶ä¸å­˜åœ¨ï¼";DMASSERT_EXPR(0,szInfo);
 						}
 						zftemp.Close();
 #endif
 						DMZipItem *pResItem = new DMZipItem(lpszType,lpszName, filePath);
-						(*ppItem)->AddObj(pResItem);// À´×ÔDMArrayT
+						(*ppItem)->AddObj(pResItem);// æ¥è‡ªDMArrayT
 					}
 					XmlFileNode = XmlFileNode.NextSibling("file");
 				}
@@ -438,7 +438,7 @@ namespace DM
 				XmlNode = XmlNode.NextSibling();
 			}
 
-			(*ppItem)->m_DMArray;//¸ø¸ö¿ÉDEBUG²é¿´m_ArrayµÄµØ·½,watchÒ»ÏÂ¾ÍºÃÁË
+			(*ppItem)->m_DMArray;//ç»™ä¸ªå¯DEBUGæŸ¥çœ‹m_Arrayçš„åœ°æ–¹,watchä¸€ä¸‹å°±å¥½äº†
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -453,7 +453,7 @@ namespace DM
 			{
 				break;
 			}
-			DMZipItem Item(lpszType, lpszName);// ÕâÀïÖØÔØÁËEqualArrayObj£¬Ö»ÒªÇ°Á½¸ö±äÁ¿ÏàµÈ£¬¾ÍÈÏÎªÒÑ´æÔÚ
+			DMZipItem Item(lpszType, lpszName);// è¿™é‡Œé‡è½½äº†EqualArrayObjï¼Œåªè¦å‰ä¸¤ä¸ªå˜é‡ç›¸ç­‰ï¼Œå°±è®¤ä¸ºå·²å­˜åœ¨
 			if (0 == dm_xmlstrcmp(lpszType, RES_LAYOUT)||0 == dm_xmlstrcmp(lpszType, RES_GLOBAL))
 			{
 				if (NULL == m_pLayout)
@@ -481,7 +481,7 @@ namespace DM
 					{
 						break;
 					}
-					bool bFind = false;// ´ÓÕû¸öthemesÖĞ²éÕÒ
+					bool bFind = false;// ä»æ•´ä¸ªthemesä¸­æŸ¥æ‰¾
 					int nCount = (int)GetCount();
 					for (int i=0;i<nCount;i++)
 					{
@@ -539,7 +539,7 @@ namespace DM
 
 	void DMResZipImpl::PreArrayObjRemove(const DMZipItemArrayPtr &obj)
 	{
-		obj->Release(); // ÈçÒıÓÃ¼ÆÊıÎª0£¬Ôò×Ô¶¯delete this
+		obj->Release(); // å¦‚å¼•ç”¨è®¡æ•°ä¸º0ï¼Œåˆ™è‡ªåŠ¨delete this
 	}
 
 }//namespace DM

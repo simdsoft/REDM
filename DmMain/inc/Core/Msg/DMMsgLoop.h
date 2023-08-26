@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,10 +17,10 @@
 namespace DM
 {
 	/// <summary>
-	///		´°¿ÚÏûÏ¢·Ö·¢£¬»ùÓÚatlapp.CMessageLoop
+	///		çª—å£æ¶ˆæ¯åˆ†å‘ï¼ŒåŸºäºatlapp.CMessageLoop
 	/// </summary>
 	/// <remarks>
-	///		»ùÓÚsmartÖ¸Õë¿ØÖÆ£¬ÒòÎªÒ»¸öÏß³Ì¿ÉÄÜ¶à¸öÖ÷´°¿Úµ÷ÓÃRun
+	///		åŸºäºsmartæŒ‡é’ˆæ§åˆ¶ï¼Œå› ä¸ºä¸€ä¸ªçº¿ç¨‹å¯èƒ½å¤šä¸ªä¸»çª—å£è°ƒç”¨Run
 	/// </remarks>
 	class DM_EXPORT DMMsgLoop:public DMRefNum
 	{
@@ -29,46 +29,46 @@ namespace DM
 		~DMMsgLoop();
 	public:
 		/// -------------------------------------------------
-		/// @brief			¿ªÊ¼ÏûÏ¢Ñ­»·
+		/// @brief			å¼€å§‹æ¶ˆæ¯å¾ªç¯
 		/// @return			Msg.Wparam
 		virtual int Run();
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼ÓÔ¤´¦ÀíÏûÏ¢
-		/// @param[in]		pMessageFilter		»ùÓÚ<see cref="IDMMessageFilter"/>
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			å¢åŠ é¢„å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pMessageFilter		åŸºäº<see cref="IDMMessageFilter"/>
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		BOOL AddMessageFilter(IDMMessageFilter* pMessageFilter);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıÔ¤´¦ÀíÏûÏ¢
-		/// @param[in]		pMessageFilter		»ùÓÚ<see cref="IDMMessageFilter"/>
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			ç§»é™¤é¢„å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pMessageFilter		åŸºäº<see cref="IDMMessageFilter"/>
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		BOOL RemoveMessageFilter(IDMMessageFilter* pMessageFilter);
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼Ó¿ÕÏĞ´¦ÀíÏûÏ¢
-		/// @param[in]		pIdleHandler		»ùÓÚ<see cref="IDMIdleHandler"/>
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			å¢åŠ ç©ºé—²å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pIdleHandler		åŸºäº<see cref="IDMIdleHandler"/>
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		BOOL AddIdleHandler(IDMIdleHandler* pIdleHandler);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ı¿ÕÏĞ´¦ÀíÏûÏ¢
-		/// @param[in]		pIdleHandler		»ùÓÚ<see cref="IDMIdleHandler"/>
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			ç§»é™¤ç©ºé—²å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pIdleHandler		åŸºäº<see cref="IDMIdleHandler"/>
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		BOOL RemoveIdleHandler(IDMIdleHandler* pIdleHandler);
 
 	public:
 		/// -------------------------------------------------
-		/// @brief			ÏûÏ¢Ô¤¹ıÂËº¯Êı
-		/// @remark         ¿ÉÖØÔØ£¬´Ó¶ø¸Ä±äÏûÏ¢¹ıÂË
-		/// @param[in]		pMsg		»ùÓÚ<see cref="MSG"/>
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			æ¶ˆæ¯é¢„è¿‡æ»¤å‡½æ•°
+		/// @remark         å¯é‡è½½ï¼Œä»è€Œæ”¹å˜æ¶ˆæ¯è¿‡æ»¤
+		/// @param[in]		pMsg		åŸºäº<see cref="MSG"/>
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 		/// -------------------------------------------------
-		/// @brief			¿ÕÏĞÔ¤´¦Àíº¯Êı
-		/// @remark         ¿ÉÖØÔØ£¬´Ó¶ø¸Ä±äÏûÏ¢¹ıÂË
-		/// @return			TRUE:³É¹¦,False:Ê§°Ü
+		/// @brief			ç©ºé—²é¢„å¤„ç†å‡½æ•°
+		/// @remark         å¯é‡è½½ï¼Œä»è€Œæ”¹å˜æ¶ˆæ¯è¿‡æ»¤
+		/// @return			TRUE:æˆåŠŸ,False:å¤±è´¥
 		virtual BOOL OnIdle(int /*nIdleCount*/);
 
 	public:
@@ -87,10 +87,10 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¹ÜÀí<see cref="DMMsgLoop"/>¶ÔÏó,»ùÓÚatlapp.CAppModule
+	///		ç®¡ç†<see cref="DMMsgLoop"/>å¯¹è±¡,åŸºäºatlapp.CAppModule
 	/// </summary>
 	/// <remarks>
-	///		´«ÈëµÄ<see cref="DMMsgLoop"/>¶ÔÏó£¬ÇëÊ¹ÓÃnew ·ÖÅä£¬smartÖ¸Õë»áÔÚÒıÓÃ¼ÆÊıÎª0Ê±×Ô¶¯ÊÍ·Å
+	///		ä¼ å…¥çš„<see cref="DMMsgLoop"/>å¯¹è±¡ï¼Œè¯·ä½¿ç”¨new åˆ†é…ï¼ŒsmartæŒ‡é’ˆä¼šåœ¨å¼•ç”¨è®¡æ•°ä¸º0æ—¶è‡ªåŠ¨é‡Šæ”¾
 	/// </remarks>
 	class DM_EXPORT DMMsgLoopTool
 		:public DMMapT<DWORD, DMMsgLoop*>
@@ -100,16 +100,16 @@ namespace DM
 		virtual~DMMsgLoopTool();
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼ÓLoop¶ÔÏó
-		/// @remark         ±ØĞëÊ¹ÓÃnew·ÖÅä£¬ÒòÎªDMMsgLoopÊÇ»ùÓÚÖÇÄÜÖ¸Õë¿ØÖÆ
-		/// @return			true:³É¹¦,false:Ê§°Ü
+		/// @brief			å¢åŠ Loopå¯¹è±¡
+		/// @remark         å¿…é¡»ä½¿ç”¨newåˆ†é…ï¼Œå› ä¸ºDMMsgLoopæ˜¯åŸºäºæ™ºèƒ½æŒ‡é’ˆæ§åˆ¶
+		/// @return			true:æˆåŠŸ,false:å¤±è´¥
 		bool AddMessageLoop(DMMsgLoop* pMsgLoop);		
-		bool RemoveMessageLoop();											 ///< ÒÆ³ıµ±Ç°Ïß³Ìloop¶ÔÏó
-		DMMsgLoop* GetMessageLoop(DWORD dwThreadID = ::GetCurrentThreadId());///< »ñÈ¡µ±Ç°Ïß³Ìloop¶ÔÏó
+		bool RemoveMessageLoop();											 ///< ç§»é™¤å½“å‰çº¿ç¨‹loopå¯¹è±¡
+		DMMsgLoop* GetMessageLoop(DWORD dwThreadID = ::GetCurrentThreadId());///< è·å–å½“å‰çº¿ç¨‹loopå¯¹è±¡
 		void Term();
 
 	protected:
-		DWORD							m_dwMainThreadID;					///< Ö÷Ïß³ÌID
+		DWORD							m_dwMainThreadID;					///< ä¸»çº¿ç¨‹ID
 		DMLock							m_Lock;
 
 	};

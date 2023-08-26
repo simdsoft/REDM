@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name:DMDelegate.h 
-// File Des: ´úÀíÄ£°åÀà
+// File Des: ä»£ç†æ¨¡æ¿ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -2019,7 +2019,7 @@ namespace DM {
 	// clean up after ourselves...
 #undef FASTDLGT_RETTYPE
 
-	// ĞÂ¼ÓÀ©Õ¹
+	// æ–°åŠ æ‰©å±•
 	template<typename Signature>
 	class DMDelegate;
 

@@ -1,19 +1,19 @@
-#pragma once  
+﻿#pragma once  
 
 class CMainWnd : public DMHWnd
 {
 public:
-	DECLARE_MESSAGE_MAP()						// ��MFC��Ϣӳ��꣬Ҳ����ʹ��BEGIN_MSG_MAPT��ʹ��Ϣ������ͷ�ļ�
-	DECLARE_EVENT_MAP()							// �¼��ַ�ӳ���,Ҳ����ʹ��BEGIN_EVENT_MAPT��ʹ�¼�������ͷ�ļ�
+	DECLARE_MESSAGE_MAP()						// 仿MFC消息映射宏，也可以使用BEGIN_MSG_MAPT宏使消息处理在头文件
+	DECLARE_EVENT_MAP()							// 事件分发映射宏,也可以使用BEGIN_EVENT_MAPT宏使事件处理在头文件
 
 	//---------------------------------------------------
-	// Function Des: ��Ϣ�ַ�ϵ�к���
+	// Function Des: 消息分发系列函数
 	//---------------------------------------------------
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
 
 	//---------------------------------------------------
-	// Function Des: �¼��ַ�ϵ�к���
+	// Function Des: 事件分发系列函数
 	//---------------------------------------------------
 	DMCode OnClose();
 	DMCode OnMaximize();

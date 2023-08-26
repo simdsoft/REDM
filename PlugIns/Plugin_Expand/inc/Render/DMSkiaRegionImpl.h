@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -32,16 +32,16 @@ namespace DM
 		virtual DMCode GetRectNum(int &iNum){return DM_ECODE_FAIL;};
 		virtual DMCode GetRectArray(RECT* pRect,int iNum){return DM_ECODE_FAIL;};;
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		SkRegion GetRegion() const;
 		void SetRegion(const SkRegion& skRgn);
 
-		// SkIRectºÍSkRectÖ»ÊÇ¶ÔRectµÄÒ»¸ö·â×°£¬Ò»¸öÊÇÕûĞÍ£¬Ò»¸öÊÇfloat,×ÊÁÏ¿´ÕâÀï£ºhttp://hgy413.com/1838.html
+		// SkIRectå’ŒSkRectåªæ˜¯å¯¹Rectçš„ä¸€ä¸ªå°è£…ï¼Œä¸€ä¸ªæ˜¯æ•´å‹ï¼Œä¸€ä¸ªæ˜¯float,èµ„æ–™çœ‹è¿™é‡Œï¼šhttp://hgy413.com/1838.html
 		bool Rect2SkIRect(LPCRECT lpRect,SkIRect &skiRc);
 		static SkRegion::Op GdiRgnOp2SkRgnOp(int fnCombineMode);// 
 
 	protected:
-		// SkRegionµÄ×ÊÁÏ¿´ÕâÀï£ºhttp://hgy413.com/1834.html»òhttp://hgy413.com/1843.html
+		// SkRegionçš„èµ„æ–™çœ‹è¿™é‡Œï¼šhttp://hgy413.com/1834.htmlæˆ–http://hgy413.com/1843.html
 		SkRegion                      m_SkRegion;
 	};
 

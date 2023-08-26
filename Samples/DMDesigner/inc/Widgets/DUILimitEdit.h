@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -16,11 +16,11 @@ namespace DMAttr
 	class DUILimitEditAttr:public DUIEditAttr
 	{
 	public:
-		static const char* STRING_includechars;									///< Ö¸¶¨Ö»ÄÜÊäÈëËüÖ¸¶¨µÄÎÄ×Ö,Ê¾Àý:includechars="123456789"
-		static const char* STRING_excludechars;									///< Ö¸¶¨ÅÅ³ýËüÖ¸¶¨µÄÎÄ×Ö,Ê¾Àý:excludechars="123456789"
-		static const char* STRING_firstincludechars;								///< Ö¸¶¨Ê××Ö·ûÖ»ÄÜÊäÈëËüÖ¸¶¨µÄÎÄ×Ö,Ê¾Àý:firstincludechars="123456789"
-		static const char* STRING_firstexcludechars;								///< Ö¸¶¨Ê××Ö·ûÅÅ³ýËüÖ¸¶¨µÄÎÄ×Ö,Ê¾Àý:firstexcludechars="123456789"
-		static const char* bool_bnocase;                                           ///< ÎÞÊÓ´óÐ¡Ð´,Ä¬ÈÏÎª1,Ê¾Àý:bnocase = "1"
+		static const char* STRING_includechars;									///< æŒ‡å®šåªèƒ½è¾“å…¥å®ƒæŒ‡å®šçš„æ–‡å­—,ç¤ºä¾‹:includechars="123456789"
+		static const char* STRING_excludechars;									///< æŒ‡å®šæŽ’é™¤å®ƒæŒ‡å®šçš„æ–‡å­—,ç¤ºä¾‹:excludechars="123456789"
+		static const char* STRING_firstincludechars;								///< æŒ‡å®šé¦–å­—ç¬¦åªèƒ½è¾“å…¥å®ƒæŒ‡å®šçš„æ–‡å­—,ç¤ºä¾‹:firstincludechars="123456789"
+		static const char* STRING_firstexcludechars;								///< æŒ‡å®šé¦–å­—ç¬¦æŽ’é™¤å®ƒæŒ‡å®šçš„æ–‡å­—,ç¤ºä¾‹:firstexcludechars="123456789"
+		static const char* bool_bnocase;                                           ///< æ— è§†å¤§å°å†™,é»˜è®¤ä¸º1,ç¤ºä¾‹:bnocase = "1"
 	}; 
 	DMAttrValueInit(DUILimitEditAttr,STRING_includechars)DMAttrValueInit(DUILimitEditAttr,STRING_excludechars)
 	DMAttrValueInit(DUILimitEditAttr,STRING_firstincludechars)DMAttrValueInit(DUILimitEditAttr,STRING_firstexcludechars)DMAttrValueInit(DUILimitEditAttr,bool_bnocase)
@@ -52,9 +52,9 @@ public:
 	DM_END_ATTRIBUTES()
 
 public: 
-	CStringW             m_strIncludeChars;				///< ×Ö·ûÏÞÖÆÔÚ´ËÀà×Ö·û´®ÄÚ
-	CStringW             m_strExcludeChars;				///< ÅÅ³ýÒÔÏÂ×Ö·û´®
-	CStringW             m_strFirstIncludeChars;		///< Ê××Ö·ûÏÞÖÆÔÚ´ËÀà×Ö·û´®ÄÚ
-	CStringW             m_strFirstExcludeChars;		///< Ê××Ö·ûÏÞÖÆÅÅ³ý´ËÀà×Ö·û
-	bool                 m_bNoCase;						///< ºöÊÓ´óÐ¡
+	CStringW             m_strIncludeChars;				///< å­—ç¬¦é™åˆ¶åœ¨æ­¤ç±»å­—ç¬¦ä¸²å†…
+	CStringW             m_strExcludeChars;				///< æŽ’é™¤ä»¥ä¸‹å­—ç¬¦ä¸²
+	CStringW             m_strFirstIncludeChars;		///< é¦–å­—ç¬¦é™åˆ¶åœ¨æ­¤ç±»å­—ç¬¦ä¸²å†…
+	CStringW             m_strFirstExcludeChars;		///< é¦–å­—ç¬¦é™åˆ¶æŽ’é™¤æ­¤ç±»å­—ç¬¦
+	bool                 m_bNoCase;						///< å¿½è§†å¤§å°
 };

@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -22,7 +22,7 @@ namespace DM
 
 
 	/// <summary>
-	///		ÄÚÖÃÓïÑÔ°üµÄNode½Úµã
+	///		å†…ç½®è¯­è¨€åŒ…çš„NodeèŠ‚ç‚¹
 	/// </summary>
 	class DMTransNode : public DMMapT<CStringW,CStringW>
 	{
@@ -35,7 +35,7 @@ namespace DM
 
 
 	/// <summary>
-	///		ÄÚÖÃÄ³¸öÓïÑÔ°ü
+	///		å†…ç½®æŸä¸ªè¯­è¨€åŒ…
 	/// </summary>
 	class DMLanguageItem : public DMArrayT<DMTransNodePtr>
 	{
@@ -43,7 +43,7 @@ namespace DM
 		DMLanguageItem(CStringW strName);
 		virtual~DMLanguageItem();
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMTransNodePtr FindTransNodePtr(CStringW strNodeName);
 
 	public:

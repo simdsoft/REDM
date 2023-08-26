@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,38 +18,38 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIButton"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIButton"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIRichEditAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_editstyle;								    ///< Í¨¹ıÖµÀ´ÉèÖÃricheditÊôĞÔ£¬ÈçES_MULTILINE=0x4,Ê¾Àı:editstyle="0x4"
-		static const char* INT_maxbuf;										///< ÉèÖÃedit×î´ó×Ö·ûÊı£¬Ê¾Àı:maxbuf="100"
-		static const char* bool_bautosel;									///< Ã¿´Î½øÈë£¬Ä¬ÈÏÑ¡ÖĞËùÓĞÄÚÈİ£¬Ê¾Àı:bautosel="1"
-		static const char* bool_brichtext;									///< RichEditÄ£Ê½£¬Ê¾Àı:brichtext="1"
-		static const char* bool_bwordwrap;									///< ÔÚ¶àĞĞ×´Ì¬ÏÂÖ§³Ö×Ô¶¯»»ĞĞ£¬Ê¾Àı:bwordwrap="1"
-		static const char* bool_ballowbeep;								///< If TRUE, beeping is enabled£¬Ê¾Àı:ballowbeep="1"
-		static const char* bool_bautowordsel;								///< ÔÚÑ¡ÖĞÎÄ±¾Ê±£¬ÈçÎªtrue,ÔÚ½áÎ²×Ô¶¯Ñ¡ÖĞµ½ĞĞÍ·£¬Ê¾Àı:bautowordsel="1"
-		static const char* bool_bsinglevcenter;                            ///< µ¥ĞĞ¾ÓÖĞÄ£Ê½,½öÔÚbmultilines="0"ÇÒbrichtext="0"µÄ×´Ì¬ÏÂÉúĞ§£¬Ê¾Àı:bsinglevcenter="1"
-		static const char* bool_bmultilines;								///< ¶àĞĞÄ£Ê½.Ê¾Àı:bmultilines="1"
-		static const char* RECT_rcinsertmargin;                            ///< ×Ö·û´®ÏÔÊ¾ÇøËÄ±ß¿òÖµ.Ê¾Àı:rcinsertmargin="2,2,2,2"
-		static const char* COLOR_clrtext;									///< Ä¬ÈÏÎÄ±¾ÑÕÉ«£¬ºÍstyleµÄclrtextÏàÍ¬×÷ÓÃ.Ê¾Àı:clrtext="pbgra(00,00,00,ff)"
-		static const char* FONT_font;										///< Ä¬ÈÏÎÄ±¾×ÖÌå,ºÍstyleµÄfontÏàÍ¬×÷ÓÃ.Ê¾Àı:font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
-		static const char* OPTION_align;									///< ¶ÎÂäÅÅ²¼£¬ºÍstyleµÄalignÏàÍ¬×÷ÓÃ,Ä¬ÈÏleft,¿ÉÉèÖÃcenter,right,Ê¾Àı:align="left"
-		static const char* bool_bhscroll;									///< ÏÔÊ¾Ë®Æ½¹ö¶¯Ìõ,Ê¾Àı:bhscroll="1"
-		static const char* bool_bvscroll;									///< ÏÔÊ¾ÊúÖ±¹ö¶¯Ìõ,Ê¾Àı:bvscroll="1"
-		static const char* bool_bautohscroll;								///< Ö§³ÖË®Æ½¹ö¶¯Ìõ×Ô¶¯¹ö¶¯,Ê¾Àı:bautohscroll="1"
-		static const char* bool_bautovscroll;								///< Ö§³ÖÊúÖ±¹ö¶¯Ìõ×Ô¶¯¹ö¶¯,Ê¾Àı:bautovscroll="1"
-		static const char* bool_breadonly;							     	///< Ö»¶Á£¬´ËÊ±²åÈë·ûÈÔ»á³öÏÖ,Ê¾Àı:breadonly="1"
-		static const char* bool_bwantreturn;							    ///< »Ø³µ»»ĞĞ£¬²»È»Èç¹ûÍâ²¿¶ÔËü´¦ÀíÁË£¬¿ÉÄÜÊÇexeÍË³ö,Ê¾Àı:bwantreturn="1"
-		static const char* bool_bpassword;								    ///< ¼ÓÃÜÏÔÊ¾£¬Ä¬ÈÏ¶¼ÒÔ*ÏÔÊ¾,Ê¾Àı:bpassword="1"
-		static const char* CHAR_passwordchar;								///< ÅäºÏ¼ÓÃÜ£¬¼ÓÃÜÏÔÊ¾×Ö·û£¬È¡µÚÒ»¸ö×Ö·û£¬ÈçÎª¿Õ£¬ÔòÊ¹ÓÃÄ¬ÈÏ*,Ê¾Àı:passwordchar="#"
-		static const char* bool_bnumber;								    ///< ½öÖ§³ÖÊı×ÖÊäÈë£¬´ËÊ±ÎŞ¹ö¶¯ÌõÏÔÊ¾,Ê¾Àı:bnumber="1"
-		static const char* bool_benabledrag;								///< Ö§³ÖÄÚÈİÍÏ×§£¬Ä¬ÈÏ²»Ö§³Ö,Ê¾Àı:benabledrag="1"
+		static const char* INT_editstyle;								    ///< é€šè¿‡å€¼æ¥è®¾ç½®richeditå±æ€§ï¼Œå¦‚ES_MULTILINE=0x4,ç¤ºä¾‹:editstyle="0x4"
+		static const char* INT_maxbuf;										///< è®¾ç½®editæœ€å¤§å­—ç¬¦æ•°ï¼Œç¤ºä¾‹:maxbuf="100"
+		static const char* bool_bautosel;									///< æ¯æ¬¡è¿›å…¥ï¼Œé»˜è®¤é€‰ä¸­æ‰€æœ‰å†…å®¹ï¼Œç¤ºä¾‹:bautosel="1"
+		static const char* bool_brichtext;									///< RichEditæ¨¡å¼ï¼Œç¤ºä¾‹:brichtext="1"
+		static const char* bool_bwordwrap;									///< åœ¨å¤šè¡ŒçŠ¶æ€ä¸‹æ”¯æŒè‡ªåŠ¨æ¢è¡Œï¼Œç¤ºä¾‹:bwordwrap="1"
+		static const char* bool_ballowbeep;								///< If TRUE, beeping is enabledï¼Œç¤ºä¾‹:ballowbeep="1"
+		static const char* bool_bautowordsel;								///< åœ¨é€‰ä¸­æ–‡æœ¬æ—¶ï¼Œå¦‚ä¸ºtrue,åœ¨ç»“å°¾è‡ªåŠ¨é€‰ä¸­åˆ°è¡Œå¤´ï¼Œç¤ºä¾‹:bautowordsel="1"
+		static const char* bool_bsinglevcenter;                            ///< å•è¡Œå±…ä¸­æ¨¡å¼,ä»…åœ¨bmultilines="0"ä¸”brichtext="0"çš„çŠ¶æ€ä¸‹ç”Ÿæ•ˆï¼Œç¤ºä¾‹:bsinglevcenter="1"
+		static const char* bool_bmultilines;								///< å¤šè¡Œæ¨¡å¼.ç¤ºä¾‹:bmultilines="1"
+		static const char* RECT_rcinsertmargin;                            ///< å­—ç¬¦ä¸²æ˜¾ç¤ºåŒºå››è¾¹æ¡†å€¼.ç¤ºä¾‹:rcinsertmargin="2,2,2,2"
+		static const char* COLOR_clrtext;									///< é»˜è®¤æ–‡æœ¬é¢œè‰²ï¼Œå’Œstyleçš„clrtextç›¸åŒä½œç”¨.ç¤ºä¾‹:clrtext="pbgra(00,00,00,ff)"
+		static const char* FONT_font;										///< é»˜è®¤æ–‡æœ¬å­—ä½“,å’Œstyleçš„fontç›¸åŒä½œç”¨.ç¤ºä¾‹:font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
+		static const char* OPTION_align;									///< æ®µè½æ’å¸ƒï¼Œå’Œstyleçš„alignç›¸åŒä½œç”¨,é»˜è®¤left,å¯è®¾ç½®center,right,ç¤ºä¾‹:align="left"
+		static const char* bool_bhscroll;									///< æ˜¾ç¤ºæ°´å¹³æ»šåŠ¨æ¡,ç¤ºä¾‹:bhscroll="1"
+		static const char* bool_bvscroll;									///< æ˜¾ç¤ºç«–ç›´æ»šåŠ¨æ¡,ç¤ºä¾‹:bvscroll="1"
+		static const char* bool_bautohscroll;								///< æ”¯æŒæ°´å¹³æ»šåŠ¨æ¡è‡ªåŠ¨æ»šåŠ¨,ç¤ºä¾‹:bautohscroll="1"
+		static const char* bool_bautovscroll;								///< æ”¯æŒç«–ç›´æ»šåŠ¨æ¡è‡ªåŠ¨æ»šåŠ¨,ç¤ºä¾‹:bautovscroll="1"
+		static const char* bool_breadonly;							     	///< åªè¯»ï¼Œæ­¤æ—¶æ’å…¥ç¬¦ä»ä¼šå‡ºç°,ç¤ºä¾‹:breadonly="1"
+		static const char* bool_bwantreturn;							    ///< å›è½¦æ¢è¡Œï¼Œä¸ç„¶å¦‚æœå¤–éƒ¨å¯¹å®ƒå¤„ç†äº†ï¼Œå¯èƒ½æ˜¯exeé€€å‡º,ç¤ºä¾‹:bwantreturn="1"
+		static const char* bool_bpassword;								    ///< åŠ å¯†æ˜¾ç¤ºï¼Œé»˜è®¤éƒ½ä»¥*æ˜¾ç¤º,ç¤ºä¾‹:bpassword="1"
+		static const char* CHAR_passwordchar;								///< é…åˆåŠ å¯†ï¼ŒåŠ å¯†æ˜¾ç¤ºå­—ç¬¦ï¼Œå–ç¬¬ä¸€ä¸ªå­—ç¬¦ï¼Œå¦‚ä¸ºç©ºï¼Œåˆ™ä½¿ç”¨é»˜è®¤*,ç¤ºä¾‹:passwordchar="#"
+		static const char* bool_bnumber;								    ///< ä»…æ”¯æŒæ•°å­—è¾“å…¥ï¼Œæ­¤æ—¶æ— æ»šåŠ¨æ¡æ˜¾ç¤º,ç¤ºä¾‹:bnumber="1"
+		static const char* bool_benabledrag;								///< æ”¯æŒå†…å®¹æ‹–æ‹½ï¼Œé»˜è®¤ä¸æ”¯æŒ,ç¤ºä¾‹:benabledrag="1"
 
-		// ¹â±ê
-		static const char* COLOR_clrcaret;                                 ///< ¹â±êÑÕÉ«,Ê¾Àı:clrcaret="pbgra(ff,ff,ff,ff)"
-		static const char* INI_caretanimatecount;                          ///< ¹â±ê½¥Òş½¥ÏÔ´ÎÊı£¬1´ÎÎªÕı³£×´Ì¬£¬Ä¬ÈÏÎª6´Î,Ê¾Àı:caretanimatecount="6"
+		// å…‰æ ‡
+		static const char* COLOR_clrcaret;                                 ///< å…‰æ ‡é¢œè‰²,ç¤ºä¾‹:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< å…‰æ ‡æ¸éšæ¸æ˜¾æ¬¡æ•°ï¼Œ1æ¬¡ä¸ºæ­£å¸¸çŠ¶æ€ï¼Œé»˜è®¤ä¸º6æ¬¡,ç¤ºä¾‹:caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIRichEditAttr,INT_editstyle)DMAttrValueInit(DUIRichEditAttr,INT_maxbuf)DMAttrValueInit(DUIRichEditAttr,bool_bautosel)
 	DMAttrValueInit(DUIRichEditAttr,bool_brichtext)DMAttrValueInit(DUIRichEditAttr,bool_bwordwrap)DMAttrValueInit(DUIRichEditAttr,bool_ballowbeep)
@@ -64,11 +64,11 @@ namespace DMAttr
 	class DUIEditAttr:public DUIRichEditAttr
 	{
 	public:
-		static const char* SKIN_surfaceskin;                               ///< ±í²ã±³¾°Æ¤·ô£¬Ê¾Àı:surfaceskin="editskin"
-		static const char* STRING_surfacetext;                             ///< ±í²ãÎÄ×Ö£¬µ±ÕæÊµÎÄ×ÖÎª¿ÕÊ±£¬±í²ãÎÄ×Ö³öÏÖ£¬Ê¾Àı:surfacetext="this is edit"
-		static const char* COLOR_surfacetextclr;                           ///< ±í²ãÎÄ×Ö±³¾°£¬Ê¾Àı:surfacetextclr="pbgra(00,00,ff,ff)"  
-		static const char* FONT_surfacefont;                               ///< ±í²ãÎÄ×Ö×ÖÌå£¬Ê¾Àı:surfacefont="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1"
-		static const char* OPTION_surfacealign;							///< ±í²ãÎÄ×Ö×ÖÌå×óÖĞÓÒ, Ä¬ÈÏ¾Ó×ó, Ê¾Àı:surfacealign="right"
+		static const char* SKIN_surfaceskin;                               ///< è¡¨å±‚èƒŒæ™¯çš®è‚¤ï¼Œç¤ºä¾‹:surfaceskin="editskin"
+		static const char* STRING_surfacetext;                             ///< è¡¨å±‚æ–‡å­—ï¼Œå½“çœŸå®æ–‡å­—ä¸ºç©ºæ—¶ï¼Œè¡¨å±‚æ–‡å­—å‡ºç°ï¼Œç¤ºä¾‹:surfacetext="this is edit"
+		static const char* COLOR_surfacetextclr;                           ///< è¡¨å±‚æ–‡å­—èƒŒæ™¯ï¼Œç¤ºä¾‹:surfacetextclr="pbgra(00,00,ff,ff)"  
+		static const char* FONT_surfacefont;                               ///< è¡¨å±‚æ–‡å­—å­—ä½“ï¼Œç¤ºä¾‹:surfacefont="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1"
+		static const char* OPTION_surfacealign;							///< è¡¨å±‚æ–‡å­—å­—ä½“å·¦ä¸­å³, é»˜è®¤å±…å·¦, ç¤ºä¾‹:surfacealign="right"
 	};
 	DMAttrValueInit(DUIEditAttr,SKIN_surfaceskin)DMAttrValueInit(DUIEditAttr,STRING_surfacetext)DMAttrValueInit(DUIEditAttr,COLOR_surfacetextclr)DMAttrValueInit(DUIEditAttr,FONT_surfacefont)DMAttrValueInit(DUIEditAttr,OPTION_surfacealign)
 
@@ -77,7 +77,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///			DUIRichEditµÄÄÚ²¿ÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIRichEditAttr"/>
+	///			DUIRichEditçš„å†…éƒ¨å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIRichEditAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIRichEdit :public DUIScrollBase
 	{
@@ -90,28 +90,28 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú
+		// Function Des: å¯¹å¤–æ¥å£
 		//---------------------------------------------------
 		void SetText(const CStringW& text) override;
 		CStringW GetText() const override;
 
-		// [deprecated] ²Î¿´afxcmn.inl£¬ºÍCRichEditCtrl±£³ÖÒ»ÖÂ
+		// [deprecated] å‚çœ‹afxcmn.inlï¼Œå’ŒCRichEditCtrlä¿æŒä¸€è‡´
 		void SetWindowText(LPCWSTR lpszText) { SetText(lpszText); }
 		CStringW GetWindowText();
 		int GetWindowText(LPWSTR lpString, int nMaxCount);
 		int GetWindowTextLength();
 
 		DWORD GetEventMask();										
-		DWORD SetEventMask(DWORD dwEventMask);						///< ÉèÖÃĞèÒª½ÓÊÕµÄÊÂ¼şÀàĞÍ SetEventMask(ENM_OBJECTPOSITIONS | ENM_PROTECTED | ENM_DROPFILES | ENM_CHANGE | ENM_LINK | ENM_SELCHANGE | ENM_DRAGDROPDONE);
+		DWORD SetEventMask(DWORD dwEventMask);						///< è®¾ç½®éœ€è¦æ¥æ”¶çš„äº‹ä»¶ç±»å‹ SetEventMask(ENM_OBJECTPOSITIONS | ENM_PROTECTED | ENM_DROPFILES | ENM_CHANGE | ENM_LINK | ENM_SELCHANGE | ENM_DRAGDROPDONE);
 
-		int LineFromChar(LONG nIndex);								///< ²Î¿´MSDN£º·µ»Ø×Ö·ûËùÔÚĞĞºÅ,-1·µ»Øµ±Ç°Ñ¡ÖĞµÚÒ»¸ö×Ö·ûËùÔÚµÄĞĞ, Î´Ñ¡ÖĞÔò·µ»Ø¹â±êËùÔÚĞĞ
-		int LineIndex(int nLine = -1);								///< ²Î¿´MSDN£º·µ»ØĞĞÆğÊ¼×Ö·ûµÄIndex,-1±íÊ¾µ±Ç°¹â±êËùÔÚĞĞ
-		int CharFromPos(POINT pt);									///< ²Î¿´MSDN£º·µ»Øpt(¿Í»§¶Ë×ø±ê)×î½üµÄ×Ö·ûµÄIndex£¬Èç¹ûpt³¬¹ıÁË×îºó×Ö·û·¶Î§,·µ»Ø×îºó×Ö·ûµÄIndex
-		POINT PosFromChar(LONG nChar);								///< ²Î¿´MSDN£ºnCharÎª×Ö·ûIndex,ptÎª×Ö·ûËùÔÚµÄpt(¿Í»§¶Ë×ø±ê),ºÍCharFromPosÏà¶ÔÓ¦
-		int GetFirstVisibleLine();									///< ²Î¿´MSDN£º·µ»Ø×îÉÏÃæ¿É¼ûĞĞµÄIndex
-		int GetLineCount();											///< ²Î¿´MSDN£º·µ»ØĞĞÊı,×¢Òâ,ĞĞ¿ÉÒÔÎª¿ÕĞĞ,¿ÉÒÔÊ¹ÓÃ
-		int LineLength(int nLine = -1);								///< ×¢ÒâÕâÀïÊÇÖ±½Ó´«ÈëĞĞºÅ,Ô­Ê¼µÄÊÇ´«Èë×Ö·ûIndex,ÄÚ²¿×öÁË·â×°
-		CStringW GetLineText(int nLine = -1);						///< µÃµ½Ö¸¶¨ĞĞµÄ×Ö·û´®
+		int LineFromChar(LONG nIndex);								///< å‚çœ‹MSDNï¼šè¿”å›å­—ç¬¦æ‰€åœ¨è¡Œå·,-1è¿”å›å½“å‰é€‰ä¸­ç¬¬ä¸€ä¸ªå­—ç¬¦æ‰€åœ¨çš„è¡Œ, æœªé€‰ä¸­åˆ™è¿”å›å…‰æ ‡æ‰€åœ¨è¡Œ
+		int LineIndex(int nLine = -1);								///< å‚çœ‹MSDNï¼šè¿”å›è¡Œèµ·å§‹å­—ç¬¦çš„Index,-1è¡¨ç¤ºå½“å‰å…‰æ ‡æ‰€åœ¨è¡Œ
+		int CharFromPos(POINT pt);									///< å‚çœ‹MSDNï¼šè¿”å›pt(å®¢æˆ·ç«¯åæ ‡)æœ€è¿‘çš„å­—ç¬¦çš„Indexï¼Œå¦‚æœptè¶…è¿‡äº†æœ€åå­—ç¬¦èŒƒå›´,è¿”å›æœ€åå­—ç¬¦çš„Index
+		POINT PosFromChar(LONG nChar);								///< å‚çœ‹MSDNï¼šnCharä¸ºå­—ç¬¦Index,ptä¸ºå­—ç¬¦æ‰€åœ¨çš„pt(å®¢æˆ·ç«¯åæ ‡),å’ŒCharFromPosç›¸å¯¹åº”
+		int GetFirstVisibleLine();									///< å‚çœ‹MSDNï¼šè¿”å›æœ€ä¸Šé¢å¯è§è¡Œçš„Index
+		int GetLineCount();											///< å‚çœ‹MSDNï¼šè¿”å›è¡Œæ•°,æ³¨æ„,è¡Œå¯ä»¥ä¸ºç©ºè¡Œ,å¯ä»¥ä½¿ç”¨
+		int LineLength(int nLine = -1);								///< æ³¨æ„è¿™é‡Œæ˜¯ç›´æ¥ä¼ å…¥è¡Œå·,åŸå§‹çš„æ˜¯ä¼ å…¥å­—ç¬¦Index,å†…éƒ¨åšäº†å°è£…
+		CStringW GetLineText(int nLine = -1);						///< å¾—åˆ°æŒ‡å®šè¡Œçš„å­—ç¬¦ä¸²
 
 		void SetSel(DWORD dwSelection, BOOL bNoScroll = FALSE);
 		void ReplaceSel(LPWSTR LPCWSTR,BOOL bCanUndo = TRUE);
@@ -163,7 +163,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		int OnCreate(LPVOID);
 		void OnDestroy();
@@ -176,7 +176,7 @@ namespace DM
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnSetFont(IDMFont* font, BOOL bRedraw);
-		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);  ///< ¿ØÖÆ¹ö¶¯ÌõÏÔÊ¾»òÕßÒş²Ø
+		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);  ///< æ§åˆ¶æ»šåŠ¨æ¡æ˜¾ç¤ºæˆ–è€…éšè—
 		LRESULT OnSetText(UINT uMsg,WPARAM wparam,LPARAM lparam);
 		LRESULT OnSetCharFormat(UINT uMsg, WPARAM wParam, LPARAM lParam);
 		LRESULT OnSetParaFormat(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -188,27 +188,27 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual UINT DV_OnGetDlgCode();   
-		virtual DMCode DV_OnSetCursor(const CPoint &pt);                                  // ÉèÖÃµ±Ç°µÄ¹â±êÎªIĞÍ
+		virtual DMCode DV_OnSetCursor(const CPoint &pt);                                  // è®¾ç½®å½“å‰çš„å…‰æ ‡ä¸ºIå‹
 		virtual bool OnScroll(bool bVert,UINT uCode,int nPos);                              // 
-		virtual BOOL DV_WndProc(UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT& lResult);  // ´Ëº¯Êı×îÖÕ´¦ÓÚËùÓĞµÄ¶ÔÍâ½Ó¿ÚÇëÇó£¬ÈçGetWindowTextLength
-		virtual int GetScrollLineSize(bool bVert){return m_nFontHeight;}                    // µãÏÂ¼ıÍ·¹ö¶¯Ò»ĞĞ°É
-	public:// ¸¨Öú
+		virtual BOOL DV_WndProc(UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT& lResult);  // æ­¤å‡½æ•°æœ€ç»ˆå¤„äºæ‰€æœ‰çš„å¯¹å¤–æ¥å£è¯·æ±‚ï¼Œå¦‚GetWindowTextLength
+		virtual int GetScrollLineSize(bool bVert){return m_nFontHeight;}                    // ç‚¹ä¸‹ç®­å¤´æ»šåŠ¨ä¸€è¡Œå§
+	public:// è¾…åŠ©
 		HRESULT InitDefaultCharFormat(CHARFORMAT2W* pcf,IDMFont *pFt=NULL);
 		HRESULT InitDefaultParaFormat(PARAFORMAT2* ppf);
 
-		void OnEnableDragDrop(bool bEnable); // ×¢²á»ò·´×¢²áÍÏ×§
-		HRESULT OnTxSendCurMessage();        // ÏòITextServices·¢ËÍµ±Ç°ÏûÏ¢
+		void OnEnableDragDrop(bool bEnable); // æ³¨å†Œæˆ–åæ³¨å†Œæ‹–æ‹½
+		HRESULT OnTxSendCurMessage();        // å‘ITextServiceså‘é€å½“å‰æ¶ˆæ¯
 
 		void ShowCaret(bool bShow);
 		void InitCaret(int w, int h);
 		bool ResetCaret(CPoint point);
 
 	public:
-		HRESULT OnTxNotify(DWORD iNotify,LPVOID pv);// ÏûÏ¢·Ö·¢
+		HRESULT OnTxNotify(DWORD iNotify,LPVOID pv);// æ¶ˆæ¯åˆ†å‘
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
@@ -262,9 +262,9 @@ namespace DM
 		TCHAR						 m_chPasswordChar;    
 		CRect						 m_rcInsetMargin;       
 
-		// Ìá¹©¸øITextHost,HMEÖ¸´úMM_HIMETRIC£¬µ¥Î»0.01ºÁÃ×£¬×ø±êÏµXÖáÓÒÔö¼Ó£¬YÖáÉÏÔö¼Ó           
-		SIZEL						 m_HMEsizelExtent;     // Âß¼­×ø±ê    
-		CRect						 m_HMErcInsetMargin;   // Âß¼­×ø±ê,±êÊ¶ÎÄ±¾ËùÔÚÇøÓòÀëÕû¸öÇøÓòËÄ±ßµÄ±ß¾à   
+		// æä¾›ç»™ITextHost,HMEæŒ‡ä»£MM_HIMETRICï¼Œå•ä½0.01æ¯«ç±³ï¼Œåæ ‡ç³»Xè½´å³å¢åŠ ï¼ŒYè½´ä¸Šå¢åŠ            
+		SIZEL						 m_HMEsizelExtent;     // é€»è¾‘åæ ‡    
+		CRect						 m_HMErcInsetMargin;   // é€»è¾‘åæ ‡,æ ‡è¯†æ–‡æœ¬æ‰€åœ¨åŒºåŸŸç¦»æ•´ä¸ªåŒºåŸŸå››è¾¹çš„è¾¹è·   
 
 		LONG						 m_lAccelPos;          
 
@@ -278,7 +278,7 @@ namespace DM
 		bool						 m_bAllowBeep;        
 		bool						 m_bWantTab;          
 		bool						 m_bSingleLineVCenter;    
-		bool						 m_bScrollPending;                     // ¹ö¶¯Ìõ´¦ÀíÖĞ
+		bool						 m_bScrollPending;                     // æ»šåŠ¨æ¡å¤„ç†ä¸­
 		bool						 m_bEnableDragDrop;   
 		bool						 m_bAutoSel;
 		HIMC						 m_hCurIMC;	
@@ -290,7 +290,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///			DUIEditµÄÄÚ²¿ÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIEditAttr"/>
+	///			DUIEditçš„å†…éƒ¨å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIEditAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIEdit : public DUIRichEdit
 	{

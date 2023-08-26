@@ -1,5 +1,5 @@
-#pragma once
-#define WIN32_LEAN_AND_MEAN             // ´Ó Windows Í·ÖĞÅÅ³ı¼«ÉÙÊ¹ÓÃµÄ×ÊÁÏ
+ï»¿#pragma once
+#define WIN32_LEAN_AND_MEAN             // ä» Windows å¤´ä¸­æ’é™¤æå°‘ä½¿ç”¨çš„èµ„æ–™
 #include <windows.h>
 #include <tchar.h> 
 

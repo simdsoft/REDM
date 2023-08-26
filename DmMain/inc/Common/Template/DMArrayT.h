@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMArray.h 
-// File Des: Í³Ò»µÄArrayÄ£°å
-// File Summary: ×ÓÀàÔÚÎö¹¹Ê±µ÷ÓÃRemoveAll!
+// File Des: ç»Ÿä¸€çš„Arrayæ¨¡æ¿
+// File Summary: å­ç±»åœ¨ææ„æ—¶è°ƒç”¨RemoveAll!
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,22 +17,22 @@
 namespace DM
 {	
 	/// <summary>
-	///		Í³Ò»µÄArrayÄ£°å
+	///		ç»Ÿä¸€çš„Arrayæ¨¡æ¿
 	/// </summary>
 	/// <remarks>
-	///		ÓÉ×ÓÀàÔÚÎö¹¹Ê±µ÷ÓÃRemoveAll!
+	///		ç”±å­ç±»åœ¨ææ„æ—¶è°ƒç”¨RemoveAll!
 	/// </remarks>
 	template<class TObj>
 	class DMArrayT
 	{
 	public:
 		DMArrayT(){};
-		~DMArrayT(){/*RemoveAll±ØĞëÓÉÖØÔØº¯ÊıµÄ×ÓÀàµ÷ÓÃ£¬²»È»ÖØÔØº¯ÊıÎŞĞ§*/}
+		~DMArrayT(){/*RemoveAllå¿…é¡»ç”±é‡è½½å‡½æ•°çš„å­ç±»è°ƒç”¨ï¼Œä¸ç„¶é‡è½½å‡½æ•°æ— æ•ˆ*/}
 
 		/// -------------------------------------------------
-		/// @brief objÊÇ·ñ´æÔÚ
-		/// @param[in]		 obj    ÓÃÓÚ²éÕÒµÄobj
-		/// @return DM_INVALID_VALUE(-1)±íÊ¾²»´æÔÚ
+		/// @brief objæ˜¯å¦å­˜åœ¨
+		/// @param[in]		 obj    ç”¨äºæŸ¥æ‰¾çš„obj
+		/// @return DM_INVALID_VALUE(-1)è¡¨ç¤ºä¸å­˜åœ¨
 		int FindObj(const TObj &obj)
 		{
 			int count = (int)m_DMArray.GetCount();
@@ -48,11 +48,11 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief È¡µÃobj,
-		/// @param[in]  iElement		Ö¸¶¨ÏîµÄindex
-		/// @param[out] obj			    ·µ»ØÖ¸¶¨ÏîµÄobj
-		/// @remark °²È«»ñÈ¡·½Ê½£¬ÍÆ¼ö
-		/// @return false:»ñÈ¡Ê§°Ü,true:»ñÈ¡³É¹¦
+		/// @brief å–å¾—obj,
+		/// @param[in]  iElement		æŒ‡å®šé¡¹çš„index
+		/// @param[out] obj			    è¿”å›æŒ‡å®šé¡¹çš„obj
+		/// @remark å®‰å…¨è·å–æ–¹å¼ï¼Œæ¨è
+		/// @return false:è·å–å¤±è´¥,true:è·å–æˆåŠŸ
 		bool GetObj(size_t iElement, TObj &obj)
 		{
 			bool bRet = false;
@@ -70,25 +70,25 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief È¡µÃobj
-		/// @param[in] iElement		   Ö¸¶¨ÏîµÄindex
-		/// @remark ²»°²È«»ñÈ¡·½Ê½
-		/// @return »ñÈ¡µÄ¶ÔÏó
+		/// @brief å–å¾—obj
+		/// @param[in] iElement		   æŒ‡å®šé¡¹çš„index
+		/// @remark ä¸å®‰å…¨è·å–æ–¹å¼
+		/// @return è·å–çš„å¯¹è±¡
 		TObj &GetObj(size_t iElement)
 		{
 			return m_DMArray[iElement];
 		}
 
 		/// -------------------------------------------------
-		/// @brief ¼ÓÈëobj
-		/// @param[in] obj			   ¼ÓÈëÖ¸¶¨ÏîµÄobj
-		/// @return true:¼ÓÈë³É¹¦,false:objÒÑ´æÔÚ
+		/// @brief åŠ å…¥obj
+		/// @param[in] obj			   åŠ å…¥æŒ‡å®šé¡¹çš„obj
+		/// @return true:åŠ å…¥æˆåŠŸ,false:objå·²å­˜åœ¨
 		bool AddObj(const TObj &obj)
 		{
 			bool bRet = false;
 			do 
 			{
-				if (DM_INVALID_VALUE != FindObj(obj))/// objÒÑ´æÔÚ
+				if (DM_INVALID_VALUE != FindObj(obj))/// objå·²å­˜åœ¨
 				{
 					break;
 				}
@@ -99,9 +99,9 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief ÒÆ³ıobj
-		/// @param[in] iElement		Ö¸¶¨ÏîµÄindex
-		/// @return true:ÒÆ³ı³É¹¦,false:ÒÆ³ı³É¹¦
+		/// @brief ç§»é™¤obj
+		/// @param[in] iElement		æŒ‡å®šé¡¹çš„index
+		/// @return true:ç§»é™¤æˆåŠŸ,false:ç§»é™¤æˆåŠŸ
 		bool RemoveObj(size_t iElement)
 		{
 			bool bRet = false;
@@ -120,16 +120,16 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief ÒÆ³ıobj
-		/// @param[in] obj		Ö¸¶¨Ïîobj
-		/// @return true:ÒÆ³ı³É¹¦,false:ÒÆ³ı³É¹¦
+		/// @brief ç§»é™¤obj
+		/// @param[in] obj		æŒ‡å®šé¡¹obj
+		/// @return true:ç§»é™¤æˆåŠŸ,false:ç§»é™¤æˆåŠŸ
 		bool RemoveObj(TObj &obj)
 		{
 			bool bRet = false;
 			do 
 			{
 				int iFind = FindObj(obj);
-				if (-1 == iFind)//obj²»´æÔÚ
+				if (-1 == iFind)//objä¸å­˜åœ¨
 				{
 					break;
 				}
@@ -142,8 +142,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief ÒÆ³ıËùÓĞobj
-		/// @return ÎŞ
+		/// @brief ç§»é™¤æ‰€æœ‰obj
+		/// @return æ— 
 		void RemoveAll()
 		{
 			int count = (int)m_DMArray.GetCount();
@@ -157,22 +157,22 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief »ñÈ¡ÊıÄ¿
-		/// @return ÊıÄ¿
+		/// @brief è·å–æ•°ç›®
+		/// @return æ•°ç›®
 		size_t GetCount()
 		{
 			return m_DMArray.GetCount();
 		}
 		
 		/// -------------------------------------------------
-		/// @brief ¿ÉÖØÔØ
-		/// @param[in] objsrc		ĞèÒª±È½ÏµÄÏî
-		/// @param[in] objdest		ArrayÖĞÂÖÁ÷±È½ÏµÄÏî
-		/// @remark ±È½Ïº¯Êı£¬ÓÉ×ÓÀàÖØÔØ£¬Ä¬ÈÏÖ±½Ó==
-		/// @return true:ÏàµÈ,false:²»ÏàµÈ
+		/// @brief å¯é‡è½½
+		/// @param[in] objsrc		éœ€è¦æ¯”è¾ƒçš„é¡¹
+		/// @param[in] objdest		Arrayä¸­è½®æµæ¯”è¾ƒçš„é¡¹
+		/// @remark æ¯”è¾ƒå‡½æ•°ï¼Œç”±å­ç±»é‡è½½ï¼Œé»˜è®¤ç›´æ¥==
+		/// @return true:ç›¸ç­‰,false:ä¸ç›¸ç­‰
 		virtual bool EqualArrayObj(const TObj &objsrc, const TObj &objdest)
 		{
-			/// Íâ²¿×ÓÀàÖØÔØ
+			/// å¤–éƒ¨å­ç±»é‡è½½
 			if (objsrc == objdest)
 			{
 				return true;
@@ -181,13 +181,13 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief ¿ÉÖØÔØ
-		/// @param[in] obj		Ö¸¶¨Ïî
-		/// @remark ÔÚÒÆ³ıÇ°µÄÔ¤´¦Àíº¯Êı£¬ÓÃÓÚ×ÓÀàÖØÔØ
-		/// @return ÎŞ
+		/// @brief å¯é‡è½½
+		/// @param[in] obj		æŒ‡å®šé¡¹
+		/// @remark åœ¨ç§»é™¤å‰çš„é¢„å¤„ç†å‡½æ•°ï¼Œç”¨äºå­ç±»é‡è½½
+		/// @return æ— 
 		virtual void PreArrayObjRemove(const TObj &obj)
 		{
-			/// Íâ²¿×ÓÀàÖØÔØ
+			/// å¤–éƒ¨å­ç±»é‡è½½
 		}
 
 	public:

@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+﻿#include "DMDemoAfx.h"
 #include "IEWnd.h"
 #include "MainWnd.h"
 extern CMainWnd* g_pMainWnd;

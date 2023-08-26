@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMMapT.h 
-// File Des: Í³Ò»µÄMapÄ£°å
-// File Summary: ×ÓÀàÔÚÎö¹¹Ê±µ÷ÓÃRemoveAll!
+// File Des: ç»Ÿä¸€çš„Mapæ¨¡æ¿
+// File Summary: å­ç±»åœ¨ææ„æ—¶è°ƒç”¨RemoveAll!
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,33 +17,33 @@
 namespace DM
 {
 	/// <summary>
-	///		Í³Ò»µÄMapÄ£°å
+	///		ç»Ÿä¸€çš„Mapæ¨¡æ¿
 	/// </summary>
 	/// <remarks>
-	///		ÓÉ×ÓÀàÔÚÎö¹¹Ê±µ÷ÓÃRemoveAll!
+	///		ç”±å­ç±»åœ¨ææ„æ—¶è°ƒç”¨RemoveAll!
 	/// </remarks>
 	template<class TKey, class TObj>
 	class DMMapT
 	{
 	public:
 		DMMapT(){}
-		~DMMapT(){/*RemoveAll±ØĞëÓÉÖØÔØº¯ÊıµÄ×ÓÀàµ÷ÓÃ£¬²»È»ÖØÔØº¯ÊıÎŞĞ§*/}
+		~DMMapT(){/*RemoveAllå¿…é¡»ç”±é‡è½½å‡½æ•°çš„å­ç±»è°ƒç”¨ï¼Œä¸ç„¶é‡è½½å‡½æ•°æ— æ•ˆ*/}
 
 		/// -------------------------------------------------
-		/// @brief	keyÊÇ·ñÒÑ´æÔÚ
-		/// @param[in]		 key    ÓÃÓÚ²éÕÒMapµÄkey
-		/// @return true:´æÔÚ£¬false:²»´æÔÚ
+		/// @brief	keyæ˜¯å¦å·²å­˜åœ¨
+		/// @param[in]		 key    ç”¨äºæŸ¥æ‰¾Mapçš„key
+		/// @return true:å­˜åœ¨ï¼Œfalse:ä¸å­˜åœ¨
 		bool IsKeyExist(const TKey &key)
 		{
 			return NULL != m_Map.Lookup(key);
 		}
 	
 		/// -------------------------------------------------
-		/// @brief Í¨¹ıkey»ñÈ¡obj
-		/// @param[in]		 key    ÓÃÓÚ²éÕÒMapµÄkey
-		/// @param[out]		 obj    ÓÃÓÚ·µ»ØMapµÄobj
-		/// @remark °²È«»ñÈ¡·½Ê½
-		/// @return true:»ñÈ¡³É¹¦,false:»ñÈ¡Ê§°Ü
+		/// @brief é€šè¿‡keyè·å–obj
+		/// @param[in]		 key    ç”¨äºæŸ¥æ‰¾Mapçš„key
+		/// @param[out]		 obj    ç”¨äºè¿”å›Mapçš„obj
+		/// @remark å®‰å…¨è·å–æ–¹å¼
+		/// @return true:è·å–æˆåŠŸ,false:è·å–å¤±è´¥
 		bool GetObjByKey(const TKey &key, TObj &obj)
 		{
 			bool bRet = false;
@@ -60,20 +60,20 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief Í¨¹ıkey»ñÈ¡obj
-		/// @param[in]		 key    ÓÃÓÚ²éÕÒMapµÄkey
-		/// @remark ²»°²È«·½Ê½
-		/// @return ·µ»Ø¶ÔÏó
+		/// @brief é€šè¿‡keyè·å–obj
+		/// @param[in]		 key    ç”¨äºæŸ¥æ‰¾Mapçš„key
+		/// @remark ä¸å®‰å…¨æ–¹å¼
+		/// @return è¿”å›å¯¹è±¡
 		TObj& GetObjByKey(const TKey &key)
 		{
 			return m_Map[key];
 		}
  
 		/// -------------------------------------------------
-		/// @brief ÉèÖÃKey
-		/// @param[in]		 key    ÓÃÓÚ´«ÈëMapµÄkey
-		/// @param[in]		 obj    ÓÃÓÚ´«ÈëMapµÄobj
-		/// @return true:³É¹¦,false:keyÒÑ´æÔÚ
+		/// @brief è®¾ç½®Key
+		/// @param[in]		 key    ç”¨äºä¼ å…¥Mapçš„key
+		/// @param[in]		 obj    ç”¨äºä¼ å…¥Mapçš„obj
+		/// @return true:æˆåŠŸ,false:keyå·²å­˜åœ¨
 		bool AddKey(const TKey &key, const TObj &obj)
 		{
 			bool bRet = false;
@@ -90,20 +90,20 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief Ç¿ÖÆÉèÖÃKey
-		/// @param[in]		 key    ÓÃÓÚ´«ÈëMapµÄkey
-		/// @param[in]		 obj    ÓÃÓÚ´«ÈëMapµÄobj
-		/// @remark keyÒÑ´æÔÚÔò¸²¸Çkey
-		/// @return ÎŞ
+		/// @brief å¼ºåˆ¶è®¾ç½®Key
+		/// @param[in]		 key    ç”¨äºä¼ å…¥Mapçš„key
+		/// @param[in]		 obj    ç”¨äºä¼ å…¥Mapçš„obj
+		/// @remark keyå·²å­˜åœ¨åˆ™è¦†ç›–key
+		/// @return æ— 
 		void SetKey(const TKey &key, const TObj &obj)
 		{
 			m_Map[key] = obj;
 		}
 
 		/// -------------------------------------------------
-		/// @brief É¾³ıkey
-		/// @param[in]		 key    ÓÃÓÚ´«ÈëMapµÄkey
-		/// @return true:ÒÆ³ı³É¹¦,false:ÒÆ³ıÊ§°Ü
+		/// @brief åˆ é™¤key
+		/// @param[in]		 key    ç”¨äºä¼ å…¥Mapçš„key
+		/// @return true:ç§»é™¤æˆåŠŸ,false:ç§»é™¤å¤±è´¥
 		bool RemoveKey(const TKey &key)
 		{
 			bool bRet = false;
@@ -114,7 +114,7 @@ namespace DM
 					break;
 				}
 
-				PreMapKeyRemove(m_Map[key]);//µ÷ÓÃÉ¾³ıÇ°Ô¤´¦Àíº¯Êı
+				PreMapKeyRemove(m_Map[key]);//è°ƒç”¨åˆ é™¤å‰é¢„å¤„ç†å‡½æ•°
 
 				m_Map.RemoveKey(key);
 				bRet = true;
@@ -123,8 +123,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief É¾³ıËùÓĞkey
-		/// @return ÎŞ
+		/// @brief åˆ é™¤æ‰€æœ‰key
+		/// @return æ— 
 		void RemoveAll()
 		{
 			POSITION pos = m_Map.GetStartPosition();
@@ -138,19 +138,19 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief »ñÈ¡ÊıÄ¿
-		/// @return ÊıÄ¿
+		/// @brief è·å–æ•°ç›®
+		/// @return æ•°ç›®
 		size_t GetCount()
 		{
 			return m_Map.GetCount();
 		}
 		/// -------------------------------------------------
-		/// @brief ¿ÉÖØÔØ£¬Íâ²¿ÖØÔØ
-		/// @remark Íâ²¿À´ÖØÔØÔ¤´¦ÀíÉ¾³ıÏî
-		/// @return ÎŞ
+		/// @brief å¯é‡è½½ï¼Œå¤–éƒ¨é‡è½½
+		/// @remark å¤–éƒ¨æ¥é‡è½½é¢„å¤„ç†åˆ é™¤é¡¹
+		/// @return æ— 
 		virtual void PreMapKeyRemove(const TObj &obj)
 		{
-			// Íâ²¿À´ÖØÔØÔ¤´¦ÀíÉ¾³ıÏî
+			// å¤–éƒ¨æ¥é‡è½½é¢„å¤„ç†åˆ é™¤é¡¹
 		}
 
 	public:

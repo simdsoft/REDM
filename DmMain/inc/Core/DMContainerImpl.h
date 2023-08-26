@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIContainer.h 
-// File Des: ´ËÀàÓÃÓÚ¸¨Öú·Ö·¢¸÷ÀàÏûÏ¢µ½DUI´°¿Ú.ÉèÖÃDUI´°¿Ú×´Ì¬
+// File Des: æ­¤ç±»ç”¨äºè¾…åŠ©åˆ†å‘å„ç±»æ¶ˆæ¯åˆ°DUIçª—å£.è®¾ç½®DUIçª—å£çŠ¶æ€
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -37,7 +37,7 @@ namespace DM
 		DMCode OnUnRegisterDragDrap(DUIWND hDUIWnd);
 
 		//---------------------------
-		// Î´ÊµÏÖ
+		// æœªå®ç°
 		DMCode OnFireEvent(DMEventArgs &Evt){return DM_ECODE_NOTIMPL;}
 		DMCode OnGetDraw(IDMDraw** ppObj){return DM_ECODE_NOTIMPL;}
 		DMCode OnGetCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas**ppCanvas){return DM_ECODE_NOTIMPL;}
@@ -59,7 +59,7 @@ namespace DM
 		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);
 		DMCode OnTimeline();
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void OnFrameMouseMove(UINT uFlag,CPoint pt);
 		void OnFrameMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam);
 		void OnFrameMouseLeave();
@@ -73,10 +73,10 @@ namespace DM
 
 	public:
 
-		DUIWindow*					     m_pContainWnd;              ///<´Ë´¦ÈİÆ÷¶ÔÏóÒ»°ãÎªËŞÖ÷´°¿Ú(DMHWnd»òDMHDialog),ÔÚÃæ°åÉÏÖ¸Ãæ°å´°¿Ú
-		DUIWND                           m_hDUICaptureWnd;			 ///<µ±Ç°²¶»ñÏûÏ¢µÄDUI´°¿Ú
-		DUIWND                           m_hDUIHoverWnd;			 ///<µ±Ç°Í£ÁôµÄDUI´°¿Ú
-		bool                             m_bNcHover;			     ///<µ±Ç°ÊÇ·ñÍ£ÁôÔÚ·Ç¿Í»§Çø
+		DUIWindow*					     m_pContainWnd;              ///<æ­¤å¤„å®¹å™¨å¯¹è±¡ä¸€èˆ¬ä¸ºå®¿ä¸»çª—å£(DMHWndæˆ–DMHDialog),åœ¨é¢æ¿ä¸ŠæŒ‡é¢æ¿çª—å£
+		DUIWND                           m_hDUICaptureWnd;			 ///<å½“å‰æ•è·æ¶ˆæ¯çš„DUIçª—å£
+		DUIWND                           m_hDUIHoverWnd;			 ///<å½“å‰åœç•™çš„DUIçª—å£
+		bool                             m_bNcHover;			     ///<å½“å‰æ˜¯å¦åœç•™åœ¨éå®¢æˆ·åŒº
 
 		DUIFocusMgr						 m_FocusMgr;
 		DUIDropTargetDispatch			 m_DropTarget;

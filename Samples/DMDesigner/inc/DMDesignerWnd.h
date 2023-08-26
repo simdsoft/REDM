@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMDesignerWnd.h
 // File mark:   
-// File summary:Éè¼ÆÆ÷Ö÷´°¿Ú
+// File summary:è®¾è®¡å™¨ä¸»çª—å£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-7
@@ -37,10 +37,10 @@ public:
 
 	bool OnAccelPressed(const DUIAccel& Accel);
 
-	DMCode OnParseRes(CStringW strResDir);									///< ¶ÁÈ¡×ÊÔ´
+	DMCode OnParseRes(CStringW strResDir);									///< è¯»å–èµ„æº
 	
 protected:
-	// MenuÏî
+	// Menué¡¹
 	DMCode OnGlobalMenuBtn(int idFrom);
 	DMCode HandleGlobalMenu(int nID);
 	DMCode InitFileMenu(DMXmlNode& XmlNode,int idFrom);

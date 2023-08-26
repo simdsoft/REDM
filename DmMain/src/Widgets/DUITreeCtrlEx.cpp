@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUITreeCtrlEx.h"
 
 namespace DM
@@ -31,7 +31,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú methods
+	// Function Des: å¯¹å¤–æ¥å£ methods
 	//---------------------------------------------------
 #pragma region Public methods
 	bool DUITreeCtrlEx::RemoveAllItems()
@@ -64,7 +64,7 @@ namespace DM
 			if (pData->bVisible)
 			{
 				if (GetChildItem(hItem) && pData->bCollapsed==false)
-				{// ÓĞ×ÓÏî£¬Õ¹¿ª×´Ì¬
+				{// æœ‰å­é¡¹ï¼Œå±•å¼€çŠ¶æ€
 					SetChildrenVisible(hItem,false);
 				}
 			}
@@ -83,10 +83,10 @@ namespace DM
 			}
 			bool bVisible = pData->bVisible;
 			int iCheckValue = pData->iCheckValue;
-			//DM_RemoveChildPanel(pData->pPanel);//ÕâÒ»²½·Åµ½OnNodeFree ÒòÎªÉ¾³ıÒ»¸ö¸¸½Úµã»áµİ¹éÉ¾³ı×Ó½Úµã
+			//DM_RemoveChildPanel(pData->pPanel);//è¿™ä¸€æ­¥æ”¾åˆ°OnNodeFree å› ä¸ºåˆ é™¤ä¸€ä¸ªçˆ¶èŠ‚ç‚¹ä¼šé€’å½’åˆ é™¤å­èŠ‚ç‚¹
 			DeleteItem(hItem);
 
-			// È¥µô¸¸½ÚµãµÄÕ¹¿ª±êÖ¾
+			// å»æ‰çˆ¶èŠ‚ç‚¹çš„å±•å¼€æ ‡å¿—
 			if (hParent&&!GetChildItem(hParent))
 			{
 				LPTVITEMEX pParentData = GetItem(hParent);
@@ -98,13 +98,13 @@ namespace DM
 				&&hParent
 				&&GetChildItem(hParent))
 			{
-				// Ô­½áµã¸´Ñ¡¿òÑ¡ÖĞ£¬¼ì²é¸¸½áµãÊÇ·ñÓÉ°ëÑ¡±ä²»Ñ¡    
+				// åŸç»“ç‚¹å¤é€‰æ¡†é€‰ä¸­ï¼Œæ£€æŸ¥çˆ¶ç»“ç‚¹æ˜¯å¦ç”±åŠé€‰å˜ä¸é€‰    
 				if (iCheckValue == DMTVEXCheckBox_Checked
 					||iCheckValue == DMTVEXCheckBox_PartChecked)
 				{
 					CheckState(hParent, false);   
 				}
-				//Ô­½áµã¸´Ñ¡¿òÎ´Ñ¡ÖĞ£¬¼ì²é¸¸½áµãÊÇ·ñÓÉ°ëÑ¡±äÈ«Ñ¡    
+				//åŸç»“ç‚¹å¤é€‰æ¡†æœªé€‰ä¸­ï¼Œæ£€æŸ¥çˆ¶ç»“ç‚¹æ˜¯å¦ç”±åŠé€‰å˜å…¨é€‰    
 				else
 				{
 					LPTVITEMEX pParentData = GetItem(hParent);
@@ -152,7 +152,7 @@ namespace DM
 			if (!bExistVisibleMap)
 			{
 				LPTVITEMEX pData = GetItem(hItem);
-				if (!pData->bVisible)// È«²¿Õ¹¿ª
+				if (!pData->bVisible)// å…¨éƒ¨å±•å¼€
 				{
 					HDMTREEITEM hParent = GetParentItem(hItem);
 					while (hParent)
@@ -184,8 +184,8 @@ namespace DM
 			}
 			else
 			{
-				if (rcItem.top<rcClient.top// ÏîÔÚ´°¿ÚÉÏÃæ
-					||rcItem.top>rcClient.bottom)// ÏîÔÚ´°¿ÚÏÂÃæ
+				if (rcItem.top<rcClient.top// é¡¹åœ¨çª—å£ä¸Šé¢
+					||rcItem.top>rcClient.bottom)// é¡¹åœ¨çª—å£ä¸‹é¢
 				{
 					SetScrollPos(true, m_ptCurPos.y-(rcClient.top-rcItem.top),true);
 					UpdateVisibleMap();
@@ -253,13 +253,13 @@ namespace DM
 			LPTVITEMEX pData = GetItem(hItem);
 			pData->iCheckValue = iCheck;
 
-			// ÖÃ×ÓËï½áµã
+			// ç½®å­å­™ç»“ç‚¹
 			if (GetChildItem(hItem))
 			{
 				SetChildrenState(hItem, iCheck);
 			}
 
-			// ¼ì²é¸¸½áµã×´Ì¬
+			// æ£€æŸ¥çˆ¶ç»“ç‚¹çŠ¶æ€
 			CheckState(GetParentItem(hItem), bCheck);
 			DM_Invalidate();
 			bRet = true;
@@ -451,7 +451,7 @@ namespace DM
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
 
-			//1.»æÖÆ±³¾°
+			//1.ç»˜åˆ¶èƒŒæ™¯
 			CRect rcItemBg(rcClient.left,rc.top,rcClient.right,rc.bottom);
 			DUIWND_STATE iState = DUIWNDSTATE_Normal;
 			if (hItem == m_hSelItem)
@@ -471,10 +471,10 @@ namespace DM
 				pCanvas->FillSolidRect(rc,m_crItemBg[iState]);
 			} 
 
-			// 2.»æÖÆĞ¡Èı½ÇºÍcheckbox
+			// 2.ç»˜åˆ¶å°ä¸‰è§’å’Œcheckbox
 			LPTVITEMEX pData = GetItem(hItem);
 			int iOffset = 0;
-			if (m_pCheckSkin&&m_bCheckBox)//ÏÈ»æcheckbox
+			if (m_pCheckSkin&&m_bCheckBox)//å…ˆç»˜checkbox
 			{
 				iOffset = m_szCheck.cx;
 				CRect rcCheck(rc.left-m_szCheck.cx,rc.top,rc.left,rc.bottom);
@@ -505,7 +505,7 @@ namespace DM
 				m_pToggleSkin->Draw(pCanvas,rcToggle,iImgState);
 			}
 
-			// »æÖÆÃæ°å
+			// ç»˜åˆ¶é¢æ¿
 			rc.right = rc.right>rcClient.right?rcClient.right:rc.right;
 			pData->pPanel->DrawItem(pCanvas,rc);
 		} while (false);
@@ -573,7 +573,7 @@ namespace DM
 			{
 				if (m_pCapturePanel)
 				{
-					if (0!=m_pCapturePanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pnnt.x,pnnt.y))) ///½öcursor»áÓ°ÏìOnFrameEvent·µ»ØÖµ
+					if (0!=m_pCapturePanel->OnFrameEvent(WM_SETCURSOR, 0, MAKELPARAM(pnnt.x,pnnt.y))) ///ä»…cursorä¼šå½±å“OnFrameEventè¿”å›å€¼
 					{
 						iErr = DM_ECODE_OK;
 						break;
@@ -619,10 +619,10 @@ namespace DM
 	{
 		while (XmlItem.IsValid())
 		{
-			HDMTREEITEM hItem = InsertItem(XmlItem,hParent);// ·µ»Øµ±Ç°²åÈë½áµã
+			HDMTREEITEM hItem = InsertItem(XmlItem,hParent);// è¿”å›å½“å‰æ’å…¥ç»“ç‚¹
 			DMXmlNode XmlChild = XmlItem.FirstChild(DMAttr::DUITreeCtrlExAttr::NODE_treeitem);
 			if (XmlChild.IsValid()) 
-			{// ×Ó·ÖÖ§µİ¹é
+			{// å­åˆ†æ”¯é€’å½’
 				LoadBranch(hItem,XmlChild);
 			}
 			XmlItem = XmlItem.NextSibling(DMAttr::DUITreeCtrlExAttr::NODE_treeitem);
@@ -800,12 +800,12 @@ namespace DM
 	}
 
 	int DUITreeCtrlEx::GetItemYOffset(HDMTREEITEM hItem)
-	{// hItem±ØĞëÊÇ¿É¼ûµÄ
+	{// hItemå¿…é¡»æ˜¯å¯è§çš„
 		int iYOffset = 0;
 
 		CRect rcItem;
 		if (DMMapT<HDMTREEITEM,CRect>::GetObjByKey(hItem,rcItem))
-		{// ÓÅÏÈ´Ó¿ÉÊÓÁĞ±íÖĞ²éÕÒ
+		{// ä¼˜å…ˆä»å¯è§†åˆ—è¡¨ä¸­æŸ¥æ‰¾
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
 			rcItem.OffsetRect(m_ptCurPos-rcClient.TopLeft());
@@ -813,12 +813,12 @@ namespace DM
 			return iYOffset;
 		}
 
-		HDMTREEITEM hCurItem = GetNextItem(DMTVI_ROOT);// ´Ó¸ù½áµã¿ªÊ¼ÏòÏÂ²éÕÒ
+		HDMTREEITEM hCurItem = GetNextItem(DMTVI_ROOT);// ä»æ ¹ç»“ç‚¹å¼€å§‹å‘ä¸‹æŸ¥æ‰¾
 		int iTotalHei = 0;
 		while (hCurItem) 
 		{
 			LPTVITEMEX pData = GetItem(hCurItem);
-			if (hItem == hCurItem)// ÕÒµ½ÁËµ±Ç°½Úµã
+			if (hItem == hCurItem)// æ‰¾åˆ°äº†å½“å‰èŠ‚ç‚¹
 			{
 				break;
 			}
@@ -827,7 +827,7 @@ namespace DM
 				iYOffset = iYOffset+pData->iHeight;
 			}
 			if (pData->bCollapsed)
-			{// Ìø¹ı±»ÕÛµşµÄÏî
+			{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 				HDMTREEITEM hChild = GetChildItem(hCurItem,false);
 				while (hChild)
 				{
@@ -851,14 +851,14 @@ namespace DM
 				break;
 			}
 
-			// ÏÈ´Ó¿ÉÊÓÁĞ±íÖĞ²éÕÒ
+			// å…ˆä»å¯è§†åˆ—è¡¨ä¸­æŸ¥æ‰¾
 			if (DMMapT<HDMTREEITEM,CRect>::GetObjByKey(hItem,rcItem))
 			{
 				bRet = true;
 				break;
 			}
 
-			// ±éÀú²éÕÒ
+			// éå†æŸ¥æ‰¾
 			LPTVITEMEX pData = GetItem(hItem);
 			if (!pData->bVisible)
 			{
@@ -868,7 +868,7 @@ namespace DM
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
 
-			HDMTREEITEM hNext = GetNextItem(DMTVI_ROOT);// ´Ó¸ù½áµã¿ªÊ¼ÏòÏÂ²éÕÒ
+			HDMTREEITEM hNext = GetNextItem(DMTVI_ROOT);// ä»æ ¹ç»“ç‚¹å¼€å§‹å‘ä¸‹æŸ¥æ‰¾
 			int iTotalHei = 0;
 			while (hNext) 
 			{
@@ -879,7 +879,7 @@ namespace DM
 					{
 						int iXOffset = GetItemXOffset(hItem); 
 						rcItem.SetRect(iXOffset,iTotalHei,iXOffset+ GetItemWidth(hItem),iTotalHei+pData->iHeight);
-						rcItem.OffsetRect(rcClient.TopLeft()-m_ptCurPos);// ×ª»»³ÉrcClientËùÔÚµÄ×ø±êÏµ×ø±ê
+						rcItem.OffsetRect(rcClient.TopLeft()-m_ptCurPos);// è½¬æ¢æˆrcClientæ‰€åœ¨çš„åæ ‡ç³»åæ ‡
 						bRet = true;
 						break;
 					}
@@ -887,7 +887,7 @@ namespace DM
 				}
 
 				if (pData->bCollapsed)
-				{// Ìø¹ı±»ÕÛµşµÄÏî
+				{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 					HDMTREEITEM hChild = GetChildItem(hNext,FALSE);
 					while (hChild)
 					{
@@ -960,13 +960,13 @@ namespace DM
 
 
 	HDMTREEITEM DUITreeCtrlEx::HitTest(CPoint &pt)
-	{// ´«ÈëµÄptÎªrcClientËùÔÚ×ø±êÏµµÄ×ø±ê
+	{// ä¼ å…¥çš„ptä¸ºrcClientæ‰€åœ¨åæ ‡ç³»çš„åæ ‡
 		HDMTREEITEM hRet = NULL;
 		POSITION pos = m_Map.GetStartPosition();
 		while(pos)
 		{
 			DM::CMap<HDMTREEITEM,CRect>::CPair *p = m_Map.GetNext(pos);
-			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// ½øÈë¿ÉÊÓÇø,Ë®Æ½¿ÉÄÜÎª¸ºÖµ
+			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// è¿›å…¥å¯è§†åŒº,æ°´å¹³å¯èƒ½ä¸ºè´Ÿå€¼
 			{
 				pt -= p->m_value.TopLeft();
 				hRet = p->m_key;
@@ -981,7 +981,7 @@ namespace DM
 		int iHitTestBtn = DMTVEXBtn_None;
 		do 
 		{
-			if (pt.x>0// iChildOffsetÒÑ¼ÆËãÁËcheckºÍtoggleµÄ´óĞ¡
+			if (pt.x>0// iChildOffsetå·²è®¡ç®—äº†checkå’Œtoggleçš„å¤§å°
 				||NULL == hItem
 				||DMTVI_ROOT == hItem)
 			{
@@ -1035,7 +1035,7 @@ namespace DM
 			return;
 		}
 
-		HDMTREEITEM hItem = GetNextItem(DMTVI_ROOT);// ´Ó¸ù½áµã¿ªÊ¼ÏòÏÂ²éÕÒ
+		HDMTREEITEM hItem = GetNextItem(DMTVI_ROOT);// ä»æ ¹ç»“ç‚¹å¼€å§‹å‘ä¸‹æŸ¥æ‰¾
 		int iTotalHei = 0;int iXOffset = 0;
 		while (hItem) 
 		{
@@ -1048,8 +1048,8 @@ namespace DM
 					)
 				{
 					iXOffset = GetItemXOffset(hItem); 
-					CRect rcItem(iXOffset,iTotalHei,iXOffset+ GetItemWidth(hItem),iTotalHei+pData->iHeight);// ÔÚ´óÆ½ÃæµÄ×ø±ê£¬ÒÔ´óÆ½Ãæ×óÉÏ½ÇÎªÔ­µã
-					rcItem.OffsetRect(rcClient.TopLeft()-m_ptCurPos);// ×ª»»³ÉrcClientËùÔÚµÄ×ø±êÏµ×ø±ê
+					CRect rcItem(iXOffset,iTotalHei,iXOffset+ GetItemWidth(hItem),iTotalHei+pData->iHeight);// åœ¨å¤§å¹³é¢çš„åæ ‡ï¼Œä»¥å¤§å¹³é¢å·¦ä¸Šè§’ä¸ºåŸç‚¹
+					rcItem.OffsetRect(rcClient.TopLeft()-m_ptCurPos);// è½¬æ¢æˆrcClientæ‰€åœ¨çš„åæ ‡ç³»åæ ‡
 					if (m_hSelItem != hItem)
 					{
 						pData->pPanel->OnSetFocusWnd(NULL);
@@ -1057,14 +1057,14 @@ namespace DM
 					DMMapT<HDMTREEITEM,CRect>::AddKey(hItem,rcItem);
 				}
 				iTotalHei = iTotalHei+pData->iHeight;
-				if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// ×Ü¸ß¶ÈÒÑ³¬¹ı¿ÉÊÓÇø
+				if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// æ€»é«˜åº¦å·²è¶…è¿‡å¯è§†åŒº
 				{
 					break;
 				}
 			}
 
 			if (pData->bCollapsed)
-			{// Ìø¹ı±»ÕÛµşµÄÏî
+			{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 				HDMTREEITEM hChild = GetChildItem(hItem,false);
 				while (hChild)
 				{
@@ -1091,7 +1091,7 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: ¸¨Öú methods
+	// Function Des: è¾…åŠ© methods
 	//---------------------------------------------------
 #pragma region Helpers
 	HDMTREEITEM DUITreeCtrlEx::InsertItem(LPTVITEMEX pData,HDMTREEITEM hParent,HDMTREEITEM hInsertAfter,bool bEnsureVisible)
@@ -1112,15 +1112,15 @@ namespace DM
 				}
 				if (!pParentData->bHasChildren)
 				{
-					pParentData->bHasChildren = true;  // ²åÈëÒ»¸ö×ÓÏîÁË£¬ËùÒÔÎªtrue
+					pParentData->bHasChildren = true;  // æ’å…¥ä¸€ä¸ªå­é¡¹äº†ï¼Œæ‰€ä»¥ä¸ºtrue
 				}
 			}
 			hRet = pData->hItem = DMTreeT<LPTVITEMEX>::InsertItem(pData,hParent,hInsertAfter);
 			pData->pPanel->SetItemId((LPARAM)(pData->hItem));
 			CRect rcLayout(0,0, GetItemWidth(hRet),pData->iHeight);
 			pData->pPanel->DM_FloatLayout(rcLayout);
-			DM_AddChildPanel(pData->pPanel);	// ¹ØÁªpanel
-			if (DMTVI_ROOT == hParent)			// ¸ù½áµãµÄiChildOffsetÎªËüµÄÊµ¼ÊÆ«ÒÆ+Check+Toggle£¬ÆäËû½áµãÎªÏà¶ÔÓÚ¸¸½ÚµãµÄÆ«ÒÆ
+			DM_AddChildPanel(pData->pPanel);	// å…³è”panel
+			if (DMTVI_ROOT == hParent)			// æ ¹ç»“ç‚¹çš„iChildOffsetä¸ºå®ƒçš„å®é™…åç§»+Check+Toggleï¼Œå…¶ä»–ç»“ç‚¹ä¸ºç›¸å¯¹äºçˆ¶èŠ‚ç‚¹çš„åç§»
 			{
 				pData->iChildOffset += m_szCheck.cx + m_szToggle.cx;
 			}
@@ -1199,15 +1199,15 @@ namespace DM
 			LPTVITEMEX pData = GetItem(hChildItem);
 			int iCheckValue = bCheck?DMTVEXCheckBox_Checked : DMTVEXCheckBox_UnChecked;
 			if (pData->iCheckValue != iCheckValue) 
-			{// µ±Ç°½áµã²»Ò»ÖÂÁ¢¼´·µ»Ø
+			{// å½“å‰ç»“ç‚¹ä¸ä¸€è‡´ç«‹å³è¿”å›
 				return false;
 			}
 			else if (false == CheckChildrenState(hChildItem, bCheck))
-			{// ¼ì²é×Ó½áµã²»Ò»ÖÂÁ¢¼´·µ»Ø
+			{// æ£€æŸ¥å­ç»“ç‚¹ä¸ä¸€è‡´ç«‹å³è¿”å›
 				return false;
 			}
 
-			// ¼ì²é×Ó½áµãĞÖµÜ½áµã
+			// æ£€æŸ¥å­ç»“ç‚¹å…„å¼Ÿç»“ç‚¹
 			hChildItem = GetNextSiblingItem(hChildItem);
 		}
 		return true;
@@ -1259,7 +1259,7 @@ namespace DM
 		int nHitTestBtn = ItemHitTest(hItem, pt); 
 		LPTVITEMEX pData = GetItem(hItem);
 
-		//Çå³ıÔ­ÓĞpushdown°´Å¥
+		//æ¸…é™¤åŸæœ‰pushdownæŒ‰é’®
 		if (m_nItemPushDownBtn != nHitTestBtn)
 		{
 			if (m_nItemPushDownBtn == DMTVEXBtn_Toggle && 
@@ -1277,7 +1277,7 @@ namespace DM
 			m_nItemPushDownBtn = nHitTestBtn;
 		}
 
-		//ÖÃĞÂpushdown°´Å¥
+		//ç½®æ–°pushdownæŒ‰é’®
 		if (m_nItemPushDownBtn != DMTVEXBtn_None)
 		{
 			if (m_nItemPushDownBtn == DMTVEXBtn_Toggle && 
@@ -1374,7 +1374,7 @@ namespace DM
 			}
 		}
 
-		/// hover»æÖÆ
+		/// hoverç»˜åˆ¶
 		if (m_nItemHoverBtn == DMTVEXBtn_None)
 		{
 			RedrawItem(hItem);
@@ -1405,7 +1405,7 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 #pragma region MsgDispatch
 	void DUITreeCtrlEx::DM_OnPaint(IDMCanvas* pCanvas)
@@ -1624,11 +1624,11 @@ namespace DM
 				m_dwStartTime = ::GetTickCount();
 			}
 			CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			HDMTREEITEM hHitTest = HitTest(pt);//ÕâÀïÒÑ×ª»»ptµÄ×ø±ê
+			HDMTREEITEM hHitTest = HitTest(pt);//è¿™é‡Œå·²è½¬æ¢ptçš„åæ ‡
 			if (m_pCapturePanel)
 			{
 				m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
-				break;// Ìø³ö
+				break;// è·³å‡º
 			}
 
 			if (m_pDUIXmlInfo->m_bFocusable

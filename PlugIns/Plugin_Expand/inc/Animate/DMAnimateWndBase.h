@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 namespace DM
 {
@@ -17,20 +17,20 @@ namespace DM
 
 	public:
 		void OnTimer(UINT_PTR idEvent);
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		BOOL DMANI_ClientToScreen(HWND hWnd,CRect &rc);
 		BOOL UpdateLayerWnd(IDMCanvas*pCanvas,byte alpha,CPoint pt=CPoint(0,0));
 
 	public:
-		DECLARE_MESSAGE_MAP()										// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MESSAGE_MAP()										// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	public:
 
-		// ¿ØÖÆµ­Èëµ­³ö--------------------------------------------
-		int                                 m_byFadeAlpha;				///< ½¥ÏÔ½¥ÒşÊ±µÄalpha
-		int                                 m_iFadeSpeed;				///< ½¥ÏÔ½¥ÒşµÄËÙ¶È
-		bool                                m_bFadeEnd;					///< Îªfalse±íÊ¾½¥ÏÔ£¬Îªtrue±íÊ¾½¥Òş
-		bool                                m_bFadeing;					///< ÕıÔÚ½¥ÏÔ½¥Òş¹ı³ÌÖĞ
+		// æ§åˆ¶æ·¡å…¥æ·¡å‡º--------------------------------------------
+		int                                 m_byFadeAlpha;				///< æ¸æ˜¾æ¸éšæ—¶çš„alpha
+		int                                 m_iFadeSpeed;				///< æ¸æ˜¾æ¸éšçš„é€Ÿåº¦
+		bool                                m_bFadeEnd;					///< ä¸ºfalseè¡¨ç¤ºæ¸æ˜¾ï¼Œä¸ºtrueè¡¨ç¤ºæ¸éš
+		bool                                m_bFadeing;					///< æ­£åœ¨æ¸æ˜¾æ¸éšè¿‡ç¨‹ä¸­
 
 	};
 }//namespace DM

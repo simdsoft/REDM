@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DMAnimateWndBase.h"
 
 namespace DM
@@ -15,13 +15,13 @@ namespace DM
 		DMCode AnitmateGet(WPARAM wp=0, LPARAM lp=0);  
 		DMCode AnimateEnd(WPARAM wp, LPARAM lp);	
 
-	public:// ¶¯»­ÀàĞÍ
+	public:// åŠ¨ç”»ç±»å‹
 		void Scatter4(int count, int nSleeptime);
 		void MeltLeft(int count,int nSleeptime);
 		void MeltTop(int count,int nSleeptime);
 
 	public:
-		DECLARE_MESSAGE_MAP()										// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MESSAGE_MAP()										// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	public:
 		void OnPaint(HDC hdc);

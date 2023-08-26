@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMEvents.h 
-// File Des: ÊÂ¼şÏµÍ³ÕûÌåcopy×ÔCEGUI
+// File Des: äº‹ä»¶ç³»ç»Ÿæ•´ä½“copyè‡ªCEGUI
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -18,26 +18,26 @@ namespace DM
 {
 	class DUIWindow;
 	/// <summary>
-	///		ÊÂ¼ş»ùÀà,ËùÓĞĞè×¢²áµÄĞÂÊÂ¼ş±ØĞëÏÈ´´½¨Ò»¸ö×ÓÀà¼Ì³ĞÓÚËü£¬²¢·ÖÅäÒ»¸öĞÂµÄÊÂ¼şID
+	///		äº‹ä»¶åŸºç±»,æ‰€æœ‰éœ€æ³¨å†Œçš„æ–°äº‹ä»¶å¿…é¡»å…ˆåˆ›å»ºä¸€ä¸ªå­ç±»ç»§æ‰¿äºå®ƒï¼Œå¹¶åˆ†é…ä¸€ä¸ªæ–°çš„äº‹ä»¶ID
 	/// </summary>
 	class DM_EXPORT DMEventArgs
 	{
 	public:
 		DMEventArgs(DUIWindow *pSender);
 		virtual ~DMEventArgs();
-		virtual bool IsValid();								  // ÅĞ¶ÏÊÇ·ñºÏ·¨£¬¿É·¢³öÈ¥
+		virtual bool IsValid();								  // åˆ¤æ–­æ˜¯å¦åˆæ³•ï¼Œå¯å‘å‡ºå»
 		virtual UINT GetEventID() = 0;
 		virtual LPCSTR GetEventName(){return NULL;};
 
 	public:
-		int								     m_iHandleCount;  ///< µ±ÊÂ¼ş±»´¦ÀíÊ±£¬m_iHandleCountÔö¼Ó
-		int									 m_IdFrom;        ///< ÊÂ¼ş·¢ËÍÕßID
-		LPCSTR								 m_szNameFrom;    ///< ÊÂ¼ş·¢ËÍÕßname
-		DUIWindow*							 m_pSender;       ///< ²úÉúÊÂ¼şµÄÔ­Ê¼´°¿Ú¶ÔÏó
+		int								     m_iHandleCount;  ///< å½“äº‹ä»¶è¢«å¤„ç†æ—¶ï¼Œm_iHandleCountå¢åŠ 
+		int									 m_IdFrom;        ///< äº‹ä»¶å‘é€è€…ID
+		LPCSTR								 m_szNameFrom;    ///< äº‹ä»¶å‘é€è€…name
+		DUIWindow*							 m_pSender;       ///< äº§ç”Ÿäº‹ä»¶çš„åŸå§‹çª—å£å¯¹è±¡
 	};
 
 	/// <summary>
-	///		ÊÂ¼şID
+	///		äº‹ä»¶ID
 	/// </summary>
 	enum DMEVT_ID
 	{
@@ -105,7 +105,7 @@ namespace DM
 		DMEVT_CHILDLAYOUT_FINISHED = 22250,
 
 
-		// Ô¤Áô1000¿Õ¼ä¸øscriptÉèÖÃÊÂ¼ş
+		// é¢„ç•™1000ç©ºé—´ç»™scriptè®¾ç½®äº‹ä»¶
 		DMEVT_SCRIPT_START     = 23000,
 		DMEVT_SCRIPT_END       = 24000,
 
@@ -113,7 +113,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¨ÓÃÊÂ¼ş
+	///		é€šç”¨äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventCmdArgs:public DMEventArgs
 	{
@@ -125,7 +125,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¨ÓÃÊó±êÍ£ÁôÊÂ¼ş
+	///		é€šç”¨é¼ æ ‡åœç•™äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventHoverCmdArgs:public DMEventArgs
 	{
@@ -137,7 +137,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¨ÓÃÊó±êÀë¿ªÊÂ¼ş
+	///		é€šç”¨é¼ æ ‡ç¦»å¼€äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLeaveCmdArgs:public DMEventArgs
 	{
@@ -150,7 +150,7 @@ namespace DM
 
 
 	/// <summary>
-	///		Í¨ÓÃ²¼¾ÖÍê³ÉÏûÏ¢
+	///		é€šç”¨å¸ƒå±€å®Œæˆæ¶ˆæ¯
 	/// </summary>
 	class DM_EXPORT DMEventSizeChangedCmdArgs:public DMEventArgs
 	{
@@ -162,7 +162,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¨ÓÃCheck¸Ä±äÏûÏ¢
+	///		é€šç”¨Checkæ”¹å˜æ¶ˆæ¯
 	/// </summary>
 	class DM_EXPORT DMEventCheckChangingCmdArgs:public DMEventArgs
 	{
@@ -171,8 +171,8 @@ namespace DM
 		enum{EventID = DMEVT_CHECKCHANGING};
 		UINT GetEventID(){return EventID;};
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_CHECKCHANGING);}
-		bool                m_bChecking;        ///< ´Óuncheck±äÎªcheck£¬´ËÖµÎªÕæ£¬·ñÔòÎª¼Ù
-		bool				m_bCancel;			///< ÊÇ·ñÈ¡Ïûµ±Ç°²Ù×÷
+		bool                m_bChecking;        ///< ä»uncheckå˜ä¸ºcheckï¼Œæ­¤å€¼ä¸ºçœŸï¼Œå¦åˆ™ä¸ºå‡
+		bool				m_bCancel;			///< æ˜¯å¦å–æ¶ˆå½“å‰æ“ä½œ
 	};
 
 	class DM_EXPORT DMEventCheckChangedCmdArgs:public DMEventArgs
@@ -185,7 +185,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¨ÓÃÓÒ¼ü²Ëµ¥ÏûÏ¢
+	///		é€šç”¨å³é”®èœå•æ¶ˆæ¯
 	/// </summary>
 	class DM_EXPORT DMEventRButtonMenuCmdArgs:public DMEventArgs
 	{
@@ -198,7 +198,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		TabÒ³ÇĞ»»ÖĞÊÂ¼ş
+	///		Tabé¡µåˆ‡æ¢ä¸­äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTabSelChangingArgs:public DMEventArgs
 	{
@@ -207,13 +207,13 @@ namespace DM
 		enum{EventID=DMEVT_TAB_SELCHANGING};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_SELCHANGING);}
-		UINT				m_uOldSel;			///<ÏÈÇ°Ñ¡ÖĞÒ³
-		UINT				m_uNewSel;			///<µ±Ç°Ñ¡ÖĞÒ³
-		bool				m_bCancel;          ///<ÊÇ·ñÈ¡Ïûµ±Ç°ÇĞ»»Ò³µÄ²Ù×÷
+		UINT				m_uOldSel;			///<å…ˆå‰é€‰ä¸­é¡µ
+		UINT				m_uNewSel;			///<å½“å‰é€‰ä¸­é¡µ
+		bool				m_bCancel;          ///<æ˜¯å¦å–æ¶ˆå½“å‰åˆ‡æ¢é¡µçš„æ“ä½œ
 	};
 
 	/// <summary>
-	///		TabÒ³ÇĞ»»ºóÊÂ¼ş
+	///		Tabé¡µåˆ‡æ¢åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTabSelChangedArgs:public DMEventArgs
 	{
@@ -222,12 +222,12 @@ namespace DM
 		enum{EventID=DMEVT_TAB_SELCHANGED};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_SELCHANGED);}
-		UINT				m_uOldSel;			///<ÏÈÇ°Ñ¡ÖĞÒ³
-		UINT				m_uNewSel;			///<µ±Ç°Ñ¡ÖĞÒ³
+		UINT				m_uOldSel;			///<å…ˆå‰é€‰ä¸­é¡µ
+		UINT				m_uNewSel;			///<å½“å‰é€‰ä¸­é¡µ
 	};
 
 	/// <summary>
-	///		TabÒ³×¼±¸É¾³ıÊÂ¼ş
+	///		Tabé¡µå‡†å¤‡åˆ é™¤äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTabCtrlDelingArgs : public DMEventArgs
 	{
@@ -236,12 +236,12 @@ namespace DM
 		enum{EventID=DMEVT_TAB_DELING};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_DELING);}
-		DUIWindow*            m_pPage;            ///< µ±Ç°×¼±¸É¾³ıµÄÏî
-		bool                  m_bCancel;          ///< ÊÇ·ñÈ¡ÏûÉ¾³ı
+		DUIWindow*            m_pPage;            ///< å½“å‰å‡†å¤‡åˆ é™¤çš„é¡¹
+		bool                  m_bCancel;          ///< æ˜¯å¦å–æ¶ˆåˆ é™¤
 	};
 
 	/// <summary>
-	///		TabÒ³É¾³ıºóÊÂ¼ş
+	///		Tabé¡µåˆ é™¤åäº‹ä»¶
 	/// </summary>
 	class DMEventTabCtrlDelArgs : public DMEventArgs
 	{
@@ -250,12 +250,12 @@ namespace DM
 		enum{EventID=DMEVT_TAB_DELETED};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TAB_DELETED);}
-		DUIWindow*            m_pPage;            ///< µ±Ç°ÒÑÉ¾³ıµÄÏî
-		bool                  m_bDelAll;          ///< ÔÚµ÷ÓÃDeleteAllItemsÊ±ÉèÖÃÎªtrue
+		DUIWindow*            m_pPage;            ///< å½“å‰å·²åˆ é™¤çš„é¡¹
+		bool                  m_bDelAll;          ///< åœ¨è°ƒç”¨DeleteAllItemsæ—¶è®¾ç½®ä¸ºtrue
 	};
 
 	/// <summary>
-	///		3D×ª¶¯ÊÂ¼ş
+	///		3Dè½¬åŠ¨äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEvent3dViewArgs:public DMEventArgs
 	{
@@ -268,7 +268,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¹ö¶¯ÌõÊÂ¼ş
+	///		æ»šåŠ¨æ¡äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventScrollArgs:public DMEventArgs
 	{
@@ -277,14 +277,14 @@ namespace DM
 		enum{EventID=DMEVT_SCROLLBAR};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_SCROLLBAR);}
-		UINT				 m_uSbCode;		  ///<µ±Ç°´¥·¢µÄÎ»ÖÃ
-		int					 m_nPos;		  ///<»¬ÌõµÄpos
-		bool				 m_bVert;         ///<Ë®Æ½¡¢ÊúÖ±¹ö¶¯Ìõ
+		UINT				 m_uSbCode;		  ///<å½“å‰è§¦å‘çš„ä½ç½®
+		int					 m_nPos;		  ///<æ»‘æ¡çš„pos
+		bool				 m_bVert;         ///<æ°´å¹³ã€ç«–ç›´æ»šåŠ¨æ¡
 	};
 
 
 	/// <summary>
-	///		RichEditÊÂ¼ş
+	///		RichEditäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventRENotifyArgs:public DMEventArgs
 	{
@@ -299,7 +299,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		RichEditÊÂ¼ş,ÔÚÉèÖÃÁËwantReturn×´Ì¬Ê±£¬¶øÇÒÎªµ¥ĞĞÊ±£¬·¢´ËÏûÏ¢£¬ÓÃÓÚÅäºÏÍøÒ³ÏÔÊ¾¿Ø¼ş
+	///		RichEditäº‹ä»¶,åœ¨è®¾ç½®äº†wantReturnçŠ¶æ€æ—¶ï¼Œè€Œä¸”ä¸ºå•è¡Œæ—¶ï¼Œå‘æ­¤æ¶ˆæ¯ï¼Œç”¨äºé…åˆç½‘é¡µæ˜¾ç¤ºæ§ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventREWantReturnArgs:public DMEventArgs
 	{
@@ -311,7 +311,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÉèÖÃ½¹µãÊÂ¼ş
+	///		è®¾ç½®ç„¦ç‚¹äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventSetFocusArgs : public DMEventArgs
 	{
@@ -323,7 +323,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ê§È¥½¹µãÊÂ¼ş
+	///		å¤±å»ç„¦ç‚¹äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventKillFocusArgs : public DMEventArgs
 	{
@@ -335,7 +335,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTBOXÊÂ¼ş
+	///		LISTBOXäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLBGetDispInfoArgs : public DMEventArgs
 	{
@@ -351,7 +351,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTBOXÑ¡ÔñÖĞÊÂ¼ş
+	///		LISTBOXé€‰æ‹©ä¸­äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLBSelChangingArgs : public DMEventArgs
 	{
@@ -360,13 +360,13 @@ namespace DM
 		enum{EventID=DMEVT_LB_SELCHANGING};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_LB_SELCHANGING);}
-		int						m_nNewSel;           ///<ÏÈÇ°Ñ¡ÖĞÏî
-		int						m_nOldSel;			 ///<µ±Ç°Ñ¡ÖĞÏî
-		bool					m_bCancel;			  ///<ÊÇ·ñÈ¡ÏûÑ¡ÖĞÏî
+		int						m_nNewSel;           ///<å…ˆå‰é€‰ä¸­é¡¹
+		int						m_nOldSel;			 ///<å½“å‰é€‰ä¸­é¡¹
+		bool					m_bCancel;			  ///<æ˜¯å¦å–æ¶ˆé€‰ä¸­é¡¹
 	};
 
 	/// <summary>
-	///		LISTBOXÑ¡ÔñºóÊÂ¼ş
+	///		LISTBOXé€‰æ‹©åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLBSelChangedArgs : public DMEventArgs
 	{
@@ -380,7 +380,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		PANELÑ¡ÔñºóÊÂ¼ş
+	///		PANELé€‰æ‹©åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventOfPanelArgs : public DMEventArgs
 	{
@@ -391,12 +391,12 @@ namespace DM
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_OFPANEL);}
 
-		PVOID					m_pPanel; // Çë×ÔĞĞ×ª»»³ÉDUIItemPanel
+		PVOID					m_pPanel; // è¯·è‡ªè¡Œè½¬æ¢æˆDUIItemPanel
 		DMEventArgs*			m_pOrgEvt;
 	};
 
 	/// <summary>
-	///		PANEL±»×ó»÷ÊÂ¼ş
+	///		PANELè¢«å·¦å‡»äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventOfPanelClickArgs : public DMEventArgs
 	{
@@ -406,11 +406,11 @@ namespace DM
 		enum{EventID=DMEVT_OFPANELCLICK};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_OFPANELCLICK);}
-		PVOID					m_pPanel; // Çë×ÔĞĞ×ª»»³ÉDUIItemPanel
+		PVOID					m_pPanel; // è¯·è‡ªè¡Œè½¬æ¢æˆDUIItemPanel
 	};
 
 	/// <summary>
-	///		PANEL±»ÓÒ»÷ÊÂ¼ş
+	///		PANELè¢«å³å‡»äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventOfPanelRClickArgs : public DMEventArgs
 	{
@@ -421,11 +421,11 @@ namespace DM
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_OFPANELRCLICK);}
 
-		PVOID					m_pPanel; // Çë×ÔĞĞ×ª»»³ÉDUIItemPanel
+		PVOID					m_pPanel; // è¯·è‡ªè¡Œè½¬æ¢æˆDUIItemPanel
 	};
 
 	/// <summary>
-	///		COMBOXÊÂ¼ş
+	///		COMBOXäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventCBSelChangeArgs : public DMEventArgs
 	{
@@ -438,7 +438,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		TREECTRLÑ¡ÔñÖĞÊÂ¼ş
+	///		TREECTRLé€‰æ‹©ä¸­äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTCSelChangingArgs : public DMEventArgs
 	{
@@ -453,7 +453,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		TREECTRLÑ¡ÔñºóÊÂ¼ş
+	///		TREECTRLé€‰æ‹©åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTCSelChangedArgs : public DMEventArgs
 	{
@@ -467,7 +467,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		TREECTRL CheckÊÂ¼ş
+	///		TREECTRL Checkäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTCCheckStateArgs : public DMEventArgs
 	{
@@ -481,7 +481,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		TREECTRL Õ¹¿ªÊÂ¼ş
+	///		TREECTRL å±•å¼€äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventTCExpandArgs : public DMEventArgs
 	{
@@ -501,11 +501,11 @@ namespace DM
 		enum{EventID=DMEVT_TC_DBCLICK};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_TC_DBCLICK);}
-		HDMTREEITEM				 m_hItem;  //Ë«»÷Ñ¡ÖĞµÄ½Úµã
+		HDMTREEITEM				 m_hItem;  //åŒå‡»é€‰ä¸­çš„èŠ‚ç‚¹
 	};
 
 	/// <summary>
-	///		ÁĞ±íÍ· ÊÂ¼ş
+	///		åˆ—è¡¨å¤´ äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventHeaderClickArgs : public DMEventArgs
 	{
@@ -518,7 +518,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÁĞ±íÍ·ÇĞ»»ÖĞÊÂ¼ş
+	///		åˆ—è¡¨å¤´åˆ‡æ¢ä¸­äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventHeaderItemChangingArgs : public DMEventArgs
 	{
@@ -528,12 +528,12 @@ namespace DM
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_HEADER_ITEMCHANGING);}
 		int						m_iItem;
-		int						m_nWidth;	//Íâ²¿¿ÉÉèÖÃĞÂµÄ¿í¶È
-		BOOL                    m_bCancel;  //¿ÉÈ¡ÏûÉèÖÃ
+		int						m_nWidth;	//å¤–éƒ¨å¯è®¾ç½®æ–°çš„å®½åº¦
+		BOOL                    m_bCancel;  //å¯å–æ¶ˆè®¾ç½®
 	};
 
 	/// <summary>
-	///		ÁĞ±íÍ·ÇĞ»»ºóÊÂ¼ş
+	///		åˆ—è¡¨å¤´åˆ‡æ¢åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventHeaderItemChangedArgs : public DMEventArgs
 	{
@@ -547,7 +547,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÁĞ±íÍ·ÍÏ¶¯ÊÂ¼ş
+	///		åˆ—è¡¨å¤´æ‹–åŠ¨äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventHeaderItemSwapArgs : public DMEventArgs
 	{
@@ -561,7 +561,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTCTRLÊÂ¼ş
+	///		LISTCTRLäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLCGetDispInfoArgs : public DMEventArgs
 	{
@@ -577,7 +577,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTCTRL¸Ä±äÖĞÊÂ¼ş
+	///		LISTCTRLæ”¹å˜ä¸­äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLCSelChangingArgs : public DMEventArgs
 	{
@@ -592,7 +592,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTCTRL¸Ä±äºóÊÂ¼ş
+	///		LISTCTRLæ”¹å˜åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLCSelChangedArgs : public DMEventArgs
 	{
@@ -606,7 +606,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		LISTCTRLÉ¾³ıÊÂ¼ş
+	///		LISTCTRLåˆ é™¤äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventLCItemDeletedArgs : public DMEventArgs
 	{
@@ -620,7 +620,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Slider Pos¸Ä±äÊÂ¼ş
+	///		Slider Posæ”¹å˜äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventSDChangingArgs : public DMEventArgs
 	{
@@ -635,7 +635,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Slider Pos¸Ä±äºóÊÂ¼ş
+	///		Slider Posæ”¹å˜åäº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventSDChangedArgs : public DMEventArgs
 	{
@@ -649,7 +649,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¹ö¶¯ÊÂ¼ş
+	///		æ»šåŠ¨äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventOnScrollArgs : public DMEventArgs
 	{
@@ -665,7 +665,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÈÕÀú ÉèÖÃÈÕÆÚÊ±´¥·¢
+	///		æ—¥å† è®¾ç½®æ—¥æœŸæ—¶è§¦å‘
 	/// </summary>
 	class DM_EXPORT DMEventCalenderSetDateArgs : public DMEventArgs
 	{
@@ -680,10 +680,10 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÈÕÀú CELL±»µã»÷¸Ä±äºó´¥·¢
+	///		æ—¥å† CELLè¢«ç‚¹å‡»æ”¹å˜åè§¦å‘
 	/// </summary>
 	class DM_EXPORT DMEventCalenderClickDateChangedArgs : public DMEventArgs
-	{// Èç¹ûĞÂ¾ÉÏà²îÒ»¸öÔÂ,ËµÃ÷µã»÷µ½ÁË»ÒÉ«µÄcell£¬×Ô¶¯Ö´ĞĞÁËÌø×ª
+	{// å¦‚æœæ–°æ—§ç›¸å·®ä¸€ä¸ªæœˆ,è¯´æ˜ç‚¹å‡»åˆ°äº†ç°è‰²çš„cellï¼Œè‡ªåŠ¨æ‰§è¡Œäº†è·³è½¬
 	public:
 		DMEventCalenderClickDateChangedArgs(DUIWindow *pWnd) :DMEventArgs(pWnd),m_iOldYear(-1),m_iOldMonth(-1),m_iOldDay(-1),m_iNewYear(-1),m_iNewMonth(-1),m_iNewDay(-1){}
 		enum{EventID=DMEVT_CL_CLICKDATECHANGED};
@@ -698,7 +698,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 RectTrackerµÄboxÇøÓò¸Ä±äÊ±´¥·¢
+	///		 RectTrackerçš„boxåŒºåŸŸæ”¹å˜æ—¶è§¦å‘
 	/// </summary>
 	class DM_EXPORT DMEventRTBOXChangingArgs : public DMEventArgs
 	{
@@ -713,7 +713,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 RectTrackerµÄboxÇøÓò¸Ä±äºó´¥·¢
+	///		 RectTrackerçš„boxåŒºåŸŸæ”¹å˜åè§¦å‘
 	/// </summary>
 	class DM_EXPORT DMEventRTBOXChangedArgs : public DMEventArgs
 	{
@@ -728,7 +728,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 ×Ó´°¿Ú²¼¾ÖÍê³ÉºóÍ¨Öª
+	///		 å­çª—å£å¸ƒå±€å®Œæˆåé€šçŸ¥
 	/// </summary>
 	class DM_EXPORT DMEventChildLayoutFinishedArgs : public DMEventArgs
 	{
@@ -740,7 +740,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		½Å±¾ÊÂ¼ş
+	///		è„šæœ¬äº‹ä»¶
 	/// </summary>
 	class DM_EXPORT DMEventScriptStartArgs : public DMEventArgs
 	{

@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+﻿#include "DMDesignerAfx.h"
 #include "ObjTree.h"
 
 
@@ -88,7 +88,7 @@ void ObjTree::OnRButtonDown(UINT nFlags, CPoint pt)
 			SelectItem(m_hHoverItem,false);
 		}
 
-		// �Ƿ񵯳��˵�
+		// 是否弹出菜单
 		if (NULL == m_hHoverItem||NULL == g_pMainWnd||NULL == g_pMainWnd->m_pDesignerXml)
 		{
 			break;

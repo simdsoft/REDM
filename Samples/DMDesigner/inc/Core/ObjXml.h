@@ -1,10 +1,10 @@
-//----------------------------------------------------------------
+ï»¿//----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ObjXml.h
 // File mark:   
-// File summary:¹ÜÀí¶ÔÏóÊÓÍ¼
+// File summary:ç®¡ç†å¯¹è±¡è§†å›¾
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8
@@ -25,18 +25,18 @@ public:
 	DMCode PopObjTreeMenu(HDMTREEITEM hSel);
 	DMCode HandleObjTreeMenu(int nID);
 
-	// ÆäËû
+	// å…¶ä»–
 	DMCode OnObjTreeChanged(DMEventArgs* pEvt);
 	DMCode InitObjTreeNode(DUIWindow*pWnd, DMXmlNode& TreeNode, bool IsDMXml = false);
 	DMCode BindObjTreeData(DocDataPtr pDoc,DUIRoot* pEditor,DUIWindowPtr pDUI, DMXmlNode& Node, HDMTREEITEM hTreeItem,bool bPanel = false);
 	HDMTREEITEM InsertObjTreeItem(DMXmlNode& TreeNode,CStringA strText,HDMTREEITEM hParent =DMTVI_ROOT);
-	HDMTREEITEM FindStyle(CStringA strStyle);// ×¢Òâ,ÕâÀïÕÒµ½µÄHDMTREEITEMÎªProjTreeÖĞµÄÏî
+	HDMTREEITEM FindStyle(CStringA strStyle);// æ³¨æ„,è¿™é‡Œæ‰¾åˆ°çš„HDMTREEITEMä¸ºProjTreeä¸­çš„é¡¹
 protected:
-	// MenuÏî³õÊ¼»¯
+	// Menué¡¹åˆå§‹åŒ–
 	DMCode InitCopyObjMenu(DMXmlNode& XmlNode);
 	DMCode InitCustomObjMenu(DMXmlNode& XmlNode);
 	
-	// MenuÊÂ¼ş´¦Àí
+	// Menuäº‹ä»¶å¤„ç†
 	DMCode ObjMenu_OpenDir();
 	DMCode ObjMenu_Paste();
 	DMCode ObjMenu_Copy();
@@ -48,7 +48,7 @@ public:
 	DMCode InitObjChildTree(HDMTREEITEM hRootItem);
 	DMCode EnumChildTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM hTreeItem,bool bPanel = false);
 	DMCode EnumPanelTreeItem(DUIRoot*pMainWnd, DUIWindow* pWnd, HDMTREEITEM hTreeItem);
-	DMCode RemoveObjTreeItemMap(HDMTREEITEM hTreeItem);///< ÒÆ³ıhTreeItem¼°Æä¶ÔÓ¦ËùÓĞ×Ó½ÚµãµÄmap
+	DMCode RemoveObjTreeItemMap(HDMTREEITEM hTreeItem);///< ç§»é™¤hTreeItemåŠå…¶å¯¹åº”æ‰€æœ‰å­èŠ‚ç‚¹çš„map
 	bool  IsDeletable(DUIWindow* pWnd);
 
 private:
@@ -58,18 +58,18 @@ private:
 public:
 	DUIObjEditor*										m_pObjEditor;
 	bool												m_bInitObjTree;
-	DMSmartPtrT<PreHWnd>								m_pPreWnd;				///<  Ô¤ÀÀ´°¿Ú
+	DMSmartPtrT<PreHWnd>								m_pPreWnd;				///<  é¢„è§ˆçª—å£
 
-	// Ê÷ĞÎ¿Ø¼ş
+	// æ ‘å½¢æ§ä»¶
 	ObjTree*										    m_pObjTree;
 	HDMTREEITEM											m_hObjSel;	
 
-	// ÓÒ²àÊôĞÔ
+	// å³ä¾§å±æ€§
 	RightXml*                                           m_pRighXml;
 
-	// AddÊôĞÔ
+	// Addå±æ€§
 	AddXml*                                             m_pAddXml;
 
-	// Ö§³ÖÃæ°å
+	// æ”¯æŒé¢æ¿
 	DUICheckBox*                                        m_pbPanelCheck;
 };

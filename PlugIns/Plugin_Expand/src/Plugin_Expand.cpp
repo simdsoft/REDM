@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+﻿#include "Plugin_ExpandAfx.h"
 #include "Plugin_Expand.h"
 #include "DM3dAnimate.h"
 #include "DMLineAnimate.h"
@@ -33,9 +33,9 @@ void Plugin_Expand::Install()
 	g_pDMApp->Register(DMRegHelperT<DMResMultZipImpl>(),true);
 #ifdef USE_DMSKIA_RENDER_
 	DMCode iErr = g_pDMApp->Register(DMRegHelperT<DMSkiaRenderImpl>(),true);
-	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"ע��DMSkiaRenderImplʧ��!");
+	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"Îó▓ßDMSkiaRenderImpl╩ž░▄!");
 	iErr = g_pDMApp->SetDefRegObj(DMSkiaRenderImpl::GetClassName(),DMSkiaRenderImpl::GetClassType());
-	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"����DMSkiaRenderImplΪĬ��Render����ʧ��!");
+	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"╔ŔÍ├DMSkiaRenderImpl╬¬─Č╚¤RenderÂď¤ˇ╩ž░▄!");
 #endif
 }
 
@@ -48,7 +48,7 @@ void Plugin_Expand::Uninstall()
 	g_pDMApp->UnRegister(DMResMultZipImpl::GetClassName(),DMResMultZipImpl::GetClassType());
 #ifdef USE_DMSKIA_RENDER_
 	DMCode iErr = g_pDMApp->UnRegister(DMSkiaRenderImpl::GetClassName(),DMSkiaRenderImpl::GetClassType());
-	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"��ע��DMImgDecoderImplʧ��!");
+	DMASSERT_EXPR(DMSUCCEEDED(iErr), L"Ě┤Îó▓ßDMImgDecoderImpl╩ž░▄!");
 #endif
 
 }

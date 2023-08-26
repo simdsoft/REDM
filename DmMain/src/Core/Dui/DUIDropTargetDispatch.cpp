@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIDropTargetDispatch.h"
 
 namespace DM
@@ -29,7 +29,7 @@ namespace DM
 		{
 			if (m_mapDropTarget.Lookup(hDUIWnd))
 			{
-				break;// ÒÑ×¢²áÁË
+				break;// å·²æ³¨å†Œäº†
 			}
 
 			m_mapDropTarget[hDUIWnd] = pDropTarget;
@@ -132,7 +132,7 @@ namespace DM
 			}
 			if (false == IsDrag)
 			{
-				*pdwEffect = DROPEFFECT_NONE;//Ã»ÓĞ×¢²áµÄ×Ó¿Ø¼şÈ«²¿²»ÄÜ½ÓÊÜÍÏ·Å¡£
+				*pdwEffect = DROPEFFECT_NONE;//æ²¡æœ‰æ³¨å†Œçš„å­æ§ä»¶å…¨éƒ¨ä¸èƒ½æ¥å—æ‹–æ”¾ã€‚
 			}
 		} while (false);
 		return S_OK;
@@ -161,7 +161,7 @@ namespace DM
 		return S_OK;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	POINT DUIDropTargetDispatch::PointL2FrameClient(const POINTL& pt)
 	{
 		CPoint ptClient(pt.x,pt.y);

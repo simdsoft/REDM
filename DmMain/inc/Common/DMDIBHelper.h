@@ -1,17 +1,17 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
-// File Name: DMDIBHelper111.h£¨DibBase_Hgy.h £©
-// File Des: DIB¸¨Öúº¯Êı½Ó¿ÚÀà£¬´Ë´úÂë»ùÓÚDibBase_Hgy.h 2011Äê°æ±¾¸ÄĞ´
-// File Summary: Ñ§Ï°Ê¹ÓÃ·½Ê½¿ÉÒÔ²Î¿¼gtest-DMDIBHelper_Test.cpp
+// File Name: DMDIBHelper111.hï¼ˆDibBase_Hgy.h ï¼‰
+// File Des: DIBè¾…åŠ©å‡½æ•°æ¥å£ç±»ï¼Œæ­¤ä»£ç åŸºäºDibBase_Hgy.h 2011å¹´ç‰ˆæœ¬æ”¹å†™
+// File Summary: å­¦ä¹ ä½¿ç”¨æ–¹å¼å¯ä»¥å‚è€ƒgtest-DMDIBHelper_Test.cpp
 // Cur Version: 1.0
 // Author:
 // Create Data:
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
 //      guoyou		2011-12-31	1.0			
-//      guoyou      2014-10-14  1.1           ÌáÈ¡²¿·Ö¹¦ÄÜÖ§³Ö»ù±¾DIB²Ù×÷
+//      guoyou      2014-10-14  1.1           æå–éƒ¨åˆ†åŠŸèƒ½æ”¯æŒåŸºæœ¬DIBæ“ä½œ
 //-------------------------------------------------------
 #pragma once
 #include "Common/DMColor.h"
@@ -19,17 +19,17 @@
 namespace DM
 {
 	/// <summary>
-	///		¼ò½à°æ±¾£¬¼ò°æÈ¥µôÁË¶Ô8¡¢16¡¢24Î»µÄÖ§³Ö,
-	///     Ö»Ö§³Ö32Î»BI_RGB´´½¨µÄ×ÔÉÏ¶øÏÂÉ¨ÃèµÄDIBSection£¨×¢ÒâÊÇ×ÔÉÏ¶øÏÂ£¬ËùÒÔCreateDIBSectionµÄnHeiÔÚÄÚ²¿Ê¹ÓÃÁËÆä¸ºÖµ£©
+	///		ç®€æ´ç‰ˆæœ¬ï¼Œç®€ç‰ˆå»æ‰äº†å¯¹8ã€16ã€24ä½çš„æ”¯æŒ,
+	///     åªæ”¯æŒ32ä½BI_RGBåˆ›å»ºçš„è‡ªä¸Šè€Œä¸‹æ‰«æçš„DIBSectionï¼ˆæ³¨æ„æ˜¯è‡ªä¸Šè€Œä¸‹ï¼Œæ‰€ä»¥CreateDIBSectionçš„nHeiåœ¨å†…éƒ¨ä½¿ç”¨äº†å…¶è´Ÿå€¼ï¼‰
 	/// </summary>
 	class DM_EXPORT DMDIBHelper
 	{
 		enum{Red,Green,Blue};
 		struct  AlphaCheck
 		{
-			bool bActive;            // ±¾½á¹¹ÖĞµÄÆäËü²ÎÊıÊÇ·ñ¿ÉÓÃ
-			bool bSameAlpha;         // DIBÓĞÏàÍ¬µÄAlpha
-			byte Alpha;              // alphaÖµ
+			bool bActive;            // æœ¬ç»“æ„ä¸­çš„å…¶å®ƒå‚æ•°æ˜¯å¦å¯ç”¨
+			bool bSameAlpha;         // DIBæœ‰ç›¸åŒçš„Alpha
+			byte Alpha;              // alphaå€¼
 		};
 
 	public:
@@ -42,35 +42,35 @@ namespace DM
 	public:
 
 		/// <summary>
-		/// ¸ù¾İÒÑÓĞhbit¹¹ÔìDMDIBHelper¶ÔÏó, ²¢½Ó¹Ü¶ÔÏó¹ÜÀíÈ¨
+		/// æ ¹æ®å·²æœ‰hbitæ„é€ DMDIBHelperå¯¹è±¡, å¹¶æ¥ç®¡å¯¹è±¡ç®¡ç†æƒ
 		/// </summary>
 		/// <param name="hbit"></param>
 		void AttachHBITMAP(HBITMAP hbit);
 
 		/// <summary>
-		///     ´´½¨DIBSection
+		///     åˆ›å»ºDIBSection
 		/// </summary>
-		/// <returns>´´½¨ºóµÄHBITMAP</returns>
+		/// <returns>åˆ›å»ºåçš„HBITMAP</returns>
 		HBITMAP CreateDIBSection(HDC hdc, int nWid,int nHei);
 
 		//---------------------------------------------------
-		// Function Des:alpha±¸·İ,´Ë²¿·Ö¹¦ÄÜºóĞøÊ¹ÓÃMMXÓÅ»¯
+		// Function Des:alphaå¤‡ä»½,æ­¤éƒ¨åˆ†åŠŸèƒ½åç»­ä½¿ç”¨MMXä¼˜åŒ–
 		//---------------------------------------------------
-		void  AdjustAlpha(byte byAlpha);  ///< µ÷ÕûËùÓĞalpha
+		void  AdjustAlpha(byte byAlpha);  ///< è°ƒæ•´æ‰€æœ‰alpha
 		void  AdjustAlphaRect(byte byAlpha, LPRECT lpRect);
-		void  AlphaCheckInit();			  ///< checkÏñËØÕóÁĞÊÇ·ñÊÇÏàÍ¬µÄalpha
-		void  AlphaCheckUninit();		  ///< ·´check
-		void  AlphaBackup(LPRECT lpRect); ///< <see cref="AlphaRestore"/> ±ØĞë³É¶Ô³öÏÖ£¡
-		void  AlphaRestore();			  ///< <see cref="AlphaBackup"/>  ±ØĞë³É¶Ô³öÏÖ£¡
+		void  AlphaCheckInit();			  ///< checkåƒç´ é˜µåˆ—æ˜¯å¦æ˜¯ç›¸åŒçš„alpha
+		void  AlphaCheckUninit();		  ///< åcheck
+		void  AlphaBackup(LPRECT lpRect); ///< <see cref="AlphaRestore"/> å¿…é¡»æˆå¯¹å‡ºç°ï¼
+		void  AlphaRestore();			  ///< <see cref="AlphaBackup"/>  å¿…é¡»æˆå¯¹å‡ºç°ï¼
 	   
 		/// <summary>
-		///     H:-180~180£¨¶È£©,=0²»×÷µ÷Õû, S/L:0~200(½¨Òé£¬×î´óÖµ¿É>200),=100²»×÷µ÷Õû
+		///     H:-180~180ï¼ˆåº¦ï¼‰,=0ä¸ä½œè°ƒæ•´, S/L:0~200(å»ºè®®ï¼Œæœ€å¤§å€¼å¯>200),=100ä¸ä½œè°ƒæ•´
 		/// </summary>
 		/// <remarks>
-		///     HSL±ä»»,HSL²Ù×÷½¨ÒéÊÇÔÚ·ÇÔ¤³ËÏñËØÕóÁĞÏÂ½øĞĞ£¬µ«ÎªÁË¸ü¿ìµÄĞ§ÂÊ£¬Ä¿Ç°²ÉÓÃÔ¤³ËÏñËØÕóÁĞ
-		///     HSL±ä»»Ó¦¸ÃÔÚÕû¸öÏñËØÕóÁĞ²»ÔÙ±ä»¯Ê±¿ªÊ¼×öµ÷Õû.²»È»Ô­Ê¼ÏñËØÕóÁĞ¾Í²»ÔÙ×¼È·
+		///     HSLå˜æ¢,HSLæ“ä½œå»ºè®®æ˜¯åœ¨éé¢„ä¹˜åƒç´ é˜µåˆ—ä¸‹è¿›è¡Œï¼Œä½†ä¸ºäº†æ›´å¿«çš„æ•ˆç‡ï¼Œç›®å‰é‡‡ç”¨é¢„ä¹˜åƒç´ é˜µåˆ—
+		///     HSLå˜æ¢åº”è¯¥åœ¨æ•´ä¸ªåƒç´ é˜µåˆ—ä¸å†å˜åŒ–æ—¶å¼€å§‹åšè°ƒæ•´.ä¸ç„¶åŸå§‹åƒç´ é˜µåˆ—å°±ä¸å†å‡†ç¡®
 		/// </remarks>
-		/// <returns>´´½¨ºóµÄHBITMAP</returns>
+		/// <returns>åˆ›å»ºåçš„HBITMAP</returns>
 		bool AdjustHSL32(int H, int S, int L);
 		bool AdjustHSL32Rect(int H, int S, int L,LPRECT lpRect);
 		bool ResetHSL32(void);
@@ -84,8 +84,8 @@ namespace DM
 		bool GreyImage(void); 
 
 		/// <summary>
-		///    ¿ÉÒÔ°ïÎÒÃÇ¿ìËÙµÄ¹Û²ìÔÚ×ÔĞ´¶¯»­ÖĞµÄÃ¿Ö¡±ä»¯,»æÖÆµÄÇøÓòÊÇ·ñÕıÈ·
-		///    ×î¼òµ¥µÄÊ¹ÓÃ·½Ê½ÊÇÖ±½Ó´ò¿ªwindowÍ¼ĞÎ²é¿´Æ÷²é¿´±£´æµÄÍ¼Æ¬(¶¯»­Ò²»á×Ô¶¯±ä»¯)
+		///    å¯ä»¥å¸®æˆ‘ä»¬å¿«é€Ÿçš„è§‚å¯Ÿåœ¨è‡ªå†™åŠ¨ç”»ä¸­çš„æ¯å¸§å˜åŒ–,ç»˜åˆ¶çš„åŒºåŸŸæ˜¯å¦æ­£ç¡®
+		///    æœ€ç®€å•çš„ä½¿ç”¨æ–¹å¼æ˜¯ç›´æ¥æ‰“å¼€windowå›¾å½¢æŸ¥çœ‹å™¨æŸ¥çœ‹ä¿å­˜çš„å›¾ç‰‡(åŠ¨ç”»ä¹Ÿä¼šè‡ªåŠ¨å˜åŒ–)
 		/// </summary>
 		bool SaveFile(LPCWSTR pszFileName);			
 
@@ -96,14 +96,14 @@ namespace DM
 		inline int  GetSize(void)			  const { return m_nImageSize;}
 		inline int  GetBPS(void)			  const { return m_nBPS;}
 	
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void DM_RGBtoHSL(BYTE &R, BYTE &G, BYTE &B, float &H, float &S, float &L);
 		void DM_HSLtoRGB(float &H, float &S, float &L, BYTE &R, BYTE &G, BYTE &B);
 		void RGBtoHSL(BYTE R,BYTE G,BYTE B,float* H,float* S,float* L);
 		COLORREF HSLtoRGB(float H,float S,float L);
 
 	public:
-		HBITMAP                                             m_hBitmap;				///< DIBSection´´½¨µÄHBitmap
+		HBITMAP                                             m_hBitmap;				///< DIBSectionåˆ›å»ºçš„HBitmap
 		BYTE*												m_pPixelBits;	        ///< pixel array
 		BYTE*												m_pPixelCopyBits;		///< copy origin pixel array
 		int													m_nImageSize;			///< pixel array size
@@ -111,12 +111,12 @@ namespace DM
 		int													m_nHeight;				///< image pixel height, positive
 		int													m_nBPS;					///< byte per scan line, per plane
 
-		LPBITMAPINFO									    m_pBMI;					///< Î»Í¼Í·
+		LPBITMAPINFO									    m_pBMI;					///< ä½å›¾å¤´
 		
 		// ---------------------------------------------------------------------------
 		AlphaCheck                                          m_AlphaCheck;
 #define  MAX_ALPHABUF   60000
-		static BYTE											ms_AlphaBk[MAX_ALPHABUF];///< static Êı¾İ²»»áÕ¼ÓÃsizeof£¨DMDIBHelper)
+		static BYTE											ms_AlphaBk[MAX_ALPHABUF];///< static æ•°æ®ä¸ä¼šå ç”¨sizeofï¼ˆDMDIBHelper)
 		static BYTE*                                        ms_pBk;
 		static DM::CRect                                    ms_ApRect;
 	};

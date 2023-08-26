@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "3dlib.h"
 
 namespace IMAGE3D

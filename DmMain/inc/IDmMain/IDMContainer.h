@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMContainer.h 
-// File Des: ÈİÆ÷£¬Íâ²¿Ö»ÄÜ¼Ì³Ğ£¬ÎŞ·¨Ö±½Ó×¢²áµ½ÄÚ²¿Ê¹ÓÃ
-// File Summary: ÓÃÓÚ¸¨Öú·Ö·¢¸÷ÀàÏûÏ¢µ½DUI´°¿Ú.ÉèÖÃDUI´°¿Ú×´Ì¬
+// File Des: å®¹å™¨ï¼Œå¤–éƒ¨åªèƒ½ç»§æ‰¿ï¼Œæ— æ³•ç›´æ¥æ³¨å†Œåˆ°å†…éƒ¨ä½¿ç”¨
+// File Summary: ç”¨äºè¾…åŠ©åˆ†å‘å„ç±»æ¶ˆæ¯åˆ°DUIçª—å£.è®¾ç½®DUIçª—å£çŠ¶æ€
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		È«¾Ö¶¨Ê±Æ÷À©Õ¹¶ÔÏó
+	///		å…¨å±€å®šæ—¶å™¨æ‰©å±•å¯¹è±¡
 	/// </summary>
 	class IDMTimeline
 	{
@@ -27,57 +27,57 @@ namespace DM
 	typedef IDMTimeline* IDMTimelinePtr;
 
 	/// <summary>
-	///		ÈİÆ÷À©Õ¹¶ÔÏó
+	///		å®¹å™¨æ‰©å±•å¯¹è±¡
 	/// </summary>
 	class DM_EXPORT IDMContainer
 	{
 	public:
 		virtual ~IDMContainer(){}
 
-		virtual LRESULT OnFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp) = 0;					///<·Ö·¢ÏûÏ¢µ½ÈİÆ÷ÄÚµÄ¸÷DUI´°¿Ú£¬·Ç³£ÖØÒª£¡
+		virtual LRESULT OnFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp) = 0;					///<åˆ†å‘æ¶ˆæ¯åˆ°å®¹å™¨å†…çš„å„DUIçª—å£ï¼Œéå¸¸é‡è¦ï¼
 
-		virtual DMCode OnSetFocusWnd(DUIWND DUIWnd) = 0;									///<ÉèÖÃµ±Ç°ÓĞ½¹µãµÄDUI´°¿Ú
-		virtual DMCode OnGetFocusWnd(DUIWND &DUIWnd) = 0;									///<»ñÈ¡µ±Ç°ÓĞ½¹µãµÄDUI´°¿Ú
+		virtual DMCode OnSetFocusWnd(DUIWND DUIWnd) = 0;									///<è®¾ç½®å½“å‰æœ‰ç„¦ç‚¹çš„DUIçª—å£
+		virtual DMCode OnGetFocusWnd(DUIWND &DUIWnd) = 0;									///<è·å–å½“å‰æœ‰ç„¦ç‚¹çš„DUIçª—å£
 
-		virtual DMCode OnSetCaptureWnd(DUIWND DUIWnd,DUIWNDPtr pOldDUIWnd=NULL) = 0;	    ///<ÉèÖÃÈİÆ÷ÄÚÖ¸¶¨DUI´°¿Ú½¹µã
-		virtual DMCode OnGetCaptureWnd(DUIWND &DUIWnd) = 0;									///<»ñÈ¡ÈİÆ÷ÄÚÓµÓĞ½¹µãµÄDUI´°¿Ú
-		virtual DMCode OnReleaseCaptureWnd() = 0;											///<ÊÍ·Å½¹µã
+		virtual DMCode OnSetCaptureWnd(DUIWND DUIWnd,DUIWNDPtr pOldDUIWnd=NULL) = 0;	    ///<è®¾ç½®å®¹å™¨å†…æŒ‡å®šDUIçª—å£ç„¦ç‚¹
+		virtual DMCode OnGetCaptureWnd(DUIWND &DUIWnd) = 0;									///<è·å–å®¹å™¨å†…æ‹¥æœ‰ç„¦ç‚¹çš„DUIçª—å£
+		virtual DMCode OnReleaseCaptureWnd() = 0;											///<é‡Šæ”¾ç„¦ç‚¹
 
-		virtual DMCode OnRegisterDragDrop(DUIWND hDUIWnd, IDropTarget *pDropTarget) = 0;    ///<¸øÖ¸¶¨DUI´°¿Ú×¢²áÍÏ·Å¶ÔÏó
-		virtual DMCode OnUnRegisterDragDrap(DUIWND hDUIWnd) = 0;						    ///<·´×¢²áÍÏ·Å
+		virtual DMCode OnRegisterDragDrop(DUIWND hDUIWnd, IDropTarget *pDropTarget) = 0;    ///<ç»™æŒ‡å®šDUIçª—å£æ³¨å†Œæ‹–æ”¾å¯¹è±¡
+		virtual DMCode OnUnRegisterDragDrap(DUIWND hDUIWnd) = 0;						    ///<åæ³¨å†Œæ‹–æ”¾
 
-		virtual DMCode OnFireEvent(DMEventArgs &Evt) = 0;									///<ÏûÏ¢·Ö·¢
+		virtual DMCode OnFireEvent(DMEventArgs &Evt) = 0;									///<æ¶ˆæ¯åˆ†å‘
 
 		//----------------------------------------------
-		// »­²¼¿ÉÒÔ×¥È¡Ö÷´°¿ÚµÄÇøÓò²¿·Ö±³¾°,ÔÙºÍÖ¸¶¨µÄÇ°¾°×ö¶¯»­
+		// ç”»å¸ƒå¯ä»¥æŠ“å–ä¸»çª—å£çš„åŒºåŸŸéƒ¨åˆ†èƒŒæ™¯,å†å’ŒæŒ‡å®šçš„å‰æ™¯åšåŠ¨ç”»
 		virtual DMCode OnGetDraw(IDMDraw** ppObj) = 0;
-		virtual DMCode OnGetCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas**ppCanvas) = 0;	///<»ñÈ¡»­²¼,»­²¼¿É°üº¬µ±Ç°ÈİÆ÷µÄµ±Ç°»æÖÆ×´Ì¬
-		virtual DMCode OnReleaseCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas*pCanvas) = 0;///<ÊÍ·Å»­²¼
+		virtual DMCode OnGetCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas**ppCanvas) = 0;	///<è·å–ç”»å¸ƒ,ç”»å¸ƒå¯åŒ…å«å½“å‰å®¹å™¨çš„å½“å‰ç»˜åˆ¶çŠ¶æ€
+		virtual DMCode OnReleaseCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas*pCanvas) = 0;///<é‡Šæ”¾ç”»å¸ƒ
 
 		//----------------------------------------------
-		// µ±Ç°ÈİÆ÷µÄÖ÷´°¿ÚÏà¹Ø
-		virtual HWND   OnGetHWnd() = 0;													    ///<»ñÈ¡µ±Ç°ÈİÆ÷µÄÖ÷´°¿Ú				
-		virtual DMCode OnGetContainerRect(LPRECT lpRect) = 0;								///<»ñÈ¡ÈİÆ÷ÇøÓò£¬ÇëÊ¹ÓÃ*lpRect¸³Öµ£¡
-		virtual DMCode OnIsTranslucent() = 0;												///<ÊÇ·ñ·Ö²ã´°¿Ú
-		virtual DMCode OnUpdateWindow() = 0;												///<µ÷ÓÃÏµÍ³UpdateWindow				
-		virtual DMCode OnForceUpdateWindow() = 0;											///<Ç¿ÖÆÁ¢¼´µ÷ÓÃË¢ĞÂ									
-		virtual DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd) = 0;						///<Ôö¼ÓÎŞĞ§Çø
-		virtual DMCode OnClientToScreen(LPRECT lpRect) = 0;                                 ///<ÓÃÓÚÃæ°å×Ó¿Ø¼ş×ª»»³ÉÆÁÄ»×ø±ê
-		virtual DMCode OnIsSizChanging() = 0;                                               ///<ÓÃÓÚÅĞ¶ÏÈİÆ÷ÊÇ·ñÕıÔÚ²¼¾Ö
+		// å½“å‰å®¹å™¨çš„ä¸»çª—å£ç›¸å…³
+		virtual HWND   OnGetHWnd() = 0;													    ///<è·å–å½“å‰å®¹å™¨çš„ä¸»çª—å£				
+		virtual DMCode OnGetContainerRect(LPRECT lpRect) = 0;								///<è·å–å®¹å™¨åŒºåŸŸï¼Œè¯·ä½¿ç”¨*lpRectèµ‹å€¼ï¼
+		virtual DMCode OnIsTranslucent() = 0;												///<æ˜¯å¦åˆ†å±‚çª—å£
+		virtual DMCode OnUpdateWindow() = 0;												///<è°ƒç”¨ç³»ç»ŸUpdateWindow				
+		virtual DMCode OnForceUpdateWindow() = 0;											///<å¼ºåˆ¶ç«‹å³è°ƒç”¨åˆ·æ–°									
+		virtual DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd) = 0;						///<å¢åŠ æ— æ•ˆåŒº
+		virtual DMCode OnClientToScreen(LPRECT lpRect) = 0;                                 ///<ç”¨äºé¢æ¿å­æ§ä»¶è½¬æ¢æˆå±å¹•åæ ‡
+		virtual DMCode OnIsSizChanging() = 0;                                               ///<ç”¨äºåˆ¤æ–­å®¹å™¨æ˜¯å¦æ­£åœ¨å¸ƒå±€
 
 		//----------------------------------------------
-		// ¼ÓËÙÏà¹Ø
+		// åŠ é€Ÿç›¸å…³
 		virtual IDMAccelMgr* GetAccelMgr() = 0;
 
 		//----------------------------------------------
-		// ¶¯»­Ö¡Ïà¹Ø
-		virtual DMCode OnRegisterTimeline(IDMTimeline *pHandler) = 0;						///< ×¢²áÊ¹ÓÃÈ«¾Ö¶¨Ê±Æ÷
-		virtual DMCode OnUnregisterTimeline(IDMTimeline *pHandler) = 0;						///< ·´×¢²á²»Ê¹ÓÃÈ«¾Ö¶¨Ê±Æ÷
-		virtual DMCode OnTimeline() = 0;													///< ²»ÒªÔÚ¶¯»­Ö¡ÖĞµ÷ÓÃOnRegisterTimeline¡¢OnUnregisterTimeline
+		// åŠ¨ç”»å¸§ç›¸å…³
+		virtual DMCode OnRegisterTimeline(IDMTimeline *pHandler) = 0;						///< æ³¨å†Œä½¿ç”¨å…¨å±€å®šæ—¶å™¨
+		virtual DMCode OnUnregisterTimeline(IDMTimeline *pHandler) = 0;						///< åæ³¨å†Œä¸ä½¿ç”¨å…¨å±€å®šæ—¶å™¨
+		virtual DMCode OnTimeline() = 0;													///< ä¸è¦åœ¨åŠ¨ç”»å¸§ä¸­è°ƒç”¨OnRegisterTimelineã€OnUnregisterTimeline
 	
 		//----------------------------------------------
-		// ÓïÑÔ°üÏà¹Ø
-		virtual CStringW OnGetTransId() = 0;												///< ·µ»ØÓïÑÔ°üÌØ¶¨id,ÄÚÖÃÈçÎªNULL,ÔòÄ¬ÈÏ´ÓcustomÖĞ²éÕÒ,·ñÔò,ÓÅÏÈ´Ó´ËÌØ¶¨id²éÕÒ,²é²»µ½,ÔÙÈ¥custom
+		// è¯­è¨€åŒ…ç›¸å…³
+		virtual CStringW OnGetTransId() = 0;												///< è¿”å›è¯­è¨€åŒ…ç‰¹å®šid,å†…ç½®å¦‚ä¸ºNULL,åˆ™é»˜è®¤ä»customä¸­æŸ¥æ‰¾,å¦åˆ™,ä¼˜å…ˆä»æ­¤ç‰¹å®šidæŸ¥æ‰¾,æŸ¥ä¸åˆ°,å†å»custom
 	};
 	typedef IDMContainer* IDMContainerPtr;
 

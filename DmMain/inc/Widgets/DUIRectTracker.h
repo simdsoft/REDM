@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIRectTracker.h
 // File mark:   
-// File summary:ÏğÆ¤ÌõÊ×´Î²¼¾ÖÍê³Éºó,ÄÚ²¿¾ÍÉèÖÃ³ÉÁË¾ø¶Ô²¼¾Ö,Ò²¾ÍÊÇposÖ»ÓĞµÚÒ»´ÎÊÇÓĞĞ§µÄ,ÆäÓàÈ«¿¿×ÔÒÑÊÖ¶¯ÉèÖÃ£¡
+// File summary:æ©¡çš®æ¡é¦–æ¬¡å¸ƒå±€å®Œæˆå,å†…éƒ¨å°±è®¾ç½®æˆäº†ç»å¯¹å¸ƒå±€,ä¹Ÿå°±æ˜¯posåªæœ‰ç¬¬ä¸€æ¬¡æ˜¯æœ‰æ•ˆçš„,å…¶ä½™å…¨é è‡ªå·²æ‰‹åŠ¨è®¾ç½®ï¼
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-6-20
@@ -16,14 +16,14 @@ namespace DMAttr
 	class DUIRectTrackerAttr: public DUIWindowAttr
 	{
 	public:
-		static const char* SKIN_moveskin;                                                 ///< moveĞ¡Í¼±ê£¬Ê¾Àı:moveskin="bg"
-		static const char* COLOR_clrdot;				                                   ///< dotÕı³£ÑÕÉ«£¬Ê¾Àı:clrdot="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrdotgray;				                               ///< dot»ÒµôÑÕÉ«£¬Ê¾Àı:clrdotgray="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrboxsolid;                                             ///< boxµÄPS_SOLID»æÖÆÑÕÉ«,box»áÊ¹ÓÃPS_SOLID»æÖÆÒ»´Î£¬ÔÙÊ¹ÓÃPS_DASH»æÖÆÒ»´Î,Ê¾Àı:clrboxsolid="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrboxdash;                                              ///< boxµÄPS_DASH»æÖÆÑÕÉ«,box»áÊ¹ÓÃPS_SOLID»æÖÆÒ»´Î£¬ÔÙÊ¹ÓÃPS_DASH»æÖÆÒ»´Î,Ê¾Àı:clrboxdash="pbgra(ff,00,ff,ff)"
-		static const char* INT_dotwidth;												   ///< dotµÄ¿í¸ß,Ä¬ÈÏÎª6,Ê¾Àı:dotwidth="6"
-		static const char* bool_bmain;													   ///< ÎªtrueÊ±Ö»ÓĞÓÒÏÂ½ÇÈı¸ödotÊÇ¿ÉÍÏ¶¯,ÆäÓàdotÈ«Îª»Ò,Ê¾Àı:bmain="0"
-		static const char* bool_ballgray;												   ///< ÎªtrueÊ±,dotÈ«Îª»Ò,Ê¾Àı:ballgray="0"
+		static const char* SKIN_moveskin;                                                 ///< moveå°å›¾æ ‡ï¼Œç¤ºä¾‹:moveskin="bg"
+		static const char* COLOR_clrdot;				                                   ///< dotæ­£å¸¸é¢œè‰²ï¼Œç¤ºä¾‹:clrdot="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrdotgray;				                               ///< dotç°æ‰é¢œè‰²ï¼Œç¤ºä¾‹:clrdotgray="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrboxsolid;                                             ///< boxçš„PS_SOLIDç»˜åˆ¶é¢œè‰²,boxä¼šä½¿ç”¨PS_SOLIDç»˜åˆ¶ä¸€æ¬¡ï¼Œå†ä½¿ç”¨PS_DASHç»˜åˆ¶ä¸€æ¬¡,ç¤ºä¾‹:clrboxsolid="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrboxdash;                                              ///< boxçš„PS_DASHç»˜åˆ¶é¢œè‰²,boxä¼šä½¿ç”¨PS_SOLIDç»˜åˆ¶ä¸€æ¬¡ï¼Œå†ä½¿ç”¨PS_DASHç»˜åˆ¶ä¸€æ¬¡,ç¤ºä¾‹:clrboxdash="pbgra(ff,00,ff,ff)"
+		static const char* INT_dotwidth;												   ///< dotçš„å®½é«˜,é»˜è®¤ä¸º6,ç¤ºä¾‹:dotwidth="6"
+		static const char* bool_bmain;													   ///< ä¸ºtrueæ—¶åªæœ‰å³ä¸‹è§’ä¸‰ä¸ªdotæ˜¯å¯æ‹–åŠ¨,å…¶ä½™dotå…¨ä¸ºç°,ç¤ºä¾‹:bmain="0"
+		static const char* bool_ballgray;												   ///< ä¸ºtrueæ—¶,dotå…¨ä¸ºç°,ç¤ºä¾‹:ballgray="0"
 	};
 	DMAttrValueInit(DUIRectTrackerAttr,SKIN_moveskin)DMAttrValueInit(DUIRectTrackerAttr,COLOR_clrdot)DMAttrValueInit(DUIRectTrackerAttr,COLOR_clrdotgray)
 	DMAttrValueInit(DUIRectTrackerAttr, COLOR_clrboxsolid)DMAttrValueInit(DUIRectTrackerAttr, COLOR_clrboxdash)
@@ -34,7 +34,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		¸¨Öúµã×ø±ê
+	///		è¾…åŠ©ç‚¹åæ ‡
 	/// </summary>
 	enum DMDSDOT
 	{
@@ -54,7 +54,7 @@ namespace DM
 	class DMDragMeta;
 	typedef DMDelegate<void(DMDragMeta&, int)> DMDragMetaEventHandler;
 	/// <summary>
-	///		¸¨Öúµã»æÖÆ,ÒÔ¼°ÊÂ¼ş´¦Àí,ÓÃ»§¿ÉÖØÔØÀ´ÊµÏÖ×Ô¶¨Òå»æÖÆºÍÊÂ¼ş
+	///		è¾…åŠ©ç‚¹ç»˜åˆ¶,ä»¥åŠäº‹ä»¶å¤„ç†,ç”¨æˆ·å¯é‡è½½æ¥å®ç°è‡ªå®šä¹‰ç»˜åˆ¶å’Œäº‹ä»¶
 	/// </summary>
 	class DMDragMeta
 	{
@@ -62,22 +62,22 @@ namespace DM
 		DMDragMeta(int idx=-1,HCURSOR hCursor = ::LoadCursor(NULL,IDC_ARROW));
 
 	public:
-		virtual void OnRender(IDMCanvas* pCanvas);									///< »æÖÆdot×ÔÉí
-		virtual void OnRenderCursor();												///< »æÖÆdotÉÏÏÔÊ¾µÄ¹â±ê
+		virtual void OnRender(IDMCanvas* pCanvas);									///< ç»˜åˆ¶dotè‡ªèº«
+		virtual void OnRenderCursor();												///< ç»˜åˆ¶dotä¸Šæ˜¾ç¤ºçš„å…‰æ ‡
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMCode AutoDrawRoundRect(IDMCanvas*pCanvas,DMColor TextClr,int iStyle,int iWidth,LPCRECT lpRect, const POINT &pt);
 
 	public:
-		int									   m_Index;								 ///< 0Îª²»º¬ËùÓĞdotµÄ¾ØĞÎÇø£¨¼´¿Ø¼şÇø£©,1Îª×óÖĞdot£¬Ë³Ê±Õë8¸öµã£¬9Îª×óÉÏ½ÇµÄmovĞ¡Í¼±ê,¶ÔÓ¦DMDSDOT
-		CRect								   m_Rect;								 ///< ´ËµãµÄ¾ØĞÎÇø,0Îª×îÖÕ¿òÑ¡µÄboxÇø£¬Ä¬ÈÏ1-9µã¶¼ÔÚboxÍâÎ§£¬²»Õ¼ÓÃboxÇø
-		HCURSOR								   m_hCursor;							 ///< Í£ÁôÔÚ´ËdotÊ±ÏÔÊ¾µÄ¹â±ê
-		DMColor                                m_crDot[2];                          ///< dotÕı³£¼°»ÒµôÊ±µÄÌî³äÉ«
-		DMColor                                m_crBox[2];                           ///< boxµÄÌî³äÉ«(box»áÏÈ»æÖÆPS_SOLID, ÔÙ»æÖÆPS_DASH)
-		DMSmartPtrT<IDMSkin>				   m_pMoveSkin;							 ///< »æÖÆmovĞ¡Í¼±ê
-		bool								   m_bDragDot;							 ///< ÊÇ·ñÎªÍÏ¶¯µã(¿ÉÄÜÉèÖÃ0Îª²»¿ÉÍÏ¶¯µã)
-		bool								   m_bEnable;							 ///< ´ËµãÊÇ·ñ¿ÉÓÃ
-		DMDragMetaEventHandler				   m_DragMetaAction;					 ///< ´¥·¢Ê±µÄµ÷ÓÃÊÂ¼ş
+		int									   m_Index;								 ///< 0ä¸ºä¸å«æ‰€æœ‰dotçš„çŸ©å½¢åŒºï¼ˆå³æ§ä»¶åŒºï¼‰,1ä¸ºå·¦ä¸­dotï¼Œé¡ºæ—¶é’ˆ8ä¸ªç‚¹ï¼Œ9ä¸ºå·¦ä¸Šè§’çš„movå°å›¾æ ‡,å¯¹åº”DMDSDOT
+		CRect								   m_Rect;								 ///< æ­¤ç‚¹çš„çŸ©å½¢åŒº,0ä¸ºæœ€ç»ˆæ¡†é€‰çš„boxåŒºï¼Œé»˜è®¤1-9ç‚¹éƒ½åœ¨boxå¤–å›´ï¼Œä¸å ç”¨boxåŒº
+		HCURSOR								   m_hCursor;							 ///< åœç•™åœ¨æ­¤dotæ—¶æ˜¾ç¤ºçš„å…‰æ ‡
+		DMColor                                m_crDot[2];                          ///< dotæ­£å¸¸åŠç°æ‰æ—¶çš„å¡«å……è‰²
+		DMColor                                m_crBox[2];                           ///< boxçš„å¡«å……è‰²(boxä¼šå…ˆç»˜åˆ¶PS_SOLID, å†ç»˜åˆ¶PS_DASH)
+		DMSmartPtrT<IDMSkin>				   m_pMoveSkin;							 ///< ç»˜åˆ¶movå°å›¾æ ‡
+		bool								   m_bDragDot;							 ///< æ˜¯å¦ä¸ºæ‹–åŠ¨ç‚¹(å¯èƒ½è®¾ç½®0ä¸ºä¸å¯æ‹–åŠ¨ç‚¹)
+		bool								   m_bEnable;							 ///< æ­¤ç‚¹æ˜¯å¦å¯ç”¨
+		DMDragMetaEventHandler				   m_DragMetaAction;					 ///< è§¦å‘æ—¶çš„è°ƒç”¨äº‹ä»¶
 		
 	};
 
@@ -89,30 +89,30 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú methods
+		// Function Des: å¯¹å¤–æ¥å£ methods
 		//---------------------------------------------------
-		bool SetBoxRect(CRect& rect, bool bFire = true);							///< ·µ»ØfalseÊ±±íÊ¾rect±»ÄÚ²¿¸Ä±ä			
-		void InitDragMeta(CRect rcBox,bool bMain=false,bool bAllGray=false);	    ///< rcBoxÖ¸¿Ø¼şÇø,	bMainÊ±Ö»ÓĞÓÒÏÂ½ÇÈı¸ödotÊÇ¿ÉÍÏ¶¯	
+		bool SetBoxRect(CRect& rect, bool bFire = true);							///< è¿”å›falseæ—¶è¡¨ç¤ºrectè¢«å†…éƒ¨æ”¹å˜			
+		void InitDragMeta(CRect rcBox,bool bMain=false,bool bAllGray=false);	    ///< rcBoxæŒ‡æ§ä»¶åŒº,	bMainæ—¶åªæœ‰å³ä¸‹è§’ä¸‰ä¸ªdotæ˜¯å¯æ‹–åŠ¨	
 		DMDragMeta* HitTestDragMeta(CPoint pt);										
-		CRect CalcTrackerRect(CRect rcBox);											///< ´ÓboxÇø¼ÆËã³öTrackerÕ¼µÄÇøÓò
-		CRect CalcBoxRect(CRect rcTracker);											///< ´ÓTrackerÕ¼µÄÇøÓòÍÆµ¼³öµ±Ç°µÄboxÇø
+		CRect CalcTrackerRect(CRect rcBox);											///< ä»boxåŒºè®¡ç®—å‡ºTrackerå çš„åŒºåŸŸ
+		CRect CalcBoxRect(CRect rcTracker);											///< ä»Trackerå çš„åŒºåŸŸæ¨å¯¼å‡ºå½“å‰çš„boxåŒº
 
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		//---------------------------------------------------
-		// Function Des: ¸¨Öú methods
+		// Function Des: è¾…åŠ© methods
 		//---------------------------------------------------
 		void LinkDragMetaEvent();
-		void OnDragBox(DMDragMeta& meta, int iAction);								///< ÍÏ¶¯ÄÚ²¿
-		void OnDragLeft(DMDragMeta& meta, int iAction);								///< ÍÏ¶¯×ó±ß
-		void OnDragLeftTop(DMDragMeta& meta, int iAction);							///< ÍÏ¶¯×óÉÏ½Ç
-		void OnDragTop(DMDragMeta& meta, int iAction);								///< ÍÏ¶¯ÉÏ±ß
-		void OnDragRightTop(DMDragMeta& meta, int iAction);							///< ÍÏ¶¯ÓÒÉÏ½Ç
-		void OnDragRight(DMDragMeta& meta, int iAction);							///< ÍÏ¶¯ÓÒ±ß
-		void OnDragRightBottom(DMDragMeta& meta, int iAction);						///< ÍÏ¶¯ÓÒÏÂ½Ç
-		void OnDragBottom(DMDragMeta& meta, int iAction);							///< ÍÏ¶¯ÏÂ±ß
-		void OnDragLeftBottom(DMDragMeta& meta, int iAction);						///< ÍÏ¶¯×óÏÂ½Ç
-		void OnDragMove(DMDragMeta& meta, int iAction);								///< ÒÆ¶¯
+		void OnDragBox(DMDragMeta& meta, int iAction);								///< æ‹–åŠ¨å†…éƒ¨
+		void OnDragLeft(DMDragMeta& meta, int iAction);								///< æ‹–åŠ¨å·¦è¾¹
+		void OnDragLeftTop(DMDragMeta& meta, int iAction);							///< æ‹–åŠ¨å·¦ä¸Šè§’
+		void OnDragTop(DMDragMeta& meta, int iAction);								///< æ‹–åŠ¨ä¸Šè¾¹
+		void OnDragRightTop(DMDragMeta& meta, int iAction);							///< æ‹–åŠ¨å³ä¸Šè§’
+		void OnDragRight(DMDragMeta& meta, int iAction);							///< æ‹–åŠ¨å³è¾¹
+		void OnDragRightBottom(DMDragMeta& meta, int iAction);						///< æ‹–åŠ¨å³ä¸‹è§’
+		void OnDragBottom(DMDragMeta& meta, int iAction);							///< æ‹–åŠ¨ä¸‹è¾¹
+		void OnDragLeftBottom(DMDragMeta& meta, int iAction);						///< æ‹–åŠ¨å·¦ä¸‹è§’
+		void OnDragMove(DMDragMeta& meta, int iAction);								///< ç§»åŠ¨
 		void InternalHandleDrag(CRect& rect, int* pHori, int* pVert);
 		
 
@@ -126,7 +126,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnLButtonDown(UINT nFlags,CPoint pt);
@@ -157,22 +157,22 @@ namespace DM
 		DMCode OnAttributeIsAllGray(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		DMColor                                 m_crDot[2];                        ///< ¾ØĞÎÇøÕı³£¼°»ÒµôÊ±µÄÌî³äÉ«
-		DMColor                                 m_crBox[2];                         ///< boxµÄÌî³äÉ«(box»áÏÈ»æÖÆPS_SOLID, ÔÙ»æÖÆPS_DASH)
-		DMSmartPtrT<IDMSkin>				    m_pMoveSkin;						///< »æÖÆmovĞ¡Í¼±ê
-		int                                     m_dotWidth;                         ///< DotµÄ¿í¸ß
-		bool								    m_bMain;							///< ÎªtrueÊ±Ö»ÓĞÓÒÏÂ½ÇÈı¸ödotÊÇ¿ÉÍÏ¶¯
-		bool                                    m_bAllGray;							///< ÎªtrueÊ±dotÈ«»Ò
+		DMColor                                 m_crDot[2];                        ///< çŸ©å½¢åŒºæ­£å¸¸åŠç°æ‰æ—¶çš„å¡«å……è‰²
+		DMColor                                 m_crBox[2];                         ///< boxçš„å¡«å……è‰²(boxä¼šå…ˆç»˜åˆ¶PS_SOLID, å†ç»˜åˆ¶PS_DASH)
+		DMSmartPtrT<IDMSkin>				    m_pMoveSkin;						///< ç»˜åˆ¶movå°å›¾æ ‡
+		int                                     m_dotWidth;                         ///< Dotçš„å®½é«˜
+		bool								    m_bMain;							///< ä¸ºtrueæ—¶åªæœ‰å³ä¸‹è§’ä¸‰ä¸ªdotæ˜¯å¯æ‹–åŠ¨
+		bool                                    m_bAllGray;							///< ä¸ºtrueæ—¶dotå…¨ç°
 
 		//
 		CPoint								    m_StartDragPt;
 		CPoint									m_TrackDragPt;
-		CRect									m_StartDragRc;						///< ¿ªÊ¼ÍÏ¶¯Ê±ÔªËØÇøÓò´óĞ¡
+		CRect									m_StartDragRc;						///< å¼€å§‹æ‹–åŠ¨æ—¶å…ƒç´ åŒºåŸŸå¤§å°
 
 		DMDragMeta*								m_pCurdragMeta;
 		DMDragMeta								m_dragMetas[10];
 		int										m_dragMetaCount;
-		bool                                    m_bDown;							///< Ö»ÓĞÔÚ°´ÏÂÊ±Í£ÁôÔÚdotÉÏ»òboxÉÏ²ÅÉèÖÃm_bDown
+		bool                                    m_bDown;							///< åªæœ‰åœ¨æŒ‰ä¸‹æ—¶åœç•™åœ¨dotä¸Šæˆ–boxä¸Šæ‰è®¾ç½®m_bDown
 
 		bool                                    m_bFirstInit;
 	};

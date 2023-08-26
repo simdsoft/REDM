@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+﻿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@ namespace DM
 	protected:
 		bool                           m_bBmp;	
 		DMColor						   m_Clr;
-		SkBitmap					   m_SkBmp;			// λͼ��ˢ
+		SkBitmap					   m_SkBmp;			// 位图画刷
 		HBRUSH                         m_hBrush;
 	};
 

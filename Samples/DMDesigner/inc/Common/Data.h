@@ -1,21 +1,21 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	Data.h
 // File mark:   
-// File summary:°ó¶¨Êı¾İ¶¨Òå
+// File summary:ç»‘å®šæ•°æ®å®šä¹‰
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8
 // ----------------------------------------------------------------
 #pragma once
 /// <summary>
-///		Ã¿¸öXML DocÎ¬»¤Ò»¸ö½á¹¹Ìå
+///		æ¯ä¸ªXML Docç»´æŠ¤ä¸€ä¸ªç»“æ„ä½“
 /// </summary>
 class DocData;
 typedef DocData* DocDataPtr;
-class DocData : public DMArrayT<DocDataPtr>///< ×ÔÉíXMLÕÒµ½µÄsubÁĞ,½öÓÃÓÚdm xml
+class DocData : public DMArrayT<DocDataPtr>///< è‡ªèº«XMLæ‰¾åˆ°çš„subåˆ—,ä»…ç”¨äºdm xml
 {
 public:
 	DocData();
@@ -24,14 +24,14 @@ public:
 	bool IsValid() const;
 
 public:
-	DMXmlDocument*                        m_pXmlDoc;			///< ×ÔÉíµÄXML DOC
-	CStringW                              m_strXmlPath;			///< ×ÔÉíXMLËùÔÚµÄDocµÄÈ«Â·¾¶
-	DMXmlNode                             m_XmlRoot;			///< ¸ù½áµã
-	bool                                  m_bChange;			///< ÊÇ·ñ±»¸Ä±ä(±»¸Ä±äºó²ÅÄÜ±»±£´æ)
+	DMXmlDocument*                        m_pXmlDoc;			///< è‡ªèº«çš„XML DOC
+	CStringW                              m_strXmlPath;			///< è‡ªèº«XMLæ‰€åœ¨çš„Docçš„å…¨è·¯å¾„
+	DMXmlNode                             m_XmlRoot;			///< æ ¹ç»“ç‚¹
+	bool                                  m_bChange;			///< æ˜¯å¦è¢«æ”¹å˜(è¢«æ”¹å˜åæ‰èƒ½è¢«ä¿å­˜)
 };
 
 /// <summary>
-///		objtreeÃ¿Ò»Ïî°ó¶¨µÄÊı¾İ
+///		objtreeæ¯ä¸€é¡¹ç»‘å®šçš„æ•°æ®
 /// </summary>
  enum {DMVISIBLE_NULL,DMVISIBLE_HIDE,DMVISIBLE_SHOW};
  class ObjTreeData
@@ -43,11 +43,11 @@ public:
 	 bool IsValid() const;
 
  public:
-	 DocDataPtr                           m_pDoc;				///< ×ÔÉíXML
-	 DUIRoot*							  m_pRootWnd;			///< ×ÔÉíËùÔÚ±à¼­Ö÷´°¿Ú
-	 DUIWindowPtr                         m_pDUIWnd;			///< ×ÔÉíËùÔÚ´°¿Ú
-	 DMXmlNodePtr						  m_pXmlNode;			///< ×ÔÉíXML½áµã
-	 int                                  m_iOrgVisible;        ///< ÓÃÓÚÔÚeye¹Ø±ÕÊ±¼ÇÂ¼Ô­Ê¼µÄvisible×´Ì¬    
-	 bool                                 m_bPanel;				///< ÊÇ·ñÎªPanelItem;
+	 DocDataPtr                           m_pDoc;				///< è‡ªèº«XML
+	 DUIRoot*							  m_pRootWnd;			///< è‡ªèº«æ‰€åœ¨ç¼–è¾‘ä¸»çª—å£
+	 DUIWindowPtr                         m_pDUIWnd;			///< è‡ªèº«æ‰€åœ¨çª—å£
+	 DMXmlNodePtr						  m_pXmlNode;			///< è‡ªèº«XMLç»“ç‚¹
+	 int                                  m_iOrgVisible;        ///< ç”¨äºåœ¨eyeå…³é—­æ—¶è®°å½•åŸå§‹çš„visibleçŠ¶æ€    
+	 bool                                 m_bPanel;				///< æ˜¯å¦ä¸ºPanelItem;
  };
  typedef ObjTreeData* ObjTreeDataPtr;

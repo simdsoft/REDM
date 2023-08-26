@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIWndPool.h 
-// File Des: ¸øÃ¿¸öDUIÄ£Äâ´°¿ÚÒ»¸öÎ¨Ò»µÄ¹ØÁª±êÊ¶·û
+// File Des: ç»™æ¯ä¸ªDUIæ¨¡æ‹Ÿçª—å£ä¸€ä¸ªå”¯ä¸€çš„å…³è”æ ‡è¯†ç¬¦
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -19,7 +19,7 @@ namespace DM
 	/// -------------------------------------------------
 	class DUIWindow;
 	/// <summary>
-	///		¹ÜÀíÄ£ÄâDUI´°¿Ú¾ä±úµÄ³Ø
+	///		ç®¡ç†æ¨¡æ‹ŸDUIçª—å£å¥æŸ„çš„æ± 
 	/// </summary>
 	class DM_EXPORT DUIWndPool:public DMMapT<DUIWND,DUIWindowPtr>
 	{
@@ -29,40 +29,40 @@ namespace DM
 
 	public:
 		/// -------------------------------------------------
-		/// @brief ¼ÓÈëÖ÷DUI´°¿Ú
-		/// @param[in]		 hDUIWnd		DUI´°¿ÚµÄÎ¨Ò»¾ä±ú
+		/// @brief åŠ å…¥ä¸»DUIçª—å£
+		/// @param[in]		 hDUIWnd		DUIçª—å£çš„å”¯ä¸€å¥æŸ„
 		/// @return DMCode 
 		DMCode AddMainDUIWnd(DUIWND hDUIWnd);
-		DMCode RemoveMainDUIWnd(DUIWND hDUIWnd);///< ÒÆ³ı
+		DMCode RemoveMainDUIWnd(DUIWND hDUIWnd);///< ç§»é™¤
 
 		DMCode AddRealDUIWnd(DUIWND hDUIWnd);	
 		DMCode HideAllRealDUIWnd(DUIWND hMainDUIWnd);
 		DMCode ShowAllRealDUIWnd(DUIWND hMainDUIWnd); //lzlong add
-		DMCode RemoveRealDUIWnd(DUIWND hDUIWnd);///< ÒÆ³ı
+		DMCode RemoveRealDUIWnd(DUIWND hDUIWnd);///< ç§»é™¤
 
 		/// -------------------------------------------------
-		/// @brief ÕÒµ½DUI´°¿Ú
-		/// @param[in]		 hDUIWnd		DUI´°¿ÚµÄÎ¨Ò»¾ä±ú
-		/// @return DUIWindowPtr£¬Ê§°ÜÎªNULL
+		/// @brief æ‰¾åˆ°DUIçª—å£
+		/// @param[in]		 hDUIWnd		DUIçª—å£çš„å”¯ä¸€å¥æŸ„
+		/// @return DUIWindowPtrï¼Œå¤±è´¥ä¸ºNULL
 		DUIWindowPtr FindDUIWnd(DUIWND hDUIWnd);
 
 		/// -------------------------------------------------
-		/// @brief ¼ÓÈëµ½DUIP´°¿Ú¾ä±úÖĞ
-		/// @param[in]		 pDUIWindow    Òª¹ØÁªµÄDUI´°¿ÚµÄÖ¸Õë
-		/// @return DUI´°¿ÚµÄÎ¨Ò»¾ä±ú
+		/// @brief åŠ å…¥åˆ°DUIPçª—å£å¥æŸ„ä¸­
+		/// @param[in]		 pDUIWindow    è¦å…³è”çš„DUIçª—å£çš„æŒ‡é’ˆ
+		/// @return DUIçª—å£çš„å”¯ä¸€å¥æŸ„
 		DUIWND NewDUIWnd(DUIWindowPtr pDUIWindow);
 
 		/// -------------------------------------------------
-		/// @brief ÒÆ³ıDUIP´°¿Ú¾ä±ú
-		/// @param[in]		 hDUIWnd		ÒªÒÆ³ıµÄDUI´°¿ÚµÄ¾ä±ú
-		/// @return true:³É¹¦,false:Ê§°Ü
+		/// @brief ç§»é™¤DUIPçª—å£å¥æŸ„
+		/// @param[in]		 hDUIWnd		è¦ç§»é™¤çš„DUIçª—å£çš„å¥æŸ„
+		/// @return true:æˆåŠŸ,false:å¤±è´¥
 		bool DestoryDUIWnd(DUIWND hDUIWnd);
 
 		/// -------------------------------------------------
-		/// @brief Ë¢ĞÂÊ¹ÓÃskinÁĞ±íµÄDUI´°¿Ú£¬
-		/// @param[in]		 wp		²ÎÊı
-		/// @param[in]		 lp		²ÎÊı
-		/// @remark ÓÃÓÚ»»·ô
+		/// @brief åˆ·æ–°ä½¿ç”¨skinåˆ—è¡¨çš„DUIçª—å£ï¼Œ
+		/// @param[in]		 wp		å‚æ•°
+		/// @param[in]		 lp		å‚æ•°
+		/// @remark ç”¨äºæ¢è‚¤
 		/// @return DMCode
 		DMCode UpdateSkin(WPARAM wp, LPARAM lp);
 
@@ -72,9 +72,9 @@ namespace DM
 
 	public:
 		DMLock                       m_Lock;
-		DUIWND                       m_hNextWnd;		///< µ±Ç°Ê¹ÓÃµÄ×î¸ßDUI´°¿Ú¾ä±ú
-		CArray<DUIWND>               m_MainDUIWndArray; ///< Ö÷´°¿ÚµÄDUIÁĞ
-		CArray<DUIWND>               m_RealDUIWndArray; ///< ÕæÊµ´°¿ÚµÄDUIÁĞ
+		DUIWND                       m_hNextWnd;		///< å½“å‰ä½¿ç”¨çš„æœ€é«˜DUIçª—å£å¥æŸ„
+		CArray<DUIWND>               m_MainDUIWndArray; ///< ä¸»çª—å£çš„DUIåˆ—
+		CArray<DUIWND>               m_RealDUIWndArray; ///< çœŸå®çª—å£çš„DUIåˆ—
 	};
 
 	/// -------------------------------------------------

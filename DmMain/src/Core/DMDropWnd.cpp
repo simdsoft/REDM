@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMDropWnd.h"
 
 namespace DM
@@ -30,7 +30,7 @@ namespace DM
 			UnPreMsg();
 			if (IsWindow())
 			{
-				AddRef();// ÒòÎªDestroyWindow»áµ÷ÓÃDM_SendMessage£¬ÄÚ²¿»áÏÈAddRef£¬ÔÙRelease,ÒýÓÃ¼ÆÊýÎª0,´Ó¶øÒý·¢delete£¬ËùÒÔÕâÀïÒª+1
+				AddRef();// å› ä¸ºDestroyWindowä¼šè°ƒç”¨DM_SendMessageï¼Œå†…éƒ¨ä¼šå…ˆAddRefï¼Œå†Release,å¼•ç”¨è®¡æ•°ä¸º0,ä»Žè€Œå¼•å‘deleteï¼Œæ‰€ä»¥è¿™é‡Œè¦+1
 				DestroyWindow();
 			}
 			SetRefCount(0);
@@ -54,7 +54,7 @@ namespace DM
 				m_bShow = true;
 				if (m_pOwner)
 				{
-					m_pOwner->OnDropDown(this);///< ÈÃÓµÓÐÕß×Ô¼º²Ù×÷ÏÔÊ¾°É
+					m_pOwner->OnDropDown(this);///< è®©æ‹¥æœ‰è€…è‡ªå·±æ“ä½œæ˜¾ç¤ºå§
 				}
 				SetCapture();
 				iErr = DM_ECODE_OK;
@@ -80,7 +80,7 @@ namespace DM
 				ReleaseCapture();
 				if (m_pOwner)
 				{
-					m_pOwner->OnCloseUp(this,m_uExitCode);///< ÈÃÓµÓÐÕß×Ô¼º²Ù×÷
+					m_pOwner->OnCloseUp(this,m_uExitCode);///< è®©æ‹¥æœ‰è€…è‡ªå·±æ“ä½œ
 					DUIWindow* pOwnerWnd = m_pOwner->GetOwnerWindow();
 					if (pOwnerWnd)
 					{
@@ -121,7 +121,7 @@ namespace DM
 		}
 
 		//---------------------------------------------------
-		// Function Des: ÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+		// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		LRESULT DMDropWnd::OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 		{
@@ -154,7 +154,7 @@ namespace DM
 				DMHWnd::ProcessWindowMessage(m_hWnd,WM_LBUTTONUP,nFlags,MAKELPARAM(point.x,point.y),lRes);
 				if (::IsWindow(hWnd) && !rcClient.PtInRect(point))
 				{
-					Hide();// Ç¿ÖÆ¹Ø±Õµ¯³ö´°¿Ú
+					Hide();// å¼ºåˆ¶å…³é—­å¼¹å‡ºçª—å£
 				}
 			} 
 		}
@@ -216,7 +216,7 @@ namespace DM
 					break;
 				}
 				if (WM_LBUTTONDOWN == pMsg->message && pMsg->hwnd != m_hWnd && IsWindowVisible())
-				{// ·ÀÖ¹ÏÈ°´ÏÂwindow+D,ÔÙÊó±êµã»÷»Ö¸´µÄÕâÖÖ²âÊÔ@_@ 
+				{// é˜²æ­¢å…ˆæŒ‰ä¸‹window+D,å†é¼ æ ‡ç‚¹å‡»æ¢å¤çš„è¿™ç§æµ‹è¯•@_@ 
 					Hide(IDOK);
 					break;
 				}
@@ -228,7 +228,7 @@ namespace DM
 				}
 
 				if (WM_MOUSEMOVE == pMsg->message)
-				{// ÓÉÓÚ´°¿ÚÏÔÊ¾ºó¾Íµ÷ÓÃÁËsetcapture£¬µ¼ÖÂÊÕ²»µ½setcursorÏûÏ¢£¬ÕâÀïÔÚWM_MOUSEMOVEÏûÏ¢ÀïÄ£ÄâÒ»¸ösetcursorÏûÏ¢¡£
+				{// ç”±äºŽçª—å£æ˜¾ç¤ºåŽå°±è°ƒç”¨äº†setcaptureï¼Œå¯¼è‡´æ”¶ä¸åˆ°setcursoræ¶ˆæ¯ï¼Œè¿™é‡Œåœ¨WM_MOUSEMOVEæ¶ˆæ¯é‡Œæ¨¡æ‹Ÿä¸€ä¸ªsetcursoræ¶ˆæ¯ã€‚
 					SendMessage(WM_SETCURSOR,(WPARAM)m_hWnd,MAKELPARAM(HTCLIENT,WM_MOUSEMOVE));
 					break;
 				}
@@ -249,12 +249,12 @@ namespace DM
 			DMCode iErr = DMHWnd::OnReleaseCaptureWnd();
 			if (m_bShow)
 			{
-				SetCapture();// DMHWnd::OnReleaseCaptureWnd()»áReleaseCapture,´Ëº¯Êý¿ÉÄÜÓÉ×ÓDUI´¥·¢
+				SetCapture();// DMHWnd::OnReleaseCaptureWnd()ä¼šReleaseCapture,æ­¤å‡½æ•°å¯èƒ½ç”±å­DUIè§¦å‘
 			}
 			return iErr;
 		}
 
-		// ¸¨Öú
+		// è¾…åŠ©
 		DMCode DMDropWnd::PreMsg()
 		{
 			m_pCurMsgLoop->AddMessageFilter(m_pToolTip.get());

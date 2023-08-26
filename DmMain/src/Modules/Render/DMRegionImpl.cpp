@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMRegionImpl.h"
 
 namespace DM
@@ -31,7 +31,7 @@ namespace DM
 			}
 			else
 			{
-				::CombineRgn(m_hRgn,hRgn,m_hRgn,fnCombineMode);//ע�⣬hRgn�ŵ�һλ����ΪRGN_COPY��Ҫ
+				::CombineRgn(m_hRgn,hRgn,m_hRgn,fnCombineMode);//注意，hRgn放第一位，因为RGN_COPY需要
 			}
 			DM_DELETE_OBJECT(hRgn);
 

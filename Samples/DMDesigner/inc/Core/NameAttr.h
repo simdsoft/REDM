@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	NameAttr.h
 // File mark:   
-// File summary:NameÊôĞÔÇø
+// File summary:Nameå±æ€§åŒº
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-10
@@ -28,6 +28,6 @@ public:
 	DUIEdit*											m_pIdEdit;
 	DUIStatic*											m_pClSta;
 
-	// ÓÃÓÚ×ª·¢ÏûÏ¢
+	// ç”¨äºè½¬å‘æ¶ˆæ¯
 	static NameAttr*                                    ms_pthis;
 };

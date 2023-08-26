@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "TrayIconWndMgr.h"
 
 BEGIN_MSG_MAP(CTrayIconWndMgr)
@@ -7,8 +7,8 @@ BEGIN_MSG_MAP(CTrayIconWndMgr)
 END_MSG_MAP()
 CTrayIconWndMgr::CTrayIconWndMgr()
 {
-	m_CbMsg		   = ::RegisterWindowMessage(_T("TaskbarNotifyMsg"));// ½ÓÊÕ»Øµ÷ÏûÏ¢
-	m_RestartMsg   = ::RegisterWindowMessage(_T("TaskbarCreated"));  // µ±ÈÎÎñÀ¸±ÀÀ£Ê±»á½ÓÊÕµ½´ËÏûÏ¢
+	m_CbMsg		   = ::RegisterWindowMessage(_T("TaskbarNotifyMsg"));// æ¥æ”¶å›è°ƒæ¶ˆæ¯
+	m_RestartMsg   = ::RegisterWindowMessage(_T("TaskbarCreated"));  // å½“ä»»åŠ¡æ å´©æºƒæ—¶ä¼šæ¥æ”¶åˆ°æ­¤æ¶ˆæ¯
 
 	m_hParentWnd   = NULL;
 	m_bInstall	   = false;
@@ -161,7 +161,7 @@ LRESULT CTrayIconWndMgr::OnTrayIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 			if (NULL != m_hParentWnd && ::IsWindow(m_hParentWnd))
 			{
-				// ÕâÀï¿ÉÒÔ·¢¸öÏûÏ¢ÈÃ´°¿ÚÖÃ¶¥
+				// è¿™é‡Œå¯ä»¥å‘ä¸ªæ¶ˆæ¯è®©çª—å£ç½®é¡¶
 			}
 		}
 		break;

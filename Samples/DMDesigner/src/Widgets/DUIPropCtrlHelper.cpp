@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUIPropCtrlHelper.h"
 #include "DUIPropCtrl.h"
 
@@ -6,7 +6,7 @@
 
 namespace DM
 { 
-#define PROP_SE_FRAMECLR        PBGRA(22,22,22,0xff)// »æÖÆÑ¡ÖĞ±ß¿ò
+#define PROP_SE_FRAMECLR        PBGRA(22,22,22,0xff)// ç»˜åˆ¶é€‰ä¸­è¾¹æ¡†
 	PropGrid::PropGrid()
 	{
 		m_pOwner     = NULL;
@@ -88,7 +88,7 @@ namespace DM
 			m_pOwner->DV_GetClientRect(rcList);
 			m_Rect = CRect(rcList.left + dx, y, rcList.right, y + m_pOwner->m_iRowHei);
 			m_rcExpandBox.SetRectEmpty();
-			if (!m_lstSubItems.IsEmpty())// ·Ç¿Õ¾ÍÓĞexpandbox
+			if (!m_lstSubItems.IsEmpty())// éç©ºå°±æœ‰expandbox
 			{
 				m_rcExpandBox = CRect(m_Rect.left,m_Rect.top,m_Rect.left+m_pOwner->m_iRowHei,m_Rect.bottom);
 			}
@@ -96,9 +96,9 @@ namespace DM
 			{
 				m_rcName = CRect(m_Rect.left+m_rcExpandBox.Width(),m_Rect.top,rcList.left+m_pOwner->m_iLeftColWid,m_Rect.bottom);
 				m_rcValue = CRect(m_rcName.right,m_Rect.top,m_Rect.right,m_Rect.bottom);
-				m_rcDrag  = CRect(m_rcName.right-4,m_rcName.top,m_rcName.right+4,m_rcName.bottom);// ´¦ÓÚnameºÍvaleÖ®¼ä
+				m_rcDrag  = CRect(m_rcName.right-4,m_rcName.top,m_rcName.right+4,m_rcName.bottom);// å¤„äºnameå’Œvaleä¹‹é—´
 			}
-			else// groupÖ»ÓĞnameÃ»ÓĞvalue
+			else// groupåªæœ‰nameæ²¡æœ‰value
 			{
 				m_rcName = m_Rect;
 				m_rcName.left = m_Rect.left+m_rcExpandBox.Width();
@@ -118,7 +118,7 @@ namespace DM
 			m_rcDrag.SetRectEmpty();
 		}
 
-		// ±éÀú×ÓÏî
+		// éå†å­é¡¹
 		for (POSITION pos = m_lstSubItems.GetHeadPosition(); pos != NULL;)
 		{
 			IPropPtr pProp = m_lstSubItems.GetNext(pos);
@@ -428,16 +428,16 @@ namespace DM
 				break;
 			}
 		
-			//1.»æÖÆexpandbox
+			//1.ç»˜åˆ¶expandbox
 			OnDrawExpandBox(pCanvas,m_rcExpandBox);
 
-			//2.»æÖÆname
+			//2.ç»˜åˆ¶name
 			OnDrawName(pCanvas,m_rcName);
 
-			//3.»æÖÆvalue
+			//3.ç»˜åˆ¶value
 			OnDrawValue(pCanvas, m_rcValue);
 
-			// µİ¹é»æÖÆ×ÓÏî
+			// é€’å½’ç»˜åˆ¶å­é¡¹
 			for (POSITION pos = m_lstSubItems.GetHeadPosition(); pos != NULL;)
 			{
 				IPropPtr pProp = m_lstSubItems.GetNext(pos);
@@ -517,22 +517,22 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			//1.»æ±ß¿ò
+			//1.ç»˜è¾¹æ¡†
 			AutoDrawRoundRect(pCanvas,PROP_SE_FRAMECLR,PS_SOLID,1,rcDesc,CPoint(4,4));
 
-			//2.¼ÆËã×Ö·û¸ß¶È
+			//2.è®¡ç®—å­—ç¬¦é«˜åº¦
 			CSize szChar;
 			pCanvas->MeasureText(L"A",1,&szChar);
 			rcDesc.DeflateRect(4,4);
 			
-			//3.»æname×Ö·û
+			//3.ç»˜nameå­—ç¬¦
 			CRect rcName = rcDesc;
 			rcName.bottom = rcDesc.top + szChar.cy + 15;
-			AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:20,weight:700",PBGRA(0x0,215,255,0xff),m_strName, -1, rcName, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
-			//4.»ædesc×Ö·û
+			//4.ç»˜descå­—ç¬¦
 			rcDesc.top = rcName.bottom;
-			AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
+			AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:400",PBGRA(0x0,215,255,0xff),m_strDescr, -1, rcDesc, DT_WORDBREAK|DT_LEFT|DT_TOP);
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -598,7 +598,7 @@ namespace DM
 				break;
 			}
 
-			// Ôö¼ÓÒ»¸öÏÔÊ¾ÖµµÄedit
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºå€¼çš„edit
 			CStringW strWXml = L"<edit textalign=\"center\" clrbg=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\" bautosel=\"1\"/>";
 			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
@@ -683,7 +683,7 @@ namespace DM
 
 			rcName.right-=5;
 			pCanvas->DrawText(m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER|DT_END_ELLIPSIS);
-			//AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
+			//AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strName,-1,rcName,DT_RIGHT|DT_SINGLELINE|DT_VCENTER);
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -711,7 +711,7 @@ namespace DM
 				CRect rcEdit = m_pValueEdit->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -734,8 +734,8 @@ namespace DM
 				break;
 			}
 
-			// Ôö¼ÓÒ»¸öÏÔÊ¾ÖµµÄedit
-			LiteralString strXml = "<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:ĞÂËÎÌå,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºå€¼çš„edit
+			LiteralString strXml = "<edit textalign=\"left\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:æ–°å®‹ä½“,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -792,7 +792,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			// ·ÀÖ¹oxffÕâÖÖ³öÏÖ
+			// é˜²æ­¢oxffè¿™ç§å‡ºç°
 			int iValue = _wtoi(m_strValue);
 			//dm_parseint(m_strValue,iValue);
 			m_strValue.Format(L"%d",iValue);
@@ -822,8 +822,8 @@ namespace DM
 				break;
 			}
 
-			// Ôö¼ÓÒ»¸öÏÔÊ¾ÖµµÄedit
-			CStringW strWXml = L"<limitedit textalign=\"left\" includechars=\"0123456789\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:ĞÂËÎÌå,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºå€¼çš„edit
+			CStringW strWXml = L"<limitedit textalign=\"left\" includechars=\"0123456789\" rcinsertmargin=\"10,0,0,0\" clrcaret=\"pbgra(ff,ff,ff,ff)\" skin=\"ds_attreditframe\" font=\"face:æ–°å®‹ä½“,size:14,weight:100\" clrtext=\"pbgra(F0,F0,F0,FF)\" bautosel=\"1\"/>";
 			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -833,7 +833,7 @@ namespace DM
 			m_pOwner->DM_InsertChild(m_pValueEdit);
 
 			m_pValueEdit->InitDMData(EditNode);
-			// ·ÀÖ¹oxffÕâÖÖ³öÏÖ
+			// é˜²æ­¢oxffè¿™ç§å‡ºç°
 			int iValue = _wtoi(m_strValue);
 			m_strValue.Format(L"%d",iValue);
 			m_pValueEdit->SetWindowText(m_strValue);
@@ -889,7 +889,7 @@ namespace DM
 				CRect rcEdit = m_pValueCbx->m_rcWindow;
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left += 10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -913,11 +913,11 @@ namespace DM
 			} 
 
 			CStringW strWXml = L"<combobox skin=\"ds_attreditframe\"  textoffset=\"10\" clrtext=\"pbgra(F0,F0,F0,FF)\" btnskin=\"ds_propcomboxbtn\"  bhideedit=\"1\" dropheight=\"100\">"\
-				L"<subedit  clrtext=\"pbgra(F0,F0,F0,FF)\" font=\"face:ĞÂËÎÌå,size:14,weight:100\" />"\
+				L"<subedit  clrtext=\"pbgra(F0,F0,F0,FF)\" font=\"face:æ–°å®‹ä½“,size:14,weight:100\" />"\
 				L"<sublistbox textpoint=\"10,-1\" skin=\"ds_menubg\" clritemtext=\"pbgra(F0,F0,F0,FF)\" clrbg=\"pbgra(33,33,33,ff)\" bhottrack=\"1\" clritemselbg=\"pbgra(bd,bd,bd,ff)\" clritemseltext=\"pbgra(33,33,33,ff)\"/>"\
 				L"</combobox>";
 
-			// Ôö¼ÓÒ»¸öÏÔÊ¾ÖµµÄcombox
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºå€¼çš„combox
 			CStringA strXml = DMW2A(strWXml,CP_UTF8);
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -1045,7 +1045,7 @@ namespace DM
 				CRect rcText = m_rcText;
 				rcText.DeflateRect(4,3,4,3);
 				rcText.right+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcText,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1110,7 +1110,7 @@ namespace DM
 			} 
 
 			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
-			// Ôö¼ÓÒ»¸öÏÔÊ¾BGRAÖµµÄRECT
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºBGRAå€¼çš„RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -1232,7 +1232,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1256,7 +1256,7 @@ namespace DM
 			} 
 
 			LiteralString strXml = "<duirect bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
-			// Ôö¼ÓÒ»¸öÏÔÊ¾BGRAÖµµÄRECT
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºBGRAå€¼çš„RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -1364,7 +1364,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1388,7 +1388,7 @@ namespace DM
 			} 
 
 			LiteralString strXml = "<duisize bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrdot=\"pbgra(ff,ff,ff,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
-			// Ôö¼ÓÒ»¸öÏÔÊ¾BGRAÖµµÄRECT
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºBGRAå€¼çš„RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();
@@ -1492,7 +1492,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1525,7 +1525,7 @@ namespace DM
 				break;
 			}
 
-			// ´´½¨Ğ¡°´Å¥
+			// åˆ›å»ºå°æŒ‰é’®
 			LiteralString strXml = "<button skin=\"ds_custombutton\" text=\"...\"/>";
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
@@ -1691,7 +1691,7 @@ namespace DM
 				rcEdit.DeflateRect(4,1,4,1);
 				pSkin->Draw(pCanvas,rcEdit,0);
 				rcEdit.left+=10;
-				AutoDrawText(pCanvas,"face:ĞÂËÎÌå,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
+				AutoDrawText(pCanvas,"face:æ–°å®‹ä½“,size:14,weight:100",PBGRA(240,240,240,255),m_strValue,-1,rcEdit,DT_LEFT|DT_SINGLELINE|DT_VCENTER);
 			}
 
 			iErr = DM_ECODE_OK;
@@ -1715,7 +1715,7 @@ namespace DM
 			} 
 
 			LiteralString strXml = "<hotkey bvisible=\"0\" ncmargin=\"1,1,1,1\" clrbg=\"pbgra(cc,cc,cc,ff)\" clrnc=\"pbgra(cc,cc,cc,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" clrcaret=\"pbgra(ff,ff,ff,ff)\"/>";
-			// Ôö¼ÓÒ»¸öÏÔÊ¾BGRAÖµµÄRECT
+			// å¢åŠ ä¸€ä¸ªæ˜¾ç¤ºBGRAå€¼çš„RECT
 			DMXmlDocument doc;
 			doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());
 			DMXmlNode EditNode = doc.Root();

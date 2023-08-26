@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIAnimate.h 
-// File Des: ÄÚÖÃ¶¯»­ÊµÏÖ
+// File Des: å†…ç½®åŠ¨ç”»å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,17 +18,17 @@
 namespace DM
 {
 	/// <summary>
-	///		 TabÒ³µÄÈıÖÖ¶¯»­µÄÓµÓĞÕß
+	///		 Tabé¡µçš„ä¸‰ç§åŠ¨ç”»çš„æ‹¥æœ‰è€…
 	/// </summary>
 	class DM_EXPORT IDMTabAnimateOwner
 	{
 	public:
 		 virtual DUIWindow* GetOwnerWindow() = 0;        
-		virtual DMCode OnTabAnimateFinish() = 0;                         ///< ¶¯»­½áÊø
+		virtual DMCode OnTabAnimateFinish() = 0;                         ///< åŠ¨ç”»ç»“æŸ
 	};
 
 	/// <summary>
-	///		 TabÒ³µÄÈıÖÖ¶¯»­
+	///		 Tabé¡µçš„ä¸‰ç§åŠ¨ç”»
 	/// </summary>
 	class DM_EXPORT DUITabAnimate:public DUIWindow,public IDMTimeline
 	{
@@ -53,7 +53,7 @@ namespace DM
 		DMCode OnTimeline();
 		void StopFrame();
 
-	public: // ¸¨Öú
+	public: // è¾…åŠ©
 		void BitBlt(IDMCanvas* pCanvasDest,int xDest,int yDest,int nWid,int nHei,IDMCanvas *pCanvasSrc,int xSrc,int ySrc,DWORD rop);
 		void MyCenterDeflateDraw(IDMCanvas *pCanvas);
 		void MyCenterInflateDraw(IDMCanvas *pCanvas);
@@ -63,7 +63,7 @@ namespace DM
 		DMSmartPtrT<IDMCanvas>							m_pMemCanvas;
 		int                                             m_iCurSteps;
 		int                                             m_nStepCount;
-		int                                             m_TabAniType;         ///< ¶¯»­ÀàĞÍ
+		int                                             m_TabAniType;         ///< åŠ¨ç”»ç±»å‹
 		IDMTabAnimateOwner*                             m_pOwner;
 	};
 

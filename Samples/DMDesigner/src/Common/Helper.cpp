@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "Helper.h"
 DMLazyT<DMCtrlXml> g_pAttr;
 
@@ -33,7 +33,7 @@ bool OpenFolderAndSelectFile(CStringW strFilePath)
 		LPITEMIDLIST pidl;
 		ULONG chEaten;
 		wchar_t wfilePath[MAX_PATH+1] = {0};
-		// IShellFolder::ParseDisplayNameÒª´«Èë¿í×Ö½Ú
+		// IShellFolder::ParseDisplayNameè¦ä¼ å…¥å®½å­—èŠ‚
 		wcscpy_s(wfilePath,MAX_PATH+1,strFilePath);
 
 		LPWSTR lpWStr = wfilePath;
@@ -44,7 +44,7 @@ bool OpenFolderAndSelectFile(CStringW strFilePath)
 		}
 
 		LPCITEMIDLIST cpidl = pidl;
-		// SHOpenFolderAndSelectItemsÊÇ·Ç¹«¿ªµÄAPIº¯Êı£¬ĞèÒª´Óshell32.dll»ñÈ¡
+		// SHOpenFolderAndSelectItemsæ˜¯éå…¬å¼€çš„APIå‡½æ•°ï¼Œéœ€è¦ä»shell32.dllè·å–
 		HMODULE hShell32DLL = ::LoadLibraryW(L"shell32.dll");
 		if (hShell32DLL)
 		{
@@ -52,7 +52,7 @@ bool OpenFolderAndSelectFile(CStringW strFilePath)
 			pSelFun pFun = (pSelFun)::GetProcAddress(hShell32DLL, "SHOpenFolderAndSelectItems");
 			::FreeLibrary(hShell32DLL);
 			if(pFun != NULL)
-			{ // µÚ¶ş¸ö²ÎÊıcidlÖÃÎª0£¬±íÊ¾ÊÇÑ¡ÖĞÎÄ¼ş
+			{ // ç¬¬äºŒä¸ªå‚æ•°cidlç½®ä¸º0ï¼Œè¡¨ç¤ºæ˜¯é€‰ä¸­æ–‡ä»¶
 				bRet = SUCCEEDED(pFun(cpidl, 0, NULL, 0));
 			}
 		}
@@ -86,15 +86,15 @@ bool CopyDirectory(CStringW strSrcDir,CStringW strDestDir)
 
 		SHFILEOPSTRUCTW FileOp; 
 		ZeroMemory(&FileOp, sizeof(SHFILEOPSTRUCT)); 
-		FileOp.fFlags |= FOF_SILENT;        /*²»ÏÔÊ¾½ø¶È*/
-		FileOp.fFlags |= FOF_NOERRORUI ;    /*²»±¨¸æ´íÎóĞÅÏ¢*/
-		FileOp.fFlags |= FOF_NOCONFIRMATION;/*²»½øĞĞÈ·ÈÏ*/
+		FileOp.fFlags |= FOF_SILENT;        /*ä¸æ˜¾ç¤ºè¿›åº¦*/
+		FileOp.fFlags |= FOF_NOERRORUI ;    /*ä¸æŠ¥å‘Šé”™è¯¯ä¿¡æ¯*/
+		FileOp.fFlags |= FOF_NOCONFIRMATION;/*ä¸è¿›è¡Œç¡®è®¤*/
 		FileOp.hNameMappings = NULL;
 		FileOp.hwnd = NULL;
 	    FileOp.lpszProgressTitle = NULL;
 		FileOp.wFunc = FO_COPY;
-		FileOp.pFrom = szSrcFolder;        /*Ô´Ä¿Â¼£¬±ØĞëÒÔ2¸ö\0½áÎ²*/
-		FileOp.pTo = szDestFolder;          /*Ä¿µÄÄ¿Â¼£¬±ØĞëÒÔ2¸ö\0½áÎ²*/    
+		FileOp.pFrom = szSrcFolder;        /*æºç›®å½•ï¼Œå¿…é¡»ä»¥2ä¸ª\0ç»“å°¾*/
+		FileOp.pTo = szDestFolder;          /*ç›®çš„ç›®å½•ï¼Œå¿…é¡»ä»¥2ä¸ª\0ç»“å°¾*/    
 		if (0!= SHFileOperationW(&FileOp))
 		{
 			break;
@@ -133,7 +133,7 @@ DMXmlDocument* GetExistXmlDoc(LPCSTR lpszType,LPCSTR lpszResName)
 			break;
 		}
 		DocDataPtr pSubData = g_pMainWnd->m_pDesignerXml->FindDocData(strPath);
-		if (pSubData&&pSubData->IsValid())// Ô­À´ÒÑ½âÎö¹ıÁË
+		if (pSubData&&pSubData->IsValid())// åŸæ¥å·²è§£æè¿‡äº†
 		{
 			pXmlDoc = pSubData->m_pXmlDoc;
 			break;
@@ -267,7 +267,7 @@ DMHook::DMHook()
 	wchar_t szDll[MAX_PATH] = {0};
 	GetRootFullPath(L".\\DesignerRes\\DMH.dll",szDll,MAX_PATH);
 	m_hDll = LoadLibraryW(szDll);
-	if (m_hDll)// ¼ÓÔØDM hookÆ¤·ô
+	if (m_hDll)// åŠ è½½DM hookçš®è‚¤
 	{
 		typedef int (WINAPI *fun_DMMain_Attach)();
 		fun_DMMain_Attach DMMain_Attach = (fun_DMMain_Attach)GetProcAddress(m_hDll, "_DMMain_Attach@0");
@@ -309,44 +309,44 @@ DMXmlInitAttr::~DMXmlInitAttr()
 // DMAttrXml
 DMCtrlXml::DMCtrlXml()
 {
-	// ³õÊ¼»¯DMAttr.xml
+	// åˆå§‹åŒ–DMAttr.xml
 	wchar_t szPath[MAX_PATH] = {0};
 	DM::GetRootFullPath(ATTR_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
-		DMASSERT(L"Î´ÕÒµ½DMAttr.xml");
+		DMASSERT(L"æœªæ‰¾åˆ°DMAttr.xml");
 	}
 	m_AttrDoc.LoadFromFile(szPath);
 
-	// ³õÊ¼»¯DMCls.xml
+	// åˆå§‹åŒ–DMCls.xml
 	DM::GetRootFullPath(CLS_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
-		DMASSERT(L"Î´ÕÒµ½DMCls.xml");
+		DMASSERT(L"æœªæ‰¾åˆ°DMCls.xml");
 	}
 	m_ClsDoc.LoadFromFile(szPath);
 
-	// ³õÊ¼»¯DMAdd.xml
+	// åˆå§‹åŒ–DMAdd.xml
 	DM::GetRootFullPath(ADD_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
-		DMASSERT(L"Î´ÕÒµ½DMAdd.xml");
+		DMASSERT(L"æœªæ‰¾åˆ°DMAdd.xml");
 	}
 	m_AddDoc.LoadFromFile(szPath);
 
-	// ³õÊ¼»¯DMAdd_dg.xml
+	// åˆå§‹åŒ–DMAdd_dg.xml
 	DM::GetRootFullPath(ADD_DG_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
-		DMASSERT(L"Î´ÕÒµ½DMAdd_dg.xml");
+		DMASSERT(L"æœªæ‰¾åˆ°DMAdd_dg.xml");
 	}
 	m_AddDgDoc.LoadFromFile(szPath);
 
-	// ³õÊ¼»¯Copy Node£¬ÁÙÊ±±£´æµÄxml
+	// åˆå§‹åŒ–Copy Nodeï¼Œä¸´æ—¶ä¿å­˜çš„xml
 	DMXmlNode BaseNode = m_CopyDoc.Base();
 	BaseNode.InsertChildNode("root");
 
-	// ³õÊ¼»¯DMDesigner.xml
+	// åˆå§‹åŒ–DMDesigner.xml
 	DM::GetRootFullPath(REC_FILE,szPath,MAX_PATH);
 	if (!PathFileExists(szPath))
 	{
@@ -381,12 +381,12 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName,
 		int nCount = (int)SplitStringT(AttrName,'_',strList);
 		DMASSERT(2==nCount);
 
-		//0.Ö¸¶¨desc
+		//0.æŒ‡å®šdesc
 		strType = strList[0];
 		strName = strList[1];
 		strDesc = ptr->GetValue();
 
-		//1.³õÊ¼»¯type
+		//1.åˆå§‹åŒ–type
 		CStringA tempDesc;
 		nCount = countof(g_stAttrDesc);
 		for (int i=0; i<nCount; i++)
@@ -402,7 +402,7 @@ bool DMCtrlXml::Parse(DMXmlAttributePtr ptr,CStringA &strType,CStringA &strName,
 			tempDesc = "nil";
 		}
 	
-		// 4ÖÖ×´Ì¬:1.{value}desc 2.desc 3.{value} 4.¿Õ
+		// 4ç§çŠ¶æ€:1.{value}desc 2.desc 3.{value} 4.ç©º
 		if (strDesc.IsEmpty())//4
 		{
 			strDesc = tempDesc;
@@ -502,7 +502,7 @@ DMXmlNode DMCtrlXml::Parse(CStringA strReg)
 		CStringA strk = (strReg);
 		XmlNode = RootNode.FirstChild(strk);
 		if (!XmlNode.IsValid())
-		{// ²»´æÔÚ¾Í×Ô½¨Ò»¸öÄ¬ÈÏµÄ
+		{// ä¸å­˜åœ¨å°±è‡ªå»ºä¸€ä¸ªé»˜è®¤çš„
 			XmlNode = RootNode.InsertChildNode(strk);
 			XmlNode.SetAttribute("ncmargin","1,1,1,1");
 			XmlNode.SetAttribute("clrnc","pbgra(00,00,00,ff)");
@@ -545,7 +545,7 @@ bool DMCtrlXml::SetCopyNode(DMXmlNodePtr pNode, CRect rcWnd)
 			m_rcCopy.SetRectEmpty();
 		}
 		m_CopyNode = RootNode.InsertCopyChildNode(pNode);
-		// ÒÆ³ıµôÃû×Ö¡¢id¡¢×ø±ê
+		// ç§»é™¤æ‰åå­—ã€idã€åæ ‡
 		m_CopyNode.RemoveAttribute(XML_NAME);
 		m_CopyNode.RemoveAttribute(XML_POS);
 		m_CopyNode.RemoveAttribute(XML_ID);
@@ -561,17 +561,17 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 	bool bRet = false;
 	do 
 	{
-		//1.ºÏ·¨ĞÔÅĞ¶Ï
+		//1.åˆæ³•æ€§åˆ¤æ–­
 		if (strNewDir.IsEmpty()||!IsDirectoryExist(strNewDir))
 		{
 			break;
 		}
 		if (strNewDir.Right(1)!=L"\\")
-		{// ±ÜÃâ³öÏÖE:\MyResºÍE:\MyRes\\²¢´æµÄÏÖÏó
+		{// é¿å…å‡ºç°E:\MyReså’ŒE:\MyRes\\å¹¶å­˜çš„ç°è±¡
 			strNewDir += L"\\";
 		}
 
-		//2.Ñ­»·²éÕÒÊÇ·ñÒÑ´æÔÚ´Ëdir¼ÇÂ¼
+		//2.å¾ªç¯æŸ¥æ‰¾æ˜¯å¦å·²å­˜åœ¨æ­¤dirè®°å½•
 		DMXmlNode XmlRoot = m_RecentDoc.Root();
 		DMXmlNode XmlExist,XmlLast;
 		int iNum = 0;
@@ -585,14 +585,14 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 			}
 
 			if (0 == strNewDir.CompareNoCase(strDir))
-			{// ÒÑ´æÔÚ
+			{// å·²å­˜åœ¨
 				XmlExist = XmlNode;
 			}
 			XmlLast = XmlNode;
 			XmlNode = XmlNode.NextSibling();
 			iNum ++;
 		}
-		//3.ÏŞÖÆiNum²»ÄÜ´óÓÚ5Ìõ,·ñÔòÒÆ³ı×îºóÒ»Ìõ,Èç¹ûÒÑ´æÔÚ´Ëdir¼ÇÂ¼£¬iNumÊÇ²»»á±ä»¯µÄ£¬ËùÒÔÅĞ¶ÏÏŞÖÆÎª5£¬Èç¹û²»´æÔÚ£¬iNum½«Òª+1,ËùÒÔÅĞ¶ÏÏŞÖÆÎª4
+		//3.é™åˆ¶iNumä¸èƒ½å¤§äº5æ¡,å¦åˆ™ç§»é™¤æœ€åä¸€æ¡,å¦‚æœå·²å­˜åœ¨æ­¤dirè®°å½•ï¼ŒiNumæ˜¯ä¸ä¼šå˜åŒ–çš„ï¼Œæ‰€ä»¥åˆ¤æ–­é™åˆ¶ä¸º5ï¼Œå¦‚æœä¸å­˜åœ¨ï¼ŒiNumå°†è¦+1,æ‰€ä»¥åˆ¤æ–­é™åˆ¶ä¸º4
 		if (XmlExist.IsValid()&&iNum>5
 			||!XmlExist.IsValid()&&iNum>4
 			)
@@ -600,8 +600,8 @@ bool DMCtrlXml::AddRecentResDir(CStringW strNewDir)
 			XmlRoot.RemoveChildNode(&XmlLast);
 		}
 
-		//4.ÔÚ×îÇ°Ãæ²åÈëĞÂ¼ÇÂ¼
-		if (XmlExist.IsValid())// Ô­À´¾Í´æÔÚÁË,ÏÈÒÆ³ı
+		//4.åœ¨æœ€å‰é¢æ’å…¥æ–°è®°å½•
+		if (XmlExist.IsValid())// åŸæ¥å°±å­˜åœ¨äº†,å…ˆç§»é™¤
 		{
 			XmlRoot.RemoveChildNode(&XmlExist);
 		}

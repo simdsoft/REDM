@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "NameAttr.h"
 
 BEGIN_EVENT_MAP(NameAttr)
@@ -32,16 +32,16 @@ DMCode NameAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hSel);
 		if (NULL == pData||NULL == pData->m_pDUIWnd)
 		{
-			DM_MessageBox(L"ÕâÊÇÀíÂÛÉÏ²»Ó¦¸Ã³öÏÖµÄµ¯¿ò!");
+			DM_MessageBox(L"è¿™æ˜¯ç†è®ºä¸Šä¸åº”è¯¥å‡ºç°çš„å¼¹æ¡†!");
 			break;
 		}
 		bool bMain = false;
-		if (hOldSel && 0 == m_pObjTree->GetParentItem(hOldSel))// ÇĞ»»Ç°ÊÇDMHWnd´°¿Ú
+		if (hOldSel && 0 == m_pObjTree->GetParentItem(hOldSel))// åˆ‡æ¢å‰æ˜¯DMHWndçª—å£
 		{
 			m_pIdEdit->SetReadOnly(false);
 			m_pNameEdit->SetReadOnly(false);
 		}
-		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// ÇĞ»»µ½×îÉÏ²ãÁË£¬Ä¬ÈÏÎªDMHWnd´°¿Ú
+		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// åˆ‡æ¢åˆ°æœ€ä¸Šå±‚äº†ï¼Œé»˜è®¤ä¸ºDMHWndçª—å£
 		{
 			m_pIdEdit->SetReadOnly(true);
 			m_pNameEdit->SetReadOnly(true);
@@ -58,7 +58,7 @@ DMCode NameAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 			strName    = "";
 			strId      = "";
 		}
-		else if (0 == strClsName.CompareNoCase(pData->m_pRootWnd->V_GetClassName()))// µÚ¶ş²ã£¬¼´root²ã
+		else if (0 == strClsName.CompareNoCase(pData->m_pRootWnd->V_GetClassName()))// ç¬¬äºŒå±‚ï¼Œå³rootå±‚
 		{
 			strName    = pData->m_pXmlNode->Attribute(XML_NAME);
 			strId      = pData->m_pXmlNode->Attribute(XML_ID);
@@ -107,7 +107,7 @@ DMCode NameAttr::OnEditChange(DMEventArgs *pEvt)
 				pData->m_pXmlNode->SetAttribute(strKey,strValue,false);
 				m_pObjXml->SetDocUnSave(pData->m_pXmlNode);
 				if (bName)
-				{// Í¬²½¸üĞÂobjtreeÉÏµÄÏÔÊ¾
+				{// åŒæ­¥æ›´æ–°objtreeä¸Šçš„æ˜¾ç¤º
 					CStringA strText = pData->m_pDUIWnd->V_GetClassName();
 					if (pData->m_bPanel)
 					{
@@ -135,7 +135,7 @@ DMCode NameAttr::OnEditChange(DMEventArgs *pEvt)
 
 		if (!DMSUCCEEDED(iErr))
 		{
-			DM_MessageBox(L"Ãû×Ö/IDÇøÉèÖÃÊ§°Ü!");
+			DM_MessageBox(L"åå­—/IDåŒºè®¾ç½®å¤±è´¥!");
 		}
 	} while (false);
 	return iErr;
@@ -152,7 +152,7 @@ DMCode NameAttr::s_DMHandleEvent(DMEventArgs *pEvt)
 		}
 		else
 		{
-			return ms_pthis->DMHandleEvent(pEvt);// ×ª·¢
+			return ms_pthis->DMHandleEvent(pEvt);// è½¬å‘
 		}
 	}
 

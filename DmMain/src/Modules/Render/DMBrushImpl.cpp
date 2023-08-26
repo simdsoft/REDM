@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMBrushImpl.h"
 
 namespace DM

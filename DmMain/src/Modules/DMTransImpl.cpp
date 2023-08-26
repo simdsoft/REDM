@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 
 #if !defined(DM_EXCLUDE_MUI)
 #include "DMTransImpl.h"
@@ -25,7 +25,7 @@ namespace DM
 				break;
 			}
 
-			//1. ¼ÓÔØXML
+			//1. åŠ è½½XML
 			DMXmlDocument XmlDoc;
 			if (0 == lp)
 			{
@@ -49,40 +49,40 @@ namespace DM
 				}
 			}
 
-			//2.½âÎöXML
+			//2.è§£æXML
 			DMXmlNode XmlLanguage = XmlDoc.Root(DMLAG_ROOT);
 			if (!XmlLanguage.IsValid())
 			{
 				break;
 			}
 
-			//3.»ñµÃÓïÑÔ°ü¶ÔÏó
+			//3.è·å¾—è¯­è¨€åŒ…å¯¹è±¡
 			DMLanguageItemPtr pLanguageItem = FindLanguageItemPtr(DMCA2W(XmlLanguage.Attribute(DMLAG_NAME)));
-			if (NULL == pLanguageItem)// Èç¹ûÔ­À´²»´æÔÚÕâ¸öÓïÑÔ°ü¶ÔÏó£¬¾ÍĞÂ½¨Ò»¸ö£¬²¢¼ÓÈë
+			if (NULL == pLanguageItem)// å¦‚æœåŸæ¥ä¸å­˜åœ¨è¿™ä¸ªè¯­è¨€åŒ…å¯¹è±¡ï¼Œå°±æ–°å»ºä¸€ä¸ªï¼Œå¹¶åŠ å…¥
 			{
 				pLanguageItem = new DMLanguageItem(DMCA2W(XmlLanguage.Attribute(DMLAG_NAME)));
 				AddObj(pLanguageItem);
 			}
 
-			//4.Ìí¼ÓÓïÑÔ°üµÄnode
+			//4.æ·»åŠ è¯­è¨€åŒ…çš„node
 			DMXmlNode XmlNode = XmlLanguage.FirstChild(DMLAG_NODE);// loop 1
 			while (XmlNode.IsValid())
 			{
 				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(DMCA2W(XmlNode.Attribute(DMLAG_NAME)));
-				if (NULL == pNode)// Èç¹û´ËNode²»´æÔÚ£¬¾Í´´½¨²¢¼ÓÈë
+				if (NULL == pNode)// å¦‚æœæ­¤Nodeä¸å­˜åœ¨ï¼Œå°±åˆ›å»ºå¹¶åŠ å…¥
 				{
 					pNode = new DMTransNode(DMCA2W(XmlNode.Attribute(DMLAG_NAME)));
 					pLanguageItem->AddObj(pNode);
 				}
 
-				//5. Ìí¼ÓnodeµÄitem
+				//5. æ·»åŠ nodeçš„item
 				DMXmlNode XmlItem = XmlNode.FirstChild(DMLAG_ITEM);// loop 2
 				while (XmlItem.IsValid())
 				{ // TODO: mui/i18n translate
 					CStringW strSrc = DMCA2W(XmlItem.Attribute(DMLAG_SRC));
 					CStringW strTrans = DMCA2W(XmlItem.Attribute(DMLAG_TRANS));
 					if (pNode->IsKeyExist(strSrc))
-					{// ÒÔ×îºóÒ»¸öÎª×¼
+					{// ä»¥æœ€åä¸€ä¸ªä¸ºå‡†
 						pNode->RemoveKey(strSrc);
 					}
 					pNode->AddKey(strSrc,strTrans);
@@ -100,7 +100,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			//1. Îª¿Õ±íÊ¾Ê¹ÓÃÄÚ²¿Ô­Ê¼µÄ,ËùÒÔÇå¿Õ×Ö·û´®
+			//1. ä¸ºç©ºè¡¨ç¤ºä½¿ç”¨å†…éƒ¨åŸå§‹çš„,æ‰€ä»¥æ¸…ç©ºå­—ç¬¦ä¸²
 			if (strLanguageName.IsEmpty())
 			{
 				m_pCurLanguage = NULL;
@@ -109,13 +109,13 @@ namespace DM
 				break;
 			}
 
-			//2. ÉèÖÃÏàÍ¬,²»´¦Àí
+			//2. è®¾ç½®ç›¸åŒ,ä¸å¤„ç†
 			if (0 == strLanguageName.CompareNoCase(m_strCurLanguageName))
 			{
 				break;
 			}
 
-			//3. »ñµÃÓïÑÔ°ü,Èç¹û»ñÈ¡³É¹¦,Ôò¸üĞÂm_strCurLanguageName,Èç¹û»ñÈ¡Ê§°Ü,ÔòÉèÖÃm_strCurLanguageNameÎª¿Õ
+			//3. è·å¾—è¯­è¨€åŒ…,å¦‚æœè·å–æˆåŠŸ,åˆ™æ›´æ–°m_strCurLanguageName,å¦‚æœè·å–å¤±è´¥,åˆ™è®¾ç½®m_strCurLanguageNameä¸ºç©º
 			m_pCurLanguage = FindLanguageItemPtr(strLanguageName);
 			if (m_pCurLanguage)
 			{
@@ -135,7 +135,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			//1.²éÕÒÓïÑÔ°ü¶ÔÏó,Èç¹û²»´æÔÚ,Ôò´´½¨Ëü
+			//1.æŸ¥æ‰¾è¯­è¨€åŒ…å¯¹è±¡,å¦‚æœä¸å­˜åœ¨,åˆ™åˆ›å»ºå®ƒ
 			DMLanguageItemPtr pLanguageItem = NULL;
 			if (strLanguageName.IsEmpty())
 			{
@@ -145,7 +145,7 @@ namespace DM
 			{
 				pLanguageItem = FindLanguageItemPtr(strLanguageName);
 			}
-			if (NULL == pLanguageItem&&!strLanguageName.IsEmpty())// ´´½¨ĞÂµÄÓïÑÔ°ü
+			if (NULL == pLanguageItem&&!strLanguageName.IsEmpty())// åˆ›å»ºæ–°çš„è¯­è¨€åŒ…
 			{
 				pLanguageItem = new DMLanguageItem(strLanguageName);
 				AddObj(pLanguageItem);
@@ -155,7 +155,7 @@ namespace DM
 				break;
 			}
 
-			//2.²éÕÒÓïÑÔ°ü¶ÔÏóÖĞNode×Ó¶ÔÏó,Èç¹û²»´æÔÚ,Ôò´´½¨
+			//2.æŸ¥æ‰¾è¯­è¨€åŒ…å¯¹è±¡ä¸­Nodeå­å¯¹è±¡,å¦‚æœä¸å­˜åœ¨,åˆ™åˆ›å»º
 			DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(strNodeName);
 			if (NULL == pNode)
 			{
@@ -163,7 +163,7 @@ namespace DM
 				pLanguageItem->AddObj(pNode);
 			}
 
-			//3.Èç¹û·­ÒëÒÑ´æÔÚ,ÔòÒÆ³ıÔ­·­Òë,¼ÓÈëĞÂ·­Òë
+			//3.å¦‚æœç¿»è¯‘å·²å­˜åœ¨,åˆ™ç§»é™¤åŸç¿»è¯‘,åŠ å…¥æ–°ç¿»è¯‘
 			if (pNode->IsKeyExist(strSrc))
 			{
 				pNode->RemoveKey(strSrc);
@@ -176,16 +176,16 @@ namespace DM
 
 	CStringW DMTransImpl::GetTrans(CStringW strSrc,CStringW strNodeName,CStringW strLanguageName)
 	{
-		CStringW strTrans = strSrc;// Ä¬ÈÏ·µ»ØÔ­Ê¼µÄ
+		CStringW strTrans = strSrc;// é»˜è®¤è¿”å›åŸå§‹çš„
 		do 
 		{
 			if (strSrc.IsEmpty()||0==(int)GetCount())
 			{
 				break;
 			}
-			//1.²éÕÒÓïÑÔ°ü¶ÔÏó
+			//1.æŸ¥æ‰¾è¯­è¨€åŒ…å¯¹è±¡
 			DMLanguageItemPtr pLanguageItem = NULL;
-			if (strLanguageName.IsEmpty())// ´Óµ±Ç°ÉèÖÃµÄÓïÑÔ°üÖĞ²éÕÒ
+			if (strLanguageName.IsEmpty())// ä»å½“å‰è®¾ç½®çš„è¯­è¨€åŒ…ä¸­æŸ¥æ‰¾
 			{
 				pLanguageItem = m_pCurLanguage;
 			}
@@ -203,11 +203,11 @@ namespace DM
 			{
 				strNodeName = L"custom";
 			}
-			//2.ÓÅÏÈ´ÓÌØ¶¨strNodeNameÅäÖÃ²éÕÒ,Èç¹û²éÕÒ²»µ½,Ôò´ÓcustomÖĞ²éÕÒ
-			if (0!=strNodeName.CompareNoCase(L"custom"))// Èç¹û²»ÊÇcustom
+			//2.ä¼˜å…ˆä»ç‰¹å®šstrNodeNameé…ç½®æŸ¥æ‰¾,å¦‚æœæŸ¥æ‰¾ä¸åˆ°,åˆ™ä»customä¸­æŸ¥æ‰¾
+			if (0!=strNodeName.CompareNoCase(L"custom"))// å¦‚æœä¸æ˜¯custom
 			{
 				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(strNodeName);
-				if (NULL == pNode || !pNode->IsKeyExist(strSrc))// ½Úµã²»´æÔÚ,»ò½Úµã´æÔÚµ«key²»´æÔÚ,ÔòÊÔ×Å´ÓcustomÖĞÕÒ
+				if (NULL == pNode || !pNode->IsKeyExist(strSrc))// èŠ‚ç‚¹ä¸å­˜åœ¨,æˆ–èŠ‚ç‚¹å­˜åœ¨ä½†keyä¸å­˜åœ¨,åˆ™è¯•ç€ä»customä¸­æ‰¾
 				{
 					pNode = pLanguageItem->FindTransNodePtr(L"custom");
 					if (NULL != pNode)
@@ -220,7 +220,7 @@ namespace DM
 					pNode->GetObjByKey(strSrc,strTrans);
 				}
 			}
-			else//3.Ö±½Ó´ÓcustomÖĞ²éÕÒ
+			else//3.ç›´æ¥ä»customä¸­æŸ¥æ‰¾
 			{
 				DMTransNodePtr pNode = pLanguageItem->FindTransNodePtr(strNodeName);
 				if (NULL != pNode)
@@ -229,7 +229,7 @@ namespace DM
 				}
 			}
 
-			//4.Èç¹û×ª»»Îª¿Õ,Ôò·µ»ØÔ­Ê¼
+			//4.å¦‚æœè½¬æ¢ä¸ºç©º,åˆ™è¿”å›åŸå§‹
 			if (strTrans.IsEmpty())
 			{
 				strTrans = strSrc;

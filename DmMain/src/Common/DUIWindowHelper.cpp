@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIWindowHelper.h"
 
 namespace DM
@@ -7,7 +7,7 @@ namespace DM
 	//---------------------------------------DUIWindow_Data-----------------------
 	DUIWindow_Data::DUIWindow_Data()
 	{
-		m_bDirty            = true;             // Ä¬ÈÏÎªÔàÇø
+		m_bDirty            = true;             // é»˜è®¤ä¸ºè„åŒº
 		m_bUpdateLocked     = false;	
 		m_pCurMsg			= NULL;
 
@@ -56,7 +56,7 @@ namespace DM
 			dm_parsebool(lpszValue,bVisible);
 			if (!bLoadXml)
 			{
-				m_pOwner->DM_SetVisible(bVisible,true);// ÔÚshowÊ±»áÊÊµ±¸üÐÂm_bVisible	
+				m_pOwner->DM_SetVisible(bVisible,true);// åœ¨showæ—¶ä¼šé€‚å½“æ›´æ–°m_bVisible	
 			}
 			else
 			{	

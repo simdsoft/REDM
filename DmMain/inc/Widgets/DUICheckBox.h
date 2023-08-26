@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUICheckBox.h 
-// File Des: ÄÚÖÃCheckBoxÊµÏÖ
+// File Des: å†…ç½®CheckBoxå®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,18 +18,18 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUICheckBox"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUICheckBox"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUICheckBoxAttr :public DUIWindowAttr
 	{
 	public:
-		static const char* bool_brightbox;                                 ///< boxÍ¼±êÊÇ·ñÔÚÓÒ±ß,Ê¾Àı:brightbox="1"
-		static const char* bool_bmultilines;								///< ÊÇ·ñÖ§³Ö¶àĞĞ,Ê¾Àı:bmultilines="1"
-		static const char* INT_lineinter;                                  ///< ÔÚ¶àĞĞÏÂ,ÉèÖÃĞĞ¼ä¾à,Ê¾Àı:lineinter="1"
-		static const char* SKIN_checkskin;                                 ///< checkÍ¼,8·ÖÍ¼»ò2·ÖÍ¼»ò1·ÖÍ¼,8·ÖÍ¼,Ç°4ÎªÎ´Ñ¡ÖĞËÄÖÖ×´Ì¬£¬ºó4ÎªÑ¡ÖĞÊ±ËÄÖÖ×´Ì¬,Ê¾Àı:checkskin="PNG:checkbox"
-		static const char* SKIN_iconskin;                                  ///< iconÍ¼,ÈçÊ¹ÓÃÁËiconÍ¼,Ôòtext²»ÔÙ»æÖÆ,Ê¾Àı:iconskin="PNG:iconbtn"
-		static const char* INT_textoffset;                                 ///< ÎÄ±¾¾àÀëiconµÄÆ«ÒÆ£¬Ä¬ÈÏÎª0,Ê¾Àı:textoffset=10
-		static const char* bool_bchecked;									///< ÊÇ·ñÄ¬ÈÏ±»Ñ¡ÖĞ,Ê¾Àı:bchecked="1"
+		static const char* bool_brightbox;                                 ///< boxå›¾æ ‡æ˜¯å¦åœ¨å³è¾¹,ç¤ºä¾‹:brightbox="1"
+		static const char* bool_bmultilines;								///< æ˜¯å¦æ”¯æŒå¤šè¡Œ,ç¤ºä¾‹:bmultilines="1"
+		static const char* INT_lineinter;                                  ///< åœ¨å¤šè¡Œä¸‹,è®¾ç½®è¡Œé—´è·,ç¤ºä¾‹:lineinter="1"
+		static const char* SKIN_checkskin;                                 ///< checkå›¾,8åˆ†å›¾æˆ–2åˆ†å›¾æˆ–1åˆ†å›¾,8åˆ†å›¾,å‰4ä¸ºæœªé€‰ä¸­å››ç§çŠ¶æ€ï¼Œå4ä¸ºé€‰ä¸­æ—¶å››ç§çŠ¶æ€,ç¤ºä¾‹:checkskin="PNG:checkbox"
+		static const char* SKIN_iconskin;                                  ///< iconå›¾,å¦‚ä½¿ç”¨äº†iconå›¾,åˆ™textä¸å†ç»˜åˆ¶,ç¤ºä¾‹:iconskin="PNG:iconbtn"
+		static const char* INT_textoffset;                                 ///< æ–‡æœ¬è·ç¦»iconçš„åç§»ï¼Œé»˜è®¤ä¸º0,ç¤ºä¾‹:textoffset=10
+		static const char* bool_bchecked;									///< æ˜¯å¦é»˜è®¤è¢«é€‰ä¸­,ç¤ºä¾‹:bchecked="1"
 	};
 	DMAttrValueInit(DUICheckBoxAttr, bool_brightbox)
 	DMAttrValueInit(DUICheckBoxAttr, bool_bmultilines)
@@ -43,7 +43,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		DUICheckBoxµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUICheckBoxAttr"/>
+	///		DUICheckBoxçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUICheckBoxAttr"/>
 	/// </summary>
 	class DM_EXPORT DUICheckBox :public DUIWindow
 	{
@@ -58,24 +58,24 @@ namespace DM
 			DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnLButtonUp(UINT nFlags, CPoint pt);
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØDUIWindow
+		// Function Des: é‡è½½DUIWindow
 		//---------------------------------------------------
 		DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf, int cchText, LPRECT lpRect, UINT uFormat);
 		bool DV_IsStateChangeRedraw() { return true; }
 
 		//---------------------------------------------------
-		// Function Des: »»·ô
+		// Function Des: æ¢è‚¤
 		//---------------------------------------------------
 		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		int GetDrawState();
 		CRect GetCheckRect();
 

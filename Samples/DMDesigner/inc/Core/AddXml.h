@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	AddXml.h
 // File mark:    
-// File summary:AddÄ£Ê½
+// File summary:Addæ¨¡å¼
 // Author:		guoyouhuang
 // Edition:     1.0 
 // Create date: 2016-9-6
@@ -39,6 +39,6 @@ public:
 	DUITabCtrl*										  m_pTools;
 	DMSmartPtrT<AddExpandWnd>						  m_pExpandWnd;
 
-	// ÓÃÓÚ×ª·¢ÏûÏ¢
+	// ç”¨äºè½¬å‘æ¶ˆæ¯
 	static AddXml*                                    ms_pthis;
 };

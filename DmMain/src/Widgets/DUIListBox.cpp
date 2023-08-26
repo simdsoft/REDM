@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIListBox.h"
 
 namespace DM
@@ -50,7 +50,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ½Ó¿Ú
+	// Function Des: æ¥å£
 	int DUIListBox::InsertItem(int nIndex, LPLBITEM pItem)
 	{
 		do 
@@ -371,17 +371,17 @@ namespace DM
 
 			int nTargetY = 0;
 			for (int i = 0; i < nIndex; i++)
-			{//¼ÆËã³öÄ¿±ê¶¥²¿Y×ø±ê
+			{//è®¡ç®—å‡ºç›®æ ‡é¡¶éƒ¨Yåæ ‡
 				nTargetY += m_DMArray[i]->nHeight;
 			}
 			if (nTargetY < m_ptCurPos.y || m_DMArray[nIndex]->nHeight >= rcClient.Height())
-			{//Ä¿±ê¶¥²¿ÔÚ¿ÉÊÓ·¶Î§ÉÏ·½£¬»òÕß¿ÉÊÓ·¶Î§ÄÚÖ»ÄÜÏÔÊ¾Ä¿±êÏîÄ¿£¬Ôò°Ñ¿ÉÊÓ·¶Î§¹ö¶¯µ½Ä¿±ê¶¥²¿
+			{//ç›®æ ‡é¡¶éƒ¨åœ¨å¯è§†èŒƒå›´ä¸Šæ–¹ï¼Œæˆ–è€…å¯è§†èŒƒå›´å†…åªèƒ½æ˜¾ç¤ºç›®æ ‡é¡¹ç›®ï¼Œåˆ™æŠŠå¯è§†èŒƒå›´æ»šåŠ¨åˆ°ç›®æ ‡é¡¶éƒ¨
 				OnScroll(true,SB_THUMBPOSITION,nTargetY);
 				break;
 			}
 			nTargetY += m_DMArray[nIndex]->nHeight;
 			if (nTargetY > m_ptCurPos.y + rcClient.Height())
-			{//Ä¿±êµ×²¿ÔÚ¿ÉÊÓ·¶Î§ÏÂ·½£¬ÔòÍùÇ°»ØËİ×îºóÒ»¸öÄÜÍêÕûÏÔÊ¾µÄÏîÄ¿µÄ¶¥×ø±ê
+			{//ç›®æ ‡åº•éƒ¨åœ¨å¯è§†èŒƒå›´ä¸‹æ–¹ï¼Œåˆ™å¾€å‰å›æº¯æœ€åä¸€ä¸ªèƒ½å®Œæ•´æ˜¾ç¤ºçš„é¡¹ç›®çš„é¡¶åæ ‡
 				int nShowHeight = 0;
 				for ( int i = nIndex; i >= 0; i--)
 				{
@@ -430,15 +430,15 @@ namespace DM
 				}
 			}
 
-			if (!m_bHotTrack)//·ÇÈÈ¼ü×·×Ù×´Ì¬
+			if (!m_bHotTrack)//éçƒ­é”®è¿½è¸ªçŠ¶æ€
 			{
-				if (iItem == m_iSelItem)// Ñ¡ÖĞÏî
+				if (iItem == m_iSelItem)// é€‰ä¸­é¡¹
 				{
-					if (NULL!=m_pItemBgSkin)// ÓÅÏÈÑ¡ÖĞ±³¾°Í¼
+					if (NULL!=m_pItemBgSkin)// ä¼˜å…ˆé€‰ä¸­èƒŒæ™¯å›¾
 					{
 						nBgImg = 2;
 					}
-					else if (!m_crItemSelBg.IsTranslucent())// Ñ¡ÖĞ±³¾°É«
+					else if (!m_crItemSelBg.IsTranslucent())// é€‰ä¸­èƒŒæ™¯è‰²
 					{
 						crItemBg = m_crItemSelBg;
 					}
@@ -449,11 +449,11 @@ namespace DM
 				}
 				else if (iItem == m_iHoverItem)// hover
 				{
-					if (NULL!=m_pItemBgSkin)// ÓÅÏÈhover±³¾°Í¼
+					if (NULL!=m_pItemBgSkin)// ä¼˜å…ˆhoverèƒŒæ™¯å›¾
 					{
 						nBgImg = 1;
 					}
-					else if (!m_crItemHoverBg.IsTranslucent())// hover±³¾°É«
+					else if (!m_crItemHoverBg.IsTranslucent())// hoverèƒŒæ™¯è‰²
 					{
 						crItemBg = m_crItemHoverBg;
 					}
@@ -465,7 +465,7 @@ namespace DM
 			}
 			else 
 			{
-				if (iItem == m_iHoverItem||(m_iHoverItem==-1 && iItem== m_iSelItem))// Ñ¡ÖĞÏî
+				if (iItem == m_iHoverItem||(m_iHoverItem==-1 && iItem== m_iSelItem))// é€‰ä¸­é¡¹
 				{
 					if (NULL!=m_pItemBgSkin)
 					{
@@ -483,7 +483,7 @@ namespace DM
 				}
 			}
 
-			// »æÖÆ±³¾°
+			// ç»˜åˆ¶èƒŒæ™¯
 			if (NULL != m_pItemBgSkin)
 			{
 				m_pItemBgSkin->Draw(pCanvas,rc,nBgImg);
@@ -508,15 +508,15 @@ namespace DM
 
 				if (-1 == m_IconPt.x)
 				{
-					nOffsetX = m_nDefItemHei / 6;	//ÒÔÄ¬ÈÏ¸ß¶ÈµÄ6·Ö1 ÎªÍ¼±êÄ¬ÈÏ×ó±ß¾à
+					nOffsetX = m_nDefItemHei / 6;	//ä»¥é»˜è®¤é«˜åº¦çš„6åˆ†1 ä¸ºå›¾æ ‡é»˜è®¤å·¦è¾¹è·
 				}
 
 				if (-1 == m_IconPt.y)
 				{
-					nOffsetY = (m_DMArray[iItem]->nHeight-sizeSkin.cy)/2;    //y Ä¬ÈÏ¾ÓÖĞ
+					nOffsetY = (m_DMArray[iItem]->nHeight-sizeSkin.cy)/2;    //y é»˜è®¤å±…ä¸­
 				}
 
-				rcIcon.OffsetRect(rc.left + nOffsetX, rc.top + nOffsetY);// ´Ë´¦rcIconºÍm_rcsbClientµÄ½»¼¯ÇøÓò²Å»á±»ÏÔÊ¾£¬
+				rcIcon.OffsetRect(rc.left + nOffsetX, rc.top + nOffsetY);// æ­¤å¤„rcIconå’Œm_rcsbClientçš„äº¤é›†åŒºåŸŸæ‰ä¼šè¢«æ˜¾ç¤ºï¼Œ
 				m_pIconSkin->Draw(pCanvas, rcIcon, pItem->nImage);
 			}
 
@@ -578,9 +578,9 @@ namespace DM
 			}
 			if ((nTargetY >= m_ptCurPos.y && nTargetY <= m_ptCurPos.y + rcClient.Height())
 				|| (nTargetY + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && nTargetY + m_DMArray[iItem]->nHeight <= m_ptCurPos.y + rcClient.Height()) )
-			{//Ä¿±êÓĞ²¿·ÖÔÚ¿ÉÊÓ·¶Î§ÄÚ
+			{//ç›®æ ‡æœ‰éƒ¨åˆ†åœ¨å¯è§†èŒƒå›´å†…
 				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);
-				rcItem.OffsetRect(0,nTargetY-m_ptCurPos.y);// ´ÙÊ¹µÚÒ»¸öitem¿ÉÄÜÖ»»æÖÆÒ»²¿·Ö
+				rcItem.OffsetRect(0,nTargetY-m_ptCurPos.y);// ä¿ƒä½¿ç¬¬ä¸€ä¸ªitemå¯èƒ½åªç»˜åˆ¶ä¸€éƒ¨åˆ†
 				rcItem.OffsetRect(rcClient.TopLeft());
 				IDMCanvas* pCanvas = DM_GetCanvas(&rcItem,DMOLEDC_PAINTBKGND);
 				if (pCanvas)
@@ -599,7 +599,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIListBox::OnDestroy()
 	{
 		DeleteAll();
@@ -710,7 +710,7 @@ namespace DM
 
 	void DUIListBox::OnMouseLeave()
 	{
-		if (DM_IsVisible(true))// ¼ÓÒ»¸öÅĞ¶Ï£¬·ÀÖ¹·Ç¿Í»§ÇøÔÚlistÒş²ØÊ±»æÖÆ
+		if (DM_IsVisible(true))// åŠ ä¸€ä¸ªåˆ¤æ–­ï¼Œé˜²æ­¢éå®¢æˆ·åŒºåœ¨listéšè—æ—¶ç»˜åˆ¶
 		{
 			SetMsgHandled(FALSE);
 		}
@@ -773,7 +773,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¿ÉÖØÔØº¯Êı
+	// Function Des: å¯é‡è½½å‡½æ•°
 	DMCode DUIListBox::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 

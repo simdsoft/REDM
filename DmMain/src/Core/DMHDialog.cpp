@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMHDialog.h"
 
 namespace DM
@@ -38,22 +38,22 @@ namespace DM
 			if (!rect.IsRectEmpty())
 				CenterWindow();
 
-			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//·¢ËÍinitÏûÏ¢
+			SendMessage(WM_INITDIALOG, (WPARAM)m_hWnd);//å‘é€initæ¶ˆæ¯
 
 			/*
-			½â¾ö°²×°qqÎå±Êµ¼ÖÂ¡°ÍË³öÌáĞÑ´°¿Ú¡±ÎŞ·¨³öÏÖµÄÎÊÌâ---´ËÎÊÌâÔÚygguiÖĞ³öÏÖ
-			HWND_NOTOPMOST£º½«´°¿ÚÖÃÓÚËùÓĞ·Ç¶¥²ã´°¿ÚÖ®ÉÏ£¨¼´ÔÚËùÓĞ¶¥²ã´°¿ÚÖ®ºó£©¡£Èç¹û´°¿ÚÒÑ¾­ÊÇ·Ç¶¥²ã´°¿ÚÔò¸Ã±êÖ¾²»Æğ×÷ÓÃ¡£
-			HWND_TOP:½«´°¿ÚÖÃÓÚZĞòµÄ¶¥²¿¡£
+			è§£å†³å®‰è£…qqäº”ç¬”å¯¼è‡´â€œé€€å‡ºæé†’çª—å£â€æ— æ³•å‡ºç°çš„é—®é¢˜---æ­¤é—®é¢˜åœ¨ygguiä¸­å‡ºç°
+			HWND_NOTOPMOSTï¼šå°†çª—å£ç½®äºæ‰€æœ‰éé¡¶å±‚çª—å£ä¹‹ä¸Šï¼ˆå³åœ¨æ‰€æœ‰é¡¶å±‚çª—å£ä¹‹åï¼‰ã€‚å¦‚æœçª—å£å·²ç»æ˜¯éé¡¶å±‚çª—å£åˆ™è¯¥æ ‡å¿—ä¸èµ·ä½œç”¨ã€‚
+			HWND_TOP:å°†çª—å£ç½®äºZåºçš„é¡¶éƒ¨ã€‚
 			*/
 			::SetWindowPos(m_hWnd, /*HWND_TOP*/HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW);
-			g_pDMApp->Run(m_hWnd); // RunModalLoop, ÕâÀïÃ»ÓĞºÍmfcÒ»ÑùÀûÓÃm_nFlags±ê¼Ç¼ì²éContinueModal
+			g_pDMApp->Run(m_hWnd); // RunModalLoop, è¿™é‡Œæ²¡æœ‰å’Œmfcä¸€æ ·åˆ©ç”¨m_nFlagsæ ‡è®°æ£€æŸ¥ContinueModal
 
 			// [mfc] hide the window before enabling the parent, etc.
 			if (m_hWnd != NULL)
 				SetWindowPos(NULL, 0, 0, 0, 0, SWP_HIDEWINDOW |
 					SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
 			if (-1 == m_nRetCode)
-			{// ·ÀÖ¹·ÇEndDialogÍË³ö(Èç´Ë´°¿ÚµÄ¸¸´°¿Ú²»ÊÇÖ÷´°¿Ú,¶øÖ÷´°¿Ú¹Ø±ÕÊ±)
+			{// é˜²æ­¢éEndDialogé€€å‡º(å¦‚æ­¤çª—å£çš„çˆ¶çª—å£ä¸æ˜¯ä¸»çª—å£,è€Œä¸»çª—å£å…³é—­æ—¶)
 				DMFAIL_MSG("Modal Dialog must ended by EndDialog");
 				::PostQuitMessage(1);
 			}

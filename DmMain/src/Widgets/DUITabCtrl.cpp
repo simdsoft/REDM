@@ -1,11 +1,11 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUITabCtrl.h"
 
 namespace DM
 {
 	DUITabPage::DUITabPage()
 	{
-		m_pDUIXmlInfo->m_bVisible = false;// Ä¬ÈÏPageÒ³ÊÇÒş²ØµÄ
+		m_pDUIXmlInfo->m_bVisible = false;// é»˜è®¤Pageé¡µæ˜¯éšè—çš„
 		m_TabAniType = TAB_NULL;
 	}
 
@@ -17,7 +17,7 @@ namespace DM
 	///DUITabCtrl-----------------------------------------------------
 	DUITabCtrl::DUITabCtrl()
 	{
-		m_TextPt.SetPoint(-1,-1);           // Ä¬ÈÏÎª-1£¬-1
+		m_TextPt.SetPoint(-1,-1);           // é»˜è®¤ä¸º-1ï¼Œ-1
 		m_nHoverItem         = -1;
 		m_nCurSelItem        = 0;
 		m_nFirstItemOffset   = 0;
@@ -32,7 +32,7 @@ namespace DM
 		DMADDEVENT(DMEventTabSelChangedArgs::EventID);
 	}
 
-	// ·µ»Ø-1±íÊ¾½âÎöÊ§°Ü
+	// è¿”å›-1è¡¨ç¤ºè§£æå¤±è´¥
 	int DUITabCtrl::InsertItem(DMXmlNode &XmlNode, int iInsert/*=-1*/, bool bLoading/*=false*/)
 	{
 		int iRealInsert = iInsert;
@@ -91,11 +91,11 @@ namespace DM
 	}
 
 	/*
-	1.¹ã²¥tabÒ³Òª¸Ä±äµÄÏûÏ¢
-	2.ÊÇ·ñÆôÓÃ»¬¶¯Ğ§¹û
-	3.¸ø¾ÉµÄ·¢²»ÏÔÊ¾ÏûÏ¢£¬¸øĞÂµÄ·¢ÏÔÊ¾ÏûÏ¢
-	4.¹ã²¥tabÒ³ÒÑ¸Ä±äµÄÏûÏ¢
-	5.¿ªÊ¼»¬¶¯Ğ§¹û
+	1.å¹¿æ’­tabé¡µè¦æ”¹å˜çš„æ¶ˆæ¯
+	2.æ˜¯å¦å¯ç”¨æ»‘åŠ¨æ•ˆæœ
+	3.ç»™æ—§çš„å‘ä¸æ˜¾ç¤ºæ¶ˆæ¯ï¼Œç»™æ–°çš„å‘æ˜¾ç¤ºæ¶ˆæ¯
+	4.å¹¿æ’­tabé¡µå·²æ”¹å˜çš„æ¶ˆæ¯
+	5.å¼€å§‹æ»‘åŠ¨æ•ˆæœ
 	*/
 	bool DUITabCtrl::SetCurSel(int nIndex)
 	{
@@ -262,7 +262,7 @@ namespace DM
 		DM_DestroyChildWnd(pPage);
 		m_PageArray.RemoveAt(nIndex);
 
-		if (nIndex == m_nCurSelItem)// É¾³ıµÄÊÇµ±Ç°Ñ¡ÖĞÒ³
+		if (nIndex == m_nCurSelItem)// åˆ é™¤çš„æ˜¯å½“å‰é€‰ä¸­é¡µ
 		{
 			if (nSelPage<0)
 			{
@@ -315,7 +315,7 @@ namespace DM
 				break;
 			}
 
-			if (nIndex == m_nCurSelItem)// É¾³ıµÄÊÇµ±Ç°Ñ¡ÖĞÒ³
+			if (nIndex == m_nCurSelItem)// åˆ é™¤çš„æ˜¯å½“å‰é€‰ä¸­é¡µ
 			{
 				if (nSelPage<0)
 				{
@@ -431,7 +431,7 @@ namespace DM
 		CRect rcItem;
 		int nOldHoverItem = m_nHoverItem;
 		m_nHoverItem = HitTest(point);
-		if (m_nHoverItem != nOldHoverItem) // ¸üĞÂ×´Ì¬
+		if (m_nHoverItem != nOldHoverItem) // æ›´æ–°çŠ¶æ€
 		{
 			GetItemRect(nOldHoverItem, rcItem);
 			DM_InvalidateRect(rcItem);
@@ -456,7 +456,7 @@ namespace DM
 		case VK_LEFT:
 		case VK_UP:
 			{
-				if (!SetCurSel(m_nCurSelItem-1))// ÂÖÑ¯µ½×îÓÒ±ßÁË
+				if (!SetCurSel(m_nCurSelItem-1))// è½®è¯¢åˆ°æœ€å³è¾¹äº†
 				{
 					SetCurSel(GetItemCount()-1);
 				}
@@ -466,7 +466,7 @@ namespace DM
 		case VK_RIGHT:
 		case VK_DOWN:
 			{
-				if (!SetCurSel(m_nCurSelItem+1))// ÂÖÑ¯µ½×î×ó±ßÁË
+				if (!SetCurSel(m_nCurSelItem+1))// è½®è¯¢åˆ°æœ€å·¦è¾¹äº†
 				{
 					SetCurSel(0);
 				}
@@ -487,7 +487,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			// ¼ÓÈë×ÓPage
+			// åŠ å…¥å­Page
 			for (DMXmlNode XmlChildNode = XmlNode.FirstChild(); XmlChildNode.IsValid(); XmlChildNode=XmlChildNode.NextSibling())
 			{
 				InsertItem(XmlChildNode,-1, TRUE);
@@ -675,8 +675,8 @@ namespace DM
 				break;
 			}
 
-			//0.ÏÈµşÒ»´Î
-			if (m_pItemBgSkin)// ²»Í¬ÓÚpPage->m_pItemSkin
+			//0.å…ˆå ä¸€æ¬¡
+			if (m_pItemBgSkin)// ä¸åŒäºpPage->m_pItemSkin
 			{
 				int iDraw = 0;
 				m_pItemBgSkin->GetStates(iDraw);
@@ -684,7 +684,7 @@ namespace DM
 				m_pItemBgSkin->Draw(pCanvas,rcItem,iDraw);
 			}
 
-			//1.»æÖÆ±³¾°Í¼
+			//1.ç»˜åˆ¶èƒŒæ™¯å›¾
 			if (pPage->m_pItemSkin)
 			{
 				int iDraw = 0;
@@ -697,7 +697,7 @@ namespace DM
 				pPage->m_pItemSkin->Draw(pCanvas,rcSkin,iDraw);
 			}
 
-			// 2.»æÖÆÎÄ×Ö
+			// 2.ç»˜åˆ¶æ–‡å­—
 			DUIDrawEnviron paint;
 			DWORD dwOld = pPage->DM_ModifyState(dwState,DUIWNDSTATE_FULL,false);
 			pPage->DV_PushDrawEnviron(pCanvas,paint);
@@ -705,13 +705,13 @@ namespace DM
 			{
 				pCanvas->TextOut(DMTR(GetItem(iItem)->m_strTitle),-1,rcItem.left+m_TextPt.x,rcItem.top+m_TextPt.y);
 			}
-			else// x,yÖÁÉÙÓĞÒ»¸öÎª-1
+			else// x,yè‡³å°‘æœ‰ä¸€ä¸ªä¸º-1
 			{
 				CRect rcText = rcItem;
 				UINT uTextAlign = 0;
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(uTextAlign);
 				UINT uAlign = uTextAlign;
-				if (m_TextPt.y!=-1)// Ö¸¶¨ÁËYÆ«ÒÆ£¬X¾ÓÖĞ
+				if (m_TextPt.y!=-1)// æŒ‡å®šäº†Yåç§»ï¼ŒXå±…ä¸­
 				{
 					rcText.top += m_TextPt.y;
 					uAlign = uTextAlign&(DT_CENTER|DT_RIGHT|DT_SINGLELINE|DT_END_ELLIPSIS);

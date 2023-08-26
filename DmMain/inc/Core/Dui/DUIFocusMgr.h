@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIFocusMgr.h 
-// File Des: ½¹µã´¦ÀíÀà
+// File Des: ç„¦ç‚¹å¤„ç†ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -28,27 +28,27 @@ namespace DM
 		virtual ~FocusSearch();
 
 		/// -------------------------------------------------
-		/// @brief			 ²éÕÒÏÂÒ»¸öÓĞ½¹µãµÄ´°¿Ú£¬ÈçÔÚÒ»×é,ÔòÈÏÎªcheck×´Ì¬µÄ´°¿ÚÎª×é´ú±í
-		/// @param[in]		 pStartWnd		¿ªÊ¼²éÕÒµÄ´°¿Ú,ÈçÎªNULL,ÔòÈ¡m_pHWnd×îµ×²ã×îºóÒ»¸ö×Ó´°¿Ú¿ªÊ¼£¨bReverse=true£©»ò´Óm_pHWndµÄµÚÒ»¸ö×Ó´°¿Ú¿ªÊ¼(bReverse=false)
-		/// @param[in]		 bReverse		Îªtrue±íÊ¾´ÓºóÏòÇ°ÕÒ
-		/// @remark			 ÔÚÃ»ÓĞÕÒµ½×´Ì¬ÏÂ£¬Èç¹ûm_bCycleÎªtrue,Ôò´ÓÍ·ÔÙÕÒÒ»´Î(Ñ­»·Ò»´Î£¬m_bCycleÖÃÎªfalse)
-		/// @return  t:NULL±íÊ¾Ã»ÓĞÕÒµ½
+		/// @brief			 æŸ¥æ‰¾ä¸‹ä¸€ä¸ªæœ‰ç„¦ç‚¹çš„çª—å£ï¼Œå¦‚åœ¨ä¸€ç»„,åˆ™è®¤ä¸ºcheckçŠ¶æ€çš„çª—å£ä¸ºç»„ä»£è¡¨
+		/// @param[in]		 pStartWnd		å¼€å§‹æŸ¥æ‰¾çš„çª—å£,å¦‚ä¸ºNULL,åˆ™å–m_pHWndæœ€åº•å±‚æœ€åä¸€ä¸ªå­çª—å£å¼€å§‹ï¼ˆbReverse=trueï¼‰æˆ–ä»m_pHWndçš„ç¬¬ä¸€ä¸ªå­çª—å£å¼€å§‹(bReverse=false)
+		/// @param[in]		 bReverse		ä¸ºtrueè¡¨ç¤ºä»åå‘å‰æ‰¾
+		/// @remark			 åœ¨æ²¡æœ‰æ‰¾åˆ°çŠ¶æ€ä¸‹ï¼Œå¦‚æœm_bCycleä¸ºtrue,åˆ™ä»å¤´å†æ‰¾ä¸€æ¬¡(å¾ªç¯ä¸€æ¬¡ï¼Œm_bCycleç½®ä¸ºfalse)
+		/// @return  t:NULLè¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°
 		DUIWindow* FindNextFocusableWnd(DUIWindow* pStartWnd,bool bReverse);
 
 	public:
 		bool IsFocusable(DUIWindow* pWnd);   
 		bool IsWndFocusableCandidate(DUIWindow* pWnd, DUIWindow* pGroupOwner);
 
-		// ·µ»ØÏÂÒ»¸öÓĞ½¹µãµÄ´°¿Ú,bResetStartWndÎªtrue±íÊ¾ÆğÊ¼´°¿ÚÊÇÄÚ²¿×Ô¶¯Éè¶¨µÄ
+		// è¿”å›ä¸‹ä¸€ä¸ªæœ‰ç„¦ç‚¹çš„çª—å£,bResetStartWndä¸ºtrueè¡¨ç¤ºèµ·å§‹çª—å£æ˜¯å†…éƒ¨è‡ªåŠ¨è®¾å®šçš„
 		DUIWindow* FindNextFocusableWndImpl(DUIWindow* pStartWnd,bool bResetStartWnd,bool bFindUp,bool bFindDown, DUIWindow* pSkipGroupOwner);
 		DUIWindow* FindPreviousFocusableWndImpl(DUIWindow* pStartWnd,bool bResetStartWnd,bool bFindUp,bool bFindDown,DUIWindow* pSkipGroupOwner);
 
 	protected:
 		DUIWindow*			m_pHWnd;
-		bool				m_bCycle;    ///< ÊÇ·ñµ½ÁË×îºóÔÙ´ÓÍ·Ñ­»·²éÕÒ
+		bool				m_bCycle;    ///< æ˜¯å¦åˆ°äº†æœ€åå†ä»å¤´å¾ªç¯æŸ¥æ‰¾
 	};
 
-	template<>// ´Ë´úÂëÓÃÓÚDUIFocusMgrÖĞµÄCMap³õÊ¼»¯¡¢±È½Ï
+	template<>// æ­¤ä»£ç ç”¨äºDUIFocusMgrä¸­çš„CMapåˆå§‹åŒ–ã€æ¯”è¾ƒ
 	class DM::CElementTraits<DM::DUIAccel>:public DM::CElementTraitsBase<DM::DUIAccel>
 	{
 	public:
@@ -70,7 +70,7 @@ namespace DM
 
 	typedef IDMAccelHandler* IDMAccelHandlerPtr;
 	/// <summary>
-	///		¹ÜÀí½¹µãÔÚDUI´°¿ÚÖĞµÄ·Ö·¢£¬ÒÔ¼°¼ÓËÙ¼üµÄ×¢²á
+	///		ç®¡ç†ç„¦ç‚¹åœ¨DUIçª—å£ä¸­çš„åˆ†å‘ï¼Œä»¥åŠåŠ é€Ÿé”®çš„æ³¨å†Œ
 	/// </summary>
 	class DM_EXPORT DUIFocusMgr : public IDMAccelMgr
 	{
@@ -78,44 +78,44 @@ namespace DM
 		enum FocusChangeReason
 		{
 			FocusReasonByTab,			 // Tab or Shift+Tab                
-			FocusReasonByDirect,		 // µã»÷»òÖ±½ÓÌø×ª
-			FocusReasonByRestore,		 // Ö÷´°¿ÚÊ§È¥ÔÙ³¢ÊÔ»Ö¸´½¹µã
+			FocusReasonByDirect,		 // ç‚¹å‡»æˆ–ç›´æ¥è·³è½¬
+			FocusReasonByRestore,		 // ä¸»çª—å£å¤±å»å†å°è¯•æ¢å¤ç„¦ç‚¹
 		};
 
 		DUIFocusMgr(DUIWindow *pHWnd);
 		~DUIFocusMgr(void);
 
 		/// -------------------------------------------------
-		/// @brief ÉèÖÃ½¹µã
-		/// @param[in]  DUIWnd		ĞèÉèÖÃ½¹µãµÄDUI¾ä±ú
-		/// @return ÎŞ
+		/// @brief è®¾ç½®ç„¦ç‚¹
+		/// @param[in]  DUIWnd		éœ€è®¾ç½®ç„¦ç‚¹çš„DUIå¥æŸ„
+		/// @return æ— 
 		void SetFocusedWnd(DUIWND DUIWnd);
 
 		/// -------------------------------------------------
-		/// @brief »ñµÃ½¹µã
-		/// @return µ±Ç°ÉèÖÃ½¹µãµÄDUI¾ä±ú
+		/// @brief è·å¾—ç„¦ç‚¹
+		/// @return å½“å‰è®¾ç½®ç„¦ç‚¹çš„DUIå¥æŸ„
 		DUIWND GetFocusedWnd();
 
 		//---------------------------------------------------
-		// Function Des: ×¢²áÈÈ¼ü
+		// Function Des: æ³¨å†Œçƒ­é”®
 		//---------------------------------------------------
-		void RegisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler);	///< ×¢²á¼ÓËÙ¼üÒÔ¼°ÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏó
-		void UnregisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler);	///< ·´×¢²á¼ÓËÙ¼üÒÔ¼°ÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏó
-		void UnregisterAccels(IDMAccelHandler* pHandler);						///< ·´×¢²áÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏóµÄËùÓĞ¼ÓËÙ¼ü
-		bool ProcessAccel(const DUIAccel& Accel);								///< Ñ­»·´¦Àí×¢²áµÄ¼ÓËÙ¼üÊÂ¼ş
+		void RegisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler);	///< æ³¨å†ŒåŠ é€Ÿé”®ä»¥åŠäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡
+		void UnregisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler);	///< åæ³¨å†ŒåŠ é€Ÿé”®ä»¥åŠäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡
+		void UnregisterAccels(IDMAccelHandler* pHandler);						///< åæ³¨å†Œäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡çš„æ‰€æœ‰åŠ é€Ÿé”®
+		bool ProcessAccel(const DUIAccel& Accel);								///< å¾ªç¯å¤„ç†æ³¨å†Œçš„åŠ é€Ÿé”®äº‹ä»¶
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool IsTabChanged(UINT vKey);  
-		bool OnKeyDown(UINT vKey);        // 1. tab 2.ÀàËÆRedioButton 3.¼ÓËÙ¼ü±»´¦Àí
+		bool OnKeyDown(UINT vKey);        // 1. tab 2.ç±»ä¼¼RedioButton 3.åŠ é€Ÿé”®è¢«å¤„ç†
 
 		//---------------------------------------------------
-		// Function Des: ¸üĞÂ´°¿Ú×´Ì¬
+		// Function Des: æ›´æ–°çª—å£çŠ¶æ€
 		//---------------------------------------------------
 		void AdvanceFocus(bool bReverse);
 		void SetFocuseWndWithReason(DUIWND DUIWnd, FocusChangeReason reason);
 
 		//---------------------------------------------------
-		// Function Des: ´æ´¢ºÍ»Ö¸´focuse´°¿Ú£¬ÓÃÓÚ´°¿ÚÔÚactive/inactiveÖĞÇĞ»»
+		// Function Des: å­˜å‚¨å’Œæ¢å¤focuseçª—å£ï¼Œç”¨äºçª—å£åœ¨active/inactiveä¸­åˆ‡æ¢
 		//---------------------------------------------------
 		void StoreFocuseWnd();
 		void RestoreFocuseWnd();

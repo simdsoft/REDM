@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMApp.h 
-// File Des: Ö÷Èë¿Ú
+// File Des: ä¸»å…¥å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -16,19 +16,19 @@
 
 namespace DM
 {
-	/// ¼òÒ×ºê¶¨Òå-------------------------------------------
+	/// ç®€æ˜“å®å®šä¹‰-------------------------------------------
 	#define  g_pDMApp                                   DMApp::getSingletonPtr()
 
-	/// Íâ²¿xmlDoc
+	/// å¤–éƒ¨xmlDoc
 	typedef DMXmlDocument* (*fun_cbGetSubXmlDoc)(LPCSTR /*pszType*/, LPCSTR /*pszName*/);
 
 	typedef HBITMAP(*DM_CUSTOM_IMAGELOADER)(DWORD fourccID, LPCWSTR fileName);
 
 	/// <summary>
-	///		´ËÎª×îÖØÒªÖ÷DataÀà£¬Ò»¸öÓ¦ÓÃ³ÌĞòÓ¦¸ÃÖ»ÓĞÒ»¸ö´ËÀàµÄÈ«¾Ö¶ÔÏó
+	///		æ­¤ä¸ºæœ€é‡è¦ä¸»Dataç±»ï¼Œä¸€ä¸ªåº”ç”¨ç¨‹åºåº”è¯¥åªæœ‰ä¸€ä¸ªæ­¤ç±»çš„å…¨å±€å¯¹è±¡
 	/// </summary>
 	/// <remarks>
-	///		ÊµÏÖÁËÏß³Ì¡¢×ÊÔ´¡¢²å¼ş×¢²áµÈ¶¨Òå¡¢ÑÓ³Ù¼ÓÔØ
+	///		å®ç°äº†çº¿ç¨‹ã€èµ„æºã€æ’ä»¶æ³¨å†Œç­‰å®šä¹‰ã€å»¶è¿ŸåŠ è½½
 	/// </remarks>
 	class DM_EXPORT DMApp:public DMSingletonT<DMApp>
 	{
@@ -37,310 +37,310 @@ namespace DM
 		~DMApp();
 	public:
 		/// -------------------------------------------------
-		/// @brief			»ñÈ¡ÄÚ²¿Class¶ÔÏó
-		/// @param[in]		bShadow          ÊÇ·ñÎªÒõÓ°Àà
+		/// @brief			è·å–å†…éƒ¨Classå¯¹è±¡
+		/// @param[in]		bShadow          æ˜¯å¦ä¸ºé˜´å½±ç±»
 		/// @return         ATOM
 		ATOM   GetClassAtom(bool bShadow=false);
 
 		/// -------------------------------------------------
-		/// @brief			¼ÓÔØÈ«¾ÖµÄskin¡¢style¡¢Ä¬ÈÏ×ÖÌåµÈ
-		/// @param[in]		lpszXmlId		 ÔÚ×ÊÔ´ÖĞµÄÃû×Ö
-		/// @remark         Ó¦¸ÃÔÚ×ÊÔ´¼ÓÔØºóÔÙµ÷ÓÃ
+		/// @brief			åŠ è½½å…¨å±€çš„skinã€styleã€é»˜è®¤å­—ä½“ç­‰
+		/// @param[in]		lpszXmlId		 åœ¨èµ„æºä¸­çš„åå­—
+		/// @remark         åº”è¯¥åœ¨èµ„æºåŠ è½½åå†è°ƒç”¨
 		/// @return			DMCode
 		DMCode InitGlobal(LPCSTR lpszXmlId="global");
 
 		void AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn);
 
 		/// -------------------------------------------------
-		/// @brief			ÔËĞĞÏûÏ¢Ñ­»·
-		/// @param[in]		hMainWnd          ´°¿Ú¾ä±ú
-		/// @remark         ÔÚ´°¿Ú´´½¨ºó£¬ÔËĞĞÏûÏ¢Ñ­»·
+		/// @brief			è¿è¡Œæ¶ˆæ¯å¾ªç¯
+		/// @param[in]		hMainWnd          çª—å£å¥æŸ„
+		/// @remark         åœ¨çª—å£åˆ›å»ºåï¼Œè¿è¡Œæ¶ˆæ¯å¾ªç¯
 		/// @return			DMCode
 		DMCode Run(HWND hWnd);
 
 		/// -------------------------------------------------
-		/// @brief			´Ë´°¿ÚÊÇ·ñÎªÔËĞĞÏûÏ¢Ñ­»·µÄÖ÷´°¿Ú   
-		/// @param			hWnd			  ´°¿Ú¾ä±ú		
-		/// @remark         ÈçÎªÔËĞĞÏûÏ¢Ñ­»·µÄÖ÷´°¿Ú,ÔÚÍË³öÊ±£¬Ó¦Ê¹ÓÃWM_QUITÍË³öÏûÏ¢Ñ­»·
+		/// @brief			æ­¤çª—å£æ˜¯å¦ä¸ºè¿è¡Œæ¶ˆæ¯å¾ªç¯çš„ä¸»çª—å£   
+		/// @param			hWnd			  çª—å£å¥æŸ„		
+		/// @remark         å¦‚ä¸ºè¿è¡Œæ¶ˆæ¯å¾ªç¯çš„ä¸»çª—å£,åœ¨é€€å‡ºæ—¶ï¼Œåº”ä½¿ç”¨WM_QUITé€€å‡ºæ¶ˆæ¯å¾ªç¯
 		/// @return			DMCode
 		DMCode IsRun(HWND hWnd);
 
 		//----------------------------------------------------------------------
-		// Function Des: ×¢²áÀàÏà¹Ø,Îª±£Ö¤°²È«,ÇëÔÚ´´½¨Ö÷´°¿ÚÇ°»òÏú»ÙÖ÷´°¿ÚºóÊ¹ÓÃËüÃÇ!
+		// Function Des: æ³¨å†Œç±»ç›¸å…³,ä¸ºä¿è¯å®‰å…¨,è¯·åœ¨åˆ›å»ºä¸»çª—å£å‰æˆ–é”€æ¯ä¸»çª—å£åä½¿ç”¨å®ƒä»¬!
 		//-----------------------------------------------------------------------
 
 		/// -------------------------------------------------
-		/// @brief			×¢²á
-		/// @param[in]		RegObj			  ×¢²áÀà£¬Ê¹ÓÃDMRegHelperT<Obj>()·½Ê½´«Èë
-		/// @param[in]		bReplace		  true:ÈçÄÚ²¿ÒÑ×¢²á,Ç¿ÖÆÌæ»»,false:ÈçÄÚ²¿ÒÑ×¢²á,·µ»Ø<see cref="DMREGMGR_REGISTERBYTYPE_REG_EXIST"/>
-		/// @remark         ×¢²áº¯ÊıÎª¹Ø¼üº¯Êı,ÎªÍâ²¿À©Õ¹Àà¡¢²å¼şµÄµ÷ÓÃÈë¿Ú
+		/// @brief			æ³¨å†Œ
+		/// @param[in]		RegObj			  æ³¨å†Œç±»ï¼Œä½¿ç”¨DMRegHelperT<Obj>()æ–¹å¼ä¼ å…¥
+		/// @param[in]		bReplace		  true:å¦‚å†…éƒ¨å·²æ³¨å†Œ,å¼ºåˆ¶æ›¿æ¢,false:å¦‚å†…éƒ¨å·²æ³¨å†Œ,è¿”å›<see cref="DMREGMGR_REGISTERBYTYPE_REG_EXIST"/>
+		/// @remark         æ³¨å†Œå‡½æ•°ä¸ºå…³é”®å‡½æ•°,ä¸ºå¤–éƒ¨æ‰©å±•ç±»ã€æ’ä»¶çš„è°ƒç”¨å…¥å£
 		/// @return			DMCode
 		DMCode Register(const IDMReg &RegObj, bool bReplace=false);
 
 		/// -------------------------------------------------
-		/// @brief			´Ó×¢²áÀàÖĞ»ñµÃÀà¶ÔÏóÖ¸Õë(ÄÚ²¿new)
-		/// @param[out]		ppObj			  ×¢²áÀà»ùÀàË«Ö¸Õë:Èç<see cref="IDMRes"/>¡¢<see cref="IDMLog"/>¡¢µÈ
-		/// @param[in]		lpszClassName	  ×¢²áÀàÃû
-		/// @param[in]		RegType			  ×¢²áÀàĞÍ<see cref="DMREGTYPE"/>
-		/// @remark         Õâ¸öº¯ÊıÓÃÓÚÄÚ²¿¸ù¾İxmlÖ¸¶¨´´½¨¶ÔÏó£¬¿ª·Å½ö·½±ãgtest²âÊÔ,ÓÉÓÚÊÇÄÚ²¿·ÖÅä¶ÔÏó,²»½¨ÒéÍâ²¿»ñÈ¡
+		/// @brief			ä»æ³¨å†Œç±»ä¸­è·å¾—ç±»å¯¹è±¡æŒ‡é’ˆ(å†…éƒ¨new)
+		/// @param[out]		ppObj			  æ³¨å†Œç±»åŸºç±»åŒæŒ‡é’ˆ:å¦‚<see cref="IDMRes"/>ã€<see cref="IDMLog"/>ã€ç­‰
+		/// @param[in]		lpszClassName	  æ³¨å†Œç±»å
+		/// @param[in]		RegType			  æ³¨å†Œç±»å‹<see cref="DMREGTYPE"/>
+		/// @remark         è¿™ä¸ªå‡½æ•°ç”¨äºå†…éƒ¨æ ¹æ®xmlæŒ‡å®šåˆ›å»ºå¯¹è±¡ï¼Œå¼€æ”¾ä»…æ–¹ä¾¿gtestæµ‹è¯•,ç”±äºæ˜¯å†…éƒ¨åˆ†é…å¯¹è±¡,ä¸å»ºè®®å¤–éƒ¨è·å–
 		/// @return			DMCode
 		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
-		/// @brief			·´×¢²á
-		/// @param[in]		lpszClassName	  ×¢²áÀàÃû
-		/// @param[in]		RegType			  ×¢²áÀàĞÍ<see cref="DMREGTYPE"/>
+		/// @brief			åæ³¨å†Œ
+		/// @param[in]		lpszClassName	  æ³¨å†Œç±»å
+		/// @param[in]		RegType			  æ³¨å†Œç±»å‹<see cref="DMREGTYPE"/>
 		/// @return			DMCode
 		DMCode UnRegister(LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
-		/// @brief			¶ÔÓÚÄÚ²¿½öÖ»ÄÜÑ¡ÔñÊ¹ÓÃÒ»ÖÖµÄ×¢²áÀà£¬Ö¸¶¨Ò»ÖÖ£¨Èçrender¡¢log¡¢atrribute£©
-		/// @param[in]		lpszClassName	  ×¢²áÀàÃû
-		/// @param[in]		RegType			  ×¢²áÀàĞÍ<see cref="DMREGTYPE"/>
+		/// @brief			å¯¹äºå†…éƒ¨ä»…åªèƒ½é€‰æ‹©ä½¿ç”¨ä¸€ç§çš„æ³¨å†Œç±»ï¼ŒæŒ‡å®šä¸€ç§ï¼ˆå¦‚renderã€logã€atrributeï¼‰
+		/// @param[in]		lpszClassName	  æ³¨å†Œç±»å
+		/// @param[in]		RegType			  æ³¨å†Œç±»å‹<see cref="DMREGTYPE"/>
 		/// @return			DMCode
 		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 
 		/// -------------------------------------------------
-		/// @brief			È¡µÃÄÚ²¿½öÖ»ÄÜÑ¡ÔñÊ¹ÓÃÒ»ÖÖµÄ×¢²áÀàµ±Ç°Ê¹ÓÃ¶ÔÏó£¬Ö¸¶¨Ò»ÖÖ£¨Èçrender¡¢log¡¢atrribute£©
-		/// @param[in]		ppObj			  ´«Èë²ÎÊı
-		/// @param[in]		RegType			  ×¢²áÀàĞÍ<see cref="DMREGTYPE"/>
-		/// @remark         ÔÚ»ñÈ¡Ê±ÄÚ²¿»áÔö¼ÓÒıÓÃ¼ÆÊı,ÕâÒâÎ¶×ÅÍâ²¿×îºÃÊ¹ÓÃÖÇÄÜÖ¸Õë
+		/// @brief			å–å¾—å†…éƒ¨ä»…åªèƒ½é€‰æ‹©ä½¿ç”¨ä¸€ç§çš„æ³¨å†Œç±»å½“å‰ä½¿ç”¨å¯¹è±¡ï¼ŒæŒ‡å®šä¸€ç§ï¼ˆå¦‚renderã€logã€atrributeï¼‰
+		/// @param[in]		ppObj			  ä¼ å…¥å‚æ•°
+		/// @param[in]		RegType			  æ³¨å†Œç±»å‹<see cref="DMREGTYPE"/>
+		/// @remark         åœ¨è·å–æ—¶å†…éƒ¨ä¼šå¢åŠ å¼•ç”¨è®¡æ•°,è¿™æ„å‘³ç€å¤–éƒ¨æœ€å¥½ä½¿ç”¨æ™ºèƒ½æŒ‡é’ˆ
 		/// @return			DMCode
 		DMCode GetDefRegObj(void** ppObj,int RegType);
 		
 		/// -------------------------------------------------
-		/// @brief			È¡µÃ×¢²áÀàµ±Ç°Ê¹ÓÃµÄÄ¬ÈÏÀàÃû£¬Ö¸¶¨Ò»ÖÖ£¨Èçrender¡¢log¡¢atrribute£©
-		/// @param[in]		RegType			  ×¢²áÀàĞÍ<see cref="DMREGTYPE"/>
+		/// @brief			å–å¾—æ³¨å†Œç±»å½“å‰ä½¿ç”¨çš„é»˜è®¤ç±»åï¼ŒæŒ‡å®šä¸€ç§ï¼ˆå¦‚renderã€logã€atrributeï¼‰
+		/// @param[in]		RegType			  æ³¨å†Œç±»å‹<see cref="DMREGTYPE"/>
 		/// @return			LPCWSTR
 		CStringA GetDefRegObj(int RegType);
 
 		//----------------------------------------------------------------------
-		// Function Des: ²å¼şÏà¹Ø,Îª±£Ö¤°²È«,ÇëÔÚ´´½¨Ö÷´°¿ÚÇ°»òÏú»ÙÖ÷´°¿ÚºóÊ¹ÓÃËüÃÇ!
+		// Function Des: æ’ä»¶ç›¸å…³,ä¸ºä¿è¯å®‰å…¨,è¯·åœ¨åˆ›å»ºä¸»çª—å£å‰æˆ–é”€æ¯ä¸»çª—å£åä½¿ç”¨å®ƒä»¬!
 		//----------------------------------------------------------------------
 		/// -------------------------------------------------
-		/// @brief			Í¨¹ıcfgÀ´¼ÓÔØplugin-dllÁĞ±í
-		/// @param[in]		lpszPluginsCfg	  plugin-dllÁĞ±íµÄcfgÂ·¾¶(Ïà¶ÔÓÚexeÂ·¾¶)
+		/// @brief			é€šè¿‡cfgæ¥åŠ è½½plugin-dllåˆ—è¡¨
+		/// @param[in]		lpszPluginsCfg	  plugin-dllåˆ—è¡¨çš„cfgè·¯å¾„(ç›¸å¯¹äºexeè·¯å¾„)
 		/// @return			DMCode
 		DMCode LoadPlugins(LPCWSTR lpszPluginsCfg = L"dmplugins.cfg");
 
 		/// -------------------------------------------------
-		/// @brief			Ö±½Ó¼ÓÔØplugin-dll
-		/// @param[in]		lpszPluginName	  plugin-dllÂ·¾¶(Ïà¶ÔÓÚexeÂ·¾¶)
+		/// @brief			ç›´æ¥åŠ è½½plugin-dll
+		/// @param[in]		lpszPluginName	  plugin-dllè·¯å¾„(ç›¸å¯¹äºexeè·¯å¾„)
 		/// @return			DMCode
 		DMCode LoadPlugin(LPCWSTR lpszPluginName);
 		
 		/// -------------------------------------------------
-		/// @brief			°²×°plugin
-		/// @param[in]		plugin			  ¼Ì³ĞÓÚ<see cref="IDMPlugin"/>
+		/// @brief			å®‰è£…plugin
+		/// @param[in]		plugin			  ç»§æ‰¿äº<see cref="IDMPlugin"/>
 		/// @return			DMCode
 		DMCode InstallPlugin(IDMPlugin* plugin);
 
 		/// -------------------------------------------------
-		/// @brief			Ğ¶ÔØ²å¼ş
-		/// @param[in]		plugin			  ¼Ì³ĞÓÚ<see cref="IDMPlugin"/>
+		/// @brief			å¸è½½æ’ä»¶
+		/// @param[in]		plugin			  ç»§æ‰¿äº<see cref="IDMPlugin"/>
 		/// @return			DMCode
 		DMCode UninstallPlugin(IDMPlugin* plugin);	
 
 		/// -------------------------------------------------
-		/// @brief			µ÷ÓÃÈ«²¿²å¼şµÄ³õÊ¼»¯
-		/// @param[in]		plugin			  ¼Ì³ĞÓÚ<see cref="IDMPlugin"/>
+		/// @brief			è°ƒç”¨å…¨éƒ¨æ’ä»¶çš„åˆå§‹åŒ–
+		/// @param[in]		plugin			  ç»§æ‰¿äº<see cref="IDMPlugin"/>
 		/// @return			DMCode
 		DMCode InitialisePlugins();
 
 		/// -------------------------------------------------
-		/// @brief			µ÷ÓÃÈ«²¿²å¼şµÄ·´³õÊ¼»¯
-		/// @param[in]		plugin			  ¼Ì³ĞÓÚ<see cref="IDMPlugin"/>
+		/// @brief			è°ƒç”¨å…¨éƒ¨æ’ä»¶çš„ååˆå§‹åŒ–
+		/// @param[in]		plugin			  ç»§æ‰¿äº<see cref="IDMPlugin"/>
 		/// @return			DMCode
 		DMCode ShutdownPlugins();
 
 		//----------------------------------------------------------------------
-		// Function Des: ½âÎö×ÊÔ´Res
+		// Function Des: è§£æèµ„æºRes
 		//----------------------------------------------------------------------
 		/// -------------------------------------------------
-		/// @brief			½âÎö×ÊÔ´Res
-		/// @param[in]		wp				  ´«Èë²ÎÊı
-		/// @param[in]		lp				  ´«Èë²ÎÊı
-		/// @param[in]		lpszClassName	  Ö¸¶¨Ä¬ÈÏµÄ·½Ê½£¨ÈçÎªNULL,ÔòÊ¹ÓÃÏµÍ³ÄÚÖÃ·½Ê½£©
-		/// @remark         ²»Í¬µÄ½âÎö·½Ê½Ê¹ÓÃ²»Í¬µÄ´«Èë²ÎÊı,¾ßÌå²Î¿´demo
+		/// @brief			è§£æèµ„æºRes
+		/// @param[in]		wp				  ä¼ å…¥å‚æ•°
+		/// @param[in]		lp				  ä¼ å…¥å‚æ•°
+		/// @param[in]		lpszClassName	  æŒ‡å®šé»˜è®¤çš„æ–¹å¼ï¼ˆå¦‚ä¸ºNULL,åˆ™ä½¿ç”¨ç³»ç»Ÿå†…ç½®æ–¹å¼ï¼‰
+		/// @remark         ä¸åŒçš„è§£ææ–¹å¼ä½¿ç”¨ä¸åŒçš„ä¼ å…¥å‚æ•°,å…·ä½“å‚çœ‹demo
 		/// @return			DMCode
 		DMCode LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName);
 
 		//----------------------------------------------------------------------
-		// Function Des: ÊôĞÔÏà¹Ø
+		// Function Des: å±æ€§ç›¸å…³
 		//----------------------------------------------------------------------
 		/// -------------------------------------------------
-		/// @brief			¼ÓÈëÒ»¸öskin³Ø£¬Èçskin³ØÒÑ´æÔÚ,Ôò¼ÓÈë½âÎöµÄÏî
-		/// @param[in]      XmlNode		      xml½Úµã
+		/// @brief			åŠ å…¥ä¸€ä¸ªskinæ± ï¼Œå¦‚skinæ± å·²å­˜åœ¨,åˆ™åŠ å…¥è§£æçš„é¡¹
+		/// @param[in]      XmlNode		      xmlèŠ‚ç‚¹
 		/// @return  DMCode
 		DMCode AddSkinPoolItem(DMXmlNode &XmlNode);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıÖ¸¶¨µÄSkin¶ÓÁĞ
-		/// @param[in]		lpszName	      ¶ÔÓ¦skinµÄnameÊôĞÔ
+		/// @brief			ç§»é™¤æŒ‡å®šçš„Skiné˜Ÿåˆ—
+		/// @param[in]		lpszName	      å¯¹åº”skinçš„nameå±æ€§
 		/// @param[in]		DMCode
 		DMCode RemoveSkinPoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
-		/// @brief			É¾³ıËùÓĞµÄskin³Ø£¬³ıÁËÖ¸¶¨µÄkeyÒÔÍâ
-		/// @param[in]		lpszName		  ±»ÅÅ³ıµÄskin³ØµÄÃû³Æ
+		/// @brief			åˆ é™¤æ‰€æœ‰çš„skinæ± ï¼Œé™¤äº†æŒ‡å®šçš„keyä»¥å¤–
+		/// @param[in]		lpszName		  è¢«æ’é™¤çš„skinæ± çš„åç§°
 		/// @return			DMCode
 		DMCode RemoveAllSkinPoolItemExcept(LPCSTR lpszName);
 
 		/// -------------------------------------------------
-		/// @brief  ¼ÓÈëÒ»¸östyle³Ø£¬Èçstyle³ØÒÑ´æÔÚ,Ôò¼ÓÈë½âÎöµÄÏî
-		/// @param[in]		XmlNode			  xml½Úµã
+		/// @brief  åŠ å…¥ä¸€ä¸ªstyleæ± ï¼Œå¦‚styleæ± å·²å­˜åœ¨,åˆ™åŠ å…¥è§£æçš„é¡¹
+		/// @param[in]		XmlNode			  xmlèŠ‚ç‚¹
 		/// @return			DMCode
 		DMCode AddStylePoolItem(DMXmlNode &XmlNode);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıÖ¸¶¨µÄStyle¶ÓÁĞ
-		/// @param[in]		lpszName	      ¶ÔÓ¦styleµÄnameÊôĞÔ
+		/// @brief			ç§»é™¤æŒ‡å®šçš„Styleé˜Ÿåˆ—
+		/// @param[in]		lpszName	      å¯¹åº”styleçš„nameå±æ€§
 		/// @param[in]		DMCode
 		DMCode RemoveStylePoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıËùÓĞµÄstyle³Ø
+		/// @brief			ç§»é™¤æ‰€æœ‰çš„styleæ± 
 		/// @return			DMCode
 		DMCode RemoveAllStylePoolItem();
 
 		/// -------------------------------------------------
-		/// @brief			»ñÈ¡Ö¸¶¨×ÖÌå
-		/// @param[in]		lpszFont	      ×ÖÌå¶ÔÓ¦µÄstr
+		/// @brief			è·å–æŒ‡å®šå­—ä½“
+		/// @param[in]		lpszFont	      å­—ä½“å¯¹åº”çš„str
 		IDMFont* GetFont(LPCSTR lpszFont);
 
 		/// -------------------------------------------------
-		/// @brief			»ñÈ¡Ö¸¶¨Skin,´ÓËùÓĞskin³ØÖĞ
-		/// @param[in]		lpszSkin	      Skin¶ÔÓ¦µÄstr
+		/// @brief			è·å–æŒ‡å®šSkin,ä»æ‰€æœ‰skinæ± ä¸­
+		/// @param[in]		lpszSkin	      Skinå¯¹åº”çš„str
 		IDMSkin* GetSkin(LPCSTR lpszSkin);
 
 		/// -------------------------------------------------
-		/// @brief			°ÑÖ¸¶¨bufÉèÖÃµ½skin³ØÖĞ
-		/// @param[in]		pBuf			  Í¼Æ¬ÄÚ´æ
-		/// @param[in]		bufLen			  Í¼Æ¬ÄÚ´æ´óĞ¡
-		/// @param[in]		pszType			  Í¼Æ¬ÀàĞÍ£¬Ò»°ãÄ¬ÈÏÎªpng
-		/// @param[in]		lpszXml			  ÃèÊöskinµÄxml£¬xmlÖĞ¾Í²»ĞèÒª¶¨ÒåsrcÁË
-		/// @param[in]		lpszPoolName	  skin³ØÃû³Æ
+		/// @brief			æŠŠæŒ‡å®šbufè®¾ç½®åˆ°skinæ± ä¸­
+		/// @param[in]		pBuf			  å›¾ç‰‡å†…å­˜
+		/// @param[in]		bufLen			  å›¾ç‰‡å†…å­˜å¤§å°
+		/// @param[in]		pszType			  å›¾ç‰‡ç±»å‹ï¼Œä¸€èˆ¬é»˜è®¤ä¸ºpng
+		/// @param[in]		lpszXml			  æè¿°skinçš„xmlï¼Œxmlä¸­å°±ä¸éœ€è¦å®šä¹‰srcäº†
+		/// @param[in]		lpszPoolName	  skinæ± åç§°
 		DMCode AddSkin(void *pBuf,size_t bufLen, LPCSTR pszType,
 			LPCSTR lpszXml, LPCSTR lpszPoolName=NULL);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıskin
-		/// @param[in]		lpszKey			  ÓÃÓÚ²éÕÒskinµÄkey
-		/// @param[in]		lpszName		  ÓÃÓÚ²éÕÒskin³ØµÄname
-		/// @remark			Ä¬ÈÏÏÈÔÚlpszNameµÄskin³ØÖĞÒÆ³ı£¬Èç¹ûÕÒ²»µ½,¶øÇÒbLoopFindÎªÕæ£¬¾ÍÈ«²¿±éÀúÕÒµ½²¢ÒÆ³ı
-		/// @return			DMCode,´Óskin³ØÖĞÒÆ³ıskin,²¢½«ÒıÓÃ¼ÆÊı¼õ1
+		/// @brief			ç§»é™¤skin
+		/// @param[in]		lpszKey			  ç”¨äºæŸ¥æ‰¾skinçš„key
+		/// @param[in]		lpszName		  ç”¨äºæŸ¥æ‰¾skinæ± çš„name
+		/// @remark			é»˜è®¤å…ˆåœ¨lpszNameçš„skinæ± ä¸­ç§»é™¤ï¼Œå¦‚æœæ‰¾ä¸åˆ°,è€Œä¸”bLoopFindä¸ºçœŸï¼Œå°±å…¨éƒ¨éå†æ‰¾åˆ°å¹¶ç§»é™¤
+		/// @return			DMCode,ä»skinæ± ä¸­ç§»é™¤skin,å¹¶å°†å¼•ç”¨è®¡æ•°å‡1
 		DMCode RemoveSkin(LPCSTR lpszKey, LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief			»ñÈ¡Ö¸¶¨style,´ÓËùÓĞstyle³ØÖĞ
-		/// @param[in]		lpszSkin		  Skin¶ÔÓ¦µÄstr
+		/// @brief			è·å–æŒ‡å®šstyle,ä»æ‰€æœ‰styleæ± ä¸­
+		/// @param[in]		lpszSkin		  Skinå¯¹åº”çš„str
 		/// @return			DMCode
 		DMXmlNode GetStyle(LPCSTR lpszStyle);
 
 		/// -------------------------------------------------
-		/// @brief			»»·ô
-		/// @param[in]		wp				  Ä¬ÈÏÎªstr:nameÁĞ±í×Ö·û´®
-		/// @param[in]		lp				  ×Ö·û´®³¤¶È
+		/// @brief			æ¢è‚¤
+		/// @param[in]		wp				  é»˜è®¤ä¸ºstr:nameåˆ—è¡¨å­—ç¬¦ä¸²
+		/// @param[in]		lp				  å­—ç¬¦ä¸²é•¿åº¦
 		/// @return			DMCode
 		DMCode UpdateSkin(WPARAM wp, LPARAM lp);
 
 		/// -------------------------------------------------
-		/// @brief			Ë¢ĞÂËùÓĞÖ÷´°¿Ú
+		/// @brief			åˆ·æ–°æ‰€æœ‰ä¸»çª—å£
 		/// @return			DMCode
 		DMCode RedrawAll();
 
 		/// -------------------------------------------------
-		/// @brief			»»·ô
-		/// @param[in]		pSkin	         ²éÕÒµÄskin
-		/// @param[in]		type	         ÀàĞÍ
+		/// @brief			æ¢è‚¤
+		/// @param[in]		pSkin	         æŸ¥æ‰¾çš„skin
+		/// @param[in]		type	         ç±»å‹
 		/// @return			bool
 		bool IsNeedUpdateSkin(IDMSkinPtr pSkin,int type=DMREG_Skin);
 
 		/// -------------------------------------------------
-		/// @brief			HSLA±ä»¯£¬µ÷ÕûÈ«¾ÖµÄHSLA(ËùÓĞÖ÷´°¿Ú)
-		/// @param[in]		ivalue			 HSLAµÄÖµ
-		/// @param[in]		iType			 0£¬1£¬2£¬3·Ö±ğÖ¸HSLAµÄÏàÓ¦µ÷Õû
+		/// @brief			HSLAå˜åŒ–ï¼Œè°ƒæ•´å…¨å±€çš„HSLA(æ‰€æœ‰ä¸»çª—å£)
+		/// @param[in]		ivalue			 HSLAçš„å€¼
+		/// @param[in]		iType			 0ï¼Œ1ï¼Œ2ï¼Œ3åˆ†åˆ«æŒ‡HSLAçš„ç›¸åº”è°ƒæ•´
 		/// @return			DMCode
 		DMCode AdjustHSLA(int ivalue,int iType);
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼Ó¿ÕÏĞ´¦ÀíÏûÏ¢
-		/// @param[in]		pIdleHandler	 »ùÓÚ<see cref="IDMIdleHandler"/>
+		/// @brief			å¢åŠ ç©ºé—²å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pIdleHandler	 åŸºäº<see cref="IDMIdleHandler"/>
 		/// @return			DMCode
 		DMCode AddIdleHandler(IDMIdleHandler* pIdleHandler);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ı¿ÕÏĞ´¦ÀíÏûÏ¢
-		/// @param[in]		pIdleHandler	 »ùÓÚ<see cref="IDMIdleHandler"/>
+		/// @brief			ç§»é™¤ç©ºé—²å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pIdleHandler	 åŸºäº<see cref="IDMIdleHandler"/>
 		/// @return			DMCode
 		DMCode RemoveIdleHandler(IDMIdleHandler* pIdleHandler);
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼ÓÔ¤´¦ÀíÏûÏ¢
-		/// @param[in]		pMessageFilter	 »ùÓÚ<see cref="IDMMessageFilter"/>
+		/// @brief			å¢åŠ é¢„å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pMessageFilter	 åŸºäº<see cref="IDMMessageFilter"/>
 		/// @return			DMCode
 		DMCode AddMessageFilter(IDMMessageFilter* pMessageFilter);
 
 		/// -------------------------------------------------
-		/// @brief			ÒÆ³ıÔ¤´¦ÀíÏûÏ¢
-		/// @param[in]		pMessageFilter	 »ùÓÚ<see cref="IDMMessageFilter"/>
+		/// @brief			ç§»é™¤é¢„å¤„ç†æ¶ˆæ¯
+		/// @param[in]		pMessageFilter	 åŸºäº<see cref="IDMMessageFilter"/>
 		/// @return			DMCode
 		DMCode RemoveMessageFilter(IDMMessageFilter* pMessageFilter);
 
 		/// -------------------------------------------------
-		/// @brief			Ôö¼ÓÏß³ÌÏûÏ¢Ñ­»·
-		/// @param[in]		pMessageFilter	 »ùÓÚ<see cref="IDMMessageFilter"/>
+		/// @brief			å¢åŠ çº¿ç¨‹æ¶ˆæ¯å¾ªç¯
+		/// @param[in]		pMessageFilter	 åŸºäº<see cref="IDMMessageFilter"/>
 		/// @return			DMCode
 		bool AddMessageLoop(DMMsgLoop* pMsgLoop);
 
 		/// -------------------------------------------------
-		/// @brief			³õÊ¼»¯DMXmlDocument
-		/// @param[inout]	XmlDoc			 ĞèÒª³õÊ¼»¯µÄxml¶ÔÏó
-		/// @param[in]		lpszType		 ÀàĞÍ
-		/// @param[in]		lpszResName		 Ãû³Æ
+		/// @brief			åˆå§‹åŒ–DMXmlDocument
+		/// @param[inout]	XmlDoc			 éœ€è¦åˆå§‹åŒ–çš„xmlå¯¹è±¡
+		/// @param[in]		lpszType		 ç±»å‹
+		/// @param[in]		lpszResName		 åç§°
 		/// @return			DMCode
 		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName);	
 
 		/// -------------------------------------------------
-		/// @brief			 ÕÒµ½DUI´°¿Ú
-		/// @param[in]		 hDUIWnd		  DUI´°¿ÚµÄÎ¨Ò»¾ä±ú
-		/// @return DUIWindowPtr£¬Ê§°ÜÎªNULL
+		/// @brief			 æ‰¾åˆ°DUIçª—å£
+		/// @param[in]		 hDUIWnd		  DUIçª—å£çš„å”¯ä¸€å¥æŸ„
+		/// @return DUIWindowPtrï¼Œå¤±è´¥ä¸ºNULL
 		DUIWindowPtr FindDUIWnd(DUIWND hDUIWnd);
 
 		/// -------------------------------------------------
-		/// @brief			 ÔÊĞíÍâ²¿Ö¸¶¨sub xmlµÄ»Øµ÷º¯Êı,Íâ²¿´«Èëxml¾ä±ú
+		/// @brief			 å…è®¸å¤–éƒ¨æŒ‡å®šsub xmlçš„å›è°ƒå‡½æ•°,å¤–éƒ¨ä¼ å…¥xmlå¥æŸ„
 		/// @return			 DMCode
 		DMCode SetSubXmlDocCallBack(fun_cbGetSubXmlDoc);
 
 		// TODO: unify LoadXXX(WPARAM wp, LPARAM lp) LPCSTR or LPCWSTR
 		/// -------------------------------------------------
-		/// @brief ¼ÓÔØ·­Òë°üÀ©Õ¹½Ó¿Ú
-		/// @param[in]		 wp					´«ÈëÄÚ²¿Ê¹ÓÃµÄ²ÎÊı1£¬Èç·­ÒëXMLÂ·¾¶µÈ£¬ºÍ×Ô¼ºÀ©Õ¹ÊµÏÖÏà¹Ø£¬ÄÚÖÃÎªxmlµÄld»òxmlÈ«Â·¾¶
-		/// @param[in]		 lp					´«ÈëÄÚ²¿Ê¹ÓÃµÄ²ÎÊı2£¬Èç·­ÒëXMLµÈ£¬ºÍ×Ô¼ºÀ©Õ¹ÊµÏÖÏà¹Ø,ÄÚÖÃ0±íÊ¾xml id·½Ê½,1±íÊ¾xmlÈ«Â·¾¶·½Ê½
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief åŠ è½½ç¿»è¯‘åŒ…æ‰©å±•æ¥å£
+		/// @param[in]		 wp					ä¼ å…¥å†…éƒ¨ä½¿ç”¨çš„å‚æ•°1ï¼Œå¦‚ç¿»è¯‘XMLè·¯å¾„ç­‰ï¼Œå’Œè‡ªå·±æ‰©å±•å®ç°ç›¸å…³ï¼Œå†…ç½®ä¸ºxmlçš„ldæˆ–xmlå…¨è·¯å¾„
+		/// @param[in]		 lp					ä¼ å…¥å†…éƒ¨ä½¿ç”¨çš„å‚æ•°2ï¼Œå¦‚ç¿»è¯‘XMLç­‰ï¼Œå’Œè‡ªå·±æ‰©å±•å®ç°ç›¸å…³,å†…ç½®0è¡¨ç¤ºxml idæ–¹å¼,1è¡¨ç¤ºxmlå…¨è·¯å¾„æ–¹å¼
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		DMCode LoadTrans(WPARAM wp, LPARAM lp = 0);
 
 		/// -------------------------------------------------
-		/// @brief ÉèÖÃÄ¬ÈÏÓïÑÔ°ü
-		// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶£¬Èç¹û´«NULL,Ôò²»Ê¹ÓÃ·­Òë 
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief è®¾ç½®é»˜è®¤è¯­è¨€åŒ…
+		// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†ï¼Œå¦‚æœä¼ NULL,åˆ™ä¸ä½¿ç”¨ç¿»è¯‘ 
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		DMCode SetTrans(CStringW strLanguageName);
 
 		/// -------------------------------------------------
-		/// @brief ĞÂ¼Ó·­Òë×Ö·û´®
-		/// @param[in]		 strSrc				XMLÖĞÅäÖÃµÄ×Ö·û´®
-		/// @param[in]		 strTrans			±»·­ÒëµÄ×Ö·û´®
-		/// @param[in]		 strNodeName		ÊÇ·ñÖ¸¶¨ÎªÌØ¶¨µÄÅäÖÃ,ÎªNULL±íÊ¾´ÓÍ¨ÓÃµÄÅäÖÃÖĞ²éÕÒ
-		/// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶,ÎªNULLÊ¹ÓÃµ±Ç°SetTransÖ¸¶¨µÄÓïÑÔ°ü
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief æ–°åŠ ç¿»è¯‘å­—ç¬¦ä¸²
+		/// @param[in]		 strSrc				XMLä¸­é…ç½®çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strTrans			è¢«ç¿»è¯‘çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strNodeName		æ˜¯å¦æŒ‡å®šä¸ºç‰¹å®šçš„é…ç½®,ä¸ºNULLè¡¨ç¤ºä»é€šç”¨çš„é…ç½®ä¸­æŸ¥æ‰¾
+		/// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†,ä¸ºNULLä½¿ç”¨å½“å‰SetTransæŒ‡å®šçš„è¯­è¨€åŒ…
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		DMCode AddTransItem(CStringW strSrc, CStringW strTrans,CStringW strNodeName = L"",CStringW strLanguageName = L"");
 
 		/// -------------------------------------------------
-		/// @brief »ñµÃ·­Òë×Ö·û´®
-		/// @param[in]		 strSrc				XMLÖĞÅäÖÃµÄ×Ö·û´®
-		/// @param[in]		 strNodeName		ÊÇ·ñÖ¸¶¨ÎªÌØ¶¨µÄÅäÖÃ
-		/// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶,ÎªNULLÊ¹ÓÃµ±Ç°SetTransÖ¸¶¨µÄÓïÑÔ°ü
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief è·å¾—ç¿»è¯‘å­—ç¬¦ä¸²
+		/// @param[in]		 strSrc				XMLä¸­é…ç½®çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strNodeName		æ˜¯å¦æŒ‡å®šä¸ºç‰¹å®šçš„é…ç½®
+		/// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†,ä¸ºNULLä½¿ç”¨å½“å‰SetTransæŒ‡å®šçš„è¯­è¨€åŒ…
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		CStringW GetTrans(CStringW strSrc,CStringW strNodeName = L"",CStringW strLanguageName = L"");
 	};
 

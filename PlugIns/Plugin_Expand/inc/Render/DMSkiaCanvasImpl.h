@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -32,7 +32,7 @@ namespace DM
 		void Canv_Release();
 
 		//---------------------------------------------------
-		// Function Des:»ù´¡
+		// Function Des:åŸºç¡€
 		//---------------------------------------------------
 		DMCode SelectObject(IDMMetaFile* pObj,IDMMetaFile** ppOldObj = NULL);
 		DMCode GetObject(IDMMetaFile** ppObj, DMFTYPE DmfType);
@@ -47,14 +47,14 @@ namespace DM
 		DMCode RestoreCanvas(int nState=-1);
 
 		//---------------------------------------------------
-		// Function Des:HSL±ä»»
+		// Function Des:HSLå˜æ¢
 		//---------------------------------------------------
 		DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL);
 		DMCode ResetHsl();
 		PVOID GetPixelBits(int* pSize);
 
 		//---------------------------------------------------
-		// Function Des:»æÖÆ
+		// Function Des:ç»˜åˆ¶
 		//---------------------------------------------------
 		DMCode BitBlt(IDMCanvas*pCanvasSrc, int xSrc, int ySrc, LPCRECT lpRectDest, DWORD dwRop = SRCCOPY);
 		DMCode AlphaBlend(IDMCanvas*pCanvasSrc, LPCRECT lpRectSrc, LPCRECT lpRectDest, BYTE alpha=0xFF);
@@ -78,7 +78,7 @@ namespace DM
 		DMCode GradientFill(DMColor clrBegin,DMColor clrEnd,LPCRECT lpRect,BOOL bVert,BYTE alpha=0xFF);
 
 		//---------------------------------------------------
-		// Function Des:ÎÄ±¾
+		// Function Des:æ–‡æœ¬
 		//---------------------------------------------------
 		DMColor SetTextColor(DMColor clr);
 		DMColor GetTextColor();
@@ -88,14 +88,14 @@ namespace DM
 		DMCode TextOut(LPCWSTR lpString, int nCount, int x, int  y, BYTE alpha=0xFF);
 
 		//---------------------------------------------------
-		// Function Des:×ø±ê±ä»»
+		// Function Des:åæ ‡å˜æ¢
 		//---------------------------------------------------
 		DMCode OffsetViewportOrg(int dx, int dy, OUT LPPOINT lpPoint = NULL);
 		DMCode SetViewportOrgEx(int dx, int dy,  OUT LPPOINT lpPoint = NULL);
 		DMCode GetViewportOrg(LPPOINT lpPoint);
 
 		//---------------------------------------------------
-		// Function Des:»æÖÆÇøÓò²Ã¼ô
+		// Function Des:ç»˜åˆ¶åŒºåŸŸè£å‰ª
 		//---------------------------------------------------
 		DMCode PushClip(IDMRegion *pRegion,int fnCombineMode=RGN_AND);
 		DMCode PushClip(LPCRECT lpRect,int fnCombineMode=RGN_AND);
@@ -107,7 +107,7 @@ namespace DM
 		DMCode IntersectClipRect(LPCRECT lpRect);
 
 		//---------------------------------------------------
-		// Function Des:¸¨Öúµ÷ÊÔÊ¹ÓÃ
+		// Function Des:è¾…åŠ©è°ƒè¯•ä½¿ç”¨
 		//---------------------------------------------------
 		DMCode SaveBmpToFile(LPCWSTR pszFileName);
 
@@ -115,7 +115,7 @@ namespace DM
 		DMCode AlphaBackup(LPRECT lpRect){return DM_ECODE_OK;};
 		DMCode AlphaRestore(){return DM_ECODE_OK;};
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool Rect2SkRect(LPCRECT lpRect,SkRect &skiRc);
 		void InflateSkRect(SkRect *lpRect,SkScalar dx,SkScalar dy);
 		DMAutoMemDC AlphaBlendBackup(DMAutoMemDC& dcMem,LPCRECT lpRect,bool bInherit=false,bool bCopy=false);
@@ -123,7 +123,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des:ºóĞø¸ù¾İĞèÇóÔö¼ÓµÄÀ©Õ¹º¯Êı,·ÅÔÚ×îºó,ÒÔ±£Ö¤ÏòÉÏ¼æÈİ
+		// Function Des:åç»­æ ¹æ®éœ€æ±‚å¢åŠ çš„æ‰©å±•å‡½æ•°,æ”¾åœ¨æœ€å,ä»¥ä¿è¯å‘ä¸Šå…¼å®¹
 		//---------------------------------------------------
 		DMCode DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle);
 		DMCode FillPie(LPCRECT lpRect,float startAngle, float sweepAngle);
@@ -132,7 +132,7 @@ namespace DM
 		// 1
 		SkCanvas									 *m_pSkCanvas;
 
-		// 2±»Ñ¡ÈëCanvasµÄµ±Ç°Í¼Ôª
+		// 2è¢«é€‰å…¥Canvasçš„å½“å‰å›¾å…ƒ
 		DMColor									     m_CurTextColor;
 		DMSmartPtrT<DMSkiaBitmapImpl>				 m_pCurBitmap;
 		DMSmartPtrT<DMSkiaPenImpl>					 m_pCurPen;
@@ -143,13 +143,13 @@ namespace DM
 		SkPoint                                      m_ptOrg;
 		HDC											 m_hGetDC;
 
-		// Àà³§
+		// ç±»å‚
 		IDMRender									 *m_pRender;
 
-		// ¸¨Öú»ìºÏÊ¹ÓÃ------------------
-		int                                           m_iSaveState; //skia µÄsavestateºÍhdc²»Í¬£¬²»ÊÇ-1·µ»ØÉÏÒ»´Î~£¡
+		// è¾…åŠ©æ··åˆä½¿ç”¨------------------
+		int                                           m_iSaveState; //skia çš„savestateå’Œhdcä¸åŒï¼Œä¸æ˜¯-1è¿”å›ä¸Šä¸€æ¬¡~ï¼
 
-		// ¸¨Öú»ìºÏÊ¹ÓÃ------------------
+		// è¾…åŠ©æ··åˆä½¿ç”¨------------------
 		DMDIBHelper                                  m_DIBTemp;
 		CRect                                        m_RcTemp;
 		bool                                         m_bCopyTemp;
@@ -158,7 +158,7 @@ namespace DM
 		HBRUSH										 m_hOldBrush;
 		HBITMAP										 m_hOldBitmap;
 
-		bool                                         m_bSupportLeetspeak; ///< ÊÇ·ñÖ§³Ö»ğĞÇÎÄ
+		bool                                         m_bSupportLeetspeak; ///< æ˜¯å¦æ”¯æŒç«æ˜Ÿæ–‡
 	};
 
 

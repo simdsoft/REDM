@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+Ôªø#include "DmMainAfx.h"
 #include "DUIItemPanel.h"
 
 namespace DM
@@ -17,7 +17,7 @@ namespace DM
 		if (XmlNode.IsValid())
 		{
 			InitDMData(XmlNode);
-			DM_SetVisible(true);// ∏¸–¬∏∏◊”visibleπÿœµ,»ÁDUIWNDSTATE_Novisible
+			DM_SetVisible(true);// Êõ¥Êñ∞Áà∂Â≠êvisibleÂÖ≥Á≥ª,Â¶ÇDUIWNDSTATE_Novisible
 		}
 
 		// itempanel
@@ -55,7 +55,7 @@ namespace DM
 
 	void DUIItemPanel::OnFinalRelease()
 	{
-		AddRef();// ∑¿÷π÷ÿ∏¥Ω¯»Î∏√∫Ø ˝
+		AddRef();// Èò≤Ê≠¢ÈáçÂ§çËøõÂÖ•ËØ•ÂáΩÊï∞
 		DM_SendMessage(WM_DESTROY);
 		__super::OnFinalRelease();
 	}
@@ -95,7 +95,7 @@ namespace DM
 		return m_pItemOwner->OnGetPanelRect(this,lpRect);
 	}
 
-	// ÷ÿ‘ÿ¥¶¿Ì--------------------------------------------------
+	// ÈáçËΩΩÂ§ÑÁêÜ--------------------------------------------------
 	LRESULT DUIItemPanel::OnFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp)
 	{
 		LRESULT lr = 0;
@@ -284,7 +284,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ∏®÷˙--------------------------------------------------------
+	// ËæÖÂä©--------------------------------------------------------
 	bool DUIItemPanel::PreHandleFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp)
 	{
 		do 

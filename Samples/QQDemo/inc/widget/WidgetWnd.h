@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: WidgetWnd.h 
-// File Des: ²âÊÔWidgetµÄÖ÷´°¿Ú
+// File Des: æµ‹è¯•Widgetçš„ä¸»çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -20,18 +20,18 @@ class CWidgetWnd:public DMHWnd, public IDMWebEvent
 {
 public: 
 	CWidgetWnd();
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	DECLARE_EVENT_MAP()
 
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
-	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);// ²Ëµ¥²âÊÔ
+	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);// èœå•æµ‹è¯•
 
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	DMCode OnClose();
 	DMCode OnMaximize();
@@ -44,7 +44,7 @@ public:
 	DMCode ListCtrlExHeaderClick(DMEventArgs* pEvt);
 
 	
-	// Webkit²âÊÔ
+	// Webkitæµ‹è¯•
 	DMCode OnBtnWebBack();
 	DMCode OnBtnWebRefresh(); 
 	DMCode OnBtnWebfront();
@@ -52,7 +52,7 @@ public:
 	static void OnTitleChanged(const DMClientHandler*, DMString title);
 	static void OnURLChanged(const DMClientHandler*, DMString url);
 
-	// IE²âÊÔ
+	// IEæµ‹è¯•
 	HRESULT NavigateComplete2(DUIWND hWnd,DMIN IDispatch *pDisp,DMIN wchar_t *pUrl);
 
 	DMCode OnFireEvent(DMEventArgs &Evt);
@@ -60,7 +60,7 @@ public:
 
 public:
 	DUIWebKit*					    m_pWebkit;
-	DMClientHandler					m_handler;// ±ØĞëÊÇÈ«¾ÖµÄ£¬²»È»»á±À
+	DMClientHandler					m_handler;// å¿…é¡»æ˜¯å…¨å±€çš„ï¼Œä¸ç„¶ä¼šå´©
 	IDUIWeb*						m_pIE;
 	DMSmartPtrT<CAttributeTestWnd>	m_pAttrTestWnd;
 	DMScriptHelper                  m_ScriptHelper; 

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDUIWeb.h 
-// File Des:Ìá¹©Web¶ÔÍâ½Ó¿Ú
+// File Des:æä¾›Webå¯¹å¤–æ¥å£
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		 DispatchÊÂ¼ş´¦Àí,º¯ÊıËµÃ÷Çë²Î¿¼https://msdn.microsoft.com/en-us/library/aa752084.aspx
+	///		 Dispatchäº‹ä»¶å¤„ç†,å‡½æ•°è¯´æ˜è¯·å‚è€ƒhttps://msdn.microsoft.com/en-us/library/aa752084.aspx
 	/// </summary>
 	class IDMWebEvent
 	{
@@ -59,118 +59,118 @@ namespace DM
 		virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(DUIWND hWnd, REFIID riid, LPOLESTR* rgszNames,UINT cNames, LCID lcid, DISPID* rgDispId){return S_OK;}
 		virtual HRESULT STDMETHODCALLTYPE Invoke(DUIWND hWnd, DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo,UINT* puArgErr){return S_OK;}
 
-		// ²¿·Ö½Ó¿ÚÎªwebkitÌØÓĞ
+		// éƒ¨åˆ†æ¥å£ä¸ºwebkitç‰¹æœ‰
 		virtual HRESULT OnPreKeyEvent(DUIWND hWnd, MSG* pMsg){return E_NOTIMPL;}
 	};
 
 	/// <summary>
-	///		 Web¶ÔÍâ½Ó¿Ú
+	///		 Webå¯¹å¤–æ¥å£
 	/// </summary>
 	class IDUIWeb
 	{
 	public:
 		enum{DMWEBTYPE_IE,DMWEBTYPE_WEBKIT,DMWEBTYPE_OSRWEBKIT,};
-		/// @brief ·µ»Øµ±Ç°µÄÀàĞÍ(ie/webkit/ÀëÆÁwebkit)
-		/// @return Ä¬ÈÏÎªIE
+		/// @brief è¿”å›å½“å‰çš„ç±»å‹(ie/webkit/ç¦»å±webkit)
+		/// @return é»˜è®¤ä¸ºIE
 		virtual int GetWebType(){return DMWEBTYPE_IE;};
 
-		/// @brief ÉèÖÃÊÂ¼ş½ÓÊÕÕß
-		/// @param[in]		pEventHandler		ÊÂ¼ş½ÓÊÕÕßÖ¸Õë
-		/// @return HRESULT£¬S_OK
+		/// @brief è®¾ç½®äº‹ä»¶æ¥æ”¶è€…
+		/// @param[in]		pEventHandler		äº‹ä»¶æ¥æ”¶è€…æŒ‡é’ˆ
+		/// @return HRESULTï¼ŒS_OK
 		virtual HRESULT SetEvtHandler(IDMWebEvent* pEventHandler){return E_NOTIMPL;};
 
-		/// @brief ´ò¿ªÖ¸¶¨Ò³Ãæ
-		/// @param[in]		pszURL		ĞèÒª´ò¿ªµÄurl×Ö·û´®
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief æ‰“å¼€æŒ‡å®šé¡µé¢
+		/// @param[in]		pszURL		éœ€è¦æ‰“å¼€çš„urlå­—ç¬¦ä¸²
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0){return E_NOTIMPL;};
 
-		/// @brief ´ò¿ªÖ¸¶¨Ò³Ãæ
-		/// @param[in]		pszURL		½ÓÊÕµ±Ç°urlµÄ×Ö·û´®»º³åÇø
-		/// @param[in]		nMaxLen		×Ö·û´®»º³åÇøµÄ×î´ó³¤¶È
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief æ‰“å¼€æŒ‡å®šé¡µé¢
+		/// @param[in]		pszURL		æ¥æ”¶å½“å‰urlçš„å­—ç¬¦ä¸²ç¼“å†²åŒº
+		/// @param[in]		nMaxLen		å­—ç¬¦ä¸²ç¼“å†²åŒºçš„æœ€å¤§é•¿åº¦
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen){return E_NOTIMPL;};
 
-		/// @brief ¸øä¯ÀÀÆ÷´°¿ÚÉè½¹µã
+		/// @brief ç»™æµè§ˆå™¨çª—å£è®¾ç„¦ç‚¹
 		virtual HRESULT SetWebFocus(){return E_NOTIMPL;};
 
-		/// @brief »ñµÃOLE´°¿Ú¾ä±ú
-		/// @return HWND£¬Ê§°ÜÎªNULL
+		/// @brief è·å¾—OLEçª—å£å¥æŸ„
+		/// @return HWNDï¼Œå¤±è´¥ä¸ºNULL
 		virtual HWND GetOleWindow(){return NULL;};
 
-		/// @brief Ö÷¶¯ÉèÖÃWebµÄÇøÓò
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief ä¸»åŠ¨è®¾ç½®Webçš„åŒºåŸŸ
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT UpdateWebRect(LPRECT lpRect){return E_NOTIMPL;}
 
-		/// @brief BUSY×´Ì¬
+		/// @brief BUSYçŠ¶æ€
 		/// @return ture or false
 		virtual bool IsBusy(){return false;};
 
-		/// @brief Í£Ö¹
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åœæ­¢
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT Stop(){return E_NOTIMPL;};
 
-		/// @brief ¹Ø±Õä¯ÀÀÆ÷
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief å…³é—­æµè§ˆå™¨
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT Quit(){return E_NOTIMPL;};
 
-		/// @brief Ë¢ĞÂ
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åˆ·æ–°
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT Refresh(){return E_NOTIMPL;};
 
-		/// @brief Ö¸¶¨Ë¢ĞÂ¼¶±ğË¢ĞÂ
-		/// @param[in]		nLevel		Ë¢ĞÂ³£Á¿£¬ ¼ò»¯ÁË²ÎÊıÀàĞÍ£¬ REFRESH_NORMAL 0x0 / REFRESH_IFEXPIRED 0x01 / REFRESH_COMPLETELY 0x03
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief æŒ‡å®šåˆ·æ–°çº§åˆ«åˆ·æ–°
+		/// @param[in]		nLevel		åˆ·æ–°å¸¸é‡ï¼Œ ç®€åŒ–äº†å‚æ•°ç±»å‹ï¼Œ REFRESH_NORMAL 0x0 / REFRESH_IFEXPIRED 0x01 / REFRESH_COMPLETELY 0x03
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT Refresh2(UINT32 nLevel){return E_NOTIMPL;};
 
-		/// @brief ºóÍË
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åé€€
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT GoBack(){return E_NOTIMPL;};
 
-		/// @brief Ç°½ø
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief å‰è¿›
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT GoForward(){return E_NOTIMPL;};
 
-		/// @brief ÔÚµ±Ç°ä¯ÀÀÆ÷¿ØÖÆÆ÷ÏÂÖ´ĞĞ½Å±¾
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åœ¨å½“å‰æµè§ˆå™¨æ§åˆ¶å™¨ä¸‹æ‰§è¡Œè„šæœ¬
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		virtual HRESULT ExecuteScript(LPCWSTR pszScript){return E_NOTIMPL;};
 
-		/// @brief Ö´ĞĞÖ¸¶¨º¯ÊıÃû×ÖµÄ½Å±¾
-		/// @param[in]		 strFun			Ö¸¶¨Òª½Å±¾Ö´ĞĞµÄº¯ÊıÃû³Æ
-		/// @param[in]		 vecParams		¸ø¶¨Òª½Å±¾Ö´ĞĞµÄº¯ÊıµÄ²ÎÊıÁĞ±í
-		/// @param[out]		 strResult		·µ»Ø½Å±¾º¯ÊıÖ´ĞĞµÄ½á¹û
-		/// @param[in]		 nMaxLen		·µ»Ø½Å±¾º¯ÊıÖ´ĞĞµÄ½á¹û»º³åÇøµÄ×î´ó³¤¶È
-		/// @return HRESULT£¬Ê§°ÜÎªE_FAIL
+		/// @brief æ‰§è¡ŒæŒ‡å®šå‡½æ•°åå­—çš„è„šæœ¬
+		/// @param[in]		 strFun			æŒ‡å®šè¦è„šæœ¬æ‰§è¡Œçš„å‡½æ•°åç§°
+		/// @param[in]		 vecParams		ç»™å®šè¦è„šæœ¬æ‰§è¡Œçš„å‡½æ•°çš„å‚æ•°åˆ—è¡¨
+		/// @param[out]		 strResult		è¿”å›è„šæœ¬å‡½æ•°æ‰§è¡Œçš„ç»“æœ
+		/// @param[in]		 nMaxLen		è¿”å›è„šæœ¬å‡½æ•°æ‰§è¡Œçš„ç»“æœç¼“å†²åŒºçš„æœ€å¤§é•¿åº¦
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºE_FAIL
 		virtual HRESULT ExecuteScriptFuntion(LPCWSTR pszFun, const DM::CArray<LPCWSTR>& vecParams, LPWSTR strResult = NULL,int nMaxLen = -1){return E_NOTIMPL;};
 
-		/// @brief ½ûÖ¹½Å±¾¾¯¸æ
-		/// @param[in]		 bDisable		ÊÇ·ñ½ûÖ¹
-		/// @return HRESULT£¬Ê§°ÜÎªE_FAIL
+		/// @brief ç¦æ­¢è„šæœ¬è­¦å‘Š
+		/// @param[in]		 bDisable		æ˜¯å¦ç¦æ­¢
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºE_FAIL
 		virtual HRESULT DisableScriptWarning(bool bDisable){return E_NOTIMPL;};
 
-		/// @brief ÊÇ·ñÏÔÊ¾WebµÄ¹ö¶¯Ìõ
-		/// @param[in]		 bShow			ÊÇ·ñÏÔÊ¾
+		/// @brief æ˜¯å¦æ˜¾ç¤ºWebçš„æ»šåŠ¨æ¡
+		/// @param[in]		 bShow			æ˜¯å¦æ˜¾ç¤º
 		/// @return
 		virtual HRESULT SetScrollBarShow(bool bShow){return E_NOTIMPL;};
 
-		/// @brief ÊÇ·ñÏÔÊ¾WebµÄÓÒ¼ü²Ëµ¥
-		/// @param[in]		 bShow			ÊÇ·ñÏÔÊ¾
+		/// @brief æ˜¯å¦æ˜¾ç¤ºWebçš„å³é”®èœå•
+		/// @param[in]		 bShow			æ˜¯å¦æ˜¾ç¤º
 		/// @return
 		virtual HRESULT SetContextMenuShow(bool bShow){return E_NOTIMPL;};
 
-		/// @brief ×ª·¢WebµÄSetAttribute
-		/// @param[in]		 bShow			ÊÇ·ñÏÔÊ¾
+		/// @brief è½¬å‘Webçš„SetAttribute
+		/// @param[in]		 bShow			æ˜¯å¦æ˜¾ç¤º
 		/// @return
 		virtual HRESULT WebSetAttribute(LPCWSTR pszAttribute,LPCWSTR pszValue,bool bLoadXml){return E_NOTIMPL;};
 
 
 		//---------------------------------------------------------
-		// ÏòºóÌí¼ÓĞÂ½Ó¿Ú£¬ÒÔ¼æÈİ¾É°æ
+		// å‘åæ·»åŠ æ–°æ¥å£ï¼Œä»¥å…¼å®¹æ—§ç‰ˆ
 
-		/// @brief ÊÇ·ñ¿Éµ¼º½ºóÍË
+		/// @brief æ˜¯å¦å¯å¯¼èˆªåé€€
 		/// @return ture or false
 		virtual bool CanGoBack(){return false;}
 
-		/// @brief ÊÇ·ñ¿Éµ¼º½Ç°½ø
+		/// @brief æ˜¯å¦å¯å¯¼èˆªå‰è¿›
 		/// @return ture or false
 		virtual bool CanGoForward(){return false;}
 	};

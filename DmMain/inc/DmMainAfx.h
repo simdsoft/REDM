@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DmMainOutput.h 
-// File Des: ÓÃÓÚÔ¤±àÒëÖĞ°üº¬£¬ÒÔ¼°À©Õ¹²å¼şÖĞ°üº¬
+// File Des: ç”¨äºé¢„ç¼–è¯‘ä¸­åŒ…å«ï¼Œä»¥åŠæ‰©å±•æ’ä»¶ä¸­åŒ…å«
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -14,7 +14,7 @@
 //-------------------------------------------------------
 #pragma once
 
-/// ´Ë´úÂëÖ÷ÒªÎªVS2013Ê¹ÓÃÉèÖÃ£¬vs2008¿ÉÒÔÖ±½ÓÈ¥µô-------
+/// æ­¤ä»£ç ä¸»è¦ä¸ºVS2013ä½¿ç”¨è®¾ç½®ï¼Œvs2008å¯ä»¥ç›´æ¥å»æ‰-------
 #ifndef WINVER                 
 #define WINVER 0x0501         
 #endif
@@ -31,12 +31,12 @@
 #define _WIN32_IE 0x0501    
 #endif
 ///------------------------------------------------------
-// ÓÉÓÚ±àÒëÆ÷¶ÔtemplateÒªÇóÉùÃ÷ºÍÊµÏÖÒ»ÆğÌá¹©£¬ËùÒÔ²úÉú´Ë¸æ¾¯
-// Ò²¿Éµ¼³öÄ£°å,Èç:template class DM_EXPORT CStringT<wchar_t>
+// ç”±äºç¼–è¯‘å™¨å¯¹templateè¦æ±‚å£°æ˜å’Œå®ç°ä¸€èµ·æä¾›ï¼Œæ‰€ä»¥äº§ç”Ÿæ­¤å‘Šè­¦
+// ä¹Ÿå¯å¯¼å‡ºæ¨¡æ¿,å¦‚:template class DM_EXPORT CStringT<wchar_t>
 __pragma(warning(disable: 4251 4355))
 
 #include "DmMainOutput.h"
 
-// ÄÚ²¿Ê¹ÓÃ
+// å†…éƒ¨ä½¿ç”¨
 #include "Core/DMAppData.h"
 #include "Common/DMDIBHelper.h"

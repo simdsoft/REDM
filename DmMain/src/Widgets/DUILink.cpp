@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUILink.h"
 
 namespace DM
@@ -8,7 +8,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (!m_rcText.IsRectEmpty()// ×ÖÌåÎª¿ÕÊ±£¬¾ÍÖ±½ÓÉèÖÃ°É£¬Ö»ÓĞÍ¼±êÁË
+			if (!m_rcText.IsRectEmpty()// å­—ä½“ä¸ºç©ºæ—¶ï¼Œå°±ç›´æ¥è®¾ç½®å§ï¼Œåªæœ‰å›¾æ ‡äº†
 				&&!m_rcText.PtInRect(pt))
 			{
 				break;
@@ -27,7 +27,7 @@ namespace DM
 
 	void DUILink::OnLButtonDown(UINT nFlags,CPoint pt)
 	{
-		if (!m_rcText.IsRectEmpty()// ×ÖÌåÎª¿ÕÊ±£¬¾ÍÖ±½ÓÉèÖÃ°É£¬Ö»ÓĞÍ¼±êÁË
+		if (!m_rcText.IsRectEmpty()// å­—ä½“ä¸ºç©ºæ—¶ï¼Œå°±ç›´æ¥è®¾ç½®å§ï¼Œåªæœ‰å›¾æ ‡äº†
 			&&!m_rcText.PtInRect(pt)) 
 		{
 			return;
@@ -37,7 +37,7 @@ namespace DM
 
 	void DUILink::OnLButtonUp(UINT nFlags,CPoint pt)
 	{
-		if(!m_rcText.IsRectEmpty()// ×ÖÌåÎª¿ÕÊ±£¬¾ÍÖ±½ÓÉèÖÃ°É£¬Ö»ÓĞÍ¼±êÁË
+		if(!m_rcText.IsRectEmpty()// å­—ä½“ä¸ºç©ºæ—¶ï¼Œå°±ç›´æ¥è®¾ç½®å§ï¼Œåªæœ‰å›¾æ ‡äº†
 			&&!m_rcText.PtInRect(pt))
 		{
 			DM_ReleaseCapture();
@@ -46,7 +46,7 @@ namespace DM
 		__super::OnLButtonUp(nFlags,pt);
 		if (!m_strLinkUrl.IsEmpty())
 		{
-			//ÏÈÊ¹ÓÃÄ¬ÈÏä¯ÀÀÆ÷´ò¿ª£¬Èô´ò¿ªÊ§°Ü£¨²»´æÔÚÄ¬ÈÏä¯ÀÀÆ÷£©£¬ÔòÇ¿ÖÆÊ¹ÓÃIE´ò¿ª
+			//å…ˆä½¿ç”¨é»˜è®¤æµè§ˆå™¨æ‰“å¼€ï¼Œè‹¥æ‰“å¼€å¤±è´¥ï¼ˆä¸å­˜åœ¨é»˜è®¤æµè§ˆå™¨ï¼‰ï¼Œåˆ™å¼ºåˆ¶ä½¿ç”¨IEæ‰“å¼€
 			HINSTANCE hIns = ::ShellExecute(NULL, _T("open"), m_strLinkUrl, NULL, NULL, SW_SHOWNORMAL);
 			if ((LPARAM)(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
 			{
@@ -58,7 +58,7 @@ namespace DM
 
 	void DUILink::OnMouseMove(UINT nFlags,CPoint pt)
 	{
-		if (!m_rcText.IsRectEmpty()// ×ÖÌåÎª¿ÕÊ±£¬¾ÍÖ±½ÓÉèÖÃ°É£¬Ö»ÓĞÍ¼±êÁË
+		if (!m_rcText.IsRectEmpty()// å­—ä½“ä¸ºç©ºæ—¶ï¼Œå°±ç›´æ¥è®¾ç½®å§ï¼Œåªæœ‰å›¾æ ‡äº†
 			&&!m_rcText.PtInRect(pt))
 		{
 			if (m_dwDUIState&DUIWNDSTATE_Hover)
@@ -78,7 +78,7 @@ namespace DM
 
 	void DUILink::OnMouseHover(WPARAM wParam, CPoint pt)
 	{
-		if (!m_rcText.IsRectEmpty()// ×ÖÌåÎª¿ÕÊ±£¬¾Í²»¹ÜÁË°É£¬Ö»ÓĞÍ¼±êÁË
+		if (!m_rcText.IsRectEmpty()// å­—ä½“ä¸ºç©ºæ—¶ï¼Œå°±ä¸ç®¡äº†å§ï¼Œåªæœ‰å›¾æ ‡äº†
 			&&!m_rcText.PtInRect(pt))
 		{
 			return;
@@ -87,44 +87,44 @@ namespace DM
 	}
 
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	void DUILink::CalcTextRect(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT pRect,UINT uFormat)
 	{
 		if(!(uFormat&DT_CALCRECT))
 		{
-			CRect rcText; //1. ¼ÆËã»æÖÆÎÄ×ÖËùÕ¼´óĞ¡
+			CRect rcText; //1. è®¡ç®—ç»˜åˆ¶æ–‡å­—æ‰€å å¤§å°
 			pCanvas->DrawText(pszBuf,cchText,&rcText,DT_LEFT|DT_CALCRECT);
 
 			UINT uAlign = 0;
 			m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
 			if (uAlign&DT_CENTER)
-			{// 2.1Èç¹ûË®Æ½¾ÓÖĞ£¬Ôòµ÷ÕûÎÄ×ÖrcµÄ×óÓÒ
+			{// 2.1å¦‚æœæ°´å¹³å±…ä¸­ï¼Œåˆ™è°ƒæ•´æ–‡å­—rcçš„å·¦å³
 				m_rcText.left  = pRect->left + (pRect->right-pRect->left - rcText.Width())/2;
 				m_rcText.right = m_rcText.left + rcText.Width();
 			}
 			else if (uAlign&DT_RIGHT)
-			{// 2.2 Èç¹û¾ÓÓÒ£¬Ôòµ÷ÕûÎªÓÒ¶ÔÆë
+			{// 2.2 å¦‚æœå±…å³ï¼Œåˆ™è°ƒæ•´ä¸ºå³å¯¹é½
 				m_rcText.left  = pRect->right - rcText.Width();
 				m_rcText.right = pRect->right;
 			}
 			else
-			{// 2.3µ÷ÕûÎª×ó¶ÔÆë
+			{// 2.3è°ƒæ•´ä¸ºå·¦å¯¹é½
 				m_rcText.left  = pRect->left;
 				m_rcText.right = pRect->left + rcText.Width();
 			}
 
 			if(uAlign&DT_VCENTER)
-			{// 3.1µ÷ÕûÉÏÏÂ
+			{// 3.1è°ƒæ•´ä¸Šä¸‹
 				m_rcText.top    = pRect->top+ (pRect->bottom-pRect->top-rcText.Height())/2;
 				m_rcText.bottom = m_rcText.top+rcText.Height();
 			}
 			else if(uAlign&DT_BOTTOM)
-			{// 3.2µ÷ÕûÎªÏÂ¶ÔÆë
+			{// 3.2è°ƒæ•´ä¸ºä¸‹å¯¹é½
 				m_rcText.bottom = m_rcText.bottom;
 				m_rcText.top    = m_rcText.bottom-rcText.Height();
 			}
 			else
-			{// 3.3µ÷ÕûÎªÉÏ¶ÔÆë
+			{// 3.3è°ƒæ•´ä¸ºä¸Šå¯¹é½
 				m_rcText.top    = m_rcText.top;
 				m_rcText.bottom = m_rcText.top+rcText.Height();
 			}

@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -15,11 +15,11 @@ using namespace std;
 
 typedef struct stMACRO
 {
-	CStringW		strDef;			// ºê¶¨ÒåÈç:MSG_WM_INITDIALOG(func)
-	CStringW		strContent;     // ºê¶ÔÓ¦µÄÄÚÈİ
-	CStringW        strMainDef;     // ºêÀ¨ºÅÇ°µÄÄÚÈİ,ÈçMSG_WM_INITDIALOG
-	CStringW        strDot;			// ºêÖĞÀ¨ºÅÄÚµÄÄÚÈİ,Èçfun
-	CStringWList    strParamList;   // °ÑstrDot°´¶ººÅ·Ö¿ª
+	CStringW		strDef;			// å®å®šä¹‰å¦‚:MSG_WM_INITDIALOG(func)
+	CStringW		strContent;     // å®å¯¹åº”çš„å†…å®¹
+	CStringW        strMainDef;     // å®æ‹¬å·å‰çš„å†…å®¹,å¦‚MSG_WM_INITDIALOG
+	CStringW        strDot;			// å®ä¸­æ‹¬å·å†…çš„å†…å®¹,å¦‚fun
+	CStringWList    strParamList;   // æŠŠstrDotæŒ‰é€—å·åˆ†å¼€
 }MACRO,*PMACRO;
 
 class CMacroHelper

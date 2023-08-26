@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMPluginsTool.h"
 #include "DMDynLibMgr.h"
 
@@ -12,7 +12,7 @@ namespace DM
 
 	DMPluginsTool::~DMPluginsTool(void)
 	{
-		UnloadPlugins();//²å¼şĞ¶ÔØ(ÇåÀí¹¤×÷£¬Í¬Ê±Í¨¹ıDMDynLibManagerÉ¾³ı²å¼şËùÔÚdll)
+		UnloadPlugins();//æ’ä»¶å¸è½½(æ¸…ç†å·¥ä½œï¼ŒåŒæ—¶é€šè¿‡DMDynLibManageråˆ é™¤æ’ä»¶æ‰€åœ¨dll)
 		delete DMDynLibMgr::getSingletonPtr();
 	}
 
@@ -23,7 +23,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_OK;
 		do 
 		{
-			// dirÂ·¾¶
+			// dirè·¯å¾„
 			wchar_t szExeDir[MAX_PATH] = {0};
 			if (!GetRootDirW(szExeDir, MAX_PATH))
 			{
@@ -53,7 +53,7 @@ namespace DM
 	void DMPluginsTool::UnloadPlugins(void)
 	{
 		int nCount = (int)m_LibsArray.GetCount();
-		// hgy413:Ò»°ãÎÒÃÇ»á°ÑLOG²å¼ş·ÅÔÚ×îÇ°Ãæ¼ÓÔØ£¬ÄÇÃ´¾ÍÓ¦¸Ã×îºóĞ¶ÔØ£¬ÕâÑù¿ÉÒÔ±£Ö¤ÆäËûµÄÎö¹¹º¯ÊıÈÔ¿Éµ÷ÓÃËü´òÓ¡LOG,ËùÒÔÕâÀïµ¹×ÅĞ¶ÔØ
+		// hgy413:ä¸€èˆ¬æˆ‘ä»¬ä¼šæŠŠLOGæ’ä»¶æ”¾åœ¨æœ€å‰é¢åŠ è½½ï¼Œé‚£ä¹ˆå°±åº”è¯¥æœ€åå¸è½½ï¼Œè¿™æ ·å¯ä»¥ä¿è¯å…¶ä»–çš„ææ„å‡½æ•°ä»å¯è°ƒç”¨å®ƒæ‰“å°LOG,æ‰€ä»¥è¿™é‡Œå€’ç€å¸è½½
 		for (int i=nCount-1; i>=0; i--)
 		{
 			DLL_STOP_PLUGIN pFunc = (DLL_STOP_PLUGIN)m_LibsArray[i]->GetSymbol("dllStopPlugin");
@@ -67,7 +67,7 @@ namespace DM
 		}
 		m_LibsArray.RemoveAll();
 
-		// ÒÆ³ıÒÔÆäËû·½Ê½×¢²á½øÀ´µÄ²å¼ş.Ò»°ã·Çdll
+		// ç§»é™¤ä»¥å…¶ä»–æ–¹å¼æ³¨å†Œè¿›æ¥çš„æ’ä»¶.ä¸€èˆ¬édll
 		nCount = (int)m_PluginArray.GetCount();
 		for (int i=0; i<nCount; i++)
 		{
@@ -99,7 +99,7 @@ namespace DM
 					break;
 				}
 			}
-			if (bFind) // Ä£¿éÒÑ´æÔÚ
+			if (bFind) // æ¨¡å—å·²å­˜åœ¨
 			{  
 				iErr = DMPLUGINSTOOL_LOADPLUGIN_ALREADY_EXIST;
 				break;
@@ -109,7 +109,7 @@ namespace DM
 			if (!pFunc)
 			{
 				DMASSERT_MSG_FMT(NULL!=pFunc, "Can't locate imported function:dllStartPlugin");
-				//DMDynLibMgr::getSingletonPtr()->Unload(pLib);//Ö±½ÓĞ¶ÔØ
+				//DMDynLibMgr::getSingletonPtr()->Unload(pLib);//ç›´æ¥å¸è½½
 				iErr = DMPLUGINSTOOL_LOADPLUGIN_NOFIND_START_EXPORT;
 				break;
 			}
@@ -223,13 +223,13 @@ namespace DM
 		}
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	void DMPluginsTool::ParsePluginCfg(const wchar_t* pPluginsFile, wchar_t *szExeDir)
 	{
 		/*
 		<?xml version="1.0" encoding="utf-8"?>
 		<body>
-			<!--directoryÖ¸Ã÷ÁËplugin´æ·ÅÔÚÄÄ¸öÎÄ¼ş¼ĞÄÚ-->
+			<!--directoryæŒ‡æ˜äº†pluginå­˜æ”¾åœ¨å“ªä¸ªæ–‡ä»¶å¤¹å†…-->
 			<directory name=".\">
 			<item name="Plugin_D3D9.dll"/>
 			<item name="Plugin_GL.dll"/>
@@ -265,7 +265,7 @@ namespace DM
 				while (!strDir.IsEmpty()&&item.IsValid())
 				{
 					if (strDir.Right(1)!=L'/'&&strDir.Right(1)!=L'\\')
-					{// ×Ô¶¯¼ÓÉÏºó×º
+					{// è‡ªåŠ¨åŠ ä¸Šåç¼€
 						strDir += L'\\';
 					}
 

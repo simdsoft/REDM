@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	MsgBox.h
 // File mark:   
-// File summary:×¨Îªµ¯¿ò×¼±¸µÄ
+// File summary:ä¸“ä¸ºå¼¹æ¡†å‡†å¤‡çš„
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-13

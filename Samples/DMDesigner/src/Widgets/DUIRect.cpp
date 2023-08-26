@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "DUIRect.h"
 
 namespace DM
@@ -278,7 +278,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÷ÿ‘ÿ
+	// Function Des: –∂–∏–¥–∏
 	DMCode DUIRect::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);

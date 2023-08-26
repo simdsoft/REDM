@@ -1,9 +1,9 @@
-#include "TGPDemoAfx.h"
+ï»¿#include "TGPDemoAfx.h"
 #include "TGPLoginWnd.h"
 
 BEGIN_MSG_MAP(CTGPLoginWnd)
 	MSG_WM_INITDIALOG(OnInitDialog)  
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP()
  
 BEGIN_EVENT_MAP(CTGPLoginWnd)

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Plugin_ExpandAfx.h"
 #include "Plugin_Expand.h"
 

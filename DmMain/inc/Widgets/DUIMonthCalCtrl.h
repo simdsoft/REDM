@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIMonthCalCtrl.h
-// File Des: ÄÚÖÃÈÕÀúÊµÏÖ
+// File Des: å†…ç½®æ—¥å†å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,51 +18,51 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIMonthCalCtrl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIMonthCalCtrl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIMonthCalCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* INT_headerheight;												  ///< Í·²¿µÄ¸ß¶È,Ä¬ÈÏÎª24,Ê¾Àı:headerheight="24"
-		static const char* INT_btnoffset;													  ///< Í·²¿×óÓÒĞ¡Èı½ÇÏà¶ÔÓÚ±ß¿òµÄÆ«ÒÆ£¬Ä¬ÈÏÎª4,Ê¾Àı:btnoffset="4"
-		static const char* COLOR_clrheaderbg;												  ///< Í·²¿µÄ±³¾°É«,Ê¾Àı:clrheaderbg="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_headerbgskin;                                                ///< Í·²¿µÄ±³¾°Í¼,Ê¾Àı:headerbgskin="bgskin"
-		static const char* SKIN_leftbtnskin;                                                 ///< ×ó±ßµÄĞ¡Èı½Ç°´Å¥Æ¤·ô£¬Ê¾Àı:leftbtnskin="skinbtn"
-		static const char* SKIN_rightbtnskin;                                                ///< ÓÒ±ßµÄĞ¡Èı½Ç°´Å¥Æ¤·ô£¬Ê¾Àı:rightbtnskin="skinbtn"
-		static const char* SIZE_btnsize;													  ///< Ğ¡Èı½ÇµÄ¿í¸ß,Îª-1,-1Ê±±íÊ¾Ê¹ÓÃbtnskinµÄsize,ÊúÖ±¾ÓÖĞ,Ê¾Àı:btnsize="-1,-1"
-		static const char* COLOR_clrheadertext;                                              ///< Í·²¿ÖĞ¼äµÄÎÄ±¾ÑÕÉ«,Ê¾Àı:clrheadertext="pbgra(ff,ff,ff,ff)"
-		static const char* FONT_headerfont;												  ///< Í·²¿ÖĞ¼äµÄÎÄ±¾×ÖÌå,Ê¾Àı:headerfont="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
-		static const char* STRING_headertextformat;                                          ///< Í·²¿ÖĞ¼äµÄÎÄ±¾format,´øÓĞ¸ñÊ¾»¯Êı×ÖµÄ·ûºÅ,Ê¾Àı:headertextformat="%04dÄê%02dÔÂ"				
+		static const char* INT_headerheight;												  ///< å¤´éƒ¨çš„é«˜åº¦,é»˜è®¤ä¸º24,ç¤ºä¾‹:headerheight="24"
+		static const char* INT_btnoffset;													  ///< å¤´éƒ¨å·¦å³å°ä¸‰è§’ç›¸å¯¹äºè¾¹æ¡†çš„åç§»ï¼Œé»˜è®¤ä¸º4,ç¤ºä¾‹:btnoffset="4"
+		static const char* COLOR_clrheaderbg;												  ///< å¤´éƒ¨çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrheaderbg="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_headerbgskin;                                                ///< å¤´éƒ¨çš„èƒŒæ™¯å›¾,ç¤ºä¾‹:headerbgskin="bgskin"
+		static const char* SKIN_leftbtnskin;                                                 ///< å·¦è¾¹çš„å°ä¸‰è§’æŒ‰é’®çš®è‚¤ï¼Œç¤ºä¾‹:leftbtnskin="skinbtn"
+		static const char* SKIN_rightbtnskin;                                                ///< å³è¾¹çš„å°ä¸‰è§’æŒ‰é’®çš®è‚¤ï¼Œç¤ºä¾‹:rightbtnskin="skinbtn"
+		static const char* SIZE_btnsize;													  ///< å°ä¸‰è§’çš„å®½é«˜,ä¸º-1,-1æ—¶è¡¨ç¤ºä½¿ç”¨btnskinçš„size,ç«–ç›´å±…ä¸­,ç¤ºä¾‹:btnsize="-1,-1"
+		static const char* COLOR_clrheadertext;                                              ///< å¤´éƒ¨ä¸­é—´çš„æ–‡æœ¬é¢œè‰²,ç¤ºä¾‹:clrheadertext="pbgra(ff,ff,ff,ff)"
+		static const char* FONT_headerfont;												  ///< å¤´éƒ¨ä¸­é—´çš„æ–‡æœ¬å­—ä½“,ç¤ºä¾‹:headerfont="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
+		static const char* STRING_headertextformat;                                          ///< å¤´éƒ¨ä¸­é—´çš„æ–‡æœ¬format,å¸¦æœ‰æ ¼ç¤ºåŒ–æ•°å­—çš„ç¬¦å·,ç¤ºä¾‹:headertextformat="%04då¹´%02dæœˆ"				
 		//
-		static const char* INT_titleheight;												  ///< titleµÄ¸ß¶È,Ä¬ÈÏÎª24,Ê¾Àı:titleheight="24"
-		static const char* STRING_weektitle;												  ///< ÆßÌìµÄ±íÊ¾·¨,ÒÔ¶ººÅ·Ö¸ô,Ê¾Àı:weektitle="ÈÕ,Ò», ¶ş, Èı, ËÄ, Îå, Áù"
-		static const char* COLOR_clrtitletext;												  ///< titleµÄ×ÖÌåÉ«,Ê¾Àı:clrtitletext="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtitlebg;												  ///< titleµÄ±³¾°É«,Ê¾Àı:clrtitlebg="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_titlebgskin;                                                 ///< titleµÄ±³¾°Í¼,Ê¾Àı:titlebgskin="bgskin"
-		static const char* FONT_titlefont;													  ///< titleµÄÎÄ±¾×ÖÌå,Ê¾Àı:titlefont="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
+		static const char* INT_titleheight;												  ///< titleçš„é«˜åº¦,é»˜è®¤ä¸º24,ç¤ºä¾‹:titleheight="24"
+		static const char* STRING_weektitle;												  ///< ä¸ƒå¤©çš„è¡¨ç¤ºæ³•,ä»¥é€—å·åˆ†éš”,ç¤ºä¾‹:weektitle="æ—¥,ä¸€, äºŒ, ä¸‰, å››, äº”, å…­"
+		static const char* COLOR_clrtitletext;												  ///< titleçš„å­—ä½“è‰²,ç¤ºä¾‹:clrtitletext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtitlebg;												  ///< titleçš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrtitlebg="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_titlebgskin;                                                 ///< titleçš„èƒŒæ™¯å›¾,ç¤ºä¾‹:titlebgskin="bgskin"
+		static const char* FONT_titlefont;													  ///< titleçš„æ–‡æœ¬å­—ä½“,ç¤ºä¾‹:titlefont="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
 		//
-		static const char* bool_bhidegraycell;                                               ///< ÊÇ·ñÒş²Øgray cell,Ê¾Àı:bhidegraycell="0"
-		static const char* COLOR_clrgraycelltext;											  ///< graycellµÄnormarlÎÄ±¾É«(ÉÏÏÂÔÂµÄcellÎªgreycell),Ê¾Àı:clrgraycelltext="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrgraycelltexthover;									      ///< graycellµÄhoverÎÄ±¾É«(ÉÏÏÂÔÂµÄcellÎªgreycell),Ê¾Àı:clrgraycelltexthover="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrgraycelltextpush;									      ///< graycellµÄpushÎÄ±¾É«(ÉÏÏÂÔÂµÄcellÎªgreycell),Ê¾Àı:clrgraycelltextpush="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrcell;													  ///< ËùÓĞcellµÄ±³¾°É«,Ê¾Àı:clrcell="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrcellhover;												  ///< ËùÓĞcellµÄhover±³¾°É«,Ê¾Àı:clrcellhover="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrcellpush;												  ///< ËùÓĞcellµÄpush±³¾°É«,Ê¾Àı:clrcellpush="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_cellskin;                                                    ///< ËùÓĞcellµÄÈıÌ¬±³¾°Í¼,Ê¾Àı:cellskin="skin"
-		static const char* bool_bshowjieri;									    		  ///< ÊÇ·ñÏÔÊ¾½ÚÈÕ,Èç¹ûÏÔÊ¾,ÔòcellµÄÎÄ±¾Õ¼ÉÏ·½µÄ2/3,½ÚÈÕÕ¼ÏÂ·½1/3,Ê¾Àı:bshowjieri="1"
-		static const char* COLOR_clrjieritext;												  ///< ½ÚÈÕµÄ×ÖÌåÉ«,Ê¾Àı:clrjieritext="pbgra(ff,ff,ff,ff)"
-		static const char* FONT_jierifont;													  ///< ½ÚÈÕµÄÎÄ±¾×ÖÌå,Ê¾Àı:jierifont="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
+		static const char* bool_bhidegraycell;                                               ///< æ˜¯å¦éšè—gray cell,ç¤ºä¾‹:bhidegraycell="0"
+		static const char* COLOR_clrgraycelltext;											  ///< graycellçš„normarlæ–‡æœ¬è‰²(ä¸Šä¸‹æœˆçš„cellä¸ºgreycell),ç¤ºä¾‹:clrgraycelltext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrgraycelltexthover;									      ///< graycellçš„hoveræ–‡æœ¬è‰²(ä¸Šä¸‹æœˆçš„cellä¸ºgreycell),ç¤ºä¾‹:clrgraycelltexthover="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrgraycelltextpush;									      ///< graycellçš„pushæ–‡æœ¬è‰²(ä¸Šä¸‹æœˆçš„cellä¸ºgreycell),ç¤ºä¾‹:clrgraycelltextpush="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrcell;													  ///< æ‰€æœ‰cellçš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrcell="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrcellhover;												  ///< æ‰€æœ‰cellçš„hoverèƒŒæ™¯è‰²,ç¤ºä¾‹:clrcellhover="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrcellpush;												  ///< æ‰€æœ‰cellçš„pushèƒŒæ™¯è‰²,ç¤ºä¾‹:clrcellpush="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_cellskin;                                                    ///< æ‰€æœ‰cellçš„ä¸‰æ€èƒŒæ™¯å›¾,ç¤ºä¾‹:cellskin="skin"
+		static const char* bool_bshowjieri;									    		  ///< æ˜¯å¦æ˜¾ç¤ºèŠ‚æ—¥,å¦‚æœæ˜¾ç¤º,åˆ™cellçš„æ–‡æœ¬å ä¸Šæ–¹çš„2/3,èŠ‚æ—¥å ä¸‹æ–¹1/3,ç¤ºä¾‹:bshowjieri="1"
+		static const char* COLOR_clrjieritext;												  ///< èŠ‚æ—¥çš„å­—ä½“è‰²,ç¤ºä¾‹:clrjieritext="pbgra(ff,ff,ff,ff)"
+		static const char* FONT_jierifont;													  ///< èŠ‚æ—¥çš„æ–‡æœ¬å­—ä½“,ç¤ºä¾‹:jierifont="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
 		//
-		static const char* INT_todayheight;												  ///< todayµÄ¸ß¶È,Ä¬ÈÏÎª24,Ê¾Àı:todayheight="24"
-		static const char* COLOR_clrtodaytext;												  ///< todayµÄnormarlÎÄ±¾É«,Ê¾Àı:clrtodaytext="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtodaytexthover;									      ///< todayµÄhoverÎÄ±¾É«,Ê¾Àı:clrtodaytexthover="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtodaytextpush;											  ///< todayµÄpushÎÄ±¾É«,Ê¾Àı:clrtodaytextpush="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtoday;													  ///< todayµÄ±³¾°É«,Ê¾Àı:clrtoday="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtodayhover;											  ///< todayµÄhover±³¾°É«,Ê¾Àı:clrtodayhover="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtodaypush;												  ///< todayµÄpush±³¾°É«,Ê¾Àı:clrtodaypush="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_todayskin;                                                   ///< Ã¿¸ötodayµÄÈıÌ¬±³¾°Í¼,Ê¾Àı:todayskin="skin"
-		static const char* FONT_todayfont;													  ///< todayµÄÎÄ±¾×ÖÌå,Ê¾Àı:todayfont="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
-		static const char* STRING_todaytextformat;                                           ///< todayµÄÎÄ±¾format,´øÓĞ¸ñÊ¾»¯Êı×ÖµÄ·ûºÅ,Ê¾Àı:todaytextformat="½ñÌì:%04d/%02d/%02d"			
+		static const char* INT_todayheight;												  ///< todayçš„é«˜åº¦,é»˜è®¤ä¸º24,ç¤ºä¾‹:todayheight="24"
+		static const char* COLOR_clrtodaytext;												  ///< todayçš„normarlæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtodaytext="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtodaytexthover;									      ///< todayçš„hoveræ–‡æœ¬è‰²,ç¤ºä¾‹:clrtodaytexthover="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtodaytextpush;											  ///< todayçš„pushæ–‡æœ¬è‰²,ç¤ºä¾‹:clrtodaytextpush="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtoday;													  ///< todayçš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrtoday="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtodayhover;											  ///< todayçš„hoverèƒŒæ™¯è‰²,ç¤ºä¾‹:clrtodayhover="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtodaypush;												  ///< todayçš„pushèƒŒæ™¯è‰²,ç¤ºä¾‹:clrtodaypush="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_todayskin;                                                   ///< æ¯ä¸ªtodayçš„ä¸‰æ€èƒŒæ™¯å›¾,ç¤ºä¾‹:todayskin="skin"
+		static const char* FONT_todayfont;													  ///< todayçš„æ–‡æœ¬å­—ä½“,ç¤ºä¾‹:todayfont="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
+		static const char* STRING_todaytextformat;                                           ///< todayçš„æ–‡æœ¬format,å¸¦æœ‰æ ¼ç¤ºåŒ–æ•°å­—çš„ç¬¦å·,ç¤ºä¾‹:todaytextformat="ä»Šå¤©:%04d/%02d/%02d"			
 
 	};
 	DMAttrValueInit(DUIMonthCalCtrlAttr,INT_headerheight)DMAttrValueInit(DUIMonthCalCtrlAttr,INT_btnoffset)DMAttrValueInit(DUIMonthCalCtrlAttr,COLOR_clrheaderbg)
@@ -85,18 +85,18 @@ namespace DM
 {
 	typedef struct stDMCalendarCell
 	{
-		DMDateTime						date;		///< ÈÕÆÚ	
-		CStringW						title;		///< ±êÌâ
-		CStringW						jieri;      ///< ½ÚÈÕ                  
-		bool							bGray;		///< ÊÇ·ñÎª»Ò
-		bool							bMark;		///< ÊÇ·ñ±»±ê¼Ç
-		CRect                           rect;       ///< ËùÕ¼µÄÇøÓò
+		DMDateTime						date;		///< æ—¥æœŸ	
+		CStringW						title;		///< æ ‡é¢˜
+		CStringW						jieri;      ///< èŠ‚æ—¥                  
+		bool							bGray;		///< æ˜¯å¦ä¸ºç°
+		bool							bMark;		///< æ˜¯å¦è¢«æ ‡è®°
+		CRect                           rect;       ///< æ‰€å çš„åŒºåŸŸ
 	}DMCalendarCell,*LPDMCalendarCell;
-	#define CALENDAR_ROWS			6				///< ÏÔÊ¾ÇøÓòÓĞ¶àÉÙĞĞ
-	#define CALENDAR_COLUMNS		7				///< ÏÔÊ¾ÇøÓòÓĞ¶àÉÙÁĞ
+	#define CALENDAR_ROWS			6				///< æ˜¾ç¤ºåŒºåŸŸæœ‰å¤šå°‘è¡Œ
+	#define CALENDAR_COLUMNS		7				///< æ˜¾ç¤ºåŒºåŸŸæœ‰å¤šå°‘åˆ—
 
 	/// <summary>
-	///		 DUIMonthCalCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIMonthCalCtrlAttr"/>
+	///		 DUIMonthCalCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIMonthCalCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIMonthCalCtrl:public DUIWindow
 	{
@@ -106,13 +106,13 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú methods
+		// Function Des: å¯¹å¤–æ¥å£ methods
 		//---------------------------------------------------
 		DMDateTime GetDisplayDate() const;
 		void SetDisplayDate(DMDateTime date, bool bNotify=true);
 
-		void UpdateDisplayCells();																	///< ¸üĞÂµ±Ç°µÄcellsÁĞ±í
-		void UpdateDisplayCellsRect();																///< ¸üĞÂµ±Ç°µÄcellsÁĞ±íÇøÓò
+		void UpdateDisplayCells();																	///< æ›´æ–°å½“å‰çš„cellsåˆ—è¡¨
+		void UpdateDisplayCellsRect();																///< æ›´æ–°å½“å‰çš„cellsåˆ—è¡¨åŒºåŸŸ
 
 		//---------------------------------------------------
 		// Function Des: Draw methods
@@ -134,7 +134,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnSize(UINT nType, CSize size);
@@ -143,13 +143,13 @@ namespace DM
 		void OnMouseLeave();
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		enum HeadType{HEADER, LEFTBTN, RIGHTBTN, MID, MIX};
-		CRect CalcHeaderRect(HeadType type);													    ///< »ñµÃHeader²¿·ÖµÄ¸÷ÇøÓò
-		CRect CalcTitleRect();																		///< »ñµÃTitle²¿·ÖµÄÇøÓò
-		CRect CalcTodayRect();                                                                      ///< »ñµÃToday²¿·ÖµÄÇøÓò
-		CStringW CalcJieri(int iMon, int iDay);														///< ¼ÆËã·µ»Ø½ÚÈÕÎÄ±¾
-		int CalcHitCell(CPoint &pt);																///< ¼ÆËãµÃµ½µã»÷µÄcellË÷Òı,-1±íÊ¾Î´µã»÷						
+		CRect CalcHeaderRect(HeadType type);													    ///< è·å¾—Headeréƒ¨åˆ†çš„å„åŒºåŸŸ
+		CRect CalcTitleRect();																		///< è·å¾—Titleéƒ¨åˆ†çš„åŒºåŸŸ
+		CRect CalcTodayRect();                                                                      ///< è·å¾—Todayéƒ¨åˆ†çš„åŒºåŸŸ
+		CStringW CalcJieri(int iMon, int iDay);														///< è®¡ç®—è¿”å›èŠ‚æ—¥æ–‡æœ¬
+		int CalcHitCell(CPoint &pt);																///< è®¡ç®—å¾—åˆ°ç‚¹å‡»çš„cellç´¢å¼•,-1è¡¨ç¤ºæœªç‚¹å‡»						
 
 		void OnPreviousClick();
 		void OnNextClick();
@@ -208,45 +208,45 @@ namespace DM
 		DMCode OnAttributebHideGrayCell(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		int									   m_iHeaderHei;						 ///< Í·²¿¸ß¶È 
-		int                                    m_iBtnOffset;                         ///< Í·²¿Ğ¡Èı½ÇÆ«ÒÆ
-		DMColor                                m_crHeaderBg;                         ///< Í·²¿µÄ±³¾°É«
-		IDMSkinPtr                             m_pHeaderBgSkin;						 ///< Í·²¿µÄ±³¾°Í¼
-		IDMSkinPtr							   m_pBtnSkin[2];						 ///< Í·²¿Ğ¡Èı½Ç°´Å¥×ÊÔ´   
-		CSize								   m_BtnSize;                            ///< Í·²¿Ğ¡Èı½Ç°´Å¥µÄ³¤¿í
-		DWORD								   m_dwBtnState[2];						 ///< Í·²¿Ğ¡Èı½Ç°´Å¥×´Ì¬  
-		DMColor								   m_crHeaderText;                       ///< Í·²¿ÖĞ¼äÎÄ×ÖÑÕÉ«
-		DMSmartPtrT<IDMFont>				   m_ftHeader;                           ///< Í·²¿ÖĞ¼ä×ÖÌå
-		CStringW                               m_strHeaderTextFormat;                ///< Í·²¿ÖĞ¼äÎÄ±¾ÏÔÊ¾¸ñÊ½
+		int									   m_iHeaderHei;						 ///< å¤´éƒ¨é«˜åº¦ 
+		int                                    m_iBtnOffset;                         ///< å¤´éƒ¨å°ä¸‰è§’åç§»
+		DMColor                                m_crHeaderBg;                         ///< å¤´éƒ¨çš„èƒŒæ™¯è‰²
+		IDMSkinPtr                             m_pHeaderBgSkin;						 ///< å¤´éƒ¨çš„èƒŒæ™¯å›¾
+		IDMSkinPtr							   m_pBtnSkin[2];						 ///< å¤´éƒ¨å°ä¸‰è§’æŒ‰é’®èµ„æº   
+		CSize								   m_BtnSize;                            ///< å¤´éƒ¨å°ä¸‰è§’æŒ‰é’®çš„é•¿å®½
+		DWORD								   m_dwBtnState[2];						 ///< å¤´éƒ¨å°ä¸‰è§’æŒ‰é’®çŠ¶æ€  
+		DMColor								   m_crHeaderText;                       ///< å¤´éƒ¨ä¸­é—´æ–‡å­—é¢œè‰²
+		DMSmartPtrT<IDMFont>				   m_ftHeader;                           ///< å¤´éƒ¨ä¸­é—´å­—ä½“
+		CStringW                               m_strHeaderTextFormat;                ///< å¤´éƒ¨ä¸­é—´æ–‡æœ¬æ˜¾ç¤ºæ ¼å¼
 		//
-		int                                    m_iTitleHei;                          ///< Title¸ß¶È
-		CStringW                               m_strWeekTitle[7];                    ///< TitleÈÕÀúÆßÌì±êÊ¶  
-		DMColor                                m_crTitleText;                        ///< TitleµÄ×ÖÌåÑÕÉ«
-		DMColor                                m_crTitleBg;                          ///< TitleµÄ±³¾°É«
-		IDMSkinPtr                             m_pTitleBgSkin;						 ///< TitleµÄ±³¾°Í¼
-		DMSmartPtrT<IDMFont>				   m_ftTitle;                            ///< TitleµÄ×ÖÌå
+		int                                    m_iTitleHei;                          ///< Titleé«˜åº¦
+		CStringW                               m_strWeekTitle[7];                    ///< Titleæ—¥å†ä¸ƒå¤©æ ‡è¯†  
+		DMColor                                m_crTitleText;                        ///< Titleçš„å­—ä½“é¢œè‰²
+		DMColor                                m_crTitleBg;                          ///< Titleçš„èƒŒæ™¯è‰²
+		IDMSkinPtr                             m_pTitleBgSkin;						 ///< Titleçš„èƒŒæ™¯å›¾
+		DMSmartPtrT<IDMFont>				   m_ftTitle;                            ///< Titleçš„å­—ä½“
 		//
-		bool                                   m_bHideGrayCell;                      ///< ÊÇ·ñÒş²Ø»ÒµôµÄcell,Ä¬ÈÏÏÔÊ¾
-		DMColor                                m_crGrayCellText[3];					 ///< »ÒµôcellµÄÎÄ±¾ÈıÉ«(Ç°Ò»¸öÔÂºÍºóÒ»¸öÔÂÎª»Òµôcell,Ä¬ÈÏµÄcell¾ÍÊ¹ÓÃstyleµÄÎÄ±¾ÈıÉ«)
-		DMColor								   m_crCell[3];							 ///< ËùÓĞCellµÄ±³¾°ÈıÉ«
-		IDMSkinPtr                             m_pCellSkin;                          ///< ËùÓĞCellµÄ±³¾°Í¼
-		bool                                   m_bShowJieri;                         ///< ËùÓĞcellÊÇ·ñÏÔÊ¾½ÚÈÕÎÄ±¾
-		DMColor								   m_crJieriText;                        ///< ½ÚÈÕÎÄ±¾ÑÕÉ«
-		DMSmartPtrT<IDMFont>				   m_ftJieri;                            ///< ½ÚÈÕÎÄ±¾µÄ×ÖÌå
+		bool                                   m_bHideGrayCell;                      ///< æ˜¯å¦éšè—ç°æ‰çš„cell,é»˜è®¤æ˜¾ç¤º
+		DMColor                                m_crGrayCellText[3];					 ///< ç°æ‰cellçš„æ–‡æœ¬ä¸‰è‰²(å‰ä¸€ä¸ªæœˆå’Œåä¸€ä¸ªæœˆä¸ºç°æ‰cell,é»˜è®¤çš„cellå°±ä½¿ç”¨styleçš„æ–‡æœ¬ä¸‰è‰²)
+		DMColor								   m_crCell[3];							 ///< æ‰€æœ‰Cellçš„èƒŒæ™¯ä¸‰è‰²
+		IDMSkinPtr                             m_pCellSkin;                          ///< æ‰€æœ‰Cellçš„èƒŒæ™¯å›¾
+		bool                                   m_bShowJieri;                         ///< æ‰€æœ‰cellæ˜¯å¦æ˜¾ç¤ºèŠ‚æ—¥æ–‡æœ¬
+		DMColor								   m_crJieriText;                        ///< èŠ‚æ—¥æ–‡æœ¬é¢œè‰²
+		DMSmartPtrT<IDMFont>				   m_ftJieri;                            ///< èŠ‚æ—¥æ–‡æœ¬çš„å­—ä½“
 		//
-		int                                    m_iTodayHei;                          ///< TodayµÄ¸ß¶È
-		DMColor                                m_crTodayText[3];                     ///< TodayµÄÎÄ±¾ÈıÉ«
-		DMColor                                m_crToday[3];                         ///< TodayµÄ±³¾°ÈıÉ«
-		IDMSkinPtr                             m_pTodaySkin;						 ///< TodayµÄ±³¾°Í¼
-		DMSmartPtrT<IDMFont>				   m_ftToday;                            ///< TodayµÄÎÄ±¾×ÖÌå
-		CStringW                               m_strTodayTextFormat;                 ///< TodayµÄÎÄ±¾ÏÔÊ¾¸ñÊ½
-		DWORD								   m_dwTodayState;						 ///< TodayµÄ×´Ì¬
+		int                                    m_iTodayHei;                          ///< Todayçš„é«˜åº¦
+		DMColor                                m_crTodayText[3];                     ///< Todayçš„æ–‡æœ¬ä¸‰è‰²
+		DMColor                                m_crToday[3];                         ///< Todayçš„èƒŒæ™¯ä¸‰è‰²
+		IDMSkinPtr                             m_pTodaySkin;						 ///< Todayçš„èƒŒæ™¯å›¾
+		DMSmartPtrT<IDMFont>				   m_ftToday;                            ///< Todayçš„æ–‡æœ¬å­—ä½“
+		CStringW                               m_strTodayTextFormat;                 ///< Todayçš„æ–‡æœ¬æ˜¾ç¤ºæ ¼å¼
+		DWORD								   m_dwTodayState;						 ///< Todayçš„çŠ¶æ€
 		//
 		DMCalendarCell						   m_dayCells[CALENDAR_ROWS][CALENDAR_COLUMNS];   
-		DMDateTime							   m_displayDate;						 ///< µ±Ç°ÏÔÊ¾Ê±¼ä
-		int				                       m_iselCell;							 ///< Ñ¡ÖĞCell
-		int			                           m_ihoverCell;						 ///< Í£ÁôCell
-		CRect								   m_rcCells;							 ///< CellsµÄ×ÜÇøÓò
+		DMDateTime							   m_displayDate;						 ///< å½“å‰æ˜¾ç¤ºæ—¶é—´
+		int				                       m_iselCell;							 ///< é€‰ä¸­Cell
+		int			                           m_ihoverCell;						 ///< åœç•™Cell
+		CRect								   m_rcCells;							 ///< Cellsçš„æ€»åŒºåŸŸ
 	};
 
 }// namespace DM

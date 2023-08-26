@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMImgDecoderImpl.h"
 #include "DMGifParse.h"
 
@@ -129,7 +129,7 @@ namespace DM
 				iErr = DM_ECODE_OK;
 				if (!CheckFramesValid())
 				{
-					LOG_ERR("[mid]¶àÖ¡µÄÑÓ³ÙÊ±¼ä»ñÈ¡Ê§°Ü\n");
+					LOG_ERR("[mid]å¤šå¸§çš„å»¶è¿Ÿæ—¶é—´èŽ·å–å¤±è´¥\n");
 					RepairFrames(pBuf,bufLen);
 				}
 			}
@@ -190,7 +190,7 @@ namespace DM
 				iErr = DM_ECODE_OK;
 				if (!CheckFramesValid())
 				{
-					LOG_ERR("[mid]¶àÖ¡µÄÑÓ³ÙÊ±¼ä»ñÈ¡Ê§°Ü\n");
+					LOG_ERR("[mid]å¤šå¸§çš„å»¶è¿Ÿæ—¶é—´èŽ·å–å¤±è´¥\n");
 					RepairFrames(szPath);
 				}
 			}
@@ -200,7 +200,7 @@ namespace DM
 
 	DMCode DMImgDecoderImpl::GetFrameCount(UINT &ulCount)
 	{
-		ulCount = (UINT)GetCount();//À´×ÔDMArrayT
+		ulCount = (UINT)GetCount();//æ¥è‡ªDMArrayT
 		return DM_ECODE_OK;
 	}
 
@@ -221,7 +221,7 @@ namespace DM
 			}
 
 			DMImgFrameImplPtr pObj = NULL;
-			if (false == GetObj(iFrame, pObj))//DMArrayT°²È«µ÷ÓÃ
+			if (false == GetObj(iFrame, pObj))//DMArrayTå®‰å…¨è°ƒç”¨
 			{
 				break;
 			}
@@ -233,13 +233,13 @@ namespace DM
 	}
 
 
-	///¸¨Öú ------------------------------------------
+	///è¾…åŠ© ------------------------------------------
 	bool DMImgDecoderImpl::DoDecode(IWICBitmapDecoder* pBmpDecoder)
 	{
 		bool bRet =  false;
 		do 
 		{
-			// ±éÀú¼ÓÈëDMImgFrameImpl*
+			// éåŽ†åŠ å…¥DMImgFrameImpl*
 			if (FAILED(pBmpDecoder->GetFrameCount(&m_ulFrameCount)))
 			{
 				break;
@@ -249,7 +249,7 @@ namespace DM
 			{
 				break;
 			}
-			m_uTotalLoopCount = INFINITE;// -1Ä¬ÈÏÊÇinfinitely loop
+			m_uTotalLoopCount = INFINITE;// -1é»˜è®¤æ˜¯infinitely loop
 			if (m_ulFrameCount>1)
 			{
 				m_uTotalLoopCount = GetTotalLoopCount(pBmpDecoder); 
@@ -290,7 +290,7 @@ namespace DM
 				WICPixelFormatGUID pixelFormat;
 			    auto hr = pBmpFrameDecoder->GetPixelFormat(&pixelFormat);
 
-				unsigned int uFrameDelay = 0;        // ¶àÖ¡Ê¹ÓÃ
+				unsigned int uFrameDelay = 0;        // å¤šå¸§ä½¿ç”¨
 				if (SUCCEEDED(
 					pFormatConvert->Initialize(
 					pBmpFrameDecoder,				      //Input bitmap to convert
@@ -303,7 +303,7 @@ namespace DM
 					)
 				{
 					if (m_ulFrameCount>1)
-					{// ¶àÖ¡
+					{// å¤šå¸§
 						uFrameDelay = GetFrameDelay(pBmpFrameDecoder);
 
 					}
@@ -312,7 +312,7 @@ namespace DM
 					if (SUCCEEDED(pFormatConvert->QueryInterface(IID_PPV_ARGS(&pBmpSource))))
 					{
 						DMImgFrameImpl *pObj = new DMImgFrameImpl(pBmpSource,uFrameDelay);
-						AddObj(pObj);// ´Ëº¯ÊýÀ´×ÔDMArrayTÄ£°å
+						AddObj(pObj);// æ­¤å‡½æ•°æ¥è‡ªDMArrayTæ¨¡æ¿
 					}
 				}
 			}
@@ -324,7 +324,7 @@ namespace DM
 
 	UINT DMImgDecoderImpl::GetFrameDelay(IWICBitmapFrameDecode* pBmpFrameDecoder)
 	{
-		unsigned int uFrameDelay = 0;        // ¶àÖ¡Ê¹ÓÃ
+		unsigned int uFrameDelay = 0;        // å¤šå¸§ä½¿ç”¨
 		do 
 		{
 			if (NULL == pBmpFrameDecoder)
@@ -342,12 +342,12 @@ namespace DM
 				LOG_ERR("[mid]-GetMetadataQueryReader:0x%08x\n",hr);
 				break;
 			}
-			// note: ÔÚXPÏÂ£¬»á·µ»ØWINCODEC_ERR_UNSUPPORTEDOPERATION£¨0x88982f81£©
+			// note: åœ¨XPä¸‹ï¼Œä¼šè¿”å›žWINCODEC_ERR_UNSUPPORTEDOPERATIONï¼ˆ0x88982f81ï¼‰
 			if (SUCCEEDED(hr))
 			//if (SUCCEEDED(pBmpFrameDecoder->GetMetadataQueryReader(&pFrameMetadataQueryReader)))
 			{// Get Metadata Query Reader from the frame
 				if (SUCCEEDED(pFrameMetadataQueryReader->GetMetadataByName(L"/grctlext/Delay", &propValue)))
-				{// È¡µÃgifµÄÖ¡ÑÓ³Ù
+				{// å–å¾—gifçš„å¸§å»¶è¿Ÿ
 					if (propValue.vt == VT_UI2)
 					{// Convert the delay retrieved in 10 ms units to a delay in 1 ms units	
 						HRESULT hr = UIntMult(propValue.uiVal, 10, &uFrameDelay);
@@ -361,7 +361,7 @@ namespace DM
 
 	UINT DMImgDecoderImpl::GetTotalLoopCount(IWICBitmapDecoder* pBmpDecoder)
 	{
-		unsigned int uTotalLoopCount = INFINITE; // -1Ä¬ÈÏÊÇinfinitely loop
+		unsigned int uTotalLoopCount = INFINITE; // -1é»˜è®¤æ˜¯infinitely loop
 		do 
 		{
 			if (NULL == pBmpDecoder)
@@ -378,7 +378,7 @@ namespace DM
 				break;
 			}
 
-			// ÈýÖÖ×´Ì¬£¬1.Ã»ÓÐÑ­»·ÐÅÏ¢£¨1´Î£© 2.ÓÐÑ­»·ÐÅÏ¢£¨´ÎÊý£©3.ÓÐÑ­»·ÐÅÏ¢£¨0´Î±íÊ¾ÓÀÔ¶Ñ­»·£©
+			// ä¸‰ç§çŠ¶æ€ï¼Œ1.æ²¡æœ‰å¾ªçŽ¯ä¿¡æ¯ï¼ˆ1æ¬¡ï¼‰ 2.æœ‰å¾ªçŽ¯ä¿¡æ¯ï¼ˆæ¬¡æ•°ï¼‰3.æœ‰å¾ªçŽ¯ä¿¡æ¯ï¼ˆ0æ¬¡è¡¨ç¤ºæ°¸è¿œå¾ªçŽ¯ï¼‰
 			PROPVARIANT propValue;
 			PropVariantInit(&propValue);
 			if (SUCCEEDED(pMetadataQueryReader->GetMetadataByName(
@@ -409,11 +409,11 @@ namespace DM
 						// If it is 0, then we repeat infinitely
 						if (0 == uTotalLoopCount) 
 						{
-							uTotalLoopCount = INFINITE;// hgyÉèÖÃ£¬-1ÓÃÓÚ±êÊ¶ÎÞ
+							uTotalLoopCount = INFINITE;// hgyè®¾ç½®ï¼Œ-1ç”¨äºŽæ ‡è¯†æ— 
 						}
 						else
 						{
-							uTotalLoopCount++;// ´ÎÊýÊÇ´Ó0¿ªÊ¼µÄ£¬ËùÒÔ+1
+							uTotalLoopCount++;// æ¬¡æ•°æ˜¯ä»Ž0å¼€å§‹çš„ï¼Œæ‰€ä»¥+1
 						}
 					}
 				}
@@ -433,7 +433,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (1>=m_ulFrameCount)// ²»Ð£Ñéµ¥Ö¡
+			if (1>=m_ulFrameCount)// ä¸æ ¡éªŒå•å¸§
 			{
 				bRet = true;
 				break;
@@ -444,7 +444,7 @@ namespace DM
 			{
 				DMImgFrameImplPtr &ptr = m_DMArray[i];
 				ptr->GetDelay(ulDelay);
-				if (0!=ulDelay)// Ö»ÒªÓÐÒ»Ö¡ÑÓ³Ù²»Îª0£¬¾ÍÈÏÎªÐ£ÑéÍ¨¹ý
+				if (0!=ulDelay)// åªè¦æœ‰ä¸€å¸§å»¶è¿Ÿä¸ä¸º0ï¼Œå°±è®¤ä¸ºæ ¡éªŒé€šè¿‡
 				{
 					bRet = true;
 					break;
@@ -500,7 +500,7 @@ namespace DM
 			if (pObj->LoadFromFile(pszFileName))
 			{
 				LPGLOBAL_INFO gi = pObj->GetGlobalInfo();
-				DMASSERT_MSG(gi->frames==m_ulFrameCount,L"frameCount mismatch");
+				DMASSERT_MSG(gi->frames==m_ulFrameCount,"frameCount mismatch");
 				for (int i=0;i<(int)m_ulFrameCount;i++)
 				{
 					GIFFRAMEPTR fm = pObj->GetFrame(i);

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "IEWnd.h"
 
 class IE_Test

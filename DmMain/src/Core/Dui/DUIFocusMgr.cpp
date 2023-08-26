@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIFocusMgr.h"
 
 namespace DM
@@ -26,7 +26,7 @@ namespace DM
 
 			if (NULL == pStartWnd)
 			{
-				if (bReverse)// m_pHWnd×îµ×²ã×îºóÒ»¸ö×Ó´°¿Ú´ÓºóÏòÇ°±éÀú
+				if (bReverse)// m_pHWndæœ€åº•å±‚æœ€åä¸€ä¸ªå­çª—å£ä»åå‘å‰éå†
 				{
 					pStartWnd = m_pHWnd->DM_GetWindow(GDW_LASTCHILD);
 					while (pStartWnd->DM_GetChildCount())
@@ -34,7 +34,7 @@ namespace DM
 						pStartWnd = pStartWnd->DM_GetWindow(GDW_LASTCHILD);
 					}
 				}
-				else// m_pHWndµÄµÚÒ»¸ö×Ó´°¿Ú¿ªÊ¼
+				else// m_pHWndçš„ç¬¬ä¸€ä¸ªå­çª—å£å¼€å§‹
 				{
 					pStartWnd = m_pHWnd->DM_GetWindow(GDW_FIRSTCHILD);
 				}
@@ -43,7 +43,7 @@ namespace DM
 			}
 
 			DUIWindow *pStartGroupOwner = NULL;
-			if (pStartWnd&&pStartWnd->DV_IsSiblingsAutoGroup()) // Ò»°ãÕâÊÇÔÚRadioButtonÖĞ
+			if (pStartWnd&&pStartWnd->DV_IsSiblingsAutoGroup()) // ä¸€èˆ¬è¿™æ˜¯åœ¨RadioButtonä¸­
 			{
 				pStartGroupOwner = pStartWnd->DM_GetWindow(GDW_PARENT);
 			}
@@ -68,16 +68,16 @@ namespace DM
 		return pWnd;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	bool FocusSearch::IsFocusable(DUIWindow* pWnd)
-	{//ÓĞ½¹µãµÄÌõ¼ş: 1.ÓĞ½¹µã 2.¿É¼û 3.²»ÊÇDisable×´Ì¬
+	{//æœ‰ç„¦ç‚¹çš„æ¡ä»¶: 1.æœ‰ç„¦ç‚¹ 2.å¯è§ 3.ä¸æ˜¯DisableçŠ¶æ€
 		bool bRet = false;
 		do 
 		{
-			if (NULL == pWnd                            // ´°¿ÚÎªNULL
-				||!pWnd->DV_IsFocusable()				// Ã»ÓĞ½¹µã
-				||false == pWnd->DM_IsVisible(TRUE)    // ²»¿É¼û
-				||true == pWnd->DM_IsDisable(TRUE)		// Disable×´Ì¬
+			if (NULL == pWnd                            // çª—å£ä¸ºNULL
+				||!pWnd->DV_IsFocusable()				// æ²¡æœ‰ç„¦ç‚¹
+				||false == pWnd->DM_IsVisible(TRUE)    // ä¸å¯è§
+				||true == pWnd->DM_IsDisable(TRUE)		// DisableçŠ¶æ€
 				)
 			{
 				break;
@@ -87,7 +87,7 @@ namespace DM
 		return bRet;
 	}
 
-	// ´°¿ÚÊÇÓĞ½¹µãµÄ£¬ÇÒ²»ÊôÓÚÖ¸¶¨µÄgroup,Èçrediobutton
+	// çª—å£æ˜¯æœ‰ç„¦ç‚¹çš„ï¼Œä¸”ä¸å±äºæŒ‡å®šçš„group,å¦‚rediobutton
 	bool FocusSearch::IsWndFocusableCandidate(DUIWindow* pWnd, DUIWindow* pGroupOwner)
 	{
 		bool bRet = false;
@@ -117,7 +117,7 @@ namespace DM
 			{
 				DUIWindow* pWnd = NULL;
 				if (pStartWnd->DV_IsSiblingsAutoGroup())
-				{// ÕâÀï¼ÌĞøÅĞ¶Ï,radioÖ§³Ö²»·Ö×é,tabÇĞ»»½¹µã
+				{// è¿™é‡Œç»§ç»­åˆ¤æ–­,radioæ”¯æŒä¸åˆ†ç»„,tabåˆ‡æ¢ç„¦ç‚¹
 					pWnd = pStartWnd->DV_GetSelSiblingInGroup();
 				}
 				if (!pWnd)
@@ -189,7 +189,7 @@ namespace DM
 		{
 			DUIWindow* pWnd = NULL;
 			if (pStartWnd->DV_IsSiblingsAutoGroup())
-			{// ÕâÀï¼ÌĞøÅĞ¶Ï,radioÖ§³Ö²»·Ö×é,tabÇĞ»»½¹µã
+			{// è¿™é‡Œç»§ç»­åˆ¤æ–­,radioæ”¯æŒä¸åˆ†ç»„,tabåˆ‡æ¢ç„¦ç‚¹
 				pWnd = pStartWnd->DV_GetSelSiblingInGroup();
 			}
 			if (!pWnd)
@@ -244,7 +244,7 @@ namespace DM
 
 	void DUIFocusMgr::RegisterAccel(const DUIAccel& Accel, IDMAccelHandler* pHandler)
 	{
-		// ×¢Òâ£¬Èç¹ûAccelÔ­À´²»´æÔÚÓÚm_AccelMapÖĞ£¬ÄÇÃ´Ëü»á×Ô¶¯´´½¨Ò»¸öĞÂµÄ¶ÔÏó
+		// æ³¨æ„ï¼Œå¦‚æœAccelåŸæ¥ä¸å­˜åœ¨äºm_AccelMapä¸­ï¼Œé‚£ä¹ˆå®ƒä¼šè‡ªåŠ¨åˆ›å»ºä¸€ä¸ªæ–°çš„å¯¹è±¡
 		AccelHandlerList& handlerList = m_AccelMap[Accel];
 		handlerList.AddHead(pHandler);
 	}
@@ -294,14 +294,14 @@ namespace DM
 
 			AccelHandlerList  HandlerList; 
 			POSITION Pos = m_AccelMap[Accel].GetHeadPosition();
-			while (Pos)// ¸´ÖÆÒ»·İ£¬·ÀÖ¹Ô­Êı¾İ±»ÎÛÈ¾
+			while (Pos)// å¤åˆ¶ä¸€ä»½ï¼Œé˜²æ­¢åŸæ•°æ®è¢«æ±¡æŸ“
 			{
 				IDMAccelHandlerPtr &t = m_AccelMap[Accel].GetNext(Pos);
 				HandlerList.AddTail(t);
 			}
 
 			Pos = HandlerList.GetHeadPosition();
-			while (Pos)// Ñ­»·´¦Àí
+			while (Pos)// å¾ªç¯å¤„ç†
 			{
 				IDMAccelHandler*pHandler = HandlerList.GetNext(Pos);
 				if (pHandler->OnAccelPressed(Accel))
@@ -315,7 +315,7 @@ namespace DM
 	}
 
 
-	// ÊÇ·ñÎªTabÇĞ»»
+	// æ˜¯å¦ä¸ºTabåˆ‡æ¢
 	bool DUIFocusMgr::IsTabChanged(UINT vKey)
 	{
 		bool bRet = false;
@@ -331,7 +331,7 @@ namespace DM
 			{
 				break;
 			}
-			if (!!PUSH_CTRL)// Í¬Ê±°´ÏÂÁËCtrl
+			if (!!PUSH_CTRL)// åŒæ—¶æŒ‰ä¸‹äº†Ctrl
 			{// If the high-order bit is 1, the key is down; otherwise, it is up. 
 				break;
 			}
@@ -348,13 +348,13 @@ namespace DM
 		{
 			if (IsTabChanged(vKey)) 
 			{
-				AdvanceFocus(!!PUSH_SHIFT);// Í¬Ê±°´ÏÂÁËShift
+				AdvanceFocus(!!PUSH_SHIFT);// åŒæ—¶æŒ‰ä¸‹äº†Shift
 				bRet = true;// 1. tab
 				break;
 			}
 
 			DUIWindow *pFocusWnd = g_pDMDWndPool->FindDUIWnd(m_hDUIFocusWnd);
-			if (pFocusWnd									    // RedioButton£¬²¢ÇÒ°´ÏÂµÄ¼üÊÇÉÏÏÂ×óÓÒ¼ıÍ·
+			if (pFocusWnd									    // RedioButtonï¼Œå¹¶ä¸”æŒ‰ä¸‹çš„é”®æ˜¯ä¸Šä¸‹å·¦å³ç®­å¤´
 				&&pFocusWnd->DV_IsSiblingsAutoGroup()
 				&&(VK_LEFT==vKey||VK_RIGHT==vKey||VK_UP==vKey||VK_DOWN==vKey)
 				)
@@ -388,14 +388,14 @@ namespace DM
 						pNextWnd = pNextWnd->DM_GetWindow(uCode);
 					}
 				}
-				bRet = true;// 2.ÀàËÆRedioButton
+				bRet = true;// 2.ç±»ä¼¼RedioButton
 				break;
 			}
 
 			DUIAccel Accel(vKey, !!PUSH_CTRL,!!PUSH_ALT,!!PUSH_SHIFT);
 			if (ProcessAccel(Accel))
 			{
-				bRet = true;// 3.¼ÓËÙ¼ü±»´¦Àí
+				bRet = true;// 3.åŠ é€Ÿé”®è¢«å¤„ç†
 				break;
 			}
 		} while (false);
@@ -465,7 +465,7 @@ namespace DM
 		m_hDUIFocusBackupWnd = 0;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	DUIWindow* DUIFocusMgr::GetNextFocusableWnd(DUIWindow* pStartWnd, bool bReverse, bool bLoop)
 	{
 		FocusSearch fs(m_pHWnd,bLoop);
@@ -477,7 +477,7 @@ namespace DM
 		SetFocusedWnd(NULL);
 	}
 
-	// Ğ£ÑéFocuse´°¿ÚÊÇ·ñºÏ·¨
+	// æ ¡éªŒFocuseçª—å£æ˜¯å¦åˆæ³•
 	void DUIFocusMgr::CheckFocusedWnd()
 	{
 		if (m_hDUIFocusWnd)

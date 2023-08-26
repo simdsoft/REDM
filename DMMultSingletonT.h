@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSingletonT.h 
-// File Des: µ¥ÀıÄ£Ê½
+// File Des: å•ä¾‹æ¨¡å¼
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -12,7 +12,7 @@
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
 //      guoyou		2014-9-12	1.0			
-//      guoyou		2015-01-09	1.1	           Ôö¼Ó°ïÖúchm×¢ÊÍ
+//      guoyou		2015-01-09	1.1	           å¢åŠ å¸®åŠ©chmæ³¨é‡Š
 //-------------------------------------------------------
 #pragma once
 #include <assert.h>
@@ -21,7 +21,7 @@ __pragma(warning(disable: 4661))
 namespace DM
 {
 	/// <summary>
-	///		¶àÏß³Ìµ¥ÀıÄ£Ê½Ä£°åÀà
+	///		å¤šçº¿ç¨‹å•ä¾‹æ¨¡å¼æ¨¡æ¿ç±»
 	/// </summary>
 	template <typename T> 
 	class DMSingletonT
@@ -34,7 +34,7 @@ namespace DM
 		{
 			if (m_Map.IsKeyExist(::GetCurrentThreadId()))
 			{
-				DMASSERT_EXPR(false,L"²»Òª³õÊ¼»¯¶à´ÎDMApp¶ÔÏó");
+				DMASSERT_EXPR(false,L"ä¸è¦åˆå§‹åŒ–å¤šæ¬¡DMAppå¯¹è±¡");
 			}
 			T* pObj = static_cast<T*>(this);
 			m_Map.AddKey(::GetCurrentThreadId(),pObj);
@@ -45,29 +45,29 @@ namespace DM
 		}
 
 		/// <summary>
-		///		»ñÈ¡µ¥ÀıÄ£Ê½µÄ¶ÔÏó
+		///		è·å–å•ä¾‹æ¨¡å¼çš„å¯¹è±¡
 		/// </summary>
-		/// <returns>µ¥ÀıÄ£Ê½µÄ¶ÔÏó</returns>
+		/// <returns>å•ä¾‹æ¨¡å¼çš„å¯¹è±¡</returns>
 		static T& getSingleton()
 		{
 			T* pObj = NULL;
 			if (!m_Map.GetObjByKey(::GetCurrentThreadId(),pObj))
 			{
-				DMASSERT_EXPR(false,L"µ±Ç°Ïß³ÌÎ´´´½¨DMApp¶ÔÏó");
+				DMASSERT_EXPR(false,L"å½“å‰çº¿ç¨‹æœªåˆ›å»ºDMAppå¯¹è±¡");
 			}
 			return *pObj;
 		}
 
 		/// <summary>
-		///		»ñÈ¡µ¥ÀıÄ£Ê½µÄ¶ÔÏóÖ¸Õë
+		///		è·å–å•ä¾‹æ¨¡å¼çš„å¯¹è±¡æŒ‡é’ˆ
 		/// </summary>
-		/// <returns>µ¥ÀıÄ£Ê½µÄ¶ÔÏóÖ¸Õë</returns>
+		/// <returns>å•ä¾‹æ¨¡å¼çš„å¯¹è±¡æŒ‡é’ˆ</returns>
 		static T* getSingletonPtr()
 		{
 			T* pObj = NULL;
 			if (!m_Map.GetObjByKey(::GetCurrentThreadId(),pObj))
 			{
-				DMASSERT_EXPR(false,L"µ±Ç°Ïß³ÌÎ´´´½¨DMApp¶ÔÏó");
+				DMASSERT_EXPR(false,L"å½“å‰çº¿ç¨‹æœªåˆ›å»ºDMAppå¯¹è±¡");
 			}
 			return pObj;
 		}

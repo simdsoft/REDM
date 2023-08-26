@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	IDMTrans.h
 // File mark:   
-// File summary:·­ÒëÀà½Ó¿Ú
+// File summary:ç¿»è¯‘ç±»æ¥å£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-11-21
@@ -14,40 +14,40 @@
 namespace DM
 {
 	/// <summary>
-	///		·­ÒëÀà¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Trans"/>
+	///		ç¿»è¯‘ç±»å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Trans"/>
 	/// </summary>
 	class DM_EXPORT IDMTrans : public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMTrans,"IDMTrans",DMREG_Trans);
 	public:
 		/// -------------------------------------------------
-		/// @brief ¼ÓÔØ·­Òë°üÀ©Õ¹½Ó¿Ú
-		/// @param[in]		 wp					´«ÈëÄÚ²¿Ê¹ÓÃµÄ²ÎÊı1£¬Èç·­ÒëXMLÂ·¾¶µÈ£¬ºÍ×Ô¼ºÀ©Õ¹ÊµÏÖÏà¹Ø£¬ÄÚÖÃÎªxmlµÄld»òxmlÈ«Â·¾¶
-		/// @param[in]		 lp					´«ÈëÄÚ²¿Ê¹ÓÃµÄ²ÎÊı2£¬Èç·­ÒëXMLµÈ£¬ºÍ×Ô¼ºÀ©Õ¹ÊµÏÖÏà¹Ø,ÄÚÖÃ0±íÊ¾xml id·½Ê½,1±íÊ¾xmlÏà¶ÔÓÚexeµÄÂ·¾¶
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief åŠ è½½ç¿»è¯‘åŒ…æ‰©å±•æ¥å£
+		/// @param[in]		 wp					ä¼ å…¥å†…éƒ¨ä½¿ç”¨çš„å‚æ•°1ï¼Œå¦‚ç¿»è¯‘XMLè·¯å¾„ç­‰ï¼Œå’Œè‡ªå·±æ‰©å±•å®ç°ç›¸å…³ï¼Œå†…ç½®ä¸ºxmlçš„ldæˆ–xmlå…¨è·¯å¾„
+		/// @param[in]		 lp					ä¼ å…¥å†…éƒ¨ä½¿ç”¨çš„å‚æ•°2ï¼Œå¦‚ç¿»è¯‘XMLç­‰ï¼Œå’Œè‡ªå·±æ‰©å±•å®ç°ç›¸å…³,å†…ç½®0è¡¨ç¤ºxml idæ–¹å¼,1è¡¨ç¤ºxmlç›¸å¯¹äºexeçš„è·¯å¾„
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode LoadTrans(WPARAM wp, LPARAM lp = 0) = 0;
 
 		/// -------------------------------------------------
-		/// @brief ÉèÖÃÄ¬ÈÏÓïÑÔ°ü
-		// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶£¬Èç¹û´«NULL,Ôò²»Ê¹ÓÃ·­Òë 
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief è®¾ç½®é»˜è®¤è¯­è¨€åŒ…
+		// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†ï¼Œå¦‚æœä¼ NULL,åˆ™ä¸ä½¿ç”¨ç¿»è¯‘ 
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode SetTrans(CStringW strLanguageName) = 0;
 
 		/// -------------------------------------------------
-		/// @brief ĞÂ¼Ó·­Òë×Ö·û´®
-		/// @param[in]		 strSrc				XMLÖĞÅäÖÃµÄ×Ö·û´®
-		/// @param[in]		 strTrans			±»·­ÒëµÄ×Ö·û´®
-		/// @param[in]		 strNodeName		ÊÇ·ñÖ¸¶¨ÎªÌØ¶¨µÄÅäÖÃ,ÎªNULL±íÊ¾´ÓÍ¨ÓÃµÄÅäÖÃÖĞ²éÕÒ
-		/// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶,ÎªNULLÊ¹ÓÃµ±Ç°SetTransÖ¸¶¨µÄÓïÑÔ°ü
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief æ–°åŠ ç¿»è¯‘å­—ç¬¦ä¸²
+		/// @param[in]		 strSrc				XMLä¸­é…ç½®çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strTrans			è¢«ç¿»è¯‘çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strNodeName		æ˜¯å¦æŒ‡å®šä¸ºç‰¹å®šçš„é…ç½®,ä¸ºNULLè¡¨ç¤ºä»é€šç”¨çš„é…ç½®ä¸­æŸ¥æ‰¾
+		/// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†,ä¸ºNULLä½¿ç”¨å½“å‰SetTransæŒ‡å®šçš„è¯­è¨€åŒ…
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode AddTransItem(CStringW strSrc, CStringW strTrans,CStringW strNodeName = L"",CStringW strLanguageName = L"") = 0;
 		
 		/// -------------------------------------------------
-		/// @brief »ñµÃ·­Òë×Ö·û´®
-		/// @param[in]		 strSrc				XMLÖĞÅäÖÃµÄ×Ö·û´®
-		/// @param[in]		 strNodeName		ÊÇ·ñÖ¸¶¨ÎªÌØ¶¨µÄÅäÖÃ
-		/// @param[in]		 strLanguageName	¶ÔÓ¦µÄÓïÑÔ°üÎ¨Ò»±êÊ¶,ÎªNULLÊ¹ÓÃµ±Ç°SetTransÖ¸¶¨µÄÓïÑÔ°ü
-		/// @return ×ª»»ºóµÄ×Ö·û´®
+		/// @brief è·å¾—ç¿»è¯‘å­—ç¬¦ä¸²
+		/// @param[in]		 strSrc				XMLä¸­é…ç½®çš„å­—ç¬¦ä¸²
+		/// @param[in]		 strNodeName		æ˜¯å¦æŒ‡å®šä¸ºç‰¹å®šçš„é…ç½®
+		/// @param[in]		 strLanguageName	å¯¹åº”çš„è¯­è¨€åŒ…å”¯ä¸€æ ‡è¯†,ä¸ºNULLä½¿ç”¨å½“å‰SetTransæŒ‡å®šçš„è¯­è¨€åŒ…
+		/// @return è½¬æ¢åçš„å­—ç¬¦ä¸²
 		virtual CStringW GetTrans(CStringW strSrc,CStringW strNodeName = L"",CStringW strLanguageName = L"") = 0;
 	};
 }

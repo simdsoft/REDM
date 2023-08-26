@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIListBoxEx.h"
 
 namespace DM
@@ -20,7 +20,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú methods
+	// Function Des: å¯¹å¤–æ¥å£ methods
 	//---------------------------------------------------
 #pragma region Public methods
 	int DUIListBoxEx::InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate/* = true*/)
@@ -45,9 +45,9 @@ namespace DM
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
-			ModifyPanelBgClr(pNewItem->pPanel);/// Ä¬ÈÏ±³¾°É«
+			ModifyPanelBgClr(pNewItem->pPanel);/// é»˜è®¤èƒŒæ™¯è‰²
 
-			// ³õÊ¼»¯²¼¾Ö
+			// åˆå§‹åŒ–å¸ƒå±€
 			CRect rcLayout(0,0,m_rcsbClient.Width(),pNewItem->nHeight);
 			pNewItem->pPanel->DM_FloatLayout(rcLayout);
 
@@ -304,7 +304,7 @@ namespace DM
 			UpdateItemPanelId(nIndex,-1);
 			UpdateScrollRange();
 			if (DMMapT<int,CRect>::IsKeyExist(nIndex))
-			{// É¾³ıÁË¿ÉÊÓÇøµÄÏî
+			{// åˆ é™¤äº†å¯è§†åŒºçš„é¡¹
 				UpdateVisibleMap();
 			}
 		} while (false);
@@ -313,7 +313,7 @@ namespace DM
 	void DUIListBoxEx::DeleteAllItems(bool bUpdate /*= true*/)
 	{
 		DM_RemoveAllChildPanel();
-		OnReleaseCapture(m_pCapturePanel);// RemoveAll»ádeleteËùÓĞµÄ¶ÔÏó£¬ËùÒÔm_pCapturePanelÈç¹ûÓĞÖµ£¨Õı³£ÎªNULL£©,ÒªÔÚÕâÀïÊÍ·ÅÒıÓÃ¼ÆÊı
+		OnReleaseCapture(m_pCapturePanel);// RemoveAllä¼šdeleteæ‰€æœ‰çš„å¯¹è±¡ï¼Œæ‰€ä»¥m_pCapturePanelå¦‚æœæœ‰å€¼ï¼ˆæ­£å¸¸ä¸ºNULLï¼‰,è¦åœ¨è¿™é‡Œé‡Šæ”¾å¼•ç”¨è®¡æ•°
 		DMArrayT<LPLBITEMEX>::RemoveAll();
 		DMMapT<int,CRect>::RemoveAll();
 		m_iSelItem		 = -1;
@@ -339,17 +339,17 @@ namespace DM
 
 			int nTargetY = 0;
 			for (int i = 0; i < nIndex; i++)
-			{//¼ÆËã³öÄ¿±ê¶¥²¿Y×ø±ê
+			{//è®¡ç®—å‡ºç›®æ ‡é¡¶éƒ¨Yåæ ‡
 				nTargetY += m_DMArray[i]->nHeight;
 			}
 			if (nTargetY < m_ptCurPos.y || m_DMArray[nIndex]->nHeight >= rcClient.Height())
-			{//Ä¿±ê¶¥²¿ÔÚ¿ÉÊÓ·¶Î§ÉÏ·½£¬»òÕß¿ÉÊÓ·¶Î§ÄÚÖ»ÄÜÏÔÊ¾Ä¿±êÏîÄ¿£¬Ôò°Ñ¿ÉÊÓ·¶Î§¹ö¶¯µ½Ä¿±ê¶¥²¿
+			{//ç›®æ ‡é¡¶éƒ¨åœ¨å¯è§†èŒƒå›´ä¸Šæ–¹ï¼Œæˆ–è€…å¯è§†èŒƒå›´å†…åªèƒ½æ˜¾ç¤ºç›®æ ‡é¡¹ç›®ï¼Œåˆ™æŠŠå¯è§†èŒƒå›´æ»šåŠ¨åˆ°ç›®æ ‡é¡¶éƒ¨
 				OnScroll(true,SB_THUMBPOSITION,nTargetY);
 				break;
 			}
 			nTargetY += m_DMArray[nIndex]->nHeight;
 			if (nTargetY > m_ptCurPos.y + rcClient.Height())
-			{//Ä¿±êµ×²¿ÔÚ¿ÉÊÓ·¶Î§ÏÂ·½£¬ÔòÍùÇ°»ØËİ×îºóÒ»¸öÄÜÍêÕûÏÔÊ¾µÄÏîÄ¿µÄ¶¥×ø±ê
+			{//ç›®æ ‡åº•éƒ¨åœ¨å¯è§†èŒƒå›´ä¸‹æ–¹ï¼Œåˆ™å¾€å‰å›æº¯æœ€åä¸€ä¸ªèƒ½å®Œæ•´æ˜¾ç¤ºçš„é¡¹ç›®çš„é¡¶åæ ‡
 				int nShowHeight = 0;
 				for ( int i = nIndex; i >= 0; i--)
 				{
@@ -581,7 +581,7 @@ namespace DM
 				break;
 			}
 
-			// ÏÈ´Ó¿ÉÊÓÁĞ±íÖĞ²éÕÒ
+			// å…ˆä»å¯è§†åˆ—è¡¨ä¸­æŸ¥æ‰¾
 			if (DMMapT<int,CRect>::GetObjByKey(iItem,rcDest))
 			{
 				break;
@@ -602,13 +602,13 @@ namespace DM
 
 	int DUIListBoxEx::HitTest(CPoint &pt)
 	{
-		// ´«ÈëµÄptÎªrcClientËùÔÚ×ø±êÏµµÄ×ø±ê
+		// ä¼ å…¥çš„ptä¸ºrcClientæ‰€åœ¨åæ ‡ç³»çš„åæ ‡
 		int iRet = -1;
 		POSITION pos = m_Map.GetStartPosition();
 		while(pos)
 		{
 			DM::CMap<int,CRect>::CPair *p = m_Map.GetNext(pos);
-			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// ½øÈë¿ÉÊÓÇø,Ë®Æ½¿ÉÄÜÎª¸ºÖµ
+			if(p->m_value.top<=pt.y&&p->m_value.bottom>=pt.y)// è¿›å…¥å¯è§†åŒº,æ°´å¹³å¯èƒ½ä¸ºè´Ÿå€¼
 			{
 				pt -= p->m_value.TopLeft();
 				iRet = p->m_key;
@@ -644,15 +644,15 @@ namespace DM
 				||(iTotalHei<=m_ptCurPos.y && iTotalHei + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + m_rcsbClient.Height())
 				)
 			{
-				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);// ÔÚ´óÆ½ÃæµÄ×ø±ê£¬ÒÔ´óÆ½Ãæ×óÉÏ½ÇÎªÔ­µã
+				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);// åœ¨å¤§å¹³é¢çš„åæ ‡ï¼Œä»¥å¤§å¹³é¢å·¦ä¸Šè§’ä¸ºåŸç‚¹
 				rcItem.OffsetRect(0,iTotalHei-m_ptCurPos.y);
-				rcItem.OffsetRect(rcClient.TopLeft());// ×ª»»³ÉrcListËùÔÚµÄ×ø±êÏµ×ø±ê
+				rcItem.OffsetRect(rcClient.TopLeft());// è½¬æ¢æˆrcListæ‰€åœ¨çš„åæ ‡ç³»åæ ‡
 				DMMapT<int,CRect>::AddKey(iItem,rcItem);
 				CRect rcLayout(0,0,rcItem.Width(),rcItem.Height());
 				m_DMArray[iItem]->pPanel->DM_FloatLayout(rcLayout);
 			}
 			iTotalHei += m_DMArray[iItem]->nHeight;
-			if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// ×Ü¸ß¶ÈÒÑ³¬¹ı¿ÉÊÓÇø
+			if (iTotalHei>=m_ptCurPos.y+rcClient.Height())// æ€»é«˜åº¦å·²è¶…è¿‡å¯è§†åŒº
 			{
 				break;
 			}
@@ -667,9 +667,9 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: ¸¨Öú methods
+	// Function Des: è¾…åŠ© methods
 	//---------------------------------------------------
-#pragma region ¸¨Öú
+#pragma region è¾…åŠ©
 	void DUIListBoxEx::UpdateItemPanelId(int iFirst/*=0*/, int iLast /*= -1*/)
 	{
 		int iCount  = GetCount();
@@ -703,7 +703,7 @@ namespace DM
 				break;
 			}
 
-			//1.²¼¾Ö×ÔÉí
+			//1.å¸ƒå±€è‡ªèº«
 			CRect rcLayout(0,0,rcItem.Width(),rcItem.Height());
 			m_DMArray[iItem]->pPanel->DM_FloatLayout(rcLayout);
 		} while (false);
@@ -753,7 +753,7 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 #pragma region MsgDispatch
 	void DUIListBoxEx::DM_OnPaint(IDMCanvas* pCanvas)
@@ -853,7 +853,7 @@ namespace DM
 
 	void DUIListBoxEx::OnMouseLeave()
 	{
-		if (DM_IsVisible(true))// ¼ÓÒ»¸öÅĞ¶Ï£¬·ÀÖ¹·Ç¿Í»§ÇøÔÚlistÒş²ØÊ±»æÖÆ
+		if (DM_IsVisible(true))// åŠ ä¸€ä¸ªåˆ¤æ–­ï¼Œé˜²æ­¢éå®¢æˆ·åŒºåœ¨listéšè—æ—¶ç»˜åˆ¶
 		{
 			__super::OnMouseLeave();
 			if (-1!=m_iHoverItem)
@@ -943,7 +943,7 @@ namespace DM
 			{
 				CRect rcItem;
 				m_pCapturePanel->OnGetContainerRect(rcItem);
-				pt.Offset(-rcItem.TopLeft());///< ×ª»»³ÉÃæ°å×ø±ê
+				pt.Offset(-rcItem.TopLeft());///< è½¬æ¢æˆé¢æ¿åæ ‡
 				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
 				break;
 			}
@@ -971,16 +971,16 @@ namespace DM
 			}
 			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
 				&& m_iSelItem != m_iHoverItem )
-			{///Ô­ÓĞĞĞÊ§È¥½¹µã
+			{///åŸæœ‰è¡Œå¤±å»ç„¦ç‚¹
 				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
 			}
 			if (-1 != m_iHoverItem)
 			{
-				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg, wParam, MAKELPARAM(pt.x, pt.y));//panelµÄ×ÓÏîµÃµ½hoverÊ±£¬»áÈÃÔ­À´µÃµ½hoverµÄpanelÊ§È¥hover
+				m_DMArray[m_iHoverItem]->pPanel->OnFrameEvent(uMsg, wParam, MAKELPARAM(pt.x, pt.y));//panelçš„å­é¡¹å¾—åˆ°hoveræ—¶ï¼Œä¼šè®©åŸæ¥å¾—åˆ°hoverçš„panelå¤±å»hover
 			}
 			if (-1 != m_iHoverItem)
 			{
-				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover, 0);//listctrlexµÄitemÏÂ»¹ÓĞÒ»²ãwindow,ËùÒÔlistctrlexÊ§È¥hoverµÄÊÇwindow,²»ÓÃµ£ĞÄ
+				m_DMArray[m_iHoverItem]->pPanel->ModifyState(DUIWNDSTATE_Hover, 0);//listctrlexçš„itemä¸‹è¿˜æœ‰ä¸€å±‚window,æ‰€ä»¥listctrlexå¤±å»hoverçš„æ˜¯window,ä¸ç”¨æ‹…å¿ƒ
 			}
 
 		} while (false);

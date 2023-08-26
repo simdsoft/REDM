@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDragWnd.h 
-// File Des: ¼òµ¥Ä£ÄâÍÏ¶¯
+// File Des: ç®€å•æ¨¡æ‹Ÿæ‹–åŠ¨
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÍÏ¶¯ÕæÊµ´°¿Ú
+	///		æ‹–åŠ¨çœŸå®çª—å£
 	/// </summary>
 	class DM_EXPORT DMDragWnd : public DMCWnd
 	{
@@ -26,14 +26,14 @@ namespace DM
 		virtual~DMDragWnd(void);
 
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æ¥å£
 		//---------------------------------------------------
 		static bool DragBegin(IDMCanvas* pCanvas,POINT ptHot,COLORREF crKey, BYTE byAlpha,DWORD dwFlags);
 		static void DragMove(POINT pt);
 		static void DragEnd();
 	
 	public:
-		CPoint								m_ptHot;					///< Ïà¶ÔÓÚÍÏ¶¯»­²¼×óÉÏ½ÇµÄÆ«ÒÆ
+		CPoint								m_ptHot;					///< ç›¸å¯¹äºæ‹–åŠ¨ç”»å¸ƒå·¦ä¸Šè§’çš„åç§»
 		static DMDragWnd*					ms_pCurDragWnd;
 	};
 }//namespace DM

@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMZipHelper.h"
 #include <zconf.h>
 #include <zlib.h>
@@ -538,14 +538,14 @@ namespace DM
 					{
 						delete[] pTarget;
 						bRet = false;
-						break;// ½öÌø³öswitch
+						break;// ä»…è·³å‡ºswitch
 					}
 					pData = pTarget;
 				}
 				break;
 			default:
 				bRet = false;
-				break;// ½öÌø³öswitch
+				break;// ä»…è·³å‡ºswitch
 			}
 
 			if (bRet)
@@ -656,19 +656,19 @@ namespace DM
 			}
 			FindFileHandle* pFF = reinterpret_cast<FindFileHandle*>(hFindFile);
 
-			bRet = true;// Ô¤ÏÈÉèÖÃÎªÕæ
+			bRet = true;// é¢„å…ˆè®¾ç½®ä¸ºçœŸ
 			while (TRUE)
 			{
 				if (pFF->nPos >= m_Header.nDirEntries)
 				{
-					bRet = false;// Ê§°ÜÁË
+					bRet = false;// å¤±è´¥äº†
 					break;
 				}
 				// Extract filename and match with pattern
 				ZipDirFileHeader* fh = m_Files[pFF->nPos];
 				wchar_t szFile[MAX_PATH] = { 0 };
 				::OemToCharBuffW(fh->GetName(), szFile, fh->fnameLen);
-				//CStringW strInfo = szFile;strInfo += L"\n";// Õâ¸öÊÇ¸ßÐ§ÂÊµ÷ÓÃµØ·½£¬Ê¹ÓÃ´òÓ¡»áµ¼ÖÂ½âÎöÂý
+				//CStringW strInfo = szFile;strInfo += L"\n";// è¿™ä¸ªæ˜¯é«˜æ•ˆçŽ‡è°ƒç”¨åœ°æ–¹ï¼Œä½¿ç”¨æ‰“å°ä¼šå¯¼è‡´è§£æžæ…¢
 				//OutputDebugStringW(strInfo);
 #ifdef ZIP_WILDCARD
 				if (::PathMatchSpecW(szFile, pFF->szSearch) != NULL)
@@ -697,7 +697,7 @@ namespace DM
 
 					// Ready for next entry...
 					pFF->nPos++;
-					break; //²éÕÒ³É¹¦
+					break; //æŸ¥æ‰¾æˆåŠŸ
 				}
 				pFF->nPos++;
 			}
@@ -722,7 +722,7 @@ namespace DM
 		return bRet;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	bool CDMZipHelper::OpenZip()
 	{
 		bool bRet = false;
@@ -758,7 +758,7 @@ namespace DM
 				break;
 			}
 
-			// ¿ªÊ¼¶ÁÎÄ¼þÄÚÈÝ
+			// å¼€å§‹è¯»æ–‡ä»¶å†…å®¹
 			bRet = true;
 			LPBYTE pData = m_DirData;
 			for (int i=0; i < m_Header.nDirEntries; i++)
@@ -769,7 +769,7 @@ namespace DM
 				if (fh->sig != FILE_SIGNATURE)
 				{
 					Close();
-					bRet = false; // ¶ÁÊ§°ÜÁË
+					bRet = false; // è¯»å¤±è´¥äº†
 					break;
 				}
 				// Convert UNIX slash to Windows backslash in ANSI string

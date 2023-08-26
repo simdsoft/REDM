@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSingletonT.h 
-// File Des: µ¥ÀıÄ£Ê½
+// File Des: å•ä¾‹æ¨¡å¼
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -12,7 +12,7 @@
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
 //      guoyou		2014-9-12	1.0			
-//      guoyou		2015-01-09	1.1	           Ôö¼Ó°ïÖúchm×¢ÊÍ
+//      guoyou		2015-01-09	1.1	           å¢åŠ å¸®åŠ©chmæ³¨é‡Š
 //-------------------------------------------------------
 #pragma once
 #include <assert.h>
@@ -20,7 +20,7 @@
 namespace DM
 {
 	/// <summary>
-	///		µ¥ÀıÄ£Ê½Ä£°åÀà,ÌØ±ğ×¢Òâ:¿çÄ£¿é´«µİÊ±,TÀàĞèÒªÖØĞÂÊµÏÖstatic T& getSingleton()¼°static T* getSingletonPtr()
+	///		å•ä¾‹æ¨¡å¼æ¨¡æ¿ç±»,ç‰¹åˆ«æ³¨æ„:è·¨æ¨¡å—ä¼ é€’æ—¶,Tç±»éœ€è¦é‡æ–°å®ç°static T& getSingleton()åŠstatic T* getSingletonPtr()
 	/// </summary>
 	template <typename T> 
 	class DMSingletonT
@@ -41,9 +41,9 @@ namespace DM
 		}
 
 		/// <summary>
-		///		»ñÈ¡µ¥ÀıÄ£Ê½µÄ¶ÔÏó
+		///		è·å–å•ä¾‹æ¨¡å¼çš„å¯¹è±¡
 		/// </summary>
-		/// <returns>µ¥ÀıÄ£Ê½µÄ¶ÔÏó</returns>
+		/// <returns>å•ä¾‹æ¨¡å¼çš„å¯¹è±¡</returns>
 		static T& getSingleton()
 		{
 			DMASSERT(ms_Singleton);
@@ -51,9 +51,9 @@ namespace DM
 		}
 
 		/// <summary>
-		///		»ñÈ¡µ¥ÀıÄ£Ê½µÄ¶ÔÏóÖ¸Õë
+		///		è·å–å•ä¾‹æ¨¡å¼çš„å¯¹è±¡æŒ‡é’ˆ
 		/// </summary>
-		/// <returns>µ¥ÀıÄ£Ê½µÄ¶ÔÏóÖ¸Õë</returns>
+		/// <returns>å•ä¾‹æ¨¡å¼çš„å¯¹è±¡æŒ‡é’ˆ</returns>
 		static T* getSingletonPtr()
 		{
 			return (ms_Singleton);

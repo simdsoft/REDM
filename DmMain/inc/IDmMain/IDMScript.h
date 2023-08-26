@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+Ôªø//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -16,17 +16,17 @@
 namespace DM
 {
 	/// <summary>
-	///		¿©’πΩ”ø⁄£¨lasstype=<see cref="DMREG_Script"/>
+	///		Êâ©Â±ïÊé•Âè£Ôºålasstype=<see cref="DMREG_Script"/>
 	/// </summary>
 	class IDMScript : public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMAnimate,"IDMScript",DMREG_Script);
 	public:
-		virtual DMCode InitScript() = 0;                            ///< ”√”⁄≥ı ºªØ,(“≤ø…“‘∑Ω±„∞Û∂®‘À–– ±≤≈ƒ‹∞Û∂®µƒ»´æ÷±‰¡ø£©
-		virtual DMCode RunString(LPCSTR lpszString) = 0;			///< Õ®π˝Œƒ±æ‘À––Ω≈±æ
-		virtual DMCode RunBuf(LPCSTR pBuf, size_t len) = 0;			///< Õ®π˝Buf‘À––Ω≈±æ
-		virtual DMCode RunFile(LPCSTR lpszFilePath) = 0;			///< Õ®π˝Œƒº˛‘À––Ω≈±æ
-		virtual DMCode RunEvent(DMEventArgs* pEvt) = 0;				///< Õ®π˝ ¬º˛øÿ÷∆‘À––Ω≈±æ
+		virtual DMCode InitScript() = 0;                            ///< Áî®‰∫éÂàùÂßãÂåñ,(‰πüÂèØ‰ª•Êñπ‰æøÁªëÂÆöËøêË°åÊó∂ÊâçËÉΩÁªëÂÆöÁöÑÂÖ®Â±ÄÂèòÈáèÔºâ
+		virtual DMCode RunString(LPCSTR lpszString) = 0;			///< ÈÄöËøáÊñáÊú¨ËøêË°åËÑöÊú¨
+		virtual DMCode RunBuf(LPCSTR pBuf, size_t len) = 0;			///< ÈÄöËøáBufËøêË°åËÑöÊú¨
+		virtual DMCode RunFile(LPCSTR lpszFilePath) = 0;			///< ÈÄöËøáÊñá‰ª∂ËøêË°åËÑöÊú¨
+		virtual DMCode RunEvent(DMEventArgs* pEvt) = 0;				///< ÈÄöËøá‰∫ã‰ª∂ÊéßÂà∂ËøêË°åËÑöÊú¨
 	};
 
 }//namespace DM

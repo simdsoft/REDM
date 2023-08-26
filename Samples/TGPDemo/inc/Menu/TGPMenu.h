@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -32,17 +32,17 @@ namespace DM
 	class TGPMenuItemData : public DMMenuItemData
 	{
 	public:
-		IDMSkin*		pHoldSkin;													///< Í£ÁôÍ¼Æ¬
-		bool            bHold;														///< µã»÷ºó²»ÏûÊ§,Ö»ÇÐ»»pHoldSkin
-		bool            bSel;														///< pHoldSkin0-1×´Ì¬ÏàÇÐ»»
+		IDMSkin*		pHoldSkin;													///< åœç•™å›¾ç‰‡
+		bool            bHold;														///< ç‚¹å‡»åŽä¸æ¶ˆå¤±,åªåˆ‡æ¢pHoldSkin
+		bool            bSel;														///< pHoldSkin0-1çŠ¶æ€ç›¸åˆ‡æ¢
 	};
 
 	class TGPMenuItem : public DUIMenuItem
 	{
 	public:
 		void OnRelease();	
-		void DrawOwnerItem(IDMCanvas* pCanvas, CRect& rcItem, MENUITEMINFO &mii);	///< ×Ô¼º´¦Àí²Ëµ¥Ä³Ò»ÏîµÄ»æÖÆ,miiÖÐ°üº¬ÁËTGPMenuItemDataµÄÄÚÈÝ
-		LRESULT MenuProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);		///< Ç¿ÖÆ´¦Àí²Ëµ¥ÏûÏ¢£¬hold×´Ì¬²»ÔÊÐíËüÍË³ö
+		void DrawOwnerItem(IDMCanvas* pCanvas, CRect& rcItem, MENUITEMINFO &mii);	///< è‡ªå·±å¤„ç†èœå•æŸä¸€é¡¹çš„ç»˜åˆ¶,miiä¸­åŒ…å«äº†TGPMenuItemDataçš„å†…å®¹
+		LRESULT MenuProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);		///< å¼ºåˆ¶å¤„ç†èœå•æ¶ˆæ¯ï¼ŒholdçŠ¶æ€ä¸å…è®¸å®ƒé€€å‡º
 		
 	public:
 		LRESULT On_MN_BUTTON(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -54,9 +54,9 @@ namespace DM
 		~TGPMenu();
 
 	public:
-		DMMenuItemData* ParseItem(DMXmlNode& XmlItem);								///< Ôö¼Ó×Ô¼ºµÄÀ©Õ¹XMLÏî½âÎö
-		DMMenuItemData* NewMenuItemData();											///< Íâ²¿´´½¨×Ô¼ºµÄÀ©Õ¹XMLÏîTGPMenuItemData
-		void DeleteMenuItemData(DMMenuItemData*pObj);								///< Íâ²¿ÊÍ·Å×Ô¼ºµÄÀ©Õ¹XMLÏîTGPMenuItemData
+		DMMenuItemData* ParseItem(DMXmlNode& XmlItem);								///< å¢žåŠ è‡ªå·±çš„æ‰©å±•XMLé¡¹è§£æž
+		DMMenuItemData* NewMenuItemData();											///< å¤–éƒ¨åˆ›å»ºè‡ªå·±çš„æ‰©å±•XMLé¡¹TGPMenuItemData
+		void DeleteMenuItemData(DMMenuItemData*pObj);								///< å¤–éƒ¨é‡Šæ”¾è‡ªå·±çš„æ‰©å±•XMLé¡¹TGPMenuItemData
 		DUIMenuItem* NewMenuItem();
 	};
 }//namespace DM

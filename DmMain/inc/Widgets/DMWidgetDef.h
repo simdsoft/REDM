@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMWidgetDef.h 
-// File Des: ÄÚÖÃ¿Ø¼şµÄ¼òµ¥¶¨Òå
+// File Des: å†…ç½®æ§ä»¶çš„ç®€å•å®šä¹‰
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 // ----------------------------------------------------
-// ÄÚÖÃ´°¿Ú¶¨Òå
+// å†…ç½®çª—å£å®šä¹‰
 #define      DUINAME_Label     "label"                       // DUI Label
 #define      DUINAME_Group      "group"                        // DUI Group
 #define      DUINAME_CheckBox   "checkbox"                     // DUI CheckBox
@@ -59,14 +59,14 @@ namespace DM
 
 // ----------------------------------------------------
 // scroll
-// ×´Ì¬:Õı³£¡¢Í£Áô¡¢µã»÷¡¢½ûÓÃ¡¢·ÇActive
-#define    DMSBST_NORMAL                             0							///< Õı³£×´Ì¬
-#define    DMSBST_HOVER                              1							///< hover×´Ì¬
-#define    DMSBST_PUSHDOWN                           2							///< °´ÏÂ×´Ì¬
-#define    DMSBST_DISABLE                            3							///< ½ûÓÃ×´Ì¬
-#define    DMSBST_NOACTIVE							 4							///< ·Ç¼¤»î×´Ì¬
+// çŠ¶æ€:æ­£å¸¸ã€åœç•™ã€ç‚¹å‡»ã€ç¦ç”¨ã€éActive
+#define    DMSBST_NORMAL                             0							///< æ­£å¸¸çŠ¶æ€
+#define    DMSBST_HOVER                              1							///< hoverçŠ¶æ€
+#define    DMSBST_PUSHDOWN                           2							///< æŒ‰ä¸‹çŠ¶æ€
+#define    DMSBST_DISABLE                            3							///< ç¦ç”¨çŠ¶æ€
+#define    DMSBST_NOACTIVE							 4							///< éæ¿€æ´»çŠ¶æ€
 
-// ¹ö¶¯ÌõÏÔÊ¾×´Ì¬
+// æ»šåŠ¨æ¡æ˜¾ç¤ºçŠ¶æ€
 #define	   DMSB_NULL								 0
 #define	   DMSB_HORZ								 1
 #define	   DMSB_VERT								 2
@@ -93,9 +93,9 @@ struct SBSTATEINFO
 	bool bVert :8;
 };
 
-// ¿Ø¼ş:ÉÏ¼ıÍ·¡¢ÏÂ¼ıÍ·¡¢¼áÖ±¹ö¶¯Ìõ¡¢ÊúÖ±»¬²Û¡¢×ó¼ıÍ·¡¢ÓÒ¼ıÍ·¡¢Ë®Æ½¹ö¶¯Ìõ¡¢Ë®Æ½»¬²Û¡¢Ğ¡±ß½Ç
+// æ§ä»¶:ä¸Šç®­å¤´ã€ä¸‹ç®­å¤´ã€åšç›´æ»šåŠ¨æ¡ã€ç«–ç›´æ»‘æ§½ã€å·¦ç®­å¤´ã€å³ç®­å¤´ã€æ°´å¹³æ»šåŠ¨æ¡ã€æ°´å¹³æ»‘æ§½ã€å°è¾¹è§’
 #define    SB_CORNOR								10
 #define    MAKESBSTATE(sbCode,nState,bVert)         MAKELONG((sbCode),MAKEWORD((nState),(bVert)))
-#define	   TIMER_SBWAIT								1         // Æô¶¯Á¬Ğø¹ö¶¯µÄ¶¨Ê±Æ÷
-#define    TIMER_SBGO								2         // Á¬Ğø¹ö¶¯µÄ¶¨Ê±Æ÷
+#define	   TIMER_SBWAIT								1         // å¯åŠ¨è¿ç»­æ»šåŠ¨çš„å®šæ—¶å™¨
+#define    TIMER_SBGO								2         // è¿ç»­æ»šåŠ¨çš„å®šæ—¶å™¨
 }// namespace DM

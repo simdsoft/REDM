@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMRefNum.h 
-// File Des: SMartÖ¸ÕëµÄ»ùÀà
+// File Des: SMartæŒ‡é’ˆçš„åŸºç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,28 +17,28 @@
 namespace DM
 {
 	/// <summary>
-	///		DMRefNum:SMartÖ¸ÕëµÄ»ùÀà,±»<see cref="DMSmartPtrT"/>Ê¹ÓÃ
+	///		DMRefNum:SMartæŒ‡é’ˆçš„åŸºç±»,è¢«<see cref="DMSmartPtrT"/>ä½¿ç”¨
 	/// </summary>
 	/// <remarks>
-	///		ÒıÓÃ¼ÆÊıÊÇÎªÁË±£Ö¤ÔÚÊÍ·ÅÊ±¶ÔÏóÒÑ²»ÔÙÊ¹ÓÃ 
+	///		å¼•ç”¨è®¡æ•°æ˜¯ä¸ºäº†ä¿è¯åœ¨é‡Šæ”¾æ—¶å¯¹è±¡å·²ä¸å†ä½¿ç”¨ 
 	/// <remarks>
 	class DM_EXPORT DMRefNum
 	{
 	public:
 
 		/// <summary>
-		///     Ôö¼ÓÒıÓÃ¼ÆÊı
+		///     å¢åŠ å¼•ç”¨è®¡æ•°
 		/// </summary>
-		/// <returns>Ôö¼ÓºóµÄÒıÓÃ¼ÆÊıNum</returns>
+		/// <returns>å¢åŠ åçš„å¼•ç”¨è®¡æ•°Num</returns>
 		int AddRef(void){return ::InterlockedIncrement(&m_RefCount);}
 
 		/// <summary>
-		///     ¼õÉÙÒıÓÃ¼ÆÊı
+		///     å‡å°‘å¼•ç”¨è®¡æ•°
 		/// </summary>
 		/// <remarks>
-		///		Îª0Ê±×Ô¶¯µ÷ÓÃ<see cref="OnFinalRelease"/>
+		///		ä¸º0æ—¶è‡ªåŠ¨è°ƒç”¨<see cref="OnFinalRelease"/>
 		/// </remarks>
-		/// <returns>¼õÉÙºóµÄÒıÓÃ¼ÆÊıNum</returns>
+		/// <returns>å‡å°‘åçš„å¼•ç”¨è®¡æ•°Num</returns>
 		int Release(void)
 		{
 			int r = ::InterlockedDecrement(&m_RefCount);
@@ -51,28 +51,28 @@ namespace DM
 		}
 
 		/// <summary>
-		///     »ñÈ¡µ±Ç°µÄÒıÓÃ¼ÆÊı
+		///     è·å–å½“å‰çš„å¼•ç”¨è®¡æ•°
 		/// </summary>
-		/// <returns>µ±Ç°µÄÒıÓÃ¼ÆÊıNum</returns>
+		/// <returns>å½“å‰çš„å¼•ç”¨è®¡æ•°Num</returns>
 		int GetRefCount(void) const {return m_RefCount;}
 
 		/// <summary>
-		///     ÉèÖÃÒıÓÃ¼ÆÊı
+		///     è®¾ç½®å¼•ç”¨è®¡æ•°
 		/// </summary>
 		/// <remarks>
-		///		ÓÃÓÚÇ¿ÖÆµ÷ÕûÒıÓÃ¼ÆÊı
+		///		ç”¨äºå¼ºåˆ¶è°ƒæ•´å¼•ç”¨è®¡æ•°
 		/// </remarks>
-		/// <param name="RefCount">ÒıÓÃ¼ÆÊıNum</param>
-		/// <returns>¼õÉÙºóµÄÒıÓÃ¼ÆÊıNum</returns>
+		/// <param name="RefCount">å¼•ç”¨è®¡æ•°Num</param>
+		/// <returns>å‡å°‘åçš„å¼•ç”¨è®¡æ•°Num</returns>
 		void SetRefCount(long RefCount) {m_RefCount = RefCount;}
 
 		/// <summary>
-		///     ÔÚÒıÓÃ¼ÆËãÎª0Ê±±»µ÷ÓÃ
+		///     åœ¨å¼•ç”¨è®¡ç®—ä¸º0æ—¶è¢«è°ƒç”¨
 		/// </summary>
 		/// <remarks>
-		///		Ä¬ÈÏÎªÉ¾³ı×ÔÉí£¬×ÓÀà¿ÉÖØÔØ
+		///		é»˜è®¤ä¸ºåˆ é™¤è‡ªèº«ï¼Œå­ç±»å¯é‡è½½
 		/// </remarks>
-		/// <returns>ÎŞ</returns>
+		/// <returns>æ— </returns>
 		virtual void OnFinalRelease()	
 		{
 			delete this;
@@ -82,7 +82,7 @@ namespace DM
 		DMRefNum(void):m_RefCount(1){}
 		virtual ~DMRefNum(void)
 		{
-			DMASSERT(0== m_RefCount);						// ´Ë±êÖ¾ÓÃÓÚ¸¨Öú²âÊÔÎÒÃÇµÄ×ÊÔ´¶¼ÒÑÕı³£ÊÍ·Å 
+			DMASSERT(0== m_RefCount);						// æ­¤æ ‡å¿—ç”¨äºè¾…åŠ©æµ‹è¯•æˆ‘ä»¬çš„èµ„æºéƒ½å·²æ­£å¸¸é‡Šæ”¾ 
 		}
 
 	public:

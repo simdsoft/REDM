@@ -1,11 +1,11 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIMonthCalCtrl.h"
 
 namespace DM
 {
 	static CStringW WEEKS[] =
-	{// Ä¬ÈÏÎÄ±¾
-		L"ÈÕ", L"Ò»", L"¶ş", L"Èı", L"ËÄ", L"Îå", L"Áù",
+	{// é»˜è®¤æ–‡æœ¬
+		L"æ—¥", L"ä¸€", L"äºŒ", L"ä¸‰", L"å››", L"äº”", L"å…­",
 	};
 
 	DUIMonthCalCtrl::DUIMonthCalCtrl()
@@ -18,7 +18,7 @@ namespace DM
 		m_BtnSize.SetSize(-1,-1);
 		m_dwBtnState[0] = m_dwBtnState[1] = DUIWNDSTATE_Normal;
 		m_crHeaderText = PBGRA(00,00,00,0XFF);
-		m_strHeaderTextFormat = L"%04dÄê%02dÔÂ";
+		m_strHeaderTextFormat = L"%04då¹´%02dæœˆ";
 
 		// title
 		m_iTitleHei = 24;
@@ -50,13 +50,13 @@ namespace DM
 			m_crToday[i].SetTextInvalid();
 		}
 		m_pTodaySkin = NULL;
-		m_strTodayTextFormat = L"½ñÌì:%04d/%02d/%02d";
+		m_strTodayTextFormat = L"ä»Šå¤©:%04d/%02d/%02d";
 		m_dwTodayState = DUIWNDSTATE_Normal;
 		
 		// other
 		m_ihoverCell = -1;
 		m_displayDate = DMDateTime::Today();
-		UpdateDisplayCells();// µÚÒ»´Î³õÊ¼»¯.
+		UpdateDisplayCells();// ç¬¬ä¸€æ¬¡åˆå§‹åŒ–.
 		m_iselCell = m_displayDate.GetDayCount()-m_dayCells[0][0].date.GetDayCount();
 
 		DMADDEVENT(DMEventCalenderSetDateArgs::EventID);
@@ -80,7 +80,7 @@ namespace DM
 
 		if (oldDate.GetYear() != m_displayDate.GetYear()
 			|| oldDate.GetMonth() != m_displayDate.GetMonth())
-		{// ÇĞ»»Ò»¸öÔÂÊ±ĞèÖØÖÃË¢ĞÂ.
+		{// åˆ‡æ¢ä¸€ä¸ªæœˆæ—¶éœ€é‡ç½®åˆ·æ–°.
 			m_ihoverCell = -1;
 			UpdateDisplayCells();
 			DM_Invalidate();
@@ -114,9 +114,9 @@ namespace DM
 	{
 		DMDateTime date = GetDisplayDate();
 		date.SetMonthBegin();
-		int dayofweek = date.GetWeekDay();// Õâ¸öÔÂµÄµÚÒ»Ìì,0±íÊ¾ÖÜÈÕ
+		int dayofweek = date.GetWeekDay();// è¿™ä¸ªæœˆçš„ç¬¬ä¸€å¤©,0è¡¨ç¤ºå‘¨æ—¥
 		dayofweek = (0 == dayofweek) ? 7: dayofweek; 
-		int indexofmoth = dayofweek + GetDisplayDate().GetMonthEndDay();// Õâ¸öÔÂÒ»¹²ÓĞ¶àÉÙÌì
+		int indexofmoth = dayofweek + GetDisplayDate().GetMonthEndDay();// è¿™ä¸ªæœˆä¸€å…±æœ‰å¤šå°‘å¤©
 		int i = 0;
 		int iDay = 1;
 		if (dayofweek > 0)
@@ -198,7 +198,7 @@ namespace DM
 		byte alpha = 0xff;
 		m_pDUIXmlInfo->m_pStyle->GetAlpha(alpha);
 
-		// 1.»æÖÆ±³¾°
+		// 1.ç»˜åˆ¶èƒŒæ™¯
 		if (m_pHeaderBgSkin || !m_crHeaderBg.IsTextInvalid())
 		{
 			CRect rcHeader = CalcHeaderRect(HEADER);
@@ -212,7 +212,7 @@ namespace DM
 			}
 		}
 
-		// 2.»æÖÆ×óÓÒÈı½Ç
+		// 2.ç»˜åˆ¶å·¦å³ä¸‰è§’
 		if (m_pBtnSkin[0])
 		{
 			CRect rcLeftBtn = CalcHeaderRect(LEFTBTN);
@@ -224,7 +224,7 @@ namespace DM
 			m_pBtnSkin[1]->Draw(pCanvas,rcRightBtn,IIF_STATE4(m_dwBtnState[1],0,1,2,3));
 		}
 
-		//3.»æÖÆÖĞ¼ä
+		//3.ç»˜åˆ¶ä¸­é—´
 		CRect rcMid = CalcHeaderRect(MID);
 		if (!rcMid.IsRectEmpty() && !m_strHeaderTextFormat.IsEmpty())
 		{
@@ -265,7 +265,7 @@ namespace DM
 
 		CRect rcTitle = CalcTitleRect();
 
-		// 1.»æÖÆ±³¾°
+		// 1.ç»˜åˆ¶èƒŒæ™¯
 		if (m_pTitleBgSkin || !m_crTitleBg.IsTextInvalid())
 		{
 			if (m_pTitleBgSkin)
@@ -278,7 +278,7 @@ namespace DM
 			}
 		}
 
-		// 2.»æÖÆÎÄ±¾
+		// 2.ç»˜åˆ¶æ–‡æœ¬
 		DMSmartPtrT<IDMFont> pOldFont;
 		if (m_ftTitle)
 		{
@@ -328,7 +328,7 @@ namespace DM
 			int iCell = iRow*CALENDAR_COLUMNS + iCol;
 			DWORD dwState = (iCell==m_iselCell) ? 2 : (iCell==m_ihoverCell) ? 1 : 0;
 
-			// 1. »æÖÆ±³¾°
+			// 1. ç»˜åˆ¶èƒŒæ™¯
 			if (m_pCellSkin || !m_crCell[dwState].IsTextInvalid())
 			{
 				if (m_pCellSkin)
@@ -341,7 +341,7 @@ namespace DM
 				}
 			}
 
-			// 2.»æÖÆÎÄ±¾
+			// 2.ç»˜åˆ¶æ–‡æœ¬
 			DMColor oldTextClr;
 			if (cell.bGray)
 			{
@@ -358,7 +358,7 @@ namespace DM
 				pCanvas->SetTextColor(oldTextClr);
 			}
 
-			// 3.»æÖÆ½ÚÈÕ
+			// 3.ç»˜åˆ¶èŠ‚æ—¥
 			if (m_bShowJieri && !cell.jieri.IsEmpty())
 			{
 				CRect rcJieri(rcText.left, rcText.bottom, rcText.right, cell.rect.bottom);
@@ -400,7 +400,7 @@ namespace DM
 		CRect rcToday = CalcTodayRect();
 		DWORD dwState = IIF_STATE3(m_dwTodayState,0,1,2);
 
-		// 1.»æÖÆ±³¾°
+		// 1.ç»˜åˆ¶èƒŒæ™¯
 		if (m_pTodaySkin || !m_crToday[dwState].IsTextInvalid())
 		{
 			if (m_pTodaySkin)
@@ -413,7 +413,7 @@ namespace DM
 			}
 		}
 
-		// 2.»æÖÆÎÄ±¾
+		// 2.ç»˜åˆ¶æ–‡æœ¬
 		if (!m_strTodayTextFormat.IsEmpty())
 		{
 			CStringW strTodayText;
@@ -445,7 +445,7 @@ namespace DM
 #pragma endregion
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 #pragma region MsgDispatch
 	void DUIMonthCalCtrl::DM_OnPaint(IDMCanvas* pCanvas)
@@ -465,10 +465,10 @@ namespace DM
 			rcUnicon = rcIntersect = rcDraw = CalcHeaderRect(HEADER);
 			rcIntersect.IntersectRect(rcDraw,rcInvalid);
 			rcUnicon.UnionRect(rcDraw,rcInvalid);
-			if (!rcIntersect.IsRectEmpty())// ºÍÎŞĞ§Çø´æÔÚ½»¼¯
+			if (!rcIntersect.IsRectEmpty())// å’Œæ— æ•ˆåŒºå­˜åœ¨äº¤é›†
 			{
 				DrawHeader(pCanvas);
-				if (rcUnicon.EqualRect(rcDraw))// rcDraw°üº¬ÁËÎŞĞ§Çø
+				if (rcUnicon.EqualRect(rcDraw))// rcDrawåŒ…å«äº†æ— æ•ˆåŒº
 				{
 					break;
 				}
@@ -477,10 +477,10 @@ namespace DM
 			rcUnicon = rcIntersect = rcDraw = CalcTitleRect();
 			rcIntersect.IntersectRect(rcDraw,rcInvalid);
 			rcUnicon.UnionRect(rcDraw,rcInvalid);
-			if (!rcIntersect.IsRectEmpty())// ºÍÎŞĞ§Çø´æÔÚ½»¼¯
+			if (!rcIntersect.IsRectEmpty())// å’Œæ— æ•ˆåŒºå­˜åœ¨äº¤é›†
 			{
 				DrawTitle(pCanvas);
-				if (rcUnicon.EqualRect(rcDraw))// rcDraw°üº¬ÁËÎŞĞ§Çø
+				if (rcUnicon.EqualRect(rcDraw))// rcDrawåŒ…å«äº†æ— æ•ˆåŒº
 				{
 					break;
 				}
@@ -489,10 +489,10 @@ namespace DM
 			rcUnicon = rcIntersect = rcDraw = CalcTodayRect();
 			rcIntersect.IntersectRect(rcDraw,rcInvalid);
 			rcUnicon.UnionRect(rcDraw,rcInvalid);
-			if (!rcIntersect.IsRectEmpty())// ºÍÎŞĞ§Çø´æÔÚ½»¼¯
+			if (!rcIntersect.IsRectEmpty())// å’Œæ— æ•ˆåŒºå­˜åœ¨äº¤é›†
 			{
 				DrawToday(pCanvas);
-				if (rcUnicon.EqualRect(rcDraw))// rcDraw°üº¬ÁËÎŞĞ§Çø
+				if (rcUnicon.EqualRect(rcDraw))// rcDrawåŒ…å«äº†æ— æ•ˆåŒº
 				{
 					break;
 				}
@@ -551,7 +551,7 @@ namespace DM
 			rcBtn[1].PtInRect(pt) ? DUIWNDSTATE_PushDown : m_dwBtnState[1]};
 
 		if (dwBtnState[0] != m_dwBtnState[0])
-		{// ²»µÈÓÚ¿Ï¶¨ÊÇDUIWNDSTATE_PushDown
+		{// ä¸ç­‰äºè‚¯å®šæ˜¯DUIWNDSTATE_PushDown
 			m_dwBtnState[0] = dwBtnState[0];
 			DM_InvalidateRect(rcBtn[0]);
 			OnPreviousClick();
@@ -779,83 +779,83 @@ namespace DM
 		CStringW strJieri;
 		if (iMon == 10 && iDay == 1)
 		{
-			strJieri = L"¹úÇì½Ú";
+			strJieri = L"å›½åº†èŠ‚";
 		}
 		else if (iMon == 10 && iDay == 16)
 		{
-			strJieri = L"ÊÀ½çÁ¸Ê³ÈÕ";
+			strJieri = L"ä¸–ç•Œç²®é£Ÿæ—¥";
 		}
 		else if (iMon == 1 && iDay == 1)
 		{
-			strJieri = L"Ôªµ©½Ú";
+			strJieri = L"å…ƒæ—¦èŠ‚";
 		}
 		else if (iMon == 2 && iDay == 14)
 		{
-			strJieri = L"ÇéÈË½Ú";
+			strJieri = L"æƒ…äººèŠ‚";
 		}
 		else if (iMon == 2 && iDay == 10)
 		{
-			strJieri = L"¹ú¼ÊÆøÏó½Ú";
+			strJieri = L"å›½é™…æ°”è±¡èŠ‚";
 		}
 		else if (iMon == 5 && iDay == 1)
 		{
-			strJieri = L"¹úÇìÀÍ¶¯½Ú";
+			strJieri = L"å›½åº†åŠ³åŠ¨èŠ‚";
 		}
 		else if (iMon == 5 && iDay == 22)
 		{
-			strJieri = L"¹ú¼Ê»¤Ê¿½Ú";
+			strJieri = L"å›½é™…æŠ¤å£«èŠ‚";
 		}
 		else if (iMon == 5 && iDay == 31)
 		{
-			strJieri = L"ÊÀ½çÎŞÑÌÈÕ";
+			strJieri = L"ä¸–ç•Œæ— çƒŸæ—¥";
 		}
 		else if (iMon == 8 && iDay == 1)
 		{
-			strJieri = L"½¨¾ü½Ú";
+			strJieri = L"å»ºå†›èŠ‚";
 		}
 		else if (iMon == 12 && iDay == 25)
 		{
-			strJieri = L"Ê¥µ®½Ú";
+			strJieri = L"åœ£è¯èŠ‚";
 		}
 		else if (iMon == 12 && iDay == 10)
 		{
-			strJieri = L"ÊÀ½çÈËÈ¨ÈÕ";
+			strJieri = L"ä¸–ç•Œäººæƒæ—¥";
 		}
 		else if (iMon == 4 && iDay == 1)
 		{
-			strJieri = L"ÓŞÈË½Ú";
+			strJieri = L"æ„šäººèŠ‚";
 		}
 		else if (iMon == 6 && iDay == 1)
 		{
-			strJieri = L"¶ùÍ¯½Ú";
+			strJieri = L"å„¿ç«¥èŠ‚";
 		}
 		else if (iMon == 3 && iDay == 8)
 		{
-			strJieri = L"¸¾Å®½Ú";
+			strJieri = L"å¦‡å¥³èŠ‚";
 		}
 		else if (iMon == 3 && iDay == 12)
 		{
-			strJieri = L"Ö²Ê÷½Ú";
+			strJieri = L"æ¤æ ‘èŠ‚";
 		}
 		else if (iMon == 3 && iDay == 14)
 		{
-			strJieri = L"¹ú¼Ê¾¯²ì½Ú";
+			strJieri = L"å›½é™…è­¦å¯ŸèŠ‚";
 		}
 		else if (iMon == 4 && iDay == 5)
 		{
-			strJieri = L"ÇåÃ÷½Ú";
+			strJieri = L"æ¸…æ˜èŠ‚";
 		}
 		else if (iMon == 4 && iDay == 22)
 		{
-			strJieri = L"ÊÀ½çµØÇòÈÕ";
+			strJieri = L"ä¸–ç•Œåœ°çƒæ—¥";
 		}
 		else if (iMon == 7 && iDay == 1)
 		{
-			strJieri = L"½¨µ³½Ú";
+			strJieri = L"å»ºå…šèŠ‚";
 		}
 		else if (iMon == 9 && iDay == 10)
 		{
-			strJieri = L"½ÌÊ¦½Ú";
+			strJieri = L"æ•™å¸ˆèŠ‚";
 		}
 
 		return strJieri;
@@ -1018,7 +1018,7 @@ namespace DM
 			{
 				if (-1 != m_iselCell && m_dayCells[m_iselCell/CALENDAR_COLUMNS][m_iselCell%CALENDAR_COLUMNS].bGray)
 				{
-					SetDisplayDate(DMDateTime::Today());// Ìø×ªµ½½ñÌì
+					SetDisplayDate(DMDateTime::Today());// è·³è½¬åˆ°ä»Šå¤©
 				}
 				DM_Invalidate();
 			}

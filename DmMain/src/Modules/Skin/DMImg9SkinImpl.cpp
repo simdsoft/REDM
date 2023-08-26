@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMImg9SkinImpl.h"
 
 namespace DM
@@ -8,11 +8,11 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // ×´Ì¬Í¼×´Ì¬Êı¿Ï¶¨²»ÄÜÎª0£¡
+			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // çŠ¶æ€å›¾çŠ¶æ€æ•°è‚¯å®šä¸èƒ½ä¸º0ï¼
 			if (NULL == pCanvas
 				|| NULL == lpRectDraw
 				|| NULL == m_pBitmap
-				|| iState>=m_nStates)// ¡¾0,m_nStates-1¡¿
+				|| iState>=m_nStates)// ã€0,m_nStates-1ã€‘
 			{
 				break;
 			}

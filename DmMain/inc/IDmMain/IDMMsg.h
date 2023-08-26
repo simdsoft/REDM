@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,20 +17,20 @@
 namespace DM
 {
 	/// <summary>
-	///		ËùÓĞÕæÊµ´°¿ÚÏûÏ¢·Ö·¢µÄ»ùÀà
+	///		æ‰€æœ‰çœŸå®çª—å£æ¶ˆæ¯åˆ†å‘çš„åŸºç±»
 	/// </summary>
 	class DM_EXPORT IDMMsgMap
 	{
-		// ÎªÖ±½ÓÓÃatlµÄÏûÏ¢ºê£¬²»×ö·µ»ØÖµ¸Ä±ä
+		// ä¸ºç›´æ¥ç”¨atlçš„æ¶ˆæ¯å®ï¼Œä¸åšè¿”å›å€¼æ”¹å˜
 		virtual BOOL ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 			LRESULT& lResult, DWORD dwMsgMapID) = 0;
 	};
 
 	/// <summary>
-	///		ÏûÏ¢¹ıÂË»ùÀà
+	///		æ¶ˆæ¯è¿‡æ»¤åŸºç±»
 	/// </summary>
 	/// <remarks>
-	///		GetMessageÖ®ºó£¬ÏÈµ÷ÓÃPreTranslateMessageÀ´´¦Àí£¬Èç¹û·µ»ØTRUE£¬ÏûÏ¢´«µİ½áÊø!
+	///		GetMessageä¹‹åï¼Œå…ˆè°ƒç”¨PreTranslateMessageæ¥å¤„ç†ï¼Œå¦‚æœè¿”å›TRUEï¼Œæ¶ˆæ¯ä¼ é€’ç»“æŸ!
 	/// </remarks>
 	class  DM_EXPORT IDMMessageFilter
 	{
@@ -43,7 +43,7 @@ namespace DM
 	typedef IDMMessageFilter* IDMMessageFilterPtr;
 
 	/// <summary>
-	///		¿ÕÏĞ´¦Àí»ùÀà
+	///		ç©ºé—²å¤„ç†åŸºç±»
 	/// </summary>
 	class IDMIdleHandler
 	{

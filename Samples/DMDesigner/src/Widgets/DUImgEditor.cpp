@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUImgEditor.h"
 #pragma comment(lib,"gdiplus")
 DUImgEditor::DUImgEditor()
@@ -24,7 +24,7 @@ void DUImgEditor::DM_OnPaint(IDMCanvas* pCanvas)
 		CRect rcClient;
 		DV_GetClientRect(rcClient);
 
-		// Ã¿Ò»Ïî´óĞ¡
+		// æ¯ä¸€é¡¹å¤§å°
 		IDMBitmap* pFirstBmp = m_BmpList.GetHead();
 		CSize szFirstBmp(pFirstBmp->GetWidth(),pFirstBmp->GetHeight());
 
@@ -43,14 +43,14 @@ void DUImgEditor::DM_OnPaint(IDMCanvas* pCanvas)
 		CRect rcAll(0,0,sizeAll.cx,sizeAll.cy);
 		rcDestItem.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
 		rcAll.OffsetRect(rcClient.TopLeft()-m_ptCurPos);
-		if (rcClient.Height()>sizeAll.cy)// Ã»ÓĞ¼áÖ±¹ö¶¯Ìõ£¬ÈÃËüÊúÆğ¾ÓÖĞ
+		if (rcClient.Height()>sizeAll.cy)// æ²¡æœ‰åšç›´æ»šåŠ¨æ¡ï¼Œè®©å®ƒç«–èµ·å±…ä¸­
 		{
 			int iHAvg = (rcClient.Height()-sizeAll.cy)/2;
 			rcDestItem.OffsetRect(0,iHAvg);
 			rcAll.OffsetRect(0,iHAvg);
 		
 		}
-		if (rcClient.Width()>sizeAll.cx)// Ã»ÓĞË®Æ½¹ö¶¯Ìõ£¬ÈÃËüË®Æ½¾ÓÖĞ
+		if (rcClient.Width()>sizeAll.cx)// æ²¡æœ‰æ°´å¹³æ»šåŠ¨æ¡ï¼Œè®©å®ƒæ°´å¹³å±…ä¸­
 		{
 			int iWAvg = (rcClient.Width()-sizeAll.cx)/2;
 			rcDestItem.OffsetRect(iWAvg,0);
@@ -69,13 +69,13 @@ void DUImgEditor::DM_OnPaint(IDMCanvas* pCanvas)
 			rcDest = rcSrc;
 			rcDest.OffsetRect(rcDestItem.TopLeft());
 
-			//1.»æÖÆÍ¼Æ¬
+			//1.ç»˜åˆ¶å›¾ç‰‡
 			pCanvas->DrawBitamp(pBmp,rcSrc,rcDest);
 
-			//2.¼ÌĞøÆ«ÒÆ
+			//2.ç»§ç»­åç§»
 			rcDestItem.OffsetRect(ptOffset);
 		}
-		//3.»æÖÆ±ß¿ò
+		//3.ç»˜åˆ¶è¾¹æ¡†
 		if (m_BmpList.GetCount()>1)
 		{
 			DMSmartPtrT<IDMPen> pPen,oldPen;
@@ -97,7 +97,7 @@ bool DUImgEditor::AddImg(CStringW strPath)
 		DMSmartPtrT<IDMRender> pRender;
 		if (!DMSUCCEEDED(g_pDMApp->GetDefRegObj((void**)&pRender, DMREG_Render)))
 		{
-			DMASSERT_EXPR(0,L"¾¹È»»ñÈ¡Ä¬ÈÏRenderÊ§°Ü,²»Ì«¿ÉÄÜ°É!");
+			DMASSERT_EXPR(0,L"ç«Ÿç„¶è·å–é»˜è®¤Renderå¤±è´¥,ä¸å¤ªå¯èƒ½å§!");
 			break;
 		}
 		DMSmartPtrT<IDMBitmap> pBitmap;
@@ -155,7 +155,7 @@ bool DUImgEditor::Save(CStringW strPath)
 		g_pDMApp->GetDefRegObj((void**)&pRender,DMREG_Render);
 		pRender->CreateCanvas(sz.cx,sz.cy,&pCanvas);
 
-		// »æÖÆ
+		// ç»˜åˆ¶
 		IDMBitmap* pFirstBmp = m_BmpList.GetHead();
 		CSize szFirstBmp(pFirstBmp->GetWidth(),pFirstBmp->GetHeight());
 		CPoint ptOffset;
@@ -181,18 +181,18 @@ bool DUImgEditor::Save(CStringW strPath)
 			rcDest = rcSrc;
 			rcDest.OffsetRect(rcDestItem.TopLeft());
 
-			//1.»æÖÆÍ¼Æ¬
+			//1.ç»˜åˆ¶å›¾ç‰‡
 			pCanvas->DrawBitamp(pBmp,rcSrc,rcDest);
 
-			//2.¼ÌĞøÆ«ÒÆ
+			//2.ç»§ç»­åç§»
 			rcDestItem.OffsetRect(ptOffset);
 		}
 
-		// ±£´æÎÄ¼ş
+		// ä¿å­˜æ–‡ä»¶
 		DMSmartPtrT<IDMBitmap> pBitmap;
 		pCanvas->GetObject((IDMMetaFile**)&pBitmap,DMF_BITMAP);
 
-		// ±£´æµ½ÎÄ¼ş
+		// ä¿å­˜åˆ°æ–‡ä»¶
 		EncoderParameters encoderParameters;  
 		encoderParameters.Count = 1;  
 		encoderParameters.Parameter[0].Guid = EncoderQuality;  

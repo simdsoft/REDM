@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DMLua.h"
 #ifdef _DEBUG
 #pragma comment(lib, "lua_d.lib")
@@ -7,7 +7,7 @@
 #endif
 
 /// <summary>
-///		¸¨Öú×ª»»¹¤¾ß,ÌØ±ğ×¢Òâ£¬SrcÖÁÉÙÒªÓĞ¸öĞéº¯Êı£¬²»È»ÎŞ·¨×ª»»
+///		è¾…åŠ©è½¬æ¢å·¥å…·,ç‰¹åˆ«æ³¨æ„ï¼ŒSrcè‡³å°‘è¦æœ‰ä¸ªè™šå‡½æ•°ï¼Œä¸ç„¶æ— æ³•è½¬æ¢
 /// </summary>
 template <class Src,class Dst> Dst DMDyncT(const void* ptr) 
 {
@@ -26,7 +26,7 @@ template<class T,int RegType>T* DMDefRegT()
 }
 
 /// <summary>
-///	  ScriptµÄÊµÏÖÊµÀı
+///	  Scriptçš„å®ç°å®ä¾‹
 /// </summary>
 class DMScriptImpl : public IDMScript
 {

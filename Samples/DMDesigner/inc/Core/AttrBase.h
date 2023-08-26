@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	AttrBase.h
 // File mark:   
-// File summary:ÓÃÓÚ¼ÇÂ¼ObjXmlÏà¹ØµÄ¹«ÓÃÊı¾İ
+// File summary:ç”¨äºè®°å½•ObjXmlç›¸å…³çš„å…¬ç”¨æ•°æ®
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-10
@@ -27,11 +27,11 @@ public:
 	ObjTree*											m_pObjTree;
 	ObjXml*												m_pObjXml;
 	HDMTREEITEM											m_hObjSel;	
-	bool												m_bMuted;		///< ÊÇ·ñ¹ıÂËÏûÏ¢
+	bool												m_bMuted;		///< æ˜¯å¦è¿‡æ»¤æ¶ˆæ¯
 
-	// lockÏà¹Ø
-	DUIWindow*										    m_pPanel;       ///< ĞèÒª±»Ëø¶¨µÄÃæ°å
+	// lockç›¸å…³
+	DUIWindow*										    m_pPanel;       ///< éœ€è¦è¢«é”å®šçš„é¢æ¿
 
-	// Ä£ÄâDMCWnd
+	// æ¨¡æ‹ŸDMCWnd
 	BOOL												m_bMsgHandled;
 };

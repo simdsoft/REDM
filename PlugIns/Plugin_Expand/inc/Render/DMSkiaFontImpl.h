@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -23,20 +23,20 @@ namespace DM
 		~DMSkiaFontImpl();
 	public:
 		virtual const LOGFONTW* GetLogFont() const;
-		virtual LPCWSTR GetFaceName();				// ×ÖÌåÃû
-		virtual bool IsUnderline();				    // ÊÇ·ñÓĞÏÂ»®Ïß
-		virtual bool IsItalic();					// ÊÇ·ñÎªĞ±Ìå
-		virtual bool IsStrikeOut();				    // ÊÇ·ñÓĞÉ¾³ıÏß
+		virtual LPCWSTR GetFaceName();				// å­—ä½“å
+		virtual bool IsUnderline();				    // æ˜¯å¦æœ‰ä¸‹åˆ’çº¿
+		virtual bool IsItalic();					// æ˜¯å¦ä¸ºæ–œä½“
+		virtual bool IsStrikeOut();				    // æ˜¯å¦æœ‰åˆ é™¤çº¿
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		SkPaint GetSkPaint();
 		SkTypeface* GetSkTypeFace();
 		HFONT  GetFont();
 
 	protected:
-		// SkTypeface´ú±íÖ¸¶¨µÄ×ÖÌå·ç¸ñ£¬¿ÉÒÔÓÃÀ´²âÁ¿ºÍ»æÖÆÎÄ×Ö£¬Ò²¾ÍÊÇËµ²»½ö¿ÉÒÔÓÃÓÚ»æÖÆÎÄ±¾£¬»¹¿ÉÒÔÓÃÀ´²âÁ¿ÎÄ±¾
-		SkTypeface                          *m_SkFont;	 // ¶¨Òå×ÖÌå
-		SkPaint                              m_SkPaint;  // ¶¨ÒåÎÄ×Ö»æÖÆÊôĞÔ
+		// SkTypefaceä»£è¡¨æŒ‡å®šçš„å­—ä½“é£æ ¼ï¼Œå¯ä»¥ç”¨æ¥æµ‹é‡å’Œç»˜åˆ¶æ–‡å­—ï¼Œä¹Ÿå°±æ˜¯è¯´ä¸ä»…å¯ä»¥ç”¨äºç»˜åˆ¶æ–‡æœ¬ï¼Œè¿˜å¯ä»¥ç”¨æ¥æµ‹é‡æ–‡æœ¬
+		SkTypeface                          *m_SkFont;	 // å®šä¹‰å­—ä½“
+		SkPaint                              m_SkPaint;  // å®šä¹‰æ–‡å­—ç»˜åˆ¶å±æ€§
 		LOGFONTW                             m_lf;
 		HFONT                                m_hFont;
 	};

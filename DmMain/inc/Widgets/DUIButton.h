@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIButton.h 
-// File Des: ÄÚÖÃ°´Å¥ÊµÏÖ
+// File Des: å†…ç½®æŒ‰é’®å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -19,17 +19,17 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIButton"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIButton"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIButtonAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* bool_banimate;								    ///< ÊÇ·ñÆôÓÃ½¥ÏÔÊ¾¶¯»­,Ê¾Àı:banimate="1"
-		static const char* INT_animatesteps;                               ///< ÔÚÆôÓÃ½¥ÏÔÊ¾¶¯»­Ê±,ÉèÖÃ·Ö¶àÉÙ´ÎÏÔÊ¾(Ã¿´Î¼ä¸ô10ms£©,Ê¾Àı:animatesteps="1"
-		static const char* bool_bmultilines;								///< ÊÇ·ñÖ§³Ö¶àĞĞ,Ê¾Àı:bmultilines="1"
-		static const char* INT_lineinter;                                  ///< ÔÚ¶àĞĞÏÂ,ÉèÖÃĞĞ¼ä¾à,Ê¾Àı:lineinter="1"
-		static const char* SKIN_iconskin;                                  ///< iconÍ¼,ÈçÊ¹ÓÃÁËiconÍ¼,Ôòtext²»ÔÙ»æÖÆ,Ê¾Àı:iconskin="PNG:iconbtn"
-		static const char* ACCEL_accel;                                    ///< ¼ÓËÙ¼ü,btnÊ¹ÓÃ¼ÓËÙ¼ü´¥·¢µã»÷ÏûÏ¢,Ê¾Àı:accel="ctrl+enter"
+		static const char* bool_banimate;								    ///< æ˜¯å¦å¯ç”¨æ¸æ˜¾ç¤ºåŠ¨ç”»,ç¤ºä¾‹:banimate="1"
+		static const char* INT_animatesteps;                               ///< åœ¨å¯ç”¨æ¸æ˜¾ç¤ºåŠ¨ç”»æ—¶,è®¾ç½®åˆ†å¤šå°‘æ¬¡æ˜¾ç¤º(æ¯æ¬¡é—´éš”10msï¼‰,ç¤ºä¾‹:animatesteps="1"
+		static const char* bool_bmultilines;								///< æ˜¯å¦æ”¯æŒå¤šè¡Œ,ç¤ºä¾‹:bmultilines="1"
+		static const char* INT_lineinter;                                  ///< åœ¨å¤šè¡Œä¸‹,è®¾ç½®è¡Œé—´è·,ç¤ºä¾‹:lineinter="1"
+		static const char* SKIN_iconskin;                                  ///< iconå›¾,å¦‚ä½¿ç”¨äº†iconå›¾,åˆ™textä¸å†ç»˜åˆ¶,ç¤ºä¾‹:iconskin="PNG:iconbtn"
+		static const char* ACCEL_accel;                                    ///< åŠ é€Ÿé”®,btnä½¿ç”¨åŠ é€Ÿé”®è§¦å‘ç‚¹å‡»æ¶ˆæ¯,ç¤ºä¾‹:accel="ctrl+enter"
 	};
 	DMAttrValueInit(DUIButtonAttr,bool_banimate)DMAttrValueInit(DUIButtonAttr,INT_animatesteps)
 	DMAttrValueInit(DUIButtonAttr,bool_bmultilines)DMAttrValueInit(DUIButtonAttr,INT_lineinter)
@@ -39,7 +39,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIButtonµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIButtonAttr"/>
+	///		 DUIButtonçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIButtonAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIButton:public DUIWindow, public IDMTimeline,public IDMAccelHandler
 	{
@@ -52,12 +52,12 @@ namespace DM
 			DM_MSG_WM_PAINT(DM_OnPaint)
 			DM_MSG_WM_NCPAINT(DM_OnNcPaint)
 			DM_MSG_WM_ERASEBKGND(DM_OnEraseBkgnd)
-			MSG_WM_LBUTTONDBLCLK(OnLButtonDown) //½«Ë«»÷ÏûÏ¢´¦ÀíÎªµ¥»÷
+			MSG_WM_LBUTTONDBLCLK(OnLButtonDown) //å°†åŒå‡»æ¶ˆæ¯å¤„ç†ä¸ºå•å‡»
 			MSG_WM_DESTROY(OnDestroy)
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		BOOL DM_OnEraseBkgnd(IDMCanvas* pCanvas);
 		void DM_OnPaint(IDMCanvas* pCanvas);
@@ -66,21 +66,21 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);
 		DMCode DV_OnStateChanged(DWORD dwOldState,DWORD dwNewState);
 		DMCode OnTimeline();
-		bool DV_IsStateChangeRedraw();   // µ±´°¿Ú×´Ì¬±ä»¯Ê±£¬ÊÇ·ñÖØ»æ£¬±³¾°Í¼ÈçÓĞ¶àÖÖ×´Ì¬£¬Ó¦¸ÃË¢ĞÂ
+		bool DV_IsStateChangeRedraw();   // å½“çª—å£çŠ¶æ€å˜åŒ–æ—¶ï¼Œæ˜¯å¦é‡ç»˜ï¼ŒèƒŒæ™¯å›¾å¦‚æœ‰å¤šç§çŠ¶æ€ï¼Œåº”è¯¥åˆ·æ–°
 		bool OnAccelPressed(const DUIAccel& Accel);
 	    UINT DV_OnGetDlgCode(){return DMDLGC_WANTCHARS;}
 
 		//---------------------------------------------------
-		// Function Des: »»·ô
+		// Function Des: æ¢è‚¤
 		//---------------------------------------------------
 		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void StopCurAnimate();
 
 	public:
@@ -96,11 +96,11 @@ namespace DM
 		DMCode OnAttributeAccel(LPCSTR pszValue, bool bLoadXml);
 
 	public:
-		bool							    m_bAnimate;				///< ÆôÓÃalpha½¥±ä¶¯»­
-		int									m_iAnimateSteps;		///< ÉèÖÃ·Ö¶àÉÙ´ÎÏÔÊ¾
-		int                                 m_iAnimateDelta;		///< ¸¨Öú,ÓÉm_iAnimateStepsºÍµ±Ç°alphaÖµ(ÆğÊ¼Îª1/5µ±Ç°alpha)Ëã³öµÄÃ¿´ÎÔöÁ¿
-		byte                                m_byCurAlpha;           ///< ¸¨Öú,µ±Ç°alpha£¬ÒÔ0-255¼ÆËã
-	    DWORD                               m_dwPreFrameTime;       ///< ¸¨Öú,ÉÏÒ»Ö¡ÏÔÊ¾µÄÊ±¼ä£¬µ¥Î»ms
+		bool							    m_bAnimate;				///< å¯ç”¨alphaæ¸å˜åŠ¨ç”»
+		int									m_iAnimateSteps;		///< è®¾ç½®åˆ†å¤šå°‘æ¬¡æ˜¾ç¤º
+		int                                 m_iAnimateDelta;		///< è¾…åŠ©,ç”±m_iAnimateStepså’Œå½“å‰alphaå€¼(èµ·å§‹ä¸º1/5å½“å‰alpha)ç®—å‡ºçš„æ¯æ¬¡å¢é‡
+		byte                                m_byCurAlpha;           ///< è¾…åŠ©,å½“å‰alphaï¼Œä»¥0-255è®¡ç®—
+	    DWORD                               m_dwPreFrameTime;       ///< è¾…åŠ©,ä¸Šä¸€å¸§æ˜¾ç¤ºçš„æ—¶é—´ï¼Œå•ä½ms
 		bool                                m_bMultiLines;			
 		int                                 m_nLineInter;
 		IDMSkin*                            m_pIconSkin;

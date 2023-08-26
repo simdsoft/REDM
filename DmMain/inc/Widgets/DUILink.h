@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,12 +17,12 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUILink"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUILink"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUILinkAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* STRING_href;                                 ///< ÉèÖÃÁ´½Ó£¬µã»÷ºó´¥·¢,Ê¾Àı:href="www.hgy413.com"
+		static const char* STRING_href;                                 ///< è®¾ç½®é“¾æ¥ï¼Œç‚¹å‡»åè§¦å‘,ç¤ºä¾‹:href="www.hgy413.com"
 	};
 	DMAttrValueInit(DUILinkAttr,STRING_href)
 }
@@ -30,7 +30,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUILinkµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUILinkAttr"/>
+	///		 DUILinkçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUILinkAttr"/>
 	/// </summary>
 	class DM_EXPORT DUILink:public DUIWindow
 	{
@@ -51,12 +51,12 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
-		DMCode DV_OnSetCursor(const CPoint &pt); // ½öÔÚ×ÖÌå·¶Î§ÄÚ²ÅÉèÖÃ¹â±ê
+		DMCode DV_OnSetCursor(const CPoint &pt); // ä»…åœ¨å­—ä½“èŒƒå›´å†…æ‰è®¾ç½®å…‰æ ‡
 		DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);
 
-	protected:// ¸¨Öú
+	protected:// è¾…åŠ©
 		void CalcTextRect(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT pRect,UINT uFormat);
 
 	public:
@@ -64,8 +64,8 @@ namespace DM
 			DM_WSTRING_ATTRIBUTE(DMAttr::DUILinkAttr::STRING_href, m_strLinkUrl, DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 	public:
-		CRect                            m_rcText;					///< ÎÄ±¾ÏÔÊ¾ËùÔÚÎ»ÖÃ
-		CStringW                         m_strLinkUrl;				///< ´°¿ÚURL
+		CRect                            m_rcText;					///< æ–‡æœ¬æ˜¾ç¤ºæ‰€åœ¨ä½ç½®
+		CStringW                         m_strLinkUrl;				///< çª—å£URL
 	};
 	
 

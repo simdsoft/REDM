@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -17,21 +17,21 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIList"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIList"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIListAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_itemheight;                                           ///< ÏîµÄÄ¬ÈÏ¸ß¶È,Ê¾Àı:itemheight="10"
-		static const char* INT_cursel;                                               ///< µ±Ç°Ñ¡Ïî,Ê¾Àı:cursel="1"
-		static const char* SKIN_expandarrskin;                                       ///< ÊÕËõ£¬Õ¹¿ªĞ¡Èı½Ç,Ê¾Àı:expandarrskin="skin"
+		static const char* INT_itemheight;                                           ///< é¡¹çš„é»˜è®¤é«˜åº¦,ç¤ºä¾‹:itemheight="10"
+		static const char* INT_cursel;                                               ///< å½“å‰é€‰é¡¹,ç¤ºä¾‹:cursel="1"
+		static const char* SKIN_expandarrskin;                                       ///< æ”¶ç¼©ï¼Œå±•å¼€å°ä¸‰è§’,ç¤ºä¾‹:expandarrskin="skin"
 	
-		static const char* NODE_item;                                                ///< Ïî½áµã 
-		static const char* ITEM_height;                                              ///< ÏîµÄ¸ß¶È(¿ÉÑ¡),Ê¾Àı:height="10"
-		static const char* ITEM_bexpand;                                             ///< ÏîÊÇ·ñ³õÊ¼Õ¹¿ª,Ê¾Àı:bexpand="1"
-		static const char* ITEM_expandheight;                                        ///< ÏîµÄÕ¹¿ª¸ß¶È,Ê¾Àı:expandheight="100"
-		static const char* ITEM_data;                                                ///< ÏîµÄÊı¾İ,Ê¾Àı:data="10"
-		static const char* bool_bswapline;											  ///< ÔÊĞí½»»»ĞĞ,ÔÊĞíÍÏ¶¯½»»»ĞĞ,Ê¾Àı:bswapline="1"
+		static const char* NODE_item;                                                ///< é¡¹ç»“ç‚¹ 
+		static const char* ITEM_height;                                              ///< é¡¹çš„é«˜åº¦(å¯é€‰),ç¤ºä¾‹:height="10"
+		static const char* ITEM_bexpand;                                             ///< é¡¹æ˜¯å¦åˆå§‹å±•å¼€,ç¤ºä¾‹:bexpand="1"
+		static const char* ITEM_expandheight;                                        ///< é¡¹çš„å±•å¼€é«˜åº¦,ç¤ºä¾‹:expandheight="100"
+		static const char* ITEM_data;                                                ///< é¡¹çš„æ•°æ®,ç¤ºä¾‹:data="10"
+		static const char* bool_bswapline;											  ///< å…è®¸äº¤æ¢è¡Œ,å…è®¸æ‹–åŠ¨äº¤æ¢è¡Œ,ç¤ºä¾‹:bswapline="1"
 		
 	};
 	DMAttrValueInit(DUIListAttr,INT_itemheight)DMAttrValueInit(DUIListAttr,INT_cursel)DMAttrValueInit(DUIListAttr,SKIN_expandarrskin)
@@ -54,16 +54,16 @@ namespace DM
 		{
 			pPanel.Release();
 		}
-		DMSmartPtrT<DUIItemPanel>       pPanel;			///< Ãæ°å
-		int								nHeight;		///< ¸ß¶È
-		int                             nExpandHeight;  ///< ÏîµÄÕ¹¿ª¸ß¶È
-		bool                            bExpand;        ///< ÊÇ·ñÕ¹¿ª
-		DMXmlDocument					XmlDoc;			///< ±¸·İXML
+		DMSmartPtrT<DUIItemPanel>       pPanel;			///< é¢æ¿
+		int								nHeight;		///< é«˜åº¦
+		int                             nExpandHeight;  ///< é¡¹çš„å±•å¼€é«˜åº¦
+		bool                            bExpand;        ///< æ˜¯å¦å±•å¼€
+		DMXmlDocument					XmlDoc;			///< å¤‡ä»½XML
 		LPARAM							lParam;			///< data
 	}DSLBITEMEX,*LPDSLBITEMEX;
 
 	/// <summary>
-	///		 DUIListµÄÄÚÖÃÊµÏÖ
+	///		 DUIListçš„å†…ç½®å®ç°
 	/// </summary> 
 	class DUIList:public DUIScrollBase
 		,public IDMItemPanelOwner
@@ -76,7 +76,7 @@ namespace DM
  
 	public:              
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æ¥å£
 		//---------------------------------------------------
 		int InsertItem(int nIndex, DMXmlNode&XmlNode);
 		CRect GetItemRect(int iItem);
@@ -87,7 +87,7 @@ namespace DM
 		void EnsureVisible(int nIndex); 
 		bool ExpandItem(int nIndex,bool bExpand = true);
 
-	public:// »æÖÆ£¡£¡£¡£¡
+	public:// ç»˜åˆ¶ï¼ï¼ï¼ï¼
 		virtual void DrawItem(IDMCanvas* pCanvas, CRect& rc, int iItem);
 		void RedrawItem(int iItem);
 
@@ -114,9 +114,9 @@ namespace DM
 
 	public: 
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
-		void OnDestroy();																	///< ±ØĞëÔÚ´Ë´¦ÊÍ·Åpanel£¬²»È»panelÎŞ·¨ÊÍ·Å£¡£¡
+		void OnDestroy();																	///< å¿…é¡»åœ¨æ­¤å¤„é‡Šæ”¾panelï¼Œä¸ç„¶panelæ— æ³•é‡Šæ”¾ï¼ï¼
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnSize(UINT nType,CSize size);
 		void DM_OnPaint(IDMCanvas* pCanvas);
@@ -133,34 +133,34 @@ namespace DM
 
 	public:   
 		//---------------------------------------------------
-		// Function Des: IDMItemPanelOwnerÊµÏÖ
+		// Function Des: IDMItemPanelOwnerå®ç°
 		//---------------------------------------------------   
 		DUIWindow* GetOwnerWindow();   
 		DMCode OnSetCapture(DUIItemPanel* pPanel);
 		DMCode OnReleaseCapture(DUIItemPanel* pPanel);
-		DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);							///< ÇëÊ¹ÓÃ*lpRect¸³Öµ£¡
+		DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);							///< è¯·ä½¿ç”¨*lpRectèµ‹å€¼ï¼
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¿ÉÖØÔØº¯Êı
+		// Function Des: å¯é‡è½½å‡½æ•°
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		DMCode DV_OnSetCursor(const CPoint &pt);
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTALLKEYS;};
-		void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);							  ///<  ¸üĞÂ¹â±êÎ»ÖÃ
+		void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);							  ///<  æ›´æ–°å…‰æ ‡ä½ç½®
 
 	public:
 		void PreArrayObjRemove(const LPDSLBITEMEX &obj);
 
-	public:// ¸¨Öú
-		void UpdateItemPanelId(int iFirst=0, int iLast = -1);							  ///< ¸üĞÂË÷Òı
-		void UpdateAllPanelLayout();                                                      ///< ¸üĞÂPanel²¼¾Ö
+	public:// è¾…åŠ©
+		void UpdateItemPanelId(int iFirst=0, int iLast = -1);							  ///< æ›´æ–°ç´¢å¼•
+		void UpdateAllPanelLayout();                                                      ///< æ›´æ–°Panelå¸ƒå±€
 		void NotifySelChange(int nOldSel,int nNewSel);
-		void ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr);                         ///< ¸Ä±äPanelµÄ±³¾°É«
-		int HitTest(CPoint &pt,bool* pbInExpand=NULL);										  ///< ×Ô¶¯ĞŞ¸ÄptµÄÎ»ÖÃÎªÏà¶Ôµ±Ç°ÏîµÄÆ«ÒÆÁ¿
+		void ModifyPanelBgClr(DUIItemPanel* pPanel,DMColor &Clr);                         ///< æ”¹å˜Panelçš„èƒŒæ™¯è‰²
+		int HitTest(CPoint &pt,bool* pbInExpand=NULL);										  ///< è‡ªåŠ¨ä¿®æ”¹ptçš„ä½ç½®ä¸ºç›¸å¯¹å½“å‰é¡¹çš„åç§»é‡
 		void UpdateScrollRangeSize();
 
-		void CreateDragCanvas(UINT iItem);												  ///< ´´½¨»­²¼
+		void CreateDragCanvas(UINT iItem);												  ///< åˆ›å»ºç”»å¸ƒ
 		void DrawDraggingState(DWORD dwDragTo);
 
 	public:
@@ -171,19 +171,19 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		int									   m_iSelItem;						 ///< µ±Ç°Ñ¡ÖĞÏî   
-		int									   m_iHoverItem;					 ///< µ±Ç°Í£ÁôÏî
-		int									   m_iDefItemHei;					 ///< ÏîµÄÄ¬ÈÏ¸ß¶È
-		DMSmartPtrT<DUIItemPanel>			   m_pCapturePanel;					 ///< µ±Ç°µ÷ÓÃÁËsetcaptureµÄÃæ°å,´ËÃæ°åÖ»ÔÚÊó±ê°´ÏÂµÄË²¼äÉèÖÃ£¬µ¯ÆğÇå¿Õ 
+		int									   m_iSelItem;						 ///< å½“å‰é€‰ä¸­é¡¹   
+		int									   m_iHoverItem;					 ///< å½“å‰åœç•™é¡¹
+		int									   m_iDefItemHei;					 ///< é¡¹çš„é»˜è®¤é«˜åº¦
+		DMSmartPtrT<DUIItemPanel>			   m_pCapturePanel;					 ///< å½“å‰è°ƒç”¨äº†setcaptureçš„é¢æ¿,æ­¤é¢æ¿åªåœ¨é¼ æ ‡æŒ‰ä¸‹çš„ç¬é—´è®¾ç½®ï¼Œå¼¹èµ·æ¸…ç©º 
 		IDMSkinPtr                             m_pExpandArrSkin;
 
-		// ÍÏ¶¯ĞĞ
+		// æ‹–åŠ¨è¡Œ
 		bool                                   m_bSwapLine;	
-		bool								   m_bDragging;						///< ÕıÔÚÍÏ¶¯±êÖ¾
-		DMSmartPtrT<IDMCanvas>				   m_pDragCanvas;					///< ÏÔÊ¾ÍÏ¶¯´°¿ÚµÄÁÙÊ±»­²¼
-		DWORD								   m_dwHitTest;						///< ÍÏ¶¯Î»ÖÃËùÔÚÏî
-		DWORD								   m_dwDragTo;						///< ÍÏ·ÅÄ¿±êËùÔÚÏî    
-		CPoint								   m_ptClick;						///< µ±Ç°µã»÷×ø±ê
+		bool								   m_bDragging;						///< æ­£åœ¨æ‹–åŠ¨æ ‡å¿—
+		DMSmartPtrT<IDMCanvas>				   m_pDragCanvas;					///< æ˜¾ç¤ºæ‹–åŠ¨çª—å£çš„ä¸´æ—¶ç”»å¸ƒ
+		DWORD								   m_dwHitTest;						///< æ‹–åŠ¨ä½ç½®æ‰€åœ¨é¡¹
+		DWORD								   m_dwDragTo;						///< æ‹–æ”¾ç›®æ ‡æ‰€åœ¨é¡¹    
+		CPoint								   m_ptClick;						///< å½“å‰ç‚¹å‡»åæ ‡
 	};
 }//namespace DM
 

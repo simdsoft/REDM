@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	AddExpandWnd.h 
 // File mark:   
-// File summary:»√
+// File summary:ÿ®ÿ£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-9-8

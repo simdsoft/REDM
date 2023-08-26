@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIPropCtrlHelper.h 
 // File mark:   
-// File summary:Ä£ÄâCMFCPropertyGridPropertyµÈÌØĞÔ
+// File summary:æ¨¡æ‹ŸCMFCPropertyGridPropertyç­‰ç‰¹æ€§
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-27
@@ -19,17 +19,17 @@ namespace DMAttr
 	class PropGridAttr 
 	{
 	public:
-		static const char* ITEM_name;													 ///< ÏîµÄÃû×Ö,Ê¾Àı:name="name0"
-		static const char* ITEM_value;													 ///< ÏîµÄÃû×Ö,Ê¾Àı:value="value0"
-		static const char* ITEM_desc;													 ///< ÏîµÄÃèÊö,Ê¾Àı:desc="cccc"
-		static const char* ITEM_bgroup;                                                 ///< ÊÇ·ñÎªgroup£¬groupÊÇÃ»ÓĞÖµ¿É±à¼­µÄ,Ê¾Àı:bgroup="1"
+		static const char* ITEM_name;													 ///< é¡¹çš„åå­—,ç¤ºä¾‹:name="name0"
+		static const char* ITEM_value;													 ///< é¡¹çš„åå­—,ç¤ºä¾‹:value="value0"
+		static const char* ITEM_desc;													 ///< é¡¹çš„æè¿°,ç¤ºä¾‹:desc="cccc"
+		static const char* ITEM_bgroup;                                                 ///< æ˜¯å¦ä¸ºgroupï¼Œgroupæ˜¯æ²¡æœ‰å€¼å¯ç¼–è¾‘çš„,ç¤ºä¾‹:bgroup="1"
 	};
 	DMAttrValueInit(PropGridAttr,ITEM_name)DMAttrValueInit(PropGridAttr,ITEM_value)DMAttrValueInit(PropGridAttr,ITEM_desc)
 	DMAttrValueInit(PropGridAttr,ITEM_bgroup)
 	class PropOptionAttr
 	{
 	public:
-		static const char* ITME_options;                                                 ///< ÏÂÀ­Ñ¡ÔñÏîµÄÀàĞÍ£¬Ê¾Àı:option="1|2|3"
+		static const char* ITME_options;                                                 ///< ä¸‹æ‹‰é€‰æ‹©é¡¹çš„ç±»å‹ï¼Œç¤ºä¾‹:option="1|2|3"
 	};
 	DMAttrValueInit(PropOptionAttr,ITME_options)
 }
@@ -38,7 +38,7 @@ namespace DM
 {	
 	class DUIPropList;
 	/// <summary>
-	///		Ä£ÄâCMFCPropertyGridProperty
+	///		æ¨¡æ‹ŸCMFCPropertyGridProperty
 	/// </summary>
 	class PropGrid : public IProp
 	{
@@ -77,19 +77,19 @@ namespace DM
 
 		DMCode InitDMData(DMXmlNode XmlNode) override;	
 
-		// »æÖÆ
+		// ç»˜åˆ¶
 		virtual DMCode OnRender(IDMCanvas* pCanvas);
 		virtual DMCode OnDrawExpandBox(IDMCanvas* pCanvas,CRect rcExpand);
 		virtual DMCode OnDrawName(IDMCanvas* pCanvas, CRect rcName);
 		virtual DMCode OnDrawValue(IDMCanvas* pCanvas, CRect rcValue);
 		virtual DMCode OnDrawDesc(IDMCanvas* pCanvas, CRect rcDesc);
 
-		// µã»÷
+		// ç‚¹å‡»
 		virtual DMCode OnClickValue(UINT uiMsg, CPoint point);
 		virtual DMCode OnClickName(UINT uiMsg, CPoint point);
 		virtual DMCode OnClickDrag(UINT uiMsg, CPoint point);
 
-		// ¿Ø¼ş´´½¨¡¢ÏÔÊ¾¡¢Òş²Ø
+		// æ§ä»¶åˆ›å»ºã€æ˜¾ç¤ºã€éšè—
 		virtual DMCode OnCreateInPlaceCtrl();
 		virtual DMCode OnInPlaceCtrlShow(bool bShow = true);
 
@@ -108,28 +108,28 @@ namespace DM
 		CStringW									m_strDescr;			
 		CStringW                                    m_strValue;   
 
-		CRect										m_Rect;				///< ×ÜÇøÓò
-		CRect                                       m_rcName;			///< nameËùÔÚµÄÇøÓò
-		CRect                                       m_rcValue;			///< valueËùÔÚµÄÇøÓò
-		CRect                                       m_rcDrag;           ///< ÏÔÊ¾¿ÉÍÏ¶¯µÄÇøÓò
-		CRect                                       m_rcExpandBox;      ///< µ¯ÆğÊÕËõĞ¡boxËùÔÚµÄÇøÓò
+		CRect										m_Rect;				///< æ€»åŒºåŸŸ
+		CRect                                       m_rcName;			///< nameæ‰€åœ¨çš„åŒºåŸŸ
+		CRect                                       m_rcValue;			///< valueæ‰€åœ¨çš„åŒºåŸŸ
+		CRect                                       m_rcDrag;           ///< æ˜¾ç¤ºå¯æ‹–åŠ¨çš„åŒºåŸŸ
+		CRect                                       m_rcExpandBox;      ///< å¼¹èµ·æ”¶ç¼©å°boxæ‰€åœ¨çš„åŒºåŸŸ
 
 		//
-		DUIPropList*								m_pOwner;			///< ÊôĞÔµÄÓµÓĞ´°¿Ú
-		IPropPtr									m_pParent;			///< ÊôĞÔµÄ¸¸ÊôĞÔ
-		bool										m_bExpanded;		///< ÊÇ·ñÎªÕ¹¿ª
-		bool										m_bVisible;			///< ÊÇ·ñ¿É¼û
-		bool										m_bInPlaceEdit;		///< ÊÇ·ñ´¦ÀíInPlace¿Ø¼ş¿É¼û×´Ì¬
-		bool                                        m_bGroup;			///< ÊÇ·ñÎªgroup£¬groupÏÂÃ»ÓĞvalue
-		DM::CList<IPropPtr>							m_lstSubItems;		///< ×ÓÊôĞÔÁĞ±í
-		DUIEdit*                                    m_pValueEdit;		///< ÊôĞÔÖĞ³öÏÖµÄ±à¼­¿ò
+		DUIPropList*								m_pOwner;			///< å±æ€§çš„æ‹¥æœ‰çª—å£
+		IPropPtr									m_pParent;			///< å±æ€§çš„çˆ¶å±æ€§
+		bool										m_bExpanded;		///< æ˜¯å¦ä¸ºå±•å¼€
+		bool										m_bVisible;			///< æ˜¯å¦å¯è§
+		bool										m_bInPlaceEdit;		///< æ˜¯å¦å¤„ç†InPlaceæ§ä»¶å¯è§çŠ¶æ€
+		bool                                        m_bGroup;			///< æ˜¯å¦ä¸ºgroupï¼Œgroupä¸‹æ²¡æœ‰value
+		DM::CList<IPropPtr>							m_lstSubItems;		///< å­å±æ€§åˆ—è¡¨
+		DUIEdit*                                    m_pValueEdit;		///< å±æ€§ä¸­å‡ºç°çš„ç¼–è¾‘æ¡†
 
 		LPARAM                                      m_lpData;
 	};
 
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞSTRING
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­STRING
 	/// </summary>
 	class PropString : public PropGrid
 	{
@@ -143,7 +143,7 @@ namespace DM
 	}; 
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄINT
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„INT
 	/// </summary>
 	class PropInt : public  PropString
 	{
@@ -153,7 +153,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄBYTE
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„BYTE
 	/// </summary>
 	class PropByte : public PropString
 	{
@@ -164,7 +164,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄOptionÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„Optioné€‰æ‹©é¡¹
 	/// </summary>
 	class PropOption :public PropString
 	{
@@ -181,12 +181,12 @@ namespace DM
 		DM_BEGIN_ATTRIBUTES()
 			DM_WSTRING_ATTRIBUTE(DMAttr::PropOptionAttr::ITME_options,m_strOptions,DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
-		CStringW                                    m_strOptions;		///< ComboxboxµÄÑ¡ÔñÏî
-		DUIComboBox*                                m_pValueCbx;		///< ÊôĞÔÖĞ³öÏÖµÄComboxboxÏÂÀ­¿ò
+		CStringW                                    m_strOptions;		///< Comboxboxçš„é€‰æ‹©é¡¹
+		DUIComboBox*                                m_pValueCbx;		///< å±æ€§ä¸­å‡ºç°çš„Comboxboxä¸‹æ‹‰æ¡†
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄColorÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„Coloré€‰æ‹©é¡¹
 	/// </summary>
 	class PropClr :public PropString
 	{
@@ -209,15 +209,15 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::PropGridAttr::ITEM_value,m_crValue,DM_ECODE_OK)
 		DM_END_ATTRIBUTES()
 	public: 
-		DMColor                                     m_crValue;          ///< ÑÕÉ«
-		DUIRect*                                    m_pcrRect;			 ///< ÓÃËÄ¸öÖµ·Ö±ğ±íÊ¾PBGRA
+		DMColor                                     m_crValue;          ///< é¢œè‰²
+		DUIRect*                                    m_pcrRect;			 ///< ç”¨å››ä¸ªå€¼åˆ†åˆ«è¡¨ç¤ºPBGRA
 
-		CRect                                       m_rcClr;            ///< ÏÔÊ¾ÑÕÉ«µÄÇøÓò
+		CRect                                       m_rcClr;            ///< æ˜¾ç¤ºé¢œè‰²çš„åŒºåŸŸ
 		CRect                                       m_rcText;
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄRectÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„Recté€‰æ‹©é¡¹
 	/// </summary>
 	class PropRect : public PropString
 	{
@@ -242,7 +242,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄSIZE.POINTÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„SIZE.POINTé€‰æ‹©é¡¹
 	/// </summary>
 	class PropSize : public PropString
 	{
@@ -267,7 +267,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄFontÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„Fonté€‰æ‹©é¡¹
 	/// </summary>
 	class PropFont : public PropString
 	{
@@ -295,7 +295,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ä£ÄâÊôĞÔÖĞµÄACCELÑ¡ÔñÏî
+	///		æ¨¡æ‹Ÿå±æ€§ä¸­çš„ACCELé€‰æ‹©é¡¹
 	/// </summary>
 	class PropAccel : public PropString
 	{

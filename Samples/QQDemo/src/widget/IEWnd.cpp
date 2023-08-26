@@ -1,11 +1,11 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "IEWnd.h"
 #include "QQMainWnd.h"
 extern CQQMainWnd* g_pMainWnd;
 
 BEGIN_MSG_MAP(CIEWnd) 
 	MSG_WM_ACTIVATE(OnActivate)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP()
 void CIEWnd::OnActivate(UINT nState, BOOL bMinimized, HWND wndOther)
 {

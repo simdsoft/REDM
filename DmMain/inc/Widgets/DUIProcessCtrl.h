@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIProcessCtrl.h 
-// File Des: ÄÚÖÃµ¥Ñ¡°´Å¥ÊµÏÖ
+// File Des: å†…ç½®å•é€‰æŒ‰é’®å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,21 +18,21 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIProcessCtrl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIProcessCtrl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIProcessCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* SIZE_range;									   ///< ·¶Î§×îĞ¡Öµ,×î´óÖµ,Ê¾Àı:range="0,100"
-		static const char* INT_value;									   ///< ·¶Î§µ±Ç°Öµ,Ê¾Àı:value="0"
-		static const char* bool_bvert;                                    ///< ÊÇ·ñÊÇË®Æ½µÄ,Ê¾Àı:bvert="1"
-		static const char* bool_bshowtip;                                 ///< ÊÇ·ñÏÔÊ¾tip
+		static const char* SIZE_range;									   ///< èŒƒå›´æœ€å°å€¼,æœ€å¤§å€¼,ç¤ºä¾‹:range="0,100"
+		static const char* INT_value;									   ///< èŒƒå›´å½“å‰å€¼,ç¤ºä¾‹:value="0"
+		static const char* bool_bvert;                                    ///< æ˜¯å¦æ˜¯æ°´å¹³çš„,ç¤ºä¾‹:bvert="1"
+		static const char* bool_bshowtip;                                 ///< æ˜¯å¦æ˜¾ç¤ºtip
 
-		static const char* SKIN_channelskin;                              ///< channelÍ¼,Ê¾Àı:channelskin="PNG:channel"
-		static const char* COLOR_clrchannel;							   ///< channelÑÕÉ«,ÔÚchannelÍ¼ÎŞĞ§Ê±Ê¹ÓÃ,Ê¾Àı:clrchannel="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_selskin;                                  ///< Ñ¡ÖĞ²¿·ÖÍ¼,Ê¾Àı:selskin="PNG:iconbtn"
-		static const char* COLOR_clrsel;                                  ///< Ñ¡ÖĞÑÕÉ«,ÔÚÑ¡ÖĞÍ¼ÎŞĞ§Ê±Ê¹ÓÃ,Ê¾Àı:clrsel="pbgra(ff,ff,ff,ff)"
-		static const char* STRING_textformat;                             ///< ĞèÒªÏÔÊ¾µÄ½ø¶ÈÎÄ×Öformat,Ê¾Àı:textformat="½ø¶È:%d"
+		static const char* SKIN_channelskin;                              ///< channelå›¾,ç¤ºä¾‹:channelskin="PNG:channel"
+		static const char* COLOR_clrchannel;							   ///< channelé¢œè‰²,åœ¨channelå›¾æ— æ•ˆæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrchannel="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_selskin;                                  ///< é€‰ä¸­éƒ¨åˆ†å›¾,ç¤ºä¾‹:selskin="PNG:iconbtn"
+		static const char* COLOR_clrsel;                                  ///< é€‰ä¸­é¢œè‰²,åœ¨é€‰ä¸­å›¾æ— æ•ˆæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrsel="pbgra(ff,ff,ff,ff)"
+		static const char* STRING_textformat;                             ///< éœ€è¦æ˜¾ç¤ºçš„è¿›åº¦æ–‡å­—format,ç¤ºä¾‹:textformat="è¿›åº¦:%d"
 	};
 	DMAttrValueInit(DUIProcessCtrlAttr,SIZE_range)DMAttrValueInit(DUIProcessCtrlAttr,INT_value)
 	DMAttrValueInit(DUIProcessCtrlAttr,bool_bvert)DMAttrValueInit(DUIProcessCtrlAttr,SKIN_channelskin)DMAttrValueInit(DUIProcessCtrlAttr,COLOR_clrchannel)
@@ -42,7 +42,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIProcessCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIProcessCtrlAttr"/>
+	///		 DUIProcessCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIProcessCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIProcessCtrl:public DUIWindow
 	{
@@ -64,14 +64,14 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 
 	public:
 		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		CRect GetSelRect();
 		int GetValue(CPoint &pt);
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTARROWS;};		
@@ -89,23 +89,23 @@ namespace DM
 			DM_WSTRING_ATTRIBUTE(DMAttr::DUIProcessCtrlAttr::STRING_textformat,m_strTextFormat,DM_ECODE_NOXMLLOADREFRESH)
 		DM_END_ATTRIBUTES()
 		//------------------------------------------
-		// ¼ò»¯,ÔÚË®Æ½×´Ì¬ÏÂ£¬×ÜÊÇÊ¹channelµÈÓÚ¿Í»§Çø
+		// ç®€åŒ–,åœ¨æ°´å¹³çŠ¶æ€ä¸‹ï¼Œæ€»æ˜¯ä½¿channelç­‰äºå®¢æˆ·åŒº
 	public:
 		DMCode OnAttributeRange(LPCSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeValue(LPCSTR lpszValue, bool bLoadXml);
 	public:
-		CSize                            m_szRange;              ///< xÎª×îĞ¡Öµ,yÎª×î´óÖµ
-		int                              m_iValue;               ///< µ±Ç°Öµ
+		CSize                            m_szRange;              ///< xä¸ºæœ€å°å€¼,yä¸ºæœ€å¤§å€¼
+		int                              m_iValue;               ///< å½“å‰å€¼
 
-		int                              m_iChannelHei;			 ///< channel¸ß¶È
+		int                              m_iChannelHei;			 ///< channelé«˜åº¦
 
-		bool                             m_bVert;                ///< ÊÇ·ñË®Æ½
-		bool                             m_bShowTip;             ///< ÊÇ·ñÏÔÊ¾Êı×ÖÌáÊ¾
+		bool                             m_bVert;                ///< æ˜¯å¦æ°´å¹³
+		bool                             m_bShowTip;             ///< æ˜¯å¦æ˜¾ç¤ºæ•°å­—æç¤º
 		IDMSkinPtr                       m_pChannelSkin;
 		IDMSkinPtr                       m_pSelSkin;
 		DMColor							 m_crChannel;
 		DMColor                          m_crSel;
-		CStringW                         m_strTextFormat;        ///< ĞèÒªÏÔÊ¾µÄ½ø¶ÈÎÄ×Öformat
+		CStringW                         m_strTextFormat;        ///< éœ€è¦æ˜¾ç¤ºçš„è¿›åº¦æ–‡å­—format
 	};
 
 }//namespace DM

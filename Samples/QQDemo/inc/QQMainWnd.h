@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: MainWnd.h 
-// File Des: Ö÷´°¿Ú
+// File Des: ä¸»çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author: 
@@ -24,11 +24,11 @@ class CQQMainWnd :public DMHWnd, public DMTrayIconImpl<CQQMainWnd>
 public:
 	CQQMainWnd();
 	~CQQMainWnd();
-	DECLARE_MESSAGE_MAP()						// ·ÂMFCÏûÏ¢Ó³Éäºê£¬Ò²¿ÉÒÔÊ¹ÓÃBEGIN_MSG_MAPTºêÊ¹ÏûÏ¢´¦ÀíÔÚÍ·ÎÄ¼ş
-	DECLARE_EVENT_MAP()							// ÊÂ¼ş·Ö·¢Ó³Éäºê,Ò²¿ÉÒÔÊ¹ÓÃBEGIN_EVENT_MAPTºêÊ¹ÊÂ¼ş´¦ÀíÔÚÍ·ÎÄ¼ş
+	DECLARE_MESSAGE_MAP()						// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨BEGIN_MSG_MAPTå®ä½¿æ¶ˆæ¯å¤„ç†åœ¨å¤´æ–‡ä»¶
+	DECLARE_EVENT_MAP()							// äº‹ä»¶åˆ†å‘æ˜ å°„å®,ä¹Ÿå¯ä»¥ä½¿ç”¨BEGIN_EVENT_MAPTå®ä½¿äº‹ä»¶å¤„ç†åœ¨å¤´æ–‡ä»¶
 
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	int OnCreate(LPVOID);
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
@@ -36,10 +36,10 @@ public:
 	void OnShowWindow(BOOL bShow, UINT nStatus);
 	virtual int OnTrayOnRButtonUp(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam);
 	LRESULT OnShowTrayMenu(UINT uMsg, WPARAM wParam, LPARAM lParam);
-	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);// ²Ëµ¥²âÊÔ
+	void OnCommand(UINT uNotifyCode, int nID, HWND wndCtl);// èœå•æµ‹è¯•
 
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	DMCode OnClose();
 	DMCode OnMinimize();

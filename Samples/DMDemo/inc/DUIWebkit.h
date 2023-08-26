@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,7 +17,7 @@
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")
 
-// WebKitµÄ¸¨ÖúÀà
+// WebKitçš„è¾…åŠ©ç±»
 class  DUIWebkitHelper:public DMSingletonT<DUIWebkitHelper>,public DMRefNum
 {
 public:
@@ -47,7 +47,7 @@ public:
 	void UnInit();
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú
+	// Function Des: å¯¹å¤–æ¥å£
 	//---------------------------------------------------
 	IDMWebViewPtr GetWebView();
 	void Zoom(bool zoomIn);
@@ -71,7 +71,7 @@ public:
 
 public:
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	int OnCreate(LPVOID);	
 	void OnDestroy();
@@ -89,7 +89,7 @@ public:
 
 public:
 	//---------------------------------------------------
-	// Function Des: ÖØÔØ
+	// Function Des: é‡è½½
 	//---------------------------------------------------
 	virtual DMCode DV_OnSetCursor(const CPoint &pt);
 

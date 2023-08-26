@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMStringT.h 
-// File Des: CString³éÀë³ÉÄ£°å
-// File Summary: Ò²¿É¿¼ÂÇATL.CSimpleStringT ³éÀë
+// File Des: CStringæŠ½ç¦»æˆæ¨¡æ¿
+// File Summary: ä¹Ÿå¯è€ƒè™‘ATL.CSimpleStringT æŠ½ç¦»
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -28,7 +28,7 @@ namespace DM
 	__pragma(warning(disable: 4996))
 
 	/// <summary>
-	///		»ùÓÚatlsimpstr.h->CStringData
+	///		åŸºäºatlsimpstr.h->CStringData
 	/// </summary>
     struct TStringData
     {
@@ -91,7 +91,7 @@ namespace DM
     };
 
     // Globals
-	//wtl9->atlmisc.h->755ĞĞ
+	//wtl9->atlmisc.h->755è¡Œ
 	_declspec(selectany) TStringData* g_DMTempDataNil = (TStringData*)DMMemDispatch::Get_CString_InitData();
 	_declspec(selectany) const void*  g_DMtmpPchNil = (const void*)(((unsigned char*)DMMemDispatch::Get_CString_InitData()) + sizeof(TStringData));
 
@@ -504,9 +504,9 @@ namespace DM
 	}//namespace DMSecureHelper 
 
 	/// <summary>
-	///		DMStringTÄ£°åÀà\n »ùÓÚatlmisch.h->CStringÊ¹ÓÃtraitsµü´úÆ÷¸Ä±ä
-	///     ÄÚ²¿»ùÓÚËüÊ¹ÓÃÁËDM::CStringW,DM::CStringA,DM::CStringW\n
-	///     ÓÃ·¨¿É²Î¿¼ÏµÍ³µÄCString
+	///		DMStringTæ¨¡æ¿ç±»\n åŸºäºatlmisch.h->CStringä½¿ç”¨traitsè¿­ä»£å™¨æ”¹å˜
+	///     å†…éƒ¨åŸºäºå®ƒä½¿ç”¨äº†DM::CStringW,DM::CStringA,DM::CStringW\n
+	///     ç”¨æ³•å¯å‚è€ƒç³»ç»Ÿçš„CString
 	/// </summary>
     template <class tchar, class tchar_traits>
     class DMStringT
@@ -1670,7 +1670,7 @@ namespace DM
 
     #pragma warning (disable : 4231)
 	typedef DMStringT<char, char_traits>        CStringA;
-	typedef DMStringT<wchar_t, wchar_traits>     CStringW;// ×öÎªº¯Êı²ÎÊıÊ±£¬×îºÃÊ¹ÓÃÒıÓÃ£¬È»ºóÄÚ²¿½¨Á¢ÁÙÊ±±äÁ¿´¦Àí£¬²»È»¿çdll¿ÉÄÜ±ÀÀ£
+	typedef DMStringT<wchar_t, wchar_traits>     CStringW;// åšä¸ºå‡½æ•°å‚æ•°æ—¶ï¼Œæœ€å¥½ä½¿ç”¨å¼•ç”¨ï¼Œç„¶åå†…éƒ¨å»ºç«‹ä¸´æ—¶å˜é‡å¤„ç†ï¼Œä¸ç„¶è·¨dllå¯èƒ½å´©æºƒ
 
 #ifdef _UNICODE
     typedef CStringW                        CStringT;
@@ -1797,7 +1797,7 @@ namespace ntcvt {
 
 namespace DM {
     /// <summary>
-    ///	ÓÃÓÚ½Å±¾ÖĞchar*Ö±½Ó×ªCStringW
+    ///	ç”¨äºè„šæœ¬ä¸­char*ç›´æ¥è½¬CStringW
     /// </summary>
     static CStringW DMCA2W(LPCSTR lpsz, int len = -1, UINT CodePage = CP_UTF8)
     {

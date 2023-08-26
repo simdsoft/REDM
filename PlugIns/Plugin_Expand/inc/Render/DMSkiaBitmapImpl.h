@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -23,7 +23,7 @@ namespace DM
 		DMSkiaBitmapImpl();
 		~DMSkiaBitmapImpl();
 
-	public://À©Õ¹½Ó¿Ú
+	public://æ‰©å±•æ¥å£
 		DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL);
 		DMCode InitFromFrame(IDMImgFrame *pImgFrame);
 		DMCode LoadFromFile(LPCWSTR pszFileName,LPCWSTR pszType);
@@ -46,10 +46,10 @@ namespace DM
 		PVOID GetPixelBits(); 
 		HBITMAP GetBitmap();
 
-	public://¸¨Öú
+	public://è¾…åŠ©
 		SkBitmap &GetSkBitmap();
 		
-	protected://¸¨Öú
+	protected://è¾…åŠ©
 		void DM_Release();
 
 	public:

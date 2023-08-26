@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 #include "3d/3dTransform.h"
 #include "DMAnimateWndBase.h"
 
 namespace DM
 {
 #define  TIMER_3D      1
-	struct PARAM3DOFF{int  x;int y; int   z;int  f;};///3DÃ¿´ÎÆ«ÒÆÁ¿
+	struct PARAM3DOFF{int  x;int y; int   z;int  f;};///3Dæ¯æ¬¡åç§»é‡
 	class DM3DAnimate:public IDMAnimate,public DMAnimateWndBase
 	{
 		DMDECLARE_CLASS_NAME(DM3DAnimate,"DM3DAnimate",DMREG_Animate);
@@ -13,10 +13,10 @@ namespace DM
 		DM3DAnimate();
 
 	public:
-		DMCode AnimateInit(IDMAnimateOwner*pOwner,IDMCanvas* pStartCanvas,IDMCanvas* pEndCanvas,WPARAM wp, LPARAM lp);// wp´«Èë3dÃ¿´ÎÆ«ÒÆ,lp´«ÈëĞı×ª´ÎÊı£¬ÒâÒåÒ²¿ÉÒÔ×Ô¶¨
-		DMCode AnimateBegin(WPARAM wp, LPARAM lp);		/// wpµÍÎ»Îª½¥ÏÔËÙ¶È£¬¸ßÎ»Îª½¥ÏÔÊ±¼ä²î,lpÊÇÃ¿´ÎĞı×ªµÄÊ±¼ä²î
+		DMCode AnimateInit(IDMAnimateOwner*pOwner,IDMCanvas* pStartCanvas,IDMCanvas* pEndCanvas,WPARAM wp, LPARAM lp);// wpä¼ å…¥3dæ¯æ¬¡åç§»,lpä¼ å…¥æ—‹è½¬æ¬¡æ•°ï¼Œæ„ä¹‰ä¹Ÿå¯ä»¥è‡ªå®š
+		DMCode AnimateBegin(WPARAM wp, LPARAM lp);		/// wpä½ä½ä¸ºæ¸æ˜¾é€Ÿåº¦ï¼Œé«˜ä½ä¸ºæ¸æ˜¾æ—¶é—´å·®,lpæ˜¯æ¯æ¬¡æ—‹è½¬çš„æ—¶é—´å·®
 		DMCode AnitmateGet(WPARAM wp=0, LPARAM lp=0);  
-		DMCode AnimateEnd(WPARAM wp, LPARAM lp);		/// wpµÍÎ»Îª½¥ÒşËÙ¶È£¬¸ßÎ»Îª½¥ÒşÊ±¼ä²î
+		DMCode AnimateEnd(WPARAM wp, LPARAM lp);		/// wpä½ä½ä¸ºæ¸éšé€Ÿåº¦ï¼Œé«˜ä½ä¸ºæ¸éšæ—¶é—´å·®
 
 	public:
 		virtual DMCode EndFadeFinish();
@@ -26,7 +26,7 @@ namespace DM
 		void OnTimer(UINT_PTR idEvent);
 
 	public:
-		DECLARE_MESSAGE_MAP()										// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MESSAGE_MAP()										// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	public:
 		IDMAnimateOwner*				    m_pOwner; 

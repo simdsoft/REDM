@@ -1,11 +1,11 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: 
 // File Des: 
-// File Summary:ÔÚActiveXÏÂ£¬ÓÉÓÚ²»Í£µÄË¢ĞÂ±³¾°£¬Èç¹û×Ó¿Ø¼şÖĞ¿ÉÄÜÏÔÊ¾³ö¸¸¿Ø¼ş£¬Ò»¶¨²»ÄÜÊ¹ÓÃcacheÊôĞÔ
-// ²»È»±³¾°Ë¢ĞÂÊ±£¬×Ó¿Ø¼şÓĞ¿ÉÄÜ²»»á¸üĞÂ£¬¶øÊÇÊ¹ÓÃÀÏ±³¾°
+// File Summary:åœ¨ActiveXä¸‹ï¼Œç”±äºä¸åœçš„åˆ·æ–°èƒŒæ™¯ï¼Œå¦‚æœå­æ§ä»¶ä¸­å¯èƒ½æ˜¾ç¤ºå‡ºçˆ¶æ§ä»¶ï¼Œä¸€å®šä¸èƒ½ä½¿ç”¨cacheå±æ€§
+// ä¸ç„¶èƒŒæ™¯åˆ·æ–°æ—¶ï¼Œå­æ§ä»¶æœ‰å¯èƒ½ä¸ä¼šæ›´æ–°ï¼Œè€Œæ˜¯ä½¿ç”¨è€èƒŒæ™¯
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -19,12 +19,12 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIFlash"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIFlash"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIFlashAttr
 	{
 	public:
-		static const char* STRING_url;									   ///< flashµÄ×ÊÔ´,Ö§³ÖÏà¶ÔÂ·¾¶¼ÓÔØ»òRes·½Ê½¼ÓÔØ,Ê¾Àı:url="http://www.hgy413.com/swf/2.swf"
+		static const char* STRING_url;									   ///< flashçš„èµ„æº,æ”¯æŒç›¸å¯¹è·¯å¾„åŠ è½½æˆ–Resæ–¹å¼åŠ è½½,ç¤ºä¾‹:url="http://www.hgy413.com/swf/2.swf"
 	};
 	DMAttrValueInit(DUIFlashAttr,STRING_url)
 }
@@ -32,7 +32,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIFlashµÄÄÚÖÃÊµÏÖ
+	///		 DUIFlashçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIFlash :public DUIActiveX
 	{
@@ -45,7 +45,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ²¥·Å¿ØÖÆ
+		// Function Des: æ’­æ”¾æ§åˆ¶
 		// Input Parameter:
 		// Output Parameter:
 		// return:

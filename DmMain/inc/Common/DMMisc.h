@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMMsgCrack.h 
-// File Des: ·ÂGDI+¡¢·ÂCString.CArray.CMap.CList
-// File Summary: CStringÊ¹ÓÃ×¢Òâ:http://www.cppblog.com/weiym/archive/2012/07/13/183262.html
+// File Des: ä»¿GDI+ã€ä»¿CString.CArray.CMap.CList
+// File Summary: CStringä½¿ç”¨æ³¨æ„:http://www.cppblog.com/weiym/archive/2012/07/13/183262.html
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -673,11 +673,11 @@ namespace DM
 	};	
 } // namespace DM
 
-//ATLÊµÏÖCArray.CList.CMap----------------------------------------------
+//ATLå®ç°CArray.CList.CMap----------------------------------------------
 #include <limits.h>
 #include <malloc.h>
 
-// new.hÖĞ¶¨Òå
+// new.hä¸­å®šä¹‰
 #ifndef __PLACEMENT_NEW_INLINE
 #define __PLACEMENT_NEW_INLINE
 inline void *__CRTDECL operator new(size_t, void *_Where)
@@ -775,7 +775,7 @@ namespace DM
 	};
 
 	//------------------------------------------------------
-	// ÒÔÏÂ´úÂëÀ´×Ôatl7.atlalloc.h
+	// ä»¥ä¸‹ä»£ç æ¥è‡ªatl7.atlalloc.h
 	/* generic version */
 	template<typename T>
 	inline HRESULT Add(T* ptResult, T tLeft, T tRight)
@@ -3337,7 +3337,7 @@ namespace DM
 				hi--;
 			while (lo < hi && 0 >= CmpT(array[lo], elem)) //array[++lo]<elem
 				lo++;
-			if(lo < hi) //½»»»Á½¸öÊıÔÚÊı×éÖĞµÄÎ»ÖÃ
+			if(lo < hi) //äº¤æ¢ä¸¤ä¸ªæ•°åœ¨æ•°ç»„ä¸­çš„ä½ç½®
 			{
 				T elemTemp = array[lo];
 				array[lo] = array[hi];

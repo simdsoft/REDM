@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 class DMSkDrawText 
@@ -14,11 +14,11 @@ private:
 	void buildLines();
 
 private:
-	SkTDArray<wchar_t>		m_Text;		 // ÎÄ±¾ÄÚÈİ
-	SkTDArray<int>			m_Prefix;    // Ç°×º·ûË÷Òı
-	SkTDArray<int>			m_Lines;     // ·ÖĞĞË÷Òı£¬¼ÇÂ¼ÁËÃ¿Ò»ĞĞµÄÆğÊ¼×Ö·ûË÷Òı
-	UINT					m_uFormat;   // ÏÔÊ¾±êÖ¾
-	SkRect					m_rcBound;   // ÏŞÖÆ¾ØĞÎ
+	SkTDArray<wchar_t>		m_Text;		 // æ–‡æœ¬å†…å®¹
+	SkTDArray<int>			m_Prefix;    // å‰ç¼€ç¬¦ç´¢å¼•
+	SkTDArray<int>			m_Lines;     // åˆ†è¡Œç´¢å¼•ï¼Œè®°å½•äº†æ¯ä¸€è¡Œçš„èµ·å§‹å­—ç¬¦ç´¢å¼•
+	UINT					m_uFormat;   // æ˜¾ç¤ºæ ‡å¿—
+	SkRect					m_rcBound;   // é™åˆ¶çŸ©å½¢
 	const SkPaint			*m_pSkPaint;
 };
 
@@ -65,7 +65,7 @@ private:
 	SkDashPathEffect * pDashPathEffect;
 };
 
-// ¸¨Öú----------------------------------
+// è¾…åŠ©----------------------------------
 class ProcXfermode : public SkXfermode 
 {
 public:

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MacroHelper.h"
 
 bool CMacroHelper::LoadFile(CStringW strPath,CStringW strStart)
@@ -34,7 +34,7 @@ bool CMacroHelper::LoadFile(CStringW strPath,CStringW strStart)
 			nFind = strBuf.Find(L"#define", nStart+1);
 		}
 
-		if (bFind)//ËµÃ÷ÒÑ´æÔÚ#define
+		if (bFind)//è¯´æ˜å·²å­˜åœ¨#define
 		{
 			CStringW strFind = strBuf.Mid(nStart, strBuf.GetLength()-nStart);
 			if (!strFind.IsEmpty())
@@ -57,19 +57,19 @@ CStringW CMacroHelper::Convert(CStringW strMacro)
 		CStringW strTemp = strList[i];
 		strTemp.Trim();
 		strTemp.Replace(L" ",L"");
-		int nLeft = strTemp.FindChar(L'(');// ÕÒµ½¶ÔÓ¦Ç°À¨ºÅ
-		int nRight = strTemp.FindChar(L')');// ÕÒµ½¶ÔÓ¦ºóÀ¨ºÅ
+		int nLeft = strTemp.FindChar(L'(');// æ‰¾åˆ°å¯¹åº”å‰æ‹¬å·
+		int nRight = strTemp.FindChar(L')');// æ‰¾åˆ°å¯¹åº”åæ‹¬å·
 		if (-1 != nLeft&&-1 != nRight)
 		{
 			CStringW strMainDef = strTemp.Left(nLeft);
-			CStringW strDot = strTemp.Mid(nLeft+1,nRight-nLeft-1);// È¡µÃÀ¨ºÅÖĞµÄÄÚÈİ
+			CStringW strDot = strTemp.Mid(nLeft+1,nRight-nLeft-1);// å–å¾—æ‹¬å·ä¸­çš„å†…å®¹
 			int nDotCount = 0;
 			CStringWList strDotList;
 			TermSpace(strMainDef);
 			TermSpace(strDot);
 			if (!strDot.IsEmpty())
 			{
-				nDotCount = SplitStringT(strDot,L',',strDotList);// ½«À¨ºÅÖĞµÄÄÚÈİ°´¶ººÅ·ÖÀë
+				nDotCount = SplitStringT(strDot,L',',strDotList);// å°†æ‹¬å·ä¸­çš„å†…å®¹æŒ‰é€—å·åˆ†ç¦»
 			}
 			PMACRO pst = FindMacroItem(strMainDef,nDotCount);
 			if (pst)
@@ -79,7 +79,7 @@ CStringW CMacroHelper::Convert(CStringW strMacro)
 				{
 					strTemp.Replace(pst->strParamList[k],strDotList[k]);
 				}
-				strList[i] = strTemp;// ×ª»»ºó£¬¸³Öµ 
+				strList[i] = strTemp;// è½¬æ¢åï¼Œèµ‹å€¼ 
 			}
 		}
 	}
@@ -102,7 +102,7 @@ CStringW CMacroHelper::Convert(CStringW strMacro)
 			break;
 		}
 
-		// ÅĞ¶Ïelse ifÖĞ¼äÊÇ²»ÊÇÖ»ÓĞ¿Õ¸ñ
+		// åˆ¤æ–­else ifä¸­é—´æ˜¯ä¸æ˜¯åªæœ‰ç©ºæ ¼
 		CStringW strContent = strOut.Mid(nElseFind+4,nIf-nElseFind-4);
 		wchar_t szChar = 0x09;
 		strContent.Remove(szChar);
@@ -131,7 +131,7 @@ bool CMacroHelper::AddMacroItem(CStringW strFind)
 			break;
 		}
 
-		int nLineFind = strFind.FindChar('\\');//ÕÒµ½DefºóµÄÁ¬ĞĞ·û
+		int nLineFind = strFind.FindChar('\\');//æ‰¾åˆ°Defåçš„è¿è¡Œç¬¦
 
 		PMACRO pst = new MACRO;
 		pst->strDef = strFind.Left(nLineFind);
@@ -143,17 +143,17 @@ bool CMacroHelper::AddMacroItem(CStringW strFind)
 		TermSpace(pst->strDef);
 		pst->strContent.Trim();
 
-		int nLeft = pst->strDef.FindChar(L'(');// ÕÒµ½¶ÔÓ¦Ç°À¨ºÅ
-		int nRight = pst->strDef.FindChar(L')');// ÕÒµ½¶ÔÓ¦ºóÀ¨ºÅ
+		int nLeft = pst->strDef.FindChar(L'(');// æ‰¾åˆ°å¯¹åº”å‰æ‹¬å·
+		int nRight = pst->strDef.FindChar(L')');// æ‰¾åˆ°å¯¹åº”åæ‹¬å·
 		if (-1!=nLeft && -1!=nRight)
 		{
 			pst->strMainDef = pst->strDef.Left(nLeft);
 			TermSpace(pst->strMainDef);
-			pst->strDot = pst->strDef.Mid(nLeft+1,nRight-nLeft-1);// È¡µÃÀ¨ºÅÖĞµÄÄÚÈİ
+			pst->strDot = pst->strDef.Mid(nLeft+1,nRight-nLeft-1);// å–å¾—æ‹¬å·ä¸­çš„å†…å®¹
 			TermSpace(pst->strDot);
 			if (!pst->strDot.IsEmpty())
 			{
-				SplitStringT(pst->strDot,L',',pst->strParamList);// ½«À¨ºÅÖĞµÄÄÚÈİ°´¶ººÅ·ÖÀë
+				SplitStringT(pst->strDot,L',',pst->strParamList);// å°†æ‹¬å·ä¸­çš„å†…å®¹æŒ‰é€—å·åˆ†ç¦»
 			}
 
 			m_VecMacro.push_back(pst);

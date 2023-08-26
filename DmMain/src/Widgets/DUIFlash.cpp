@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 
 #if !defined(DM_EXCLUDE_ACTIVEX)
 
@@ -12,7 +12,7 @@ namespace DM
 		m_curFrame = 0;
 	}
 
-	DMCode DUIFlash::DV_OnAxActivate(IUnknown *pUnknwn)// ³õÊ¼»¯Ê±»áµ÷ÓÃµ½´Ë´¦
+	DMCode DUIFlash::DV_OnAxActivate(IUnknown *pUnknwn)// åˆå§‹åŒ–æ—¶ä¼šè°ƒç”¨åˆ°æ­¤å¤„
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -22,7 +22,7 @@ namespace DM
 			{
 				break;
 			}
-			pFlash->put_WMode(bstr_t(_T("transparent")));// ÉèÖÃ±³¾°Í¸Ã÷
+			pFlash->put_WMode(bstr_t(_T("transparent")));// è®¾ç½®èƒŒæ™¯é€æ˜
 			if (m_strUrl.IsEmpty())
 			{
 				break;
@@ -43,11 +43,11 @@ namespace DM
 			{
 				strType    = strSource.Left(iFind);
 				strResName = strSource.Right(strSource.GetLength()-iFind-1);
-				if (-1!=strType.MakeLower().Find("http")||-1!=strType.MakeLower().Find("ftp"))// httpÔÚÏßurl
+				if (-1!=strType.MakeLower().Find("http")||-1!=strType.MakeLower().Find("ftp"))// httpåœ¨çº¿url
 				{
 					Play(m_strUrl);
 				}
-				else// ±¾µØ×ÊÔ´°ü,Ê¹ÓÃÄÚ´æ·½Ê½²¥·Å
+				else// æœ¬åœ°èµ„æºåŒ…,ä½¿ç”¨å†…å­˜æ–¹å¼æ’­æ”¾
 				{
 					DMBufT<byte> pBuf;
 					ULONG ulSize = 0;
@@ -66,7 +66,7 @@ namespace DM
 					}
 				}
 			}
-			else// ±¾µØswfÂ·¾¶
+			else// æœ¬åœ°swfè·¯å¾„
 			{
 				Play(m_strUrl);
 			}
@@ -103,12 +103,12 @@ namespace DM
 			}
 			FLASH_STREAM_HEADER fsh = {0x55665566, dwSize};
 			ULARGE_INTEGER uli = {sizeof(fsh) + dwSize};
-			if (S_OK != spStream->SetSize(uli))// ÉèÖÃ´óĞ¡
+			if (S_OK != spStream->SetSize(uli))// è®¾ç½®å¤§å°
 			{
 				break;
 			}
 
-			// Ğ´flashÍ·
+			// å†™flashå¤´
 			if (S_OK != spStream->Write(&fsh, sizeof (fsh), NULL))
 			{
 				break;
@@ -119,7 +119,7 @@ namespace DM
 				break;
 			}
 
-			// ÉèÖÃÆğÊ¼´¦²¥·Å
+			// è®¾ç½®èµ·å§‹å¤„æ’­æ”¾
 			uli.QuadPart = 0;
 			spStream->Seek(*reinterpret_cast<PLARGE_INTEGER>(&uli), STREAM_SEEK_SET, NULL);
 			m_pAxContainer->InitControl(spStream);
@@ -143,7 +143,7 @@ namespace DM
 				break;
 			}
 
-			if (L'.' == pszUrl[0])// Ïà¶ÔÂ·¾¶
+			if (L'.' == pszUrl[0])// ç›¸å¯¹è·¯å¾„
 			{
 				wchar_t szPath[MAX_PATH] = {0};
 				GetRootDirW(szPath, MAX_PATH);

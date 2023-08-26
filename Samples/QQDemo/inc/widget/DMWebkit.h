@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -74,7 +74,7 @@ typedef struct _DMClientHandler
 } DMClientHandler;
 
 class DUIWndWebHost
-{// ÄÚ²¿µ÷ÓÃ¸üĞÂµ½DUIWnd
+{// å†…éƒ¨è°ƒç”¨æ›´æ–°åˆ°DUIWnd
 public:
 	virtual void DUIWndUpdate(const HDC hdc,int x, int y, int cx, int cy) = 0;
 };
@@ -94,26 +94,26 @@ namespace DM
 		virtual bool transparent() const = 0;
 		virtual void setTransparent(bool transparent) = 0;
 
-		/// @brief ´«Èëurl
+		/// @brief ä¼ å…¥url
 		virtual void loadURL(const utf8* url) = 0;
 		virtual void loadURL(const wchar_t* url) = 0;
 
 		virtual void loadHTML(const utf8* html) = 0;
 		virtual void loadHTML(const wchar_t* html) = 0;
 
-		/// @brief ´«Èë±¾µØurlÂ·¾¶,ÄÚ²¿µ÷ÓÃloadURL,ÔÚµ÷ÊÔÊ±Ğè´«È«Â·¾¶
+		/// @brief ä¼ å…¥æœ¬åœ°urlè·¯å¾„,å†…éƒ¨è°ƒç”¨loadURL,åœ¨è°ƒè¯•æ—¶éœ€ä¼ å…¨è·¯å¾„
 		virtual void loadFile(const utf8* filename) = 0;
 		virtual void loadFile(const wchar_t* filename) = 0;
 
-		/// @brief ÅĞ¶Ï¼ÓÔØ×´Ì¬
+		/// @brief åˆ¤æ–­åŠ è½½çŠ¶æ€
 		virtual bool isLoaded() const = 0;       
 		virtual bool isLoadFailed() const = 0;   
 		virtual bool isLoadComplete() const = 0; 
 		virtual bool isDocumentReady() const = 0; 
 		virtual void stopLoading() = 0;
-		virtual void reload() = 0;// Ë¢ĞÂ
+		virtual void reload() = 0;// åˆ·æ–°
 
-		/// @brief ±êÌâ
+		/// @brief æ ‡é¢˜
 		virtual const utf8* title() = 0;
 		virtual const wchar_t* titleW() = 0;
 

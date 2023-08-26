@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMApp.h"
 #include "DMAppData.h"
 
@@ -8,7 +8,7 @@ namespace DM
 	DMApp::DMApp(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
 		OleInitialize(NULL);
-		// ¿ªÊ¼³õÊ¼»¯È«¾ÖÊı¾İ
+		// å¼€å§‹åˆå§‹åŒ–å…¨å±€æ•°æ®
 		new DMAppData(hInst);
 	}
 
@@ -49,7 +49,7 @@ namespace DM
 		return g_pDMAppData->IsRun(hWnd);
 	}
 
-	/// ×¢²áÀà-----------------------------------------
+	/// æ³¨å†Œç±»-----------------------------------------
 	DMCode DMApp::Register(const IDMReg &RegObj, bool bReplace/*=false*/)
 	{
 		return g_pDMAppData->Register(RegObj, bReplace);
@@ -82,7 +82,7 @@ namespace DM
 		return szName;
 	}
 
-	/// ×¢²á²å¼ş-----------------------------------------
+	/// æ³¨å†Œæ’ä»¶-----------------------------------------
 	DMCode DMApp::LoadPlugins(LPCWSTR lpszPluginsCfg)
 	{
 		return g_pDMAppData->LoadPlugins(lpszPluginsCfg);
@@ -113,13 +113,13 @@ namespace DM
 		return g_pDMAppData->ShutdownPlugins();
 	}
 
-	/// ½âÎö×ÊÔ´Res--------------------------------------
+	/// è§£æèµ„æºRes--------------------------------------
 	DMCode DMApp::LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName)
 	{
 		return g_pDMAppData->LoadResPack(wp, lp, lpszClassName);
 	}
 
-	/// ÊôĞÔÏà¹Ø -----------------------------------------
+	/// å±æ€§ç›¸å…³ -----------------------------------------
 	DMCode DMApp::AddSkinPoolItem(DMXmlNode &XmlNode)
 	{
 		return g_pDMSkinPool->AddSkinPoolItem(XmlNode);
@@ -231,7 +231,7 @@ namespace DM
 		return iErr;
 	}
 
-	/// ÆäËû½Ó¿Ú
+	/// å…¶ä»–æ¥å£
 	DMCode DMApp::AddIdleHandler(IDMIdleHandler* pIdleHandler)
 	{
 		DMCode iErr = DM_ECODE_FAIL;

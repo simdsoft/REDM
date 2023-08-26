@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMHWndHelper.h 
-// File Des: Ö÷´°¿ÚÀàDMHWnd.hµÄ¸¨ÖúÊı¾İ
+// File Des: ä¸»çª—å£ç±»DMHWnd.hçš„è¾…åŠ©æ•°æ®
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -19,25 +19,25 @@ typedef struct _MARGINS MARGINS;
 namespace DMAttr
 { 
 	/// <summary>
-	///		<see cref="DM::DMHWnd"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DMHWnd"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DMHWndAttr
 	{
 	public:
-		static const char* SIZE_initsize;                                    ///< Èç¹û´´½¨´°¿ÚÊ±´«ÈëµÄsizeÎª0£¬ÔòÊ¹ÓÃËü´´½¨´°¿Ú³õÊ¼´óĞ¡, Ê¾Àı:initsize="800,572"
-		static const char* SIZE_minsize;                                     ///< ×îĞ¡´óĞ¡, Ê¾Àı:minsize="600,500"
-		static const char* RECT_maxinset;                                    ///< È«ÆÁÊ±£¬ÖÜ±ßÔ¤Áô´óĞ¡,¿ÉÉèÖÃ¸ºÖµ Ê¾Àı:maxinset="50,50,50,50"
-		static const char* SIZE_maxsize;                                     ///< ×î´ó´óĞ¡£¬Ê¾Àı:maxsize="800,800"£¬-1±íÊ¾²»×öÏŞÖÆ
-		static const char* STRING_title;                                     ///< ´°¿Ú±êÌâ£¬Ä¬ÈÏ²»»áÏÔÊ¾³öÀ´ Ê¾Àı:title="dmmagic"
-		static const char* STRING_regtip;                                    ///< Ê¹ÓÃµÄÄ¬ÈÏtip×¢²áÀàÃû,ÎªNULLÊ¹ÓÃÄ¬ÈÏ Ê¾Àı:regtip="dui_tip"
-		static const char* STRING_regdraw;                                   ///< Ê¹ÓÃµÄÄ¬ÈÏdraw×¢²áÀàÃû,ÎªNULLÊ¹ÓÃÄ¬ÈÏ Ê¾Àı:regdraw="dui_draw"
-		static const char* STRING_transid;                                   ///< Ê¹ÓÃµÄtransid,ÎªNULLÊ¹ÓÃÄ¬ÈÏcustom Ê¾Àı:transid="custom"
-		static const char* bool_bresize;                                     ///< ´°¿Ú¿É¸Ä±ä´óĞ¡,Ê¾Àı:bresize="1"
-		static const char* bool_btranslucent;                                ///< ´°¿ÚÊ¹ÓÃUpdateLayeredWindow¸üĞÂ,Ê¾Àı:btranslucent="1"
-		static const char* BYTE_alpha;                                        ///< ´°¿ÚÍ¸Ã÷¶È,Í¸Ã÷´°¿ÚÓĞÁ½ÖÖ,Ïê¼ûhttp://hgy413.com/1865.html Ê¾Àı:alpha="0xc0"
-		static const char* INT_h;                                            ///< hsl±ä»»ÖĞh,Öµ±ØĞëÎª[-180,180],´ú±íµÄÊÇÈËÑÛËùÄÜ¸ĞÖªµÄÑÕÉ«·¶Î§,0ÎªÄ¬ÈÏÖµ£¬h="-10"
-		static const char* INT_s;											  ///< hsl±ä»»ÖĞs,Öµ±ØĞëÎª[0,200],É«²ÊµÄ±¥ºÍ¶È£¬ËüÓÃ0%ÖÁ100%µÄÖµÃèÊöÁËÏàÍ¬É«Ïà¡¢Ã÷¶ÈÏÂÉ«²Ê´¿¶ÈµÄ±ä»¯¡£ÊıÖµÔ½´ó£¬ÑÕÉ«ÖĞµÄ»ÒÉ«Ô½ÉÙ£¬ÑÕÉ«Ô½ÏÊÑŞ,Ê¾Àı:s="10"
-		static const char* INT_l;										      ///< hsl±ä»»ÖĞl,Öµ±ØĞëÎª[0,200],Ö¸µÄÊÇÉ«²ÊµÄÃ÷¶È,100ÎªÄ¬ÈÏÖµ£¬ÊıÖµÔ½´ó£¬Ô½½Ó½üÓÚ°×É«,Ê¾Àı:l="10"
+		static const char* SIZE_initsize;                                    ///< å¦‚æœåˆ›å»ºçª—å£æ—¶ä¼ å…¥çš„sizeä¸º0ï¼Œåˆ™ä½¿ç”¨å®ƒåˆ›å»ºçª—å£åˆå§‹å¤§å°, ç¤ºä¾‹:initsize="800,572"
+		static const char* SIZE_minsize;                                     ///< æœ€å°å¤§å°, ç¤ºä¾‹:minsize="600,500"
+		static const char* RECT_maxinset;                                    ///< å…¨å±æ—¶ï¼Œå‘¨è¾¹é¢„ç•™å¤§å°,å¯è®¾ç½®è´Ÿå€¼ ç¤ºä¾‹:maxinset="50,50,50,50"
+		static const char* SIZE_maxsize;                                     ///< æœ€å¤§å¤§å°ï¼Œç¤ºä¾‹:maxsize="800,800"ï¼Œ-1è¡¨ç¤ºä¸åšé™åˆ¶
+		static const char* STRING_title;                                     ///< çª—å£æ ‡é¢˜ï¼Œé»˜è®¤ä¸ä¼šæ˜¾ç¤ºå‡ºæ¥ ç¤ºä¾‹:title="dmmagic"
+		static const char* STRING_regtip;                                    ///< ä½¿ç”¨çš„é»˜è®¤tipæ³¨å†Œç±»å,ä¸ºNULLä½¿ç”¨é»˜è®¤ ç¤ºä¾‹:regtip="dui_tip"
+		static const char* STRING_regdraw;                                   ///< ä½¿ç”¨çš„é»˜è®¤drawæ³¨å†Œç±»å,ä¸ºNULLä½¿ç”¨é»˜è®¤ ç¤ºä¾‹:regdraw="dui_draw"
+		static const char* STRING_transid;                                   ///< ä½¿ç”¨çš„transid,ä¸ºNULLä½¿ç”¨é»˜è®¤custom ç¤ºä¾‹:transid="custom"
+		static const char* bool_bresize;                                     ///< çª—å£å¯æ”¹å˜å¤§å°,ç¤ºä¾‹:bresize="1"
+		static const char* bool_btranslucent;                                ///< çª—å£ä½¿ç”¨UpdateLayeredWindowæ›´æ–°,ç¤ºä¾‹:btranslucent="1"
+		static const char* BYTE_alpha;                                        ///< çª—å£é€æ˜åº¦,é€æ˜çª—å£æœ‰ä¸¤ç§,è¯¦è§http://hgy413.com/1865.html ç¤ºä¾‹:alpha="0xc0"
+		static const char* INT_h;                                            ///< hslå˜æ¢ä¸­h,å€¼å¿…é¡»ä¸º[-180,180],ä»£è¡¨çš„æ˜¯äººçœ¼æ‰€èƒ½æ„ŸçŸ¥çš„é¢œè‰²èŒƒå›´,0ä¸ºé»˜è®¤å€¼ï¼Œh="-10"
+		static const char* INT_s;											  ///< hslå˜æ¢ä¸­s,å€¼å¿…é¡»ä¸º[0,200],è‰²å½©çš„é¥±å’Œåº¦ï¼Œå®ƒç”¨0%è‡³100%çš„å€¼æè¿°äº†ç›¸åŒè‰²ç›¸ã€æ˜åº¦ä¸‹è‰²å½©çº¯åº¦çš„å˜åŒ–ã€‚æ•°å€¼è¶Šå¤§ï¼Œé¢œè‰²ä¸­çš„ç°è‰²è¶Šå°‘ï¼Œé¢œè‰²è¶Šé²œè‰³,ç¤ºä¾‹:s="10"
+		static const char* INT_l;										      ///< hslå˜æ¢ä¸­l,å€¼å¿…é¡»ä¸º[0,200],æŒ‡çš„æ˜¯è‰²å½©çš„æ˜åº¦,100ä¸ºé»˜è®¤å€¼ï¼Œæ•°å€¼è¶Šå¤§ï¼Œè¶Šæ¥è¿‘äºç™½è‰²,ç¤ºä¾‹:l="10"
 	};
 	DMAttrValueInit(DMHWndAttr,SIZE_initsize)DMAttrValueInit(DMHWndAttr,SIZE_minsize)DMAttrValueInit(DMHWndAttr,RECT_maxinset)DMAttrValueInit(DMHWndAttr,SIZE_maxsize)
 	DMAttrValueInit(DMHWndAttr,STRING_title)DMAttrValueInit(DMHWndAttr,STRING_regtip)DMAttrValueInit(DMHWndAttr,STRING_regdraw)DMAttrValueInit(DMHWndAttr,STRING_transid)DMAttrValueInit(DMHWndAttr,bool_bresize)DMAttrValueInit(DMHWndAttr,bool_btranslucent)
@@ -47,7 +47,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		<see cref="DMHWnd"/>µÄ¸¨Öú²ÎÊı
+	///		<see cref="DMHWnd"/>çš„è¾…åŠ©å‚æ•°
 	/// </summary>
 	class DM_EXPORT DMHWnd_Data
 	{
@@ -55,20 +55,20 @@ namespace DM
 		DMHWnd_Data();
 		~DMHWnd_Data();
 	public:
-		LPCSTR							m_lpszXmlId;        ///< Ê¹ÓÃµÄXML id    
-		bool                            m_bTrackFlag;       ///< Êó±êÒÆ¶¯¸ú×Ù±êÖ¾
+		LPCSTR							m_lpszXmlId;        ///< ä½¿ç”¨çš„XML id    
+		bool                            m_bTrackFlag;       ///< é¼ æ ‡ç§»åŠ¨è·Ÿè¸ªæ ‡å¿—
 	};
 
 	class DMHWnd;
 	/// <summary>
-	///		<see cref="DMHWnd"/>µÄxml²ÎÊı,xml²ÎÊıÄ¬ÈÏ²»Çø·Ö´óĞ¡Ğ´
+	///		<see cref="DMHWnd"/>çš„xmlå‚æ•°,xmlå‚æ•°é»˜è®¤ä¸åŒºåˆ†å¤§å°å†™
 	/// </summary>
 	class DM_EXPORT DMHWnd_XmlInfo:public DMDataBase
 	{
 	public:
 		DMHWnd_XmlInfo(DMHWnd* pOwner);
 		~DMHWnd_XmlInfo();
-		void ResetXmlInfo();			///< ÖØÖÃXMLÊôĞÔ
+		void ResetXmlInfo();			///< é‡ç½®XMLå±æ€§
 	public:
 		DM_BEGIN_ATTRIBUTES()
 			DM_SIZE_ATTRIBUTE(DMAttr::DMHWndAttr::SIZE_initsize,m_szInit,DM_ECODE_OK)
@@ -100,34 +100,34 @@ namespace DM
 		DMCode OnAttributeRegDraw(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		CSize							m_szInit;			 ///< ³õÊ¼´óĞ¡
-		CSize							m_szMin;			 ///< ×îĞ¡´óĞ¡
-		CSize                           m_szMax;             ///< ×î´ó´óĞ¡
-		CRect							m_rcMaxInset;		 ///< È«ÆÁÊ±£¬ÖÜ±ßÔ¤Áô´óĞ¡
+		CSize							m_szInit;			 ///< åˆå§‹å¤§å°
+		CSize							m_szMin;			 ///< æœ€å°å¤§å°
+		CSize                           m_szMax;             ///< æœ€å¤§å¤§å°
+		CRect							m_rcMaxInset;		 ///< å…¨å±æ—¶ï¼Œå‘¨è¾¹é¢„ç•™å¤§å°
 
-		bool							m_bResizable;		 ///< ÊÇ·ñ¿ÉÍÏ¶¯¸Ä±ä´óĞ¡
-		bool							m_bTranslucent;		 ///< ÊÇ·ñÊ¹ÓÃUpdateLayeredWindowÀ´¸üĞÂÍ¸Ã÷´°¿Ú
-		BYTE						    m_byAlpha;           ///< ´°¿ÚÍ¸Ã÷¶È
+		bool							m_bResizable;		 ///< æ˜¯å¦å¯æ‹–åŠ¨æ”¹å˜å¤§å°
+		bool							m_bTranslucent;		 ///< æ˜¯å¦ä½¿ç”¨UpdateLayeredWindowæ¥æ›´æ–°é€æ˜çª—å£
+		BYTE						    m_byAlpha;           ///< çª—å£é€æ˜åº¦
 		int                             m_H;				 ///< HSL
 		int                             m_S;				 ///< HSL
 		int                             m_L;				 ///< HSL
 
-		CStringW						m_strTitle;			 ///< ´°¿Ú±êÌâ
-		CStringA                        m_strRegTip;         ///< tip×¢²áÀà
-		CStringW                        m_strRegDraw;        ///< draw×¢²áÀà
-		CStringW                        m_strTransId;        ///< ÓïÑÔ°üµÄNode±êÊ¶
+		CStringW						m_strTitle;			 ///< çª—å£æ ‡é¢˜
+		CStringA                        m_strRegTip;         ///< tipæ³¨å†Œç±»
+		CStringW                        m_strRegDraw;        ///< drawæ³¨å†Œç±»
+		CStringW                        m_strTransId;        ///< è¯­è¨€åŒ…çš„Nodeæ ‡è¯†
 		DMHWnd*                         m_pOwner;
 	};
 
 	class DMHWnd;
 	/// <summary>
-	///		<see cref="DMHWnd"/>µÄÍ¸Ã÷´°¿ÚÃÉ°æ
+	///		<see cref="DMHWnd"/>çš„é€æ˜çª—å£è’™ç‰ˆ
 	/// </summary>
 	class DMDummyWnd: public DMCWnd
 	{
 	public:
 		DMDummyWnd(DMHWnd* pOwner);
-		DECLARE_MSG_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MSG_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	public:
 
@@ -137,7 +137,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¶ÔÓ¦ÏµÍ³µÄUPDATELAYEREDWINDOWINFO 
+	///		å¯¹åº”ç³»ç»Ÿçš„UPDATELAYEREDWINDOWINFO 
 	/// </summary>
 	typedef struct tagDMUPDATELAYEREDWINDOWINFO 
 	{
@@ -154,11 +154,11 @@ namespace DM
 	}DMUPDATELAYEREDWINDOWINFO, *PDMUPDATELAYEREDWINDOWINFO;
 
 	// ----------------------------------------------------
-	// Í¸Ã÷´°¿Ú¸üĞÂ
+	// é€æ˜çª—å£æ›´æ–°
 	typedef BOOL (WINAPI *fun_UpdateLayeredWindowIndirect)(HWND hwnd, const DMUPDATELAYEREDWINDOWINFO *pULWInfo);
 
 	// ----------------------------------------------------
-	// DWMÒõÓ°´°¿ÚÖ§³Ö
+	// DWMé˜´å½±çª—å£æ”¯æŒ
 	typedef HRESULT(WINAPI* fun_DwmIsCompositionEnabled)(
 		BOOL* pfEnabled
 		);

@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,12 +18,12 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DMImgListSkinImpl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DMImgListSkinImpl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DMScrollBarSkinImplAttr:public DMImgListSkinImplAttr
 	{
 	public:
-		static const char* RECT_margin;                            ///< scrollÎª9¹¬¸ñ»æÖÆ,Ö¸¶¨»æÖÆµÄËÄ±ß¿ò,margin="1,1,1,1"
+		static const char* RECT_margin;                            ///< scrollä¸º9å®«æ ¼ç»˜åˆ¶,æŒ‡å®šç»˜åˆ¶çš„å››è¾¹æ¡†,margin="1,1,1,1"
 
 	};
 	DMAttrValueInit(DMScrollBarSkinImplAttr,RECT_margin);
@@ -32,7 +32,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		scrollÁ¬Í¼ÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DMScrollBarSkinImplAttr"/>
+	///		scrollè¿å›¾å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DMScrollBarSkinImplAttr"/>
 	/// </summary>
 	class DMScrollBarSkinImpl:public DMImgListSkinImpl
 	{
@@ -42,9 +42,9 @@ namespace DM
 
 	public:
 		//--------------------------------------------------
-		// ¿Ø¼ş:ÉÏ¼ıÍ·¡¢ÏÂ¼ıÍ·¡¢¼áÖ±¹ö¶¯Ìõ¡¢ÊúÖ±»¬²Û¡¢×ó¼ıÍ·¡¢ÓÒ¼ıÍ·¡¢Ë®Æ½¹ö¶¯Ìõ¡¢Ë®Æ½»¬²Û¡¢Ğ¡±ß½Ç
-		// ×´Ì¬:Õı³£¡¢Í£Áô¡¢µã»÷¡¢½ûÓÃ¡¢·ÇActive
-		// ¹²ÁĞ9*ĞĞ5=45ÖÖ×´Ì¬ nSbCode+bVertÑ¡ÔñÁĞ nStateÎªĞĞ
+		// æ§ä»¶:ä¸Šç®­å¤´ã€ä¸‹ç®­å¤´ã€åšç›´æ»šåŠ¨æ¡ã€ç«–ç›´æ»‘æ§½ã€å·¦ç®­å¤´ã€å³ç®­å¤´ã€æ°´å¹³æ»šåŠ¨æ¡ã€æ°´å¹³æ»‘æ§½ã€å°è¾¹è§’
+		// çŠ¶æ€:æ­£å¸¸ã€åœç•™ã€ç‚¹å‡»ã€ç¦ç”¨ã€éActive
+		// å…±åˆ—9*è¡Œ5=45ç§çŠ¶æ€ nSbCode+bVerté€‰æ‹©åˆ— nStateä¸ºè¡Œ
 		//--------------------------------------------------
 		CRect GetPartRect(int nSbCode, int nState,bool bVert);
 

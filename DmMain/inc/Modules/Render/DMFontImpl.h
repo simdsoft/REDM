@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -23,13 +23,13 @@ namespace DM
 		~DMFontImpl();
 	public:
 		virtual const LOGFONTW* GetLogFont() const;
-		virtual LPCWSTR GetFaceName();				// ×ÖÌåÃû
-		virtual bool IsUnderline();				    // ÊÇ·ñÓĞÏÂ»®Ïß
-		virtual bool IsItalic();					// ÊÇ·ñÎªĞ±Ìå
-		virtual bool IsStrikeOut();				    // ÊÇ·ñÓĞÉ¾³ıÏß
+		virtual LPCWSTR GetFaceName();				// å­—ä½“å
+		virtual bool IsUnderline();				    // æ˜¯å¦æœ‰ä¸‹åˆ’çº¿
+		virtual bool IsItalic();					// æ˜¯å¦ä¸ºæ–œä½“
+		virtual bool IsStrikeOut();				    // æ˜¯å¦æœ‰åˆ é™¤çº¿
 
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		HFONT  GetFont();
 
 	protected:

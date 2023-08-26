@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	AttrExpandWnd.h
 // File mark:   
-// File summary:À©Õ¹´°¿Ú
+// File summary:æ‰©å±•çª—å£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-3

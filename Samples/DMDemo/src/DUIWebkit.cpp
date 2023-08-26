@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+ï»¿#include "DMDemoAfx.h"
 #include "DUIWebkit.h"
 
 DUIWebkitHelper::DUIWebkitHelper()
@@ -20,7 +20,7 @@ DUIWebkitHelper::DUIWebkitHelper()
 		}
 		else
 		{
-			m_funDMInit();// ³õÊ¼»¯
+			m_funDMInit();// åˆå§‹åŒ–
 		}
 	}
 }
@@ -30,7 +30,7 @@ DUIWebkitHelper::~DUIWebkitHelper()
 	if (m_hDMWebkit)
 	{
 		m_funDMShutdown();
-		//FreeLibrary(m_hDMWebkit);// ÓÉÏµÍ³×Ô¼ºÊÍ·Å£¬²»È»¿ÉÄÜÍË³öÊ±»ú²»¶Ô£¬Òı·¢±ÀÀ£
+		//FreeLibrary(m_hDMWebkit);// ç”±ç³»ç»Ÿè‡ªå·±é‡Šæ”¾ï¼Œä¸ç„¶å¯èƒ½é€€å‡ºæ—¶æœºä¸å¯¹ï¼Œå¼•å‘å´©æºƒ
 		m_hDMWebkit = NULL;
 	}
 }
@@ -72,7 +72,7 @@ void DUIWebKit::UnInit()
 }
 
 //---------------------------------------------------
-// Function Des: ¶ÔÍâ½Ó¿Ú
+// Function Des: å¯¹å¤–æ¥å£
 //---------------------------------------------------
 IDMWebViewPtr DUIWebKit::GetWebView()
 {
@@ -80,7 +80,7 @@ IDMWebViewPtr DUIWebKit::GetWebView()
 }
 
 //---------------------------------------------------
-// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 //---------------------------------------------------
 int DUIWebKit::OnCreate(LPVOID)
 {
@@ -104,7 +104,7 @@ int DUIWebKit::OnCreate(LPVOID)
 		m_pWebView->setDUIWndHost(this);
 		m_pWebView->loadURL(m_strUrl);
 		g_pDMApp->AddIdleHandler(this);
-		DM_SetTimer(TM_TICKER,70); // ÓÉÓÚtimer²»¹»¼°Ê±£¬idleÓÖÏŞÖÆÁËÖ»ÔÚµ±Ç°µÄÏûÏ¢Ñ­»·ÖĞÓĞĞ§£¬Ê¹ÓÃtimerºÍonidleÒ»Æğ¸üĞÂä¯ÀÀÆ÷
+		DM_SetTimer(TM_TICKER,70); // ç”±äºtimerä¸å¤ŸåŠæ—¶ï¼Œidleåˆé™åˆ¶äº†åªåœ¨å½“å‰çš„æ¶ˆæ¯å¾ªç¯ä¸­æœ‰æ•ˆï¼Œä½¿ç”¨timerå’Œonidleä¸€èµ·æ›´æ–°æµè§ˆå™¨
 	} while (false);
 	return iRet;
 }
@@ -286,7 +286,7 @@ LRESULT DUIWebKit::OnMouseWheel(UINT uMsg, WPARAM wParam,LPARAM lParam)
 			{
 				Zoom(true);
 			}
-			break;// Ê¹ÓÃctrl·Å´ó.ËõĞ¡,²»ÔÙ¹ö¶¯ÁË
+			break;// ä½¿ç”¨ctrlæ”¾å¤§.ç¼©å°,ä¸å†æ»šåŠ¨äº†
 		}
 
 		POINT pt;

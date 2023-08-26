@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMHelper.h 
-// File Des: Í¨ÓÃ¸¨Öúº¯Êı½Ó¿ÚÀà
+// File Des: é€šç”¨è¾…åŠ©å‡½æ•°æ¥å£ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	//---------------------------------------------------
-	// Function Des: »ñÈ¡EXEËùÔÚÈ«Â·¾¶¡¢ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ¡¢»ñµÃÎÄ¼şµÄ´óĞ¡¡¢ÄÚÈİ
+	// Function Des: è·å–EXEæ‰€åœ¨å…¨è·¯å¾„ã€åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ã€è·å¾—æ–‡ä»¶çš„å¤§å°ã€å†…å®¹
 	// Input Parameter:
 	// Output Parameter:
 	// return:
@@ -30,7 +30,7 @@ namespace DM
 	bool DM_EXPORT GetFileBufW(const wchar_t *pszFilePath, void **ppBuf, DWORD dwSize, DWORD &dwReadSize);
 
 	//---------------------------------------------------
-	// Function Des: ×ÖÌå×ª»»º¯Êı,dwLenÎª×Ö·ûÊı£¬·Ç×Ö½ÚÊı
+	// Function Des: å­—ä½“è½¬æ¢å‡½æ•°,dwLenä¸ºå­—ç¬¦æ•°ï¼Œéå­—èŠ‚æ•°
 	// Input Parameter:
 	// Output Parameter:
 	// return:
@@ -39,7 +39,7 @@ namespace DM
 	bool DM_EXPORT UnicodeToUtf8(const wchar_t * pwszSrc, PCHAR pszDst, DWORD dwLen);
 
 	//---------------------------------------------------
-	// Function Des: ×ª»»
+	// Function Des: è½¬æ¢
 	// Input Parameter:
 	// Output Parameter:
 	// return:

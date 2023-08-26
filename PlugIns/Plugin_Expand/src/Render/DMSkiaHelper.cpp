@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMSkiaHelper.h"
 
 
@@ -9,17 +9,17 @@
 static size_t breakTextEx(const SkPaint *pPaint, const wchar_t* textD, size_t length, SkScalar maxWidth,
 						  SkScalar* measuredWidth) 
 {
-	// ·µ»ØµÄÊÇ×Ö½ÚÊı£¬breakText·½·¨£¬¸Ã·½·¨ÄÜ¹»¼ì²âÒ»ĞĞÏÔÊ¾¶àÉÙÎÄ×Ö
+	// è¿”å›çš„æ˜¯å­—èŠ‚æ•°ï¼ŒbreakTextæ–¹æ³•ï¼Œè¯¥æ–¹æ³•èƒ½å¤Ÿæ£€æµ‹ä¸€è¡Œæ˜¾ç¤ºå¤šå°‘æ–‡å­—
 	size_t nLineLen = pPaint->breakText(textD,length*sizeof(wchar_t),maxWidth,measuredWidth,SkPaint::kForward_TextBufferDirection);
 	if (nLineLen==0)
 	{
 		return 0;
 	}
 
-	// »»Ëã³É×Ö·ûÊı
+	// æ¢ç®—æˆå­—ç¬¦æ•°
 	nLineLen/=sizeof(wchar_t);
 
-	const wchar_t * p = textD;//  ÓĞ\r\n»ò\n¾Í¶ÏĞĞ
+	const wchar_t * p = textD;//  æœ‰\r\næˆ–\nå°±æ–­è¡Œ
 	for (size_t i=0;i<nLineLen;i++, p++)
 	{
 		if (*p == L'\r')
@@ -53,7 +53,7 @@ SkRect DrawText_Skia(SkCanvas* canvas,const wchar_t *text,int len,SkRect box,con
 //////////////////////////////////////////////////////////////////////////
 void DMSkDrawText::Init(LPCWSTR lpString,int nCount,SkRect skRc, const SkPaint &skPaint, UINT uFormat)
 {
-	if (uFormat & DT_NOPREFIX)// ²»¿¼ÂÇÇ°×º
+	if (uFormat & DT_NOPREFIX)// ä¸è€ƒè™‘å‰ç¼€
 	{
 		m_Text.setCount(nCount);
 		memcpy(m_Text.begin(),lpString,nCount*sizeof(wchar_t));
@@ -68,7 +68,7 @@ void DMSkDrawText::Init(LPCWSTR lpString,int nCount,SkRect skRc, const SkPaint &
 		{
 			if (tmp[i]==L'&' && i+1<tmp.count())
 			{
-				if (tmp[i+1] == L'&')// Ç°×º
+				if (tmp[i+1] == L'&')// å‰ç¼€
 				{
 					tmp.remove(i,1);
 				}
@@ -99,7 +99,7 @@ void DMSkDrawText::buildLines()
 	{
 		const wchar_t *text = m_Text.begin();
 		const wchar_t* stop = m_Text.begin() + m_Text.count();
-		SkScalar maxWid = m_rcBound.width();// ¿í¶È
+		SkScalar maxWid = m_rcBound.width();// å®½åº¦
 		if (m_uFormat&DT_CALCRECT && maxWid<1.0f)
 		{
 			maxWid = 10000.0f;
@@ -151,7 +151,7 @@ SkScalar DMSkDrawText::drawLine( SkCanvas *canvas, SkScalar x, SkScalar y, int i
 		{
 			SkScalar x1 = m_pSkPaint->measureText(text,(m_Prefix[i]-iBegin)*sizeof(wchar_t));
 			SkScalar x2 = m_pSkPaint->measureText(text,(m_Prefix[i]-iBegin+1)*sizeof(wchar_t));
-			canvas->drawLine(xBase+x1,y+1,xBase+x2,y+1,*m_pSkPaint); // »æÖÆÏÂ»®Ïß
+			canvas->drawLine(xBase+x1,y+1,xBase+x2,y+1,*m_pSkPaint); // ç»˜åˆ¶ä¸‹åˆ’çº¿
 			i++;
 		}
 	}
@@ -195,10 +195,10 @@ SkScalar DMSkDrawText::drawLineEndWithEllipsis( SkCanvas *canvas, SkScalar x, Sk
 
 SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 {
-	// ¿É²Î¿¼http://hgy413.com/1855.html
+	// å¯å‚è€ƒhttp://hgy413.com/1855.html
 	SkPaint::FontMetrics metrics;
 	m_pSkPaint->getFontMetrics(&metrics);
-	float lineSpan = metrics.fBottom-metrics.fTop;// ĞĞ¸ß
+	float lineSpan = metrics.fBottom-metrics.fTop;// è¡Œé«˜
 	SkRect rcDraw = m_rcBound;
 
 	float  x = 0.0f;
@@ -217,10 +217,10 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 	x += m_rcBound.fLeft;
 
 	canvas->save();
-	canvas->clipRect(m_rcBound);// ÉèÖÃ²Ã¼ôÇø
+	canvas->clipRect(m_rcBound);// è®¾ç½®è£å‰ªåŒº
 	float height = m_rcBound.height();
 	float y = m_rcBound.fTop-metrics.fTop;
-	if (m_uFormat&DT_SINGLELINE)// µ¥ĞĞÏÔÊ¾
+	if (m_uFormat&DT_SINGLELINE)// å•è¡Œæ˜¾ç¤º
 	{
 		rcDraw.fBottom = rcDraw.fTop + lineSpan;
 		if (m_uFormat & DT_VCENTER) 
@@ -231,7 +231,7 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 		{
 			y += (height - lineSpan);
 		}
-		if (m_uFormat & DT_ELLIPSIS)// Ö»Ö§³ÖÔÚĞĞÎ²Ôö¼ÓÊ¡ÂÔºÅ
+		if (m_uFormat & DT_ELLIPSIS)// åªæ”¯æŒåœ¨è¡Œå°¾å¢åŠ çœç•¥å·
 		{
 			rcDraw.fRight = rcDraw.fLeft + drawLineEndWithEllipsis(canvas,x,y,0,m_Text.count(),m_rcBound.width());
 		}
@@ -240,7 +240,7 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 			rcDraw.fRight = rcDraw.fLeft + drawLine(canvas,x,y,0,m_Text.count());
 		}
 	}
-	else// ¶àĞĞÏÔÊ¾
+	else// å¤šè¡Œæ˜¾ç¤º
 	{
 		SkScalar maxLineWid = 0;
 		int iLine = 0;
@@ -260,7 +260,7 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 			int iBegin = m_Lines[iLine];
 			int iEnd = iLine<(m_Lines.count()-1)?m_Lines[iLine+1]:m_Text.count();
 			SkScalar lineWid;
-			if (m_uFormat & DT_ELLIPSIS)// Ö»Ö§³ÖÔÚĞĞÎ²Ôö¼ÓÊ¡ÂÔºÅ
+			if (m_uFormat & DT_ELLIPSIS)// åªæ”¯æŒåœ¨è¡Œå°¾å¢åŠ çœç•¥å·
 			{
 				lineWid = drawLineEndWithEllipsis(canvas,x,y,iBegin,iEnd,m_rcBound.width());
 			}
@@ -278,7 +278,7 @@ SkRect DMSkDrawText::Draw(SkCanvas* canvas)
 	return rcDraw;
 }
 
-// À©Õ¹Skia, ÊµÏÖRop2²Ù×÷
+// æ‰©å±•Skia, å®ç°Rop2æ“ä½œ
 static SkPMColor rdRop2Proc_Clear(SkPMColor src, SkPMColor dst)
 {
 	return 0;
@@ -364,7 +364,7 @@ static SkPMColor rdRop2Proc_Set(SkPMColor src, SkPMColor dst)
 	return res;
 }
 
-// rop2²Ù×÷£¬½áÊø
+// rop2æ“ä½œï¼Œç»“æŸ
 typedef struct _Rop2Proc
 {
 	SkXfermodeProc proc;

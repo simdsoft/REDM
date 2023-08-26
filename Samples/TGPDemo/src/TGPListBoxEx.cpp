@@ -1,4 +1,4 @@
-#include "TGPDemoAfx.h"
+ï»¿#include "TGPDemoAfx.h"
 #include "TGPListBoxEx.h"
 
 namespace DM
@@ -55,13 +55,13 @@ namespace DM
 			int iData = 0;
 			DMAttributeDispatch::ParseInt(strData,iData);
 			pNewItem->lParam    = (LPARAM)iData;
-			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg);/// Ä¬ÈÏ±³¾°É«
+			ModifyPanelBgClr(pNewItem->pPanel,m_crItemBg);/// é»˜è®¤èƒŒæ™¯è‰²
 
-			// ³õÊ¼»¯²¼¾Ö
+			// åˆå§‹åŒ–å¸ƒå±€
 			CRect rcLayout(0,0,m_rcsbClient.Width(),pNewItem->nHeight);
 			pNewItem->pPanel->DM_FloatLayout(rcLayout);
 
-			pNewItem->XmlDoc.ResetByXmlNode(XmlNode);//¸´ÖÆXmlNode
+			pNewItem->XmlDoc.ResetByXmlNode(XmlNode);//å¤åˆ¶XmlNode
 		
 			m_DMArray.InsertAt(nIndex,pNewItem);
 			DM_AddChildPanel(pNewItem->pPanel);
@@ -77,7 +77,7 @@ namespace DM
 
 			UpdateItemPanelId(nIndex,-1);
 
-			// ¸üĞÂ¹ö¶¯Ìõ
+			// æ›´æ–°æ»šåŠ¨æ¡
 			UpdateScrollRangeSize();
 			iRet = nIndex;
 		} while (false);
@@ -227,7 +227,7 @@ namespace DM
 			}
 			int nOldSel = m_iSelItem;
 			m_iSelItem  = nIndex;
-			// TODO.Èç¹ûÒªÉèÖÃÑ¡ÖĞÏîµÄ±³¾°É«£¬¿ÉÒÔ´ò¿ª´Ë´úÂë
+			// TODO.å¦‚æœè¦è®¾ç½®é€‰ä¸­é¡¹çš„èƒŒæ™¯è‰²ï¼Œå¯ä»¥æ‰“å¼€æ­¤ä»£ç 
 			//if (-1 != nOldSel)
 			//{
 			//	m_DMArray[nOldSel]->pPanel->ModifyState(0,DUIWNDSTATE_Check);
@@ -323,17 +323,17 @@ namespace DM
 
 			int nTargetY = 0;
 			for (int i = 0; i < nIndex; i++)
-			{//¼ÆËã³öÄ¿±ê¶¥²¿Y×ø±ê
+			{//è®¡ç®—å‡ºç›®æ ‡é¡¶éƒ¨Yåæ ‡
 				nTargetY += m_DMArray[i]->nHeight;
 			}
 			if (nTargetY < m_ptCurPos.y || m_DMArray[nIndex]->nHeight >= rcClient.Height())
-			{//Ä¿±ê¶¥²¿ÔÚ¿ÉÊÓ·¶Î§ÉÏ·½£¬»òÕß¿ÉÊÓ·¶Î§ÄÚÖ»ÄÜÏÔÊ¾Ä¿±êÏîÄ¿£¬Ôò°Ñ¿ÉÊÓ·¶Î§¹ö¶¯µ½Ä¿±ê¶¥²¿
+			{//ç›®æ ‡é¡¶éƒ¨åœ¨å¯è§†èŒƒå›´ä¸Šæ–¹ï¼Œæˆ–è€…å¯è§†èŒƒå›´å†…åªèƒ½æ˜¾ç¤ºç›®æ ‡é¡¹ç›®ï¼Œåˆ™æŠŠå¯è§†èŒƒå›´æ»šåŠ¨åˆ°ç›®æ ‡é¡¶éƒ¨
 				OnScroll(true,SB_THUMBPOSITION,nTargetY);
 				break;
 			}
 			nTargetY += m_DMArray[nIndex]->nHeight;
 			if (nTargetY > m_ptCurPos.y + rcClient.Height())
-			{//Ä¿±êµ×²¿ÔÚ¿ÉÊÓ·¶Î§ÏÂ·½£¬ÔòÍùÇ°»ØËİ×îºóÒ»¸öÄÜÍêÕûÏÔÊ¾µÄÏîÄ¿µÄ¶¥×ø±ê
+			{//ç›®æ ‡åº•éƒ¨åœ¨å¯è§†èŒƒå›´ä¸‹æ–¹ï¼Œåˆ™å¾€å‰å›æº¯æœ€åä¸€ä¸ªèƒ½å®Œæ•´æ˜¾ç¤ºçš„é¡¹ç›®çš„é¡¶åæ ‡
 				int nShowHeight = 0;
 				for ( int i = nIndex; i >= 0; i--)
 				{
@@ -353,7 +353,7 @@ namespace DM
 		} while (false);
 	}
 
-	// »æÖÆ
+	// ç»˜åˆ¶
 	void TGPListBoxEx::DrawItem(IDMCanvas* pCanvas, CRect& rc, int iItem)
 	{
 		do 
@@ -402,11 +402,11 @@ namespace DM
 			if ((nTargetY >= m_ptCurPos.y && nTargetY <= m_ptCurPos.y + rcClient.Height())
 				||(nTargetY + m_DMArray[iItem]->nHeight >= m_ptCurPos.y && nTargetY + m_DMArray[iItem]->nHeight <= m_ptCurPos.y + rcClient.Height())
 				||(nTargetY <= m_ptCurPos.y && nTargetY + m_DMArray[iItem]->nHeight >= m_ptCurPos.y + rcClient.Height()))
-			{//Ä¿±êÓĞ²¿·ÖÔÚ¿ÉÊÓ·¶Î§ÄÚ
+			{//ç›®æ ‡æœ‰éƒ¨åˆ†åœ¨å¯è§†èŒƒå›´å†…
 				CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);
-				rcItem.OffsetRect(0,nTargetY-m_ptCurPos.y);// ´ÙÊ¹µÚÒ»¸öitem¿ÉÄÜÖ»»æÖÆÒ»²¿·Ö
+				rcItem.OffsetRect(0,nTargetY-m_ptCurPos.y);// ä¿ƒä½¿ç¬¬ä¸€ä¸ªitemå¯èƒ½åªç»˜åˆ¶ä¸€éƒ¨åˆ†
 				rcItem.OffsetRect(rcClient.TopLeft());
-				IDMCanvas* pCanvas = DM_GetCanvas(&rcItem,m_bNoDrawBg?DMOLEDC_NODRAW:DMOLEDC_PAINTBKGND);// todo.ÔİÊ±²»×¥±³¾°
+				IDMCanvas* pCanvas = DM_GetCanvas(&rcItem,m_bNoDrawBg?DMOLEDC_NODRAW:DMOLEDC_PAINTBKGND);// todo.æš‚æ—¶ä¸æŠ“èƒŒæ™¯
 				if (NULL == pCanvas)
 				{
 					break;
@@ -425,7 +425,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void TGPListBoxEx::OnDestroy()
 	{
 		DeleteAllItems(false);
@@ -501,7 +501,7 @@ namespace DM
 
 	void TGPListBoxEx::OnMouseLeave()
 	{
-		if (DM_IsVisible(true))// ¼ÓÒ»¸öÅĞ¶Ï£¬·ÀÖ¹·Ç¿Í»§ÇøÔÚlistÒş²ØÊ±»æÖÆ
+		if (DM_IsVisible(true))// åŠ ä¸€ä¸ªåˆ¤æ–­ï¼Œé˜²æ­¢éå®¢æˆ·åŒºåœ¨listéšè—æ—¶ç»˜åˆ¶
 		{
 			__super::OnMouseLeave();
 			if (-1!=m_iHoverItem)
@@ -588,14 +588,14 @@ namespace DM
 		do 
 		{
 			CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			// ¼ÓÈëÍÏ¶¯ÅĞ¶Ï
+			// åŠ å…¥æ‹–åŠ¨åˆ¤æ–­
 			if (m_bSwapLine)
 			{
 				if (WM_LBUTTONDOWN == uMsg)
 				{
 					m_ptClick   = pt;
 					CPoint pt2 = pt;
-					m_dwHitTest = HitTest(pt2);// pt»áÔÚHitTestÖĞ×Ô¶¯¸Ä±ä
+					m_dwHitTest = HitTest(pt2);// ptä¼šåœ¨HitTestä¸­è‡ªåŠ¨æ”¹å˜
 				}
 				else if (WM_MOUSEMOVE == uMsg)
 				{
@@ -603,12 +603,12 @@ namespace DM
 					{
 						if (!m_bDragging)
 						{
-							m_bDragging = true;      /// ¿ªÊ¼ÒÆ¶¯
+							m_bDragging = true;      /// å¼€å§‹ç§»åŠ¨
 							if (-1!=m_dwHitTest) 
 							{ 
 								m_dwDragTo    = m_dwHitTest;
 								CRect rcItem  = GetItemRect(m_dwHitTest);
-								CreateDragCanvas(m_dwHitTest);//  ´´½¨ÍÏ¶¯Ê±µÄ»­²¼
+								CreateDragCanvas(m_dwHitTest);//  åˆ›å»ºæ‹–åŠ¨æ—¶çš„ç”»å¸ƒ
 								CPoint pt     = m_ptClick-rcItem.TopLeft();
 								DMDragWnd::DragBegin(m_pDragCanvas,pt,0,200,LWA_ALPHA|LWA_COLORKEY);
 							}
@@ -618,15 +618,15 @@ namespace DM
 							CPoint pt0 = pt; 
 							DWORD dwDragTo = HitTest(pt0);
 						
-							// ÏŞÖÆÍÏ¶¯·¶Î§
+							// é™åˆ¶æ‹–åŠ¨èŒƒå›´
 							CRect rcItem  = GetItemRect(m_dwHitTest);
 							CPoint pt2(pt.x,pt.y);
-							pt2.x = m_ptClick.x;// Ç¿ÖÆ¼áÖ±±ß¶ÔÆë
-							if (pt2.y<m_rcWindow.top+DMDragWnd::ms_pCurDragWnd->m_ptHot.y)// Ç¿ÖÆ²»ÄÜÍÏ³ölistboxexµÄ¶¥²¿
+							pt2.x = m_ptClick.x;// å¼ºåˆ¶åšç›´è¾¹å¯¹é½
+							if (pt2.y<m_rcWindow.top+DMDragWnd::ms_pCurDragWnd->m_ptHot.y)// å¼ºåˆ¶ä¸èƒ½æ‹–å‡ºlistboxexçš„é¡¶éƒ¨
 							{
 								pt2.y = m_rcWindow.top+DMDragWnd::ms_pCurDragWnd->m_ptHot.y;
 							}
-							if (pt.y+rcItem.Height()>m_rcWindow.bottom+DMDragWnd::ms_pCurDragWnd->m_ptHot.y)// Ç¿ÖÆ²»ÄÜÍÏ³ölistboxexµÄµ×²¿
+							if (pt.y+rcItem.Height()>m_rcWindow.bottom+DMDragWnd::ms_pCurDragWnd->m_ptHot.y)// å¼ºåˆ¶ä¸èƒ½æ‹–å‡ºlistboxexçš„åº•éƒ¨
 							{
 								pt2.y = m_rcWindow.bottom+DMDragWnd::ms_pCurDragWnd->m_ptHot.y-rcItem.Height();
 							}
@@ -634,7 +634,7 @@ namespace DM
 							if (m_dwDragTo != dwDragTo)
 							{
 								m_dwDragTo = dwDragTo;
-								DrawDraggingState(dwDragTo);// ×Ô¶¯µ÷ÕûitemÎ»ÖÃ
+								DrawDraggingState(dwDragTo);// è‡ªåŠ¨è°ƒæ•´itemä½ç½®
 							}
 							DMDragWnd::DragMove(pt2);
 						}
@@ -652,7 +652,7 @@ namespace DM
 						LPTGPLBITEMEX  pItem = m_DMArray[m_dwHitTest];
 						m_DMArray.RemoveAt(m_dwHitTest);
 						m_DMArray.InsertAt(m_dwDragTo,pItem);
-						UpdateItemPanelId();// ¸üĞÂÏÂPanelµÄÎ¨Ò»ID
+						UpdateItemPanelId();// æ›´æ–°ä¸‹Panelçš„å”¯ä¸€ID
 					}
 
 					CPoint pt2 = pt;
@@ -677,7 +677,7 @@ namespace DM
 			{
 				CRect rcItem;
 				m_pCapturePanel->OnGetContainerRect(rcItem);
-				pt.Offset(-rcItem.TopLeft());///< ×ª»»³ÉÃæ°å×ø±ê
+				pt.Offset(-rcItem.TopLeft());///< è½¬æ¢æˆé¢æ¿åæ ‡
 				lRet = m_pCapturePanel->OnFrameEvent(uMsg,wParam,MAKELPARAM(pt.x,pt.y));
 				break;
 			}
@@ -707,7 +707,7 @@ namespace DM
 			}
 			if (WM_LBUTTONDOWN == uMsg&& -1!=m_iSelItem
 				&& m_iSelItem != m_iHoverItem )
-			{///Ô­ÓĞĞĞÊ§È¥½¹µã
+			{///åŸæœ‰è¡Œå¤±å»ç„¦ç‚¹
 				m_DMArray[m_iSelItem]->pPanel->m_FocusMgr.SetFocusedWnd(NULL);
 			}
 
@@ -743,7 +743,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: IDMItemPanelOwnerÊµÏÖ
+	// Function Des: IDMItemPanelOwnerå®ç°
 	DUIWindow* TGPListBoxEx::GetOwnerWindow()
 	{
 		return this;
@@ -800,7 +800,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¿ÉÖØÔØº¯Êı
+	// Function Des: å¯é‡è½½å‡½æ•°
 	DMCode TGPListBoxEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -998,7 +998,7 @@ namespace DM
 			DV_GetClientRect(rcClient);
 			CRect rcItem(0,0,rcClient.Width(),m_DMArray[iItem]->nHeight);
 
-			// ´´½¨ÍÏ¶¯»­²¼
+			// åˆ›å»ºæ‹–åŠ¨ç”»å¸ƒ
 			m_pDragCanvas.Release();
 			DMSmartPtrT<IDMRender> pRender;
 			g_pDMApp->GetDefRegObj((void**)&pRender,DMREG_Render);
@@ -1032,12 +1032,12 @@ namespace DM
 			int iCount = (int)GetCount();
 			for (int i=0; i<iCount; i++)
 			{
-				if( i!=iDragFrom) //0Ïî°ÑËùÓĞµÄÏî¶¼¼ÓÈë£¬³ıÁËÍÏ¶¯µÄÏî
+				if( i!=iDragFrom) //0é¡¹æŠŠæ‰€æœ‰çš„é¡¹éƒ½åŠ å…¥ï¼Œé™¤äº†æ‹–åŠ¨çš„é¡¹
 				{
 					items.Add(i);
 				}
 			}
-			items.InsertAt(iDragTo,iDragFrom);// °ÑÍÏ¶¯µÄÏî¼ÓÈëµ½ÍÏµ½µÄÏîÖ®ºó
+			items.InsertAt(iDragTo,iDragFrom);// æŠŠæ‹–åŠ¨çš„é¡¹åŠ å…¥åˆ°æ‹–åˆ°çš„é¡¹ä¹‹å
 
 			int nTotalHeight = 0;
 			for (UINT i=0;i<items.GetCount();i++)

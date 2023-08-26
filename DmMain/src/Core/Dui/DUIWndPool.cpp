@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIWndPool.h"
 
 namespace DM
@@ -6,7 +6,7 @@ namespace DM
 	//---------------------------------------DUIWndPool-----------------------
 	DUIWndPool::DUIWndPool()
 	{
-		m_hNextWnd = 0;// ´Ó0¿ªÊ¼
+		m_hNextWnd = 0;// ä»0å¼€å§‹
 	}
 
 	DUIWndPool::~DUIWndPool()
@@ -65,7 +65,7 @@ namespace DM
 				if (pWnd)
 				{
 					HWND hWnd = pWnd->GetContainer()->OnGetHWnd();
-					if (hWnd == hMainWnd) // Í¬Ò»¸öDUIÖ÷´°¿Ú
+					if (hWnd == hMainWnd) // åŒä¸€ä¸ªDUIä¸»çª—å£
 					{
 						if (::IsWindow(pWnd->m_hRealWnd))
 						{
@@ -101,7 +101,7 @@ namespace DM
 				if (pWnd)
 				{
 					HWND hWnd = pWnd->GetContainer()->OnGetHWnd();
-					if (hWnd == hMainWnd) // Í¬Ò»¸öDUIÖ÷´°¿Ú
+					if (hWnd == hMainWnd) // åŒä¸€ä¸ªDUIä¸»çª—å£
 					{
 						if (::IsWindow(pWnd->m_hRealWnd))
 						{
@@ -134,11 +134,11 @@ namespace DM
 		DUIWindowPtr pDUIWindow = NULL;
 		do 
 		{
-			if (0 == hDUIWnd)// ×îĞ¡Îª0
+			if (0 == hDUIWnd)// æœ€å°ä¸º0
 			{
 				break;
 			}
-			GetObjByKey(hDUIWnd,pDUIWindow);// °²È«²Ù×÷MAP
+			GetObjByKey(hDUIWnd,pDUIWindow);// å®‰å…¨æ“ä½œMAP
 		} while (false);
 		return pDUIWindow;
 	}
@@ -167,7 +167,7 @@ namespace DM
 			for (int i=0;i<nCount;i++)
 			{
 				pDUIWindow = NULL;
-				GetObjByKey(m_MainDUIWndArray[i],pDUIWindow);// °²È«²Ù×÷MAP
+				GetObjByKey(m_MainDUIWndArray[i],pDUIWindow);// å®‰å…¨æ“ä½œMAP
 				if (pDUIWindow&&pDUIWindow->DM_IsVisible(true))
 				{
 					UpdateSkinLoop(pDUIWindow);
@@ -190,7 +190,7 @@ namespace DM
 		for (int i=0;i<nCount;i++)
 		{
 			pDUIWindow = NULL;
-			GetObjByKey(m_MainDUIWndArray[i],pDUIWindow);// °²È«²Ù×÷MAP
+			GetObjByKey(m_MainDUIWndArray[i],pDUIWindow);// å®‰å…¨æ“ä½œMAP
 			if (pDUIWindow&&pDUIWindow->DM_IsVisible(true))
 			{
 				pDUIWindow->DM_Invalidate();
@@ -200,7 +200,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	/// µ±¸¸´°¿ÚĞèÒª»»·ôÊ±£¬×Ó´°¿Ú¾Í²»ÓÃÔÙ¼ÆËãÁË
+	/// å½“çˆ¶çª—å£éœ€è¦æ¢è‚¤æ—¶ï¼Œå­çª—å£å°±ä¸ç”¨å†è®¡ç®—äº†
 	DMCode DUIWndPool::UpdateSkinLoop(DUIWindowPtr pWnd)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -219,7 +219,7 @@ namespace DM
 			}
 		
 			DUIWindow *pChild = pWnd->DM_GetWindow(GDW_FIRSTCHILD);
-			while (pChild) 	           // µİ¹é³ö¿Ú0
+			while (pChild) 	           // é€’å½’å‡ºå£0
 			{
 				iErr = UpdateSkinLoop(pChild);
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);

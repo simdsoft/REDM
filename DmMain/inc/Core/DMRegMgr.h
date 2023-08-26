@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMRegMgr.h 
-// File Des:×¢²áÀàÍ³Ò»¹ÜÀí
-// File Summary: MgrÎªManagerËõĞ´
+// File Des:æ³¨å†Œç±»ç»Ÿä¸€ç®¡ç†
+// File Summary: Mgrä¸ºManagerç¼©å†™
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,8 +17,8 @@
 namespace DM
 {	
 	/// <summary>
-	///		<see cref="DefRegName"/>¿ÉÓÃÓÚ¶¨ÒåÄ¬ÈÏ×¢²áÀàĞÍÀàÃû£¬
-	///     ±ÈÈçxml½âÎöÊµÏÖÈç¹ûÓĞ¼¸Ì××¢²áÀà£¬ÕâÊ±¾ÍĞèÒªÍ¨¹ıËüÀ´Ö¸¶¨µ±Ç°Ê¹ÓÃÄÄÒ»Ì×£¡
+	///		<see cref="DefRegName"/>å¯ç”¨äºå®šä¹‰é»˜è®¤æ³¨å†Œç±»å‹ç±»åï¼Œ
+	///     æ¯”å¦‚xmlè§£æå®ç°å¦‚æœæœ‰å‡ å¥—æ³¨å†Œç±»ï¼Œè¿™æ—¶å°±éœ€è¦é€šè¿‡å®ƒæ¥æŒ‡å®šå½“å‰ä½¿ç”¨å“ªä¸€å¥—ï¼
 	/// </summary>
 	class DMRegTypeItem:public DMArrayT<IDMRegPtr>
 	{
@@ -26,17 +26,17 @@ namespace DM
 		DMRegTypeItem();
 		virtual ~DMRegTypeItem();
 
-	public:// ¸¨ÖúÖØÔØº¯Êı
+	public:// è¾…åŠ©é‡è½½å‡½æ•°
 
 		void PreArrayObjRemove(const IDMRegPtr &obj);
 	    bool EqualArrayObj(const IDMRegPtr &objsrc, const IDMRegPtr &objdest);
 
 	public:
-		CStringA                    m_DefRegName;   ///< ¶¨ÒåÄ¬ÈÏ×¢²áÀàĞÍÀàÃû
+		CStringA                    m_DefRegName;   ///< å®šä¹‰é»˜è®¤æ³¨å†Œç±»å‹ç±»å
 	};
 
 	/// <summary>
-	///		°´<see cref="DMREGTYPE"/>·ÖÀà¹ÜÀíËùÓĞµÄ×¢²áÀà
+	///		æŒ‰<see cref="DMREGTYPE"/>åˆ†ç±»ç®¡ç†æ‰€æœ‰çš„æ³¨å†Œç±»
 	/// </summary>
 	class DMRegMgr
 	{
@@ -50,7 +50,7 @@ namespace DM
 		DMCode SetDefRegObj(LPCSTR lpszClassName,int RegType);
 		DMCode GetDefRegObj(CStringA &szName,int RegType);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMCode RegisterByType(DMRegTypeItem &RtItem, const IDMReg &RegObj, bool bReplace);
 		DMCode CreateRegObjByType(DMRegTypeItem &RtItem, void** ppObj, LPCSTR lpszClassName);
 		DMCode UnRegisterByType(DMRegTypeItem &RtItem, LPCSTR lpszClassName);

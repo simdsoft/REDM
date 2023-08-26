@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUIPropCtrl.h"
 #include "DUIPropCtrlHelper.h"
 
@@ -25,7 +25,7 @@ namespace DM
 		{
 			CStringA strType,strName,strTempValue,strDesc;
 			g_pAttr->Parse(pInitAttr->m_pAttr,strType,strName,strTempValue,strDesc);
-			if (strValue.IsEmpty())// Èç¹ûÍâ²¿Ã»ÓĞÖ¸¶¨£¬¾ÍÊ¹ÓÃÔ¤ÖÃµÄÖµ
+			if (strValue.IsEmpty())// å¦‚æœå¤–éƒ¨æ²¡æœ‰æŒ‡å®šï¼Œå°±ä½¿ç”¨é¢„ç½®çš„å€¼
 			{
 				strValue = strTempValue;
 			}
@@ -47,7 +47,7 @@ namespace DM
 					{
 						XmlNode.SetAttribute(XML_OPTIONS,"0|1");
 					}
-					else if (0 == strType.CompareNoCase("OPTION"))// ÌØÊâ´¦Àí
+					else if (0 == strType.CompareNoCase("OPTION"))// ç‰¹æ®Šå¤„ç†
 					{
 						if (0 == strName.CompareNoCase("align")||0 == strName.CompareNoCase("surfacealign")) 
 						{
@@ -79,7 +79,7 @@ namespace DM
 				XmlNode = XmlRoot.InsertChildNode("propstring");
 			}
  
-			if (strValue.IsEmpty())// Èç¹ûÍâ²¿Ã»ÓĞÖ¸¶¨value£¬¾ÍÊ¹ÓÃÔ¤ÖÃµÄÖµ
+			if (strValue.IsEmpty())// å¦‚æœå¤–éƒ¨æ²¡æœ‰æŒ‡å®švalueï¼Œå°±ä½¿ç”¨é¢„ç½®çš„å€¼
 			{
 				strValue = strTempValue;
 			}
@@ -135,7 +135,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			//1.´´½¨header
+			//1.åˆ›å»ºheader
 			CStringW strWXml = L"<headerctrl align=\"center\" itemdelta=\"4\"  itemskin=\"%s\" bswap=\"0\">"\
 				L"<item text=\"Name\"/>"\
 				L"<item text=\"Value\"/>"\
@@ -148,10 +148,10 @@ namespace DM
 			g_pDMApp->CreateRegObj((void**)&m_pHeadCtrl, HeadNode.GetName(),DMREG_Window);
 			DM_InsertChild(m_pHeadCtrl);
 			m_pHeadCtrl->InitDMData(HeadNode);
-			// ÉèÖÃ½ÓÊÕheaderÏûÏ¢
+			// è®¾ç½®æ¥æ”¶headeræ¶ˆæ¯
 			m_pHeadCtrl->m_EventMgr.SubscribeEvent(DM::DMEventHeaderItemChangingArgs::EventID, Subscriber(&DUIPropFrame::OnHeaderSizeChanging, this));
 
-			//2.´´½¨spliter
+			//2.åˆ›å»ºspliter
 			strWXml = L"<splitlayout sliderwidth=\"4\" bvert=\"1\" clrslider=\"pbgra(22,22,22,ff)\" cursor=\"ds_splitv\" firstchildwidth=\"40\">"\
 				L"<proplist clrtextdisable=\"pbgra(c0,c0,c0,ff)\" clrtext=\"pbgra(ff,ff,ff,ff)\" id=\"100\"/>"\
 				L"<propdesc clrtextdisable=\"pbgra(c0,c0,c0,ff)\" id=\"200\"/>"\
@@ -164,7 +164,7 @@ namespace DM
 			DM_InsertChild(m_pSplit); 
 			m_pSplit->InitDMData(SplitNode);
 
-			//3.°Ñ²ÎÊı´«¸øm_pPropList+m_pPropDesc
+			//3.æŠŠå‚æ•°ä¼ ç»™m_pPropList+m_pPropDesc
 			m_pPropList = m_pSplit->FindChildByIdT<DUIPropList>(100);
 			m_pPropDesc = m_pSplit->FindChildByIdT<DUIPropDesc>(200);
 			m_pPropList->InitDMData(XmlNode);
@@ -190,7 +190,7 @@ namespace DM
 				break;
 			}
 
-			//1.ÉèÖÃHeadÇøÓò
+			//1.è®¾ç½®HeadåŒºåŸŸ
 			CRect rcHead;
 			if (m_pHeadCtrl)
 			{
@@ -209,7 +209,7 @@ namespace DM
 				}
 			}
 
-			//2.ÉèÖÃSplitµÄÇøÓò
+			//2.è®¾ç½®Splitçš„åŒºåŸŸ
 			CRect rcSplit = rcClient;
 			rcSplit.top += rcHead.Height();
 			m_pSplit->DM_FloatLayout(rcSplit);
@@ -317,7 +317,7 @@ namespace DM
 		do 
 		{
 			int iElement = FindObj(&const_cast<IDMReg&>(RegObj));
-			if (DM_INVALID_VALUE != iElement)// ÒÑ´æÔÚ
+			if (DM_INVALID_VALUE != iElement)// å·²å­˜åœ¨
 			{
 				if (bReplace)
 				{
@@ -346,14 +346,14 @@ namespace DM
 		{
 			if (NULL == ppObj)
 			{
-				DMASSERT_EXPR(0,L"Ç×,ÊÇ²»ÊÇÃ»´«Ë«Ö¸Õë½øÀ´£¡");
+				DMASSERT_EXPR(0,L"äº²,æ˜¯ä¸æ˜¯æ²¡ä¼ åŒæŒ‡é’ˆè¿›æ¥ï¼");
 				iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
 				break;
 			}
 
 			if (NULL == lpszClassName)
 			{
-				DMASSERT_EXPR(0,L"Ç×,Ã»ÉèÖÃÀàÃû°¡£¡");
+				DMASSERT_EXPR(0,L"äº²,æ²¡è®¾ç½®ç±»åå•Šï¼");
 				iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
 				break;
 			}
@@ -442,9 +442,9 @@ namespace DM
 			}
 			PropDelArgs EndEvt(this);
 			EndEvt.m_pSel = pProp;
-			DV_FireEvent(EndEvt);// ´ËÊ±»¹Ã»ÓĞÕæÕıÉ¾³ı£¬Ö»ÊÇÒÆ³ıÁË
+			DV_FireEvent(EndEvt);// æ­¤æ—¶è¿˜æ²¡æœ‰çœŸæ­£åˆ é™¤ï¼Œåªæ˜¯ç§»é™¤äº†
 
-			// ¿ªÊ¼ÕæÊµµÄÉ¾³ı
+			// å¼€å§‹çœŸå®çš„åˆ é™¤
 			pProp->PreDelete();
 			pProp->Release();
 			if (bRedraw)
@@ -642,9 +642,9 @@ namespace DM
 				break;
 			}
 		} while (false);
-		// ÎªÁËÈÃDUIListµ÷ÓÃOnSetCapture£¬±ØĞëÉèÖÃFALSE£¬²»È»¿ÉÄÜ³öÏÖÕâÑùµÄ×´Ì¬:
-		// dragÊ±°´ÏÂWM_LBUTTONDOWN£¬Õâ¸öÏûÏ¢Ã»ÓĞµ÷ÓÃOnSetCaptureÉèÖÃm_pCapturePanel£¬È»ºódrag³öÁËDUIListÔÙÊÍ·Å£¬
-		//ÕâÊ±WM_LBUTTONUPÏûÏ¢Ã»ÓĞ±»²¶»ñ(Ö»ÓĞcapture²ÅÄÜ²¶»ñ),´Ó¶øm_bDraggingÎŞ·¨±»ÖÃfalse,´Ó¶øÔÙMOVE£¬Í¬ÑùÓĞdragĞ§¹û
+		// ä¸ºäº†è®©DUIListè°ƒç”¨OnSetCaptureï¼Œå¿…é¡»è®¾ç½®FALSEï¼Œä¸ç„¶å¯èƒ½å‡ºç°è¿™æ ·çš„çŠ¶æ€:
+		// dragæ—¶æŒ‰ä¸‹WM_LBUTTONDOWNï¼Œè¿™ä¸ªæ¶ˆæ¯æ²¡æœ‰è°ƒç”¨OnSetCaptureè®¾ç½®m_pCapturePanelï¼Œç„¶ådragå‡ºäº†DUIListå†é‡Šæ”¾ï¼Œ
+		//è¿™æ—¶WM_LBUTTONUPæ¶ˆæ¯æ²¡æœ‰è¢«æ•è·(åªæœ‰captureæ‰èƒ½æ•è·),ä»è€Œm_bDraggingæ— æ³•è¢«ç½®false,ä»è€Œå†MOVEï¼ŒåŒæ ·æœ‰dragæ•ˆæœ
 		SetMsgHandled(FALSE);
 	}
 
@@ -678,7 +678,7 @@ namespace DM
 
 	void DUIPropList::OnMouseMove(UINT nFlags,CPoint pt)
 	{
-		if (PUSH_LBUTTONDOWN&&m_bDragging)// ¼Ó¸öPUSH_LBUTTONDOWN£¬Ë«ÖØ±£ÏÕ
+		if (PUSH_LBUTTONDOWN&&m_bDragging)// åŠ ä¸ªPUSH_LBUTTONDOWNï¼ŒåŒé‡ä¿é™©
 		{
 			m_iLeftColWid += pt.x - m_ptDrag.x;
 			m_ptDrag = pt;
@@ -694,7 +694,7 @@ namespace DM
 			}
 			AdjustLayout();
 			DM_Invalidate();
-			GetContainer()->OnUpdateWindow();// Á¢¼´¸üĞÂ´°¿Ú
+			GetContainer()->OnUpdateWindow();// ç«‹å³æ›´æ–°çª—å£
 		}
 		SetMsgHandled(FALSE);
 	}
@@ -814,7 +814,7 @@ namespace DM
 				break;
 			}
 
-			if (IDOK == DM_MessageBox(L"È·ÈÏÉ¾³ı¸ÃÏîÒÔ¼°¸ÃÏîµÄ×ÓÏî£¿",MB_OKCANCEL,L"MSG",GetContainer()->OnGetHWnd()))
+			if (IDOK == DM_MessageBox(L"ç¡®è®¤åˆ é™¤è¯¥é¡¹ä»¥åŠè¯¥é¡¹çš„å­é¡¹ï¼Ÿ",MB_OKCANCEL,L"MSG",GetContainer()->OnGetHWnd()))
 			{
 				DelProperty(m_pSel);
 			}

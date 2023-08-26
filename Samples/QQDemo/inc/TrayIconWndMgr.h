@@ -1,9 +1,9 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	TrayIconWndMgr.h
-// File mark:   Õë¶ÔÍĞÅÌ²Ëµ¥µÄÒ»¸ö·â×°
+// File mark:   é’ˆå¯¹æ‰˜ç›˜èœå•çš„ä¸€ä¸ªå°è£…
 // File summary:
 // Author:		lzlong
 // Edition:     1.0
@@ -14,7 +14,7 @@
 
 #define  WM_SHOWTRAYMENU     WM_USER + 1244
 /// <summary>
-///		¼òµ¥µÄÍĞÅÌÊµÏÖ´úÂë
+///		ç®€å•çš„æ‰˜ç›˜å®ç°ä»£ç 
 /// </summary>
 class CTrayIconWndMgr : public DMCWnd, public DMSingletonT<CTrayIconWndMgr>
 {
@@ -23,20 +23,20 @@ public:
 	~CTrayIconWndMgr();
 
 	/// -------------------------------------------------
-	/// @brief			°²×°ÍĞÅÌÍ¼±ê
-	/// @param[in]		lpszToolTip       ÍĞÅÌµÄÌáÊ¾
-	/// @param[in]		hParentWnd		  ÍĞÅÌµÄ¸¸´°¿Ú
-	/// @param[in]		hIcon	          ½«ÒªÌí¼Ó/ĞŞ¸Ä/É¾³ıµÄÍ¼±ê¾ä±ú
-	/// @param[in]		nID				  Ó¦ÓÃ³ÌĞò¶¨ÒåµÄÈÎÎñÀ¸Í¼±êµÄID			
+	/// @brief			å®‰è£…æ‰˜ç›˜å›¾æ ‡
+	/// @param[in]		lpszToolTip       æ‰˜ç›˜çš„æç¤º
+	/// @param[in]		hParentWnd		  æ‰˜ç›˜çš„çˆ¶çª—å£
+	/// @param[in]		hIcon	          å°†è¦æ·»åŠ /ä¿®æ”¹/åˆ é™¤çš„å›¾æ ‡å¥æŸ„
+	/// @param[in]		nID				  åº”ç”¨ç¨‹åºå®šä¹‰çš„ä»»åŠ¡æ å›¾æ ‡çš„ID			
 	/// @return			true or false
 	bool InstallTrayIcon(LPCWSTR lpszToolTip, HWND hParentWnd, HICON hIcon, UINT nID);
 
 	/// -------------------------------------------------
-	/// @brief			ÒÆ³ıÍĞÅÌÍ¼±ê
+	/// @brief			ç§»é™¤æ‰˜ç›˜å›¾æ ‡
 	bool UnInstallTrayIcon();
 
 	/// -------------------------------------------------
-	/// @brief			ÉèÖÃÎÄ±¾ÌáÊ¾,ÉèÖÃ¡¢Òş²ØÆûÅİÌáÊ¾
+	/// @brief			è®¾ç½®æ–‡æœ¬æç¤º,è®¾ç½®ã€éšè—æ±½æ³¡æç¤º
 	bool SetTipText(LPCWSTR lpszTipText);
 	bool SetBalloonDetails(LPCWSTR lpszBalloonText, LPCWSTR lpszBalloonCaption = NULL,UINT nTimeout = 1000, 
 							DWORD style = NIIF_INFO, HICON hUserIcon = NULL, bool bNoSound = false);

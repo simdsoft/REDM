@@ -1,11 +1,11 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMDIBHelper.h"
 
 namespace DM
 {
 	// ------------------------------------------------------------
-	// ��̫����㷨��Ҫ��ĳ�ַ�ʽ(map)�任λͼ��ÿ�����ص���ɫ������
-	// ��ɫת��Ϊ�Ҷ�ͼ��gammaУ������ɫ�ռ�ת��,hsl����.����дһ��ģ����Ϊ�������õ�ͨ���㷨
+	// 有太多的算法需要用某种方式(map)变换位图的每个像素的颜色，比如
+	// 彩色转换为灰度图，gamma校正，颜色空间转换,hsl调整.所以写一个模板做为参数调用的通用算法
 	// ------------------------------------------------------------
 	template <class Dummy>
 	bool ColorTransform_Hgy(DM::DMDIBHelper* pDib, Dummy map)
@@ -30,7 +30,7 @@ namespace DM
 		return true;
 	}
 
-	// �Ҷ� = 0.299 * red + 0.587 * green + 0.114 * blue 
+	// 灰度 = 0.299 * red + 0.587 * green + 0.114 * blue 
 	inline void MaptoGray(BYTE & red, BYTE & green, BYTE & blue)
 	{
 		red   = (red * 77 + green * 150 + blue * 29 + 128) / 256;
@@ -103,7 +103,7 @@ namespace DM
 			memset(m_pBMI, 0, sizeof(BITMAPINFO));
 			m_pBMI->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 			m_pBMI->bmiHeader.biWidth = bm.bmWidth;
-			m_pBMI->bmiHeader.biHeight = -DMABS(bm.bmHeight); // top-down image ����ʱ��ʼ������m_pPixelBits,ͬʱɨ���߼�Ĳ�ֵҲ��m_nBPSһ��
+			m_pBMI->bmiHeader.biHeight = -DMABS(bm.bmHeight); // top-down image ，这时起始像素在m_pPixelBits,同时扫描线间的差值也和m_nBPS一样
 			m_pBMI->bmiHeader.biPlanes = 1;
 			m_pBMI->bmiHeader.biBitCount = 32;
 			m_pBMI->bmiHeader.biCompression = BI_RGB;
@@ -111,7 +111,7 @@ namespace DM
 
 			m_nWidth = bm.bmWidth;
 			m_nHeight = bm.bmHeight;
-			m_nBPS = m_nWidth * 4;//(m_nWidth * m_nBitCount + 31) / 32 * 4;,32λ����ʵ����m_nWidth*4
+			m_nBPS = m_nWidth * 4;//(m_nWidth * m_nBitCount + 31) / 32 * 4;,32位下其实就是m_nWidth*4
 
 			if (0 == m_nImageSize)
 			{
@@ -128,7 +128,7 @@ namespace DM
 		memset(m_pBMI, 0, sizeof(BITMAPINFO));
 		m_pBMI->bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
 		m_pBMI->bmiHeader.biWidth       = nWid;
-		m_pBMI->bmiHeader.biHeight      = -DMABS(nHei); // top-down image ����ʱ��ʼ������m_pPixelBits,ͬʱɨ���߼�Ĳ�ֵҲ��m_nBPSһ��
+		m_pBMI->bmiHeader.biHeight      = -DMABS(nHei); // top-down image ，这时起始像素在m_pPixelBits,同时扫描线间的差值也和m_nBPS一样
 		m_pBMI->bmiHeader.biPlanes      = 1;
 		m_pBMI->bmiHeader.biBitCount    = 32;
 		m_pBMI->bmiHeader.biCompression = BI_RGB;
@@ -136,7 +136,7 @@ namespace DM
 
 		m_nWidth  = nWid;
 		m_nHeight = nHei;
-		m_nBPS    = m_nWidth*4;//(m_nWidth * m_nBitCount + 31) / 32 * 4;,32λ����ʵ����m_nWidth*4
+		m_nBPS    = m_nWidth*4;//(m_nWidth * m_nBitCount + 31) / 32 * 4;,32位下其实就是m_nWidth*4
 
 		if (0 == m_nImageSize)
 		{
@@ -205,11 +205,11 @@ namespace DM
 	{
 		do 
 		{
-			if (m_AlphaCheck.bActive)// �ѳ�ʼ��
+			if (m_AlphaCheck.bActive)// 已初始化
 			{
 				break;
 			}
-			m_AlphaCheck.bActive = true;// ��ʼ��
+			m_AlphaCheck.bActive = true;// 初始化
 			m_AlphaCheck.bSameAlpha = true;
 			m_AlphaCheck.Alpha = m_pPixelBits[3];
 			int i=0;
@@ -299,27 +299,27 @@ namespace DM
 				break;
 			}
 
-			if (NULL != m_pPixelCopyBits)// ˵��ǰ���ѵ�����HSL���������ٵ���ResetHSL32�����ָ���ʼδ����HSL״̬
+			if (NULL != m_pPixelCopyBits)// 说明前面已调整过HSL，调整后再调用ResetHSL32，则会恢复初始未调整HSL状态
 			{
-				memcpy(m_pPixelBits, m_pPixelCopyBits, m_nImageSize); // ����һ���⣬�Ժ�ÿ�ε��ú��ȱ�֤�ָ�ԭ��������
+				memcpy(m_pPixelBits, m_pPixelCopyBits, m_nImageSize); // 除第一次外，以后每次调用后先保证恢复原象素阵列
 			}
 
 			if (degHue == 0 && perSaturation == 100 && perLuminosity == 100)
 			{
-				bRet = true;// δ��������ֱ�ӷ���
+				bRet = true;// 未作调整，直接返回
 				break;
 			}
 
-			if (NULL == m_pPixelCopyBits)// ��һ�γ�ʼ��copy����
+			if (NULL == m_pPixelCopyBits)// 第一次初始化copy阵列
 			{
 				m_pPixelCopyBits = new BYTE[m_nImageSize];
-				memcpy(m_pPixelCopyBits, m_pPixelBits, m_nImageSize);// ���ڵ�һ�ε���
+				memcpy(m_pPixelCopyBits, m_pPixelBits, m_nImageSize);// 这在第一次调用
 			}
 
 			float H = 0.0f;
 			float S = 0.0f;
 			float L = 0.0f;	
-#if 0// ���ַ�ʽ����ѡһ��
+#if 0// 两种方式，任选一种
 			for (int y=0; y<m_nHeight; y++)
 			{
 				int width = m_nWidth;
@@ -338,7 +338,7 @@ namespace DM
 				}
 			}
 #endif 
-#if 1// ���ַ�ʽ����ѡһ��
+#if 1// 两种方式，任选一种
 			for (int i=0; i+3<m_nImageSize; i+=4)
 			{
 				DM_RGBtoHSL(m_pPixelBits[i+2], m_pPixelBits[i+1], m_pPixelBits[i],
@@ -376,7 +376,7 @@ namespace DM
 
 			if (degHue == 0 && perSaturation == 100 && perLuminosity == 100)
 			{
-				bRet = true;// δ��������ֱ�ӷ���
+				bRet = true;// 未作调整，直接返回
 				break;
 			}
 
@@ -437,8 +437,8 @@ namespace DM
 			{
 				break;
 			}
-			memcpy(m_pPixelBits,m_pPixelCopyBits , m_nImageSize); // �ȱ�֤�ָ�ԭ��������
-			DM_DELETE_ARRAY(m_pPixelCopyBits);					  // ɾ��copy��������
+			memcpy(m_pPixelBits,m_pPixelCopyBits , m_nImageSize); // 先保证恢复原象素阵列
+			DM_DELETE_ARRAY(m_pPixelCopyBits);					  // 删除copy像素阵列
 			bRet = true;
 		}while(false);
 		return bRet;
@@ -502,17 +502,17 @@ namespace DM
 
 	bool DMDIBHelper::GreyImage(void)
 	{
-		if (NULL != m_pPixelCopyBits)// ˵��ǰ���ѵ�����HSL���������ٵ���ResetHSL32�����ָ���ʼδ����HSL״̬
+		if (NULL != m_pPixelCopyBits)// 说明前面已调整过HSL，调整后再调用ResetHSL32，则会恢复初始未调整HSL状态
 		{
-			memcpy(m_pPixelBits, m_pPixelCopyBits, m_nImageSize); // ����һ���⣬�Ժ�ÿ�ε��ú��ȱ�֤�ָ�ԭ��������
+			memcpy(m_pPixelBits, m_pPixelCopyBits, m_nImageSize); // 除第一次外，以后每次调用后先保证恢复原象素阵列
 		}
 
-		if (NULL == m_pPixelCopyBits)// ��һ�γ�ʼ��copy����
+		if (NULL == m_pPixelCopyBits)// 第一次初始化copy阵列
 		{
 			m_pPixelCopyBits = new BYTE[m_nImageSize];
-			memcpy(m_pPixelCopyBits, m_pPixelBits, m_nImageSize);// ���ڵ�һ�ε���
+			memcpy(m_pPixelCopyBits, m_pPixelBits, m_nImageSize);// 这在第一次调用
 		}
-		return ColorTransform_Hgy(this, MaptoGray);// ��������MaptoGray������ȫ�ֺ��������������װ.
+		return ColorTransform_Hgy(this, MaptoGray);// 传过来的MaptoGray必须是全局函数，不能用类封装.
 	}
 
 	bool DMDIBHelper::SaveFile(LPCWSTR pszFileName)
@@ -526,7 +526,7 @@ namespace DM
 			}
 
 			HANDLE handle = CreateFile(pszFileName, GENERIC_WRITE, FILE_SHARE_READ, 
-				NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);// CREATE_ALWAYS��֤����ԭʼ��
+				NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);// CREATE_ALWAYS保证覆盖原始的
 			if (INVALID_HANDLE_VALUE == handle)
 			{
 				break;
@@ -534,7 +534,7 @@ namespace DM
 
 			BITMAPFILEHEADER bmFH;
 
-			// ���棬�˴������汾�ж�
+			// 简洁版，此处不作版本判断
 			int nHeadSize = sizeof(BITMAPINFOHEADER);
 			bmFH.bfType      = 0x4D42;
 			bmFH.bfSize      = nHeadSize + m_nImageSize;
@@ -542,7 +542,7 @@ namespace DM
 			bmFH.bfReserved2 = 0;
 			bmFH.bfOffBits   = nHeadSize + sizeof(BITMAPFILEHEADER);
 			DWORD dwRead = 0;
-			// д���ļ�ͷ
+			// 写入文件头
 			WriteFile(handle, &bmFH, sizeof(bmFH), &dwRead, NULL);
 			if (dwRead != sizeof(bmFH))
 			{
@@ -550,7 +550,7 @@ namespace DM
 				break;
 			}
 
-			// д���ļ���Ϣ��
+			// 写入文件信息块
 			WriteFile(handle, m_pBMI, nHeadSize, &dwRead, NULL);
 			if (dwRead != nHeadSize)
 			{
@@ -558,7 +558,7 @@ namespace DM
 				break;
 			}
 
-			// д����������
+			// 写入像素阵列
 			WriteFile(handle, m_pPixelBits, m_nImageSize, &dwRead, NULL);
 			if (dwRead != m_nImageSize)
 			{

@@ -1,17 +1,17 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMTrayIconImpl.h
-// File mark:   Õë¶ÔÍĞÅÌ²Ëµ¥µÄÒ»¸ö·â×°
+// File mark:   é’ˆå¯¹æ‰˜ç›˜èœå•çš„ä¸€ä¸ªå°è£…
 // File summary:
-/* ÓÃ·¨ËµÃ÷£º
+/* ç”¨æ³•è¯´æ˜ï¼š
 
-1.Ö÷´°¿Ú±ØĞë¼Ì³ĞÓÚDMTrayIconImpl£¬ ±ÈÈç£º
+1.ä¸»çª—å£å¿…é¡»ç»§æ‰¿äºDMTrayIconImplï¼Œ æ¯”å¦‚ï¼š
 class DMMainWnd : public DMTrayIconImpl<DMMainWnd>
 {
 };
-2.ÔÚÖ÷´°¿ÚµÄBEGIN_MSG_MAP ºÍ END_MSG_MAPÖ®¼ä±ØĞë¼Ó:CHAIN_MSG_MAP(DMTrayIconImpl)  ±ÈÈç£º
+2.åœ¨ä¸»çª—å£çš„BEGIN_MSG_MAP å’Œ END_MSG_MAPä¹‹é—´å¿…é¡»åŠ :CHAIN_MSG_MAP(DMTrayIconImpl)  æ¯”å¦‚ï¼š
 	BEGIN_MSG_MAP(DMMainWnd)
  		CHAIN_MSG_MAP(DMTrayIconImpl)
 	END_MSG_MAP()
@@ -61,18 +61,18 @@ namespace DM
 	case 0:
 
 	//-------------------------------------------------------
-	// ½áÊø
+	// ç»“æŸ
 #define TRAYEND_MSG_MAP() \
 	break; \
 		default: \
-			DMASSERT_EXPR(0, L"msgMapID²»¶Ô,ÏûÏ¢Î´±»´¦Àí");\
+			DMASSERT_EXPR(0, L"msgMapIDä¸å¯¹,æ¶ˆæ¯æœªè¢«å¤„ç†");\
 			break; \
 		} \
 		return FALSE; \
 	}
 
 	//-------------------------------------------------------
-	// ÏûÏ¢Ó³Éä
+	// æ¶ˆæ¯æ˜ å°„
 #define TRAYMESSAGE_HANDLER_EX(msg, func) \
 	if(uMsg == msg) \
 			{ \
@@ -96,7 +96,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÍĞÅÌÊµÏÖ´úÂë
+	///		æ‰˜ç›˜å®ç°ä»£ç 
 	/// </summary>
 	template <class T>
 	class DMTrayIconImpl
@@ -106,13 +106,13 @@ namespace DM
 		UINT				WM_TASKBARCREATED;
 		CNotifyIconData		m_nid;
 		bool				m_bInstalled;
-		// Ä£ÄâDMCWnd
-		//BOOL				m_bMsgHandled; //ÕâÀïÔÙ´ÎÉùÃ÷  ÈİÒ×¸úÖ÷´°¿ÚµÄm_bMsgHandledÔì³É³åÍ»
+		// æ¨¡æ‹ŸDMCWnd
+		//BOOL				m_bMsgHandled; //è¿™é‡Œå†æ¬¡å£°æ˜  å®¹æ˜“è·Ÿä¸»çª—å£çš„m_bMsgHandledé€ æˆå†²çª
 	public:
 		DMTrayIconImpl() : m_bInstalled(false)
 		{
-			WM_TRAYICON = ::RegisterWindowMessage(_T("WM_TRAYICON"));		// ½ÓÊÕ»Øµ÷ÏûÏ¢
-			WM_TASKBARCREATED = ::RegisterWindowMessage(_T("TaskbarCreated"));	// µ±ÈÎÎñÀ¸±ÀÀ£Ê±»á½ÓÊÕµ½´ËÏûÏ¢
+			WM_TRAYICON = ::RegisterWindowMessage(_T("WM_TRAYICON"));		// æ¥æ”¶å›è°ƒæ¶ˆæ¯
+			WM_TASKBARCREATED = ::RegisterWindowMessage(_T("TaskbarCreated"));	// å½“ä»»åŠ¡æ å´©æºƒæ—¶ä¼šæ¥æ”¶åˆ°æ­¤æ¶ˆæ¯
 		}
 
 		~DMTrayIconImpl()
@@ -156,7 +156,7 @@ namespace DM
 		}
 
 		//---------------------------------------------------
-		// Function Des:ÏÔÊ¾¡°ÆøÇòÊ½ÌáÊ¾¡±
+		// Function Des:æ˜¾ç¤ºâ€œæ°”çƒå¼æç¤ºâ€
 		BOOL ShowTrayBalloonTip(LPCTSTR szMsg, LPCTSTR szTitle, DWORD dwInfoFlags = NIIF_INFO, UINT uTimeout = 5000)
 		{
 			m_nid.cbSize = sizeof(NOTIFYICONDATA);
@@ -191,7 +191,7 @@ namespace DM
 		virtual int OnTrayMsgNotify(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam){ return 0; };
 
 		//---------------------------------------------------
-		// Function Des:ÏûÏ¢ÏìÓ¦
+		// Function Des:æ¶ˆæ¯å“åº”
 		LRESULT OnTrayIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 			// Is this the ID we want?
@@ -206,10 +206,10 @@ namespace DM
 			else if (LOWORD(lParam) == WM_LBUTTONDBLCLK || LOWORD(lParam) == WM_LBUTTONDOWN)
 			{
 				int nMsgHandle = OnTrayMsgNotify(uMsg, wParam, lParam);
-				if (nMsgHandle == 0)//Èç¹ûÎª0±íÊ¾¿ÉÒÔ¼ÌĞø´¦Àí´ËÏûÏ¢
+				if (nMsgHandle == 0)//å¦‚æœä¸º0è¡¨ç¤ºå¯ä»¥ç»§ç»­å¤„ç†æ­¤æ¶ˆæ¯
 					SetForegroundWindow(pT->m_hWnd);
 			}
-			else if (LOWORD(lParam) == 0x404)//win10ÏÂÆûÅİÍË³ö»á´¥·¢´ËÏûÏ¢
+			else if (LOWORD(lParam) == 0x404)//win10ä¸‹æ±½æ³¡é€€å‡ºä¼šè§¦å‘æ­¤æ¶ˆæ¯
 			{
 			}
 			return 0;

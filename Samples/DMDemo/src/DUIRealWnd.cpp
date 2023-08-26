@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+﻿#include "DMDemoAfx.h"
 #include "DUIRealWnd.h"
 
 HWND  DUIRealWnd::OnCreateRealWnd(LPCWSTR atom,HWND hWndParent)

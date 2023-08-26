@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIFontPool.h 
-// File Des:// font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
+// File Des:// font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,10 +18,10 @@ namespace DM
 {
 	typedef IDMFont*  IDMFontPtr;
 	/// <summary>
-	///		¹ÜÀí×ÖÌåµÄ³Ø
+	///		ç®¡ç†å­—ä½“çš„æ± 
 	/// </summary>
 	/// <remarks>
-	///		µ¼³ö½öÎªÁË·½±ãgtest²âÊÔ
+	///		å¯¼å‡ºä»…ä¸ºäº†æ–¹ä¾¿gtestæµ‹è¯•
 	/// </remarks>
 	class DM_EXPORT DUIFontPool:public DMMapT<CStringA,IDMFontPtr>
 	{
@@ -30,10 +30,10 @@ namespace DM
 		~DUIFontPool();
 
 	public:
-		bool SetDefaultFont(const CStringA& strFont);				///< ÉèÖÃÄ¬ÈÏ×ÖÌå
-		IDMFontPtr GetFont(const CStringA& strFont);				///< »ñÈ¡×ÖÌå,ÈçstrFontÎªNULL±íÊ¾»ñÈ¡Ä¬ÈÏ×ÖÌå
+		bool SetDefaultFont(const CStringA& strFont);				///< è®¾ç½®é»˜è®¤å­—ä½“
+		IDMFontPtr GetFont(const CStringA& strFont);				///< è·å–å­—ä½“,å¦‚strFontä¸ºNULLè¡¨ç¤ºè·å–é»˜è®¤å­—ä½“
 		
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		virtual void PreMapKeyRemove(const IDMFontPtr &obj);
 
 	protected:
@@ -41,8 +41,8 @@ namespace DM
 		bool ParseLogFont(const CStringA& strFont,LPLOGFONTW lpLogFont);
 
 	protected:
-		LOGFONTW				m_lfDefault;					   ///< Ä¬ÈÏ×ÖÌå
-		wchar_t					m_szDefFontFace[LF_FACESIZE];      ///< Ä¬ÈÏ×ÖÌåÃû³Æ
+		LOGFONTW				m_lfDefault;					   ///< é»˜è®¤å­—ä½“
+		wchar_t					m_szDefFontFace[LF_FACESIZE];      ///< é»˜è®¤å­—ä½“åç§°
 	};
 
 }//namespace DM

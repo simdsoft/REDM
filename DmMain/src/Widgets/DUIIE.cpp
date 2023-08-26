@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 
 #if !defined(DM_EXCLUDE_ACTIVEX) && !defined(DM_EXCLUDE_IE)
 
@@ -370,7 +370,7 @@ namespace DM
 			pInfo->cbSize = sizeof(DOCHOSTUIINFO);
 			pInfo->dwFlags = DOCHOSTUIFLAG_DIV_BLOCKDEFAULT | DOCHOSTUIFLAG_CODEPAGELINKEDFONTS | DOCHOSTUIFLAG_THEME | DOCHOSTUIFLAG_NO3DBORDER 
 				| DOCHOSTUIFLAG_ENABLE_REDIRECT_NOTIFICATION;
-			if (m_bShowScrollBar)								//¾ö¶¨ÊÇ·ñÏÔÊ¾¹ö¶¯Ìõ
+			if (m_bShowScrollBar)								//å†³å®šæ˜¯å¦æ˜¾ç¤ºæ»šåŠ¨æ¡
 			{
 				pInfo->dwFlags |= DOCHOSTUIFLAG_FLAT_SCROLLBAR;
 			}
@@ -553,7 +553,7 @@ namespace DM
 		DUIWindow::OnShowWindow(bShow,nStatus);
 		if (m_bDelayInit)
 		{
-			if (DM_IsVisible(true)&&false == m_bInit)// ´°¿ÚÏÔÊ¾Ê±²Å³õÊ¼»¯
+			if (DM_IsVisible(true)&&false == m_bInit)// çª—å£æ˜¾ç¤ºæ—¶æ‰åˆå§‹åŒ–
 			{
 				m_bInit = InitActiveX();
 			}
@@ -566,7 +566,7 @@ namespace DM
 			}
 		}
 		
-		SetActiveXVisible(false);// ÔÚ´Ë´¦È«²¿Òş²Ø£¬ÔÚ»æÖÆ´¦ÏÔÊ¾
+		SetActiveXVisible(false);// åœ¨æ­¤å¤„å…¨éƒ¨éšè—ï¼Œåœ¨ç»˜åˆ¶å¤„æ˜¾ç¤º
 	}
 
 	DMCode DUIIE::DV_OnAxActivate(IUnknown *pUnknwn)
@@ -604,7 +604,7 @@ namespace DM
 		BOOL bRet = FALSE;
 		do 
 		{
-			// ¿ì½İ¼üÖ»¿¼ÂÇ¼üÅÌÏûÏ¢
+			// å¿«æ·é”®åªè€ƒè™‘é”®ç›˜æ¶ˆæ¯
 			if (NULL == pMsg
 				||(WM_KEYDOWN != pMsg->message && WM_KEYUP != pMsg->message))
 			{
@@ -618,8 +618,8 @@ namespace DM
 			}
 
 			HWND hWnd = GetContainer()->OnGetHWnd();
-			// todo.ÔÚÒ»Ì¨²âÊÔ»úÉÏÔËĞĞÊ±(°æ±¾:ie10)£¬IEÒÔpop-realwnd´æÔÚ,ÔÚÖ÷´°¿ÚÉÏÊäÈëÎÄ×Ö£¬»á×Ô¶¯±»ie²¶»ñ½¹µã£¬´Ó¶øÖ÷´°¿ÚÊ§½¹,ÎÄ×ÖÊäÈëµ½ÁËieÖĞ
-			// ½â¾ö·½Ê½:1.ÅĞ¶ÏrealwndÊÇ·ñÒş²Ø,Òş²ØÊ±,²»×ª·¢¿ì½İ¼üÏûÏ¢ 2.ÅĞ¶ÏÍ¬Ò»½ø³ÌÖĞ¼¤»î´°¿ÚÊÇ·ñÎªieËùÔÚµÄrealwnd£¬Èç¹û²»ÊÇ,²»×ª·¢¿ì½İ¼üÏûÏ¢
+			// todo.åœ¨ä¸€å°æµ‹è¯•æœºä¸Šè¿è¡Œæ—¶(ç‰ˆæœ¬:ie10)ï¼ŒIEä»¥pop-realwndå­˜åœ¨,åœ¨ä¸»çª—å£ä¸Šè¾“å…¥æ–‡å­—ï¼Œä¼šè‡ªåŠ¨è¢«ieæ•è·ç„¦ç‚¹ï¼Œä»è€Œä¸»çª—å£å¤±ç„¦,æ–‡å­—è¾“å…¥åˆ°äº†ieä¸­
+			// è§£å†³æ–¹å¼:1.åˆ¤æ–­realwndæ˜¯å¦éšè—,éšè—æ—¶,ä¸è½¬å‘å¿«æ·é”®æ¶ˆæ¯ 2.åˆ¤æ–­åŒä¸€è¿›ç¨‹ä¸­æ¿€æ´»çª—å£æ˜¯å¦ä¸ºieæ‰€åœ¨çš„realwndï¼Œå¦‚æœä¸æ˜¯,ä¸è½¬å‘å¿«æ·é”®æ¶ˆæ¯
 			if (!::IsWindowVisible(hWnd))// 1
 			{
 				break;
@@ -630,7 +630,7 @@ namespace DM
 				DUIAccel acc(m_Refreshkey);
 				if(pMsg->wParam == acc.GetKey())
 				{
-					if ((0 == acc.GetModifier()&&!PUSH_ALT&&!PUSH_CTRL&&!PUSH_SHIFT)// Î´°´ÏÂ¸¨Öú¼ü
+					if ((0 == acc.GetModifier()&&!PUSH_ALT&&!PUSH_CTRL&&!PUSH_SHIFT)// æœªæŒ‰ä¸‹è¾…åŠ©é”®
 						||(HOTKEYF_SHIFT == acc.GetModifier() &&PUSH_SHIFT)// Shift
 						||(HOTKEYF_CONTROL == acc.GetModifier() &&PUSH_CTRL)// Ctrl
 						||(HOTKEYF_ALT == acc.GetModifier() &&PUSH_ALT)//Alt
@@ -643,12 +643,12 @@ namespace DM
 
 			HWND hFocusWnd = ::GetFocus();
 			HWND hFocusTopWnd = hFocusWnd;	
-			while (hFocusTopWnd && hFocusTopWnd != hWnd)// ÅĞ¶Ï½¹µã´°¿ÚÊÇ·ñÔÚhWndµÄ×Ó´°¿ÚÁĞÖĞ
+			while (hFocusTopWnd && hFocusTopWnd != hWnd)// åˆ¤æ–­ç„¦ç‚¹çª—å£æ˜¯å¦åœ¨hWndçš„å­çª—å£åˆ—ä¸­
 			{
 				hFocusTopWnd = ::GetParent(hFocusTopWnd);
 			}
-			if (hFocusTopWnd != hWnd // ½¹µã´°¿Ú²»ÔÚhWndµÄ×Ó´°¿ÚÁĞÖĞ
-				|| hFocusWnd == hWnd)// ½¹µã´°¿ÚÔÚhWndµÄ×Ó´°¿ÚÁĞÖĞ,²¢ÇÒ²»ÊÇhWnd
+			if (hFocusTopWnd != hWnd // ç„¦ç‚¹çª—å£ä¸åœ¨hWndçš„å­çª—å£åˆ—ä¸­
+				|| hFocusWnd == hWnd)// ç„¦ç‚¹çª—å£åœ¨hWndçš„å­çª—å£åˆ—ä¸­,å¹¶ä¸”ä¸æ˜¯hWnd
 			{
 				break;
 			}
@@ -710,7 +710,7 @@ namespace DM
 				break;
 			}
 		
-			m_strUrl = pszURL;// Èç¹ûIEÑÓ³Ù¼ÓÔØ£¬±£Ö¤ÔÚÑÓ³Ù¼ÓÔØÊ±Ê¹ÓÃĞÂµÄURL
+			m_strUrl = pszURL;// å¦‚æœIEå»¶è¿ŸåŠ è½½ï¼Œä¿è¯åœ¨å»¶è¿ŸåŠ è½½æ—¶ä½¿ç”¨æ–°çš„URL
 			DMComPtr<IWebBrowser2> pWeb = Ptr();
 			if (!pWeb)
 			{
@@ -797,7 +797,7 @@ namespace DM
 	}
 
 	HRESULT DUIIE::SetWebFocus()
-	{// ¸ĞĞ»Liufy´óÀĞÌá¹©µÄ´úÂë
+	{// æ„Ÿè°¢Liufyå¤§ä½¬æä¾›çš„ä»£ç 
 		HRESULT hr = E_FAIL;
 		do 
 		{
@@ -849,7 +849,7 @@ namespace DM
 			{
 				break;
 			}
-			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAIL£ºeg: IE [Shell Embedding] window
+			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAILï¼šeg: IE [Shell Embedding] window
 		} while (false);
 		return hOleWnd;
 	}
@@ -929,7 +929,7 @@ namespace DM
 			}
 			VARIANT_BOOL vBusy = VARIANT_FALSE;
 			pWeb->get_Busy(&vBusy);
-			// Ö»ÓĞä¯ÀÀÆ÷·±Ã¦Ê±£¬²ÅÄÜÍ£Ö¹ä¯ÀÀÆ÷¡£
+			// åªæœ‰æµè§ˆå™¨ç¹å¿™æ—¶ï¼Œæ‰èƒ½åœæ­¢æµè§ˆå™¨ã€‚
 			if (VARIANT_TRUE == vBusy)
 				pWeb->Stop();
 			hr = S_OK;
@@ -1107,12 +1107,12 @@ namespace DM
 							_dispparams.cArgs = (UINT)vecParams.GetCount();
 							_dispparams.cNamedArgs = 0;
 
-							// ÒÔÇ°Ã»ÓĞCComBSTR::CopyTo³öÀ´BSTRÃ»ÓĞÊÍ·Å£¬ÕâÀï»»³É_variant_t¡£by ZC. 2011-12-30.
+							// ä»¥å‰æ²¡æœ‰CComBSTR::CopyToå‡ºæ¥BSTRæ²¡æœ‰é‡Šæ”¾ï¼Œè¿™é‡Œæ¢æˆ_variant_tã€‚by ZC. 2011-12-30.
 							_variant_t* _vArrArg = new _variant_t[_dispparams.cArgs];
 							for (size_t i = 0;i < _dispparams.cArgs;i++)
 							{
 								size_t indx = vecParams.GetCount() - i - 1;
-								// ÕâÀï×Ô¶¯×ª»¯ÎªBSTR¡£
+								// è¿™é‡Œè‡ªåŠ¨è½¬åŒ–ä¸ºBSTRã€‚
 								_vArrArg[i] = vecParams[indx];
 							}
 							_dispparams.rgvarg = _vArrArg;

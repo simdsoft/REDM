@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: 
 // File Des:
-// File Summary:gifÖ§³ÖÔÚflash±³¾°ÉÏ²¥·Å
+// File Summary:gifæ”¯æŒåœ¨flashèƒŒæ™¯ä¸Šæ’­æ”¾
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -19,14 +19,14 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIGif"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIGif"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIGifAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* GIF_gifskin;                                 ///< gifµÄ×ÊÔ´£¬²»ÊÇÍ¨¹ıskinÖ¸¶¨£¬¶øÊÇÖ±½ÓÍ¨¹ıÎÄ¼ş±êÊ¶Ö¸¶¨,»òÒÔÎÄ¼ş¾ø¶ÔÂ·¾¶Ö¸¶¨,Ê¾Àı:gifskin="gif:4_gif",gifskin="c:\1.gif"                            
-		static const char* bool_badjust;                                ///< ÊÇ·ñµ÷ÕûÊ¹Í¼Æ¬×ÔÊÊÓ¦³ß´ç£¬Ò²¾ÍÊÇÍ¼Æ¬±£³Ö±ÈÀıËõ·Å£¬²»»á±äĞÎ£¬Ä¬ÈÏÎªtrue,Ê¾Àı:badjust="1"
-		static const char* bool_bcalcclip;                              ///< ¼ÆËã²¢×Ô¶¯µ÷ÕûclipÇø°üº¬Õû¸ö»æÖÆÇø,»áËğÊ§»æÖÆĞ§ÂÊ£¬ÊÊÓÃÓÚgif¿Ø¼şÖĞ°üº¬×Ógif¿Ø¼ş,Èç¹û×ÓgifÍ¸Ã÷£¬ÔòÃ¿´ÎË¢ĞÂÖ»ÊÇ¸¸gifµÄÒ»²¿·Ö,Ê¾Àı:bcalcclip="1"
+		static const char* GIF_gifskin;                                 ///< gifçš„èµ„æºï¼Œä¸æ˜¯é€šè¿‡skinæŒ‡å®šï¼Œè€Œæ˜¯ç›´æ¥é€šè¿‡æ–‡ä»¶æ ‡è¯†æŒ‡å®š,æˆ–ä»¥æ–‡ä»¶ç»å¯¹è·¯å¾„æŒ‡å®š,ç¤ºä¾‹:gifskin="gif:4_gif",gifskin="c:\1.gif"                            
+		static const char* bool_badjust;                                ///< æ˜¯å¦è°ƒæ•´ä½¿å›¾ç‰‡è‡ªé€‚åº”å°ºå¯¸ï¼Œä¹Ÿå°±æ˜¯å›¾ç‰‡ä¿æŒæ¯”ä¾‹ç¼©æ”¾ï¼Œä¸ä¼šå˜å½¢ï¼Œé»˜è®¤ä¸ºtrue,ç¤ºä¾‹:badjust="1"
+		static const char* bool_bcalcclip;                              ///< è®¡ç®—å¹¶è‡ªåŠ¨è°ƒæ•´clipåŒºåŒ…å«æ•´ä¸ªç»˜åˆ¶åŒº,ä¼šæŸå¤±ç»˜åˆ¶æ•ˆç‡ï¼Œé€‚ç”¨äºgifæ§ä»¶ä¸­åŒ…å«å­gifæ§ä»¶,å¦‚æœå­gifé€æ˜ï¼Œåˆ™æ¯æ¬¡åˆ·æ–°åªæ˜¯çˆ¶gifçš„ä¸€éƒ¨åˆ†,ç¤ºä¾‹:bcalcclip="1"
 	};
 	DMAttrValueInit(DUIGifAttr,GIF_gifskin)DMAttrValueInit(DUIGifAttr,bool_badjust)DMAttrValueInit(DUIGifAttr,bool_bcalcclip)
 }
@@ -34,7 +34,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 gifµÄÄÚÖÃÊµÏÖ
+	///		 gifçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIGif:public DUIWindow,public DMArrayT<PDMAnimateFrame>,public IDMTimeline
 	{
@@ -53,7 +53,7 @@ namespace DM
 		};
 	public:
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æ¥å£
 		//---------------------------------------------------
 		virtual DMCode LoadFromFile(LPCWSTR pszFileName);
 		virtual DMCode LoadFromMemory(LPVOID lpBuf, UINT ulSize);
@@ -70,7 +70,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnShowWindow(BOOL bShow, UINT nStatus);
@@ -80,9 +80,9 @@ namespace DM
 		DMCode OnTimeline();
 
 	public:
-		bool  IsReady();														///< ÊÇ·ñ×¼±¸ºÃgif								
-		bool  Reset();														    ///< »Ö¸´´ÓµÚÒ»Ö¡¿ªÊ¼×´Ì¬
-		int   ReadyCurFrame(UINT ulFrame);										///< ·µ»Øµ±Ç°Òª»æÖÆÖ¡µÄ×´Ì¬
+		bool  IsReady();														///< æ˜¯å¦å‡†å¤‡å¥½gif								
+		bool  Reset();														    ///< æ¢å¤ä»ç¬¬ä¸€å¸§å¼€å§‹çŠ¶æ€
+		int   ReadyCurFrame(UINT ulFrame);										///< è¿”å›å½“å‰è¦ç»˜åˆ¶å¸§çš„çŠ¶æ€
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
@@ -94,25 +94,25 @@ namespace DM
 	public:
 		DMCode OnAttrGif(LPCSTR lpszValue, bool bLoadXml);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void PreArrayObjRemove(const PDMAnimateFrame &obj);
 
 	public:  
-		bool                                         m_bAdjustPic;				 ///< µ÷ÕûÊ¹Í¼Æ¬×ÔÊÊÓ¦³ß´ç
-		bool                                         m_bCalcClip;                ///< ¼ÆËã²¢×Ô¶¯µ÷ÕûclipÇø°üº¬Õû¸ö»æÖÆÇø
+		bool                                         m_bAdjustPic;				 ///< è°ƒæ•´ä½¿å›¾ç‰‡è‡ªé€‚åº”å°ºå¯¸
+		bool                                         m_bCalcClip;                ///< è®¡ç®—å¹¶è‡ªåŠ¨è°ƒæ•´clipåŒºåŒ…å«æ•´ä¸ªç»˜åˆ¶åŒº
 
-		DMSmartPtrT<IDMCanvas>                       m_pMemCanvas;               ///< ÄÚ´æ»­²¼,»æÖÆÃ¿Ò»Ö¡
-		DMSmartPtrT<IDMCanvas>                       m_pPreviousCanvas;          ///< Ç°Ò»¸öUnspecified or Do Not DisposeÖ¡
-		CRect                                        m_rcGif;					 ///< gifµÄ¿ò¼Ü´óĞ¡,Ö¡´óĞ¡²»Ò»¶¨Îª¿ò¼Ü´óĞ¡
+		DMSmartPtrT<IDMCanvas>                       m_pMemCanvas;               ///< å†…å­˜ç”»å¸ƒ,ç»˜åˆ¶æ¯ä¸€å¸§
+		DMSmartPtrT<IDMCanvas>                       m_pPreviousCanvas;          ///< å‰ä¸€ä¸ªUnspecified or Do Not Disposeå¸§
+		CRect                                        m_rcGif;					 ///< gifçš„æ¡†æ¶å¤§å°,å¸§å¤§å°ä¸ä¸€å®šä¸ºæ¡†æ¶å¤§å°
 
-		// Ö¡¿ØÖÆ
-		UINT                                         m_ulCurFrame;               ///< µ±Ç°Ö¡ºÅ
-		UINT										 m_ulFrameCount;;            ///< Ö¡ÊıÄ¿
-		UINT                                         m_ulCurLoop;                ///< µ±Ç°Ñ­»·´ÎÊı
-		UINT										 m_ulTotalLoopCount;		 ///< -1±íÊ¾ÎŞÏŞ,»òÕßÊÇÕûÊı´Î£¬²»»áÎª0
-		DWORD                                        m_dwPreFrameTime;           ///< ÉÏÒ»Ö¡ÏÔÊ¾µÄÊ±¼ä£¬µ¥Î»ms
+		// å¸§æ§åˆ¶
+		UINT                                         m_ulCurFrame;               ///< å½“å‰å¸§å·
+		UINT										 m_ulFrameCount;;            ///< å¸§æ•°ç›®
+		UINT                                         m_ulCurLoop;                ///< å½“å‰å¾ªç¯æ¬¡æ•°
+		UINT										 m_ulTotalLoopCount;		 ///< -1è¡¨ç¤ºæ— é™,æˆ–è€…æ˜¯æ•´æ•°æ¬¡ï¼Œä¸ä¼šä¸º0
+		DWORD                                        m_dwPreFrameTime;           ///< ä¸Šä¸€å¸§æ˜¾ç¤ºçš„æ—¶é—´ï¼Œå•ä½ms
 
-		bool                                         m_bPause;                   ///< ÔİÍ£ÖĞ
+		bool                                         m_bPause;                   ///< æš‚åœä¸­
 		
 	};
 

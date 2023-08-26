@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+Ôªø//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,20 +18,20 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIComboBox"/>µƒxml Ù–‘∂®“Â
+	///		<see cref="DM::DUIComboBox"/>ÁöÑxmlÂ±ûÊÄßÂÆö‰πâ
 	/// </summary>
 	class DUIComboBoxAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static const char* STRING_clslistbox;                                            ///< ÷∏∂®listbox¥¥Ω® π”√µƒ¿‡√˚,º¥‘ –Ìƒ„◊‘∂®“Âlistbox£¨ƒ¨»œ π”√ƒ⁄÷√
-		static const char* ITEM_sublistbox;                                              ///< ◊”øÿº˛listboxµƒXML±Í ∂
+		static const char* STRING_clslistbox;                                            ///< ÊåáÂÆölistboxÂàõÂª∫‰ΩøÁî®ÁöÑÁ±ªÂêç,Âç≥ÂÖÅËÆ∏‰Ω†Ëá™ÂÆö‰πâlistboxÔºåÈªòËÆ§‰ΩøÁî®ÂÜÖÁΩÆ
+		static const char* ITEM_sublistbox;                                              ///< Â≠êÊéß‰ª∂listboxÁöÑXMLÊ†áËØÜ
 	};
 	DMAttrValueInit(DUIComboBoxAttr,STRING_clslistbox)DMAttrValueInit(DUIComboBoxAttr,ITEM_sublistbox)
 }
 namespace DM
 {
 	/// <summary>
-	///		 DUIComboBoxµƒƒ⁄÷√ µœ÷
+	///		 DUIComboBoxÁöÑÂÜÖÁΩÆÂÆûÁé∞
 	/// </summary>
 	class DM_EXPORT DUIComboBox : public DUIComboBoxBase
 	{
@@ -42,7 +42,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ∂‘Õ‚Ω”ø⁄
+		// Function Des: ÂØπÂ§ñÊé•Âè£
 		//---------------------------------------------------
 		LPARAM GetItemData(UINT iItem) const;
 		int SetItemData(UINT iItem, LPARAM lParam);
@@ -53,14 +53,14 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: IDMDropDownOwner µœ÷
+		// Function Des: IDMDropDownOwnerÂÆûÁé∞
 		//---------------------------------------------------                  
 		virtual DMCode OnDropDown(DMDropWnd *pDropDown);
 		virtual DMCode OnCloseUp(DMDropWnd *pDropDown,UINT uCode);
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÷ÿ‘ÿ
+		// Function Des: ÈáçËΩΩ
 		//---------------------------------------------------
 		virtual int GetCount()const;
 		virtual int GetListBoxHeight();
@@ -71,7 +71,7 @@ namespace DM
 		virtual void OnSelChanged();
 
 		//---------------------------------------------------
-		// Function Des: ÷ÿ‘ÿDUIWindow
+		// Function Des: ÈáçËΩΩDUIWindow
 		//---------------------------------------------------
 		virtual DMCode DV_FireEvent(DMEventArgs &Evt);
 	public:

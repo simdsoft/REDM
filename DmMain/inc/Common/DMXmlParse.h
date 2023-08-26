@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMXmlParse.h 
-// File Des:  ·â×°xml½âÎöµÄÊµÏÖÀà£¬ºóĞø¿É¿¼ÂÇ³é³É½Ó¿Ú
-// File Summary: ·â×°µÄºÃ´¦ÊÇ½âÎö¿ÉÒÔÊ¹ÓÃtinyxml/rapidxmlµÈ·½±ãÌæ»»,Ñ§Ï°Ê¹ÓÃ·½Ê½¿ÉÒÔ²Î¿¼gtest-DMXmlParse_Test.cpp
+// File Des:  å°è£…xmlè§£æçš„å®ç°ç±»ï¼Œåç»­å¯è€ƒè™‘æŠ½æˆæ¥å£
+// File Summary: å°è£…çš„å¥½å¤„æ˜¯è§£æå¯ä»¥ä½¿ç”¨tinyxml/rapidxmlç­‰æ–¹ä¾¿æ›¿æ¢,å­¦ä¹ ä½¿ç”¨æ–¹å¼å¯ä»¥å‚è€ƒgtest-DMXmlParse_Test.cpp
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -20,7 +20,7 @@ namespace DM
 	class DMXmlNode;
 	void DM_EXPORT Init_Debug_XmlBuf(DMXmlNode &XmlNode);
 	/// <summary>
-	///		·â×°µÄxml attribute
+	///		å°è£…çš„xml attribute
 	/// </summary>
 	class DM_EXPORT DMXmlAttribute
 	{
@@ -28,34 +28,34 @@ namespace DM
 		DMXmlAttribute();
 
 		/// -------------------------------------------------
-		/// @brief		ÊÇ·ñÓĞĞ§Êı¾İ
-		/// @return		true:ÓĞĞ§,false:ÎŞĞ§
+		/// @brief		æ˜¯å¦æœ‰æ•ˆæ•°æ®
+		/// @return		true:æœ‰æ•ˆ,false:æ— æ•ˆ
 		bool IsValid() const;
 
 		/// -------------------------------------------------
-		/// @brief		ÊÇ·ñÏàÍ¬
-		/// @param[in]	other    ÓÃÓÚ±È½ÏµÄ<see cref="DMXmlAttribute"/>¶ÔÏó
-		/// @return		true:ÏàÍ¬,false:²»Í¬
+		/// @brief		æ˜¯å¦ç›¸åŒ
+		/// @param[in]	other    ç”¨äºæ¯”è¾ƒçš„<see cref="DMXmlAttribute"/>å¯¹è±¡
+		/// @return		true:ç›¸åŒ,false:ä¸åŒ
 		bool IsEqual(const DMXmlAttribute &other) const;
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃattributeÃû×Ö
-		/// @return		·µ»ØattributeÃû×Ö
+		/// @brief		å–å¾—attributeåå­—
+		/// @return		è¿”å›attributeåå­—
 		LPCSTR GetName() const;
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃattributeÄÚÈİ
-		/// @return		·µ»ØattributeÄÚÈİ
+		/// @brief		å–å¾—attributeå†…å®¹
+		/// @return		è¿”å›attributeå†…å®¹
 		LPCSTR GetValue() const;
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃÏÂÒ»¸öattribute
-		/// @return		·µ»ØÏÂÒ»¸öattribute
+		/// @brief		å–å¾—ä¸‹ä¸€ä¸ªattribute
+		/// @return		è¿”å›ä¸‹ä¸€ä¸ªattribute
 		DMXmlAttribute NextAttribute() const;
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃÉÏÒ»¸öattribute
-		/// @return		·µ»ØÉÏÒ»¸öattribute
+		/// @brief		å–å¾—ä¸Šä¸€ä¸ªattribute
+		/// @return		è¿”å›ä¸Šä¸€ä¸ªattribute
 		DMXmlAttribute PreviousAttribute() const;
 
 	public:
@@ -64,7 +64,7 @@ namespace DM
 	typedef DMXmlAttribute* DMXmlAttributePtr;
 
 	/// <summary>
-	///		·â×°µÄxml node
+	///		å°è£…çš„xml node
 	/// </summary>
 	class DM_EXPORT DMXmlNode
 	{
@@ -74,134 +74,134 @@ namespace DM
 		DMXmlNode();
 
 		/// -------------------------------------------------
-		/// @brief		ÊÇ·ñÓĞĞ§Êı¾İ
-		/// @return		true:ÓĞĞ§,false:ÎŞĞ§
+		/// @brief		æ˜¯å¦æœ‰æ•ˆæ•°æ®
+		/// @return		true:æœ‰æ•ˆ,false:æ— æ•ˆ
 		bool IsValid() const;
 
 		/// -------------------------------------------------
-		/// @brief		ÊÇ·ñÏàÍ¬
-		/// @param[in]	other Òª±È½ÏµÄNode¶ÔÏó
-		/// @return		true:ÏàÍ¬,false:²»Í¬
+		/// @brief		æ˜¯å¦ç›¸åŒ
+		/// @param[in]	other è¦æ¯”è¾ƒçš„Nodeå¯¹è±¡
+		/// @return		true:ç›¸åŒ,false:ä¸åŒ
 		bool IsEqual(const DMXmlNode &other) const;
 
 		/// -------------------------------------------------
-		/// @brief		ÊÇ·ñÏàÍ¬µÄ¸ù£¬¼´ÊÇ·ñÎªÍ¬Ò»¸öxmldoc
-		/// @param[in]	other Òª±È½ÏµÄNode¶ÔÏó
-		/// @return		true:ÏàÍ¬,false:²»Í¬
+		/// @brief		æ˜¯å¦ç›¸åŒçš„æ ¹ï¼Œå³æ˜¯å¦ä¸ºåŒä¸€ä¸ªxmldoc
+		/// @param[in]	other è¦æ¯”è¾ƒçš„Nodeå¯¹è±¡
+		/// @return		true:ç›¸åŒ,false:ä¸åŒ
 		bool IsEqualRoot(const DMXmlNode &other) const;
 
 		/// -------------------------------------------------
-		/// @brief		µÚÒ»¸ö×ÓNode
-		/// @param[in]	XmlTag NodeµÄÃû×Ö
-		/// @return		µÚÒ»¸ö×ÓNode
+		/// @brief		ç¬¬ä¸€ä¸ªå­Node
+		/// @param[in]	XmlTag Nodeçš„åå­—
+		/// @return		ç¬¬ä¸€ä¸ªå­Node
 		DMXmlNode FirstChild(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
-		/// @brief		ÉÏÒ»¸öĞÖµÜNode
-		/// @param[in]	XmlTag NodeµÄÃû×Ö
-		/// @return		ÉÏÒ»¸öĞÖµÜNode
+		/// @brief		ä¸Šä¸€ä¸ªå…„å¼ŸNode
+		/// @param[in]	XmlTag Nodeçš„åå­—
+		/// @return		ä¸Šä¸€ä¸ªå…„å¼ŸNode
 		DMXmlNode PreviousSibling(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
-		/// @brief		ÏÂÒ»¸öĞÖµÜNode
-		/// @param[in]	XmlTag NodeµÄÃû×Ö
-		/// @return		ÏÂÒ»¸öĞÖµÜNode
+		/// @brief		ä¸‹ä¸€ä¸ªå…„å¼ŸNode
+		/// @param[in]	XmlTag Nodeçš„åå­—
+		/// @return		ä¸‹ä¸€ä¸ªå…„å¼ŸNode
 		DMXmlNode NextSibling(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃnodeÃû×Ö
-		/// @return		·µ»ØnodeÃû×Ö
+		/// @brief		å–å¾—nodeåå­—
+		/// @return		è¿”å›nodeåå­—
 		LPCSTR GetName() const;
 
 		/// -------------------------------------------------
-		/// @brief		ÉèÖÃnodeÃû×Ö
-		/// @return		·µ»Øtrue.false
+		/// @brief		è®¾ç½®nodeåå­—
+		/// @return		è¿”å›true.false
 		bool SetName(LPCSTR lpszName);
 
 		/// -------------------------------------------------
-		/// @brief		È¡µÃnodeÄÚÈİ
-		/// @return		·µ»ØnodeÄÚÈİ
+		/// @brief		å–å¾—nodeå†…å®¹
+		/// @return		è¿”å›nodeå†…å®¹
 		LPCSTR GetValue() const;
 
 		/// -------------------------------------------------
-		/// @brief		µÚÒ»¸öattribute
-		/// @remark		ÓÃÓÚ±éÀúËùÓĞattribute
-		/// @return		µÚÒ»¸öattribute
+		/// @brief		ç¬¬ä¸€ä¸ªattribute
+		/// @remark		ç”¨äºéå†æ‰€æœ‰attribute
+		/// @return		ç¬¬ä¸€ä¸ªattribute
 		DMXmlAttribute FirstAttribute() const;
 
 		/// -------------------------------------------------
-		/// @brief		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ
-		/// @param[in]	name attributeµÄÃû×Ö
-		/// @return		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ£¨LPCWSTR£©
+		/// @brief		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹
+		/// @param[in]	name attributeçš„åå­—
+		/// @return		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹ï¼ˆLPCWSTRï¼‰
 		LPCSTR Attribute(LPCSTR name) const;
 
 		/// -------------------------------------------------
-		/// @brief		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ
-		/// @param[in]	name attributeµÄÃû×Ö
-		/// @return		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ£¨int£©
+		/// @brief		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹
+		/// @param[in]	name attributeçš„åå­—
+		/// @return		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹ï¼ˆintï¼‰
 		int AttributeInt(LPCSTR name) const;
 
 		/// -------------------------------------------------
-		/// @brief		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ
-		/// @param[in]	name attributeµÄÃû×Ö
-		/// @return		Ö¸¶¨Ãû×ÖµÄattributeµÄÄÚÈİ£¨int64£©
+		/// @brief		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹
+		/// @param[in]	name attributeçš„åå­—
+		/// @return		æŒ‡å®šåå­—çš„attributeçš„å†…å®¹ï¼ˆint64ï¼‰
 		INT64 AttributeInt64(LPCSTR name) const;
 
 		/// -------------------------------------------------
-		/// @brief  ²åÈëÒ»¸öĞÂµÄ½Úµã
-		/// @param[in]	name ĞÂ½ÚµãµÄÃû×Ö
-		/// @param[in]	pXmlNode ±»²åÈëµÄ¾É½áµã£¬ÎªNULL±íÊ¾Ö±½Ó²åÈë
-		/// @param[in]	bAfter ²åÈëµÄ¾É½áµãÇ°ºó
-		/// @return	ĞÂ½Úµã
+		/// @brief  æ’å…¥ä¸€ä¸ªæ–°çš„èŠ‚ç‚¹
+		/// @param[in]	name æ–°èŠ‚ç‚¹çš„åå­—
+		/// @param[in]	pXmlNode è¢«æ’å…¥çš„æ—§ç»“ç‚¹ï¼Œä¸ºNULLè¡¨ç¤ºç›´æ¥æ’å…¥
+		/// @param[in]	bAfter æ’å…¥çš„æ—§ç»“ç‚¹å‰å
+		/// @return	æ–°èŠ‚ç‚¹
 		DMXmlNode InsertChildNode(LPCSTR name,DMXmlNode* pXmlNode = NULL,bool bAfter = true);
 
 		/// -------------------------------------------------
-		/// @brief  ´ÓÆäËûµØ·½²åÈëÒ»¸öĞÂ½Úµã
-		/// @param[in]	pCopyXmlNode ĞÂ½Úµã
-		/// @param[in]	pXmlNode ±»²åÈëµÄ¾É½áµã£¬ÎªNULL±íÊ¾Ö±½Ó²åÈë
-		/// @param[in]	bAfter ²åÈëµÄ¾É½áµãÇ°ºó
-		/// @return	ĞÂ½Úµã
+		/// @brief  ä»å…¶ä»–åœ°æ–¹æ’å…¥ä¸€ä¸ªæ–°èŠ‚ç‚¹
+		/// @param[in]	pCopyXmlNode æ–°èŠ‚ç‚¹
+		/// @param[in]	pXmlNode è¢«æ’å…¥çš„æ—§ç»“ç‚¹ï¼Œä¸ºNULLè¡¨ç¤ºç›´æ¥æ’å…¥
+		/// @param[in]	bAfter æ’å…¥çš„æ—§ç»“ç‚¹å‰å
+		/// @return	æ–°èŠ‚ç‚¹
 		DMXmlNode InsertCopyChildNode(DMXmlNode* pCopyXmlNode,DMXmlNode* pXmlNode = NULL,bool bAfter = true);
 
 		/// -------------------------------------------------
-		/// @brief		¸´ÖÆnode
-		/// @param[in]	XmlAppend ±»¸´ÖÆµÄnode
-		/// @return		ÎŞ
+		/// @brief		å¤åˆ¶node
+		/// @param[in]	XmlAppend è¢«å¤åˆ¶çš„node
+		/// @return		æ— 
 		void Append_Copy(DMXmlNode &XmlAppend);
 
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ıÒ»¸ö×Ó½Úµã
+		/// @brief  ç§»é™¤ä¸€ä¸ªå­èŠ‚ç‚¹
 		/// @ @return	
 		bool RemoveChildNode(DMXmlNode* pXmlNode);
 
 		/// -------------------------------------------------
-		/// @brief  ²åÈë»òĞŞ¸ÄÒ»¸öÊôĞÔ£¨ÊôĞÔ´æÔÚÔòĞŞ¸Ä,ÊôĞÔ²»´æÔÚÔòÔÚ×îºó²åÈë£©
-		/// @param[in]	name  ÊôĞÔµÄÃû×Ö
-		/// @param[in]	value ÊôĞÔµÄÖµ
-		/// @return	ĞÂ½Úµã
+		/// @brief  æ’å…¥æˆ–ä¿®æ”¹ä¸€ä¸ªå±æ€§ï¼ˆå±æ€§å­˜åœ¨åˆ™ä¿®æ”¹,å±æ€§ä¸å­˜åœ¨åˆ™åœ¨æœ€åæ’å…¥ï¼‰
+		/// @param[in]	name  å±æ€§çš„åå­—
+		/// @param[in]	value å±æ€§çš„å€¼
+		/// @return	æ–°èŠ‚ç‚¹
 		bool SetAttribute(LPCSTR name, LPCSTR value,bool bAppend = true);
 		bool SetAttribute(LPCSTR name, const CStringW& value, bool bAppend = true) { return SetAttribute(name, DMW2A(value), bAppend); }
 		bool SetAttributeInt(LPCSTR name, int value,bool bAppend = true);
 		bool SetAttributeInt64(LPCSTR name, INT64 value,bool bAppend = true);
 
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ınameÃû×ÖµÄÊôĞÔ
-		/// @param[in]	name  ÊôĞÔµÄÃû×Ö
+		/// @brief  ç§»é™¤nameåå­—çš„å±æ€§
+		/// @param[in]	name  å±æ€§çš„åå­—
 		bool RemoveAttribute(LPCSTR name);
 
-	public:/// ¸¨Öú,ÓÃÓÚDebug´òÓ¡XMLÄÚÈİ
+	public:/// è¾…åŠ©,ç”¨äºDebugæ‰“å°XMLå†…å®¹
 		bool GetXmlContent(CStringA &strDebug);
 
 	public:
-		pugi::xml_node				m_XmlNode;						///< Ä¬ÈÏ¹¹Ôìm_XmlNode._rootÎª0
+		pugi::xml_node				m_XmlNode;						///< é»˜è®¤æ„é€ m_XmlNode._rootä¸º0
 #ifdef _DEBUG
-		CStringA                    m_strDebugBuf;					///< DebugÏÂ¸¨Öúµ÷ÊÔ,Èçµ÷ÓÃÁËÉèÖÃÊôĞÔµÈ¸Ä±äxmlµÄº¯Êı,²¢²»»á¸üĞÂ¸¸nodeµÄm_strDebugBuf,Ğè×Ô¼ºÊÖ¶¯µ÷ÓÃÒ»´ÎGetXmlContentÈ¥²é¿´
+		CStringA                    m_strDebugBuf;					///< Debugä¸‹è¾…åŠ©è°ƒè¯•,å¦‚è°ƒç”¨äº†è®¾ç½®å±æ€§ç­‰æ”¹å˜xmlçš„å‡½æ•°,å¹¶ä¸ä¼šæ›´æ–°çˆ¶nodeçš„m_strDebugBuf,éœ€è‡ªå·±æ‰‹åŠ¨è°ƒç”¨ä¸€æ¬¡GetXmlContentå»æŸ¥çœ‹
 #endif 
 	};
 	typedef DMXmlNode* DMXmlNodePtr;
 
 	/// <summary>
-	///		·â×°µÄxml Doc »ùÀà
+	///		å°è£…çš„xml Doc åŸºç±»
 	/// </summary>
 	class DM_EXPORT DMXmlDocHandle
 	{
@@ -209,44 +209,44 @@ namespace DM
 		DMXmlDocHandle(pugi::xml_document*pXmlDoc);
 	public:
 		/// -------------------------------------------------
-		/// @brief		ÒÔutf8ÎÄ¼ş¸ñÊ½¼ÓÔØ
-		/// @param[in]	pszFilePath		ÎÄ¼şÂ·¾¶£¬ÄÚ²¿»áÇ¿ÖÆ×ª»»³É¾ø¶ÔÂ·¾¶
-		/// @remark     ±ØĞëÊÇutf8¸ñÊ½£¬²»È»ÖĞÎÄÎŞ·¨Ê¶±ğ
-		/// @return		true:³É¹¦,false:Ê§°Ü
+		/// @brief		ä»¥utf8æ–‡ä»¶æ ¼å¼åŠ è½½
+		/// @param[in]	pszFilePath		æ–‡ä»¶è·¯å¾„ï¼Œå†…éƒ¨ä¼šå¼ºåˆ¶è½¬æ¢æˆç»å¯¹è·¯å¾„
+		/// @remark     å¿…é¡»æ˜¯utf8æ ¼å¼ï¼Œä¸ç„¶ä¸­æ–‡æ— æ³•è¯†åˆ«
+		/// @return		true:æˆåŠŸ,false:å¤±è´¥
 		bool LoadFromFile(LPCWSTR pszFilePath);
 
 		/// -------------------------------------------------
-		/// @brief		ÒÔutf8ÄÚ´æ¸ñÊ½¼ÓÔØ
-		/// @param[in]	pContent		ÄÚ´æÆğÊ¼
-		/// @param[in]	size			ÄÚ´æ´óĞ¡
-		/// @remark     ±ØĞëÊÇutf8¸ñÊ½£¬²»È»ÖĞÎÄÎŞ·¨Ê¶±ğ
-		/// @return		true:³É¹¦,false:Ê§°Ü
+		/// @brief		ä»¥utf8å†…å­˜æ ¼å¼åŠ è½½
+		/// @param[in]	pContent		å†…å­˜èµ·å§‹
+		/// @param[in]	size			å†…å­˜å¤§å°
+		/// @remark     å¿…é¡»æ˜¯utf8æ ¼å¼ï¼Œä¸ç„¶ä¸­æ–‡æ— æ³•è¯†åˆ«
+		/// @return		true:æˆåŠŸ,false:å¤±è´¥
 		bool LoadFromBuffer(const PVOID pContent, size_t size);
 
-		bool IsValid() const;							 ///< ÊÇ·ñ¿ÉÓÃ
-		bool IsError() const;							 ///< ÊÇ·ñ³ö´í
+		bool IsValid() const;							 ///< æ˜¯å¦å¯ç”¨
+		bool IsError() const;							 ///< æ˜¯å¦å‡ºé”™
 	
-		bool IsEqual(const DMXmlDocHandle &other) const; ///< ÊÇ·ñÏàÍ¬
+		bool IsEqual(const DMXmlDocHandle &other) const; ///< æ˜¯å¦ç›¸åŒ
 
 		/// -------------------------------------------------
-		/// @brief  »ñµÃ¸ùRoot£¬Ò²¾ÍÊÇ±éÀúµÄÆğµã
-		/// @return	·µ»Ø¸ùnode
+		/// @brief  è·å¾—æ ¹Rootï¼Œä¹Ÿå°±æ˜¯éå†çš„èµ·ç‚¹
+		/// @return	è¿”å›æ ¹node
 		DMXmlNode Root(LPCSTR XmlTag = NULL) const;
 
 		/// -------------------------------------------------
-		/// @brief  »ñµÃ¸ùBase£¬³õÊ¼Öµ
-		/// @return	·µ»Øbase
+		/// @brief  è·å¾—æ ¹Baseï¼Œåˆå§‹å€¼
+		/// @return	è¿”å›base
 		DMXmlNode Base() const;
 
 		/// -------------------------------------------------
-		/// @brief  ±£´æÎÄ¼ş
-		/// @return	³É¹¦,Ê§°Ü
+		/// @brief  ä¿å­˜æ–‡ä»¶
+		/// @return	æˆåŠŸ,å¤±è´¥
 		bool SaveXml(LPCWSTR lpszPath);
 	
 		/// -------------------------------------------------
-		/// @brief		Í¨¹ıXmlNode¼ÓÔØ,ÓÃÓÚÖ§³ÖXMLÄ£°å
-		/// @param[in]	XmlAppend ±»¸´ÖÆµÄnode
-		/// @return		true:³É¹¦,false:Ê§°Ü
+		/// @brief		é€šè¿‡XmlNodeåŠ è½½,ç”¨äºæ”¯æŒXMLæ¨¡æ¿
+		/// @param[in]	XmlAppend è¢«å¤åˆ¶çš„node
+		/// @return		true:æˆåŠŸ,false:å¤±è´¥
 		bool ResetByXmlNode(DMXmlNode &XmlAppend);
 
 	protected:
@@ -256,7 +256,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		·â×°µÄxml Doc
+	///		å°è£…çš„xml Doc
 	/// </summary>
 	class DM_EXPORT DMXmlDocument
 		:public DMXmlDocHandle

@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -19,7 +19,7 @@
 namespace DM
 {
 	/// <summary>
-	///		¿çÏß³ÌÊÂ¼ş°ó¶¨ÄÚÖÃÊµÏÖ
+	///		è·¨çº¿ç¨‹äº‹ä»¶ç»‘å®šå†…ç½®å®ç°
 	/// </summary>
 	class DMTaskRunnerImpl : public IDMTaskRunner, public DMMapT<CStringA, RefEventSlot>
 	{

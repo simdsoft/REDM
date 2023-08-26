@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	NewResDlg.h
 // File mark:   
-// File summary:–¬Ω®◊ ‘¥¥∞ø⁄
+// File summary:Êñ∞Âª∫ËµÑÊ∫êÁ™óÂè£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-6-22
@@ -41,7 +41,7 @@ public:
 	DUIEdit*                                  m_pResPathEdit;
 	DUIListBox*                               m_pRecentList;
 
-	CStringW								  m_strResName;					///< ◊ ‘¥Œƒº˛º–√˚£®»ÁQQRes£©
-	CStringW								  m_strResPath;					///< ◊ ‘¥Œƒº˛º–À˘‘⁄ƒø¬º(»ÁE:\\)
-	CStringW								  m_strResDir;                  ///< ◊ ‘¥Œƒº˛º–»´¬∑æ∂(m_strResPath+m_strResName£¨»ÁE:\\QQRes)
+	CStringW								  m_strResName;					///< ËµÑÊ∫êÊñá‰ª∂Â§πÂêçÔºàÂ¶ÇQQResÔºâ
+	CStringW								  m_strResPath;					///< ËµÑÊ∫êÊñá‰ª∂Â§πÊâÄÂú®ÁõÆÂΩï(Â¶ÇE:\\)
+	CStringW								  m_strResDir;                  ///< ËµÑÊ∫êÊñá‰ª∂Â§πÂÖ®Ë∑ØÂæÑ(m_strResPath+m_strResNameÔºåÂ¶ÇE:\\QQRes)
 };

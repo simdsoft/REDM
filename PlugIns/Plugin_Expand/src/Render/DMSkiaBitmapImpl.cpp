@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMSkiaBitmapImpl.h"
 
 namespace DM
@@ -34,7 +34,7 @@ namespace DM
 				memset(m_DibHelper.m_pPixelBits, 0, m_DibHelper.m_nImageSize);
 			}
 			m_SkBitmap.setInfo(SkImageInfo::Make(nWid,nHei,kN32_SkColorType,kPremul_SkAlphaType));
-			m_SkBitmap.setPixels(m_DibHelper.m_pPixelBits);// SkBitmap¹ØÁªÏñËØÕóÁĞ
+			m_SkBitmap.setPixels(m_DibHelper.m_pPixelBits);// SkBitmapå…³è”åƒç´ é˜µåˆ—
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -71,7 +71,7 @@ namespace DM
 				break;
 			}
 			m_SkBitmap.setInfo(SkImageInfo::Make(nWidth, nHeight, kN32_SkColorType,kPremul_SkAlphaType));
-			m_SkBitmap.setPixels(m_DibHelper.m_pPixelBits);// SkBitmap¹ØÁªÏñËØÕóÁĞ
+			m_SkBitmap.setPixels(m_DibHelper.m_pPixelBits);// SkBitmapå…³è”åƒç´ é˜µåˆ—
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -253,7 +253,7 @@ namespace DM
 		return m_SkBitmap;
 	}
 
-	// ¸¨Öú--------------------------
+	// è¾…åŠ©--------------------------
 	void DMSkiaBitmapImpl::DM_Release()
 	{
 		m_SkBitmap.reset();

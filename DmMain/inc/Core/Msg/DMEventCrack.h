@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 //
@@ -11,16 +11,16 @@
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
 //      guoyou		2015-2-3	1.0
-//    k000      2017-07-18            ÎªDECLARE_EVENT_MAP/BEGIN_EVENT_MAP/
-//                                    BEGIN_EVENT_MAPT/END_EVENT_MAPºêÖĞDMÏÂµÄÀàĞÍÌí¼Ó
-//                                    ÃüÃû¿Õ¼ä
+//    k000      2017-07-18            ä¸ºDECLARE_EVENT_MAP/BEGIN_EVENT_MAP/
+//                                    BEGIN_EVENT_MAPT/END_EVENT_MAPå®ä¸­DMä¸‹çš„ç±»å‹æ·»åŠ 
+//                                    å‘½åç©ºé—´
 //--------------------------------------------------------
 #pragma once
 
 namespace DM
 {
 //-------------------------------------------------------
-// ÔÚÍ·ÎÄ¼şÖĞÉùÃ÷,ÔÚÔ´ÎÄ¼şÖĞ¶¨Òå,Í¨ÓÃµÄ×÷·¨£¬µ÷ÊÔÊ±¿ÉÊ¹ÓÃMacroTool×ª»»³É»»ĞĞµÄÔ´´úÂëµ÷ÊÔ
+// åœ¨å¤´æ–‡ä»¶ä¸­å£°æ˜,åœ¨æºæ–‡ä»¶ä¸­å®šä¹‰,é€šç”¨çš„ä½œæ³•ï¼Œè°ƒè¯•æ—¶å¯ä½¿ç”¨MacroToolè½¬æ¢æˆæ¢è¡Œçš„æºä»£ç è°ƒè¯•
 #define DECLARE_EVENT_MAP()\
 public:\
 	virtual DM::DMCode DMHandleEvent(DM::DMEventArgs *pEvt);
@@ -34,7 +34,7 @@ public:\
 			UINT  uCode = pEvt->GetEventID();
 
 //-------------------------------------------------------
-// ÔÚÍ·ÎÄ¼şÖĞÉùÃ÷²¢¶¨Òå,ÓÃÓÚÄ£°åÀà
+// åœ¨å¤´æ–‡ä»¶ä¸­å£°æ˜å¹¶å®šä¹‰,ç”¨äºæ¨¡æ¿ç±»
 #define BEGIN_EVENT_MAPT(classname)\
 	DM::DMCode DMHandleEvent(DM::DMEventArgs *pEvt)\
 	{ \
@@ -45,7 +45,7 @@ public:\
 
 
 //-------------------------------------------------------
-// ½áÊø
+// ç»“æŸ
 #define END_EVENT_MAP()\
 		} while (false);\
 		if (DM::DM_ECODE_FAIL==iErr)\
@@ -61,7 +61,7 @@ public:\
 	}
 
 //-------------------------------------------------------
-// ÇĞ»»µ½¸¸Àà´¦Àí,ÇĞ»»µ½ÆäËûÀà¾²Ì¬º¯Êı´¦Àí
+// åˆ‡æ¢åˆ°çˆ¶ç±»å¤„ç†,åˆ‡æ¢åˆ°å…¶ä»–ç±»é™æ€å‡½æ•°å¤„ç†
 #define CHAIN_EVENT_MAP(ChainClass)\
 	if (DM_ECODE_FAIL!=(iErr=ChainClass::DMHandleEvent(pEvt)))\
 	{\

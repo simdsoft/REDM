@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ProjTree.h" 
 
 ProjTree::ProjTree()
@@ -21,14 +21,14 @@ void ProjTree::OnRButtonDown(UINT nFlags, CPoint pt)
 			SelectItem(m_hHoverItem,false);
 		}
 
-		// ÊÇ·ñµ¯³ö²Ëµ¥
+		// æ˜¯å¦å¼¹å‡ºèœå•
 		if (NULL == m_hHoverItem||NULL == g_pMainWnd||NULL == g_pMainWnd->m_pDesignerXml)
 		{
 			break;
 		}
 
 		ProjTree* pProjTree = g_pMainWnd->FindChildByNameT<ProjTree>("ds_projtree");DMASSERT(pProjTree);
-		if (this == pProjTree)// ´Ëtree»¹¿ÉÓÃÓÚskinµÄÑ¡Ôñ
+		if (this == pProjTree)// æ­¤treeè¿˜å¯ç”¨äºŽskinçš„é€‰æ‹©
 		{
 			g_pMainWnd->m_pDesignerXml->PopProjTreeMenu(m_hHoverItem);
 		}

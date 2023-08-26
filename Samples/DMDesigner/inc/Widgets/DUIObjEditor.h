@@ -1,10 +1,10 @@
-//----------------------------------------------------------------
+ï»¿//----------------------------------------------------------------
 // Copyright (c)     
 // All rights reserved.  
 //          
 // File name:	DUIObjEditor.h 
 // File mark:   
-// File summary:¶ÔÏóÊÓÍ¼±à¼­Ö÷´°¿Ú
+// File summary:å¯¹è±¡è§†å›¾ç¼–è¾‘ä¸»çª—å£
 // Author:		guoyouhuang
 // Edition:     1.0 
 // Create date: 2016-8-6
@@ -24,12 +24,12 @@ public:
 	DMCode UnInitObjEditor();
 	DMCode SetDesignMode(DesignMode ds_mode);
 
-	DUIRoot* InitDesignChild(HDMTREEITEM hRootTree);			///< ³õÊ¼»¯Design×Ó´°¿Ú
+	DUIRoot* InitDesignChild(HDMTREEITEM hRootTree);			///< åˆå§‹åŒ–Designå­çª—å£
 	DUIRoot* GetShowDesignChild();
 	DMCode ShowDesignChild(DUIRoot* pShow);
 	DMCode RemoveAllDesignChild();
 
-	// ¿ØÖÆ¹ö¶¯·¶Î§
+	// æ§åˆ¶æ»šåŠ¨èŒƒå›´
 	void UpdateScrollRangeSize();												
 	void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);		
 	
@@ -38,21 +38,21 @@ public:
 	DMCode OnCheckChanging(DMEventArgs* pEvt);
 	DMCode OnCheckChanged(DMEventArgs* pEvt);
 
-	// ¿ØÖÆ¸÷frame
+	// æ§åˆ¶å„frame
 	DMCode HoverInSelOrAddMode(DUIWindow* pDUIHover);
 	DMCode SelFrameInAllMode();
 	DMCode DragFrameInSelMode();
 
 public:
 	DUIRoot*											m_pShow;
-	DUIStatic*											m_pHoverlFrame;					///< ÔÚSelectMode»òAddModeÊ±¿òÑ¡Í£ÁôDUI
-	DUIStatic*                                          m_pSelFrame;                    ///< ÔÚËùÓĞÄ£Ê½ÏÂ¿òÑ¡ Ñ¡ÖĞµÄÊ÷ĞÎ¿Ø¼ş ¶ÔÓ¦µÄDUI
-	DUIDragFrame*                                       m_pDragFrame;                   ///< ÔÚSelectModeÏÂ¿òÑ¡ Ñ¡ÖĞµÄÊ÷ĞÎ¿Ø¼ş  ¶ÔÓ¦µÄDUI
+	DUIStatic*											m_pHoverlFrame;					///< åœ¨SelectModeæˆ–AddModeæ—¶æ¡†é€‰åœç•™DUI
+	DUIStatic*                                          m_pSelFrame;                    ///< åœ¨æ‰€æœ‰æ¨¡å¼ä¸‹æ¡†é€‰ é€‰ä¸­çš„æ ‘å½¢æ§ä»¶ å¯¹åº”çš„DUI
+	DUIDragFrame*                                       m_pDragFrame;                   ///< åœ¨SelectModeä¸‹æ¡†é€‰ é€‰ä¸­çš„æ ‘å½¢æ§ä»¶  å¯¹åº”çš„DUI
 
 	//
 	ObjXml*												m_pObjXml;
 	DUITabCtrl*											m_pTools;
-	DUICheckBox*									    m_pCheckBtn;					///< m_pChcekBtnºÍm_pTools»¥Ïà¿ØÖÆ£¬Ö»ÓĞÔÚAddModeÏÂ²ÅÄÜÑ¡ÖĞm_pChcekBtn
+	DUICheckBox*									    m_pCheckBtn;					///< m_pChcekBtnå’Œm_pToolsäº’ç›¸æ§åˆ¶ï¼Œåªæœ‰åœ¨AddModeä¸‹æ‰èƒ½é€‰ä¸­m_pChcekBtn
 	DesignMode											m_DesignMod;
 	CRect												m_rcMeasure;
 	bool                                                m_bInit;

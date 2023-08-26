@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: 
 // File Des: 
-// File Summary:¹Ø¼ü¼ÆËã¹«Ê½£ºnPage/(nMax-nMin+1)=»¬¿é³¤¶È/¹ö¶¯ÌõµÄ×Ü³¤¶È£¨¾ÍÊÇ»¬¿é¿É»¬¶¯µÄ²Û£©
+// File Summary:å…³é”®è®¡ç®—å…¬å¼ï¼šnPage/(nMax-nMin+1)=æ»‘å—é•¿åº¦/æ»šåŠ¨æ¡çš„æ€»é•¿åº¦ï¼ˆå°±æ˜¯æ»‘å—å¯æ»‘åŠ¨çš„æ§½ï¼‰
 // Cur Version: 1.0
 // Author:http://hgy413.com/1894.html
 // Create Data:
@@ -17,20 +17,20 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIScrollBase"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIScrollBase"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIScrollBaseAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* SKIN_sbskin;								    ///< ¹ö¶¯ÌõÍ¼Æ¬,Ê¾Àı:sbskin="ScrollBar"
-		static const char* INT_sbwidth;									///< ¹ö¶¯ÌõµÄ¿í¶È£¬Ä¬ÈÏÎª-1(¹ö¶¯ÌõÍ¼Æ¬¿í/9),Ê¾Àı:sbwidth="16"
-		static const char* INT_arrowwidth;                                 ///< ÉÏÏÂ£¨×óÓÒ£©¼ıÍ·µÄ¸ß¶È(¿í¶È),Ê¾Àı:arrowwidth="10"
-		static const char* INT_minithumblen;								///< ×îĞ¡¹öÂÖ¸ß¶È, Ä¬ÈÏ18, Ê¾Àı:minithumblen="18"
-		static const char* OPTION_sbenable;							    ///< ÊÇ·ñÆôÓÃ¹ö¶¯Ìõ,¶ÔÓ¦ºêDMSB_NULL¡¢DMSB_HORZ¡¢DMSB_VERT,Ê¾Àı:sbenable="1"
-		static const char* SIZE_range;                                     ///< ¹ö¶¯·¶Î§,Ê¾Àı:range="1,100"
-		static const char* POINT_curpos;                                   ///< µ±Ç°¹ö¶¯Î»ÖÃ,xÖ¸ÏòË®Æ½scrollµÄnPos,yÖ¸ÏòÊúÖ±scrollµÄnPos,Ê¾Àı:curpos="10,20"
-		static const char* bool_bnowheelscroll;                            ///< ½ûÓÃ¹öÂÖ¹ö¶¯£¬Ê¾Àı:bnowheelscroll="1"
-		static const char* bool_bpagesplit;                                ///< Ä¬ÈÏÎªtrue,´ËÊ±Çø·ÖSB_PAGEUP+SB_PAGEDOWN(ÉÏÏÂ»¬²ÛÇøÓò),Îªfalse±íÊ¾(»¬²ÛÇøÓò=ÉÏ»¬²Û+¹ö¶¯¿é+ÏÂ»¬²Û),Ê¾Àı:bpagesplit="1"
+		static const char* SKIN_sbskin;								    ///< æ»šåŠ¨æ¡å›¾ç‰‡,ç¤ºä¾‹:sbskin="ScrollBar"
+		static const char* INT_sbwidth;									///< æ»šåŠ¨æ¡çš„å®½åº¦ï¼Œé»˜è®¤ä¸º-1(æ»šåŠ¨æ¡å›¾ç‰‡å®½/9),ç¤ºä¾‹:sbwidth="16"
+		static const char* INT_arrowwidth;                                 ///< ä¸Šä¸‹ï¼ˆå·¦å³ï¼‰ç®­å¤´çš„é«˜åº¦(å®½åº¦),ç¤ºä¾‹:arrowwidth="10"
+		static const char* INT_minithumblen;								///< æœ€å°æ»šè½®é«˜åº¦, é»˜è®¤18, ç¤ºä¾‹:minithumblen="18"
+		static const char* OPTION_sbenable;							    ///< æ˜¯å¦å¯ç”¨æ»šåŠ¨æ¡,å¯¹åº”å®DMSB_NULLã€DMSB_HORZã€DMSB_VERT,ç¤ºä¾‹:sbenable="1"
+		static const char* SIZE_range;                                     ///< æ»šåŠ¨èŒƒå›´,ç¤ºä¾‹:range="1,100"
+		static const char* POINT_curpos;                                   ///< å½“å‰æ»šåŠ¨ä½ç½®,xæŒ‡å‘æ°´å¹³scrollçš„nPos,yæŒ‡å‘ç«–ç›´scrollçš„nPos,ç¤ºä¾‹:curpos="10,20"
+		static const char* bool_bnowheelscroll;                            ///< ç¦ç”¨æ»šè½®æ»šåŠ¨ï¼Œç¤ºä¾‹:bnowheelscroll="1"
+		static const char* bool_bpagesplit;                                ///< é»˜è®¤ä¸ºtrue,æ­¤æ—¶åŒºåˆ†SB_PAGEUP+SB_PAGEDOWN(ä¸Šä¸‹æ»‘æ§½åŒºåŸŸ),ä¸ºfalseè¡¨ç¤º(æ»‘æ§½åŒºåŸŸ=ä¸Šæ»‘æ§½+æ»šåŠ¨å—+ä¸‹æ»‘æ§½),ç¤ºä¾‹:bpagesplit="1"
 	};
 	DMAttrValueInit(DUIScrollBaseAttr,SKIN_sbskin)DMAttrValueInit(DUIScrollBaseAttr,INT_sbwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_arrowwidth)DMAttrValueInit(DUIScrollBaseAttr,INT_minithumblen)
 	DMAttrValueInit(DUIScrollBaseAttr,OPTION_sbenable)DMAttrValueInit(DUIScrollBaseAttr,SIZE_range)
@@ -41,7 +41,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIScrollBaseµÄÄÚÖÃÊµÏÖ,½öÓÃÓÚÎª´°¿ÚÀ©Õ¹scrollbar,ÊôĞÔ£º<see cref="DMAttr::DUIScrollBaseAttr"/>
+	///		 DUIScrollBaseçš„å†…ç½®å®ç°,ä»…ç”¨äºä¸ºçª—å£æ‰©å±•scrollbar,å±æ€§ï¼š<see cref="DMAttr::DUIScrollBaseAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIScrollBase:public DUIWindow
 	{
@@ -51,30 +51,30 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú
+		// Function Des: å¯¹å¤–æ¥å£
 		//---------------------------------------------------
-		bool GetScrollInfo(bool bVert, LPSCROLLINFO lpsi);						///< »ñµÃ¹ö¶¯ÌõĞÅÏ¢
-		bool SetScrollInfo(bool bVert,LPSCROLLINFO lpsi, bool bRedraw);			///< Ç¿ÖÆ¸Ä±ä¹ö¶¯ÌõĞÅÏ¢
-		bool ShowScrollBar(int wBar, bool bShow);								///< ÊÇ·ñÏÔÊ¾¹ö¶¯Ìõ
-		bool EnableScrollBar(int wBar,bool bEnable);							///< ÊÇ·ñ½ûÓÃ¹ö¶¯Ìõ					
-		bool SetScrollPos(bool bVert, int nNewPos,bool bRedraw);                ///< ÉèÖÃ¹ö¶¯ÌõĞÂµÄ¹ö¶¯Î»ÖÃ
-		bool SetScrollRange(bool bVert,int nMinPos,int nMaxPos,bool bRedraw);	///< ÉèÖÃ¹ö¶¯ÌõµÄ¹ö¶¯·¶Î§
-		bool GetScrollRange(bool bVert,LPINT lpMinPos,LPINT lpMaxPos);			///< »ñµÃ¹ö¶¯ÌõµÄ¹ö¶¯·¶Î§
-		bool IsScrollBarEnable(bool bVert);	                                    ///< ¹ö¶¯ÌõÊÇ·ñ¿ÉÓÃ							
-		void SetScrollInfo(SCROLLINFO si,bool bVert);							///< °´ÑÚÂëÉèÖÃ¹ö¶¯ÌõĞÅÏ¢
-		int GetScrollPos(bool bVert);                                           ///< »ñÈ¡¹ö¶¯Ìõµ±Ç°Î»ÖÃ
+		bool GetScrollInfo(bool bVert, LPSCROLLINFO lpsi);						///< è·å¾—æ»šåŠ¨æ¡ä¿¡æ¯
+		bool SetScrollInfo(bool bVert,LPSCROLLINFO lpsi, bool bRedraw);			///< å¼ºåˆ¶æ”¹å˜æ»šåŠ¨æ¡ä¿¡æ¯
+		bool ShowScrollBar(int wBar, bool bShow);								///< æ˜¯å¦æ˜¾ç¤ºæ»šåŠ¨æ¡
+		bool EnableScrollBar(int wBar,bool bEnable);							///< æ˜¯å¦ç¦ç”¨æ»šåŠ¨æ¡					
+		bool SetScrollPos(bool bVert, int nNewPos,bool bRedraw);                ///< è®¾ç½®æ»šåŠ¨æ¡æ–°çš„æ»šåŠ¨ä½ç½®
+		bool SetScrollRange(bool bVert,int nMinPos,int nMaxPos,bool bRedraw);	///< è®¾ç½®æ»šåŠ¨æ¡çš„æ»šåŠ¨èŒƒå›´
+		bool GetScrollRange(bool bVert,LPINT lpMinPos,LPINT lpMaxPos);			///< è·å¾—æ»šåŠ¨æ¡çš„æ»šåŠ¨èŒƒå›´
+		bool IsScrollBarEnable(bool bVert);	                                    ///< æ»šåŠ¨æ¡æ˜¯å¦å¯ç”¨							
+		void SetScrollInfo(SCROLLINFO si,bool bVert);							///< æŒ‰æ©ç è®¾ç½®æ»šåŠ¨æ¡ä¿¡æ¯
+		int GetScrollPos(bool bVert);                                           ///< è·å–æ»šåŠ¨æ¡å½“å‰ä½ç½®
 
-		// ¸üĞÂscroll£¡£¡£¡
-		virtual void UpdateScrollBar();											///< ¸ù¾İsizeºÍviewsize×Ô¶¯¼ÆËã£¬ÊÇ·ñÆôÓÃË®Æ½¡¢ÊúÖ±¹ö¶¯Ìõ
-		void SetRangeSize(CSize szRange);										///< ÉèÖÃ¹ö¶¯·¶Î§
-		void SetRangeCurPos(CPoint pt);											///< ÉèÖÃµ±Ç°¹ö¶¯Î»ÖÃ
+		// æ›´æ–°scrollï¼ï¼ï¼
+		virtual void UpdateScrollBar();											///< æ ¹æ®sizeå’Œviewsizeè‡ªåŠ¨è®¡ç®—ï¼Œæ˜¯å¦å¯ç”¨æ°´å¹³ã€ç«–ç›´æ»šåŠ¨æ¡
+		void SetRangeSize(CSize szRange);										///< è®¾ç½®æ»šåŠ¨èŒƒå›´
+		void SetRangeCurPos(CPoint pt);											///< è®¾ç½®å½“å‰æ»šåŠ¨ä½ç½®
 
-		// ¹Ø¼üº¯Êı£¡£¡£¡£¡
-		virtual bool OnScroll(bool bVert,UINT uCode,int nPos);					///< ¹ö¶¯,×ÓÀà¿ÉÖØÔØÕâ¸öº¯ÊıÀ´ÊµÏÖµã»÷¹ö¶¯Ìõ¹ö¶¯´°¿ÚÄÚÈİ
-		virtual int GetScrollLineSize(bool bVert){return 10;}					///< µã»÷ÉÏÏÂ¼ıÍ·¹ö¶¯¾àÀë
+		// å…³é”®å‡½æ•°ï¼ï¼ï¼ï¼
+		virtual bool OnScroll(bool bVert,UINT uCode,int nPos);					///< æ»šåŠ¨,å­ç±»å¯é‡è½½è¿™ä¸ªå‡½æ•°æ¥å®ç°ç‚¹å‡»æ»šåŠ¨æ¡æ»šåŠ¨çª—å£å†…å®¹
+		virtual int GetScrollLineSize(bool bVert){return 10;}					///< ç‚¹å‡»ä¸Šä¸‹ç®­å¤´æ»šåŠ¨è·ç¦»
 
-		virtual void OnRangeSizeChanged(CSize szOld,CSize szNew){}              ///< µ±¹ö¶¯·¶Î§¸Ä±äÊ±´¥·¢
-		virtual void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);           ///< µ±¹ö¶¯Î»ÖÃ¸Ä±äÊ±´¥·¢
+		virtual void OnRangeSizeChanged(CSize szOld,CSize szNew){}              ///< å½“æ»šåŠ¨èŒƒå›´æ”¹å˜æ—¶è§¦å‘
+		virtual void OnRangeCurPosChanged(CPoint ptOld,CPoint ptNew);           ///< å½“æ»šåŠ¨ä½ç½®æ”¹å˜æ—¶è§¦å‘
 		
 	public:
 		DM_BEGIN_MSG_MAP()
@@ -93,7 +93,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		int OnCreate(LPVOID);
 		void OnSize(UINT nType,CSize size);
@@ -103,27 +103,27 @@ namespace DM
 		void OnNcMouseMove(UINT nFlags, CPoint point) ;
 		void OnNcMouseLeave();
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
-		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);// ´Ë´¦ÖØÉè¿Í»§Çø´óĞ¡
+		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);// æ­¤å¤„é‡è®¾å®¢æˆ·åŒºå¤§å°
 		void OnShowWindow(BOOL bShow, UINT nStatus); 
 		void DM_OnTimer(char cTimerID);
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
-		DMCode DV_GetClientRect(LPRECT lpRect);										///< ´ËÊ±¼ÆËãËŞÖ÷¿Í»§ÇøÒªÅÅ³ı¹ö¶¯Ìõ
-		DMCode DV_OnNcHitTest(CPoint pt);											///< Ä£Äâ·Ç¿Í»§Çø
-		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);								    ///< »»·ô
+		DMCode DV_GetClientRect(LPRECT lpRect);										///< æ­¤æ—¶è®¡ç®—å®¿ä¸»å®¢æˆ·åŒºè¦æ’é™¤æ»šåŠ¨æ¡
+		DMCode DV_OnNcHitTest(CPoint pt);											///< æ¨¡æ‹Ÿéå®¢æˆ·åŒº
+		DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);								    ///< æ¢è‚¤
 		
 	public:
-		bool HasScrollBar(bool bVert);												///< ÊÇ·ñ´æÔÚ¹ö¶¯Ìõ£¨Ë®Æ½/ÊúÖ±£©
-		CRect GetScrollBarRect(bool bVert);											///< »ñµÃ¹ö¶¯ÌõËùÔÚÇøÓò£¨Ë®Æ½/ÊúÖ±£©
-		CRect GetSbPartRect(bool bVert,UINT uSBCode);								///< »ñÈ¡¹ö¶¯ÌõÖ¸¶¨Ä³²¿·ÖµÄÇøÓò
-		CRect GetSbRailwayRect(bool bVert);											///< »ñÈ¡¹ö¶¯Ìõ³ı¼ıÍ·ÍâµÄÇøÓò
-		CRect GetSbSlideRectByPos(bool bVert,int nPos);								///< ¸ù¾İnPos»ñµÃ¹ö¶¯»¬¿éËùÔÚµÄÎ»ÖÃ
-		SBSTATEINFO HitTest(CPoint pt);												///< »ñÈ¡×´Ì¬µÈĞÅÏ¢×éºÏ
-		int GetSbSlideLength(bool bVert);											///< »ñÈ¡¹ö¶¯»¬¿éµÄ³¤¶È
-		void ScrollUpdateWindow();													///< ¹ö¶¯Ìõ¸üĞÂµ½´°¿ÚÏÔÊ¾
+		bool HasScrollBar(bool bVert);												///< æ˜¯å¦å­˜åœ¨æ»šåŠ¨æ¡ï¼ˆæ°´å¹³/ç«–ç›´ï¼‰
+		CRect GetScrollBarRect(bool bVert);											///< è·å¾—æ»šåŠ¨æ¡æ‰€åœ¨åŒºåŸŸï¼ˆæ°´å¹³/ç«–ç›´ï¼‰
+		CRect GetSbPartRect(bool bVert,UINT uSBCode);								///< è·å–æ»šåŠ¨æ¡æŒ‡å®šæŸéƒ¨åˆ†çš„åŒºåŸŸ
+		CRect GetSbRailwayRect(bool bVert);											///< è·å–æ»šåŠ¨æ¡é™¤ç®­å¤´å¤–çš„åŒºåŸŸ
+		CRect GetSbSlideRectByPos(bool bVert,int nPos);								///< æ ¹æ®nPosè·å¾—æ»šåŠ¨æ»‘å—æ‰€åœ¨çš„ä½ç½®
+		SBSTATEINFO HitTest(CPoint pt);												///< è·å–çŠ¶æ€ç­‰ä¿¡æ¯ç»„åˆ
+		int GetSbSlideLength(bool bVert);											///< è·å–æ»šåŠ¨æ»‘å—çš„é•¿åº¦
+		void ScrollUpdateWindow();													///< æ»šåŠ¨æ¡æ›´æ–°åˆ°çª—å£æ˜¾ç¤º
 
 	public:
 		void DrawScrollBar(IDMCanvas *pCanvas,LPCRECT lpRectDraw,int iSbCode,int iState,bool bVert, BYTE alpha=0xff);
@@ -150,31 +150,31 @@ namespace DM
 		DMCode OnAttributePos(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		bool                        m_bnowheelscroll;   ///< ½ûÖ¹Í¨¹ı¹öÂÖ¹ö¶¯
-		bool                        m_bpagesplit;       ///< trueÊ±Çø·ÖSB_PAGEUP+SB_PAGEDOWN(ÉÏÏÂ»¬²ÛÇøÓò)
-		DMSmartPtrT<IDMSkin>        m_psbSkin;			///< ¹ö¶¯ÌõÍ¼ĞÎ
-		CRect						m_rcsbClient;       ///< µ±Ç°¿Í»§ÇøÓò(Èç¹ûÓĞ¹ö¶¯Ìõ£¬Ôò³ıÈ¥¹ö¶¯Ìõ)
-		int							m_isbWid;			///< ¹ö¶¯ÌõµÄ¿í¶È(Ä¬ÈÏË®Æ½ºÍÊúÖ±¹ö¶¯Ìõ¿í¶ÈÏàÍ¬,¾ÍÊ¹ÓÃÒ»¸ö²ÎÊı°É
-		int							m_isbVisible;		///< ¹ö¶¯ÌõÏÔÊ¾ĞÅÏ¢,¶ÔÓ¦ºêDMSB_NULL¡¢DMSB_HORZ¡¢DMSB_VERT
-		int							m_isbEnable;	    ///< ¹ö¶¯Ìõ¿É²Ù×÷ĞÅÏ¢,¶ÔÓ¦ºêDMSB_NULL¡¢DMSB_HORZ¡¢DMSB_VERT
-		int                         m_isbAllowSize;     ///< ¹ö¶¯ÌõÉÏÏÂ¼ıÍ·¸ß¶È(»ò×óÓÒ)
-		int                         m_iMiniThumbLen;    ///< ×îĞ¡¹öÂÖ¸ß¶È
+		bool                        m_bnowheelscroll;   ///< ç¦æ­¢é€šè¿‡æ»šè½®æ»šåŠ¨
+		bool                        m_bpagesplit;       ///< trueæ—¶åŒºåˆ†SB_PAGEUP+SB_PAGEDOWN(ä¸Šä¸‹æ»‘æ§½åŒºåŸŸ)
+		DMSmartPtrT<IDMSkin>        m_psbSkin;			///< æ»šåŠ¨æ¡å›¾å½¢
+		CRect						m_rcsbClient;       ///< å½“å‰å®¢æˆ·åŒºåŸŸ(å¦‚æœæœ‰æ»šåŠ¨æ¡ï¼Œåˆ™é™¤å»æ»šåŠ¨æ¡)
+		int							m_isbWid;			///< æ»šåŠ¨æ¡çš„å®½åº¦(é»˜è®¤æ°´å¹³å’Œç«–ç›´æ»šåŠ¨æ¡å®½åº¦ç›¸åŒ,å°±ä½¿ç”¨ä¸€ä¸ªå‚æ•°å§
+		int							m_isbVisible;		///< æ»šåŠ¨æ¡æ˜¾ç¤ºä¿¡æ¯,å¯¹åº”å®DMSB_NULLã€DMSB_HORZã€DMSB_VERT
+		int							m_isbEnable;	    ///< æ»šåŠ¨æ¡å¯æ“ä½œä¿¡æ¯,å¯¹åº”å®DMSB_NULLã€DMSB_HORZã€DMSB_VERT
+		int                         m_isbAllowSize;     ///< æ»šåŠ¨æ¡ä¸Šä¸‹ç®­å¤´é«˜åº¦(æˆ–å·¦å³)
+		int                         m_iMiniThumbLen;    ///< æœ€å°æ»šè½®é«˜åº¦
 
-		SBSTATEINFO                 m_sbInfo;           ///< ¼ÇÂ¼×´Ì¬µÈĞÅÏ¢×éºÏ£¬ºÍDMScrollBarSkinImplÏàºôÓ¦
+		SBSTATEINFO                 m_sbInfo;           ///< è®°å½•çŠ¶æ€ç­‰ä¿¡æ¯ç»„åˆï¼Œå’ŒDMScrollBarSkinImplç›¸å‘¼åº”
 
-		SCROLLINFO					m_siVer;			///< ¹Ø¼ü½á¹¹,×ÓÀà¿ÉÍ¨¹ı¿ØÖÆËüÀ´¿ØÖÆ¹ö¶¯ÌõµÄ×´Ì¬£¨ÊúÖ±£©
-		SCROLLINFO                  m_siHoz;			///< ¹Ø¼ü½á¹¹,×ÓÀà¿ÉÍ¨¹ı¿ØÖÆËüÀ´¿ØÖÆ¹ö¶¯ÌõµÄ×´Ì¬£¨Ë®Æ½£©
+		SCROLLINFO					m_siVer;			///< å…³é”®ç»“æ„,å­ç±»å¯é€šè¿‡æ§åˆ¶å®ƒæ¥æ§åˆ¶æ»šåŠ¨æ¡çš„çŠ¶æ€ï¼ˆç«–ç›´ï¼‰
+		SCROLLINFO                  m_siHoz;			///< å…³é”®ç»“æ„,å­ç±»å¯é€šè¿‡æ§åˆ¶å®ƒæ¥æ§åˆ¶æ»šåŠ¨æ¡çš„çŠ¶æ€ï¼ˆæ°´å¹³ï¼‰
 
-		int							m_isbDragPos;		///< ¶ÔÓ¦SCROLLINFO.nPos(Ë®Æ½¡¢ÊúÖ±)
-		CPoint						m_sbDragPt;			///< ÍÏ¶¯µÄÎ»ÖÃ£¨x±íÊ¾Ë®Æ½£¬y±íÊ¾ÊúÖ±)
-		bool						m_bsbDrag;          ///< ÍÏ¶¯×´Ì¬£¨Êó±ê°´ÏÂÊ±ÔÚ»¬¿éÉÏ£©
+		int							m_isbDragPos;		///< å¯¹åº”SCROLLINFO.nPos(æ°´å¹³ã€ç«–ç›´)
+		CPoint						m_sbDragPt;			///< æ‹–åŠ¨çš„ä½ç½®ï¼ˆxè¡¨ç¤ºæ°´å¹³ï¼Œyè¡¨ç¤ºç«–ç›´)
+		bool						m_bsbDrag;          ///< æ‹–åŠ¨çŠ¶æ€ï¼ˆé¼ æ ‡æŒ‰ä¸‹æ—¶åœ¨æ»‘å—ä¸Šï¼‰
 
-		DWORD						m_dwUpdateTime;		///< ¼ÇÂ¼µ÷ÓÃUpdateSWindowµÄÊ±¼ä
+		DWORD						m_dwUpdateTime;		///< è®°å½•è°ƒç”¨UpdateSWindowçš„æ—¶é—´
 		DWORD						m_dwUpdateInterval;
 		
-		CSize                       m_szRange;          ///< ¹ö¶¯ÇøµÄ¿í¸ß
-		CPoint                      m_ptCurPos;         ///< xÖ¸ÏòË®Æ½scrollµÄnPos,yÖ¸ÏòÊúÖ±scrollµÄnPos
-		bool                        m_bUseRange;        ///< Õë¶Ôedit£¬Ëü×Ô¶¯¼ÆËãÊÇ·ñÏÔÊ¾¹ö¶¯Ìõ£¬²»ĞèÒªm_szRange + m_ptCurPos
+		CSize                       m_szRange;          ///< æ»šåŠ¨åŒºçš„å®½é«˜
+		CPoint                      m_ptCurPos;         ///< xæŒ‡å‘æ°´å¹³scrollçš„nPos,yæŒ‡å‘ç«–ç›´scrollçš„nPos
+		bool                        m_bUseRange;        ///< é’ˆå¯¹editï¼Œå®ƒè‡ªåŠ¨è®¡ç®—æ˜¯å¦æ˜¾ç¤ºæ»šåŠ¨æ¡ï¼Œä¸éœ€è¦m_szRange + m_ptCurPos
 	};
 
 }//namespace DM

@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMCanvasImpl.h"
 #include <math.h>
 
@@ -19,9 +19,9 @@ namespace DM
 		m_pRender	 = pRender;
 		m_ptOrg.x    = m_ptOrg.y = 0;
 
-		::SetBkMode(m_hdc,TRANSPARENT);    // ÉèÖÃÍ¸Ã÷±³¾°
+		::SetBkMode(m_hdc,TRANSPARENT);    // è®¾ç½®é€æ˜èƒŒæ™¯
 
-		// ³õÊ¼»¯±»Ñ¡ÈëDCµÄµ±Ç°Í¼Ôª -----------------
+		// åˆå§‹åŒ–è¢«é€‰å…¥DCçš„å½“å‰å›¾å…ƒ -----------------
 		DMSmartPtrT<IDMPen> pPen;
 		m_pRender->CreatePen( PBGRA(0, 0, 0,0xFF), PS_SOLID, 1, &pPen);
 		SelectObject(pPen);
@@ -30,12 +30,12 @@ namespace DM
 		m_pRender->CreateSolidColorBrush(PBGRA(0, 0, 0,0xFF),&pBrush);
 		SelectObject(pBrush);
 
-		// Õâ²¿·Ö´úÂëĞèÔÚXML½âÎöºó»ñÈ¡Ö¸¶¨Ä¬ÈÏµÄfont
+		// è¿™éƒ¨åˆ†ä»£ç éœ€åœ¨XMLè§£æåè·å–æŒ‡å®šé»˜è®¤çš„font
 		DMSmartPtrT<IDMFont> pFont;
 		LOGFONTW lf = {0};
 		lf.lfQuality = CLEARTYPE_QUALITY;
 		lf.lfHeight	=  20;
-		wcscpy_s(lf.lfFaceName,L"ËÎÌå");
+		wcscpy_s(lf.lfFaceName,L"å®‹ä½“");
 		m_pRender->CreateFont(&lf,&pFont);
 		SelectObject(pFont);
 
@@ -59,7 +59,7 @@ namespace DM
 		}
 
 		DMCode iErr = DM_ECODE_OK;
-		// ÁÙÊ±±äÁ¿£¬Èç¹ûppOldObjÎª¿Õ,ËüÔÚÎö¹¹Ê±»áÊÍ·ÅÔ­Ê¼µÄ¶ÔÏó
+		// ä¸´æ—¶å˜é‡ï¼Œå¦‚æœppOldObjä¸ºç©º,å®ƒåœ¨ææ„æ—¶ä¼šé‡Šæ”¾åŸå§‹çš„å¯¹è±¡
 		DMSmartPtrT<IDMMetaFile> pPreObj;
 		switch (pObj->GetType())
 		{
@@ -104,7 +104,7 @@ namespace DM
 
 		if (pPreObj&&NULL != ppOldObj)
 		{
-			pPreObj->AddRef();// ÓÉ»ñÈ¡Õßµ÷ÓÃReleaseÀ´ÊÍ·Å
+			pPreObj->AddRef();// ç”±è·å–è€…è°ƒç”¨Releaseæ¥é‡Šæ”¾
 			*ppOldObj = pPreObj;
 		}
 		return iErr;
@@ -152,7 +152,7 @@ namespace DM
 
 		if (DMSUCCEEDED(iErr)&&(*ppObj))
 		{
-			(*ppObj)->AddRef();// ÓÉ»ñÈ¡Õßµ÷ÓÃReleaseÀ´ÊÍ·Å
+			(*ppObj)->AddRef();// ç”±è·å–è€…è°ƒç”¨Releaseæ¥é‡Šæ”¾
 		}
 		return iErr;
 	}
@@ -170,7 +170,7 @@ namespace DM
 			}
 
 			HBITMAP hBmp = ::CreateCompatibleBitmap(m_hdc,0,0);
-			m_hdc.SelectObject(hBmp);// ÁÙÊ±¶ÔÏó£¬·ÀÖ¹ÔÚInitÖĞµÄHBITMAP±»Îö¹¹
+			m_hdc.SelectObject(hBmp);// ä¸´æ—¶å¯¹è±¡ï¼Œé˜²æ­¢åœ¨Initä¸­çš„HBITMAPè¢«ææ„
 			if (!DMSUCCEEDED(m_pCurBitmap->Init(size.cx, size.cy)))
 			{
 				DM_DELETE_OBJECT(hBmp);
@@ -353,7 +353,7 @@ namespace DM
 			BLENDFUNCTION bf = {AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
 			int nWidth		 = 0;
 			int nHeight	     = 0;
-			if (DEM_TILE == lowExpandMode) // Æ½ÆÌ
+			if (DEM_TILE == lowExpandMode) // å¹³é“º
 			{
 				::IntersectClipRect(m_hdc, lpRectDest->left,lpRectDest->top,lpRectDest->right,lpRectDest->bottom);
 				nWidth	= lpRectSrc->right - lpRectSrc->left;
@@ -379,7 +379,7 @@ namespace DM
 				}
 			}
 
-			dcMem.DeleteDC(); //ÕâÀïÈç¹û²»ÊÍ·Å£¬ÏÂ´ÎAlphaBlend¾Í»áÊ§°Ü£¡gtest²âÊÔ½á¹û
+			dcMem.DeleteDC(); //è¿™é‡Œå¦‚æœä¸é‡Šæ”¾ï¼Œä¸‹æ¬¡AlphaBlendå°±ä¼šå¤±è´¥ï¼gtestæµ‹è¯•ç»“æœ
 		} while (false);
 		::RestoreDC(m_hdc, iSaveState);
 		return iErr;
@@ -395,7 +395,7 @@ namespace DM
 				break;
 			}
 			WORD hiExpandMode = HIWORD(ExpandMode);
-			// 9¹¬¸ñ£¬xDest¡¢xSrc¶ÔÓ¦ÒÔ×óÉÏ½ÇÎªÔ­µã£¬9¹¬¸ñ»®·ÖµÄ4¸öºá×ø±ê£¬yDest¡¢ySrcÒÔ×óÉÏ½ÇÎªÔ­µã£¬9¹¬¸ñ»®·ÖµÄ4¸ö×İ×ø±ê
+			// 9å®«æ ¼ï¼ŒxDestã€xSrcå¯¹åº”ä»¥å·¦ä¸Šè§’ä¸ºåŸç‚¹ï¼Œ9å®«æ ¼åˆ’åˆ†çš„4ä¸ªæ¨ªåæ ‡ï¼ŒyDestã€ySrcä»¥å·¦ä¸Šè§’ä¸ºåŸç‚¹ï¼Œ9å®«æ ¼åˆ’åˆ†çš„4ä¸ªçºµåæ ‡
 			int xDest[4] = {lpRectDest->left,lpRectDest->left+lpSrcMargin->left,lpRectDest->right-lpSrcMargin->right,lpRectDest->right};
 			int yDest[4] = {lpRectDest->top,lpRectDest->top+lpSrcMargin->top,lpRectDest->bottom-lpSrcMargin->bottom,lpRectDest->bottom};
 			int xSrc[4]  = {lpRectSrc->left,lpRectSrc->left+lpSrcMargin->left,lpRectSrc->right-lpSrcMargin->right,lpRectSrc->right};
@@ -409,23 +409,23 @@ namespace DM
 				break;
 			}
 
-			//µ÷ÕûÄ¿±êÎ»ÖÃ
+			//è°ƒæ•´ç›®æ ‡ä½ç½®
 			int iDestWidth = lpRectDest->right-lpRectDest->left;
 			int iDestHeight = lpRectDest->bottom-lpRectDest->top;
 
-			if((lpSrcMargin->left+lpSrcMargin->right) > iDestWidth)// ±ßÔµ¿í¶È´óÓÚÄ¿±ê¿í¶ÈµÄ´¦Àí
+			if((lpSrcMargin->left+lpSrcMargin->right) > iDestWidth)// è¾¹ç¼˜å®½åº¦å¤§äºç›®æ ‡å®½åº¦çš„å¤„ç†
 			{
-				if (lpSrcMargin->left >= iDestWidth)// Ö»»æÖÆ×ó±ß²¿·Ö
+				if (lpSrcMargin->left >= iDestWidth)// åªç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†
 				{
 					xSrc[1] = xSrc[2] = xSrc[3] = xSrc[0]+iDestWidth;
 					xDest[1] = xDest[2] = xDest[3] = xDest[0]+iDestWidth;
 				}
-				else if(lpSrcMargin->right >= iDestWidth)// Ö»»æÖÆÓÒ±ß²¿·Ö
+				else if(lpSrcMargin->right >= iDestWidth)// åªç»˜åˆ¶å³è¾¹éƒ¨åˆ†
 				{
 					xSrc[0] = xSrc[1] = xSrc[2] = xSrc[3]-iDestWidth;
 					xDest[0] = xDest[1] = xDest[2] = xDest[3]-iDestWidth;
 				}
-				else//ÏÈ»æÖÆ×ó±ß²¿·Ö£¬Ê£ÓàµÄÓÃÓÒ±ßÌî³ä
+				else//å…ˆç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†ï¼Œå‰©ä½™çš„ç”¨å³è¾¹å¡«å……
 				{
 					int nRemain=xDest[3]-xDest[1];
 					xSrc[2] = xSrc[3]-nRemain;
@@ -435,17 +435,17 @@ namespace DM
 
 			if (lpSrcMargin->top + lpSrcMargin->bottom > iDestHeight)
 			{
-				if (lpSrcMargin->top >= iDestHeight)// Ö»»æÖÆÉÏ±ß²¿·Ö
+				if (lpSrcMargin->top >= iDestHeight)// åªç»˜åˆ¶ä¸Šè¾¹éƒ¨åˆ†
 				{
 					ySrc[1] = ySrc[2] = ySrc[3] = ySrc[0]+iDestHeight;
 					yDest[1] = yDest[2] = yDest[3] = yDest[0]+iDestHeight;
 				}
-				else if(lpSrcMargin->bottom >= iDestHeight)// Ö»»æÖÆÏÂ±ß²¿·Ö
+				else if(lpSrcMargin->bottom >= iDestHeight)// åªç»˜åˆ¶ä¸‹è¾¹éƒ¨åˆ†
 				{
 					ySrc[0] = ySrc[1] = ySrc[2] = ySrc[3]-iDestHeight;
 					yDest[0] = yDest[1] = yDest[2] = yDest[3]-iDestHeight;
 				}
-				else// ÏÈ»æÖÆ×ó±ß²¿·Ö£¬Ê£ÓàµÄÓÃÓÒ±ßÌî³ä
+				else// å…ˆç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†ï¼Œå‰©ä½™çš„ç”¨å³è¾¹å¡«å……
 				{
 					int nRemain=yDest[3]-yDest[1];
 					ySrc[2] = ySrc[3]-nRemain;
@@ -453,8 +453,8 @@ namespace DM
 				}
 			}
 
-			//¶¨Òå»æÖÆÄ£Ê½
-			DMEXPEND_MODE mode[3][3]={//ËÄ¸ö±ß½Ç´ÓÉÏÃæ¿ÉÒÔ¿´³öÔ´ºÍÄ¿±êµÄ±ß½Ç¾ØĞÎ´óĞ¡×ÜÊÇÒ»ÖÂ
+			//å®šä¹‰ç»˜åˆ¶æ¨¡å¼
+			DMEXPEND_MODE mode[3][3]={//å››ä¸ªè¾¹è§’ä»ä¸Šé¢å¯ä»¥çœ‹å‡ºæºå’Œç›®æ ‡çš„è¾¹è§’çŸ©å½¢å¤§å°æ€»æ˜¯ä¸€è‡´
 				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode),ExpandMode,(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode) },
 				{ExpandMode,ExpandMode,ExpandMode},
 				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode),ExpandMode,(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode) }
@@ -462,13 +462,13 @@ namespace DM
 
 			for (int y=0;y<3;y++)
 			{
-				if (ySrc[y] == ySrc[y+1]) // ¿Õ¾ØĞÎ
+				if (ySrc[y] == ySrc[y+1]) // ç©ºçŸ©å½¢
 				{
 					continue;
 				}
 				for (int x=0;x<3;x++)
 				{
-					if (xSrc[x] == xSrc[x+1]) // ¿Õ¾ØĞÎ
+					if (xSrc[x] == xSrc[x+1]) // ç©ºçŸ©å½¢
 					{
 						continue;
 					}
@@ -498,9 +498,9 @@ namespace DM
 				break;
 			}
 
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurPen->GetPen());
-			::Rectangle(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			::Rectangle(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
 			AlphaBlendRestore(dcMem,alpha);
@@ -564,7 +564,7 @@ namespace DM
 				break;
 			}
 
-			rcDest.OffsetRect(m_ptOrg);// »Øµ½0,0Î»£¡
+			rcDest.OffsetRect(m_ptOrg);// å›åˆ°0,0ä½ï¼
 			if (rcDest.left<0||rcDest.top<0)
 			{
 				break;
@@ -647,9 +647,9 @@ namespace DM
 				break;
 			}
 
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurPen->GetPen());
-			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
 			AlphaBlendRestore(dcMem,alpha);
@@ -674,9 +674,9 @@ namespace DM
 				break;
 			}
 
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurBrush->GetBrush());
-			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			::RoundRect(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,pt.x,pt.y);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 
 			BYTE alpha = 0xFF;
 			if (!m_pCurBrush->IsBitmap())
@@ -705,9 +705,9 @@ namespace DM
 				break;
 			}
 
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurPen->GetPen());
-			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 
 			BYTE alpha = m_pCurPen->GetColor().a;
 			AlphaBlendRestore(dcMem,alpha);
@@ -732,9 +732,9 @@ namespace DM
 				break;
 			}
 
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,lpRect);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurBrush->GetBrush());
-			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			::Ellipse(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 
 			BYTE alpha = 0xFF;
 			if (!m_pCurBrush->IsBitmap())
@@ -881,8 +881,8 @@ namespace DM
 				break;
 			}
 			
-			// ÏÈ¼ÆËãÕæÊµÎÄ×ÖÇøÓò´óĞ¡
-			CRect rcMeasure = *lpRect;// È¡×óÉÏ½Ç×ø±ê
+			// å…ˆè®¡ç®—çœŸå®æ–‡å­—åŒºåŸŸå¤§å°
+			CRect rcMeasure = *lpRect;// å–å·¦ä¸Šè§’åæ ‡
 			::DrawText(m_hdc,lpString,nCount,rcMeasure,uFormat|DT_CALCRECT);
 			CRect rcAll = lpRect;
 			int nMeasureWid = rcMeasure.Width();int nMeasureHei = rcMeasure.Height();
@@ -908,13 +908,13 @@ namespace DM
 				rcMeasure.top    = rcMeasure.bottom-nMeasureHei;
 			}
 			
-			//CRect rcDest = GetRealClipRect(rcMeasure);//ÒÑ¼ÆËã³ö´óĞ¡£¬¾Í²»ÓÃ²Ã¼ôÁË
+			//CRect rcDest = GetRealClipRect(rcMeasure);//å·²è®¡ç®—å‡ºå¤§å°ï¼Œå°±ä¸ç”¨è£å‰ªäº†
 			CRect rcDest = rcMeasure&rcAll;
 			if (rcDest.IsRectEmpty())
 			{
 				break;
 			}
-			if (rcDest.Width()*rcDest.Height()>2000*2000)// ·ÀÖ¹Íâ²¿·Ç·¨´«²Î½øÀ´£¡
+			if (rcDest.Width()*rcDest.Height()>2000*2000)// é˜²æ­¢å¤–éƒ¨éæ³•ä¼ å‚è¿›æ¥ï¼
 			{
 				break;
 			}
@@ -1037,7 +1037,7 @@ namespace DM
 			HRGN hRgn = ::CreateRectRgn(0,0,0,0);
 			::CombineRgn(hRgn,pGdiRgn->GetRegion(),NULL,RGN_COPY);
 			::OffsetRgn(hRgn,m_ptOrg.x,m_ptOrg.y);
-			::SaveDC(m_hdc);							// PopClipÖĞ»Ö¸´DC
+			::SaveDC(m_hdc);							// PopClipä¸­æ¢å¤DC
 			::ExtSelectClipRgn(m_hdc,hRgn,fnCombineMode);
 			::DeleteObject(hRgn);
 			iErr = DM_ECODE_OK;
@@ -1058,7 +1058,7 @@ namespace DM
 			RECT rc = *lpRect;
 			::OffsetRect(&rc,m_ptOrg.x,m_ptOrg.y);
 			HRGN hRgn = ::CreateRectRgnIndirect(&rc);
-			::SaveDC(m_hdc);// PopClipÖĞ»Ö¸´DC
+			::SaveDC(m_hdc);// PopClipä¸­æ¢å¤DC
 			::ExtSelectClipRgn(m_hdc,hRgn,fnCombineMode);
 			::DeleteObject(hRgn);
 			iErr = DM_ECODE_OK;
@@ -1169,7 +1169,7 @@ namespace DM
 		dcMem.SelectObject(m_DIBTemp.m_hBitmap);
 		::SetViewportOrgEx(dcMem,-lpRect->left,-lpRect->top,NULL);
 
-		// ÉèÖÃÈıÎŞ»·¾³------------------------------------
+		// è®¾ç½®ä¸‰æ— ç¯å¢ƒ------------------------------------
 		if (bInherit)
 		{
 			dcMem.SelectObject(m_pCurPen->GetPen());
@@ -1200,7 +1200,7 @@ namespace DM
 		}
 		else
 		{
-			LOG_ERR("CreateDIBSectionÊ§°ÜÁË!\n");
+			LOG_ERR("CreateDIBSectionå¤±è´¥äº†!\n");
 		}
 
 		return dcMem;
@@ -1220,7 +1220,7 @@ namespace DM
 					*p -= 1;
 					if (0 == *p)
 					{
-						memset(p-3,0,3);// ½öxp,win7-32ÏÂĞèÒªÊ¹ÓÃ´Ë·½Ê½
+						memset(p-3,0,3);// ä»…xp,win7-32ä¸‹éœ€è¦ä½¿ç”¨æ­¤æ–¹å¼
 					}
 					//if(*p==0) *p=0xff;
 					//else memset(p-3,0,4);
@@ -1255,7 +1255,7 @@ namespace DM
 	}
 
 	BOOL DMCanvasImpl::GradientFillRect(HDC hdc, const RECT *rcFill, DMColor clrBegin,DMColor clrEnd,BOOL bVert)
-	{// ´Ëº¯Êı¿ÉÒÔ×Ô¼ºÊ¹ÓÃÏßĞÔ²å¼şÊµÏÖ£¬ÈçË®Æ½£¬Ö»ĞèµÃµ½Ò»ĞĞ¼´¿É£¬È»ºómemcpyµ½ÆäÓàĞĞ
+	{// æ­¤å‡½æ•°å¯ä»¥è‡ªå·±ä½¿ç”¨çº¿æ€§æ’ä»¶å®ç°ï¼Œå¦‚æ°´å¹³ï¼Œåªéœ€å¾—åˆ°ä¸€è¡Œå³å¯ï¼Œç„¶åmemcpyåˆ°å…¶ä½™è¡Œ
 		TRIVERTEX        vert[2] ;
 		vert [0] .x      = rcFill->left;
 		vert [0] .y      = rcFill->top;
@@ -1293,19 +1293,19 @@ namespace DM
 			CRect rcArc = *lpRect;
 			int iPenWid = (m_pCurPen->GetWidth()+1)/2;
 			rcArc.InflateRect(iPenWid,iPenWid,iPenWid,iPenWid);
-			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcArc);/// ×¢Òâ£¬ÕâÀïÊ¹ÓÃµÄÊÇlpRect
+			DMAutoMemDC dcMem(m_hdc);AlphaBlendBackup(dcMem,rcArc);/// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨çš„æ˜¯lpRect
 			dcMem.SelectObject(m_pCurPen->GetPen());
 
 			CPoint ptCenter((lpRect->left+lpRect->right)/2,(lpRect->top+lpRect->bottom)/2);
 			int xWid = lpRect->right - ptCenter.x;
 			int yHei = ptCenter.y - lpRect->top;
-			float startAngleMath = startAngle*3.1415926f/180.f;// ×ª³ÉÕæÊµ¿É¼ÆËãµÄ½Ç¶È
-			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// ×ª³ÉÕæÊµ¿É¼ÆËãµÄ½Ç¶È
+			float startAngleMath = startAngle*3.1415926f/180.f;// è½¬æˆçœŸå®å¯è®¡ç®—çš„è§’åº¦
+			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// è½¬æˆçœŸå®å¯è®¡ç®—çš„è§’åº¦
 			int nXStartArc = ptCenter.x + (int)(xWid*cos(startAngleMath));
 			int nYStartArc = ptCenter.y + (int)(yHei*sin(startAngleMath));
 			int nXEndArc   = ptCenter.x + (int)(xWid*cos(sweepAngleMath));
 			int nYEndArc   = ptCenter.y + (int)(yHei*sin(sweepAngleMath));
-			::Arc(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// start·ÅºóÃæ,ÕâÑùºÍgdi+À´±£³ÖÒ»ÖÂ,¶¼ÊÇË³Ê±Õë
+			::Arc(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// startæ”¾åé¢,è¿™æ ·å’Œgdi+æ¥ä¿æŒä¸€è‡´,éƒ½æ˜¯é¡ºæ—¶é’ˆ
 			
 			BYTE alpha = m_pCurPen->GetColor().a;
 			AlphaBlendRestore(dcMem,alpha);
@@ -1336,13 +1336,13 @@ namespace DM
 			CPoint ptCenter((lpRect->left+lpRect->right)/2,(lpRect->top+lpRect->bottom)/2);
 			int xWid = lpRect->right - ptCenter.x;
 			int yHei = ptCenter.y - lpRect->top;
-			float startAngleMath = startAngle*3.1415926f/180.f;// ×ª³ÉÕæÊµ¿É¼ÆËãµÄ½Ç¶È
-			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// ×ª³ÉÕæÊµ¿É¼ÆËãµÄ½Ç¶È
+			float startAngleMath = startAngle*3.1415926f/180.f;// è½¬æˆçœŸå®å¯è®¡ç®—çš„è§’åº¦
+			float sweepAngleMath = (startAngle+sweepAngle)*3.1415926f/180.f;// è½¬æˆçœŸå®å¯è®¡ç®—çš„è§’åº¦
 			int nXStartArc = ptCenter.x + (int)(xWid*cos(startAngleMath));
 			int nYStartArc = ptCenter.y + (int)(yHei*sin(startAngleMath));
 			int nXEndArc   = ptCenter.x + (int)(xWid*cos(sweepAngleMath));
 			int nYEndArc   = ptCenter.y + (int)(yHei*sin(sweepAngleMath));
-			::Pie(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// start·ÅºóÃæ,ÕâÑùºÍgdi+À´±£³ÖÒ»ÖÂ,¶¼ÊÇË³Ê±Õë
+			::Pie(dcMem,lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,nXEndArc,nYEndArc,nXStartArc,nYStartArc);// startæ”¾åé¢,è¿™æ ·å’Œgdi+æ¥ä¿æŒä¸€è‡´,éƒ½æ˜¯é¡ºæ—¶é’ˆ
 
 			BYTE alpha = 0xFF;
 			if (!m_pCurBrush->IsBitmap())

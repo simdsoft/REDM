@@ -1,6 +1,6 @@
-#include "DMDemoAfx.h"
+ï»¿#include "DMDemoAfx.h"
 #include "MainWnd.h"
-#include "IEWnd.h"   ///< realwndÓÉÍâ²¿×Ô¼ºÊµÏÖ½Ó¿Ú´«Èë
+#include "IEWnd.h"   ///< realwndç”±å¤–éƒ¨è‡ªå·±å®ç°æ¥å£ä¼ å…¥
 #include "DUIRealWnd.h"
 #include "DUIWebkit.h"
 
@@ -13,8 +13,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	DMCode iErr = DM_ECODE_OK;
 	DMApp theApp(hInstance);
 
-	// °²×°plugin£¬Èç¹ûÓĞĞèÒª!
-#ifdef DLL_DMMAIN// lib¿âÏÂ²»Ö§³Ö²å¼ş
+	// å®‰è£…pluginï¼Œå¦‚æœæœ‰éœ€è¦!
+#ifdef DLL_DMMAIN// libåº“ä¸‹ä¸æ”¯æŒæ’ä»¶
 #ifdef _DEBUG
 	theApp.LoadPlugins(L"dmpluginsd.cfg");
 #else
@@ -22,24 +22,24 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #endif
 #endif//DLL_DMMAIN
 
-	iErr = theApp.SetDefRegObj("DMResFolderImpl",DMREG_Res);// ÉèÖÃÊ¹ÓÃÄÚÖÃµÄÎÄ¼ş¼Ğ½âÎöRes·½Ê½
-	iErr = theApp.LoadResPack((WPARAM)(L"DMRes"),NULL,NULL); // Â·¾¶×ÜÊÇÏà¶ÔÓÚÉú³ÉÄ¿Â¼
-	iErr = theApp.InitGlobal();								 // ³õÊ¼»¯Ö¸¶¨µÄÈ«¾Öskin¡¢style¡¢Ä¬ÈÏ×ÖÌå
-	iErr = theApp.Register(DMRegHelperT<IERealWnd>(),true);  // ³õÊ¼»¯Íâ²¿¿ØÖÆµÄPop RealWnd
-	//iErr = theApp.Register(DMRegHelperT<DUIRealWnd>(),true); // ³õÊ¼»¯Íâ²¿¿ØÖÆµÄChild RealWnd
-	iErr = theApp.Register(DMRegHelperT<DUIWebKit>(),true);  // ³õÊ¼»¯Íâ²¿¿ØÖÆµÄWebkit
+	iErr = theApp.SetDefRegObj("DMResFolderImpl",DMREG_Res);// è®¾ç½®ä½¿ç”¨å†…ç½®çš„æ–‡ä»¶å¤¹è§£æResæ–¹å¼
+	iErr = theApp.LoadResPack((WPARAM)(L"DMRes"),NULL,NULL); // è·¯å¾„æ€»æ˜¯ç›¸å¯¹äºç”Ÿæˆç›®å½•
+	iErr = theApp.InitGlobal();								 // åˆå§‹åŒ–æŒ‡å®šçš„å…¨å±€skinã€styleã€é»˜è®¤å­—ä½“
+	iErr = theApp.Register(DMRegHelperT<IERealWnd>(),true);  // åˆå§‹åŒ–å¤–éƒ¨æ§åˆ¶çš„Pop RealWnd
+	//iErr = theApp.Register(DMRegHelperT<DUIRealWnd>(),true); // åˆå§‹åŒ–å¤–éƒ¨æ§åˆ¶çš„Child RealWnd
+	iErr = theApp.Register(DMRegHelperT<DUIWebKit>(),true);  // åˆå§‹åŒ–å¤–éƒ¨æ§åˆ¶çš„Webkit
 
 	DMSmartPtrT<CMainWnd> pMainWnd;
 	if (DMSUCCEEDED(iErr))
 	{
 		pMainWnd.Attach(new CMainWnd());
 		g_pMainWnd = pMainWnd;
-		pMainWnd->DM_CreateWindow("dui_main",0,0,0,0,NULL,false);				// ´´½¨Ö÷´°¿Ú
+		pMainWnd->DM_CreateWindow("dui_main",0,0,0,0,NULL,false);				// åˆ›å»ºä¸»çª—å£
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();
 		pMainWnd->ShowWindow(SW_SHOW);
 
-		theApp.Run(pMainWnd->GetSafeHwnd());				// ÔËĞĞµ±Ç°Ïß³ÌµÄÏûÏ¢Ñ­»·£¬²¢¼ÓÈëÏûÏ¢¶ÓÁĞ¹ÜÀíÖĞ
+		theApp.Run(pMainWnd->GetSafeHwnd());				// è¿è¡Œå½“å‰çº¿ç¨‹çš„æ¶ˆæ¯å¾ªç¯ï¼Œå¹¶åŠ å…¥æ¶ˆæ¯é˜Ÿåˆ—ç®¡ç†ä¸­
 	}
 	return (int) 0;
 }

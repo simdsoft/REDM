@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIMenuHelper.h"
 
 namespace DM
@@ -7,10 +7,10 @@ namespace DM
 	{
 		m_pBgSkin = m_pItemSelBgSkin = m_pIconSkin = m_pSepSkin = m_pCheckSkin = NULL;
 		m_nItemHei	  = 16;
-		m_IconOffset  = 0;// iconµÄÆ«ÒÆ»áÔÚOnMeasureItem¼ÆËãµÄ
+		m_IconOffset  = 0;// iconçš„åç§»ä¼šåœ¨OnMeasureItemè®¡ç®—çš„
 		m_TextOffset  = 5;
 		m_StepOffset  = 7;
-		m_szIcon.SetSize(0,0);// iconµÄ´óĞ¡»áÔÚOnMeasureItem¼ÆËãµÄ
+		m_szIcon.SetSize(0,0);// iconçš„å¤§å°ä¼šåœ¨OnMeasureItemè®¡ç®—çš„
 		m_hFont       = NULL;
 		m_byAlpha     = 0xff;
 		m_StepHei     = 1;
@@ -152,12 +152,12 @@ namespace DM
 			CRect rcDraw = rcWnd;
 			rcDraw.OffsetRect(-rcDraw.TopLeft());
 
-			DMSmartPtrT<IDMCanvas> pCanvas;// ´´½¨ÁÙÊ±»­²¼£¬Ë«»º³å
+			DMSmartPtrT<IDMCanvas> pCanvas;// åˆ›å»ºä¸´æ—¶ç”»å¸ƒï¼ŒåŒç¼“å†²
 			DMSmartPtrT<IDMRender> pRender;
 			g_pDMApp->GetDefRegObj((void**)&pRender,DMREG_Render);
 			pRender->CreateCanvas(rcDraw.Width(),rcDraw.Height(),&pCanvas);
 
-			//1. »æÖÆÕû¸ö±³¾°
+			//1. ç»˜åˆ¶æ•´ä¸ªèƒŒæ™¯
 			if (m_pDUIMenuXmlInfo->m_pBgSkin)
 			{
 				m_pDUIMenuXmlInfo->m_pBgSkin->Draw(pCanvas,rcDraw,0);
@@ -167,7 +167,7 @@ namespace DM
 				pCanvas->FillSolidRect(rcDraw,m_pDUIMenuXmlInfo->m_crBg);
 			}
 
-			// 2.ÎªÁË²Ëµ¥µÄ¹ö¶¯ĞèÒª²âÊÔµÚÒ»ÏîµÄĞòºÅ,¼ò°æ¾Í²»¿ª¶¨Ê±Æ÷»æÖÆ¹ö¶¯ÁË£¡
+			// 2.ä¸ºäº†èœå•çš„æ»šåŠ¨éœ€è¦æµ‹è¯•ç¬¬ä¸€é¡¹çš„åºå·,ç®€ç‰ˆå°±ä¸å¼€å®šæ—¶å™¨ç»˜åˆ¶æ»šåŠ¨äº†ï¼
 			int	  nFirstOffs;
 			POINT ptClt = {0, 0};
 			::ClientToScreen(m_hWnd,&ptClt);
@@ -268,12 +268,12 @@ namespace DM
 			{
 				bChecked = true;
 			}
-			if (mii.fType&MFT_RADIOCHECK)// ÕâÊÇtype
+			if (mii.fType&MFT_RADIOCHECK)// è¿™æ˜¯type
 			{
 				bRadio = true;
 			}
 
-			// »æÖÆÑ¡ÖĞITEMÏîµÄ±³¾°¿ò
+			// ç»˜åˆ¶é€‰ä¸­ITEMé¡¹çš„èƒŒæ™¯æ¡†
 			if (bSelected)
 			{
 				if (m_pDUIMenuXmlInfo->m_pItemSelBgSkin)
@@ -286,7 +286,7 @@ namespace DM
 				}
 			}
 
-			// »æÖÆSkin,skinÊ¹ÓÃÕû¸ö±³¾°Çø
+			// ç»˜åˆ¶Skin,skinä½¿ç”¨æ•´ä¸ªèƒŒæ™¯åŒº
 			if (pdmmi->itemInfo.pSkin)
 			{
 				CRect rcSkin = rcItem;
@@ -303,7 +303,7 @@ namespace DM
 				pdmmi->itemInfo.pSkin->Draw(pCanvas, rcSkin, iState);
 			}
 
-			// »æÖÆITEMÏîµÄICON
+			// ç»˜åˆ¶ITEMé¡¹çš„ICON
 			CRect rcIcon;
 			rcIcon.left		= rcItem.left+pdmmi->itemInfo.iconOffset;
 			rcIcon.right	= rcIcon.left+pdmmi->itemInfo.szIcon.cx;
@@ -321,12 +321,12 @@ namespace DM
 				m_pDUIMenuXmlInfo->m_pIconSkin->Draw(pCanvas,rcIcon,pdmmi->itemInfo.iIcon);
 			}
 
-			rcItem.left = rcIcon.right;// ×ª»»³ÉÎÄ×ÖÇøÓò
+			rcItem.left = rcIcon.right;// è½¬æ¢æˆæ–‡å­—åŒºåŸŸ
 
-			// »æÖÆÎÄ×Ö
+			// ç»˜åˆ¶æ–‡å­—
 			if (pdmmi->itemInfo.strText.IsEmpty())
 			{
-				break;// ²»»æÖÆ
+				break;// ä¸ç»˜åˆ¶
 			}
 			CRect rcText = rcItem;
 			rcText.left = rcText.left+pdmmi->itemInfo.textOffset;
@@ -407,7 +407,7 @@ namespace DM
 				break;
 			}
 			if (m_pDUIMenuXmlInfo->m_bHideFrame)
-			{//ÏµÍ³»á×Ô¶¯Ìæ²Ëµ¥¼Ó±ß¿ò£¬Òò´Ë±ØĞëÈ¥µô´Ë²¿·Ö¶îÍâµØ³ß´ç£¬½«²Ëµ¥´óĞ¡¸ÄĞ¡
+			{//ç³»ç»Ÿä¼šè‡ªåŠ¨æ›¿èœå•åŠ è¾¹æ¡†ï¼Œå› æ­¤å¿…é¡»å»æ‰æ­¤éƒ¨åˆ†é¢å¤–åœ°å°ºå¯¸ï¼Œå°†èœå•å¤§å°æ”¹å°
 				LPWINDOWPOS pWP = (LPWINDOWPOS)lParam;  
 				if (pWP)
 				{
@@ -450,7 +450,7 @@ namespace DM
 		}	
 		LRESULT lRet = ::CallWindowProc(m_pOldProc,m_hWnd,WM_CREATE,wParam,lParam);
 		if (m_pDUIMenuXmlInfo->m_bHideFrame)
-		{// È¥µô²Ëµ¥´°¿ÚµÄÒ»Ğ©À©Õ¹·ç¸ñ
+		{// å»æ‰èœå•çª—å£çš„ä¸€äº›æ‰©å±•é£æ ¼
 			::SetWindowLongPtr(m_hWnd, GWL_STYLE, (::GetWindowLongPtr(m_hWnd, GWL_STYLE) & ~WS_BORDER));
 			::SetWindowLongPtr(m_hWnd, GWL_EXSTYLE, (::GetWindowLongPtr(m_hWnd, GWL_EXSTYLE) & ~(WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE)));
 		}
@@ -467,7 +467,7 @@ namespace DM
 				break;
 			}
 			lRet = ::CallWindowProc(m_pOldProc, m_hWnd, WM_KEYFIRST, wParam, lParam);
-			if (!IsMenuWindowExist())// CallWindowProcÔÚwin10ÏÂ¿ÉÄÜÄÚ²¿·¢ËÍWM_NCDESTROYÏú»Ù´°¿Ú,¶øRenderÊÇĞéº¯Êı,´Ó¶ø¿ÉÄÜÒı·¢Òì³£,±ØĞëÔÚ´ËÔÙ´ÎÅĞ¶Ï
+			if (!IsMenuWindowExist())// CallWindowProcåœ¨win10ä¸‹å¯èƒ½å†…éƒ¨å‘é€WM_NCDESTROYé”€æ¯çª—å£,è€ŒRenderæ˜¯è™šå‡½æ•°,ä»è€Œå¯èƒ½å¼•å‘å¼‚å¸¸,å¿…é¡»åœ¨æ­¤å†æ¬¡åˆ¤æ–­
 			{
 				break;
 			}
@@ -535,7 +535,7 @@ namespace DM
 			}
 
 			if (m_pDUIMenuXmlInfo->m_bHideFrame)
-			{// ×èÖ¹·Ç¿Í»§ÇøµØ»æÖÆ
+			{// é˜»æ­¢éå®¢æˆ·åŒºåœ°ç»˜åˆ¶
 				::CallWindowProc(m_pOldProc, m_hWnd, WM_PRINTCLIENT, wParam,lParam);
 			}
 			else

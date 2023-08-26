@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "ActionSlot.h"
 
 ActionSlot::ActionSlot()
@@ -53,7 +53,7 @@ DMCode EditorElemPosChgActionSlot::PerformUndoActionSlot()
 	DMCode iRet = DM_ECODE_FAIL;
 	do
 	{
-		if (!m_hItem || !m_pObjTree->IsItemStillExist(m_pTreeDataLaw, m_pTreeParam)) //ÊÇ·ñÒÑ¾­É¾³ý
+		if (!m_hItem || !m_pObjTree->IsItemStillExist(m_pTreeDataLaw, m_pTreeParam)) //æ˜¯å¦å·²ç»åˆ é™¤
 			break;
 		if (!m_pObjTree->SelectItem(m_hItem))
 			break;
@@ -79,7 +79,7 @@ DMCode EditorElemPosChgActionSlot::PerformRedoActionSlot()
 	DMCode iRet = DM_ECODE_FAIL;
 	do
 	{
-		if (!m_hItem || !m_pObjTree->IsItemStillExist(m_pTreeDataLaw, m_pTreeParam))//ÊÇ·ñÒÑ¾­É¾³ý
+		if (!m_hItem || !m_pObjTree->IsItemStillExist(m_pTreeDataLaw, m_pTreeParam))//æ˜¯å¦å·²ç»åˆ é™¤
 			break;
 		if (!m_pObjTree->SelectItem(m_hItem))
 			break;

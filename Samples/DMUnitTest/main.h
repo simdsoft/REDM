@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #pragma once
 
@@ -8,8 +8,8 @@ public:
 	virtual void SetUp();
 	virtual void TearDown();
 
-public://È«¾Ö¹²Ïí±äÁ¿
+public://å…¨å±€å…±äº«å˜é‡
 	DMApp*						 m_pDMApp;
 };
 
-extern DMEnvironment *pGlobalPtr;          // È«¾ÖÖ¸Õë
+extern DMEnvironment *pGlobalPtr;          // å…¨å±€æŒ‡é’ˆ

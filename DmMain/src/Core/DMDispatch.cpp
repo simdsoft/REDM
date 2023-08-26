@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMDispatch.h"
 #include <stdarg.h>
 
@@ -83,7 +83,7 @@ namespace DM
 namespace DMAttr
 {
 	// ----------------------------------------------------
-	// ÄÚ²¿Ç¿ÖÆ¹æ¶¨XMLÊôĞÔ×Ö·û´®¶¨Òå·½Ê½
+	// å†…éƒ¨å¼ºåˆ¶è§„å®šXMLå±æ€§å­—ç¬¦ä¸²å®šä¹‰æ–¹å¼
 	const char* DMInitAttrDispatch::GetAttrValue(const char* cls, const char*pBuf)
 	{  
 		const char*pLow = strstr(pBuf,"_");

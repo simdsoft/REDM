@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DDMDispatchMgr.h 
-// File Des:Í³Ò»¹ÜÀí·Ö·¢¡¢×ª·¢Àà
-// File Summary: MgrÎªManagerËõĞ´
+// File Des:ç»Ÿä¸€ç®¡ç†åˆ†å‘ã€è½¬å‘ç±»
+// File Summary: Mgrä¸ºManagerç¼©å†™
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -18,7 +18,7 @@ namespace DM
 {
 
 	/// <summary>
-	///		ÒÔ¾²Ì¬·½Ê½×ª·¢xmlÊôĞÔ½âÎöº¯Êı<see cref="IDMAttribute"/>
+	///		ä»¥é™æ€æ–¹å¼è½¬å‘xmlå±æ€§è§£æå‡½æ•°<see cref="IDMAttribute"/>
 	/// </summary>
 	class DM_EXPORT DMAttributeDispatch
 	{
@@ -34,7 +34,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		ÒÔ¾²Ì¬·½Ê½×ª·¢Logº¯Êı<see cref="IDMLog"/>
+	///		ä»¥é™æ€æ–¹å¼è½¬å‘Logå‡½æ•°<see cref="IDMLog"/>
 	/// </summary>
 	class DM_EXPORT DMLogDispatch
 	{

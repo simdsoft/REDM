@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMEventManager.h 
-// File Des:  ceguiµÄ¹Û²ìÕßÊÂ¼ş×¢²áÄ£Ê½£¬¿É²Î¿´doc
+// File Des:  ceguiçš„è§‚å¯Ÿè€…äº‹ä»¶æ³¨å†Œæ¨¡å¼ï¼Œå¯å‚çœ‹doc
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -18,7 +18,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÊÂ¼şÏî£¬Ã¿¸öÊÂ¼şÏî¹ÜÀí¶à¸ö´ı´¦ÀíµÄ×¢²áº¯Êı
+	///		äº‹ä»¶é¡¹ï¼Œæ¯ä¸ªäº‹ä»¶é¡¹ç®¡ç†å¤šä¸ªå¾…å¤„ç†çš„æ³¨å†Œå‡½æ•°
 	/// </summary>
 	class DM_EXPORT DMEventItem
 	{
@@ -26,16 +26,16 @@ namespace DM
 		DMEventItem(DWORD dwEventID);
 		virtual~DMEventItem();
 
-		DWORD GetEventID(){return m_dwEventID;};		   ///< »ñÈ¡ÊÂ¼şID
-		bool Subscribe(const DMSlotFunctorBase&slot);	   ///< ×¢²áÊÂ¼ş
-		bool UnSubscribe(const DMSlotFunctorBase&slot);	   ///< ·´×¢²áÊÂ¼ş
+		DWORD GetEventID(){return m_dwEventID;};		   ///< è·å–äº‹ä»¶ID
+		bool Subscribe(const DMSlotFunctorBase&slot);	   ///< æ³¨å†Œäº‹ä»¶
+		bool UnSubscribe(const DMSlotFunctorBase&slot);	   ///< åæ³¨å†Œäº‹ä»¶
 		int FindSlotFunctor(const DMSlotFunctorBase&slot);  
 
 		void operator()(DMEventArgs& Args)
 		{
 			for (UINT i=0; i<m_EvtSlots.GetCount(); i++)
 			{
-				if ((*m_EvtSlots[i])(&Args))//Ñ­»·Ö´ĞĞ×¢²áº¯Êı
+				if ((*m_EvtSlots[i])(&Args))//å¾ªç¯æ‰§è¡Œæ³¨å†Œå‡½æ•°
 				{
 					++Args.m_iHandleCount;
 				}
@@ -48,7 +48,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¹ÜÀíÊÂ¼şÏî£¬Ã¿¸öÊÂ¼şÏî¹ÜÀí¶à¸ö´ı´¦ÀíµÄ×¢²áº¯Êı
+	///		ç®¡ç†äº‹ä»¶é¡¹ï¼Œæ¯ä¸ªäº‹ä»¶é¡¹ç®¡ç†å¤šä¸ªå¾…å¤„ç†çš„æ³¨å†Œå‡½æ•°
 	/// </summary>
 	class DM_EXPORT DMEventMgr
 	{
@@ -56,18 +56,18 @@ namespace DM
 		DMEventMgr(void);
 		virtual ~DMEventMgr(void);
 
-		void AddEvent(const DWORD dwEventID);		///< Ôö¼Ó×¢²áID
-		void RemoveEvent(const DWORD dwEventID);	///< ÒÆ³ı×¢²áID
-		bool IsEventPresent(const DWORD dwEventID); ///< ×¢²áIDÊÇ·ñ´æÔÚ
-		void RemoveAllEvent(void);					///< ÒÆ³ıËùÓĞµÄ×¢²áID
+		void AddEvent(const DWORD dwEventID);		///< å¢åŠ æ³¨å†ŒID
+		void RemoveEvent(const DWORD dwEventID);	///< ç§»é™¤æ³¨å†ŒID
+		bool IsEventPresent(const DWORD dwEventID); ///< æ³¨å†ŒIDæ˜¯å¦å­˜åœ¨
+		void RemoveAllEvent(void);					///< ç§»é™¤æ‰€æœ‰çš„æ³¨å†ŒID
 
-		bool SubscribeEvent(const DWORD dwEventID, const DMSlotFunctorBase & subscriber);	///< ¸øIDÔö¼Ó×¢²áÊÂ¼ş
-		bool UnSubscribeEvent(const DWORD dwEventID, const DMSlotFunctorBase & subscriber); ///< ¸øID·´×¢²áÊÂ¼ş
+		bool SubscribeEvent(const DWORD dwEventID, const DMSlotFunctorBase & subscriber);	///< ç»™IDå¢åŠ æ³¨å†Œäº‹ä»¶
+		bool UnSubscribeEvent(const DWORD dwEventID, const DMSlotFunctorBase & subscriber); ///< ç»™IDåæ³¨å†Œäº‹ä»¶
 
-		void FireEvent(DMEventArgs& Args);			///< ÊÂ¼ş·¢ÉúÊ±Í¨ÖªËùÓĞ×¢²áµÄ¹Û²ìÕß
+		void FireEvent(DMEventArgs& Args);			///< äº‹ä»¶å‘ç”Ÿæ—¶é€šçŸ¥æ‰€æœ‰æ³¨å†Œçš„è§‚å¯Ÿè€…
 
-		bool IsMuted();								///< ÊÇ·ñÆôÓÃÊÂ¼ş¹ıÂË
-		void SetMuted(bool bMuted);					///< ÆôÓÃ¡¢¹Ø±ÕÊÂ¼ş¹ıÂË£¬ÊÂ¼ş¹ıÂË¿ªÆôºó£¬²»»áÖ´ĞĞ×¢²áº¯Êı
+		bool IsMuted();								///< æ˜¯å¦å¯ç”¨äº‹ä»¶è¿‡æ»¤
+		void SetMuted(bool bMuted);					///< å¯ç”¨ã€å…³é—­äº‹ä»¶è¿‡æ»¤ï¼Œäº‹ä»¶è¿‡æ»¤å¼€å¯åï¼Œä¸ä¼šæ‰§è¡Œæ³¨å†Œå‡½æ•°
 	protected:
 		DMEventItem *GetEventObject(const DWORD dwEventID);
 

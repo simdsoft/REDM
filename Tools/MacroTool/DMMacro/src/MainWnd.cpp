@@ -1,10 +1,10 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MainWnd.h"
 
 BEGIN_MSG_MAP(CMainWnd)
 	MSG_WM_INITDIALOG(OnInitDialog)
 	MSG_WM_SIZE(OnSize)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP()
 BEGIN_EVENT_MAP(CMainWnd)
 	EVENT_NAME_COMMAND(L"closebutton",OnClose)
@@ -19,7 +19,7 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pEdit = FindChildByNameT<DUIRichEdit>(L"dest_edit");
 
 
-	// ¼ÓÔØÈı·İÏûÏ¢ºê
+	// åŠ è½½ä¸‰ä»½æ¶ˆæ¯å®
 	wchar_t szPath[MAX_PATH] = {0};
 	GetRootFullPath(L".\\DMMsgCrack.h",szPath,MAX_PATH);
 	m_MacroHelper.LoadFile(szPath,L"#define DECLARE_MESSAGE_MAP()");
@@ -54,7 +54,7 @@ void CMainWnd::OnSize(UINT nType, CSize size)
 			FindChildByName(L"restorebutton")->DM_SetVisible(false);
 		}
 	}
-	SetMsgHandled(FALSE);  // ÓÉDMHWnd¼ÌĞø´¦ÀíOnSizeÏûÏ¢
+	SetMsgHandled(FALSE);  // ç”±DMHWndç»§ç»­å¤„ç†OnSizeæ¶ˆæ¯
 }
 
 DMCode CMainWnd::OnClose()

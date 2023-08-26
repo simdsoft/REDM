@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMSkiaRegionImpl.h"
 
 namespace DM
@@ -127,7 +127,7 @@ namespace DM
 			op = SkRegion::kXOR_Op;
 			break;
 		default:
-			DMASSERT_EXPR(0,L"ÎÞ·¨Ê¶±ðµÄfnCombineMode");
+			DMASSERT_EXPR(0,L"æ— æ³•è¯†åˆ«çš„fnCombineMode");
 			break;
 		}
 		return op;

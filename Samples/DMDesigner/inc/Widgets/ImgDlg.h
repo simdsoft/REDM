@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ImgDlg.h
 // File mark:   
-// File summary:ĞÂ½¨»ò±à¼­img,Ö§³Ö¶à¸öimg×éºÏ
+// File summary:æ–°å»ºæˆ–ç¼–è¾‘img,æ”¯æŒå¤šä¸ªimgç»„åˆ
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-22
@@ -47,7 +47,7 @@ private:
 	DUIEdit*                        m_pImgFileAfx;
 	DUIRichEdit*                    m_pXml;
 
-	// ¶àÍ¼Æ´½ÓÊ¹ÓÃ
+	// å¤šå›¾æ‹¼æ¥ä½¿ç”¨
 	DUICheckBox*					m_pbMultImg;
 	DUICheckBox*					m_pbVert;
 	DUIButton*                      m_pSave;
@@ -57,8 +57,8 @@ private:
 	DMXmlDocument                   m_ImgDoc;
 	DMXmlNode                       m_ImgNode;
 
-	CStringW                        m_strDirName;///< Ö÷Ìâ°üÎÄ¼ş¼ĞÃûÈç"themes\\theme0"
-	CStringW                        m_strDir;    ///< Ö÷Ìâ°üËùÔÚµÄÂ·¾¶Èç"e:\\themes\\theme0\\"
+	CStringW                        m_strDirName;///< ä¸»é¢˜åŒ…æ–‡ä»¶å¤¹åå¦‚"themes\\theme0"
+	CStringW                        m_strDir;    ///< ä¸»é¢˜åŒ…æ‰€åœ¨çš„è·¯å¾„å¦‚"e:\\themes\\theme0\\"
 	CStringW                        m_strTitle;  ///< 
 	static  ImgDlg*                 ms_pthis; 	
 };

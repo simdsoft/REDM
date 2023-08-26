@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: SkinPreview.h 
-// File Des: Ô¤ÀÀ´°¿Ú
+// File Des: é¢„è§ˆçª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -28,7 +28,7 @@ public:
 	DM_END_MSG_MAP()
 public:
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	void DM_OnPaint(IDMCanvas* pCanvas);
 	void OnLButtonDown(UINT nFlags,CPoint pt);

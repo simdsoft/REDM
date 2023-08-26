@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMAnimateWndBase.h"
 
 namespace DM
@@ -52,7 +52,7 @@ namespace DM
 				break;
 			}
 
-			ATOM Atom = g_pDMApp->GetClassAtom(false);  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
+			ATOM Atom = g_pDMApp->GetClassAtom(false);  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
 			HWND hWnd = DMCWnd::CreateWindowEx((LPCWSTR)Atom,NULL,dwStyle,dwExStyle,lpRect->left,lpRect->top,lpRect->right-lpRect->left,lpRect->bottom-lpRect->top,NULL,0);
 			if (NULL == hWnd)
 			{
@@ -97,7 +97,7 @@ namespace DM
 		}
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	BOOL DMAnimateWndBase::DMANI_ClientToScreen(HWND hWnd,CRect &rc)
 	{
 		BOOL bRet = FALSE;

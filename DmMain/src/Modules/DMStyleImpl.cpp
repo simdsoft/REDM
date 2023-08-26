@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMStyleImpl.h"
 
 namespace DM
@@ -24,7 +24,7 @@ namespace DM
 			m_crNc[i].SetTextInvalid();
 		}
 
-		// ±£Ö¤normalÊÇÓĞÖµµÄ.
+		// ä¿è¯normalæ˜¯æœ‰å€¼çš„.
 		m_ftText[0] = g_pDMFontPool->GetFont("");
 		m_crText[0].SetRGBA(0,0,0,0xff);
 	}
@@ -32,13 +32,13 @@ namespace DM
 	DMStyleImpl::~DMStyleImpl()
 	{
 		if (m_bBmpCursor &&NULL != m_hCursor)
-		{// Í¼Æ¬´´½¨µÄIcon,Ò»¶¨ÒªÉ¾³ıµô
+		{// å›¾ç‰‡åˆ›å»ºçš„Icon,ä¸€å®šè¦åˆ é™¤æ‰
 			::DestroyIcon(m_hCursor);
 			m_hCursor = NULL;
 		}
 	}
 
-	DMCode DMStyleImpl::CopyData(IDMStyle* pStyle)// ½ö¸´ÖÆÄ¬ÈÏÖµ²¿·Ö£¬ÒòÎªpStyle¿ÉÒÔ×ÔÉíÏÈ¶¨ÖÆ
+	DMCode DMStyleImpl::CopyData(IDMStyle* pStyle)// ä»…å¤åˆ¶é»˜è®¤å€¼éƒ¨åˆ†ï¼Œå› ä¸ºpStyleå¯ä»¥è‡ªèº«å…ˆå®šåˆ¶
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
@@ -67,7 +67,7 @@ namespace DM
 			
 			for (int i=0;i<5;i++)
 			{
-				if (0 == i)// 0±»¸³ÁËÄ¬ÈÏÖµ
+				if (0 == i)// 0è¢«èµ‹äº†é»˜è®¤å€¼
 				{
 					if (pCopy->m_ftText[0] == g_pDMFontPool->GetFont(""))
 					{
@@ -105,7 +105,7 @@ namespace DM
 			if (0 == pCopy->m_strCursor.CompareNoCase("arrow"))
 			{
 				pCopy->m_strCursor	   = m_strCursor;
-				pCopy->m_hCursor       = m_hCursor;		///< ÓÉÍ¼Æ¬´´½¨µÄicon¿ÉÒÔDestroyIcon¶à´Î£¬ºóÃæ»áÖ±½Ó·µ»ØÎŞĞ§¹â±êµÄ´íÎó£¬µ«²»»á±¨´í
+				pCopy->m_hCursor       = m_hCursor;		///< ç”±å›¾ç‰‡åˆ›å»ºçš„iconå¯ä»¥DestroyIconå¤šæ¬¡ï¼Œåé¢ä¼šç›´æ¥è¿”å›æ— æ•ˆå…‰æ ‡çš„é”™è¯¯ï¼Œä½†ä¸ä¼šæŠ¥é”™
 				pCopy->m_bBmpCursor    = m_bBmpCursor;
 			}
 			if (0xff == pCopy->m_byAlpha)
@@ -165,7 +165,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÎÄ±¾Ïà¹Ø
+	// Function Des: æ–‡æœ¬ç›¸å…³
 	//---------------------------------------------------
 	DMCode DMStyleImpl::GetTextAlign(UINT &ulAlign)
 	{
@@ -249,7 +249,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¹â±êÏà¹Ø
+	// Function Des: å…‰æ ‡ç›¸å…³
 	//---------------------------------------------------
 	DMCode DMStyleImpl::GetCursor(HCURSOR &hCursor)
 	{
@@ -263,7 +263,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ´°¿ÚÏà¹Ø
+	// Function Des: çª—å£ç›¸å…³
 	//---------------------------------------------------
 	DMCode DMStyleImpl::GetBgSkin(IDMSkin** ppSkin)	
 	{
@@ -327,7 +327,7 @@ namespace DM
 			{
 				break;
 			}
-			*lpRect = m_rcNcMargin;///hgy413 note: ²»ÄÜÖ±½ÓĞ´³ÉlpRect = m_rcNcMargin£¬ÕâÑùÖ»ÊÇÈ¡Ö¸Õë£¬²»ÊÇ¸³Öµ
+			*lpRect = m_rcNcMargin;///hgy413 note: ä¸èƒ½ç›´æ¥å†™æˆlpRect = m_rcNcMarginï¼Œè¿™æ ·åªæ˜¯å–æŒ‡é’ˆï¼Œä¸æ˜¯èµ‹å€¼
 			iErr   = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -442,7 +442,7 @@ namespace DM
 			if (false == bLoadXml)
 			{
 				if (m_bBmpCursor &&NULL != m_hCursor)
-				{// Í¼Æ¬´´½¨µÄIcon,Ò»¶¨ÒªÉ¾³ıµô
+				{// å›¾ç‰‡åˆ›å»ºçš„Icon,ä¸€å®šè¦åˆ é™¤æ‰
 					::DestroyIcon(m_hCursor);
 					m_hCursor = NULL;
 				}
@@ -463,7 +463,7 @@ namespace DM
 			if (0 == m_strCursor.CompareNoCase("no"))	       {m_hCursor = ::LoadCursor(NULL,IDC_NO);      break;}
 			if (0 == m_strCursor.CompareNoCase("hand"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HAND);    break;}
 			if (0 == m_strCursor.CompareNoCase("help"))	   {m_hCursor = ::LoadCursor(NULL,IDC_HELP);    break;}
-			// Ö§³ÖÍ¼Æ¬Éú³ÉHCURSOR
+			// æ”¯æŒå›¾ç‰‡ç”ŸæˆHCURSOR
 			DMSmartPtrT<IDMSkin> pCursorSkin = g_pDMApp->GetSkin(m_strCursor);
 			if (pCursorSkin.isValid())
 			{

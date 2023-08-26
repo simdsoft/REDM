@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "PosAttr.h"
 BEGIN_MSG_MAP(PosAttr)
 END_MSG_MAP()
@@ -24,7 +24,7 @@ DMCode PosAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 			break;
 		}
 		Layout* pLayout = dynamic_cast<Layout*>(pData->m_pDUIWnd->m_pLayout.get());
-		if (hSel && 0 == m_pObjTree->GetParentItem(hSel)// «–ªªµΩ◊Ó…œ≤„¡À£¨ƒ¨»œŒ™DMHWnd¥∞ø⁄
+		if (hSel && 0 == m_pObjTree->GetParentItem(hSel)// ÂàáÊç¢Âà∞ÊúÄ‰∏äÂ±Ç‰∫ÜÔºåÈªòËÆ§‰∏∫DMHWndÁ™óÂè£
 			||false == DUIDragFrame::IsSupportPos(pData)
 			)
 		{
@@ -35,7 +35,7 @@ DMCode PosAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 			break;
 		}
 
-		if (pData->m_pDUIWnd == pData->m_pRootWnd||m_pCurDUI != pData->m_pDUIWnd)// ≤ªœ‡µ»æÕ«–ªª
+		if (pData->m_pDUIWnd == pData->m_pRootWnd||m_pCurDUI != pData->m_pDUIWnd)// ‰∏çÁõ∏Á≠âÂ∞±ÂàáÊç¢
 		{
 			m_pCurDUI = pData->m_pDUIWnd;
 			InitPos();
@@ -75,7 +75,7 @@ DMCode PosAttr::s_DMHandleEvent(DM::DMEventArgs *pEvt)
 		}
 		else  
 		{
-			return ms_pthis->DMHandleEvent(pEvt);// ◊™∑¢
+			return ms_pthis->DMHandleEvent(pEvt);// ËΩ¨Âèë
 		}
 	}
 

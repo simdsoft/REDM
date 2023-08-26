@@ -1,4 +1,4 @@
-print(g_test.m_test)
+﻿print(g_test.m_test)
 print(g_test:is_test())
 print(g_test:ret_int())
 print(g_test:ret_mul(4))

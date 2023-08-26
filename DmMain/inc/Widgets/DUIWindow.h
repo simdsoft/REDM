@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIWindow.h 
-// File Des: ·ÂWPFµÄ Visual, ¿ÉÊÓÎªÄ£Äâ×Ó´°¿ÚµÄHWND
+// File Des: ä»¿WPFçš„ Visual, å¯è§†ä¸ºæ¨¡æ‹Ÿå­çª—å£çš„HWND
 // File Summary: http://msdn.microsoft.com/zh-cn/library/ms748373(v=vs.110).aspx
 // Cur Version: 1.0
 // Author:
@@ -24,12 +24,12 @@ namespace DM
 	class DUIWindow;
 	typedef DUIWindow* DUIWindowPtr;
 	/// <summary>
-	///		DUI´°¿ÚµÄ»ùÀà£¬ËùÓĞDUI¾ùÍ¨¹ı´ËÀà¼Ì³Ğ£¬ÒÔDV_¿ªÍ·µÄÎªĞéº¯Êı£¬×ÓÀà¿ÉÖØÔØ,ÊôĞÔ£º<see cref="DMAttr::DUIWindowAttr"/>
+	///		DUIçª—å£çš„åŸºç±»ï¼Œæ‰€æœ‰DUIå‡é€šè¿‡æ­¤ç±»ç»§æ‰¿ï¼Œä»¥DV_å¼€å¤´çš„ä¸ºè™šå‡½æ•°ï¼Œå­ç±»å¯é‡è½½,å±æ€§ï¼š<see cref="DMAttr::DUIWindowAttr"/>
 	/// </summary>
 	/// <remarks>
-	///		1.DV_¿ªÍ·±íÊ¾Ğéº¯Êı£¬×ÓÀà¿É¼Ì³Ğ 
-	///     2.DM_¿ªÍ·±íÊ¾Õı³£DUIº¯Êı,ÓÃÓÚÇø·ÖDMCWndBase.hÖĞµÄ·â×°
-	///     3.Í¨ÓÃµÄDM_IsÅĞ¶Ïº¯ÊıÊ¹ÓÃbool·µ»ØÖµ,DM_Get/DV_GetÖ±½Ó·µ»Ø,ÆäÓàÊ¹ÓÃDMCode
+	///		1.DV_å¼€å¤´è¡¨ç¤ºè™šå‡½æ•°ï¼Œå­ç±»å¯ç»§æ‰¿ 
+	///     2.DM_å¼€å¤´è¡¨ç¤ºæ­£å¸¸DUIå‡½æ•°,ç”¨äºåŒºåˆ†DMCWndBase.hä¸­çš„å°è£…
+	///     3.é€šç”¨çš„DM_Isåˆ¤æ–­å‡½æ•°ä½¿ç”¨boolè¿”å›å€¼,DM_Get/DV_Getç›´æ¥è¿”å›,å…¶ä½™ä½¿ç”¨DMCode
 	/// </remarks>
 	class DM_EXPORT DUIWindow:public DMBase
 							 ,public DUIMsgHandler
@@ -43,164 +43,164 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des:»ù´¡ÊôĞÔ
-		LPCSTR GetName();																///< Ê¹ÓÃÃû×Ö×öÎªÎ¨Ò»±êÊ¶
-		int GetID();																	///< Ê¹ÓÃÊı×Ö×öÎªÎ¨Ò»±êÊ¶
-		DMCode SetID(int id);															///< ÉèÖÃid
+		// Function Des:åŸºç¡€å±æ€§
+		LPCSTR GetName();																///< ä½¿ç”¨åå­—åšä¸ºå”¯ä¸€æ ‡è¯†
+		int GetID();																	///< ä½¿ç”¨æ•°å­—åšä¸ºå”¯ä¸€æ ‡è¯†
+		DMCode SetID(int id);															///< è®¾ç½®id
 
-		DUIWindow* FindChildByName(LPCSTR lpszName,bool bPanelFind = false);			///< Í¨¹ıÃû×Ö²éÕÒDUI´°¿Ú
-		DUIWindow* FindChildById(int ID,bool bPanelFind = false);						///< Í¨¹ıID²éÕÒDUI´°¿Ú
-		DUIWindow* FindPanelChildByName(LPCSTR lpszName,bool bPanelFind = false);		///< Í¨¹ıÃû×Ö´Ó×ÓpanelÁĞÖĞ²éÕÒDUI´°¿Ú
-		DUIWindow* FindPanelChildById(int ID,bool bPanelFind = false);					///< Í¨¹ıID´Ó×ÓpanelÁĞÖĞ²éÕÒDUI´°¿Ú
+		DUIWindow* FindChildByName(LPCSTR lpszName,bool bPanelFind = false);			///< é€šè¿‡åå­—æŸ¥æ‰¾DUIçª—å£
+		DUIWindow* FindChildById(int ID,bool bPanelFind = false);						///< é€šè¿‡IDæŸ¥æ‰¾DUIçª—å£
+		DUIWindow* FindPanelChildByName(LPCSTR lpszName,bool bPanelFind = false);		///< é€šè¿‡åå­—ä»å­panelåˆ—ä¸­æŸ¥æ‰¾DUIçª—å£
+		DUIWindow* FindPanelChildById(int ID,bool bPanelFind = false);					///< é€šè¿‡IDä»å­panelåˆ—ä¸­æŸ¥æ‰¾DUIçª—å£
 
 
-		virtual DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg = false);					///< Í¨¹ıpointÀ´È·ÈÏÔÚÄÄ¸ö´°¿ÚÉÏ£¬ÓÃÓÚÄ£ÄâÏûÏ¢·Ö·¢
-		DUIWND GetDUIWnd(){return m_hDUIWnd;};											///< »ñµÃÄ£Äâ´°¿Ú¾ä±ú
+		virtual DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg = false);					///< é€šè¿‡pointæ¥ç¡®è®¤åœ¨å“ªä¸ªçª—å£ä¸Šï¼Œç”¨äºæ¨¡æ‹Ÿæ¶ˆæ¯åˆ†å‘
+		DUIWND GetDUIWnd(){return m_hDUIWnd;};											///< è·å¾—æ¨¡æ‹Ÿçª—å£å¥æŸ„
 
 		//---------------------------------------------------
-		// ÓÃ»§Êı¾İ
-		DMCode SetData(CStringA strKey, CStringA strValue, bool bReplace = true);       ///< CStringWÒ²¿ÉÒÔÖ¸¶¨Ä³¸öÖ¸Õë£¨Ö¸ÕëºÍ×Ö·û´®»¥×ª£©,strValue´«¿Õ±íÊ¾Çå¿ÕstrKey
+		// ç”¨æˆ·æ•°æ®
+		DMCode SetData(CStringA strKey, CStringA strValue, bool bReplace = true);       ///< CStringWä¹Ÿå¯ä»¥æŒ‡å®šæŸä¸ªæŒ‡é’ˆï¼ˆæŒ‡é’ˆå’Œå­—ç¬¦ä¸²äº’è½¬ï¼‰,strValueä¼ ç©ºè¡¨ç¤ºæ¸…ç©ºstrKey
 		CStringA GetData(CStringA strKey);
 		
 		//---------------------------------------------------
-		// Function Des:³õÊ¼»¯
-		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode);						    ///< 1.³õÊ¼»¯´«ÈëÎª±¾¿Ø¼şXmlNode 2.¶¯Ì¬´´½¨×Ó¿Ø¼şÁĞ±í(s),´´½¨Child1,Child2¸ñÊ½Ó¦Îª:<A><Child1 ../><Child2 .../></A>,(A¿ÉÎªÈÎÒâÃû)
-		DMCode InitDMData(DMXmlNode XmlNode) override;											///< ½âÎöXML
+		// Function Des:åˆå§‹åŒ–
+		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode);						    ///< 1.åˆå§‹åŒ–ä¼ å…¥ä¸ºæœ¬æ§ä»¶XmlNode 2.åŠ¨æ€åˆ›å»ºå­æ§ä»¶åˆ—è¡¨(s),åˆ›å»ºChild1,Child2æ ¼å¼åº”ä¸º:<A><Child1 ../><Child2 .../></A>,(Aå¯ä¸ºä»»æ„å)
+		DMCode InitDMData(DMXmlNode XmlNode) override;											///< è§£æXML
 		
 		//---------------------------------------------------
-		// Function Des:ÈİÆ÷
-		IDMContainerPtr GetContainer();													///< »ñÈ¡ÈİÆ÷
-		DMCode SetContainer(IDMContainerPtr pContainer);								///< ÉèÖÃÈİÆ÷
-		DMCode DM_AddChildPanel(DUIWindowPtr pWnd);										///< Ôö¼Ó×ÓÈİÆ÷(ÈçDUIListBoxEx),½öÓÃÓÚ²éÕÒpanelµÄ¿Ø¼ş,pWndÍ¬Ê±Ò²ÎªIDMContainerPtr
-		DMCode DM_RemoveChildPanel(DUIWindowPtr pWnd);									///< ÒÆ³ı×ÓÈİÆ÷(ÈçDUIListBoxEx),½öÓÃÓÚ²éÕÒpanelµÄ¿Ø¼ş,pWndÍ¬Ê±Ò²ÎªIDMContainerPtr
-		DMCode DM_RemoveAllChildPanel();												///< ÒÆ³ıËùÓĞ×ÓÈİÆ÷											
+		// Function Des:å®¹å™¨
+		IDMContainerPtr GetContainer();													///< è·å–å®¹å™¨
+		DMCode SetContainer(IDMContainerPtr pContainer);								///< è®¾ç½®å®¹å™¨
+		DMCode DM_AddChildPanel(DUIWindowPtr pWnd);										///< å¢åŠ å­å®¹å™¨(å¦‚DUIListBoxEx),ä»…ç”¨äºæŸ¥æ‰¾panelçš„æ§ä»¶,pWndåŒæ—¶ä¹Ÿä¸ºIDMContainerPtr
+		DMCode DM_RemoveChildPanel(DUIWindowPtr pWnd);									///< ç§»é™¤å­å®¹å™¨(å¦‚DUIListBoxEx),ä»…ç”¨äºæŸ¥æ‰¾panelçš„æ§ä»¶,pWndåŒæ—¶ä¹Ÿä¸ºIDMContainerPtr
+		DMCode DM_RemoveAllChildPanel();												///< ç§»é™¤æ‰€æœ‰å­å®¹å™¨											
 
 		//---------------------------------------------------
-		// Function Des: »»·ô
-		virtual DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);								///< »»·ô,lp±íÊ¾Ğè»»·ôµÄÀàĞÍ
+		// Function Des: æ¢è‚¤
+		virtual DMCode DV_UpdateSkin(WPARAM wp, LPARAM lp);								///< æ¢è‚¤,lpè¡¨ç¤ºéœ€æ¢è‚¤çš„ç±»å‹
 
 		//---------------------------------------------------
 		// Function Des: tooltip
-		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);			///< ¸üĞÂtooltipÏÔÊ¾ĞÅÏ¢
+		virtual DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);			///< æ›´æ–°tooltipæ˜¾ç¤ºä¿¡æ¯
 		
 		//---------------------------------------------------
 		// Function Des: ActiveX
-		virtual DMCode DV_OnAxActivate(IUnknown *pUnknwn);								///< ½«com´«Èëµ½DUIWindow
+		virtual DMCode DV_OnAxActivate(IUnknown *pUnknwn);								///< å°†comä¼ å…¥åˆ°DUIWindow
 
 		//---------------------------------------------------
-		// Function Des:ÊÂ¼ş
-		virtual DMCode DV_FireEvent(DMEventArgs &Evt);									///< ¿ÉÖØÔØµÄÊÂ¼şÍ¨ÖªÖ´ĞĞ, Ò²ÊÇEventÏûÏ¢µÄÆğÔ´
-		virtual DMCode DV_DispatchEvent(DMEventArgs &Evt);                              ///< Èº·¢ÊÂ¼şÏûÏ¢µ½ËùÓĞ×ÓDUI´°¿Ú
-		DMEventMgrPtr GetEventMgrPtr(){return &m_EventMgr;};							///< »ñÈ¡ÊÂ¼ş¹ÜÀí¾ä±ú,ÓÃÓÚÍâ²¿×¢²áÊÂ¼ş
+		// Function Des:äº‹ä»¶
+		virtual DMCode DV_FireEvent(DMEventArgs &Evt);									///< å¯é‡è½½çš„äº‹ä»¶é€šçŸ¥æ‰§è¡Œ, ä¹Ÿæ˜¯Eventæ¶ˆæ¯çš„èµ·æº
+		virtual DMCode DV_DispatchEvent(DMEventArgs &Evt);                              ///< ç¾¤å‘äº‹ä»¶æ¶ˆæ¯åˆ°æ‰€æœ‰å­DUIçª—å£
+		DMEventMgrPtr GetEventMgrPtr(){return &m_EventMgr;};							///< è·å–äº‹ä»¶ç®¡ç†å¥æŸ„,ç”¨äºå¤–éƒ¨æ³¨å†Œäº‹ä»¶
 
 		//---------------------------------------------------
-		// Function Des:Í¨ÓÃ²¼¾Ö
-		virtual DMCode DV_UpdateChildLayout();											///< ¸üĞÂËùÓĞ×Ó´°¿ÚÎ»ÖÃ
-		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);							///< »ñµÃ×Ó´°¿ÚµÄ²¼¾Ö¿Õ¼ä´óĞ¡,Ä¬ÈÏÎª¿Í»§Çø£¬µ«ÊÇtabÕâÑùµÄ¿Ø¼ş²»Ò»Ñù
-		virtual DMCode DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz);					///< µ±Ã»ÓĞÖ¸¶¨´°¿Ú´óĞ¡Ê±£¬Í¨¹ıÈçÆ¤·ô»òÎÄ×ÖÄÚÈİ¼ÆËã´°¿ÚµÄÆÚÍû´óĞ¡(ÓÅÏÈÊ¹ÓÃÎÄ±¾£¬Èç¹ûÎÄ±¾Îª¿Õ,ÔòÊ¹ÓÃskin´óĞ¡)
+		// Function Des:é€šç”¨å¸ƒå±€
+		virtual DMCode DV_UpdateChildLayout();											///< æ›´æ–°æ‰€æœ‰å­çª—å£ä½ç½®
+		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);							///< è·å¾—å­çª—å£çš„å¸ƒå±€ç©ºé—´å¤§å°,é»˜è®¤ä¸ºå®¢æˆ·åŒºï¼Œä½†æ˜¯tabè¿™æ ·çš„æ§ä»¶ä¸ä¸€æ ·
+		virtual DMCode DV_GetDesiredSize(LPRECT pRcContainer,SIZE &sz);					///< å½“æ²¡æœ‰æŒ‡å®šçª—å£å¤§å°æ—¶ï¼Œé€šè¿‡å¦‚çš®è‚¤æˆ–æ–‡å­—å†…å®¹è®¡ç®—çª—å£çš„æœŸæœ›å¤§å°(ä¼˜å…ˆä½¿ç”¨æ–‡æœ¬ï¼Œå¦‚æœæ–‡æœ¬ä¸ºç©º,åˆ™ä½¿ç”¨skinå¤§å°)
 
-		bool DM_IsLayoutFinished();														///< ²¼¾ÖÊÇ·ñÍê³É
-		bool DM_IsParentFlowLayout();													///< ¸¸´°¿ÚÊÇ·ñÊ¹ÓÃÁ÷Ê½²¼¾Ö
-		DMCode DM_FloatLayout(LPRECT lpRect);											///< ´Ó¾ø¶Ô²¼¾Ö¿ªÊ¼×Ó²¼¾Ö
-		DMCode DM_UpdateLayout(LPRECT lpRect);											///< ¸üĞÂ×ÔÉí²¼¾Ö
-
-		//---------------------------------------------------
-		//  Function Des:Á÷Ê½²¼¾Ö
-		virtual DMCode DV_Measure(CSize& AvailableSize);								///< ¼ÆËã¿ÉÓÃ´óĞ¡				
-		virtual DMCode DV_Arrange(CRect& FinalRect);									///< ·ÖÅä¿ÉÓÃ´óĞ¡
+		bool DM_IsLayoutFinished();														///< å¸ƒå±€æ˜¯å¦å®Œæˆ
+		bool DM_IsParentFlowLayout();													///< çˆ¶çª—å£æ˜¯å¦ä½¿ç”¨æµå¼å¸ƒå±€
+		DMCode DM_FloatLayout(LPRECT lpRect);											///< ä»ç»å¯¹å¸ƒå±€å¼€å§‹å­å¸ƒå±€
+		DMCode DM_UpdateLayout(LPRECT lpRect);											///< æ›´æ–°è‡ªèº«å¸ƒå±€
 
 		//---------------------------------------------------
-		// Function Des:×´Ì¬
-		virtual DMCode DV_GetState(int& iState);										///< »ñÈ¡µ±Ç°»æÖÆ×´Ì¬
-		DWORD DM_ModifyState(DWORD dwAdd, DWORD dwRemove,bool bUpdate=false);			///< ¸ü¸Ä×´Ì¬
+		//  Function Des:æµå¼å¸ƒå±€
+		virtual DMCode DV_Measure(CSize& AvailableSize);								///< è®¡ç®—å¯ç”¨å¤§å°				
+		virtual DMCode DV_Arrange(CRect& FinalRect);									///< åˆ†é…å¯ç”¨å¤§å°
 
 		//---------------------------------------------------
-		// Function Des:ÓïÑÔ°ü
-		virtual CStringW DV_GetTransText(CStringW strSrc);								///< »ñµÃ×ª»»µÄ×Ö·û´®
+		// Function Des:çŠ¶æ€
+		virtual DMCode DV_GetState(int& iState);										///< è·å–å½“å‰ç»˜åˆ¶çŠ¶æ€
+		DWORD DM_ModifyState(DWORD dwAdd, DWORD dwRemove,bool bUpdate=false);			///< æ›´æ”¹çŠ¶æ€
 
 		//---------------------------------------------------
-		// Function Des:ÊôĞÔ,ËùÓĞrect¶¼ÊÇÏà¶ÔÓÚËŞÖ÷m_hWndµÄ´°¿Ú×ø±ê
+		// Function Des:è¯­è¨€åŒ…
+		virtual CStringW DV_GetTransText(CStringW strSrc);								///< è·å¾—è½¬æ¢çš„å­—ç¬¦ä¸²
 
-		/// »ñÈ¡ÇøÓò
-		virtual DMCode DV_GetTextRect(LPRECT lpRect);									///< »ñµÃÎÄ±¾»æÖÆÇø
-		virtual DMCode DV_GetWindowRect(LPRECT lpRect);									///< »ñµÃ´°¿ÚµÄËŞÖ÷ÖĞ´óĞ¡,Èç²»Õ¼Î»,²»ÏÔÊ¾Ê±Îª¿Õ
-		virtual DMCode DV_GetClientRect(LPRECT lpRect);									///< »ñµÃ´°¿ÚµÄ¿Í»§Çø
+		//---------------------------------------------------
+		// Function Des:å±æ€§,æ‰€æœ‰rectéƒ½æ˜¯ç›¸å¯¹äºå®¿ä¸»m_hWndçš„çª—å£åæ ‡
+
+		/// è·å–åŒºåŸŸ
+		virtual DMCode DV_GetTextRect(LPRECT lpRect);									///< è·å¾—æ–‡æœ¬ç»˜åˆ¶åŒº
+		virtual DMCode DV_GetWindowRect(LPRECT lpRect);									///< è·å¾—çª—å£çš„å®¿ä¸»ä¸­å¤§å°,å¦‚ä¸å ä½,ä¸æ˜¾ç¤ºæ—¶ä¸ºç©º
+		virtual DMCode DV_GetClientRect(LPRECT lpRect);									///< è·å¾—çª—å£çš„å®¢æˆ·åŒº
 	
-		/// ½¹µãÏà¹Ø
-		virtual DMCode DV_SetFocusWnd();												///< ÉèÖÃ½¹µã,ÉèÖÃ½¹µã»áÏòĞÂ½¹µã´°¿Ú·¢ËÍWM_SETFOCUSÏûÏ¢£¬Í¬Ê±Ïò¾É½¹µã´°¿Ú·¢ËÍWM_KILLFOCUSÏûÏ¢
-		virtual DMCode DV_KillFocusWnd();												///< È¥µô½¹µã,¿ÉÊÓÎª°Ñ½¹µãÉèÖÃµ½Ò»¸ö¿ÕDUI´°¿ÚÉÏ
-				bool   DM_IsFocusWnd();                                                 ///< ÊÇ·ñÎª½¹µã´°¿Ú
-		virtual	bool DV_IsFocusable();													///< ÊÇ·ñÓĞ½¹µãÊôĞÔ,×Ó´°¿Ú¿ÉÍ¨¹ı´ËÊôĞÔ¾ö¶¨ÊÇ·ñ×ö½¹µãĞéÏß¿ò»æÖÆ
+		/// ç„¦ç‚¹ç›¸å…³
+		virtual DMCode DV_SetFocusWnd();												///< è®¾ç½®ç„¦ç‚¹,è®¾ç½®ç„¦ç‚¹ä¼šå‘æ–°ç„¦ç‚¹çª—å£å‘é€WM_SETFOCUSæ¶ˆæ¯ï¼ŒåŒæ—¶å‘æ—§ç„¦ç‚¹çª—å£å‘é€WM_KILLFOCUSæ¶ˆæ¯
+		virtual DMCode DV_KillFocusWnd();												///< å»æ‰ç„¦ç‚¹,å¯è§†ä¸ºæŠŠç„¦ç‚¹è®¾ç½®åˆ°ä¸€ä¸ªç©ºDUIçª—å£ä¸Š
+				bool   DM_IsFocusWnd();                                                 ///< æ˜¯å¦ä¸ºç„¦ç‚¹çª—å£
+		virtual	bool DV_IsFocusable();													///< æ˜¯å¦æœ‰ç„¦ç‚¹å±æ€§,å­çª—å£å¯é€šè¿‡æ­¤å±æ€§å†³å®šæ˜¯å¦åšç„¦ç‚¹è™šçº¿æ¡†ç»˜åˆ¶
 
-		virtual DMCode DV_OnNcHitTest(CPoint pt){return DM_ECODE_FAIL;};				///< Ä£Äâ·Ç¿Í»§Çø,·Ö·¢ÏûÏ¢Ê±ÈçÎªtrue»á×Ô¶¯×ª»»³É·Ç¿Í»§ÇøÏûÏ¢,ÓÃÓÚscroll
-		virtual DMCode DV_OnSetCursor(const CPoint &pt);								///< ÉèÖÃµ±Ç°µÄ¹â±ê
-		virtual UINT DV_OnGetDlgCode(){return 0;};										///< ±íÊ¾ĞèÒªÄ³Àà¼ü,·Ö·¢Ê±¶Ô´ËÀà¼ü²»ÄÜÖ±½Ó¹ıÂË,http://msdn.microsoft.com/zh-tw/library/t83978eh.aspx
+		virtual DMCode DV_OnNcHitTest(CPoint pt){return DM_ECODE_FAIL;};				///< æ¨¡æ‹Ÿéå®¢æˆ·åŒº,åˆ†å‘æ¶ˆæ¯æ—¶å¦‚ä¸ºtrueä¼šè‡ªåŠ¨è½¬æ¢æˆéå®¢æˆ·åŒºæ¶ˆæ¯,ç”¨äºscroll
+		virtual DMCode DV_OnSetCursor(const CPoint &pt);								///< è®¾ç½®å½“å‰çš„å…‰æ ‡
+		virtual UINT DV_OnGetDlgCode(){return 0;};										///< è¡¨ç¤ºéœ€è¦æŸç±»é”®,åˆ†å‘æ—¶å¯¹æ­¤ç±»é”®ä¸èƒ½ç›´æ¥è¿‡æ»¤,http://msdn.microsoft.com/zh-tw/library/t83978eh.aspx
 
-		/// Ë¢ĞÂÏà¹Ø
-		DMCode DM_Invalidate();															///< Ë¢ĞÂÕû¸ö¿Í»§ÇøÓò£¬ÈçÒªË¢ĞÂ·Ç¿Í»§Çø£¬Ê¹ÓÃDM_InvalidateRect(m_rcWindow)
-		DMCode DM_InvalidateRect(LPRECT lpRect);										///< Ë¢ĞÂÖ¸¶¨ÇøÓò£¬ÄÚ²¿»á×öºÏ²¢¼ÆËãÕæÊµË¢ĞÂÇø
-		DMCode DM_LockUpdate();															///< Ëø¶¨Ë¢ĞÂ				
-		DMCode DM_UnlockUpdate();														///< ½âËøË¢ĞÂ
-		bool DM_IsUpdateLocked();														///< ÊÇ·ñËø¶¨Ë¢ĞÂ
+		/// åˆ·æ–°ç›¸å…³
+		DMCode DM_Invalidate();															///< åˆ·æ–°æ•´ä¸ªå®¢æˆ·åŒºåŸŸï¼Œå¦‚è¦åˆ·æ–°éå®¢æˆ·åŒºï¼Œä½¿ç”¨DM_InvalidateRect(m_rcWindow)
+		DMCode DM_InvalidateRect(LPRECT lpRect);										///< åˆ·æ–°æŒ‡å®šåŒºåŸŸï¼Œå†…éƒ¨ä¼šåšåˆå¹¶è®¡ç®—çœŸå®åˆ·æ–°åŒº
+		DMCode DM_LockUpdate();															///< é”å®šåˆ·æ–°				
+		DMCode DM_UnlockUpdate();														///< è§£é”åˆ·æ–°
+		bool DM_IsUpdateLocked();														///< æ˜¯å¦é”å®šåˆ·æ–°
 
-		/// CaptureÏà¹Ø
-		DUIWND DM_GetCapture();															///< »ñÈ¡µ±Ç°captureµÄDUI´°¿Ú
-		DUIWND DM_SetCapture();															///< ÉèÖÃcapture£¬×¢ÒâÒ»¶¨ÔÚµ÷ÓÃDM_ReleaseCaptureÀ´ÊÍ·Å
-		DMCode DM_ReleaseCapture();														///< ÊÍ·Åcapture
+		/// Captureç›¸å…³
+		DUIWND DM_GetCapture();															///< è·å–å½“å‰captureçš„DUIçª—å£
+		DUIWND DM_SetCapture();															///< è®¾ç½®captureï¼Œæ³¨æ„ä¸€å®šåœ¨è°ƒç”¨DM_ReleaseCaptureæ¥é‡Šæ”¾
+		DMCode DM_ReleaseCapture();														///< é‡Šæ”¾capture
 
-		/// ¿ÉÊÓ»¯Ïà¹Ø
-		bool DM_IsVisible(bool bCheckParent = false);								    ///< ÊÇ·ñ¿É¼û
-		DMCode DM_SetVisible(bool bVisible, bool bUpdate = false);						///< ÉèÖÃ¿É¼û
-		bool DM_IsDisable(bool bCheckParent = false);									///< ÊÇ·ñ½ûÓÃ	
-		DMCode DM_EnableWindow(BOOL bEnable,bool bUpdate=false);						///< enable´°¿Ú
+		/// å¯è§†åŒ–ç›¸å…³
+		bool DM_IsVisible(bool bCheckParent = false);								    ///< æ˜¯å¦å¯è§
+		DMCode DM_SetVisible(bool bVisible, bool bUpdate = false);						///< è®¾ç½®å¯è§
+		bool DM_IsDisable(bool bCheckParent = false);									///< æ˜¯å¦ç¦ç”¨	
+		DMCode DM_EnableWindow(BOOL bEnable,bool bUpdate=false);						///< enableçª—å£
 
-		/// ¹ıÂËÏûÏ¢
-		bool DM_IsMsgNoHandle();														///< ÎªtrueÊ±,HitTestPointÊ±»á´Ë¿Ø¼ş»á±»ºöÊÓ,´Ó¶øÏûÏ¢»á±»·¢ËÍ¸øÍ¬Ò»ÇøÓòµÄÏÂÒ»¸ö¿Ø¼ş
+		/// è¿‡æ»¤æ¶ˆæ¯
+		bool DM_IsMsgNoHandle();														///< ä¸ºtrueæ—¶,HitTestPointæ—¶ä¼šæ­¤æ§ä»¶ä¼šè¢«å¿½è§†,ä»è€Œæ¶ˆæ¯ä¼šè¢«å‘é€ç»™åŒä¸€åŒºåŸŸçš„ä¸‹ä¸€ä¸ªæ§ä»¶
 
 		/// checkbox
-		bool DM_IsChecked();														    ///< ÊÇ·ñÎªchecked×´Ì¬
-		DMCode DM_SetCheck(bool bCheck);											    ///< ÉèÖÃchecked×´Ì¬
+		bool DM_IsChecked();														    ///< æ˜¯å¦ä¸ºcheckedçŠ¶æ€
+		DMCode DM_SetCheck(bool bCheck);											    ///< è®¾ç½®checkedçŠ¶æ€
 
 		/// RadioButton
-		virtual bool DV_IsSiblingsAutoGroup(){return false;}							///< ÊÇ·ñ×Ô¶¯°Ñ×Ó¿Ø¼ş·ÅÔÚÒ»×é,Ò»×éÖĞÄ¬ÈÏÖ»ÏìÓ¦check×´Ì¬µÄ½¹µã£¬ÆäÓàµÄºöÊÓ
-		virtual DUIWindow* DV_GetSelSiblingInGroup(){return NULL;}					    ///< »ñµÃ×éÄÚµÄÑ¡ÖĞ×Ó¿Ø¼ş
+		virtual bool DV_IsSiblingsAutoGroup(){return false;}							///< æ˜¯å¦è‡ªåŠ¨æŠŠå­æ§ä»¶æ”¾åœ¨ä¸€ç»„,ä¸€ç»„ä¸­é»˜è®¤åªå“åº”checkçŠ¶æ€çš„ç„¦ç‚¹ï¼Œå…¶ä½™çš„å¿½è§†
+		virtual DUIWindow* DV_GetSelSiblingInGroup(){return NULL;}					    ///< è·å¾—ç»„å†…çš„é€‰ä¸­å­æ§ä»¶
 	
 		//---------------------------------------------------
-		// Function Des:»º´æ»­²¼
-		virtual bool DV_IsPreCmpSizeDiff();												///< µ±size²»±äÊ±£¬Ó¦¸Ã¿¼ÂÇ²»ÉèÖÃÔàÇø, ¿ÉÖØÔØ£¬·ÀÖ¹ÌØÊâ¿Ø¼şµÄ¸¸´°¿Ú±³¾°±ä»»
-		DMCode DM_MarkCacheDirty(bool bDirty);											///< »º´æ»­²¼ÉèÖÃÎªÔà																		
-		bool DM_IsCacheDirty();															///< »º´æ»­²¼ÊÇ·ñÎªÔà
-		bool DM_IsDrawToCache();														///< ÊÇ·ñ»æÖÆµ½»º´æ»­²¼
-		IDMCanvas* DM_GetCacheCanvas(){return m_pCacheCanvas;}							///< »ñÈ¡»º´æ»­²¼Ö¸Õë
+		// Function Des:ç¼“å­˜ç”»å¸ƒ
+		virtual bool DV_IsPreCmpSizeDiff();												///< å½“sizeä¸å˜æ—¶ï¼Œåº”è¯¥è€ƒè™‘ä¸è®¾ç½®è„åŒº, å¯é‡è½½ï¼Œé˜²æ­¢ç‰¹æ®Šæ§ä»¶çš„çˆ¶çª—å£èƒŒæ™¯å˜æ¢
+		DMCode DM_MarkCacheDirty(bool bDirty);											///< ç¼“å­˜ç”»å¸ƒè®¾ç½®ä¸ºè„																		
+		bool DM_IsCacheDirty();															///< ç¼“å­˜ç”»å¸ƒæ˜¯å¦ä¸ºè„
+		bool DM_IsDrawToCache();														///< æ˜¯å¦ç»˜åˆ¶åˆ°ç¼“å­˜ç”»å¸ƒ
+		IDMCanvas* DM_GetCacheCanvas(){return m_pCacheCanvas;}							///< è·å–ç¼“å­˜ç”»å¸ƒæŒ‡é’ˆ
 
 		//---------------------------------------------------
-		// Function Des: ¶¨Ê±Æ÷
-		DMCode DM_SetTimer(char id, UINT uElapse);										///< ÉèÖÃ´°¿ÚÏà¹Ø¶¨Ê±Æ÷ id½öÖ§³Ö0-127,Ö÷´°¿Ú²»ÔÊĞí¶¨Òå³É1,2
-		DMCode DM_KillTimer(char id);													///< kill´°¿ÚÏà¹Ø¶¨Ê±Æ÷
-		DMCode DM_SetThreadTimer(UINT_PTR id, UINT uElapse);							///< ÉèÖÃÏß³Ì»Øµ÷¶¨Ê±Æ÷
-		DMCode DM_KillThreadTimer(UINT_PTR id);											///< killÏß³Ì»Øµ÷¶¨Ê±Æ÷
+		// Function Des: å®šæ—¶å™¨
+		DMCode DM_SetTimer(char id, UINT uElapse);										///< è®¾ç½®çª—å£ç›¸å…³å®šæ—¶å™¨ idä»…æ”¯æŒ0-127,ä¸»çª—å£ä¸å…è®¸å®šä¹‰æˆ1,2
+		DMCode DM_KillTimer(char id);													///< killçª—å£ç›¸å…³å®šæ—¶å™¨
+		DMCode DM_SetThreadTimer(UINT_PTR id, UINT uElapse);							///< è®¾ç½®çº¿ç¨‹å›è°ƒå®šæ—¶å™¨
+		DMCode DM_KillThreadTimer(UINT_PTR id);											///< killçº¿ç¨‹å›è°ƒå®šæ—¶å™¨
 
 		//---------------------------------------------------
-		// Function Des: ´°¿ÚÊ÷½Ó¿Ú		
-		inline int DM_GetChildCount(){return m_Node.m_nChildrenCount;}					///< »ñÈ¡ËùÓĞ×Ó´°¿ÚÊıÄ¿
-		static DUIWindow* DM_GetNextVisibleWnd(DUIWindow* pWnd,const CRect& rcDraw);    ///< »ñÈ¡rcDrawÖĞpWndµÄÏÂÒ»¸ö¿É¼û´°¿Ú
-		DMCode DM_InsertChild(DUIWindow* pNewChild, DUIWindow* pInsertAfter=NULL);		///< ²åÈë×Ó´°¿Ú
-		DMCode DM_RemoveChildWnd(DUIWindow* pChild);									///< ÒÆ³ı×Ó´°¿Ú
-		DMCode DM_DestroyChildWnd(DUIWindow* pChild);									///< ·¢ËÍWM_DESTROY,ÒÆ³ı²¢ÊÍ·Å×Ó´°¿Ú(×Ó´°¿ÚÒ»°ãÎªnew obj,Íâ²¿²»ĞèÒªdelete)
-		DMCode DM_SetWndToTop();														///< ÈçÎª×Ó´°¿Ú,Ôò½«×ÔÉí·ÅÔÚfirstchildÎ»ÖÃ
-		DMCode DM_SetOwnerWnd(DUIWindow* pWnd);											///< ÉèÖÃÓµÓĞÕß´°¿Ú(½ö×ö¸¨Öú)
-		DUIWindow* DM_GetWindow(int iCode);												///< »ñÈ¡Ö¸¶¨µÄ´°¿Ú
-		DUIWindow* DM_GetTopParentWnd();												///< »ñÈ¡¶¥²ã¸¸´°¿Ú
+		// Function Des: çª—å£æ ‘æ¥å£		
+		inline int DM_GetChildCount(){return m_Node.m_nChildrenCount;}					///< è·å–æ‰€æœ‰å­çª—å£æ•°ç›®
+		static DUIWindow* DM_GetNextVisibleWnd(DUIWindow* pWnd,const CRect& rcDraw);    ///< è·å–rcDrawä¸­pWndçš„ä¸‹ä¸€ä¸ªå¯è§çª—å£
+		DMCode DM_InsertChild(DUIWindow* pNewChild, DUIWindow* pInsertAfter=NULL);		///< æ’å…¥å­çª—å£
+		DMCode DM_RemoveChildWnd(DUIWindow* pChild);									///< ç§»é™¤å­çª—å£
+		DMCode DM_DestroyChildWnd(DUIWindow* pChild);									///< å‘é€WM_DESTROY,ç§»é™¤å¹¶é‡Šæ”¾å­çª—å£(å­çª—å£ä¸€èˆ¬ä¸ºnew obj,å¤–éƒ¨ä¸éœ€è¦delete)
+		DMCode DM_SetWndToTop();														///< å¦‚ä¸ºå­çª—å£,åˆ™å°†è‡ªèº«æ”¾åœ¨firstchildä½ç½®
+		DMCode DM_SetOwnerWnd(DUIWindow* pWnd);											///< è®¾ç½®æ‹¥æœ‰è€…çª—å£(ä»…åšè¾…åŠ©)
+		DUIWindow* DM_GetWindow(int iCode);												///< è·å–æŒ‡å®šçš„çª—å£
+		DUIWindow* DM_GetTopParentWnd();												///< è·å–é¡¶å±‚çˆ¶çª—å£
 		
 
 		//---------------------------------------------------
-		// Function Des:»æÖÆ
-		virtual bool DV_IsOnlyDrawClient();												///< ÊÇ·ñÖ»»æÖÆ¿Í»§Çø
-		virtual bool DV_IsStateChangeRedraw();											///< µ±´°¿Ú×´Ì¬±ä»¯Ê±£¬ÊÇ·ñÖØ»æ
-		virtual bool DV_IsNeedDrawEnviron(){return true;};								///< ÊÇ·ñĞèÒª×¼±¸»æÖÆ»·¾³
-		virtual DMCode DV_OnStateChanged(DWORD dwOldState,DWORD dwNewState);		    ///< ×´Ì¬¸Ä±äÊ±»æÖÆ
+		// Function Des:ç»˜åˆ¶
+		virtual bool DV_IsOnlyDrawClient();												///< æ˜¯å¦åªç»˜åˆ¶å®¢æˆ·åŒº
+		virtual bool DV_IsStateChangeRedraw();											///< å½“çª—å£çŠ¶æ€å˜åŒ–æ—¶ï¼Œæ˜¯å¦é‡ç»˜
+		virtual bool DV_IsNeedDrawEnviron(){return true;};								///< æ˜¯å¦éœ€è¦å‡†å¤‡ç»˜åˆ¶ç¯å¢ƒ
+		virtual DMCode DV_OnStateChanged(DWORD dwOldState,DWORD dwNewState);		    ///< çŠ¶æ€æ”¹å˜æ—¶ç»˜åˆ¶
 
-		/// ÎÄ×ÖÏà¹Ø
+		/// æ–‡å­—ç›¸å…³
 #if _HAS_CXX17
 		void FastSetText(std::string_view text, UINT cp = CP_UTF8) { SetText(DMCA2W(text.data(), text.length(), cp)); }
 		void SetTextA(const CStringA& text, UINT cp = CP_UTF8) { return SetText(DMA2W(text, cp)); }
@@ -214,31 +214,31 @@ namespace DM
 		virtual CStringW GetText() const;
 
 		// [deprecated]
-	    DMCode DV_SetWindowText(LPCWSTR lpszText);							    ///< ÉèÖÃÎÄ±¾
+	    DMCode DV_SetWindowText(LPCWSTR lpszText);							    ///< è®¾ç½®æ–‡æœ¬
 	    const CStringW& DV_GetWindowText() const;
 		
-		// DrawÎÄ×Ö
-		virtual DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);						///< »æÖÆÎÄ×Ö,ÔÚWM_PAINTÖĞ´¥·¢
-		virtual DMCode DV_DrawMultText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat,int nLineInter);   ///< Ê¾Àı´úÂë,ÓÃÓÚxmlÖĞµÄ×Ö·û´®\R\N½âÎö
+		// Drawæ–‡å­—
+		virtual DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);						///< ç»˜åˆ¶æ–‡å­—,åœ¨WM_PAINTä¸­è§¦å‘
+		virtual DMCode DV_DrawMultText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat,int nLineInter);   ///< ç¤ºä¾‹ä»£ç ,ç”¨äºxmlä¸­çš„å­—ç¬¦ä¸²\R\Nè§£æ
 		
-		/// Ä¬ÈÏ½¹µã¿ò
-		virtual DMCode DV_DrawDefFocus(IDMCanvas* pCanvas);								///< »æÖÆ½¹µã¿ò
-		virtual DMCode DV_DrawDefFocusRect(IDMCanvas* pCanvas,CRect rcFocus);			///< »æÖÆ½¹µã¿ò
+		/// é»˜è®¤ç„¦ç‚¹æ¡†
+		virtual DMCode DV_DrawDefFocus(IDMCanvas* pCanvas);								///< ç»˜åˆ¶ç„¦ç‚¹æ¡†
+		virtual DMCode DV_DrawDefFocusRect(IDMCanvas* pCanvas,CRect rcFocus);			///< ç»˜åˆ¶ç„¦ç‚¹æ¡†
 
-		/// Ä¬ÈÏ»æÖÆ»·¾³
-		virtual DMCode DV_PushDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);     ///< ÉèÖÃµ±Ç°×ÖÌåºÍÑÕÉ«µÈ»·¾³
-		virtual DMCode DV_PopDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);      ///< »Ö¸´ÏÈÇ°×ÖÌåºÍÑÕÉ«µÈ»·¾³
-		DMCode DV_SetDrawEnvironEx(IDMCanvas* pCanvas);								   ///< ´Ó×î¶¥²ã¸¸´°¿Ú¿ªÊ¼,Ò»²ã²ãÉèÖÃ»·¾³
+		/// é»˜è®¤ç»˜åˆ¶ç¯å¢ƒ
+		virtual DMCode DV_PushDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);     ///< è®¾ç½®å½“å‰å­—ä½“å’Œé¢œè‰²ç­‰ç¯å¢ƒ
+		virtual DMCode DV_PopDrawEnviron(IDMCanvas* pCanvas, DUIDrawEnviron&old);      ///< æ¢å¤å…ˆå‰å­—ä½“å’Œé¢œè‰²ç­‰ç¯å¢ƒ
+		DMCode DV_SetDrawEnvironEx(IDMCanvas* pCanvas);								   ///< ä»æœ€é¡¶å±‚çˆ¶çª—å£å¼€å§‹,ä¸€å±‚å±‚è®¾ç½®ç¯å¢ƒ
 
-		/// ÆÁÄ»»­²¼Ïà¹Ø(ÖØÒª¶¯»­»æÖÆ)
-		IDMCanvas* DM_GetCanvas(LPRECT lpRect,DWORD dcFlags,bool bClientDC=true);	   ///< »ñÈ¡»­²¼£¨Ö÷´°¿ÚÌá¹©:1.Ä¬ÈÏ»­²¼(Ä¬ÈÏ×ÖÌå)2.¸´ÖÆ´°¿Ú»º´æ»­²¼ÇøÓò3.¸´ÖÆ±³¾°É«£©
-		DMCode DM_ReleaseCanvas(IDMCanvas* pCanvas);								   ///< ¸üĞÂ»­²¼µ½´°¿Ú£¨Ö÷´°¿ÚÌá¹©:ÔÚ²»ÊÇ´´½¨Ä¬ÈÏ»­²¼×´Ì¬ÏÂ£©
-		DMCode DM_DrawBackground(IDMCanvas* pCanvas,LPRECT lpRect);					   ///< »æÖÆ±¾´°¿ÚµÄ±³¾°µ½»­²¼,´Ó¶¥²ã¸¸´°¿Ú»æÖÆµ½±¾´°¿Ú½áÊø
-		DMCode DM_DrawForeground(IDMCanvas* pCanvas,LPRECT lpRect);					   ///< »æÖÆ±¾´°¿ÚÇ°¾°µ½»­²¼£¬Ç°¾°Ö¸±¾´°¿ÚÍâµÄÆäËû¿É¼û´°¿Ú£¨²»ÊÇ±¾´°¿ÚµÄ×Ó´°¿Ú£©
-		DMCode DM_RedrawRegion(IDMCanvas* pCanvas, IDMRegion* lpRgn);				   ///< ÔÚlpRgnÇøÓò»æÖÆ×ÔÉí(°üÀ¨ËùÓĞ¿É¼û×Ó´°¿Ú)µ½»­²¼
+		/// å±å¹•ç”»å¸ƒç›¸å…³(é‡è¦åŠ¨ç”»ç»˜åˆ¶)
+		IDMCanvas* DM_GetCanvas(LPRECT lpRect,DWORD dcFlags,bool bClientDC=true);	   ///< è·å–ç”»å¸ƒï¼ˆä¸»çª—å£æä¾›:1.é»˜è®¤ç”»å¸ƒ(é»˜è®¤å­—ä½“)2.å¤åˆ¶çª—å£ç¼“å­˜ç”»å¸ƒåŒºåŸŸ3.å¤åˆ¶èƒŒæ™¯è‰²ï¼‰
+		DMCode DM_ReleaseCanvas(IDMCanvas* pCanvas);								   ///< æ›´æ–°ç”»å¸ƒåˆ°çª—å£ï¼ˆä¸»çª—å£æä¾›:åœ¨ä¸æ˜¯åˆ›å»ºé»˜è®¤ç”»å¸ƒçŠ¶æ€ä¸‹ï¼‰
+		DMCode DM_DrawBackground(IDMCanvas* pCanvas,LPRECT lpRect);					   ///< ç»˜åˆ¶æœ¬çª—å£çš„èƒŒæ™¯åˆ°ç”»å¸ƒ,ä»é¡¶å±‚çˆ¶çª—å£ç»˜åˆ¶åˆ°æœ¬çª—å£ç»“æŸ
+		DMCode DM_DrawForeground(IDMCanvas* pCanvas,LPRECT lpRect);					   ///< ç»˜åˆ¶æœ¬çª—å£å‰æ™¯åˆ°ç”»å¸ƒï¼Œå‰æ™¯æŒ‡æœ¬çª—å£å¤–çš„å…¶ä»–å¯è§çª—å£ï¼ˆä¸æ˜¯æœ¬çª—å£çš„å­çª—å£ï¼‰
+		DMCode DM_RedrawRegion(IDMCanvas* pCanvas, IDMRegion* lpRgn);				   ///< åœ¨lpRgnåŒºåŸŸç»˜åˆ¶è‡ªèº«(åŒ…æ‹¬æ‰€æœ‰å¯è§å­çª—å£)åˆ°ç”»å¸ƒ
 	
 		//---------------------------------------------------
-		// Function Des:ÏûÏ¢
+		// Function Des:æ¶ˆæ¯
 	public:
 		DM_BEGIN_MSG_MAP()
 			DM_MSG_WM_PAINT(DM_OnPaint)
@@ -260,11 +260,11 @@ namespace DM
 			MSG_WM_MOUSEHOVER(OnMouseHover)
 			MSG_WM_MOUSELEAVE(OnMouseLeave)
 			MSG_WM_MOUSEWHEEL(OnMouseWheel)
-		DM_END_MSG_INBASE()// »ùÀàÊ¹ÓÃDM_END_MSG_INBASE£¬ÆäÓà×ÓÀàÊ¹ÓÃDM_END_MSG_MAP
+		DM_END_MSG_INBASE()// åŸºç±»ä½¿ç”¨DM_END_MSG_INBASEï¼Œå…¶ä½™å­ç±»ä½¿ç”¨DM_END_MSG_MAP
 	public:
 		LRESULT DM_SendMessage(UINT uMsg, WPARAM wp = 0, LPARAM lp = 0,BOOL *pbMsgHandled=NULL);
 		LRESULT DM_DispatchMessage(MSG* pMsg, BOOL *pbMsgHandled=NULL);
-		LRESULT OnWindowPosChanged(LPRECT lpRcContainer);		  // 0±íÊ¾³É¹¦
+		LRESULT OnWindowPosChanged(LPRECT lpRcContainer);		  // 0è¡¨ç¤ºæˆåŠŸ
 		LRESULT OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam);
 		int OnCreate(LPVOID);
 		BOOL DM_OnEraseBkgnd(IDMCanvas* pCanvas);
@@ -284,16 +284,16 @@ namespace DM
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 
 		//---------------------------------------------------
-		// Function Des: Ä£°å
+		// Function Des: æ¨¡æ¿
 		template<class T> 
-		T* FindChildByNameT(LPCSTR lpszName,bool bPanelFind = false)						//< ºÍÀ©Õ¹½Ó¿Ú<see cref="FindChildByName"/>È¡µÃÒ»Ñù£¬Ç¿ÖÆ×ª»»Ä£°å
+		T* FindChildByNameT(LPCSTR lpszName,bool bPanelFind = false)						//< å’Œæ‰©å±•æ¥å£<see cref="FindChildByName"/>å–å¾—ä¸€æ ·ï¼Œå¼ºåˆ¶è½¬æ¢æ¨¡æ¿
 		{	
 			DUIWindow *pFindWnd = FindChildByName(lpszName,bPanelFind);
 			if (NULL == pFindWnd) return NULL;
 			return dynamic_cast<T*>(pFindWnd);
 		}
 		template<class T> 
-		T* FindChildByIdT(int ID,bool bPanelFind = false)									//< ºÍÀ©Õ¹½Ó¿Ú<see cref="FindChildById"/>È¡µÃÒ»Ñù£¬Ç¿ÖÆ×ª»»Ä£°å
+		T* FindChildByIdT(int ID,bool bPanelFind = false)									//< å’Œæ‰©å±•æ¥å£<see cref="FindChildById"/>å–å¾—ä¸€æ ·ï¼Œå¼ºåˆ¶è½¬æ¢æ¨¡æ¿
 		{
 			DUIWindow *pFindWnd = FindChildById(ID,bPanelFind);
 			if (NULL == pFindWnd)return NULL;
@@ -301,7 +301,7 @@ namespace DM
 		}
 
 	public:
-		virtual BOOL DV_WndProc(UINT uMsg,WPARAM wParam,LPARAM lParam, LRESULT& lResult);	///< DUIÏûÏ¢×îºó´¦Àíº¯Êı
+		virtual BOOL DV_WndProc(UINT uMsg,WPARAM wParam,LPARAM lParam, LRESULT& lResult);	///< DUIæ¶ˆæ¯æœ€åå¤„ç†å‡½æ•°
 		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);
 	
 	public:
@@ -311,35 +311,35 @@ namespace DM
 		DM_END_ATTRIBUTES()
 	
 	public:
-		DMCode DM_Layout(LPCSTR lpszAttribute, LPCSTR lpszValue,bool bLoadXml);			///< ÓÃÓÚ·Ç³õÊ¼»¯Ê±,Í¨¹ıÊôĞÔµ÷Õû²¼¾Ö
+		DMCode DM_Layout(LPCSTR lpszAttribute, LPCSTR lpszValue,bool bLoadXml);			///< ç”¨äºéåˆå§‹åŒ–æ—¶,é€šè¿‡å±æ€§è°ƒæ•´å¸ƒå±€
 
 	public:
-		DUIWND                                  m_hDUIWnd;									///< ÀàËÆm_hWnd£¬DUI´°¿ÚµÄÎ¨Ò»±êÊ¶    
-		CRect                                   m_rcWindow;									///< ´°¿ÚÔÚÈİÆ÷ÖĞµÄÎ»ÖÃ
-		DWORD									m_dwDUIState;								///< ´°¿Ú×´Ì¬
+		DUIWND                                  m_hDUIWnd;									///< ç±»ä¼¼m_hWndï¼ŒDUIçª—å£çš„å”¯ä¸€æ ‡è¯†    
+		CRect                                   m_rcWindow;									///< çª—å£åœ¨å®¹å™¨ä¸­çš„ä½ç½®
+		DWORD									m_dwDUIState;								///< çª—å£çŠ¶æ€
 		
-		DMSmartPtrT<IDMCanvas>					m_pCacheCanvas;								///< »º´æ»­²¼
-		DUIWindowNode                           m_Node;										///< DUIµÄÊ÷ĞÎ´°¿ÚÁĞ±í
+		DMSmartPtrT<IDMCanvas>					m_pCacheCanvas;								///< ç¼“å­˜ç”»å¸ƒ
+		DUIWindowNode                           m_Node;										///< DUIçš„æ ‘å½¢çª—å£åˆ—è¡¨
 
-		DMSmartPtrT<DUIWindow_XmlInfo>          m_pDUIXmlInfo;								///< ×Ô´øµÄXMLÊôĞÔ
+		DMSmartPtrT<DUIWindow_XmlInfo>          m_pDUIXmlInfo;								///< è‡ªå¸¦çš„XMLå±æ€§
 		DUIWindow_Data							m_DUIData;
 
-		DMEventMgr								m_EventMgr;									///< ÊÂ¼şÏî¹ÜÀí
-		IDMContainerPtr                         m_pContainer;								///< ÈİÆ÷¶ÔÏó£¬Ò»°ãÎªËŞÖ÷
+		DMEventMgr								m_EventMgr;									///< äº‹ä»¶é¡¹ç®¡ç†
+		IDMContainerPtr                         m_pContainer;								///< å®¹å™¨å¯¹è±¡ï¼Œä¸€èˆ¬ä¸ºå®¿ä¸»
 
-		DMSmartPtrT<IDMLayout>                  m_pLayout;									///< Ãªµã²¼¾Ö¶ÔÏó
-		bool                                    m_bFloatLayout;								///< ¾ø¶Ô×ø±ê
+		DMSmartPtrT<IDMLayout>                  m_pLayout;									///< é”šç‚¹å¸ƒå±€å¯¹è±¡
+		bool                                    m_bFloatLayout;								///< ç»å¯¹åæ ‡
 
 		CMap<CStringA,CStringA>					m_StrDataMap;
-		CArray<DUIWindowPtr>					m_ChildPanelArray;							///< ¿Ø¼şÖĞ°üº¬µÄ×ÓÈİÆ÷ÁĞ±í
+		CArray<DUIWindowPtr>					m_ChildPanelArray;							///< æ§ä»¶ä¸­åŒ…å«çš„å­å®¹å™¨åˆ—è¡¨
 	
 #if defined(_DEBUG)
-		CStringA								m_strXml;									///< ½ödebugÏÂÓĞĞ§,¿ÉÌá¹©¸øspy++ÏÔÊ¾
+		CStringA								m_strXml;									///< ä»…debugä¸‹æœ‰æ•ˆ,å¯æä¾›ç»™spy++æ˜¾ç¤º
 #endif
 
 #if DM_BUILD_FOR_DESIGNER
 		//-----------------------------------------------------------------------------------------------
-		DMXmlNode                               m_XmlNode;                                  ///< ½öÉèÖÃ_DMDesigner_ºêÊ±ÓĞĞ§,designÖĞxmldocÒ»Ö±ÊÇÓĞĞ§µÄ£¬ËùÓĞËüµÄ¶ÔÏóÒ²»áÒ»Ö±ÓĞĞ§
+		DMXmlNode                               m_XmlNode;                                  ///< ä»…è®¾ç½®_DMDesigner_å®æ—¶æœ‰æ•ˆ,designä¸­xmldocä¸€ç›´æ˜¯æœ‰æ•ˆçš„ï¼Œæ‰€æœ‰å®ƒçš„å¯¹è±¡ä¹Ÿä¼šä¸€ç›´æœ‰æ•ˆ
 #endif
 
 		static SIMPLETRANSFUNC                  s_simpleTransProc;

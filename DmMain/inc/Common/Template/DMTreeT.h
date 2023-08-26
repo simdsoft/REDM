@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMTreeT.h 
-// File Des: Tree»ù´¡³éÀë³ÉÄ£°å
+// File Des: TreeåŸºç¡€æŠ½ç¦»æˆæ¨¡æ¿
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -30,30 +30,30 @@ namespace DM
 	class DMTreeT  
 	{
 		///-----------------------------------------
-		///  ½Úµã½á¹¹Ìå
+		///  èŠ‚ç‚¹ç»“æ„ä½“
 		typedef struct _DMTREENODE
 		{
-			struct _DMTREENODE *hParent;      ///< ¸¸½Úµã
-			struct _DMTREENODE *hChildFirst;  ///< µÚÒ»¸ö×Ó½Úµã
-			struct _DMTREENODE *hChildLast;   ///< ×îºóÒ»¸ö×Ó½Úµã
-			struct _DMTREENODE *hPrevSibling; ///< ĞÖ½Úµã
-			struct _DMTREENODE *hNextSibling; ///< µÜ½Úµã
-			T data;                           ///< Êı¾İ
+			struct _DMTREENODE *hParent;      ///< çˆ¶èŠ‚ç‚¹
+			struct _DMTREENODE *hChildFirst;  ///< ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹
+			struct _DMTREENODE *hChildLast;   ///< æœ€åä¸€ä¸ªå­èŠ‚ç‚¹
+			struct _DMTREENODE *hPrevSibling; ///< å…„èŠ‚ç‚¹
+			struct _DMTREENODE *hNextSibling; ///< å¼ŸèŠ‚ç‚¹
+			T data;                           ///< æ•°æ®
 		}DMTREENODE,*HDMTREENODE;
 
 		///-----------------------------------------
-		/// ´Ë½á¹¹ÌåÓÃÓÚÁ¬½ÓÊ÷½Úµã
+		/// æ­¤ç»“æ„ä½“ç”¨äºè¿æ¥æ ‘èŠ‚ç‚¹
 		typedef struct _DMTREELINK
 		{
-			HDMTREENODE  hParent;			 ///< ¸¸½Úµã
-			HDMTREENODE  hChildFirst;		 ///< µÚÒ»¸ö×Ó½Úµã
-			HDMTREENODE  hChildLast;		 ///< ×îºóÒ»¸ö×Ó½Úµã
-			HDMTREENODE  hPrevSibling;		 ///< ĞÖ½Úµã
-			HDMTREENODE  hNextSibling;		 ///< µÜ½Úµã
+			HDMTREENODE  hParent;			 ///< çˆ¶èŠ‚ç‚¹
+			HDMTREENODE  hChildFirst;		 ///< ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹
+			HDMTREENODE  hChildLast;		 ///< æœ€åä¸€ä¸ªå­èŠ‚ç‚¹
+			HDMTREENODE  hPrevSibling;		 ///< å…„èŠ‚ç‚¹
+			HDMTREENODE  hNextSibling;		 ///< å¼ŸèŠ‚ç‚¹
 		}DMTREELINK,*PDMTREELINK;
 
 		///-----------------------------------------
-		/// ±éÀúÒ»¸öÊ÷½áµãµÄ»Øµ÷º¯ÊıÔ­ĞÍ
+		/// éå†ä¸€ä¸ªæ ‘ç»“ç‚¹çš„å›è°ƒå‡½æ•°åŸå‹
 		typedef bool (*CBTRAVERSING)(T*,LPARAM);
 
 	public:
@@ -79,7 +79,7 @@ namespace DM
 		}
 
 		///-----------------------------------------
-		/// »ñÈ¡ÏÂÒ»¸öĞÖµÜ
+		/// è·å–ä¸‹ä¸€ä¸ªå…„å¼Ÿ
 		static HDMTREEITEM GetNextSiblingItem(HDMTREEITEM hItem)
 		{
 			PDMTREELINK pLink= (PDMTREELINK)hItem;
@@ -88,7 +88,7 @@ namespace DM
 		}
 
 		///-----------------------------------------
-		/// »ñÈ¡ÉÏÒ»¸öĞÖµÜ
+		/// è·å–ä¸Šä¸€ä¸ªå…„å¼Ÿ
 		static HDMTREEITEM GetPrevSiblingItem(HDMTREEITEM hItem)
 		{
 			PDMTREELINK pLink  = (PDMTREELINK)hItem;
@@ -97,7 +97,7 @@ namespace DM
 		}
 
 		///-----------------------------------------
-		/// »ñÈ¡¸¸½áµã
+		/// è·å–çˆ¶ç»“ç‚¹
 		static HDMTREEITEM GetParentItem(HDMTREEITEM hItem)
 		{
 			PDMTREELINK pLink= (PDMTREELINK)hItem;
@@ -105,7 +105,7 @@ namespace DM
 			return (HDMTREEITEM)pLink->hParent;
 		}
 
-		///< »ñÈ¡½áµã²ãÊı
+		///< è·å–ç»“ç‚¹å±‚æ•°
 		static int GetItemLevel(HDMTREEITEM hItem)
 		{
 			int nRet = -1;
@@ -121,7 +121,7 @@ namespace DM
 			return nRet;
 		}
 
-		///< HDMTREEITEM ¸ù½Úµã
+		///< HDMTREEITEM æ ¹èŠ‚ç‚¹
 		static HDMTREEITEM GetRootItem(HDMTREEITEM hItem)
 		{
 			HDMTREEITEM hParent=hItem;
@@ -132,7 +132,7 @@ namespace DM
 			return hParent;
 		}
 
-		///< »ñÈ¡µÚÒ»¸ö×Ó½áµã,
+		///< è·å–ç¬¬ä¸€ä¸ªå­ç»“ç‚¹,
 		HDMTREEITEM GetChildItem(HDMTREEITEM hItem,bool bFirst=true)
 		{
 			HDMTREENODE hsNode = (HDMTREENODE)hItem;
@@ -161,7 +161,7 @@ namespace DM
 			}
 		}
 
-		///< »ñÈ¡×Ó½áµãÊıÁ¿
+		///< è·å–å­ç»“ç‚¹æ•°é‡
 		int GetChildrenCount(HDMTREEITEM hItem)
 		{
 			int nRet = 0;
@@ -174,7 +174,7 @@ namespace DM
 			return nRet;
 		}
 
-		///< É¾³ıÒ»¸ö½Úµã£¬¿ÉÒÔ±»ÅÉÉúÀàÖØÔØ
+		///< åˆ é™¤ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå¯ä»¥è¢«æ´¾ç”Ÿç±»é‡è½½
 		virtual void DeleteItem(HDMTREEITEM hItem)
 		{
 			HDMTREENODE hsNode = (HDMTREENODE)hItem;
@@ -218,7 +218,7 @@ namespace DM
 			}
 		}
 
-		///< É¾³ıÒ»¸ö½áµã·ÖÖ¦£¬Èç¹û¸Ã½áµãµÄ¸¸½áµãÃ»ÓĞÆäËü×Ó½ÚµãÔòÒ»ÆğÉ¾³ı
+		///< åˆ é™¤ä¸€ä¸ªç»“ç‚¹åˆ†æï¼Œå¦‚æœè¯¥ç»“ç‚¹çš„çˆ¶ç»“ç‚¹æ²¡æœ‰å…¶å®ƒå­èŠ‚ç‚¹åˆ™ä¸€èµ·åˆ é™¤
 		bool DeleteItemEx(HDMTREEITEM hItem)
 		{
 			if(GetChildItem(hItem)) return false;
@@ -231,7 +231,7 @@ namespace DM
 			return true;
 		}
 
-		///< »ñÈ¡½áµãÖĞ±£´æµÄÊı¾İ
+		///< è·å–ç»“ç‚¹ä¸­ä¿å­˜çš„æ•°æ®
 		static T GetItem(HDMTREEITEM hItem)
 		{
 			DMASSERT(hItem!=DMTVI_ROOT);
@@ -240,7 +240,7 @@ namespace DM
 			return hsNode->data;
 		}
 
-		///< »ñÈ¡½áµãÖĞ±£´æµÄÊı¾İ
+		///< è·å–ç»“ç‚¹ä¸­ä¿å­˜çš„æ•°æ®
 		static T *GetItemPt(HDMTREEITEM hItem)
 		{
 			DMASSERT(hItem!=DMTVI_ROOT);
@@ -249,7 +249,7 @@ namespace DM
 			return &hsNode->data;
 		}
 
-		///< ²åÈëÒ»¸öĞÂ½áµã,data:½áµãÊı¾İhParent:ĞÂ½áµãµÄ¸¸½áµã,hInsertAfter:ĞÂ½áµãµÄÇ°Ò»¸öĞÖµÜ½áµã,·µ»ØHDMTREEITEM ĞÂ½áµãµÄÖ¸Õë
+		///< æ’å…¥ä¸€ä¸ªæ–°ç»“ç‚¹,data:ç»“ç‚¹æ•°æ®hParent:æ–°ç»“ç‚¹çš„çˆ¶ç»“ç‚¹,hInsertAfter:æ–°ç»“ç‚¹çš„å‰ä¸€ä¸ªå…„å¼Ÿç»“ç‚¹,è¿”å›HDMTREEITEM æ–°ç»“ç‚¹çš„æŒ‡é’ˆ
 		HDMTREEITEM InsertItem(const T &data,HDMTREEITEM hParent=DMTVI_ROOT,HDMTREEITEM hInsertAfter=DMTVI_LAST)
 		{
 			HDMTREENODE hParentNode      = (HDMTREENODE) hParent;
@@ -346,11 +346,11 @@ namespace DM
 			return (HDMTREEITEM)hInserted;
 		}
 
-		///< ²ÉÓÃµİ¹é·½Ê½±éÀúÒ»¸öÊ÷½áµã,CBTRAVERSINGÎª»Øµ÷º¯Êı,·µ»Ø±»ÖĞÖ¹µÄÊ÷½áµã
+		///< é‡‡ç”¨é€’å½’æ–¹å¼éå†ä¸€ä¸ªæ ‘ç»“ç‚¹,CBTRAVERSINGä¸ºå›è°ƒå‡½æ•°,è¿”å›è¢«ä¸­æ­¢çš„æ ‘ç»“ç‚¹
 		HDMTREEITEM TraversingRecursion(HDMTREEITEM hItem,CBTRAVERSING funTraversing,LPARAM lParam)
 		{
 			DMASSERT(hItem);
-			HDMTREEITEM hSibling = GetChildItem(hItem); //lzlong change to this  ÏÂÃæµÄ±éÀúÓĞÎÊÌâ 2019-6-13
+			HDMTREEITEM hSibling = GetChildItem(hItem); //lzlong change to this  ä¸‹é¢çš„éå†æœ‰é—®é¢˜ 2019-6-13
 			while (hSibling)
 			{
 				HDMTREEITEM hNextSibling = GetNextSiblingItem(hSibling);
@@ -399,7 +399,7 @@ namespace DM
 			return NULL; */
 		}
 
-		///< °´Ë³Ğò·½Ê½´ÓÖ¸¶¨½áµã¿ªÊ¼²éÕÒºóÃæµÄ½áµã£¬°üÀ¨×Ô¼ºµÄ×Ó½Úµã¼°×Ô¼ºÏòÏÂµÄĞÖµÜ½áµã
+		///< æŒ‰é¡ºåºæ–¹å¼ä»æŒ‡å®šç»“ç‚¹å¼€å§‹æŸ¥æ‰¾åé¢çš„ç»“ç‚¹ï¼ŒåŒ…æ‹¬è‡ªå·±çš„å­èŠ‚ç‚¹åŠè‡ªå·±å‘ä¸‹çš„å…„å¼Ÿç»“ç‚¹
 		HDMTREEITEM TraversingSequence(HDMTREEITEM hItem,CBTRAVERSING funTraversing,LPARAM lParam)
 		{
 			if (!m_hRootFirst) 
@@ -425,13 +425,13 @@ namespace DM
 			return NULL;
 		}
 
-		///< »ñÈ¡¸ù½Úµã
+		///< è·å–æ ¹èŠ‚ç‚¹
 		HDMTREEITEM GetRootItem(bool bFirst=true)
 		{
 			return (HDMTREEITEM)(bFirst?m_hRootFirst:m_hRootLast);
 		}
 
-		///< »ñÈ¡Ê÷ĞÎ¿Ø¼şµÄ×ÜÊıÄ¿
+		///< è·å–æ ‘å½¢æ§ä»¶çš„æ€»æ•°ç›®
 		int GetCount()
 		{
 			HDMTREEITEM hRoot = (HDMTREEITEM)m_hRootFirst;
@@ -442,7 +442,7 @@ namespace DM
 			return GetDesendants(hRoot)+1;
 		}
 
-		///< »ñÈ¡½áµãµÄ×ÓËï½áµãÊı
+		///< è·å–ç»“ç‚¹çš„å­å­™ç»“ç‚¹æ•°
 		int GetDesendants(HDMTREEITEM hItem)
 		{
 			int nRet = 0;
@@ -455,11 +455,11 @@ namespace DM
 			return nRet;
 		}
 
-		///< »ñÈ¡µ±Ç°½áµãµÄÏÂÒ»¸ö½áµã
-		/*Describe  »ñÈ¡µ±Ç°½áµãµÄÏÂÒ»¸ö½áµã
-		* Èç¹ûµ±Ç°½áµãÓĞ×Ó½áµã£¬Ôò·µ»Ø×Ô¼ºµÄµÚÒ»¸ö×Ó½áµã£¬
-		* ·ñÔòÈç¹ûÓĞÏòÏÂµÄĞÖµÜ½áµã£¬Ôò·µ»Ø×Ô¼ºÏòÏÂĞÖµÜ½áµã¡¢
-		* ·ñÔòËÑË÷×Ô¼ºµÄ¸¸½áµãµÄÏòÏÂĞÖµÜ½áµã
+		///< è·å–å½“å‰ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		/*Describe  è·å–å½“å‰ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		* å¦‚æœå½“å‰ç»“ç‚¹æœ‰å­ç»“ç‚¹ï¼Œåˆ™è¿”å›è‡ªå·±çš„ç¬¬ä¸€ä¸ªå­ç»“ç‚¹ï¼Œ
+		* å¦åˆ™å¦‚æœæœ‰å‘ä¸‹çš„å…„å¼Ÿç»“ç‚¹ï¼Œåˆ™è¿”å›è‡ªå·±å‘ä¸‹å…„å¼Ÿç»“ç‚¹ã€
+		* å¦åˆ™æœç´¢è‡ªå·±çš„çˆ¶ç»“ç‚¹çš„å‘ä¸‹å…„å¼Ÿç»“ç‚¹
 		*/
 		HDMTREEITEM GetNextItem(HDMTREEITEM hItem)
 		{
@@ -486,12 +486,12 @@ namespace DM
 			return NULL;
 		}
 
-		///< »ñÈ¡µ±Ç°½áµãµÄÏÂÒ»¸ö½áµã
-		/* int &nLevel -- µ±Ç°½áµã(hItem)ÓëÄ¿±ê½áµã(return)µÄ²ã´Î¹ØÏµ:1-¸¸×Ó¹ØÏµ£¬0£­ĞÖµÜ¹ØÏµ£¬-n£­×Ó->¸¸µÄĞÖµÜ
-		* Describe  »ñÈ¡µ±Ç°½áµãµÄÏÂÒ»¸ö½áµã
-		*           Èç¹ûµ±Ç°½áµãÓĞ×Ó½áµã£¬Ôò·µ»Ø×Ô¼ºµÄµÚÒ»¸ö×Ó½áµã£¬
-		*           ·ñÔòÈç¹ûÓĞÏòÏÂµÄĞÖµÜ½áµã£¬Ôò·µ»Ø×Ô¼ºÏòÏÂĞÖµÜ½áµã¡¢
-		*           ·ñÔòËÑË÷×Ô¼ºµÄ¸¸½áµãµÄÏòÏÂĞÖµÜ½áµã
+		///< è·å–å½“å‰ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		/* int &nLevel -- å½“å‰ç»“ç‚¹(hItem)ä¸ç›®æ ‡ç»“ç‚¹(return)çš„å±‚æ¬¡å…³ç³»:1-çˆ¶å­å…³ç³»ï¼Œ0ï¼å…„å¼Ÿå…³ç³»ï¼Œ-nï¼å­->çˆ¶çš„å…„å¼Ÿ
+		* Describe  è·å–å½“å‰ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹
+		*           å¦‚æœå½“å‰ç»“ç‚¹æœ‰å­ç»“ç‚¹ï¼Œåˆ™è¿”å›è‡ªå·±çš„ç¬¬ä¸€ä¸ªå­ç»“ç‚¹ï¼Œ
+		*           å¦åˆ™å¦‚æœæœ‰å‘ä¸‹çš„å…„å¼Ÿç»“ç‚¹ï¼Œåˆ™è¿”å›è‡ªå·±å‘ä¸‹å…„å¼Ÿç»“ç‚¹ã€
+		*           å¦åˆ™æœç´¢è‡ªå·±çš„çˆ¶ç»“ç‚¹çš„å‘ä¸‹å…„å¼Ÿç»“ç‚¹
 		*/
 		HDMTREEITEM GetNextItem(HDMTREEITEM hItem,int &nLevel)
 		{
@@ -521,8 +521,8 @@ namespace DM
 			}
 			return NULL;
 		}
-	public:///< ¸¨Öú
-		///< ²ÉÓÃºóĞò±éÀúµÄ·½Ê½ÊÍ·Å½áµãÕ¼ÓÃµÄ¿Õ¼ä
+	public:///< è¾…åŠ©
+		///< é‡‡ç”¨ååºéå†çš„æ–¹å¼é‡Šæ”¾ç»“ç‚¹å ç”¨çš„ç©ºé—´
 		void FreeNode(HDMTREENODE hsNode)
 		{
 			DMASSERT(hsNode);		
@@ -535,18 +535,18 @@ namespace DM
 			}
 			if (hsNode!=DMTVN_ROOT)
 			{
-				OnNodeFree(hsNode->data);// ÔÚÊ÷ĞÎ½á¹¹ÆÆ»µÇ°ÊÍ·Å
+				OnNodeFree(hsNode->data);// åœ¨æ ‘å½¢ç»“æ„ç ´åå‰é‡Šæ”¾
 				delete hsNode;
 			}
 		}
 
-	public:///< ¿ÉÖØÔØ
-		///< ÔÚÅÉÉúÀàÖĞÊµÏÖÊı¾İµÄÊÍ·Å²Ù×÷
+	public:///< å¯é‡è½½
+		///< åœ¨æ´¾ç”Ÿç±»ä¸­å®ç°æ•°æ®çš„é‡Šæ”¾æ“ä½œ
 		virtual void OnNodeFree(T & data){}
 
 	public:
-		HDMTREENODE  m_hRootFirst;  ///< µÚÒ»¸ö¸ù½Úµã
-		HDMTREENODE  m_hRootLast;   ///< ×îºóÒ»¸ö¸ù½Úµã
+		HDMTREENODE  m_hRootFirst;  ///< ç¬¬ä¸€ä¸ªæ ¹èŠ‚ç‚¹
+		HDMTREENODE  m_hRootLast;   ///< æœ€åä¸€ä¸ªæ ¹èŠ‚ç‚¹
 	};
 
 #pragma warning(pop)

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ProjXml.h
 // File mark:   
-// File summary:π‹¿Ìπ§≥Ã ”Õº
+// File summary:ÁÆ°ÁêÜÂ∑•Á®ãËßÜÂõæ
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8
@@ -26,7 +26,7 @@ public:
 	DMCode PopProjTreeMenu(HDMTREEITEM hSel);
 	DMCode HandleProjTreeMenu(int nID);
 
-	// ∆‰À˚
+	// ÂÖ∂‰ªñ
 	DMCode InitSubXmlList();
 	DMCode SetDocUnSave(CStringW strPath);
 	DMCode SetDocUnSave(DMXmlNodePtr pNode);
@@ -40,7 +40,7 @@ public:
 	
 
 protected:
-	// MenuœÓ≥ı ºªØ
+	// MenuÈ°πÂàùÂßãÂåñ
 	DMCode InitCustomProjMenu(DMXmlNode& XmlNode);
 	DMCode InitSkinPoolsProjMenu(DMXmlNode& XmlNode);
 	DMCode InitStylePoolsProjMenu(DMXmlNode& XmlNode);
@@ -51,7 +51,7 @@ protected:
 	DMCode InitImgMenu(DMXmlNode& XmlNode);
 	DMCode InitLayoutMenu(DMXmlNode& XmlNode);
 
-	// Menu ¬º˛¥¶¿Ì
+	// Menu‰∫ã‰ª∂Â§ÑÁêÜ
 	DMCode ProjMenu_OpenDir();
 	DMCode ProjMenu_Scan();
 	DMCode ProjMenu_AddSkinPool();
@@ -86,24 +86,24 @@ private:
 	virtual bool EqualArrayObj(const DocDataPtr &objsrc, const DocDataPtr &objdest);
 
 public:
-	DMSmartPtrT<ResFolder>								m_pRes;				///< ◊ ‘¥∞¸,‘§¿¿¥∞ø⁄”…¥À◊ ‘¥∞¸Ã·π©◊ ‘¥
-	CStringW											m_strResDir;		///< ◊ ‘¥∞¸¬∑æ∂,◊Ó∫Û¥¯"\"
-	CStringA											m_strGlobalName;	///< »´æ÷◊ ‘¥∞¸√˚◊÷
+	DMSmartPtrT<ResFolder>								m_pRes;				///< ËµÑÊ∫êÂåÖ,È¢ÑËßàÁ™óÂè£Áî±Ê≠§ËµÑÊ∫êÂåÖÊèê‰æõËµÑÊ∫ê
+	CStringW											m_strResDir;		///< ËµÑÊ∫êÂåÖË∑ØÂæÑ,ÊúÄÂêéÂ∏¶"\"
+	CStringA											m_strGlobalName;	///< ÂÖ®Â±ÄËµÑÊ∫êÂåÖÂêçÂ≠ó
 
-	//  ˜–Œøÿº˛
+	// Ê†ëÂΩ¢Êéß‰ª∂
 	ProjTree*											m_pProjTree;	
-	HDMTREEITEM                                         m_hProjLayouts;		///< —˘ Ω-∆§∑Ù-≤ºæ÷Œƒº˛∏˘Ω·µ„
-	HDMTREEITEM                                         m_hProjThemes;		///< ÷˜Ã‚∞¸¡–±Ì∏˘Ω·µ„
-	HDMTREEITEM                                         m_hProjLayoutFiles; ///< ≤ºæ÷Œƒº˛¡–±Ì∏˘Ω·µ„
-	HDMTREEITEM                                         m_hProjGlobal;      ///< GlobalÀ˘‘⁄µƒΩ·µ„
+	HDMTREEITEM                                         m_hProjLayouts;		///< Ê†∑Âºè-ÁöÆËÇ§-Â∏ÉÂ±ÄÊñá‰ª∂Ê†πÁªìÁÇπ
+	HDMTREEITEM                                         m_hProjThemes;		///< ‰∏ªÈ¢òÂåÖÂàóË°®Ê†πÁªìÁÇπ
+	HDMTREEITEM                                         m_hProjLayoutFiles; ///< Â∏ÉÂ±ÄÊñá‰ª∂ÂàóË°®Ê†πÁªìÁÇπ
+	HDMTREEITEM                                         m_hProjGlobal;      ///< GlobalÊâÄÂú®ÁöÑÁªìÁÇπ
 	HDMTREEITEM                                         m_hProjGlobalStyleSkins;
 	HDMTREEITEM                                         m_hProjPrivStyleSkins;
-	HDMTREEITEM                                         m_hProjGlobalStyles;///< »´æ÷—˘ Ω¡–±Ì
-	HDMTREEITEM                                         m_hProjGlobalSkins; ///< »´æ÷∆§∑Ù¡–±Ì
+	HDMTREEITEM                                         m_hProjGlobalStyles;///< ÂÖ®Â±ÄÊ†∑ÂºèÂàóË°®
+	HDMTREEITEM                                         m_hProjGlobalSkins; ///< ÂÖ®Â±ÄÁöÆËÇ§ÂàóË°®
 
 	HDMTREEITEM											m_hProjSel;			
 	HDMTREEITEM                                         m_hProjDefTheme;
 
-	bool                                                m_bSubInit;			///< sub¡– «∑Ò“—≥ı ºªØÕÍ≥…
+	bool                                                m_bSubInit;			///< subÂàóÊòØÂê¶Â∑≤ÂàùÂßãÂåñÂÆåÊàê
 	
 };

@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMDynLib.h"
 
 namespace DM
@@ -20,7 +20,7 @@ namespace DM
 		{
 			CStringW szPath = m_strPluginPath;
 			if (szPath.Right(4)!=L".dll")
-			{// LoadLibraryExWÔÚszPathÎªÏà¶ÔÂ·¾¶Ê±,²»»á×Ô¶¯¼Ó.dllºó×º
+			{// LoadLibraryExWåœ¨szPathä¸ºç›¸å¯¹è·¯å¾„æ—¶,ä¸ä¼šè‡ªåŠ¨åŠ .dllåç¼€
 				szPath += L".dll";
 			}
 			

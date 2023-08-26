@@ -1,11 +1,11 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIEditHelper.h"
 #include "DUIEdit.h"
 
 
 namespace DM
 {
-	// È«¾Ö¿ØÖÆ
+	// å…¨å±€æŽ§åˆ¶
 	// 8d33f740-cf58-11ce-a89d-00aa006cadc5
 	EXTERN_C const IID IID_ITextServices = {0x8d33f740,0xcf58,0x11ce,{0xa8, 0x9d, 0x00, 0xaa, 0x00, 0x6c, 0xad, 0xc5}};
 	// c5bdd8d0-d26e-11ce-a89e-00aa006cadc5 
@@ -420,7 +420,7 @@ namespace DM
 		do 
 		{
 			m_pRichEdit = pRichEdit;
-			IUnknown *pUnk = NULL;// ÔÚRichEdit³õÊ¼»¯Ö®Ç°³õÊ¼»¯DUIEditHelper
+			IUnknown *pUnk = NULL;// åœ¨RichEditåˆå§‹åŒ–ä¹‹å‰åˆå§‹åŒ–DUIEditHelper
 			if (FAILED(DUIEditHelper::getSingleton().CreateTextServices(NULL, this, &pUnk))) 
 			{
 				break;
@@ -555,12 +555,12 @@ namespace DM
 		return m_pRichEdit->EnableScrollBar(wBar,ESB_ENABLE_BOTH == fuArrowflags);
 	}
 
-	BOOL DUITextHost::TxSetScrollRange(INT fnBar, LONG nMinPos, INT nMaxPos, BOOL fRedraw)// hgytest pass£¬µ±¹ö¶¯·¶Î§±ä»¯Ê±´¥·¢
+	BOOL DUITextHost::TxSetScrollRange(INT fnBar, LONG nMinPos, INT nMaxPos, BOOL fRedraw)// hgytest passï¼Œå½“æ»šåŠ¨èŒƒå›´å˜åŒ–æ—¶è§¦å‘
 	{
 		return m_pRichEdit->SetScrollRange(fnBar!=SB_HORZ,nMinPos,nMaxPos,TRUE==fRedraw);
 	}
 
-	BOOL DUITextHost::TxSetScrollPos(INT fnBar, INT nPos, BOOL fRedraw)// hgytest pass£¬Ëæ×Ö·û±ä»¯×Ô¶¯´¥·¢ÉèÖÃ¹ö¶¯Ìõ»¬¿éÎ»ÖÃ
+	BOOL DUITextHost::TxSetScrollPos(INT fnBar, INT nPos, BOOL fRedraw)// hgytest passï¼Œéšå­—ç¬¦å˜åŒ–è‡ªåŠ¨è§¦å‘è®¾ç½®æ»šåŠ¨æ¡æ»‘å—ä½ç½®
 	{
 		BOOL bRet = FALSE;
 		do 
@@ -599,7 +599,7 @@ namespace DM
 		}
 	}
 
-	BOOL DUITextHost::TxCreateCaret(HBITMAP hbmp, INT xWidth, INT yHeight)// hgytest pass£¬²åÈë·ûÏÔÊ¾Ç°×Ô¶¯´¥·¢
+	BOOL DUITextHost::TxCreateCaret(HBITMAP hbmp, INT xWidth, INT yHeight)// hgytest passï¼Œæ’å…¥ç¬¦æ˜¾ç¤ºå‰è‡ªåŠ¨è§¦å‘
 	{
 		::CreateCaret(m_pRichEdit->GetContainer()->OnGetHWnd(),hbmp,xWidth,yHeight);
 		::HideCaret(m_pRichEdit->GetContainer()->OnGetHWnd());
@@ -607,7 +607,7 @@ namespace DM
 		return TRUE;
 	}
 
-	BOOL DUITextHost::TxShowCaret(BOOL fShow)// hgytest pass£¬ÉèÖÃ½¹µãÊ±×Ô¶¯´¥·¢
+	BOOL DUITextHost::TxShowCaret(BOOL fShow)// hgytest passï¼Œè®¾ç½®ç„¦ç‚¹æ—¶è‡ªåŠ¨è§¦å‘
 	{
 		BOOL bRet = FALSE;
 		do 
@@ -622,7 +622,7 @@ namespace DM
 		return bRet;
 	}
 
-	BOOL DUITextHost::TxSetCaretPos(INT x, INT y)// hgytest pass ¿¿½ü±ß½çÊ±x.y¾ùÎª-32000
+	BOOL DUITextHost::TxSetCaretPos(INT x, INT y)// hgytest pass é è¿‘è¾¹ç•Œæ—¶x.yå‡ä¸º-32000
 	{
 		::SetCaretPos(x,y);
 		m_ptCaret.x = x;
@@ -630,12 +630,12 @@ namespace DM
 		return m_pRichEdit->ResetCaret(CPoint(x,y));
 	}
 
-	BOOL DUITextHost::TxSetTimer(UINT idTimer, UINT uTimeout)// hgytest pass,ÔÚrtf»ò¶¯»­ÖÐµ÷ÓÃ
+	BOOL DUITextHost::TxSetTimer(UINT idTimer, UINT uTimeout)// hgytest pass,åœ¨rtfæˆ–åŠ¨ç”»ä¸­è°ƒç”¨
 	{
 		return DMSUCCEEDED(m_pRichEdit->DM_SetThreadTimer(idTimer,uTimeout));
 	}
 
-	void DUITextHost::TxKillTimer(UINT idTimer)// hgytest pass,ÔÚ²åÈë·û¸Ä±äÊ±µ÷ÓÃ
+	void DUITextHost::TxKillTimer(UINT idTimer)// hgytest pass,åœ¨æ’å…¥ç¬¦æ”¹å˜æ—¶è°ƒç”¨
 	{
 		if (!DMSUCCEEDED(m_pRichEdit->DM_KillThreadTimer(idTimer)))
 		{
@@ -645,7 +645,7 @@ namespace DM
 	}
 
 	void DUITextHost::TxScrollWindowEx(INT dx, INT dy, LPCRECT lprcScroll, LPCRECT lprcClip, HRGN hrgnUpdate, LPRECT lprcUpdate, UINT fuScroll)
-	{// hgytest pass,ÔÝÎ´µ÷ÓÃ
+	{// hgytest pass,æš‚æœªè°ƒç”¨
 		m_pRichEdit->DM_Invalidate();
 	}
 
@@ -676,7 +676,7 @@ namespace DM
 		return ::ScreenToClient(m_pRichEdit->GetContainer()->OnGetHWnd(),lppt);
 	}
 
-	BOOL DUITextHost::TxClientToScreen(LPPOINT lppt)// hgytest pass,ÔÝÎ´µ÷ÓÃ
+	BOOL DUITextHost::TxClientToScreen(LPPOINT lppt)// hgytest pass,æš‚æœªè°ƒç”¨
 	{
 		return ::ClientToScreen(m_pRichEdit->GetContainer()->OnGetHWnd(),lppt);
 	}
@@ -700,7 +700,7 @@ namespace DM
 		return S_OK;
 	}
 
-	HRESULT DUITextHost::TxGetViewInset(LPRECT lpRect)// hgytest pass£¬ÉèÖÃ±êÊ¶ÎÄ±¾ËùÔÚÇøÓòÀëÕû¸öÇøÓòËÄ±ßµÄ±ß¾à
+	HRESULT DUITextHost::TxGetViewInset(LPRECT lpRect)// hgytest passï¼Œè®¾ç½®æ ‡è¯†æ–‡æœ¬æ‰€åœ¨åŒºåŸŸç¦»æ•´ä¸ªåŒºåŸŸå››è¾¹çš„è¾¹è·
 	{
 		*lpRect = m_pRichEdit->m_HMErcInsetMargin;
 		return S_OK;
@@ -735,8 +735,8 @@ namespace DM
 		return S_OK;
 	}
 
-	HRESULT DUITextHost::TxGetScrollBars(DWORD *pdwScrollBar)// hgytest pass£¬Ã¿´Î¹ö¶¯Ìõ³öÏÖÇ°£¬ÏÈÍ¨¹ýËüÀ´»ñÈ¡¹ö¶¯Ìõ¾ßÓÐµÄÊôÐÔ
-	{// ÖØÒª²âÊÔº¯Êý£¬¿ÉÍ¨¹ýËü¸Ä±ä¹ö¶¯ÌõÊôÐÔ²âÊÔÐ§¹û
+	HRESULT DUITextHost::TxGetScrollBars(DWORD *pdwScrollBar)// hgytest passï¼Œæ¯æ¬¡æ»šåŠ¨æ¡å‡ºçŽ°å‰ï¼Œå…ˆé€šè¿‡å®ƒæ¥èŽ·å–æ»šåŠ¨æ¡å…·æœ‰çš„å±žæ€§
+	{// é‡è¦æµ‹è¯•å‡½æ•°ï¼Œå¯é€šè¿‡å®ƒæ”¹å˜æ»šåŠ¨æ¡å±žæ€§æµ‹è¯•æ•ˆæžœ
 		*pdwScrollBar = m_pRichEdit->m_dwEditStyle&(WS_VSCROLL|WS_HSCROLL|ES_AUTOVSCROLL|ES_AUTOHSCROLL|ES_DISABLENOSCROLL);
 		return S_OK;
 	}
@@ -770,7 +770,7 @@ namespace DM
 	}
 
 	HRESULT DUITextHost::TxGetPropertyBits(DWORD dwMask, DWORD *pdwBits)
-	{// Í¨¹ýdwMask²éÑ¯¶ÔÓ¦ÊôÐÔ£¬ÖØÒªº¯Êý
+	{// é€šè¿‡dwMaskæŸ¥è¯¢å¯¹åº”å±žæ€§ï¼Œé‡è¦å‡½æ•°
 		DWORD dwProperties = 0;
 
 		if (m_pRichEdit->m_bRichText)

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	HostAttr.h 
 // File mark:    
-// File summary:HostÊôÐÔÇø
+// File summary:Hostå±žæ€§åŒº
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-10
@@ -47,7 +47,7 @@ public:
 	DUIButton*										   m_pExpandBtn;
 	DUIPropFrame*									   m_pPropFrame;
 	DUIRoot*										   m_pHost;
-	PropSize*                                          m_pInitSize;///< ÓÃÓÚÅäºÏdragframeÉèÖÃ¿í¸ß
-	// ÓÃÓÚ×ª·¢ÏûÏ¢
+	PropSize*                                          m_pInitSize;///< ç”¨äºŽé…åˆdragframeè®¾ç½®å®½é«˜
+	// ç”¨äºŽè½¬å‘æ¶ˆæ¯
 	static HostAttr*                                   ms_pthis;
 };

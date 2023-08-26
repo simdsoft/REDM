@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMEventSubscriber.h 
-// File Des: ¶¨Òå¹Û²ìÕßÄ£Ê½µÄÁ½ÖÖ×¢²á·½Ê½£¬È«¾Öº¯Êı+³ÉÔ±º¯Êı
+// File Des: å®šä¹‰è§‚å¯Ÿè€…æ¨¡å¼çš„ä¸¤ç§æ³¨å†Œæ–¹å¼ï¼Œå…¨å±€å‡½æ•°+æˆå‘˜å‡½æ•°
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -107,8 +107,8 @@ namespace DM
 		virtual UINT GetSlotType()const {return SLOT_MEMBER;}
 
 	protected:
-		MemberFunctionType  m_function;			// ³ÉÔ±º¯Êı
-		T*					m_object;           // thisÖ¸Õë
+		MemberFunctionType  m_function;			// æˆå‘˜å‡½æ•°
+		T*					m_object;           // thisæŒ‡é’ˆ
 	};
 
 	template<class T>

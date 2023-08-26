@@ -1,13 +1,13 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "QQMainWnd.h"
 #include "SpyFindBtn.h"
 #include "resource.h"
 #include <Tlhelp32.h>
 
 
-HWND g_hWnd = NULL;								// Ä¿±ê´°¿Ú
-DWORD g_pId = 0;                                // Ä¿±ê½ø³ÌID
-int g_nHex  = 1;								// ±êÖ¾"16½øÖÆ"ÊÇ·ñ±»Ñ¡ÖĞ
+HWND g_hWnd = NULL;								// ç›®æ ‡çª—å£
+DWORD g_pId = 0;                                // ç›®æ ‡è¿›ç¨‹ID
+int g_nHex  = 1;								// æ ‡å¿—"16è¿›åˆ¶"æ˜¯å¦è¢«é€‰ä¸­
 
 SpyFindBtn::SpyFindBtn()
 {
@@ -42,7 +42,7 @@ void SpyFindBtn::OnLButtonUp(UINT nFlags,CPoint pt)
 	// todo.----------------------------
 	InitCurHWnd();
 
-	// ½«ĞÅÏ¢·¢¸øÖ÷´°¿Ú
+	// å°†ä¿¡æ¯å‘ç»™ä¸»çª—å£
 	DMSpyInitArgs Evt(this);
 	Evt.m_hwnd = g_hWnd;
 	m_pSpyWnd->DV_FireEvent(Evt);
@@ -50,7 +50,7 @@ void SpyFindBtn::OnLButtonUp(UINT nFlags,CPoint pt)
 
 void SpyFindBtn::OnMouseLeave()
 {
-	// ²»»Ö¸´×´Ì¬
+	// ä¸æ¢å¤çŠ¶æ€
 }
 
 void SpyFindBtn::OnDestroy()
@@ -105,7 +105,7 @@ DMCode SpyFindBtn::OnTimeline()
 			break;
 		}
 
-		HWND DeskHwnd = ::GetDesktopWindow();//È¡µÃ×ÀÃæ¾ä±ú
+		HWND DeskHwnd = ::GetDesktopWindow();//å–å¾—æ¡Œé¢å¥æŸ„
 		HDC DeskDC    = ::GetWindowDC(DeskHwnd);
 		int oldRop2   = SetROP2(DeskDC, R2_NOTXORPEN);
 
@@ -114,7 +114,7 @@ DMCode SpyFindBtn::OnTimeline()
 		HPEN newPen = ::CreatePen(PS_DASHDOTDOT, 1, RGB(125, 0, 125));
 		HGDIOBJ oldPen = ::SelectObject(DeskDC, newPen);
 		::Rectangle(DeskDC, rc.left, rc.top,rc.right, rc.bottom);
-		Sleep(400); //ÉèÖÃÉÁË¸Ê±¼ä¼ä¸ô
+		Sleep(400); //è®¾ç½®é—ªçƒæ—¶é—´é—´éš”
 		::Rectangle(DeskDC, rc.left, rc.top,rc.right, rc.bottom);
 
 		::SetROP2(DeskDC, oldRop2);
@@ -128,7 +128,7 @@ DMCode SpyFindBtn::OnTimeline()
 	return DM_ECODE_OK;
 }
 
-// ¸¨Öú
+// è¾…åŠ©
 void SpyFindBtn::RefreshFindInfo(HWND hWnd)
 {
 	DUIEdit *pHwndEdit = m_pSpyWnd->FindChildByNameT<DUIEdit>("edithwnd");
@@ -180,7 +180,7 @@ CStringT SpyFindBtn::GetProcPath(int PID)
 	}
 	else
 	{
-		str.Format(_T("ÎŞ·¨È¡µÃÂ·¾¶,err:%d"), GetLastError());
+		str.Format(_T("æ— æ³•å–å¾—è·¯å¾„,err:%d"), GetLastError());
 	}
 
 	return str;

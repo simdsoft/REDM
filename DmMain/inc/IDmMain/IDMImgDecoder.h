@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,25 +17,25 @@
 namespace DM
 {
 	/// <summary>
-	///		²Î¿¼WIC£¬Í¼Æ¬½âÂëºó¿ÉÄÜÓĞ¶àÖ¡(Frame)
+	///		å‚è€ƒWICï¼Œå›¾ç‰‡è§£ç åå¯èƒ½æœ‰å¤šå¸§(Frame)
 	/// <summary>
 	class IDMImgFrame:public DMRefNum
 	{
 	public:
-		virtual DMCode GetSize(UINT &ulWid,UINT &ulHei) = 0;		///< Ö¡´óĞ¡
-		virtual DMCode SetDelay(UINT ulDelay) = 0;					///< ÉèÖÃÖ¡ÑÓ³Ù
-		virtual DMCode GetDelay(UINT &ulDelay) = 0;				    ///< Ö¡ÑÓ³Ù,Õë¶ÔGIFµÈ¶àÖ¡
+		virtual DMCode GetSize(UINT &ulWid,UINT &ulHei) = 0;		///< å¸§å¤§å°
+		virtual DMCode SetDelay(UINT ulDelay) = 0;					///< è®¾ç½®å¸§å»¶è¿Ÿ
+		virtual DMCode GetDelay(UINT &ulDelay) = 0;				    ///< å¸§å»¶è¿Ÿ,é’ˆå¯¹GIFç­‰å¤šå¸§
 
 		/// -------------------------------------------------
-		/// @brief			 ¸´ÖÆÏñËØÕóÁĞ
-		/// @param[int]		 cbStride  ÔÚ32Î»DIBÏÂÎªµ¥Ò³,ËùÒÔ×ÜÊÇ¿í*4
-		/// @param[int]		 lpRect    Òª¸´ÖÆµÄ´óĞ¡,ÎªNULL±íÊ¾¸´ÖÆÕûÖ¡
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief			 å¤åˆ¶åƒç´ é˜µåˆ—
+		/// @param[int]		 cbStride  åœ¨32ä½DIBä¸‹ä¸ºå•é¡µ,æ‰€ä»¥æ€»æ˜¯å®½*4
+		/// @param[int]		 lpRect    è¦å¤åˆ¶çš„å¤§å°,ä¸ºNULLè¡¨ç¤ºå¤åˆ¶æ•´å¸§
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode CopyPixels(LPVOID lpBuf, UINT ulSize,UINT cbStride,const RECT *lpRect=NULL) = 0;
 	};
 
 	/// <summary>
-	///		×ÊÔ´´ò°ü¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_ImgDecoder"/>
+	///		èµ„æºæ‰“åŒ…å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_ImgDecoder"/>
 	/// </summary>
 	class IDMImgDecoder:public DMBase
 	{
@@ -43,23 +43,23 @@ namespace DM
 	public:
 		virtual ~IDMImgDecoder(){};
 
-		virtual DMCode LoadFromMemory(const void *pBuf,size_t bufLen) = 0;		///< ´ÓÄÚ´æÖĞ¼ÓÔØ
-		virtual DMCode LoadFromFile(LPCWSTR pszFileName) = 0;				///< ´ÓÎÄ¼şÖĞ¼ÓÔØ
-		virtual DMCode GetFrameCount(UINT &ulCount) = 0;					///< »ñµÃµ±Ç°´æ´¢Ö¡µÄÊıÄ¿
+		virtual DMCode LoadFromMemory(const void *pBuf,size_t bufLen) = 0;		///< ä»å†…å­˜ä¸­åŠ è½½
+		virtual DMCode LoadFromFile(LPCWSTR pszFileName) = 0;				///< ä»æ–‡ä»¶ä¸­åŠ è½½
+		virtual DMCode GetFrameCount(UINT &ulCount) = 0;					///< è·å¾—å½“å‰å­˜å‚¨å¸§çš„æ•°ç›®
 
 		/// -------------------------------------------------
-		/// @brief ·µ»ØÍ¼Æ¬½âÂëºóµÄ¶àÖ¡Ñ­»·´ÎÊı
-		/// @param[out]		 ulCount    Í¼Æ¬½âÂëºóµÄ¶àÖ¡Ñ­»·´ÎÊı(-1±íÊ¾ÓÀÔ¶Ñ­»·)
-		/// @remark °´GIFµÄÂß¼­,ÈıÖÖ×´Ì¬£¬1.Ã»ÓĞÑ­»·ĞÅÏ¢£¨1´Î£© 2.ÓĞÑ­»·ĞÅÏ¢£¨´ÎÊı£©3.ÓĞÑ­»·ĞÅÏ¢£¨0´Î±íÊ¾ÓÀÔ¶Ñ­»·£©
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief è¿”å›å›¾ç‰‡è§£ç åçš„å¤šå¸§å¾ªç¯æ¬¡æ•°
+		/// @param[out]		 ulCount    å›¾ç‰‡è§£ç åçš„å¤šå¸§å¾ªç¯æ¬¡æ•°(-1è¡¨ç¤ºæ°¸è¿œå¾ªç¯)
+		/// @remark æŒ‰GIFçš„é€»è¾‘,ä¸‰ç§çŠ¶æ€ï¼Œ1.æ²¡æœ‰å¾ªç¯ä¿¡æ¯ï¼ˆ1æ¬¡ï¼‰ 2.æœ‰å¾ªç¯ä¿¡æ¯ï¼ˆæ¬¡æ•°ï¼‰3.æœ‰å¾ªç¯ä¿¡æ¯ï¼ˆ0æ¬¡è¡¨ç¤ºæ°¸è¿œå¾ªç¯ï¼‰
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode GetTotalLoopCount(UINT &ulCount) = 0;	
 
 		/// -------------------------------------------------
-		/// @brief ·µ»ØÖ¡¶ÔÏó
-		/// @param[in]  iFrame		Òª»ñÈ¡µÄÖ¡index
-		/// @param[out] ppFrame		Òª»ñÈ¡µÄÖ¡
-		/// @remark ÄÚ²¿»á×Ô¼ºÔö¼ÓÒıÓÃ¼ÆÊı,Íâ²¿½¨ÒéÊ¹ÓÃÖÇÄÜÖ¸Õë
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @brief è¿”å›å¸§å¯¹è±¡
+		/// @param[in]  iFrame		è¦è·å–çš„å¸§index
+		/// @param[out] ppFrame		è¦è·å–çš„å¸§
+		/// @remark å†…éƒ¨ä¼šè‡ªå·±å¢åŠ å¼•ç”¨è®¡æ•°,å¤–éƒ¨å»ºè®®ä½¿ç”¨æ™ºèƒ½æŒ‡é’ˆ
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode GetFrame(UINT iFrame, IDMImgFrame**ppFrame) = 0;   
 	};
 

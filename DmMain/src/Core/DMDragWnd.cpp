@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMDragWnd.h"
 
 namespace DM
@@ -13,14 +13,14 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ½Ó¿Ú
+	// Function Des: æŽ¥å£
 	bool DMDragWnd::DragBegin(IDMCanvas*pCanvas,POINT ptHot,COLORREF crKey, BYTE byAlpha,DWORD dwFlags)
 	{
 		bool bRet = false;
 		do 
 		{
 			if (NULL == pCanvas)
-			{// Ã»ÓÐÍÏ¶¯Ê±µÄÁÙÊ±»­²¼
+			{// æ²¡æœ‰æ‹–åŠ¨æ—¶çš„ä¸´æ—¶ç”»å¸ƒ
 				break;
 			}
 			CSize sz;
@@ -33,12 +33,12 @@ namespace DM
 				break;
 			}
 			if (ms_pCurDragWnd)
-			{// ÕýÔÚÍÏ¶¯ÖÐ£¡
+			{// æ­£åœ¨æ‹–åŠ¨ä¸­ï¼
 				break;
 			}
 
 		    ms_pCurDragWnd = new DMDragWnd;
-			ATOM Atom = g_pDMApp->GetClassAtom(false);  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
+			ATOM Atom = g_pDMApp->GetClassAtom(false);  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
 			HWND hWnd = ((DMCWnd*)ms_pCurDragWnd)->CreateWindowEx((LPCWSTR)Atom,NULL,WS_POPUP,WS_EX_TRANSPARENT|WS_EX_TOOLWINDOW|WS_EX_TOPMOST,0,0,sz.cx,sz.cy,NULL,NULL);
 			if(NULL == hWnd)
 			{

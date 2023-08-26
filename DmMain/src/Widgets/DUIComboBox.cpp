@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DUIComboBox.h"
 
 namespace DM
@@ -19,7 +19,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ����ӿ�
+	// Function Des: 对外接口
 	//---------------------------------------------------
 	LPARAM DUIComboBox::GetItemData(UINT iItem) const
 	{
@@ -54,13 +54,13 @@ namespace DM
 	DMCode DUIComboBox::OnDropDown(DMDropWnd *pDropDown)
 	{
 		DMCode iErr = __super::OnDropDown(pDropDown);
-		//���Ӷ������б������Ƿ�͸�����Կ���---wzq add 20160729
+		//增加对下拉列表窗口是否透明属性控制---wzq add 20160729
 		pDropDown->SetAttribute("btranslucent", m_bDropTranslucent ? "1" : "0");
 
 		pDropDown->DM_InsertChild(m_pListBox);
 		pDropDown->DV_UpdateChildLayout();
 
-		//һ��Ҫ��ʽ���ý��㣬��������������͸��ʱ���޷���Ӧ��������Ϣ
+		//一定要显式设置焦点，否则在下拉窗口透明时，无法响应鼠标滚轮消息
 		pDropDown->SetFocus();
 
 		m_pListBox->DM_SetVisible(true);
@@ -73,9 +73,9 @@ namespace DM
 	{
 		pDropDown->DM_RemoveChildWnd(m_pListBox);
 		m_pListBox->DM_SetVisible(false);
-		//������ر�ʱ���˴������û�Container�����ܻ�����Container�����Ͻǻ��Ƴ�list�ķǿͻ��ˣ�
-		//��listʵ���ϲ���Ҫ���û�Container,Combox��Fire ѡ����������δ˴�
-		//Combox֮���Ի�ת����Ϣ������Ϊlistbox������DM_SetOwnerWnd(this),���򲻻�ת����Ϣ
+		//弹出框关闭时，此处如设置回Container，可能会引起Container框左上角绘制出list的非客户端，
+		//而list实际上不需要设置回Container,Combox会Fire 选中项，所以屏蔽此处
+		//Combox之所以会转发消息，是因为listbox调用了DM_SetOwnerWnd(this),否则不会转发消息
 		m_pListBox->SetContainer(GetContainer());
 		CRect rcWnd;
 		m_pListBox->DV_GetWindowRect(rcWnd);
@@ -84,7 +84,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ����
+	// Function Des: 重载
 	//---------------------------------------------------
 	int DUIComboBox::GetCount()const
 	{
@@ -186,11 +186,11 @@ namespace DM
 			m_pListBox->SetContainer(GetContainer());
 			DMCode dwCode =	m_pListBox->InitDMData(XmlNode.FirstChild(DMAttr::DUIComboBoxAttr::ITEM_sublistbox));
 			m_pListBox->SetAttribute("pos","0,0,-0,-0",true);
-			m_pListBox->SetAttribute("clrbg", "pbgra(ff,ff,ff,ff)", true); //Ĭ�ϰ�ɫ��ͼ
-			m_pListBox->SetAttribute("hotTrack","1",true);// ������ѡ��
+			m_pListBox->SetAttribute("clrbg", "pbgra(ff,ff,ff,ff)", true); //默认白色底图
+			m_pListBox->SetAttribute("hotTrack","1",true);// 不让它选中
 			m_pListBox->DM_SetOwnerWnd(this);				// chain notify message to combobox
 			m_pListBox->SetID(CB_LIST_ID);
-			m_pListBox->DM_SetVisible(false);				// ֻ������ʱ����ʾ����ʱҲû�г�ʼ����layout
+			m_pListBox->DM_SetVisible(false);				// 只在下拉时才显示，此时也没有初始化完layout
 
 			if (-1 != m_iInitSel)
 			{

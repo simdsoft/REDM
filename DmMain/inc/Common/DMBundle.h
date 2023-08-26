@@ -1,14 +1,14 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMBundle.h
 // File mark:   
-// File summary:DMBundleÄÚ²¿Ê¹ÓÃÁËnew DMBundleImplÀ´ÊµÏÖ,Ö±½ÓÉùÃ÷¼´¿É,²»ĞèÒªnew£¬ÔÚ¸³Öµ»ò×öÎª²ÎÊı´«µİÊ±,ÄÚ²¿µÄDMBundleImplÒıÓÃ¼ÆÊı»á×Ô¶¯+1-1£¬ËùÒÔ²»ÓÃµ£ĞÄ¿çÄ£¿é´«µİÊ±,ÄÚ´æ±»Í»È»ÊÍ·Å
-// Ê¹ÓÃ·½Ê½£º DMBundle bundle;
-//            DMBundle bundle1 = bundle; // Ö¸ÏòÍ¬Ò»¿éDMBundleImplÄÚ´æ£¬ÒıÓÃ¼ÆÊı+1
-//            DMBundle bundle2(bundle);  // Ö¸ÏòÍ¬Ò»¿éDMBundleImplÄÚ´æ£¬ÒıÓÃ¼ÆÊı+1
-//            DMBundle bundle3 = bundle.Clone();// ¸´ÖÆÒ»¿éĞÂµÄDMBundleImplÄÚ´æ,bundle3³õÊ¼ÒıÓÃ¼ÆÊıÎª1
+// File summary:DMBundleå†…éƒ¨ä½¿ç”¨äº†new DMBundleImplæ¥å®ç°,ç›´æ¥å£°æ˜å³å¯,ä¸éœ€è¦newï¼Œåœ¨èµ‹å€¼æˆ–åšä¸ºå‚æ•°ä¼ é€’æ—¶,å†…éƒ¨çš„DMBundleImplå¼•ç”¨è®¡æ•°ä¼šè‡ªåŠ¨+1-1ï¼Œæ‰€ä»¥ä¸ç”¨æ‹…å¿ƒè·¨æ¨¡å—ä¼ é€’æ—¶,å†…å­˜è¢«çªç„¶é‡Šæ”¾
+// ä½¿ç”¨æ–¹å¼ï¼š DMBundle bundle;
+//            DMBundle bundle1 = bundle; // æŒ‡å‘åŒä¸€å—DMBundleImplå†…å­˜ï¼Œå¼•ç”¨è®¡æ•°+1
+//            DMBundle bundle2(bundle);  // æŒ‡å‘åŒä¸€å—DMBundleImplå†…å­˜ï¼Œå¼•ç”¨è®¡æ•°+1
+//            DMBundle bundle3 = bundle.Clone();// å¤åˆ¶ä¸€å—æ–°çš„DMBundleImplå†…å­˜,bundle3åˆå§‹å¼•ç”¨è®¡æ•°ä¸º1
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-2-24
@@ -20,7 +20,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÄÚÖÃ°ó¶¨Êı¾İ
+	///		å†…ç½®ç»‘å®šæ•°æ®
 	/// <summary>
 	class DMBundleImpl;
 	class DM_EXPORT DMBundle
@@ -32,11 +32,11 @@ namespace DM
 		~DMBundle();
 
 	public:
-		DMBundle Clone();										///< ¸´ÖÆµ±Ç°Bundle
-		void Clear();											///< ÒÆ³ıµ±Ç°BundleÓ³ÉäÖĞµÄËùÓĞÔªËØ
-		int Size() const;									    ///< µÃµ½µ±Ç°BundleµÄÓ³Éä´óĞ¡
-		bool Remove(LPCWSTR key);								///< ÒÆ³ıµ±Ç°BundleµÄÓ³ÉäKey
-		bool HasKey(LPCWSTR key);								///< µ±Ç°BundleµÄÓ³ÉäKeyÊÇ·ñ´æÔÚ,DM_ECODE_OK±íÊ¾´æÔÚ
+		DMBundle Clone();										///< å¤åˆ¶å½“å‰Bundle
+		void Clear();											///< ç§»é™¤å½“å‰Bundleæ˜ å°„ä¸­çš„æ‰€æœ‰å…ƒç´ 
+		int Size() const;									    ///< å¾—åˆ°å½“å‰Bundleçš„æ˜ å°„å¤§å°
+		bool Remove(LPCWSTR key);								///< ç§»é™¤å½“å‰Bundleçš„æ˜ å°„Key
+		bool HasKey(LPCWSTR key);								///< å½“å‰Bundleçš„æ˜ å°„Keyæ˜¯å¦å­˜åœ¨,DM_ECODE_OKè¡¨ç¤ºå­˜åœ¨
 
 		bool PutBool(LPCWSTR key, bool value);
 		bool GetBool(LPCWSTR key, bool defaultValue=false) const;
@@ -87,11 +87,11 @@ namespace DM
 		DMXmlNode GetXmlNode(LPCWSTR key) const;
 
 	public:
-		DM::DMSmartPtrT<DMBundleImpl>					   m_pBundleImpl;		///< BundleÔÚ´«µİÊ±£¬m_pBundleImpl×Ô¶¯+1£¬´Ó¶ø±£Ö¤BundleImplµÄÉúÃüÖÜÆÚ		
+		DM::DMSmartPtrT<DMBundleImpl>					   m_pBundleImpl;		///< Bundleåœ¨ä¼ é€’æ—¶ï¼Œm_pBundleImplè‡ªåŠ¨+1ï¼Œä»è€Œä¿è¯BundleImplçš„ç”Ÿå‘½å‘¨æœŸ		
 	};
 
 	/// <summary>
-	///		·¢ËÍ·½
+	///		å‘é€æ–¹
 	/// </summary>
 	enum DMEventSenderID{DMESenderID_Unknown,DMESenderID_Base};
 	class DM_EXPORT DMEventSender
@@ -105,7 +105,7 @@ namespace DM
 
 
 	/// <summary>
-	///		ÊÂ¼ş²Ûbool function(const DMEventSender& , const DMBundle&)º¯Êı½øĞĞ³éÏó
+	///		äº‹ä»¶æ§½bool function(const DMEventSender& , const DMBundle&)å‡½æ•°è¿›è¡ŒæŠ½è±¡
 	/// </summary>
 	typedef DM::DMDelegate< bool(const DMEventSender& sender, const DMBundle& evt) > DMSlot;
 

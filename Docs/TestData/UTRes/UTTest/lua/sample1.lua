@@ -1,4 +1,4 @@
-result = cpp_func(1, 2)
+﻿result = cpp_func(1, 2)
 
 print(ONE)
 print(type(ONE))

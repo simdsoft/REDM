@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 
-/// Í·ÎÄ¼şÒÀÀµ
+/// å¤´æ–‡ä»¶ä¾èµ–
 
-// 0 ÏµÍ³Àà
+// 0 ç³»ç»Ÿç±»
 #include <time.h>
 
 
@@ -19,5 +19,5 @@
 #pragma comment(lib,"DmMain.lib")
 #endif
 
-#define  SHOW_TOSCREEN			  1// ÉèÖÃÎª0±íÊ¾²»ÏÔÊ¾µ½ÆÁÄ»
+#define  SHOW_TOSCREEN			  1// è®¾ç½®ä¸º0è¡¨ç¤ºä¸æ˜¾ç¤ºåˆ°å±å¹•
 using namespace DM;

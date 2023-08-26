@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "Data.h"
 
 DocData::DocData()
@@ -18,7 +18,7 @@ DocData::DocData(CStringW strXmlPath)
 	else
 	{
 		DM_DELETE(m_pXmlDoc);
-		CStringW strInfo;strInfo+=strXmlPath;strInfo+=L"Ω‚Œˆ ß∞‹";
+		CStringW strInfo;strInfo+=strXmlPath;strInfo+=L"Ëß£ÊûêÂ§±Ë¥•";
 		DM_MessageBox(strInfo);
 	}
 	m_bChange = false;

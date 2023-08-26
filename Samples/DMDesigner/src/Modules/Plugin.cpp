@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+﻿#include "DMDesignerAfx.h"
 #include "Plugin.h"
 #include "ProjTree.h"
 #include "ResMultFolder.h"

@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+Ôªø//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -22,7 +22,7 @@ namespace DM
 		DMBitmapImpl();
 		~DMBitmapImpl();
 
-	public://¿©’πΩ”ø⁄
+	public://Êâ©Â±ïÊé•Âè£
 		DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL);
 		DMCode InitFromFrame(IDMImgFrame *pImgFrame);
 		DMCode InitFromHBITMAP(HBITMAP hbit);

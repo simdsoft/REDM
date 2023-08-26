@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMSkiaCanvasImpl.h"
 
 namespace DM
@@ -27,7 +27,7 @@ namespace DM
 		m_iSaveState = - 1;
 		m_ptOrg.fX = m_ptOrg.fY = 0.0f;
 
-		// ³õÊ¼»¯±»Ñ¡ÈëDCµÄµ±Ç°Í¼Ôª -----------------
+		// åˆå§‹åŒ–è¢«é€‰å…¥DCçš„å½“å‰å›¾å…ƒ -----------------
 		DMSmartPtrT<IDMPen> pPen;
 		m_pRender->CreatePen(PBGRA(0, 0, 0,0xFF),PS_SOLID,1, &pPen);
 		SelectObject(pPen);
@@ -36,12 +36,12 @@ namespace DM
 		m_pRender->CreateSolidColorBrush(PBGRA(0, 0, 0,0xFF),&pBrush);
 		SelectObject(pBrush);
 
-		// Õâ²¿·Ö´úÂëĞèÔÚXML½âÎöºó»ñÈ¡Ö¸¶¨Ä¬ÈÏµÄfont
+		// è¿™éƒ¨åˆ†ä»£ç éœ€åœ¨XMLè§£æåè·å–æŒ‡å®šé»˜è®¤çš„font
 		DMSmartPtrT<IDMFont> pFont;
 		LOGFONTW lf = {0};
 		lf.lfQuality = CLEARTYPE_QUALITY;
 		lf.lfHeight	=  20;
-		wcscpy_s(lf.lfFaceName,L"ËÎÌå");
+		wcscpy_s(lf.lfFaceName,L"å®‹ä½“");
 		m_pRender->CreateFont(&lf,&pFont);
 		SelectObject(pFont);
 
@@ -55,7 +55,7 @@ namespace DM
 
 	void DMSkiaCanvasImpl::Canv_Release()
 	{
-		//SkGraphics::Term();// »º´æºÜÖØÒª£¬skia±ÀÁË
+		//SkGraphics::Term();// ç¼“å­˜å¾ˆé‡è¦ï¼Œskiaå´©äº†
 		DM_DELETE(m_pSkCanvas);
 	}
 
@@ -68,7 +68,7 @@ namespace DM
 		}
 
 		DMCode iErr = DM_ECODE_OK;
-		// ÁÙÊ±±äÁ¿£¬Èç¹ûppOldObjÎª¿Õ,ËüÔÚÎö¹¹Ê±»áÊÍ·ÅÔ­Ê¼µÄ¶ÔÏó
+		// ä¸´æ—¶å˜é‡ï¼Œå¦‚æœppOldObjä¸ºç©º,å®ƒåœ¨ææ„æ—¶ä¼šé‡Šæ”¾åŸå§‹çš„å¯¹è±¡
 		DMSmartPtrT<IDMMetaFile> pPreObj;
 		switch (pObj->GetType())
 		{
@@ -111,7 +111,7 @@ namespace DM
 
 		if (pPreObj&&NULL != ppOldObj)
 		{
-			pPreObj->AddRef();// ÓÉ»ñÈ¡Õßµ÷ÓÃReleaseÀ´ÊÍ·Å
+			pPreObj->AddRef();// ç”±è·å–è€…è°ƒç”¨Releaseæ¥é‡Šæ”¾
 			*ppOldObj = pPreObj;
 		}
 		return iErr;
@@ -159,7 +159,7 @@ namespace DM
 
 		if (DMSUCCEEDED(iErr)&&(*ppObj))
 		{
-			(*ppObj)->AddRef();// ÓÉ»ñÈ¡Õßµ÷ÓÃReleaseÀ´ÊÍ·Å
+			(*ppObj)->AddRef();// ç”±è·å–è€…è°ƒç”¨Releaseæ¥é‡Šæ”¾
 		}
 		return iErr;
 	}
@@ -237,19 +237,19 @@ namespace DM
 			m_hOldFont = (HFONT)::SelectObject(m_hGetDC, m_pCurFont->GetFont());
 		}
 		::SetTextColor(m_hGetDC, m_CurTextColor.ToCOLORREF());
-		if (m_pSkCanvas->isClipEmpty())// Ê²Ã´¶¼Ã»»­
+		if (m_pSkCanvas->isClipEmpty())// ä»€ä¹ˆéƒ½æ²¡ç”»
 		{
-			::IntersectClipRect(m_hGetDC,0,0,0,0); // ´´½¨Ò»¸öĞÂµÄ¿ÕµÄ¼ôÇĞÇøÓò
+			::IntersectClipRect(m_hGetDC,0,0,0,0); // åˆ›å»ºä¸€ä¸ªæ–°çš„ç©ºçš„å‰ªåˆ‡åŒºåŸŸ
 		}
-		else if(m_pSkCanvas->isClipRect())// Ö»»æÁËÒ»¸ö¾ØĞÎÇø
+		else if(m_pSkCanvas->isClipRect())// åªç»˜äº†ä¸€ä¸ªçŸ©å½¢åŒº
 		{
 			SkRect rcClip;
 			m_pSkCanvas->getClipBounds(&rcClip);
 			RECT rc = {(int)rcClip.left(),(int)rcClip.top(),(int)rcClip.right(),(int)rcClip.bottom()};
-			::InflateRect(&rc,-1,-1);// ×¢ÒâĞèÒªÏòÄÚËõĞ¡Ò»¸öÏóËØ
+			::InflateRect(&rc,-1,-1);// æ³¨æ„éœ€è¦å‘å†…ç¼©å°ä¸€ä¸ªè±¡ç´ 
 			::IntersectClipRect(m_hGetDC,rc.left,rc.top,rc.right,rc.bottom);
 		}
-		else// ´Ë²¿·ÖÇë²Î¿¼×ÊÁÏhttp://hgy413.com/1845.html
+		else// æ­¤éƒ¨åˆ†è¯·å‚è€ƒèµ„æ–™http://hgy413.com/1845.html
 		{
 			SkRegion rgn = m_pSkCanvas->internal_private_getTotalClip();
 			SkRegion::Iterator it(rgn);
@@ -278,11 +278,11 @@ namespace DM
 			}
 
 			HRGN hRgn = ::ExtCreateRegion(NULL,nSize,pRgnData);
-			::SelectClipRgn(m_hGetDC,hRgn);// ÉèÖÃ²Ã¼ôÇø£¬ÇøÍâµÄ²»ÏÔÊ¾³öÀ´
+			::SelectClipRgn(m_hGetDC,hRgn);// è®¾ç½®è£å‰ªåŒºï¼ŒåŒºå¤–çš„ä¸æ˜¾ç¤ºå‡ºæ¥
 			DM_DELETE_OBJECT(hRgn);
 		}
 
-		// ×ø±ê±ä»»¿É²Î¿¼http://hgy413.com/1847.html
+		// åæ ‡å˜æ¢å¯å‚è€ƒhttp://hgy413.com/1847.html
 		::SetViewportOrgEx(m_hGetDC,(int)m_ptOrg.fX,(int)m_ptOrg.fY,NULL);
 
 		return m_hGetDC;
@@ -482,7 +482,7 @@ namespace DM
 				break;
 			}
 			DMEXPEND_MODE lowExpandMode = (DMEXPEND_MODE)LOWORD(ExpandMode);
-			SkPaint::FilterLevel hiExpandMode = (SkPaint::FilterLevel)HIWORD(ExpandMode);//skiaÄ¬ÈÏ¾ÍÊÇkNone_FilterLevel
+			SkPaint::FilterLevel hiExpandMode = (SkPaint::FilterLevel)HIWORD(ExpandMode);//skiaé»˜è®¤å°±æ˜¯kNone_FilterLevel
 			DMSmartPtrT<DMSkiaBitmapImpl> pSkiaBitmap = (DMSkiaBitmapImpl*)pBitamp;
 			SkBitmap skBmp = pSkiaBitmap->GetSkBitmap();
 			RECT rcSour = {0,0,skBmp.width(),skBmp.height()};
@@ -503,7 +503,7 @@ namespace DM
 			skRcDest.offset(m_ptOrg);
 
 			SkPaint skPaint;
-			skPaint.setAntiAlias(true);//·´¾â³İ
+			skPaint.setAntiAlias(true);//åé”¯é½¿
 			if (0xFF != alpha) 
 			{
 				skPaint.setAlpha(alpha);
@@ -513,7 +513,7 @@ namespace DM
 			{
 				m_pSkCanvas->drawBitmapRectToRect(skBmp, &skRcSrc, skRcDest,&skPaint);
 			}
-			else /*(DEM_TILE == lowExpandMode)*/ // Æ½ÆÌ
+			else /*(DEM_TILE == lowExpandMode)*/ // å¹³é“º
 			{
 #if 0
 				SkBitmap skBmpsub;
@@ -549,7 +549,7 @@ namespace DM
 
 	DMCode DMSkiaCanvasImpl::DrawBitmapNine(IDMBitmap *pBitamp, LPCRECT lpRectSrc, LPCRECT lpSrcMargin, LPCRECT lpRectDest, BYTE alpha/*=0xFF*/, DMEXPEND_MODE ExpandMode/*=DEM_STRETCH*/)
 	{
-		// ¿ÉÒÔÍ¨¹ıSkNinePatch::DrawNineÊµÏÖ¼òµ¥µÄ9¹¬¸ñ
+		// å¯ä»¥é€šè¿‡SkNinePatch::DrawNineå®ç°ç®€å•çš„9å®«æ ¼
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
@@ -558,7 +558,7 @@ namespace DM
 				break;
 			}
 			WORD hiExpandMode = HIWORD(ExpandMode);
-			// 9¹¬¸ñ£¬xDest¡¢xSrc¶ÔÓ¦ÒÔ×óÉÏ½ÇÎªÔ­µã£¬9¹¬¸ñ»®·ÖµÄ4¸öºá×ø±ê£¬yDest¡¢ySrcÒÔ×óÉÏ½ÇÎªÔ­µã£¬9¹¬¸ñ»®·ÖµÄ4¸ö×İ×ø±ê
+			// 9å®«æ ¼ï¼ŒxDestã€xSrcå¯¹åº”ä»¥å·¦ä¸Šè§’ä¸ºåŸç‚¹ï¼Œ9å®«æ ¼åˆ’åˆ†çš„4ä¸ªæ¨ªåæ ‡ï¼ŒyDestã€ySrcä»¥å·¦ä¸Šè§’ä¸ºåŸç‚¹ï¼Œ9å®«æ ¼åˆ’åˆ†çš„4ä¸ªçºµåæ ‡
 			int xDest[4] = {lpRectDest->left,lpRectDest->left+lpSrcMargin->left,lpRectDest->right-lpSrcMargin->right,lpRectDest->right};
 			int yDest[4] = {lpRectDest->top,lpRectDest->top+lpSrcMargin->top,lpRectDest->bottom-lpSrcMargin->bottom,lpRectDest->bottom};
 			int xSrc[4]  = {lpRectSrc->left,lpRectSrc->left+lpSrcMargin->left,lpRectSrc->right-lpSrcMargin->right,lpRectSrc->right};
@@ -572,23 +572,23 @@ namespace DM
 				break;
 			}
 
-			//µ÷ÕûÄ¿±êÎ»ÖÃ
+			//è°ƒæ•´ç›®æ ‡ä½ç½®
 			int iDestWidth = lpRectDest->right-lpRectDest->left;
 			int iDestHeight = lpRectDest->bottom-lpRectDest->top;
 
-			if((lpSrcMargin->left+lpSrcMargin->right) > iDestWidth)// ±ßÔµ¿í¶È´óÓÚÄ¿±ê¿í¶ÈµÄ´¦Àí
+			if((lpSrcMargin->left+lpSrcMargin->right) > iDestWidth)// è¾¹ç¼˜å®½åº¦å¤§äºç›®æ ‡å®½åº¦çš„å¤„ç†
 			{
-				if (lpSrcMargin->left >= iDestWidth)// Ö»»æÖÆ×ó±ß²¿·Ö
+				if (lpSrcMargin->left >= iDestWidth)// åªç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†
 				{
 					xSrc[1] = xSrc[2] = xSrc[3] = xSrc[0]+iDestWidth;
 					xDest[1] = xDest[2] = xDest[3] = xDest[0]+iDestWidth;
 				}
-				else if(lpSrcMargin->right >= iDestWidth)// Ö»»æÖÆÓÒ±ß²¿·Ö
+				else if(lpSrcMargin->right >= iDestWidth)// åªç»˜åˆ¶å³è¾¹éƒ¨åˆ†
 				{
 					xSrc[0] = xSrc[1] = xSrc[2] = xSrc[3]-iDestWidth;
 					xDest[0] = xDest[1] = xDest[2] = xDest[3]-iDestWidth;
 				}
-				else//ÏÈ»æÖÆ×ó±ß²¿·Ö£¬Ê£ÓàµÄÓÃÓÒ±ßÌî³ä
+				else//å…ˆç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†ï¼Œå‰©ä½™çš„ç”¨å³è¾¹å¡«å……
 				{
 					int nRemain=xDest[3]-xDest[1];
 					xSrc[2] = xSrc[3]-nRemain;
@@ -598,17 +598,17 @@ namespace DM
 
 			if (lpSrcMargin->top + lpSrcMargin->bottom > iDestHeight)
 			{
-				if (lpSrcMargin->top >= iDestHeight)// Ö»»æÖÆÉÏ±ß²¿·Ö
+				if (lpSrcMargin->top >= iDestHeight)// åªç»˜åˆ¶ä¸Šè¾¹éƒ¨åˆ†
 				{
 					ySrc[1] = ySrc[2] = ySrc[3] = ySrc[0]+iDestHeight;
 					yDest[1] = yDest[2] = yDest[3] = yDest[0]+iDestHeight;
 				}
-				else if(lpSrcMargin->bottom >= iDestHeight)// Ö»»æÖÆÏÂ±ß²¿·Ö
+				else if(lpSrcMargin->bottom >= iDestHeight)// åªç»˜åˆ¶ä¸‹è¾¹éƒ¨åˆ†
 				{
 					ySrc[0] = ySrc[1] = ySrc[2] = ySrc[3]-iDestHeight;
 					yDest[0] = yDest[1] = yDest[2] = yDest[3]-iDestHeight;
 				}
-				else// ÏÈ»æÖÆ×ó±ß²¿·Ö£¬Ê£ÓàµÄÓÃÓÒ±ßÌî³ä
+				else// å…ˆç»˜åˆ¶å·¦è¾¹éƒ¨åˆ†ï¼Œå‰©ä½™çš„ç”¨å³è¾¹å¡«å……
 				{
 					int nRemain=yDest[3]-yDest[1];
 					ySrc[2] = ySrc[3]-nRemain;
@@ -616,8 +616,8 @@ namespace DM
 				}
 			}
 
-			//¶¨Òå»æÖÆÄ£Ê½
-			DMEXPEND_MODE mode[3][3]={//ËÄ¸ö±ß½Ç´ÓÉÏÃæ¿ÉÒÔ¿´³öÔ´ºÍÄ¿±êµÄ±ß½Ç¾ØĞÎ´óĞ¡×ÜÊÇÒ»ÖÂ
+			//å®šä¹‰ç»˜åˆ¶æ¨¡å¼
+			DMEXPEND_MODE mode[3][3]={//å››ä¸ªè¾¹è§’ä»ä¸Šé¢å¯ä»¥çœ‹å‡ºæºå’Œç›®æ ‡çš„è¾¹è§’çŸ©å½¢å¤§å°æ€»æ˜¯ä¸€è‡´
 				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode), ExpandMode, (DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode)},
 				{ExpandMode,ExpandMode,ExpandMode},
 				{(DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode), ExpandMode, (DMEXPEND_MODE)MAKELONG(DEM_STRETCH,hiExpandMode)}
@@ -625,13 +625,13 @@ namespace DM
 
 			for (int y=0;y<3;y++)
 			{
-				if (ySrc[y] == ySrc[y+1]) // ¿Õ¾ØĞÎ
+				if (ySrc[y] == ySrc[y+1]) // ç©ºçŸ©å½¢
 				{
 					continue;
 				}
 				for (int x=0;x<3;x++)
 				{
-					if (xSrc[x] == xSrc[x+1]) // ¿Õ¾ØĞÎ
+					if (xSrc[x] == xSrc[x+1]) // ç©ºçŸ©å½¢
 					{
 						continue;
 					}
@@ -783,7 +783,7 @@ namespace DM
 			SkRect skRc;
 			Rect2SkRect(lpRect, skRc);
 			skRc.offset(m_ptOrg);
-			InflateSkRect(&skRc,-0.5f,-0.5f);//ÒªËõĞ¡0.5ÏÔÊ¾Ğ§¹û²ÅºÍGDIÒ»ÖÂ¡£
+			InflateSkRect(&skRc,-0.5f,-0.5f);//è¦ç¼©å°0.5æ˜¾ç¤ºæ•ˆæœæ‰å’ŒGDIä¸€è‡´ã€‚
 			m_pSkCanvas->drawRoundRect(skRc,(SkScalar)pt.x,(SkScalar)pt.y,skPaint);
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -818,7 +818,7 @@ namespace DM
 
 			SkRect skRc;
 			Rect2SkRect(lpRect, skRc);
-			InflateSkRect(&skRc,-0.5f,-0.5f);//ÒªËõĞ¡0.5ÏÔÊ¾Ğ§¹û²ÅºÍGDIÒ»ÖÂ¡£
+			InflateSkRect(&skRc,-0.5f,-0.5f);//è¦ç¼©å°0.5æ˜¾ç¤ºæ•ˆæœæ‰å’ŒGDIä¸€è‡´ã€‚
 			skRc.offset(m_ptOrg);
 
 			m_pSkCanvas->drawRoundRect(skRc,(SkScalar)pt.x,(SkScalar)pt.y,skPaint);
@@ -1043,8 +1043,8 @@ namespace DM
 
 				HDC hdc = GetDC();
 
-				// ÏÈ¼ÆËãÕæÊµÎÄ×ÖÇøÓò´óĞ¡
-				CRect rcMeasure = *lpRect;// È¡×óÉÏ½Ç×ø±ê
+				// å…ˆè®¡ç®—çœŸå®æ–‡å­—åŒºåŸŸå¤§å°
+				CRect rcMeasure = *lpRect;// å–å·¦ä¸Šè§’åæ ‡
 				::DrawText(hdc,lpString,nCount,rcMeasure,uFormat|DT_CALCRECT);
 				CRect rcAll = lpRect;
 				int nMeasureWid = rcMeasure.Width();int nMeasureHei = rcMeasure.Height();
@@ -1070,14 +1070,14 @@ namespace DM
 					rcMeasure.top    = rcMeasure.bottom-nMeasureHei;
 				}
 
-				//CRect rcDest = GetRealClipRect(rcMeasure);//ÒÑ¼ÆËã³ö´óĞ¡£¬¾Í²»ÓÃ²Ã¼ôÁË
+				//CRect rcDest = GetRealClipRect(rcMeasure);//å·²è®¡ç®—å‡ºå¤§å°ï¼Œå°±ä¸ç”¨è£å‰ªäº†
 				CRect rcDest = rcMeasure&rcAll;
 				if (rcDest.IsRectEmpty())
 				{
 					ReleaseDC(hdc);
 					break;
 				}
-				if (rcDest.Width()*rcDest.Height()>2000*2000)// ·ÀÖ¹Íâ²¿·Ç·¨´«²Î½øÀ´£¡
+				if (rcDest.Width()*rcDest.Height()>2000*2000)// é˜²æ­¢å¤–éƒ¨éæ³•ä¼ å‚è¿›æ¥ï¼
 				{
 					ReleaseDC(hdc);
 					break;
@@ -1095,9 +1095,9 @@ namespace DM
 			}
 			else
 			{
-				if (0 == nCount) // Òª»æÖÆµÄÎÄ×Ö»¹ÊÇ¿Õ
+				if (0 == nCount) // è¦ç»˜åˆ¶çš„æ–‡å­—è¿˜æ˜¯ç©º
 				{
-					if (uFormat & DT_CALCRECT)// ĞèÈ¡µÃ´óĞ¡£¬»æÖÆÇøÉèÖÃÎª0
+					if (uFormat & DT_CALCRECT)// éœ€å–å¾—å¤§å°ï¼Œç»˜åˆ¶åŒºè®¾ç½®ä¸º0
 					{
 						lpRect->right = lpRect->left;
 						lpRect->bottom = lpRect->top;
@@ -1239,7 +1239,7 @@ namespace DM
 			SkRegion rgn = pSkiaRegion->GetRegion();
 			rgn.translate((int)m_ptOrg.fX,(int)m_ptOrg.fY);
 
-			m_pSkCanvas->save();// ÔÚPopClipÖĞ×ö»Ö¸´
+			m_pSkCanvas->save();// åœ¨PopClipä¸­åšæ¢å¤
 			m_pSkCanvas->clipRegion(rgn,DMSkiaRegionImpl::GdiRgnOp2SkRgnOp(fnCombineMode));
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -1260,7 +1260,7 @@ namespace DM
 			Rect2SkRect(lpRect, skRc);
 			skRc.offset(m_ptOrg);
 
-			m_pSkCanvas->save();// ÔÚPopClipÖĞ×ö»Ö¸´
+			m_pSkCanvas->save();// åœ¨PopClipä¸­åšæ¢å¤
 			m_pSkCanvas->clipRect(skRc,DMSkiaRegionImpl::GdiRgnOp2SkRgnOp(fnCombineMode));
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -1277,14 +1277,14 @@ namespace DM
 	{
 		SkRect skRc;
 		m_pSkCanvas->getClipBounds(&skRc);
-		// ĞèÒª½«rectµÄviewOrg»¹Ô­
+		// éœ€è¦å°†rectçš„viewOrgè¿˜åŸ
 		skRc.offset(-m_ptOrg);
 
 		lpRect->left	= (LONG)skRc.fLeft;
 		lpRect->top		= (LONG)skRc.fTop;
 		lpRect->right	= (LONG)skRc.fRight;
 		lpRect->bottom	= (LONG)skRc.fBottom;
-		// ĞèÒª4ÖÜËõĞ¡Ò»¸öµ¥Î»²ÅÊÇºÍGDIÏàÍ¬µÄ¼ô²ÃÇø
+		// éœ€è¦4å‘¨ç¼©å°ä¸€ä¸ªå•ä½æ‰æ˜¯å’ŒGDIç›¸åŒçš„å‰ªè£åŒº
 		::InflateRect(lpRect,-1,-1);
 		return DM_ECODE_OK;
 	}
@@ -1293,7 +1293,7 @@ namespace DM
 	{
 		DMSkiaRegionImpl *pRgn = new DMSkiaRegionImpl();
 		SkRegion skRgn = m_pSkCanvas->internal_private_getTotalClip();
-		//ĞèÒª½«rectµÄviewOrg»¹Ô­
+		//éœ€è¦å°†rectçš„viewOrgè¿˜åŸ
 		skRgn.translate((int)-m_ptOrg.fX,(int)-m_ptOrg.fY);
 		pRgn->SetRegion(skRgn);
 		*ppRegion = pRgn;
@@ -1345,7 +1345,7 @@ namespace DM
 		return iErr;
 	}
 
-	//¸¨Öú
+	//è¾…åŠ©
 	bool DMSkiaCanvasImpl::Rect2SkRect(LPCRECT lpRect,SkRect &skiRc)
 	{
 		bool bRet = false;
@@ -1383,7 +1383,7 @@ namespace DM
 		dcMem.SelectObject(m_DIBTemp.m_hBitmap);
 		::SetViewportOrgEx(dcMem,-lpRect->left,-lpRect->top,NULL);
 
-		// ÉèÖÃÈıÎŞ»·¾³------------------------------------
+		// è®¾ç½®ä¸‰æ— ç¯å¢ƒ------------------------------------
 		if (bInherit)
 		{
 			dcMem.SelectObject(m_pCurPen->GetPen());
@@ -1414,7 +1414,7 @@ namespace DM
 		}
 		else
 		{
-			LOG_ERR("CreateDIBSectionÊ§°ÜÁË!\n");
+			LOG_ERR("CreateDIBSectionå¤±è´¥äº†!\n");
 		}
 
 		return dcMem;
@@ -1435,7 +1435,7 @@ namespace DM
 					*p -= 1;
 					if (0 == *p)
 					{
-						memset(p-3,0,3);// ½öxp,win7-32ÏÂĞèÒªÊ¹ÓÃ´Ë·½Ê½
+						memset(p-3,0,3);// ä»…xp,win7-32ä¸‹éœ€è¦ä½¿ç”¨æ­¤æ–¹å¼
 					}
 					//if(*p==0) *p=0xff;
 					//else memset(p-3,0,4);
@@ -1448,7 +1448,7 @@ namespace DM
 					*p -= 1;
 				}
 			}
-#else// MMXÖ»ÓĞÔÚ´óÍ¼Æ¬Ê±²Å»á¸ü¸ßĞ§,ÔİÊ±²»ÆôÓÃ
+#else// MMXåªæœ‰åœ¨å¤§å›¾ç‰‡æ—¶æ‰ä¼šæ›´é«˜æ•ˆ,æš‚æ—¶ä¸å¯ç”¨
 			byte* p = (byte*)m_DIBTemp.m_pPixelBits;
 			const UINT c_01000000 = 0x01000000;
 			__asm
@@ -1473,11 +1473,11 @@ namespace DM
 			}
 			__asm
 			{
-				emms				;±ØÒªµÄ!Empty MMX Status
+				emms				;å¿…è¦çš„!Empty MMX Status
 			}
 
 			p = m_DIBTemp.m_pPixelBits+mmxsize+3;
-			for (int j=mmxsize;j<m_DIBTemp.m_nImageSize;j+=4,p+=4)// ÓàÏÂ²¿·Ö²»×ã16Î»ÁË£¬Ö±½ÓforÑ­»·
+			for (int j=mmxsize;j<m_DIBTemp.m_nImageSize;j+=4,p+=4)// ä½™ä¸‹éƒ¨åˆ†ä¸è¶³16ä½äº†ï¼Œç›´æ¥forå¾ªç¯
 			{
 				*p -= 0x1;
 			}

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+﻿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSmartPtrT.h 
-// File Des: ����ָ��ģ����,�������л���DMRefNum��ָ��
+// File Des: 智能指针模板类,管理所有基于DMRefNum的指针
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -11,15 +11,15 @@
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
 //      guoyou		2014-9-19	1.0			
-//      guoyou      2014-10-11  1.1           ����CComPtr���ܣ�֧��COMָ��
-//      guoyou		2015-01-09	1.2	           ���Ӱ���chmע��
+//      guoyou      2014-10-11  1.1           加入CComPtr功能，支持COM指针
+//      guoyou		2015-01-09	1.2	           增加帮助chm注释
 //-------------------------------------------------------
 #pragma once
 
 namespace DM
 {
 	/// <summary>
-	///		����ָ��ģ���࣬����DMʹ�����������ڴ��Զ��ͷţ����<see cref="DMRefNum"/>������ʹ��
+	///		智能指针模板类，整个DM使用它来控制内存自动释放，针对<see cref="DMRefNum"/>的子类使用
 	/// </summary>
 	template<class T>
 	class DMSmartPtrT
@@ -78,7 +78,7 @@ namespace DM
 			return *m_ptr;
 		}
 
-		/// �˴�������CComPtr
+		/// 此代码来自CComPtr
 		T** operator&() throw()
 		{
 			//DMASSERT(m_ptr==NULL);
@@ -143,10 +143,10 @@ namespace DM
 		T * get(void) const {return m_ptr;}
 
 		/// <summary>
-		///		���¸���һ������ָ�룬ԭ���ü�����1���¶���ָ�����ü���+1
+		///		重新附加一个对象指针，原引用计数减1，新对象指针引用计数+1
 		/// </summary>
-		/// <param name="ptr">����ָ��</param>
-		/// <returns>��</returns>
+		/// <param name="ptr">对象指针</param>
+		/// <returns>无</returns>
 		void reset(T* ptr=0)
 		{
 			if (0 != ptr)
@@ -163,12 +163,12 @@ namespace DM
 		}
 
 		/// <summary>
-		///		�ͷŸ��Ӷ���ָ�룬������������ΪNULL,
+		///		释放附加对象指针，并把自身设置为NULL,
 		/// </summary>
 		/// <remarks>
-		///     ע��ʹ�õ���.������->,��A.Release()
+		///     注意使用的是.而不是->,如A.Release()
 		///  </remarks>
-		/// <returns>��</returns>
+		/// <returns>无</returns>
 		void Release() throw()
 		{
 			T* pTemp = m_ptr;
@@ -180,10 +180,10 @@ namespace DM
 		}
 
 		/// <summary>
-		///		����һ������ָ�룬�����������ü���
+		///		附加一个对象指针，不会增加引用计数
 		/// </summary>
-		/// <param name="p2">����ָ��</param>
-		/// <returns>��</returns>
+		/// <param name="p2">对象指针</param>
+		/// <returns>无</returns>
 		void Attach(T* p2) throw()
 		{
 			if (m_ptr)
@@ -192,9 +192,9 @@ namespace DM
 		}
 
 		/// <summary>
-		///		���븽�ӵĶ���ָ�룬���ӵĶ������ü������䣬��ʱҪע���ⲿ�ͷ�
+		///		脱离附加的对象指针，附加的对象引用计数不变，此时要注意外部释放
 		/// </summary>
-		/// <returns>���ӵĶ���ָ��</returns>
+		/// <returns>附加的对象指针</returns>
 		T* Detach() throw()
 		{
 			T* pt = m_ptr;
@@ -203,10 +203,10 @@ namespace DM
 		}
 
 		/// <summary>
-		///		��������ָ��
+		///		拷出对象指针
 		/// </summary>
-		/// <param name="ppT">����ָ��</param>
-		/// <returns>S_OK��ʾ�ɹ�</returns>
+		/// <param name="ppT">对象指针</param>
+		/// <returns>S_OK表示成功</returns>
 		HRESULT CopyTo(OUT T** ppT) throw()
 		{
 			if (ppT == NULL)

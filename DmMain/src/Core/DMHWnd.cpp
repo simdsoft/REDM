@@ -1,8 +1,8 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMHWnd.h"
 #include <dwmapi.h>
 
-#define  RESIZE_OFFSET								5							///< ResizeÊ±ÉèÖÃ¼ıÍ·ÊôĞÔ
+#define  RESIZE_OFFSET								5							///< Resizeæ—¶è®¾ç½®ç®­å¤´å±æ€§
 namespace DM
 {
 	BEGIN_MSG_MAP(DMHWnd)
@@ -27,8 +27,8 @@ namespace DM
 
 		MSG_WM_CREATE(OnCreate)
 		MSG_WM_NCCREATE(OnNcCreate)
-		MSG_WM_NCCALCSIZE(OnNcCalcSize)   // Ò»¶¨Òª´¦Àí´ËÏûÏ¢£¬²»È»Í¸Ã÷´°¿Ú+resizeÏÂ£¬»æ²»³öÀ´£¡
-		MSG_WM_NCHITTEST(OnNcHitTest)    // resizeÏÂ´¦Àí¼ıÍ·×´Ì¬
+		MSG_WM_NCCALCSIZE(OnNcCalcSize)   // ä¸€å®šè¦å¤„ç†æ­¤æ¶ˆæ¯ï¼Œä¸ç„¶é€æ˜çª—å£+resizeä¸‹ï¼Œç»˜ä¸å‡ºæ¥ï¼
+		MSG_WM_NCHITTEST(OnNcHitTest)    // resizeä¸‹å¤„ç†ç®­å¤´çŠ¶æ€
 
 		MESSAGE_RANGE_HANDLER_EX(WM_MOUSEFIRST, WM_MOUSELAST, OnMouseEvent)
 		MESSAGE_RANGE_HANDLER_EX(WM_KEYFIRST, WM_KEYLAST, OnKeyEvent)
@@ -41,7 +41,7 @@ namespace DM
 	END_MSG_MAP()
 
 	BEGIN_EVENT_MAP(DMHWnd)
-	END_EVENT_INBASE()// »ùÀà
+	END_EVENT_INBASE()// åŸºç±»
 
 	DMHWnd::DMHWnd()
 		:DMContainerImpl(this)
@@ -49,9 +49,9 @@ namespace DM
 	{
 		SetContainer(this);
 		m_pHWndXmlInfo.Attach(new DMHWnd_XmlInfo(this));
-		g_pDMDWndPool->AddMainDUIWnd(GetDUIWnd());			///< ¿ØÖÆÖ÷´°¿ÚµÄDUIÁĞ±í,ÓÃÓÚ»»·ô¼ÆËã
+		g_pDMDWndPool->AddMainDUIWnd(GetDUIWnd());			///< æ§åˆ¶ä¸»çª—å£çš„DUIåˆ—è¡¨,ç”¨äºæ¢è‚¤è®¡ç®—
 		m_bSizeChanging = false;
-		g_pDMApp->CreateRegObj((void**)&m_pDraw,NULL,DMREG_Draw);/// ±ØĞëÔÚ´Ë´¦´´½¨Ä¬ÈÏµÄdraw¶ÔÏó£¬ÒòÎª²»ÊÇËùÓĞµÄDMHWnd×ÓÀà¶¼»áµ÷ÓÃSetAttributeµÄ,ÈçDMDropWnd
+		g_pDMApp->CreateRegObj((void**)&m_pDraw,NULL,DMREG_Draw);/// å¿…é¡»åœ¨æ­¤å¤„åˆ›å»ºé»˜è®¤çš„drawå¯¹è±¡ï¼Œå› ä¸ºä¸æ˜¯æ‰€æœ‰çš„DMHWndå­ç±»éƒ½ä¼šè°ƒç”¨SetAttributeçš„,å¦‚DMDropWnd
 		m_pCurMsgLoop = g_pDMMsgLoopTool->GetMessageLoop();
 		if (!m_pCurMsgLoop)
 		{
@@ -60,9 +60,9 @@ namespace DM
 		}
 	}
 
-	/// @brief ´´½¨´°¿Ú
-	/// @param shadowStyle ÒõÓ°·ç¸ñ£¡
-	/// @return  ´°¿Ú×ÊÔ´¾ä±ú.
+	/// @brief åˆ›å»ºçª—å£
+	/// @param shadowStyle é˜´å½±é£æ ¼ï¼
+	/// @return  çª—å£èµ„æºå¥æŸ„.
 	HWND DMHWnd::DM_CreateWindow(LPCSTR lpszXmlId, int x/*=0*/, int y/*=0*/, int nWidth/*=0*/, int nHeight/*=0*/, HWND hWndParent/*=NULL*/, int shadowStyle/*=NWSDS_NULL*/)
 	{
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
@@ -81,7 +81,7 @@ namespace DM
 		LOG_INFO("[start]lpszXmlId:%s\n",lpszXmlId);
 		do
 		{
-			// ´°¿ÚÒÑ´´½¨
+			// çª—å£å·²åˆ›å»º
 			if (m_hWnd)
 			{
 				LOG_ERR("[mid]m_hWnd:0x%08x is exist\n", m_hWnd);
@@ -95,9 +95,9 @@ namespace DM
 			}
 			m_HWndData.m_lpszXmlId = lpszXmlId;
 
-			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
+			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
 
-			// ´´½¨Ê±»áÏÈµ÷ÓÃµ½OnNcCreateÀ´½âÎöXML×ÊÔ´£¬ÈçOnNcCreate·µ»ØÊ§°Ü,Ôò´´½¨Ê§°Ü£¬m_hWndÎªNULL
+			// åˆ›å»ºæ—¶ä¼šå…ˆè°ƒç”¨åˆ°OnNcCreateæ¥è§£æXMLèµ„æºï¼Œå¦‚OnNcCreateè¿”å›å¤±è´¥,åˆ™åˆ›å»ºå¤±è´¥ï¼Œm_hWndä¸ºNULL
 			DMCWnd::CreateWindowEx((LPCWSTR)Atom,lpWindowName, dwStyle, dwExStyle, x, y, nWidth, nHeight, hWndParent, lpParam);
 			if (NULL == m_hWnd)
 			{
@@ -105,11 +105,11 @@ namespace DM
 				break;
 			}
 
-			// DWMÒõÓ°Ğ§¹û
+			// DWMé˜´å½±æ•ˆæœ
 			if (shadowStyle == NWSDS_DWMSHADOW)
 				DM_EnableShadowEffect();
 
-			// ½âÎöxml
+			// è§£æxml
 			if (DM_ECODE_OK != LoadDMData(lpszXmlId))
 			{
 				LOG_ERR("[mid]LoadDMData fail\n");
@@ -119,13 +119,13 @@ namespace DM
 		} while (false);
 		if (m_hWnd)
 		{
-			// ¿ªÊ¼²¼¾Ö
+			// å¼€å§‹å¸ƒå±€
 			InitFromDMData();
 
-			// ×¢²á¿ÉÍÏ¶¯
+			// æ³¨å†Œå¯æ‹–åŠ¨
 			::RegisterDragDrop(m_hWnd, &m_DropTarget);
 
-			// ÉèÖÃ³õÊ¼»¯Íê³É×´Ì¬
+			// è®¾ç½®åˆå§‹åŒ–å®ŒæˆçŠ¶æ€
 			g_pDMPluginTool->SetInit();
 
 			OnAfterCreated();
@@ -139,7 +139,7 @@ namespace DM
 	{
 		do
 		{
-			// ´°¿ÚÒÑ´´½¨
+			// çª—å£å·²åˆ›å»º
 			if (m_hWnd)
 			{
 				LOG_ERR("[mid]m_hWnd:0x%08x is exist\n", m_hWnd);
@@ -152,9 +152,9 @@ namespace DM
 				break;
 			}
 
-			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
+			ATOM Atom = (shadowStyle == NWSDS_DROPSHADOW)?g_pDMAppData->m_shadowAtom:g_pDMAppData->m_Atom;  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
 
-			// ´´½¨Ê±»áÏÈµ÷ÓÃµ½OnNcCreateÀ´½âÎöXML×ÊÔ´£¬ÈçOnNcCreate·µ»ØÊ§°Ü,Ôò´´½¨Ê§°Ü£¬m_hWndÎªNULL
+			// åˆ›å»ºæ—¶ä¼šå…ˆè°ƒç”¨åˆ°OnNcCreateæ¥è§£æXMLèµ„æºï¼Œå¦‚OnNcCreateè¿”å›å¤±è´¥,åˆ™åˆ›å»ºå¤±è´¥ï¼Œm_hWndä¸ºNULL
 			DMCWnd::CreateWindowEx((LPCWSTR)Atom,lpWindowName, dwStyle, dwExStyle, x, y, nWidth, nHeight, hWndParent, lpParam);
 			if (NULL == m_hWnd)
 			{
@@ -162,11 +162,11 @@ namespace DM
 				break;
 			}
 
-			// DWMÒõÓ°Ğ§¹û
+			// DWMé˜´å½±æ•ˆæœ
 			if (shadowStyle == NWSDS_DWMSHADOW)
 				DM_EnableShadowEffect();
 
-			// ½âÎöxml
+			// è§£æxml
 			if (DM_ECODE_OK != LoadDMData(pXmlBuf, bufLen))
 			{
 				LOG_ERR("[mid]LoadDMData fail\n");
@@ -176,13 +176,13 @@ namespace DM
 		} while (false);
 		if (m_hWnd)
 		{
-			// ¿ªÊ¼²¼¾Ö
+			// å¼€å§‹å¸ƒå±€
 			InitFromDMData();
 
-			// ×¢²á¿ÉÍÏ¶¯
+			// æ³¨å†Œå¯æ‹–åŠ¨
 			::RegisterDragDrop(m_hWnd, &m_DropTarget);
 
-			// ÉèÖÃ³õÊ¼»¯Íê³É×´Ì¬
+			// è®¾ç½®åˆå§‹åŒ–å®ŒæˆçŠ¶æ€
 			g_pDMPluginTool->SetInit();
 
 			OnAfterCreated();
@@ -231,8 +231,8 @@ namespace DM
 		} while (false);
 	}
 
-	// ÔÚÁ½¸öWM_PAINTÏûÏ¢Ö®¼ä¶à¸öInvalidateµ÷ÓÃÊ¹Ö®Ê§Ğ§µÄÇøÓò¾Í»á±»ÀÛ¼ÓÆğÀ´£¬È»ºóÔÚÒ»¸öWM_PAINTÏûÏ¢ÖĞÒ»´ÎµÃµ½¸üĞÂ£¬
-	// ²»½öÄÜ±ÜÃâ¶à´ÎÖØ¸´µØ¸üĞÂÍ¬Ò»ÇøÓò£¬Ò²ÓÅ»¯ÁËÓ¦ÓÃµÄ¸üĞÂ²Ù×÷
+	// åœ¨ä¸¤ä¸ªWM_PAINTæ¶ˆæ¯ä¹‹é—´å¤šä¸ªInvalidateè°ƒç”¨ä½¿ä¹‹å¤±æ•ˆçš„åŒºåŸŸå°±ä¼šè¢«ç´¯åŠ èµ·æ¥ï¼Œç„¶ååœ¨ä¸€ä¸ªWM_PAINTæ¶ˆæ¯ä¸­ä¸€æ¬¡å¾—åˆ°æ›´æ–°ï¼Œ
+	// ä¸ä»…èƒ½é¿å…å¤šæ¬¡é‡å¤åœ°æ›´æ–°åŒä¸€åŒºåŸŸï¼Œä¹Ÿä¼˜åŒ–äº†åº”ç”¨çš„æ›´æ–°æ“ä½œ
 	void DMHWnd::RedrawAll()
 	{
 		do
@@ -241,11 +241,11 @@ namespace DM
 			{
 				break;
 			}
-			m_pDraw->InvalidateRect(NULL,&m_rcWindow,RGN_COPY);// ×éºÏÎŞĞ§Çø
+			m_pDraw->InvalidateRect(NULL,&m_rcWindow,RGN_COPY);// ç»„åˆæ— æ•ˆåŒº
 
 			if (false == m_pHWndXmlInfo->m_bTranslucent)
 			{
-				Invalidate(FALSE);// ²»Çå¿Õ±³¾°
+				Invalidate(FALSE);// ä¸æ¸…ç©ºèƒŒæ™¯
 			}
 			else if (m_dummyWnd.IsWindow())
 			{
@@ -273,9 +273,9 @@ namespace DM
 				break;
 			}
 
-			m_pHWndXmlInfo->ResetXmlInfo();                // ÖØÉèÖÃXMLÊı¾İ
+			m_pHWndXmlInfo->ResetXmlInfo();                // é‡è®¾ç½®XMLæ•°æ®
 
-			// ½âÎöË½ÓĞSkin½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü---------------
+			// è§£æç§æœ‰SkinèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ---------------
 			DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 			while (XmlSkin.IsValid())
 			{
@@ -283,7 +283,7 @@ namespace DM
 				XmlSkin = XmlSkin.NextSibling("skin");
 			}
 
-			// ½âÎöË½ÓĞStyle½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü--------------
+			// è§£æç§æœ‰StyleèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ--------------
 			DMXmlNode XmlStyle = XmlNode.FirstChild("style");
 			while (XmlStyle.IsValid())
 			{
@@ -291,15 +291,15 @@ namespace DM
 				XmlStyle = XmlStyle.NextSibling("style");
 			}
 
-			// ½âÎö×ÔÉíµÄXML-Attribute-----------------------
+			// è§£æè‡ªèº«çš„XML-Attribute-----------------------
 			iErr = DMBase::InitDMData(XmlNode);
 			if (iErr != DM_ECODE_OK)
 			{
 				break;
 			}
 
-			// Ñ­»·½âÎöDUIµÄXML -----------------------------
-			// root½Úµã±¾ÉíÒ²ÊÇÒ»¸öDUIWindow´°¿Ú¶ÔÏó£¬µ«ÊÇÔÚÕâÀï±ØĞëÊÇ"root"²ÅÄÜÊ¶±ğ£¬ÔÚÕâ¸ö½ÚµãÖĞ¿ÉÒÔÓĞDUIWindowµÄ¸÷ÖÖÊôĞÔ£¬µ«ÊÇºÍ²¼¾ÖÎ»ÖÃÏà¹ØµÄÊôĞÔ×Ô¶¯ÎŞĞ§£¬ÒòÎª¸Ã´°¿Ú×ÜÊÇ³äÂúÕû¸öËŞÖ÷´°¿Ú¡£
+			// å¾ªç¯è§£æDUIçš„XML -----------------------------
+			// rootèŠ‚ç‚¹æœ¬èº«ä¹Ÿæ˜¯ä¸€ä¸ªDUIWindowçª—å£å¯¹è±¡ï¼Œä½†æ˜¯åœ¨è¿™é‡Œå¿…é¡»æ˜¯"root"æ‰èƒ½è¯†åˆ«ï¼Œåœ¨è¿™ä¸ªèŠ‚ç‚¹ä¸­å¯ä»¥æœ‰DUIWindowçš„å„ç§å±æ€§ï¼Œä½†æ˜¯å’Œå¸ƒå±€ä½ç½®ç›¸å…³çš„å±æ€§è‡ªåŠ¨æ— æ•ˆï¼Œå› ä¸ºè¯¥çª—å£æ€»æ˜¯å……æ»¡æ•´ä¸ªå®¿ä¸»çª—å£ã€‚
 			iErr = DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
 		return iErr;
@@ -321,9 +321,9 @@ namespace DM
 				break;
 			}
 
-			m_pHWndXmlInfo->ResetXmlInfo();                // ÖØÉèÖÃXMLÊı¾İ
+			m_pHWndXmlInfo->ResetXmlInfo();                // é‡è®¾ç½®XMLæ•°æ®
 
-			// ½âÎöË½ÓĞSkin½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü---------------
+			// è§£æç§æœ‰SkinèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ---------------
 			DMXmlNode XmlSkin = XmlNode.FirstChild("skin");
 			while (XmlSkin.IsValid())
 			{
@@ -331,7 +331,7 @@ namespace DM
 				XmlSkin = XmlSkin.NextSibling("skin");
 			}
 
-			// ½âÎöË½ÓĞStyle½Úµã,Íâ²¿¿ÉÒÔÊÍ·ÅËü--------------
+			// è§£æç§æœ‰StyleèŠ‚ç‚¹,å¤–éƒ¨å¯ä»¥é‡Šæ”¾å®ƒ--------------
 			DMXmlNode XmlStyle = XmlNode.FirstChild("style");
 			while (XmlStyle.IsValid())
 			{
@@ -339,15 +339,15 @@ namespace DM
 				XmlStyle = XmlStyle.NextSibling("style");
 			}
 
-			// ½âÎö×ÔÉíµÄXML-Attribute-----------------------
+			// è§£æè‡ªèº«çš„XML-Attribute-----------------------
 			iErr = DMBase::InitDMData(XmlNode);
 			if (iErr != DM_ECODE_OK)
 			{
 				break;
 			}
 
-			// Ñ­»·½âÎöDUIµÄXML -----------------------------
-			// root½Úµã±¾ÉíÒ²ÊÇÒ»¸öDUIWindow´°¿Ú¶ÔÏó£¬µ«ÊÇÔÚÕâÀï±ØĞëÊÇ"root"²ÅÄÜÊ¶±ğ£¬ÔÚÕâ¸ö½ÚµãÖĞ¿ÉÒÔÓĞDUIWindowµÄ¸÷ÖÖÊôĞÔ£¬µ«ÊÇºÍ²¼¾ÖÎ»ÖÃÏà¹ØµÄÊôĞÔ×Ô¶¯ÎŞĞ§£¬ÒòÎª¸Ã´°¿Ú×ÜÊÇ³äÂúÕû¸öËŞÖ÷´°¿Ú¡£
+			// å¾ªç¯è§£æDUIçš„XML -----------------------------
+			// rootèŠ‚ç‚¹æœ¬èº«ä¹Ÿæ˜¯ä¸€ä¸ªDUIWindowçª—å£å¯¹è±¡ï¼Œä½†æ˜¯åœ¨è¿™é‡Œå¿…é¡»æ˜¯"root"æ‰èƒ½è¯†åˆ«ï¼Œåœ¨è¿™ä¸ªèŠ‚ç‚¹ä¸­å¯ä»¥æœ‰DUIWindowçš„å„ç§å±æ€§ï¼Œä½†æ˜¯å’Œå¸ƒå±€ä½ç½®ç›¸å…³çš„å±æ€§è‡ªåŠ¨æ— æ•ˆï¼Œå› ä¸ºè¯¥çª—å£æ€»æ˜¯å……æ»¡æ•´ä¸ªå®¿ä¸»çª—å£ã€‚
 			iErr = DUIWindow::InitDMData(XmlNode.FirstChild(DUIROOT_NODE));
 		} while (false);
 		return iErr;
@@ -358,7 +358,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_OK;
 		do
 		{
-			// ×¢²átip
+			// æ³¨å†Œtip
 			m_pToolTip.Release();
 			if (!DMSUCCEEDED(g_pDMApp->CreateRegObj((void**)&m_pToolTip,m_pHWndXmlInfo->m_strRegTip,DMREG_ToolTip)))
 			{
@@ -366,7 +366,7 @@ namespace DM
 			}
 			m_pCurMsgLoop->AddMessageFilter(m_pToolTip.get());
 
-			// ÉèÖÃ´°¿ÚÊôĞÔ¿ÉÍÏ¶¯ ----------------------
+			// è®¾ç½®çª—å£å±æ€§å¯æ‹–åŠ¨ ----------------------
 			DWORD dwStyle = WS_MAXIMIZEBOX| WS_THICKFRAME;
 			if (m_pHWndXmlInfo->m_bResizable)
 			{
@@ -383,12 +383,12 @@ namespace DM
 				ModifyStyleEx(0,dwExStyle);
 			}
 
-			// ÉèÖÃ´°¿Ú±êÌâ ----------------------------
+			// è®¾ç½®çª—å£æ ‡é¢˜ ----------------------------
 			SetWindowText(m_pHWndXmlInfo->m_strTitle);
 
 			auto appData = g_pDMAppData;
-			// ´´½¨Í¸Ã÷´°¿ÚÃÉ°æ--ÕâÁ½Õß²î±ğÊÇUpdateLayeredWindow¶Ô±ÈSetLayeredWindowAttributes£¬¿É²Î¿´×ÊÁÏ£ºhttp://hgy413.com/1865.html
-			if (m_pHWndXmlInfo->m_bTranslucent)// ÔÚ´´½¨ÃÉ°æÊ±£¬alphaÖµÖ»ĞèÔÚalpha»ìºÏÊ±Ê¹ÓÃ¼´¿É,ÕâÊ±Ê¹ÓÃUpdateLayeredWindow»æÖÆ
+			// åˆ›å»ºé€æ˜çª—å£è’™ç‰ˆ--è¿™ä¸¤è€…å·®åˆ«æ˜¯UpdateLayeredWindowå¯¹æ¯”SetLayeredWindowAttributesï¼Œå¯å‚çœ‹èµ„æ–™ï¼šhttp://hgy413.com/1865.html
+			if (m_pHWndXmlInfo->m_bTranslucent)// åœ¨åˆ›å»ºè’™ç‰ˆæ—¶ï¼Œalphaå€¼åªéœ€åœ¨alphaæ··åˆæ—¶ä½¿ç”¨å³å¯,è¿™æ—¶ä½¿ç”¨UpdateLayeredWindowç»˜åˆ¶
 			{
 				SetWindowLongPtr(GWL_EXSTYLE, GetWindowLongPtr(GWL_EXSTYLE)|WS_EX_LAYERED);
 				m_dummyWnd.CreateWindowEx(LPCWSTR(appData->m_Atom),L"DM_DUMMY_WND",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_NOACTIVATE,0,0,10,10,m_hWnd,NULL);
@@ -396,43 +396,43 @@ namespace DM
 				::SetLayeredWindowAttributes(m_dummyWnd.m_hWnd,0,0,LWA_ALPHA);
 				m_dummyWnd.ShowWindow(SW_SHOWNOACTIVATE);
 			}
-			else if(0xFF != m_pHWndXmlInfo->m_byAlpha)// ×¢ÒâÊÇelse if£¬Ã»ÓĞÃÉ°æÊ±£¬¾ÍµÃ×Ô¼ºÉèÖÃ·Ö²ãÊôĞÔ£¬SetLayeredWindowAttributes»áÉèÖÃÍ³Ò»µÄÍ¸Ã÷¶È
+			else if(0xFF != m_pHWndXmlInfo->m_byAlpha)// æ³¨æ„æ˜¯else ifï¼Œæ²¡æœ‰è’™ç‰ˆæ—¶ï¼Œå°±å¾—è‡ªå·±è®¾ç½®åˆ†å±‚å±æ€§ï¼ŒSetLayeredWindowAttributesä¼šè®¾ç½®ç»Ÿä¸€çš„é€æ˜åº¦
 			{
 				ModifyStyleEx(0,WS_EX_LAYERED);
 				::SetLayeredWindowAttributes(m_hWnd,0,m_pHWndXmlInfo->m_byAlpha,LWA_ALPHA);
 			}
 
-			// ÉèÖÃ¿í¸ß ------------------------------
+			// è®¾ç½®å®½é«˜ ------------------------------
 			CRect rcClient;
 			GetClientRect(rcClient);
 			if (rcClient.IsRectEmpty())
 			{
-				// ÔÚ´¥·¢WM_SIZEÊ±»áÖØÖÃ²¼¾Ö
+				// åœ¨è§¦å‘WM_SIZEæ—¶ä¼šé‡ç½®å¸ƒå±€
 				SetWindowPos(NULL,0,0,m_pHWndXmlInfo->m_szInit.cx,m_pHWndXmlInfo->m_szInit.cy,SWP_NOZORDER|SWP_NOMOVE|SWP_NOACTIVATE);
 			}
 
 			else
 			{
 				DM_FloatLayout(rcClient);
-				DV_UpdateChildLayout();// ±ØĞëµ÷ÓÃ´Ë´¦¸üĞÂDUIÎ»ÖÃ£¬²»È»Íâ²¿ÉèÖÃ´°¿ÚÃ»ÓĞ²¼¾Ö
+				DV_UpdateChildLayout();// å¿…é¡»è°ƒç”¨æ­¤å¤„æ›´æ–°DUIä½ç½®ï¼Œä¸ç„¶å¤–éƒ¨è®¾ç½®çª—å£æ²¡æœ‰å¸ƒå±€
 			}
 
-			// ×îºó»æÖÆ
+			// æœ€åç»˜åˆ¶
 			RedrawAll();
 		} while (false);
 		return iErr;
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	void DMHWnd::OnPaint(HDC hdc)
 	{
 		if (m_pDraw&&false == m_pDraw->IsInvalidate()&&false == m_pHWndXmlInfo->m_bTranslucent)
-		{/*hgy: Ò»°ã´Ë´¦ÎªÆäËûwindow¸Ç×¡DUI±»¶¯´¥·¢µÄWM_PAINTÏûÏ¢£¬ÓÉÓÚ²»ÊÇÖ÷¶¯´¥·¢£¬
-		 ´ËÊ±Ã»ÓĞÉèÖÃÎŞĞ§Çø,ËùÒÔÎÒÃÇ×öµÄÊÂÒ²ºÜ¼òµ¥£¬Ö±½Ó°Ñ»º´æ»­²¼¸üĞÂÎŞĞ§Çø¾ÍºÃÁË*/
+		{/*hgy: ä¸€èˆ¬æ­¤å¤„ä¸ºå…¶ä»–windowç›–ä½DUIè¢«åŠ¨è§¦å‘çš„WM_PAINTæ¶ˆæ¯ï¼Œç”±äºä¸æ˜¯ä¸»åŠ¨è§¦å‘ï¼Œ
+		 æ­¤æ—¶æ²¡æœ‰è®¾ç½®æ— æ•ˆåŒº,æ‰€ä»¥æˆ‘ä»¬åšçš„äº‹ä¹Ÿå¾ˆç®€å•ï¼Œç›´æ¥æŠŠç¼“å­˜ç”»å¸ƒæ›´æ–°æ— æ•ˆåŒºå°±å¥½äº†*/
 			CRect rcUp;
-			::GetClipBox(hdc, rcUp);// ²âÊÔ±íÃ÷´Ë´¦×ÜÊÇºÍPAINTSTRUCT.rcPaintÒ»ÖÂ
+			::GetClipBox(hdc, rcUp);// æµ‹è¯•è¡¨æ˜æ­¤å¤„æ€»æ˜¯å’ŒPAINTSTRUCT.rcPaintä¸€è‡´
 			UpdateHWnd(hdc, rcUp);
 		}
 		else
@@ -505,7 +505,7 @@ namespace DM
 			::GetMonitorInfo(hMonitor, &mi);
 			CRect rcWork = mi.rcWork;
 			CRect rcMonitor = mi.rcMonitor;
-			// ×î´ó»¯Ê±Î»ÖÃ£¬´óĞ¡
+			// æœ€å¤§åŒ–æ—¶ä½ç½®ï¼Œå¤§å°
 			lpMMI->ptMaxPosition.x = abs(rcWork.left - rcMonitor.left) - 1 + m_pHWndXmlInfo->m_rcMaxInset.left;
 			lpMMI->ptMaxPosition.y = abs(rcWork.top - rcMonitor.top) - 1 + m_pHWndXmlInfo->m_rcMaxInset.top;
 			lpMMI->ptMaxSize.x = abs(rcWork.Width()) + 2 - m_pHWndXmlInfo->m_rcMaxInset.left - m_pHWndXmlInfo->m_rcMaxInset.right;
@@ -513,7 +513,7 @@ namespace DM
 
 			lpMMI->ptMinTrackSize = CPoint(m_pHWndXmlInfo->m_szMin.cx, m_pHWndXmlInfo->m_szMin.cy);
 
-			// Êó±êÍÏ¶¯¸Ä±ä´°¿Ú´óĞ¡Ê±£¬×î´ó£¬×îĞ¡size
+			// é¼ æ ‡æ‹–åŠ¨æ”¹å˜çª—å£å¤§å°æ—¶ï¼Œæœ€å¤§ï¼Œæœ€å°size
 			lpMMI->ptMaxTrackSize.x = abs(rcWork.Width()) + 2 - m_pHWndXmlInfo->m_rcMaxInset.left - m_pHWndXmlInfo->m_rcMaxInset.right;
 			lpMMI->ptMaxTrackSize.y = abs(rcWork.Height()) + 2 - m_pHWndXmlInfo->m_rcMaxInset.top - m_pHWndXmlInfo->m_rcMaxInset.bottom;
 			if (-1!=m_pHWndXmlInfo->m_szMax.cx)
@@ -529,7 +529,7 @@ namespace DM
 
 	void DMHWnd::OnDestroy()
 	{
-		DUIWindow::DM_SendMessage(WM_DESTROY);    // Ïú»ÙDUI´°¿Ú
+		DUIWindow::DM_SendMessage(WM_DESTROY);    // é”€æ¯DUIçª—å£
 		if (m_pDraw)
 		{
 			m_pDraw.Release();
@@ -547,8 +547,8 @@ namespace DM
 		{
 			m_dummyWnd.DestroyWindow();
 		}
-		::RevokeDragDrop(m_hWnd);						    // ³·»Ø¿ÉÍÏ¶¯
-		g_pDMDWndPool->RemoveMainDUIWnd(GetDUIWnd());		///< ¿ØÖÆÖ÷´°¿ÚµÄDUIÁĞ±í,ÓÃÓÚ»»·ô¼ÆËã
+		::RevokeDragDrop(m_hWnd);						    // æ’¤å›å¯æ‹–åŠ¨
+		g_pDMDWndPool->RemoveMainDUIWnd(GetDUIWnd());		///< æ§åˆ¶ä¸»çª—å£çš„DUIåˆ—è¡¨,ç”¨äºæ¢è‚¤è®¡ç®—
 		OnAfterClosed();
 	}
 
@@ -556,7 +556,7 @@ namespace DM
 	{
 		if (nState!=WA_INACTIVE)
 		{
-			::SetFocus(m_hWnd);// ±ØĞëÉèÖÃ½¹µã£¬²»È»²»»áÏìÓ¦Êó±ê¹öÂÖÏûÏ¢
+			::SetFocus(m_hWnd);// å¿…é¡»è®¾ç½®ç„¦ç‚¹ï¼Œä¸ç„¶ä¸ä¼šå“åº”é¼ æ ‡æ»šè½®æ¶ˆæ¯
 		}
 		else
 		{
@@ -584,7 +584,7 @@ namespace DM
 			{
 				if (this == pWnd)
 				{
-					OnDUITimer(nIdEvent.m_dwTimerID);// ÔÚHWndÖĞ²»ÄÜÓĞDUIµÄÏûÏ¢Ó³Éä±í
+					OnDUITimer(nIdEvent.m_dwTimerID);// åœ¨HWndä¸­ä¸èƒ½æœ‰DUIçš„æ¶ˆæ¯æ˜ å°„è¡¨
 				}
 				else
 				{
@@ -646,7 +646,7 @@ namespace DM
 			m_HWndData.m_bTrackFlag = (TRUE == TrackMouseEvent(&tme));
 		}
 
-		// Ö±½Óµ÷µ½OnMouseEvent,ÆäÊµWM_MOUSEMOVE¾ÍÊÇWM_MOUSEFIRST
+		// ç›´æ¥è°ƒåˆ°OnMouseEvent,å…¶å®WM_MOUSEMOVEå°±æ˜¯WM_MOUSEFIRST
 		OnMouseEvent(WM_MOUSEMOVE,nFlags,MAKELPARAM(point.x,point.y));
 	}
 
@@ -733,7 +733,7 @@ namespace DM
 			}
 		}
 
-		return HTCLIENT;   //ÏÈÄ¬ÈÏ·µ»Ø·Ç¿Í»§Çø
+		return HTCLIENT;   //å…ˆé»˜è®¤è¿”å›éå®¢æˆ·åŒº
 	}
 
 	int DMHWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -750,7 +750,7 @@ namespace DM
 
 	LRESULT DMHWnd::OnNcCalcSize(BOOL bCalcValidRects, LPARAM lParam)
 	{
-		// ×ÊÁÏ¿É²Î¿´http://blog.csdn.net/hgy413/article/details/6863924
+		// èµ„æ–™å¯å‚çœ‹http://blog.csdn.net/hgy413/article/details/6863924
 		do
 		{
 			if (!bCalcValidRects)
@@ -790,7 +790,7 @@ namespace DM
 		do
 		{
 
-			OnFrameEvent(uMsg,wParam,lParam);    //½«Êó±êÏûÏ¢×ª·¢µ½DUIWindow´¦Àí
+			OnFrameEvent(uMsg,wParam,lParam);    //å°†é¼ æ ‡æ¶ˆæ¯è½¬å‘åˆ°DUIWindowå¤„ç†
 			if (m_pToolTip)
 			{
 				if (m_dwState & DMSTATE_DESTROYED)
@@ -859,7 +859,7 @@ namespace DM
 			{
 				if (dwFlags&AW_HIDE)
 				{
-					g_pDMDWndPool->HideAllRealDUIWnd(m_hDUIWnd);// ÏÈÒş²ØrealwndµÄÕæÊµ´°¿Ú
+					g_pDMDWndPool->HideAllRealDUIWnd(m_hDUIWnd);// å…ˆéšè—realwndçš„çœŸå®çª—å£
 				}
 
 				if (TRUE == ::AnimateWindow(m_hWnd,dwTime,dwFlags))
@@ -887,26 +887,26 @@ namespace DM
 			}
 			if (dwFlags&AW_HIDE)
 			{
-				g_pDMDWndPool->HideAllRealDUIWnd(m_hDUIWnd);// ÏÈÒş²ØrealwndµÄÕæÊµ´°¿Ú
+				g_pDMDWndPool->HideAllRealDUIWnd(m_hDUIWnd);// å…ˆéšè—realwndçš„çœŸå®çª—å£
 				if (dwFlags& AW_SLIDE)
 				{
 					LONG  x1 = rcShow.left;LONG  x2 = rcShow.left;LONG  y1 = rcShow.top;LONG  y2 = rcShow.top;
 					LONG * x = &rcShow.left;LONG * y = &rcShow.top;
 
-					if (dwFlags&AW_HOR_POSITIVE)// ´Ó×óµ½ÓÒ
+					if (dwFlags&AW_HOR_POSITIVE)// ä»å·¦åˆ°å³
 					{
 						x1 = rcShow.left,x2 = rcShow.right;x = &rcShow.left;
 					}
-					else if (dwFlags&AW_HOR_NEGATIVE)// ´ÓÓÒµ½×ó
+					else if (dwFlags&AW_HOR_NEGATIVE)// ä»å³åˆ°å·¦
 					{
 						x1 = rcShow.right,x2 = rcShow.left;x=&rcShow.right;
 					}
 
-					if (dwFlags&AW_VER_POSITIVE)// ´ÓÉÏµ½ÏÂ
+					if (dwFlags&AW_VER_POSITIVE)// ä»ä¸Šåˆ°ä¸‹
 					{
 						y1 = rcShow.top,y2 = rcShow.bottom;y = &rcShow.top;
 					}
-					else if (dwFlags & AW_VER_NEGATIVE)// ´ÓÏÂµ½ÉÏ
+					else if (dwFlags & AW_VER_NEGATIVE)// ä»ä¸‹åˆ°ä¸Š
 					{
 						y1 = rcShow.bottom,y2 = rcShow.top;y = &rcShow.bottom;
 					}
@@ -1039,7 +1039,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÈİÆ÷²¿·Ö
+	// Function Des: å®¹å™¨éƒ¨åˆ†
 	DMCode DMHWnd::OnSetCaptureWnd(DUIWND DUIWnd,DUIWNDPtr pOldDUIWnd)
 	{
 		SetCapture();
@@ -1135,7 +1135,7 @@ namespace DM
 			{
 				pMemCanvas->BitBlt(pCanvas,rc.left,rc.top,&rc,SRCCOPY);
 			}
-			DMAutoDC dc(m_hWnd);// ´Ë´¦²»ÒªÓÃÆÁÄ»DC,ÒòÎª·Ç·Ö²ã´°¿ÚÊ¹ÓÃÁËbitbltÖ±½Ó»æÖÆ,Î´×ö×ø±ê×ª»»
+			DMAutoDC dc(m_hWnd);// æ­¤å¤„ä¸è¦ç”¨å±å¹•DC,å› ä¸ºéåˆ†å±‚çª—å£ä½¿ç”¨äº†bitbltç›´æ¥ç»˜åˆ¶,æœªåšåæ ‡è½¬æ¢
 			UpdateHWnd(dc,lpRect,true);
 		} while (false);
 		pCanvas->Release();
@@ -1149,7 +1149,7 @@ namespace DM
 
 	DMCode DMHWnd::OnGetContainerRect(LPRECT lpRect)
 	{
-		*lpRect = m_rcWindow;///hgy413 note: ²»ÄÜÖ±½ÓĞ´³ÉlpRect = m_rcWindow£¬ÕâÑùÖ»ÊÇÈ¡Ö¸Õë£¬²»ÊÇ¸³Öµ
+		*lpRect = m_rcWindow;///hgy413 note: ä¸èƒ½ç›´æ¥å†™æˆlpRect = m_rcWindowï¼Œè¿™æ ·åªæ˜¯å–æŒ‡é’ˆï¼Œä¸æ˜¯èµ‹å€¼
 		return DM_ECODE_OK;
 	}
 
@@ -1193,14 +1193,14 @@ namespace DM
 				break;
 			}
 
-			m_pDraw->InvalidateRect(hDUIWnd,lpRect,RGN_OR);// ×éºÏÎŞĞ§Çø
+			m_pDraw->InvalidateRect(hDUIWnd,lpRect,RGN_OR);// ç»„åˆæ— æ•ˆåŒº
 			if (m_dummyWnd.IsWindow())
 			{
 				m_dummyWnd.Invalidate(FALSE);
 			}
 			else
 			{
-				Invalidate(FALSE);// ²»Çå¿Õ±³¾°
+				Invalidate(FALSE);// ä¸æ¸…ç©ºèƒŒæ™¯
 			}
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -1227,7 +1227,7 @@ namespace DM
 		DMCode iErr = DMContainerImpl::OnRegisterTimeline(pHandler);
 		if (DMSUCCEEDED(iErr))
 		{
-			if (1 == m_TimelineList.GetCount())// µÚÒ»¸ö¼ÓÈëµÄ
+			if (1 == m_TimelineList.GetCount())// ç¬¬ä¸€ä¸ªåŠ å…¥çš„
 			{
 				DM_SetTimer(TIMER_NEXTFRAME,10);
 			}
@@ -1255,7 +1255,7 @@ namespace DM
 
 #if !defined(DM_EXCLUDE_SPY)
 	//---------------------------------------------------
-	// Function Des: spy++²¿·Ö
+	// Function Des: spy++éƒ¨åˆ†
 	LRESULT DMHWnd::OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		if (DMSPY_INIT == wParam)
@@ -1325,7 +1325,7 @@ namespace DM
 			{
 				break;
 			}
-			//1 ÎŞhsl±ä»¯Ê±£¬Ä¬ÈÏÎªÁ½ÕßÍ¬Ò»»­²¼
+			//1 æ— hslå˜åŒ–æ—¶ï¼Œé»˜è®¤ä¸ºä¸¤è€…åŒä¸€ç”»å¸ƒ
 			DMSmartPtrT<IDMCanvas> pMemCanvas;
 			m_pDraw->GetCanvas(&pMemCanvas);
 			if (NULL == pMemCanvas)
@@ -1340,9 +1340,9 @@ namespace DM
 					m_pShowCanvas = pMemCanvas;
 				}
 				iErr = DM_ECODE_OK;
-				break;// Ìø³ö
+				break;// è·³å‡º
 			}
-			//2.ÓĞhsl±ä»¯
+			//2.æœ‰hslå˜åŒ–
 			CSize size;
 			pMemCanvas->GetSize(size);
 			CRect rcCanvas(0,0,size.cx,size.cy);
@@ -1352,28 +1352,28 @@ namespace DM
 			{
 				break;
 			}
-			//2.1.Î´³õÊ¼£¬ÏÈ³õÊ¼»¯
+			//2.1.æœªåˆå§‹ï¼Œå…ˆåˆå§‹åŒ–
 			if (m_pShowCanvas == pMemCanvas)
 			{
-				m_pShowCanvas.Release();// ÏÈÊÍ·ÅÒıÓÃ¼ÆÊı
+				m_pShowCanvas.Release();// å…ˆé‡Šæ”¾å¼•ç”¨è®¡æ•°
 			}
 			if (m_pShowCanvas.isNull())
 			{
 				g_pDMRender->CreateCanvas(size.cx,size.cy,&m_pShowCanvas);
-				m_pShowCanvas->BitBlt(pMemCanvas,0,0,rcCanvas);//ĞÂ´´½¨µÄÖ±½Ó¸´ÖÆ
+				m_pShowCanvas->BitBlt(pMemCanvas,0,0,rcCanvas);//æ–°åˆ›å»ºçš„ç›´æ¥å¤åˆ¶
 				m_pShowCanvas->AdjustHSL32(m_pHWndXmlInfo->m_H,m_pHWndXmlInfo->m_S, m_pHWndXmlInfo->m_L,rcCanvas);
 			}
 			else
 			{
 				CSize showsize;
 				m_pShowCanvas->GetSize(showsize);
-				if (showsize!=size)	//2.2.³õÊ¼»¯ÁË£¬µ«»­²¼´óĞ¡²»Ò»ÖÂ
+				if (showsize!=size)	//2.2.åˆå§‹åŒ–äº†ï¼Œä½†ç”»å¸ƒå¤§å°ä¸ä¸€è‡´
 				{
 					m_pShowCanvas->Resize(size);
-					m_pShowCanvas->BitBlt(pMemCanvas,0,0,rcCanvas);//ÖØµ÷»­²¼»áÇå¿ÕÊı¾İ,Ö±½Ó¸´ÖÆ
+					m_pShowCanvas->BitBlt(pMemCanvas,0,0,rcCanvas);//é‡è°ƒç”»å¸ƒä¼šæ¸…ç©ºæ•°æ®,ç›´æ¥å¤åˆ¶
 					m_pShowCanvas->AdjustHSL32(m_pHWndXmlInfo->m_H,m_pHWndXmlInfo->m_S, m_pHWndXmlInfo->m_L,rcCanvas);
 				}
-				else//2.3.³õÊ¼»¯ÁË£¬»­²¼´óĞ¡Ò»ÖÂ,¸üĞÂÎŞĞ§Çø
+				else//2.3.åˆå§‹åŒ–äº†ï¼Œç”»å¸ƒå¤§å°ä¸€è‡´,æ›´æ–°æ— æ•ˆåŒº
 				{
 					m_pShowCanvas->BitBlt(pMemCanvas,rcDest.left,rcDest.top,rcDest);
 					m_pShowCanvas->AdjustHSL32(m_pHWndXmlInfo->m_H,m_pHWndXmlInfo->m_S, m_pHWndXmlInfo->m_L,rcDest);

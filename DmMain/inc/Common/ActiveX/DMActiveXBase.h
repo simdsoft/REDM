@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,7 +18,7 @@
 
 namespace DM
 {
-	// ¶àÏß³ÌÊ¹ÓÃ
+	// å¤šçº¿ç¨‹ä½¿ç”¨
 	class GITControl
 	{
 	public:
@@ -165,7 +165,7 @@ namespace DM
 	public:
 		DWORD								   m_git_dwViewObjectType;
 		DMComPtr<IUnknown>					   m_pUnknown;
-		DWORD								   m_dwGitCookie;					///< ¼ÇÂ¼GIT
+		DWORD								   m_dwGitCookie;					///< è®°å½•GIT
 		DMLock                                 m_Lock;
 	};
 
@@ -226,8 +226,8 @@ namespace DM
 	public:
 		DMActiveXSite()
 		:m_pAxHostDelegate(NULL)
-		,m_bSupportMultThread(false)// Ä¬ÈÏ²»Ö§³Ö¶àÏß³Ì
-		,m_bAllowResize(true)// Ä¬ÈÏÖ§³ÖÖØÉè´óÐ¡
+		,m_bSupportMultThread(false)// é»˜è®¤ä¸æ”¯æŒå¤šçº¿ç¨‹
+		,m_bAllowResize(true)// é»˜è®¤æ”¯æŒé‡è®¾å¤§å°
 		,m_bVisible(true)
 		,m_bInplaceActive(false)
 		,m_dwMiscStatus(0)
@@ -571,7 +571,7 @@ namespace DM
 						HWND hWnd = m_pAxHostDelegate->GetAxHostWindow();
 						if (FALSE==::IsWindow(hWnd))
 						{
-							LOG_ERR("[mid]hgy:´°¿ÚÃ»³õÊ¼»¯Ê±²»Òª³õÊ¼»¯activeX,ÒÑ±»¿ÓÒ»´ÎÁË£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡");
+							LOG_ERR("[mid]hgy:çª—å£æ²¡åˆå§‹åŒ–æ—¶ä¸è¦åˆå§‹åŒ–activeX,å·²è¢«å‘ä¸€æ¬¡äº†ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼");
 							hr = S_FALSE;
 							break;
 						}
@@ -593,7 +593,7 @@ namespace DM
 						HWND hWnd = m_pAxHostDelegate->GetAxHostWindow();
 						if (FALSE==::IsWindow(hWnd))
 						{
-							LOG_ERR("[mid]hgy:´°¿ÚÃ»³õÊ¼»¯Ê±²»Òª³õÊ¼»¯activeX,ÒÑ±»¿ÓÒ»´ÎÁË£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡");
+							LOG_ERR("[mid]hgy:çª—å£æ²¡åˆå§‹åŒ–æ—¶ä¸è¦åˆå§‹åŒ–activeX,å·²è¢«å‘ä¸€æ¬¡äº†ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼");
 							hr = S_FALSE;
 							break;
 						}
@@ -944,7 +944,7 @@ namespace DM
 			{
 				pRect = &m_rcPos;
 			}
-			m_pAxHostDelegate->OnAxInvalidate(pRect,fErase);// ´Ë´¦Ë¢ÐÂ
+			m_pAxHostDelegate->OnAxInvalidate(pRect,fErase);// æ­¤å¤„åˆ·æ–°
 			return S_OK;
 		}
 
@@ -1273,7 +1273,7 @@ namespace DM
 		}
 
 	public:
-		bool                            m_bSupportMultThread;		///< ÊÇ·ñÖ§³Ö¶àÏß³Ì
+		bool                            m_bSupportMultThread;		///< æ˜¯å¦æ”¯æŒå¤šçº¿ç¨‹
 		bool                            m_bAllowResize;
 		bool                            m_bVisible;
 		bool                            m_bInplaceActive;

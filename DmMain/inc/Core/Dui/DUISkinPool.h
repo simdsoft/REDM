@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUISkinPool.h 
-// File Des:  ¹ÜÀíËùÓĞskin
+// File Des:  ç®¡ç†æ‰€æœ‰skin
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,23 +17,23 @@
 namespace DM
 {
 	/// <summary>
-	///		SkinµÄ³Ø¶ÔÏó,ÓÃÓÚÖ§³Ö¾Ö²¿skin
+	///		Skinçš„æ± å¯¹è±¡,ç”¨äºæ”¯æŒå±€éƒ¨skin
 	/// </summary>
 	class DMSkinPoolItem:public DMRefNum,public DMMapT<CStringA,IDMSkinPtr>
 	{
 	public:
 		virtual ~DMSkinPoolItem();
 
-	public:// ¸¨ÖúÖØÔØº¯Êı
+	public:// è¾…åŠ©é‡è½½å‡½æ•°
 	   void PreMapKeyRemove(const IDMSkinPtr &obj);
 	};
 	typedef DMSkinPoolItem* DMSkinPoolItemPtr; 
 
 	/// <summary>
-	///		¹ÜÀíSkinµÄ³ØÁĞ±í
+	///		ç®¡ç†Skinçš„æ± åˆ—è¡¨
 	/// </summary>
 	/// <remarks>
-	///		²ÉÓÃ³ØÁĞ±íµÄºÃ´¦ÊÇ¿ÉÒÔÒÆ³ıÄ³Ğ©¾Ö²¿µÄ³Ø,ÈçÄ³¸öskin³ØÖĞËùÓĞ¶ÔÏóÖ»ÓÃÄ³¸ö´°¿Ú£¬µ±´°¿ÚÏú»Ùºó£¬¾Í¿ÉÒÔ¿¼ÂÇ°ÑÕâ¸ö³ØÒÆ³ı
+	///		é‡‡ç”¨æ± åˆ—è¡¨çš„å¥½å¤„æ˜¯å¯ä»¥ç§»é™¤æŸäº›å±€éƒ¨çš„æ± ,å¦‚æŸä¸ªskinæ± ä¸­æ‰€æœ‰å¯¹è±¡åªç”¨æŸä¸ªçª—å£ï¼Œå½“çª—å£é”€æ¯åï¼Œå°±å¯ä»¥è€ƒè™‘æŠŠè¿™ä¸ªæ± ç§»é™¤
 	/// </remarks>
 	class DM_EXPORT DUISkinPool:public DMMapT<CStringA, DMSkinPoolItemPtr>
 	{
@@ -41,81 +41,81 @@ namespace DM
 		~DUISkinPool();
 	public:
 		/// -------------------------------------------------
-		/// @brief  ¼ÓÈëÒ»¸öskin³Ø£¬Èçskin³ØÒÑ´æÔÚ,Ôò¼ÓÈë½âÎöµÄÏî
-		/// @param[in]  XmlNode		xml½Úµã
+		/// @brief  åŠ å…¥ä¸€ä¸ªskinæ± ï¼Œå¦‚skinæ± å·²å­˜åœ¨,åˆ™åŠ å…¥è§£æçš„é¡¹
+		/// @param[in]  XmlNode		xmlèŠ‚ç‚¹
 		/// @return  DMCode
 		DMCode AddSkinPoolItem(DMXmlNode &XmlNode);
 		
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ıÒ»¸öskin³Ø£¬Èçskin³ØÒÑ´æÔÚ,Ôò¼ÓÈë½âÎöµÄÏî
-		/// @param[in]  lpszName	skin³ØµÄÃû³Æ
+		/// @brief  ç§»é™¤ä¸€ä¸ªskinæ± ï¼Œå¦‚skinæ± å·²å­˜åœ¨,åˆ™åŠ å…¥è§£æçš„é¡¹
+		/// @param[in]  lpszName	skinæ± çš„åç§°
 		/// @return  DMCode
 		DMCode RemoveSkinPoolItem(LPCSTR lpszName);
 
 		/// -------------------------------------------------
-		/// @brief  É¾³ıËùÓĞµÄskin³Ø£¬³ıÁËÖ¸¶¨µÄkeyÒÔÍâ
-		/// @param[in]  lpszName			±»ÅÅ³ıµÄskin³ØµÄÃû³Æ
+		/// @brief  åˆ é™¤æ‰€æœ‰çš„skinæ± ï¼Œé™¤äº†æŒ‡å®šçš„keyä»¥å¤–
+		/// @param[in]  lpszName			è¢«æ’é™¤çš„skinæ± çš„åç§°
 		/// @return DMCode
 		DMCode RemoveAllSkinPoolItemExcept(LPCSTR lpszName);
 		
 		/// -------------------------------------------------
-		/// @brief  ÓÃÓÚ»»·ô
-		/// @param[in]  wp		ĞèÒª¸üĞÂµÄres×Ö·û´®£¬ÒÔ;·Ö¿ª
-		/// @param[in]  lp		ĞèÒª¸üĞÂµÄres×Ö·û´®³¤¶È
+		/// @brief  ç”¨äºæ¢è‚¤
+		/// @param[in]  wp		éœ€è¦æ›´æ–°çš„reså­—ç¬¦ä¸²ï¼Œä»¥;åˆ†å¼€
+		/// @param[in]  lp		éœ€è¦æ›´æ–°çš„reså­—ç¬¦ä¸²é•¿åº¦
 		/// @return  DMCode
 		DMCode UpdateSkin(WPARAM wp, LPARAM lp);
-		bool   IsNeedUpdateSkin(IDMSkinPtr pSkin);  ///< µ±Ç°skinÖ¸ÕëÊÇ·ñĞèÒª¸üĞÂ
-		DMCode ClearUpdateSkinArray();				///< Çå¿ÕĞè¸üĞÂµÄskinÁĞ±í 
+		bool   IsNeedUpdateSkin(IDMSkinPtr pSkin);  ///< å½“å‰skinæŒ‡é’ˆæ˜¯å¦éœ€è¦æ›´æ–°
+		DMCode ClearUpdateSkinArray();				///< æ¸…ç©ºéœ€æ›´æ–°çš„skinåˆ—è¡¨ 
 
 		/// -------------------------------------------------
-		/// @brief			°ÑÖ¸¶¨bufÉèÖÃµ½skin³ØÖĞ
-		/// @param[in]		pBuf				Í¼Æ¬ÄÚ´æ
-		/// @param[in]		bufLen				Í¼Æ¬ÄÚ´æ´óĞ¡
-		/// @param[in]		pszType				Í¼Æ¬ÀàĞÍ£¬Ò»°ãÄ¬ÈÏÎªpng
-		/// @param[in]		lpszXml				ÃèÊöskinµÄxml
-		/// @param[in]		lpszPoolName		skin³ØÃû³Æ
+		/// @brief			æŠŠæŒ‡å®šbufè®¾ç½®åˆ°skinæ± ä¸­
+		/// @param[in]		pBuf				å›¾ç‰‡å†…å­˜
+		/// @param[in]		bufLen				å›¾ç‰‡å†…å­˜å¤§å°
+		/// @param[in]		pszType				å›¾ç‰‡ç±»å‹ï¼Œä¸€èˆ¬é»˜è®¤ä¸ºpng
+		/// @param[in]		lpszXml				æè¿°skinçš„xml
+		/// @param[in]		lpszPoolName		skinæ± åç§°
 		DMCode AddSkin(void *pBuf,size_t bufLen,LPCSTR pszType,
 			LPCSTR lpszXml,LPCSTR lpszPoolName=NULL);
 
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ıskin
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒskinµÄkey
-		/// @param[in]  lpszName		ÓÃÓÚ²éÕÒskin³ØµÄname
-		/// @remark Ä¬ÈÏÏÈÔÚlpszNameµÄskin³ØÖĞÒÆ³ı£¬Èç¹ûÕÒ²»µ½,¶øÇÒbLoopFindÎªÕæ£¬¾ÍÈ«²¿±éÀúÕÒµ½²¢ÒÆ³ı
-		/// @return ´Óskin³ØÖĞÒÆ³ıskin,²¢½«ÒıÓÃ¼ÆÊı¼õ1
+		/// @brief  ç§»é™¤skin
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾skinçš„key
+		/// @param[in]  lpszName		ç”¨äºæŸ¥æ‰¾skinæ± çš„name
+		/// @remark é»˜è®¤å…ˆåœ¨lpszNameçš„skinæ± ä¸­ç§»é™¤ï¼Œå¦‚æœæ‰¾ä¸åˆ°,è€Œä¸”bLoopFindä¸ºçœŸï¼Œå°±å…¨éƒ¨éå†æ‰¾åˆ°å¹¶ç§»é™¤
+		/// @return ä»skinæ± ä¸­ç§»é™¤skin,å¹¶å°†å¼•ç”¨è®¡æ•°å‡1
 		DMCode RemoveSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief  È«²¿±éÀúÉ¾³ıskin
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒskinµÄkey
-		/// @return IDMSkinPtr£¬ÎªNULL±íÊ¾Ê§°Ü
+		/// @brief  å…¨éƒ¨éå†åˆ é™¤skin
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾skinçš„key
+		/// @return IDMSkinPtrï¼Œä¸ºNULLè¡¨ç¤ºå¤±è´¥
 		DMCode RemoveSkinFromAll(LPCSTR lpszKey);
 
 		/// -------------------------------------------------
-		/// @brief  ²éÕÒskin
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒskinµÄkey
-		/// @param[in]  lpszName		ÓÃÓÚ²éÕÒskin³ØµÄname
-		/// @remark Ä¬ÈÏÏÈÔÚlpszNameµÄskin³ØÖĞÕÒ£¬Èç¹ûÕÒ²»µ½,¶øÇÒbLoopFindÎªÕæ£¬¾ÍÈ«²¿±éÀúÕÒ
-		/// @return IDMSkinPtr£¬ÎªNULL±íÊ¾Ê§°Ü
+		/// @brief  æŸ¥æ‰¾skin
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾skinçš„key
+		/// @param[in]  lpszName		ç”¨äºæŸ¥æ‰¾skinæ± çš„name
+		/// @remark é»˜è®¤å…ˆåœ¨lpszNameçš„skinæ± ä¸­æ‰¾ï¼Œå¦‚æœæ‰¾ä¸åˆ°,è€Œä¸”bLoopFindä¸ºçœŸï¼Œå°±å…¨éƒ¨éå†æ‰¾
+		/// @return IDMSkinPtrï¼Œä¸ºNULLè¡¨ç¤ºå¤±è´¥
 		IDMSkinPtr FindSkin(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief  ÕÒ²éÕÒskin
-		/// @param[in]  lpszBuf			skin³ØµÄÃû³Æ:skinµÄkey
-		/// @return IDMSkinPtr£¬ÎªNULL±íÊ¾Ê§°Ü
+		/// @brief  æ‰¾æŸ¥æ‰¾skin
+		/// @param[in]  lpszBuf			skinæ± çš„åç§°:skinçš„key
+		/// @return IDMSkinPtrï¼Œä¸ºNULLè¡¨ç¤ºå¤±è´¥
 		IDMSkinPtr FindSkin(LPCSTR lpszBuf,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief  È«²¿±éÀúÕÒ²éÕÒskin
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒskinµÄkey
-		/// @return IDMSkinPtr£¬ÎªNULL±íÊ¾Ê§°Ü
+		/// @brief  å…¨éƒ¨éå†æ‰¾æŸ¥æ‰¾skin
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾skinçš„key
+		/// @return IDMSkinPtrï¼Œä¸ºNULLè¡¨ç¤ºå¤±è´¥
 		IDMSkinPtr FindSkinFromAll(LPCSTR lpszKey);
 
 	public:
 		virtual void PreMapKeyRemove(const DMSkinPoolItemPtr &obj);
 
-	public:// ¸üĞÂÆ¤·ôÁĞ±í
-		CArray<IDMSkinPtr>			m_UpdateSkinArray;							///< Ä¿Ç°½ö×öskin¸ü»»Ê¹ÓÃ£¬ºóĞøÀ©Õ¹³ÉÒ»¸öÀà
+	public:// æ›´æ–°çš®è‚¤åˆ—è¡¨
+		CArray<IDMSkinPtr>			m_UpdateSkinArray;							///< ç›®å‰ä»…åšskinæ›´æ¢ä½¿ç”¨ï¼Œåç»­æ‰©å±•æˆä¸€ä¸ªç±»
 	};
 
 

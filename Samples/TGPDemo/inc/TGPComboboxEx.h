@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -18,13 +18,13 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIComboBox"/>µÄxmlÊôÐÔ¶¨Òå
+	///		<see cref="DM::DUIComboBox"/>çš„xmlå±žæ€§å®šä¹‰
 	/// </summary>
 	class DUIComboBoxExAttr:public DUIComboBoxBaseAttr
 	{
 	public:
-		static const char* ITEM_subshow;													///< ³õÊ¼ÏÔÊ¾µÄXML±êÊ¶
-		static const char* ITEM_sublistboxex;                                              ///< ×Ó¿Ø¼þlistboxµÄXML±êÊ¶
+		static const char* ITEM_subshow;													///< åˆå§‹æ˜¾ç¤ºçš„XMLæ ‡è¯†
+		static const char* ITEM_sublistboxex;                                              ///< å­æŽ§ä»¶listboxçš„XMLæ ‡è¯†
 	};
 	DMAttrValueInit(DUIComboBoxExAttr,ITEM_sublistboxex)DMAttrValueInit(DUIComboBoxExAttr,ITEM_subshow)
 }
@@ -38,14 +38,14 @@ public:
 
 public:
 	//---------------------------------------------------
-	// Function Des: IDMDropDownOwnerÊµÏÖ
+	// Function Des: IDMDropDownOwnerå®žçŽ°
 	//---------------------------------------------------                  
 	virtual DMCode OnDropDown(DMDropWnd *pDropDown);
 	virtual DMCode OnCloseUp(DMDropWnd *pDropDown,UINT uCode);						
 
 public:
 	//---------------------------------------------------
-	// Function Des: ÖØÔØ
+	// Function Des: é‡è½½
 	//---------------------------------------------------
 	virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	virtual DMCode DV_GetTextRect(LPRECT lpRect);    
@@ -58,7 +58,7 @@ public:
 	virtual void OnSelChanged();
 
 	//---------------------------------------------------
-	// Function Des: ÖØÔØDUIWindow
+	// Function Des: é‡è½½DUIWindow
 	//---------------------------------------------------
 	virtual DMCode DV_FireEvent(DMEventArgs &Evt);
 

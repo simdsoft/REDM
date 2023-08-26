@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 
 namespace DM
 {
-	#define ZLIB_DECRYPTION                 // ÊÇ·ñÖ§³Ö¼ÓÃÜZIP
+	#define ZLIB_DECRYPTION                 // æ˜¯å¦æ”¯æŒåŠ å¯†ZIP
 	typedef struct ZIP_FIND_DATA
 	{
 		WCHAR		szFileName[MAX_PATH];
@@ -37,7 +37,7 @@ namespace DM
 		DWORD										m_dwSize;
 
 
-//¼ÓÃÜ²¿·Ö--------------------------------------------------------------------
+//åŠ å¯†éƒ¨åˆ†--------------------------------------------------------------------
 #ifdef ZLIB_DECRYPTION
 	public:
 		bool DecryptFile(LPCSTR lpszPassword, LPBYTE& pData, DWORD& dwSize, DWORD crc32);

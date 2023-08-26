@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMHelper.h"
 
 namespace DM
@@ -28,7 +28,7 @@ break;
 				break;
 			}
 
-			// ¾İËµStringCchPrintf±Èswprintf_sĞ§ÂÊµÍÁËµã£¬ºÃ°É£¡
+			// æ®è¯´StringCchPrintfæ¯”swprintf_sæ•ˆç‡ä½äº†ç‚¹ï¼Œå¥½å§ï¼
 			swprintf_s(pszPath, dwSize, L"%s", szPath);
 			bRet = true;
 		} while (FALSE);
@@ -67,7 +67,7 @@ break;
 				break;
 			}
 
-			// ¾İËµStringCchPrintf±Èswprintf_sĞ§ÂÊµÍÁËµã£¬ºÃ°É£¡
+			// æ®è¯´StringCchPrintfæ¯”swprintf_sæ•ˆç‡ä½äº†ç‚¹ï¼Œå¥½å§ï¼
 			swprintf_s(pszPath, dwSize, L"%s", szPath);
 			bRet = true;
 		} while (false);
@@ -262,7 +262,7 @@ break;
 	}
 
 	void DMPixelToHiMetric(const SIZEL* lpSizeInPix, LPSIZEL lpSizeInHiMetric, HWND hWnd)
-	{// ÏñËØ×ª»»³ÉºÁÃ×¹«Ê½£º(¿í¶ÈÏñËØ/Ë®Æ½DPI)*25.4;£¬ËùÒÔ´Ë´¦·µ»ØÎª0.01ºÁÃ×
+	{// åƒç´ è½¬æ¢æˆæ¯«ç±³å…¬å¼ï¼š(å®½åº¦åƒç´ /æ°´å¹³DPI)*25.4;ï¼Œæ‰€ä»¥æ­¤å¤„è¿”å›ä¸º0.01æ¯«ç±³
 		do 
 		{
 			if (NULL == lpSizeInHiMetric||NULL == lpSizeInPix)

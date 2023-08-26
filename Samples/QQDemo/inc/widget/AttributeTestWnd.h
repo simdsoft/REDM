@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: AttributeTestWnd.h 
-// File Des:  ¶ÔÖ¸¶¨´°¿ÚSetAttribute²âÊÔÊôĞÔÖµ
+// File Des:  å¯¹æŒ‡å®šçª—å£SetAttributeæµ‹è¯•å±æ€§å€¼
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -23,7 +23,7 @@ public:
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	// Input Parameter:
 	// Output Parameter:
 	// return:
@@ -32,7 +32,7 @@ public:
 	DMCode OnSetAttribute();
 
 protected:
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	BEGIN_EVENT_MAPT(CAttributeTestWnd)
 		EVENT_NAME_COMMAND("btn_attrtestclose",OnClose)
 		EVENT_NAME_COMMAND("btn_testattr",OnSetAttribute)

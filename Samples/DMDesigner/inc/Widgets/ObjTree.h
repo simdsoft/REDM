@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -26,6 +26,6 @@ public:
 	void OnRButtonDown(UINT nFlags, CPoint pt);
 
 private:
-	CArray<DM::LPTVITEMEX>			m_DeletedItemsDataArr;//±»É¾³ıµÄÏîĞèÒª¼ÇÆğÀ´  ·ÀÖ¹É¾³ıÖ®ºó  ÔÙselect
+	CArray<DM::LPTVITEMEX>			m_DeletedItemsDataArr;//è¢«åˆ é™¤çš„é¡¹éœ€è¦è®°èµ·æ¥  é˜²æ­¢åˆ é™¤ä¹‹å  å†select
 	CArray<LPARAM>					m_DeletedItemsLparamArr;
 };

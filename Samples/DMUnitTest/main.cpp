@@ -1,10 +1,10 @@
-#include "DMUintTestAfx.h"
+ï»¿#include "DMUintTestAfx.h"
 #include "main.h"
 
 void DMEnvironment::SetUp()
 {
 	m_pDMApp = new DMApp(NULL);
-#ifdef DLL_DMMAIN// lib¿âÏÂ²»Ö§³Ö²å¼þ
+#ifdef DLL_DMMAIN// libåº“ä¸‹ä¸æ”¯æŒæ’ä»¶
 #ifdef _DEBUG
 	m_pDMApp->LoadPlugins(L"dmpluginsd.cfg");
 #else
@@ -18,7 +18,7 @@ void DMEnvironment::TearDown()
 	DM_DELETE(m_pDMApp);
 }
 
-DMEnvironment *pGlobalPtr;          // È«¾ÖÖ¸Õë
+DMEnvironment *pGlobalPtr;          // å…¨å±€æŒ‡é’ˆ
 
 TEST(foo,foo)
 {
@@ -28,7 +28,7 @@ TEST(foo,foo)
 int main(int argc, char* argv[])
 {
 	pGlobalPtr = new DMEnvironment;
-	testing::AddGlobalTestEnvironment(pGlobalPtr);   //×¢²á
+	testing::AddGlobalTestEnvironment(pGlobalPtr);   //æ³¨å†Œ
 
 
 

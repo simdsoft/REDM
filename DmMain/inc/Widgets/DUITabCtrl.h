@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -19,29 +19,29 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUITabPage"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUITabPage"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUITabPageAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* OPTION_animatetype;										    ///< ¶¯»­ÀàĞÍ,Ê¾Àı:animatetype="1",1:±ßÕ¹¿ª,2:ÖĞĞÄÀ©´ó,3:ÖĞĞÄËõĞ¡
-		static const char* STRING_title;											    ///< tabÒ³µÄ±êÌâ,Ê¾Àı£ºtitle="±êÇ©1"
-		static const char* SKIN_itemskin;                                              ///< ±êÇ©ÏîµÄÆ¤·ô£¬Ê¾Àı: itemskin="skin"
+		static const char* OPTION_animatetype;										    ///< åŠ¨ç”»ç±»å‹,ç¤ºä¾‹:animatetype="1",1:è¾¹å±•å¼€,2:ä¸­å¿ƒæ‰©å¤§,3:ä¸­å¿ƒç¼©å°
+		static const char* STRING_title;											    ///< tabé¡µçš„æ ‡é¢˜,ç¤ºä¾‹ï¼štitle="æ ‡ç­¾1"
+		static const char* SKIN_itemskin;                                              ///< æ ‡ç­¾é¡¹çš„çš®è‚¤ï¼Œç¤ºä¾‹: itemskin="skin"
 	};
 	DMAttrValueInit(DUITabPageAttr,OPTION_animatetype)DMAttrValueInit(DUITabPageAttr,STRING_title)DMAttrValueInit(DUITabPageAttr,SKIN_itemskin)
 
 	class DUITabCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* POINT_textpoint;                                           ///< Ïà¶ÔÓÚÖ÷±êÇ©ÇøÓòµÄ×óÉÏ½ÇÆ«ÒÆ£¬Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾´Ë·½Ïò¾ÓÖĞ£¬Ê¾Àıtextpoint="-1,-1"
-		static const char* OPTION_tabalign;										   ///< tabÒ³µÄÅÅÁĞ·½Ê½,·ÖÎªtop¡¢left¡¢right¡¢buttom,Ê¾Àı:tabalign="top"
-		static const char* SKIN_mainbgskin;							               ///< Õû¸öitem(±êÇ©ÁĞ±í)ËùÔÚÇøµÄ±³¾°,²»°üÀ¨pageÇø,Ê¾Àı:mainbgskin="TabCtrl_Item"
-		static const char* SKIN_itembgskin;										   ///< Ã¿¸öitem(±êÇ©)µÄskin£¬¼´ÔÚDUITabPageAttr::SKIN_itemskinÖ®ÏÂÏÈ»æÒ»´Î,ÓÃÓÚËùÓĞitemµÄhover-selÎªÍ¬Ò»×´Ì¬Ê±¼ò»¯½ØÍ¼,Ê¾Àı:itembgskin="skin"
-		static const char* INT_firstitemoffset;                                       ///< µÚÒ»¸öItem(±êÇ©)µÄÏà¶ÔÓÚ±ß¿òµÄÆ«ÒÆ£¬Ê¾Àı:firstitemoffset="10"
-		static const char* INT_itemspace;                                             ///< ItemÖ®¼äµÄ¼ä¾à£¬Ê¾Àı:itemspace="10"
-		static const char* INT_cursel;                                                ///< µ±Ç°Ñ¡ÖĞÏî, Ê¾Àı:cursel="1"
-		static const char* INT_animatesteps;                                          ///< Õû¸ö¶¯»­Í¼ÒÔ¶àÉÙ´Î½¥½¥ÏÔÊ¾³öÀ´, ½öÔÚÉèÖÃÁË¶¯»­ÀàĞÍÊ±ÓĞĞ§£¬Ê¾Àı:animatesteps="20"
-		static const char* SIZE_itemsize;                                             ///< Item(±êÇ©)ÏîµÄ´óĞ¡£¬Ê¾Àı:itemsize="78,30"
+		static const char* POINT_textpoint;                                           ///< ç›¸å¯¹äºä¸»æ ‡ç­¾åŒºåŸŸçš„å·¦ä¸Šè§’åç§»ï¼Œé»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºæ­¤æ–¹å‘å±…ä¸­ï¼Œç¤ºä¾‹textpoint="-1,-1"
+		static const char* OPTION_tabalign;										   ///< tabé¡µçš„æ’åˆ—æ–¹å¼,åˆ†ä¸ºtopã€leftã€rightã€buttom,ç¤ºä¾‹:tabalign="top"
+		static const char* SKIN_mainbgskin;							               ///< æ•´ä¸ªitem(æ ‡ç­¾åˆ—è¡¨)æ‰€åœ¨åŒºçš„èƒŒæ™¯,ä¸åŒ…æ‹¬pageåŒº,ç¤ºä¾‹:mainbgskin="TabCtrl_Item"
+		static const char* SKIN_itembgskin;										   ///< æ¯ä¸ªitem(æ ‡ç­¾)çš„skinï¼Œå³åœ¨DUITabPageAttr::SKIN_itemskinä¹‹ä¸‹å…ˆç»˜ä¸€æ¬¡,ç”¨äºæ‰€æœ‰itemçš„hover-selä¸ºåŒä¸€çŠ¶æ€æ—¶ç®€åŒ–æˆªå›¾,ç¤ºä¾‹:itembgskin="skin"
+		static const char* INT_firstitemoffset;                                       ///< ç¬¬ä¸€ä¸ªItem(æ ‡ç­¾)çš„ç›¸å¯¹äºè¾¹æ¡†çš„åç§»ï¼Œç¤ºä¾‹:firstitemoffset="10"
+		static const char* INT_itemspace;                                             ///< Itemä¹‹é—´çš„é—´è·ï¼Œç¤ºä¾‹:itemspace="10"
+		static const char* INT_cursel;                                                ///< å½“å‰é€‰ä¸­é¡¹, ç¤ºä¾‹:cursel="1"
+		static const char* INT_animatesteps;                                          ///< æ•´ä¸ªåŠ¨ç”»å›¾ä»¥å¤šå°‘æ¬¡æ¸æ¸æ˜¾ç¤ºå‡ºæ¥, ä»…åœ¨è®¾ç½®äº†åŠ¨ç”»ç±»å‹æ—¶æœ‰æ•ˆï¼Œç¤ºä¾‹:animatesteps="20"
+		static const char* SIZE_itemsize;                                             ///< Item(æ ‡ç­¾)é¡¹çš„å¤§å°ï¼Œç¤ºä¾‹:itemsize="78,30"
 	};
 	DMAttrValueInit(DUITabCtrlAttr,POINT_textpoint)DMAttrValueInit(DUITabCtrlAttr,OPTION_tabalign)DMAttrValueInit(DUITabCtrlAttr,SKIN_mainbgskin)DMAttrValueInit(DUITabCtrlAttr,SKIN_itembgskin)
 	DMAttrValueInit(DUITabCtrlAttr,INT_firstitemoffset)DMAttrValueInit(DUITabCtrlAttr,INT_itemspace)DMAttrValueInit(DUITabCtrlAttr,INT_cursel)
@@ -52,7 +52,7 @@ namespace DM
 {
 	enum{TAB_NULL=0,TAB_SLIDER,TAB_CINFLATE,TAB_CDEFLATE};
 	/// <summary>
-	///		 DUITabPageµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUITabPageAttr"/>
+	///		 DUITabPageçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUITabPageAttr"/>
 	/// </summary>
 	class DM_EXPORT DUITabPage:public DUIWindow
 	{
@@ -68,13 +68,13 @@ namespace DM
 			DM_SKINPTR_ATTRIBUTE(DMAttr::DUITabPageAttr::SKIN_itemskin, m_pItemSkin, DM_ECODE_NOXMLLOADPARENTREFRESH)
 		DM_END_ATTRIBUTES()
 	public:
-		CStringW											m_strTitle;           ///< ITEM±êÌâ
-		int                                                 m_TabAniType;         ///< ¶¯»­ÀàĞÍ
-		DMSmartPtrT<IDMSkin>                                m_pItemSkin;          ///< ±êÇ©Æ¤·ô
+		CStringW											m_strTitle;           ///< ITEMæ ‡é¢˜
+		int                                                 m_TabAniType;         ///< åŠ¨ç”»ç±»å‹
+		DMSmartPtrT<IDMSkin>                                m_pItemSkin;          ///< æ ‡ç­¾çš®è‚¤
 	};
 
 	/// <summary>
-	///		 DUITabCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUITabCtrlAttr"/>
+	///		 DUITabCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUITabCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUITabCtrl:public DUIWindow,public IDMTabAnimateOwner
 	{
@@ -83,7 +83,7 @@ namespace DM
 		DUITabCtrl();
 
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú
+		// Function Des: å¯¹å¤–æ¥å£
 		//---------------------------------------------------
 		int InsertItem(DMXmlNode &XmlNode, int iInsert=-1, bool bLoading=false);
 		int GetCurSel();
@@ -91,7 +91,7 @@ namespace DM
 		bool SetCurSel(LPCWSTR lpszTitle);
 		bool SetItemTitle(int nIndex, LPCWSTR lpszTitle);
 		bool GetItemRect(int nIndex, CRect &rcItem);	
-		CRect GetTitleRect();													///< ËùÓĞ±êÇ©ËùÔÚµÄ´ó¾ØĞÎ£¬ÁíÒ»²¿·Ö¾ÍÊÇËùÓĞpageËùÔÚµÄ´ó¾ØĞÎ					
+		CRect GetTitleRect();													///< æ‰€æœ‰æ ‡ç­¾æ‰€åœ¨çš„å¤§çŸ©å½¢ï¼Œå¦ä¸€éƒ¨åˆ†å°±æ˜¯æ‰€æœ‰pageæ‰€åœ¨çš„å¤§çŸ©å½¢					
 		int GetItemCount();
 		DUITabPage* GetItem(int nIndex);
 		bool RemoveItem(int nIndex, int nSelPage=0);
@@ -110,7 +110,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnDestroy();
@@ -125,7 +125,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		UINT DV_OnGetDlgCode(){return DMDLGC_WANTARROWS;};	
@@ -134,7 +134,7 @@ namespace DM
 		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 
 		//---------------------------------------------------
-		// Function Des: ¶¯»­´¦Àí
+		// Function Des: åŠ¨ç”»å¤„ç†
 		//---------------------------------------------------
 		int OnTabAnimateType(int iOld, int iCur, int iType);
 		DUIWindow* GetOwnerWindow(){return this;}
@@ -162,18 +162,18 @@ namespace DM
 		DMCode OnCurSel(LPCSTR pszValue, bool bLoadXml);
 
 	public:
-		CArray<DUITabPage*>						m_PageArray;			 ///< tab±êÇ©Ò³ÃæÁ´±í 
+		CArray<DUITabPage*>						m_PageArray;			 ///< tabæ ‡ç­¾é¡µé¢é“¾è¡¨ 
 		DUITabAnimate*							m_pTabAnimate;
-		int										m_nAnimateSteps;		 ///< Õû¸ö¶¯»­Í¼ÒÔ¶àÉÙ´Î½¥½¥ÏÔÊ¾³öÀ´
-		DMSmartPtrT<IDMSkin>					m_pMainBgSkin;			 ///< Õû¸öitemËùÔÚÇøµÄ±³¾°,²»°üÀ¨pageÇø
-		DMSmartPtrT<IDMSkin>					m_pItemBgSkin;			 ///< ÔÚDUITabPage»æÍêºóÔÙµşÒ»´Î,±ÈÈçtabµÄhover-sel±ä»¯È«ÊÇÏàÍ¬µÄ,¼õÉÙ½ØÍ¼Á¿
-		int										m_nHoverItem;		     ///< µ±Ç°hoverµÄitem 
-		int										m_nCurSelItem;		     ///< µ±Ç°Ñ¡ÖĞµÄitem
-		int										m_nItemSpace;		     ///< ItemÒ³Ãæ¼ä¾à  
-		int										m_nFirstItemOffset;		 ///< µÚÒ»¸öItemµÄÏà¶ÔÓÚ±ß¿òµÄÆ«ÒÆ 
-		int										m_nTabAlign;			 ///< ÅÅÁĞ·½Ê½ 
-		CSize									m_ItemSize;				 ///< Ò»¸öÖ÷±êÇ©µÄ´óĞ¡£¬Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾´Ë·½ÏòÊ¹ÓÃÍ¼Æ¬×´Ì¬´óĞ¡
-		CPoint									m_TextPt;				 ///< Ïà¶ÔÓÚÖ÷±êÇ©ÇøÓòµÄ×óÉÏ½ÇÆ«ÒÆ£¬Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾´Ë·½Ïò¾ÓÖĞ 
+		int										m_nAnimateSteps;		 ///< æ•´ä¸ªåŠ¨ç”»å›¾ä»¥å¤šå°‘æ¬¡æ¸æ¸æ˜¾ç¤ºå‡ºæ¥
+		DMSmartPtrT<IDMSkin>					m_pMainBgSkin;			 ///< æ•´ä¸ªitemæ‰€åœ¨åŒºçš„èƒŒæ™¯,ä¸åŒ…æ‹¬pageåŒº
+		DMSmartPtrT<IDMSkin>					m_pItemBgSkin;			 ///< åœ¨DUITabPageç»˜å®Œåå†å ä¸€æ¬¡,æ¯”å¦‚tabçš„hover-selå˜åŒ–å…¨æ˜¯ç›¸åŒçš„,å‡å°‘æˆªå›¾é‡
+		int										m_nHoverItem;		     ///< å½“å‰hoverçš„item 
+		int										m_nCurSelItem;		     ///< å½“å‰é€‰ä¸­çš„item
+		int										m_nItemSpace;		     ///< Itemé¡µé¢é—´è·  
+		int										m_nFirstItemOffset;		 ///< ç¬¬ä¸€ä¸ªItemçš„ç›¸å¯¹äºè¾¹æ¡†çš„åç§» 
+		int										m_nTabAlign;			 ///< æ’åˆ—æ–¹å¼ 
+		CSize									m_ItemSize;				 ///< ä¸€ä¸ªä¸»æ ‡ç­¾çš„å¤§å°ï¼Œé»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºæ­¤æ–¹å‘ä½¿ç”¨å›¾ç‰‡çŠ¶æ€å¤§å°
+		CPoint									m_TextPt;				 ///< ç›¸å¯¹äºä¸»æ ‡ç­¾åŒºåŸŸçš„å·¦ä¸Šè§’åç§»ï¼Œé»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºæ­¤æ–¹å‘å±…ä¸­ 
 	};
 
 }//namespace DM

@@ -1,24 +1,24 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	IDMTaskRunner.h
 // File mark:   
-// File summary:ÊµÏÖÀàËÆÓÚQTµÄ¿çÏß³ÌÊÂ¼ş°ó¶¨
-// ÕâÊÇÒ»ÖÖÎ¯ÍĞ¼àÌı·½Ê½,0. DMSoltº¯ÊıµÄÔ­ĞÍÎªbool fun(const DMEventSender& sender, const DMBundle& args), fun¿ÉÒÔÎªÈ«¾Ö»òÀà³ÉÔ±º¯Êı
-//                      1. ÓÃ»§Í¨¹ıConnectEvent,ConnectUiEvent,ConnectAsyncEventÔ¤ÏÈ°ó¶¨lpszEventName----DMSoltº¯Êı
-//						2. ÓÃ»§Í¨¹ıFireEvent´«ÈëlpszEventNameÀ´´¥·¢DMSoltº¯Êıµ÷ÓÃ
-//                      3. DMSoltº¯ÊıµÄµ÷ÓÃ³¡¾°¿ÉÒÔÊÇÍ¬²½»òÒì²½»òÔÚUIÏß³Ì,ÕâÓÉ1µÄ°ó¶¨·½Ê½À´¾ö¶¨
+// File summary:å®ç°ç±»ä¼¼äºQTçš„è·¨çº¿ç¨‹äº‹ä»¶ç»‘å®š
+// è¿™æ˜¯ä¸€ç§å§”æ‰˜ç›‘å¬æ–¹å¼,0. DMSoltå‡½æ•°çš„åŸå‹ä¸ºbool fun(const DMEventSender& sender, const DMBundle& args), funå¯ä»¥ä¸ºå…¨å±€æˆ–ç±»æˆå‘˜å‡½æ•°
+//                      1. ç”¨æˆ·é€šè¿‡ConnectEvent,ConnectUiEvent,ConnectAsyncEventé¢„å…ˆç»‘å®šlpszEventName----DMSoltå‡½æ•°
+//						2. ç”¨æˆ·é€šè¿‡FireEventä¼ å…¥lpszEventNameæ¥è§¦å‘DMSoltå‡½æ•°è°ƒç”¨
+//                      3. DMSoltå‡½æ•°çš„è°ƒç”¨åœºæ™¯å¯ä»¥æ˜¯åŒæ­¥æˆ–å¼‚æ­¥æˆ–åœ¨UIçº¿ç¨‹,è¿™ç”±1çš„ç»‘å®šæ–¹å¼æ¥å†³å®š
 
-// Ê¾Àı:ÀàA,IDMTaskRunnerµÄ±äÁ¿g_taskrunner(È«¾Ö)
+// ç¤ºä¾‹:ç±»A,IDMTaskRunnerçš„å˜é‡g_taskrunner(å…¨å±€)
 //			  class A{
 //						A(){g_taskrunner.ConnectEvent(DMTT_ASYN_UI,"123",DMSolt(&A::fun, this));}
 //						bool fun(const DMEventSender& sender, const DMBundle& args);}
-//            ÉÏÃæ´úÂëÔÚAµÄ¹¹Ôìº¯ÊıÖĞÔ¤ÏÈ°ó¶¨ÁËDMSolt,Ö®ºó,ÔÚÈÎÒâ´úÂë´¦µ÷ÓÃevent.FireEvent("123")£¬¶¼»á´¥·¢ÔÚUIÏß³ÌÖĞÒì²½µ÷ÓÃfunº¯Êı
+//            ä¸Šé¢ä»£ç åœ¨Açš„æ„é€ å‡½æ•°ä¸­é¢„å…ˆç»‘å®šäº†DMSolt,ä¹‹å,åœ¨ä»»æ„ä»£ç å¤„è°ƒç”¨event.FireEvent("123")ï¼Œéƒ½ä¼šè§¦å‘åœ¨UIçº¿ç¨‹ä¸­å¼‚æ­¥è°ƒç”¨funå‡½æ•°
 //             
-//      ÀàB£¬ÓĞ³ÉÔ±º¯Êıvoid UiFun(int a, CStringW b, double c);
-//            g_taskrunner.PostTask(DMTT_ASYN_UI,DMNewRunnableMethod(&B::UiFun, this, 10, str , 5.67)),¾Í»áÔÚUIÏß³ÌÖĞ´¥·¢Òì²½µ÷ÓÃUiFun
-//            g_taskrunner.PostTask(DMTT_ASYN_WORK,DMNewRunnableMethod(&B::UiFun, this, 10, str , 5.67)),¾Í»áÔÚUIÏß³ÌÖĞ´¥·¢Òì²½µ÷ÓÃUiFun
+//      ç±»Bï¼Œæœ‰æˆå‘˜å‡½æ•°void UiFun(int a, CStringW b, double c);
+//            g_taskrunner.PostTask(DMTT_ASYN_UI,DMNewRunnableMethod(&B::UiFun, this, 10, str , 5.67)),å°±ä¼šåœ¨UIçº¿ç¨‹ä¸­è§¦å‘å¼‚æ­¥è°ƒç”¨UiFun
+//            g_taskrunner.PostTask(DMTT_ASYN_WORK,DMNewRunnableMethod(&B::UiFun, this, 10, str , 5.67)),å°±ä¼šåœ¨UIçº¿ç¨‹ä¸­è§¦å‘å¼‚æ­¥è°ƒç”¨UiFun
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-03-02
@@ -30,29 +30,29 @@ namespace DM
 {
 	enum DMTaskType
 	{
-		DMTT_SYNC,		///< Í¬²½´¥·¢Task											
-		DMTT_ASYN_UI,	///< ÔÚUIÏß³ÌÖĞÒì²½´¥·¢Task
-		DMTT_ASYN_WORK,	///< ÔÚ¹¤×÷Ïß³ÌÖĞÒì²½´¥·¢Task
+		DMTT_SYNC,		///< åŒæ­¥è§¦å‘Task											
+		DMTT_ASYN_UI,	///< åœ¨UIçº¿ç¨‹ä¸­å¼‚æ­¥è§¦å‘Task
+		DMTT_ASYN_WORK,	///< åœ¨å·¥ä½œçº¿ç¨‹ä¸­å¼‚æ­¥è§¦å‘Task
 	};
 
 	/// <summary>
-	///		¿çÏß³ÌÊÂ¼ş°ó¶¨¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Event"/>
+	///		è·¨çº¿ç¨‹äº‹ä»¶ç»‘å®šå¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Event"/>
 	/// </summary>
 	class IDMTaskRunner : public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMTaskRunner,"IDMEvent",DMREG_TaskRunner);
 	public:
-		virtual DMCode InitEvent(DWORD dwUIThreadId) = 0;											     ///< ³õÊ¼»¯²¢Ö¸¶¨UIÏß³ÌID,ËùÓĞµÄUI TASK¶¼»áPostµ½´ËÏß³Ì´¦Àí,´Ëº¯ÊıÒªÇóÔÚUIÏß³ÌÖĞ½øĞĞ³õÊ¼»¯
-		virtual DMCode UninstallEvent() = 0;															 ///< ·´³õÊ¼»¯
-		virtual bool   IsEventExists(LPCSTR lpszEventName) = 0;										 ///< ÊÂ¼şÊÇ·ñÒÑ´æÔÚ
-		virtual DMCode RemoveEvent(LPCSTR lpszEventName) = 0;											 ///< ÒÆ³ıÄ³¸öÊÂ¼ş¶ÔÓ¦µÄÊÂ¼ş²Û
-		virtual DMCode RemoveEventIfThis(void* pThis) = 0;												 ///< ÒÆ³ıÄ³¸ö¶ÔÏóµÄËùÓĞ¹ØÁªÊÂ¼ş²Û(²»°üÀ¨¾²Ì¬³ÉÔ±º¯Êı)
-		virtual DMCode RemoveAllEvents() = 0;															 ///< ÒÆ³ıËùÓĞÊÂ¼ş²Û
-		virtual DMCode ConnectEvent(DMTaskType tty, LPCSTR lpszEventName, const DMSlot& slot, int group = 100) = 0;///< °ó¶¨Ò»¸öÊÂ¼ş²Û,´ËÊÂ¼ş²ÛÔÚFireEventÊ±(Í¬²½,Òì²½UIÏß³Ì,Òì²½¹¤×÷Ïß³Ì)´¥·¢,Í¬Ò»¸ölpszEventName,groupÔ½´óÔ½³Ùµ÷ÓÃ(ÓÅÏÈ¼¶Ô½µÍ,groupÄÚ²¿»á×ª³ÉÕıÖµ)
-		virtual DMCode FireEvent(LPCSTR lpszEventName) = 0;											  ///< ´¥·¢°ó¶¨µÄÊÂ¼ş²Û
-		virtual DMCode FireEvent(LPCSTR lpszEventName, DMBundle& args) = 0;							  ///< ´«Èë²ÎÊı,´¥·¢°ó¶¨µÄÊÂ¼ş²Û
+		virtual DMCode InitEvent(DWORD dwUIThreadId) = 0;											     ///< åˆå§‹åŒ–å¹¶æŒ‡å®šUIçº¿ç¨‹ID,æ‰€æœ‰çš„UI TASKéƒ½ä¼šPoståˆ°æ­¤çº¿ç¨‹å¤„ç†,æ­¤å‡½æ•°è¦æ±‚åœ¨UIçº¿ç¨‹ä¸­è¿›è¡Œåˆå§‹åŒ–
+		virtual DMCode UninstallEvent() = 0;															 ///< ååˆå§‹åŒ–
+		virtual bool   IsEventExists(LPCSTR lpszEventName) = 0;										 ///< äº‹ä»¶æ˜¯å¦å·²å­˜åœ¨
+		virtual DMCode RemoveEvent(LPCSTR lpszEventName) = 0;											 ///< ç§»é™¤æŸä¸ªäº‹ä»¶å¯¹åº”çš„äº‹ä»¶æ§½
+		virtual DMCode RemoveEventIfThis(void* pThis) = 0;												 ///< ç§»é™¤æŸä¸ªå¯¹è±¡çš„æ‰€æœ‰å…³è”äº‹ä»¶æ§½(ä¸åŒ…æ‹¬é™æ€æˆå‘˜å‡½æ•°)
+		virtual DMCode RemoveAllEvents() = 0;															 ///< ç§»é™¤æ‰€æœ‰äº‹ä»¶æ§½
+		virtual DMCode ConnectEvent(DMTaskType tty, LPCSTR lpszEventName, const DMSlot& slot, int group = 100) = 0;///< ç»‘å®šä¸€ä¸ªäº‹ä»¶æ§½,æ­¤äº‹ä»¶æ§½åœ¨FireEventæ—¶(åŒæ­¥,å¼‚æ­¥UIçº¿ç¨‹,å¼‚æ­¥å·¥ä½œçº¿ç¨‹)è§¦å‘,åŒä¸€ä¸ªlpszEventName,groupè¶Šå¤§è¶Šè¿Ÿè°ƒç”¨(ä¼˜å…ˆçº§è¶Šä½,groupå†…éƒ¨ä¼šè½¬æˆæ­£å€¼)
+		virtual DMCode FireEvent(LPCSTR lpszEventName) = 0;											  ///< è§¦å‘ç»‘å®šçš„äº‹ä»¶æ§½
+		virtual DMCode FireEvent(LPCSTR lpszEventName, DMBundle& args) = 0;							  ///< ä¼ å…¥å‚æ•°,è§¦å‘ç»‘å®šçš„äº‹ä»¶æ§½
 
-		virtual DMCode PostTask(DMTaskType tty, IDMTaskPtr pTask) = 0;                                    ///< ÎŞĞè°ó¶¨£¬Ö±½Ó°ÑÒ»¸öº¯ÊıPostµ½(Í¬²½,Òì²½UIÏß³Ì,Òì²½¹¤×÷Ïß³Ì)´¥·¢
+		virtual DMCode PostTask(DMTaskType tty, IDMTaskPtr pTask) = 0;                                    ///< æ— éœ€ç»‘å®šï¼Œç›´æ¥æŠŠä¸€ä¸ªå‡½æ•°Poståˆ°(åŒæ­¥,å¼‚æ­¥UIçº¿ç¨‹,å¼‚æ­¥å·¥ä½œçº¿ç¨‹)è§¦å‘
 	};
 
 }//namespace DM

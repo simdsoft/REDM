@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -20,32 +20,32 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUITreeEx"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUITreeEx"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUITreeAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static const char* SKIN_toggleskin;								    ///< Õ¹¿ª¡¢ÊÕÆğĞ¡Èı½ÇÍ¼°¸,ÁùÖÖ×´Ì¬(ÊÕÆğÈıÖÖ+Õ¹¿ªÈıÖÖ),Ê¾Àı:toggleskin="treetoggle"
-		static const char* SKIN_checkskin;                                     ///< Ñ¡ÖĞ¡¢²»Ñ¡ÖĞ£¬°ëÑ¡ÖĞÍ¼°¸,ÓÃÓÚÆôÓÃÁËcheckbox×´Ì¬£¬9ÖÖ×´Ì¬(Õı³£ÈıÖÖ+Ñ¡ÖĞÈıÖÖ+°ëÑ¡ÖĞÈıÖÖ),Ê¾Àı:checkskin="treecheck"
-		static const char* SKIN_eyeskin;                                       ///< 9ÖÖ×´Ì¬(Õı³£ÈıÖÖ+Ñ¡ÖĞÈıÖÖ+°ëÑ¡ÖĞÈıÖÖ),Ê¾Àı:eyeskin="treecheck"
-		static const char* SKIN_lockskin;                                      ///< 9ÖÖ×´Ì¬(Õı³£ÈıÖÖ+Ñ¡ÖĞÈıÖÖ+°ëÑ¡ÖĞÈıÖÖ),Ê¾Àı:lockskin="treecheck"
+		static const char* SKIN_toggleskin;								    ///< å±•å¼€ã€æ”¶èµ·å°ä¸‰è§’å›¾æ¡ˆ,å…­ç§çŠ¶æ€(æ”¶èµ·ä¸‰ç§+å±•å¼€ä¸‰ç§),ç¤ºä¾‹:toggleskin="treetoggle"
+		static const char* SKIN_checkskin;                                     ///< é€‰ä¸­ã€ä¸é€‰ä¸­ï¼ŒåŠé€‰ä¸­å›¾æ¡ˆ,ç”¨äºå¯ç”¨äº†checkboxçŠ¶æ€ï¼Œ9ç§çŠ¶æ€(æ­£å¸¸ä¸‰ç§+é€‰ä¸­ä¸‰ç§+åŠé€‰ä¸­ä¸‰ç§),ç¤ºä¾‹:checkskin="treecheck"
+		static const char* SKIN_eyeskin;                                       ///< 9ç§çŠ¶æ€(æ­£å¸¸ä¸‰ç§+é€‰ä¸­ä¸‰ç§+åŠé€‰ä¸­ä¸‰ç§),ç¤ºä¾‹:eyeskin="treecheck"
+		static const char* SKIN_lockskin;                                      ///< 9ç§çŠ¶æ€(æ­£å¸¸ä¸‰ç§+é€‰ä¸­ä¸‰ç§+åŠé€‰ä¸­ä¸‰ç§),ç¤ºä¾‹:lockskin="treecheck"
 		
-		static const char* SKIN_itembgskin;                                    ///< ÏîËùÔÚµÄ±³¾°Í¼°¸,Õı³£/Í£Áô/Ñ¡ÖĞ,Ê¾Àı:itembgskin="itembgskin"
-		static const char* COLOR_clritembg;                                    ///< itemÏîµÄ±³¾°É«,Ê¾Àı:clritembg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemhoverbg;                               ///< itemÏîµÄÍ£Áô±³¾°É«,Ê¾Àı:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemselbg;                                 ///< itemÏîµÄÑ¡ÖĞ±³¾°É«,Ê¾Àı:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static const char* INT_childoffset;                                    ///< ×ÓÏîÏà¶ÔÓÚ¸¸ÏîµÄÆ«ÒÆ,¿É±»¾ßÌåÏî¸²¸Ç,Ê¾Àı:childoffset="20"
-		static const char* INT_itemheight;									    ///< Ã¿Ïî¸ß¶È,¿É±»¾ßÌåÏî¸²¸Ç,Ê¾Àı:itemheight="20"
-		static const char* INT_itemwidth;									    ///< Ã¿Ïî¿í¶È,¿É±»¾ßÌåÏî¸²¸Ç,Ê¾Àı:itemwidth="20"
-		static const char* bool_brightclicksel;                                ///< ÊÇ·ñÖ§³ÖÓÒ»÷Ñ¡ÖĞ,Ê¾Àı:brightclicksel="1"
-		static const char* bool_bcheckbox;                                     ///< ÊÇ·ñÆôÓÃcheckbox,Ê¾Àı:bcheckbox="1"
+		static const char* SKIN_itembgskin;                                    ///< é¡¹æ‰€åœ¨çš„èƒŒæ™¯å›¾æ¡ˆ,æ­£å¸¸/åœç•™/é€‰ä¸­,ç¤ºä¾‹:itembgskin="itembgskin"
+		static const char* COLOR_clritembg;                                    ///< itemé¡¹çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;                               ///< itemé¡¹çš„åœç•™èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                 ///< itemé¡¹çš„é€‰ä¸­èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* INT_childoffset;                                    ///< å­é¡¹ç›¸å¯¹äºçˆ¶é¡¹çš„åç§»,å¯è¢«å…·ä½“é¡¹è¦†ç›–,ç¤ºä¾‹:childoffset="20"
+		static const char* INT_itemheight;									    ///< æ¯é¡¹é«˜åº¦,å¯è¢«å…·ä½“é¡¹è¦†ç›–,ç¤ºä¾‹:itemheight="20"
+		static const char* INT_itemwidth;									    ///< æ¯é¡¹å®½åº¦,å¯è¢«å…·ä½“é¡¹è¦†ç›–,ç¤ºä¾‹:itemwidth="20"
+		static const char* bool_brightclicksel;                                ///< æ˜¯å¦æ”¯æŒå³å‡»é€‰ä¸­,ç¤ºä¾‹:brightclicksel="1"
+		static const char* bool_bcheckbox;                                     ///< æ˜¯å¦å¯ç”¨checkbox,ç¤ºä¾‹:bcheckbox="1"
 
-		static const char* NODE_treeitem;										///< treectrlµÄxmlÏî½áµãÃû
-		static const char* ITEM_bcollapsed;									///< ÏîÊÇ·ñÊÕËõ,Ê¾Àı:bcollapsed="1"
-		static const char* ITEM_height;                                        ///< ÏîµÄ¸ß¶È(¿ÉÑ¡),Ê¾Àı:height="10"
-		static const char* ITEM_width;                                         ///< ÏîµÄ¿í¶È(¿ÉÑ¡),Ê¾Àı:weidth="10"
-		static const char* ITEM_childoffset;                                   ///< ÏîµÄ¿í¶È(¿ÉÑ¡),Ê¾Àı:childoffset="10"
-		static const char* ITEM_data;											///< ÏîµÄÊı¾İ,Ê¾Àı:data="1"
+		static const char* NODE_treeitem;										///< treectrlçš„xmlé¡¹ç»“ç‚¹å
+		static const char* ITEM_bcollapsed;									///< é¡¹æ˜¯å¦æ”¶ç¼©,ç¤ºä¾‹:bcollapsed="1"
+		static const char* ITEM_height;                                        ///< é¡¹çš„é«˜åº¦(å¯é€‰),ç¤ºä¾‹:height="10"
+		static const char* ITEM_width;                                         ///< é¡¹çš„å®½åº¦(å¯é€‰),ç¤ºä¾‹:weidth="10"
+		static const char* ITEM_childoffset;                                   ///< é¡¹çš„å®½åº¦(å¯é€‰),ç¤ºä¾‹:childoffset="10"
+		static const char* ITEM_data;											///< é¡¹çš„æ•°æ®,ç¤ºä¾‹:data="1"
 	};
 	DMAttrValueInit(DUITreeAttr,SKIN_toggleskin)DMAttrValueInit(DUITreeAttr,SKIN_checkskin)DMAttrValueInit(DUITreeAttr,SKIN_eyeskin)DMAttrValueInit(DUITreeAttr,SKIN_lockskin)
 		DMAttrValueInit(DUITreeAttr,SKIN_itembgskin)DMAttrValueInit(DUITreeAttr,COLOR_clritembg)DMAttrValueInit(DUITreeAttr,COLOR_clritemhoverbg)
@@ -58,18 +58,18 @@ namespace DM
 {
 	enum 
 	{
-		DMTVEX_COLLAPSE = 1,///< ÊÕËõ
-		DMTVEX_EXPAND,	   ///< Õ¹¿ª
-		DMTVEX_TOGGLE,	   ///< ×Ô¶¯£¬Ô­À´ÊÇÕ¹¿ª¾ÍÊÕËõ
+		DMTVEX_COLLAPSE = 1,///< æ”¶ç¼©
+		DMTVEX_EXPAND,	   ///< å±•å¼€
+		DMTVEX_TOGGLE,	   ///< è‡ªåŠ¨ï¼ŒåŸæ¥æ˜¯å±•å¼€å°±æ”¶ç¼©
 	};
 
-	enum ///< »æÖÆÊôĞÔ
+	enum ///< ç»˜åˆ¶å±æ€§
 	{
 		DMTVEXMask_Toggle         = 0x00000001UL, 
 		DMTVEXMask_CheckBox       = 0x00000002UL, 
 	};
 
-	enum ///< Êó±êÊÇ·ñÍ£ÁôÔÚĞ¡Èı½ÇµÄ¾ØĞÎÇøÓò
+	enum ///< é¼ æ ‡æ˜¯å¦åœç•™åœ¨å°ä¸‰è§’çš„çŸ©å½¢åŒºåŸŸ
 	{
 		DMTVEXBtn_None,					               
 		DMTVEXBtn_Toggle, 
@@ -80,23 +80,23 @@ namespace DM
 
 	enum 
 	{
-		DMTVEXCheckBox_UnChecked,			///< Î´Ñ¡ÖĞ
-		DMTVEXCheckBox_Checked,				///< Ñ¡ÖĞ
-		DMTVEXCheckBox_PartChecked			///< ²¿·ÖÑ¡ÖĞ
+		DMTVEXCheckBox_UnChecked,			///< æœªé€‰ä¸­
+		DMTVEXCheckBox_Checked,				///< é€‰ä¸­
+		DMTVEXCheckBox_PartChecked			///< éƒ¨åˆ†é€‰ä¸­
 	};
 
 	enum 
 	{
-		DMTVEXLock_UnLocked,				///< Î´Ëø¶¨
-		DMTVEXLock_Locked,					///< Ëø¶¨
-		DMTVEXLock_PartLocked				///< ²¿·ÖËø¶¨
+		DMTVEXLock_UnLocked,				///< æœªé”å®š
+		DMTVEXLock_Locked,					///< é”å®š
+		DMTVEXLock_PartLocked				///< éƒ¨åˆ†é”å®š
 	};
  
 	enum 
 	{ 
-		DMTVEXEye_Eyed,						///< ¿É¼û
-		DMTVEXEye_UnEye,					///< ²»¿É¼û
-		DMTVEXEye_PartUnEyed				///< ²¿·Ö²»¿É¼û
+		DMTVEXEye_Eyed,						///< å¯è§
+		DMTVEXEye_UnEye,					///< ä¸å¯è§
+		DMTVEXEye_PartUnEyed				///< éƒ¨åˆ†ä¸å¯è§
 	};
 
 	/// <summary>
@@ -126,29 +126,29 @@ namespace DM
 		{
 			pPanel.Release();
 		}
-		DMSmartPtrT<DUIItemPanel>       pPanel;			 ///< Ãæ°å
-		HDMTREEITEM						hItem;			 ///< ÔÚÊ÷ÖĞµÄ±êÊ¶  
-		int								nLevel;			 ///< Ëù´¦µÄ²ã´Î	
-		int								iHeight;		 ///< ¸ß¶È
-		int								iWidth;			 ///< ¿í¶È
-		int                             iChildOffset;    ///< ×ÓÏîÏà¶ÔÓÚ¸¸ÏîµÄÆ«ÒÆ,ÔÚÓĞtoggleskinÊ±,ÔÚ¼ÆËãÊ±»á×Ô¶¯¼ÓÉÏtoggleskinºÍcheckskinµÄ¿í¶È£¨Ê×ÏîÒ²»á±»È«¾ÖµÄichildoffsetÓ°Ïìµ½,ËùÒÔÊ×ÏîÒ»°ãĞè×Ô¼ºÅä¸öichildoffset=0£©
-		int								iCheckValue;	 ///< checkboxµ±Ç°×´Ì¬£¨Õı³£,Ñ¡ÖĞ,°ëÑ¡ÖĞ£©
-		int                             iLockValue;      ///< lockµÄµ±Ç°×´Ì¬(ÎŞËø£¬°ëËø£¬½âËø)
-		int                             iEyeValue;       ///< eyeµÄµ±Ç°×´Ì¬(²»¿É¼û,°ë¿É¼û,¿É¼û)
-		DWORD							dwCheckBoxState; ///< checkbox×´Ì¬(normal,hover,sel)
-		DWORD							dwToggleState;	 ///< ÕÛµşĞ¡Èı½ÇµÄ×´Ì¬(normal,hover,sel)
-		DWORD                           dwLockState;     ///< lockµÄµÄ×´Ì¬(normal,hover,sel)
-		DWORD                           dwEyeState;      ///< eyeµÄµÄ×´Ì¬(normal,hover,sel)
+		DMSmartPtrT<DUIItemPanel>       pPanel;			 ///< é¢æ¿
+		HDMTREEITEM						hItem;			 ///< åœ¨æ ‘ä¸­çš„æ ‡è¯†  
+		int								nLevel;			 ///< æ‰€å¤„çš„å±‚æ¬¡	
+		int								iHeight;		 ///< é«˜åº¦
+		int								iWidth;			 ///< å®½åº¦
+		int                             iChildOffset;    ///< å­é¡¹ç›¸å¯¹äºçˆ¶é¡¹çš„åç§»,åœ¨æœ‰toggleskinæ—¶,åœ¨è®¡ç®—æ—¶ä¼šè‡ªåŠ¨åŠ ä¸Štoggleskinå’Œcheckskinçš„å®½åº¦ï¼ˆé¦–é¡¹ä¹Ÿä¼šè¢«å…¨å±€çš„ichildoffsetå½±å“åˆ°,æ‰€ä»¥é¦–é¡¹ä¸€èˆ¬éœ€è‡ªå·±é…ä¸ªichildoffset=0ï¼‰
+		int								iCheckValue;	 ///< checkboxå½“å‰çŠ¶æ€ï¼ˆæ­£å¸¸,é€‰ä¸­,åŠé€‰ä¸­ï¼‰
+		int                             iLockValue;      ///< lockçš„å½“å‰çŠ¶æ€(æ— é”ï¼ŒåŠé”ï¼Œè§£é”)
+		int                             iEyeValue;       ///< eyeçš„å½“å‰çŠ¶æ€(ä¸å¯è§,åŠå¯è§,å¯è§)
+		DWORD							dwCheckBoxState; ///< checkboxçŠ¶æ€(normal,hover,sel)
+		DWORD							dwToggleState;	 ///< æŠ˜å å°ä¸‰è§’çš„çŠ¶æ€(normal,hover,sel)
+		DWORD                           dwLockState;     ///< lockçš„çš„çŠ¶æ€(normal,hover,sel)
+		DWORD                           dwEyeState;      ///< eyeçš„çš„çŠ¶æ€(normal,hover,sel)
 		
-		bool							bCollapsed;      ///< ÕÛµş×´Ì¬
-		bool							bVisible;		 ///< ÊÇ·ñ¿É¼û
-		bool							bHasChildren;    ///< ÊÇ·ñ´æÔÚ×ÓÊ÷
+		bool							bCollapsed;      ///< æŠ˜å çŠ¶æ€
+		bool							bVisible;		 ///< æ˜¯å¦å¯è§
+		bool							bHasChildren;    ///< æ˜¯å¦å­˜åœ¨å­æ ‘
 		LPARAM							lParam;			 ///< data
 	}TVITEMEX,*LPTVITEMEX;
 
 
 	/// <summary>
-	///		 DUITreeExµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUITreeAttr"/>
+	///		 DUITreeExçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUITreeAttr"/>
 	/// </summary>
 	class DUITreeEx 
 		: public DUIScrollBase
@@ -162,19 +162,19 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú
+		// Function Des: å¯¹å¤–æ¥å£
 		//---------------------------------------------------
-		bool RemoveAllItems();																			///< ÒÆ³ıËùÓĞ½áµã
+		bool RemoveAllItems();																			///< ç§»é™¤æ‰€æœ‰ç»“ç‚¹
 		bool RemoveItem(HDMTREEITEM hItem);
-		bool SetItemRect(HDMTREEITEM hItem, CRect rcItem);												///< ÉèÖÃÄ³ÏîµÄÇøÓò
+		bool SetItemRect(HDMTREEITEM hItem, CRect rcItem);												///< è®¾ç½®æŸé¡¹çš„åŒºåŸŸ
 
 		///---------------------------------
-		/// ²åÈëº¯Êı
+		/// æ’å…¥å‡½æ•°
 		HDMTREEITEM InsertItem(LPTVITEMEX pData,HDMTREEITEM hParent,HDMTREEITEM hInsertAfter,BOOL bEnsureVisible);
 		HDMTREEITEM InsertItem(DMXmlNode &XmlItem,HDMTREEITEM hParent=DMTVI_ROOT, HDMTREEITEM hInsertAfter=DMTVI_LAST,BOOL bEnsureVisible=FALSE);
 
 		///---------------------------------
-		/// »ñÈ¡ÏµÁĞº¯Êı£¬¿É²Î¿¼CTreeCtrlµÄ³ÉÔ±º¯ÊıÁĞ±í
+		/// è·å–ç³»åˆ—å‡½æ•°ï¼Œå¯å‚è€ƒCTreeCtrlçš„æˆå‘˜å‡½æ•°åˆ—è¡¨
 		HDMTREEITEM GetRootItem();
 		HDMTREEITEM GetRootItem(HDMTREEITEM hItem);
 		HDMTREEITEM GetNextSiblingItem(HDMTREEITEM hItem);
@@ -197,7 +197,7 @@ namespace DM
 		bool Expand(HDMTREEITEM hItem,UINT nCode = DMTVEX_EXPAND);
 		bool EnsureVisible(HDMTREEITEM hItem,bool bFirstVisible = false);
 
-	public:// »æÖÆ£¡£¡£¡£¡
+	public:// ç»˜åˆ¶ï¼ï¼ï¼ï¼
 		virtual void DrawItem(IDMCanvas* pCanvas,CRect& rc,HDMTREEITEM hItem);
 		virtual void RedrawItem(HDMTREEITEM hItem);
 
@@ -223,7 +223,7 @@ namespace DM
 			DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnDestroy();
@@ -243,7 +243,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¿ÉÖØÔØº¯Êı
+		// Function Des: å¯é‡è½½å‡½æ•°
 		//---------------------------------------------------
 		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_OnSetCursor(const CPoint &pt);
@@ -254,18 +254,18 @@ namespace DM
 		virtual int GetScrollLineSize(bool bVert){return m_iDefItemHei;};
 
 
-		// ³éÏóÊµÏÖ
+		// æŠ½è±¡å®ç°
 		DUIWindow* GetOwnerWindow();   
 		DMCode OnSetCapture(DUIItemPanel* pPanel);
 		DMCode OnReleaseCapture(DUIItemPanel* pPanel);
-		DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);							///< ÇëÊ¹ÓÃ*lpRect¸³Öµ£¡
+		DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect);							///< è¯·ä½¿ç”¨*lpRectèµ‹å€¼ï¼
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void SetChildrenVisible(HDMTREEITEM hItem,bool bVisible);
 		void SetChildrenState(HDMTREEITEM hItem,int iCheckValue);
 		void CheckState(HDMTREEITEM hItem, bool bCheck,bool bCheckChild = true);  
 		bool CheckChildrenState(HDMTREEITEM hItem,bool bCheck);    
-		bool IsAncestor(HDMTREEITEM hItem1,HDMTREEITEM hItem2);         // hItem2ÊÇ·ñÎªhItem1µÄ×ÓÏî
+		bool IsAncestor(HDMTREEITEM hItem1,HDMTREEITEM hItem2);         // hItem2æ˜¯å¦ä¸ºhItem1çš„å­é¡¹
 		bool ItemIsValid(HDMTREEITEM hItem);
 
 		void ModifyToggleState(HDMTREEITEM hItem, DWORD dwStateAdd, DWORD dwStateRemove);
@@ -285,21 +285,21 @@ namespace DM
 		void SetChildrenEyeState(HDMTREEITEM hItem,bool bUnEye);
 
 
-		// Î»ÖÃÏà¹Ø
-		HDMTREEITEM HitTest(CPoint &pt);													///< ×Ô¶¯ĞŞ¸ÄptµÄÎ»ÖÃÎªÏà¶Ôµ±Ç°ÏîµÄÆ«ÒÆÁ¿(Èç´¦ÓÚXOffsetÄÇÒ»¶ÎÇøÓò,Ôòpt.xÎª¸ºÖµ)
-		int ItemHitTest(HDMTREEITEM hItem,CPoint &pt, CPoint &ptsrc);						///<ÕâÀïptÒÑ±»×ª»»³ÉÎªÏà¶Ôµ±Ç°ÏîµÄÆ«ÒÆÁ¿£¬ptsrcÎªÔ­Ê¼µÄ,Ö»ĞèÅĞ¶Ïx¼´¿É
+		// ä½ç½®ç›¸å…³
+		HDMTREEITEM HitTest(CPoint &pt);													///< è‡ªåŠ¨ä¿®æ”¹ptçš„ä½ç½®ä¸ºç›¸å¯¹å½“å‰é¡¹çš„åç§»é‡(å¦‚å¤„äºXOffseté‚£ä¸€æ®µåŒºåŸŸ,åˆ™pt.xä¸ºè´Ÿå€¼)
+		int ItemHitTest(HDMTREEITEM hItem,CPoint &pt, CPoint &ptsrc);						///<è¿™é‡Œptå·²è¢«è½¬æ¢æˆä¸ºç›¸å¯¹å½“å‰é¡¹çš„åç§»é‡ï¼Œptsrcä¸ºåŸå§‹çš„,åªéœ€åˆ¤æ–­xå³å¯
 
 		int GetTotalHeight();
 		int GetTotalWidth();
-		int GetItemHeightWithAllChild(HDMTREEITEM hItem);									///< ¼ÆËãÄ³Ò»ÏîÒÔ¼°ËüµÄËùÓĞ¿É¼û×ÓÏîµÄ×Ü¸ß¶È
-		int GetItemWidthWithAllChild(HDMTREEITEM hItem);									///< ¼ÆËãÄ³Ò»ÏîÒÔ¼°ËüµÄËùÓĞ¿É¼û×ÓÏîµÄ×Ü¿í¶È
-		int GetItemXOffset(HDMTREEITEM hItem);                                              ///< ¼ÆËãÄ³Ïîµ½¸ù½áµãµÄÆ«ÒÆ£¨²»¿É¼ûÉèÖÃÎª0£©
-		int GetItemYOffset(HDMTREEITEM hItem);                                              ///< ¼ÆËãÄ³Ïîµ½¸ù½áµãµÄÆ«ÒÆ£¨²»¿É¼ûÉèÖÃÎª0£©
-		bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);									///< ¼ÆËãÄ³ÏîÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
-		bool GetToggleRect(HDMTREEITEM hItem,CRect &rcToggle);                              ///< ¼ÆËãÄ³ÏîtoggleÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
-		bool GetCheckBoxRect(HDMTREEITEM hItem,CRect &rcCheckBox);                          ///< ¼ÆËãÄ³ÏîcheckboxÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
-		bool GetLockRect(HDMTREEITEM hItem,CRect &rcLock);								///< ¼ÆËãÄ³ÏîlockÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
-		bool GetEyeRect(HDMTREEITEM hItem,CRect &rcEye);								///< ¼ÆËãÄ³ÏîeyeÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
+		int GetItemHeightWithAllChild(HDMTREEITEM hItem);									///< è®¡ç®—æŸä¸€é¡¹ä»¥åŠå®ƒçš„æ‰€æœ‰å¯è§å­é¡¹çš„æ€»é«˜åº¦
+		int GetItemWidthWithAllChild(HDMTREEITEM hItem);									///< è®¡ç®—æŸä¸€é¡¹ä»¥åŠå®ƒçš„æ‰€æœ‰å¯è§å­é¡¹çš„æ€»å®½åº¦
+		int GetItemXOffset(HDMTREEITEM hItem);                                              ///< è®¡ç®—æŸé¡¹åˆ°æ ¹ç»“ç‚¹çš„åç§»ï¼ˆä¸å¯è§è®¾ç½®ä¸º0ï¼‰
+		int GetItemYOffset(HDMTREEITEM hItem);                                              ///< è®¡ç®—æŸé¡¹åˆ°æ ¹ç»“ç‚¹çš„åç§»ï¼ˆä¸å¯è§è®¾ç½®ä¸º0ï¼‰
+		bool GetItemRect(HDMTREEITEM hItem,CRect &rcItem);									///< è®¡ç®—æŸé¡¹åŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
+		bool GetToggleRect(HDMTREEITEM hItem,CRect &rcToggle);                              ///< è®¡ç®—æŸé¡¹toggleåŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
+		bool GetCheckBoxRect(HDMTREEITEM hItem,CRect &rcCheckBox);                          ///< è®¡ç®—æŸé¡¹checkboxåŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
+		bool GetLockRect(HDMTREEITEM hItem,CRect &rcLock);								///< è®¡ç®—æŸé¡¹lockåŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
+		bool GetEyeRect(HDMTREEITEM hItem,CRect &rcEye);								///< è®¡ç®—æŸé¡¹eyeåŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
 		void UpdateScrollRangeSize();
 
 	public:
@@ -321,33 +321,33 @@ namespace DM
 			DM_END_ATTRIBUTES()
 
 	public:
-		IDMSkinPtr					m_pToggleSkin;			///< Ğ¡Èı½Ç6Á¬Í¼
-		IDMSkinPtr					m_pCheckSkin;			///< checkbox9Á¬Í¼
+		IDMSkinPtr					m_pToggleSkin;			///< å°ä¸‰è§’6è¿å›¾
+		IDMSkinPtr					m_pCheckSkin;			///< checkbox9è¿å›¾
 		IDMSkinPtr		            m_pEyeSkin;
 		IDMSkinPtr                  m_pLockSkin;
-		IDMSkinPtr					m_pItemBgSkin;			///< ±³¾°ÈıÁ¬Í¼
-		DMColor					    m_crItemBg[3];			///< ±³¾°ÈıÁ¬É«
+		IDMSkinPtr					m_pItemBgSkin;			///< èƒŒæ™¯ä¸‰è¿å›¾
+		DMColor					    m_crItemBg[3];			///< èƒŒæ™¯ä¸‰è¿è‰²
 
-		int						    m_iDefItemHei;		    ///< ÏîµÄÄ¬ÈÏ¸ß¶È
-		int						    m_iDefItemWid;		    ///< ÏîµÄÄ¬ÈÏ¿í¶È
-		int							m_iDefChildOffset;      ///< ×ÓÏîÏà¶Ô¸¸ÏîÄ¬ÈÏÆ«ÒÆ
+		int						    m_iDefItemHei;		    ///< é¡¹çš„é»˜è®¤é«˜åº¦
+		int						    m_iDefItemWid;		    ///< é¡¹çš„é»˜è®¤å®½åº¦
+		int							m_iDefChildOffset;      ///< å­é¡¹ç›¸å¯¹çˆ¶é¡¹é»˜è®¤åç§»
 
-		bool						m_bRightClickSel;       ///< ÊÇ·ñÖ§³ÖÓÒ»÷Ñ¡ÖĞ
-		bool						m_bCheckBox;			///< ÊÇ·ñÆôÓÃcheckbox
+		bool						m_bRightClickSel;       ///< æ˜¯å¦æ”¯æŒå³å‡»é€‰ä¸­
+		bool						m_bCheckBox;			///< æ˜¯å¦å¯ç”¨checkbox
 
 
 
-		// ¸¨Öú
-		HDMTREEITEM					m_hSelItem;				///< µ±Ç°Ñ¡ÖĞÏî
-		HDMTREEITEM					m_hHoverItem;           ///< µ±Ç°Í£ÁôÏî
-		HDMTREEITEM					m_hCaptureItem;         ///< »ñµÃcaptureÏî(ÓÃÓÚÊó±êµã»÷ºóÔÙ»Ø¸´)
+		// è¾…åŠ©
+		HDMTREEITEM					m_hSelItem;				///< å½“å‰é€‰ä¸­é¡¹
+		HDMTREEITEM					m_hHoverItem;           ///< å½“å‰åœç•™é¡¹
+		HDMTREEITEM					m_hCaptureItem;         ///< è·å¾—captureé¡¹(ç”¨äºé¼ æ ‡ç‚¹å‡»åå†å›å¤)
 
 		// 
-		int							m_nItemHoverBtn;		///< ¶ÔÓ¦Ğ¡Èı½ÇºÍcheckbox
+		int							m_nItemHoverBtn;		///< å¯¹åº”å°ä¸‰è§’å’Œcheckbox
 		int							m_nItemPushDownBtn;
 
 		//
-		DMSmartPtrT<DUIItemPanel>	m_pCapturePanel;		///< µ±Ç°µ÷ÓÃÁËsetcaptureµÄÃæ°å,´ËÃæ°åÖ»ÔÚÊó±ê°´ÏÂµÄË²¼äÉèÖÃ£¬µ¯ÆğÇå¿Õ
+		DMSmartPtrT<DUIItemPanel>	m_pCapturePanel;		///< å½“å‰è°ƒç”¨äº†setcaptureçš„é¢æ¿,æ­¤é¢æ¿åªåœ¨é¼ æ ‡æŒ‰ä¸‹çš„ç¬é—´è®¾ç½®ï¼Œå¼¹èµ·æ¸…ç©º
 	};
 
 }//namespace DM

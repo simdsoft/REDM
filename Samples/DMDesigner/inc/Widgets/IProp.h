@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	IProp.h
 // File mark:   
-// File summary:PropµÄÏà¹ØÊôĞÔ¶ÔÍâ½Ó¿Ú
+// File summary:Propçš„ç›¸å…³å±æ€§å¯¹å¤–æ¥å£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-29
@@ -14,31 +14,31 @@
 namespace DM
 {
 	/// <summary>
-	///		»ù±¾ÊôĞÔ½Ó¿Ú£¬ÓÃÓÚÀ©Õ¹
+	///		åŸºæœ¬å±æ€§æ¥å£ï¼Œç”¨äºæ‰©å±•
 	/// </summary>
 	class DUIPropList;
 	class IProp : public DMBase
 	{
 	public:
 		enum ClickArea{ClickExpandBox,ClickName,ClickValue,ClickDrag,ClickDescription};
-		virtual DMCode SetOwner(DUIPropList *pOwner) = 0;								///< ÉèÖÃÊôĞÔ¼°×ÓÊôĞÔÁĞ±íµÄÓµÓĞÕß
-		virtual DMCode SetParent(IProp* pParent) = 0;									///< ÉèÖÃ¸¸ÊôĞÔ
-		virtual DMCode Expand(bool bExpand = true) = 0;									///< Õ¹¿ª»òÊÕËõ
-		virtual DMCode Reposition(int& y) = 0;											///< ÖØĞÂ²¼¾Ö
-		virtual DMCode Invalidate() = 0;												///< Ë¢ĞÂ
-		virtual DMCode AddSubItem(IProp* pProp) = 0;									///< Ôö¼Ó×ÓÊôĞÔÏî
-		virtual DMCode RemoveSubItem(IProp* &pProp,bool bDelete = true) = 0;            ///< É¾³ı×ÓÊôĞÔÏî
-		virtual DMCode RemoveAllSubItem(bool bDelete = true) = 0 ;						///< É¾³ıËùÓĞµÄ×ÓÏî
-		virtual DMCode PreDelete() = 0;													///< ÔÚDeleteÖ®Ç°Ô¤´¦Àí
+		virtual DMCode SetOwner(DUIPropList *pOwner) = 0;								///< è®¾ç½®å±æ€§åŠå­å±æ€§åˆ—è¡¨çš„æ‹¥æœ‰è€…
+		virtual DMCode SetParent(IProp* pParent) = 0;									///< è®¾ç½®çˆ¶å±æ€§
+		virtual DMCode Expand(bool bExpand = true) = 0;									///< å±•å¼€æˆ–æ”¶ç¼©
+		virtual DMCode Reposition(int& y) = 0;											///< é‡æ–°å¸ƒå±€
+		virtual DMCode Invalidate() = 0;												///< åˆ·æ–°
+		virtual DMCode AddSubItem(IProp* pProp) = 0;									///< å¢åŠ å­å±æ€§é¡¹
+		virtual DMCode RemoveSubItem(IProp* &pProp,bool bDelete = true) = 0;            ///< åˆ é™¤å­å±æ€§é¡¹
+		virtual DMCode RemoveAllSubItem(bool bDelete = true) = 0 ;						///< åˆ é™¤æ‰€æœ‰çš„å­é¡¹
+		virtual DMCode PreDelete() = 0;													///< åœ¨Deleteä¹‹å‰é¢„å¤„ç†
 	
-		virtual bool IsSubItem(IProp* pSubProp) = 0;									///< pSubPropÊÇ·ñÎªËüµÄ×ÓÏî					
-		virtual bool IsParentExpanded() = 0;											///< ¸¸´°¿ÚÊÇ·ñÎªÕ¹¿ª×´Ì¬
-		virtual bool IsExpanded() = 0;													///< ÊÇ·ñÕ¹¿ª
-		virtual bool IsInPlaceEdit() = 0;												///< ÊÇ·ñ´¦ÓÚvalue¿Ø¼şÏÔÊ¾×´Ì¬
-		virtual bool IsGroup() = 0;														///< ÊÇ·ñÎªgroup,groupÖ»ÓĞname£¬Ã»ÓĞvalue
-		virtual IProp* HitTest(CPoint pt, IProp::ClickArea* pnArea = NULL) = 0;			///< ptµã»÷µÄµØ·½
-		virtual int GetHierarchyLevel() = 0;                                            ///< »ñµÃ×Ô¼º´¦ÓÚµÚ¼¸²ã£¨²»ÊÇ×ÓÏîµÄÎª0²ã£©
-		virtual int GetHeiWithSub() = 0;                                                ///< »ñµÃ×Ô¼ººÍËùÓĞ×ÓÏîµÄ¸ß¶È
+		virtual bool IsSubItem(IProp* pSubProp) = 0;									///< pSubPropæ˜¯å¦ä¸ºå®ƒçš„å­é¡¹					
+		virtual bool IsParentExpanded() = 0;											///< çˆ¶çª—å£æ˜¯å¦ä¸ºå±•å¼€çŠ¶æ€
+		virtual bool IsExpanded() = 0;													///< æ˜¯å¦å±•å¼€
+		virtual bool IsInPlaceEdit() = 0;												///< æ˜¯å¦å¤„äºvalueæ§ä»¶æ˜¾ç¤ºçŠ¶æ€
+		virtual bool IsGroup() = 0;														///< æ˜¯å¦ä¸ºgroup,groupåªæœ‰nameï¼Œæ²¡æœ‰value
+		virtual IProp* HitTest(CPoint pt, IProp::ClickArea* pnArea = NULL) = 0;			///< ptç‚¹å‡»çš„åœ°æ–¹
+		virtual int GetHierarchyLevel() = 0;                                            ///< è·å¾—è‡ªå·±å¤„äºç¬¬å‡ å±‚ï¼ˆä¸æ˜¯å­é¡¹çš„ä¸º0å±‚ï¼‰
+		virtual int GetHeiWithSub() = 0;                                                ///< è·å¾—è‡ªå·±å’Œæ‰€æœ‰å­é¡¹çš„é«˜åº¦
 		virtual DUIPropList* GetOwner() = 0;
 		virtual IProp* GetParent() = 0;
 		virtual LPARAM GetData() = 0;
@@ -48,7 +48,7 @@ namespace DM
 		virtual CStringA GetName() = 0;
 		virtual CStringA GetValue() = 0;
 	
-		// »æÖÆ
+		// ç»˜åˆ¶
 		virtual DMCode OnRender(IDMCanvas* pCanvas) = 0;
 		virtual DMCode OnDrawExpandBox(IDMCanvas* pCanvas,CRect rcExpand) = 0;
 		virtual DMCode OnDrawName(IDMCanvas* pCanvas, CRect rcName) = 0;
@@ -56,12 +56,12 @@ namespace DM
 		virtual DMCode OnDrawDesc(IDMCanvas* pCanvas, CRect rcDesc) = 0;
 		
 
-		// µã»÷
+		// ç‚¹å‡»
 		virtual DMCode OnClickValue(UINT uiMsg, CPoint point) = 0;
 		virtual DMCode OnClickName(UINT uiMsg, CPoint point) = 0;
 		virtual DMCode OnClickDrag(UINT uiMsg, CPoint point) = 0;
 
-		// ÊôĞÔµÄInPlace´°¿Ú´´½¨ºÍÏÔÊ¾Òş²Ø
+		// å±æ€§çš„InPlaceçª—å£åˆ›å»ºå’Œæ˜¾ç¤ºéšè—
 		virtual DMCode OnCreateInPlaceCtrl() = 0;
 		virtual DMCode OnInPlaceCtrlShow(bool bShow = true) = 0;
 	};

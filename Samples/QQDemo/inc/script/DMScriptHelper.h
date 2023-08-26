@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c) tencent 
 // All rights reserved.
 // 
 // File name:	DMScriptHelper.h
 // File mark:   
-// File summary:¸¨Öú¼ÓÔØ´¦Àí½Å±¾
+// File summary:è¾…åŠ©åŠ è½½å¤„ç†è„šæœ¬
  
 // Author:		guoyouhuang
 // Edition:     1.0
@@ -41,10 +41,10 @@ private:
 	void LogEnd();
 
 public:
-	DMSmartPtrT<IDMScript>          m_pScript;	///< ²âÊÔ½Å±¾
-	DMHWnd*                         m_pMainWnd; ///< Ö¸Ïòwidgetwnd
-	DUIRichEdit*                    m_pLogEdit; ///< ÔËĞĞºóµÄluaÈÕ±¾
-	DUIRichEdit*                    m_pStrEdit; ///< ÒªÔËĞĞµÄlua½Å±¾
+	DMSmartPtrT<IDMScript>          m_pScript;	///< æµ‹è¯•è„šæœ¬
+	DMHWnd*                         m_pMainWnd; ///< æŒ‡å‘widgetwnd
+	DUIRichEdit*                    m_pLogEdit; ///< è¿è¡Œåçš„luaæ—¥æœ¬
+	DUIRichEdit*                    m_pStrEdit; ///< è¦è¿è¡Œçš„luaè„šæœ¬
 	DUICheckBox*					m_pCheckBox;
 
 };

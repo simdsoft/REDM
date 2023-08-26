@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIComboBoxHelper.h"
 
 namespace DM
@@ -14,7 +14,7 @@ namespace DM
 	{
 	}
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIComboEdit::OnMouseHover(WPARAM wParam, CPoint ptPos)
 	{
 		__super::OnMouseHover(wParam,ptPos);
@@ -52,7 +52,7 @@ namespace DM
 	DMCode DUIComboEdit::DV_FireEvent(DMEventArgs &Evt)
 	{
 		if (DMEVT_RENOTIFY == Evt.GetEventID())
-		{// ×ª·¢richeditµÄtxNotifyÏûÏ¢
+		{// è½¬å‘richeditçš„txNotifyæ¶ˆæ¯
 			Evt.m_IdFrom     = DM_GetWindow(GDW_OWNER)->GetID();
 			Evt.m_szNameFrom = DM_GetWindow(GDW_OWNER)->GetName();
 		}
@@ -95,7 +95,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIComboBoxBase::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
@@ -103,7 +103,7 @@ namespace DM
 			DUIDrawEnviron DrawEnviron;
 			DV_PushDrawEnviron(pCanvas, DrawEnviron);
 
-			// »æÖÆÎÄ×Ö
+			// ç»˜åˆ¶æ–‡å­—
 			if (m_bHideEdit&&-1!=GetCurSel())
 			{
 				CStringW strText = GetLBText(GetCurSel());
@@ -125,13 +125,13 @@ namespace DM
 			{
 				if (DM_IsFocusWnd())
 				{
-					// »æÖÆ½¹µã¿ò
+					// ç»˜åˆ¶ç„¦ç‚¹æ¡†
 					DV_DrawDefFocus(pCanvas);
 				}
 			}
 
 			DV_PopDrawEnviron(pCanvas, DrawEnviron);
-			// »æÖÆÏÂÀ­°´Å¥×´Ì¬
+			// ç»˜åˆ¶ä¸‹æ‹‰æŒ‰é’®çŠ¶æ€
 			if (m_pSkinBtn)
 			{
 				CRect rcBtn = CalcBtnRect();
@@ -204,14 +204,14 @@ namespace DM
 	void DUIComboBoxBase::OnDestroy()
 	{
 		if (m_pDropDownWnd.isValid())
-		{// ÈÔ½»ÓÉ¸¸´°¿ÚÊÍ·ÅÊ±×Ô¶¯ÊÍ·Å
+		{// ä»äº¤ç”±çˆ¶çª—å£é‡Šæ”¾æ—¶è‡ªåŠ¨é‡Šæ”¾
 			m_pDropDownWnd->m_pOwner = NULL;
 		}
 		__super::OnDestroy();
 	}
 
 	//---------------------------------------------------
-	// Function Des: IDMDropDownOwnerÊµÏÖ
+	// Function Des: IDMDropDownOwnerå®ç°
 	DUIWindow* DUIComboBoxBase::GetOwnerWindow()
 	{
 		return this;
@@ -237,7 +237,7 @@ namespace DM
 			}
 		}
 
-		// »Ö¸´ÏÂÀ­°´Å¥×´Ì¬
+		// æ¢å¤ä¸‹æ‹‰æŒ‰é’®çŠ¶æ€
 		m_dwBtnState  = DUIWNDSTATE_Normal;
 		CRect rcBtn   = CalcBtnRect();
 		DM_InvalidateRect(rcBtn);
@@ -249,23 +249,23 @@ namespace DM
 		::PostMessage(GetContainer()->OnGetHWnd(),WM_MOUSEMOVE,0,MAKELPARAM(pt.x,pt.y));
 
 		if (IDOK == uCode)
-		{// ¸Ä±äÑ¡ÖĞÏî
+		{// æ”¹å˜é€‰ä¸­é¡¹
 			OnSelChanged();
 		}
 		return DM_ECODE_OK;
 	}
 
-	// ÖØÔØ
+	// é‡è½½
 	DMCode DUIComboBoxBase::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		bool bRet = false;
 		do 
 		{
 			if (!m_bHideEdit)
-			{// ´´½¨Edit
-				CSize szBtn;// ´ËÊ±rcClient»¹Îª¿Õ
+			{// åˆ›å»ºEdit
+				CSize szBtn;// æ­¤æ—¶rcClientè¿˜ä¸ºç©º
 				if (CSize(-1,-1)==m_BtnSize)
-				{//1.(0,0) 2.(Ê¹ÓÃskinbtnµÄsz)
+				{//1.(0,0) 2.(ä½¿ç”¨skinbtnçš„sz)
 					if (m_pSkinBtn)
 					{
 						m_pSkinBtn->GetStateSize(szBtn);
@@ -280,7 +280,7 @@ namespace DM
 
 				DM_InsertChild(m_pEdit);
 
-				// ´Ë´¦¶ÔDUIComboEdit×öXML³õÊ¼»¯
+				// æ­¤å¤„å¯¹DUIComboEditåšXMLåˆå§‹åŒ–
 				DMXmlNode XmlEditStyle = XmlNode.FirstChild(DMAttr::DUIComboBoxBaseAttr::ITEM_subedit);
 				DMXmlNode XmlBase =  m_EditDoc.Base();
 				XmlBase.InsertCopyChildNode(&XmlEditStyle);
@@ -296,7 +296,7 @@ namespace DM
 				}
 				m_pEdit->m_EventMgr.SetMuted(false);
 
-				// ÖØÉèÎ»ÖÃ
+				// é‡è®¾ä½ç½®
 				CStringA strPos;
 				strPos.Format("0,0,-%d,-0",szBtn.cx);
 				m_pEdit->SetAttribute("pos",strPos,true);
@@ -304,7 +304,7 @@ namespace DM
 				m_pEdit->SetEventMask(ENM_CHANGE|m_pEdit->GetEventMask());
 			}
 
-			bRet = CreateListBox(XmlNode);// ´´½¨List
+			bRet = CreateListBox(XmlNode);// åˆ›å»ºList
 		} while (false);
 		return bRet;
 	}
@@ -313,7 +313,7 @@ namespace DM
 	{
 		DV_GetClientRect(lpRect);
 		CRect rcBtn  = CalcBtnRect();
-		lpRect->right -= rcBtn.Width();// È¥µôBTNµÄ¿í¶È
+		lpRect->right -= rcBtn.Width();// å»æ‰BTNçš„å®½åº¦
 		return DM_ECODE_OK;
 	}
 
@@ -337,7 +337,7 @@ namespace DM
 			if (EN_CHANGE == pEvt->m_iNotify 
 				&& !m_pEdit->m_EventMgr.IsMuted())
 			{
-				m_pEdit->m_EventMgr.SetMuted(true); // ¿ªÆôÊÂ¼ş¹ıÂË
+				m_pEdit->m_EventMgr.SetMuted(true); // å¼€å¯äº‹ä»¶è¿‡æ»¤
 				SetCurSel(-1);
 				m_pEdit->m_EventMgr.SetMuted(false);
 			}
@@ -389,7 +389,7 @@ namespace DM
 				bRet = true;
 			}
 			else
-			{// ÏòÉÏ
+			{// å‘ä¸Š
 				rcPopup = CRect(rcWnd.left,rcWnd.top-nHeight,rcWnd.right,rcWnd.top);
 				bRet = false;
 			}
@@ -407,7 +407,7 @@ namespace DM
 		{
 			CSize sz;
 			if (CSize(-1,-1)==m_BtnSize)
-			{//1.(0,0) 2.(Ê¹ÓÃskinbtnµÄsz)
+			{//1.(0,0) 2.(ä½¿ç”¨skinbtnçš„sz)
 				if (m_pSkinBtn)
 				{
 					m_pSkinBtn->GetStateSize(sz);
@@ -420,7 +420,7 @@ namespace DM
 			sz.cx = sz.cx>rcClient.Width()?rcClient.Width():sz.cx;
 			sz.cy = sz.cy>rcClient.Height()?rcClient.Height():sz.cy;
 			if (sz.cx<0||sz.cy<0)
-			{// ´íÎóÊı¾İ
+			{// é”™è¯¯æ•°æ®
 				break;
 			}
 
@@ -455,7 +455,7 @@ namespace DM
 		return strText;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	void DUIComboBoxBase::DropDown()
 	{
 		do 
@@ -512,7 +512,7 @@ namespace DM
 			dm_parsebool(lpszValue,m_bHideEdit);
 			if (!bLoadXml)
 			{
-				if (bHideEdit&&!m_bHideEdit)// Ô­À´Òş²Ø£¬ÏÖÔÚÏÔÊ¾
+				if (bHideEdit&&!m_bHideEdit)// åŸæ¥éšè—ï¼Œç°åœ¨æ˜¾ç¤º
 				{
 					if (NULL == m_pEdit)
 					{
@@ -520,7 +520,7 @@ namespace DM
 						m_pEdit = new DUIComboEdit(this);
 						DM_InsertChild(m_pEdit);
 
-						// ´Ë´¦¶ÔDUIComboEdit×öXML³õÊ¼»¯
+						// æ­¤å¤„å¯¹DUIComboEditåšXMLåˆå§‹åŒ–
 						DMXmlNode XmlEditStyle = m_EditDoc.Root();
 						m_pEdit->m_EventMgr.SetMuted(true);
 						if (XmlEditStyle.IsValid())
@@ -533,7 +533,7 @@ namespace DM
 						}
 						m_pEdit->m_EventMgr.SetMuted(false);
 
-						// ÖØÉèÎ»ÖÃ
+						// é‡è®¾ä½ç½®
 						CStringA strPos;
 						strPos.Format("0,0,-%d,-0",rcBtn.Width());
 						m_pEdit->SetAttribute("pos",strPos,true);
@@ -543,7 +543,7 @@ namespace DM
 					m_pEdit->SetWindowText(strText);
 					m_pEdit->DM_SetVisible(true,true);
 				}
-				else if (!bHideEdit&&m_bHideEdit)// Ô­À´³öÏÖ£¬ÏÖÔÚÒş²Ø
+				else if (!bHideEdit&&m_bHideEdit)// åŸæ¥å‡ºç°ï¼Œç°åœ¨éšè—
 				{
 					if (m_pEdit)
 					{
@@ -571,7 +571,7 @@ namespace DM
 			}
 			else
 			{
-				dm_parseint(lpszValue,m_iInitSel);// ´ËÊ±listboxÎ´³õÊ¼»¯,ÔÚ³õÊ¼»¯Ê±ÔÙÉèÖÃ
+				dm_parseint(lpszValue,m_iInitSel);// æ­¤æ—¶listboxæœªåˆå§‹åŒ–,åœ¨åˆå§‹åŒ–æ—¶å†è®¾ç½®
 			}
 
 			iErr = DM_ECODE_OK;

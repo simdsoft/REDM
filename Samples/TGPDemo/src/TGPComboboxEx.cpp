@@ -1,4 +1,4 @@
-#include "TGPDemoAfx.h"
+ï»¿#include "TGPDemoAfx.h"
 #include "TGPComboboxEx.h"
 
 
@@ -18,7 +18,7 @@ TGPListBoxEx* TGPComboboxEx::GetListBox()
 
 DMCode TGPComboboxEx::OnDropDown(DMDropWnd *pDropDown)
 {
-	DM_ModifyState(DUIWNDSTATE_PushDown,DUIWNDSTATE_Hover,true);// TODO.COMBOX±³¾°Í¼ÎªĞ¡Èı½Ç£¬ÇĞ»»Æä×´Ì¬
+	DM_ModifyState(DUIWNDSTATE_PushDown,DUIWNDSTATE_Hover,true);// TODO.COMBOXèƒŒæ™¯å›¾ä¸ºå°ä¸‰è§’ï¼Œåˆ‡æ¢å…¶çŠ¶æ€
 	DMCode iErr = __super::OnDropDown(pDropDown);
 	pDropDown->DM_InsertChild(m_pListBox);
 	pDropDown->DV_UpdateChildLayout();
@@ -34,8 +34,8 @@ DMCode TGPComboboxEx::OnCloseUp(DMDropWnd *pDropDown,UINT uCode)
 	DM_ModifyState(DUIWNDSTATE_Hover,DUIWNDSTATE_PushDown,true);
 	pDropDown->DM_RemoveChildWnd(m_pListBox);
 	m_pListBox->DM_SetVisible(false);
-	//µ¯³ö¿ò¹Ø±ÕÊ±£¬´Ë´¦ÈçÉèÖÃ»ØContainer£¬¿ÉÄÜ»áÒıÆğContainer¿ò×óÉÏ½Ç»æÖÆ³ölistµÄ·Ç¿Í»§¶Ë£¬
-	//¶ølistÊµ¼ÊÉÏ²»ĞèÒªÉèÖÃ»ØContainer,Combox»áFire Ñ¡ÖĞÏî£¬ËùÒÔÆÁ±Î´Ë´¦
+	//å¼¹å‡ºæ¡†å…³é—­æ—¶ï¼Œæ­¤å¤„å¦‚è®¾ç½®å›Containerï¼Œå¯èƒ½ä¼šå¼•èµ·Containeræ¡†å·¦ä¸Šè§’ç»˜åˆ¶å‡ºlistçš„éå®¢æˆ·ç«¯ï¼Œ
+	//è€Œlistå®é™…ä¸Šä¸éœ€è¦è®¾ç½®å›Container,Comboxä¼šFire é€‰ä¸­é¡¹ï¼Œæ‰€ä»¥å±è”½æ­¤å¤„
 	m_pListBox->SetContainer(GetContainer());
 
 	return __super::OnCloseUp(pDropDown,uCode);
@@ -43,13 +43,13 @@ DMCode TGPComboboxEx::OnCloseUp(DMDropWnd *pDropDown,UINT uCode)
 
 DMCode TGPComboboxEx::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 {
-	// todo.³õÊ¼ÏÔÊ¾ĞÅÏ¢,ÕâÀï°´TGPÏÔÊ¾´óÇøºÍÑÓ³ÙÁ½¸ö×Ó¿Ø¼ş´¦Àí
+	// todo.åˆå§‹æ˜¾ç¤ºä¿¡æ¯,è¿™é‡ŒæŒ‰TGPæ˜¾ç¤ºå¤§åŒºå’Œå»¶è¿Ÿä¸¤ä¸ªå­æ§ä»¶å¤„ç†
 	do 
 	{    
 		DMXmlNode XmlShowStyle = XmlNode.FirstChild(DMAttr::DUIComboBoxExAttr::ITEM_subshow);
 		DUIWindow::DV_CreateChildWnds(XmlShowStyle);
 
-		CreateListBox(XmlNode);// ´´½¨List
+		CreateListBox(XmlNode);// åˆ›å»ºList
 	} while (false);
 
 	return DM_ECODE_OK;
@@ -120,7 +120,7 @@ bool TGPComboboxEx::CreateListBox(const DMXmlNode &XmlNode)
 		g_pDMApp->CreateRegObj((void**)&m_pListBox, TGPListBoxEx::GetClassName(),DMREG_Window);
 		if (NULL == m_pListBox)
 		{
-			DMASSERT_EXPR(0,L"EDITµÄlistbox´´½¨Ê§°Ü");
+			DMASSERT_EXPR(0,L"EDITçš„listboxåˆ›å»ºå¤±è´¥");
 			break;
 		}
 
@@ -129,7 +129,7 @@ bool TGPComboboxEx::CreateListBox(const DMXmlNode &XmlNode)
 		m_pListBox->SetAttribute("pos","0,0,-0,-0",true);
 		m_pListBox->DM_SetOwnerWnd(this);				// chain notify message to combobox
 		m_pListBox->SetID(CB_LIST_ID);
-		m_pListBox->DM_SetVisible(false);				// Ö»ÔÚÏÂÀ­Ê±²ÅÏÔÊ¾£¬´ËÊ±Ò²Ã»ÓĞ³õÊ¼»¯Íêlayout
+		m_pListBox->DM_SetVisible(false);				// åªåœ¨ä¸‹æ‹‰æ—¶æ‰æ˜¾ç¤ºï¼Œæ­¤æ—¶ä¹Ÿæ²¡æœ‰åˆå§‹åŒ–å®Œlayout
 
 		if (-1 != m_iInitSel)
 		{
@@ -161,8 +161,8 @@ void TGPComboboxEx::OnSelChanged()
 			break;
 		}
 		DMXmlNode XmlNode = pSelItem->XmlDoc.Root();
-		// todo.XMLNODE¶¼¸øÁË£¡×Ô¼ºÉè¼ÆcomboxÒªÔõÃ´ÏÔÊ¾
-		// ÕâÀï½ö×ö¸öÊ¾Àı:
+		// todo.XMLNODEéƒ½ç»™äº†ï¼è‡ªå·±è®¾è®¡comboxè¦æ€ä¹ˆæ˜¾ç¤º
+		// è¿™é‡Œä»…åšä¸ªç¤ºä¾‹:
 		if (m_Node.m_pFirstChild) 
 		{
 			DMXmlNode StaticXmlNode =  XmlNode.FirstChild();
@@ -181,11 +181,11 @@ void TGPComboboxEx::OnSelChanged()
 				LPCSTR strText = MsXmlNode.Attribute("text");
 				m_Node.m_pLastChild->SetAttribute("text",strText);
 
-				//todo.ÉèÖÃtipsÎÄ¼şÂ·¾¶
+				//todo.è®¾ç½®tipsæ–‡ä»¶è·¯å¾„
 				wchar_t szTipsPath[MAX_PATH] = {0};
 				GetRootFullPath(L"TGPRes\\layout\\xml\\tips\\dui_cftips1.xml",szTipsPath,MAX_PATH);
 				m_Node.m_pLastChild->SetAttribute("tipxmlid",DMW2A(szTipsPath));
-				m_Node.m_pLastChild->SetAttribute("tipflags","0,0,0,1");// ²ÎÊıÊôĞÔ²Î¿´TGPTipsImpl::ShowTips
+				m_Node.m_pLastChild->SetAttribute("tipflags","0,0,0,1");// å‚æ•°å±æ€§å‚çœ‹TGPTipsImpl::ShowTips
 			}
 		}
 

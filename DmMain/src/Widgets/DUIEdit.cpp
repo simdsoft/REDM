@@ -1,9 +1,9 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIEdit.h"
 
 namespace DM
 {
-	/// def ³­×Ôwndless
+	/// def æŠ„è‡ªwndless
 	const LONG g_InitTextMaxLen = (32*1024) - 1;
 	#define FValidCF(_pcf) ((_pcf)->cbSize == sizeof(CHARFORMAT2W))
 	#define FValidPF(_ppf) ((_ppf)->cbSize == sizeof(PARAFORMAT2))
@@ -63,7 +63,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú
+	// Function Des: å¯¹å¤–æŽ¥å£
 	void DUIRichEdit::SetText(const CStringW& text)
 	{
 		DM_SendMessage(WM_SETTEXT, 0, (LPARAM)(LPCWSTR)text);
@@ -75,7 +75,7 @@ namespace DM
 		CStringW strRet;
 		int nLen = (int)thiz->DM_SendMessage(WM_GETTEXTLENGTH);
 		if (nLen > 0) {
-			wchar_t* pBuf = strRet.GetBufferSetLength(nLen); // ÄÚ²¿»áÔ¤Áô'\0'µÄ¿Õ¼ä
+			wchar_t* pBuf = strRet.GetBufferSetLength(nLen); // å†…éƒ¨ä¼šé¢„ç•™'\0'çš„ç©ºé—´
 			thiz->DM_SendMessage(WM_GETTEXT, (WPARAM)nLen + 1, (LPARAM)pBuf);
 		}
 		return strRet;
@@ -274,7 +274,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	int DUIRichEdit::OnCreate(LPVOID)
 	{
@@ -293,7 +293,7 @@ namespace DM
 			m_pTxtHost->AddRef();
 			if (!m_pTxtHost->Init(this))
 			{
-				m_pTxtHost->Release();// ÒýÓÃ¼ÆÊýÎª0£¬×Ô¶¯É¾³ý
+				m_pTxtHost->Release();// å¼•ç”¨è®¡æ•°ä¸º0ï¼Œè‡ªåŠ¨åˆ é™¤
 				m_pTxtHost = NULL;
 				iRet = 1;
 				break;
@@ -301,19 +301,19 @@ namespace DM
 			
 			//inplace activate
 			m_pTxtHost->GetTextService()->OnTxInPlaceActivate(NULL);
-			//Ä¬ÈÏÃ»ÓÐ½¹µã
+			//é»˜è®¤æ²¡æœ‰ç„¦ç‚¹
 			m_pTxtHost->m_bUiActive=FALSE;
 			m_pTxtHost->GetTextService()->OnTxUIDeactivate();
 			m_pTxtHost->GetTextService()->TxSendMessage(WM_KILLFOCUS, 0, 0, 0);
 
 			// set IME
-			// »ñÈ¡IMEºÍÔ¶¶«ÓïÑÔÖ§³ÖÑ¡Ïî
+			// èŽ·å–IMEå’Œè¿œä¸œè¯­è¨€æ”¯æŒé€‰é¡¹
 			LRESULT lr = DM_SendMessage(EM_GETLANGOPTIONS);
 			lr |= IMF_AUTOKEYBOARD | IMF_DUALFONT;
 			lr &= ~IMF_AUTOFONT;
 			DM_SendMessage(EM_SETLANGOPTIONS, 0, lr);
 
-			// ÉèÖÃÎÄ×Ö
+			// è®¾ç½®æ–‡å­—
 			SetWindowText(m_pDUIXmlInfo->m_strText);
 
 			OnEnableDragDrop(!(m_dwEditStyle&ES_READONLY)&m_bEnableDragDrop);
@@ -387,7 +387,7 @@ namespace DM
 			if(DMSUCCEEDED(GetContainer()->OnIsTranslucent()))
 			{
 				//pCanvas->AlphaRestore();
-				rcClient.DeflateRect(m_rcInsetMargin);// ²»ÔÚÎÄ×Ö·¶Î§ÄÚµÄ²»×öÌî³ä
+				rcClient.DeflateRect(m_rcInsetMargin);// ä¸åœ¨æ–‡å­—èŒƒå›´å†…çš„ä¸åšå¡«å……
 				pCanvas->AdjustAlpha(0xff,rcClient);
 			}
 
@@ -428,7 +428,7 @@ namespace DM
 
 			if (ES_PASSWORD & m_dwEditStyle
 				|| ES_NUMBER & m_dwEditStyle)
-			{// ½ûÓÃÖÐÎÄÊäÈë·¨£¬²Î¿´http://blog.csdn.net/xie1xiao1jun/article/details/17913967
+			{// ç¦ç”¨ä¸­æ–‡è¾“å…¥æ³•ï¼Œå‚çœ‹http://blog.csdn.net/xie1xiao1jun/article/details/17913967
 				m_hCurIMC = ::ImmAssociateContext(GetContainer()->OnGetHWnd(), NULL);
 			}
 		} while (false);
@@ -463,7 +463,7 @@ namespace DM
 
 			if (ES_PASSWORD & m_dwEditStyle
 				|| ES_NUMBER & m_dwEditStyle)
-			{// »Ö¸´
+			{// æ¢å¤
 				ImmAssociateContext(GetContainer()->OnGetHWnd(), m_hCurIMC);
 			}
 		} while (false);
@@ -488,7 +488,7 @@ namespace DM
 			{
 				DV_SetFocusWnd();
 				if (!m_bAutoSel)
-				{// ¸Ä±ä¹â±êÎ»ÖÃ
+				{// æ”¹å˜å…‰æ ‡ä½ç½®
 					pServ->TxSendMessage(m_DUIData.m_pCurMsg->uMsg,m_DUIData.m_pCurMsg->wp,m_DUIData.m_pCurMsg->lp,NULL);
 				}
 			}
@@ -514,10 +514,10 @@ namespace DM
 
 	void DUIRichEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		// ÔÚÉèÖÃÁËwantReturn×´Ì¬Ê±£¬¶øÇÒÎªµ¥ÐÐÊ±£¬·¢´ËÏûÏ¢£¬ÓÃÓÚÅäºÏÍøÒ³ÏÔÊ¾¿Ø¼þ
-		if (VK_RETURN==nChar  // °´ÏÂEnter
-			&&((m_dwEditStyle&ES_WANTRETURN)&&!PUSH_CTRL)// wantReturn=1£¬²¢ÇÒÃ»ÓÐÍ¬Ê±°´ÏÂCTRL
-			&&!(m_dwEditStyle&ES_MULTILINE)// ²»ÊÇ¶àÐÐ
+		// åœ¨è®¾ç½®äº†wantReturnçŠ¶æ€æ—¶ï¼Œè€Œä¸”ä¸ºå•è¡Œæ—¶ï¼Œå‘æ­¤æ¶ˆæ¯ï¼Œç”¨äºŽé…åˆç½‘é¡µæ˜¾ç¤ºæŽ§ä»¶
+		if (VK_RETURN==nChar  // æŒ‰ä¸‹Enter
+			&&((m_dwEditStyle&ES_WANTRETURN)&&!PUSH_CTRL)// wantReturn=1ï¼Œå¹¶ä¸”æ²¡æœ‰åŒæ—¶æŒ‰ä¸‹CTRL
+			&&!(m_dwEditStyle&ES_MULTILINE)// ä¸æ˜¯å¤šè¡Œ
 			)
 		{
 			DMEventREWantReturnArgs Evt(this);
@@ -564,7 +564,7 @@ namespace DM
 		default:
 			{
 				if (m_dwEditStyle&ES_NUMBER 
-					&&!isdigit(nChar) // ·ÇÊý×Ö
+					&&!isdigit(nChar) // éžæ•°å­—
 					&&nChar!='-' && nChar!='.' && nChar!=',')
 				{
 					bSendMsg = false;
@@ -618,7 +618,7 @@ namespace DM
 				break;
 			}
 
-			// ¼ÆËã
+			// è®¡ç®—
 			CRect rcInsetMargin = m_rcInsetMargin;
 			if(!m_bRichText && m_bSingleLineVCenter && !(m_dwEditStyle&ES_MULTILINE))
 			{
@@ -849,7 +849,7 @@ namespace DM
 	LRESULT DUIRichEdit::OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		// For a Unicode window, this message is the same as WM_CHAR.
-		if (m_dwEditStyle&ES_NUMBER) // Êý×Ö
+		if (m_dwEditStyle&ES_NUMBER) // æ•°å­—
 		{
 		}
 		else
@@ -998,7 +998,7 @@ namespace DM
 		return bRet;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	HRESULT DUIRichEdit::InitDefaultCharFormat(CHARFORMAT2W* pcf,IDMFont *pFt)
 	{
 		HRESULT hr = S_FALSE;
@@ -1036,7 +1036,7 @@ namespace DM
 			const LOGFONTW *plf = pFont->GetLogFont();
 			if (yPixPerInch)
 			{
-				pcf->yHeight = DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);// ´Ë´¦²»ÄÜÎª¸º
+				pcf->yHeight = DMABS(plf->lfHeight*LY_PER_INCH/yPixPerInch);// æ­¤å¤„ä¸èƒ½ä¸ºè´Ÿ
 			}
 			pcf->yOffset	 = 0;
 			pcf->dwEffects   = 0;
@@ -1130,7 +1130,7 @@ namespace DM
 			{
 				break;
 			}
-			// ´ËÏûÏ¢¿ÉÄÜÓÉsetfocusÏûÏ¢´¥·¢£¬´ËÊ±»¹Ã»ÓÐÉèÖÃÍê³É½¹µã´°¿Ú£¬ËùÒÔÊ¹ÓÃ±êÖ¾ÅÐ¶Ï
+			// æ­¤æ¶ˆæ¯å¯èƒ½ç”±setfocusæ¶ˆæ¯è§¦å‘ï¼Œæ­¤æ—¶è¿˜æ²¡æœ‰è®¾ç½®å®Œæˆç„¦ç‚¹çª—å£ï¼Œæ‰€ä»¥ä½¿ç”¨æ ‡å¿—åˆ¤æ–­
 			if (bShow&&m_pTxtHost->m_bUiActive)
 			{
 				m_pCaret->Show();
@@ -1175,7 +1175,7 @@ namespace DM
 		do 
 		{
 			if (NULL == m_pTxtHost->GetTextService())
-			{// ´Ë´¦²»ÄÜ×öm_pCaretµÄÅÐ¶Ï£¬ÒòÎªÒªÈ¥µôIMF_AUTOFONTÊ±m_pCaretÈÔÎª¿Õ
+			{// æ­¤å¤„ä¸èƒ½åšm_pCaretçš„åˆ¤æ–­ï¼Œå› ä¸ºè¦åŽ»æŽ‰IMF_AUTOFONTæ—¶m_pCaretä»ä¸ºç©º
 				break;
 			}
 			if (WM_KEYDOWN == uMsg)
@@ -1206,60 +1206,60 @@ namespace DM
 
 	HRESULT DUIRichEdit::OnTxNotify( DWORD iNotify,LPVOID pv )
 	{
-		// Ê¾ÀýÈ¡×Ôsharpui--------------
+		// ç¤ºä¾‹å–è‡ªsharpui--------------
 		switch (iNotify)
 		{
-		case EN_MAXTEXT:// ´ïµ½×î´ó³¤¶È
+		case EN_MAXTEXT:// è¾¾åˆ°æœ€å¤§é•¿åº¦
 			break;
-		case EN_SELCHANGE:// Ñ¡Ôñ±ä»¯£¬ÐèÒªÊÂ¼þÑÚÂëENM_SELCHANGE
+		case EN_SELCHANGE:// é€‰æ‹©å˜åŒ–ï¼Œéœ€è¦äº‹ä»¶æŽ©ç ENM_SELCHANGE
 			{
 				SELCHANGE* s = (SELCHANGE*)pv;            
 			}
 			break;
-		case EN_ERRSPACE:// ÄÚ´æÒç³ö
+		case EN_ERRSPACE:// å†…å­˜æº¢å‡º
 			break;
-		case EN_CHANGE:	// ÊäÈë±ä»¯£¬ÐèÒªÊÂ¼þENM_CHANGEÑÚÂë
+		case EN_CHANGE:	// è¾“å…¥å˜åŒ–ï¼Œéœ€è¦äº‹ä»¶ENM_CHANGEæŽ©ç 
 			{
 				CHANGENOTIFY* c = (CHANGENOTIFY*)pv;
 			}
 			break;
-		case EN_DROPFILES:// ÎÄ¼þÍÏ¶¯£¬ÐèÒªÊÂ¼þENM_DROPFILESÑÚÂë
+		case EN_DROPFILES:// æ–‡ä»¶æ‹–åŠ¨ï¼Œéœ€è¦äº‹ä»¶ENM_DROPFILESæŽ©ç 
 			{
 				ENDROPFILES* e = (ENDROPFILES*)pv;
 			}
 			break;
-		case EN_LINK:// ³¬Á´½Ó£¬dwEffectsÐèÒªCFE_LINK
+		case EN_LINK:// è¶…é“¾æŽ¥ï¼ŒdwEffectséœ€è¦CFE_LINK
 			{
 				ENLINK* enlink = (ENLINK*)pv;
 				int i = 0;
 			}
 			break;
-		case EN_REQUESTRESIZE: // ÐèÒªÊÂ¼þÑÚÂëENM_REQUESTRESIZE
+		case EN_REQUESTRESIZE: // éœ€è¦äº‹ä»¶æŽ©ç ENM_REQUESTRESIZE
 			{
 				break;
 			}
-		case EN_OLEOPFAILED:// ole¶ÔÏó²Ù×÷Ê§°Ü
+		case EN_OLEOPFAILED:// oleå¯¹è±¡æ“ä½œå¤±è´¥
 			break;
-		case EN_UPDATE:// ×¼±¸»æÖÆ
+		case EN_UPDATE:// å‡†å¤‡ç»˜åˆ¶
 			break;
-		case EN_KILLFOCUS:// Ê§È¥½¹µã
+		case EN_KILLFOCUS:// å¤±åŽ»ç„¦ç‚¹
 			break;
-		case EN_PROTECTED:// Êý¾Ý±£»¤, CFE_PROTECTED
+		case EN_PROTECTED:// æ•°æ®ä¿æŠ¤, CFE_PROTECTED
 			{
 				ENPROTECTED* enp = (ENPROTECTED*)pv;
 			}
 			break;
-		case EN_MSGFILTER:// ÏûÏ¢¹ýÂË
+		case EN_MSGFILTER:// æ¶ˆæ¯è¿‡æ»¤
 			{
 				MSGFILTER* mf = (MSGFILTER*)pv;
 			}
 			break;
-		case EN_SAVECLIPBOARD:// ´æ´¢¼ôÌù°å
+		case EN_SAVECLIPBOARD:// å­˜å‚¨å‰ªè´´æ¿
 			{
 				ENSAVECLIPBOARD* ens = (ENSAVECLIPBOARD*)pv;
 			}
 			break;
-		case EN_DRAGDROPDONE: // ÍÏ¶¯Íê³É£¬ÐèÒªÊÂ¼þÑÚÂëENM_DRAGDROPDONE
+		case EN_DRAGDROPDONE: // æ‹–åŠ¨å®Œæˆï¼Œéœ€è¦äº‹ä»¶æŽ©ç ENM_DRAGDROPDONE
 			break;
 		}
 
@@ -1285,7 +1285,7 @@ namespace DM
 			}
 
 			if (0 == _stricmp(lpszAttribute, DMAttr::DUIRichEditAttr::INT_editstyle))
-			{// Ç¿ÖÆÊôÐÔ
+			{// å¼ºåˆ¶å±žæ€§
 				int iStyle = 0;
 				DMAttributeDispatch::ParseInt(lpszValue,iStyle);
 				m_dwEditStyle = iStyle;
@@ -1391,7 +1391,7 @@ namespace DM
 				dwMask |= TXTBIT_MULTILINE;
 				if (!bLoadXml)
 				{
-					DM_SendMessage(WM_NCCALCSIZE);// ÖØÐÂ¼ÆËãËÞÖ÷¿Í»§Çø´óÐ¡
+					DM_SendMessage(WM_NCCALCSIZE);// é‡æ–°è®¡ç®—å®¿ä¸»å®¢æˆ·åŒºå¤§å°
 					DM_InvalidateRect(m_rcWindow);
 				}
 				break;
@@ -1549,7 +1549,7 @@ namespace DM
 				}
 				break;
 			}
-			iErr = DM_ECODE_FAIL;// Ê²Ã´¶¼Ã»´¦Àíµ½£¡
+			iErr = DM_ECODE_FAIL;// ä»€ä¹ˆéƒ½æ²¡å¤„ç†åˆ°ï¼
 		} while (false);
 
 		if (!bLoadXml&&DMSUCCEEDED(iErr))
@@ -1565,7 +1565,7 @@ namespace DM
 		do 
 		{
 			DMAttributeDispatch::ParseColor(pszValue,m_clrCaret);
-			if (NULL == m_pCaret)// ³õ»¯Ê±¹â±êÊÇÔÚcreateºó
+			if (NULL == m_pCaret)// åˆåŒ–æ—¶å…‰æ ‡æ˜¯åœ¨createåŽ
 			{
 				break;	
 			}
@@ -1579,7 +1579,7 @@ namespace DM
 		do 
 		{
 			DMAttributeDispatch::ParseInt(pszValue,m_iCaretAniCount);
-			if (NULL == m_pCaret)// ³õ»¯Ê±¹â±êÊÇÔÚcreateºó
+			if (NULL == m_pCaret)// åˆåŒ–æ—¶å…‰æ ‡æ˜¯åœ¨createåŽ
 			{
 				break;	
 			}
@@ -1715,7 +1715,7 @@ namespace DM
 				m_dwEditStyle|=ES_RIGHT;
 			}
 
-			if (!bLoadXml)// Ö±½Ó¸üÐÂ
+			if (!bLoadXml)// ç›´æŽ¥æ›´æ–°
 			{
 				if (m_dwEditStyle&ES_CENTER)
 				{
@@ -1808,7 +1808,7 @@ namespace DM
 			if ((!m_strSurfaceText.IsEmpty() || m_pSurfaceSkin)
 				&& 0==GetWindowTextLength() && hDUIWnd!=m_hDUIWnd)
 			{
-				break;// ÓÐÃÉ²ãÊ±²»»æÖÆ
+				break;// æœ‰è’™å±‚æ—¶ä¸ç»˜åˆ¶
 			}
 			SetMsgHandled(FALSE);
 		} while (false);
@@ -1827,7 +1827,7 @@ namespace DM
 			if(DMSUCCEEDED(GetContainer()->OnIsTranslucent())) //lzlon add
 			{
 				CRect rcClientTemp = rcClient;
-				rcClientTemp.DeflateRect(m_rcInsetMargin);// ²»ÔÚÎÄ×Ö·¶Î§ÄÚµÄ²»×öÌî³ä
+				rcClientTemp.DeflateRect(m_rcInsetMargin);// ä¸åœ¨æ–‡å­—èŒƒå›´å†…çš„ä¸åšå¡«å……
 				pCanvas->AdjustAlpha(0xff,rcClientTemp);
 			}
 

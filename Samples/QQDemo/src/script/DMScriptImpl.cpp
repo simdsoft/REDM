@@ -1,8 +1,8 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "DMScriptImpl.h"
 
 /// <summary>
-///	 ÓÃÓÚÖ§³Ö´òÓ¡log
+///	 ç”¨äºæ”¯æŒæ‰“å°log
 /// </summary>
 class DMLuaLog
 {
@@ -111,7 +111,7 @@ DMCode DMScriptImpl::RunEvent(DMEventArgs* pEvt)
 			{
 				break;
 			}
-			// Î´´¦ÀíµÄ·µ»Ø0£¬ËùÒÔÕâÀï»¹ÊÇÓÃbool°É
+			// æœªå¤„ç†çš„è¿”å›0ï¼Œæ‰€ä»¥è¿™é‡Œè¿˜æ˜¯ç”¨boolå§
 			bool bRet = DMLUA::call<bool>(m_L,lpszEvtId,pEvt);
 			if (bRet)
 			{
@@ -163,11 +163,11 @@ DMCode DMScriptImpl::InitDMLua()
 #define DM_SET_T(T,X)               DMLUA::set<T>(m_L, #X, X);
 
 /// <summary>
-///		1.ÖØÔØº¯Êı²»ÄÜ¼ÓÈë
-///     2.¹¹Ôìº¯ÊıÖ»ÄÜ¼ÓÒ»¸ö
-///     3.²»Ö§³Ö²»¶¨²ÎÊı
-///     4.²»Ö§³Öº¯Êı¶¨ÒåµÄÄ¬ÈÏ²ÎÊı´«Èë,Ä¬ÈÏ²ÎÊı¾ÍÊÇ0
-///     5.Ö»Ö§³Ö¼Ì³ĞÓÚÒ»¸ö»ùÀà£¬ËùÒÔÌá¹©DMDyncTÓÃÓÚÇ¿ÖÆ×ª»»µ½ÆäËû»ùÀà£¨´Ó¶ø¿ÉÒÔµ÷ÓÃ´ÓÆäËû»ùÀàµÄº¯Êı,ºÍÕı³£µÄC++×ª»»Ò»¸öĞ§¹û£©
+///		1.é‡è½½å‡½æ•°ä¸èƒ½åŠ å…¥
+///     2.æ„é€ å‡½æ•°åªèƒ½åŠ ä¸€ä¸ª
+///     3.ä¸æ”¯æŒä¸å®šå‚æ•°
+///     4.ä¸æ”¯æŒå‡½æ•°å®šä¹‰çš„é»˜è®¤å‚æ•°ä¼ å…¥,é»˜è®¤å‚æ•°å°±æ˜¯0
+///     5.åªæ”¯æŒç»§æ‰¿äºä¸€ä¸ªåŸºç±»ï¼Œæ‰€ä»¥æä¾›DMDyncTç”¨äºå¼ºåˆ¶è½¬æ¢åˆ°å…¶ä»–åŸºç±»ï¼ˆä»è€Œå¯ä»¥è°ƒç”¨ä»å…¶ä»–åŸºç±»çš„å‡½æ•°,å’Œæ­£å¸¸çš„C++è½¬æ¢ä¸€ä¸ªæ•ˆæœï¼‰
 /// </summary>
 
 DMCode DMScriptImpl::InitDMLua_Struct()
@@ -220,7 +220,7 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 
 	// CStringA + CStringW
 	DMCLASS_ADD(CStringA);
-	DMCLASS_CON(CStringA,const char*);// Èç¹ûÒª¸´ÖÆÒ»·İ£¬Ê¹ÓÃb = CStringA(a:GetBuffer())
+	DMCLASS_CON(CStringA,const char*);// å¦‚æœè¦å¤åˆ¶ä¸€ä»½ï¼Œä½¿ç”¨b = CStringA(a:GetBuffer())
 	DMCLASS_DEF(CStringA,GetLength);
 	DMCLASS_DEF(CStringA,IsEmpty);
 	DMCLASS_DEF(CStringA,Empty);
@@ -237,9 +237,9 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DMCLASS_DEF(CStringA,Left);
 	DMCLASS_DEF(CStringA,MakeUpper);
 	DMCLASS_DEF(CStringA,MakeLower);
-	DMCLASS_DEF(CStringA,TrimRight);// ×¢Òâ´«Èë²ÎÊı0x20
-	DMCLASS_DEF(CStringA,TrimLeft); // ×¢Òâ´«Èë²ÎÊı0x20
-	DMCLASS_DEF(CStringA,Trim);// ×¢Òâ´«Èë²ÎÊı0x20
+	DMCLASS_DEF(CStringA,TrimRight);// æ³¨æ„ä¼ å…¥å‚æ•°0x20
+	DMCLASS_DEF(CStringA,TrimLeft); // æ³¨æ„ä¼ å…¥å‚æ•°0x20
+	DMCLASS_DEF(CStringA,Trim);// æ³¨æ„ä¼ å…¥å‚æ•°0x20
 	DMCLASS_DEF(CStringA,InsertChar);
 	DMCLASS_DEF(CStringA,Insert);
 	DMCLASS_DEF(CStringA,Delete);
@@ -249,7 +249,7 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DMCLASS_DEF(CStringA,FindChar);
 	DMCLASS_DEF(CStringA,ReverseFind);
 	DMCLASS_DEF(CStringA,Find);
-	DMCLASS_DEF(CStringA,GetBuffer);// GetBufferµ÷ÓÃºó£¬Ò»¶¨Òªµ÷ÓÃReleaseBufferÊÍ·Å£¬²»È»ÄÚ´æ¾Í¿ÉÄÜÁôÔÚexeÖĞ£¡
+	DMCLASS_DEF(CStringA,GetBuffer);// GetBufferè°ƒç”¨åï¼Œä¸€å®šè¦è°ƒç”¨ReleaseBufferé‡Šæ”¾ï¼Œä¸ç„¶å†…å­˜å°±å¯èƒ½ç•™åœ¨exeä¸­ï¼
 	DMCLASS_DEF(CStringA,ReleaseBuffer);
 	DMCLASS_DEF(CStringA,GetBufferSetLength);
 	DMCLASS_DEF(CStringA,SetLength);
@@ -257,8 +257,8 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DMCLASS_DEF(CStringA,UnlockBuffer);
 
 	DMCLASS_ADD(CStringW);
-	DMCLASS_CON(CStringW,const wchar_t*);// Èç¹ûÒª¸´ÖÆÒ»·İ£¬Ê¹ÓÃb = CStringW(a:GetBuffer())
-	DM_DEF(DMCA2W);// ÓÃÓÚÖ±½Ó´Ó½Å±¾ÖĞ³õÊ¼»¯CStringW
+	DMCLASS_CON(CStringW,const wchar_t*);// å¦‚æœè¦å¤åˆ¶ä¸€ä»½ï¼Œä½¿ç”¨b = CStringW(a:GetBuffer())
+	DM_DEF(DMCA2W);// ç”¨äºç›´æ¥ä»è„šæœ¬ä¸­åˆå§‹åŒ–CStringW
 	DMCLASS_DEF(CStringW,GetLength);
 	DMCLASS_DEF(CStringW,IsEmpty);
 	DMCLASS_DEF(CStringW,Empty);
@@ -275,9 +275,9 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DMCLASS_DEF(CStringW,Left);
 	DMCLASS_DEF(CStringW,MakeUpper);
 	DMCLASS_DEF(CStringW,MakeLower);
-	DMCLASS_DEF(CStringW,TrimRight);// ×¢Òâ´«Èë²ÎÊı0x20
-	DMCLASS_DEF(CStringW,TrimLeft); // ×¢Òâ´«Èë²ÎÊı0x20
-	DMCLASS_DEF(CStringW,Trim);// ×¢Òâ´«Èë²ÎÊı0x20
+	DMCLASS_DEF(CStringW,TrimRight);// æ³¨æ„ä¼ å…¥å‚æ•°0x20
+	DMCLASS_DEF(CStringW,TrimLeft); // æ³¨æ„ä¼ å…¥å‚æ•°0x20
+	DMCLASS_DEF(CStringW,Trim);// æ³¨æ„ä¼ å…¥å‚æ•°0x20
 	DMCLASS_DEF(CStringW,InsertChar);
 	DMCLASS_DEF(CStringW,Insert);
 	DMCLASS_DEF(CStringW,Delete);
@@ -294,7 +294,7 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DMCLASS_DEF(CStringW,LockBuffer);
 	DMCLASS_DEF(CStringW,UnlockBuffer);
 
-	// ×¢Òâ,luaÎŞ·¨Ö±½Ó´«wcharºÍprint(wchar),ËùÒÔÒªÏÈ×ª³É¶à×Ö½ÚÔÙprint
+	// æ³¨æ„,luaæ— æ³•ç›´æ¥ä¼ wcharå’Œprint(wchar),æ‰€ä»¥è¦å…ˆè½¬æˆå¤šå­—èŠ‚å†print
 	DM_DEF(DMA2W);
 	DM_DEF(DMW2A);
 	DM_DEF(DMA2A);
@@ -313,7 +313,7 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 	DM_SET_T(int, DM_ECODE_OK);
 	DM_SET_T(int, DM_ECODE_FAIL);
 
-	// ÄÚÖÃ¶¨Ê±Æ÷
+	// å†…ç½®å®šæ—¶å™¨
 	DM_SET_T(int, TIMER_NEXTFRAME);
 
 	return DM_ECODE_OK;
@@ -321,7 +321,7 @@ DMCode DMScriptImpl::InitDMLua_Struct()
 
 DMCode DMScriptImpl::InitDMLua_DUIWnd()
 {
-	// DMRefNum,²»ÔÊĞíÖ±½Ó´´½¨
+	// DMRefNum,ä¸å…è®¸ç›´æ¥åˆ›å»º
 	DMCLASS_ADD(DMRefNum);
 	DMCLASS_DEF(DMRefNum,AddRef);
 	DMCLASS_DEF(DMRefNum,Release);
@@ -356,7 +356,7 @@ DMCode DMScriptImpl::InitDMLua_DUIWnd()
 	DMCLASS_ADD(DUIWindow);
 	DMCLASS_CON(DUIWindow);
 	DMCLASS_INH(DUIWindow,DMBase);
-	DM_DEF_N(DUIWindow2DUIMsgHandler,(DMDyncT<DUIWindowPtr,DUIMsgHandler*>));// DUIWindowPtr×ª³ÉDUIMsgHandler*
+	DM_DEF_N(DUIWindow2DUIMsgHandler,(DMDyncT<DUIWindowPtr,DUIMsgHandler*>));// DUIWindowPtrè½¬æˆDUIMsgHandler*
 	DMCLASS_DEF(DUIWindow,GetName);
 	DMCLASS_DEF(DUIWindow,GetID);
 	DMCLASS_DEF(DUIWindow,SetID);
@@ -365,7 +365,7 @@ DMCode DMScriptImpl::InitDMLua_DUIWnd()
 	DMCLASS_DEF(DUIWindow,HitTestPoint);
 	DMCLASS_DEF(DUIWindow,GetDUIWnd);
 
-	DMCLASS_DEF(DUIWindow,DM_SetTimer);// 255ÒÔÄÚµÄ¶¨Ê±Æ÷
+	DMCLASS_DEF(DUIWindow,DM_SetTimer);// 255ä»¥å†…çš„å®šæ—¶å™¨
 	DMCLASS_DEF(DUIWindow,DM_KillTimer);
 
 	return DM_ECODE_OK;
@@ -386,7 +386,7 @@ DMCode DMScriptImpl::InitDMLua_DMHWnd()
 	// DMHWnd
 	DMCLASS_ADD(DMHWnd);
 	DMCLASS_CON(DMHWnd);
-	DM_DEF_N(DUIWindow2DMHWnd,(DMDyncT<DUIWindowPtr,DMHWnd*>));// DUIWindowPtr×ª³ÉDMHWnd*
+	DM_DEF_N(DUIWindow2DMHWnd,(DMDyncT<DUIWindowPtr,DMHWnd*>));// DUIWindowPtrè½¬æˆDMHWnd*
 	
 
 	return DM_ECODE_OK;
@@ -406,7 +406,7 @@ DMCode DMScriptImpl::InitDMLua_DMApp()
 // -----------
 DMCode DMScriptImpl::InitDMLua_Global()
 {
-	// Ä¬ÈÏRes°ó¶¨
+	// é»˜è®¤Resç»‘å®š
 	do 
 	{
 		if (NULL == g_pDMApp)
@@ -414,7 +414,7 @@ DMCode DMScriptImpl::InitDMLua_Global()
 			break;
 		}
 
-		/* Á½ÖÖ·½Ê½,DM_SET_N¹ØÁª±äÁ¿(Ôç°ó¶¨)ºÍDM_DEF_N¹ØÁªº¯Êı(Íí°ó¶¨)£¬Ôç°ó¶¨µÄ»µ´¦ÊÇÓĞ¿ÉÄÜÈ«¾Ö±äÁ¿Î´³õÊ¼»¯,¾Íµ÷ÓÃ°ó¶¨ÁË*/
+		/* ä¸¤ç§æ–¹å¼,DM_SET_Nå…³è”å˜é‡(æ—©ç»‘å®š)å’ŒDM_DEF_Nå…³è”å‡½æ•°(æ™šç»‘å®š)ï¼Œæ—©ç»‘å®šçš„åå¤„æ˜¯æœ‰å¯èƒ½å…¨å±€å˜é‡æœªåˆå§‹åŒ–,å°±è°ƒç”¨ç»‘å®šäº†*/
 		DM_SET_N(g_pDMApp,DMApp::getSingletonPtr());
 		DM_SET_N(g_pDMRes,(DMDefRegT<IDMRes, DMREG_Res>()));
 

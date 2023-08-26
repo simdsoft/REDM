@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	WidgetAttr.h
 // File mark:   
-// File summary:ÁĞ³ö³ıPOSÍâDUI´°¿ÚµÄËùÓĞÊôĞÔ
+// File summary:åˆ—å‡ºé™¤POSå¤–DUIçª—å£çš„æ‰€æœ‰å±æ€§
 // Author:		guoyouhuang 
 // Edition:     1.0
 // Create date: 2016-8-15
@@ -48,7 +48,7 @@ public:
 	DUIPropFrame*									   m_pPropFrame;
 	DUIWindow*										   m_pCurDUI;
 	CStringAList                                       m_strList;
-	PropString*                                        m_pPropStyle;      ///< ÓÃÓÚ¶ÔstyleÌØÊâ´¦Àí
-	// ÓÃÓÚ×ª·¢ÏûÏ¢
+	PropString*                                        m_pPropStyle;      ///< ç”¨äºå¯¹styleç‰¹æ®Šå¤„ç†
+	// ç”¨äºè½¬å‘æ¶ˆæ¯
 	static WidgetAttr*                                 ms_pthis;
 };

@@ -1,16 +1,16 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMMsgCrack.h 
-// File Des: ·ÂMFCÏûÏ¢Ó³Éäºê
+// File Des: ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 // File Summary: 
 // Cur Version: 1.1
 // Author:
 // Create Data:
 // History:
 // 		<Author>	<Time>		<Version>	  <Des>
-//      guoyou		2015-1-14	1.0			  MSG_WM_PAINT ½øĞĞĞŞ¸Ä£¬±ÜÃâOnPaintËÀËø£¨by JVY)
+//      guoyou		2015-1-14	1.0			  MSG_WM_PAINT è¿›è¡Œä¿®æ”¹ï¼Œé¿å…OnPaintæ­»é”ï¼ˆby JVY)
 //-------------------------------------------------------
 #pragma once
 
@@ -25,7 +25,7 @@ namespace DM
 #endif
 
 //-------------------------------------------------------
-// ÔÚÍ·ÎÄ¼şÖĞÉùÃ÷,ÔÚÔ´ÎÄ¼şÖĞ¶¨Òå,Í¨ÓÃµÄ×÷·¨£¬µ÷ÊÔÊ±¿ÉÊ¹ÓÃMacroTool×ª»»³É»»ĞĞµÄÔ´´úÂëµ÷ÊÔ
+// åœ¨å¤´æ–‡ä»¶ä¸­å£°æ˜,åœ¨æºæ–‡ä»¶ä¸­å®šä¹‰,é€šç”¨çš„ä½œæ³•ï¼Œè°ƒè¯•æ—¶å¯ä½¿ç”¨MacroToolè½¬æ¢æˆæ¢è¡Œçš„æºä»£ç è°ƒè¯•
 #define DECLARE_MSG_MAP() \
 public: \
 	BOOL IsMsgHandled() const; \
@@ -68,7 +68,7 @@ public: \
 #define DECLARE_MESSAGE_MAP()					DECLARE_MSG_MAP()
 #endif
 //-------------------------------------------------------
-// ÔÚÍ·ÎÄ¼şÖĞÉùÃ÷²¢¶¨Òå,ÓÃÓÚÄ£°åÀà
+// åœ¨å¤´æ–‡ä»¶ä¸­å£°æ˜å¹¶å®šä¹‰,ç”¨äºæ¨¡æ¿ç±»
 #define BEGIN_MSG_MAPT(theClass) \
 public: \
 	BOOL m_bMsgHandled; \
@@ -102,7 +102,7 @@ public: \
 	case 0:
 
 //-------------------------------------------------------
-// ½áÊø
+// ç»“æŸ
 #define END_MSG_MAP() \
 	break; \
 		default: \
@@ -113,7 +113,7 @@ public: \
 	}
 
 //-------------------------------------------------------
-// °ÑÏûÏ¢×ª·¢µ½ÆäËüÀà´¦Àí£¬Ò»°ãÓÃÓÚ×ÓÀà´¦Àíºó×ªÓÉ¸¸Àà´¦Àí
+// æŠŠæ¶ˆæ¯è½¬å‘åˆ°å…¶å®ƒç±»å¤„ç†ï¼Œä¸€èˆ¬ç”¨äºå­ç±»å¤„ç†åè½¬ç”±çˆ¶ç±»å¤„ç†
 #define CHAIN_MSG_MAP(theChainClass) \
 	{ \
 	if(theChainClass::ProcessWindowMessage(hWnd, uMsg, wParam, lParam, lResult,dwMsgMapID)) \
@@ -127,17 +127,17 @@ public: \
 	}
 
 //-------------------------------------------------------
-// Í¨ÓÃµÄmsgMapIDÄ¬ÈÏÎª0,ÄãÒ²¿ÉÒÔÍ¨¹ıÕâ¸öºêÀ´ÇĞ»»
+// é€šç”¨çš„msgMapIDé»˜è®¤ä¸º0,ä½ ä¹Ÿå¯ä»¥é€šè¿‡è¿™ä¸ªå®æ¥åˆ‡æ¢
 #define ALT_MSG_MAP(msgMapID) \
 	break; \
 		case msgMapID:
 
 //---------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------
-// ÒÔÏÂÎª»ù´¡ÏûÏ¢ºê¶¨Òå
+// ä»¥ä¸‹ä¸ºåŸºç¡€æ¶ˆæ¯å®å®šä¹‰
 
 //------------------------------------------------------
-// Í¨ÓÃµÄÏûÏ¢´¦Àíº¯Êı
+// é€šç”¨çš„æ¶ˆæ¯å¤„ç†å‡½æ•°
 #define MESSAGE_HANDLER(msg, func) \
 	if(uMsg == msg) \
 	{ \
@@ -166,7 +166,7 @@ public: \
 		}
 
 //------------------------------------------------------
-// ·´Éä´¦Àíº¯Êı£¬Ö±½Óµ÷ÓÃÁËReflectNotificationsº¯Êı£¨ÔÚDMCWndÖĞ¶¨Òå£©
+// åå°„å¤„ç†å‡½æ•°ï¼Œç›´æ¥è°ƒç”¨äº†ReflectNotificationså‡½æ•°ï¼ˆåœ¨DMCWndä¸­å®šä¹‰ï¼‰
 #define REFLECT_NOTIFICATIONS() \
 	{ \
 	bHandled = TRUE; \
@@ -198,7 +198,7 @@ public: \
 
 
 //------------------------------------------------------
-// ±ê×¼windowÏûÏ¢ºê ---atlcrack.h 
+// æ ‡å‡†windowæ¶ˆæ¯å® ---atlcrack.h 
 
 // int OnCreate(LPCREATESTRUCT lpCreateStruct)
 #define MSG_WM_CREATE(func) \
@@ -308,7 +308,7 @@ public: \
 	}
 
 // void OnPaint(HDC dc) msdn:An application should not call BeginPaint except in response to a WM_PAINT message. Each call to BeginPaint must have a corresponding call to the EndPaint function. 
-//Ò»¸öÓ¦ÓÃ³ÌĞò³ıÁËÏìÓ¦WM_PAINTÏûÏ¢Íâ£¬²»Ó¦¸Ãµ÷ÓÃBeginPaint¡£Ã¿´Îµ÷ÓÃBeginPaint¶¼Ó¦¸ÃÓĞÏàÓ¦µÄEndPaintº¯Êı¡£
+//ä¸€ä¸ªåº”ç”¨ç¨‹åºé™¤äº†å“åº”WM_PAINTæ¶ˆæ¯å¤–ï¼Œä¸åº”è¯¥è°ƒç”¨BeginPaintã€‚æ¯æ¬¡è°ƒç”¨BeginPaintéƒ½åº”è¯¥æœ‰ç›¸åº”çš„EndPaintå‡½æ•°ã€‚
 #define MSG_WM_PAINT(func) \
 	if (uMsg == WM_PAINT) \
 	{ \

@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+Ôªø#include "DmMainAfx.h"
 #include "DMDC.h"
 
 namespace DM
@@ -23,7 +23,7 @@ namespace DM
 		m_hDC  = ::GetDC(hWnd);
 		if (NULL == m_hDC)
 		{
-			LOG_USER("ªÒ»°DC ß∞‹\n");
+			LOG_USER("Ëé∑ÂèñDCÂ§±Ë¥•\n");
 			m_hDC = g_DMDC;
 			m_hWnd = NULL;
 		}
@@ -181,7 +181,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (NULL == m_hMemDC) // ±Ì æ“—µ˜”√π˝DeleteDC
+			if (NULL == m_hMemDC) // Ë°®Á§∫Â∑≤Ë∞ÉÁî®ËøáDeleteDC
 			{
 				break;
 			}

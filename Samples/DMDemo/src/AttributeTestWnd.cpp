@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+ï»¿#include "DMDemoAfx.h"
 #include "AttributeTestWnd.h"
 #include "MainWnd.h"
 
@@ -49,7 +49,7 @@ DMCode CAttributeTestWnd::OnSetAttribute()
 		szName.Trim();
 		if (szName.IsEmpty())
 		{
-			m_pInfoEdit->SetWindowText(L"¿Ø¼þÃû×ÖÎª¿Õ");
+			m_pInfoEdit->SetWindowText(L"æŽ§ä»¶åå­—ä¸ºç©º");
 			break;
 		}
 		CStringA strMainName = m_pMainWnd->GetName();
@@ -64,21 +64,21 @@ DMCode CAttributeTestWnd::OnSetAttribute()
 		}
 		if (NULL == pWnd)
 		{
-			m_pInfoEdit->SetWindowText(L"»ñÈ¡¿Ø¼þÊ§°Ü");
+			m_pInfoEdit->SetWindowText(L"èŽ·å–æŽ§ä»¶å¤±è´¥");
 			break;
 		}
 
 		CStringA szAttrName = m_pAttrNameEdit->GetTextA();
 		if (szAttrName.IsEmpty())
 		{
-			m_pInfoEdit->SetWindowText(L"¿Ø¼þÊôÐÔÃû³ÆÎª¿Õ");
+			m_pInfoEdit->SetWindowText(L"æŽ§ä»¶å±žæ€§åç§°ä¸ºç©º");
 			break;
 		}
 
 		CStringA szAttrValue = m_pAttrValueEdit->GetTextA();
 		if (szAttrValue.IsEmpty())
 		{
-			m_pInfoEdit->SetWindowText(L"¿Ø¼þÊôÐÔÖµÎª¿Õ");
+			m_pInfoEdit->SetWindowText(L"æŽ§ä»¶å±žæ€§å€¼ä¸ºç©º");
 			break;
 		}
 
@@ -93,12 +93,12 @@ DMCode CAttributeTestWnd::OnSetAttribute()
 		}
 		if (!DMSUCCEEDED(iErr))
 		{
-			m_pInfoEdit->SetWindowText(L"ÊôÐÔÖµÉèÖÃÊ§°Ü");
+			m_pInfoEdit->SetWindowText(L"å±žæ€§å€¼è®¾ç½®å¤±è´¥");
 			break;
 		}
 		else
 		{
-			m_pInfoEdit->SetWindowText(L"ÊôÐÔÖµÉèÖÃOK");
+			m_pInfoEdit->SetWindowText(L"å±žæ€§å€¼è®¾ç½®OK");
 			break;
 		}
 	} while (false);

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIRect.h
 // File mark:   
-// File summary:ËÄ¸öĞ¡EDITÄ£ÄâRECTµÄleft,top,right,bottom
+// File summary:å››ä¸ªå°EDITæ¨¡æ‹ŸRECTçš„left,top,right,bottom
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-15
@@ -17,11 +17,11 @@ namespace DMAttr
 	class DUIRectAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* COLOR_clrdot;                                   ///< dotÑÕÉ«,Ê¾Àı:clrdot="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtext;									///< Ä¬ÈÏÎÄ±¾ÑÕÉ«£¬ºÍstyleµÄclrtextÏàÍ¬×÷ÓÃ.Ê¾Àı:clrtext="pbgra(00,00,00,ff)"
-		// ¹â±ê
-		static const char* COLOR_clrcaret;                                 ///< ¹â±êÑÕÉ«,Ê¾Àı:clrcaret="pbgra(ff,ff,ff,ff)"
-		static const char* INI_caretanimatecount;                          ///< ¹â±ê½¥Òş½¥ÏÔ´ÎÊı£¬1´ÎÎªÕı³£×´Ì¬£¬Ä¬ÈÏÎª6´Î,Ê¾Àı£º caretanimatecount="6"
+		static const char* COLOR_clrdot;                                   ///< doté¢œè‰²,ç¤ºä¾‹:clrdot="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtext;									///< é»˜è®¤æ–‡æœ¬é¢œè‰²ï¼Œå’Œstyleçš„clrtextç›¸åŒä½œç”¨.ç¤ºä¾‹:clrtext="pbgra(00,00,00,ff)"
+		// å…‰æ ‡
+		static const char* COLOR_clrcaret;                                 ///< å…‰æ ‡é¢œè‰²,ç¤ºä¾‹:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< å…‰æ ‡æ¸éšæ¸æ˜¾æ¬¡æ•°ï¼Œ1æ¬¡ä¸ºæ­£å¸¸çŠ¶æ€ï¼Œé»˜è®¤ä¸º6æ¬¡,ç¤ºä¾‹ï¼š caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIRectAttr,COLOR_clrdot)DMAttrValueInit(DUIRectAttr,COLOR_clrtext)
 	DMAttrValueInit(DUIRectAttr,COLOR_clrcaret)DMAttrValueInit(DUIRectAttr,INI_caretanimatecount)
@@ -47,7 +47,7 @@ namespace DM
 		LRESULT OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam);
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 		
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool AdjustNum();
 
 	public: 
@@ -56,7 +56,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 DUIRectµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIRectAttr"/>
+	///		 DUIRectçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIRectAttr"/>
 	/// </summary>
 	class DUIRect: public DUIWindow
 	{
@@ -84,7 +84,7 @@ namespace DM
 		void OnSize(UINT nType, CSize size);
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	public:

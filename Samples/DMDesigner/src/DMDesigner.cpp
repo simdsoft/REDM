@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 //      
 // File name:	DMDesigner.h
 // File mark:    
-// File summary:Èë¿Ú    
+// File summary:å…¥å£    
 // Author:		guoyouhuang
 // Edition:     1.0 
 // Create date: 2016-7-7
@@ -56,8 +56,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	Scintilla_RegisterClasses(hInstance);
 
 
-	// °²×°plugin£¬Èç¹ûÓĞĞèÒª!
-#ifdef DLL_DMMAIN// lib¿âÏÂ²»Ö§³Ö²å¼ş
+	// å®‰è£…pluginï¼Œå¦‚æœæœ‰éœ€è¦!
+#ifdef DLL_DMMAIN// libåº“ä¸‹ä¸æ”¯æŒæ’ä»¶
 #ifdef _DEBUG
 	theApp.LoadPlugins(L"dmpluginsd_design.cfg");
 #else
@@ -74,7 +74,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 #else
 	DMSmartPtrT<DMDesignerWnd> pMainWnd;
 	pMainWnd.Attach(new DMDesignerWnd());
-	pMainWnd->DM_CreateWindow("ds_mainwnd",0,0,0,0,NULL,false);			// ´´½¨Ö÷´°¿Ú
+	pMainWnd->DM_CreateWindow("ds_mainwnd",0,0,0,0,NULL,false);			// åˆ›å»ºä¸»çª—å£
 	pMainWnd->SendMessage(WM_INITDIALOG);
 	pMainWnd->CenterWindow();
 	pMainWnd->ShowWindow(SW_SHOW);

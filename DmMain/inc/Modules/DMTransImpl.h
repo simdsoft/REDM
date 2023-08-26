@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMTransImpl.h
 // File mark:   
-// File summary:·­ÒëÀàµÄÄÚÖÃÊµÏÖ
+// File summary:ç¿»è¯‘ç±»çš„å†…ç½®å®ç°
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-11-21
@@ -15,7 +15,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÄÚÖÃÓïÑÔ°üµÄ´¦ÀíÊ¾Àı
+	///		å†…ç½®è¯­è¨€åŒ…çš„å¤„ç†ç¤ºä¾‹
 	/// </summary>
 	class DMTransImpl : public IDMTrans,public DMArrayT<DMLanguageItemPtr>
 	{
@@ -29,7 +29,7 @@ namespace DM
 		DMCode AddTransItem(CStringW strSrc, CStringW strTrans,CStringW strNodeName = L"",CStringW strLanguageName = L"");
 		CStringW GetTrans(CStringW strSrc,CStringW strNodeName = L"",CStringW strLanguageName = L"");
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMLanguageItemPtr FindLanguageItemPtr(CStringW strLanguageName);
 
 	protected:
@@ -37,7 +37,7 @@ namespace DM
 		virtual bool EqualArrayObj(const DMLanguageItemPtr &objsrc, const DMLanguageItemPtr &objdest);
 
 	public:
-		DMLanguageItemPtr			      m_pCurLanguage;			  ///< µ±Ç°Ê¹ÓÃµÄÓïÑÔ°ü
-		CStringW                          m_strCurLanguageName;       ///< µ±Ç°Ê¹ÓÃµÄtheme Key
+		DMLanguageItemPtr			      m_pCurLanguage;			  ///< å½“å‰ä½¿ç”¨çš„è¯­è¨€åŒ…
+		CStringW                          m_strCurLanguageName;       ///< å½“å‰ä½¿ç”¨çš„theme Key
 	};
 }//namespace DM

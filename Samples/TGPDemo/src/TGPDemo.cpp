@@ -1,8 +1,8 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.      
 //        
-// File Name: TGP²âÊÔ×¨ÓÃdemo
+// File Name: TGPæµ‹è¯•ä¸“ç”¨demo
 // File Des:      
 // File Summary:           
 // Cur Version: 1.0 
@@ -27,8 +27,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   int       nCmdShow)
 {                       
 	DMApp theApp(hInstance);   
-	// °²×°plugin£¬Èç¹ûÓĞĞèÒª! 
-#ifdef DLL_DMMAIN// lib¿âÏÂ²»Ö§³Ö²å¼ş
+	// å®‰è£…pluginï¼Œå¦‚æœæœ‰éœ€è¦! 
+#ifdef DLL_DMMAIN// libåº“ä¸‹ä¸æ”¯æŒæ’ä»¶
 #ifdef _DEBUG
 	theApp.LoadPlugins(L"dmpluginsd.cfg");
 #else
@@ -38,46 +38,46 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
  
 	do  
 	{  
-#ifdef DLL_DMMAIN// DLLÏÂÑİÊ¾²å¼şÖ§³Ö¶àzipÌáÇ°¼ÓÔØ£¬ÌáÇ°ÊÍ·Å----------------------------------------------------------
-		//1. login´°¿ÚµÇÂ½ 
+#ifdef DLL_DMMAIN// DLLä¸‹æ¼”ç¤ºæ’ä»¶æ”¯æŒå¤šzipæå‰åŠ è½½ï¼Œæå‰é‡Šæ”¾----------------------------------------------------------
+		//1. loginçª—å£ç™»é™† 
 		DMResZipParam ziploginres(L"TGPRes\\zips\\zip_login.zip"); 
-		theApp.LoadResPack((WPARAM)(&ziploginres),(LPARAM)L"loginzip","DMResMultZipImpl");		///< ×¢²áloginzipÎªkeyµÄzip°ü
+		theApp.LoadResPack((WPARAM)(&ziploginres),(LPARAM)L"loginzip","DMResMultZipImpl");		///< æ³¨å†Œloginzipä¸ºkeyçš„zipåŒ…
 
-		// main´°¿Ú×ÊÔ´¿ÉÒÔÌáÇ°¼ÓÈë£¬µ±È»ÎªÁË½ÚÊ¡£¬ÄÚ´æÄãÒ²¿ÉÒÔÔÚÊ¹ÓÃÊ±ÔÙ¼ÓÈë
+		// mainçª—å£èµ„æºå¯ä»¥æå‰åŠ å…¥ï¼Œå½“ç„¶ä¸ºäº†èŠ‚çœï¼Œå†…å­˜ä½ ä¹Ÿå¯ä»¥åœ¨ä½¿ç”¨æ—¶å†åŠ å…¥
 		DMResZipParam zipres(L"TGPRes\\zips\\zip_main.zip");
-		theApp.LoadResPack((WPARAM)(&zipres),(LPARAM)L"mainzip","DMResMultZipImpl");			///< ×¢²ámainzipÎªkeyµÄzip°ü
+		theApp.LoadResPack((WPARAM)(&zipres),(LPARAM)L"mainzip","DMResMultZipImpl");			///< æ³¨å†Œmainzipä¸ºkeyçš„zipåŒ…
 
 		theApp.InitGlobal("global_login");	
 		DMSmartPtrT<CTGPLoginWnd> pLoginWnd; 
 		pLoginWnd.Attach(new CTGPLoginWnd());
-		pLoginWnd->DM_CreateWindow("dui_loginwnd",0,0,0,0,NULL,false);							///< ´´½¨µÇÂ½´°¿Ú
+		pLoginWnd->DM_CreateWindow("dui_loginwnd",0,0,0,0,NULL,false);							///< åˆ›å»ºç™»é™†çª—å£
 		pLoginWnd->SendMessage(WM_INITDIALOG);
 		pLoginWnd->CenterWindow();
 		pLoginWnd->ShowWindow(SW_SHOW);
-		theApp.Run(pLoginWnd->GetSafeHwnd());													///< ´Ëº¯ÊıÖ´ĞĞºó£¬ÍË³öµÇÂ½´°¿Ú
+		theApp.Run(pLoginWnd->GetSafeHwnd());													///< æ­¤å‡½æ•°æ‰§è¡Œåï¼Œé€€å‡ºç™»é™†çª—å£
 
 		DMSmartPtrT<IDMRes> pRes;
-		theApp.GetDefRegObj((void**)&pRes, DMREG_Res);											///< µÃµ½TGPResMultZipImpl¶ÔÏó
-		pRes->SendExpandInfo(NULL,(LPARAM)L"loginzip");											///< ÔÚÀ©Õ¹ÖĞÊÍ·Åloginzip°ü
+		theApp.GetDefRegObj((void**)&pRes, DMREG_Res);											///< å¾—åˆ°TGPResMultZipImplå¯¹è±¡
+		pRes->SendExpandInfo(NULL,(LPARAM)L"loginzip");											///< åœ¨æ‰©å±•ä¸­é‡Šæ”¾loginzipåŒ…
 #else
-		theApp.LoadResPack((WPARAM)(L"TGPRes"),NULL,NULL);										///< Â·¾¶×ÜÊÇÏà¶ÔÓÚÉú³ÉÄ¿Â¼
+		theApp.LoadResPack((WPARAM)(L"TGPRes"),NULL,NULL);										///< è·¯å¾„æ€»æ˜¯ç›¸å¯¹äºç”Ÿæˆç›®å½•
 #endif//DLL_DMMAIN
 
 
-		//2.Ö÷´°¿Ú
-		theApp.InitGlobal();																	///< ³õÊ¼»¯Ö¸¶¨µÄÈ«¾Öskin¡¢style¡¢Ä¬ÈÏ×ÖÌå
+		//2.ä¸»çª—å£
+		theApp.InitGlobal();																	///< åˆå§‹åŒ–æŒ‡å®šçš„å…¨å±€skinã€styleã€é»˜è®¤å­—ä½“
 		theApp.Register(DMRegHelperT<TGPListBoxEx>(),true);
-		theApp.Register(DMRegHelperT<TGPTipsImpl>(),true);										///< ³õÊ¼»¯Íâ²¿µÄtipÀàĞÍ
+		theApp.Register(DMRegHelperT<TGPTipsImpl>(),true);										///< åˆå§‹åŒ–å¤–éƒ¨çš„tipç±»å‹
 		theApp.Register(DMRegHelperT<TGPComboboxEx>(),true);
 
 		DMSmartPtrT<CTGPMainWnd> pMainWnd;
 		pMainWnd.Attach(new CTGPMainWnd());
-		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);							///< ´´½¨Ö÷´°¿Ú
+		pMainWnd->DM_CreateWindow("dui_mainwnd",0,0,0,0,NULL,false);							///< åˆ›å»ºä¸»çª—å£
 		g_pMainWnd =  pMainWnd;
 		pMainWnd->SendMessage(WM_INITDIALOG);
 		pMainWnd->CenterWindow();
 		pMainWnd->ShowWindow(SW_SHOW);
-		theApp.Run(pMainWnd->GetSafeHwnd());													///< ÔËĞĞµ±Ç°Ïß³ÌµÄÏûÏ¢Ñ­»·£¬²¢¼ÓÈëÏûÏ¢¶ÓÁĞ¹ÜÀíÖĞ
+		theApp.Run(pMainWnd->GetSafeHwnd());													///< è¿è¡Œå½“å‰çº¿ç¨‹çš„æ¶ˆæ¯å¾ªç¯ï¼Œå¹¶åŠ å…¥æ¶ˆæ¯é˜Ÿåˆ—ç®¡ç†ä¸­
 	} while (false);
 	return (int) 0;
 }

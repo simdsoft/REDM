@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+Ôªø#include "DMDemoAfx.h"
 #include "MainWnd.h"
 #include <commdlg.h>
 #include "DUIListBox.h"
@@ -35,7 +35,7 @@ BEGIN_EVENT_MAP(CMainWnd)
 	EVENT_NAME_COMMAND("ieback",OnBtnIeBack)
 	EVENT_NAME_COMMAND("ierefresh",OnBtnIeRefresh)
 	EVENT_NAME_COMMAND("iefront",OnBtnIefront)
-	// ∂Øª≠
+	// Âä®Áîª
 	EVENT_NAME_COMMAND("screen_4btn",OnScreen4Start)
 	EVENT_NAME_COMMAND("screen_meltbtn",OnScreenMeltStart)
 	EVENT_NAME_COMMAND("line_openbtn",OnLineOpenAnimateStart)
@@ -75,9 +75,9 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_handler.onURLChanged = CMainWnd::OnURLChanged;
 		m_handler.pdata = this;
 		m_pWebkit->GetWebView()->setClientHandler(&m_handler);
-		//http://www.baidu.com/s?ie=utf-8&f=8&wd=Àÿ≤ƒ
+		//http://www.baidu.com/s?ie=utf-8&f=8&wd=Á¥†Êùê
 		//http://www.baidu.com/s?ie=utf-8&f=8&wd=%E7%B4%A0%E6%9D%90
-		//CStringA szUrl = "http://www.baidu.com/s?ie=utf-8&f=8&wd=Àÿ≤ƒ";
+		//CStringA szUrl = "http://www.baidu.com/s?ie=utf-8&f=8&wd=Á¥†Êùê";
 		m_pWebkit->GetWebView()->loadURL(L"http://ka.duowan.com/");
 	}
 
@@ -131,7 +131,7 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 
 void CMainWnd::OnSize(UINT nType, CSize size)
 {
-	SetMsgHandled(FALSE);  // ”…DMHWndºÃ–¯¥¶¿Ì
+	SetMsgHandled(FALSE);  // Áî±DMHWndÁªßÁª≠Â§ÑÁêÜ
 	if (0 == size.cx||0 == size.cy)
 	{
 		return;
@@ -217,7 +217,7 @@ DMCode CMainWnd::OnSkin()
 	}
 	m_pSkinWnd.Release();
 	m_pSkinWnd.Attach(new CSkinWnd(this));
-	m_pSkinWnd->DM_CreateWindow("dui_skin");				// ¥¥Ω®÷˜¥∞ø⁄
+	m_pSkinWnd->DM_CreateWindow("dui_skin");				// ÂàõÂª∫‰∏ªÁ™óÂè£
 	m_pSkinWnd->SendMessage(WM_INITDIALOG);
 	m_pSkinWnd->CenterWindow();
 	CRect rcWindow = m_rcWindow;
@@ -235,7 +235,7 @@ DMCode CMainWnd::OnAttrTest()
 	}
 	m_pAttrTestWnd.Release();
 	m_pAttrTestWnd.Attach(new CAttributeTestWnd(this));
-	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// ¥¥Ω®÷˜¥∞ø⁄
+	m_pAttrTestWnd->DM_CreateWindow("dui_attrtest",0,0,0,0,m_hWnd);				// ÂàõÂª∫‰∏ªÁ™óÂè£
 	m_pAttrTestWnd->SendMessage(WM_INITDIALOG);
 	m_pAttrTestWnd->CenterWindow();
 	m_pAttrTestWnd->ShowWindow(SW_SHOW);
@@ -312,7 +312,7 @@ DMCode CMainWnd::OnBtnMenu()
 DMCode CMainWnd::OnStartBtn()
 {
 	m_bStartTimer = true;
-	if (0 == m_TimelineList.GetCount())// √ª”–æÕ∆Ù∂Ø∂® ±∆˜
+	if (0 == m_TimelineList.GetCount())// Ê≤°ÊúâÂ∞±ÂêØÂä®ÂÆöÊó∂Âô®
 	{
 		DM_SetTimer(TIMER_NEXTFRAME,10);
 	}
@@ -533,7 +533,7 @@ void CMainWnd::OnURLChanged(const DMClientHandler*handler, DMString url)
 	}
 }
 
-// ∂Øª≠---------------------------------------
+// Âä®Áîª---------------------------------------
 
 DMCode CMainWnd::AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp, LPARAM lp)
 {
@@ -644,7 +644,7 @@ DMCode CMainWnd::On3DAnimateStart()
 
 		bool bGlobal = true;
 		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>("global_radio");
-		if (pR&&!pR->DM_IsChecked())// ∑«»´æ÷
+		if (pR&&!pR->DM_IsChecked())// ÈùûÂÖ®Â±Ä
 		{
 			bGlobal = false;
 		}
@@ -682,7 +682,7 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 	do 
 	{
 		DUIRadioButton *pR = FindChildByNameT<DUIRadioButton>("global_radio");
-		if (pR&&pR->DM_IsChecked())// »´æ÷
+		if (pR&&pR->DM_IsChecked())// ÂÖ®Â±Ä
 		{
 			break;
 		}
@@ -710,7 +710,7 @@ DMCode CMainWnd::On3Dx(DMEventArgs* pEvent)
 			}
 			if (pSkin)
 			{
-				// œ»ª÷∏¥
+				// ÂÖàÊÅ¢Â§ç
 				CStringA strXml = "<imglist id=\"1\" src=\"png:1\" states=\"1\" />";
 				DMXmlDocument doc;
 				doc.LoadFromBuffer((const PVOID)(LPCSTR)strXml, strXml.GetLength());

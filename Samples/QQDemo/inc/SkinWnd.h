@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: SkinWnd.h 
-// File Des:  »»·ô×Ó´°¿Ú²âÊÔ
+// File Des:  æ¢è‚¤å­çª—å£æµ‹è¯•
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -21,19 +21,19 @@ public:
 	CSkinWnd(CQQMainWnd*pOwner);
 
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	int OnCreate(LPVOID);
 	void OnSize(UINT nType, CSize size);
 	void OnShowWindow(BOOL bShow, UINT nStatus);
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	DMCode OnClose();
 	DMCode OnOutSkin();
 protected:
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	DECLARE_EVENT_MAP()
 
 public:

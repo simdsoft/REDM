@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDynLibMgr.h 
-// File Des: ¹ÜÀíplugin¾ä±úÁĞ±í<plugin handle--dll name>
+// File Des: ç®¡ç†pluginå¥æŸ„åˆ—è¡¨<plugin handle--dll name>
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,7 +18,7 @@
 namespace DM
 {
 	/// <summary>
-	///		¹ÜÀí<see cref="DMDynLib"/>,ÒÆÖ²×Ôogre²å¼şÏµÍ³£¬¿É²Î¿¼OgreDynLibManager.h/.cpp
+	///		ç®¡ç†<see cref="DMDynLib"/>,ç§»æ¤è‡ªogreæ’ä»¶ç³»ç»Ÿï¼Œå¯å‚è€ƒOgreDynLibManager.h/.cpp
 	/// </summary>
 	class DMDynLibMgr:public DMSingletonT<DMDynLibMgr>
 	{
@@ -27,13 +27,13 @@ namespace DM
 		virtual ~DMDynLibMgr(void);
 
 		//---------------------------------------------------
-		// Function Des: Èç¼ÓÔØÊ§°Ü£¬·µ»Ønull
+		// Function Des: å¦‚åŠ è½½å¤±è´¥ï¼Œè¿”å›null
 		// Input Parameter:
 		// Output Parameter:
 		// return:
 		//---------------------------------------------------
-		DMDynLib* Load(const CStringW& strPluginPath);  ///<¼ÓÈëDMDynLibÏî£¬·µ»Ø¼ÓÈëµÄÏî
-		void Unload(DMDynLib* plib);				    ///<ÒÆ³ıÖ¸¶¨µÄMDynLibÏî
+		DMDynLib* Load(const CStringW& strPluginPath);  ///<åŠ å…¥DMDynLibé¡¹ï¼Œè¿”å›åŠ å…¥çš„é¡¹
+		void Unload(DMDynLib* plib);				    ///<ç§»é™¤æŒ‡å®šçš„MDynLibé¡¹
 
 	protected:
 		DMDynLib* FindObj(const CStringW& strPluginPath);

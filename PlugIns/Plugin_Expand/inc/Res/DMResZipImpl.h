@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 #include "DMResZipHelper.h"
 #include "DMZipHelper.h"
 namespace DM
 {
 	/// <summary>
-	///     ÍâÖÃzipÊ¾ÀıºÍÄÚÖÃ´ò°üÎÄ¼ş¼ĞÒ»ÖÂ
-	///		ÄÚÖÃRes´ò°üÎÄ¼ş¼ĞÎªÒÔÏÂ½á¹¹:Èç¹ûÄã¾õµÃ²»ÄÜÂú×ãĞèÇó£¬¿ÉÒÔ×Ô¼ºĞŞ¸ÄÒ»·İ£¬×Ô¼º×¢²á½øÈ¥
-	///     ResÎÄ¼ş¼Ğ°üº¬Á½¸ö×ÓÎÄ¼ş¼Ğ£º1.layoutÎÄ¼ş¼Ğ 2.themesÎÄ¼ş¼Ğ
-	///		1.1.layoutÎÄ¼ş¼Ğ¶¨ÒåÁËËùÓĞ²¼¾ÖxmlºÍskin¡¢styleµÄÈ«¾Öxml
-	///     2.1.themesÎÄ¼ş¼ĞÏÂ¶¨ÒåÁË¶à¸öÖ÷Ìâ°ü
-	///     3.Ã¿¸öÎÄ¼ş¼ĞÏÂ¾ùÓĞÒ»¸ödmindex.xmlÀ´±êÊ¶×ÊÔ´Ë÷Òı
+	///     å¤–ç½®zipç¤ºä¾‹å’Œå†…ç½®æ‰“åŒ…æ–‡ä»¶å¤¹ä¸€è‡´
+	///		å†…ç½®Resæ‰“åŒ…æ–‡ä»¶å¤¹ä¸ºä»¥ä¸‹ç»“æ„:å¦‚æœä½ è§‰å¾—ä¸èƒ½æ»¡è¶³éœ€æ±‚ï¼Œå¯ä»¥è‡ªå·±ä¿®æ”¹ä¸€ä»½ï¼Œè‡ªå·±æ³¨å†Œè¿›å»
+	///     Resæ–‡ä»¶å¤¹åŒ…å«ä¸¤ä¸ªå­æ–‡ä»¶å¤¹ï¼š1.layoutæ–‡ä»¶å¤¹ 2.themesæ–‡ä»¶å¤¹
+	///		1.1.layoutæ–‡ä»¶å¤¹å®šä¹‰äº†æ‰€æœ‰å¸ƒå±€xmlå’Œskinã€styleçš„å…¨å±€xml
+	///     2.1.themesæ–‡ä»¶å¤¹ä¸‹å®šä¹‰äº†å¤šä¸ªä¸»é¢˜åŒ…
+	///     3.æ¯ä¸ªæ–‡ä»¶å¤¹ä¸‹å‡æœ‰ä¸€ä¸ªdmindex.xmlæ¥æ ‡è¯†èµ„æºç´¢å¼•
 	/// </summary>
 	class DMResZipImpl:public IDMRes,public DMArrayT<DMZipItemArrayPtr>
 	{
@@ -22,11 +22,11 @@ namespace DM
 		virtual DMCode IsItemExists(LPCSTR lpszType, LPCSTR lpszName, LPCSTR lpszThemeName = NULL);
 		virtual DMCode GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned long& ulSize, LPCSTR lpszThemeName = NULL);
 		virtual DMCode GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&, PULONG lpULSize, LPCSTR lpszThemeName = NULL);
-		virtual DMCode LoadTheme(WPARAM wp, LPARAM lp);// ²»Ê¹ÓÃÕâÖÖ·½Ê½
+		virtual DMCode LoadTheme(WPARAM wp, LPARAM lp);// ä¸ä½¿ç”¨è¿™ç§æ–¹å¼
 		virtual DMCode SetCurTheme(LPCSTR lpszName, LPCSTR lpszOldName=NULL);
-		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp);  ///< lpÎª0Ê±£¬°Ñ³¤¶È¸³Öµµ½*wp
+		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp);  ///< lpä¸º0æ—¶ï¼ŒæŠŠé•¿åº¦èµ‹å€¼åˆ°*wp
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMCode ParseThemes(LPCWSTR lpszIndexPath);
 		DMCode ParseIndex(LPCWSTR lpszIndexPath,DMZipItemArray** ppItem);
 		LPCWSTR GetItemPath(LPCSTR lpszType,LPCSTR lpszName,LPCSTR lpszThemeName);
@@ -45,15 +45,15 @@ namespace DM
 
 	protected:
 		DM::CStringW                          m_strDir;
-		DM::CStringA                          m_strCurTheme;       // µ±Ç°Ê¹ÓÃµÄtheme Key
-		DMZipItemArrayPtr					  m_pCurTheme;         // µ±Ç°Ê¹ÓÃµÄtheme
-		bool                                  m_bThemeLoop;        // ÊÇ·ñÆôÓÃÑ­»·²éÕÒtheme(µ±Ç°themeÖĞÕÒ²»µ½×ÊÔ´,Ö±½ÓÈ¥ÆäËûthemeÖĞ²éÕÒ)
-		bool                                  m_bOutStyle;         // µ±Ç°ÊÇÍâ²¿Ä£Ê½£¨Íâ²¿Ç¿ÖÆ¸Ä±äÁËskin³ØµÄÊı¾İ£¬ÕâÊ±ËùÓĞµÄthemeÓ¦¸Ã¶¼ĞèÒªË¢ĞÂ)
-		DMSmartPtrT<DMZipItemArray>			  m_pLayout;		   // LayoutµÄÁĞ±í
-		CDMZipHelper						  m_zipFile;           // zip¸¨Öú
+		DM::CStringA                          m_strCurTheme;       // å½“å‰ä½¿ç”¨çš„theme Key
+		DMZipItemArrayPtr					  m_pCurTheme;         // å½“å‰ä½¿ç”¨çš„theme
+		bool                                  m_bThemeLoop;        // æ˜¯å¦å¯ç”¨å¾ªç¯æŸ¥æ‰¾theme(å½“å‰themeä¸­æ‰¾ä¸åˆ°èµ„æº,ç›´æ¥å»å…¶ä»–themeä¸­æŸ¥æ‰¾)
+		bool                                  m_bOutStyle;         // å½“å‰æ˜¯å¤–éƒ¨æ¨¡å¼ï¼ˆå¤–éƒ¨å¼ºåˆ¶æ”¹å˜äº†skinæ± çš„æ•°æ®ï¼Œè¿™æ—¶æ‰€æœ‰çš„themeåº”è¯¥éƒ½éœ€è¦åˆ·æ–°)
+		DMSmartPtrT<DMZipItemArray>			  m_pLayout;		   // Layoutçš„åˆ—è¡¨
+		CDMZipHelper						  m_zipFile;           // zipè¾…åŠ©
 
 	public:
-		DM::CStringW                          m_strZipKey;         // ¶àZIPÊ±£¬±êÊ¶Î¨Ò»µÄZIP
+		DM::CStringW                          m_strZipKey;         // å¤šZIPæ—¶ï¼Œæ ‡è¯†å”¯ä¸€çš„ZIP
 		bool                                  m_bAssert;
 	};
 	typedef DMResZipImpl* DMResZipImplPtr;

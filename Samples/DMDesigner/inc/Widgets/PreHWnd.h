@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	PreHWnd.h
 // File mark:   
-// File summary:ÓÃÓÚ½âÂëDM Xml,²¢Éú³É¶ÔÓ¦Ô¤ÀÀ´°¿Ú
+// File summary:ç”¨äºè§£ç DM Xml,å¹¶ç”Ÿæˆå¯¹åº”é¢„è§ˆçª—å£
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-8
@@ -18,5 +18,5 @@ public:
 
 	HWND ObjCreateWindow(DMXmlDocument &XmlDoc);
 	DMCode LoadDMData(DMXmlDocument &XmlDoc);	
-	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);		///< ´¦ÀíECSÏûÏ¢Òş²Ø×ÔÉí
+	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);		///< å¤„ç†ECSæ¶ˆæ¯éšè—è‡ªèº«
 };

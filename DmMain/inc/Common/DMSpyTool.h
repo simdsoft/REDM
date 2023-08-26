@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMSpyTool.h 
-// File Des: SpyµÄÏà¹Ø·â×°
+// File Des: Spyçš„ç›¸å…³å°è£…
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,11 +18,11 @@ namespace DM
 {
 	enum DMSPYCMD
 	{
-		DMSPY_INIT = 1314,  													    ///< Ğ£Ñé³õÊ¼»¯ÏûÏ¢
-		DMSPY_ROOT,																    ///< Í¨¹ıhWndÈ¡µÃÆğÊ¼DUI
-		DMSPY_ENUM,		                                                            ///< È¡µÃ´°¿Ú	
-		DMSPY_INFO,                                                                 ///< È¡µÃÊı¾İ
-		DMSPY_POINT,                                                                ///< Í¨¹ıptÈ¡µÃ´°¿Ú
+		DMSPY_INIT = 1314,  													    ///< æ ¡éªŒåˆå§‹åŒ–æ¶ˆæ¯
+		DMSPY_ROOT,																    ///< é€šè¿‡hWndå–å¾—èµ·å§‹DUI
+		DMSPY_ENUM,		                                                            ///< å–å¾—çª—å£	
+		DMSPY_INFO,                                                                 ///< å–å¾—æ•°æ®
+		DMSPY_POINT,                                                                ///< é€šè¿‡ptå–å¾—çª—å£
 	};
 
 #define  DMSPY_NAME_LEN					260
@@ -48,15 +48,15 @@ namespace DM
 		DUIWND              hDUIWnd;
 		DUIWND              hNextDUIWnd;
 		int                 iCode;
-		int                 iPanelIndex;// ¼ÇÂ¼panelµ±Ç°Ë÷Òı£¨ÒÔ1¿ªÊ¼,²»ÊÇpanel,ÔòÎª0£©
+		int                 iPanelIndex;// è®°å½•panelå½“å‰ç´¢å¼•ï¼ˆä»¥1å¼€å§‹,ä¸æ˜¯panel,åˆ™ä¸º0ï¼‰
 		bool                bPanel;
-		CPoint              pt;    // Ê¹ÓÃ×ø±ê¶¨Î»
+		CPoint              pt;    // ä½¿ç”¨åæ ‡å®šä½
 		DMSpyInfo           info;
 
 	}DMSpyEnum,*PDMSpyEnum;
 
 	/// <summary>
-	///		·â×°SpyµÄÏà¹Ø
+	///		å°è£…Spyçš„ç›¸å…³
 	/// </summary>
 	class DM_EXPORT DMSpyTool
 	{
@@ -66,11 +66,11 @@ namespace DM
 	public:
 		LRESULT OnSpy(UINT uMsg, WPARAM wParam, LPARAM lParam);
 		void EnumDUITree(LPCWSTR lpszPath);
-		void EnumTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel,bool bPanel); //iLevelÖ¸¶¨XmlNodeµÄÏÂÒ»²ã£¬Ò²¼´pWndËùÔÚµÄ²ã
-		void EnumPanelTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel);// ²éÕÒpwndµÄ×ÓpanelÁĞ£¬XmlNodeÎªpwndËùÔÚµÄNode,Ã¿²ãÖ»²éÒ»´Î
+		void EnumTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel,bool bPanel); //iLevelæŒ‡å®šXmlNodeçš„ä¸‹ä¸€å±‚ï¼Œä¹Ÿå³pWndæ‰€åœ¨çš„å±‚
+		void EnumPanelTreeItem(DUIWindow* pWnd,DMXmlNode XmlNode,int iLevel);// æŸ¥æ‰¾pwndçš„å­panelåˆ—ï¼ŒXmlNodeä¸ºpwndæ‰€åœ¨çš„Node,æ¯å±‚åªæŸ¥ä¸€æ¬¡
 		void EnumInfo(DUIWindow*pWnd,PDMSpyEnum pSpyEnum);
 
-	public:// ¹²ÏíÄÚ´æ²Ù×÷·â×°
+	public:// å…±äº«å†…å­˜æ“ä½œå°è£…
 		static bool CreateSharedMemory(UINT nSize);
 		static bool GetShareMemorySize(UINT& nSize);
 		static bool WriteShareMemory(void *pDate, UINT nSize);
@@ -78,11 +78,11 @@ namespace DM
 		static bool ReleaseSharedMemory();
 
 	public:
-		DUIWND                    m_hMainDUIWnd;  // ÆğÊ¼µÄDUI´°¿Ú
+		DUIWND                    m_hMainDUIWnd;  // èµ·å§‹çš„DUIçª—å£
 		HWND                      m_hSpyWnd;
 		PDMSpyEnum                m_pSpyEnum;
 		DMXmlNode				  m_XmlBase;
-		CMap<int,bool>			  m_PanelParseMap; // ½öÑéÖ¤Ëã·¨Ê¹ÓÃ
+		CMap<int,bool>			  m_PanelParseMap; // ä»…éªŒè¯ç®—æ³•ä½¿ç”¨
 	};
 
 }//namespace DM

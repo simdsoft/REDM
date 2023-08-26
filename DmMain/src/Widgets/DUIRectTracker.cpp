@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIRectTracker.h"
 
 namespace DM
@@ -89,7 +89,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú methods
+	// Function Des: å¯¹å¤–æ¥å£ methods
 	//---------------------------------------------------
 #pragma region Public methods
 	bool DUIRectTracker::SetBoxRect(CRect& rect, bool bFire)
@@ -109,7 +109,7 @@ namespace DM
 				{
 					break;
 				}
-				rcBoxNew = Evt0.m_rcBoxNew; // Íâ²¿¿É¸Ä±ä
+				rcBoxNew = Evt0.m_rcBoxNew; // å¤–éƒ¨å¯æ”¹å˜
 			}
 			
 			InitDragMeta(rcBoxNew, m_bMain, m_bAllGray);
@@ -256,7 +256,7 @@ namespace DM
 		CRect rcTracker = rcBox;
 		rcTracker.InflateRect(m_dotWidth,m_dotWidth);
 		if (m_pMoveSkin)
-		{//  ×óÉÏ½ÇÔ¤ÁômovµÄ´óĞ¡
+		{//  å·¦ä¸Šè§’é¢„ç•™movçš„å¤§å°
 			CSize sz;
 			m_pMoveSkin->GetStateSize(sz);
 			rcTracker.left -= sz.cx; 
@@ -269,7 +269,7 @@ namespace DM
 	{
 		CRect rcBox = rcTracker;
 		if (m_pMoveSkin)
-		{//  ×óÉÏ½ÇÔ¤ÁômovµÄ´óĞ¡
+		{//  å·¦ä¸Šè§’é¢„ç•™movçš„å¤§å°
 			CSize sz;
 			m_pMoveSkin->GetStateSize(sz);
 			rcBox.left += sz.cx; 
@@ -281,7 +281,7 @@ namespace DM
 #pragma endregion
 
 	//---------------------------------------------------
-	// Function Des: ¸¨Öú methods
+	// Function Des: è¾…åŠ© methods
 	//---------------------------------------------------
 #pragma region Helpers
 	void DUIRectTracker::LinkDragMetaEvent()
@@ -398,7 +398,7 @@ namespace DM
 	{
 		if (meta.m_bEnable)
 		{
-			CRect rect = m_StartDragRc; // rect×ÜÊÇ±íÊ¾µ±Ç°´óĞ¡
+			CRect rect = m_StartDragRc; // rectæ€»æ˜¯è¡¨ç¤ºå½“å‰å¤§å°
 			int x = m_TrackDragPt.x - m_StartDragPt.x;
 			int y = m_TrackDragPt.y - m_StartDragPt.y;
 			rect.OffsetRect(x,y);
@@ -414,7 +414,7 @@ namespace DM
 			int x = (pHori ? (m_TrackDragPt.x - m_StartDragPt.x) : 0);
 			int y = (pVert ? (m_TrackDragPt.y - m_StartDragPt.y) : 0);	
 
-			rect = m_StartDragRc; // rect×ÜÊÇ±íÊ¾µ±Ç°´óĞ¡
+			rect = m_StartDragRc; // rectæ€»æ˜¯è¡¨ç¤ºå½“å‰å¤§å°
 
 			if (pHori)
 			{
@@ -434,7 +434,7 @@ namespace DM
 
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 #pragma region MsgDispatch
 	void DUIRectTracker::DM_OnPaint(IDMCanvas* pCanvas)
@@ -461,7 +461,7 @@ namespace DM
 			m_StartDragPt = pt;
 			m_TrackDragPt = m_StartDragPt;
 			if (0 == pMeta->m_Index)
-			{// ÏÔÊ¾¿òÑ¡Çø
+			{// æ˜¾ç¤ºæ¡†é€‰åŒº
 				DM_Invalidate();
 			}
 			m_StartDragRc = m_dragMetas[0].m_Rect;
@@ -510,15 +510,15 @@ namespace DM
 		__super::OnSize(nType, size);
 		if (DM_IsLayoutFinished())
 		{
-			m_bFloatLayout = true;					///< Ê×´Î²¼¾ÖÍê³Éºó,ËüµÄ²¼¾Ö¾Í±ä³ÉÁË¾ø¶Ô²¼¾Ö
+			m_bFloatLayout = true;					///< é¦–æ¬¡å¸ƒå±€å®Œæˆå,å®ƒçš„å¸ƒå±€å°±å˜æˆäº†ç»å¯¹å¸ƒå±€
 			CRect rcBox = CalcBoxRect(m_rcWindow);
 			rcBox.NormalizeRect();
 			CRect rcTracker = CalcTrackerRect(rcBox);
 			if (!rcTracker.EqualRect(m_rcWindow))
-			{// ËµÃ÷m_rcWindow¹ıĞ¡.
+			{// è¯´æ˜m_rcWindowè¿‡å°.
 #if defined(_DEBUG)
 				DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
-				if (pMain && (0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4"))) // Éè¼ÆÆ÷debugÏÂ²»µ¯¿ò
+				if (pMain && (0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4"))) // è®¾è®¡å™¨debugä¸‹ä¸å¼¹æ¡†
 				{
 					DMFAIL_MSG("DUIRectTracker rect too small");
 				}

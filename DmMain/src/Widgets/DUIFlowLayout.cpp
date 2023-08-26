@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIFlowLayout.h"
 
 namespace DM
@@ -18,44 +18,44 @@ namespace DM
 				break;
 			}
 
-			// 1.»ñµÃ×Ó¿Ø¼şµÄ²¼¾Ö¿Õ¼ä
+			// 1.è·å¾—å­æ§ä»¶çš„å¸ƒå±€ç©ºé—´
 			CRect rcLayout;
 			DV_GetChildMeasureLayout(rcLayout);
 			if (rcLayout.IsRectEmpty())
 			{
 				break;
 			}
-			// 2.ÅĞ¶ÏÈİÆ÷×Ó¿Ø¼şÊÇ²»ÊÇÎª¿Õ
+			// 2.åˆ¤æ–­å®¹å™¨å­æ§ä»¶æ˜¯ä¸æ˜¯ä¸ºç©º
 			if (0==m_Node.m_nChildrenCount)
 			{
 				break;
 			}
 
-			// 3.¼ÆËãÈİÆ÷¿ÉÓÃµÄ´óĞ¡
+			// 3.è®¡ç®—å®¹å™¨å¯ç”¨çš„å¤§å°
 			SIZE szAvailable = rcLayout.Size();
 
-			// 4.¼ÆËã×îĞ¡µÄ´óĞ¡ 
-			int nAdjustNum	= 0;   //  Ã»ÓĞÉèÖÃ¸ß¶ÈµÄĞè×Ô¶¯¼ÆËã¸ß¶ÈµÄ¸öÊı
-			int nCyFixedLen = 0;   //  ×Ü¹ÀÖµ¸ß¶È
-			int nEstimateNum = 0;  //  ¹ÀÖµ¸ß¶ÈµÄ¸öÊı,°üÀ¨ÁËnAdjustNum
+			// 4.è®¡ç®—æœ€å°çš„å¤§å° 
+			int nAdjustNum	= 0;   //  æ²¡æœ‰è®¾ç½®é«˜åº¦çš„éœ€è‡ªåŠ¨è®¡ç®—é«˜åº¦çš„ä¸ªæ•°
+			int nCyFixedLen = 0;   //  æ€»ä¼°å€¼é«˜åº¦
+			int nEstimateNum = 0;  //  ä¼°å€¼é«˜åº¦çš„ä¸ªæ•°,åŒ…æ‹¬äº†nAdjustNum
 
 			DUIWindow *pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||pChild->m_bFloatLayout)
 				{
 					pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 					continue;
 				}
 
-				// 5. »ñµÃÔ¤ÉèµÄfixsize£¬ÏñÕâÖÖÊúÖ±²¼¾Ö£¬Ò»°ã»áÉèÖÃ¹Ì¶¨µÄ¸ß¶È£¬¶ÔÓ¦xmlµÄheightÖµ
+				// 5. è·å¾—é¢„è®¾çš„fixsizeï¼Œåƒè¿™ç§ç«–ç›´å¸ƒå±€ï¼Œä¸€èˆ¬ä¼šè®¾ç½®å›ºå®šçš„é«˜åº¦ï¼Œå¯¹åº”xmlçš„heightå€¼
 				CSize szMeasure(POS_INIT,POS_INIT);
-				pChild->DV_Measure(szMeasure);// ÈçÉèÖÃÁË¸ß¶È£¬»á×Ô¶¯¸³Öµ
+				pChild->DV_Measure(szMeasure);// å¦‚è®¾ç½®äº†é«˜åº¦ï¼Œä¼šè‡ªåŠ¨èµ‹å€¼
 				CRect &rcPadd  = pChild->m_pDUIXmlInfo->m_rcPadd;
 				if (POS_INIT == szMeasure.cy)
 				{
-					nAdjustNum++;// Ã»ÓĞÉèÖÃ¸ß¶ÈµÄĞè×Ô¶¯¼ÆËã¸ß¶ÈµÄ¸öÊı
+					nAdjustNum++;// æ²¡æœ‰è®¾ç½®é«˜åº¦çš„éœ€è‡ªåŠ¨è®¡ç®—é«˜åº¦çš„ä¸ªæ•°
 					nCyFixedLen += rcPadd.top+rcPadd.bottom;
 				}
 				else
@@ -81,14 +81,14 @@ namespace DM
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
 
-			// 8.×Ó¿Ø¼şÖ®¼äµÄ¶îÍâ¾àÀë
+			// 8.å­æ§ä»¶ä¹‹é—´çš„é¢å¤–è·ç¦»
 			nCyFixedLen += (nEstimateNum-1)*m_iChildPaddLen;
 
-			// ¿ªÊ¼°Ú·Å×Ó¿Ø¼ş
+			// å¼€å§‹æ‘†æ”¾å­æ§ä»¶
 			int ncyAdjustItemLen	= 0;
 			if (nAdjustNum>0)
 			{
-				// 9.ÅĞ¶Ï×Ô¶¯¼ÆËã¸ß¶È¹»²»¹»
+				// 9.åˆ¤æ–­è‡ªåŠ¨è®¡ç®—é«˜åº¦å¤Ÿä¸å¤Ÿ
 				ncyAdjustItemLen = (szAvailable.cy>nCyFixedLen)?((szAvailable.cy-nCyFixedLen)/nAdjustNum):0;
 			}
 
@@ -101,7 +101,7 @@ namespace DM
 			pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||pChild->m_bFloatLayout)
 				{
 					pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
@@ -113,20 +113,20 @@ namespace DM
 				int nMinWidth  = pChild->m_pDUIXmlInfo->m_nMinWidth;
 				int nMaxWidth  = pChild->m_pDUIXmlInfo->m_nMaxWidth;
 				CRect &rcPadd = pChild->m_pDUIXmlInfo->m_rcPadd;
-				szRemain.cy -= rcPadd.top;// ÕâÀïÏÈ¼õÈ¥top
+				szRemain.cy -= rcPadd.top;// è¿™é‡Œå…ˆå‡å»top
 
-				// ¼ÆËãy
+				// è®¡ç®—y
 				CSize szMeasure(POS_INIT,POS_INIT);
 				pChild->DV_Measure(szMeasure);
-				if (POS_INIT == szMeasure.cy)// Ã»ÓĞÉèÖÃ¸ß¶ÈµÄ¿Ø¼ş
+				if (POS_INIT == szMeasure.cy)// æ²¡æœ‰è®¾ç½®é«˜åº¦çš„æ§ä»¶
 				{
 					iAdjustIndex++;
 					szMeasure.cy = ncyAdjustItemLen;
 
 					if (iAdjustIndex == nAdjustNum)
-					{// ×îºóÒ»¸öÃ»ÓĞÉèÖÃ¸ß¶ÈµÄ¿Ø¼ş£¬ÒòÎªÇ°Ãæ¿ÉÄÜÓĞ×î´ó×îĞ¡ÏŞÖÆÊ¹µÃcy!=ncyAdjustItemLen
-					 // +rcPadd.topÊÇÒòÎªÇ°Ãæ¼õÁËrcPadd.top,¶ønCyFixedLenRemainÖĞ°üº¬ÁËrcPadd.top+rcPadd.bottm
-					 // ÕâÖ»ÊÇ×îºóÒ»¸öÃ»ÉèÖÃ¸ß¶ÈµÄ¿Ø¼ş£¬²»Ò»¶¨ÊÇ×îºóµÄ¿Ø¼ş£¬ËùÒÔÒª-nCyFixedLenRemain
+					{// æœ€åä¸€ä¸ªæ²¡æœ‰è®¾ç½®é«˜åº¦çš„æ§ä»¶ï¼Œå› ä¸ºå‰é¢å¯èƒ½æœ‰æœ€å¤§æœ€å°é™åˆ¶ä½¿å¾—cy!=ncyAdjustItemLen
+					 // +rcPadd.topæ˜¯å› ä¸ºå‰é¢å‡äº†rcPadd.top,è€ŒnCyFixedLenRemainä¸­åŒ…å«äº†rcPadd.top+rcPadd.bottm
+					 // è¿™åªæ˜¯æœ€åä¸€ä¸ªæ²¡è®¾ç½®é«˜åº¦çš„æ§ä»¶ï¼Œä¸ä¸€å®šæ˜¯æœ€åçš„æ§ä»¶ï¼Œæ‰€ä»¥è¦-nCyFixedLenRemain
 						szMeasure.cy = szRemain.cy+rcPadd.top-nCyFixedLenRemain;
 						szMeasure.cy = szMeasure.cy<=0?0:szMeasure.cy;
 					}
@@ -156,10 +156,10 @@ namespace DM
 					nCyFixedLenRemain -= szMeasure.cy;
 				}
 
-				// ¼ÆËãx
+				// è®¡ç®—x
 				szMeasure.cx = pChild->m_pDUIXmlInfo->m_iWidth;
 				if (-1 == szMeasure.cx)
-				{// ³õÊ¼Ä¬ÈÏÖµ-1
+				{// åˆå§‹é»˜è®¤å€¼-1
 					szMeasure.cx = szAvailable.cx-rcPadd.left-rcPadd.right;
 				}
 				else if (szMeasure.cx<0)
@@ -177,13 +177,13 @@ namespace DM
 					szMeasure.cx = nMaxWidth;
 				}
 
-				CRect &rcWindow  = rcLayout;// ÈİÆ÷´óĞ¡
+				CRect &rcWindow  = rcLayout;// å®¹å™¨å¤§å°
 				CRect rcArrange(iPosX+rcPadd.left,iPosY+rcPadd.top,iPosX+rcPadd.left+szMeasure.cx, iPosY+rcPadd.top+szMeasure.cy);
 				pChild->DV_Arrange(rcArrange);
 
 				pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
 				iPosY += szMeasure.cy + (NULL == pChild?0:m_iChildPaddLen) + rcPadd.top+rcPadd.bottom;
-				szRemain.cy -= szMeasure.cy + (NULL == pChild?0:m_iChildPaddLen) + rcPadd.bottom;// ×îÇ°Ãæ¼õÈ¥topÁË
+				szRemain.cy -= szMeasure.cy + (NULL == pChild?0:m_iChildPaddLen) + rcPadd.bottom;// æœ€å‰é¢å‡å»topäº†
 				nCyFixedLenRemain -= (NULL == pChild?0:m_iChildPaddLen) + rcPadd.top+rcPadd.bottom;
 			}
 		} while (false);
@@ -200,7 +200,7 @@ namespace DM
 				DMFAIL_MSG("window layout not ready");
 				break;
 			}
-			// 1.»ñµÃ×Ó¿Ø¼şµÄ²¼¾Ö¿Õ¼ä
+			// 1.è·å¾—å­æ§ä»¶çš„å¸ƒå±€ç©ºé—´
 			CRect rcLayout;
 			DV_GetChildMeasureLayout(rcLayout);
 			if (rcLayout.IsRectEmpty())
@@ -208,25 +208,25 @@ namespace DM
 				break;
 			}
 
-			// 3.¼ÆËãÈİÆ÷¿ÉÓÃµÄ´óĞ¡
+			// 3.è®¡ç®—å®¹å™¨å¯ç”¨çš„å¤§å°
 			SIZE szAvailable = rcLayout.Size();
 
-			// 4.¼ÆËã×îĞ¡µÄ´óĞ¡
-			int nAdjustNum	= 0;   //  Ã»ÓĞÉèÖÃ¿í¶ÈµÄĞè×Ô¶¯¼ÆËã¿í¶ÈµÄ¸öÊı
-			int nCxFixedLen = 0;   //  ×Ü¹ÀÖµ¿í¶È
-			int nEstimateNum = 0;  //  ¹ÀÖµ¿í¶ÈµÄ¸öÊı,°üÀ¨ÁËnAdjustNum
+			// 4.è®¡ç®—æœ€å°çš„å¤§å°
+			int nAdjustNum	= 0;   //  æ²¡æœ‰è®¾ç½®å®½åº¦çš„éœ€è‡ªåŠ¨è®¡ç®—å®½åº¦çš„ä¸ªæ•°
+			int nCxFixedLen = 0;   //  æ€»ä¼°å€¼å®½åº¦
+			int nEstimateNum = 0;  //  ä¼°å€¼å®½åº¦çš„ä¸ªæ•°,åŒ…æ‹¬äº†nAdjustNum
 
 			DUIWindow *pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||m_bFloatLayout)
 				{
 					pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
 					continue;
 				}
 
-				// 5. »ñµÃÔ¤ÉèµÄfixsize£¬ÏñÕâÖÖË®Æ½²¼¾Ö£¬Ò»°ã»áÉèÖÃ¹Ì¶¨µÄ¿í¶È£¬¶ÔÓ¦xmlµÄwidthÖµ
+				// 5. è·å¾—é¢„è®¾çš„fixsizeï¼Œåƒè¿™ç§æ°´å¹³å¸ƒå±€ï¼Œä¸€èˆ¬ä¼šè®¾ç½®å›ºå®šçš„å®½åº¦ï¼Œå¯¹åº”xmlçš„widthå€¼
 				CSize szMeasure(POS_INIT,POS_INIT);
 				pChild->DV_Measure(szMeasure);
 				
@@ -234,7 +234,7 @@ namespace DM
 				if (POS_INIT == szMeasure.cx)
 				{
 					nCxFixedLen += rcPadd.left+rcPadd.right;
-					nAdjustNum++;// Ã»ÓĞÉèÖÃ¿í¶ÈµÄĞè×Ô¶¯¼ÆËã¿í¶ÈµÄ¸öÊı
+					nAdjustNum++;// æ²¡æœ‰è®¾ç½®å®½åº¦çš„éœ€è‡ªåŠ¨è®¡ç®—å®½åº¦çš„ä¸ªæ•°
 				}
 				else
 				{
@@ -256,14 +256,14 @@ namespace DM
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
 
-			// 8.×Ó¿Ø¼şÖ®¼äµÄ¶îÍâ¾àÀë
+			// 8.å­æ§ä»¶ä¹‹é—´çš„é¢å¤–è·ç¦»
 			nCxFixedLen += (nEstimateNum-1)*m_iChildPaddLen;
 
-			// ¿ªÊ¼°Ú·Å×Ó¿Ø¼ş
+			// å¼€å§‹æ‘†æ”¾å­æ§ä»¶
 			int ncxAdjustItemLen	= 0;
 			if (nAdjustNum>0)
 			{
-				// 9.ÅĞ¶Ï×Ô¶¯¼ÆËã¿í¶È¹»²»¹»
+				// 9.åˆ¤æ–­è‡ªåŠ¨è®¡ç®—å®½åº¦å¤Ÿä¸å¤Ÿ
 				ncxAdjustItemLen = (szAvailable.cx>nCxFixedLen)?((szAvailable.cx-nCxFixedLen)/nAdjustNum):0;
 			}
 
@@ -275,7 +275,7 @@ namespace DM
 			pChild = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pChild)
 			{
-				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pChild->DM_IsVisible(false)&&(false == pChild->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||m_bFloatLayout)
 				{
 					pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
@@ -288,15 +288,15 @@ namespace DM
 				int nMaxWidth  = pChild->m_pDUIXmlInfo->m_nMaxWidth;
 				CRect &rcPadd = pChild->m_pDUIXmlInfo->m_rcPadd;
 				szRemain.cx -= rcPadd.left;
-				// ¼ÆËãx
+				// è®¡ç®—x
 				CSize szMeasure(POS_INIT,POS_INIT);
 				pChild->DV_Measure(szMeasure);
-				if (POS_INIT == szMeasure.cx)// Ã»ÓĞÉèÖÃ¿í¶ÈµÄ¿Ø¼ş
+				if (POS_INIT == szMeasure.cx)// æ²¡æœ‰è®¾ç½®å®½åº¦çš„æ§ä»¶
 				{
 					iAdjustIndex++;
 					szMeasure.cx = ncxAdjustItemLen;
 					if (iAdjustIndex == nAdjustNum)
-					{// ×îºóÒ»¸öÃ»ÓĞÉèÖÃ¿í¶ÈµÄ¿Ø¼ş£¬ÒòÎªÇ°Ãæ¿ÉÄÜÓĞ×î´ó×îĞ¡ÏŞÖÆÊ¹µÃcx!=ncxAdjustItemLen
+					{// æœ€åä¸€ä¸ªæ²¡æœ‰è®¾ç½®å®½åº¦çš„æ§ä»¶ï¼Œå› ä¸ºå‰é¢å¯èƒ½æœ‰æœ€å¤§æœ€å°é™åˆ¶ä½¿å¾—cx!=ncxAdjustItemLen
 						szMeasure.cx = szRemain.cx+rcPadd.left-nCxFixedLenRemain;
 						szMeasure.cx = szMeasure.cx<=0?0:szMeasure.cx;
 					}
@@ -326,7 +326,7 @@ namespace DM
 					nCxFixedLenRemain -=szMeasure.cx;
 				}
 
-				// ¼ÆËãy
+				// è®¡ç®—y
 				szMeasure.cy = pChild->m_pDUIXmlInfo->m_iHeight;
 				if (-1 == szMeasure.cy)
 				{
@@ -346,7 +346,7 @@ namespace DM
 					szMeasure.cy = nMaxHeight;
 				}
 
-				CRect &rcWindow  = m_rcWindow;// ÈİÆ÷´óĞ¡
+				CRect &rcWindow  = m_rcWindow;// å®¹å™¨å¤§å°
 				CRect rcArrange(iPosX+rcPadd.left,rcWindow.top+rcPadd.top,iPosX+rcPadd.left+szMeasure.cx, rcWindow.top+rcPadd.top+szMeasure.cy);
 				pChild->DV_Arrange(rcArrange);
 				pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
@@ -368,7 +368,7 @@ namespace DM
 				DMFAIL_MSG("window layout not ready");
 				break;
 			}
-			// 1.»ñµÃ×Ó¿Ø¼şµÄ²¼¾Ö¿Õ¼ä
+			// 1.è·å¾—å­æ§ä»¶çš„å¸ƒå±€ç©ºé—´
 			CRect rcLayout;
 			DV_GetChildMeasureLayout(rcLayout);
 			if (rcLayout.IsRectEmpty())
@@ -376,7 +376,7 @@ namespace DM
 				break;
 			}
 
-			// 2.ÅĞ¶ÏÈİÆ÷×Ó¿Ø¼şÊÇ²»ÊÇÎª¿Õ
+			// 2.åˆ¤æ–­å®¹å™¨å­æ§ä»¶æ˜¯ä¸æ˜¯ä¸ºç©º
 			if (0==m_Node.m_nChildrenCount)
 			{
 				break;
@@ -392,27 +392,27 @@ namespace DM
 			DUIWindowPtr pObj = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pObj)
 			{
-				if (!pObj->DM_IsVisible(false)&&(false == pObj->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pObj->DM_IsVisible(false)&&(false == pObj->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||m_bFloatLayout)
 				{
 					pObj=pObj->DM_GetWindow(GDW_NEXTSIBLING);
 					continue;
 				}
 
-				// ÉèÖÃ
+				// è®¾ç½®
 				if (rcLayout.right<ptTab.x+m_szItem.cx)
 				{
 					ptTab.x = rcLayout.left;
-					ptTab.y += m_szItem.cy;// »»ĞĞ
+					ptTab.y += m_szItem.cy;// æ¢è¡Œ
 				}
 				if (ptTab.y+m_szItem.cy>rcLayout.bottom)
 				{
-					bEnd = true;// ½áÊø
+					bEnd = true;// ç»“æŸ
 				}
 				CRect rcArrange;
 				if (bEnd)
 				{
-					rcArrange.SetRectEmpty();// ÆäÓàµÄÖÃ¿Õ°É
+					rcArrange.SetRectEmpty();// å…¶ä½™çš„ç½®ç©ºå§
 				}
 				else
 				{
@@ -441,7 +441,7 @@ namespace DM
 				DMFAIL_MSG("window layout not ready");
 				break;
 			}
-			// 1.»ñµÃ×Ó¿Ø¼şµÄ²¼¾Ö¿Õ¼ä
+			// 1.è·å¾—å­æ§ä»¶çš„å¸ƒå±€ç©ºé—´
 			CRect rcLayout;
 			DV_GetChildMeasureLayout(rcLayout);
 			if (rcLayout.IsRectEmpty())
@@ -449,16 +449,16 @@ namespace DM
 				break;
 			}
 
-			// 2.ÅĞ¶ÏÈİÆ÷×Ó¿Ø¼şÊÇ²»ÊÇÎª¿Õ
+			// 2.åˆ¤æ–­å®¹å™¨å­æ§ä»¶æ˜¯ä¸æ˜¯ä¸ºç©º
 			if (0==m_Node.m_nChildrenCount)
 			{
 				break;
 			}
 
-			// 3.¼ÆËãÈİÆ÷¿ÉÓÃµÄ´óĞ¡
+			// 3.è®¡ç®—å®¹å™¨å¯ç”¨çš„å¤§å°
 			SIZE szAvailable = rcLayout.Size();
 			if (m_szItem.cx>0)
-			{// Ò²¿ÉÒÔÎª0£¬ÕâÊ±ĞèÒª¸ù¾İÉè¶¨µÄm_nColumnsÀ´È·ÈÏ
+			{// ä¹Ÿå¯ä»¥ä¸º0ï¼Œè¿™æ—¶éœ€è¦æ ¹æ®è®¾å®šçš„m_nColumnsæ¥ç¡®è®¤
 				m_nColumns = rcLayout.Width()/m_szItem.cx;
 			}
 			if (0 == m_nColumns)
@@ -467,7 +467,7 @@ namespace DM
 			}
 
 			int cyNeedLen = 0;
-			int cxWidth = rcLayout.Width()/m_nColumns;  // WrapÏîµÄ¿í¶È
+			int cxWidth = rcLayout.Width()/m_nColumns;  // Wrapé¡¹çš„å®½åº¦
 
 			int cyHeight = m_szItem.cy;
 			int iCount   = 0;
@@ -477,7 +477,7 @@ namespace DM
 			DUIWindowPtr pObj = DM_GetWindow(GDW_FIRSTCHILD);
 			while (pObj)
 			{
-				if (!pObj->DM_IsVisible(false)&&(false == pObj->m_pDUIXmlInfo->m_bPlaceHolder)// ²»¿É¼ûÒ²²»Õ¼Î»
+				if (!pObj->DM_IsVisible(false)&&(false == pObj->m_pDUIXmlInfo->m_bPlaceHolder)// ä¸å¯è§ä¹Ÿä¸å ä½
 					||m_bFloatLayout)
 				{
 					pObj=pObj->DM_GetWindow(GDW_NEXTSIBLING);
@@ -492,7 +492,7 @@ namespace DM
 			{
 				DUIWindowPtr &pChild = m_ItemArray[i];
 				CRect rcWrapItem(ptWrap.x, ptWrap.y, ptWrap.x+cxWidth, ptWrap.y);
-				if (0 == (iCount%m_nColumns))// Ò»ĞĞµÄ×î¿ªÊ¼,ÔÚ´Ë¼ÆËãÕâĞĞµÄ×î´óheight
+				if (0 == (iCount%m_nColumns))// ä¸€è¡Œçš„æœ€å¼€å§‹,åœ¨æ­¤è®¡ç®—è¿™è¡Œçš„æœ€å¤§height
 				{
 					int iIndex = iCount;
 					for (int j=i;j<nArrayCount; j++)
@@ -500,8 +500,8 @@ namespace DM
 						DUIWindowPtr &pLineChild = m_ItemArray[j];
 						CRect &rcPadd = pLineChild->m_pDUIXmlInfo->m_rcPadd;
 						CSize szAvailable(rcWrapItem.right-rcWrapItem.left-rcPadd.left-rcPadd.right,POS_INIT);
-						if (iIndex == iCount // Ò»ĞĞµÄ×î¿ªÊ¼
-							||0==(iIndex+1)%m_nColumns// Ò»ĞĞµÄ×îºó
+						if (iIndex == iCount // ä¸€è¡Œçš„æœ€å¼€å§‹
+							||0==(iIndex+1)%m_nColumns// ä¸€è¡Œçš„æœ€å
 							)
 						{
 							szAvailable.cx -= m_iChildPaddLen/2;
@@ -529,7 +529,7 @@ namespace DM
 						CSize szWrap = szAvailable;
 						pLineChild->DV_Measure(szWrap);
 						if (POS_INIT == szWrap.cy)
-						{// ×ÓÏîÃ»ÓĞÉèÖÃ¸ß¶È£¡,ÉèÖÃ³ÉÄ¬ÈÏ×ÖÌå¸ß¶È£¬Õâ¸öºóĞøÖØ¹¹ÔÙ¸Ä
+						{// å­é¡¹æ²¡æœ‰è®¾ç½®é«˜åº¦ï¼,è®¾ç½®æˆé»˜è®¤å­—ä½“é«˜åº¦ï¼Œè¿™ä¸ªåç»­é‡æ„å†æ”¹
 							IDMFontPtr pDefultFont = g_pDMFontPool->GetFont("");
 							szWrap.cy = DMABS(pDefultFont->GetLogFont()->lfHeight)+10;
 						}
@@ -554,7 +554,7 @@ namespace DM
 							szWrap.cy = nMaxHeight;
 						}
 						int nHeightTemp = szWrap.cy+rcPadd.top+rcPadd.bottom;
-						cyHeight = cyHeight>nHeightTemp?cyHeight:nHeightTemp; // ¼ÆËã³öÕâÒ»ÁĞÖĞ×î¸ßµÄÏî×öÎªÒ»ĞĞµÄheight
+						cyHeight = cyHeight>nHeightTemp?cyHeight:nHeightTemp; // è®¡ç®—å‡ºè¿™ä¸€åˆ—ä¸­æœ€é«˜çš„é¡¹åšä¸ºä¸€è¡Œçš„height
 						if (0==(++iIndex%m_nColumns))
 						{
 							break;
@@ -565,11 +565,11 @@ namespace DM
 				rcWrapItem.left += rcPadd.left + m_iChildPaddLen/2;
 				rcWrapItem.right -= rcPadd.right + m_iChildPaddLen/2;
 				if (0 == (iCount%m_nColumns))
-				{// Ò»ĞĞµÄ×î¿ªÊ¼
+				{// ä¸€è¡Œçš„æœ€å¼€å§‹
 					rcWrapItem.left -= m_iChildPaddLen/2;
 				}
 				if (0 == (iCount+1)%m_nColumns)
-				{// Ò»ĞĞµÄ×îºó
+				{// ä¸€è¡Œçš„æœ€å
 					rcWrapItem.right += m_iChildPaddLen/2;
 				}
 
@@ -744,9 +744,9 @@ namespace DM
 				DMFAIL_MSG("buitlin splitter only support 2 child window");
 				break;
 			} 
-			if (m_bVert)// ¼áÖ±
+			if (m_bVert)// åšç›´
 			{
-				//1.µÚÒ»´Î³õÊ¼»¯
+				//1.ç¬¬ä¸€æ¬¡åˆå§‹åŒ–
 				if (-1 == m_iFixWid)
 				{
 					CRect rcFirst = m_rcWindow;
@@ -756,7 +756,7 @@ namespace DM
 						iFirstChildWidth = (m_rcWindow.Height()*m_iFirstChildPercent)/100;
 					}
 					rcFirst.bottom = rcFirst.top+iFirstChildWidth;
-					if (m_rcWindow.bottom-rcFirst.bottom<m_iSliderWid)//1.1.Ê£Óà¸ß¶È²»×ã£¬²¹×ã
+					if (m_rcWindow.bottom-rcFirst.bottom<m_iSliderWid)//1.1.å‰©ä½™é«˜åº¦ä¸è¶³ï¼Œè¡¥è¶³
 					{
 						rcFirst.bottom = m_rcWindow.bottom- m_iSliderWid;
 					}
@@ -767,10 +767,10 @@ namespace DM
 
 					UpdateFixWidth();
 				} 
-				else//2.ÒÑ³õÊ¼»¯
+				else//2.å·²åˆå§‹åŒ–
 				{
 					CRect rcFirst = m_rcWindow;
-					if (m_iFixWid+m_iSliderWid>m_rcWindow.Height())// ×Ó´°¿Ú¸ß¶È+»¬¿é¸ß¶È´óÓÚ¸¸´°¿ÚµÄ¿ÉÓÃÇøÓòÁË
+					if (m_iFixWid+m_iSliderWid>m_rcWindow.Height())// å­çª—å£é«˜åº¦+æ»‘å—é«˜åº¦å¤§äºçˆ¶çª—å£çš„å¯ç”¨åŒºåŸŸäº†
 					{
 						m_iFixWid = m_rcWindow.Height()-m_iSliderWid;
 					}
@@ -792,7 +792,7 @@ namespace DM
 			}
 			else
 			{
-				//1.µÚÒ»´Î³õÊ¼»¯
+				//1.ç¬¬ä¸€æ¬¡åˆå§‹åŒ–
 				if (-1 == m_iFixWid)
 				{
 					CRect rcFirst = m_rcWindow;
@@ -802,7 +802,7 @@ namespace DM
 						iFirstChildWidth = (m_rcWindow.Width()*m_iFirstChildPercent)/100;
 					}
 					rcFirst.right = rcFirst.left+iFirstChildWidth;
-					if (m_rcWindow.right-rcFirst.right<m_iSliderWid)//1.1.Ê£Óà¸ß¶È²»×ã£¬²¹×ã
+					if (m_rcWindow.right-rcFirst.right<m_iSliderWid)//1.1.å‰©ä½™é«˜åº¦ä¸è¶³ï¼Œè¡¥è¶³
 					{
 						rcFirst.right = m_rcWindow.right- m_iSliderWid;
 					}
@@ -813,10 +813,10 @@ namespace DM
 
 					UpdateFixWidth();
 				}
-				else//2.ÒÑ³õÊ¼»¯
+				else//2.å·²åˆå§‹åŒ–
 				{
 					CRect rcFirst = m_rcWindow;
-					if (m_iFixWid+m_iSliderWid>m_rcWindow.Width())// ×Ó´°¿Ú¿í¶È+»¬¿é¿í¶È´óÓÚ¸¸´°¿ÚµÄ¿ÉÓÃÇøÓòÁË
+					if (m_iFixWid+m_iSliderWid>m_rcWindow.Width())// å­çª—å£å®½åº¦+æ»‘å—å®½åº¦å¤§äºçˆ¶çª—å£çš„å¯ç”¨åŒºåŸŸäº†
 					{
 						m_iFixWid = m_rcWindow.Width()-m_iSliderWid;
 					}
@@ -859,7 +859,7 @@ namespace DM
 	///
 	DMCode DUISplitLayout::UpdateFixWidth()
 	{
-		if (m_bFirstChange)// ¹Ì¶¨´óĞ¡ÎªµÚ¶ş¸ö´°¿Ú
+		if (m_bFirstChange)// å›ºå®šå¤§å°ä¸ºç¬¬äºŒä¸ªçª—å£
 		{
 			if (m_bVert)
 			{
@@ -929,13 +929,13 @@ namespace DM
 		do 
 		{
 			CRect rcFirstWnd = m_Node.m_pFirstChild->m_rcWindow;
-			if (m_bVert)// ÊúÖ±
+			if (m_bVert)// ç«–ç›´
 			{
 				rcSlider = m_rcWindow;
 				rcSlider.top = m_Node.m_pFirstChild->m_rcWindow.bottom;
 				rcSlider.bottom = rcSlider.top+m_iSliderWid;
 			}
-			else// Ë®Æ½
+			else// æ°´å¹³
 			{
 				rcSlider = m_rcWindow;
 				rcSlider.left = m_Node.m_pFirstChild->m_rcWindow.right;
@@ -957,7 +957,7 @@ namespace DM
 				break;
 			}
 			m_iFirstChildWidth = temp;
-			if (!bLoadXml)// ÖØĞÂ³õÊ¼»¯
+			if (!bLoadXml)// é‡æ–°åˆå§‹åŒ–
 			{
 				m_iFixWid = -1;
 				DV_UpdateChildLayout();
@@ -999,7 +999,7 @@ namespace DM
 		} while (false);
 		if (DMSUCCEEDED(iErr))
 		{		
-			if (!bLoadXml)// ÖØĞÂ³õÊ¼»¯
+			if (!bLoadXml)// é‡æ–°åˆå§‹åŒ–
 			{
 				m_iFixWid = -1;
 				DV_UpdateChildLayout();

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	PoolDlg.h 
 // File mark:   
-// File summary:Ôö¼Ó¡¢±à¼­skin.style³Ø
+// File summary:å¢åŠ ã€ç¼–è¾‘skin.styleæ± 
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8

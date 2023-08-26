@@ -1,37 +1,37 @@
-print("lua ¶¨Ê±»»·ôËæ»úÊ¾Àı.........")
-print("ĞŞ¸Älua,µã»÷ÔËĞĞ½Å±¾²âÊÔĞ§¹û")
+ï»¿print("lua å®šæ—¶æ¢è‚¤éšæœºç¤ºä¾‹.........")
+print("ä¿®æ”¹lua,ç‚¹å‡»è¿è¡Œè„šæœ¬æµ‹è¯•æ•ˆæœ")
 
---µ¥¶À»»·ôº¯Êı
+--å•ç‹¬æ¢è‚¤å‡½æ•°
 function  themefun(count)
-	local themeprex = "Ö÷Ìâ"
+	local themeprex = "ä¸»é¢˜"
 	local themename = string.format("%s%d",themeprex,count)
 	local w_themename = DMCA2W(themename)
 	local w_themeoldname = DMCA2W("")
 	g_pDMRes:SetCurTheme(w_themename:GetBuffer(),w_themeoldname:GetBuffer())	
-	w_themename:ReleaseBuffer()--GetBufferºóÒ»¶¨ReleaseBuffer£¬²»È»ÄÚ´æÎŞ·¨ÊÍ·Å,Î´Öª·çÏÕ
+	w_themename:ReleaseBuffer()--GetBufferåä¸€å®šReleaseBufferï¼Œä¸ç„¶å†…å­˜æ— æ³•é‡Šæ”¾,æœªçŸ¥é£é™©
 	w_themeoldname:ReleaseBuffer()
 	g_pDMApp:RedrawAll()
 end
 
 widget_wnd = nil
--- WidgetWndÆğÊ¼µ÷ÓÃDMEVT_SCRIPT_STARTº¯Êı
+-- WidgetWndèµ·å§‹è°ƒç”¨DMEVT_SCRIPT_STARTå‡½æ•°
 function DMEVT_SCRIPT_START(args)
-	print("¿ªÊ¼ÔËĞĞ......")
+	print("å¼€å§‹è¿è¡Œ......")
 	local duiwnd = args.m_pSender
 	widget_wnd = duiwnd
-	duiwnd:DM_SetTimer(123,11) --ÉèÖÃ1234¶¨Ê±Æ÷
+	duiwnd:DM_SetTimer(123,11) --è®¾ç½®1234å®šæ—¶å™¨
 	return 1
 end
 
 function DMEVT_SCRIPT_TIMER(args)
-	-- Ã¿´ÎÔËĞĞËæ»ú»»·ô
+	-- æ¯æ¬¡è¿è¡Œéšæœºæ¢è‚¤
 	t = os.time()
 	themefun(t%17)
 	return 1
 end
 
 function DMEVT_SCRIPT_END(args)
-	-- Í£Ö¹¶¨Ê±Æ÷
+	-- åœæ­¢å®šæ—¶å™¨
 	widget_wnd:DM_KillTimer(123)
 	return 1
 end

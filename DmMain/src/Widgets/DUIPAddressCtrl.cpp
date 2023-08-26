@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+Ôªø#include "DmMainAfx.h"
 #include "DUIPAddressCtrl.h"
 
 namespace DM
@@ -259,7 +259,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ÷ÿ‘ÿ
+	// Function Des: –∂–∏–¥–∏
 	DMCode DUIPAddressCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);

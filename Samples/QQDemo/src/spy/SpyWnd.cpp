@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "SpyWnd.h"
 
 #pragma execution_character_set("utf-8")
@@ -48,7 +48,7 @@ BOOL CSpyWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pTreeCtrl  = FindChildByNameT<DUITreeCtrl>("spytree");
 	m_pTreeEdit  = FindChildByNameT<DUIRichEdit>("spyedit");
 	m_pSearchSta = FindChildByNameT<DUIStatic>("search_sta");
-	m_pSearchSta->DV_SetWindowText(L"ÇëÍÏ¶¯×ó²àµÄÖ¸Õëµ½ĞèÒª²é¿´µÄ´°¿Ú/¿Ø¼şÉÏÊÍ·Å");
+	m_pSearchSta->DV_SetWindowText(L"è¯·æ‹–åŠ¨å·¦ä¾§çš„æŒ‡é’ˆåˆ°éœ€è¦æŸ¥çœ‹çš„çª—å£/æ§ä»¶ä¸Šé‡Šæ”¾");
 	DMASSERT(m_pTreeCtrl);DMASSERT(m_pTreeEdit);DMASSERT(m_pSearchSta);
 
 	return TRUE;
@@ -75,8 +75,8 @@ DMCode CSpyWnd::OnSpyInitEvent(DMEventArgs *pEvt)
 		m_bDraw = false;
 		m_bInit = false;
 		m_pTreeEdit->SetWindowText(L"");
-		m_pSearchSta->DV_SetWindowText(L"ÇëÍÏ¶¯×ó²àµÄÖ¸Õëµ½ĞèÒª²é¿´µÄ´°¿Ú/¿Ø¼şÉÏÊÍ·Å");
-		// Ä¬ÈÏwparam´«Ê²Ã´·µ»ØÊ²Ã´
+		m_pSearchSta->DV_SetWindowText(L"è¯·æ‹–åŠ¨å·¦ä¾§çš„æŒ‡é’ˆåˆ°éœ€è¦æŸ¥çœ‹çš„çª—å£/æ§ä»¶ä¸Šé‡Šæ”¾");
+		// é»˜è®¤wparamä¼ ä»€ä¹ˆè¿”å›ä»€ä¹ˆ
 		DWORD_PTR lresult = 0; 
 		LRESULT lr  = ::SendMessageTimeout(pInitEvt->m_hwnd,WM_DMSPY,DMSPY_INIT,(LPARAM)m_hWnd,SMTO_NORMAL,2000,&lresult);
 		if (lr&&DMSPY_INIT!=lresult)
@@ -87,7 +87,7 @@ DMCode CSpyWnd::OnSpyInitEvent(DMEventArgs *pEvt)
 		DMSpyTool::ReleaseSharedMemory();
 		DMSpyTool::CreateSharedMemory(sizeof(DMSpyEnum));
 
-		// ³õÊ¼»¯ÒÔpInitEvt->m_hwndÎªrootµÄÃ¶¾ÙÊ÷ĞÎDUI´°¿Ú
+		// åˆå§‹åŒ–ä»¥pInitEvt->m_hwndä¸ºrootçš„æšä¸¾æ ‘å½¢DUIçª—å£
 		InitTreeCtrl(pInitEvt->m_hwnd);
 
 	} while (false);
@@ -97,7 +97,7 @@ DMCode CSpyWnd::OnSpyInitEvent(DMEventArgs *pEvt)
 
 DMCode CSpyWnd::OnTreeSelChanged(DMEventArgs *pEvt)
 {
-	if (m_bHittest)// À´×Ôpt²éÕÒ£¬pt²éÕÒÓÉËü×Ô¼º»æ
+	if (m_bHittest)// æ¥è‡ªptæŸ¥æ‰¾ï¼ŒptæŸ¥æ‰¾ç”±å®ƒè‡ªå·±ç»˜
 	{
 		return DM_ECODE_OK;
 	}
@@ -135,10 +135,10 @@ void CSpyWnd::InitTreeCtrl(HWND hRootWnd)
 	do 
 	{
 		CStringW strRoot;
-		strRoot.Format(L"´°¿Ú %08x-(root)",hRootWnd);
+		strRoot.Format(L"çª—å£ %08x-(root)",hRootWnd);
 		HDMTREEITEM hRootTree = m_pTreeCtrl->InsertItem(strRoot,0,0,(LPARAM)-1);
 
-		// »ñµÃxmlÁĞ±í
+		// è·å¾—xmlåˆ—è¡¨
 		wchar_t szXmlPath[MAX_PATH] = {0};
 		DM::GetRootFullPath(L".\\DMSpyTree.xml",szXmlPath,MAX_PATH);
 		DMSpyTool::WriteShareMemory(szXmlPath,MAX_PATH);
@@ -153,7 +153,7 @@ void CSpyWnd::InitTreeCtrl(HWND hRootWnd)
 			break;
 		}
 
-		// ½¨Á¢Ê÷ĞÎ¿Ø¼ş
+		// å»ºç«‹æ ‘å½¢æ§ä»¶
 		DMXmlNode XmlNode = doc.Root();
 		if (!XmlNode.IsValid())
 		{
@@ -166,12 +166,12 @@ void CSpyWnd::InitTreeCtrl(HWND hRootWnd)
 	if (nCount>1)
 	{
 		m_bInit = true;
-		m_pSearchSta->DV_SetWindowText(L"DUI³õÊ¼»¯Íê³É,ÇëÍÏ¶¯×ó²àµÄÖ¸Õë²é¿´DUI´°¿Ú/¿Ø¼ş");
+		m_pSearchSta->DV_SetWindowText(L"DUIåˆå§‹åŒ–å®Œæˆ,è¯·æ‹–åŠ¨å·¦ä¾§çš„æŒ‡é’ˆæŸ¥çœ‹DUIçª—å£/æ§ä»¶");
 	}
 	else
 	{
 		m_bInit = false;
-		m_pSearchSta->DV_SetWindowText(L"ÇëÍÏ¶¯×ó²àµÄÖ¸Õëµ½ĞèÒª²é¿´µÄ´°¿Ú/¿Ø¼şÉÏÊÍ·Å");
+		m_pSearchSta->DV_SetWindowText(L"è¯·æ‹–åŠ¨å·¦ä¾§çš„æŒ‡é’ˆåˆ°éœ€è¦æŸ¥çœ‹çš„çª—å£/æ§ä»¶ä¸Šé‡Šæ”¾");
 	}
 }
 
@@ -188,11 +188,11 @@ void CSpyWnd::InsertTreeItem(DMXmlNode &XmlNode,HDMTREEITEM hParentItem)
 	CStringA strTree;
 	if (1 == bPanel)
 	{
-		strTree.Format("(panel)´°¿Úlevel(%s) ID:%d Name:%s ÀàÃû:%s",level,duiwnd,name,classname);
+		strTree.Format("(panel)çª—å£level(%s) ID:%d Name:%s ç±»å:%s",level,duiwnd,name,classname);
 	}
 	else
 	{
-		strTree.Format("´°¿Úlevel(%s) ID:%d Name:%s ÀàÃû:%s",level,duiwnd,name,classname);
+		strTree.Format("çª—å£level(%s) ID:%d Name:%s ç±»å:%s",level,duiwnd,name,classname);
 	}
 	int iIcon = bsee?1:0;
 	CStringW strTreeW = DMA2W(strTree);
@@ -207,9 +207,9 @@ void CSpyWnd::ReflashEditInfo()
 {
 	DMSpyTool::ReadShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
 	CStringW strWnd;
-	strWnd.Format(L"´°¿ÚÇøÓò:left:%d,top:%d,wid:%d,hei:%d\r\n",m_pSpyEnum->info.rcWindow.left,m_pSpyEnum->info.rcWindow.top,m_pSpyEnum->info.rcWindow.Width(),m_pSpyEnum->info.rcWindow.Height());
+	strWnd.Format(L"çª—å£åŒºåŸŸ:left:%d,top:%d,wid:%d,hei:%d\r\n",m_pSpyEnum->info.rcWindow.left,m_pSpyEnum->info.rcWindow.top,m_pSpyEnum->info.rcWindow.Width(),m_pSpyEnum->info.rcWindow.Height());
 	CStringW strClient;
-	strClient.Format(L"¿Í»§ÇøÓò:left:%d,top:%d,wid:%d,hei:%d\r\n",m_pSpyEnum->info.rcClient.left,m_pSpyEnum->info.rcClient.top,m_pSpyEnum->info.rcClient.Width(),m_pSpyEnum->info.rcClient.Height());
+	strClient.Format(L"å®¢æˆ·åŒºåŸŸ:left:%d,top:%d,wid:%d,hei:%d\r\n",m_pSpyEnum->info.rcClient.left,m_pSpyEnum->info.rcClient.top,m_pSpyEnum->info.rcClient.Width(),m_pSpyEnum->info.rcClient.Height());
 	CStringW strInfo =strWnd + strClient;
 	strInfo += L"XML:\r\n";
 	strInfo += m_pSpyEnum->info.szXml;
@@ -237,7 +237,7 @@ bool CSpyWnd::HitTest(RECT &rc)
 		DMSpyTool::ReadShareMemory(m_pSpyEnum,sizeof(DMSpyEnum));
 		if (hr&&DMSPY_POINT == lresult&&m_pSpyEnum->hNextDUIWnd)
 		{
-			// ±éÀúÑ¡ÖĞtree
+			// éå†é€‰ä¸­tree
 			HDMTREEITEM hItem = m_pTreeCtrl->GetRootItem();
 			while (hItem)
 			{
@@ -271,14 +271,14 @@ void CSpyWnd::OnDUITimer(char id)
 		{
 			return;
 		}
-		HWND DeskHwnd = ::GetDesktopWindow();//È¡µÃ×ÀÃæ¾ä±ú
+		HWND DeskHwnd = ::GetDesktopWindow();//å–å¾—æ¡Œé¢å¥æŸ„
 		HDC DeskDC    = ::GetWindowDC(DeskHwnd);
 		int oldRop2   = SetROP2(DeskDC, R2_NOTXORPEN);
 		RECT rc = m_rcDraw;
 		HPEN newPen = ::CreatePen(PS_DASHDOTDOT, 1, RGB(125, 0, 125));
 		HGDIOBJ oldPen = ::SelectObject(DeskDC, newPen);
 		::Rectangle(DeskDC, rc.left, rc.top,rc.right, rc.bottom);
-		Sleep(200); //ÉèÖÃÉÁË¸Ê±¼ä¼ä¸ô
+		Sleep(200); //è®¾ç½®é—ªçƒæ—¶é—´é—´éš”
 		::Rectangle(DeskDC, rc.left, rc.top,rc.right, rc.bottom);
 
 		::SetROP2(DeskDC, oldRop2);

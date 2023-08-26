@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -19,23 +19,23 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIComboBoxBase"/>µÄxmlÊôÐÔ¶¨Òå
+	///		<see cref="DM::DUIComboBoxBase"/>çš„xmlå±žæ€§å®šä¹‰
 	/// </summary>
 	class DUIComboBoxBaseAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* bool_bhideedit;                                               ///< ÊÇ·ñ²»ÏÔÊ¾edit,Ê¾Àý£ºbhideedit="1"
-		static const char* INT_dropheight;                                               ///< ÏÂÀ­¸ß¶È,È¡listboxµÄ¸ß¶ÈºÍ´ËÉèÖÃÖµµÄ½ÏÐ¡ÖµÏÔÊ¾,Ä¬ÈÏ200£¬Ê¾Àý£ºdropheight="200"
-		static const char* INT_dropemptyheight;                                          ///< µ±listboxÎª¿ÕÊ±µÄÏÔÊ¾¸ß¶È,Ä¬ÈÏ0£¬Ê¾Àý£ºdropemptyheight="200"
-		static const char* INT_animatetime;                                              ///< ÏÂÀ­³öÀ´µÄÊ±¼ä£¬ÓÃÓÚAnimateWindow,Ä¬ÈÏ200,Îª0±íÊ¾²»Ê¹ÓÃÏÂÀ­¶¯»­,Ê¾Àý£ºanimatetime="200"
-		static const char* SKIN_btnskin;                                                 ///< ÏÂÀ­µÄÐ¡Èý½Ç°´Å¥Æ¤·ô£¬Ê¾Àý:btnskin="skinbtn"
-		static const char* SIZE_btnsize;                                                 ///< ÏÂÀ­Ð¡Èý½ÇµÄ¿í¸ß,Îª-1,-1Ê±±íÊ¾Ê¹ÓÃbtnskinµÄsize,ÊúÖ±¾ÓÖÐ,Ê¾Àý:btnsize="-1,-1"
-		static const char* INT_cursel;                                                   ///< µ±Ç°Ñ¡ÖÐÏî£¬Ê¾Àý:cursel="1"
-		static const char* INT_textoffset;                                 			  ///< ÎÄ±¾µÄÆ«ÒÆ£¬Ä¬ÈÏÎª0,Ê¾Àý:textoffset="10"
-		static const char* bool_bdroptranslucent;										  ///< ÏÂÀ­ÁÐ±í´°¿ÚÊÇ·ñÖ§³ÖÍ¸Ã÷,Ä¬ÈÏÎª²»Í¸Ã÷,Ê¾Àý:bdroptranslucent="0"
+		static const char* bool_bhideedit;                                               ///< æ˜¯å¦ä¸æ˜¾ç¤ºedit,ç¤ºä¾‹ï¼šbhideedit="1"
+		static const char* INT_dropheight;                                               ///< ä¸‹æ‹‰é«˜åº¦,å–listboxçš„é«˜åº¦å’Œæ­¤è®¾ç½®å€¼çš„è¾ƒå°å€¼æ˜¾ç¤º,é»˜è®¤200ï¼Œç¤ºä¾‹ï¼šdropheight="200"
+		static const char* INT_dropemptyheight;                                          ///< å½“listboxä¸ºç©ºæ—¶çš„æ˜¾ç¤ºé«˜åº¦,é»˜è®¤0ï¼Œç¤ºä¾‹ï¼šdropemptyheight="200"
+		static const char* INT_animatetime;                                              ///< ä¸‹æ‹‰å‡ºæ¥çš„æ—¶é—´ï¼Œç”¨äºŽAnimateWindow,é»˜è®¤200,ä¸º0è¡¨ç¤ºä¸ä½¿ç”¨ä¸‹æ‹‰åŠ¨ç”»,ç¤ºä¾‹ï¼šanimatetime="200"
+		static const char* SKIN_btnskin;                                                 ///< ä¸‹æ‹‰çš„å°ä¸‰è§’æŒ‰é’®çš®è‚¤ï¼Œç¤ºä¾‹:btnskin="skinbtn"
+		static const char* SIZE_btnsize;                                                 ///< ä¸‹æ‹‰å°ä¸‰è§’çš„å®½é«˜,ä¸º-1,-1æ—¶è¡¨ç¤ºä½¿ç”¨btnskinçš„size,ç«–ç›´å±…ä¸­,ç¤ºä¾‹:btnsize="-1,-1"
+		static const char* INT_cursel;                                                   ///< å½“å‰é€‰ä¸­é¡¹ï¼Œç¤ºä¾‹:cursel="1"
+		static const char* INT_textoffset;                                 			  ///< æ–‡æœ¬çš„åç§»ï¼Œé»˜è®¤ä¸º0,ç¤ºä¾‹:textoffset="10"
+		static const char* bool_bdroptranslucent;										  ///< ä¸‹æ‹‰åˆ—è¡¨çª—å£æ˜¯å¦æ”¯æŒé€æ˜Ž,é»˜è®¤ä¸ºä¸é€æ˜Ž,ç¤ºä¾‹:bdroptranslucent="0"
 
 
-		static const char* ITEM_subedit;												  ///< ×Ó¿Ø¼þeditµÄXML±êÊ¶
+		static const char* ITEM_subedit;												  ///< å­æŽ§ä»¶editçš„XMLæ ‡è¯†
 	};
 	DMAttrValueInit(DUIComboBoxBaseAttr,bool_bhideedit)DMAttrValueInit(DUIComboBoxBaseAttr,INT_dropheight)DMAttrValueInit(DUIComboBoxBaseAttr, INT_dropemptyheight)DMAttrValueInit(DUIComboBoxBaseAttr,INT_animatetime)
 	DMAttrValueInit(DUIComboBoxBaseAttr,SKIN_btnskin)DMAttrValueInit(DUIComboBoxBaseAttr,SIZE_btnsize)DMAttrValueInit(DUIComboBoxBaseAttr,INT_cursel)DMAttrValueInit(DUIComboBoxBaseAttr,INT_textoffset)
@@ -44,8 +44,8 @@ namespace DMAttr
 
 namespace DM
 {
-#define CB_EDIT_ID          -100													 ///< Ä¬ÈÏComboxÖÐµÄEditµÄID
-#define CB_LIST_ID			-200													 ///< Ä¬ÈÏComboxÖÐµÄListµÄID
+#define CB_EDIT_ID          -100													 ///< é»˜è®¤Comboxä¸­çš„Editçš„ID
+#define CB_LIST_ID			-200													 ///< é»˜è®¤Comboxä¸­çš„Listçš„ID
 	class DUIComboBoxBase;
 	class DM_EXPORT DUIComboEdit:public DUIEdit
 	{
@@ -62,7 +62,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnMouseHover(WPARAM wParam, CPoint ptPos);
 		void OnMouseLeave();
@@ -71,7 +71,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		virtual DMCode DV_FireEvent(DMEventArgs &Evt);
 	};
@@ -95,7 +95,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnLButtonDown(UINT nFlags,CPoint pt);
@@ -106,7 +106,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: IDMDropDownOwnerÊµÏÖ
+		// Function Des: IDMDropDownOwnerå®žçŽ°
 		//---------------------------------------------------
 		virtual DUIWindow* GetOwnerWindow();                    
 		virtual DMCode OnDropDown(DMDropWnd* pDropDown);
@@ -114,33 +114,33 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æŽ¥å£
 		//---------------------------------------------------
 		virtual int GetCount()const				= 0;
 		virtual int GetListBoxHeight()			= 0;        
 		virtual int GetCurSel()	const			= 0;    
-		virtual CStringW GetLBText(int iItem)   = 0;								 ///< È¡µÃlistboxµÄÎÄ×Ö
+		virtual CStringW GetLBText(int iItem)   = 0;								 ///< å–å¾—listboxçš„æ–‡å­—
 	
 		virtual bool SetCurSel(int iSel)		= 0;
 		virtual bool CreateListBox(const DMXmlNode &XmlNode) = 0;
-		virtual bool CalcPopupRect(int nHeight,CRect& rcPopup);						 ///< ¼ÆËãµ¯³ö´°¿ÚÎ»ÖÃ,±£´æÔÚrcPopupÖÐ£¬false±íÊ¾ÏòÉÏµ¯£¡(virtual£¬ÔÊÐíÍâ²¿¶¨ÖÆµ¯´°¿Ú´óÐ¡)			
-		virtual CRect CalcBtnRect();												 ///< ¼ÆËãÏÂÀ­Ð¡Èý½ÇËùÔÚµÄÎ»ÖÃ(ÔÚcomboxÖÐµÄ×ø±ê)
+		virtual bool CalcPopupRect(int nHeight,CRect& rcPopup);						 ///< è®¡ç®—å¼¹å‡ºçª—å£ä½ç½®,ä¿å­˜åœ¨rcPopupä¸­ï¼Œfalseè¡¨ç¤ºå‘ä¸Šå¼¹ï¼(virtualï¼Œå…è®¸å¤–éƒ¨å®šåˆ¶å¼¹çª—å£å¤§å°)			
+		virtual CRect CalcBtnRect();												 ///< è®¡ç®—ä¸‹æ‹‰å°ä¸‰è§’æ‰€åœ¨çš„ä½ç½®(åœ¨comboxä¸­çš„åæ ‡)
 		virtual void OnSelChanged();
-		virtual CStringW GetCBText();												 ///< È¡µÃcomboxµÄÎÄ×Ö
+		virtual CStringW GetCBText();												 ///< å–å¾—comboxçš„æ–‡å­—
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 		virtual DMCode DV_GetTextRect(LPRECT lpRect);            
-		virtual DMCode DV_SetFocusWnd();											 ///< µÃµ½½¹µã,½â¾öComboBoxµÃµ½½¹µãÊ±,×Ó¿Ø¼þEditµÃ²»µ½½¹µãµÄÎÊÌâ
+		virtual DMCode DV_SetFocusWnd();											 ///< å¾—åˆ°ç„¦ç‚¹,è§£å†³ComboBoxå¾—åˆ°ç„¦ç‚¹æ—¶,å­æŽ§ä»¶Editå¾—ä¸åˆ°ç„¦ç‚¹çš„é—®é¢˜
 		virtual DMCode DV_FireEvent(DMEventArgs &Evt);
 		virtual UINT DV_OnGetDlgCode();	
 		virtual bool DV_IsFocusable();
 
-	public:// ¸¨Öú
-		void DropDown();															 ///< ÏÂÀ­ÊÂ¼þ
+	public:// è¾…åŠ©
+		void DropDown();															 ///< ä¸‹æ‹‰äº‹ä»¶
 		void CloseUp();
 	
 	public:
@@ -162,20 +162,20 @@ namespace DM
 		DMCode OnAttributeBtnSize(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		DUIRichEdit*						m_pEdit;								 ///< DUIRichEditÖ¸Õë
-		DWORD							    m_dwBtnState;							 ///< °´Å¥×´Ì¬  
-		IDMSkinPtr							m_pSkinBtn;								 ///< °´Å¥×ÊÔ´   
-		CSize                               m_BtnSize;                               ///< °´Å¥µÄ³¤¿í
+		DUIRichEdit*						m_pEdit;								 ///< DUIRichEditæŒ‡é’ˆ
+		DWORD							    m_dwBtnState;							 ///< æŒ‰é’®çŠ¶æ€  
+		IDMSkinPtr							m_pSkinBtn;								 ///< æŒ‰é’®èµ„æº   
+		CSize                               m_BtnSize;                               ///< æŒ‰é’®çš„é•¿å®½
 
-		bool 							    m_bHideEdit;							 ///< ÊÇ·ñComboBoxÏÔÊ¾Edit
-		int									m_nDropHeight;							 ///< ÏÂÀ­¿ò¸ß¶È
-		int									m_nDropEmptyHeight;						 ///< ListÎª¿ÕÊ±ÏÂÀ­¿ò¸ß¶È
-		int									m_iAnimTime;						     ///< ¶¯»­Ê±¼ä  
-		int									m_iInitSel;								 ///< Ä¬ÈÏÑ¡ÖÐË÷Òý
-		int                                 m_nTextOffset;							 ///< ÎÄ±¾Æ«ÒÆ
-		DMSmartPtrT<DMDropWnd>				m_pDropDownWnd;							 ///< DropDownÖ¸Õë
+		bool 							    m_bHideEdit;							 ///< æ˜¯å¦ComboBoxæ˜¾ç¤ºEdit
+		int									m_nDropHeight;							 ///< ä¸‹æ‹‰æ¡†é«˜åº¦
+		int									m_nDropEmptyHeight;						 ///< Listä¸ºç©ºæ—¶ä¸‹æ‹‰æ¡†é«˜åº¦
+		int									m_iAnimTime;						     ///< åŠ¨ç”»æ—¶é—´  
+		int									m_iInitSel;								 ///< é»˜è®¤é€‰ä¸­ç´¢å¼•
+		int                                 m_nTextOffset;							 ///< æ–‡æœ¬åç§»
+		DMSmartPtrT<DMDropWnd>				m_pDropDownWnd;							 ///< DropDownæŒ‡é’ˆ
 		bool								m_bDropTranslucent;
 
-		DMXmlDocument                       m_EditDoc;                               ///< ±¸·ÝeditµÄxml
+		DMXmlDocument                       m_EditDoc;                               ///< å¤‡ä»½editçš„xml
 	};
 }//namespace DM

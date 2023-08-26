@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMPlugin.h 
-// File Des: ²å¼ş½Ó¿Ú
+// File Des: æ’ä»¶æ¥å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,10 +18,10 @@
 namespace DM
 {
 	/// <summary>
-	///		²å¼ş½Ó¿Ú½è¼øÓÚOGRE.Ã¿¸ö²å¼şÓ¦¸Ã×ö4¼şÊÂ:°²×°¡¢³õÊ¼»¯¡¢ ¹Ø±Õ¡¢Ğ¶ÔØ
+	///		æ’ä»¶æ¥å£å€Ÿé‰´äºOGRE.æ¯ä¸ªæ’ä»¶åº”è¯¥åš4ä»¶äº‹:å®‰è£…ã€åˆå§‹åŒ–ã€ å…³é—­ã€å¸è½½
 	/// </summary>
 	/// <remarks>
-	///     ´Ë²å¼ş½Ó¿Ú¼´¿ÉÒÔÎªdllËùÓÃ£¬Ò²¿ÉÒÔÎª¾²Ì¬libËùÓÃ
+	///     æ­¤æ’ä»¶æ¥å£å³å¯ä»¥ä¸ºdllæ‰€ç”¨ï¼Œä¹Ÿå¯ä»¥ä¸ºé™æ€libæ‰€ç”¨
 	/// </remarks>
 	class IDMPlugin
 	{
@@ -32,35 +32,35 @@ namespace DM
 		virtual const wchar_t* GetName() const = 0;
 
 		//---------------------------------------------------
-		// Function Des: ²»ÒÀÀµÓÚÏµÍ³³õÊ¼»¯
+		// Function Des: ä¸ä¾èµ–äºç³»ç»Ÿåˆå§‹åŒ–
 		// Input Parameter:
 		// Output Parameter:
 		// return:
 		//---------------------------------------------------
-		virtual void Install() = 0;			///< ²»ÒÀÀµÓÚÏµÍ³³õÊ¼»¯
+		virtual void Install() = 0;			///< ä¸ä¾èµ–äºç³»ç»Ÿåˆå§‹åŒ–
 
 		//---------------------------------------------------
-		// Function Des: ×îºóµÄÇåÀí¹¤×÷
+		// Function Des: æœ€åçš„æ¸…ç†å·¥ä½œ
 		// Input Parameter:
 		// Output Parameter:
 		// return:
 		//---------------------------------------------------
-		virtual void Uninstall() = 0;		///< ×îºóµÄÇåÀí¹¤×÷
+		virtual void Uninstall() = 0;		///< æœ€åçš„æ¸…ç†å·¥ä½œ
 
 		//---------------------------------------------------
-		// Function Des: ÒÀÀµÓÚÏµÍ³³õÊ¼»¯
+		// Function Des: ä¾èµ–äºç³»ç»Ÿåˆå§‹åŒ–
 		// Input Parameter:
 		// Output Parameter:
 		// return:
 		//---------------------------------------------------
-		virtual void Initialise() = 0;		///< ÒÀÀµÓÚÏµÍ³³õÊ¼»¯
+		virtual void Initialise() = 0;		///< ä¾èµ–äºç³»ç»Ÿåˆå§‹åŒ–
 
 		//---------------------------------------------------
-		// Function Des: ÔÚÏµÍ³¹Ø¼ü²¿·ÖÃ»ÓĞĞ¶ÔØÊ±×öµÄÇåÀí¹¤×÷
+		// Function Des: åœ¨ç³»ç»Ÿå…³é”®éƒ¨åˆ†æ²¡æœ‰å¸è½½æ—¶åšçš„æ¸…ç†å·¥ä½œ
 		// Input Parameter:
 		// Output Parameter:
 		// return:
 		//---------------------------------------------------
-		virtual void Shutdown() = 0;		///< ÔÚÏµÍ³¹Ø¼ü²¿·ÖÃ»ÓĞĞ¶ÔØÊ±×öµÄÇåÀí¹¤×÷
+		virtual void Shutdown() = 0;		///< åœ¨ç³»ç»Ÿå…³é”®éƒ¨åˆ†æ²¡æœ‰å¸è½½æ—¶åšçš„æ¸…ç†å·¥ä½œ
 	};
 }//namespace DM

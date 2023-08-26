@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,7 +18,7 @@
 namespace DM
 {
 	/// <summary>
-	///		½«Ö¸Õë×ª»»³ÉÖ¸¶¨ÀàĞÍ
+	///		å°†æŒ‡é’ˆè½¬æ¢æˆæŒ‡å®šç±»å‹
 	/// </summary>
 	template <class Dst> Dst DMCastT(const void* ptr) 
 	{
@@ -31,12 +31,12 @@ namespace DM
 		return data.dst;
 	}
 
-	// -----------------------------------------------------ÒÔÏÂÎªDMLazyT--------------------------------------------------------------------
+	// -----------------------------------------------------ä»¥ä¸‹ä¸ºDMLazyT--------------------------------------------------------------------
 	/// <summary>
-	///		×÷ÎªÒ»¸öÁÙÊ±»º´æ£¬¸ÃÀàµÄÊµÏÖÏÈ¿¼ÂÇÔÚÕ»ÉÏ·ÖÅäÄÚ´æ£¬Õ»ÉÏ¿Õ¼ä²»¹»Ê±£¬¾Í´Ó¶ÑÖĞ·ÖÅä
+	///		ä½œä¸ºä¸€ä¸ªä¸´æ—¶ç¼“å­˜ï¼Œè¯¥ç±»çš„å®ç°å…ˆè€ƒè™‘åœ¨æ ˆä¸Šåˆ†é…å†…å­˜ï¼Œæ ˆä¸Šç©ºé—´ä¸å¤Ÿæ—¶ï¼Œå°±ä»å †ä¸­åˆ†é…
 	/// </summary>
 	/// <remarks>
-	///		»ùÓÚatlapp.CTempBuffer,¶à´Î·ÖÅä,»áÏÈ¸²¸ÇÉÏÒ»´ÎµÄ
+	///		åŸºäºatlapp.CTempBuffer,å¤šæ¬¡åˆ†é…,ä¼šå…ˆè¦†ç›–ä¸Šä¸€æ¬¡çš„
 	/// </remarks>
 	template<class T, int t_nFixedBytes = 128>
 	class DMBufT
@@ -70,7 +70,7 @@ namespace DM
 		T * get(void) const {return m_p;}
 		
 		/// -------------------------------------------------
-		/// @brief			ÊÍ·ÅÄÚ´æ
+		/// @brief			é‡Šæ”¾å†…å­˜
 		void Free()
 		{
 			if (m_p&&m_p != DMCastT<T*>(m_abFixedBuffer))
@@ -80,7 +80,7 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			·ÖÅäÄÚ´æ£¨°´¶ÔÏó¸öÊı£©
+		/// @brief			åˆ†é…å†…å­˜ï¼ˆæŒ‰å¯¹è±¡ä¸ªæ•°ï¼‰
 		T* Allocate(size_t nElements)
 		{
 			DMASSERT(nElements <= (SIZE_MAX / sizeof(T)));
@@ -88,21 +88,21 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			·ÖÅäÄÚ´æ£¨°´×Ö½ÚÊı£©
+		/// @brief			åˆ†é…å†…å­˜ï¼ˆæŒ‰å­—èŠ‚æ•°ï¼‰
 		T* AllocateBytes(size_t nBytes)
 		{
 			Free();
 			//DMASSERT(m_p == NULL);
 			if (nBytes > t_nFixedBytes)
 			{
-				m_p = reinterpret_cast<T*>(malloc(nBytes));/// ²»Ê¹ÓÃstatic_cast,static_castÊÇÏÔÊ½ÀàĞÍ×ª»»£¬ÓĞ¿ÉÄÜ²»ÄÜ×ª»»£¬reinterpret_castÊÇµÍ²ã½âÊÍ
+				m_p = reinterpret_cast<T*>(malloc(nBytes));/// ä¸ä½¿ç”¨static_cast,static_castæ˜¯æ˜¾å¼ç±»å‹è½¬æ¢ï¼Œæœ‰å¯èƒ½ä¸èƒ½è½¬æ¢ï¼Œreinterpret_castæ˜¯ä½å±‚è§£é‡Š
 			}
 			else
 			{
 				m_p = DMCastT<T*>(m_abFixedBuffer);
 			}
 
-			// ÖÃÎª0
+			// ç½®ä¸º0
 			memset(m_p, 0, (nBytes>t_nFixedBytes)?nBytes:t_nFixedBytes);
 			return m_p;
 		}
@@ -112,16 +112,16 @@ namespace DM
 		BYTE		m_abFixedBuffer[t_nFixedBytes];
 	};
 
-	// -----------------------------------------------------ÒÔÏÂÎªDMLazyT--------------------------------------------------------------------
+	// -----------------------------------------------------ä»¥ä¸‹ä¸ºDMLazyT--------------------------------------------------------------------
 	/// <summary>
-	///		Ä¬ÈÏÕı³£Îö¹¹¶ÔÏó
+	///		é»˜è®¤æ­£å¸¸ææ„å¯¹è±¡
 	/// </summary>
 	template <class T>
 	struct DMDefLazyTraits 
 	{
 		static T* New(void* Storage) 
 		{
-			/// ×¢Òâ£¬ÕâÑùÊ¹ÓÃnew£¬»áÒÔStorage×öÎªÆğÊ¼µØÖ·
+			/// æ³¨æ„ï¼Œè¿™æ ·ä½¿ç”¨newï¼Œä¼šä»¥Storageåšä¸ºèµ·å§‹åœ°å€
 			return new (Storage) T;
 		}
 		static T* NewWithCopy(void* Storage, T* src)
@@ -135,7 +135,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		²»Îö¹¹¶ÔÏó£¬×¢ÒâDeleteµÄ´¦Àí
+	///		ä¸ææ„å¯¹è±¡ï¼Œæ³¨æ„Deleteçš„å¤„ç†
 	/// </summary>
 	template <typename T>
 	struct DMLeakLazyTraits 
@@ -158,7 +158,7 @@ namespace DM
 
 
 	/// <summary>
-	///		DMLazyTµÄ»ùÀà,Ô¤ÏÈ·ÖÅäÄÚ´æ²¢ÑÓÊ±¹¹Ôì¶ÔÏó
+	///		DMLazyTçš„åŸºç±»,é¢„å…ˆåˆ†é…å†…å­˜å¹¶å»¶æ—¶æ„é€ å¯¹è±¡
 	/// </summary>
 	template <typename T, bool bAutoInit=true, typename LazyTraits = DMDefLazyTraits<T>, int STORAGESIZE = sizeof(T)> 
 	class DMLazyBaseT 
@@ -174,15 +174,15 @@ namespace DM
 		{
 			if (this->IsValid())
 			{
-				// LeakyDMLazyTraits²»»áµ÷ÓÃÎö¹¹
+				// LeakyDMLazyTraitsä¸ä¼šè°ƒç”¨ææ„
 				LazyTraits::Delete(m_ptr);
 			}
 		}
 
 	public:
 		/// -------------------------------------------------
-		/// @brief			³õÊ¼»¯
-		/// @return			´´½¨¶ÔÏó»ò·µ»ØÒÑ´æÔÚµÄ¶ÔÏó.
+		/// @brief			åˆå§‹åŒ–
+		/// @return			åˆ›å»ºå¯¹è±¡æˆ–è¿”å›å·²å­˜åœ¨çš„å¯¹è±¡.
 		TPtr Init() 
 		{
 			if (NULL == m_ptr)
@@ -193,8 +193,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			´´½¨¶ÔÏó²¢¸´ÖÆ£¬·µ»ØÒÑ´æÔÚµÄ¶ÔÏó
-		/// @return			·µ»Ø´æÔÚµÄ¶ÔÏó.
+		/// @brief			åˆ›å»ºå¯¹è±¡å¹¶å¤åˆ¶ï¼Œè¿”å›å·²å­˜åœ¨çš„å¯¹è±¡
+		/// @return			è¿”å›å­˜åœ¨çš„å¯¹è±¡.
 		template<size_t N>
 		TPtr InitWithCopy(TPtr src) 
 		{
@@ -207,8 +207,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			Ïú»ÙDMLazy¶ÔÏó.
-		/// @return			Ïú»ÙDMLazy¶ÔÏó.
+		/// @brief			é”€æ¯DMLazyå¯¹è±¡.
+		/// @return			é”€æ¯DMLazyå¯¹è±¡.
 		void destroy() 
 		{
 			if (this->IsValid()) 
@@ -219,16 +219,16 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			¶ÔÏóÊÇ·ñÓĞĞ§
-		/// @return			true:ÓĞĞ§,false:ÎŞĞ§
+		/// @brief			å¯¹è±¡æ˜¯å¦æœ‰æ•ˆ
+		/// @return			true:æœ‰æ•ˆ,false:æ— æ•ˆ
 		bool IsValid() const
 		{ 
 			return NULL != m_ptr; 
 		}
 
 		/// -------------------------------------------------
-		/// @brief			»ñÈ¡¶ÔÏó
-		/// @return			¶ÔÏó£¬¿ÉÄÜÎªNULL
+		/// @brief			è·å–å¯¹è±¡
+		/// @return			å¯¹è±¡ï¼Œå¯èƒ½ä¸ºNULL
 		TPtr Get() 
 		{ 
 			if (!m_ptr)
@@ -244,8 +244,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			²Ù×÷·ûÖØÔØ
-		/// @return			->²Ù×÷·ûÖØÔØ
+		/// @brief			æ“ä½œç¬¦é‡è½½
+		/// @return			->æ“ä½œç¬¦é‡è½½
 		const TPtr operator->() const 
 		{
 			if (!m_ptr)
@@ -260,8 +260,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			²Ù×÷·ûÖØÔØ
-		/// @return			->²Ù×÷·ûÖØÔØ
+		/// @brief			æ“ä½œç¬¦é‡è½½
+		/// @return			->æ“ä½œç¬¦é‡è½½
 		TPtr operator->() 
 		{
 			if (!m_ptr)
@@ -278,7 +278,7 @@ namespace DM
 		/// -------------------------------------------------
 		/// @brief			unspecified_bool_type
 		/// @remark         http://hgy413.com/1958.html
-		/// @return			Ôö¼ÓÀà¶ÔÏóboolÖµÅĞ¶¨
+		/// @return			å¢åŠ ç±»å¯¹è±¡boolå€¼åˆ¤å®š
 		typedef TPtr DMLazyBaseT::*unspecified_bool_type;
 		operator unspecified_bool_type() const 
 		{
@@ -286,8 +286,8 @@ namespace DM
 		}
 	protected:
 		/// -------------------------------------------------
-		/// @brief			·µ»Ø´æÖüÇø¸ø¶ÔÏó½øĞĞ³õÊ¼»¯.
-		/// @return			ÎŞ
+		/// @brief			è¿”å›å­˜è´®åŒºç»™å¯¹è±¡è¿›è¡Œåˆå§‹åŒ–.
+		/// @return			æ— 
 		void* InitWithStorage() 
 		{
 			if (NULL == m_ptr)
@@ -298,16 +298,16 @@ namespace DM
 		}
 
 	protected:
-		TPtr		m_ptr;					///<ÒªÃ´ÎªNULL£¬ÒªÃ´Ö¸Ïòm_storageËùÔÚÎ»
-		char		m_storage[STORAGESIZE]; ///<Ğ¡Êı¾İÄ¬ÈÏÊ¹ÓÃÕ»´æ´¢
+		TPtr		m_ptr;					///<è¦ä¹ˆä¸ºNULLï¼Œè¦ä¹ˆæŒ‡å‘m_storageæ‰€åœ¨ä½
+		char		m_storage[STORAGESIZE]; ///<å°æ•°æ®é»˜è®¤ä½¿ç”¨æ ˆå­˜å‚¨
 	};
 
 	template <typename T, bool bAutoInit, typename LazyTraits, int STORAGESIZE> class DMLazyBaseT;
 	/// <summary>
-	///		LayzTµÄ´úÂë³éÀëÓÚSkTLazy.h+SkTypes.h,¸ĞĞ»zcµÄÔ­Ê¼´úÂë
+	///		LayzTçš„ä»£ç æŠ½ç¦»äºSkTLazy.h+SkTypes.h,æ„Ÿè°¢zcçš„åŸå§‹ä»£ç 
 	/// </summary>
 	/// <remarks>
-	///		ÑÓ³Ù³õÊ¼»¯¾ÍÊÇ½«¶ÔÏóµÄ³õÊ¼»¯ÑÓ³Ùµ½µÚÒ»´ÎÊ¹ÓÃ¸Ã¶ÔÏóÊ±£¬´Ó¶øÌá¸ß³ÌĞòµÄĞ§ÂÊ£¬Ê¹³ÌĞòÕ¼ÓÃ¸üÉÙµÄÄÚ´æ
+	///		å»¶è¿Ÿåˆå§‹åŒ–å°±æ˜¯å°†å¯¹è±¡çš„åˆå§‹åŒ–å»¶è¿Ÿåˆ°ç¬¬ä¸€æ¬¡ä½¿ç”¨è¯¥å¯¹è±¡æ—¶ï¼Œä»è€Œæé«˜ç¨‹åºçš„æ•ˆç‡ï¼Œä½¿ç¨‹åºå ç”¨æ›´å°‘çš„å†…å­˜
 	/// </remarks>
 	template<typename T, bool bAutoInit = true, typename LazyTraits = DMDefLazyTraits<T> >
 	class DMLazyT
@@ -334,8 +334,8 @@ namespace DM
 		}
 	public:
 		/// -------------------------------------------------
-		/// @brief			³õÊ¼»¯
-		/// @return			Èç¹ûÔ­Ê¼µÄÒÑ´æÔÚ,ÔòÏÈÏú»ÙÔ­Ê¼µÄ£¬ÔÙ´´½¨ĞÂµÄ
+		/// @brief			åˆå§‹åŒ–
+		/// @return			å¦‚æœåŸå§‹çš„å·²å­˜åœ¨,åˆ™å…ˆé”€æ¯åŸå§‹çš„ï¼Œå†åˆ›å»ºæ–°çš„
 		TPtr InitWithNew()
 		{
 			this->destroy();
@@ -343,8 +343,8 @@ namespace DM
 		}
 
 		/// -------------------------------------------------
-		/// @brief			ÉèÖÃ
-		/// @return			¸´ÖÆÒ»¸öÔ´£¬²¢·µ»ØËüµÄÖ¸Õë£¬»á¸²¸ÇÔ­Ê¼µÄ£¨Èç¹ûÔ­À´ÒÑ³õÊ¼»¯£©
+		/// @brief			è®¾ç½®
+		/// @return			å¤åˆ¶ä¸€ä¸ªæºï¼Œå¹¶è¿”å›å®ƒçš„æŒ‡é’ˆï¼Œä¼šè¦†ç›–åŸå§‹çš„ï¼ˆå¦‚æœåŸæ¥å·²åˆå§‹åŒ–ï¼‰
 		TPtr Set(const T& src)
 		{
 			if (!this->IsValid())

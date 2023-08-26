@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -35,18 +35,18 @@ public:
 	void OnRButtonDown(UINT nFlags, CPoint pt);
 	void OnMouseMove(UINT nFlags,CPoint pt);
 
-	DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg);///< ¹ýÂËÏûÏ¢·Ö·¢
+	DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg);///< è¿‡æ»¤æ¶ˆæ¯åˆ†å‘
 
-	// Ä£Ê½´¦Àí
+	// æ¨¡å¼å¤„ç†
 	HDMTREEITEM SelOrHoverTreeItemByDUIWnd(HDMTREEITEM hRoot,DUIWindow* pDUIWnd,bool bSel = false);
 	bool MLDownInSelMode(CPoint pt,DUIWindow* pCurSelWnd);
 	bool MLDownInAddMode(CPoint pt);
 
 public:
-	// AddModeÏÂµÄ²Ù×÷
-	static bool IsSupportAddChild(DUIWindow* pParentWnd,CStringA strReg);								///< ÊÇ·ñÖ§³ÖAdd ×Ó¿Ø¼þ
-	static DUIWindow* CreateAddChild(DUIWindow* pParentWnd,CStringA strReg);							///< ´´½¨×Ó¿Ø¼þ
-	static bool InitAddChild(ObjTreeData* pParentData,DUIWindow* pWnd,CRect rcDrag,bool bRight=false);	///< ³õÊ¼»¯×Ó¿Ø¼þ
+	// AddModeä¸‹çš„æ“ä½œ
+	static bool IsSupportAddChild(DUIWindow* pParentWnd,CStringA strReg);								///< æ˜¯å¦æ”¯æŒAdd å­æŽ§ä»¶
+	static DUIWindow* CreateAddChild(DUIWindow* pParentWnd,CStringA strReg);							///< åˆ›å»ºå­æŽ§ä»¶
+	static bool InitAddChild(ObjTreeData* pParentData,DUIWindow* pWnd,CRect rcDrag,bool bRight=false);	///< åˆå§‹åŒ–å­æŽ§ä»¶
 	DUIWindow* GetAddChild();
 	
 
@@ -63,13 +63,13 @@ public:
 	DesignMode											m_DesignMod;
 	HDMTREEITEM											m_hRoot;
 
-	// ÍÏ¶¯²Ù×÷
-	bool												m_bDown;							///<Êó±ê°´ÏÂ
+	// æ‹–åŠ¨æ“ä½œ
+	bool												m_bDown;							///<é¼ æ ‡æŒ‰ä¸‹
 	CPoint												m_StartDragPt;
 	CPoint												m_TrackDragPt;
 	CRect												m_StartDragRc;
 
-	// Add²Ù×÷
+	// Addæ“ä½œ
 	DUIWindow*                                          m_pAddWnd;
 	static CPoint                                       m_pAddParentPt;
 };

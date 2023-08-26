@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMResMultZipImpl.h"
 
 namespace DM
@@ -29,13 +29,13 @@ namespace DM
 			pItem->m_strZipKey = (wchar_t*)(lp);
 			if (pItem->m_strZipKey.IsEmpty())
 			{
-				DMASSERT_EXPR(FALSE,L"zip°üµÄkey²»ÄÜÎª¿Õ");
+				DMASSERT_EXPR(FALSE,L"zipåŒ…çš„keyä¸èƒ½ä¸ºç©º");
 				break;
 			}
 
 			if (DM_INVALID_VALUE != FindObj(pItem))
 			{
-				DMASSERT_EXPR(FALSE,L"zip°üµÄkeyÒÑ´æÔÚ");
+				DMASSERT_EXPR(FALSE,L"zipåŒ…çš„keyå·²å­˜åœ¨");
 				break;
 			}
 		
@@ -61,7 +61,7 @@ namespace DM
 				iErr = pItem->IsItemExists(lpszType,lpszName, lpszThemeName);
 				if (DMSUCCEEDED(iErr))
 				{
-					break;// ²éÕÒµ½Ò»¸ö¾ÍÍË³ö
+					break;// æŸ¥æ‰¾åˆ°ä¸€ä¸ªå°±é€€å‡º
 				}
 			}
 		}
@@ -80,7 +80,7 @@ namespace DM
 				iErr = pItem->GetItemSize(lpszType,lpszName, ulSize,lpszThemeName);
 				if (DMSUCCEEDED(iErr))
 				{
-					break;// ²éÕÒµ½Ò»¸ö¾ÍÍË³ö
+					break;// æŸ¥æ‰¾åˆ°ä¸€ä¸ªå°±é€€å‡º
 				}
 			}
 		}
@@ -99,7 +99,7 @@ namespace DM
 				iErr = pItem->GetItemBuf(lpszType,lpszName, lpBuf, lpULSize,lpszThemeName);
 				if (DMSUCCEEDED(iErr))
 				{
-					break;// ²éÕÒµ½Ò»¸ö¾ÍÍË³ö
+					break;// æŸ¥æ‰¾åˆ°ä¸€ä¸ªå°±é€€å‡º
 				}
 			}
 		}

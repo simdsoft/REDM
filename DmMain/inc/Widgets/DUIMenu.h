@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+Ôªø//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,7 +18,7 @@
 namespace DM
 {
 	/// <summary>
-	///		 ≤Àµ•ºÚ∞Ê
+	///		 ËèúÂçïÁÆÄÁâà
 	/// </summary>
 	class DM_EXPORT DUIMenu:public DMCWnd
 	{
@@ -26,32 +26,32 @@ namespace DM
 		DUIMenu();
 		~DUIMenu(void);
 
-	public:// ø…÷ÿ‘ÿ
+	public:// ÂèØÈáçËΩΩ
 		virtual DMMenuItemData* ParseItem(DMXmlNode& XmlItem);
 		virtual DMMenuItemData* NewMenuItemData();
 		virtual void DeleteMenuItemData(DMMenuItemData*pObj);
 		virtual DUIMenuItem* NewMenuItem();
 
 	public:
-		bool LoadMenu(LPCSTR lpszType,LPCSTR lpszResName);								   ///< Õ®π˝÷∏∂®xml◊ ‘¥º”‘ÿ
-		bool LoadMenu(DMXmlNode &XmlNode);													   ///< Õ®π˝xml÷±Ω”º”‘ÿ
+		bool LoadMenu(LPCSTR lpszType,LPCSTR lpszResName);								   ///< ÈÄöËøáÊåáÂÆöxmlËµÑÊ∫êÂä†ËΩΩ
+		bool LoadMenu(DMXmlNode &XmlNode);													   ///< ÈÄöËøáxmlÁõ¥Êé•Âä†ËΩΩ
 
 	public:
-		int TrackPopupMenu(UINT uFlags, int x, int y, HWND hWnd, LPCRECT lpRect=NULL);         ///< ∑µªÿµ±«∞µ„ª˜¡Àƒƒ“ªœÓ
+		int TrackPopupMenu(UINT uFlags, int x, int y, HWND hWnd, LPCRECT lpRect=NULL);         ///< ËøîÂõûÂΩìÂâçÁÇπÂáª‰∫ÜÂì™‰∏ÄÈ°π
 		DUIMenu GetSubMenu(int nPos);
 		bool InsertMenu(UINT nPosition, UINT nFlags, UINT_PTR nIDNewItem,LPCTSTR strText, int iIcon);
 		void DestroyMenu();
 
 	public:
 		//---------------------------------------------------
-		// Function Des: œ˚œ¢∑÷∑¢œµ¡–∫Ø ˝
+		// Function Des: Ê∂àÊÅØÂàÜÂèëÁ≥ªÂàóÂáΩÊï∞
 		//---------------------------------------------------
-		void OnInitMenu(HMENU menu);															///< ≥ı ºªØª·‘⁄TrackPopupMenu÷–¥•∑¢
-		void OnInitMenuPopup(HMENU menuPopup, UINT nIndex, BOOL bSysMenu);						///< ≥ı ºªØª·‘⁄TrackPopupMenu÷–¥•∑¢
+		void OnInitMenu(HMENU menu);															///< ÂàùÂßãÂåñ‰ºöÂú®TrackPopupMenu‰∏≠Ëß¶Âèë
+		void OnInitMenuPopup(HMENU menuPopup, UINT nIndex, BOOL bSysMenu);						///< ÂàùÂßãÂåñ‰ºöÂú®TrackPopupMenu‰∏≠Ëß¶Âèë
 		void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU menu);
 		void OnMeasureItem(UINT /*wParam*/,LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 
-	public:// ∏®÷˙
+	public:// ËæÖÂä©
 		void BuildMenu(HMENU menuPopup,DMXmlNode xmlNode);
 		void InstallMenuHook();
 		void UnInstallMenuHook();
@@ -59,8 +59,8 @@ namespace DM
 	public:
 		static LRESULT CALLBACK MenuHookProc(int iCode, WPARAM wParam, LPARAM lParam);
 
-	public:// ∏®÷˙
-		DECLARE_MSG_MAP()										// ∑¬MFCœ˚œ¢”≥…‰∫Í
+	public:// ËæÖÂä©
+		DECLARE_MSG_MAP()										// ‰ªøMFCÊ∂àÊÅØÊò†Â∞ÑÂÆè
 
 	public:
 		DMSmartPtrT<DUIMenu_XmlInfo>			m_pDUIMenuXmlInfo;
@@ -68,7 +68,7 @@ namespace DM
 		HMENU									m_hMenu;
 		DM::CArray<DMMenuItemData*>				m_DmmiArray;
 	
-		HWND									m_hMenuOwner;       ///< DUIµƒÀﬁ÷˜¥∞ø⁄
+		HWND									m_hMenuOwner;       ///< DUIÁöÑÂÆø‰∏ªÁ™óÂè£
 		HHOOK									m_hMenuHook;
 		static DUIMenu*                         m_pThis;
 	};

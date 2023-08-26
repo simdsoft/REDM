@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,27 +17,27 @@ namespace DM
 {
 	class IDMAnimate;
 	/// <summary>
-	///		¶¯»­ÓµÓĞÕß,classtype=<see cref="DMREG_Attribute"/>
+	///		åŠ¨ç”»æ‹¥æœ‰è€…,classtype=<see cref="DMREG_Attribute"/>
 	/// </summary>
 	class IDMAnimateOwner
 	{
 	public:
-		virtual DUIWindow* GetAnimateOwnerWnd() = 0;											///< ¶¯»­ÓµÓĞÕß
-		virtual DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp=0, LPARAM lp=0) = 0;		///< ¶¯»­¿ªÊ¼Ê±»Øµ÷
-		virtual DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp=0, LPARAM lp=0) = 0;      ///< ¶¯»­ÖĞ¼ä»Øµ÷		
-		virtual DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp=0, LPARAM lp=0) = 0;		///< ¶¯»­½áÊø»Øµ÷
+		virtual DUIWindow* GetAnimateOwnerWnd() = 0;											///< åŠ¨ç”»æ‹¥æœ‰è€…
+		virtual DMCode AnimateBegin_Callback(IDMAnimate*pAni,WPARAM wp=0, LPARAM lp=0) = 0;		///< åŠ¨ç”»å¼€å§‹æ—¶å›è°ƒ
+		virtual DMCode AnimateMid_Callback(IDMAnimate*pAni, WPARAM wp=0, LPARAM lp=0) = 0;      ///< åŠ¨ç”»ä¸­é—´å›è°ƒ		
+		virtual DMCode AnimateEnd_Callback(IDMAnimate*pAni,WPARAM wp=0, LPARAM lp=0) = 0;		///< åŠ¨ç”»ç»“æŸå›è°ƒ
 	};
 
 	/// <summary>
-	///		¶¯»­¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Animate"/>
+	///		åŠ¨ç”»å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Animate"/>
 	/// </summary>
 	class IDMAnimate:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMAnimate,"IDMAnimate",DMREG_Animate);
 	public:
-		virtual DMCode AnimateInit(IDMAnimateOwner*pOwner,IDMCanvas* pStartCanvas,IDMCanvas* pEndCanvas,WPARAM wp=0, LPARAM lp=0) = 0;   ///< ³õÊ¼»¯¶¯»­
-		virtual DMCode AnimateBegin(WPARAM wp=0, LPARAM lp=0) = 0;																		 ///< ¿ªÊ¼¶¯»­
-		virtual DMCode AnitmateGet(WPARAM wp=0, LPARAM lp=0) = 0;                                                                        ///< ´Ó¶¯»­½Ó¿Ú»ñÈ¡Ä³Ğ©ĞÅÏ¢
-		virtual DMCode AnimateEnd(WPARAM wp=0, LPARAM lp=0) = 0;																		 ///< ½áÊø¶¯»­
+		virtual DMCode AnimateInit(IDMAnimateOwner*pOwner,IDMCanvas* pStartCanvas,IDMCanvas* pEndCanvas,WPARAM wp=0, LPARAM lp=0) = 0;   ///< åˆå§‹åŒ–åŠ¨ç”»
+		virtual DMCode AnimateBegin(WPARAM wp=0, LPARAM lp=0) = 0;																		 ///< å¼€å§‹åŠ¨ç”»
+		virtual DMCode AnitmateGet(WPARAM wp=0, LPARAM lp=0) = 0;                                                                        ///< ä»åŠ¨ç”»æ¥å£è·å–æŸäº›ä¿¡æ¯
+		virtual DMCode AnimateEnd(WPARAM wp=0, LPARAM lp=0) = 0;																		 ///< ç»“æŸåŠ¨ç”»
 	};
 }//namespace DM

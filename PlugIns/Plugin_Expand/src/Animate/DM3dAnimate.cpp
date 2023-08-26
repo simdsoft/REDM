@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DM3DAnimate.h"
 
 namespace DM
@@ -80,7 +80,7 @@ namespace DM
 				break;
 			}
 
-			// ´´½¨×ª»»»­²¼
+			// åˆ›å»ºè½¬æ¢ç”»å¸ƒ
 			DMSmartPtrT<IDMRender> pRender;
 			g_pDMApp->GetDefRegObj((void**)&pRender,DMREG_Render);
 			pRender->CreateCanvas(rcInit.Width(), rcInit.Height(),&m_pTransCanvas);
@@ -88,7 +88,7 @@ namespace DM
 			SetWindowPos(HWND_TOPMOST,rcInit.left,rcInit.top,0,0,SWP_NOSIZE|SWP_NOSENDCHANGING|SWP_NOOWNERZORDER|SWP_SHOWWINDOW|SWP_NOACTIVATE);
 			m_pOwner->AnimateBegin_Callback(this,0,0);
 
-			BeginFade(false,LOWORD(wp),HIWORD(wp));// ¿ªÊ¼½¥ÏÔ
+			BeginFade(false,LOWORD(wp),HIWORD(wp));// å¼€å§‹æ¸æ˜¾
 			if (lp!=0)
 			{
 				SetTimer(TIMER_3D,(UINT)lp);
@@ -138,7 +138,7 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			BeginFade(true,LOWORD(wp),HIWORD(wp));// ¿ªÊ¼½¥ÏÔ
+			BeginFade(true,LOWORD(wp),HIWORD(wp));// å¼€å§‹æ¸æ˜¾
 			if (false==m_bFadeing&&IsWindow())
 			{
 				m_pOwner->AnimateEnd_Callback(this,0,0);
@@ -167,7 +167,7 @@ namespace DM
 		do 
 		{
 			BLENDFUNCTION bf = {AC_SRC_OVER,0,0xff,AC_SRC_ALPHA};
-			if (m_bFadeing)// ½¥ÏÔ½¥ÒşÖĞ
+			if (m_bFadeing)// æ¸æ˜¾æ¸éšä¸­
 			{
 				UpdateLayerWnd(m_pStartCanvas,(byte)m_byFadeAlpha);
 				break;

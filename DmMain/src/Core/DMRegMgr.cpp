@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMRegMgr.h"
 
 namespace DM
@@ -69,7 +69,7 @@ namespace DM
 		case DMREG_Trans:
 		case DMREG_TaskRunner:
 			{
-				bRet = (0== dm_xmlstrcmp(objsrc->GetClassName(), objdest->GetClassName()));		 // class×÷ÎªÎ¨Ò»µÄ±êÊ¶£¬¿Ï¶¨²»Îª¿Õ×Ö·û´®
+				bRet = (0== dm_xmlstrcmp(objsrc->GetClassName(), objdest->GetClassName()));		 // classä½œä¸ºå”¯ä¸€çš„æ ‡è¯†ï¼Œè‚¯å®šä¸ä¸ºç©ºå­—ç¬¦ä¸²
 			}
 			break;
 		default:
@@ -252,14 +252,14 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	DMCode DMRegMgr::RegisterByType(DMRegTypeItem &RtItem, const IDMReg &RegObj, bool bReplace)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
 			int iElement = RtItem.FindObj(&const_cast<IDMReg&>(RegObj));
-			if (DM_INVALID_VALUE != iElement)// ÒÑ´æÔÚ
+			if (DM_INVALID_VALUE != iElement)// å·²å­˜åœ¨
 			{
 				if (bReplace)
 				{
@@ -300,7 +300,7 @@ namespace DM
 
 			// if (NULL == lpszClassName)
 			// {
-			// 	DMASSERT_EXPR(0,L"Ç×,Ã»ÉèÖÃÀàÃû°¡£¡");
+			// 	DMASSERT_EXPR(0,L"äº²,æ²¡è®¾ç½®ç±»åå•Šï¼");
 			// 	iErr = DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID;
 			// 	break;
 			// }
@@ -356,7 +356,7 @@ namespace DM
 		do 
 		{
 			if (lpszClassName == RtItem.m_DefRegName)
-			{// ºÍÔ­À´Ä¬ÈÏµÄÏàµÈ
+			{// å’ŒåŸæ¥é»˜è®¤çš„ç›¸ç­‰
 				iErr = DMREGMGR_SETDEFREGOBJBYTYPE_DEFREGNAME_SAME;
 				break;
 			}

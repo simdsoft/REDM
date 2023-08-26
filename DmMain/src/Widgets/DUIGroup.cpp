@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIGroup.h"
 
 namespace DM
@@ -21,7 +21,7 @@ namespace DM
 			CRect rcGroup = m_rcWindow;
 			CSize szFont;
 			CRect rcText  = m_rcWindow;
-			rcText.left  += 20; /// ×óÓÒÁôµã¿Õ
+			rcText.left  += 20; /// å·¦å³ç•™ç‚¹ç©º
 			rcText.right -= 20;
 			if (!m_pDUIXmlInfo->m_strText.IsEmpty())
 			{
@@ -44,7 +44,7 @@ namespace DM
 				}
 				CRect rcClip = rcText;
 				rcClip.InflateRect(5,5,5,5);
-				pCanvas->PushClip(rcClip,RGN_DIFF);// ÅÅ³ýtextÇø
+				pCanvas->PushClip(rcClip,RGN_DIFF);// æŽ’é™¤textåŒº
 			}
 
 			if (!m_pDUIXmlInfo->m_strText.IsEmpty())

@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "HostAttr.h"
 
 BEGIN_MSG_MAP(HostAttr)
@@ -50,20 +50,20 @@ DMCode HostAttr::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hSel);
 		if (NULL == pData||NULL == pData->m_pDUIWnd)
 		{
-			DM_MessageBox(L"ÕâÊÇÀíÂÛÉÏ²»Ó¦¸Ã³öÏÖµÄµ¯¿ò!");
+			DM_MessageBox(L"è¿™æ˜¯ç†è®ºä¸Šä¸åº”è¯¥å‡ºç°çš„å¼¹æ¡†!");
 			break;
 		}
 
-		if (hOldSel && 0 == m_pObjTree->GetParentItem(hOldSel))// ÇĞ»»Ç°ÊÇDMHWnd´°¿Ú
+		if (hOldSel && 0 == m_pObjTree->GetParentItem(hOldSel))// åˆ‡æ¢å‰æ˜¯DMHWndçª—å£
 		{
 			m_pObjXml->m_pRighXml->m_pList->ExpandItem(HOST_ATTR,false);
 		}
-		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// ÇĞ»»µ½×îÉÏ²ãÁË£¬Ä¬ÈÏÎªDMHWnd´°¿Ú
+		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// åˆ‡æ¢åˆ°æœ€ä¸Šå±‚äº†ï¼Œé»˜è®¤ä¸ºDMHWndçª—å£
 		{
 			m_pObjXml->m_pRighXml->m_pList->ExpandItem(HOST_ATTR,true);
 		}
 	
-		if (m_pHost != pData->m_pRootWnd)// ²»ÏàµÈ¾ÍÇĞ»»
+		if (m_pHost != pData->m_pRootWnd)// ä¸ç›¸ç­‰å°±åˆ‡æ¢
 		{
 			InitAttrArray(pData);
 			m_pHost = pData->m_pRootWnd;
@@ -114,7 +114,7 @@ DMCode HostAttr::OnPropValueChanged(DMEventArgs *pEvt)
 		}
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 		if (pData->m_pRootWnd != m_pHost)
-		{// ÓÃÓÚÔÚÒ»¸öÖ÷´°¿ÚÎ´ÉèÖÃÊ±,Í»È»ÇĞ»»µ½ÁíÒ»¸öÖ÷´°¿Ú,ÕâÊ±²»´¦Àí
+		{// ç”¨äºåœ¨ä¸€ä¸ªä¸»çª—å£æœªè®¾ç½®æ—¶,çªç„¶åˆ‡æ¢åˆ°å¦ä¸€ä¸ªä¸»çª—å£,è¿™æ—¶ä¸å¤„ç†
 			break;
 		}
 
@@ -125,7 +125,7 @@ DMCode HostAttr::OnPropValueChanged(DMEventArgs *pEvt)
 		iErr = m_pHost->SetAttribute(strName,strValue);
 		if (!DMSUCCEEDED(iErr))
 		{
-			DM_MessageBox(L"ÉèÖÃÊôĞÔÊ§°Ü");
+			DM_MessageBox(L"è®¾ç½®å±æ€§å¤±è´¥");
 		}
 		else
 		{
@@ -133,7 +133,7 @@ DMCode HostAttr::OnPropValueChanged(DMEventArgs *pEvt)
 			XmlNode.SetAttribute(strName,strValue);
 			pData->m_pDoc->m_bChange = true;
 		}
-		// Í¨ÖªXmlEditor¸üĞÂ
+		// é€šçŸ¥XmlEditoræ›´æ–°
 		if (g_pMainWnd)
 		{
 			DUIXmlUpdateArgs Evt(g_pMainWnd);
@@ -149,7 +149,7 @@ DMCode HostAttr::OnPropDeling(DMEventArgs *pEvt)
 	PropDelingArgs* pEvent = (PropDelingArgs*)pEvt;
 	if (0 == pEvent->m_pSel->GetData())
 	{
-		pEvent->m_bCancel = true;// ²»É¾³ıµÚÒ»²ãÄ¿Â¼
+		pEvent->m_bCancel = true;// ä¸åˆ é™¤ç¬¬ä¸€å±‚ç›®å½•
 	}
 
 	return DM_ECODE_OK;
@@ -174,25 +174,25 @@ DMCode HostAttr::OnPropDel(DMEventArgs *pEvt)
 		{
 			m_pInitSize = NULL;
 		}
-		pInitAttr->m_bUse = false;///< ÒÆ³ıºóÉèÖÃÎªÎ´Ê¹ÓÃ×´Ì¬
+		pInitAttr->m_bUse = false;///< ç§»é™¤åè®¾ç½®ä¸ºæœªä½¿ç”¨çŠ¶æ€
 	
-		//1.³¢ÊÔÈ¡µÃÄ¬ÈÏµÄvalue²ÎÊıÉèÖÃ½øÈ¥
+		//1.å°è¯•å–å¾—é»˜è®¤çš„valueå‚æ•°è®¾ç½®è¿›å»
 		CStringA strType,strName,strValue,strDesc;
 		g_pAttr->Parse(pInitAttr->m_pAttr,strType,strName,strValue,strDesc);
 		ObjTreeDataPtr pData = (ObjTreeDataPtr)m_pObjTree->GetItemData(m_hObjSel);
 		iErr = pData->m_pRootWnd->SetAttribute(strName,strValue);
 		if (!DMSUCCEEDED(iErr))
 		{
-			DM_MessageBox(L"ÉèÖÃÊôĞÔÊ§°Ü");
+			DM_MessageBox(L"è®¾ç½®å±æ€§å¤±è´¥");
 		}
 		else
 		{
-			//2.´ÓxmlÖĞÒÆ³ı´Ë½áµã,ÉèÖÃÎ´±£´æ×´Ì¬
+			//2.ä»xmlä¸­ç§»é™¤æ­¤ç»“ç‚¹,è®¾ç½®æœªä¿å­˜çŠ¶æ€
 			DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root(MAINWND_NODE);
 			XmlNode.RemoveAttribute(strName);
 			pData->m_pDoc->m_bChange = true;
 		}
-		// Í¨ÖªXmlEditor¸üĞÂ
+		// é€šçŸ¥XmlEditoræ›´æ–°
 		if (g_pMainWnd)
 		{
 			DUIXmlUpdateArgs Evt(g_pMainWnd);
@@ -210,12 +210,12 @@ DMCode HostAttr::OnSetWidth(int wid)
 	if (m_pInitSize)
 	{
 		m_pInitSize->m_pSize->m_pEdit[0]->SetField(wid);
-		m_pInitSize->OnInPlaceCtrlShow(false);//´¥·¢¸Ä±äÏûÏ¢
+		m_pInitSize->OnInPlaceCtrlShow(false);//è§¦å‘æ”¹å˜æ¶ˆæ¯
 		return DM_ECODE_OK;
 	}
 	else
 	{
-		SetLogInfo(L"ÇëÏÈÌí¼ÓinitsizeÊôĞÔ");
+		SetLogInfo(L"è¯·å…ˆæ·»åŠ initsizeå±æ€§");
 		return DM_ECODE_FAIL;
 	}
 }
@@ -225,12 +225,12 @@ DMCode HostAttr::OnSetHei(int hei)
 	if (m_pInitSize)
 	{
 		m_pInitSize->m_pSize->m_pEdit[1]->SetField(hei);
-		m_pInitSize->OnInPlaceCtrlShow(false);//´¥·¢¸Ä±äÏûÏ¢
+		m_pInitSize->OnInPlaceCtrlShow(false);//è§¦å‘æ”¹å˜æ¶ˆæ¯
 		return DM_ECODE_OK;
 	}
 	else
 	{
-		SetLogInfo(L"ÇëÏÈÌí¼ÓinitsizeÊôĞÔ");
+		SetLogInfo(L"è¯·å…ˆæ·»åŠ initsizeå±æ€§");
 		return DM_ECODE_FAIL;
 	}
 }
@@ -273,11 +273,11 @@ DMCode HostAttr::OnTreeInit(AttrTree* pTree)
 		AttrExpandWnd::InitTreeNode(NoDataNode,false);
 		AttrExpandWnd::InitTreeNode(DataNode,true);
 
-		//1. ¸ù½áµã
+		//1. æ ¹ç»“ç‚¹
 		NoDataNode.SetAttribute(XML_TEXT,L"DMHWndAttr");
 		HDMTREEITEM hTreeRoot = pTree->InsertItem(NoDataNode);
 
-		//2. ²åÈë×Ó½áµã
+		//2. æ’å…¥å­ç»“ç‚¹
 		int iCount = (int)GetCount();
 		for (int i=0;i<iCount;i++)
 		{
@@ -306,7 +306,7 @@ DMCode HostAttr::OnTreeSel(AttrTree* pTree)
 			break;
 		}
 		DMXmlInitAttrPtr pInitAttr = (DMXmlInitAttrPtr)pTree->GetItemData(hSel);
-		if (NULL == pInitAttr)// ÔÚÕÛµşÊ±£¬Ñ¡ÖĞµÄÊÇµÚÒ»ĞĞ£¬ÊÇÎŞÊı¾İµÄ
+		if (NULL == pInitAttr)// åœ¨æŠ˜å æ—¶ï¼Œé€‰ä¸­çš„æ˜¯ç¬¬ä¸€è¡Œï¼Œæ˜¯æ— æ•°æ®çš„
 		{
 			break;
 		}
@@ -314,7 +314,7 @@ DMCode HostAttr::OnTreeSel(AttrTree* pTree)
 		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();
 		IPropPtr pPropTemp = m_pPropFrame->AddInitAttrProperty(pInitAttr,pProp);
 		
-		//¸üĞÂµ½XMLÖĞ,ÒòÎªĞÂ¼ÓµÄÎªÄ¬ÈÏÖµ£¬ËùÒÔ²»µ÷ÓÃSetAttribute
+		//æ›´æ–°åˆ°XMLä¸­,å› ä¸ºæ–°åŠ çš„ä¸ºé»˜è®¤å€¼ï¼Œæ‰€ä»¥ä¸è°ƒç”¨SetAttribute
 		if (m_hObjSel)
 		{
 			CStringA strType,strName,strValue,strDesc;
@@ -329,7 +329,7 @@ DMCode HostAttr::OnTreeSel(AttrTree* pTree)
 			}
 		}
 
-		// Í¨ÖªXmlEditor¸üĞÂ
+		// é€šçŸ¥XmlEditoræ›´æ–°
 		if (g_pMainWnd)
 		{
 			DUIXmlUpdateArgs Evt(g_pMainWnd);
@@ -361,7 +361,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 		XmlAttribute = XmlAttribute.NextAttribute();
 	}
 
-	// ³õÊ¼»¯ÁĞ±í 
+	// åˆå§‹åŒ–åˆ—è¡¨ 
 	DMXmlNode XmlNode = pData->m_pDoc->m_pXmlDoc->Root(MAINWND_NODE);
 	XmlAttribute = XmlNode.FirstAttribute();
 	while (XmlAttribute.IsValid())
@@ -373,7 +373,7 @@ DMCode HostAttr::InitAttrArray(ObjTreeDataPtr pData)
 		if (pInitAttr)
 		{
 			IPropPtr pPropTemp = m_pPropFrame->AddInitAttrProperty(pInitAttr,pProp,strValue);
-			pInitAttr->m_bUse = true;// ³õÊ¼»¯¹ıµÄ£¬²»»áÔÚexpand´°¿ÚÖĞ³öÏÖ
+			pInitAttr->m_bUse = true;// åˆå§‹åŒ–è¿‡çš„ï¼Œä¸ä¼šåœ¨expandçª—å£ä¸­å‡ºç°
 			if (0 == dm_xmlstrcmp(strName, DMAttr::DMHWndAttr::SIZE_initsize))
 			{
 				m_pInitSize = dynamic_cast<PropSize*>(pPropTemp);
@@ -421,8 +421,8 @@ void HostAttr::ReleaseProp()
 {
 	if (m_pPropFrame)
 	{
-		m_pPropFrame->m_pPropList->SetCurSel(NULL);// ÏÈÉèÖÃÎªNULL,ÔÙÒÆ³ıprop list ²»È»Èç¹ûprop descË¢ĞÂ,¶ø´ËÊ±prop list ²»´æÔÚÁË,¿ÉÄÜ»áÒı·¢±ÀÀ£
-		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();// µÚÒ»²ãattr±£Áô
+		m_pPropFrame->m_pPropList->SetCurSel(NULL);// å…ˆè®¾ç½®ä¸ºNULL,å†ç§»é™¤prop list ä¸ç„¶å¦‚æœprop descåˆ·æ–°,è€Œæ­¤æ—¶prop list ä¸å­˜åœ¨äº†,å¯èƒ½ä¼šå¼•å‘å´©æºƒ
+		IPropPtr pProp = m_pPropFrame->m_pPropList->m_lstProps.GetHead();// ç¬¬ä¸€å±‚atträ¿ç•™
 		pProp->RemoveAllSubItem();
 		RemoveAll();
 	}
@@ -439,7 +439,7 @@ DMCode HostAttr::s_DMHandleEvent(DM::DMEventArgs *pEvt)
 		}
 		else  
 		{
-			return ms_pthis->DMHandleEvent(pEvt);// ×ª·¢
+			return ms_pthis->DMHandleEvent(pEvt);// è½¬å‘
 		}
 	}
 

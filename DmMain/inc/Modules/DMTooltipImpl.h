@@ -1,14 +1,14 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMTooltipImpl.h 
-// File Des: TooltipµÄÂß¼­Îª:
-//              1.DMHWndÖĞÊó±ê´¦Àíº¯ÊıÔö¼ÓToolTipÏûÏ¢¹ıÂË,²¢»ñÈ¡µ±Ç°DUI´°¿ÚÒªÏÔÊ¾µÄtipĞÅÏ¢¸üĞÂµ½DMTooltipImpl
-//              2.PreTranslateMessageÏûÏ¢¹ıÂËÖĞ×ª·¢ÏûÏ¢µ½RelayEventÅĞ¶ÏÏÔÊ¾×´Ì¬
-//                2.1.ÈçÔÚÄ¿±êÇøÓò,²¢ÇÒÎ´¿ªÏÔÊ¾¶¨Ê±Æ÷,Ôò¿ªÏÔÊ¾¶¨Ê±Æ÷,ÑÓ³ÙÏÔÊ¾
-//                2.2.Èç²»ÔÚÄ¿±êÇøÓòÄÚ,ÔòÖ±½ÓkillÏÔÊ¾¶¨Ê±Æ÷,ÏûÊ§
-//              3.ÏÔÊ¾¶¨Ê±Æ÷´¥·¢ºó,Á¢¼´¿ªÆôÏûÊ§¶¨Ê±Æ÷.
+// File Des: Tooltipçš„é€»è¾‘ä¸º:
+//              1.DMHWndä¸­é¼ æ ‡å¤„ç†å‡½æ•°å¢åŠ ToolTipæ¶ˆæ¯è¿‡æ»¤,å¹¶è·å–å½“å‰DUIçª—å£è¦æ˜¾ç¤ºçš„tipä¿¡æ¯æ›´æ–°åˆ°DMTooltipImpl
+//              2.PreTranslateMessageæ¶ˆæ¯è¿‡æ»¤ä¸­è½¬å‘æ¶ˆæ¯åˆ°RelayEventåˆ¤æ–­æ˜¾ç¤ºçŠ¶æ€
+//                2.1.å¦‚åœ¨ç›®æ ‡åŒºåŸŸ,å¹¶ä¸”æœªå¼€æ˜¾ç¤ºå®šæ—¶å™¨,åˆ™å¼€æ˜¾ç¤ºå®šæ—¶å™¨,å»¶è¿Ÿæ˜¾ç¤º
+//                2.2.å¦‚ä¸åœ¨ç›®æ ‡åŒºåŸŸå†…,åˆ™ç›´æ¥killæ˜¾ç¤ºå®šæ—¶å™¨,æ¶ˆå¤±
+//              3.æ˜¾ç¤ºå®šæ—¶å™¨è§¦å‘å,ç«‹å³å¼€å¯æ¶ˆå¤±å®šæ—¶å™¨.
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -31,7 +31,7 @@ namespace DM
 		bool Create();
 	public:
 		//---------------------------------------------------
-		// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnPaint(HDC hdc);
 		void OnTimer(UINT_PTR idEvent);
@@ -43,11 +43,11 @@ namespace DM
 		DMCode RelayEvent(const MSG *pMsg);
 		BOOL PreTranslateMessage(MSG* pMsg);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void ShowTooltip(bool bShow);
 	
 	public:
-		DECLARE_MSG_MAP()										// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MSG_MAP()										// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	protected:
 		int						  m_iDelayTime;
@@ -55,6 +55,6 @@ namespace DM
 		CStringW				  m_strTip;
 		CRect					  m_rcTarget;
 		HFONT					  m_font;
-		bool                      m_bShowing;                       // ÏÔÊ¾¶¨Ê±Æ÷ÒÑÆôÓÃ£¬µ«´°¿Ú»¹Î´ÏÔÊ¾
+		bool                      m_bShowing;                       // æ˜¾ç¤ºå®šæ—¶å™¨å·²å¯ç”¨ï¼Œä½†çª—å£è¿˜æœªæ˜¾ç¤º
 	};
 }//namespace DM

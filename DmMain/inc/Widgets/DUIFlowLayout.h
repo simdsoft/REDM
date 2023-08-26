@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIFlowLayout.h 
-// File Des: Á÷Ê½²¼¾Ö
+// File Des: æµå¼å¸ƒå±€
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,48 +18,48 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::FlowLayoutAttr"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::FlowLayoutAttr"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIFlowLayoutAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* INT_childpaddlen;                                    ///< ×Ó¿Ø¼şÖ®¼äµÄ¶îÍâ¼ä¾à,Ê¾Àıchildpaddlen="10"
+		static const char* INT_childpaddlen;                                    ///< å­æ§ä»¶ä¹‹é—´çš„é¢å¤–é—´è·,ç¤ºä¾‹childpaddlen="10"
 	};
 	DMAttrValueInit(DUIFlowLayoutAttr,INT_childpaddlen)
 
 	/// <summary>
-	///		<see cref="DM::DUITabLayoutAttr"/>µÄxmlÊôĞÔ¶¨Òå
-	/// tabÎª¼òµ¥µÄwrap²¼¾Ö£¬´óĞ¡Ò»ÖÂ£¬²»ÊÜÆäËûÏŞÖÆ
+	///		<see cref="DM::DUITabLayoutAttr"/>çš„xmlå±æ€§å®šä¹‰
+	/// tabä¸ºç®€å•çš„wrapå¸ƒå±€ï¼Œå¤§å°ä¸€è‡´ï¼Œä¸å—å…¶ä»–é™åˆ¶
 	/// </summary>
 	class DUITabLayoutAttr:public DUIFlowLayoutAttr
 	{
 	public:
-		static const char* SIZE_itemsize;                                     ///< ¿Ø¼şµÄ´óĞ¡,Ê¾Àıitemsize="35,25"
+		static const char* SIZE_itemsize;                                     ///< æ§ä»¶çš„å¤§å°,ç¤ºä¾‹itemsize="35,25"
 	};
 	DMAttrValueInit(DUITabLayoutAttr,SIZE_itemsize)
 
 	class DUIWrapLayoutAttr:public DUITabLayoutAttr
 	{
 	public:
-		static const char* INT_colcount;                                     ///< Ò»ĞĞµÄ¿Ø¼şÊıÄ¿,Ê¾Àıcolcount="10"
+		static const char* INT_colcount;                                     ///< ä¸€è¡Œçš„æ§ä»¶æ•°ç›®,ç¤ºä¾‹colcount="10"
 	};
 	DMAttrValueInit(DUIWrapLayoutAttr,INT_colcount)
 
 	/// <summary>
-	///		<see cref="DM::DUISplitLayout"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUISplitLayout"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUISplitLayoutAttr:public DUIFlowLayoutAttr
 	{
 	public:
-		static const char* bool_bvert;                                    ///< ÊÇ·ñÊÇÊúÖ±µÄ,Ê¾Àı:bvert="1"
-		static const char* bool_bfirstchange;                             ///< µ±Õû¸öÍâ²¿´°¿Úsize±ä»¯Ê±£¬µÚÒ»¸ö´°¿Ú±ä»¯,Ê¾Àı:bfirstchange="1"                          
-		static const char* SKIN_sliderskin;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄÆ¤·ô,Ê¾Àı:sliderskin="sliderskin"
-		static const char* COLOR_clrslider;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ±³¾°É«,Ê¾Àı:clrslider="pbgra(ff,ff,ff,ff)"
-		static const char* INT_sliderwidth;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±)£¬Ê¾Àı:sliderwidth="10"
-		static const char* INT_firstchildwidth;                           ///< µÚÒ»¸ö´°¿ÚµÄ¿ªÊ¼¿í¶È,Ê¾Àı:firstchildwidth="100"
-		static const char* STRING_firstchildpercent;                      ///< µÚÒ»¸ö´°¿ÚµÄ¿ªÊ¼¿í¶È°Ù·Ö±È,ºÍINT_firstchildwidthÍ¬Ê±Ê¹ÓÃÊ±,ÓÅÏÈÊ¹ÓÃ°Ù·Ö±È,Ê¾Àı:firstchildpercent="%50"
-		static const char* INT_minimumwidth;							   ///< ·ÇµÚÒ»¸ö±ä»¯´°¿Ú¿ÉÍÏ×§×îĞ¡¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±) :minimumwidth="30"  lzlong add
-		static const char* INT_maximumwidth;							   ///< ·ÇµÚÒ»¸ö±ä»¯´°¿Ú¿ÉÍÏ×§×î´ó¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±) :maximumwidth="300"  lzlong add
+		static const char* bool_bvert;                                    ///< æ˜¯å¦æ˜¯ç«–ç›´çš„,ç¤ºä¾‹:bvert="1"
+		static const char* bool_bfirstchange;                             ///< å½“æ•´ä¸ªå¤–éƒ¨çª—å£sizeå˜åŒ–æ—¶ï¼Œç¬¬ä¸€ä¸ªçª—å£å˜åŒ–,ç¤ºä¾‹:bfirstchange="1"                          
+		static const char* SKIN_sliderskin;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„çš®è‚¤,ç¤ºä¾‹:sliderskin="sliderskin"
+		static const char* COLOR_clrslider;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrslider="pbgra(ff,ff,ff,ff)"
+		static const char* INT_sliderwidth;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´)ï¼Œç¤ºä¾‹:sliderwidth="10"
+		static const char* INT_firstchildwidth;                           ///< ç¬¬ä¸€ä¸ªçª—å£çš„å¼€å§‹å®½åº¦,ç¤ºä¾‹:firstchildwidth="100"
+		static const char* STRING_firstchildpercent;                      ///< ç¬¬ä¸€ä¸ªçª—å£çš„å¼€å§‹å®½åº¦ç™¾åˆ†æ¯”,å’ŒINT_firstchildwidthåŒæ—¶ä½¿ç”¨æ—¶,ä¼˜å…ˆä½¿ç”¨ç™¾åˆ†æ¯”,ç¤ºä¾‹:firstchildpercent="%50"
+		static const char* INT_minimumwidth;							   ///< éç¬¬ä¸€ä¸ªå˜åŒ–çª—å£å¯æ‹–æ‹½æœ€å°å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´) :minimumwidth="30"  lzlong add
+		static const char* INT_maximumwidth;							   ///< éç¬¬ä¸€ä¸ªå˜åŒ–çª—å£å¯æ‹–æ‹½æœ€å¤§å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´) :maximumwidth="300"  lzlong add
 	};
 	DMAttrValueInit(DUISplitLayoutAttr,bool_bvert)DMAttrValueInit(DUISplitLayoutAttr,bool_bfirstchange)DMAttrValueInit(DUISplitLayoutAttr,INT_firstchildwidth)DMAttrValueInit(DUISplitLayoutAttr,STRING_firstchildpercent)
 		DMAttrValueInit(DUISplitLayoutAttr, SKIN_sliderskin)DMAttrValueInit(DUISplitLayoutAttr, COLOR_clrslider)DMAttrValueInit(DUISplitLayoutAttr, INT_sliderwidth)DMAttrValueInit(DUISplitLayoutAttr, INT_minimumwidth)
@@ -69,7 +69,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		Á÷Ê½²¼¾Ö»ùÀà
+	///		æµå¼å¸ƒå±€åŸºç±»
 	/// </summary>
 	class DM_EXPORT DUIFlowLayout:public DUIWindow
 	{
@@ -82,11 +82,11 @@ namespace DM
 			DM_INT_ATTRIBUTE(DMAttr::DUIFlowLayoutAttr::INT_childpaddlen, m_iChildPaddLen, DM_ECODE_NOXMLRELAYOUT)
 		DM_END_ATTRIBUTES()
 	public:
-		int                            m_iChildPaddLen;		///<×Ó¿Ø¼şÖ®¼äµÄ¶îÍâ¾àÀë	
+		int                            m_iChildPaddLen;		///<å­æ§ä»¶ä¹‹é—´çš„é¢å¤–è·ç¦»	
 	};
 
 	/// <summary>
-	///		ÊúÖ±Á÷Ê½²¼¾Ö
+	///		ç«–ç›´æµå¼å¸ƒå±€
 	/// </summary>
 	class DM_EXPORT DUIVLayout:public DUIFlowLayout
 	{
@@ -96,7 +96,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Ë®Æ½Á÷Ê½²¼¾Ö
+	///		æ°´å¹³æµå¼å¸ƒå±€
 	/// </summary>
 	class DM_EXPORT DUIHLayout:public DUIFlowLayout
 	{
@@ -106,7 +106,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		tabÁ÷Ê½²¼¾Ö£¬´óĞ¡ÏàÍ¬
+	///		tabæµå¼å¸ƒå±€ï¼Œå¤§å°ç›¸åŒ
 	/// </summary>
 	class DM_EXPORT DUITabLayout:public DUIFlowLayout
 	{
@@ -123,7 +123,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		WarpÁ÷Ê½²¼¾Ö
+	///		Warpæµå¼å¸ƒå±€
 	/// </summary>
 	class DM_EXPORT DUIWrapLayout:public DUITabLayout
 	{
@@ -133,7 +133,7 @@ namespace DM
 
 	public:
 		DM_BEGIN_ATTRIBUTES()
-			DM_INT_ATTRIBUTE(DMAttr::DUIWrapLayoutAttr::INT_colcount,m_nColumns, DM_ECODE_OK)// ÔÚÃ»ÓĞÉèÖÃsizeÊ±£¬ÒÀÀµËüÀ´×Ô¶¯ÉèÖÃ¿í¶È
+			DM_INT_ATTRIBUTE(DMAttr::DUIWrapLayoutAttr::INT_colcount,m_nColumns, DM_ECODE_OK)// åœ¨æ²¡æœ‰è®¾ç½®sizeæ—¶ï¼Œä¾èµ–å®ƒæ¥è‡ªåŠ¨è®¾ç½®å®½åº¦
 		DM_END_ATTRIBUTES()
 
 	public:
@@ -141,8 +141,8 @@ namespace DM
 	};
 
 	// <summary>
-	///		 DUISplitLayout·Ö¸î²¼¾ÖµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUISplitterAttr"/>
-	/// ¼ò»¯:½öÁ½¸ö´°¿Ú£¨A,B£©¹¹³É,µ±Õû¸öÍâ²¿´°¿Úsize±ä»¯Ê±£¬ÒªÃ´A´°¿Ú±ä»¯£¬ÒªÃ´B´°¿Ú±ä»¯£¬2Ñ¡Ò»
+	///		 DUISplitLayoutåˆ†å‰²å¸ƒå±€çš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUISplitterAttr"/>
+	/// ç®€åŒ–:ä»…ä¸¤ä¸ªçª—å£ï¼ˆA,Bï¼‰æ„æˆ,å½“æ•´ä¸ªå¤–éƒ¨çª—å£sizeå˜åŒ–æ—¶ï¼Œè¦ä¹ˆAçª—å£å˜åŒ–ï¼Œè¦ä¹ˆBçª—å£å˜åŒ–ï¼Œ2é€‰ä¸€
 	/// </summary>
 	class DUISplitLayout:public DUIFlowLayout
 	{
@@ -167,7 +167,7 @@ namespace DM
 		DMCode DV_UpdateChildLayout();		
 		DMCode DV_OnSetCursor(const CPoint &pt);
 
-	public:// ¸¨Öú      
+	public:// è¾…åŠ©      
 		DMCode UpdateFixWidth();
 		DMCode UpdateDrag(int iDiff);
 		CRect GetSliderRect();
@@ -187,16 +187,16 @@ namespace DM
 		DMCode OnAttributeFirstChildPercent(LPCSTR lpszValue, bool bLoadXml);
 
 	public:
-		bool                             m_bVert;                ///< ÊÇ·ñÊúÖ±
-		int                              m_iSliderWid;           ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±)
-		int								 m_iMinimumWid;			 ///< ×îĞ¡¿í¸ß
-		int								 m_iMaximumWid;			 ///< ×î´ó¿í¸ß
+		bool                             m_bVert;                ///< æ˜¯å¦ç«–ç›´
+		int                              m_iSliderWid;           ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´)
+		int								 m_iMinimumWid;			 ///< æœ€å°å®½é«˜
+		int								 m_iMaximumWid;			 ///< æœ€å¤§å®½é«˜
 		DMSmartPtrT<IDMSkin>             m_pSliderSkin;
 		DMColor                          m_ClrSlider;
 		bool                             m_bFirstChange;
-		int                              m_iFirstChildWidth;     ///< µÚÒ»¸ö´°¿ÚµÄ³õÊ¼Öµ
-		int                              m_iFirstChildPercent;   ///< µÚÒ»¸ö´°¿ÚµÄ³õÊ¼°Ù·Ö±È
-		int                              m_iFixWid;              ///< ¹Ì¶¨µÄ¿í¶È£¬Îª-1±íÊ¾Î´³õÊ¼»¯,ÆäÓà±íÊ¾size±ä»¯Ê±£¬¹Ì¶¨sizeµÄÄÇ¸ö´°¿Ú
+		int                              m_iFirstChildWidth;     ///< ç¬¬ä¸€ä¸ªçª—å£çš„åˆå§‹å€¼
+		int                              m_iFirstChildPercent;   ///< ç¬¬ä¸€ä¸ªçª—å£çš„åˆå§‹ç™¾åˆ†æ¯”
+		int                              m_iFixWid;              ///< å›ºå®šçš„å®½åº¦ï¼Œä¸º-1è¡¨ç¤ºæœªåˆå§‹åŒ–,å…¶ä½™è¡¨ç¤ºsizeå˜åŒ–æ—¶ï¼Œå›ºå®šsizeçš„é‚£ä¸ªçª—å£
 		bool                             m_bDrag;
 		CPoint                           m_ptDrag;
 		CStringA                         m_strPos;

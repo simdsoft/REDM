@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,31 +18,31 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIListBox"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIListBox"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIListBoxAttr:public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_itemheight;                                       ///< ÏîµÄÄ¬ÈÏ¸ß¶È,Ä¬ÈÏÎª20,Ê¾Àı:itemheight="20"
-		static const char* POINT_iconpoint;                                      ///< Ïà¶ÔÓÚItemµÄ×óÉÏ½ÇÆ«ÒÆ,Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾Ê¹ÓÃÄ¬ÈÏ¸ß¶ÈµÄ1/6,Ê¾Àı:iconpoint="-1,-1"
-		static const char* POINT_textpoint;                                      ///< Ïà¶ÔÓÚItemµÄ×óÉÏ½ÇÆ«ÒÆ£¬Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾´Ë·½Ïò¾ÓÖĞ,Ê¾Àı:textpoint="-1,-1"
-		static const char* SKIN_iconskin;                                        ///< Ã¿Ïî×Ô´øµÄICONÍ¼°¸,Ò»°ãÎª×´Ì¬Á¬Í¼,Ê¾Àı:iconskin="skin"
-		static const char* SKIN_itembgskin;                                      ///< ÏîËùÔÚµÄ±³¾°Í¼°¸,Ê¾Àı£ºitembgskin="skin"
-		static const char* COLOR_clritembg;                                      ///< µ¥ÊıÏîitemµÄ±³¾°É«,Ê¾Àı:clritembg="pbgra(FF,FF,FF,FF)"
-		static const char* COLOR_clritembg2;                                     ///< Ë«ÊıÏîitemµÄ±³¾°É«,Èç²»ÉèÖÃ,ÔòÄ¬ÈÏÊ¹ÓÃµ¥ÊıÏîµÄ±³¾°É«,Ê¾Àı:clritembg2="pbgra(FF,FF,cc,FF)"
-		static const char* COLOR_clritemhoverbg;                                 ///< itemÏîµÄhover±³¾°É«,Ê¾Àı:clritemhoverbg="pbgra(ff,00,00,ff)"
-		static const char* COLOR_clritemselbg;                                   ///< itemÏîµÄÑ¡ÖĞ±³¾°É«,Ê¾Àı:clritemselbg="pbgra(ff,00,00,ff)"
-		static const char* COLOR_clritemtext;                                    ///< itemÏîµÄÎÄ±¾É«,Ê¾Àı:clritemtext="pbgra(ff,00,00,ff)"
-		static const char* COLOR_clritemhovertext;                                ///< itemÏîµÄhoverÎÄ±¾É«,Ê¾Àı:clritemhoverext="pbgra(ff,00,00,ff)"
-		static const char* COLOR_clritemseltext;                                 ///< itemÏîµÄÑ¡ÖĞÎÄ±¾É«,Ê¾Àı:clritemseltext="pbgra(ff,00,00,ff)"
-		static const char* bool_bhottrack;                                       ///< ÈÃÖ¸ÕëÏÂµÄÏî×Ô¶¯×·×ÙÑ¡ÖĞÏÔÊ¾,Ê¾Àı:bhottrack="1"
-		static const char* INT_cursel;                                           ///< ´ËÏîÎªÑ¡ÖĞÏî£¬Ê¾Àı:cursel="1"
+		static const char* INT_itemheight;                                       ///< é¡¹çš„é»˜è®¤é«˜åº¦,é»˜è®¤ä¸º20,ç¤ºä¾‹:itemheight="20"
+		static const char* POINT_iconpoint;                                      ///< ç›¸å¯¹äºItemçš„å·¦ä¸Šè§’åç§»,é»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºä½¿ç”¨é»˜è®¤é«˜åº¦çš„1/6,ç¤ºä¾‹:iconpoint="-1,-1"
+		static const char* POINT_textpoint;                                      ///< ç›¸å¯¹äºItemçš„å·¦ä¸Šè§’åç§»ï¼Œé»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºæ­¤æ–¹å‘å±…ä¸­,ç¤ºä¾‹:textpoint="-1,-1"
+		static const char* SKIN_iconskin;                                        ///< æ¯é¡¹è‡ªå¸¦çš„ICONå›¾æ¡ˆ,ä¸€èˆ¬ä¸ºçŠ¶æ€è¿å›¾,ç¤ºä¾‹:iconskin="skin"
+		static const char* SKIN_itembgskin;                                      ///< é¡¹æ‰€åœ¨çš„èƒŒæ™¯å›¾æ¡ˆ,ç¤ºä¾‹ï¼šitembgskin="skin"
+		static const char* COLOR_clritembg;                                      ///< å•æ•°é¡¹itemçš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clritembg="pbgra(FF,FF,FF,FF)"
+		static const char* COLOR_clritembg2;                                     ///< åŒæ•°é¡¹itemçš„èƒŒæ™¯è‰²,å¦‚ä¸è®¾ç½®,åˆ™é»˜è®¤ä½¿ç”¨å•æ•°é¡¹çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clritembg2="pbgra(FF,FF,cc,FF)"
+		static const char* COLOR_clritemhoverbg;                                 ///< itemé¡¹çš„hoverèƒŒæ™¯è‰²,ç¤ºä¾‹:clritemhoverbg="pbgra(ff,00,00,ff)"
+		static const char* COLOR_clritemselbg;                                   ///< itemé¡¹çš„é€‰ä¸­èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemselbg="pbgra(ff,00,00,ff)"
+		static const char* COLOR_clritemtext;                                    ///< itemé¡¹çš„æ–‡æœ¬è‰²,ç¤ºä¾‹:clritemtext="pbgra(ff,00,00,ff)"
+		static const char* COLOR_clritemhovertext;                                ///< itemé¡¹çš„hoveræ–‡æœ¬è‰²,ç¤ºä¾‹:clritemhoverext="pbgra(ff,00,00,ff)"
+		static const char* COLOR_clritemseltext;                                 ///< itemé¡¹çš„é€‰ä¸­æ–‡æœ¬è‰²,ç¤ºä¾‹:clritemseltext="pbgra(ff,00,00,ff)"
+		static const char* bool_bhottrack;                                       ///< è®©æŒ‡é’ˆä¸‹çš„é¡¹è‡ªåŠ¨è¿½è¸ªé€‰ä¸­æ˜¾ç¤º,ç¤ºä¾‹:bhottrack="1"
+		static const char* INT_cursel;                                           ///< æ­¤é¡¹ä¸ºé€‰ä¸­é¡¹ï¼Œç¤ºä¾‹:cursel="1"
 		//
-		static const char* NODE_item;                                            ///< ListBoxµÄxmlÏî½áµãÃû
-		static const char* ITEM_height;                                          ///< ÏîµÄ¸ß¶È(¿ÉÑ¡),²»Ö¸¶¨ÔòÊ¹ÓÃÄ¬ÈÏÏî,height="30"
-		static const char* ITEM_text;                                            ///< ÏîµÄÎÄ±¾,Ê¾Àı:text="item0"
-		static const char* ITEM_icon;                                            ///< ÏîµÄiconË÷Òı,-1±íÊ¾²»Ê¹ÓÃiconÍ¼,Ê¾Àı:icon="1"
-		static const char* ITEM_data;                                            ///< ÏîµÄ¸½¼ÓÊı¾İ,Ê¾Àı:data="100"
+		static const char* NODE_item;                                            ///< ListBoxçš„xmlé¡¹ç»“ç‚¹å
+		static const char* ITEM_height;                                          ///< é¡¹çš„é«˜åº¦(å¯é€‰),ä¸æŒ‡å®šåˆ™ä½¿ç”¨é»˜è®¤é¡¹,height="30"
+		static const char* ITEM_text;                                            ///< é¡¹çš„æ–‡æœ¬,ç¤ºä¾‹:text="item0"
+		static const char* ITEM_icon;                                            ///< é¡¹çš„iconç´¢å¼•,-1è¡¨ç¤ºä¸ä½¿ç”¨iconå›¾,ç¤ºä¾‹:icon="1"
+		static const char* ITEM_data;                                            ///< é¡¹çš„é™„åŠ æ•°æ®,ç¤ºä¾‹:data="100"
 	};
 	DMAttrValueInit(DUIListBoxAttr,INT_itemheight)DMAttrValueInit(DUIListBoxAttr,POINT_iconpoint)DMAttrValueInit(DUIListBoxAttr,POINT_textpoint)
 	DMAttrValueInit(DUIListBoxAttr,SKIN_iconskin)DMAttrValueInit(DUIListBoxAttr,SKIN_itembgskin)DMAttrValueInit(DUIListBoxAttr,COLOR_clritembg)
@@ -61,9 +61,9 @@ namespace DM
 			nImage = -1;
 			lParam = NULL;
 		}
-		CStringW    strText;    ///< ÎÄ±¾
-		int			nHeight;	///< ¸ß¶È
-		int         nImage;		///< icon±êÖ¾
+		CStringW    strText;    ///< æ–‡æœ¬
+		int			nHeight;	///< é«˜åº¦
+		int         nImage;		///< iconæ ‡å¿—
 		LPARAM      lParam;     ///< data
 		void assign(stLBITEM* pItem)
 		{
@@ -75,7 +75,7 @@ namespace DM
 	}LBITEM, *LPLBITEM;
 
 	/// <summary>
-	///		 DUIListBoxµÄÄÚÖÃÊµÏÖ
+	///		 DUIListBoxçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIListBox: public DUIScrollBase,public DMArrayT<LPLBITEM>
 	{
@@ -87,7 +87,7 @@ namespace DM
 		void UnInit();
 	public:
 		//---------------------------------------------------
-		// Function Des: ½Ó¿Ú
+		// Function Des: æ¥å£
 		//---------------------------------------------------
 		int InsertItem(int nIndex, LPLBITEM pItem);
 		int GetTopIndex() const;
@@ -107,7 +107,7 @@ namespace DM
 		void DeleteAll();
 		void EnsureVisible(int nIndex);
 
-	public:// »æÖÆ£¡£¡£¡£¡
+	public:// ç»˜åˆ¶ï¼ï¼ï¼ï¼
 		virtual void DrawItem(IDMCanvas* pCanvas, CRect& rc, int iItem);
 		void RedrawItem(int iItem);
 
@@ -127,7 +127,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnDestroy();
 		void OnSize(UINT nType,CSize size);
@@ -137,17 +137,17 @@ namespace DM
 		void OnLButtonUp(UINT nFlags,CPoint pt);
 		void OnMouseMove(UINT nFlags,CPoint pt);
 		void OnMouseLeave();
-		void OnKeyDown(TCHAR nChar,UINT nRepCnt,UINT nFlags);          // Ö§³ÖÉÏÏÂ¼ıÍ·¿ØÖÆÏî
+		void OnKeyDown(TCHAR nChar,UINT nRepCnt,UINT nFlags);          // æ”¯æŒä¸Šä¸‹ç®­å¤´æ§åˆ¶é¡¹
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 		void OnShowWindow(BOOL bShow, UINT nStatus);
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¿ÉÖØÔØº¯Êı
+		// Function Des: å¯é‡è½½å‡½æ•°
 		//---------------------------------------------------
 		virtual DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		int HitTest(CPoint &pt);
 
 	public:
@@ -173,9 +173,9 @@ namespace DM
 	public:
 		DMCode OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml);
 	public:
-		int									   m_iSelItem;						 ///< µ±Ç°Ñ¡ÖĞÏî   
-		int									   m_iHoverItem;					 ///< µ±Ç°Í£ÁôÏî
-		int									   m_nDefItemHei;					 ///< ÏîµÄ¸ß¶È
+		int									   m_iSelItem;						 ///< å½“å‰é€‰ä¸­é¡¹   
+		int									   m_iHoverItem;					 ///< å½“å‰åœç•™é¡¹
+		int									   m_nDefItemHei;					 ///< é¡¹çš„é«˜åº¦
 
 		IDMSkinPtr							   m_pItemBgSkin;
 		IDMSkinPtr							   m_pIconSkin;
@@ -188,8 +188,8 @@ namespace DM
 		DMColor                                m_crItemHoverText;
 		DMColor					               m_crItemSelText; 
 
-		CPoint								   m_IconPt;						///< Ïà¶ÔÓÚItemµÄ×óÉÏ½ÇÆ«ÒÆ
-		CPoint								   m_TextPt;						///< Ïà¶ÔÓÚItemµÄ×óÉÏ½ÇÆ«ÒÆ£¬Ä¬ÈÏÎª-1£¬-1£¬ÆäÖĞ-1±íÊ¾´Ë·½Ïò¾ÓÖĞ 
+		CPoint								   m_IconPt;						///< ç›¸å¯¹äºItemçš„å·¦ä¸Šè§’åç§»
+		CPoint								   m_TextPt;						///< ç›¸å¯¹äºItemçš„å·¦ä¸Šè§’åç§»ï¼Œé»˜è®¤ä¸º-1ï¼Œ-1ï¼Œå…¶ä¸­-1è¡¨ç¤ºæ­¤æ–¹å‘å±…ä¸­ 
 
 		bool		    					   m_bHotTrack; 
 	};

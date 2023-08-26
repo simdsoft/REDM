@@ -1,4 +1,4 @@
-for key, value in pairs(haha) do
+﻿for key, value in pairs(haha) do
 	print("key:" .. key)
 	print("value:",value)
 end

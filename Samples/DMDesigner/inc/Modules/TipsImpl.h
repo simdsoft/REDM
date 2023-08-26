@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -20,7 +20,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		DUI¥∞ø⁄–Œ Ωœ‘ ætips
+	///		DUIÁ™óÂè£ÂΩ¢ÂºèÊòæÁ§∫tips
 	/// </summary>
 	class TipsImpl:public IDMToolTip,public DMCWnd
 	{
@@ -30,12 +30,12 @@ namespace DM
 		TipsImpl(void);
 		virtual ~TipsImpl(void);
 
-		bool Create();													///< ¥¥Ω®∂® ±∆˜µƒ“˛≤ÿ¥∞ø⁄
-		bool CreateTipsWnd();											///< ¥¥Ω®’Ê µµƒœ‘ æ¥∞ø⁄
+		bool Create();													///< ÂàõÂª∫ÂÆöÊó∂Âô®ÁöÑÈöêËóèÁ™óÂè£
+		bool CreateTipsWnd();											///< ÂàõÂª∫ÁúüÂÆûÁöÑÊòæÁ§∫Á™óÂè£
 
 	public:
 		//---------------------------------------------------
-		// Function Des: œ˚œ¢∑÷∑¢œµ¡–∫Ø ˝
+		// Function Des: Ê∂àÊÅØÂàÜÂèëÁ≥ªÂàóÂáΩÊï∞
 		//---------------------------------------------------
 		void OnTimer(UINT_PTR idEvent);	
 
@@ -47,14 +47,14 @@ namespace DM
 		BOOL PreTranslateMessage(MSG* pMsg);
 
 
-	public:// ∏®÷˙
+	public:// ËæÖÂä©
 		void ShowTips(bool bShow);
-		bool IsTipWindows(){return IsWindow()&&m_pWnd&&m_pWnd->IsWindow();}///< “˛≤ÿ¥∞ø⁄∫Õœ‘ æ¥∞ø⁄∂ºOK
+		bool IsTipWindows(){return IsWindow()&&m_pWnd&&m_pWnd->IsWindow();}///< ÈöêËóèÁ™óÂè£ÂíåÊòæÁ§∫Á™óÂè£ÈÉΩOK
 		bool IsCursorPtInRect();
 		void DestroyTipsWnd();
 
 	public:
-		DECLARE_MESSAGE_MAP()										// ∑¬MFCœ˚œ¢”≥…‰∫Í
+		DECLARE_MESSAGE_MAP()										// ‰ªøMFCÊ∂àÊÅØÊò†Â∞ÑÂÆè
 
 	public:
 		DMSmartPtrT<DMHWnd>			 m_pWnd;
@@ -66,7 +66,7 @@ namespace DM
 		CStringW					 m_strTip; 
 		LPARAM                       m_dwReserve;
 		CRect						 m_rcTarget;
-		bool						 m_bShowing;                         ///< œ‘ æ∂® ±∆˜“—∆Ù”√£¨µ´¥∞ø⁄ªπŒ¥œ‘ æ
+		bool						 m_bShowing;                         ///< ÊòæÁ§∫ÂÆöÊó∂Âô®Â∑≤ÂêØÁî®Ôºå‰ΩÜÁ™óÂè£ËøòÊú™ÊòæÁ§∫
 		CRect                        m_rcPosFlags;
 		CRect                        m_rcScreenTarget;
 	};

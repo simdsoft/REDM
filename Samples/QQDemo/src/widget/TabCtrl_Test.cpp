@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "TabCtrl_Test.h"
 #include "QQMainWnd.h"
 extern CQQMainWnd* g_pMainWnd;
@@ -30,7 +30,7 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 		}
 
 #if 0
-		// test ÄÚ´æ¼ÓÔØskin²âÊÔ
+		// test å†…å­˜åŠ è½½skinæµ‹è¯•
 		DUIButton * pBtn = g_pMainWnd->FindChildByNameT<DUIButton>("closebutton");
 		if (pBtn)
 		{
@@ -46,7 +46,7 @@ DMCode TabCtrl_Test::OnInsert(DMEventArgs *pEvt)
 		}
 #endif
 
-		// ²âÊÔÖØÉèDOC
+		// æµ‹è¯•é‡è®¾DOC
 		DMXmlDocument XmlDoc;
 		XmlDoc.ResetByXmlNode(XmlNode);
 		DMXmlNode Node = XmlDoc.Root();
@@ -86,7 +86,7 @@ DMCode TabCtrl_Test::OnSelChanging(DMEventArgs *pEvt)
 		DMEventTabSelChangingArgs* pEvent = (DMEventTabSelChangingArgs*)pEvt;
 		if (5 == pEvent->m_uOldSel)
 		{
-			// É¾³ý×Ó´°¿Ú
+			// åˆ é™¤å­çª—å£
 			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabmain");
 			if (!pTab)
 			{
@@ -103,7 +103,7 @@ DMCode TabCtrl_Test::OnSelChanging(DMEventArgs *pEvt)
 
 		if (5 == pEvent->m_uNewSel)
 		{
-			// Ôö¼Ó×Ó´°¿Ú
+			// å¢žåŠ å­çª—å£
 			DUITabCtrl* pTab = g_pMainWnd->m_pWidgetWnd->FindChildByNameT<DUITabCtrl>("tabmain");
 			if (!pTab)
 			{

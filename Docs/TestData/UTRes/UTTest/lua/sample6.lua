@@ -1,4 +1,4 @@
-function ThreadTest()
+﻿function ThreadTest()
     print("ThreadTest start")
     print("TestFunc aaaaaa")
     TestFunc()

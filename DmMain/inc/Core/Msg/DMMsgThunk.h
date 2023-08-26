@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMMsgThunk.h 
-// File Des:´Ë´úÂëÀ´×Ôatl:atlstdthunk.h£¬¶ÔÓ¦Ô­ĞÍ_stdcallthunk
+// File Des:æ­¤ä»£ç æ¥è‡ªatl:atlstdthunk.hï¼Œå¯¹åº”åŸå‹_stdcallthunk
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -19,7 +19,7 @@ namespace DM
 #if defined(_M_IX86)
 	#pragma pack(push, 1)
 	/// <summary>
-	///		thunk²Ù×÷£¬°ÑhwndÍµ»»³ÉthisÖ¸Õë£¬´Ó¶øÊµÏÖÈ«¾Öº¯ÊıÇĞ»»µ½Àà³ÉÔ±º¯Êı
+	///		thunkæ“ä½œï¼ŒæŠŠhwndå·æ¢æˆthisæŒ‡é’ˆï¼Œä»è€Œå®ç°å…¨å±€å‡½æ•°åˆ‡æ¢åˆ°ç±»æˆå‘˜å‡½æ•°
 	/// </summary>
 	class DM_EXPORT DMMsgThunk
 	{
@@ -27,7 +27,7 @@ namespace DM
 		void Init(DWORD_PTR proc, void* pThis);	
 		void* GetCodeAddress();
 	public:
-		DWORD			m_mov;		// 4¸ö×Ö½Ú
+		DWORD			m_mov;		// 4ä¸ªå­—èŠ‚
 		DWORD			m_this;
 		BYTE			m_jmp;
 		DWORD			m_relproc;
@@ -50,7 +50,7 @@ namespace DM
 	#pragma pack(pop)
 #endif
 	/// <summary>
-	///		thunk¹¤¾ß,Òª´´½¨¶à¸öÖ÷´°¿Ú£¬ËùÒÔ²»ÄÜÎªµ¥ÀıÄ£Ê½
+	///		thunkå·¥å…·,è¦åˆ›å»ºå¤šä¸ªä¸»çª—å£ï¼Œæ‰€ä»¥ä¸èƒ½ä¸ºå•ä¾‹æ¨¡å¼
 	/// </summary>
 	class DM_EXPORT DMMsgThunkTool
 	{
@@ -58,8 +58,8 @@ namespace DM
 		DMMsgThunkTool();
 		virtual~DMMsgThunkTool();
 	public:
-		bool MsgThunkInit();										///< thunk³õÊ¼»¯,·ÖÅäthunk¶Ñ
-		bool MsgThunkRun(HWND hWnd, DWORD_PTR proc, PVOID pThis);	///< Ö´ĞĞthunk
+		bool MsgThunkInit();										///< thunkåˆå§‹åŒ–,åˆ†é…thunkå †
+		bool MsgThunkRun(HWND hWnd, DWORD_PTR proc, PVOID pThis);	///< æ‰§è¡Œthunk
 		void MsgThunkUnInit();					
 		PVOID MsgThunkGetCodeAddress();
 

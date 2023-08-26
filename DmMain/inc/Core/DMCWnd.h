@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMCWndBase.h 
-// File Des: ¼òµ¥ÊµÏÖCWnd£¬Í¬Ê±Ö§³Ötrunk´°¿Ú¹ı³Ì
+// File Des: ç®€å•å®ç°CWndï¼ŒåŒæ—¶æ”¯æŒtrunkçª—å£è¿‡ç¨‹
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -16,11 +16,11 @@
 namespace DM
 {
 	/// <summary>
-	///		»ù´¡thunk¡¢ÏûÏ¢·Ö·¢¡¢´°¿Úº¯Êı·â×°Àà
+	///		åŸºç¡€thunkã€æ¶ˆæ¯åˆ†å‘ã€çª—å£å‡½æ•°å°è£…ç±»
 	/// </summary>
-	class DM_EXPORT DMCWnd:public DMCWndBase		// ·â×°CWnd
-						  ,public DMMsgThunkTool	// trunk¹¤¾ß
-						  ,public IDMMsgMap			// ÏûÏ¢·Ö·¢
+	class DM_EXPORT DMCWnd:public DMCWndBase		// å°è£…CWnd
+						  ,public DMMsgThunkTool	// trunkå·¥å…·
+						  ,public IDMMsgMap			// æ¶ˆæ¯åˆ†å‘
 	{
 	public:
 		enum{DMSTATE_DESTROYED = 0x00000001};  
@@ -30,33 +30,33 @@ namespace DM
 
 	public:
 		/// -------------------------------------------------
-		/// @brief			´´½¨´°¿Ú
-		/// @param[in]		lpClassName		ÀàÃû
-		/// @param[in]		lpWindowName	´°¿ÚÃû
-		/// @param[in]		dwStyle			ÑùÊ½
-		/// @param[in]		dwExStyle		À©Õ¹ÑùÊ½
-		/// @param[in]		x				x×ø±ê
-		/// @param[in]		y				y×ø±ê
-		/// @param[in]		nWidth			¿í¶È
-		/// @param[in]		nHeight			¸ß¶È
-		/// @param[in]		hWndParent		¸¸´°¿Ú
+		/// @brief			åˆ›å»ºçª—å£
+		/// @param[in]		lpClassName		ç±»å
+		/// @param[in]		lpWindowName	çª—å£å
+		/// @param[in]		dwStyle			æ ·å¼
+		/// @param[in]		dwExStyle		æ‰©å±•æ ·å¼
+		/// @param[in]		x				xåæ ‡
+		/// @param[in]		y				yåæ ‡
+		/// @param[in]		nWidth			å®½åº¦
+		/// @param[in]		nHeight			é«˜åº¦
+		/// @param[in]		hWndParent		çˆ¶çª—å£
 		/// @param[in]		lpParam			Long pointer to a value to be passed to the window through the CREATESTRUCT structure passed in the lParam parameter the WM_CREATE message	
 		/// @return			HWND
 		HWND CreateWindowEx(LPCWSTR lpClassName, LPCWSTR lpWindowName,DWORD dwStyle, DWORD dwExStyle, 
 			int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam); 
 
 		/// -------------------------------------------------
-		/// @brief			´°¿ÚÏú»ÙÇ°´¦Àí
-		/// @param[in]		hWnd			´°¿Ú¾ä±ú
-		/// @remark         ¿ÉÖØÔØ£¬×ÓÀàÖØÔØ´¦Àí
-		/// @return			ÎŞ
+		/// @brief			çª—å£é”€æ¯å‰å¤„ç†
+		/// @param[in]		hWnd			çª—å£å¥æŸ„
+		/// @remark         å¯é‡è½½ï¼Œå­ç±»é‡è½½å¤„ç†
+		/// @return			æ— 
 		virtual void OnFinalMessage(HWND hWnd);		
 
 		BOOL SubclassWindow(HWND hWnd);
 		HWND UnsubclassWindow(BOOL bForce = FALSE);
 
 	public:
-		DECLARE_MSG_MAP();// ÉùÃ÷ProcessWindowMessage
+		DECLARE_MSG_MAP();// å£°æ˜ProcessWindowMessage
 		static LRESULT CALLBACK FirstWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		LRESULT DefWindowProc();
@@ -68,9 +68,9 @@ namespace DM
 		static BOOL DefaultReflectionHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult);
 
 	public:
-		const MSG*					 m_pCurrentMsg;                            // ·ÂATL
+		const MSG*					 m_pCurrentMsg;                            // ä»¿ATL
 		WNDPROC						 m_pfnSuperWindowProc;		
-		DWORD						 m_dwState;                                // ÊÇ·ñ±»destory
+		DWORD						 m_dwState;                                // æ˜¯å¦è¢«destory
 		BOOL						 m_bMsgHandled;
 
 		static DMCWnd*				 ms_pThis;

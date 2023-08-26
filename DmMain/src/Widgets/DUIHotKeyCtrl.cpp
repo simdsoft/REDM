@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIHotKeyCtrl.h"
 #include <CommCtrl.h>
 
@@ -137,7 +137,7 @@ namespace DM
 				m_wModifier = m_wInvalidModifiers;
 			}
 			CStringA strKey = DUIAccel::GetKeyName(nChar);
-			if (!strKey.IsEmpty())///< ÓĞĞ§¼üÖµ
+			if (!strKey.IsEmpty())///< æœ‰æ•ˆé”®å€¼
 			{
 				m_wVK = nChar;
 			}
@@ -213,7 +213,7 @@ namespace DM
 		m_pCaret->Hide();
 	}
 
-	// ÖØÔØ-----------------------------------------------
+	// é‡è½½-----------------------------------------------
 	DMCode DUIHotKeyCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = __super::DV_CreateChildWnds(XmlNode);
@@ -230,7 +230,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú-----------------------------------------------
+	// è¾…åŠ©-----------------------------------------------
 	void DUIHotKeyCtrl::UpdateModifier()
 	{
 		WORD wCombKey = 0;
@@ -280,7 +280,7 @@ namespace DM
 
 	void DUIHotKeyCtrl::UpdateCaret()
 	{
-		// ¼ÆËãÎÄ±¾´óĞ¡
+		// è®¡ç®—æ–‡æœ¬å¤§å°
 		CStringW strText = m_strHotkeyText;
 		CSize szFont;
 		IDMCanvas *pCanvas = DM_GetCanvas(m_rcWindow,DMOLEDC_NODRAW);
@@ -322,7 +322,7 @@ namespace DM
 		do 
 		{
 			DMAttributeDispatch::ParseColor(pszValue,m_clrCaret);
-			if (NULL == m_pCaret)// ³õ»¯Ê±¹â±êÊÇÔÚcreateºó
+			if (NULL == m_pCaret)// åˆåŒ–æ—¶å…‰æ ‡æ˜¯åœ¨createå
 			{
 				break;	
 			}
@@ -336,7 +336,7 @@ namespace DM
 		do 
 		{
 			DMAttributeDispatch::ParseInt(pszValue,m_iCaretAniCount);
-			if (NULL == m_pCaret)// ³õ»¯Ê±¹â±êÊÇÔÚcreateºó
+			if (NULL == m_pCaret)// åˆåŒ–æ—¶å…‰æ ‡æ˜¯åœ¨createå
 			{
 				break;	
 			}

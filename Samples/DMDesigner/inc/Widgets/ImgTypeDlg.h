@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ImgTypeDlg.h  
 // File mark:   
-// File summary:Ôö¼Ó¡¢±à¼­Ö÷Ìâ°üÏÂµÄimgÀàĞÍ
+// File summary:å¢åŠ ã€ç¼–è¾‘ä¸»é¢˜åŒ…ä¸‹çš„imgç±»å‹
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8

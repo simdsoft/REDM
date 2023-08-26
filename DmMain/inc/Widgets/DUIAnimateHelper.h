@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIAnimateHelper.h 
-// File Des: ÄÚÖÃ¶¯»­¸¨Öú
+// File Des: å†…ç½®åŠ¨ç”»è¾…åŠ©
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,22 +18,22 @@
 namespace DM
 {
 	/// <summary>
-	///		 TabÒ³µÄÈıÖÖ¶¯»­¶¨Òå
+	///		 Tabé¡µçš„ä¸‰ç§åŠ¨ç”»å®šä¹‰
 	/// </summary>
-	enum  ///< ¶¯»­Ğ§¹û
+	enum  ///< åŠ¨ç”»æ•ˆæœ
 	{
 		TABANI_NULL = 0,
-		TABANI_SD_LEFTRIGHT,	///< ±ßÕ¹¿ª-¶ÔÓ¦ÉÏÃæµÄSLIDEDIR
+		TABANI_SD_LEFTRIGHT,	///< è¾¹å±•å¼€-å¯¹åº”ä¸Šé¢çš„SLIDEDIR
 		TABANI_SD_RIGHTLEFT,
 		TABANI_SD_TOPBOTTOM,
 		TABANI_SD_BOTTOMTOP,
-		TABANI_CINFLATE,		///< ÖĞĞÄÀ©´ó
-		TABANI_CDEFLATE,		///< ÖĞĞÄËõĞ¡
+		TABANI_CINFLATE,		///< ä¸­å¿ƒæ‰©å¤§
+		TABANI_CDEFLATE,		///< ä¸­å¿ƒç¼©å°
 	};
 
 
 	/// <summary>
-	///		 Ö¡¶¯»­
+	///		 å¸§åŠ¨ç”»
 	/// </summary>
 	enum DISPOSAL_METHODS
 	{

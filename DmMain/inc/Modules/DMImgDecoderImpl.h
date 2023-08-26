@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -28,9 +28,9 @@ namespace DM
 		virtual DMCode GetDelay(UINT &ulDelay);
 		virtual DMCode CopyPixels(LPVOID lpBuf, UINT ulSize,UINT cbStride,const RECT *lpRect=NULL);
 
-	protected:	// ¸¨Öú
+	protected:	// è¾…åŠ©
 		DMSmartPtrT<IWICBitmapSource>    m_pBmpSource;
-		UINT							 m_uFrameDelay;// ¶àÖ¡Ê±Ê¹ÓÃ£¨Èçgif)
+		UINT							 m_uFrameDelay;// å¤šå¸§æ—¶ä½¿ç”¨ï¼ˆå¦‚gif)
 	};
 
 	typedef DMImgFrameImpl*   DMImgFrameImplPtr;
@@ -51,15 +51,15 @@ namespace DM
 	public:
 		virtual void PreArrayObjRemove(const DMImgFrameImplPtr &obj);
 
-	protected:// ¸¨Öú
+	protected:// è¾…åŠ©
 		 bool DoDecode(IWICBitmapDecoder* pBmpDecoder);
 		 bool ParseFrame(IWICBitmapDecoder* pBmpDecoder,unsigned int iFrame);
 
 		 UINT GetFrameDelay(IWICBitmapFrameDecode* pBmpFrameDecoder);
-		 UINT GetTotalLoopCount(IWICBitmapDecoder* pBmpDecoder);// ÕâÊÇÈ«¾ÖÊı¾İ£¬²»ÊÇÖ¡Êı¾İ
+		 UINT GetTotalLoopCount(IWICBitmapDecoder* pBmpDecoder);// è¿™æ˜¯å…¨å±€æ•°æ®ï¼Œä¸æ˜¯å¸§æ•°æ®
 
 		 bool CheckFramesValid();
-		 void RepairFrames(const void *pBuf,size_t bufLen);	 // ÔÚXPÏÂĞèÒªĞŞ¸´
+		 void RepairFrames(const void *pBuf,size_t bufLen);	 // åœ¨XPä¸‹éœ€è¦ä¿®å¤
 		 void RepairFrames(LPCWSTR pszFileName);
 
 

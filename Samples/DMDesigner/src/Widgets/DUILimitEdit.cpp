@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUILimitEdit.h"
 
 DUILimitEdit::DUILimitEdit()
@@ -74,7 +74,7 @@ LRESULT DUILimitEdit::OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 BOOL DUILimitEdit::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	if (DV_IsFocusable()&&m_dwEditStyle&ES_NUMBER) // Êý×Ö
+	if (DV_IsFocusable()&&m_dwEditStyle&ES_NUMBER) // æ•°å­—
 	{
 		CStringA strValue = GetTextA();
 		int iValue = 0;

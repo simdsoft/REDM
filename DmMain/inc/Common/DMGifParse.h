@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMGifParse.h 
-// File Des: ½âÎöGIF89a£¬°´¸ñÊ½½âÎö£¬ÓÉÓÚwicÔÚxpÏÂÎŞ·¨½âÎö³öÑÓ³ÙÊ±¼ä£¬ËùÒÔ¼ÓÈë´Ë¹¦ÄÜ£¬Ìø¹ıÁËÊµ¼ÊÏñËØ½âÎö,±¾ÈË²»±£Ö¤½âÎö¾ø¶Ô×¼È·£¡½öÍ¨¹ıgtest²âÊÔ
-// File Summary: ²Î¿¼½á¹¹:http://blog.csdn.net/friendwaters/article/details/2737328 & gif¹Ù·½89aÎÄµµ
+// File Des: è§£æGIF89aï¼ŒæŒ‰æ ¼å¼è§£æï¼Œç”±äºwicåœ¨xpä¸‹æ— æ³•è§£æå‡ºå»¶è¿Ÿæ—¶é—´ï¼Œæ‰€ä»¥åŠ å…¥æ­¤åŠŸèƒ½ï¼Œè·³è¿‡äº†å®é™…åƒç´ è§£æ,æœ¬äººä¸ä¿è¯è§£æç»å¯¹å‡†ç¡®ï¼ä»…é€šè¿‡gtestæµ‹è¯•
+// File Summary: å‚è€ƒç»“æ„:http://blog.csdn.net/friendwaters/article/details/2737328 & gifå®˜æ–¹89aæ–‡æ¡£
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -16,44 +16,44 @@
 
 namespace DM
 {
-	typedef struct               //Í¼ÏóÀ©Õ¹²ÎÊı
+	typedef struct               //å›¾è±¡æ‰©å±•å‚æ•°
 	{   
-		bool active;             //±¾½á¹¹ÖĞµÄÆäËü²ÎÊıÊÇ·ñ¿ÉÓÃ
-		bool userInputFlag;      //ÊÇ·ñÆÚ´ıÓÃ»§ÊäÈë
-		bool trsFlag;            //ÊÇ·ñÓĞÍ¸Ã÷É«
-		WORD delayTime;          //ÑÓÊ±Ê±¼ä£¨µ¥Î»1/100Ãë£©
-		UINT disposalMethod;     //´¦Àí·½·¨£¨¼ûgif89a.doc£¬¿ÉºöÂÔ£©
-		UINT trsColorIndex;      //Í¸Ã÷É«µ÷É«°åË÷Òı
+		bool active;             //æœ¬ç»“æ„ä¸­çš„å…¶å®ƒå‚æ•°æ˜¯å¦å¯ç”¨
+		bool userInputFlag;      //æ˜¯å¦æœŸå¾…ç”¨æˆ·è¾“å…¥
+		bool trsFlag;            //æ˜¯å¦æœ‰é€æ˜è‰²
+		WORD delayTime;          //å»¶æ—¶æ—¶é—´ï¼ˆå•ä½1/100ç§’ï¼‰
+		UINT disposalMethod;     //å¤„ç†æ–¹æ³•ï¼ˆè§gif89a.docï¼Œå¯å¿½ç•¥ï¼‰
+		UINT trsColorIndex;      //é€æ˜è‰²è°ƒè‰²æ¿ç´¢å¼•
 	}GCTRLEXT;
 
-	typedef struct                //GIFÎÄ¼şµÄÈ«¾Ö²ÎÊı
+	typedef struct                //GIFæ–‡ä»¶çš„å…¨å±€å‚æ•°
 	{  
-		UINT frames;             //ÎÄ¼şÖĞÍ¼ÏóÖ¡Êı
-		WORD scrWidth,scrHeight; //Âß¼­ÆÁÄ»µÄ¿í¶ÈºÍ¸ß¶È£¨µ¥Î»ÏñËØ£©
-		bool gFlag;              //ÊÇ·ñÓĞÈ«¾Öµ÷É«°å£¨¾ö¶¨ÆäËûµ÷É«°å²ÎÊıÊÇ·ñÓĞĞ§£©
-		UINT colorRes;           //É«²Ê·Ö±æÂÊ£¨²»Ê¹ÓÃ£©
-		bool gSort;              //È«¾Öµ÷É«°åÊÇ·ñ°´ÓÅÏÈÅÅĞò
-		UINT gSize;              //È«¾Öµ÷É«°å´óĞ¡£¨ÓĞ¶àÉÙ¸öÊµ¼ÊÈë¿Ú£©
-		UINT BKColorIdx;         //±³¾°É«µÄµ÷É«°åË÷Òı
-		UINT pixelAspectRatio;   //ÏñËØ³¤¿í±ÈÀı
-		UINT totalLoopCount;     //loop´ÎÊı,0±íÊ¾ÓÀ¾Ã
-		bool bLoop;              //ÊÇ·ñ´æÔÚloopĞÅÏ¢£¬Ã»ÓĞ¾ÍÊÇÒ»´Î
-		//BYTE *gColorTable;     //Ö¸ÏòÈ«¾Öµ÷É«°åµÄÖ¸Õë£¨256¸öÈë¿Ú£¬Ã¿¸öÈë¿ÚÈı×Ö½Ú£©
-		//µ÷É«°å¸ñÊ½Çë²Î¿´gif89a.doc
+		UINT frames;             //æ–‡ä»¶ä¸­å›¾è±¡å¸§æ•°
+		WORD scrWidth,scrHeight; //é€»è¾‘å±å¹•çš„å®½åº¦å’Œé«˜åº¦ï¼ˆå•ä½åƒç´ ï¼‰
+		bool gFlag;              //æ˜¯å¦æœ‰å…¨å±€è°ƒè‰²æ¿ï¼ˆå†³å®šå…¶ä»–è°ƒè‰²æ¿å‚æ•°æ˜¯å¦æœ‰æ•ˆï¼‰
+		UINT colorRes;           //è‰²å½©åˆ†è¾¨ç‡ï¼ˆä¸ä½¿ç”¨ï¼‰
+		bool gSort;              //å…¨å±€è°ƒè‰²æ¿æ˜¯å¦æŒ‰ä¼˜å…ˆæ’åº
+		UINT gSize;              //å…¨å±€è°ƒè‰²æ¿å¤§å°ï¼ˆæœ‰å¤šå°‘ä¸ªå®é™…å…¥å£ï¼‰
+		UINT BKColorIdx;         //èƒŒæ™¯è‰²çš„è°ƒè‰²æ¿ç´¢å¼•
+		UINT pixelAspectRatio;   //åƒç´ é•¿å®½æ¯”ä¾‹
+		UINT totalLoopCount;     //loopæ¬¡æ•°,0è¡¨ç¤ºæ°¸ä¹…
+		bool bLoop;              //æ˜¯å¦å­˜åœ¨loopä¿¡æ¯ï¼Œæ²¡æœ‰å°±æ˜¯ä¸€æ¬¡
+		//BYTE *gColorTable;     //æŒ‡å‘å…¨å±€è°ƒè‰²æ¿çš„æŒ‡é’ˆï¼ˆ256ä¸ªå…¥å£ï¼Œæ¯ä¸ªå…¥å£ä¸‰å­—èŠ‚ï¼‰
+		//è°ƒè‰²æ¿æ ¼å¼è¯·å‚çœ‹gif89a.doc
 	}GIFGLOBALINFO;
 	typedef GIFGLOBALINFO *LPGLOBAL_INFO;
 
 	typedef struct  
 	{
-		WORD imageLPos;          //Í¼Ïó×ó±ßÑØµ½Âß¼­ÆÁÄ»µÄ¾àÀë£¨µ¥Î»ÏñËØ£©
-		WORD imageTPos;          //Í¼ÏóÉÏ±ßÑØµ½Âß¼­ÆÁÄ»µÄ¾àÀë£¨µ¥Î»ÏñËØ£©
-		WORD imageWidth;         //Í¼ÏóµÄ¿í¶È£¨µ¥Î»ÏñËØ£©
-		WORD imageHeight;        //Í¼ÏóµÄ¸ß¶È£¨µ¥Î»ÏñËØ£©
-		GCTRLEXT ctrlExt;        //Í¼ÏóÀ©Õ¹²ÎÊı£¨ÓëÍ¸Ã÷±³¾°ºÍ¶¯»­ÓĞ¹Ø£©
+		WORD imageLPos;          //å›¾è±¡å·¦è¾¹æ²¿åˆ°é€»è¾‘å±å¹•çš„è·ç¦»ï¼ˆå•ä½åƒç´ ï¼‰
+		WORD imageTPos;          //å›¾è±¡ä¸Šè¾¹æ²¿åˆ°é€»è¾‘å±å¹•çš„è·ç¦»ï¼ˆå•ä½åƒç´ ï¼‰
+		WORD imageWidth;         //å›¾è±¡çš„å®½åº¦ï¼ˆå•ä½åƒç´ ï¼‰
+		WORD imageHeight;        //å›¾è±¡çš„é«˜åº¦ï¼ˆå•ä½åƒç´ ï¼‰
+		GCTRLEXT ctrlExt;        //å›¾è±¡æ‰©å±•å‚æ•°ï¼ˆä¸é€æ˜èƒŒæ™¯å’ŒåŠ¨ç”»æœ‰å…³ï¼‰
 	}GIFFRAME,*GIFFRAMEPTR;
 
 	/// <summary>
-	/// ½âÎögif£¬Ö÷ÒªÊÇ»ñÈ¡XPÏÂµÄÑÓ³ÙÊ±¼ä£¬xpÏÂÊ¹ÓÃwic¿É»ñµÃÖ¡£¬µ«ÎŞ·¨È¡µÃÑÓ³ÙÊ±¼ä
+	/// è§£ægifï¼Œä¸»è¦æ˜¯è·å–XPä¸‹çš„å»¶è¿Ÿæ—¶é—´ï¼Œxpä¸‹ä½¿ç”¨wicå¯è·å¾—å¸§ï¼Œä½†æ— æ³•å–å¾—å»¶è¿Ÿæ—¶é—´
 	/// </summary>
 	class DM_EXPORT DMGifParse:public DMRefNum
 							  ,public DMArrayT<GIFFRAMEPTR>
@@ -64,30 +64,30 @@ namespace DM
 
 	public:
 		/// -------------------------------------------------
-		/// @brief ´ÓÎÄ¼şÖĞ½âÎögif
-		/// @param[in]		 lpszFilePath    gifµÄÂ·¾¶
-		/// @return true:½âÎö³É¹¦
+		/// @brief ä»æ–‡ä»¶ä¸­è§£ægif
+		/// @param[in]		 lpszFilePath    gifçš„è·¯å¾„
+		/// @return true:è§£ææˆåŠŸ
 		bool LoadFromFile(LPCWSTR lpszFilePath);
 
 		/// -------------------------------------------------
-		/// @brief ´ÓÎÄ¼şÖĞ½âÎögif
-		/// @param[in]		 pBuf			gifµÄbufÆğÊ¼
-		/// @param[in]		 bufLen			gifµÄbuf´óĞ¡
-		/// @return true:½âÎö³É¹¦
+		/// @brief ä»æ–‡ä»¶ä¸­è§£ægif
+		/// @param[in]		 pBuf			gifçš„bufèµ·å§‹
+		/// @param[in]		 bufLen			gifçš„bufå¤§å°
+		/// @return true:è§£ææˆåŠŸ
 		bool LoadFromMemory(const BYTE *pBuf,int bufLen);
 
 		/// -------------------------------------------------
-		/// @brief È¡µÃÖ¸¶¨Ö¡
-		/// @param[in]		 iElement		Ö¸¶¨Ö¡ºÅ
-		/// @return Ê§°Ü·µ»Ønull
+		/// @brief å–å¾—æŒ‡å®šå¸§
+		/// @param[in]		 iElement		æŒ‡å®šå¸§å·
+		/// @return å¤±è´¥è¿”å›null
 		GIFFRAMEPTR GetFrame(int iElement);
 
 		/// -------------------------------------------------
-		/// @brief È¡µÃÈ«¾ÖÖµ£¬È«¾ÖÖµ°üº¬ÁËÍ¼ĞÎÖ¡Êı¡¢Ñ­»·´ÎÊıµÈ
+		/// @brief å–å¾—å…¨å±€å€¼ï¼Œå…¨å±€å€¼åŒ…å«äº†å›¾å½¢å¸§æ•°ã€å¾ªç¯æ¬¡æ•°ç­‰
 		/// @return 
 		LPGLOBAL_INFO GetGlobalInfo(){return &m_gInfo;}
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool GetAllFrames(FILE*fp);
 		bool ParseExtension(FILE*fp,GCTRLEXT&ctrlExt);
 		bool ParseFrame(FILE*fp);
@@ -99,9 +99,9 @@ namespace DM
 	public:
 		virtual void PreArrayObjRemove(const GIFFRAMEPTR &obj);
 	private:
-		int                 m_nOffset;              ///< ÓÃÓÚÄÚ´æ½âÎöÈ«¾Ö
-		GIFGLOBALINFO		m_gInfo;				///< GIFÎÄ¼şµÄÈ«¾Ö²ÎÊı
-		GCTRLEXT		    m_ctrlExt;				///< Í¼ÏóÀ©Õ¹²ÎÊı£¨¶ÁÈëÊı¾İÊ±ÁÙÊ±Ê¹ÓÃ£©
+		int                 m_nOffset;              ///< ç”¨äºå†…å­˜è§£æå…¨å±€
+		GIFGLOBALINFO		m_gInfo;				///< GIFæ–‡ä»¶çš„å…¨å±€å‚æ•°
+		GCTRLEXT		    m_ctrlExt;				///< å›¾è±¡æ‰©å±•å‚æ•°ï¼ˆè¯»å…¥æ•°æ®æ—¶ä¸´æ—¶ä½¿ç”¨ï¼‰
 	};
 
 }//namespace DM

@@ -16,9 +16,6 @@ PROJECT(DM)
 
 message(STATUS "CMAKE_SYSTEM_PROCESSOR=${CMAKE_SYSTEM_PROCESSOR}")
 
-add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-
 # 支持简版if else
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 

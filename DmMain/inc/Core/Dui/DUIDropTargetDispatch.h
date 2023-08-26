@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		¹ÜÀíDropTargetÔÚDUI´°¿ÚÖĞµÄ·Ö·¢
+	///		ç®¡ç†DropTargetåœ¨DUIçª—å£ä¸­çš„åˆ†å‘
 	/// </summary>
 	class DM_EXPORT DUIDropTargetDispatch : public IDropTarget
 	{
@@ -26,16 +26,16 @@ namespace DM
 		virtual~DUIDropTargetDispatch();
 
 		/// -------------------------------------------------
-		/// @brief			 °ÑDUIWND×¢²á½øÈ¥,ÔÚ·Ö·¢Ê±£¬Èç¹ûÊÇµ±Ç°DUIWND£¬ÔòÊ¹ÓÃpDropTargetµ÷ÓÃIDropTargetÏà¹Øº¯Êı
-		/// @param[in]		 hDUIWnd		DUI´°¿Ú¾ä±ú
-		/// @param[in]		 pDropTarget	DropTarget¶ÔÏó
-		/// @return  true³É¹¦,falseÊ§°Ü
+		/// @brief			 æŠŠDUIWNDæ³¨å†Œè¿›å»,åœ¨åˆ†å‘æ—¶ï¼Œå¦‚æœæ˜¯å½“å‰DUIWNDï¼Œåˆ™ä½¿ç”¨pDropTargetè°ƒç”¨IDropTargetç›¸å…³å‡½æ•°
+		/// @param[in]		 hDUIWnd		DUIçª—å£å¥æŸ„
+		/// @param[in]		 pDropTarget	DropTargetå¯¹è±¡
+		/// @return  trueæˆåŠŸ,falseå¤±è´¥
 		bool RegisterDragDrop(DUIWND hDUIWnd, IDropTarget *pDropTarget);
 
 		/// -------------------------------------------------
-		/// @brief			 ·´×¢²á
-		/// @param[in]		 hDUIWnd		DUI´°¿Ú¾ä±ú
-		/// @return			 true³É¹¦,falseÊ§°Ü
+		/// @brief			 åæ³¨å†Œ
+		/// @param[in]		 hDUIWnd		DUIçª—å£å¥æŸ„
+		/// @return			 trueæˆåŠŸ,falseå¤±è´¥
 		bool UnRegisterDragDrap(DUIWND hDUIWnd);
 
 	public:
@@ -50,7 +50,7 @@ namespace DM
 		virtual HRESULT STDMETHODCALLTYPE DragLeave(void);
 		virtual HRESULT STDMETHODCALLTYPE Drop(__RPC__in_opt IDataObject *pDataObj,DWORD grfKeyState, POINTL pt,__RPC__inout DWORD *pdwEffect);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		POINT PointL2FrameClient(const POINTL& pt);
 
 	public:

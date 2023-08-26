@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUILabel.h 
-// File Des: ÄÚÖÃLabelÊµÏÖ
+// File Des: å†…ç½®Labelå®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,13 +17,13 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUILabel"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUILabel"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUILabelAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* bool_bmultiLines;                                     ///< ÊÇ·ñÖ§³Ö¶àĞĞ,Ê¾Àı:bmultiLines="1"
-		static const char* INT_lineinter;                                        ///< ĞĞ¼ä¾à,Ä¬ÈÏÎª5£¬Ê¾Àı:lineinter="5"
+		static const char* bool_bmultiLines;                                     ///< æ˜¯å¦æ”¯æŒå¤šè¡Œ,ç¤ºä¾‹:bmultiLines="1"
+		static const char* INT_lineinter;                                        ///< è¡Œé—´è·,é»˜è®¤ä¸º5ï¼Œç¤ºä¾‹:lineinter="5"
 	};
 	DMAttrValueInit(DUILabelAttr,bool_bmultiLines)DMAttrValueInit(DUILabelAttr,INT_lineinter)
 }
@@ -31,7 +31,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUILabelµÄÄÚÖÃÊµÏÖ
+	///		 DUILabelçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUILabel :public DUIWindow
 	{
@@ -40,7 +40,7 @@ namespace DM
 		DUILabel();
 
 		//---------------------------------------------------
-		// Function Des: ÖØÔØDUIWindow
+		// Function Des: é‡è½½DUIWindow
 		//---------------------------------------------------
 		DMCode DV_DrawText(IDMCanvas* pCanvas, LPCWSTR pszBuf,int cchText,LPRECT lpRect,UINT uFormat);
 

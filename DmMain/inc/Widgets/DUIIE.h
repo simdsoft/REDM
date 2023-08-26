@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -21,16 +21,16 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIIE"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIIE"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIIEAttr
 	{
 	public:
-		static const char* STRING_url;                                    ///< Ö¸¶¨IEµÄÄ¬ÈÏ¼ÓÔØURL,Ê¾Àı:url="www.baidu.com"
-		static const char* bool_bshowscroll;                              ///< ÊÇ·ñÏÔÊ¾»òÒş²ØIE¹ö¶¯Ìõ,Ä¬ÈÏÒş²Ø,Ê¾Àı:bshowscroll="0"
-		static const char* bool_bshowcontext;                             ///< ÊÇ·ñÏÔÊ¾»òÒş²ØÓÒ¼ü²Ëµ¥,Ä¬ÈÏÏÔÊ¾,Ê¾Àı:bshowcontext="0"
-		static const char* bool_bdisablescriptwarn;                       ///< ÊÇ·ñ½ûÖ¹½Å±¾¾¯¸æ,Ä¬ÈÏ²»½ûÖ¹,Ê¾Àı:bdisablescriptwarn="0"
-		static const char* ACCEL_refreshkey;                              ///< Ë¢ĞÂ¿ì½İ½İ,Ê¾Àı:refreshkey="ctrl+f5"
+		static const char* STRING_url;                                    ///< æŒ‡å®šIEçš„é»˜è®¤åŠ è½½URL,ç¤ºä¾‹:url="www.baidu.com"
+		static const char* bool_bshowscroll;                              ///< æ˜¯å¦æ˜¾ç¤ºæˆ–éšè—IEæ»šåŠ¨æ¡,é»˜è®¤éšè—,ç¤ºä¾‹:bshowscroll="0"
+		static const char* bool_bshowcontext;                             ///< æ˜¯å¦æ˜¾ç¤ºæˆ–éšè—å³é”®èœå•,é»˜è®¤æ˜¾ç¤º,ç¤ºä¾‹:bshowcontext="0"
+		static const char* bool_bdisablescriptwarn;                       ///< æ˜¯å¦ç¦æ­¢è„šæœ¬è­¦å‘Š,é»˜è®¤ä¸ç¦æ­¢,ç¤ºä¾‹:bdisablescriptwarn="0"
+		static const char* ACCEL_refreshkey;                              ///< åˆ·æ–°å¿«æ·æ·,ç¤ºä¾‹:refreshkey="ctrl+f5"
 	};
 	DMAttrValueInit(DUIIEAttr,STRING_url)DMAttrValueInit(DUIIEAttr,bool_bshowscroll)DMAttrValueInit(DUIIEAttr,bool_bshowcontext)DMAttrValueInit(DUIIEAttr,bool_bdisablescriptwarn)DMAttrValueInit(DUIIEAttr,ACCEL_refreshkey)
 }
@@ -67,7 +67,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		¿ØÖÆWebBrowserµÄĞÎÎª·½Ê½¼°ÆäÍâ¹Û
+	///		æ§åˆ¶WebBrowserçš„å½¢ä¸ºæ–¹å¼åŠå…¶å¤–è§‚
 	/// </summary>
 	class DM_EXPORT DMIEDocHostUIHandler : public IDocHostUIHandler
 	{
@@ -155,11 +155,11 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 DUIIEµÄÄÚÖÃÊµÏÖ
+	///		 DUIIEçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIIE:public DUIActiveX
 						 ,public IDMMessageFilter
-						 ,public IDUIWeb // ×öÎª´¿Ğé³éÏó½Ó¿Ú£¬±ØĞë·ÅÔÚ×îºó					
+						 ,public IDUIWeb // åšä¸ºçº¯è™šæŠ½è±¡æ¥å£ï¼Œå¿…é¡»æ”¾åœ¨æœ€å					
 	{
 		DMDECLARE_CLASS_NAME(DUIIE, DUINAME_IE,DMREG_Window)
 	public:
@@ -184,107 +184,107 @@ namespace DM
 		BOOL PreTranslateMessage(MSG* pMsg);
 
 	public:
-		/// @brief ÉèÖÃÊÂ¼ş½ÓÊÕÕß
-		/// @param[in]		pEventHandler		ÊÂ¼ş½ÓÊÕÕßÖ¸Õë
-		/// @return HRESULT£¬S_OK
+		/// @brief è®¾ç½®äº‹ä»¶æ¥æ”¶è€…
+		/// @param[in]		pEventHandler		äº‹ä»¶æ¥æ”¶è€…æŒ‡é’ˆ
+		/// @return HRESULTï¼ŒS_OK
 		HRESULT SetEvtHandler(IDMWebEvent* pEventHandler);
 		HRESULT RegisterEvtHandler(bool inAdvise);
 
 	public:
-		/// @brief ´ò¿ªÖ¸¶¨Ò³Ãæ
-		/// @param[in]		pszURL		ĞèÒª´ò¿ªµÄurl×Ö·û´®
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief æ‰“å¼€æŒ‡å®šé¡µé¢
+		/// @param[in]		pszURL		éœ€è¦æ‰“å¼€çš„urlå­—ç¬¦ä¸²
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT OpenUrl(LPCWSTR pszURL,int iFlags = 0,LPCWSTR pszTargetFrameName = NULL,LPCWSTR pszHeaders = NULL, LPCSTR pszPostData = NULL,int iPostDataLen = 0);
 
-		/// @brief »ñµÃµ±Ç°Ò³Ãæ
-		/// @param[in]		pszURL		½ÓÊÕµ±Ç°urlµÄ×Ö·û´®»º³åÇø
-		/// @param[in]		nMaxLen		×Ö·û´®»º³åÇøµÄ×î´ó³¤¶È, ĞèÒªÎªL'\0'Ô¤Áô¿Õ¼ä
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief è·å¾—å½“å‰é¡µé¢
+		/// @param[in]		pszURL		æ¥æ”¶å½“å‰urlçš„å­—ç¬¦ä¸²ç¼“å†²åŒº
+		/// @param[in]		nMaxLen		å­—ç¬¦ä¸²ç¼“å†²åŒºçš„æœ€å¤§é•¿åº¦, éœ€è¦ä¸ºL'\0'é¢„ç•™ç©ºé—´
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT GetUrl(LPWSTR pszUrl, int nMaxLen);
 		CStringW GetUrl();
 
-		/// @brief ¸øä¯ÀÀÆ÷´°¿ÚÉè½¹µã
+		/// @brief ç»™æµè§ˆå™¨çª—å£è®¾ç„¦ç‚¹
 		HRESULT SetWebFocus();
 
-		/// @brief »ñµÃOLE´°¿Ú¾ä±ú
-		/// @return HWND£¬Ê§°ÜÎªNULL
+		/// @brief è·å¾—OLEçª—å£å¥æŸ„
+		/// @return HWNDï¼Œå¤±è´¥ä¸ºNULL
 		HWND GetOleWindow();
 		HWND GetIESWindow();
 		virtual DMComPtr<IWebBrowser2> Ptr();
 
-		/// @brief Ö÷¶¯ÉèÖÃWebµÄÇøÓò
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief ä¸»åŠ¨è®¾ç½®Webçš„åŒºåŸŸ
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT UpdateWebRect(LPRECT lpRect);
 
-		/// @brief BUSY×´Ì¬
+		/// @brief BUSYçŠ¶æ€
 		/// @return ture or false
 		bool IsBusy();
 
-		/// @brief Í£Ö¹
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åœæ­¢
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT Stop();
 
-		/// @brief ¹Ø±Õä¯ÀÀÆ÷
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief å…³é—­æµè§ˆå™¨
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT Quit();
 
-		/// @brief Ë¢ĞÂ
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åˆ·æ–°
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT Refresh();
 
-		/// @brief Ö¸¶¨Ë¢ĞÂ¼¶±ğË¢ĞÂ
-		/// @param[in]		nLevel		Ë¢ĞÂ³£Á¿£¬ ¼ò»¯ÁË²ÎÊıÀàĞÍ£¬ REFRESH_NORMAL 0x0 / REFRESH_IFEXPIRED 0x01 / REFRESH_COMPLETELY 0x03
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief æŒ‡å®šåˆ·æ–°çº§åˆ«åˆ·æ–°
+		/// @param[in]		nLevel		åˆ·æ–°å¸¸é‡ï¼Œ ç®€åŒ–äº†å‚æ•°ç±»å‹ï¼Œ REFRESH_NORMAL 0x0 / REFRESH_IFEXPIRED 0x01 / REFRESH_COMPLETELY 0x03
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT Refresh2(UINT32 nLevel);
 
-		// @brief ÊÇ·ñ¿Éµ¼º½ºóÍË
+		// @brief æ˜¯å¦å¯å¯¼èˆªåé€€
 		/// @return ture or false
 		bool CanGoBack();
 
-		/// @brief ºóÍË
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åé€€
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT GoBack();
 
-		/// @brief ÊÇ·ñ¿Éµ¼º½Ç°½ø
+		/// @brief æ˜¯å¦å¯å¯¼èˆªå‰è¿›
 		/// @return ture or false
 		bool CanGoForward();
 
-		/// @brief Ç°½ø
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief å‰è¿›
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT GoForward();
 
-		/// @brief ÔÚµ±Ç°ä¯ÀÀÆ÷¿ØÖÆÆ÷ÏÂÖ´ĞĞ½Å±¾
-		/// @return HRESULT£¬Ê§°ÜÎªS_FALSE
+		/// @brief åœ¨å½“å‰æµè§ˆå™¨æ§åˆ¶å™¨ä¸‹æ‰§è¡Œè„šæœ¬
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºS_FALSE
 		HRESULT ExecuteScript(LPCWSTR pszScript);
 
-		/// @brief Ö´ĞĞÖ¸¶¨º¯ÊıÃû×ÖµÄ½Å±¾
-		/// @param[in]		 strFun			Ö¸¶¨Òª½Å±¾Ö´ĞĞµÄº¯ÊıÃû³Æ
-		/// @param[in]		 vecParams		¸ø¶¨Òª½Å±¾Ö´ĞĞµÄº¯ÊıµÄ²ÎÊıÁĞ±í
-		/// @param[out]		 strResult		·µ»Ø½Å±¾º¯ÊıÖ´ĞĞµÄ½á¹û
-		/// @param[in]		 nMaxLen		·µ»Ø½Å±¾º¯ÊıÖ´ĞĞµÄ½á¹û»º³åÇøµÄ×î´ó³¤¶È, ĞèÒªÎªL'\0'Ô¤Áô¿Õ¼ä
-		/// @return HRESULT£¬Ê§°ÜÎªE_FAIL
+		/// @brief æ‰§è¡ŒæŒ‡å®šå‡½æ•°åå­—çš„è„šæœ¬
+		/// @param[in]		 strFun			æŒ‡å®šè¦è„šæœ¬æ‰§è¡Œçš„å‡½æ•°åç§°
+		/// @param[in]		 vecParams		ç»™å®šè¦è„šæœ¬æ‰§è¡Œçš„å‡½æ•°çš„å‚æ•°åˆ—è¡¨
+		/// @param[out]		 strResult		è¿”å›è„šæœ¬å‡½æ•°æ‰§è¡Œçš„ç»“æœ
+		/// @param[in]		 nMaxLen		è¿”å›è„šæœ¬å‡½æ•°æ‰§è¡Œçš„ç»“æœç¼“å†²åŒºçš„æœ€å¤§é•¿åº¦, éœ€è¦ä¸ºL'\0'é¢„ç•™ç©ºé—´
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºE_FAIL
 		HRESULT ExecuteScriptFuntion( 
 			LPCWSTR pszFun, 
 			const DM::CArray<LPCWSTR>& vecParams, 
 			LPWSTR strResult = NULL,
 			int nMaxLen = -1);
 
-		/// @brief ½ûÖ¹½Å±¾¾¯¸æ
-		/// @param[in]		 bDisable		ÊÇ·ñ½ûÖ¹
-		/// @return HRESULT£¬Ê§°ÜÎªE_FAIL
+		/// @brief ç¦æ­¢è„šæœ¬è­¦å‘Š
+		/// @param[in]		 bDisable		æ˜¯å¦ç¦æ­¢
+		/// @return HRESULTï¼Œå¤±è´¥ä¸ºE_FAIL
 		HRESULT DisableScriptWarning(bool bDisable);
 
-		/// @brief ÊÇ·ñÏÔÊ¾IEµÄ¹ö¶¯Ìõ
-		/// @param[in]		 bShow			ÊÇ·ñÏÔÊ¾
+		/// @brief æ˜¯å¦æ˜¾ç¤ºIEçš„æ»šåŠ¨æ¡
+		/// @param[in]		 bShow			æ˜¯å¦æ˜¾ç¤º
 		/// @return
 		HRESULT SetScrollBarShow(bool bShow);
 
-		/// @brief ÊÇ·ñÏÔÊ¾IEµÄÓÒ¼ü²Ëµ¥
-		/// @param[in]		 bShow			ÊÇ·ñÏÔÊ¾
+		/// @brief æ˜¯å¦æ˜¾ç¤ºIEçš„å³é”®èœå•
+		/// @param[in]		 bShow			æ˜¯å¦æ˜¾ç¤º
 		/// @return
 		HRESULT SetContextMenuShow(bool bShow);
 
-		/// @brief ×ª·¢IEµÄÉèÖÃÊôĞÔ
+		/// @brief è½¬å‘IEçš„è®¾ç½®å±æ€§
 		/// @return
 		HRESULT WebSetAttribute(LPCSTR pszAttribute,LPCSTR pszValue,bool bLoadXml);
 

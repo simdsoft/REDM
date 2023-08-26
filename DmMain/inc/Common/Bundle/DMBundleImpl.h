@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMBundleImpl.h
 // File mark:   
-// File summary:DMBundleµÄÊµÏÖÌå
+// File summary:DMBundleçš„å®žçŽ°ä½“
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-2-24
@@ -53,7 +53,7 @@ namespace DM
 		CSize  GetSize();
 		CRect  GetRect();
 		void*  GetVoidPtr();
-		IUnknown* GetIUnknownPtr();			///<  ×¢Òâ,getºóÒýÓÃ¼ÆÊý+1
+		IUnknown* GetIUnknownPtr();			///<  æ³¨æ„,getåŽå¼•ç”¨è®¡æ•°+1
 		DMXmlNode GetXmlNode();
 
 	public:

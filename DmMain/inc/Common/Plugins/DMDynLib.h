@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMDynLib.h 
-// File Des: ¼ÓÔØdllĞÎÊ½µÄplugin
+// File Des: åŠ è½½dllå½¢å¼çš„plugin
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		Ã¿¸ödll²å¼ş¶ÔÓ¦Ò»¸ö´Ë¶ÔÏó,ÒÆÖ²×Ôogre²å¼şÏµÍ³£¬¿É²Î¿¼OgreDynLib.h/.cpp
+	///		æ¯ä¸ªdllæ’ä»¶å¯¹åº”ä¸€ä¸ªæ­¤å¯¹è±¡,ç§»æ¤è‡ªogreæ’ä»¶ç³»ç»Ÿï¼Œå¯å‚è€ƒOgreDynLib.h/.cpp
 	/// </summary>
 	class DMDynLib
 	{
@@ -25,18 +25,18 @@ namespace DM
 		DMDynLib(const CStringW &strPluginPath);
 		virtual ~DMDynLib(void);
 
-		bool Load();									///<¼ÓÔØ
-		void Unload();									///<Ğ¶ÔØ
+		bool Load();									///<åŠ è½½
+		void Unload();									///<å¸è½½
 
-		const CStringW& GetName()const;					///<»ñÈ¡²å¼şÃû
-		void* GetSymbol(const char* pProcName)const;	///<»ñÈ¡µ¼³öº¯ÊıµØÖ·
-
-	protected:
-		CStringW DynlibError(void);						///<»ñÈ¡¼ÓÔØÊ§°ÜÔ­Òò
+		const CStringW& GetName()const;					///<è·å–æ’ä»¶å
+		void* GetSymbol(const char* pProcName)const;	///<è·å–å¯¼å‡ºå‡½æ•°åœ°å€
 
 	protected:
-		CStringW			m_strPluginPath;			///<²å¼şµÄÂ·¾¶
-		HMODULE             m_hModule;					///<²å¼ş¼ÓÔØµÄhandle
+		CStringW DynlibError(void);						///<è·å–åŠ è½½å¤±è´¥åŸå› 
+
+	protected:
+		CStringW			m_strPluginPath;			///<æ’ä»¶çš„è·¯å¾„
+		HMODULE             m_hModule;					///<æ’ä»¶åŠ è½½çš„handle
 	};
 
 }//namespace DM

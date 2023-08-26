@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMMemPool.h 
-// File Des: ±£Ö¤cstringµÈ¶Ñ·ÖÅä¶¼ÔÚÖ÷dllÖĞ½øĞĞ
+// File Des: ä¿è¯cstringç­‰å †åˆ†é…éƒ½åœ¨ä¸»dllä¸­è¿›è¡Œ
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		±£Ö¤ÔÚdllµÄ¶ÑÉÏ·ÖÅäÄÚ´æ
+	///		ä¿è¯åœ¨dllçš„å †ä¸Šåˆ†é…å†…å­˜
 	/// </summary>
 	class DM_EXPORT DMMemDispatch
 	{
@@ -31,7 +31,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///	Ä£ÄâNew[],iNumÖ¸¶¨TÀàĞÍµÄ¸öÊı
+	///	æ¨¡æ‹ŸNew[],iNumæŒ‡å®šTç±»å‹çš„ä¸ªæ•°
 	/// </summary>
 	template <class T>
 	T* DMNewT(int iNum)
@@ -44,22 +44,22 @@ namespace DM
 			{
 				break;
 			}
-			memcpy(ptr,"RedM",4);// Ç°4×Ö½Ú¸³Îªmagic×Ö
-			*((int*)ptr+1) = iNum;// Ç°8×Ö½Ú¸³ÖµÎª´´½¨¶ÔÏóµÄ¸öÊı
-			*((int*)ptr+2) = sizeof(T);// Ç°12×Ö½Ú¸³ÖµÎªT¶ÔÏóµÄ´óĞ¡
-			ptr = (T*)((int*)ptr+3);// new²Ù×÷·û·µ»ØµÄµØÖ·ÊÇ¿ª±ÙµÄÁ¬Ğø¿Õ¼äµÄÏòºóÒÆ12¸ö×Ö½ÚÖ®ºóµÄµØÖ·
+			memcpy(ptr,"RedM",4);// å‰4å­—èŠ‚èµ‹ä¸ºmagicå­—
+			*((int*)ptr+1) = iNum;// å‰8å­—èŠ‚èµ‹å€¼ä¸ºåˆ›å»ºå¯¹è±¡çš„ä¸ªæ•°
+			*((int*)ptr+2) = sizeof(T);// å‰12å­—èŠ‚èµ‹å€¼ä¸ºTå¯¹è±¡çš„å¤§å°
+			ptr = (T*)((int*)ptr+3);// newæ“ä½œç¬¦è¿”å›çš„åœ°å€æ˜¯å¼€è¾Ÿçš„è¿ç»­ç©ºé—´çš„å‘åç§»12ä¸ªå­—èŠ‚ä¹‹åçš„åœ°å€
 			for (int i=0; i<iNum; i++)
 			{
-				//placement newÔÚÓÃ»§Ö¸¶¨µÄÄÚ´æÎ»ÖÃÉÏ¹¹½¨ĞÂµÄ¶ÔÏó£¬Õâ¸ö¹¹½¨¹ı³Ì²»ĞèÒª¶îÍâ·ÖÅäÄÚ´æ£¬Ö»ĞèÒªµ÷ÓÃ¶ÔÏóµÄ¹¹Ôìº¯Êı¼´¿É
-				new (ptr+i)T(); //new±í´ïÊ½£¨placeement new£© ĞÎÊ½(place_address)type(initializer-list)
+				//placement newåœ¨ç”¨æˆ·æŒ‡å®šçš„å†…å­˜ä½ç½®ä¸Šæ„å»ºæ–°çš„å¯¹è±¡ï¼Œè¿™ä¸ªæ„å»ºè¿‡ç¨‹ä¸éœ€è¦é¢å¤–åˆ†é…å†…å­˜ï¼Œåªéœ€è¦è°ƒç”¨å¯¹è±¡çš„æ„é€ å‡½æ•°å³å¯
+				new (ptr+i)T(); //newè¡¨è¾¾å¼ï¼ˆplaceement newï¼‰ å½¢å¼(place_address)type(initializer-list)
 			}
 		} while (false);
 		return ptr;
 	}
 
 	/// <summary>
-	///	Ä£ÄâDelete[],Á½ÖÖ×´Ì¬,1.»ùÀàÓĞĞé±í,ÕâÊ±DMNewT×ª»»µÄ»ùÀàÖ¸ÕëºÍ×ÓÀàÒ»ÖÂ,2.»ùÀàÎŞĞé±í,»ùÀàÖ¸Õë=×ÓÀàÖ¸Õë-Ğé±í(4×Ö½Ú)
-	/// T:¿ÉÎª»ùÀà
+	///	æ¨¡æ‹ŸDelete[],ä¸¤ç§çŠ¶æ€,1.åŸºç±»æœ‰è™šè¡¨,è¿™æ—¶DMNewTè½¬æ¢çš„åŸºç±»æŒ‡é’ˆå’Œå­ç±»ä¸€è‡´,2.åŸºç±»æ— è™šè¡¨,åŸºç±»æŒ‡é’ˆ=å­ç±»æŒ‡é’ˆ-è™šè¡¨(4å­—èŠ‚)
+	/// T:å¯ä¸ºåŸºç±»
 	/// </summary>
 	template <class T>
 	void DMDelT(T* ptr)
@@ -72,13 +72,13 @@ namespace DM
 			}
 			if (0 != memcmp((byte*)ptr-12,"RedM",4))
 			{
-				if (0 == memcmp((byte*)ptr-16,"RedM",4))// ¸¸ÀàÃ»ÓĞĞé±í£¬×ÓÀàÓĞ
+				if (0 == memcmp((byte*)ptr-16,"RedM",4))// çˆ¶ç±»æ²¡æœ‰è™šè¡¨ï¼Œå­ç±»æœ‰
 				{
 					ptr = (T*)((byte*)ptr - 4);
 				}
 				else
 				{
-					break;// ´«Èë²ÎÊı´íÎó!
+					break;// ä¼ å…¥å‚æ•°é”™è¯¯!
 				}
 			}
 
@@ -86,7 +86,7 @@ namespace DM
 			int iSize = *((int*)ptr-1);
 			for (int i=0; i<iNum; i++)
 			{
-				((T*)((byte*)ptr+i*iSize))->~T();//ÔÚÊÍ·ÅÇ°×Ô¶¯µ÷ÓÃÎö¹¹º¯Êı
+				((T*)((byte*)ptr+i*iSize))->~T();//åœ¨é‡Šæ”¾å‰è‡ªåŠ¨è°ƒç”¨ææ„å‡½æ•°
 			}
 			DMMemDispatch::DM_free((int*)ptr - 3);
 		} while (false);

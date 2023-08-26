@@ -1,11 +1,11 @@
-#include "TGPDemoAfx.h"
+ï»¿#include "TGPDemoAfx.h"
 #include "TGPMenu.h"
 
 namespace DM
 {
 	void TGPMenuItem::OnRelease()
 	{
-		delete this;// Íâ²¿newµÄ¶ÔÏó£¨TGPMenu::NewMenuItem()£©,±ØÐëÍâ²¿ÊÍ·Å
+		delete this;// å¤–éƒ¨newçš„å¯¹è±¡ï¼ˆTGPMenu::NewMenuItem()ï¼‰,å¿…é¡»å¤–éƒ¨é‡Šæ”¾
 	}
 
 	void TGPMenuItem::DrawOwnerItem(IDMCanvas* pCanvas, CRect& rcItem, MENUITEMINFO &mii)
@@ -13,7 +13,7 @@ namespace DM
 		do 
 		{
 			__super::DrawOwnerItem(pCanvas,rcItem,mii);
-			// TGPÐÂ¼Ó»æÖÆ,Èç¹ûÄãÏë×ö¸ü¶à»æÖÆ£¬¿ÉÒÔÖ±½Ó°Ñ__super::DrawOwnerItem copy¹ýÀ´£¬ÔÚÖÐ¼ä¼ÓÈë
+			// TGPæ–°åŠ ç»˜åˆ¶,å¦‚æžœä½ æƒ³åšæ›´å¤šç»˜åˆ¶ï¼Œå¯ä»¥ç›´æŽ¥æŠŠ__super::DrawOwnerItem copyè¿‡æ¥ï¼Œåœ¨ä¸­é—´åŠ å…¥
 			TGPMenuItemData *pdmmi = (TGPMenuItemData*)mii.dwItemData;
 			if (pdmmi
 				&&pdmmi->bHold
@@ -49,13 +49,13 @@ namespace DM
 		if (pdmmi->bHold&&pdmmi->pHoldSkin)
 		{
 			pdmmi->bSel = !pdmmi->bSel;
-			// ÔÚÕâÀï·¢×Ô¶¨ÒåÏûÏ¢µ½TGPMainWndÖÐ
+			// åœ¨è¿™é‡Œå‘è‡ªå®šä¹‰æ¶ˆæ¯åˆ°TGPMainWndä¸­
 			if (m_hMenuOwner&&::IsWindow(m_hMenuOwner))
 			{
 				::PostMessage(m_hMenuOwner,WM_USER+1010,pdmmi->nID,NULL);
 			}
-			Render();//ÕâÀïÍµÀÁÁË£¬Ç¿ÖÆË¢ÐÂÕû¸ö²Ëµ¥,Äã¿ÉÒÔ°Ñ²Ëµ¥µÄÖ¸¶¨Ïîµ¥¶ÀË¢ÐÂ
-			return 0;//0±íÊ¾²»ÍË³ö²Ëµ¥
+			Render();//è¿™é‡Œå·æ‡’äº†ï¼Œå¼ºåˆ¶åˆ·æ–°æ•´ä¸ªèœå•,ä½ å¯ä»¥æŠŠèœå•çš„æŒ‡å®šé¡¹å•ç‹¬åˆ·æ–°
+			return 0;//0è¡¨ç¤ºä¸é€€å‡ºèœå•
 		}
 
 		return ::CallWindowProc(m_pOldProc, hWnd, uMsg, wParam, lParam);;
@@ -65,7 +65,7 @@ namespace DM
 	TGPMenu::~TGPMenu()
 	{
 		UnInstallMenuHook();
-		DestroyMenu();/// ´Ë´¦±ØÐëµ÷ÓÃ£¬²ÅÄÜ×ßµ½TGPMenu::DeleteMenuItemData
+		DestroyMenu();/// æ­¤å¤„å¿…é¡»è°ƒç”¨ï¼Œæ‰èƒ½èµ°åˆ°TGPMenu::DeleteMenuItemData
 	} 
 
 	DMMenuItemData* TGPMenu::ParseItem(DMXmlNode& XmlItem)
@@ -73,7 +73,7 @@ namespace DM
 		TGPMenuItemData* pdmmi = (TGPMenuItemData*)__super::ParseItem(XmlItem);
 		if (pdmmi)
 		{
-			// ½âÎöÀ©Õ¹µÄMENU
+			// è§£æžæ‰©å±•çš„MENU
 			pdmmi->pHoldSkin = g_pDMApp->GetSkin(XmlItem.Attribute(DMAttr::TGPMenuAttr::ITEM_holdskin));
 			pdmmi->bHold = pdmmi->bSel = false;
 			DMAttributeDispatch::ParseBool(XmlItem.Attribute(DMAttr::TGPMenuAttr::ITEM_bhold),pdmmi->bHold);

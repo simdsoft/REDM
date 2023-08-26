@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDUIRealWnd.h 
-// File Des: ÕæÊµ´°¿Ú»ùÀà
+// File Des: çœŸå®çª—å£åŸºç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,19 +17,19 @@
 namespace DM
 {	
 	/// <summary>
-	///		´ËÎªRealWndµÄ½Ó¿ÚÀà£¬Íâ²¿ĞèÊµÏÖ½Ó¿Ú£¬²¢×¢²á½øÀ´
+	///		æ­¤ä¸ºRealWndçš„æ¥å£ç±»ï¼Œå¤–éƒ¨éœ€å®ç°æ¥å£ï¼Œå¹¶æ³¨å†Œè¿›æ¥
 	/// </summary>
 	class DM_EXPORT IDUIRealWnd:public DUIWindow	
 	{
 	public:
 		//---------------------------------------------------
-		// Function Des: ĞèÍâ²¿ÊµÏÖµÄÀ©Õ¹½Ó¿Ú
+		// Function Des: éœ€å¤–éƒ¨å®ç°çš„æ‰©å±•æ¥å£
 		//---------------------------------------------------
-		virtual HWND OnCreateRealWnd(LPCWSTR atom,HWND hWndParent) = 0;			///< Íâ²¿´´½¨´°¿Ú£¬¿ÉÎªchildÒ²¿ÉÎªpupop		
-		virtual DMCode OnDestoryRealWnd() = 0;									///< Íâ²¿Ïú»Ù´°¿Ú£¬
+		virtual HWND OnCreateRealWnd(LPCWSTR atom,HWND hWndParent) = 0;			///< å¤–éƒ¨åˆ›å»ºçª—å£ï¼Œå¯ä¸ºchildä¹Ÿå¯ä¸ºpupop		
+		virtual DMCode OnDestoryRealWnd() = 0;									///< å¤–éƒ¨é”€æ¯çª—å£ï¼Œ
 		virtual DMCode OnShowRealWnd(BOOL bShow, UINT nStatus) = 0;		        
-		virtual DMCode OnIsPopupWnd() = 0;                                      ///< ÊÇ·ñÎªchild´°¿Ú
-		virtual DMCode OnMoveRealWnd(LPRECT lpRect) = 0;						///< Í¬²½ÒÆ¶¯´°¿Ú£¬lpRectÔÚpupopÊ±ÈÔÎªÏà¶ÔÓÚ¸¸´°¿Ú×ø±ê£¬Ğè×Ó´°¿Ú×Ô¼º×ª»»
+		virtual DMCode OnIsPopupWnd() = 0;                                      ///< æ˜¯å¦ä¸ºchildçª—å£
+		virtual DMCode OnMoveRealWnd(LPRECT lpRect) = 0;						///< åŒæ­¥ç§»åŠ¨çª—å£ï¼ŒlpRectåœ¨pupopæ—¶ä»ä¸ºç›¸å¯¹äºçˆ¶çª—å£åæ ‡ï¼Œéœ€å­çª—å£è‡ªå·±è½¬æ¢
 	
 	public:
 		IDUIRealWnd();
@@ -45,9 +45,9 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
-		int OnCreate(LPVOID);									// MSDN: ²»Îª0Ôò·¢ËÍDestoryÏûÏ¢
+		int OnCreate(LPVOID);									// MSDN: ä¸ä¸º0åˆ™å‘é€Destoryæ¶ˆæ¯
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnDestroy();
 		void OnSize(UINT nType, CSize size);
@@ -57,7 +57,7 @@ namespace DM
 	public:
 		bool DV_IsStateChangeRedraw(){return false;}
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void MoveRealWnd();
 		void CatchRealWndScreen(IDMCanvas* pCanvas);
 

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUISliderCtrl.h 
-// File Des: ÄÚÖÃµ¥Ñ¡°´Å¥ÊµÏÖ
+// File Des: å†…ç½®å•é€‰æŒ‰é’®å®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -18,23 +18,23 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUISliderCtrl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUISliderCtrl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUISliderCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* STRING_tipformat;                              ///< tipÌáÊ¾ÓïµÄÉèÖÃ¸ñÊ½,Ê¾Àı:tipformat="this is%d"
-		static const char* SIZE_range;									   ///< ·¶Î§×îĞ¡Öµ,×î´óÖµ,Ê¾Àı:range="0,100"
-		static const char* INT_value;									   ///< ·¶Î§µ±Ç°Öµ,Ê¾Àı:value="0"
-		static const char* INT_thumbwidth;								   ///< thumb¿í¶È,Ê¾Àı:thumbwidth="10"
-		static const char* INT_channelhei;								   ///< channel¸ß¶È,Ê¾Àı:channelhei="10"
-		static const char* bool_bvert;                                    ///< ÊÇ·ñÊÇË®Æ½µÄ,Ê¾Àı:bvert="1"
-		static const char* bool_bshowtip;                                 ///< ÊÇ·ñÏÔÊ¾tip,Ê¾Àı:bshowtip="1"
+		static const char* STRING_tipformat;                              ///< tipæç¤ºè¯­çš„è®¾ç½®æ ¼å¼,ç¤ºä¾‹:tipformat="this is%d"
+		static const char* SIZE_range;									   ///< èŒƒå›´æœ€å°å€¼,æœ€å¤§å€¼,ç¤ºä¾‹:range="0,100"
+		static const char* INT_value;									   ///< èŒƒå›´å½“å‰å€¼,ç¤ºä¾‹:value="0"
+		static const char* INT_thumbwidth;								   ///< thumbå®½åº¦,ç¤ºä¾‹:thumbwidth="10"
+		static const char* INT_channelhei;								   ///< channelé«˜åº¦,ç¤ºä¾‹:channelhei="10"
+		static const char* bool_bvert;                                    ///< æ˜¯å¦æ˜¯æ°´å¹³çš„,ç¤ºä¾‹:bvert="1"
+		static const char* bool_bshowtip;                                 ///< æ˜¯å¦æ˜¾ç¤ºtip,ç¤ºä¾‹:bshowtip="1"
 
-		static const char* SKIN_channelskin;                              ///< channelÍ¼,Ê¾Àı:channelskin="PNG:channel"
-		static const char* COLOR_clrchannel;                              ///< channelÑÕÉ«,ÔÚchannelÍ¼ÎŞĞ§Ê±Ê¹ÓÃ,Ê¾Àı:clrchannel="pbgra(ff,ff,ff,ff)"
-		static const char* SKIN_thumbskin;                                ///< thumbÍ¼,Ê¾Àı:thumbskin="PNG:iconbtn"
-		static const char* COLOR_clrthumb;                                ///< thumbÑÕÉ«,ÔÚthumbÍ¼ÎŞĞ§Ê±Ê¹ÓÃ,Ê¾Àı:clrthumb="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_channelskin;                              ///< channelå›¾,ç¤ºä¾‹:channelskin="PNG:channel"
+		static const char* COLOR_clrchannel;                              ///< channelé¢œè‰²,åœ¨channelå›¾æ— æ•ˆæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrchannel="pbgra(ff,ff,ff,ff)"
+		static const char* SKIN_thumbskin;                                ///< thumbå›¾,ç¤ºä¾‹:thumbskin="PNG:iconbtn"
+		static const char* COLOR_clrthumb;                                ///< thumbé¢œè‰²,åœ¨thumbå›¾æ— æ•ˆæ—¶ä½¿ç”¨,ç¤ºä¾‹:clrthumb="pbgra(ff,ff,ff,ff)"
 	};
 	DMAttrValueInit(DUISliderCtrlAttr,STRING_tipformat)DMAttrValueInit(DUISliderCtrlAttr,SIZE_range)DMAttrValueInit(DUISliderCtrlAttr,INT_value)
 	DMAttrValueInit(DUISliderCtrlAttr,INT_thumbwidth)DMAttrValueInit(DUISliderCtrlAttr,INT_channelhei)DMAttrValueInit(DUISliderCtrlAttr,bool_bvert)
@@ -45,7 +45,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUISliderCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUISliderCtrlAttr"/>
+	///		 DUISliderCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUISliderCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUISliderCtrl:public DUIWindow
 	{
@@ -72,7 +72,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnLButtonDown(UINT nFlags, CPoint point);
@@ -84,7 +84,7 @@ namespace DM
 	public:
 		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		CRect GetChannelRect();
 		CRect GetThumbRect();
 		int HitTest(CPoint &pt);
@@ -106,30 +106,30 @@ namespace DM
 			DM_COLOR_ATTRIBUTE(DMAttr::DUISliderCtrlAttr::COLOR_clrthumb,m_crThumb,DM_ECODE_NOXMLLOADREFRESH)
 		DM_END_ATTRIBUTES()
 		//------------------------------------------
-		// ¼ò»¯,ÔÚË®Æ½×´Ì¬ÏÂ£¬×ÜÊÇÊ¹thumbµÄ¸ß¶ÈºÍclient¸ß¶ÈÏàÍ¬£¬channelµÄ¿í¶ÈºÍwidÏàÍ¬
+		// ç®€åŒ–,åœ¨æ°´å¹³çŠ¶æ€ä¸‹ï¼Œæ€»æ˜¯ä½¿thumbçš„é«˜åº¦å’Œclienté«˜åº¦ç›¸åŒï¼Œchannelçš„å®½åº¦å’Œwidç›¸åŒ
 	public:
 		DMCode OnAttributeRange(LPCSTR lpszValue, bool bLoadXml);
 		DMCode OnAttributeValue(LPCSTR lpszValue, bool bLoadXml);
 	public:
 		CStringW                         m_strTipFormat;
-		CSize                            m_szRange;              ///< xÎª×îĞ¡Öµ,yÎª×î´óÖµ
-		int                              m_iValue;               ///< µ±Ç°Öµ
+		CSize                            m_szRange;              ///< xä¸ºæœ€å°å€¼,yä¸ºæœ€å¤§å€¼
+		int                              m_iValue;               ///< å½“å‰å€¼
 
-		int                              m_iThumbWid;            ///< thumb¿í¶È
-		int                              m_iChannelHei;			 ///< channel¸ß¶È
+		int                              m_iThumbWid;            ///< thumbå®½åº¦
+		int                              m_iChannelHei;			 ///< channelé«˜åº¦
 
-		bool                             m_bVert;                ///< ÊÇ·ñË®Æ½
-		bool                             m_bShowTip;             ///< ÊÇ·ñÏÔÊ¾Êı×ÖÌáÊ¾
+		bool                             m_bVert;                ///< æ˜¯å¦æ°´å¹³
+		bool                             m_bShowTip;             ///< æ˜¯å¦æ˜¾ç¤ºæ•°å­—æç¤º
 		IDMSkinPtr                       m_pChannelSkin;
 		IDMSkinPtr                       m_pThumbSkin;
 		DMColor							 m_crChannel;
 		DMColor                          m_crThumb;
 
-		// ¸¨Öú
-		bool                             m_bDrag;                ///< ÍÏ¶¯×´Ì¬£¨Êó±ê°´ÏÂÊ±ÔÚ»¬¿éÉÏ£©
-		CPoint						   	 m_DragPt;			     ///< ÍÏ¶¯µÄÎ»ÖÃ£¨x±íÊ¾Ë®Æ½£¬y±íÊ¾ÊúÖ±)
-		int                              m_iDragValue;           ///< ÍÏ¶¯¾àÀë
-		int                              m_iHitPre;              ///< ÉÏ´ÎÊó±êÎ»ÖÃ
+		// è¾…åŠ©
+		bool                             m_bDrag;                ///< æ‹–åŠ¨çŠ¶æ€ï¼ˆé¼ æ ‡æŒ‰ä¸‹æ—¶åœ¨æ»‘å—ä¸Šï¼‰
+		CPoint						   	 m_DragPt;			     ///< æ‹–åŠ¨çš„ä½ç½®ï¼ˆxè¡¨ç¤ºæ°´å¹³ï¼Œyè¡¨ç¤ºç«–ç›´)
+		int                              m_iDragValue;           ///< æ‹–åŠ¨è·ç¦»
+		int                              m_iHitPre;              ///< ä¸Šæ¬¡é¼ æ ‡ä½ç½®
 	};
 
 }//namespace DM

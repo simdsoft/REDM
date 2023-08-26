@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMResZipParam.h 
-// File Des: ¶ÔÍâ×ÊÔ´°ü½á¹¹
+// File Des: å¯¹å¤–èµ„æºåŒ…ç»“æ„
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -34,8 +34,8 @@ public:
 		m_PEResInfo.hInst = hInst;m_PEResInfo.lpszResName = lpszResName;m_PEResInfo.lpszResType = lpszResType;
 	}
 public:
-	bool								m_bPERes;		   // ÊÇ·ñEXEÄÚÖÃ×ÊÔ´
-	LPCSTR								m_lpszPsw;		   // ZIPÃÜÂë
+	bool								m_bPERes;		   // æ˜¯å¦EXEå†…ç½®èµ„æº
+	LPCSTR								m_lpszPsw;		   // ZIPå¯†ç 
 	union
 	{
 		LPCWSTR							m_lpszZipPath;

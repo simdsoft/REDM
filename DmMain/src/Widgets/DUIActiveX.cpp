@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 
 #if !defined(DM_EXCLUDE_ACTIVEX)
 #include "DUIActiveX.h"
@@ -43,7 +43,7 @@ namespace DM
 			}
 
 			HWND hOleWnd = NULL;
-			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAIL£ºeg: IE [Shell Embedding] window
+			pOleWnd->GetWindow(&hOleWnd);//For windowless objects, this method should always fail and return E_FAILï¼šeg: IE [Shell Embedding] window
 			if (!hOleWnd)
 			{
 				break;
@@ -61,18 +61,18 @@ namespace DM
 			}
 
 			ShowWindow(hOleWnd, bVisible?SW_SHOW:SW_HIDE);
-			if (hWnd == hOleWnd) // ½¹µãÔÚActiveXµÄ´°¿ÚÉÏ
+			if (hWnd == hOleWnd) // ç„¦ç‚¹åœ¨ActiveXçš„çª—å£ä¸Š
 			{
 				if (false == bFocus)
 				{
-					::SetFocus(GetContainer()->OnGetHWnd());// ÈÃÖ÷DUI´°¿ÚµÃµ½½¹µã
+					::SetFocus(GetContainer()->OnGetHWnd());// è®©ä¸»DUIçª—å£å¾—åˆ°ç„¦ç‚¹
 				}	
 			}
 			else
 			{
 				if (bFocus)
 				{
-					::SetFocus(hOleWnd);// ÉèÖÃ½¹µãµ½ActiveXµÄ´°¿ÚÉÏ,ÈçIEµÄ[Shell Embedding]´°¿Ú
+					::SetFocus(hOleWnd);// è®¾ç½®ç„¦ç‚¹åˆ°ActiveXçš„çª—å£ä¸Š,å¦‚IEçš„[Shell Embedding]çª—å£
 				}	
 			}
 			bRet = true;
@@ -110,7 +110,7 @@ namespace DM
 		__super::OnShowWindow(bShow, nStatus);
 		if (m_bDelayInit)
 		{
-			if (DM_IsVisible(true)&&false == m_bInit)// ´°¿ÚÏÔÊ¾Ê±²Å³õÊ¼»¯
+			if (DM_IsVisible(true)&&false == m_bInit)// çª—å£æ˜¾ç¤ºæ—¶æ‰åˆå§‹åŒ–
 			{
 				m_bInit = InitActiveX();
 			}
@@ -192,7 +192,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	bool DUIActiveX::InitActiveX()
 	{
 		bool bRet = false;

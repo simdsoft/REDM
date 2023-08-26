@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUISetTimer.h 
-// File Des: DUI¶¨Ê±Æ÷
-// File Summary: Ê¹ÓÃÔ­Àí¿É²Î¿¼window³ÌĞòÉè¼ÆÎå¶¨Ê±Æ÷µÚÈıÖÖ·½Ê½
+// File Des: DUIå®šæ—¶å™¨
+// File Summary: ä½¿ç”¨åŸç†å¯å‚è€ƒwindowç¨‹åºè®¾è®¡äº”å®šæ—¶å™¨ç¬¬ä¸‰ç§æ–¹å¼
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -23,22 +23,22 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 È«¾ÖµÄ¶¨Ê±Æ÷£¬Ê¹ÓÃcallback·½Ê½ÊµÏÖ
+	///		 å…¨å±€çš„å®šæ—¶å™¨ï¼Œä½¿ç”¨callbackæ–¹å¼å®ç°
 	/// </summary>
 	class DM_EXPORT DUITimer:public DMMapT<UINT_PTR, TIMERINFO>
 	{
 	public:
-		DMCode SetTimer(DUIWND hDUIWnd,UINT_PTR uTimerID,UINT nElapse);	///< ÉèÖÃ¶¨Ê±Æ÷
+		DMCode SetTimer(DUIWND hDUIWnd,UINT_PTR uTimerID,UINT nElapse);	///< è®¾ç½®å®šæ—¶å™¨
 
-		DMCode KillTimer(DUIWND hDUIWnd,UINT_PTR uTimerID);				///< É¾³ı¶¨Ê±Æ÷(hDUIWnd+uTimerID¾ùÏàÍ¬)
-		DMCode KillTimer(DUIWND hDUIWnd);								///< É¾³ı¶¨Ê±Æ÷(hDUIWndÏàÍ¬)
+		DMCode KillTimer(DUIWND hDUIWnd,UINT_PTR uTimerID);				///< åˆ é™¤å®šæ—¶å™¨(hDUIWnd+uTimerIDå‡ç›¸åŒ)
+		DMCode KillTimer(DUIWND hDUIWnd);								///< åˆ é™¤å®šæ—¶å™¨(hDUIWndç›¸åŒ)
 
 	public:
 		static void CALLBACK TimerProc(HWND hwnd,UINT uMsg,UINT_PTR uRealTimeID,DWORD dwTime);
 	};
 
 	/// <summary>
-	///		 ´°¿ÚµÄ¶¨Ê±Æ÷,Í¨¹ıÍâ²¿SetTimerÀ´ÆôÓÃ
+	///		 çª—å£çš„å®šæ—¶å™¨,é€šè¿‡å¤–éƒ¨SetTimeræ¥å¯ç”¨
 	/// </summary>
 	class DM_EXPORT FastTimerID
 	{
@@ -54,7 +54,7 @@ namespace DM
 		{
 			memcpy(this,&dwID,sizeof(DWORD));
 		}
-		operator DWORD &() const// ÓÃÓÚÇ¿ÖÆ×ª»»³ÉDWORD
+		operator DWORD &() const// ç”¨äºå¼ºåˆ¶è½¬æ¢æˆDWORD
 		{
 			return *(DWORD*)this;
 		}
@@ -62,7 +62,7 @@ namespace DM
 	public:
 		DWORD    m_hDUIWnd:24;     
 		DWORD    m_dwTimerID:7;     
-		DWORD    m_Flag:1;          ///< ±êÖ¾Îª1Ê±£¬±íÊ¾¸Ã¶¨Ê±Æ÷ÎªDUI¶¨Ê±Æ÷£¬ÉèÖÃÎª×î¸ßÎ»£¬0x80000000
+		DWORD    m_Flag:1;          ///< æ ‡å¿—ä¸º1æ—¶ï¼Œè¡¨ç¤ºè¯¥å®šæ—¶å™¨ä¸ºDUIå®šæ—¶å™¨ï¼Œè®¾ç½®ä¸ºæœ€é«˜ä½ï¼Œ0x80000000
 	};
 
 

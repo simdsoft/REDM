@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMXmlParse.h"
 
 namespace DM
@@ -8,9 +8,9 @@ namespace DM
 	{
 #if defined(_DEBUG)
 		DUIWindow *pMain = g_pDMApp->FindDUIWnd(1);
-		if (NULL == pMain																													 // ¼ÓÔØ²å¼şÊ±»ú,Ö÷´°¿ÚÎ´³õÊ¼»¯
-			||(0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4")))// Ö÷´°¿Ú³õÊ¼ÈËºó,·ÇÉè¼ÆÆ÷Ä£Ê½
-		{// Éè¼ÆÆ÷Ä£Ê½ÏÂ£¬½ö½¨ÒéÔÚ·ÖÎöÎÊÌâÊ±¿ª·Å´Ë¸¨Öú£¬²»È»»áÑÏÖØÓ°ÏìÉè¼ÆĞ§ÂÊ
+		if (NULL == pMain																													 // åŠ è½½æ’ä»¶æ—¶æœº,ä¸»çª—å£æœªåˆå§‹åŒ–
+			||(0 != pMain->GetData("1C3A5807-CEE1-438C-BC46-624F74BDC8D1").CompareNoCase("440A2781-8BC2-4AC4-8225-9AC451FE42B4")))// ä¸»çª—å£åˆå§‹äººå,éè®¾è®¡å™¨æ¨¡å¼
+		{// è®¾è®¡å™¨æ¨¡å¼ä¸‹ï¼Œä»…å»ºè®®åœ¨åˆ†æé—®é¢˜æ—¶å¼€æ”¾æ­¤è¾…åŠ©ï¼Œä¸ç„¶ä¼šä¸¥é‡å½±å“è®¾è®¡æ•ˆç‡
 			XmlNode.GetXmlContent(XmlNode.m_strDebugBuf);
 		}
 #endif	
@@ -24,7 +24,7 @@ namespace DM
 
 	bool DMXmlAttribute::IsValid() const
 	{
-		return (!!m_XmlAttrbute);//Ë«!!
+		return (!!m_XmlAttrbute);//åŒ!!
 	}
 
 	bool DMXmlAttribute::IsEqual(const DMXmlAttribute &other) const
@@ -54,7 +54,7 @@ namespace DM
 
 	DMXmlAttribute DMXmlAttribute::NextAttribute() const
 	{
-		DMXmlAttribute XmlAttribute;// Ä¬ÈÏÒ»¸ö³õÊ¼Öµ£¬XmlAttribute.m_XmlAttrbute = NULL
+		DMXmlAttribute XmlAttribute;// é»˜è®¤ä¸€ä¸ªåˆå§‹å€¼ï¼ŒXmlAttribute.m_XmlAttrbute = NULL
 		if (m_XmlAttrbute)
 		{
 			XmlAttribute.m_XmlAttrbute = m_XmlAttrbute.next_attribute();
@@ -65,7 +65,7 @@ namespace DM
 
 	DMXmlAttribute DMXmlAttribute::PreviousAttribute() const
 	{
-		DMXmlAttribute XmlAttribute;// Ä¬ÈÏÒ»¸ö³õÊ¼Öµ£¬XmlAttribute.m_XmlAttrbute = NULL
+		DMXmlAttribute XmlAttribute;// é»˜è®¤ä¸€ä¸ªåˆå§‹å€¼ï¼ŒXmlAttribute.m_XmlAttrbute = NULL
 		if (m_XmlAttrbute)
 		{
 			XmlAttribute.m_XmlAttrbute = m_XmlAttrbute.previous_attribute();
@@ -81,7 +81,7 @@ namespace DM
 
 	bool DMXmlNode::IsValid() const
 	{
-		return (!!m_XmlNode);//Ë«!!
+		return (!!m_XmlNode);//åŒ!!
 	}
 
 	bool DMXmlNode::IsEqual(const DMXmlNode &other) const
@@ -106,7 +106,7 @@ namespace DM
 					break;
 				}
 			}
-			__except(EXCEPTION_EXECUTE_HANDLER)// Èç¹ûotherµÄXMLDOC±»ÌáÇ°destoryµôÁË£¬ÕâÊ±Ëü»¹ÊÇÓĞÖµµÄ£¬²»¹ıÊÇÄÚ´æ±»ÊÍ·ÅÁË£¬ËùÒÔĞèÒªtry catch·ÀÖ¹Òì³£
+			__except(EXCEPTION_EXECUTE_HANDLER)// å¦‚æœotherçš„XMLDOCè¢«æå‰destoryæ‰äº†ï¼Œè¿™æ—¶å®ƒè¿˜æ˜¯æœ‰å€¼çš„ï¼Œä¸è¿‡æ˜¯å†…å­˜è¢«é‡Šæ”¾äº†ï¼Œæ‰€ä»¥éœ€è¦try catché˜²æ­¢å¼‚å¸¸
 			{
 				break;
 			}
@@ -204,7 +204,7 @@ namespace DM
 		{
 			return NULL;
 		}
-		// ×¢ÒâÊÇtext,ÓÃÓÚµÃµ½<node>this is node<node/>ÖĞµÄthis is node
+		// æ³¨æ„æ˜¯text,ç”¨äºå¾—åˆ°<node>this is node<node/>ä¸­çš„this is node
 		return m_XmlNode.text().as_string().data();
 	}
 
@@ -345,7 +345,7 @@ namespace DM
 			}
 
 			pugi::xml_attribute attr = m_XmlNode.attribute(name);
-			if (attr.empty())//½Úµã²»´æÔÚ
+			if (attr.empty())//èŠ‚ç‚¹ä¸å­˜åœ¨
 			{
 				if (bAppend)
 				{
@@ -392,7 +392,7 @@ namespace DM
 			}
 
 			pugi::xml_attribute attr = m_XmlNode.attribute(name);
-			if (attr.empty())//½Úµã²»´æÔÚ
+			if (attr.empty())//èŠ‚ç‚¹ä¸å­˜åœ¨
 			{
 				break;
 			}

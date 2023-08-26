@@ -1,4 +1,4 @@
-factory = HgyObjFactory()
+﻿factory = HgyObjFactory()
 obj = factory:CreateObj()
 
 turret = {}

@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMAccel.h 
-// File Des: Accel½Ó¿Ú
+// File Des: Accelæ¥å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -23,22 +23,22 @@
 namespace DM
 {
 	/// <summary>
-	///		¼ÓËÙ¼ü×ª»»
+	///		åŠ é€Ÿé”®è½¬æ¢
 	/// </summary>
     class DM_EXPORT DUIAccel
     {
     public:
-        DUIAccel(DWORD dwAccel);							///< dwAccel¼ÓËÙ¼üÖµ
-        DUIAccel(UINT vKey=0,bool bCtrl=false,bool bAlt=false,bool bShift=false);///< UINT vKeyÓëCtrl×éºÏ¡¢ÓëAlt×éºÏ¡¢ÓëShilft×éºÏ
+        DUIAccel(DWORD dwAccel);							///< dwAccelåŠ é€Ÿé”®å€¼
+        DUIAccel(UINT vKey=0,bool bCtrl=false,bool bAlt=false,bool bShift=false);///< UINT vKeyä¸Ctrlç»„åˆã€ä¸Altç»„åˆã€ä¸Shilftç»„åˆ
         ~DUIAccel(void);
 
-        CStringA GetKeyName(WORD vk);					    ///< ½«¼üÅÌÖµ×ª»»Îª¶ÔÓ¦µÄ×Ö·û´®
-        CStringA FormatHotkey();						    ///< »ñµÃµ±Ç°¼ÓËÙ¼üµÄ×Ö·û´®ĞÎÊ½
+        CStringA GetKeyName(WORD vk);					    ///< å°†é”®ç›˜å€¼è½¬æ¢ä¸ºå¯¹åº”çš„å­—ç¬¦ä¸²
+        CStringA FormatHotkey();						    ///< è·å¾—å½“å‰åŠ é€Ÿé”®çš„å­—ç¬¦ä¸²å½¢å¼
 
-        WORD GetModifier() const {return m_wModifier;}	    ///< »ñµÃ¼ÓËÙ¼üµÄĞŞÊÎÎ»
-        WORD GetKey() const {return m_wVK;}				    ///< »ñµÃ¼ÓËÙ¼üµÄÖ÷¼ü
+        WORD GetModifier() const {return m_wModifier;}	    ///< è·å¾—åŠ é€Ÿé”®çš„ä¿®é¥°ä½
+        WORD GetKey() const {return m_wVK;}				    ///< è·å¾—åŠ é€Ÿé”®çš„ä¸»é”®
 	
-        static DWORD TranslateAccelKey(LPCSTR lpszAccelKey);	///< ½âÎöÓë×Ö·û´®¶ÔÓ¦µÄ¼ÓËÙ¼üÖµ
+        static DWORD TranslateAccelKey(LPCSTR lpszAccelKey);	///< è§£æä¸å­—ç¬¦ä¸²å¯¹åº”çš„åŠ é€Ÿé”®å€¼
 
     protected:
         WORD					 m_wModifier;
@@ -47,27 +47,27 @@ namespace DM
 
 
 	/// <summary>
-	///		¼üÅÌ¼ÓËÙ¼üµÄÊÂ¼ş´¦Àí³éÏó½Ó¿Ú
+	///		é”®ç›˜åŠ é€Ÿé”®çš„äº‹ä»¶å¤„ç†æŠ½è±¡æ¥å£
 	/// </summary>
     class DM_EXPORT IDMAccelHandler
     {
 	public:
 		/// -------------------------------------------------
-		/// @brief objÊÇ·ñ´æÔÚ
-		/// @param[in]		 Accel    °´ÏÂµÄ¼ÓËÙ¼ü
-		/// @return ¼ÓËÙ¼ü±»´¦Àí·µ»Øtrue
+		/// @brief objæ˜¯å¦å­˜åœ¨
+		/// @param[in]		 Accel    æŒ‰ä¸‹çš„åŠ é€Ÿé”®
+		/// @return åŠ é€Ÿé”®è¢«å¤„ç†è¿”å›true
         virtual bool OnAccelPressed(const DUIAccel& Accel) = 0;
     };
 
 	/// <summary>
-	///		¼ÓËÙ¼ü¹ÜÀí³éÏó½Ó¿Ú
+	///		åŠ é€Ÿé”®ç®¡ç†æŠ½è±¡æ¥å£
 	/// </summary>
     class DM_EXPORT IDMAccelMgr
     {
 	public:
-        virtual void RegisterAccel(const DUIAccel& Accel, IDMAccelHandler* pHandler) = 0;	///< ×¢²á¼ÓËÙ¼üÒÔ¼°ÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏó
-        virtual void UnregisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler) = 0;	///< ·´×¢²á¼ÓËÙ¼üÒÔ¼°ÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏó
-        virtual void UnregisterAccels(IDMAccelHandler* pHandler) = 0;						///< ·´×¢²áÊÂ¼ş´¦Àí½Ó¿Ú¶ÔÏóµÄËùÓĞ¼ÓËÙ¼ü
+        virtual void RegisterAccel(const DUIAccel& Accel, IDMAccelHandler* pHandler) = 0;	///< æ³¨å†ŒåŠ é€Ÿé”®ä»¥åŠäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡
+        virtual void UnregisterAccel(const DUIAccel& Accel,IDMAccelHandler* pHandler) = 0;	///< åæ³¨å†ŒåŠ é€Ÿé”®ä»¥åŠäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡
+        virtual void UnregisterAccels(IDMAccelHandler* pHandler) = 0;						///< åæ³¨å†Œäº‹ä»¶å¤„ç†æ¥å£å¯¹è±¡çš„æ‰€æœ‰åŠ é€Ÿé”®
     };
 
 }//namespace DM

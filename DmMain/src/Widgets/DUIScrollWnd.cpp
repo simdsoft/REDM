@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIScrollWnd.h"
 
 namespace DM
@@ -44,7 +44,7 @@ namespace DM
 			while (pChild)
 			{
 				if (0 != dm_xmlstrcmp(pChild->V_GetClassName(),DUINAME_RectTracker))
-				{// ¹ıÂËÏğÆ¤Ìõ¿Ø¼ş
+				{// è¿‡æ»¤æ©¡çš®æ¡æ§ä»¶
 					CRect rcChild;
 					pChild->DV_GetWindowRect(rcChild);
 					rcMeasure.UnionRect(rcMeasure, rcChild);
@@ -52,11 +52,11 @@ namespace DM
 				pChild = pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
 
-			//1.×ª³ÉÒÔFL´°¿ÚÎªÔ­µãµÄ×ø±êÏµ
+			//1.è½¬æˆä»¥FLçª—å£ä¸ºåŸç‚¹çš„åæ ‡ç³»
 			rcMeasure.OffsetRect(-m_rcWindow.TopLeft());	
-			m_rcMeasure = rcMeasure;// m_rcMeasure¼ÇÂ¼ÁËÒÔScrollFLµÄ×óÉÏ½ÇÎª×ø±êÔ­µã,°üº¬ËùÓĞ×Ó¿Ø¼şµÄ×îĞ¡ÇøÓò(²»°üº¬ScrollFL·Ç¿Í»§Çø)
+			m_rcMeasure = rcMeasure;// m_rcMeasureè®°å½•äº†ä»¥ScrollFLçš„å·¦ä¸Šè§’ä¸ºåæ ‡åŸç‚¹,åŒ…å«æ‰€æœ‰å­æ§ä»¶çš„æœ€å°åŒºåŸŸ(ä¸åŒ…å«ScrollFLéå®¢æˆ·åŒº)
 
-			//2.Í¨Öª¸¸´°¿Ú¸üĞÂFLµÄ×ø±ê
+			//2.é€šçŸ¥çˆ¶çª—å£æ›´æ–°FLçš„åæ ‡
 			DUIWindow* pParent = DM_GetWindow(GDW_PARENT);
 			if (pParent)
 			{
@@ -83,7 +83,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú methods
+	// Function Des: å¯¹å¤–æ¥å£ methods
 	//---------------------------------------------------
 #pragma region Public methods
 	void DUIScrollWnd::UpdateScrollRange()
@@ -97,24 +97,24 @@ namespace DM
 				CRect rcFL = m_pFLChild->m_rcMeasure;
 				CRect rcNcMargin;
 				m_pFLChild->m_pDUIXmlInfo->m_pStyle->GetNcMargin(rcNcMargin);
-				//1.ÈÃrcMeasureµÄ×óÉÏ½ÇºÍFL×óÉÏ½ÇÖØºÏ,ÓÒÏÂ½ÇÔö¼ÓNCÇøÓò
+				//1.è®©rcMeasureçš„å·¦ä¸Šè§’å’ŒFLå·¦ä¸Šè§’é‡åˆ,å³ä¸‹è§’å¢åŠ NCåŒºåŸŸ
 				rcFL.SetRect(0, 0, rcFL.right+rcNcMargin.right, rcFL.bottom+rcNcMargin.bottom);
 
-				//2.FL´°¿ÚµÄ×óÉÏ½ÇºÍScrollWnd×óÉÏ½ÇÖØºÏ
+				//2.FLçª—å£çš„å·¦ä¸Šè§’å’ŒScrollWndå·¦ä¸Šè§’é‡åˆ
 				rcFL.OffsetRect(rcClient.TopLeft());
 
 				rcFL.right = DMMAX(rcClient.right-m_isbWid, rcFL.right);
 				rcFL.bottom = DMMAX(rcClient.bottom-m_isbWid, rcFL.bottom);
 
-				m_pFLChild->m_EventMgr.SetMuted(true);// ²»´¥·¢DMEventChildLayoutFinishedArgs
-				m_pFLChild->DM_FloatLayout(rcFL);	  // Èç¹ûFLÎ»ÖÃ¸Ä±ä,ËùÓĞ×Ó´°¿Ú¶¼Òª×öÏàÓ¦µÄµ÷Õû
+				m_pFLChild->m_EventMgr.SetMuted(true);// ä¸è§¦å‘DMEventChildLayoutFinishedArgs
+				m_pFLChild->DM_FloatLayout(rcFL);	  // å¦‚æœFLä½ç½®æ”¹å˜,æ‰€æœ‰å­çª—å£éƒ½è¦åšç›¸åº”çš„è°ƒæ•´
 				m_pFLChild->m_EventMgr.SetMuted(false);
 				SetRangeSize(CSize(m_pFLChild->m_rcWindow.Width(), m_pFLChild->m_rcWindow.Height()));
-				OnRangeCurPosChanged(m_ptCurPos, m_ptCurPos);// µ±RangeÇ°ºóÒ»ÑùÊ±,SetRangeSizeÎŞĞ§,ËùÒÔÒªÊÖ¶¯´¥·¢ÏÂFLµÄµ÷Õû
+				OnRangeCurPosChanged(m_ptCurPos, m_ptCurPos);// å½“Rangeå‰åä¸€æ ·æ—¶,SetRangeSizeæ— æ•ˆ,æ‰€ä»¥è¦æ‰‹åŠ¨è§¦å‘ä¸‹FLçš„è°ƒæ•´
 			}
-			else// Ê×´Î³õÊ¼»¯FL¼°ËüµÄ×Ó¿Ø¼ş
+			else// é¦–æ¬¡åˆå§‹åŒ–FLåŠå®ƒçš„å­æ§ä»¶
 			{
-				m_pFLChild->DM_FloatLayout(rcClient); //´¥·¢FL×Ó´°¿ÚµÄ²¼¾Ö,²¢×îÖÕ¸üĞÂFLµÄ´óĞ¡
+				m_pFLChild->DM_FloatLayout(rcClient); //è§¦å‘FLå­çª—å£çš„å¸ƒå±€,å¹¶æœ€ç»ˆæ›´æ–°FLçš„å¤§å°
 			}
 		}
 	}
@@ -141,7 +141,7 @@ namespace DM
 				DMFAIL_MSG("DUIScrollWnd must have DUIScrollFL for scroll");
 				break;
 			}
-			m_pFLChild->m_bFloatLayout = true;// ÉèÖÃÎª¾ø¶Ô²¼¾Ö
+			m_pFLChild->m_bFloatLayout = true;// è®¾ç½®ä¸ºç»å¯¹å¸ƒå±€
 
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -151,15 +151,15 @@ namespace DM
 	void DUIScrollWnd::OnRangeCurPosChanged(CPoint ptOld, CPoint ptNew)
 	{
 		if (m_pFLChild && m_pFLChild->DM_IsLayoutFinished())
-		{// ÔÚ¹ö¶¯ÌõÏûÊ§Ç°ºóptOldºÍptNew¿ÉÄÜÊÇ´íÎóµÄ
+		{// åœ¨æ»šåŠ¨æ¡æ¶ˆå¤±å‰åptOldå’ŒptNewå¯èƒ½æ˜¯é”™è¯¯çš„
 			CRect rcFL = m_pFLChild->m_rcWindow;
 			CRect rcClient;
 			DV_GetClientRect(rcClient);
 			CPoint ptOffset = rcClient.TopLeft()-rcFL.TopLeft()-m_ptCurPos;
 			if (ptOffset.x != 0 || ptOffset.y !=0)
-			{// FL´°¿ÚµÄ×óÉÏ½ÇºÍScrollWnd×óÉÏ½ÇÖØºÏ
+			{// FLçª—å£çš„å·¦ä¸Šè§’å’ŒScrollWndå·¦ä¸Šè§’é‡åˆ
 				rcFL.OffsetRect(ptOffset);
-				m_pFLChild->m_EventMgr.SetMuted(true);// ²»´¥·¢DMEventChildLayoutFinishedArgs
+				m_pFLChild->m_EventMgr.SetMuted(true);// ä¸è§¦å‘DMEventChildLayoutFinishedArgs
 				m_pFLChild->DM_FloatLayout(rcFL);
 				m_pFLChild->m_EventMgr.SetMuted(false);
 			}

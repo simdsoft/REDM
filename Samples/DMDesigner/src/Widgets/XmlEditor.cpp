@@ -1,8 +1,8 @@
-#include "DMDesignerAfx.h"
+﻿#include "DMDesignerAfx.h"
 #include "XmlEditor.h"
 #include <olectl.h>
 
-// +-����
+// +-符号
 static const char *minus_xpm[] =
 {	"     9     9       16            1",
 "` c #8c96ac",". c #c4d0da","# c #daecf4","a c #ccdeec","b c #eceef4","c c #e0e5eb","d c #a7b7c7","e c #e4ecf0","f c #d0d8e2","g c #b7c5d4","h c #fafdfc","i c #b4becc",
@@ -42,7 +42,7 @@ LRESULT XmlEditor::DefWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SCNotification* notify = (SCNotification*)lParam; 
 		if(notify->nmhdr.code == SCN_MARGINCLICK)
 		{ 
-			// ȷ����ҳ�ߵ���¼� 
+			// 确定是页边点击事件 
 			const int line_number = (int)Call(SCI_LINEFROMPOSITION,notify->position); 
 			Call(SCI_TOGGLEFOLD, line_number); 
 		} 
@@ -79,54 +79,54 @@ HWND XmlEditor::Create(HWND hWndParent)
 
 void XmlEditor::InitXml()
 {
-	// �ο�Scintilla��Դ��ʹ��ָ��
-	Call(SCI_SETCODEPAGE,SC_CP_UTF8);// ʹ��UTF8
+	// 参考Scintilla开源库使用指南
+	Call(SCI_SETCODEPAGE,SC_CP_UTF8);// 使用UTF8
 
-	Call(SCI_STYLESETFORE, STYLE_DEFAULT, RGB(0x0,0X0,0X0));// �ı���ǰ��ɫ��Text is drawn in the foreground colour.
-	Call(SCI_STYLESETBACK, STYLE_DEFAULT, RGB(255,255,255));// ����ɫ��the background colour.
+	Call(SCI_STYLESETFORE, STYLE_DEFAULT, RGB(0x0,0X0,0X0));// 文本的前景色，Text is drawn in the foreground colour.
+	Call(SCI_STYLESETBACK, STYLE_DEFAULT, RGB(255,255,255));// 背景色，the background colour.
 
-	Call(SCI_STYLESETSIZE, STYLE_DEFAULT, 12);// �����С
-	Call(SCI_STYLESETFONT, STYLE_DEFAULT, reinterpret_cast<LPARAM>("������"));
+	Call(SCI_STYLESETSIZE, STYLE_DEFAULT, 12);// 字体大小
+	Call(SCI_STYLESETFONT, STYLE_DEFAULT, reinterpret_cast<LPARAM>("新宋体"));
 
-	Call(SCI_SETLEXER, SCLEX_XML);// ʹ��XML�﷨
-	Call(SCI_SETSTYLEBITS, 7);// �ַ���ʽλ���7λ
-	Call(SCI_SETTABWIDTH, 4);// ����tab����
+	Call(SCI_SETLEXER, SCLEX_XML);// 使用XML语法
+	Call(SCI_SETSTYLEBITS, 7);// 字符样式位最大到7位
+	Call(SCI_SETTABWIDTH, 4);// 设置tab缩进
 	Call(SCI_STYLECLEARALL);
 
-	// �������ø����﷨Ԫ�ط�� 
-	Call(SCI_STYLESETFORE, SCE_C_WORD, 0x00FF0000);// �ؼ��� 
-	Call(SCI_STYLESETFORE, SCE_C_WORD2, 0x00800080);// �ؼ��� 
-	Call(SCI_STYLESETBOLD, SCE_C_WORD2, TRUE); // �ؼ��� 
+	// 下面设置各种语法元素风格 
+	Call(SCI_STYLESETFORE, SCE_C_WORD, 0x00FF0000);// 关键字 
+	Call(SCI_STYLESETFORE, SCE_C_WORD2, 0x00800080);// 关键字 
+	Call(SCI_STYLESETBOLD, SCE_C_WORD2, TRUE); // 关键字 
 
-	// ��notepad++��xml ��ɫ
-	Call(SCI_STYLESETFORE, SCE_C_STRING, RGB(128,0,255)); // �ַ��� ��key="value",value����ɫ
-	Call(SCI_STYLESETFORE, SCE_C_CHARACTER, RGB(128,0,255)); // �ַ� ��key='value',value����ɫ
-	Call(SCI_STYLESETFORE, SCE_C_COMMENT, RGB(43,43,224));// ��ע�ͣ���<xml> xml����ɫ
-	Call(SCI_STYLESETFORE, SCE_C_COMMENTDOC, RGB(255,0,0));//�ĵ�ע��,��key="value",key����ɫ
-	Call(SCI_STYLESETFORE,SCE_C_PREPROCESSOR, RGB(0,128,0));//�ĵ�ע��,��<!---->
-	Call(SCI_STYLESETFORE,SCE_C_IDENTIFIER, RGB(0,0,255));// ��<xml/>�е�/>
+	// 仿notepad++的xml 颜色
+	Call(SCI_STYLESETFORE, SCE_C_STRING, RGB(128,0,255)); // 字符串 如key="value",value的颜色
+	Call(SCI_STYLESETFORE, SCE_C_CHARACTER, RGB(128,0,255)); // 字符 如key='value',value的颜色
+	Call(SCI_STYLESETFORE, SCE_C_COMMENT, RGB(43,43,224));// 块注释，如<xml> xml的颜色
+	Call(SCI_STYLESETFORE, SCE_C_COMMENTDOC, RGB(255,0,0));//文档注释,如key="value",key的颜色
+	Call(SCI_STYLESETFORE,SCE_C_PREPROCESSOR, RGB(0,128,0));//文档注释,如<!---->
+	Call(SCI_STYLESETFORE,SCE_C_IDENTIFIER, RGB(0,0,255));// 如<xml/>中的/>
 
-	Call(SCI_SETCARETLINEVISIBLE, TRUE); // ��ǰ�и���
+	Call(SCI_SETCARETLINEVISIBLE, TRUE); // 当前行高亮
 	Call(SCI_SETCARETLINEBACK, RGB(232,232,255)); 
 
 	Call(SCI_AUTOCSETSEPARATOR, static_cast<WPARAM>(10), 0);
 
-	// ���ô����۵�����
+	// 设置代码折叠规则
 	Call(SCI_SETMARGINTYPEN,1,SC_MARGIN_NUMBER); 
-	Call(SCI_SETMARGINTYPEN, 2, SC_MARGIN_SYMBOL);// ҳ������ 
+	Call(SCI_SETMARGINTYPEN, 2, SC_MARGIN_SYMBOL);// 页边类型 
 
-	Call(SCI_SETMARGINWIDTHN,1,28); // ҳ�߿��� 
+	Call(SCI_SETMARGINWIDTHN,1,28); // 页边宽度 
 	Call(SCI_SETMARGINWIDTHN,2,16); 
 
-	Call(SCI_SETMARGINSENSITIVEN, 2, TRUE); // ��Ӧ�����Ϣ 
-	Call(SCI_SETMARGINMASKN, 2, SC_MASK_FOLDERS); // ҳ������ 
+	Call(SCI_SETMARGINSENSITIVEN, 2, TRUE); // 响应鼠标消息 
+	Call(SCI_SETMARGINMASKN, 2, SC_MASK_FOLDERS); // 页边掩码 
 
 	Call(SCI_SETPROPERTY, (WPARAM)"fold", (LPARAM)"1");
 	Call(SCI_SETPROPERTY, (WPARAM)"fold.compact", (LPARAM)"0");
 	Call(SCI_SETPROPERTY, (WPARAM)"fold.html", (LPARAM)"1");
 	Call(SCI_SETPROPERTY, (WPARAM)"fold.html.preprocessor", (LPARAM)"1");
 
-	// �۵���ǩ��ʽ 
+	// 折叠标签样式 
 	Call(SCI_MARKERDEFINE, SC_MARKNUM_FOLDER, SC_MARK_CIRCLEPLUS);  
 	Call(SCI_MARKERDEFINE, SC_MARKNUM_FOLDEROPEN, SC_MARK_CIRCLEMINUS);  
 	Call(SCI_MARKERDEFINE, SC_MARKNUM_FOLDEREND,  SC_MARK_CIRCLEPLUSCONNECTED); 
@@ -135,7 +135,7 @@ void XmlEditor::InitXml()
 	Call(SCI_MARKERDEFINE, SC_MARKNUM_FOLDERSUB, SC_MARK_VLINE);  
 	Call(SCI_MARKERDEFINE, SC_MARKNUM_FOLDERTAIL, SC_MARK_LCORNERCURVE); 
 
-	// �۵���ǩ��ɫ 
+	// 折叠标签颜色 
 	Call(SCI_MARKERSETBACK, SC_MARKNUM_FOLDERSUB, 0xa0a0a0); 
 	Call(SCI_MARKERSETBACK, SC_MARKNUM_FOLDERMIDTAIL, 0xa0a0a0); 
 	Call(SCI_MARKERSETBACK, SC_MARKNUM_FOLDERTAIL, 0xa0a0a0); 
@@ -145,7 +145,7 @@ void XmlEditor::InitXml()
 	Call(SCI_MARKERDEFINEPIXMAP, SC_MARKNUM_FOLDEREND, (sptr_t)plus_xpm); 
 	Call(SCI_MARKERDEFINEPIXMAP, SC_MARKNUM_FOLDEROPENMID, (sptr_t)minus_xpm); 
 
-	Call(SCI_SETFOLDFLAGS, 16, 0); //����۵������۵��е����滭һ������
+	Call(SCI_SETFOLDFLAGS, 16, 0); //如果折叠就在折叠行的下面画一条横线
 }
 
 //
@@ -235,7 +235,7 @@ HWND DUIRealXml::OnCreateRealWnd(LPCWSTR atom,HWND hWndParent)
 		hWnd = m_pXmlEditor->Create(hWndParent);
 		if (NULL == hWnd)
 		{
-			DM_MessageBox(L"����xml�༭����ʧ��");
+			DM_MessageBox(L"创建xml编辑窗口失败");
 			break;
 		}
 		m_hParent = hWndParent;
@@ -246,7 +246,7 @@ HWND DUIRealXml::OnCreateRealWnd(LPCWSTR atom,HWND hWndParent)
 
 DMCode DUIRealXml::OnDestoryRealWnd()
 {
-	m_pObjTree = NULL;// m_pObjTree������DUIRealXml�ͷţ����԰�����NULL,�Ӷ�������~AttrBase�е���UnSubscribeEvent
+	m_pObjTree = NULL;// m_pObjTree会先于DUIRealXml释放，所以把它置NULL,从而不会在~AttrBase中调用UnSubscribeEvent
 	if (m_pXmlEditor&& m_pXmlEditor->IsWindow())
 	{
 		m_pXmlEditor->Destroy();
@@ -262,7 +262,7 @@ DMCode DUIRealXml::OnMoveRealWnd(LPRECT lpRect)
 	::GetWindowRect(m_hRealWnd,&rcOldWnd);
 	::SetWindowPos(m_hRealWnd,0,rcWnd.left,rcWnd.top,rcWnd.Width(),rcWnd.Height(),SWP_NOZORDER);
 	if (rcOldWnd.Height()<rcWnd.Height())
-	{// ��ֹ����ʱ��Ӱ
+	{// 防止上拉时重影
 		UpdateWindow(m_hRealWnd);
 	}
 	return DM_ECODE_OK;
@@ -278,7 +278,7 @@ DMCode DUIRealXml::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 			break;
 		}
 
-		if (hOldSel)// �ж��Ƿ�Ϊͬһ��XML
+		if (hOldSel)// 判断是否为同一份XML
 		{
 			ObjTreeDataPtr pOldData = (ObjTreeDataPtr)m_pObjTree->GetItemData(hOldSel);
 			if (pOldData&&pOldData->m_pDoc&&pOldData==pData)
@@ -294,7 +294,7 @@ DMCode DUIRealXml::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 		m_pXmlEditor->EmptyUndoBuffer();
 
 		CStringA strAXml;
-		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// �л������ϲ��ˣ�Ĭ��ΪDMHWnd����
+		if (hSel && 0 == m_pObjTree->GetParentItem(hSel))// 切换到最上层了，默认为DMHWnd窗口
 		{
 			pData->m_pDoc->m_pXmlDoc->Base().GetXmlContent(strAXml);
 		}
@@ -312,8 +312,8 @@ DMCode DUIRealXml::UpdataInfo(HDMTREEITEM hSel,HDMTREEITEM hOldSel)
 		m_pXmlEditor->SetUndoCollection(true);
 		m_pXmlEditor->EmptyUndoBuffer();
 		m_pXmlEditor->SetSavePoint();
-		m_pXmlEditor->GotoPos(0);// �´�addtext ��0��ʼ
-		m_pXmlEditor->SetReadOnly(bReadOlny);// �ָ�ԭʼ״̬
+		m_pXmlEditor->GotoPos(0);// 下次addtext 从0开始
+		m_pXmlEditor->SetReadOnly(bReadOlny);// 恢复原始状态
 	} while (false);
 	return DM_ECODE_OK;
 }
@@ -329,7 +329,7 @@ DMCode DUIRealXml::UpdateLock(HDMTREEITEM hItem)
 			break;
 		}
 		DM::LPTVITEMEX pData = m_pObjTree->GetItem(hItem);
-		m_pXmlEditor->SetReadOnly(true);// ��ʱȫֻ��
+		m_pXmlEditor->SetReadOnly(true);// 临时全只读
 #if 0
 		if (DMTVEXLock_UnLocked == pData->iLockValue)
 		{

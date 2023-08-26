@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -15,34 +15,34 @@
 #pragma once
 namespace DM
 {
-	enum DMLOGLEVEL///LOGÀàĞÍ
+	enum DMLOGLEVEL///LOGç±»å‹
 	{
-		DMLOG_TRACE = 0,		///<¸ú×ÙÀàĞÍ
-		DMLOG_DEBUG = 1,		///<DebugÀàĞÍ
-		DMLOG_INFO  = 2,		///<Õı³£ÀàĞÍ
-		DMLOG_WARN  = 3,		///<¾¯¸æÀàĞÍ
-		DMLOG_ERR   = 4,		///<´íÎóÀàĞÍ
-		DMLOG_FATAL = 5,		///<¼«ÆäÑÏÖØ´íÎó
+		DMLOG_TRACE = 0,		///<è·Ÿè¸ªç±»å‹
+		DMLOG_DEBUG = 1,		///<Debugç±»å‹
+		DMLOG_INFO  = 2,		///<æ­£å¸¸ç±»å‹
+		DMLOG_WARN  = 3,		///<è­¦å‘Šç±»å‹
+		DMLOG_ERR   = 4,		///<é”™è¯¯ç±»å‹
+		DMLOG_FATAL = 5,		///<æå…¶ä¸¥é‡é”™è¯¯
 	};
 
 	/// <summary>
-	///		LOG´òÓ¡¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_Log"/>
+	///		LOGæ‰“å°å¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_Log"/>
 	/// </summary>
 	/// <remarks>
-	///     ¿ÉÒÔÊä³ö£¬»ò±£´æ³ÉlogÎÄ¼ş
+	///     å¯ä»¥è¾“å‡ºï¼Œæˆ–ä¿å­˜æˆlogæ–‡ä»¶
 	/// </remarks>
 	class IDMLog:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMLog,"IDMLog",DMREG_Log);
 	public:
-		/// @brief ´òÓ¡LOG½Ó¿Ú
-		/// @param[in]		 iLevel			LOGÀàĞÍ<see cref="DMLOGLEVEL"/>
-		/// @param[in]		 lpszFuncName	º¯ÊıÃû
-		/// @param[in]		 lpszFileName	ÎÄ¼şÃû
-		/// @param[in]		 iLine			ĞĞºÅ
-		/// @param[in]		 szLogBuf		Êä³öµÄLOG
+		/// @brief æ‰“å°LOGæ¥å£
+		/// @param[in]		 iLevel			LOGç±»å‹<see cref="DMLOGLEVEL"/>
+		/// @param[in]		 lpszFuncName	å‡½æ•°å
+		/// @param[in]		 lpszFileName	æ–‡ä»¶å
+		/// @param[in]		 iLine			è¡Œå·
+		/// @param[in]		 szLogBuf		è¾“å‡ºçš„LOG
 		/// @remark			
-		/// @return DM_ECODE_OKÎª³É¹¦
+		/// @return DM_ECODE_OKä¸ºæˆåŠŸ
 		virtual DMCode LogW(DMLOGLEVEL iLevel,LPCWSTR lpszFuncName, LPCWSTR lpszFileName, int iLine,LPCWSTR szLogBuf) = 0;
 	};
 }

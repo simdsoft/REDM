@@ -1,4 +1,4 @@
-function test_error()
+﻿function test_error()
 	print("test_error() called!!")
 	test_error_1()
 end

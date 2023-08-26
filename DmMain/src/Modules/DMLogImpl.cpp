@@ -1,16 +1,16 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMLogImpl.h"
 
 namespace DM
 {
 	static const wchar_t* pszLogPrix[] = 
 	{
-		L"DMLOG_TRACE",		///<¸ú×ÙÀàÐÍ
-		L"DMLOG_DEBUG",		///<DebugÀàÐÍ
-		L"DMLOG_INFO",		///<Õý³£ÀàÐÍ
-		L"DMLOG_WARN",		///<¾¯¸æÀàÐÍ
-		L"DMLOG_ERR",		///<´íÎóÀàÐÍ
-		L"DMLOG_FATAL",     ///<¼«ÆäÑÏÖØ´íÎó
+		L"DMLOG_TRACE",		///<è·Ÿè¸ªç±»åž‹
+		L"DMLOG_DEBUG",		///<Debugç±»åž‹
+		L"DMLOG_INFO",		///<æ­£å¸¸ç±»åž‹
+		L"DMLOG_WARN",		///<è­¦å‘Šç±»åž‹
+		L"DMLOG_ERR",		///<é”™è¯¯ç±»åž‹
+		L"DMLOG_FATAL",     ///<æžå…¶ä¸¥é‡é”™è¯¯
 	};
 	DMCode DMLogImpl::LogW(DMLOGLEVEL iLevel,LPCWSTR lpszFuncName, LPCWSTR lpszFileName, int iLine,LPCWSTR szLogBuf)
 	{

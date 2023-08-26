@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	TipWnd.h
 // File mark:   
-// File summary:×¨ÓÃÓÚÌØÊâµÄtipsÏÔÊ¾
+// File summary:ä¸“ç”¨äºç‰¹æ®Šçš„tipsæ˜¾ç¤º
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-3

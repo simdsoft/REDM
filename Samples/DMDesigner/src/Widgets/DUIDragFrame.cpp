@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "DUIDragFrame.h"
 
 DragMeta::DragMeta(int idx/*=-1*/,HCURSOR hCursor /*= ::LoadCursor(NULL,IDC_ARROW)*/)
@@ -66,13 +66,13 @@ DMCode DUIDragFrame::InitDragFrame(ObjTreeData* pData,CRect& rcLayout)
 		}
 		DUIWindow* &pDUIWnd = pData->m_pDUIWnd;
 		DUIRoot* &pMainWnd = pData->m_pRootWnd;
-		bool bMain = pDUIWnd == pMainWnd;// RootÒ²ËãÎªMain
+		bool bMain = pDUIWnd == pMainWnd;// Rootä¹Ÿç®—ä¸ºMain
 		bool bAllGray = false;
 		if (!bMain)
 		{
 			if (false == IsSupportPos(pData))
 			{
-				bAllGray = true;///²»Ö§³ÖµÄ£¬ÒÔÈ«»ÒÏÔÊ¾
+				bAllGray = true;///ä¸æ”¯æŒçš„ï¼Œä»¥å…¨ç°æ˜¾ç¤º
 			}
 		}
 		CRect rcDrag = pDUIWnd->m_rcWindow;
@@ -80,12 +80,12 @@ DMCode DUIDragFrame::InitDragFrame(ObjTreeData* pData,CRect& rcLayout)
 		{
 			break;
 		}
-		// Ö§³ÖÃæ°å±ä»»
+		// æ”¯æŒé¢æ¿å˜æ¢
 		pDUIWnd->GetContainer()->OnClientToScreen(rcDrag);
 		g_pMainWnd->ScreenToClient(rcDrag);
 		InitDragMeta(rcDrag,bMain,bAllGray);
 
-		// ¼ÆËã×ÔÉíframeµÄÇøÓò
+		// è®¡ç®—è‡ªèº«frameçš„åŒºåŸŸ
 		rcLayout = CalcDragFrameRect(rcDrag);
 
 		m_pData = pData;
@@ -106,11 +106,11 @@ bool DUIDragFrame::IsSupportPos(ObjTreeData* pData)
 		DMSmartPtrT<Layout>	pLayout;
 		pLayout = dynamic_cast<Layout*>(pData->m_pDUIWnd->m_pLayout.get());
 		DUIWindow* &pDUIWnd = pData->m_pDUIWnd;
-		if (0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUIRoot::GetClassName())// ÇĞ»»µ½Root²ã
-			||pData->m_pDUIWnd->m_bFloatLayout// ¾ø¶Ô²¼¾Ö
-			||pData->m_pDUIWnd->DM_IsParentFlowLayout()//Á÷Ê½²¼¾ÖµÄ×ÓÏî
-			||4 != pLayout->m_nCount// ²»ÊÇËÄµãÊ½Ãªµã²¼¾Ö
-			||0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUITabPage::GetClassName())// ÇĞ»»µ½TabPage²ã
+		if (0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUIRoot::GetClassName())// åˆ‡æ¢åˆ°Rootå±‚
+			||pData->m_pDUIWnd->m_bFloatLayout// ç»å¯¹å¸ƒå±€
+			||pData->m_pDUIWnd->DM_IsParentFlowLayout()//æµå¼å¸ƒå±€çš„å­é¡¹
+			||4 != pLayout->m_nCount// ä¸æ˜¯å››ç‚¹å¼é”šç‚¹å¸ƒå±€
+			||0 == dm_xmlstrcmp(pData->m_pDUIWnd->V_GetClassName(),DUITabPage::GetClassName())// åˆ‡æ¢åˆ°TabPageå±‚
 			)
 		{
 			break;
@@ -238,7 +238,7 @@ DragMeta* DUIDragFrame::HittestDragMeta(CPoint pt,bool bMain)
 
 	if (bMain)
 	{
-		iCount -= 1;// 9²»ÏÔÊ¾ÁË
+		iCount -= 1;// 9ä¸æ˜¾ç¤ºäº†
 	}
 
 	for (int i = 1; i < iCount; ++i)
@@ -334,12 +334,12 @@ void DUIDragFrame::OnDragBox(DragMeta& meta, int iAction)
 	DM::LPTVITEMEX pData = g_pMainWnd->m_pDesignerXml->m_pObjTree->GetItem(g_pMainWnd->m_pDesignerXml->m_hObjSel);
 	if (DMTVEXLock_UnLocked != pData->iLockValue||m_bMain)
 	{	
-		SetLogInfo(L"¿Ø¼ş´¦ÓÚ±»Ëø¶¨×´Ì¬£¬ÎŞ·¨ÍÏ¶¯!");
+		SetLogInfo(L"æ§ä»¶å¤„äºè¢«é”å®šçŠ¶æ€ï¼Œæ— æ³•æ‹–åŠ¨!");
 		return;
 	}
 	if (meta.m_bEnable)
 	{
-		CRect rect = m_StartDragRc; // rect×ÜÊÇ±íÊ¾µ±Ç°´óĞ¡
+		CRect rect = m_StartDragRc; // rectæ€»æ˜¯è¡¨ç¤ºå½“å‰å¤§å°
 		int x = m_TrackDragPt.x - m_StartDragPt.x;
 		int y = m_TrackDragPt.y - m_StartDragPt.y;
 		rect.OffsetRect(x,y);
@@ -349,7 +349,7 @@ void DUIDragFrame::OnDragBox(DragMeta& meta, int iAction)
 
 void DUIDragFrame::OnDragMove(DragMeta& meta, int iAction)
 {
-	//OnDragBox(meta,iAction);// ÔİÊ±ÆÁ±Î
+	//OnDragBox(meta,iAction);// æš‚æ—¶å±è”½
 }
 
 CRect DUIDragFrame::CalcDragFrameRect(CRect rcDrag)
@@ -357,7 +357,7 @@ CRect DUIDragFrame::CalcDragFrameRect(CRect rcDrag)
 	CRect rcLayout;
 	rcLayout = rcDrag;
 	rcLayout.InflateRect(DRAGSIZE,DRAGSIZE);
-	rcLayout.left -= 24;//24ÎªboxÍ¼±êµÄ´óĞ¡
+	rcLayout.left -= 24;//24ä¸ºboxå›¾æ ‡çš„å¤§å°
 	rcLayout.top  -= 24;
 	return rcLayout;
 }
@@ -390,7 +390,7 @@ void DUIDragFrame::OnLButtonDown(UINT nFlags,CPoint pt)
 	//	m_StartDragRc = m_dragMetas[0].m_Rect;
 		if (0 == pMeta->m_Index&&m_pData)
 		{
-			if (false == m_pData->m_pRootWnd->MLDownInSelMode(pt,m_pData->m_pDUIWnd))//ËµÃ÷µã»÷ÔÚÍ¬Ò»¸ödragframeÉÏ
+			if (false == m_pData->m_pRootWnd->MLDownInSelMode(pt,m_pData->m_pDUIWnd))//è¯´æ˜ç‚¹å‡»åœ¨åŒä¸€ä¸ªdragframeä¸Š
 			{
 				DM_Invalidate();
 			}
@@ -402,7 +402,7 @@ void DUIDragFrame::OnLButtonDown(UINT nFlags,CPoint pt)
 void DUIDragFrame::OnLButtonUp(UINT nFlags,CPoint pt)
 {
 	m_bDown = false;
-	g_pMainWnd->m_pDesignerXml->m_pObjEditor->SelFrameInAllMode();// ¹ÊÒâÔÚµ¯³öºó²Å¸üĞÂÑ¡ÖĞ¿ò,ÕâÑù¿ÉÒÔÔÚÍÏ¶¯Ê±ÒÔÑ¡ÖĞ¿òÎª²Î¿¼
+	g_pMainWnd->m_pDesignerXml->m_pObjEditor->SelFrameInAllMode();// æ•…æ„åœ¨å¼¹å‡ºåæ‰æ›´æ–°é€‰ä¸­æ¡†,è¿™æ ·å¯ä»¥åœ¨æ‹–åŠ¨æ—¶ä»¥é€‰ä¸­æ¡†ä¸ºå‚è€ƒ
 
 	CRect EndDragRc = m_dragMetas[0].m_Rect;
 	if (EndDragRc != m_StartDragRc)
@@ -449,7 +449,7 @@ void DUIDragFrame::OnMouseMove(UINT nFlags,CPoint pt)
 DUIWND DUIDragFrame::HitTestPoint(CPoint pt,bool bFindNoMsg)
 {
 	if (!m_bDown)
-	{// ÍÏ¶¯¹ı³ÌÊ±,±£³Öm_pCurdragMeta²»±ä
+	{// æ‹–åŠ¨è¿‡ç¨‹æ—¶,ä¿æŒm_pCurdragMetaä¸å˜
 		m_pCurdragMeta = HittestDragMeta(pt,false);
 	}
 
@@ -459,10 +459,10 @@ DUIWND DUIDragFrame::HitTestPoint(CPoint pt,bool bFindNoMsg)
 	}
 	else if (NULL == m_pCurdragMeta)
 	{
-		return m_pData->m_pRootWnd->HitTestPoint(pt,true);// ×¢Òâ£¬ÕâÀïÊ¹ÓÃÁËreturn,ÒòÎªËü²»ÔÚdragframeµÄ·¶Î§ÄÚÁË
+		return m_pData->m_pRootWnd->HitTestPoint(pt,true);// æ³¨æ„ï¼Œè¿™é‡Œä½¿ç”¨äº†return,å› ä¸ºå®ƒä¸åœ¨dragframeçš„èŒƒå›´å†…äº†
 	}
 	if (m_pData&&NULL != m_pCurdragMeta && 0 != m_pCurdragMeta->m_Index)
-	{// ÔÚDUIObjEditor±£Ö¤ÁËm_pDragFrame->DM_SetWndToTop(),´Ó¶øHitTestPoint´Ódragframe->designeditor
+	{// åœ¨DUIObjEditorä¿è¯äº†m_pDragFrame->DM_SetWndToTop(),ä»è€ŒHitTestPointä»dragframe->designeditor
 		g_pMainWnd->m_pDesignerXml->m_pObjEditor->HoverInSelOrAddMode(m_pData->m_pDUIWnd);
 	}
 	
@@ -476,14 +476,14 @@ void DUIDragFrame::InternalHandleDrag(CRect& rect, int* pHori, int* pVert)
 		DM::LPTVITEMEX pData = g_pMainWnd->m_pDesignerXml->m_pObjTree->GetItem(g_pMainWnd->m_pDesignerXml->m_hObjSel);
 		if (DMTVEXLock_UnLocked != pData->iLockValue)
 		{
-			SetLogInfo(L"¿Ø¼ş´¦ÓÚ±»Ëø¶¨×´Ì¬£¬ÎŞ·¨ÍÏ¶¯!");
+			SetLogInfo(L"æ§ä»¶å¤„äºè¢«é”å®šçŠ¶æ€ï¼Œæ— æ³•æ‹–åŠ¨!");
 			break;
 		}
 
 		int x = (pHori ? (m_TrackDragPt.x - m_StartDragPt.x) : 0);
 		int y = (pVert ? (m_TrackDragPt.y - m_StartDragPt.y) : 0);	
 
-		rect = m_StartDragRc; // rect×ÜÊÇ±íÊ¾µ±Ç°´óĞ¡
+		rect = m_StartDragRc; // rectæ€»æ˜¯è¡¨ç¤ºå½“å‰å¤§å°
 		if (pHori)
 		{
 			*pHori += x;
@@ -536,7 +536,7 @@ bool DUIDragFrame::SetElementRect(CRect rect)
 	do 
 	{
 		CRect rcNew = rect;
-		// ¹Ø¼üÊÇÖØÉèÖÃ4¸öPOS_ITEM°ÑrcOld×ª»»³ÉrcNew
+		// å…³é”®æ˜¯é‡è®¾ç½®4ä¸ªPOS_ITEMæŠŠrcOldè½¬æ¢æˆrcNew
 		POS_ITEM PosLeft,PosTop,PosRight,PosBtm;
 		memcpy(&PosLeft,&m_pLayout->m_Left,sizeof(POS_ITEM));
 		memcpy(&PosTop,&m_pLayout->m_Top,sizeof(POS_ITEM));

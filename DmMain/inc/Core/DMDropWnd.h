@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,17 +18,17 @@ namespace DM
 {
 	class DMDropWnd;
 	/// <summary>
-	///		ÏÂÀ­ÕæÊµ´°¿ÚµÄÓµÓĞÕß
+	///		ä¸‹æ‹‰çœŸå®çª—å£çš„æ‹¥æœ‰è€…
 	/// </summary>
 	class DM_EXPORT IDMDropOwner
 	{
 	public:
 		virtual DUIWindow* GetOwnerWindow() = 0;                            
-		virtual DMCode OnDropDown(DMDropWnd *pDropDown) = 0;               ///< Ö¸Ê¾ÁĞ±í¿òÕı´¦ÓÚÏÂÀ­×´Ì¬
-		virtual DMCode OnCloseUp(DMDropWnd *pDropDown,UINT uCode) = 0;     ///< Ö¸Ê¾ÁĞ±í¿òÒÑ¹Ø±Õ
+		virtual DMCode OnDropDown(DMDropWnd *pDropDown) = 0;               ///< æŒ‡ç¤ºåˆ—è¡¨æ¡†æ­£å¤„äºä¸‹æ‹‰çŠ¶æ€
+		virtual DMCode OnCloseUp(DMDropWnd *pDropDown,UINT uCode) = 0;     ///< æŒ‡ç¤ºåˆ—è¡¨æ¡†å·²å…³é—­
 	};
 	/// <summary>
-	///		ÏÂÀ­ÕæÊµ´°¿Ú
+	///		ä¸‹æ‹‰çœŸå®çª—å£
 	/// </summary>
 	class DM_EXPORT DMDropWnd: public DMHWnd, public IDMMessageFilter
 	{
@@ -43,7 +43,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		LRESULT OnNcCreate(LPCREATESTRUCT lpCreateStruct);	
 		void OnLButtonDown(UINT nFlags, CPoint point);
@@ -51,21 +51,21 @@ namespace DM
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);   
 		void OnKillFocus(HWND wndFocus);
 		void OnDestroy();
-		void OnActivate(UINT nState, BOOL bMinimized, HWND wndOther){}// ÖĞ¶ÏÏûÏ¢´¦Àí£¬·ÀÖ¹ÉèÖÃ½¹µã
+		void OnActivate(UINT nState, BOOL bMinimized, HWND wndOther){}// ä¸­æ–­æ¶ˆæ¯å¤„ç†ï¼Œé˜²æ­¢è®¾ç½®ç„¦ç‚¹
 		void OnActivateApp(BOOL bActive, DWORD dwThreadID);
 		int OnMouseActivate(HWND wndTopLevel, UINT nHitTest, UINT message);
 
 	public:
-		DECLARE_MSG_MAP()										// ·ÂMFCÏûÏ¢Ó³Éäºê
+		DECLARE_MSG_MAP()										// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		virtual BOOL PreTranslateMessage(MSG* pMsg);
 		virtual DMCode OnReleaseCaptureWnd();
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		DMCode PreMsg();
 		DMCode UnPreMsg();
 

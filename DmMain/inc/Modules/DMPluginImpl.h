@@ -1,10 +1,10 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMPluginImpl.h 
-// File Des: ²å¼şÄÚ²¿ÊµÏÖ,ÓÃÓÚ¼ÓÔØËùÓĞÄÚ²¿ÊµÏÖÄ£¿é
+// File Des: æ’ä»¶å†…éƒ¨å®ç°,ç”¨äºåŠ è½½æ‰€æœ‰å†…éƒ¨å®ç°æ¨¡å—
 // File Summary: 
 // Cur Version: 1.0
 // Author:

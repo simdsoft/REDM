@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIProcessCtrl.h"
 
 namespace DM
@@ -59,14 +59,14 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIProcessCtrl::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
 		{
 			byte alpha = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(alpha);
-			///1»æÖÆchannel
+			///1ç»˜åˆ¶channel
 			if (m_pChannelSkin)
 			{
 				CRect rcChannel; 
@@ -80,7 +80,7 @@ namespace DM
 				pCanvas->FillSolidRect(rcChannel,m_crChannel);
 			}
 
-			//2»æÖÆSel
+			//2ç»˜åˆ¶Sel
 			if (m_pSelSkin)
 			{
 				CRect rcSel = GetSelRect();
@@ -92,7 +92,7 @@ namespace DM
 				pCanvas->FillSolidRect(rcSel,m_crSel);
 			}
 
-			//3»æÖÆ½ø¶ÈÎÄ×Öformat
+			//3ç»˜åˆ¶è¿›åº¦æ–‡å­—format
 			__super::DM_OnPaint(pCanvas);
 			if (!m_strTextFormat.IsEmpty())
 			{
@@ -104,7 +104,7 @@ namespace DM
 				UINT uAlign = 0;
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(uAlign);
 				CRect rcText;
-				DV_GetClientRect(rcText);// ÒÔ¿Í»§ÇøÎª¿Õ¼ä
+				DV_GetClientRect(rcText);// ä»¥å®¢æˆ·åŒºä¸ºç©ºé—´
 				DV_DrawText(pCanvas, strValue, strValue.GetLength(),rcText, uAlign);
 				DV_PopDrawEnviron(pCanvas, DrawEnviron);
 			}
@@ -134,7 +134,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	CRect DUIProcessCtrl::GetSelRect()
 	{
 		CRect rcSel;

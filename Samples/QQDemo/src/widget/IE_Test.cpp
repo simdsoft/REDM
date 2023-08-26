@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "IE_Test.h"
 #include "QQMainWnd.h"
 extern CQQMainWnd* g_pMainWnd;
@@ -98,17 +98,17 @@ DMCode IE_Test::OnBtnIeJsTest()
 			GetRootFullPath(L".\\QQRes\\layout\\js\\DMJsTest.html",szPath,MAX_PATH);
 			if (!PathFileExists(szPath))
 			{
-				DMASSERT_EXPR(false,L"DMJsTest.htmlÎÄ¼þ²»´æÔÚ");
+				DMASSERT_EXPR(false,L"DMJsTest.htmlæ–‡ä»¶ä¸å­˜åœ¨");
 				break;
 			} 
 
-			pIE->OpenUrl(szPath);// ÏÈ´ò¿ª
-			CStringW str = L"alert(\"»¶Ó­½øÈëDMµÄjs²âÊÔÒ³Ãæ\")";
+			pIE->OpenUrl(szPath);// å…ˆæ‰“å¼€
+			CStringW str = L"alert(\"æ¬¢è¿Žè¿›å…¥DMçš„jsæµ‹è¯•é¡µé¢\")";
 			pIE->ExecuteScript(str);
 			break;
 		}
 
-		CStringW str = L"DMÍ¨¹ýExecuteScriptFuntion\r\nµ÷ÓÃÍøÒ³ÖÐStrFromDMº¯Êý,²¢´«Èë×Ö·û´®";
+		CStringW str = L"DMé€šè¿‡ExecuteScriptFuntion\r\nè°ƒç”¨ç½‘é¡µä¸­StrFromDMå‡½æ•°,å¹¶ä¼ å…¥å­—ç¬¦ä¸²";
 		CArray<LPCWSTR>vecParams;
 		vecParams.Add(str);
 		pIE->ExecuteScriptFuntion(L"StrFromDM",vecParams);

@@ -1,11 +1,11 @@
-#include "TGPDemoAfx.h" 
+ï»¿#include "TGPDemoAfx.h" 
 #include "TGPMainWnd.h"     
    
 #define  WM_HOLDMENU WM_USER+1010
 BEGIN_MSG_MAP(CTGPMainWnd)
 	MSG_WM_INITDIALOG(OnInitDialog)
 	MESSAGE_HANDLER_EX(WM_HOLDMENU,OnHoldMenu)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CTGPMainWnd)

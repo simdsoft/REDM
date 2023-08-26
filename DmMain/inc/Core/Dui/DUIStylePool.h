@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIStylePool.h 
-// File Des:  ¹ÜÀíËùÓĞstyle,ºÍskin³ØÒ»ÖÂ¹ÜÀí
+// File Des:  ç®¡ç†æ‰€æœ‰style,å’Œskinæ± ä¸€è‡´ç®¡ç†
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		StyleµÄ³Ø¶ÔÏó,ÓÃÓÚÖ§³Ö¾Ö²¿Style
+	///		Styleçš„æ± å¯¹è±¡,ç”¨äºæ”¯æŒå±€éƒ¨Style
 	/// </summary>
 	class DMStylePoolItem:public DMRefNum, public DMMapT<CStringA,DMXmlNode>
 	{
@@ -35,10 +35,10 @@ namespace DM
 	typedef DMStylePoolItem* DMStylePoolItemPtr; 
 
 	/// <summary>
-	///		¹ÜÀíStyleµÄ³ØÁĞ±í
+	///		ç®¡ç†Styleçš„æ± åˆ—è¡¨
 	/// </summary>
 	/// <remarks>
-	///		²ÉÓÃ³ØÁĞ±íµÄºÃ´¦ÊÇ¿ÉÒÔÒÆ³ıÄ³Ğ©¾Ö²¿µÄ³Ø,ÈçÄ³¸öStyle³ØÖĞËùÓĞ¶ÔÏóÖ»ÓÃÄ³¸ö´°¿Ú£¬µ±´°¿ÚÏú»Ùºó£¬¾Í¿ÉÒÔ¿¼ÂÇ°ÑÕâ¸ö³ØÒÆ³ı
+	///		é‡‡ç”¨æ± åˆ—è¡¨çš„å¥½å¤„æ˜¯å¯ä»¥ç§»é™¤æŸäº›å±€éƒ¨çš„æ± ,å¦‚æŸä¸ªStyleæ± ä¸­æ‰€æœ‰å¯¹è±¡åªç”¨æŸä¸ªçª—å£ï¼Œå½“çª—å£é”€æ¯åï¼Œå°±å¯ä»¥è€ƒè™‘æŠŠè¿™ä¸ªæ± ç§»é™¤
 	/// </remarks>
 	class DM_EXPORT DUIStylePool:public DMMapT<CStringA, DMStylePoolItemPtr>
 	{
@@ -46,41 +46,41 @@ namespace DM
 		~DUIStylePool();
 	public:
 		/// -------------------------------------------------
-		/// @brief  ¼ÓÈëÒ»¸östyle³Ø£¬Èçstyle³ØÒÑ´æÔÚ,Ôò¼ÓÈë½âÎöµÄÏî
-		/// @param[in]  XmlNode		xml½Úµã
+		/// @brief  åŠ å…¥ä¸€ä¸ªstyleæ± ï¼Œå¦‚styleæ± å·²å­˜åœ¨,åˆ™åŠ å…¥è§£æçš„é¡¹
+		/// @param[in]  XmlNode		xmlèŠ‚ç‚¹
 		/// @return  DMCode
 		DMCode AddStylePoolItem(DMXmlNode &XmlNode);
 
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ıÒ»¸östyle³Ø
-		/// @param[in]  lpszName	style³ØµÄÃû³Æ
+		/// @brief  ç§»é™¤ä¸€ä¸ªstyleæ± 
+		/// @param[in]  lpszName	styleæ± çš„åç§°
 		/// @return  DMCode
 		DMCode RemoveStylePoolItem(LPCSTR lpszName);
 	
 		/// -------------------------------------------------
-		/// @brief  ÒÆ³ıËùÓĞµÄstyle³Ø
+		/// @brief  ç§»é™¤æ‰€æœ‰çš„styleæ± 
 		/// @return  DMCode
 		DMCode RemoveAllStylePoolItem();
 
 		/// -------------------------------------------------
-		/// @brief  ²éÕÒstyle
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒstyleµÄkey
-		/// @param[in]  lpszName		ÓÃÓÚ²éÕÒstyle³ØµÄname
-		/// @param[in]  bLoopFind		ÊÇ·ñ±éÀúËùÓĞ³Ø²éÕÒ
-		/// @remark Ä¬ÈÏÏÈÔÚlpszNameµÄstyle³ØÖĞÕÒ£¬Èç¹ûÕÒ²»µ½,¶øÇÒbLoopFindÎªÕæ£¬¾ÍÈ«²¿±éÀúÕÒ
-		/// @return styleµÄxmlnode
+		/// @brief  æŸ¥æ‰¾style
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾styleçš„key
+		/// @param[in]  lpszName		ç”¨äºæŸ¥æ‰¾styleæ± çš„name
+		/// @param[in]  bLoopFind		æ˜¯å¦éå†æ‰€æœ‰æ± æŸ¥æ‰¾
+		/// @remark é»˜è®¤å…ˆåœ¨lpszNameçš„styleæ± ä¸­æ‰¾ï¼Œå¦‚æœæ‰¾ä¸åˆ°,è€Œä¸”bLoopFindä¸ºçœŸï¼Œå°±å…¨éƒ¨éå†æ‰¾
+		/// @return styleçš„xmlnode
 		DMXmlNode FindStyle(LPCSTR lpszKey,LPCSTR lpszName,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief   ²éÕÒstyle
-		/// @param[in]  lpszBuf			style³ØµÄÃû³Æ:styleµÄkey
-		/// @return styleµÄxmlnode
+		/// @brief   æŸ¥æ‰¾style
+		/// @param[in]  lpszBuf			styleæ± çš„åç§°:styleçš„key
+		/// @return styleçš„xmlnode
 		DMXmlNode FindStyle(LPCSTR lpszBuf,bool bLoopFind = true);
 
 		/// -------------------------------------------------
-		/// @brief  È«²¿±éÀúÕÒ²éÕÒstyle
-		/// @param[in]  lpszKey			ÓÃÓÚ²éÕÒstyleµÄkey
-		/// @return styleµÄxmlnode
+		/// @brief  å…¨éƒ¨éå†æ‰¾æŸ¥æ‰¾style
+		/// @param[in]  lpszKey			ç”¨äºæŸ¥æ‰¾styleçš„key
+		/// @return styleçš„xmlnode
 		DMXmlNode FindStyleFromAll(LPCSTR lpszKey);
 
 	public:

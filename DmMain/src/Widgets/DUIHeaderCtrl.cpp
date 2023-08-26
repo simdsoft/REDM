@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIHeaderCtrl.h"
 
 namespace DM
@@ -33,7 +33,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ½Ó¿Ú
+	// Function Des: æ¥å£
 	int DUIHeaderCtrl::InsertItem(int nIndex, DMXmlNode&XmlNode)
 	{
 		int iRet = -1;
@@ -53,7 +53,7 @@ namespace DM
 			LPDMHDITEM pNewItem = new DMHDITEM;
 			pNewItem->mask      = 0xFFFFFFFF;
 
-			// ½âÎö
+			// è§£æ
 			LPCSTR strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_width);
 			DMAttributeDispatch::ParseInt(strValue,pNewItem->cxy);
 			strValue = XmlNode.Attribute(DMAttr::DUIHeaderCtrlAttr::ITEM_skin);
@@ -77,7 +77,7 @@ namespace DM
 			m_DMArray.InsertAt(nIndex,pNewItem);
 
 
-			// ĞèÒª¸üĞÂÁĞµÄĞòºÅ,²»Ò»¶¨µÚ0ÅÅ¾ÍÊÇ0£¬ÒòÎªswap
+			// éœ€è¦æ›´æ–°åˆ—çš„åºå·,ä¸ä¸€å®šç¬¬0æ’å°±æ˜¯0ï¼Œå› ä¸ºswap
 			for (int i=0;i<iCount;i++)
 			{
 				if (i==nIndex) 
@@ -171,7 +171,7 @@ namespace DM
 				{
 					break;
 				}
-				iWid = Evt0.m_nWidth;// Íâ²¿¿É¸Ä±ä
+				iWid = Evt0.m_nWidth;// å¤–éƒ¨å¯æ”¹å˜
 			}
 			iRet = m_DMArray[iItem]->cxy;
 			m_DMArray[iItem]->cxy = iWid;
@@ -202,7 +202,7 @@ namespace DM
 			int iOrder = m_DMArray[iItem]->iOrder;
 			RemoveObj(iOrder);
 
-			// ¸üĞÂÅÅĞò
+			// æ›´æ–°æ’åº
 			int iCount = (int)GetCount();
 			for (int i=0;i<iCount;i++)
 			{
@@ -231,7 +231,7 @@ namespace DM
 			CRect rcItem = rc;
 			rcItem.DeflateRect(m_rcItemMargin);
 			if (pItem->pSkin)
-			{// »æ±³¾°
+			{// ç»˜èƒŒæ™¯
 				pItem->pSkin->Draw(pCanvas,rcItem,pItem->ulState);
 			}
 			else 
@@ -244,7 +244,7 @@ namespace DM
 
 			UINT ulAlign = 0;
 			if (pItem->lpszText)
-			{// »æÎÄ×Ö
+			{// ç»˜æ–‡å­—
 				m_pDUIXmlInfo->m_pStyle->GetTextAlign(ulAlign);
 				CStringW strTrans = DMTR(pItem->lpszText);
 				pCanvas->DrawText(strTrans,strTrans.GetLength(),rcItem,ulAlign);
@@ -256,7 +256,7 @@ namespace DM
 				break;
 			}
 
-			// »æÖÆsortÍ¼±ê
+			// ç»˜åˆ¶sortå›¾æ ‡
 			CSize szSort;
 			m_pSortSkin->GetStateSize(szSort);
 			CPoint ptSort;
@@ -293,7 +293,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUIHeaderCtrl::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
@@ -310,7 +310,7 @@ namespace DM
 				rcItem.right = rcItem.left+m_DMArray[i]->cxy;
 				DrawItem(pCanvas,rcItem,m_DMArray[i]);
 				if (rcItem.right>=rcClient.right)
-				{//Ìø³ö
+				{//è·³å‡º
 					break;
 				}
 			}
@@ -351,7 +351,7 @@ namespace DM
 		if (IsItemHover(m_dwHitTest))
 		{
 			if (m_bDragging)
-			{// ÍÏ¶¯±íÍ·Ïî
+			{// æ‹–åŠ¨è¡¨å¤´é¡¹
 				if (m_bSwap)
 				{
 					DMDragWnd::DragEnd();
@@ -365,7 +365,7 @@ namespace DM
 						m_DMArray.RemoveAt(LOWORD(m_dwHitTest));
 						int nPos = LOWORD(m_dwDragTo);
 						m_DMArray.InsertAt(LOWORD(m_dwDragTo),pItem);
-						// ·¢ÏûÏ¢Í¨ÖªËŞÖ÷±íÏîÎ»ÖÃ·¢Éú±ä»¯,ÈçListCtrl
+						// å‘æ¶ˆæ¯é€šçŸ¥å®¿ä¸»è¡¨é¡¹ä½ç½®å‘ç”Ÿå˜åŒ–,å¦‚ListCtrl
 						DMEventHeaderItemSwapArgs Evt(this);
 						Evt.m_iOldIndex = LOWORD(m_dwHitTest);
 						Evt.m_iNewIndex = nPos;
@@ -377,7 +377,7 @@ namespace DM
 				}
 			}
 			else
-			{// µã»÷±íÍ·Ïî
+			{// ç‚¹å‡»è¡¨å¤´é¡¹
 				if(m_bSort)
 				{
 					m_DMArray[LOWORD(m_dwHitTest)]->ulState = DUIWNDSTATE_Hover;
@@ -389,7 +389,7 @@ namespace DM
 			}
 		}
 		else if (-1!=m_dwHitTest)
-		{// µ÷Õû±íÍ·¿í¶È£¬·¢ËÍÒ»¸öµ÷ÕûÍê³ÉÏûÏ¢
+		{// è°ƒæ•´è¡¨å¤´å®½åº¦ï¼Œå‘é€ä¸€ä¸ªè°ƒæ•´å®Œæˆæ¶ˆæ¯
 			DMEventHeaderItemChangedArgs Evt(this);
 			Evt.m_iItem  = LOWORD(m_dwHitTest);
 			Evt.m_nWidth = m_DMArray[Evt.m_iItem]->cxy;
@@ -405,13 +405,13 @@ namespace DM
 		{
 			if (!m_bDragging)
 			{
-				m_bDragging = true;      /// ¿ªÊ¼ÒÆ¶¯
+				m_bDragging = true;      /// å¼€å§‹ç§»åŠ¨
 				if (IsItemHover(m_dwHitTest) && m_bSwap)
 				{
 					m_dwDragTo    = m_dwHitTest;
 					CRect rcItem  = GetItemRect(LOWORD(m_dwHitTest));
 					DrawDraggingState(m_dwDragTo);
-					CreateDragCanvas(LOWORD(m_dwHitTest));//  ´´½¨ÍÏ¶¯Ê±µÄ»­²¼
+					CreateDragCanvas(LOWORD(m_dwHitTest));//  åˆ›å»ºæ‹–åŠ¨æ—¶çš„ç”»å¸ƒ
 					CPoint pt     = m_ptClick-rcItem.TopLeft();
 					DMDragWnd::DragBegin(m_pDragCanvas,pt,0,128,LWA_ALPHA|LWA_COLORKEY);
 				}
@@ -428,13 +428,13 @@ namespace DM
 						&&m_dwDragTo!=dwDragTo)
 					{
 						m_dwDragTo = dwDragTo;
-						DrawDraggingState(dwDragTo);// ×Ô¶¯µ÷ÕûitemÎ»ÖÃ
+						DrawDraggingState(dwDragTo);// è‡ªåŠ¨è°ƒæ•´itemä½ç½®
 					}
 					DMDragWnd::DragMove(pt2);
 				}
 			}
 			else if (m_dwHitTest!=-1)
-			{// µ÷½Ú¿í¶È
+			{// è°ƒèŠ‚å®½åº¦
 				if (!m_bFixWidth)
 				{
 					int cxNew = m_nAdjItemOldWidth + pt.x - m_ptClick.x;
@@ -450,12 +450,12 @@ namespace DM
 					if (false == Evt0.m_bCancel)
 					{
 						m_DMArray[LOWORD(m_dwHitTest)]->cxy = Evt0.m_nWidth;
-						// ·¢³öµ÷½Ú¿í¶ÈÏûÏ¢
+						// å‘å‡ºè°ƒèŠ‚å®½åº¦æ¶ˆæ¯
 						DMEventHeaderItemChangedArgs Evt(this);
 						Evt.m_nWidth = Evt0.m_nWidth;
 						DV_FireEvent(Evt);
 						DM_Invalidate();
-						GetContainer()->OnUpdateWindow();// Á¢¼´¸üĞÂ´°¿Ú
+						GetContainer()->OnUpdateWindow();// ç«‹å³æ›´æ–°çª—å£
 					}
 				}
 			}
@@ -524,7 +524,7 @@ namespace DM
 	}
 		
 	//---------------------------------------------------
-	// Function Des: ¿ÉÖØÔØº¯Êı
+	// Function Des: å¯é‡è½½å‡½æ•°
 	DMCode DUIHeaderCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
@@ -593,10 +593,10 @@ namespace DM
 			int nMargin = m_bSort?m_nItemDelta:0;
 			int iCount  = (int)GetCount();
 			for (int i=0; i<iCount; i++)
-			{// ²éÕÒptÎ»ÓÚÄÄ¸öItemÖĞ
+			{// æŸ¥æ‰¾ptä½äºå“ªä¸ªItemä¸­
 				if (0 == m_DMArray[i]->cxy) 
 				{
-					continue;    // Ìø¹ı¿í¶ÈÎª0µÄÏî
+					continue;    // è·³è¿‡å®½åº¦ä¸º0çš„é¡¹
 				}
 				rcItem.left  = rcItem.right;
 				rcItem.right = rcItem.left+m_DMArray[i]->cxy;
@@ -616,7 +616,7 @@ namespace DM
 					WORD nRight = (WORD)i+1;
 					if (nRight>=iCount)
 					{
-						nRight = -1;//²ÉÓÃ-1´ú±íÄ©Î²
+						nRight = -1;//é‡‡ç”¨-1ä»£è¡¨æœ«å°¾
 					}
 					dwRet = MAKELONG(i,nRight);
 					break;
@@ -645,7 +645,7 @@ namespace DM
 			DV_GetClientRect(rcClient);
 			CRect rcItem(0,0,m_DMArray[iItem]->cxy,rcClient.Height());
 		
-			// ´´½¨ÍÏ¶¯»­²¼
+			// åˆ›å»ºæ‹–åŠ¨ç”»å¸ƒ
 			m_pDragCanvas.Release();
 			DMSmartPtrT<IDMRender> pRender;
 			g_pDMApp->GetDefRegObj((void**)&pRender,DMREG_Render);
@@ -733,7 +733,7 @@ namespace DM
 				for (int i=0; i<iCount; i++)
 				{
 					LPDMHDITEM& pItem = GetObj(i);
-					if (pItem->pSkin == pOldSkin// Ê¹ÓÃÁËm_pItemSkin
+					if (pItem->pSkin == pOldSkin// ä½¿ç”¨äº†m_pItemSkin
 						||NULL == pItem->pSkin
 						)
 					{

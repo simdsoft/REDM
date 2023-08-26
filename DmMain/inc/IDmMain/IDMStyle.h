@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMStyle.h  
-// File Des: IDMStyleÌá¹©StyleµÄ¸÷ÖÖ¶ÔÍâ½Ó¿Ú
-// File Summary: ²Î¿¼Android Drawable
+// File Des: IDMStyleæä¾›Styleçš„å„ç§å¯¹å¤–æ¥å£
+// File Summary: å‚è€ƒAndroid Drawable
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,46 +17,46 @@
 namespace DM
 {
 	/// <summary>
-	///		 ÊôĞÔ³éÏóÀà,classtype=<see cref="DMREG_Skin"/>
+	///		 å±æ€§æŠ½è±¡ç±»,classtype=<see cref="DMREG_Skin"/>
 	/// </summary>
 	/// <remarks>
-	///		²¿·Ö½Ó¿ÚÎ´ÊµÏÖµÄ£¬»á·µ»ØDM_ECODE_NOTIMPL
+	///		éƒ¨åˆ†æ¥å£æœªå®ç°çš„ï¼Œä¼šè¿”å›DM_ECODE_NOTIMPL
 	/// </remarks>
 	class IDMStyle:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMStyle,"IDMStyle",DMREG_Style);
 	public:
 		/// -------------------------------------------------
-		/// @brief			È¡µÃÃ¿¸öÊµÀı»¯Style¶ÔÏóµÄÎ¨Ò»ID    
+		/// @brief			å–å¾—æ¯ä¸ªå®ä¾‹åŒ–Styleå¯¹è±¡çš„å”¯ä¸€ID    
 		/// @return			DMCode
 		virtual DMCode GetID(wchar_t* lpszId, int iSize) = 0;
 		virtual DMCode CopyData(IDMStyle* pStyle) = 0;
 
 		//---------------------------------------------------
-		// Function Des: ÎÄ±¾Ïà¹Ø
+		// Function Des: æ–‡æœ¬ç›¸å…³
 		//---------------------------------------------------
-		virtual DMCode GetTextAlign(UINT &ulAlign) = 0;                                          ///<»ñÈ¡ÎÄ±¾Format
-		virtual DMCode GetTextColor(int iState,DMColor &Clr) = 0;                                ///<È¡µÃ×´Ì¬ÎÄ±¾ÑÕÉ«
-		virtual DMCode GetTextFont(int iState, IDMFont** ppFont) = 0;                            ///<È¡µÃ×´Ì¬×ÖÌå,ÄÚ²¿Ôö¼ÓÒıÓÃ¼ÆÊı£¬Íâ²¿ÊÍ·Å 
-		virtual DMCode GetTextStates(int &iState) = 0;											 ///<È¡µÃÎÄ±¾×´Ì¬Êı
+		virtual DMCode GetTextAlign(UINT &ulAlign) = 0;                                          ///<è·å–æ–‡æœ¬Format
+		virtual DMCode GetTextColor(int iState,DMColor &Clr) = 0;                                ///<å–å¾—çŠ¶æ€æ–‡æœ¬é¢œè‰²
+		virtual DMCode GetTextFont(int iState, IDMFont** ppFont) = 0;                            ///<å–å¾—çŠ¶æ€å­—ä½“,å†…éƒ¨å¢åŠ å¼•ç”¨è®¡æ•°ï¼Œå¤–éƒ¨é‡Šæ”¾ 
+		virtual DMCode GetTextStates(int &iState) = 0;											 ///<å–å¾—æ–‡æœ¬çŠ¶æ€æ•°
 	
 		//---------------------------------------------------
-		// Function Des: ¹â±êÏà¹Ø
+		// Function Des: å…‰æ ‡ç›¸å…³
 		//---------------------------------------------------
-		virtual DMCode GetCursor(HCURSOR &hCursor) = 0;											 ///<È¡µÃ¹â±êÃû
+		virtual DMCode GetCursor(HCURSOR &hCursor) = 0;											 ///<å–å¾—å…‰æ ‡å
 
 		//---------------------------------------------------
-		// Function Des: ´°¿ÚÏà¹Ø
+		// Function Des: çª—å£ç›¸å…³
 		//---------------------------------------------------
-		virtual DMCode GetBgSkin(IDMSkin** ppSkin) = 0;											 ///<È¡µÃ±³¾°skin
-		virtual DMCode GetBgColor(int iState,DMColor &Clr) = 0;                                  ///<È¡µÃ±³¾°ÑÕÉ«	
-		virtual DMCode GetBgClrStates(int  &iState) = 0;                                         ///<È¡µÃ±³¾°(¿Í»§-·Ç¿Í»§)ÑÕÉ«×´Ì¬Êı
+		virtual DMCode GetBgSkin(IDMSkin** ppSkin) = 0;											 ///<å–å¾—èƒŒæ™¯skin
+		virtual DMCode GetBgColor(int iState,DMColor &Clr) = 0;                                  ///<å–å¾—èƒŒæ™¯é¢œè‰²	
+		virtual DMCode GetBgClrStates(int  &iState) = 0;                                         ///<å–å¾—èƒŒæ™¯(å®¢æˆ·-éå®¢æˆ·)é¢œè‰²çŠ¶æ€æ•°
 
-		virtual DMCode GetNcMargin(LPRECT lpRect) = 0;				                             ///<È¡µÃ·Ç¿Í»§ÇøËÄ±ß¿ò
-		virtual DMCode GetNcColor(int iState, DMColor &Clr) = 0;                                 ///<È¡µÃ·Ç¿Í»§ÇøÑÕÉ«
-		virtual DMCode GetNcSkin(IDMSkin** ppSkin) = 0;											 ///<È¡µÃ·Ç¿Í»§Çøskin
+		virtual DMCode GetNcMargin(LPRECT lpRect) = 0;				                             ///<å–å¾—éå®¢æˆ·åŒºå››è¾¹æ¡†
+		virtual DMCode GetNcColor(int iState, DMColor &Clr) = 0;                                 ///<å–å¾—éå®¢æˆ·åŒºé¢œè‰²
+		virtual DMCode GetNcSkin(IDMSkin** ppSkin) = 0;											 ///<å–å¾—éå®¢æˆ·åŒºskin
 
-		virtual DMCode GetAlpha(byte &alpha) = 0;												 ///<È¡µÃ´°¿ÚÍ¸Ã÷¶È
+		virtual DMCode GetAlpha(byte &alpha) = 0;												 ///<å–å¾—çª—å£é€æ˜åº¦
 	};
 	typedef IDMStyle* IDMStylePtr;
 

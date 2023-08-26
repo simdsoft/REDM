@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMDC.h
 // File mark:   
-// File summary:·â×°È«ÆÁDC
+// File summary:å°è£…å…¨å±DC
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-9-7

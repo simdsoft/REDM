@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	Plugin.h
 // File mark:   
-// File summary:ÄÚÖÃ²å¼ş
+// File summary:å†…ç½®æ’ä»¶
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8

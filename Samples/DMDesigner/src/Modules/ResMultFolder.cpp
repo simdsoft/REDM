@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+Ôªø#include "DMDesignerAfx.h"
 #include "ResMultFolder.h"
 
 ResMultFolder::ResMultFolder()
@@ -54,7 +54,7 @@ DMCode ResMultFolder::GetItemSize(LPCSTR lpszType, LPCSTR lpszName, unsigned lon
 	if (!DMSUCCEEDED(iErr))
 	{
 		CStringA strInfo;
-		strInfo.Format("Res◊ ‘¥÷–%s:%sªÒ»°size ß∞‹",lpszType,lpszName);
+		strInfo.Format("ResËµÑÊ∫ê‰∏≠%s:%sËé∑ÂèñsizeÂ§±Ë¥•",lpszType,lpszName);
 		DMASSERT_EXPR(0,ntcvt::from_chars(strInfo).c_str());
 	}
 	return iErr;
@@ -77,7 +77,7 @@ DMCode ResMultFolder::GetItemBuf(LPCSTR lpszType, LPCSTR lpszName, DMBufT<byte>&
 	if (!DMSUCCEEDED(iErr))
 	{
 		CStringA strInfo;
-		strInfo.Format("Res◊ ‘¥÷–%s:%sªÒ»°buf ß∞‹",lpszType,lpszName);
+		strInfo.Format("ResËµÑÊ∫ê‰∏≠%s:%sËé∑ÂèñbufÂ§±Ë¥•",lpszType,lpszName);
 		DMASSERT_EXPR(0,ntcvt::from_chars(strInfo).c_str());
 	}
 	return iErr;
@@ -106,7 +106,7 @@ void ResMultFolder::PreArrayObjRemove(const ResFolderPtr &obj)
 bool ResMultFolder::IsDMDesignerRes(const char* pszName)
 {
 	return (strlen(pszName) > 3 && memcmp(pszName, "ds_", 3) == 0) &&
-		// ÷ß≥÷±‡º≠◊‘…Ì
+		// ÊîØÊåÅÁºñËæëËá™Ë∫´
 		(!g_pMainWnd || !g_pMainWnd->m_pDesignerXml || g_pMainWnd->m_pDesignerXml->m_strGlobalName.CompareNoCase("ds_global") != 0);
 }
 

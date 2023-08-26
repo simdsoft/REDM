@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMBase.h 
-// File Des: ËùÓĞ×¢²áÀàµÄ»ùÀà
+// File Des: æ‰€æœ‰æ³¨å†Œç±»çš„åŸºç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,68 +17,68 @@
 namespace DM
 {
 	/// <summary>
-	///		xml½âÎöÀàµÄ»ùÀà£¬ÓÃÓÚËùÓĞÊı¾İÀàÊ¹ÓÃXML½âÎöºê
+	///		xmlè§£æç±»çš„åŸºç±»ï¼Œç”¨äºæ‰€æœ‰æ•°æ®ç±»ä½¿ç”¨XMLè§£æå®
 	/// </summary>
 	class DM_EXPORT DMDataBase:public DMRefNum
 	{
 	public:
-		virtual DMCode InitDMData(DMXmlNode XmlNode);															///<¼ÓÔØ¡¢½âÎöXMLÊı¾İ
-		virtual DMCode OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);					///<½âÎöXMLµÄÊôĞÔÊı¾İÇ°´¥·¢
-	    DMCode SetAttributeW(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<½âÎöXMLµÄÊôĞÔÊı¾İ
+		virtual DMCode InitDMData(DMXmlNode XmlNode);															///<åŠ è½½ã€è§£æXMLæ•°æ®
+		virtual DMCode OnAttributeStart(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);					///<è§£æXMLçš„å±æ€§æ•°æ®å‰è§¦å‘
+	    DMCode SetAttributeW(LPCSTR pszAttribute, LPCWSTR pszValue, bool bLoadXml)						///<è§£æXMLçš„å±æ€§æ•°æ®
 		{
 			return SetAttribute(pszAttribute, DMW2A(pszValue), bLoadXml);
 		}
-		virtual DMCode SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);						///<½âÎöXMLµÄÊôĞÔÊı¾İ
-		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);    ///<½âÎöÍêÒ»¸öXMLÊôĞÔºó´¥·¢
-		virtual DMCode DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml);					///<Ä¬ÈÏ½âÎöXMLµÄÊôĞÔÊı¾İ
-		virtual DMCode OnFinished(const DMXmlNode &XmlNode);															///<Êı¾İÈ«²¿½âÎöÍêºó´¦Àí
-		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;}							///<À©Õ¹½Ó¿Ú
+		virtual DMCode SetAttribute(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml);						///<è§£æXMLçš„å±æ€§æ•°æ®
+		virtual DMCode OnAttributeFinished(LPCSTR pszAttribute, LPCSTR pszValue,bool bLoadXml,DMCode iErr);    ///<è§£æå®Œä¸€ä¸ªXMLå±æ€§åè§¦å‘
+		virtual DMCode DefAttributeProc(LPCSTR pszAttribute, LPCSTR pszValue, bool bLoadXml);					///<é»˜è®¤è§£æXMLçš„å±æ€§æ•°æ®
+		virtual DMCode OnFinished(const DMXmlNode &XmlNode);															///<æ•°æ®å…¨éƒ¨è§£æå®Œåå¤„ç†
+		virtual DMCode SendExpandInfo(WPARAM wp, LPARAM lp){return DM_ECODE_NOTIMPL;}							///<æ‰©å±•æ¥å£
 	};
 
 	/// <summary>
-	///		ËùÓĞ×¢²áÀà¡¢DUIÀàµÄ»ùÀà
+	///		æ‰€æœ‰æ³¨å†Œç±»ã€DUIç±»çš„åŸºç±»
 	/// </summary>
 	class DM_EXPORT DMBase:public DMDataBase
 	{
 	public:
-		static LPCSTR GetClassName();			///<È¡µÃ×¢²áÀàÃû
-		virtual LPCSTR V_GetClassName();       ///<È¡µÃ×¢²áÀàÃû, ÕâÊÇĞéº¯Êı
-		static LPCSTR GetBaseClassName();		///<È¡µÃ×¢²áÀà¸¸ÀàÃû
-		virtual bool IsClass(LPCSTR lpszName);	///<ÊÇ·ñÊôÓÚ´Ë´°¿ÚÀàÏòÉÏÁ´
-		static int GetClassType();              ///<È¡µÃ´°¿ÚÀàĞÍ
-		virtual int V_GetClassType();			///<È¡µÃ´°¿ÚÀàĞÍ£¬ºÍGetClassTypeÒ»Ñù£¬µ«ÕâÊÇ¸öĞéº¯Êı£¬ÓÃÓÚ»ùÖ¸ÕëÖ¸Ïò×ÓÀàÊ±¶¯Ì¬µ÷ÓÃ
+		static LPCSTR GetClassName();			///<å–å¾—æ³¨å†Œç±»å
+		virtual LPCSTR V_GetClassName();       ///<å–å¾—æ³¨å†Œç±»å, è¿™æ˜¯è™šå‡½æ•°
+		static LPCSTR GetBaseClassName();		///<å–å¾—æ³¨å†Œç±»çˆ¶ç±»å
+		virtual bool IsClass(LPCSTR lpszName);	///<æ˜¯å¦å±äºæ­¤çª—å£ç±»å‘ä¸Šé“¾
+		static int GetClassType();              ///<å–å¾—çª—å£ç±»å‹
+		virtual int V_GetClassType();			///<å–å¾—çª—å£ç±»å‹ï¼Œå’ŒGetClassTypeä¸€æ ·ï¼Œä½†è¿™æ˜¯ä¸ªè™šå‡½æ•°ï¼Œç”¨äºåŸºæŒ‡é’ˆæŒ‡å‘å­ç±»æ—¶åŠ¨æ€è°ƒç”¨
 	};
 
 	/// <summary>
-	///		¿É×¢²áÀàµÄclasstype
+	///		å¯æ³¨å†Œç±»çš„classtype
 	/// </summary>
 	/// <remarks>
-	///		ËùÓĞ×¢²áÀà¾ùÔÚModeulesÖĞÓĞÄÚ²¿ÊµÏÖ,ÒÔ×ö²Î¿¼
+	///		æ‰€æœ‰æ³¨å†Œç±»å‡åœ¨Modeulesä¸­æœ‰å†…éƒ¨å®ç°,ä»¥åšå‚è€ƒ
 	/// </remarks>
 	enum DMREGTYPE
 	{
-		DMREG_Unknown                           = 0,	///<´ËÀàĞÍ½ö¹©ÄÚ²¿Ê¹ÓÃ
-		DMREG_Skin								= 1,    ///<Æ¤·ôÀà,Ö¸µ¥ÕÅÍ¼Æ¬µÄ»æÖÆ·½Ê½,ÈçÆ½ÆÌ¡¢À­Éì¡¢9¹¬¸ñ
-		DMREG_Style                             = 2,	///<ÑùÊ½Àà
-		DMREG_Attribute                         = 3,	///<XML½âÎöÀà
-		DMREG_Window                            = 4,    ///<DUI´°¿ÚÀà
-		DMREG_Layout                            = 5,    ///<Ãªµã²¼¾ÖÀà
-		DMREG_ImgDecoder                        = 6,    ///<½âÂëÀà
-		DMREG_Res		                        = 7,    ///<×ÊÔ´´ò°üÀà
-		DMREG_Render                            = 8,    ///<äÖÈ¾Àà
-		DMREG_Draw                              = 9,    ///<»æÖÆÀà
-		DMREG_Log	                            = 10,   ///<LOGÀà
-		DMREG_FlowLayout                        = 11,   ///<Á÷Ê½²¼¾ÖÀà,»ùÓÚDUIWindowÊµÏÖ
-		DMREG_ToolTip                           = 12,   ///<tooltipÀà
-		DMREG_Animate                           = 13,   ///<¶¯»­×¢²áÀà
-		DMREG_Script                            = 14,   ///<½Å±¾Àà
-		DMREG_Trans                             = 15,   ///<·­ÒëÀà
-		DMREG_TaskRunner                        = 16,   ///<ÊÂ¼şÀà,ÄÚÖÃÀàËÆÓÚQTµÄ¿çÏß³Ì°ó¶¨,·Ö·¢ÊÂ¼ş
+		DMREG_Unknown                           = 0,	///<æ­¤ç±»å‹ä»…ä¾›å†…éƒ¨ä½¿ç”¨
+		DMREG_Skin								= 1,    ///<çš®è‚¤ç±»,æŒ‡å•å¼ å›¾ç‰‡çš„ç»˜åˆ¶æ–¹å¼,å¦‚å¹³é“ºã€æ‹‰ä¼¸ã€9å®«æ ¼
+		DMREG_Style                             = 2,	///<æ ·å¼ç±»
+		DMREG_Attribute                         = 3,	///<XMLè§£æç±»
+		DMREG_Window                            = 4,    ///<DUIçª—å£ç±»
+		DMREG_Layout                            = 5,    ///<é”šç‚¹å¸ƒå±€ç±»
+		DMREG_ImgDecoder                        = 6,    ///<è§£ç ç±»
+		DMREG_Res		                        = 7,    ///<èµ„æºæ‰“åŒ…ç±»
+		DMREG_Render                            = 8,    ///<æ¸²æŸ“ç±»
+		DMREG_Draw                              = 9,    ///<ç»˜åˆ¶ç±»
+		DMREG_Log	                            = 10,   ///<LOGç±»
+		DMREG_FlowLayout                        = 11,   ///<æµå¼å¸ƒå±€ç±»,åŸºäºDUIWindowå®ç°
+		DMREG_ToolTip                           = 12,   ///<tooltipç±»
+		DMREG_Animate                           = 13,   ///<åŠ¨ç”»æ³¨å†Œç±»
+		DMREG_Script                            = 14,   ///<è„šæœ¬ç±»
+		DMREG_Trans                             = 15,   ///<ç¿»è¯‘ç±»
+		DMREG_TaskRunner                        = 16,   ///<äº‹ä»¶ç±»,å†…ç½®ç±»ä¼¼äºQTçš„è·¨çº¿ç¨‹ç»‘å®š,åˆ†å‘äº‹ä»¶
 		
 		DMREG_MAX, 
 	};
 
-/// ËùÓĞ»ùÓÚDMBaseµÄ×ÓÀà±ØĞë¶¨Òå´Ëºê,Ç°Á½¸östatic,ºóÁ½¸öÓÉ×ÓÀàÖØÔØÁËclasstypeÖ»ÔÊĞíÊ¹ÓÃDMREGTYPEÖĞµÄÀàĞÍ
+/// æ‰€æœ‰åŸºäºDMBaseçš„å­ç±»å¿…é¡»å®šä¹‰æ­¤å®,å‰ä¸¤ä¸ªstatic,åä¸¤ä¸ªç”±å­ç±»é‡è½½äº†classtypeåªå…è®¸ä½¿ç”¨DMREGTYPEä¸­çš„ç±»å‹
 #define DMDECLARE_CLASS_NAME(theclass, classname, classtype) \
 public: \
 	static LPCSTR GetClassName() \

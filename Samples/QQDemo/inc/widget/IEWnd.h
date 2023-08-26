@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IEWnd.h 
-// File Des: IEÖ÷´°¿Ú
+// File Des: IEä¸»çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:

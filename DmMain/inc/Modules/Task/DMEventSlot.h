@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -14,7 +14,7 @@
 namespace DM
 {
 	/// <summary>
-	///		²ÛÀ©Õ¹½Ó¿Ú
+	///		æ§½æ‰©å±•æ¥å£
 	/// </summary>
 	interface IDMSlot : public DMRefNum
 	{
@@ -22,7 +22,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		Í¬²½²Û,Í¬²½µ÷ÓÃ²Ûº¯Êı
+	///		åŒæ­¥æ§½,åŒæ­¥è°ƒç”¨æ§½å‡½æ•°
 	/// </summary>
 	class DMSyncSlot : public IDMSlot
 	{
@@ -44,14 +44,14 @@ namespace DM
 		virtual DMSyncSlot* Clone() const;
 
 	public:
-		bool									m_bMuted;		///< ÎªtrueÊ±²»µ÷ÓÃÊÂ¼ş
-		int										m_SlotId;		///< ²ÛIdºÅ
-		DMSlot									m_Slot;		    ///< ²ÛÊµÏÖÌå
+		bool									m_bMuted;		///< ä¸ºtrueæ—¶ä¸è°ƒç”¨äº‹ä»¶
+		int										m_SlotId;		///< æ§½Idå·
+		DMSlot									m_Slot;		    ///< æ§½å®ç°ä½“
 	};
 
 
 	/// <summary>
-	///		ÊÂ¼ş²Û,ÊÂ¼şÃû³Æ---Í¬²½/Òì²½/UI²Û
+	///		äº‹ä»¶æ§½,äº‹ä»¶åç§°---åŒæ­¥/å¼‚æ­¥/UIæ§½
 	/// </summary>
 	class DMEventSlot : public DMRefNum
 	{
@@ -70,8 +70,8 @@ namespace DM
 		bool DisconnectIfThis(void* pThis);
 
 	public:
-		CStringA								m_strEventName;					   ///< ÊÂ¼şÃû
-		DM::CMap<int, DM::CArray<Connection>>   m_slotContainer;                   ///< ÊÂ¼ş²ÛÈİÆ÷£¬×é±ğÔ½´óÔ½ÓÅÏÈµ÷ÓÃ,MAP»á×Ô¶¯°ÑÊı×Ö°´´ÓĞ¡µ½´óÅÅĞò
+		CStringA								m_strEventName;					   ///< äº‹ä»¶å
+		DM::CMap<int, DM::CArray<Connection>>   m_slotContainer;                   ///< äº‹ä»¶æ§½å®¹å™¨ï¼Œç»„åˆ«è¶Šå¤§è¶Šä¼˜å…ˆè°ƒç”¨,MAPä¼šè‡ªåŠ¨æŠŠæ•°å­—æŒ‰ä»å°åˆ°å¤§æ’åº
 	};
 	typedef DMSmartPtrT<DMEventSlot>			RefEventSlot;
 

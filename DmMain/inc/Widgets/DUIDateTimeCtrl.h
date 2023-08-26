@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -14,7 +14,7 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIDateTimeCtrl"/>µÄxmlÊôÐÔ¶¨Òå
+	///		<see cref="DM::DUIDateTimeCtrl"/>çš„xmlå±žæ€§å®šä¹‰
 	/// </summary>
 	class DUIDateTimeCtrlAttr:public DUIWindowAttr
 	{
@@ -25,7 +25,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIDateTimeCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôÐÔ£º<see cref="DMAttr::DUIDateTimeCtrlAttr"/>
+	///		 DUIDateTimeCtrlçš„å†…ç½®å®žçŽ°ï¼Œå±žæ€§ï¼š<see cref="DMAttr::DUIDateTimeCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIDateTimeCtrl:public DUIWindow
 	{

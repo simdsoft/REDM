@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMActiveXBase.h"
 
 namespace DM
@@ -143,7 +143,7 @@ namespace DM
 	void DMAxContainerImpl::OnAxInvalidate(LPCRECT pRect,BOOL bErase)
 	{
 		CRect rc = pRect;
-		m_pOwner->DM_InvalidateRect(rc);// ˢ�´�
+		m_pOwner->DM_InvalidateRect(rc);// 刷新处
 	}
 
 	void DMAxContainerImpl::OnAxSetCapture(BOOL fCapture)

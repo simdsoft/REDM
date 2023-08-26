@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DmMainOutput.h 
-// File Des: ÓÃÓÚÔ¤±àÒëÖĞ°üº¬£¬ÒÔ¼°À©Õ¹²å¼şÖĞ°üº¬
+// File Des: ç”¨äºé¢„ç¼–è¯‘ä¸­åŒ…å«ï¼Œä»¥åŠæ‰©å±•æ’ä»¶ä¸­åŒ…å«
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -14,37 +14,37 @@
 //-------------------------------------------------------
 #pragma once
 
-/// µ¼³öºê´¦Àí
+/// å¯¼å‡ºå®å¤„ç†
 #ifdef DLL_DMMAIN
 
 #ifdef	 DmMain_EXPORTS
 	#define  DM_EXPORT		 __declspec( dllexport )
 #else
 	#define	 DM_EXPORT		 __declspec( dllimport )
-	#pragma message("DmMainÊ¹ÓÃdll°æ±¾")
+	#pragma message("DmMainä½¿ç”¨dllç‰ˆæœ¬")
 #endif// DmMain_EXPORTS
 
 #else
 
-	#pragma message("DmMainÊ¹ÓÃlib°æ±¾")
+	#pragma message("DmMainä½¿ç”¨libç‰ˆæœ¬")
 	#define DM_EXPORT
 
 #endif// DLL_DMMAIN
 
-// ÓÉÓÚ±àÒëÆ÷¶ÔtemplateÒªÇóÉùÃ÷ºÍÊµÏÖÒ»ÆğÌá¹©£¬ËùÒÔ²úÉú´Ë¸æ¾¯
-// Ò²¿Éµ¼³öÄ£°å,Èç:template class DM_EXPORT CStringT<wchar_t>
+// ç”±äºç¼–è¯‘å™¨å¯¹templateè¦æ±‚å£°æ˜å’Œå®ç°ä¸€èµ·æä¾›ï¼Œæ‰€ä»¥äº§ç”Ÿæ­¤å‘Šè­¦
+// ä¹Ÿå¯å¯¼å‡ºæ¨¡æ¿,å¦‚:template class DM_EXPORT CStringT<wchar_t>
 __pragma(warning(disable: 4251))
 __pragma(warning(disable: 4275))
-/// Í·ÎÄ¼şÒÀÀµ
+/// å¤´æ–‡ä»¶ä¾èµ–
 
-// 0 ÏµÍ³Àà
+// 0 ç³»ç»Ÿç±»
 #include <Windows.h>
 #include <stdio.h>
 #include <assert.h>
 #include <crtdbg.h>
 #include <tchar.h>
 #include <shlwapi.h>
-#pragma comment(lib, "shlwapi.lib")// ´ËÎÄ¼ş±È½ÏĞ¡£¬»ù±¾²»Ó°Ïì±àÒë´óĞ¡
+#pragma comment(lib, "shlwapi.lib")// æ­¤æ–‡ä»¶æ¯”è¾ƒå°ï¼ŒåŸºæœ¬ä¸å½±å“ç¼–è¯‘å¤§å°
 #pragma comment(lib,"msimg32.lib")
 
 //#define DM_EXCLUDE_SPY 1
@@ -61,11 +61,11 @@ __pragma(warning(disable: 4275))
 
 typedef const char* DMPCSTR;
 
-// 1 ºê¶¨Òå
+// 1 å®å®šä¹‰
 #include "Common/DMDef.h"
 #include "Common/DMError.h"
 
-// 2 Ã»ÓĞÈÎºÎÒÀÀµµÄ¸¨ÖúÀà
+// 2 æ²¡æœ‰ä»»ä½•ä¾èµ–çš„è¾…åŠ©ç±»
 #include "Common/DMMemDispatch.h"
 #include "Common/DMHelper.h"
 #include "Common/DMRefNum.h"
@@ -85,12 +85,12 @@ typedef const char* DMPCSTR;
 #include "Common/DMColor.h"
 #include "Common/DMBundle.h"
 
-// 3 ÊÂ¼ş
+// 3 äº‹ä»¶
 #include "Core/Event/DMEventMgr.h"
 #include "Core/Event/DMEvents.h"
 #include "Core/Msg/DMEventCrack.h"
 
-// 4 Ä£¿éÀ©Õ¹½Ó¿Ú
+// 4 æ¨¡å—æ‰©å±•æ¥å£
 #include "IDmMain/IDMPlugin.h"
 #include "IDmMain/IDMMsg.h"
 #include "IDmMain/IDMRes.h"
@@ -109,13 +109,13 @@ typedef const char* DMPCSTR;
 #include "IDmMain/IDMTrans.h"
 #include "IDmMain/IDMTaskRunner.h"
 
-// 5 ÏûÏ¢
+// 5 æ¶ˆæ¯
 #include "Core/Msg/DMMsgCrack.h"
 #include "Core/Msg/DUIMsgCrack.h"
 #include "Core/DMDispatch.h"				
 #include "Core/Msg/DMXmlCrack.h"
 
-// 6 »ù´¡´°¿ÚÀà
+// 6 åŸºç¡€çª—å£ç±»
 #include "Core/Msg/DMMsgThunk.h"
 #include "Core/DMCWndBase.h"
 #include "Core/DMCWnd.h"

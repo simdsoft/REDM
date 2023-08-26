@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMCWnd.h"
 #include "DMCWndBase.h"
 #include <OleCtl.h>
@@ -24,11 +24,11 @@ namespace DM
 								 int x, int y, int nWidth, int nHeight, HWND hWndParent, PVOID lpParam)
 	{
 		DMASSERT((NULL == m_hWnd));
-		ms_pThis = this;// ´Ë´¦³õÊ¼»¯ms_pThis;
+		ms_pThis = this;// æ­¤å¤„åˆå§‹åŒ–ms_pThis;
 		MsgThunkInit();
 		m_hWnd = ::CreateWindowExW(dwExStyle, lpClassName, 
 			lpWindowName,dwStyle,x, y, nWidth, nHeight, hWndParent, NULL, g_pDMAppData->m_hInst,lpParam);
-		ms_pThis = NULL;// ´´½¨ºó±ØĞëÖØÖÃÎªNULL
+		ms_pThis = NULL;// åˆ›å»ºåå¿…é¡»é‡ç½®ä¸ºNULL
 		return m_hWnd;
 	}
 
@@ -45,7 +45,7 @@ namespace DM
 		// Allocate the thunk structure here, where we can fail gracefully.
 		bool bAlloc = MsgThunkInit();
 		m_pThunk->Init((DWORD_PTR)(DMCWnd::WindowProc), this);
-		WNDPROC pProc = (WNDPROC)m_pThunk->GetCodeAddress();// µÃµ½ThunkÖ¸Õë
+		WNDPROC pProc = (WNDPROC)m_pThunk->GetCodeAddress();// å¾—åˆ°ThunkæŒ‡é’ˆ
 		WNDPROC pfnWndProc = (WNDPROC)::SetWindowLongPtr(hWnd, GWLP_WNDPROC, (LONG_PTR)pProc);
 		if (NULL == pfnWndProc)
 		{
@@ -64,7 +64,7 @@ namespace DM
 	{
 		DMASSERT(m_hWnd != NULL);
 
-		WNDPROC pOurProc = (WNDPROC)m_pThunk->GetCodeAddress();;// µÃµ½ThunkÖ¸Õë
+		WNDPROC pOurProc = (WNDPROC)m_pThunk->GetCodeAddress();;// å¾—åˆ°ThunkæŒ‡é’ˆ
 		WNDPROC pActiveProc = (WNDPROC)::GetWindowLongPtr(m_hWnd, GWLP_WNDPROC);
 
 		HWND hWnd = NULL;
@@ -75,7 +75,7 @@ namespace DM
 
 			m_pfnSuperWindowProc = ::DefWindowProc;
 			hWnd = m_hWnd;
-			// ²»ÖÃ¿Õm_hWnd
+			// ä¸ç½®ç©ºm_hWnd
 		}
 		return hWnd;
 	}
@@ -85,7 +85,7 @@ namespace DM
 		bool bThunk = false;
 		do 
 		{
-			if (NULL == ms_pThis)/// Íâ²¿realwnd,Ê¹ÓÃÍ¬Ò»¸ö´°¿ÚÀà×¢²á
+			if (NULL == ms_pThis)/// å¤–éƒ¨realwnd,ä½¿ç”¨åŒä¸€ä¸ªçª—å£ç±»æ³¨å†Œ
 			{
 				break;
 			}
@@ -102,18 +102,18 @@ namespace DM
 
 		if (bThunk)
 		{
-			WNDPROC pProc = (WNDPROC)ms_pThis->MsgThunkGetCodeAddress();// µÃµ½ThunkÖ¸Õë
+			WNDPROC pProc = (WNDPROC)ms_pThis->MsgThunkGetCodeAddress();// å¾—åˆ°ThunkæŒ‡é’ˆ
 			return pProc(hWnd, uMsg, wParam, lParam);
 		}
 		else
-		{/// Ö»ÓĞÔÚrealwndÊ±²Å¿ÉÄÜµ½Õâ
+		{/// åªæœ‰åœ¨realwndæ—¶æ‰å¯èƒ½åˆ°è¿™
 			return ::DefWindowProc(hWnd, uMsg, wParam, lParam);	
 		}
 	}
 
 	LRESULT CALLBACK DMCWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		DMCWnd* pThis = (DMCWnd*)hWnd; // Ç¿×ªÎª¶ÔÏóÖ¸Õë
+		DMCWnd* pThis = (DMCWnd*)hWnd; // å¼ºè½¬ä¸ºå¯¹è±¡æŒ‡é’ˆ
 		MSG msg = {pThis->m_hWnd, uMsg, wParam, lParam, 0, {0, 0}};
 		const MSG* pOldMsg = pThis->m_pCurrentMsg;
 		pThis->m_pCurrentMsg = &msg;
@@ -178,7 +178,7 @@ namespace DM
 	}
 
 	LRESULT DMCWnd::ForwardNotifications(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-	{// ºÍatlwinÖĞµÄForwardNotifications±£³ÖÒ»ÖÂ
+	{// å’Œatlwinä¸­çš„ForwardNotificationsä¿æŒä¸€è‡´
 		LRESULT lResult = 0;
 		switch(uMsg)
 		{
@@ -210,7 +210,7 @@ namespace DM
 	}
 
 	LRESULT DMCWnd::ReflectNotifications(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-	{// ºÍatlwinÖĞµÄReflectNotifications±£³ÖÒ»ÖÂ
+	{// å’Œatlwinä¸­çš„ReflectNotificationsä¿æŒä¸€è‡´
 		HWND hWndChild = NULL;
 
 		switch(uMsg)

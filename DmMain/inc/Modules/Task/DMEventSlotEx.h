@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+Ôªø// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMEventSlotEx.h
 // File mark:   
-// File summary:DMEventSlotµƒ¿©’π
+// File summary:DMEventSlotÁöÑÊâ©Â±ï
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-2-27
@@ -17,7 +17,7 @@
 namespace DM
 {
 	/// <summary>
-	///		Ω´≤€◊™ªª≥…Task
+	///		Â∞ÜÊßΩËΩ¨Êç¢ÊàêTask
 	/// </summary>
 	class DMSlotTask : public IDMTask
 	{
@@ -35,7 +35,7 @@ namespace DM
 
 
 	/// <summary>
-	///		UI≤€
+	///		UIÊßΩ
 	/// </summary>
 	class DMUISlot : public DMSyncSlot
 	{
@@ -51,7 +51,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		“Ï≤Ω≤€
+	///		ÂºÇÊ≠•ÊßΩ
 	/// </summary>
 	class DMWorkSlot : public DMSyncSlot
 	{

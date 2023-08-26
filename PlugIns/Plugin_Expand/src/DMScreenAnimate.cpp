@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+Ôªø#include "Plugin_ExpandAfx.h"
 #include "DMScreenAnimate.h"
 
 namespace DM
@@ -130,7 +130,7 @@ namespace DM
 		Sleep(1);
 		
 
-		// ºÚΩ‡µ„£¨÷±Ω”sleep∂Øª≠£¨“™∏ƒµƒ◊‘º∫∏ƒ∞…£¨Ωˆ◊ˆ—› æ
+		// ÁÆÄÊ¥ÅÁÇπÔºåÁõ¥Êé•sleepÂä®ÁîªÔºåË¶ÅÊîπÁöÑËá™Â∑±ÊîπÂêßÔºå‰ªÖÂÅöÊºîÁ§∫
 		CPoint ptCenter = rcInit.CenterPoint();
 		MONITORINFO mi = {sizeof(MONITORINFO)};
 		HMONITOR hMonitor = ::MonitorFromWindow(m_pOwner->GetAnimateOwnerWnd()->GetContainer()->OnGetHWnd(), MONITOR_DEFAULTTONULL);
@@ -154,7 +154,7 @@ namespace DM
 			Sleep(nSleeptime);
 		}
 
-		// ª÷∏¥
+		// ÊÅ¢Â§ç
 		for (int i=0;i<count;i++)
 		{
 			rcLeftTop.OffsetRect(difflx,diffty);
@@ -209,7 +209,7 @@ namespace DM
 		CRect rcWork = mi.rcWork;
 		int diffx = (rcInit.right-rcWork.left)/count;
 
-		// œ»¥Ìø™
+		// ÂÖàÈîôÂºÄ
 		int iDelta = rcInit.Width()/10;
 		for (int i=0;i<10;i++)
 		{
@@ -296,7 +296,7 @@ namespace DM
 		do 
 		{
 			BLENDFUNCTION bf = {AC_SRC_OVER,0,0xff,AC_SRC_ALPHA};
-			if (m_bFadeing)// Ω•œ‘Ω•“˛÷–
+			if (m_bFadeing)// Ê∏êÊòæÊ∏êÈöê‰∏≠
 			{
 				bf.SourceConstantAlpha = (byte)m_byFadeAlpha;
 				HDC dcMem = m_pStartCanvas->GetDC();

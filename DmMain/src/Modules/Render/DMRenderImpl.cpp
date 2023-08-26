@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+﻿#include "DmMainAfx.h"
 #include "DMRenderImpl.h"
 #include "DMPenImpl.h"
 #include "DMFontImpl.h"

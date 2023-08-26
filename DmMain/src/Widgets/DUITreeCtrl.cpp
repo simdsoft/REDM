@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUITreeCtrl.h"
 
 namespace DM
@@ -55,7 +55,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¶ÔÍâ½Ó¿Ú
+	// Function Des: å¯¹å¤–æ¥å£
 	//---------------------------------------------------
 	bool DUITreeCtrl::RemoveAllItems()
 	{
@@ -88,7 +88,7 @@ namespace DM
 			if (bVisible)
 			{
 				if (GetChildItem(hItem) && pItem->bCollapsed==false)
-				{// ÓĞ×ÓÏî£¬Õ¹¿ª×´Ì¬
+				{// æœ‰å­é¡¹ï¼Œå±•å¼€çŠ¶æ€
 					SetChildrenVisible(hItem,false);
 				}
 			}
@@ -107,7 +107,7 @@ namespace DM
 			}
 			DeleteItem(hItem);
 
-			// È¥µô¸¸½ÚµãµÄÕ¹¿ª±êÖ¾
+			// å»æ‰çˆ¶èŠ‚ç‚¹çš„å±•å¼€æ ‡å¿—
 			if (hParent&&!GetChildItem(hParent))
 			{
 				LPTVITEM pParent = GetItem(hParent);
@@ -120,13 +120,13 @@ namespace DM
 				&&hParent
 				&&GetChildItem(hParent))
 			{
-				//Ô­½áµã¸´Ñ¡¿òÑ¡ÖĞ£¬¼ì²é¸¸½áµãÊÇ·ñÓÉ°ëÑ¡±ä²»Ñ¡    
+				//åŸç»“ç‚¹å¤é€‰æ¡†é€‰ä¸­ï¼Œæ£€æŸ¥çˆ¶ç»“ç‚¹æ˜¯å¦ç”±åŠé€‰å˜ä¸é€‰    
 				if (nCheckBoxValue == DMTVICheckBox_Checked
 					||nCheckBoxValue == DMTVICheckBox_PartChecked)
 				{
 					CheckState(hParent, false);   
 				}
-				//Ô­½áµã¸´Ñ¡¿òÎ´Ñ¡ÖĞ£¬¼ì²é¸¸½áµãÊÇ·ñÓÉ°ëÑ¡±äÈ«Ñ¡    
+				//åŸç»“ç‚¹å¤é€‰æ¡†æœªé€‰ä¸­ï¼Œæ£€æŸ¥çˆ¶ç»“ç‚¹æ˜¯å¦ç”±åŠé€‰å˜å…¨é€‰    
 				else
 				{
 					LPTVITEM pParentData = GetItem(hParent);
@@ -141,7 +141,7 @@ namespace DM
 			{
 				m_nVisibleItems--;
 
-				//ÖØĞÂ¼ÆËãx×î´ó³ß´ç
+				//é‡æ–°è®¡ç®—xæœ€å¤§å°ºå¯¸
 				if (nItemWidth == m_nMaxItemWidth)
 				{
 					GetMaxItemWidth();  
@@ -206,7 +206,7 @@ namespace DM
 
 				if (!GetChildItem(hParent) && !pParentItem->bHasChildren)
 				{
-					pParentItem->bHasChildren = true;  // ²åÈëÒ»¸ö×ÓÏîÁË£¬ËùÒÔÎªtrue
+					pParentItem->bHasChildren = true;  // æ’å…¥ä¸€ä¸ªå­é¡¹äº†ï¼Œæ‰€ä»¥ä¸ºtrue
 					CalaItemContentWidth(pParentItem);
 				}
 			}    
@@ -479,13 +479,13 @@ namespace DM
 			LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);
 			pItem->nCheckBoxValue = nCheck;
 
-			// ÖÃ×ÓËï½áµã
+			// ç½®å­å­™ç»“ç‚¹
 			if (DMTreeT<LPTVITEM>::GetChildItem(hItem))
 			{
 				SetChildrenState(hItem, nCheck);
 			}
 
-			// ¼ì²é¸¸½áµã×´Ì¬
+			// æ£€æŸ¥çˆ¶ç»“ç‚¹çŠ¶æ€
 			CheckState(GetParentItem(hItem), bCheck);
 			DM_Invalidate();
 			bRet = true;
@@ -580,7 +580,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// »æÖÆ
+	// ç»˜åˆ¶
 	void DUITreeCtrl::DrawItem(IDMCanvas* pCanvas, CRect& rc, HDMTREEITEM hItem)
 	{    
 		do 
@@ -597,7 +597,7 @@ namespace DM
 
 			DMColor crOldText = PBGRA(0XFF,0XFF,0XFF,0XFF);
 			bool bTextColorChanged = false;
-			///1. »æÖÆ±³¾°
+			///1. ç»˜åˆ¶èƒŒæ™¯
 			if (hItem == m_hSelItem)
 			{
 				if (m_pItemSelSkin != NULL)
@@ -744,7 +744,7 @@ namespace DM
 	} 
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	BOOL DUITreeCtrl::DM_OnEraseBkgnd(IDMCanvas* pCanvas)
 	{
 		__super::DM_OnEraseBkgnd(pCanvas);
@@ -765,7 +765,7 @@ namespace DM
 			int nPageItems = (m_rcsbClient.Height()+m_iItemHei-1)/m_iItemHei+1;
 
 			int iVisible = -1;
-			HDMTREEITEM hItem = DMTreeT<LPTVITEM>::GetNextItem(DMTVI_ROOT);// ´Ó¸ù½áµã¿ªÊ¼ÏòÏÂ²éÕÒ
+			HDMTREEITEM hItem = DMTreeT<LPTVITEM>::GetNextItem(DMTVI_ROOT);// ä»æ ¹ç»“ç‚¹å¼€å§‹å‘ä¸‹æŸ¥æ‰¾
 			while (hItem)
 			{
 				LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);
@@ -774,17 +774,17 @@ namespace DM
 					iVisible++;
 				}
 				if (iVisible>iFirstVisible+nPageItems) 
-				{// »æÖÆÍê¿ÉÊÓÇø£¬Ìø³ö
+				{// ç»˜åˆ¶å®Œå¯è§†åŒºï¼Œè·³å‡º
 					break;
 				}
 				if (iVisible>=iFirstVisible)
-				{// ´Ó¿ÉÊÓÇøµÚÒ»Ïî¿ªÊ¼»æÖÆ
+				{// ä»å¯è§†åŒºç¬¬ä¸€é¡¹å¼€å§‹ç»˜åˆ¶
 					CRect rcItem(0,0,CalcItemWidth(pItem),m_iItemHei);
 					rcItem.OffsetRect(rcClient.left-m_ptCurPos.x,rcClient.top-m_ptCurPos.y+iVisible*m_iItemHei);
 					DrawItem(pCanvas,rcItem,hItem);
 				}
 				if (pItem->bCollapsed)
-				{// Ìø¹ı±»ÕÛµşµÄÏî
+				{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 					HDMTREEITEM hChild = GetChildItem(hItem,false);
 					while (hChild)
 					{
@@ -897,7 +897,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: ¿ÉÖØÔØº¯Êı
+	// Function Des: å¯é‡è½½å‡½æ•°
 	DMCode DUITreeCtrl::DV_CreateChildWnds(const DMXmlNode &XmlNode)
 	{
 		do 
@@ -944,10 +944,10 @@ namespace DM
 	{
 		while (XmlItem.IsValid())
 		{
-			HDMTREEITEM hItem = InsertItem(XmlItem,hParent);// ·µ»Øµ±Ç°²åÈë½áµã
+			HDMTREEITEM hItem = InsertItem(XmlItem,hParent);// è¿”å›å½“å‰æ’å…¥ç»“ç‚¹
 			DMXmlNode XmlChild = XmlItem.FirstChild("item");
 			if (XmlChild.IsValid()) 
-			{// ×Ó·ÖÖ§µİ¹é
+			{// å­åˆ†æ”¯é€’å½’
 				LoadBranch(hItem,XmlChild);
 			}
 
@@ -1011,7 +1011,7 @@ namespace DM
 		m_rcCheckBox.SetRect(0, 0, 0, 0);
 		m_rcIcon.SetRect(0, 0, 0, 0);
 
-		// ¼ÆËãÎ»ÖÃ    
+		// è®¡ç®—ä½ç½®    
 		if (m_pToggleSkin)
 		{
 			m_uItemMask |= DMTVIMask_Toggle;
@@ -1041,7 +1041,7 @@ namespace DM
 
 	int DUITreeCtrl::CalaItemContentWidth(LPTVITEM pItem)
 	{
-		if (0 == pItem->nContentWidth && !pItem->strText.IsEmpty())// Î´³õÊ¼»¯¹ı
+		if (0 == pItem->nContentWidth && !pItem->strText.IsEmpty())// æœªåˆå§‹åŒ–è¿‡
 		{
 			DMSmartPtrT<IDMCanvas> pCanvas;
 			g_pDMRender->CreateCanvas(0,0,&pCanvas);
@@ -1093,7 +1093,7 @@ namespace DM
 	}
 
 	void DUITreeCtrl::OnNodeFree(LPTVITEM & pItemData)
-	{// DMTreeTÔ¤´¦Àí
+	{// DMTreeTé¢„å¤„ç†
 		DM_DELETE(pItemData);
 	}
 
@@ -1116,8 +1116,8 @@ namespace DM
 		return m_nMaxItemWidth;
 	}
 
-	// ¸¨Öú-----------------------------
-	// ×Ô¶¯ĞŞ¸ÄptµÄÎ»ÖÃÎªÏà¶Ôµ±Ç°ÏîµÄÆ«ÒÆÁ¿
+	// è¾…åŠ©-----------------------------
+	// è‡ªåŠ¨ä¿®æ”¹ptçš„ä½ç½®ä¸ºç›¸å¯¹å½“å‰é¡¹çš„åç§»é‡
 	HDMTREEITEM DUITreeCtrl::HitTest(CPoint &pt)
 	{
 		CRect rcClient;
@@ -1149,7 +1149,7 @@ namespace DM
 				break;
 			}
 			if (pItem->bCollapsed)
-			{// Ìø¹ı±»ÕÛµşµÄÏî
+			{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 				HDMTREEITEM hChild = GetChildItem(hItem,false);
 				while (hChild)
 				{
@@ -1177,7 +1177,7 @@ namespace DM
 		int nHitTestBtn = ItemHitTest(hItem, pt);    
 		LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);    
 
-		//Çå³ıÔ­ÓĞpushdown°´Å¥
+		//æ¸…é™¤åŸæœ‰pushdownæŒ‰é’®
 		if (m_nItemPushDownBtn != nHitTestBtn)
 		{
 			if (m_nItemPushDownBtn == DMTVIBtn_Toggle && 
@@ -1195,7 +1195,7 @@ namespace DM
 			m_nItemPushDownBtn = nHitTestBtn;
 		}
 
-		//ÖÃĞÂpushdown°´Å¥
+		//ç½®æ–°pushdownæŒ‰é’®
 		if (m_nItemPushDownBtn != DMTVIBtn_None)
 		{
 			if (m_nItemPushDownBtn == DMTVIBtn_Toggle && 
@@ -1294,7 +1294,7 @@ namespace DM
 			}
 		}
 
-		/// hover»æÖÆ
+		/// hoverç»˜åˆ¶
 		if (m_nItemHoverBtn == DMTVIBtn_None&&m_bHover)
 		{
 			RedrawItem(hItem);
@@ -1402,18 +1402,18 @@ namespace DM
 			LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hChildItem);
 
 			int nCheckValue = bCheck?DMTVICheckBox_Checked : DMTVICheckBox_UnChecked;
-			// µ±Ç°½áµã²»Ò»ÖÂÁ¢¼´·µ»Ø
+			// å½“å‰ç»“ç‚¹ä¸ä¸€è‡´ç«‹å³è¿”å›
 			if (pItem->nCheckBoxValue != nCheckValue) 
 			{
 				return false;
 			}
-			// ¼ì²é×Ó½áµã²»Ò»ÖÂÁ¢¼´·µ»Ø
+			// æ£€æŸ¥å­ç»“ç‚¹ä¸ä¸€è‡´ç«‹å³è¿”å›
 			else if (false == CheckChildrenState(hChildItem, bCheck))
 			{
 				return false;
 			}
 
-			// ¼ì²é×Ó½áµãĞÖµÜ½áµã
+			// æ£€æŸ¥å­ç»“ç‚¹å…„å¼Ÿç»“ç‚¹
 			hChildItem = DMTreeT<LPTVITEM>::GetNextSiblingItem(hChildItem);
 		}
 		return true;
@@ -1455,7 +1455,7 @@ namespace DM
 				return iVisible;
 			}
 			if (pItem->bCollapsed)
-			{// Ìø¹ı±»ÕÛµşµÄÏî
+			{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 				HDMTREEITEM hChild = GetChildItem(hItem,false);
 				while(hChild)
 				{
@@ -1503,7 +1503,7 @@ namespace DM
 					break;
 				}
 				if (pItem->bCollapsed)
-				{// Ìø¹ı±»ÕÛµşµÄÏî
+				{// è·³è¿‡è¢«æŠ˜å çš„é¡¹
 					HDMTREEITEM hChild = GetChildItem(hItem,false);
 					while (hChild)
 					{
@@ -1570,14 +1570,14 @@ namespace DM
 				break;
 			}
 
-			iErr = DM_ECODE_FAIL;// Ê²Ã´¶¼Ã»´¦Àíµ½£¡
+			iErr = DM_ECODE_FAIL;// ä»€ä¹ˆéƒ½æ²¡å¤„ç†åˆ°ï¼
 		} while (false);
 		if (!bLoadXml&&DMSUCCEEDED(iErr))
 		{
 			ItemLayout();
-			if (bCalcWid)// icon¸Ä±äÁËÎÄ×ÖÇøµÄ×Ü¿í¶È
+			if (bCalcWid)// iconæ”¹å˜äº†æ–‡å­—åŒºçš„æ€»å®½åº¦
 			{
-				HDMTREEITEM hItem = DMTreeT<LPTVITEM>::GetNextItem(DMTVI_ROOT);// ´Ó¸ù½áµã¿ªÊ¼ÏòÏÂ²éÕÒ
+				HDMTREEITEM hItem = DMTreeT<LPTVITEM>::GetNextItem(DMTVI_ROOT);// ä»æ ¹ç»“ç‚¹å¼€å§‹å‘ä¸‹æŸ¥æ‰¾
 				while (hItem)
 				{
 					LPTVITEM pItem = DMTreeT<LPTVITEM>::GetItem(hItem);

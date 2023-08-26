@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMHWndHelper.h"
 
 namespace DM
@@ -31,7 +31,7 @@ namespace DM
 	void DMHWnd_XmlInfo::ResetXmlInfo()
 	{
 		m_szMin.SetSize(0, 0);
-		m_szMax.SetSize(-1, -1);// -1±íÊ¾²»ÏŞÖÆ
+		m_szMax.SetSize(-1, -1);// -1è¡¨ç¤ºä¸é™åˆ¶
 		m_szInit.SetSize(200, 200);
 
 		m_bResizable    = false;
@@ -168,7 +168,7 @@ namespace DM
 					}
 					DWORD dwExStyle = m_pOwner->GetExStyle();
 					dwExStyle &= ~WS_EX_LAYERED;
-					m_pOwner->SetWindowLongPtr(GWL_EXSTYLE,dwExStyle);// ĞèÏÈÈ¥µôÔÙÉèÖÃ
+					m_pOwner->SetWindowLongPtr(GWL_EXSTYLE,dwExStyle);// éœ€å…ˆå»æ‰å†è®¾ç½®
 					m_pOwner->SetWindowLongPtr(GWL_EXSTYLE, dwExStyle|WS_EX_LAYERED);
 					m_pOwner->m_dummyWnd.CreateWindowEx(LPCWSTR(g_pDMAppData->m_Atom),L"DM_DUMMY_WND",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_NOACTIVATE,0,0,10,10,m_pOwner->m_hWnd,NULL);
 					m_pOwner->m_dummyWnd.SetWindowLongPtr(GWL_EXSTYLE,m_pOwner->m_dummyWnd.GetWindowLongPtr(GWL_EXSTYLE) | WS_EX_LAYERED);
@@ -212,7 +212,7 @@ namespace DM
 			m_byAlpha = temp;
 			if (!bLoadXml&&m_pOwner&&m_pOwner->IsWindow())
 			{
-				if (m_bTranslucent)// Èç¼Ù´°¿Ú´æÔÚ£¬Ôò²»ĞèÉèÖÃÍ¸Ã÷¶È
+				if (m_bTranslucent)// å¦‚å‡çª—å£å­˜åœ¨ï¼Œåˆ™ä¸éœ€è®¾ç½®é€æ˜åº¦
 				{
 					m_pOwner->DM_Invalidate();
 					iErr = DM_ECODE_OK;
@@ -322,7 +322,7 @@ namespace DM
 		return iErr;
 	}
 
-	// --------------------Í¸Ã÷´°¿ÚÃÉ°å---------------------------------------
+	// --------------------é€æ˜çª—å£è’™æ¿---------------------------------------
 	BEGIN_MSG_MAP(DMDummyWnd)
 		MSG_WM_PAINT(OnPaint)
 	END_MSG_MAP()

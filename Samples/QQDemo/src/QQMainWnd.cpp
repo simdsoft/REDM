@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "QQMainWnd.h"
 #include "resource.h"
 #include "TrayIconWndMgr.h"
@@ -10,9 +10,9 @@ BEGIN_MSG_MAP(CQQMainWnd)
 	MSG_WM_SHOWWINDOW(OnShowWindow)
 	MSG_WM_SIZE(OnSize)
 	MSG_WM_COMMAND(OnCommand)
-	//MESSAGE_HANDLER_EX(WM_SHOWTRAYMENU, OnShowTrayMenu)//ÀÏ´úÂë
+	//MESSAGE_HANDLER_EX(WM_SHOWTRAYMENU, OnShowTrayMenu)//è€ä»£ç 
 	CHAIN_MSG_MAP(DMTrayIconImpl)
-	CHAIN_MSG_MAP(DMHWnd)// ½«Î´´¦ÀíµÄÏûÏ¢½»ÓÉDMHWnd´¦Àí
+	CHAIN_MSG_MAP(DMHWnd)// å°†æœªå¤„ç†çš„æ¶ˆæ¯äº¤ç”±DMHWndå¤„ç†
 END_MSG_MAP()
 
 BEGIN_EVENT_MAP(CQQMainWnd)
@@ -32,14 +32,14 @@ CQQMainWnd::CQQMainWnd()
 		m_pSubListEx[i]   = NULL;
 	}
 	m_pListEx      = NULL;
-//	new CTrayIconWndMgr;//ÀÏ´úÂë
+//	new CTrayIconWndMgr;//è€ä»£ç 
 }
 
 CQQMainWnd::~CQQMainWnd()
 {
-// 	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM¿âÊ¾Àı",L"QQDemonÒÑÍË³ö");//ÀÏ´úÂë
+// 	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DMåº“ç¤ºä¾‹",L"QQDemonå·²é€€å‡º");//è€ä»£ç 
 // 	delete CTrayIconWndMgr::getSingletonPtr();
-	ShowTrayBalloonTip(L"DM¿âÊ¾Àı", L"QQDemonÒÑÍË³ö");//ĞÂtrayicon´úÂë
+	ShowTrayBalloonTip(L"DMåº“ç¤ºä¾‹", L"QQDemonå·²é€€å‡º");//æ–°trayiconä»£ç 
 }
 
 int CQQMainWnd::OnCreate(LPVOID)
@@ -52,27 +52,27 @@ int CQQMainWnd::OnCreate(LPVOID)
 
 BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	// ÉèÖÃicon
+	// è®¾ç½®icon
 	HICON hIcon = ::LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_QQ));
 	SetIcon(hIcon,FALSE);
 
-	// ×¢²ánameeditÊ§È¥½¹µãÊÂ¼ş
+	// æ³¨å†Œnameeditå¤±å»ç„¦ç‚¹äº‹ä»¶
 	DUIEdit* pNameEdit = FindChildByNameT<DUIEdit>("name_edit");
 	if (pNameEdit)
 	{
-		// Ê¾Àı°ó¶¨¶¯Ì¬·ÖÅäÊı¾İ
+		// ç¤ºä¾‹ç»‘å®šåŠ¨æ€åˆ†é…æ•°æ®
 		byte* pBuf = new byte[100];
-		pNameEdit->SetData("key1",CStringA((char*)&pBuf,sizeof(LONG_PTR)));// strValueÖĞ¼ÇÂ¼µÄÇ°ËÄÎ»ÄÚ´æÖµ¼´pBufµØÖ·
+		pNameEdit->SetData("key1",CStringA((char*)&pBuf,sizeof(LONG_PTR)));// strValueä¸­è®°å½•çš„å‰å››ä½å†…å­˜å€¼å³pBufåœ°å€
 		CStringA strValue = pNameEdit->GetData("key1");
-		byte* pByte = (byte*)(*(LONG_PTR*)strValue.GetBuffer());// È¡Ç°ËÄÎ»ÄÚ´æÖµ×ª»»³ÉÖ¸Õë
+		byte* pByte = (byte*)(*(LONG_PTR*)strValue.GetBuffer());// å–å‰å››ä½å†…å­˜å€¼è½¬æ¢æˆæŒ‡é’ˆ
 		assert (pByte == pBuf);
 		DM_DELETE_ARRAY(pByte);
-		pNameEdit->SetData("key1","");// ´«¿ÕÖµÇå¿Õkey1
+		pNameEdit->SetData("key1","");// ä¼ ç©ºå€¼æ¸…ç©ºkey1
 
 		pNameEdit->m_EventMgr.SubscribeEvent(DM::DMEventRENotifyArgs::EventID, Subscriber(&CQQMainWnd::OnNameEditKillFocus, this));
 	}
 
-	// Ä£ÄâÕ¹¿ªÊÕËõĞ¡Èı½Ç
+	// æ¨¡æ‹Ÿå±•å¼€æ”¶ç¼©å°ä¸‰è§’
 	m_pListEx = FindChildByNameT<DUIListBoxEx>("listex");
 	if (m_pListEx)
 	{
@@ -90,14 +90,14 @@ BOOL CQQMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 		m_pSubListEx[i]->m_EventMgr.SubscribeEvent(DMEventLBSelChangedArgs::EventID, Subscriber(&CQQMainWnd::OnSubListEx, this));
 	}
 
-/*	// Ôö¼ÓÒ»¸öÍĞÅÌÍ¼±ê
-	CTrayIconWndMgr::getSingleton().InstallTrayIcon(L"»¶Ó­Ê¹ÓÃDM¿âÊ¾Àı:QQDemo",m_hWnd,hIcon,IDI_QQ);
-	// Ôö¼ÓÒ»¸öÆûÅİÌáÊ¾
-	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DM¿âÊ¾Àı",L"QQDemo"); */
+/*	// å¢åŠ ä¸€ä¸ªæ‰˜ç›˜å›¾æ ‡
+	CTrayIconWndMgr::getSingleton().InstallTrayIcon(L"æ¬¢è¿ä½¿ç”¨DMåº“ç¤ºä¾‹:QQDemo",m_hWnd,hIcon,IDI_QQ);
+	// å¢åŠ ä¸€ä¸ªæ±½æ³¡æç¤º
+	CTrayIconWndMgr::getSingletonPtr()->SetBalloonDetails(L"DMåº“ç¤ºä¾‹",L"QQDemo"); */
 
-	//ÏÂÃæÊÇĞÂµÄtrayico·â×°
-	InstallIcon(L"»¶Ó­Ê¹ÓÃDM¿âÊ¾Àı:QQDemo", hIcon, IDI_QQ);
-	ShowTrayBalloonTip(L"DM¿âÊ¾Àı", L"QQDemo");
+	//ä¸‹é¢æ˜¯æ–°çš„trayicoå°è£…
+	InstallIcon(L"æ¬¢è¿ä½¿ç”¨DMåº“ç¤ºä¾‹:QQDemo", hIcon, IDI_QQ);
+	ShowTrayBalloonTip(L"DMåº“ç¤ºä¾‹", L"QQDemo");
 	return TRUE;
 }
 
@@ -157,7 +157,7 @@ void CQQMainWnd::OnCommand(UINT uNotifyCode, int nID, HWND wndCtl)
 	else if (7000 == nID)
 	{
 		CStringW strUrl = L"http://shang.qq.com/wpa/qunwpa?idkey=a4eb76996f3c7cb6018a3ca375a5df3360ba818579f60516092edd9ed1de23a8";
-		//ÏÈÊ¹ÓÃÄ¬ÈÏä¯ÀÀÆ÷´ò¿ª£¬Èô´ò¿ªÊ§°Ü£¨²»´æÔÚÄ¬ÈÏä¯ÀÀÆ÷£©£¬ÔòÇ¿ÖÆÊ¹ÓÃIE´ò¿ª
+		//å…ˆä½¿ç”¨é»˜è®¤æµè§ˆå™¨æ‰“å¼€ï¼Œè‹¥æ‰“å¼€å¤±è´¥ï¼ˆä¸å­˜åœ¨é»˜è®¤æµè§ˆå™¨ï¼‰ï¼Œåˆ™å¼ºåˆ¶ä½¿ç”¨IEæ‰“å¼€
 		HINSTANCE hIns = ::ShellExecute(NULL, _T("open"), strUrl, NULL, NULL, SW_SHOWNORMAL);
 		if ( (LPARAM)(hIns) <= 32 )	//If the function succeeds, it returns a value greater than 32.
 		{
@@ -218,7 +218,7 @@ DMCode CQQMainWnd::OnSkin()
 		}
 		m_pSkinWnd.Release();
 		m_pSkinWnd.Attach(new CSkinWnd(this));
-		m_pSkinWnd->DM_CreateWindow("dui_skin");				// ´´½¨Ö÷´°¿Ú
+		m_pSkinWnd->DM_CreateWindow("dui_skin");				// åˆ›å»ºä¸»çª—å£
 		m_pSkinWnd->SendMessage(WM_INITDIALOG);
 		m_pSkinWnd->CenterWindow();
 		m_pSkinWnd->ShowWindow(SW_SHOW);
@@ -238,7 +238,7 @@ DMCode CQQMainWnd::OnSpy()
 		}
 		m_pSpyWnd.Release();
 		m_pSpyWnd.Attach(new CSpyWnd());
-		m_pSpyWnd->DM_CreateWindow("dui_spy");				// ´´½¨Ö÷´°¿Ú
+		m_pSpyWnd->DM_CreateWindow("dui_spy");				// åˆ›å»ºä¸»çª—å£
 		m_pSpyWnd->SendMessage(WM_INITDIALOG);
 		m_pSpyWnd->CenterWindow();
 		m_pSpyWnd->ShowWindow(SW_SHOW);
@@ -258,7 +258,7 @@ DMCode CQQMainWnd::OnWidget()
 		}
 		m_pWidgetWnd.Release();
 		m_pWidgetWnd.Attach(new CWidgetWnd());
-		m_pWidgetWnd->DM_CreateWindow("dui_widget");				// ´´½¨Ö÷´°¿Ú
+		m_pWidgetWnd->DM_CreateWindow("dui_widget");				// åˆ›å»ºä¸»çª—å£
 		m_pWidgetWnd->SendMessage(WM_INITDIALOG);
 		m_pWidgetWnd->CenterWindow();
 		m_pWidgetWnd->ShowWindow(SW_SHOW);
@@ -280,10 +280,10 @@ DMCode CQQMainWnd::OnNameEditKillFocus(DMEventArgs* pEvent)
 			CStringW strInfo = pNameEdit->GetWindowText();
 			if (strInfo.IsEmpty())
 			{
-				strInfo = L"±à¼­¸öĞÔÇ©Ãû";
+				strInfo = L"ç¼–è¾‘ä¸ªæ€§ç­¾å";
 			}
 			bRetry = true;
-			pNameEdit->DM_SetVisible(false,true);// ´Ëº¯Êı»áÒı·¢¶à´Î½øÈëEN_KILLFOCUS£¬ËùÒÔ¼ÓÅĞ¶Ï
+			pNameEdit->DM_SetVisible(false,true);// æ­¤å‡½æ•°ä¼šå¼•å‘å¤šæ¬¡è¿›å…¥EN_KILLFOCUSï¼Œæ‰€ä»¥åŠ åˆ¤æ–­
 			DUIButton* pNameEditBtn = FindChildByNameT<DUIButton>("name_edit_btn");
 			if (pNameEditBtn)
 			{

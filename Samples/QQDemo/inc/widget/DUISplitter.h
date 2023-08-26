@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,17 +18,17 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUISplitter"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUISplitter"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUISplitterAttr:public DUIWindowAttr
 	{
 	public:
-		static wchar_t* bool_bvert;                                    ///< ÊÇ·ñÊÇÊúÖ±µÄ,Ê¾Àı:bvert="1"
-		static wchar_t* bool_bfirstchange;                             ///< µ±Õû¸öÍâ²¿´°¿Úsize±ä»¯Ê±£¬µÚÒ»¸ö´°¿Ú±ä»¯,Ê¾Àı:bfirstchange="1"                          
-		static wchar_t* SKIN_sliderskin;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄÆ¤·ô,Ê¾Àı:sliderskin="sliderskin"
-		static wchar_t* COLOR_clrslider;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ±³¾°É«,Ê¾Àı:clrslider="pbgra(ff,ff,ff,ff)"
-		static wchar_t* INT_sliderwidth;                               ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±)£¬Ê¾Àı:sliderwidth="10"
-		static wchar_t* INT_firstchildwidth;                           ///< µÚÒ»¸ö´°¿ÚµÄ¿ªÊ¼¿í¶È,Ê¾Àı:firstchildwidth="100"
+		static wchar_t* bool_bvert;                                    ///< æ˜¯å¦æ˜¯ç«–ç›´çš„,ç¤ºä¾‹:bvert="1"
+		static wchar_t* bool_bfirstchange;                             ///< å½“æ•´ä¸ªå¤–éƒ¨çª—å£sizeå˜åŒ–æ—¶ï¼Œç¬¬ä¸€ä¸ªçª—å£å˜åŒ–,ç¤ºä¾‹:bfirstchange="1"                          
+		static wchar_t* SKIN_sliderskin;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„çš®è‚¤,ç¤ºä¾‹:sliderskin="sliderskin"
+		static wchar_t* COLOR_clrslider;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clrslider="pbgra(ff,ff,ff,ff)"
+		static wchar_t* INT_sliderwidth;                               ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´)ï¼Œç¤ºä¾‹:sliderwidth="10"
+		static wchar_t* INT_firstchildwidth;                           ///< ç¬¬ä¸€ä¸ªçª—å£çš„å¼€å§‹å®½åº¦,ç¤ºä¾‹:firstchildwidth="100"
 		
 	};
 	DMAttrValueInit(DUISplitterAttr,bool_bvert)DMAttrValueInit(DUISplitterAttr,bool_bfirstchange)DMAttrValueInit(DUISplitterAttr,INT_firstchildwidth)
@@ -38,8 +38,8 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUISplitterµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUISplitterAttr"/>
-	/// ¼ò»¯:½öÁ½¸ö´°¿Ú£¨A,B£©¹¹³É,µ±Õû¸öÍâ²¿´°¿Úsize±ä»¯Ê±£¬ÒªÃ´A´°¿Ú±ä»¯£¬ÒªÃ´B´°¿Ú±ä»¯£¬2Ñ¡Ò»
+	///		 DUISplitterçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUISplitterAttr"/>
+	/// ç®€åŒ–:ä»…ä¸¤ä¸ªçª—å£ï¼ˆA,Bï¼‰æ„æˆ,å½“æ•´ä¸ªå¤–éƒ¨çª—å£sizeå˜åŒ–æ—¶ï¼Œè¦ä¹ˆAçª—å£å˜åŒ–ï¼Œè¦ä¹ˆBçª—å£å˜åŒ–ï¼Œ2é€‰ä¸€
 	/// </summary>
 	class DUISplitter:public DUIFlowLayout
 	{
@@ -64,7 +64,7 @@ namespace DM
 		DMCode DV_UpdateChildLayout();		
 		DMCode DV_OnSetCursor(const CPoint &pt);
 
-	public:// ¸¨Öú      
+	public:// è¾…åŠ©      
 		DMCode UpdateFixWidth();
 		DMCode UpdateDrag(int iDiff);
 		CRect GetSliderRect();
@@ -79,13 +79,13 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		bool                             m_bVert;                ///< ÊÇ·ñÊúÖ±
-		int                              m_iSliderWid;           ///< ÖĞ¼ä¿ÉÍÏ¶¯¿éµÄ¿í¶È(Ë®Æ½)»ò¸ß¶È(ÊúÖ±)
+		bool                             m_bVert;                ///< æ˜¯å¦ç«–ç›´
+		int                              m_iSliderWid;           ///< ä¸­é—´å¯æ‹–åŠ¨å—çš„å®½åº¦(æ°´å¹³)æˆ–é«˜åº¦(ç«–ç›´)
 		DMSmartPtrT<IDMSkin>             m_pSliderSkin;
 		DMColor                          m_ClrSlider;
 		bool                             m_bFirstChange;
-		int                              m_iFirstChildWidth;     ///< µÚÒ»¸ö´°¿ÚµÄ³õÊ¼Öµ
-		int                              m_iFixWid;              ///< ¹Ì¶¨µÄ¿í¶È£¬Îª0±íÊ¾Î´³õÊ¼»¯,ÆäÓà±íÊ¾size±ä»¯Ê±£¬¹Ì¶¨sizeµÄÄÇ¸ö´°¿Ú
+		int                              m_iFirstChildWidth;     ///< ç¬¬ä¸€ä¸ªçª—å£çš„åˆå§‹å€¼
+		int                              m_iFixWid;              ///< å›ºå®šçš„å®½åº¦ï¼Œä¸º0è¡¨ç¤ºæœªåˆå§‹åŒ–,å…¶ä½™è¡¨ç¤ºsizeå˜åŒ–æ—¶ï¼Œå›ºå®šsizeçš„é‚£ä¸ªçª—å£
 		bool                             m_bDrag;
 		CPoint                           m_ptDrag;
 		CStringW                         m_strPos;

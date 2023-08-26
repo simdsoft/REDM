@@ -1,4 +1,4 @@
-#include "DMDemoAfx.h"
+ï»¿#include "DMDemoAfx.h"
 #include "SkinWnd.h"
 #include "MainWnd.h"
 
@@ -111,7 +111,7 @@ DMCode CSkinWnd::OnChangeSkin2()
 	g_pDMApp->GetDefRegObj((void**)&m_pRes, DMREG_Res);
 
 	LPCSTR lptheme = "theme2";
-	if (!DMSUCCEEDED(m_pRes->SetCurTheme(lptheme)))// ¿ªÊ¼Ã»ÓÐ¼ÓÔØÖ÷Ìâ°ü2Ê±£¬³¢ÊÔÍâ²¿¼ÓÔØ
+	if (!DMSUCCEEDED(m_pRes->SetCurTheme(lptheme)))// å¼€å§‹æ²¡æœ‰åŠ è½½ä¸»é¢˜åŒ…2æ—¶ï¼Œå°è¯•å¤–éƒ¨åŠ è½½
 	{
 		m_pRes->LoadTheme((WPARAM)lptheme,(LPARAM)L"DMRes\\themes\\theme2\\dmindex.xml");
 		m_pRes->SetCurTheme(lptheme);

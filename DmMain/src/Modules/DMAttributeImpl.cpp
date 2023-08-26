@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMAttributeImpl.h"
 
 namespace DM
@@ -56,7 +56,7 @@ namespace DM
 		return iErr;
 	}
 
-	// #ffffff»òrgb(ff,ff,ff)»òrgba(ff,ff,ff,ff)
+	// #ffffffæˆ–rgb(ff,ff,ff)æˆ–rgba(ff,ff,ff,ff)
 	DMCode DMAttributeImpl::ParseColor(LPCSTR lpszValue,DMColor&Obj)
 	{
 		int iErr = DM_ECODE_FAIL;
@@ -67,7 +67,7 @@ namespace DM
 				break;
 			}
 
-			if (0 == dm_xmlstrcmp(lpszValue, "white"))//°×É«
+			if (0 == dm_xmlstrcmp(lpszValue, "white"))//ç™½è‰²
 			{
 				Obj = 0xFFFFFFFF;
 				iErr = DM_ECODE_OK;
@@ -83,7 +83,7 @@ namespace DM
 			if (L'#' == lpszValue[0])
 			{
 				nSuccessNum = sscanf_s(lpszValue,"#%02x%02x%02x%02x",&r,&g,&b,&a);
-				if (4!= nSuccessNum)//Ã»ÓĞ×ª»»4¸ö
+				if (4!= nSuccessNum)//æ²¡æœ‰è½¬æ¢4ä¸ª
 				{
 					break;
 				}
@@ -95,7 +95,7 @@ namespace DM
 					if (L'a' == lpszValue[3]||L'A' == lpszValue[3])
 					{
 						nSuccessNum = sscanf_s(lpszValue,"rgba(%02x,%02x,%02x,%02x)",&r,&g,&b,&a);
-						if (4 != nSuccessNum)//Ã»ÓĞ×ª»»4¸ö
+						if (4 != nSuccessNum)//æ²¡æœ‰è½¬æ¢4ä¸ª
 						{
 							break;
 						}
@@ -103,7 +103,7 @@ namespace DM
 					else
 					{
 						nSuccessNum = sscanf_s(lpszValue,"rgb(%02x,%02x,%02x)",&r,&g,&b);
-						if (3 != nSuccessNum)//Ã»ÓĞ×ª»»3¸ö
+						if (3 != nSuccessNum)//æ²¡æœ‰è½¬æ¢3ä¸ª
 						{
 							break;
 						}
@@ -112,7 +112,7 @@ namespace DM
 				else if (0 == dm_xmlstrncmp(lpszValue, "pbgra", 5))
 				{
 					nSuccessNum = sscanf_s(lpszValue,"pbgra(%02x,%02x,%02x,%02x)",&b,&g,&r,&a);
-					if (4 != nSuccessNum)//Ã»ÓĞ×ª»»4¸ö
+					if (4 != nSuccessNum)//æ²¡æœ‰è½¬æ¢4ä¸ª
 					{
 						break;
 					}

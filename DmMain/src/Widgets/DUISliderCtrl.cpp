@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUISliderCtrl.h"
 
 namespace DM
@@ -91,7 +91,7 @@ namespace DM
 	}
 
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁÐº¯Êý
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	void DUISliderCtrl::DM_OnPaint(IDMCanvas* pCanvas)
 	{
 		do 
@@ -100,7 +100,7 @@ namespace DM
 
 			byte alpha = 0xff;
 			m_pDUIXmlInfo->m_pStyle->GetAlpha(alpha);
-			///1»æÖÆchannel
+			///1ç»˜åˆ¶channel
 			if (m_pChannelSkin)
 			{
 				CRect rcChannel = GetChannelRect();
@@ -112,7 +112,7 @@ namespace DM
 				pCanvas->FillSolidRect(rcChannel,m_crChannel);
 			}
 
-			//2»æÖÆthumb
+			//2ç»˜åˆ¶thumb
 			if (m_pThumbSkin)
 			{
 				CRect rcThumb = GetThumbRect();
@@ -149,7 +149,7 @@ namespace DM
 				m_iDragValue = m_iValue;
 				DM_Invalidate();
 			}
-			else if(DMSLIDER_CHANNEL == iHit)// ÉèÖÃ
+			else if(DMSLIDER_CHANNEL == iHit)// è®¾ç½®
 			{
 				CRect rcChannel = GetChannelRect();
 				int iValue = GetValue(point);
@@ -293,7 +293,7 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	CRect DUISliderCtrl::GetChannelRect()
 	{
 		CRect rcClient;

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	LayoutDlg.h
 // File mark:   
-// File summary:ÐÂ½¨»ò±à¼­layout
+// File summary:æ–°å»ºæˆ–ç¼–è¾‘layout
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-5
@@ -47,6 +47,6 @@ private:
 	DMXmlDocument                   m_LayoutDoc;
 	DMXmlNode                       m_LayoutNode;
 
-	CStringW                        m_strDir;    ///< LayoutËùÔÚµÄÂ·¾¶Èç"e:\\layout"
+	CStringW                        m_strDir;    ///< Layoutæ‰€åœ¨çš„è·¯å¾„å¦‚"e:\\layout"
 	static  LayoutDlg*              ms_pthis; 	
 };

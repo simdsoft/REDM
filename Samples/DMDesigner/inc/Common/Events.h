@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	Events.h
 // File mark:   
-// File summary: ÊÂ¼şÏµÍ³ÕûÌåcopy×ÔCEGUI
+// File summary: äº‹ä»¶ç³»ç»Ÿæ•´ä½“copyè‡ªCEGUI
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-11
@@ -14,7 +14,7 @@
 namespace DM
 {
 	/// <summary>
-	///		ÊÂ¼şID
+	///		äº‹ä»¶ID
 	/// </summary>
 	enum EVT_ID
 	{
@@ -41,7 +41,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		DUIPropCtrlÉ¾³ıÖĞÊÂ¼ş
+	///		DUIPropCtrlåˆ é™¤ä¸­äº‹ä»¶
 	/// </summary>
 	class IProp;
 	class PropDelingArgs:public DMEventArgs
@@ -51,12 +51,12 @@ namespace DM
 		enum{EventID=DMEVT_PROP_DELING};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_PROP_DELING);}
-		IProp*				m_pSel;				///<µ±Ç°Ñ¡ÖĞÏî
-		bool				m_bCancel;          ///<ÊÇ·ñÈ¡Ïûµ±Ç°²Ù×÷
+		IProp*				m_pSel;				///<å½“å‰é€‰ä¸­é¡¹
+		bool				m_bCancel;          ///<æ˜¯å¦å–æ¶ˆå½“å‰æ“ä½œ
 	};
 
 	/// <summary>
-	///		DUIPropCtrlÉ¾³ıÊÂ¼ş
+	///		DUIPropCtrlåˆ é™¤äº‹ä»¶
 	/// </summary>
 	class PropDelArgs:public DMEventArgs
 	{
@@ -65,7 +65,7 @@ namespace DM
 		enum{EventID=DMEVT_PROP_DEL};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_PROP_DEL);}
-		IProp*				m_pSel;				///<µ±Ç°É¾³ıÑ¡ÖĞÏî
+		IProp*				m_pSel;				///<å½“å‰åˆ é™¤é€‰ä¸­é¡¹
 	};
 
 	class PropValueChangedArgs:public DMEventArgs
@@ -75,12 +75,12 @@ namespace DM
 		enum{EventID=DMEVT_PROP_VALUECHANGED};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_PROP_VALUECHANGED);}
-		IProp*				m_pSel;				///<µ±Ç°Ñ¡ÖĞÏî
+		IProp*				m_pSel;				///<å½“å‰é€‰ä¸­é¡¹
 		CStringW            m_strOldValue;
 	};
 
 	/// <summary>
-	///		µ±Öµ¸Ä±äÊ±,DUIRect·¢ËÍ´ËÏûÏ¢
+	///		å½“å€¼æ”¹å˜æ—¶,DUIRectå‘é€æ­¤æ¶ˆæ¯
 	/// </summary>
 	class DUIRectChangedArgs : public DMEventArgs
 	{
@@ -92,7 +92,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		µ±Öµ¸Ä±äÊ±,DUIList·¢ËÍ´ËÏûÏ¢
+	///		å½“å€¼æ”¹å˜æ—¶,DUIListå‘é€æ­¤æ¶ˆæ¯
 	/// </summary>
 	class DUIListChangedArgs : public DMEventArgs
 	{
@@ -104,7 +104,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		µ±LOCK¸Ä±äºó£¬DUITreeEx·¢ËÍ´ËÏûÏ¢
+	///		å½“LOCKæ”¹å˜åï¼ŒDUITreeExå‘é€æ­¤æ¶ˆæ¯
 	/// </summary>
 	class DUITreeExLockChangedArgs :  public DMEventArgs
 	{
@@ -113,12 +113,12 @@ namespace DM
 		enum{EventID=DMEVT_DTREE_LOCKCHANGED};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_DTREE_LOCKCHANGED);}
-		HDMTREEITEM                m_hItem; ///< ¸Ä±älockµÄÏî
+		HDMTREEITEM                m_hItem; ///< æ”¹å˜lockçš„é¡¹
 		int                        m_iOldLockValue;
 	};
 
 	/// <summary>
-	///		µ±EYE¸Ä±äºó£¬DUITreeEx·¢ËÍ´ËÏûÏ¢
+	///		å½“EYEæ”¹å˜åï¼ŒDUITreeExå‘é€æ­¤æ¶ˆæ¯
 	/// </summary>
 	class DUITreeExEyeChangedArgs :  public DMEventArgs
 	{
@@ -127,12 +127,12 @@ namespace DM
 		enum{EventID=DMEVT_DTREE_EYECHANGED};
 		virtual UINT GetEventID(){return EventID;}
 		LPCSTR GetEventName(){return EVEIDNAME(DMEVT_DTREE_EYECHANGED);}
-		HDMTREEITEM                m_hItem; ///< ¸Ä±äeyeµÄÏî
+		HDMTREEITEM                m_hItem; ///< æ”¹å˜eyeçš„é¡¹
 		int                        m_iOldEyeValue;
 	};
 
 	/// <summary>
-	///		µ±Ë«»÷DUIRecentListBoxµÄÏîÊ±£¬·¢ËÍ´ËÏûÏ¢
+	///		å½“åŒå‡»DUIRecentListBoxçš„é¡¹æ—¶ï¼Œå‘é€æ­¤æ¶ˆæ¯
 	/// </summary>
 	class DUIRecentListBoxDBLClickArgs :  public DMEventArgs
 	{
@@ -145,7 +145,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		XmlĞèÒª¸üĞÂÏÔÊ¾
+	///		Xmléœ€è¦æ›´æ–°æ˜¾ç¤º
 	/// </summary>
 	class DUIXmlUpdateArgs : public DMEventArgs
 	{

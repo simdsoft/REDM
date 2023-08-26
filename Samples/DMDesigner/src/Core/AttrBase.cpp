@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "AttrBase.h"
 
 AttrBase::AttrBase()
@@ -30,17 +30,17 @@ AttrBase::~AttrBase()
 
 DMCode AttrBase::OnObjTreeChanged(DMEventArgs* pEvt)
 {
-	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// ´°¿ÚÇÐ»»Ê±£¬²»Ó°ÏìÏûÏ¢
+	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// çª—å£åˆ‡æ¢æ—¶ï¼Œä¸å½±å“æ¶ˆæ¯
 	DMEventTCSelChangedArgs* pEvent = (DMEventTCSelChangedArgs*)pEvt;
 	m_hObjSel = pEvent->m_hNewSel;
-	UpdateLock(m_hObjSel);// ¸üÐÂlock
+	UpdateLock(m_hObjSel);// æ›´æ–°lock
 	UpdataInfo(pEvent->m_hNewSel,pEvent->m_hOldSel);
 	return DM_ECODE_OK;
 }
 
 DMCode AttrBase::OnLockChanged(DMEventArgs* pEvt)
 {
-	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// ´°¿ÚÇÐ»»Ê±£¬²»Ó°ÏìÏûÏ¢
+	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// çª—å£åˆ‡æ¢æ—¶ï¼Œä¸å½±å“æ¶ˆæ¯
 	DUITreeExLockChangedArgs* pEvent =  (DUITreeExLockChangedArgs*)pEvt;
 	UpdateLock(pEvent->m_hItem);
 	return DM_ECODE_OK;

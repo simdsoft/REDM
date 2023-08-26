@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "IDUIRealWnd.h"
 
 
@@ -14,11 +14,11 @@ namespace DM
 		HWND hWndParent = GetContainer()->OnGetHWnd();
 		wchar_t wcClassName[MAX_PATH] = {0};
 		::GetClassNameW(hWndParent, wcClassName, MAX_PATH);
-		m_hRealWnd = OnCreateRealWnd(wcClassName,hWndParent);// ³õÊ¼»¯
+		m_hRealWnd = OnCreateRealWnd(wcClassName,hWndParent);// åˆå§‹åŒ–
 		if (NULL == m_hRealWnd)
 		{
 			DMFAIL_MSG("create realwnd fail");
-			return 1;// Ê§°Ü
+			return 1;// å¤±è´¥
 		}
 		g_pDMDWndPool->AddRealDUIWnd(GetDUIWnd());
 		return 0;
@@ -99,7 +99,7 @@ namespace DM
 		CRect rcWnd;
 		DV_GetClientRect(&rcWnd);
 		if (m_hRealWnd&&::IsWindow(m_hRealWnd)&&::IsWindowVisible(m_hRealWnd))
-		{// ×¥ÆÁ
+		{// æŠ“å±
 			HDC hdc = ::GetWindowDC(m_hRealWnd);
 			HDC dcMem = pCanvas->GetDC();
 			//::BitBlt(dcMem, rcWnd.left, rcWnd.top, rcWnd.Width(), rcWnd.Height(), hdc, 0, 0, SRCCOPY);

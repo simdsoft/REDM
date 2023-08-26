@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	XmlEditor.h
 // File mark:   
-// File summary:ÏÔÊ¾¡¢±à¼­XML
+// File summary:æ˜¾ç¤ºã€ç¼–è¾‘XML
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2017-5-5
@@ -20,29 +20,29 @@ class XmlEditor : public DMHWnd
 public:
 	XmlEditor();
 
-public:// ÏûÏ¢´¦Àí
+public:// æ¶ˆæ¯å¤„ç†
 	void Destroy();
 	LRESULT OnImeChar(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT DefWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
-public:// ¶ÔÍâ½Ó¿Ú
+public:// å¯¹å¤–æ¥å£
 	HWND Create(HWND hWndParent);
 
-public:// http://www.naughter.com/scintilla.html,·â×°ScintillaµÄµ÷ÓÃ
+public:// http://www.naughter.com/scintilla.html,å°è£…Scintillaçš„è°ƒç”¨
 	void InitXml();
 	LRESULT Call(UINT message,WPARAM wParam=0,LPARAM lParam=0,bool bDirect=true);
-	LRESULT AddText(int iLen, LPCSTR lpszText, bool bDirect = true);									///< ÔÚposÎ»ÖÃºóÔö¼ÓÎÄ±¾
+	LRESULT AddText(int iLen, LPCSTR lpszText, bool bDirect = true);									///< åœ¨posä½ç½®åå¢åŠ æ–‡æœ¬
 	LRESULT Cancel(bool bDirect = true);
-	LRESULT ClearAll(bool bDirect = true);																///< Çå¿ÕËùÓĞÎÄ±¾
+	LRESULT ClearAll(bool bDirect = true);																///< æ¸…ç©ºæ‰€æœ‰æ–‡æœ¬
 	LRESULT EmptyUndoBuffer(bool bDirect = true);
-	LRESULT GotoPos(int iPos, bool bDirect = true);														///< Ìø×ªµ½Ö¸¶¨pos
-	int GetCurrentPos(bool bDirect = true);																///< »ñµÃµ±Ç°ËùÔÚµÄpos(0¿ªÊ¼)
+	LRESULT GotoPos(int iPos, bool bDirect = true);														///< è·³è½¬åˆ°æŒ‡å®špos
+	int GetCurrentPos(bool bDirect = true);																///< è·å¾—å½“å‰æ‰€åœ¨çš„pos(0å¼€å§‹)
 	int GetCurLine(int iLen, LPCSTR lpszText, bool bDirect = true);
 	LRESULT SetUndoCollection(bool bCollectUndo, bool bDirect = true);
 	LRESULT SetSavePoint(bool bDirect = true);
-	bool GetReadOnly(bool bDirect = true);																///< ÊÇ·ñÎªReadOnly×´Ì¬
-	LRESULT SetReadOnly(bool bReadOnly, bool bDirect = true);											///< ReadOnly×´Ì¬Ê±£¬¿ÉÕÛµş£¬¿ÉÏÔÊ¾¹â±ê£¬µ«²»ÄÜ±à¼­
+	bool GetReadOnly(bool bDirect = true);																///< æ˜¯å¦ä¸ºReadOnlyçŠ¶æ€
+	LRESULT SetReadOnly(bool bReadOnly, bool bDirect = true);											///< ReadOnlyçŠ¶æ€æ—¶ï¼Œå¯æŠ˜å ï¼Œå¯æ˜¾ç¤ºå…‰æ ‡ï¼Œä½†ä¸èƒ½ç¼–è¾‘
 
 public:
 	LRESULT				m_DirectFunction;
@@ -51,7 +51,7 @@ public:
 
 
 /// <summary>
-///		DUIµÄRealWnd½Ó¿Ú
+///		DUIçš„RealWndæ¥å£
 /// </summary>
 class DUIRealXml : public IDUIRealWnd, public AttrBase
 {

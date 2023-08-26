@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: SpyFindBtn.h 
-// File Des: ËÑË÷´°¿Ú
+// File Des: æœç´¢çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,7 +17,7 @@ class CQQMainWnd;
 class CSpyWnd;
 extern CQQMainWnd* g_pMainWnd;
 /// <summary>
-///		ÔÚ´°¿Ú²éÕÒ½áÊøÊ±·¢¸ø×Ô¼ºµÄÖ÷´°¿Ú
+///		åœ¨çª—å£æŸ¥æ‰¾ç»“æŸæ—¶å‘ç»™è‡ªå·±çš„ä¸»çª—å£
 /// </summary>
 class DMSpyInitArgs:public DMEventArgs
 {
@@ -51,11 +51,11 @@ public:
 	void OnDestroy();
 
 public:
-	DMCode DV_OnSetCursor(const CPoint &pt);					    ///< ÉèÖÃµ±Ç°µÄ¹â±ê
+	DMCode DV_OnSetCursor(const CPoint &pt);					    ///< è®¾ç½®å½“å‰çš„å…‰æ ‡
 	DMCode OnTimeline();
 
 
-public:// ¸¨Öú
+public:// è¾…åŠ©
 	void RefreshFindInfo(HWND hWnd);
 	CStringT Display(int nVal);
 	CStringT GetProcPath(int PID);

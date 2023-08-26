@@ -1,11 +1,11 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: 
 // File Des: 
-// File Summary:ÔÚActiveXÏÂ£¬ÓÉÓÚ²»Í£µÄË¢ĞÂ±³¾°£¬Èç¹û×Ó¿Ø¼şÖĞ¿ÉÄÜÏÔÊ¾³ö¸¸¿Ø¼ş£¬Ò»¶¨²»ÄÜÊ¹ÓÃcacheÊôĞÔ
-// ²»È»±³¾°Ë¢ĞÂÊ±£¬×Ó¿Ø¼şÓĞ¿ÉÄÜ²»»á¸üĞÂ£¬¶øÊÇÊ¹ÓÃÀÏ±³¾°
+// File Summary:åœ¨ActiveXä¸‹ï¼Œç”±äºä¸åœçš„åˆ·æ–°èƒŒæ™¯ï¼Œå¦‚æœå­æ§ä»¶ä¸­å¯èƒ½æ˜¾ç¤ºå‡ºçˆ¶æ§ä»¶ï¼Œä¸€å®šä¸èƒ½ä½¿ç”¨cacheå±æ€§
+// ä¸ç„¶èƒŒæ™¯åˆ·æ–°æ—¶ï¼Œå­æ§ä»¶æœ‰å¯èƒ½ä¸ä¼šæ›´æ–°ï¼Œè€Œæ˜¯ä½¿ç”¨è€èƒŒæ™¯
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -19,15 +19,15 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIActiveX"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIActiveX"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIActiveXAttr
 	{
 	public:
-		static const char* STRING_clsid;                                  ///< Ö¸¶¨CLSID,Ê¾Àı:clsid=""
-		static const char* INT_clsctx;									   ///< Ö¸¶¨CLSCTX,Ä¬ÈÏÎªCLSCTX_ALL,Ê¾Àı:clsctx=""
-		static const char* bool_bdelayinit;							   ///< ´°¿ÚÏÔÊ¾Ê±²Å¼ÓÔØ,Ä¬ÈÏÎªtrue,Ê¾Àı:bdelayinit="1"
-		static const char* bool_bsupportmulthread;						   ///< ACTIVEXÊÇ·ñÖ§³Ö¶àÏß³Ì,Ä¬ÈÏÎªfalse,×¢Òâ,´ËÊôĞÔÔİ²»Ö§³Ö¶¯Ì¬¸Ä±ä,Ê¾Àı:bsupportmulthread="0"   
+		static const char* STRING_clsid;                                  ///< æŒ‡å®šCLSID,ç¤ºä¾‹:clsid=""
+		static const char* INT_clsctx;									   ///< æŒ‡å®šCLSCTX,é»˜è®¤ä¸ºCLSCTX_ALL,ç¤ºä¾‹:clsctx=""
+		static const char* bool_bdelayinit;							   ///< çª—å£æ˜¾ç¤ºæ—¶æ‰åŠ è½½,é»˜è®¤ä¸ºtrue,ç¤ºä¾‹:bdelayinit="1"
+		static const char* bool_bsupportmulthread;						   ///< ACTIVEXæ˜¯å¦æ”¯æŒå¤šçº¿ç¨‹,é»˜è®¤ä¸ºfalse,æ³¨æ„,æ­¤å±æ€§æš‚ä¸æ”¯æŒåŠ¨æ€æ”¹å˜,ç¤ºä¾‹:bsupportmulthread="0"   
 	};
 	DMAttrValueInit(DUIActiveXAttr,STRING_clsid)DMAttrValueInit(DUIActiveXAttr,INT_clsctx)DMAttrValueInit(DUIActiveXAttr,bool_bdelayinit)DMAttrValueInit(DUIActiveXAttr,bool_bsupportmulthread)
 }
@@ -75,14 +75,14 @@ namespace DM
 	public:
 		DMCode OnAttrClsid(LPCSTR pszValue, bool bLoadXml);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool InitActiveX();
 		
 	public:
 		DMAxContainerImpl			*m_pAxContainer;
 		CLSID						 m_ClsId;
 		DWORD						 m_ClsCtx;
-		bool						 m_bDelayInit;										///< ´°¿ÚÏÔÊ¾Ê±²Å¼ÓÔØ
+		bool						 m_bDelayInit;										///< çª—å£æ˜¾ç¤ºæ—¶æ‰åŠ è½½
 		bool                         m_bInit;
 		bool                         m_bSupportMultThread;
 	};

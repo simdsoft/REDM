@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMImgListSkinImpl.h"
 
 namespace DM
@@ -42,11 +42,11 @@ namespace DM
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // ×´Ì¬Í¼×´Ì¬Êı¿Ï¶¨²»ÄÜÎª0£¡
+			DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // çŠ¶æ€å›¾çŠ¶æ€æ•°è‚¯å®šä¸èƒ½ä¸º0ï¼
 			if (NULL == pCanvas
 				|| NULL == lpRectDraw
 				|| NULL == m_pBitmap
-				|| iState>=m_nStates)// ¡¾0,m_nStates-1¡¿
+				|| iState>=m_nStates)// ã€0,m_nStates-1ã€‘
 			{
 				break;
 			}
@@ -74,14 +74,14 @@ namespace DM
 
 	DMCode DMImgListSkinImpl::GetStateSize(SIZE &sz, int iState/*=0*/)
 	{
-		DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // ×´Ì¬Í¼×´Ì¬Êı¿Ï¶¨²»ÄÜÎª0£¡
+		DMASSERT_MSG(0 != m_nStates,"DMImgListSkinImpl m_nStates is zero"); // çŠ¶æ€å›¾çŠ¶æ€æ•°è‚¯å®šä¸èƒ½ä¸º0ï¼
 		
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
 			if (m_nStates<=iState)
 			{
-				iState = 0;// Èç¹û³¬ÁË£¬Ä¬ÈÏÈ¡µÚÒ»×´Ì¬Í¼
+				iState = 0;// å¦‚æœè¶…äº†ï¼Œé»˜è®¤å–ç¬¬ä¸€çŠ¶æ€å›¾
 			}
 
 			if (m_pBitmap.isNull())
@@ -210,14 +210,14 @@ namespace DM
 			CStringA strType;
 			CStringA strResName;
 			int iFind = strValue.ReverseFind((':'));
-			if (-1 != iFind)// ¿ÉÄÜÊÇPNG:IDR_BTN
+			if (-1 != iFind)// å¯èƒ½æ˜¯PNG:IDR_BTN
 			{
 				strType = strValue.Left(iFind);
 				strResName = strValue.Right(strValue.GetLength()-iFind-1);
 			}
-			else// Ò²¿ÉÄÜÊÇIDR_BTN
+			else// ä¹Ÿå¯èƒ½æ˜¯IDR_BTN
 			{	
-				strType = "png";  // Ä¬ÈÏÎªpng
+				strType = "png";  // é»˜è®¤ä¸ºpng
 				strResName = strValue;
 			}
 

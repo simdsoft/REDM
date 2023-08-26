@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -20,13 +20,13 @@ namespace DMAttr
 	class DUIPAddressCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* COLOR_clrdot;                                   ///< dotÑÕÉ«,Ê¾Àı:clrdot="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clrtext;									///< Ä¬ÈÏÎÄ±¾ÑÕÉ«£¬ºÍstyleµÄclrtextÏàÍ¬×÷ÓÃ.Ê¾Àı:clrtext="pbgra(00,00,00,ff)"
-		static const char* FONT_font;										///< Ä¬ÈÏÎÄ±¾×ÖÌå, ºÍstyleµÄfontÏàÍ¬×÷ÓÃ.Ê¾Àı:font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
-		static const char* OPTION_align;									///< ¶ÎÂäÅÅ²¼£¬ºÍstyleµÄalignÏàÍ¬×÷ÓÃ,Ä¬ÈÏleft,¿ÉÉèÖÃcenter,right,Ê¾Àı:align="left"
-		// ¹â±ê
-		static const char* COLOR_clrcaret;                                 ///< ¹â±êÑÕÉ«,Ê¾Àı:clrcaret="pbgra(ff,ff,ff,ff)"
-		static const char* INI_caretanimatecount;                          ///< ¹â±ê½¥Òş½¥ÏÔ´ÎÊı£¬1´ÎÎªÕı³£×´Ì¬£¬Ä¬ÈÏÎª6´Î,Ê¾Àı£º caretanimatecount="6"
+		static const char* COLOR_clrdot;                                   ///< doté¢œè‰²,ç¤ºä¾‹:clrdot="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clrtext;									///< é»˜è®¤æ–‡æœ¬é¢œè‰²ï¼Œå’Œstyleçš„clrtextç›¸åŒä½œç”¨.ç¤ºä¾‹:clrtext="pbgra(00,00,00,ff)"
+		static const char* FONT_font;										///< é»˜è®¤æ–‡æœ¬å­—ä½“, å’Œstyleçš„fontç›¸åŒä½œç”¨.ç¤ºä¾‹:font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
+		static const char* OPTION_align;									///< æ®µè½æ’å¸ƒï¼Œå’Œstyleçš„alignç›¸åŒä½œç”¨,é»˜è®¤left,å¯è®¾ç½®center,right,ç¤ºä¾‹:align="left"
+		// å…‰æ ‡
+		static const char* COLOR_clrcaret;                                 ///< å…‰æ ‡é¢œè‰²,ç¤ºä¾‹:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< å…‰æ ‡æ¸éšæ¸æ˜¾æ¬¡æ•°ï¼Œ1æ¬¡ä¸ºæ­£å¸¸çŠ¶æ€ï¼Œé»˜è®¤ä¸º6æ¬¡,ç¤ºä¾‹ï¼š caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrdot)DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrtext)DMAttrValueInit(DUIPAddressCtrlAttr,FONT_font)
 	DMAttrValueInit(DUIPAddressCtrlAttr,COLOR_clrcaret)DMAttrValueInit(DUIPAddressCtrlAttr,INI_caretanimatecount)
@@ -49,7 +49,7 @@ namespace DM
 	public:
 		void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool AdjustNum();
 
 	public: 
@@ -58,7 +58,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 DUIPAddressCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIPAddressCtrlAttr"/>
+	///		 DUIPAddressCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIPAddressCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIPAddressCtrl: public DUIWindow
 	{
@@ -95,7 +95,7 @@ namespace DM
 		void OnSize(UINT nType, CSize size);
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 	public:

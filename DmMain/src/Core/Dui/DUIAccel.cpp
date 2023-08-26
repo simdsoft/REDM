@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIAccel.h"
 
 namespace DM
@@ -84,7 +84,7 @@ namespace DM
 		return str;
 	}
 
-	// ½«×Ö·û´®·­ÒëÎª¼ÓËÙ¼ü
+	// å°†å­—ç¬¦ä¸²ç¿»è¯‘ä¸ºåŠ é€Ÿé”®
 	DWORD DUIAccel::TranslateAccelKey(LPCSTR lpszAccelKey)
 	{
 		if (NULL == lpszAccelKey||0==strlen(lpszAccelKey))

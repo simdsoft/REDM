@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMMsgLoop.h"
 
 namespace DM
@@ -156,7 +156,7 @@ namespace DM
 	{
 		DMAutoLock autolock(m_pMsgLock);
 		POSITION Pos = m_MsgFilterList.GetHeadPosition();
-		while (Pos)// Ñ­»·´¦Àí
+		while (Pos)// å¾ªç¯å¤„ç†
 		{
 			IDMMessageFilterPtr& pMessageFilter = m_MsgFilterList.GetNext(Pos);
 			if (pMessageFilter != NULL && pMessageFilter->PreTranslateMessage(pMsg))
@@ -172,7 +172,7 @@ namespace DM
 	{
 		DMAutoLock autolock(m_pIdleLock);
 		POSITION Pos = m_IdleHandlerList.GetHeadPosition();
-		while (Pos)// Ñ­»·´¦Àí
+		while (Pos)// å¾ªç¯å¤„ç†
 		{
 			IDMIdleHandlerPtr& pIdleHandler = m_IdleHandlerList.GetNext(Pos);
 			if (pIdleHandler && pIdleHandler->OnIdle())
@@ -218,13 +218,13 @@ namespace DM
 		{
 			if (NULL == pMsgLoop)
 			{
-				LOG_ERR("[mid]loop¶ÔÏóÖ¸ÕëÎª¿Õ\n");
+				LOG_ERR("[mid]loopå¯¹è±¡æŒ‡é’ˆä¸ºç©º\n");
 				break;
 			}
 
 			if (IsKeyExist(::GetCurrentThreadId()))
 			{
-				LOG_ERR("[mid]µ±Ç°Ïß³ÌÏûÏ¢loop¶ÔÏóÒÑ´æÔÚ\n");
+				LOG_ERR("[mid]å½“å‰çº¿ç¨‹æ¶ˆæ¯loopå¯¹è±¡å·²å­˜åœ¨\n");
 				break;
 			}
 
@@ -247,7 +247,7 @@ namespace DM
 		DMAutoLock autolock(&m_Lock);
 
 		DMMsgLoop* pLoop = NULL;
-		if (IsKeyExist(dwThreadID)) //ÒòÎªkey²»´æÔÚ£¬DM::CMap»á×Ô¶¯´´½¨£¬ËùÒÔÏÈÅĞ¶Ïkey´æÔÚ
+		if (IsKeyExist(dwThreadID)) //å› ä¸ºkeyä¸å­˜åœ¨ï¼ŒDM::CMapä¼šè‡ªåŠ¨åˆ›å»ºï¼Œæ‰€ä»¥å…ˆåˆ¤æ–­keyå­˜åœ¨
 		{
 			pLoop = GetObjByKey(dwThreadID);
 		}
@@ -257,7 +257,7 @@ namespace DM
 
 	void DMMsgLoopTool::Term()
 	{
-		// ÕûÌåÏú»ÙÍ¨Öª.ºóĞøÊµÏÖ
+		// æ•´ä½“é”€æ¯é€šçŸ¥.åç»­å®ç°
 	}
 
 }//namespace DM

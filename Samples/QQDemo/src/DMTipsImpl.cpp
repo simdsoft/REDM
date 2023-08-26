@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "DMTipsImpl.h"
 
 namespace DM
@@ -33,13 +33,13 @@ namespace DM
 				bRet = true;
 				break;
 			}
-			ATOM Atom = g_pDMApp->GetClassAtom(true);  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
-			HWND hWnd = DMCWnd::CreateWindowEx((LPCWSTR)Atom,L"tips",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL);// ´´½¨Òş²ØµÄ¶¨Ê±Æ÷´°¿Ú
+			ATOM Atom = g_pDMApp->GetClassAtom(true);  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
+			HWND hWnd = DMCWnd::CreateWindowEx((LPCWSTR)Atom,L"tips",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL);// åˆ›å»ºéšè—çš„å®šæ—¶å™¨çª—å£
 			if (NULL == hWnd)
 			{
 				break;
 			}
-			ShowWindow(SW_HIDE);// Ä¬ÈÏÒş²Ø£¬½öÊ¹ÓÃÆä¶¨Ê±Æ÷¹¦ÄÜ
+			ShowWindow(SW_HIDE);// é»˜è®¤éšè—ï¼Œä»…ä½¿ç”¨å…¶å®šæ—¶å™¨åŠŸèƒ½
 			bRet = true;
 		} while (false);
 		return bRet;
@@ -50,7 +50,7 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			if (IsTipWindows())// ÒÑ´´½¨
+			if (IsTipWindows())// å·²åˆ›å»º
 			{
 				bRet = true;
 				break;
@@ -58,16 +58,16 @@ namespace DM
 			m_pWnd.Attach(new DMTipHWnd);
 			if (!m_strXmlId.IsEmpty())
 			{
-				if (NULL == m_pWnd->DM_CreateWindowEx(DMW2A(m_strXmlId),L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// ´´½¨Ö÷´°¿Ú
+				if (NULL == m_pWnd->DM_CreateWindowEx(DMW2A(m_strXmlId),L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// åˆ›å»ºä¸»çª—å£
 				{
 					break;
 				}
 			}
-			else if (!m_strTip.IsEmpty())// ¹¹½¨¼òµ¥µÄstr´°¿Ú
+			else if (!m_strTip.IsEmpty())// æ„å»ºç®€å•çš„strçª—å£
 			{
 				DMAutoDC hdc;
 				CRect rcText(0,0,500,1000);
-				DrawText(hdc,m_strTip,-1,&rcText,DT_CALCRECT|DT_LEFT|DT_WORDBREAK);// ¼ÆËãÎÄ±¾´óĞ¡
+				DrawText(hdc,m_strTip,-1,&rcText,DT_CALCRECT|DT_LEFT|DT_WORDBREAK);// è®¡ç®—æ–‡æœ¬å¤§å°
 
 				CRect rcWnd = rcText;
 				rcWnd.InflateRect(MARGIN_TIP,MARGIN_TIP);
@@ -79,7 +79,7 @@ namespace DM
 				DMBufT<BYTE>pBuf;pBuf.Allocate(ulSize);
 				UnicodeToUtf8(strXml.GetBuffer(),(PCHAR)pBuf.get(),ulSize);
 				strXml.ReleaseBuffer();
-				if (NULL == m_pWnd->DM_CreateWindowEx(pBuf,ulSize,L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// ´´½¨Ö÷´°¿Ú
+				if (NULL == m_pWnd->DM_CreateWindowEx(pBuf,ulSize,L"tipsWnd",WS_POPUP,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|WS_EX_NOACTIVATE,0,0,0,0,NULL,NULL,true))// åˆ›å»ºä¸»çª—å£
 				{
 					break;
 				}
@@ -97,7 +97,7 @@ namespace DM
 	{
 		switch (idEvent)
 		{
-		case TIMERID_DELAY:// ÏÔÊ¾,ÑÓ³ÙÏûÊ§
+		case TIMERID_DELAY:// æ˜¾ç¤º,å»¶è¿Ÿæ¶ˆå¤±
 			{
 				m_bShowing = false;
 				KillTimer(TIMERID_DELAY);      
@@ -108,7 +108,7 @@ namespace DM
 
 		case TIMERID_SPAN:
 			{
-				if (!IsCursorPtInRect())// µ±Ç°Ã»ÓĞÍ£ÁôÔÚtip´°¿ÚÉÏ
+				if (!IsCursorPtInRect())// å½“å‰æ²¡æœ‰åœç•™åœ¨tipçª—å£ä¸Š
 				{
 					m_bShowing = false;
 					ShowTips(false);
@@ -134,8 +134,8 @@ namespace DM
 
 			if (IsTipWindows())
 			{
-				if ((!m_strXmlId.IsEmpty()&&strXmlId == m_strXmlId)// Ô­À´Í¨¹ıxmlid´´½¨£¬²¢ÇÒĞÂ´«ÈëµÄxmlidºÍËüÒ»ÖÂ
-					||m_strXmlId.IsEmpty()&&!m_strTip.IsEmpty()&&strTip == m_strTip// Ô­À´Í¨¹ıtext´´½¨£¬²¢ÇÒĞÂ´«ÈëµÄtextºÍËüÒ»ÖÂ
+				if ((!m_strXmlId.IsEmpty()&&strXmlId == m_strXmlId)// åŸæ¥é€šè¿‡xmlidåˆ›å»ºï¼Œå¹¶ä¸”æ–°ä¼ å…¥çš„xmlidå’Œå®ƒä¸€è‡´
+					||m_strXmlId.IsEmpty()&&!m_strTip.IsEmpty()&&strTip == m_strTip// åŸæ¥é€šè¿‡textåˆ›å»ºï¼Œå¹¶ä¸”æ–°ä¼ å…¥çš„textå’Œå®ƒä¸€è‡´
 					)
 				{
 				}
@@ -151,7 +151,7 @@ namespace DM
 			Create();
 			CreateTipsWnd();
 	
-			/// ¸üĞÂÊı¾İ
+			/// æ›´æ–°æ•°æ®
 			m_rcTarget = pInfo->rcTarget;
 			m_iDelayTime = pInfo->iDelayTime;
 			m_iSpanTime  = pInfo->iSpanTime;
@@ -173,7 +173,7 @@ namespace DM
 		{
 			if (!IsTipWindows())
 			{
-				break;// ÕâÊ±²»Òª´´½¨ÁË£¬ÒòÎªÒş²ØÒ²¿ÉÄÜ·¢ÉúÔÚËŞÖ÷´°¿ÚÏú»Ùºó£¬ÕâÊ±ÏûÏ¢Ñ­»·¿ÉÄÜÃ»´¦ÀíÍê
+				break;// è¿™æ—¶ä¸è¦åˆ›å»ºäº†ï¼Œå› ä¸ºéšè—ä¹Ÿå¯èƒ½å‘ç”Ÿåœ¨å®¿ä¸»çª—å£é”€æ¯åï¼Œè¿™æ—¶æ¶ˆæ¯å¾ªç¯å¯èƒ½æ²¡å¤„ç†å®Œ
 			}
 			ShowTips(false);
 			iErr = DM_ECODE_OK;
@@ -218,7 +218,7 @@ namespace DM
 					{
 						if (!IsCursorPtInRect())
 						{
-							OnTimer(TIMERID_SPAN);// Ö±½ÓÒş²Ø
+							OnTimer(TIMERID_SPAN);// ç›´æ¥éšè—
 						}
 					}
 					else if (IsTipWindows() && !m_pWnd->IsWindowVisible() && !m_bShowing)
@@ -240,7 +240,7 @@ namespace DM
 					{
 						if (!IsCursorPtInRect())
 						{
-							OnTimer(TIMERID_SPAN);// Ö±½ÓÒş²Ø
+							OnTimer(TIMERID_SPAN);// ç›´æ¥éšè—
 						}
 					}
 				}
@@ -266,7 +266,7 @@ namespace DM
 		return FALSE;
 	}
 
-	// ¸¨Öú---------------------------------
+	// è¾…åŠ©---------------------------------
 	void DMTipsImpl::ShowTips(bool bShow)
 	{
 		do 
@@ -278,7 +278,7 @@ namespace DM
 
 			if (!bShow)
 			{
-				m_bShowing = false;// Òş²ØÊ±ÒªÉèÖÃÎª²»ÔÚÏÔÊ¾¹ı³ÌÖĞ
+				m_bShowing = false;// éšè—æ—¶è¦è®¾ç½®ä¸ºä¸åœ¨æ˜¾ç¤ºè¿‡ç¨‹ä¸­
 				m_rcTarget.SetRect(0,0,0,0);
 				if (!m_pWnd->IsWindowVisible())
 				{
@@ -287,12 +287,12 @@ namespace DM
 				m_pWnd->ShowWindow(SW_HIDE);
 				KillTimer(TIMERID_DELAY);
 				KillTimer(TIMERID_SPAN);
-				break;// Ìø³ö
+				break;// è·³å‡º
 			}
 
 			CRect rcWnd;
 			m_pWnd->GetWindowRect(&rcWnd);
-			// ¼ÆËã¹Ì¶¨Î»ÖÃ
+			// è®¡ç®—å›ºå®šä½ç½®
 			int iFlags = m_rcPosFlags.left;
 			bool bFixPos = (m_rcPosFlags.bottom!=0);
 			if (-1 != iFlags)
@@ -303,28 +303,28 @@ namespace DM
 				int iWid = rcWnd.Width();
 				int iHei = rcWnd.Height();
 			
-				if (TPM_LEFTALIGN == (iFlags&TPM_LEFTALIGN))//ÈôÉèÖÃ´Ë±êÖ¾£¬º¯ÊıÊ¹¿ì½İ²Ëµ¥µÄ×ó±ß½çÓëm_rcScreenTarget.left+xÖ¸¶¨µÄ×ø±ê¶ÔÆë,Í¬Ê±¿ì½İ²Ëµ¥µÄÉÏ±ß½çºÍm_rcScreenTarget.bottom¶ÔÆë
+				if (TPM_LEFTALIGN == (iFlags&TPM_LEFTALIGN))//è‹¥è®¾ç½®æ­¤æ ‡å¿—ï¼Œå‡½æ•°ä½¿å¿«æ·èœå•çš„å·¦è¾¹ç•Œä¸m_rcScreenTarget.left+xæŒ‡å®šçš„åæ ‡å¯¹é½,åŒæ—¶å¿«æ·èœå•çš„ä¸Šè¾¹ç•Œå’Œm_rcScreenTarget.bottomå¯¹é½
 				{
 					rcWnd.left = m_rcScreenTarget.left + x;
 					rcWnd.right = rcWnd.left + iWid;
 					rcWnd.top = m_rcScreenTarget.bottom;
 					rcWnd.bottom = rcWnd.top + iHei;
 				}
-				if (TPM_RIGHTALIGN == (iFlags&TPM_RIGHTALIGN))//ÈôÉèÖÃ´Ë±êÖ¾£¬º¯ÊıÊ¹¿ì½İ²Ëµ¥µÄÓÒ±ß½çÓëm_rcScreenTarget.right+xÖ¸¶¨µÄ×ø±ê¶ÔÆë,Í¬Ê±¿ì½İ²Ëµ¥µÄÉÏ±ß½çºÍm_rcScreenTarget.bottom¶ÔÆë
+				if (TPM_RIGHTALIGN == (iFlags&TPM_RIGHTALIGN))//è‹¥è®¾ç½®æ­¤æ ‡å¿—ï¼Œå‡½æ•°ä½¿å¿«æ·èœå•çš„å³è¾¹ç•Œä¸m_rcScreenTarget.right+xæŒ‡å®šçš„åæ ‡å¯¹é½,åŒæ—¶å¿«æ·èœå•çš„ä¸Šè¾¹ç•Œå’Œm_rcScreenTarget.bottomå¯¹é½
 				{
 					rcWnd.right = m_rcScreenTarget.right + x;
 					rcWnd.left = rcWnd.right - iWid;
 				}
 
-				if (TPM_BOTTOMALIGN == (iFlags&TPM_BOTTOMALIGN))//ÈôÉèÖÃ´Ë±êÖ¾£¬º¯ÊıÊ¹¿ì½İ²Ëµ¥µÄÏÂ±ß½çÓëÓëm_rcScreenTarget.top+yÖ¸¶¨µÄ×ø±ê¶ÔÆë,
+				if (TPM_BOTTOMALIGN == (iFlags&TPM_BOTTOMALIGN))//è‹¥è®¾ç½®æ­¤æ ‡å¿—ï¼Œå‡½æ•°ä½¿å¿«æ·èœå•çš„ä¸‹è¾¹ç•Œä¸ä¸m_rcScreenTarget.top+yæŒ‡å®šçš„åæ ‡å¯¹é½,
 				{
 					rcWnd.bottom = m_rcScreenTarget.top + y;
 					rcWnd.top = rcWnd.bottom - iHei;
 				}
 			}
 
-			if (-1 == m_rcPosFlags.left|| // Î´Ö¸¶¨ÏÔÊ¾×ø±ê
-				false == bFixPos)// ²»Ç¿ÖÆ¹Ì¶¨
+			if (-1 == m_rcPosFlags.left|| // æœªæŒ‡å®šæ˜¾ç¤ºåæ ‡
+				false == bFixPos)// ä¸å¼ºåˆ¶å›ºå®š
 			{
 			}
 			HMONITOR hMonitor = ::MonitorFromRect(&rcWnd, MONITOR_DEFAULTTONEAREST);
@@ -334,7 +334,7 @@ namespace DM
 				::GetMonitorInfo(hMonitor, &mi);
 				CRect rcWork = mi.rcWork;
 				if (rcWork.left < rcWork.right)
-				{// ¼òµ¥µÄÖ§³ÖÎ»ÒÆÔÚÆÁÄ»ÄÚ
+				{// ç®€å•çš„æ”¯æŒä½ç§»åœ¨å±å¹•å†…
 					if (rcWnd.right > rcWork.right) 
 						rcWnd.OffsetRect(rcWork.right - rcWnd.right, 0);
 					if (rcWnd.bottom > rcWork.bottom)

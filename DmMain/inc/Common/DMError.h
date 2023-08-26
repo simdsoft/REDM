@@ -1,12 +1,12 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMError.h 
-// File Des: ´íÎóÂë
-// File Summary: ÃüÃû¹æÔò:
-// ÈçÀàÃûÎªANAME£¬Ôò¹éÓÚenum ANAME_ERROR_CODEÃ¶¾ÙÖĞ
-// Èçº¯ÊıÃûÎªfunNAME,Ôò¹éÓÚANAME_FUNNAME_XX_ERR,XX±íÊ¾¾ßÌåÔ­Òò
+// File Des: é”™è¯¯ç 
+// File Summary: å‘½åè§„åˆ™:
+// å¦‚ç±»åä¸ºANAMEï¼Œåˆ™å½’äºenum ANAME_ERROR_CODEæšä¸¾ä¸­
+// å¦‚å‡½æ•°åä¸ºfunNAME,åˆ™å½’äºANAME_FUNNAME_XX_ERR,XXè¡¨ç¤ºå…·ä½“åŸå› 
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,30 +17,30 @@
 #pragma once
 
 /// <summary>
-///		´íÎóÂëÁĞ±í
+///		é”™è¯¯ç åˆ—è¡¨
 /// </summary>
 namespace DM
 {
 	#define DMSUCCEEDED(dmcode)   (0 == (int)(dmcode))
-	enum DM_ERROR_CODE///Í¨ÓÃ´íÎóÂëENUM
+	enum DM_ERROR_CODE///é€šç”¨é”™è¯¯ç ENUM
 	{
-		DM_ECODE_OK = 0,											///< Í¨ÓÃµÄ³É¹¦	
-		DM_ECODE_FAIL = 1,											///< Í¨ÓÃµÄÊ§°Ü,ÔÚxml½âÎöÖĞ±íÊ¾Î´´¦Àíxml	
-		DM_ECODE_NOXMLLOADREFRESH = 2,                              ///< ·Çxml·½Ê½¼ÓÔØÊ±ĞèÒªË¢ĞÂ×ÔÉí
-		DM_ECODE_NOXMLLOADPARENTREFRESH,							///< ·Çxml·½Ê½¼ÓÔØÊ±ĞèÒªË¢ĞÂ¸¸´°¿Ú£¨Èçtabpage£©
-		DM_ECODE_NOXMLRELAYOUT,										///< ·Çxml·½Ê½¼ÓÔØÊ±ÖØĞÂ²¼¾Ö
-		DM_ECODE_NOTIMPL,                                           ///< Î´ÊµÏÖ½Ó¿Ú
-		DM_ECODE_SMALLBUF,                                          ///< BUFÌ«Ğ¡
-		DM_ECODE_GETROOTDIR_FAIL,									///< »ñÈ¡exe¸ùÄ¿Â¼Ê§°Ü
-		DM_ECODE_PATHCOMBINE_FAIL,                                  ///< PathCombineWÊ§°Ü
-		DM_ECODE_NOLOOP,                                            ///< ½áÊøÑ­»·
-		DM_ECODE_END  = 100,                                        ///< Í¨ÓÃµÄ´íÊ¶Âë½áÊø
+		DM_ECODE_OK = 0,											///< é€šç”¨çš„æˆåŠŸ	
+		DM_ECODE_FAIL = 1,											///< é€šç”¨çš„å¤±è´¥,åœ¨xmlè§£æä¸­è¡¨ç¤ºæœªå¤„ç†xml	
+		DM_ECODE_NOXMLLOADREFRESH = 2,                              ///< éxmlæ–¹å¼åŠ è½½æ—¶éœ€è¦åˆ·æ–°è‡ªèº«
+		DM_ECODE_NOXMLLOADPARENTREFRESH,							///< éxmlæ–¹å¼åŠ è½½æ—¶éœ€è¦åˆ·æ–°çˆ¶çª—å£ï¼ˆå¦‚tabpageï¼‰
+		DM_ECODE_NOXMLRELAYOUT,										///< éxmlæ–¹å¼åŠ è½½æ—¶é‡æ–°å¸ƒå±€
+		DM_ECODE_NOTIMPL,                                           ///< æœªå®ç°æ¥å£
+		DM_ECODE_SMALLBUF,                                          ///< BUFå¤ªå°
+		DM_ECODE_GETROOTDIR_FAIL,									///< è·å–exeæ ¹ç›®å½•å¤±è´¥
+		DM_ECODE_PATHCOMBINE_FAIL,                                  ///< PathCombineWå¤±è´¥
+		DM_ECODE_NOLOOP,                                            ///< ç»“æŸå¾ªç¯
+		DM_ECODE_END  = 100,                                        ///< é€šç”¨çš„é”™è¯†ç ç»“æŸ
 	};
 
-	enum DMDATABASE_ERROR_CODE///XML´íÎóÂëENUM
+	enum DMDATABASE_ERROR_CODE///XMLé”™è¯¯ç ENUM
 	{
 		// LoadDMData
-		DMDATABASE_LOADDMDATA_PARAM_INVALID = 200,					///< ²ÎÊı·Ç·¨
+		DMDATABASE_LOADDMDATA_PARAM_INVALID = 200,					///< å‚æ•°éæ³•
 
 	};
 
@@ -48,30 +48,30 @@ namespace DM
 	{
 		DMAPPDATA_BASE  = 300,
 		// Run
-		DMAPP_RUN_ADDMESSAGELOOP_FAIL,							    ///< ¼ÓÈëÏûÏ¢Ñ­»·ÁĞ±íÊ§°Ü
+		DMAPP_RUN_ADDMESSAGELOOP_FAIL,							    ///< åŠ å…¥æ¶ˆæ¯å¾ªç¯åˆ—è¡¨å¤±è´¥
 	};
 
-	enum DMREGMGR_ERROR_CODE///REG´íÎóÂëENUM
+	enum DMREGMGR_ERROR_CODE///REGé”™è¯¯ç ENUM
 	{
 		// RegisterByType
-		DMREGMGR_REGISTERBYTYPE_REG_EXIST = 400,					///< ×¢²áÒÑ´æÔÚ
+		DMREGMGR_REGISTERBYTYPE_REG_EXIST = 400,					///< æ³¨å†Œå·²å­˜åœ¨
 
 		// CreateRegObjByType
-		DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID,                  ///< ´«Èë²ÎÊı·Ç·¨
-		DMREGMGR_CREATEREGOBJBYTYPE_COUNT_ISZERO,                   ///< ×¢²áÊıÎª0
+		DMREGMGR_CREATEREGOBJBYTYPE_PARAM_INVALID,                  ///< ä¼ å…¥å‚æ•°éæ³•
+		DMREGMGR_CREATEREGOBJBYTYPE_COUNT_ISZERO,                   ///< æ³¨å†Œæ•°ä¸º0
 
 		// SetDefRegObjByType
-		DMREGMGR_SETDEFREGOBJBYTYPE_DEFREGNAME_SAME,                ///< SetDefRegObjºÍÔ­À´µÄÒ»ÖÂ
+		DMREGMGR_SETDEFREGOBJBYTYPE_DEFREGNAME_SAME,                ///< SetDefRegObjå’ŒåŸæ¥çš„ä¸€è‡´
 	};
 
-	enum DMPLUGINSTOOL_ERROR_CODE///²å¼ş´íÎóÂë
+	enum DMPLUGINSTOOL_ERROR_CODE///æ’ä»¶é”™è¯¯ç 
 	{
 		// LoadPlugins
-		DMPLUGINSTOOL_LOADPLUGINS_CFGFILE_NOTEXIST,                 ///< CFGÎÄ¼ş²»´æÔÚ 
+		DMPLUGINSTOOL_LOADPLUGINS_CFGFILE_NOTEXIST,                 ///< CFGæ–‡ä»¶ä¸å­˜åœ¨ 
 
 		// LoadPlugin
-		DMPLUGINSTOOL_LOADPLUGIN_LOAD_FAIL,                         ///< dll¼ÓÔØÊ§°Ü
-		DMPLUGINSTOOL_LOADPLUGIN_ALREADY_EXIST,                     ///< dllÒÑ±»¼ÓÔØ¹ı
-		DMPLUGINSTOOL_LOADPLUGIN_NOFIND_START_EXPORT,               ///< dllÃ»ÓĞµ¼³ödllStartPlugin
+		DMPLUGINSTOOL_LOADPLUGIN_LOAD_FAIL,                         ///< dllåŠ è½½å¤±è´¥
+		DMPLUGINSTOOL_LOADPLUGIN_ALREADY_EXIST,                     ///< dllå·²è¢«åŠ è½½è¿‡
+		DMPLUGINSTOOL_LOADPLUGIN_NOFIND_START_EXPORT,               ///< dllæ²¡æœ‰å¯¼å‡ºdllStartPlugin
 	};
 }

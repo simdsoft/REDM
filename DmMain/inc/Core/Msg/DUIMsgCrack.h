@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIMsgCrack.h 
-// File Des: DUIÊÇÄ£Äâ´°¿Ú£¬´ËÓÃÀ´Ä£ËÆ·Ö·¢ÏûÏ¢µ½DUI×Ó´°¿Ú£¬ÏûÏ¢×î¿ªÊ¼À´Ô´ÓÚÕæÊµ´°¿Ú
+// File Des: DUIæ˜¯æ¨¡æ‹Ÿçª—å£ï¼Œæ­¤ç”¨æ¥æ¨¡ä¼¼åˆ†å‘æ¶ˆæ¯åˆ°DUIå­çª—å£ï¼Œæ¶ˆæ¯æœ€å¼€å§‹æ¥æºäºçœŸå®çª—å£
 // File Summary: 
 // Cur Version: 1.1
 // Author:
@@ -165,7 +165,7 @@ public: \
 		return TRUE; \
 	}
 
-#define WM_DUITIMER    (WM_USER+1314)    //¶¨ÒåDUI¶¨Ê±Æ÷
+#define WM_DUITIMER    (WM_USER+1314)    //å®šä¹‰DUIå®šæ—¶å™¨
 #define DM_MSG_WM_THREADTIMER(func) \
 	if (uMsg == WM_DUITIMER) \
 	{ \

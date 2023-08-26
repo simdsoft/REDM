@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMAppData.h 
-// File Des: È«¾ÖÊı¾İ
+// File Des: å…¨å±€æ•°æ®
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -28,25 +28,25 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		È«¾ÖµÄxmlÊôĞÔ¶¨Òå
+	///		å…¨å±€çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	/// <remarks>
-	///		È«¾ÖµÄÄ¬ÈÏ×ÖÌå¡¢Æ¤·ô¡¢ÊôĞÔ¶¨Òå
+	///		å…¨å±€çš„é»˜è®¤å­—ä½“ã€çš®è‚¤ã€å±æ€§å®šä¹‰
 	/// </remarks>
 	class DMGlobalAttr
 	{
 	public:
-		static const char* XMLNODE_global;                              ///< È«¾ÖxmlÖ¸¶¨µÄÄ¬ÈÏNODEÃû£¬Ê¾Àı:..global font="face:·ÂËÎ,size:14,weight:100"..(..´ú±í¼âÀ¨ºÅ)
-		static const char* XMLATTR_font;                                ///< È«¾ÖxmlµÄÄ¬ÈÏ×ÖÌåÊôĞÔ£¬Èç¹û²»ÉèÖÃ£¬ÄÚÖÃÄ¬ÈÏ×ÖÌåÎªËÎÌå£¬×Ö¸ß14£¬ÆäÓàÊôĞÔºÍDEFAULT_GUI_FONTÒ»ÖÂ£¬Ê¾Àı:font="face:ËÎÌå,size:15"
-		static const char* XMLNODE_skin;                                ///< È«¾ÖxmlÖ¸¶¨È«¾ÖÆ¤·ôNODEÃû£¬Ö§³Ö¶à·İ,Ê¾Àı:..skin..(..´ú±í¼âÀ¨ºÅ)
-		static const char* XMLNODE_style;                               ///< È«¾ÖxmlÖ¸¶¨È«¾ÖÊôĞÔNODEÃû£¬Ö§³Ö¶à·İ,Ê¾Àı:..style..(..´ú±í¼âÀ¨ºÅ)
+		static const char* XMLNODE_global;                              ///< å…¨å±€xmlæŒ‡å®šçš„é»˜è®¤NODEåï¼Œç¤ºä¾‹:..global font="face:ä»¿å®‹,size:14,weight:100"..(..ä»£è¡¨å°–æ‹¬å·)
+		static const char* XMLATTR_font;                                ///< å…¨å±€xmlçš„é»˜è®¤å­—ä½“å±æ€§ï¼Œå¦‚æœä¸è®¾ç½®ï¼Œå†…ç½®é»˜è®¤å­—ä½“ä¸ºå®‹ä½“ï¼Œå­—é«˜14ï¼Œå…¶ä½™å±æ€§å’ŒDEFAULT_GUI_FONTä¸€è‡´ï¼Œç¤ºä¾‹:font="face:å®‹ä½“,size:15"
+		static const char* XMLNODE_skin;                                ///< å…¨å±€xmlæŒ‡å®šå…¨å±€çš®è‚¤NODEåï¼Œæ”¯æŒå¤šä»½,ç¤ºä¾‹:..skin..(..ä»£è¡¨å°–æ‹¬å·)
+		static const char* XMLNODE_style;                               ///< å…¨å±€xmlæŒ‡å®šå…¨å±€å±æ€§NODEåï¼Œæ”¯æŒå¤šä»½,ç¤ºä¾‹:..style..(..ä»£è¡¨å°–æ‹¬å·)
 	};
 	DMAttrValueInit(DMGlobalAttr,XMLNODE_global)DMAttrValueInit(DMGlobalAttr,XMLATTR_font)DMAttrValueInit(DMGlobalAttr,XMLNODE_skin)DMAttrValueInit(DMGlobalAttr,XMLNODE_style)
 }
 
 namespace DM
 {
-	// ¼òÒ×ºê¶¨Òå,½ö¹©DMMainÄÚ²¿Ê¹ÓÃ£¬Íâ²¿ÇëÊ¹ÓÃGetDefRegObj»ñÈ¡!!
+	// ç®€æ˜“å®å®šä¹‰,ä»…ä¾›DMMainå†…éƒ¨ä½¿ç”¨ï¼Œå¤–éƒ¨è¯·ä½¿ç”¨GetDefRegObjè·å–!!
 	#define  g_pDMAppData                                DMAppData::getSingletonPtr()
 	#define  g_pDMPluginTool                             g_pDMAppData->m_PluginsTool
 	#define  g_pDMSpyTool                                g_pDMAppData->m_SpyTool
@@ -61,7 +61,7 @@ namespace DM
 	#define  g_pDMTaskRunner                             g_pDMAppData->m_pTaskRunnerObj
 	
 	/// <summary>
-	///		·â×°¹ÜÀíËùÓĞµÄÊı¾İ,½¨Òé½ö¹©ÄÚ²¿Ê¹ÓÃ,ÈçÄ³¹¦ÄÜĞè¿ª·Å½Ó¿Ú,ÇëÔö¼Óµ½DMAppÖĞ×ª·¢
+	///		å°è£…ç®¡ç†æ‰€æœ‰çš„æ•°æ®,å»ºè®®ä»…ä¾›å†…éƒ¨ä½¿ç”¨,å¦‚æŸåŠŸèƒ½éœ€å¼€æ”¾æ¥å£,è¯·å¢åŠ åˆ°DMAppä¸­è½¬å‘
 	/// </summary>
 	class DMAppData:public DMSingletonT<DMAppData>
 	{
@@ -73,7 +73,7 @@ namespace DM
 		DMCode Run(HWND hWnd);
 		DMCode IsRun(HWND hWnd);
 		//---------------------------------------------------
-		// Function Des: ×¢²áÀà
+		// Function Des: æ³¨å†Œç±»
 		//---------------------------------------------------
 		DMCode Register(const IDMReg &RegObj, bool bReplace=false);
 		DMCode CreateRegObj(void** ppObj, LPCSTR lpszClassName,int RegType);
@@ -83,13 +83,13 @@ namespace DM
 		DMCode GetDefRegObj(CStringA &szName,int RegType);
 
 		//---------------------------------------------------
-		// Function Des: Ìí¼Ó×Ô¶¨ÒåÍ¼Æ¬½âÎö
+		// Function Des: æ·»åŠ è‡ªå®šä¹‰å›¾ç‰‡è§£æ
 		//---------------------------------------------------
 		void AddCustomImageLoader(DWORD fourccID, DM_CUSTOM_IMAGELOADER loaderFn);
 		DM_CUSTOM_IMAGELOADER GetCustomImageLoader(DWORD fourccID);
 
 		//---------------------------------------------------
-		// Function Des: ×¢²á²å¼ş
+		// Function Des: æ³¨å†Œæ’ä»¶
 		//---------------------------------------------------
 		DMCode LoadPlugins(LPCWSTR lpszPluginsCfg);
 		DMCode LoadPlugin(LPCWSTR lpszPluginName);
@@ -99,53 +99,53 @@ namespace DM
 		DMCode ShutdownPlugins();
 
 		//---------------------------------------------------
-		// Function Des: ½âÎö×ÊÔ´Res
+		// Function Des: è§£æèµ„æºRes
 		//---------------------------------------------------
 		DMCode LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName);
 
 		//---------------------------------------------------
-		// Function Des: ÄÚ²¿¸¨Öú
+		// Function Des: å†…éƒ¨è¾…åŠ©
 		//---------------------------------------------------
 		DMCode InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName);	
-		bool   IsNeedUpdateSkin(IDMSkinPtr pSkin,int type=DMREG_Skin);  ///< µ±Ç°skinÖ¸ÕëÊÇ·ñĞèÒª¸üĞÂ
-		DMCode ClearUpdateSkinArray();									///< Çå¿ÕĞè¸üĞÂµÄskinÁĞ±í 
+		bool   IsNeedUpdateSkin(IDMSkinPtr pSkin,int type=DMREG_Skin);  ///< å½“å‰skinæŒ‡é’ˆæ˜¯å¦éœ€è¦æ›´æ–°
+		DMCode ClearUpdateSkinArray();									///< æ¸…ç©ºéœ€æ›´æ–°çš„skinåˆ—è¡¨ 
 
 	protected:
 		ATOM RegisterClassEx(HINSTANCE hInst, LPCWSTR lpClassName, bool bShadow=false);
 
 	public:
-		HINSTANCE					m_hInst;									///< ³ÌĞò¾ä±ú
-		ATOM						m_Atom;										///< ÆÕÍ¨´°¿ÚÀàatom¶ÔÏó
-		ATOM						m_shadowAtom;                               ///< Shadow´°¿ÚÀàatom¶ÔÏó
+		HINSTANCE					m_hInst;									///< ç¨‹åºå¥æŸ„
+		ATOM						m_Atom;										///< æ™®é€šçª—å£ç±»atomå¯¹è±¡
+		ATOM						m_shadowAtom;                               ///< Shadowçª—å£ç±»atomå¯¹è±¡
 
-	public:// ÏûÏ¢´¦Àí
-		DMLazyT<DMMsgLoopTool>      m_MsgLoopTool;                              ///< ÏûÏ¢Ñ­»·
+	public:// æ¶ˆæ¯å¤„ç†
+		DMLazyT<DMMsgLoopTool>      m_MsgLoopTool;                              ///< æ¶ˆæ¯å¾ªç¯
 
 	public:
-		DMLazyT<DMRegMgr>			m_RegMgr;									///< ×¢²áÀà¹ÜÀí
-		DMLazyT<DMPluginsTool>		m_PluginsTool;								///< ×¢²áPluginÓëPlugin-dll¹ÜÀí
+		DMLazyT<DMRegMgr>			m_RegMgr;									///< æ³¨å†Œç±»ç®¡ç†
+		DMLazyT<DMPluginsTool>		m_PluginsTool;								///< æ³¨å†ŒPluginä¸Plugin-dllç®¡ç†
 #if !defined(DM_EXCLUDE_SPY)
-		DMLazyT<DMSpyTool>          m_SpyTool;                                  ///< ¸¨ÖúSpy¹¤¾ß
+		DMLazyT<DMSpyTool>          m_SpyTool;                                  ///< è¾…åŠ©Spyå·¥å…·
 #endif
 		
-	public:// DUI´°¿Ú¸¨Öú
-		DMLazyT<DUIWndPool>			m_DUIWndPool;                               ///< DUIWindow-¾ä±úµÄÓ³Éä¹ØÏµ¹ÜÀí³Ø
-		DMLazyT<DUIFontPool>        m_FontPool;									///< ×ÖÌå³Ø                  
-		DMLazyT<DUISkinPool>		m_SkinPool;									///< Skin³Ø
-		DMLazyT<DUIStylePool>       m_StylePool;								///< Style³Ø
+	public:// DUIçª—å£è¾…åŠ©
+		DMLazyT<DUIWndPool>			m_DUIWndPool;                               ///< DUIWindow-å¥æŸ„çš„æ˜ å°„å…³ç³»ç®¡ç†æ± 
+		DMLazyT<DUIFontPool>        m_FontPool;									///< å­—ä½“æ±                   
+		DMLazyT<DUISkinPool>		m_SkinPool;									///< Skinæ± 
+		DMLazyT<DUIStylePool>       m_StylePool;								///< Styleæ± 
 
-		DMLazyT<DUITimer>           m_Timer;									///< ¶¨Ê±Æ÷  
+		DMLazyT<DUITimer>           m_Timer;									///< å®šæ—¶å™¨  
 
-	public: // Î¨Ò»ĞÔ¶ÔÏó
-		IDMPlugin                   *m_pPlugin;                                 ///< ÄÚÖÃ²å¼ş¶ÔÏó
-		DMSmartPtrT<IDMAttribute>   m_pAttributeObj;							///< µ±Ç°±»Ê¹ÓÃµÄAttribute¶ÔÏó
-		DMSmartPtrT<IDMLog>         m_pLogObj;                                  ///< µ±Ç°±»Ê¹ÓÃµÄLog¶ÔÏó
-		DMSmartPtrT<IDMRes>         m_pResObj;                                  ///< µ±Ç°±»ÓÃÀ´½âÎöµÄRes¶ÔÏó
-		DMSmartPtrT<IDMRender>      m_pRenderObj;                               ///< µ±Ç°±»ÓÃÀ´½âÎöµÄRender¶ÔÏó
-		DMSmartPtrT<IDMTrans>       m_pTransObj;                                ///< µ±Ç°±»ÓÃÀ´¹ÜÀíÓïÑÔ°üµÄTrans¶ÔÏó
-		DMSmartPtrT<IDMTaskRunner>  m_pTaskRunnerObj;                           ///< µ±Ç°±»ÓÃÀ´¹ÜÀíÊÂ¼ş°ó¶¨µÄEvent¶ÔÏó
+	public: // å”¯ä¸€æ€§å¯¹è±¡
+		IDMPlugin                   *m_pPlugin;                                 ///< å†…ç½®æ’ä»¶å¯¹è±¡
+		DMSmartPtrT<IDMAttribute>   m_pAttributeObj;							///< å½“å‰è¢«ä½¿ç”¨çš„Attributeå¯¹è±¡
+		DMSmartPtrT<IDMLog>         m_pLogObj;                                  ///< å½“å‰è¢«ä½¿ç”¨çš„Logå¯¹è±¡
+		DMSmartPtrT<IDMRes>         m_pResObj;                                  ///< å½“å‰è¢«ç”¨æ¥è§£æçš„Reså¯¹è±¡
+		DMSmartPtrT<IDMRender>      m_pRenderObj;                               ///< å½“å‰è¢«ç”¨æ¥è§£æçš„Renderå¯¹è±¡
+		DMSmartPtrT<IDMTrans>       m_pTransObj;                                ///< å½“å‰è¢«ç”¨æ¥ç®¡ç†è¯­è¨€åŒ…çš„Transå¯¹è±¡
+		DMSmartPtrT<IDMTaskRunner>  m_pTaskRunnerObj;                           ///< å½“å‰è¢«ç”¨æ¥ç®¡ç†äº‹ä»¶ç»‘å®šçš„Eventå¯¹è±¡
   
-	public:// È«¾Ö³õÊ¼»¯
+	public:// å…¨å±€åˆå§‹åŒ–
 		fun_UpdateLayeredWindowIndirect m_fun_UpdateLayeredWindowIndirect;
 
 		/// <summary>
@@ -160,7 +160,7 @@ namespace DM
 		float m_dpiScale;
 
 	public:
-		DM::CArray<HWND>            m_RunhWndArray;                             ///< ÔËĞĞRunº¯ÊıµÄhWnd¶ÓÁĞ
+		DM::CArray<HWND>            m_RunhWndArray;                             ///< è¿è¡ŒRunå‡½æ•°çš„hWndé˜Ÿåˆ—
 
 		DMMapT<FOURCC, DM_CUSTOM_IMAGELOADER> m_customImageLoaders;
 	};

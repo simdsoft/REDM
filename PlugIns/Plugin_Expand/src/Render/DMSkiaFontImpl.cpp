@@ -1,4 +1,4 @@
-#include "Plugin_ExpandAfx.h"
+ï»¿#include "Plugin_ExpandAfx.h"
 #include "DMSkiaFontImpl.h"
 
 namespace DM
@@ -9,7 +9,7 @@ namespace DM
 	{
 		if (plf)
 		{
-			// SkTypefaceµÄÎÄµµ¿É²Î¿¼https://sites.google.com/site/skiadocs/developer-documentation/testing/using-gm-golden-master-baseline-tools-to-validate-results/gm-and-fonts
+			// SkTypefaceçš„æ–‡æ¡£å¯å‚è€ƒhttps://sites.google.com/site/skiadocs/developer-documentation/testing/using-gm-golden-master-baseline-tools-to-validate-results/gm-and-fonts
 			memcpy(&m_lf, plf, sizeof(LOGFONTW));
 #if 0
 			char szFaceName[LF_FACESIZE*2] = {0};
@@ -31,12 +31,12 @@ namespace DM
 #endif 
 			m_SkFont = SkCreateTypefaceFromLOGFONT((const LOGFONTW)m_lf);
 			//
-			m_SkPaint.setTextSize(SkIntToScalar(abs(plf->lfHeight)));// ÉèÖÃ×ÖÌå³ß´ç¡£ 
+			m_SkPaint.setTextSize(SkIntToScalar(abs(plf->lfHeight)));// è®¾ç½®å­—ä½“å°ºå¯¸ã€‚ 
 			m_SkPaint.setUnderlineText(!!plf->lfUnderline);
 			m_SkPaint.setStrikeThruText(!!plf->lfStrikeOut);
 
 			m_SkPaint.setTextEncoding(SkPaint::kUTF16_TextEncoding);
-			m_SkPaint.setAntiAlias(true);// È¥¾â³Ý
+			m_SkPaint.setAntiAlias(true);// åŽ»é”¯é½¿
 			m_SkPaint.setLCDRenderText(true);
 
 			m_lf.lfQuality = CLEARTYPE_QUALITY;
@@ -46,7 +46,7 @@ namespace DM
 
 	DMSkiaFontImpl::~DMSkiaFontImpl()
 	{
-		if (m_SkFont)// ÊÍ·Å£¬²»È»ÓÐÄÚ´æÐ¹Â¶
+		if (m_SkFont)// é‡Šæ”¾ï¼Œä¸ç„¶æœ‰å†…å­˜æ³„éœ²
 		{
 			m_SkFont->unref();
 			m_SkFont = NULL;

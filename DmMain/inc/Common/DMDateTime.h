@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -54,7 +54,7 @@ namespace DM
 		void SetDate(int iYear, int iMonth, int iDay);
 		void SetDate(int iDayCount);
 		void SetDate(const DMDateTime& dt);
-		void SetDate(const CStringW& strDate);// 2018-11-30 12:01:02 »ò 2018-11-30 
+		void SetDate(const CStringW& strDate);// 2018-11-30 12:01:02 æˆ– 2018-11-30 
 
 		void SetTime(BYTE h, BYTE m, BYTE s);
 

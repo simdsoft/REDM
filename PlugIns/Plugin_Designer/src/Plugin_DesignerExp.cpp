@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Plugin_DesignerAfx.h"
 #include "Plugin_Designer.h"
 

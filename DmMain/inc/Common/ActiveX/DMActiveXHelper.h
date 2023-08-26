@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -59,7 +59,7 @@ namespace DM
 		DM_DISALLOW_COPY_AND_ASSIGN(DMBStr);
 	};
 
-	// ---------------------COMÖÇÄÜÖ¸Õë--------------------------------
+	// ---------------------COMæ™ºèƒ½æŒ‡é’ˆ--------------------------------
 #pragma warning (push)
 #pragma warning (disable: 4127)  
 #pragma warning (disable: 4571) 

@@ -1,10 +1,10 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMSkin.h  
-// File Des: IDMSkinÊÇÒ»¸öÍ¨ÓÃµÄ³éÏóÀà£¬ËüµÄÄ¿µÄÊÇ¸æËßÄãÔõÃ´»­Ò»Ñù¶«Î÷µ½CanvasÉÏ
-// File Summary: ²Î¿¼Android Drawable
+// File Des: IDMSkinæ˜¯ä¸€ä¸ªé€šç”¨çš„æŠ½è±¡ç±»ï¼Œå®ƒçš„ç›®çš„æ˜¯å‘Šè¯‰ä½ æ€ä¹ˆç”»ä¸€æ ·ä¸œè¥¿åˆ°Canvasä¸Š
+// File Summary: å‚è€ƒAndroid Drawable
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -17,26 +17,26 @@
 namespace DM
 {
 	/// <summary>
-	///		Æ¤·ô³éÏóÀà,Èç×´Ì¬Í¼¡¢9¹¬¸ñ¡¢¶¯»­¡¢,classtype=<see cref="DMREG_Skin"/>
+	///		çš®è‚¤æŠ½è±¡ç±»,å¦‚çŠ¶æ€å›¾ã€9å®«æ ¼ã€åŠ¨ç”»ã€,classtype=<see cref="DMREG_Skin"/>
 	/// </summary>
 	/// <remarks>
-	///		²¿·Ö½Ó¿ÚÎ´ÊµÏÖµÄ£¬»á·µ»ØDM_ECODE_NOTIMPL
+	///		éƒ¨åˆ†æ¥å£æœªå®ç°çš„ï¼Œä¼šè¿”å›DM_ECODE_NOTIMPL
 	/// </remarks>
 	class IDMSkin:public DMBase
 	{
 		DMDECLARE_CLASS_NAME(IDMSkin,"IDMSkin",DMREG_Skin);
 	public:
 		/// -------------------------------------------------
-		/// @brief			È¡µÃÃ¿¸öÊµÀı»¯Skin¶ÔÏóµÄÎ¨Ò»ID    
+		/// @brief			å–å¾—æ¯ä¸ªå®ä¾‹åŒ–Skinå¯¹è±¡çš„å”¯ä¸€ID    
 		/// @return			DMCode
 		virtual DMCode GetID(char* lpszId, int iSize) = 0;											              
-		virtual	DMCode Draw(IDMCanvas *pCanvas, LPCRECT lpRectDraw, int iState,BYTE alpha=0xFF) = 0;	///<°´×´Ì¬»æÖÆ
-		virtual DMCode GetStateSize(SIZE &sz, int iState=0) = 0;                                        ///<È¡µÃÖ¸¶¨×´Ì¬µÄ´óĞ¡
-		virtual DMCode GetStates(int &iStates) = 0;													    ///<È¡µÃ×´Ì¬Êı
-		virtual DMCode GetBitmap(IDMBitmap** ppBitmap) = 0;                                             ///<È¡µÃbitmap
-		virtual DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;							///<Í¨¹ıÄÚ´æÉèÖÃbitmap
-		virtual DMCode UpdateSkin(WPARAM wp, LPARAM lp) = 0;										    ///<»»·ô
-		virtual DMCode IsValid() = 0;                                                                   ///<ÅĞ¶ÏskinÊÇ·ñÓĞĞ§£¬Èç¹ûÎŞĞ§,ÄÚ²¿skin³Ø½«×Ô¶¯ÒÆ³ı´Ëskin
+		virtual	DMCode Draw(IDMCanvas *pCanvas, LPCRECT lpRectDraw, int iState,BYTE alpha=0xFF) = 0;	///<æŒ‰çŠ¶æ€ç»˜åˆ¶
+		virtual DMCode GetStateSize(SIZE &sz, int iState=0) = 0;                                        ///<å–å¾—æŒ‡å®šçŠ¶æ€çš„å¤§å°
+		virtual DMCode GetStates(int &iStates) = 0;													    ///<å–å¾—çŠ¶æ€æ•°
+		virtual DMCode GetBitmap(IDMBitmap** ppBitmap) = 0;                                             ///<å–å¾—bitmap
+		virtual DMCode SetBitmap(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;							///<é€šè¿‡å†…å­˜è®¾ç½®bitmap
+		virtual DMCode UpdateSkin(WPARAM wp, LPARAM lp) = 0;										    ///<æ¢è‚¤
+		virtual DMCode IsValid() = 0;                                                                   ///<åˆ¤æ–­skinæ˜¯å¦æœ‰æ•ˆï¼Œå¦‚æœæ— æ•ˆ,å†…éƒ¨skinæ± å°†è‡ªåŠ¨ç§»é™¤æ­¤skin
 	};
 	typedef IDMSkin* IDMSkinPtr;
 

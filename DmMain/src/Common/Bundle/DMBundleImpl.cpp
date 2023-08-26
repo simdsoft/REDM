@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+Ôªø#include "DmMainAfx.h"
 #include "DMBundleImpl.h"
 
 namespace DM
@@ -450,7 +450,7 @@ namespace DM
 	#define _DMBNUDLE_DEF_KEY_DEF			 L"DM!BD!DEF"
 	DMBundleImpl& DMBundleImpl::operator=(const DMBundleImpl& src)
 	{
-		// ∏¥÷∆Map
+		// Â§çÂà∂Map
 		POSITION pos = src.m_Map.GetStartPosition();
 		while(pos)
 		{

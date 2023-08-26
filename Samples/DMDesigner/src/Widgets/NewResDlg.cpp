@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "NewResDlg.h"
 DUIRecentListBox::DUIRecentListBox()
 {
@@ -13,7 +13,7 @@ void DUIRecentListBox::OnLButtonDbClick(UINT nFlags,CPoint pt)
 		CStringW strDir = m_DMArray[m_iSelItem]->strText;
 		if (!IsDirectoryExist(strDir))
 		{
-			DM_MessageBox(L"¸ÃÂ·¾¶ÒÑÎŞĞ§!",MB_OK,L"MSG",GetContainer()->OnGetHWnd());
+			DM_MessageBox(L"è¯¥è·¯å¾„å·²æ— æ•ˆ!",MB_OK,L"MSG",GetContainer()->OnGetHWnd());
 			DeleteString(m_iSelItem);
 			g_pAttr->RemoveRecentResDir(strDir);
 		}
@@ -42,7 +42,7 @@ BOOL NewResDlg::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	m_pRecentList  = FindChildByNameT<DUIListBox>("ds_recentlist");DMASSERT(m_pRecentList);
 	m_pResNameEdit->DV_SetFocusWnd();
 
-	// ¸üĞÂ×î½ülistÁĞ±í
+	// æ›´æ–°æœ€è¿‘liståˆ—è¡¨
 	DMXmlNode XmlRoot = g_pAttr->m_RecentDoc.Root();
 	if (XmlRoot.IsValid())
 	{
@@ -71,13 +71,13 @@ DMCode NewResDlg::OnOpenResPath()
 	wchar_t path[MAX_PATH] = {0};
 	BROWSEINFOW bi = {0};
 	bi.ulFlags = BIF_STATUSTEXT| BIF_RETURNONLYFSDIRS|BIF_VALIDATE;
-	bi.lpszTitle = L"ÇëÑ¡ÔñDM×ÊÔ´°üµÄ´æ·ÅÎ»ÖÃ£¨Ä¿Ç°½öÖ§³ÖÎÄ¼ş¼Ğ·½Ê½£©";
-	bi.hwndOwner = m_hWnd;//ÉèÖÃÓµÓĞ´°¿Ú
-	bi.lpfn = NULL;	//Ö¸¶¨»Øµ÷º¯ÊıµØÖ·
+	bi.lpszTitle = L"è¯·é€‰æ‹©DMèµ„æºåŒ…çš„å­˜æ”¾ä½ç½®ï¼ˆç›®å‰ä»…æ”¯æŒæ–‡ä»¶å¤¹æ–¹å¼ï¼‰";
+	bi.hwndOwner = m_hWnd;//è®¾ç½®æ‹¥æœ‰çª—å£
+	bi.lpfn = NULL;	//æŒ‡å®šå›è°ƒå‡½æ•°åœ°å€
 	ITEMIDLIST *pIDL = SHBrowseForFolderW(&bi);
 	if (pIDL!=NULL)
 	{
-		if (SHGetPathFromIDListW(pIDL,path) == TRUE) //±äÁ¿pathÖĞ´æ´¢ÁË¾­¹ıÓÃ»§Ñ¡ÔñºóµÄÄ¿Â¼µÄÍêÕûÂ·¾¶.
+		if (SHGetPathFromIDListW(pIDL,path) == TRUE) //å˜é‡pathä¸­å­˜å‚¨äº†ç»è¿‡ç”¨æˆ·é€‰æ‹©åçš„ç›®å½•çš„å®Œæ•´è·¯å¾„.
 		{
 			m_pResPathEdit->SetWindowText(path);
 		}
@@ -103,7 +103,7 @@ DMCode NewResDlg::OnOpenRecentDir(DMEventArgs *pEvt)
 		CStringW strCurDir = pSta->m_pDUIXmlInfo->m_strText;
 		if (0 == strCurDir.CompareNoCase(strDir))
 		{
-			DM_MessageBox(L"µ±Ç°DirÒÑÔÚ±à¼­ÖĞ!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"å½“å‰Dirå·²åœ¨ç¼–è¾‘ä¸­!",MB_OK,L"MSG",m_hWnd);
 			return DM_ECODE_OK;
 		}
 		m_strResDir = strDir;
@@ -122,17 +122,17 @@ DMCode NewResDlg::OnOK()
 		m_strResPath = m_pResPathEdit->GetWindowText();
 		if (m_strResName.IsEmpty())
 		{
-			DM_MessageBox(L"Î´ÉèÖÃ×ÊÔ´Ãû!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"æœªè®¾ç½®èµ„æºå!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 		if (m_strResPath.IsEmpty())
 		{
-			DM_MessageBox(L"Î´ÉèÖÃ×ÊÔ´Â·¾¶!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"æœªè®¾ç½®èµ„æºè·¯å¾„!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 		if (!IsDirectoryExist(m_strResPath))
 		{
-			DM_MessageBox(L"×ÊÔ´Â·¾¶´íÎó!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"èµ„æºè·¯å¾„é”™è¯¯!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
@@ -144,13 +144,13 @@ DMCode NewResDlg::OnOK()
 		m_strResDir = m_strResPath + m_strResName;
 		if (PathFileExists(m_strResDir))
 		{
-			DM_MessageBox(L"×ÊÔ´Ä¿Â¼ÒÑ´æÔÚ,ÇëÖØĞÂÑ¡Ôñ!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"èµ„æºç›®å½•å·²å­˜åœ¨,è¯·é‡æ–°é€‰æ‹©!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 
 		if (!DMSUCCEEDED(CreateResDir()))
 		{
-			DM_MessageBox(L"×ÊÔ´Ä¿Â¼´´½¨Ê§°Ü,ÇëÖØĞÂÑ¡Ôñ!",MB_OK,L"MSG",m_hWnd);
+			DM_MessageBox(L"èµ„æºç›®å½•åˆ›å»ºå¤±è´¥,è¯·é‡æ–°é€‰æ‹©!",MB_OK,L"MSG",m_hWnd);
 			break;
 		}
 		iErr = DM_ECODE_OK;

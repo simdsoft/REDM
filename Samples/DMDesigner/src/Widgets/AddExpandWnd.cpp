@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+﻿#include "DMDesignerAfx.h"
 #include "AddExpandWnd.h"
  
 BEGIN_MSG_MAP(AddExpandWnd)
@@ -11,7 +11,7 @@ END_EVENT_MAP()
 
 BOOL AddExpandWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 {
-	// Ĭ�ϳ�ʼ̬Ϊm_pRadioBtnָ��Button
+	// 默认初始态为m_pRadioBtn指向Button
 	FindChildByName("ds_w_Button")->DM_SetCheck(true);
 	return TRUE;
 }

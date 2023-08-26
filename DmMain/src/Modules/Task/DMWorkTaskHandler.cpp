@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMWorkTaskHandler.h"
 #include <process.h>
 
@@ -45,7 +45,7 @@ namespace DM
 	DMCode DMWorkTaskHandler::StopTasks()
 	{
 		bool bNeedTerminateThread = false;
-		// Òª´¦ÀíÉÁÍË(ÈÎÎñÏß³Ì»¹Ã»À´¼°Æô¶¯£¬¾ÍÇëÇóÍË³ö)
+		// è¦å¤„ç†é—ªé€€(ä»»åŠ¡çº¿ç¨‹è¿˜æ²¡æ¥åŠå¯åŠ¨ï¼Œå°±è¯·æ±‚é€€å‡º)
 		if (false ==IsTaskRunning()) 
 		{
 			::Sleep(50);
@@ -66,7 +66,7 @@ namespace DM
 #if 1
 		if (false == bSuccess || bNeedTerminateThread)
 		{
-			::OutputDebugStringW(L"[DM][StopTasks]Ç¿ÖÆÍË³ö\n");
+			::OutputDebugStringW(L"[DM][StopTasks]å¼ºåˆ¶é€€å‡º\n");
 			::TerminateProcess(::GetCurrentProcess(),IDOK);
 		}
 		DM_CLOSEHANDLE(m_hThread);
@@ -99,7 +99,7 @@ namespace DM
                 DMFAIL_MSG("task thread can't request service self, will lead dead-lock");
 				break;	
 			}
-			{// ÈôÊÇ¿ÕÈÎÎñ¾Í²»ÔÙÖ´ĞĞ
+			{// è‹¥æ˜¯ç©ºä»»åŠ¡å°±ä¸å†æ‰§è¡Œ
 				DMAutoLock locker(&m_TaskLocker);
 				if (m_TaskWaitList.IsEmpty())
 				{
@@ -110,7 +110,7 @@ namespace DM
 			if (m_hTaskWaitEvent)
 			{
 				if (::SetEvent(m_hTaskWaitEvent))
-				{// ¼¤»îWaitÊÂ¼ş£¬Ê¹_RunTasksThreadÖ´ĞĞÈÎÎñ¶ÓÁĞ
+				{// æ¿€æ´»Waitäº‹ä»¶ï¼Œä½¿_RunTasksThreadæ‰§è¡Œä»»åŠ¡é˜Ÿåˆ—
 					iErr = DM_ECODE_OK;
 				}
 			}
@@ -170,7 +170,7 @@ namespace DM
 
 	DWORD DMWorkTaskHandler::RunTasksThread()
 	{
-		OleInitialize(NULL);// IEĞèÒªCOM»·¾³
+		OleInitialize(NULL);// IEéœ€è¦COMç¯å¢ƒ
 		DWORD dwError = ERROR_SUCCESS;
 		m_dwThreadId = ::GetCurrentThreadId();
 		m_bRunning = true;
@@ -178,11 +178,11 @@ namespace DM
 		{	
 			DWORD dwTickStart = ::GetTickCount();
 			if (false == DealWithMessage())
-			{//1.WM_QUITÍË³öÏûÏ¢Ñ­»·
+			{//1.WM_QUITé€€å‡ºæ¶ˆæ¯å¾ªç¯
 				break;
 			}
-			GetNewTaskList();// »ñµÃÈÎÎñ¶ÓÁĞ
-			DealWithTaskList();// Ö´ĞĞÈÎÎñ¶ÓÁĞ
+			GetNewTaskList();// è·å¾—ä»»åŠ¡é˜Ÿåˆ—
+			DealWithTaskList();// æ‰§è¡Œä»»åŠ¡é˜Ÿåˆ—
 			DWORD dwTimeOut = m_dwTimeOut;
 			if (INFINITE != dwTimeOut)
 			{
@@ -196,12 +196,12 @@ namespace DM
 					dwTimeOut -= dwTick;
 				}
 			}
-			dwError = ::MsgWaitForMultipleObjects(1, &m_hTaskWaitEvent, FALSE, dwTimeOut, QS_ALLINPUT);// QS_ALLEVENTS¿É½ÓÊÜPostÏûÏ¢£¬An input, WM_TIMER, WM_PAINT, WM_HOTKEY, or posted message is in the queue.
+			dwError = ::MsgWaitForMultipleObjects(1, &m_hTaskWaitEvent, FALSE, dwTimeOut, QS_ALLINPUT);// QS_ALLEVENTSå¯æ¥å—Postæ¶ˆæ¯ï¼ŒAn input, WM_TIMER, WM_PAINT, WM_HOTKEY, or posted message is in the queue.
 		} while (false == m_bExitTaskThread && WAIT_FAILED != dwError);
 
 		//  Delete task
 		POSITION Pos = m_TaskRunList.GetHeadPosition();
-		while (Pos)// Ñ­»·´¦Àí
+		while (Pos)// å¾ªç¯å¤„ç†
 		{
 			IDMTaskPtr& pTask = m_TaskRunList.GetNext(Pos);
 			if (pTask)
@@ -211,8 +211,8 @@ namespace DM
 		}
 		m_TaskRunList.RemoveAll();
 
-		// Õı³£ÍË³öÁ÷³Ì£¡£¡£¡
-		// ¹Ø±ÕÈÎÎñÊÇ·ñÍê³ÉĞÅºÅm_hTaskFinishEvent¡£
+		// æ­£å¸¸é€€å‡ºæµç¨‹ï¼ï¼ï¼
+		// å…³é—­ä»»åŠ¡æ˜¯å¦å®Œæˆä¿¡å·m_hTaskFinishEventã€‚
 		if (m_hTaskFinishEvent)
 		{
 			::SetEvent(m_hTaskFinishEvent);
@@ -227,14 +227,14 @@ namespace DM
 		bool bRet = false;
 		do 
 		{
-			m_bExitTaskThread = true;///< ÍË³öÏß³ÌµÄÁíÒ»Ìõ¼ş
+			m_bExitTaskThread = true;///< é€€å‡ºçº¿ç¨‹çš„å¦ä¸€æ¡ä»¶
 			if (m_dwThreadId)
 			{
-				::PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);//»½ĞÑ_RunTasksThread
-				m_dwTimeOut = 1000;///< Îª·ÀÖ¹ÏûÏ¢¶ªÊ§,¼ÓÈë³¬Ê±ÍË³ö
+				::PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);//å”¤é†’_RunTasksThread
+				m_dwTimeOut = 1000;///< ä¸ºé˜²æ­¢æ¶ˆæ¯ä¸¢å¤±,åŠ å…¥è¶…æ—¶é€€å‡º
 			}
 
-			// Ä¬ÈÏµÈ´ı3Ãë¡£
+			// é»˜è®¤ç­‰å¾…3ç§’ã€‚
 			bRet = DMSUCCEEDED(ExecTask(true, 3000));
 			DestroyTasks();
 			DM_DELETE(m_pThreadLocker);
@@ -269,7 +269,7 @@ namespace DM
 	{
 		DMAutoLock lockIt(&m_TaskLocker);
 		if (!m_TaskRunList.IsEmpty())
-		{// ·Ç¿ÕÊ±£¬Çå³ıÒÔÇ°µÄÈÎÎñÁĞ±í
+		{// éç©ºæ—¶ï¼Œæ¸…é™¤ä»¥å‰çš„ä»»åŠ¡åˆ—è¡¨
 			m_TaskRunList.RemoveAll();
 		}
 		m_TaskRunList.AddTailList(&m_TaskWaitList);
@@ -280,7 +280,7 @@ namespace DM
 	{
 		// Run task
 		POSITION Pos = m_TaskRunList.GetHeadPosition();
-		while (Pos)// Ñ­»·´¦Àí
+		while (Pos)// å¾ªç¯å¤„ç†
 		{
 			IDMTaskPtr& pTask = m_TaskRunList.GetNext(Pos);
 			if (pTask)
@@ -297,7 +297,7 @@ namespace DM
 			m_TaskRunList.RemoveAll();
 
 			POSITION Pos = clearTaskRunList.GetHeadPosition();
-			while (Pos)// Ñ­»·´¦Àí
+			while (Pos)// å¾ªç¯å¤„ç†
 			{
 				IDMTaskPtr& pTask = clearTaskRunList.GetNext(Pos);
 				if (pTask)
@@ -320,7 +320,7 @@ namespace DM
 		{
 			::SetEvent(m_hTaskFinishEvent);
 		}
-		// ¹Ø±ÕÈÎÎñÖ´ĞĞĞÅºÅm_hTaskWaitEvent¡£
+		// å…³é—­ä»»åŠ¡æ‰§è¡Œä¿¡å·m_hTaskWaitEventã€‚
 		if (m_hTaskWaitEvent)
 		{
 			::SetEvent(m_hTaskWaitEvent);

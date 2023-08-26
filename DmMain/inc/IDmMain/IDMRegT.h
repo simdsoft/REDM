@@ -1,11 +1,11 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMRegT.h 
-// File Des: ÓÃÓÚÍâ²¿×¢²á¸¨Öú½Ó¿Ú£¬Ã¿¸öÍâ²¿×¢²áµÄÀà±ØĞë»ùÓÚDMObj
-// File Summary: Ê¹ÓÃ·½Ê½£ºÈçclass DMRegister:public DMBase
-// ÔòDMRegT(DMRegister)¾Í¾ßÓĞ´´½¨DMRegister¶ÔÏóµÄÄÜÁ¦ÁË£¬¿ÉÒÔ×öÎª×¢²áÀà´«Èë
+// File Des: ç”¨äºå¤–éƒ¨æ³¨å†Œè¾…åŠ©æ¥å£ï¼Œæ¯ä¸ªå¤–éƒ¨æ³¨å†Œçš„ç±»å¿…é¡»åŸºäºDMObj
+// File Summary: ä½¿ç”¨æ–¹å¼ï¼šå¦‚class DMRegister:public DMBase
+// åˆ™DMRegT(DMRegister)å°±å…·æœ‰åˆ›å»ºDMRegisterå¯¹è±¡çš„èƒ½åŠ›äº†ï¼Œå¯ä»¥åšä¸ºæ³¨å†Œç±»ä¼ å…¥
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -20,28 +20,28 @@ namespace DM
 	class IDMReg;
 	typedef IDMReg* IDMRegPtr; 
 	/// <summary>
-	///		Ã¿¸ö×¢²áÀàÍ¨¹ıHelper²Ù×÷±ØĞëÓĞ´´½¨×ÔÉí¶ÔÏó(NewObj)¡¢¸´ÖÆ×ÔÉíµÄÄÜÁ¦(Clone)
+	///		æ¯ä¸ªæ³¨å†Œç±»é€šè¿‡Helperæ“ä½œå¿…é¡»æœ‰åˆ›å»ºè‡ªèº«å¯¹è±¡(NewObj)ã€å¤åˆ¶è‡ªèº«çš„èƒ½åŠ›(Clone)
 	/// </summary>
 	class DM_EXPORT IDMReg
 	{
 	public:
 		virtual ~IDMReg(){}
-		virtual PVOID NewObj() = 0;				 ///< ´´½¨×ÔÉí¶ÔÏó(NewObj)
-		virtual IDMRegPtr Clone() const = 0;           ///< ¸´ÖÆ×ÔÉí
+		virtual PVOID NewObj() = 0;				 ///< åˆ›å»ºè‡ªèº«å¯¹è±¡(NewObj)
+		virtual IDMRegPtr Clone() const = 0;           ///< å¤åˆ¶è‡ªèº«
 
-		// È¡µÃ»ùÓÚDMBase×¢²áÀàµÄ±êÊ¶¡¢¸¸ÀàµÄ±êÊ¶¡¢×¢²áÀàĞÍ£¬½¨ÒéÊ¹ÓÃDMDECLARE_CLASS_NAMEºê
-		virtual LPCSTR GetClassName() = 0;		///< È¡µÃ×¢²áÀàÃû
-		virtual LPCSTR GetBaseClassName() = 0; ///< È¡µÃ×¢²áÀà¸¸ÀàÃû
-		virtual int     GetClassType() const = 0;     ///< È¡µÃ×¢²áÀàĞÍ
+		// å–å¾—åŸºäºDMBaseæ³¨å†Œç±»çš„æ ‡è¯†ã€çˆ¶ç±»çš„æ ‡è¯†ã€æ³¨å†Œç±»å‹ï¼Œå»ºè®®ä½¿ç”¨DMDECLARE_CLASS_NAMEå®
+		virtual LPCSTR GetClassName() = 0;		///< å–å¾—æ³¨å†Œç±»å
+		virtual LPCSTR GetBaseClassName() = 0; ///< å–å¾—æ³¨å†Œç±»çˆ¶ç±»å
+		virtual int     GetClassType() const = 0;     ///< å–å¾—æ³¨å†Œç±»å‹
 	};
 
 	/// <summary>
-	///		¸¨Öú×¢²áÀà£¬T±ØĞëÊÇ»ùÓÚDMBaseµÄÀà£¬»òÕßÊµÏÖÁË(static)GetClassNameÓëGetBaseClassNameµÄÀà
+	///		è¾…åŠ©æ³¨å†Œç±»ï¼ŒTå¿…é¡»æ˜¯åŸºäºDMBaseçš„ç±»ï¼Œæˆ–è€…å®ç°äº†(static)GetClassNameä¸GetBaseClassNameçš„ç±»
 	/// </summary>
 	template<class T>
 	class  DMRegHelperT:public IDMReg
 	{
-	public:// Ä¬ÈÏ¹¹Ôìº¯ÊıÊÇ±ØĞëµÄ£¬²»È»ÎŞ·¨³õÊ¼»¯¶ÔÏó
+	public:// é»˜è®¤æ„é€ å‡½æ•°æ˜¯å¿…é¡»çš„ï¼Œä¸ç„¶æ— æ³•åˆå§‹åŒ–å¯¹è±¡
 		DMRegHelperT(){}
 		~DMRegHelperT(){}
 	public:
@@ -67,7 +67,7 @@ namespace DM
 
 		virtual int GetClassType() const
 		{
-			return T::GetClassType();	///×¢Òâ£¬´Ë´¦Ê¹ÓÃµÄÊÇ¾²Ì¬GetClassType£¬ÁíÍâ»¹ÓĞ¸öĞéGetClassType
+			return T::GetClassType();	///æ³¨æ„ï¼Œæ­¤å¤„ä½¿ç”¨çš„æ˜¯é™æ€GetClassTypeï¼Œå¦å¤–è¿˜æœ‰ä¸ªè™šGetClassType
 		}
 	};
 

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUImgEditor.h
 // File mark:   
-// File summary:Í¼Æ¬±à¼­Æ÷
+// File summary:å›¾ç‰‡ç¼–è¾‘å™¨
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-15
@@ -26,7 +26,7 @@ public:
 	DM_END_MSG_MAP()
 public:
 	//---------------------------------------------------
-	// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	void DM_OnPaint(IDMCanvas* pCanvas);
 

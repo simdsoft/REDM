@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	SkinDlg.h
 // File mark:   
-// File summary:ÐÂ½¨»ò±à¼­Æ¤·ô
+// File summary:æ–°å»ºæˆ–ç¼–è¾‘çš®è‚¤
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-15
@@ -57,7 +57,7 @@ private:
 	DUIEdit*                        m_pState;
 	ProjTree*                       m_pSkinTree;
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	ObjXml*							m_pObjXml;
 	ProjTree*						m_pProjTree;
 

@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+﻿#include "QQDemoAfx.h"
 #include "Gif_Test.h"
 #include <commdlg.h>
 #include "QQMainWnd.h"

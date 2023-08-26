@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMEvents.h"
 #include "DUIWindow.h"
 
@@ -23,7 +23,7 @@ namespace DM
 
 	bool DMEventArgs::IsValid()
 	{
-		return (NULL!=m_pSender);//(NULL!=m_pSender&&(false==m_szNameFrom.IsEmpty()||0!=m_IdFrom));// Ïñheaderctrl¿ÉÄÜ²»ĞèÒªnameºÍid£¬ÒòÎªËüÖ»ÊÇ¸¨ÖúÏÔÊ¾listctrl
+		return (NULL!=m_pSender);//(NULL!=m_pSender&&(false==m_szNameFrom.IsEmpty()||0!=m_IdFrom));// åƒheaderctrlå¯èƒ½ä¸éœ€è¦nameå’Œidï¼Œå› ä¸ºå®ƒåªæ˜¯è¾…åŠ©æ˜¾ç¤ºlistctrl
 	}
 
 }//namespace DM

@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "AddXml.h"
 #include "AddExpandWnd.h"
 
@@ -7,7 +7,7 @@ BEGIN_MSG_MAP(AddXml)
 END_MSG_MAP()
 BEGIN_EVENT_MAP(AddXml)
 	EVENT_NAME_COMMAND("ds_tool",OnExpand)
-END_EVENT_INBASE()// »ùÀà
+END_EVENT_INBASE()// åŸºç±»
 
 AddXml*  AddXml::ms_pthis = NULL;
 AddXml::AddXml()
@@ -118,7 +118,7 @@ DMCode AddXml::s_DMHandleEvent(DM::DMEventArgs *pEvt)
 		}
 		else
 		{
-			return ms_pthis->DMHandleEvent(pEvt);// ×ª·¢
+			return ms_pthis->DMHandleEvent(pEvt);// è½¬å‘
 		}
 	}
 

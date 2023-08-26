@@ -1,13 +1,13 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIFontPool.h"
 
 namespace DM
 {
 	DUIFontPool::DUIFontPool()
 	{
-		wcscpy_s(m_szDefFontFace, L"ËÎÌå");
+		wcscpy_s(m_szDefFontFace, L"å®‹ä½“");
 		::GetObjectW(::GetStockObject(DEFAULT_GUI_FONT), sizeof(LOGFONTW), &m_lfDefault);
-		m_lfDefault.lfHeight = -14 * g_pDMAppData->m_dpiScale; // ¸ºÖµ
+		m_lfDefault.lfHeight = -14 * g_pDMAppData->m_dpiScale; // è´Ÿå€¼
 		wcscpy_s(m_lfDefault.lfFaceName, countof(m_lfDefault.lfFaceName), m_szDefFontFace);
 	}
 
@@ -16,7 +16,7 @@ namespace DM
 		RemoveAll();
 	}
 
-	// font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏÞÖÆ1Î»
+	// font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åŽå¤šä½ï¼Œå…¶ä½™:åŽé™åˆ¶1ä½
 	bool DUIFontPool::SetDefaultFont(const CStringA& strFont)
 	{
 		bool bRet = false;
@@ -39,7 +39,7 @@ namespace DM
 		IDMFontPtr pFont = NULL;
 		do 
 		{
-			// ½âÎö²¢´´½¨
+			// è§£æžå¹¶åˆ›å»º
 			LOGFONTW lf={0};
 			CStringA szFont = strFont;
 			szFont.Trim();
@@ -48,23 +48,23 @@ namespace DM
 			{
 				if (GetObjByKey(szFont,pFont))
 				{
-					break;// ÒÑÕÒµ½
+					break;// å·²æ‰¾åˆ°
 				}
-				g_pDMRender->CreateFont(&m_lfDefault,&pFont); // Ä¬ÈÏ×ÖÌå
+				g_pDMRender->CreateFont(&m_lfDefault,&pFont); // é»˜è®¤å­—ä½“
 				AddKey(szFont, pFont);
-				break;// ÒÑÕÒµ½
+				break;// å·²æ‰¾åˆ°
 			}
 			
-			CStringA szKey  = GetFontKey(&lf); // Éú³É±ê×¼key
+			CStringA szKey  = GetFontKey(&lf); // ç”Ÿæˆæ ‡å‡†key
 			if (GetObjByKey(szKey,pFont))
 			{
-				break;// ÒÑÕÒµ½
+				break;// å·²æ‰¾åˆ°
 			}
 
 			g_pDMRender->CreateFont(&lf,&pFont);
 			if (pFont)
 			{
-				AddKey(szKey, pFont);// ¼ÓÈë±ê×¼key
+				AddKey(szKey, pFont);// åŠ å…¥æ ‡å‡†key
 			}
 		} while (false);
 		return pFont;
@@ -86,12 +86,12 @@ namespace DM
 			CStringA szFont = strFont;
 			szFont.Trim();
 			szFont.MakeLower();
-			if (szFont.IsEmpty()||NULL==lpLogFont)// ÎªNULL
+			if (szFont.IsEmpty()||NULL==lpLogFont)// ä¸ºNULL
 			{
 				break;
 			}
 
-			// ½âÎö²¢´´½¨
+			// è§£æžå¹¶åˆ›å»º
 			bool bItalic=0,bUnderline=0,bStrike=0;   
 			CStringW strFace; int lFontSize=0;int lWightSize=0;int lCharSet=0;
 
@@ -198,14 +198,14 @@ namespace DM
 			memcpy(lpLogFont, &m_lfDefault, sizeof(LOGFONTW));
 			if (0 != lFontSize)
 			{
-				lpLogFont->lfHeight = -DMABS(lFontSize);// ¸ºÖµ
+				lpLogFont->lfHeight = -DMABS(lFontSize);// è´Ÿå€¼
 			}
 			if (0 != lWightSize)
 			{
 				lpLogFont->lfWeight  = DMABS(lWightSize);
 			}
 
-			lpLogFont->lfCharSet	 = DMABS(lCharSet);// charset¿ÉÎª0
+			lpLogFont->lfCharSet	 = DMABS(lCharSet);// charsetå¯ä¸º0
 			lpLogFont->lfUnderline   = (false != bUnderline);
 			lpLogFont->lfItalic      = (false != bItalic);
 			lpLogFont->lfStrikeOut   = (false != bStrike);
@@ -219,11 +219,11 @@ namespace DM
 		return bRet;
 	}
 
-	/// @brief Ô¤´¦ÀíÒÆ³ýÏî
+	/// @brief é¢„å¤„ç†ç§»é™¤é¡¹
 	/// @return
 	void DUIFontPool::PreMapKeyRemove(const IDMFontPtr &obj)
 	{
-		obj->Release(); // ÈçÒýÓÃ¼ÆÊýÎª0£¬Ôò×Ô¶¯delete this
+		obj->Release(); // å¦‚å¼•ç”¨è®¡æ•°ä¸º0ï¼Œåˆ™è‡ªåŠ¨delete this
 	}
 
 }//namespace DM

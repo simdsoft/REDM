@@ -1,19 +1,19 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIDragFrame.h
 // File mark:   
-// File summary:Ñ¡ÖĞÊ±ÍÏ¶¯µÄËÄ±ß¿ò
+// File summary:é€‰ä¸­æ—¶æ‹–åŠ¨çš„å››è¾¹æ¡†
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-8-10
 // ----------------------------------------------------------------
 #pragma once
-#include "DMDelegate.h"// Ğ´ÁËÕâÃ´¾Ã£¬×ÜµÃÓÃÒ»´Î°É£¬
+#include "DMDelegate.h"// å†™äº†è¿™ä¹ˆä¹…ï¼Œæ€»å¾—ç”¨ä¸€æ¬¡å§ï¼Œ
 
 /// <summary>
-///		¸¨Öúµã×ø±ê
+///		è¾…åŠ©ç‚¹åæ ‡
 /// </summary>
 enum DSDOT
 {
@@ -39,16 +39,16 @@ public:
 	DMCode SetCurSor();
 
 public:
-	int					 m_Index;			///< 0Îª²»º¬ËùÓĞdotµÄ¾ØĞÎÇø£¨¼´¿Ø¼şÇø£©,1Îª×óÖĞdot£¬Ë³Ê±Õë8¸öµã£¬9Îª×óÉÏ½ÇµÄmovĞ¡Í¼±ê,¶ÔÓ¦DSDOT
-	CRect				 m_Rect;			///< ´ËµãµÄ¾ØĞÎÇø£¬Ä¬ÈÏ1-9µã¶¼ÔÚ¿Ø¼şÇøÍâÎ§£¬²»Õ¼ÓÃ¿Ø¼şÇø
-	HCURSOR				 m_hCursor;			///< Í£ÁôÔÚ´Ë¾ØĞÎÇøÊ±ÏÔÊ¾µÄ×ø±ê
-	DMColor				 m_Clr;				///< ¾ØĞÎÇøÕı³£Ê±µÄÌî³äÉ«
-	DMColor              m_GrayClr;			///< ¾ØĞÎÇø²»¿ÉÊ±µÄÌî³äÉ«
-	bool				 m_bDragDot;		///< ³ıÁË0Íâ£¬ÆäËû¶¼ÊÇÍÏ¶¯µã(true)
-	bool				 m_bEnable;			///< ´ËµãÊÇ·ñ¿ÉÓÃ
+	int					 m_Index;			///< 0ä¸ºä¸å«æ‰€æœ‰dotçš„çŸ©å½¢åŒºï¼ˆå³æ§ä»¶åŒºï¼‰,1ä¸ºå·¦ä¸­dotï¼Œé¡ºæ—¶é’ˆ8ä¸ªç‚¹ï¼Œ9ä¸ºå·¦ä¸Šè§’çš„movå°å›¾æ ‡,å¯¹åº”DSDOT
+	CRect				 m_Rect;			///< æ­¤ç‚¹çš„çŸ©å½¢åŒºï¼Œé»˜è®¤1-9ç‚¹éƒ½åœ¨æ§ä»¶åŒºå¤–å›´ï¼Œä¸å ç”¨æ§ä»¶åŒº
+	HCURSOR				 m_hCursor;			///< åœç•™åœ¨æ­¤çŸ©å½¢åŒºæ—¶æ˜¾ç¤ºçš„åæ ‡
+	DMColor				 m_Clr;				///< çŸ©å½¢åŒºæ­£å¸¸æ—¶çš„å¡«å……è‰²
+	DMColor              m_GrayClr;			///< çŸ©å½¢åŒºä¸å¯æ—¶çš„å¡«å……è‰²
+	bool				 m_bDragDot;		///< é™¤äº†0å¤–ï¼Œå…¶ä»–éƒ½æ˜¯æ‹–åŠ¨ç‚¹(true)
+	bool				 m_bEnable;			///< æ­¤ç‚¹æ˜¯å¦å¯ç”¨
 	DragMetaEventHandler m_DragMetaAction;
 
-	DMSmartPtrT<IDMSkin>	m_pSkin;		///< »æÖÆmovĞ¡Í¼±ê
+	DMSmartPtrT<IDMSkin>	m_pSkin;		///< ç»˜åˆ¶movå°å›¾æ ‡
 };
 
 class ObjTreeData;
@@ -67,16 +67,16 @@ private:
 	void InitDragMeta(CRect Rect,bool bMain,bool bAllGray=false);
 	DragMeta* HittestDragMeta(CPoint pt,bool bMain);
 
-	void OnDragLeft(DragMeta& meta, int iAction);		 // ÍÏ¶¯×ó±ß
-	void OnDragLeftTop(DragMeta& meta, int iAction);	 // ÍÏ¶¯×óÉÏ½Ç
-	void OnDragTop(DragMeta& meta, int iAction);		 // ÍÏ¶¯ÉÏ±ß
-	void OnDragRightTop(DragMeta& meta, int iAction);	 // ÍÏ¶¯ÓÒÉÏ½Ç
-	void OnDragRight(DragMeta& meta, int iAction);		 // ÍÏ¶¯ÓÒ±ß
-	void OnDragRightBottom(DragMeta& meta, int iAction); // ÍÏ¶¯ÓÒÏÂ½Ç
-	void OnDragBottom(DragMeta& meta, int iAction);		 // ÍÏ¶¯ÏÂ±ß
-	void OnDragLeftBottom(DragMeta& meta, int iAction);  // ÍÏ¶¯×óÏÂ½Ç
+	void OnDragLeft(DragMeta& meta, int iAction);		 // æ‹–åŠ¨å·¦è¾¹
+	void OnDragLeftTop(DragMeta& meta, int iAction);	 // æ‹–åŠ¨å·¦ä¸Šè§’
+	void OnDragTop(DragMeta& meta, int iAction);		 // æ‹–åŠ¨ä¸Šè¾¹
+	void OnDragRightTop(DragMeta& meta, int iAction);	 // æ‹–åŠ¨å³ä¸Šè§’
+	void OnDragRight(DragMeta& meta, int iAction);		 // æ‹–åŠ¨å³è¾¹
+	void OnDragRightBottom(DragMeta& meta, int iAction); // æ‹–åŠ¨å³ä¸‹è§’
+	void OnDragBottom(DragMeta& meta, int iAction);		 // æ‹–åŠ¨ä¸‹è¾¹
+	void OnDragLeftBottom(DragMeta& meta, int iAction);  // æ‹–åŠ¨å·¦ä¸‹è§’
 	void OnDragBox(DragMeta& meta, int iAction);
-	void OnDragMove(DragMeta& meta, int iAction);		 // ÒÆ¶¯
+	void OnDragMove(DragMeta& meta, int iAction);		 // ç§»åŠ¨
 
 	CRect CalcDragFrameRect(CRect rcDrag);
 	void InternalHandleDrag(CRect& rect, int* pHori, int* pVert);
@@ -99,21 +99,21 @@ public:
 	void OnLButtonUp(UINT nFlags,CPoint pt);
 	void OnRButtonDown(UINT nFlags, CPoint pt);
 	void OnMouseMove(UINT nFlags,CPoint pt);
-	DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg);///< ¹ıÂËÏûÏ¢·Ö·¢
+	DUIWND HitTestPoint(CPoint pt,bool bFindNoMsg);///< è¿‡æ»¤æ¶ˆæ¯åˆ†å‘
 
 public:
-	RightXml*                                m_pRightXml;		///< ÓÒ±ßÊôĞÔ,ËùÓĞµÄ×ø±ê¶¼Í¨¹ıÓÒ±ßÊôĞÔÀ´¿ØÖÆ
-	DMSmartPtrT<Layout>						 m_pLayout;			///< Ö¸ÏòÒª±à¼­µÄlayout			
+	RightXml*                                m_pRightXml;		///< å³è¾¹å±æ€§,æ‰€æœ‰çš„åæ ‡éƒ½é€šè¿‡å³è¾¹å±æ€§æ¥æ§åˆ¶
+	DMSmartPtrT<Layout>						 m_pLayout;			///< æŒ‡å‘è¦ç¼–è¾‘çš„layout			
 	DragMeta*								 m_pCurdragMeta;
 	DragMeta								 m_dragMetas[10];
 	int										 m_dragMetaCount;
-	bool								     m_bMain;			///< ½«Root²ãÒ²ÊÓÎª×îÉÏ²ã
-	bool                                     m_bDown;			///< Ö»ÓĞÔÚ°´ÏÂÊ±Í£ÁôÔÚdotÉÏ»òboxÉÏ²ÅÉèÖÃm_bDown
+	bool								     m_bMain;			///< å°†Rootå±‚ä¹Ÿè§†ä¸ºæœ€ä¸Šå±‚
+	bool                                     m_bDown;			///< åªæœ‰åœ¨æŒ‰ä¸‹æ—¶åœç•™åœ¨dotä¸Šæˆ–boxä¸Šæ‰è®¾ç½®m_bDown
 	
 	CPoint									 m_StartDragPt;
 	CPoint									 m_TrackDragPt;
-	CRect									 m_StartDragRc;		///< ¿ªÊ¼ÍÏ¶¯Ê±ÔªËØÇøÓò´óĞ¡
+	CRect									 m_StartDragRc;		///< å¼€å§‹æ‹–åŠ¨æ—¶å…ƒç´ åŒºåŸŸå¤§å°
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	ObjTreeData*							 m_pData;
 };

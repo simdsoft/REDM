@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMResHelper.h 
-// File Des:  ÍâÖÃRes¸¨ÖúÎÄ¼ş
+// File Des:  å¤–ç½®Resè¾…åŠ©æ–‡ä»¶
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -16,14 +16,14 @@
 namespace DM
 {
 
-#define MAX_RES_TYPE		   30						 // ×ÊÔ´ÀàĞÍÔ¤¶¨Òå£¬×î´ó³¤¶È²»³¬¹ı30
-#define MAX_RES_NAME		   100						 // ×¢Òâ£º¸ø×ÊÔ´ÁîÃûÊ±£¬×î´ó³¤¶È²»Òª³¬¹ıMAX_RES_NAME
-#define DMRES_DMINDEX		   _T("dmindex.xml")		 // ÎÄ¼ş¼Ğ×ÊÔ´µÄÎÄ¼şÓ³Éä±íË÷Òı±íÎÄ¼şÃû
+#define MAX_RES_TYPE		   30						 // èµ„æºç±»å‹é¢„å®šä¹‰ï¼Œæœ€å¤§é•¿åº¦ä¸è¶…è¿‡30
+#define MAX_RES_NAME		   100						 // æ³¨æ„ï¼šç»™èµ„æºä»¤åæ—¶ï¼Œæœ€å¤§é•¿åº¦ä¸è¦è¶…è¿‡MAX_RES_NAME
+#define DMRES_DMINDEX		   _T("dmindex.xml")		 // æ–‡ä»¶å¤¹èµ„æºçš„æ–‡ä»¶æ˜ å°„è¡¨ç´¢å¼•è¡¨æ–‡ä»¶å
 #define DMRES_THEMES_FOLDER    _T("\\themes\\")
 #define DMRES_LAYOUT_FOLDER    _T("\\layout\\")
 
 	/// <summary>
-	///		ÄÚÖÃResÏî°üº¬ÊôĞÔ
+	///		å†…ç½®Resé¡¹åŒ…å«å±æ€§
 	/// </summary>
 	class DMZipItem
 	{
@@ -31,14 +31,14 @@ namespace DM
 		DMZipItem(LPCSTR lpszType="", LPCSTR lpszName="", LPCWSTR lpszPath = L"");
 
 	public:
-		char m_szType[MAX_RES_TYPE+1];				///< ×ÊÔ´ÀàĞÍ,Èçpng,jpg,bmp,gif,flash
-		char m_szName[MAX_RES_NAME+1];				///< ×ÊÔ´Ãû,Í¬Ò»×ÊÔ´ÀàĞÍÏÂÎ¨Ò»±êÊ¶´Ë×ÊÔ´Ïî
-		wchar_t m_szPath[MAX_PATH];                     ///< ×ÊÔ´ÔÚzip°üÖĞµÄÏà¶ÔÂ·¾¶
+		char m_szType[MAX_RES_TYPE+1];				///< èµ„æºç±»å‹,å¦‚png,jpg,bmp,gif,flash
+		char m_szName[MAX_RES_NAME+1];				///< èµ„æºå,åŒä¸€èµ„æºç±»å‹ä¸‹å”¯ä¸€æ ‡è¯†æ­¤èµ„æºé¡¹
+		wchar_t m_szPath[MAX_PATH];                     ///< èµ„æºåœ¨zipåŒ…ä¸­çš„ç›¸å¯¹è·¯å¾„
 	};
 	typedef DMZipItem* DMZipItemPtr;
 
 	/// <summary>
-	///		ÍâÖÃResZipÊ¹ÓÃµÄArray
+	///		å¤–ç½®ResZipä½¿ç”¨çš„Array
 	/// </summary>
 	class DMZipItemArray:public DMRefNum
 						 ,public DMArrayT<DMZipItemPtr>

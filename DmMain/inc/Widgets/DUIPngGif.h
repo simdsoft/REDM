@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DUIPngGif.h
 // File mark:   
-// File summary:±¾´úÂëÓÉchenghuiÌá¹©¼°Î¬»¤
+// File summary:æœ¬ä»£ç ç”±chenghuiæä¾›åŠç»´æŠ¤
 // Author:		elcondorpasa <834870885@qq.com>
 // Edition:     1.0
 // Create date: 2018-1-24
@@ -15,13 +15,13 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIPngGif"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIPngGif"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIPngGifAttr:public DUIGifAttr
 	{
 	public:
-		static const char* SKIN_pnggifskin;                            ///< pnggifµÄ×ÊÔ´,Í¨¹ıskinÖ¸¶¨,Çø·ÖÓÚgifskin,Ê¾Àı:pnggifskin="png:4_png"                     
-		static const char* INT_elapse;                                 ///< ÂÖ²¥µÄÊ±¼ä¼ä¸ô£¨µ¥Î»1/100Ãë£©,Ä¬ÈÏÎª10,Ê¾Àı:elapse="1"
+		static const char* SKIN_pnggifskin;                            ///< pnggifçš„èµ„æº,é€šè¿‡skinæŒ‡å®š,åŒºåˆ†äºgifskin,ç¤ºä¾‹:pnggifskin="png:4_png"                     
+		static const char* INT_elapse;                                 ///< è½®æ’­çš„æ—¶é—´é—´éš”ï¼ˆå•ä½1/100ç§’ï¼‰,é»˜è®¤ä¸º10,ç¤ºä¾‹:elapse="1"
 	};
 	DMAttrValueInit(DUIPngGifAttr,SKIN_pnggifskin)DMAttrValueInit(DUIPngGifAttr,INT_elapse)
 }
@@ -29,7 +29,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 pnggifµÄÄÚÖÃÊµÏÖ
+	///		 pnggifçš„å†…ç½®å®ç°
 	/// </summary>
 	class DUIPngGif:public DUIGif
 	{
@@ -49,6 +49,6 @@ namespace DM
 		DMCode OnAttrElapse(LPCSTR lpszValue, bool bLoadXml);
 
 	public:  
-		UINT                                         m_ulElapse;              ///< »»Ö¡¼ä¸ô		
+		UINT                                         m_ulElapse;              ///< æ¢å¸§é—´éš”		
 	};
 }

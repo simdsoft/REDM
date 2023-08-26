@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h" 
+﻿#include "DMDesignerAfx.h" 
 #include "ResHelper.h"
 
 namespace DM

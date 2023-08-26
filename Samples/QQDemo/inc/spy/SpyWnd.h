@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: MainWnd.h 
-// File Des: Ö÷´°¿Ú
+// File Des: ä¸»çª—å£
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -20,17 +20,17 @@ class CSpyWnd:public DMHWnd
 public:
 	CSpyWnd();	
 	~CSpyWnd();
-	DECLARE_MESSAGE_MAP()// ·ÂMFCÏûÏ¢Ó³Éäºê
+	DECLARE_MESSAGE_MAP()// ä»¿MFCæ¶ˆæ¯æ˜ å°„å®
 	DECLARE_EVENT_MAP()
 
 	//---------------------------------------------------
-	// Function Des: ÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnDUITimer(char id);
 
 	//---------------------------------------------------
-	// Function Des: ÊÂ¼ş·Ö·¢ÏµÁĞº¯Êı
+	// Function Des: äº‹ä»¶åˆ†å‘ç³»åˆ—å‡½æ•°
 	//---------------------------------------------------
 	DMCode OnClose();
 	DMCode OnMinimize();
@@ -38,7 +38,7 @@ public:
 	DMCode OnTreeSelChanged(DMEventArgs *pEvt);
 
 
-public:// ¸¨Öú
+public:// è¾…åŠ©
 	void InitTreeCtrl(HWND hRootWnd);
 	void InsertTreeItem(DMXmlNode &XmlNode,HDMTREEITEM hParentItem);
 	void ReflashEditInfo();
@@ -52,7 +52,7 @@ public:
 	HWND                    m_hRootWnd;
 	bool                    m_bInit;
 
-	// »æÖÆ
+	// ç»˜åˆ¶
 	bool                    m_bHittest;
 	bool                    m_bDraw;
 	CRect                   m_rcDraw;

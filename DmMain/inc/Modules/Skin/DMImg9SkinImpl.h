@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -18,12 +18,12 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DMImg9SkinImpl"/>µÄxmlÊôÐÔ¶¨Òå
+	///		<see cref="DM::DMImg9SkinImpl"/>çš„xmlå±žæ€§å®šä¹‰
 	/// </summary>
 	class DMImg9SkinImplAttr:public DMImgListSkinImplAttr
 	{
 	public:
-		static const char* RECT_margin;                            ///< scrollÎª9¹¬¸ñ»æÖÆ,Ö¸¶¨»æÖÆµÄËÄ±ß¿ò,margin="1,1,1,1"
+		static const char* RECT_margin;                            ///< scrollä¸º9å®«æ ¼ç»˜åˆ¶,æŒ‡å®šç»˜åˆ¶çš„å››è¾¹æ¡†,margin="1,1,1,1"
 	};
 	DMAttrValueInit(DMImg9SkinImplAttr,RECT_margin);
 }
@@ -31,7 +31,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		9¹¬¸ñÁ¬Í¼ÄÚÖÃÊµÏÖ£¬ÊôÐÔ£º<see cref="DMAttr::DMImg9SkinImplAttr"/>
+	///		9å®«æ ¼è¿žå›¾å†…ç½®å®žçŽ°ï¼Œå±žæ€§ï¼š<see cref="DMAttr::DMImg9SkinImplAttr"/>
 	/// </summary>
 	class DMImg9SkinImpl:public DMImgListSkinImpl
 	{

@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -16,14 +16,14 @@
 #include "Widgets/DUIScrollBase.h"
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")
-#include <Richedit.h>// ºÍTextServ.hµÄË³Ğò²»ÄÜ±ä
+#include <Richedit.h>// å’ŒTextServ.hçš„é¡ºåºä¸èƒ½å˜
 #include <TextServ.h>
 
 
 namespace DM
 {
 	/// <summary>
-	///			RichEdit¸¨Öú¼ÓÔØÀà---²»ÄÜÆµ·±¼ÓÔØ/Ğ¶ÔØriched20.dllÌ«¶à´Î£¬ÓĞ¼¸ÂÊ´¥·¢ÏûÏ¢Òì³££¬Òı·¢±ÀÀ£
+	///			RichEditè¾…åŠ©åŠ è½½ç±»---ä¸èƒ½é¢‘ç¹åŠ è½½/å¸è½½riched20.dllå¤ªå¤šæ¬¡ï¼Œæœ‰å‡ ç‡è§¦å‘æ¶ˆæ¯å¼‚å¸¸ï¼Œå¼•å‘å´©æºƒ
 	/// </summary>
 	class DM_EXPORT DUIEditHelper:public DMSingletonT<DUIEditHelper>
 	{
@@ -39,7 +39,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///			¸¨ÖúÍÏ¶¯
+	///			è¾…åŠ©æ‹–åŠ¨
 	/// </summary>
 	class DUIRicheditDropTarget : public IDropTarget
 	{
@@ -66,7 +66,7 @@ namespace DM
 	};
 	class DUIRichEdit;
 	/// <summary>
-	///			¸¨Öú¹â±ê
+	///			è¾…åŠ©å…‰æ ‡
 	/// </summary>
 	class DM_EXPORT DUICaret:public DUIWindow,public IDMTimeline
 	{
@@ -96,22 +96,22 @@ namespace DM
 		DMCode OnTimeline();
 
 	public:
-		DWORD                                        m_dwPreFrameTime;           ///< ÉÏÒ»Ö¡ÏÔÊ¾µÄÊ±¼ä£¬µ¥Î»ms
+		DWORD                                        m_dwPreFrameTime;           ///< ä¸Šä¸€å¸§æ˜¾ç¤ºçš„æ—¶é—´ï¼Œå•ä½ms
 		DWORD                                        m_dwDelta;
 		DMColor                                      m_clr;
 		DMSmartPtrT<IDMCanvas>						 m_pCanvas;
 		CSize                                        m_Size;
 		CPoint                                       m_pt;
-		bool                                         m_bBlinking;				///< ¹â±êÕıÔÚÏÔÊ¾,false±íÊ¾¹â±êÕıÔÚÏûÊ§
+		bool                                         m_bBlinking;				///< å…‰æ ‡æ­£åœ¨æ˜¾ç¤º,falseè¡¨ç¤ºå…‰æ ‡æ­£åœ¨æ¶ˆå¤±
 
 		//-----------------------------------------------
-		int											 m_iAniCount;				///< ¸¨Öú
-		int											 m_iAniDelta;				///< ¸¨Öú
+		int											 m_iAniCount;				///< è¾…åŠ©
+		int											 m_iAniDelta;				///< è¾…åŠ©
 		int                                          m_iCurAlpha;
 	};
 
 	/// <summary>
-	///			Ï¸½Ú¿É²Î¿´:http://support.microsoft.com/kb/2701617
+	///			ç»†èŠ‚å¯å‚çœ‹:http://support.microsoft.com/kb/2701617
 	/// </summary>
 	class DM_EXPORT DUITextHost: public ITextHost
 	{
@@ -121,7 +121,7 @@ namespace DM
 		void Init();
 		void UnInit();
 
-		// µ÷ÓÃCreateTextServices£¬´«ÈëITextHostÖ¸Õë£¬·µ»ØIUnknownÖ¸Õë,²éÑ¯µ½ITextServicesºÍITextDocument½Ó¿Ú,ÕâÁ½¸ö½Ó¿ÚÍê³É¾ø´ó¶àÊı¹¦ÄÜ
+		// è°ƒç”¨CreateTextServicesï¼Œä¼ å…¥ITextHostæŒ‡é’ˆï¼Œè¿”å›IUnknownæŒ‡é’ˆ,æŸ¥è¯¢åˆ°ITextServiceså’ŒITextDocumentæ¥å£,è¿™ä¸¤ä¸ªæ¥å£å®Œæˆç»å¤§å¤šæ•°åŠŸèƒ½
 		bool Init(DUIRichEdit* pRichEdit);
 		ITextServices* GetTextService();
 		POINT GetCaretPos();
@@ -158,7 +158,7 @@ namespace DM
 		virtual HRESULT TxActivate(LONG * plOldState);
 		virtual HRESULT TxDeactivate(LONG lNewState);
 		virtual HRESULT TxGetClientRect(LPRECT lpRect);
-		virtual HRESULT TxGetViewInset(LPRECT lpRect);               // Âß¼­×ø±ê,±êÊ¶ÎÄ±¾ËùÔÚÇøÓòÀëÕû¸öÇøÓòËÄ±ßµÄ±ß¾à   
+		virtual HRESULT TxGetViewInset(LPRECT lpRect);               // é€»è¾‘åæ ‡,æ ‡è¯†æ–‡æœ¬æ‰€åœ¨åŒºåŸŸç¦»æ•´ä¸ªåŒºåŸŸå››è¾¹çš„è¾¹è·   
 		virtual HRESULT TxGetCharFormat(const CHARFORMATW **ppCF );
 		virtual HRESULT TxGetParaFormat(const PARAFORMAT **ppPF);
 		virtual COLORREF TxGetSysColor(int nIndex);
@@ -176,7 +176,7 @@ namespace DM
 		virtual void TxImmReleaseContext(HIMC himc);
 		virtual HRESULT TxGetSelectionBarWidth (LONG *plSelBarWidth);
 	public:
-		DUIRichEdit         *m_pRichEdit;		///  ËŞÖ÷´°¿Ú
+		DUIRichEdit         *m_pRichEdit;		///  å®¿ä¸»çª—å£
 		ITextServices		*m_pServ;        
 		bool				m_bUiActive;
 		ULONG				m_uRefNum;        

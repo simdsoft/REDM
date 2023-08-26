@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -20,9 +20,9 @@ namespace DMAttr
 	class DUIHotKeyCtrlAttr:public DUIWindowAttr
 	{
 	public:
-		// ¹â±ê
-		static const char* COLOR_clrcaret;                                 ///< ¹â±êÑÕÉ«,Ê¾Àı:clrcaret="pbgra(ff,ff,ff,ff)"
-		static const char* INI_caretanimatecount;                          ///< ¹â±ê½¥Òş½¥ÏÔ´ÎÊı£¬1´ÎÎªÕı³£×´Ì¬£¬Ä¬ÈÏÎª6´Î,Ê¾Àı£º caretanimatecount="6"
+		// å…‰æ ‡
+		static const char* COLOR_clrcaret;                                 ///< å…‰æ ‡é¢œè‰²,ç¤ºä¾‹:clrcaret="pbgra(ff,ff,ff,ff)"
+		static const char* INI_caretanimatecount;                          ///< å…‰æ ‡æ¸éšæ¸æ˜¾æ¬¡æ•°ï¼Œ1æ¬¡ä¸ºæ­£å¸¸çŠ¶æ€ï¼Œé»˜è®¤ä¸º6æ¬¡,ç¤ºä¾‹ï¼š caretanimatecount="6"
 	};
 	DMAttrValueInit(DUIHotKeyCtrlAttr,COLOR_clrcaret)DMAttrValueInit(DUIHotKeyCtrlAttr,INI_caretanimatecount)
 }
@@ -30,7 +30,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		 DUIHotKeyCtrlµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIHotKeyCtrlAttr"/>
+	///		 DUIHotKeyCtrlçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIHotKeyCtrlAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIHotKeyCtrl:public DUIWindow,public DUIAccel
 	{
@@ -69,7 +69,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
@@ -81,13 +81,13 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ÖØÔØ
+		// Function Des: é‡è½½
 		//---------------------------------------------------
 		UINT DV_OnGetDlgCode(){return (DMDLGC_WANTALLKEYS|DMDLGC_WANTSYSKEY) & (~DMDLGC_WANTTAB);}
 		DMCode DV_CreateChildWnds(const DMXmlNode &XmlNode) override;
 
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		void UpdateModifier();
 		void UpdateCaret();
 
@@ -102,9 +102,9 @@ namespace DM
 		DMCode OnAttrCuretAnimateCount(LPCSTR pszValue, bool bLoadXml);
 
 	public:
-		bool                      m_bSetting;						///< ÕıÔÚÉèÖÃÖĞ
-		WORD                      m_wInvalidModifiers;				///< ÎŞĞ§×éºÏ¼üµÄÌæ»»·½°¸,Ä¬ÈÏ·½°¸
-		WORD					  m_wInvalidComb;					///< ÎŞĞ§µÄ×éºÏ¼ü
+		bool                      m_bSetting;						///< æ­£åœ¨è®¾ç½®ä¸­
+		WORD                      m_wInvalidModifiers;				///< æ— æ•ˆç»„åˆé”®çš„æ›¿æ¢æ–¹æ¡ˆ,é»˜è®¤æ–¹æ¡ˆ
+		WORD					  m_wInvalidComb;					///< æ— æ•ˆçš„ç»„åˆé”®
 		DUICaret*				  m_pCaret;
 		DMColor                   m_clrCaret;
 		int						  m_iCaretAniCount;

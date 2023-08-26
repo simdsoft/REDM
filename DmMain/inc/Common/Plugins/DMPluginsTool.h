@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMPluginsTool.h 
-// File Des: ÓÃÓÚ¼ÓÔØ¡¢¹ÜÀí²å¼ş
+// File Des: ç”¨äºåŠ è½½ã€ç®¡ç†æ’ä»¶
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -20,7 +20,7 @@ namespace DM
 	class DMDynLib;
 
 	/// <summary>
-	///		²å¼ş¹ÜÀí
+	///		æ’ä»¶ç®¡ç†
 	/// </summary>
 	class DMPluginsTool
 	{
@@ -31,10 +31,10 @@ namespace DM
 		virtual ~DMPluginsTool(void);
 
 		//---------------------------------------------------
-		// Function Des: ½âÎö¼ÓÔØplugin-dllÅäÖÃÎÄ¼ş£¬×¢ÒâÒÔÏÂËÄ¸öº¯Êı¶¼ÊÇ¼ÓÔØ¶¯Ì¬dll
-		//  dll±ØĞëÌá¹©dllStartPluginºÍdllStopPluginÁ½¸öº¯Êı
-		//  Ò»°ãÊÇdllStartPluginµ÷ÓÃInstallPlugin¼ÓÔØdllÖĞµÄ²å¼ş
-		//        dllStopPluginµ÷ÓÃUninstallPluginÇå³ıdllÖĞµÄ²å¼ş
+		// Function Des: è§£æåŠ è½½plugin-dllé…ç½®æ–‡ä»¶ï¼Œæ³¨æ„ä»¥ä¸‹å››ä¸ªå‡½æ•°éƒ½æ˜¯åŠ è½½åŠ¨æ€dll
+		//  dllå¿…é¡»æä¾›dllStartPluginå’ŒdllStopPluginä¸¤ä¸ªå‡½æ•°
+		//  ä¸€èˆ¬æ˜¯dllStartPluginè°ƒç”¨InstallPluginåŠ è½½dllä¸­çš„æ’ä»¶
+		//        dllStopPluginè°ƒç”¨UninstallPluginæ¸…é™¤dllä¸­çš„æ’ä»¶
 		// Input Parameter:
 		// Output Parameter:
 		// return:
@@ -46,8 +46,8 @@ namespace DM
 		void UnloadPlugin(const CStringW& strPluginName);
 
 		//---------------------------------------------------
-		// Function Des: ¼ÓÔØ²¢°²×°plugin,ÓÃÓÚ¼ÓÔØ²å¼ş
-		// ¿ÉÒÔÔÚdllÖĞµ÷ÓÃ´Ëº¯Êı¼ÓÔØ²å¼ş£¬Ò²¿ÉÒÔÔÚlibÖĞµ÷ÓÃ
+		// Function Des: åŠ è½½å¹¶å®‰è£…plugin,ç”¨äºåŠ è½½æ’ä»¶
+		// å¯ä»¥åœ¨dllä¸­è°ƒç”¨æ­¤å‡½æ•°åŠ è½½æ’ä»¶ï¼Œä¹Ÿå¯ä»¥åœ¨libä¸­è°ƒç”¨
 		// Input Parameter:
 		// Output Parameter:
 		// return:
@@ -59,7 +59,7 @@ namespace DM
 		void ShutdownPlugins();
 
 		//---------------------------------------------------
-		// Function Des: ÉèÖÃÏµÍ³¼ÓÔØÍê³É×´Ì¬
+		// Function Des: è®¾ç½®ç³»ç»ŸåŠ è½½å®ŒæˆçŠ¶æ€
 		// Input Parameter:
 		// Output Parameter:
 		// return:
@@ -73,9 +73,9 @@ namespace DM
 		typedef DM::CArray<DMDynLib*>   PluginLibArray;
 		typedef DM::CArray<IDMPlugin*>	PluginArray;
 
-		PluginLibArray                  m_LibsArray;		///<°üº¬²å¼şµÄdllÁĞ
-		PluginArray                     m_PluginArray;		///<²å¼şÁĞ£¨dllÖĞ»á×¢²á²å¼şÁĞ,¾²Ì¬libÒ²¿ÉÒÔ×¢²á²å¼şÁĞ£©
-		bool                            m_IsInitialised;    ///<ÊÇ·ñÏµÍ³³õÊ¼»¯Íê³É
+		PluginLibArray                  m_LibsArray;		///<åŒ…å«æ’ä»¶çš„dllåˆ—
+		PluginArray                     m_PluginArray;		///<æ’ä»¶åˆ—ï¼ˆdllä¸­ä¼šæ³¨å†Œæ’ä»¶åˆ—,é™æ€libä¹Ÿå¯ä»¥æ³¨å†Œæ’ä»¶åˆ—ï¼‰
+		bool                            m_IsInitialised;    ///<æ˜¯å¦ç³»ç»Ÿåˆå§‹åŒ–å®Œæˆ
 	};
 
 

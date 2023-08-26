@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+﻿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -23,7 +23,7 @@ namespace DM
 		~DMPenImpl();
 	public:
 		//---------------------------------------------------
-		// Function Des: ϵ�к���
+		// Function Des: Ο΅ΑΠΊ―Κύ
 		// Input Parameter:
 		// Output Parameter:
 		// return:

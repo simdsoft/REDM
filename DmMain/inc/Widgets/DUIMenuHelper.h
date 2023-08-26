@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,50 +17,50 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIMenu"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIMenu"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIMenuAttr
 	{
 	public:
-		static const char* SKIN_bgskin;											///< Õû¸ö²Ëµ¥µÄ±³¾°Í¼,Ê¾Àı:bgskin="menubg"
-		static const char* SKIN_itemselbgskin;										///< Ñ¡ÖĞ²Ëµ¥Ïî±³¾°Æ¤·ô,Ê¾Àı:itemselbgskin="menuselbg"
-		static const char* SKIN_iconskin;											///< ²Ëµ¥Í¼±êÁ¬Í¼,Ê¾Àı:iconskin="menuicons"
-		static const char* SKIN_sepskin;											///< ·Ö¸îÀ¸Æ¤·ô,Ê¾Àı:sepskin="sepskin"
-		static const char* SKIN_checkskin;											///< Ñ¡ÖĞ×´Ì¬,°üº¬Á½ÖÖ×´Ì¬:¹´Ñ¡+È¦Ñ¡,Ê¾Àı:checkSkin="menucheck"
-		static const char* INT_itemhei;											///< ²Ëµ¥Ïî¸ß¶È,²»ÉèÖÃÊ±Ä¬ÈÏÎª16,Èç²Ëµ¥Ïîº¬ÓĞÍ¼Æ¬»ò¸ß¶È£¬ÔòÒÔÍ¼Æ¬»ò¸ß¶ÈµÄ×î´óÖµÎª×¼,Ê¾Àı:itemhei="16"
-		static const char* INT_iconoffset;											///< Í¼±ê×ó±ßÔµÆ«ÒÆ,Ê¾Àı:iconoffset="10"
-		static const char* INT_textoffset;											///< ÎÄ±¾×ó±ßÔµÆ«ÒÆ,Ê¾Àı:textoffset="10"
-		static const char* INT_stepoffset;											///< Step×ó±ßÔµÆ«ÒÆ,Ê¾Àı:stepoffset="10"
-		static const char* INT_stephei;											///< StepµÄ¸ß¶È£¬Ä¬ÈÏÎª1,Ê¾Àı:stephei="10"
-		static const char* INT_maxwidth;											///< ²Ëµ¥ÏîµÄ×î´ó¿í¶È,Ä¬ÈÏÎª-1±íÊ¾×Ô¶¯¼ÆËã,Ê¾Àı:maxwidth="10",Òª×¢Òâ»æÖÆ´°¿Ú¿í¶È»á±ÈÕâ¸öÉèÖÃ´ó14£¨ÏµÍ³ÉèÖÃµÄ£©
-		static const char* bool_bshadow;											///< ²Ëµ¥ÒõÓ°ÊÇ·ñ¿ªÆô£¬Ä¬ÈÏÎª0,Ê¾Àı:bshadow="0"
-		static const char* bool_bhideframe;                                        ///< ÊÇ·ñÒş²Ø²Ëµ¥µÄÖ÷±ß¿ò,Ä¬ÈÏÎª0,Èç¹ûÒş²Ø,Ôò²Ëµ¥ÏîitemµÄ×óÓÒºÍÖ÷±ß¿òµÄ×óÓÒÏàÍ¬,Ê¾Àı:bhideframe="1"
-		static const char* SIZE_iconsize;											///< Í¼±ê³ß´ç£¬Ä¬ÈÏÎª16*16,Ê¾Àı:iconsize="16,16"
-		static const char* SIZE_roundsize;											///< Ô²½Ç³ß´ç£¬Ä¬ÈÏÎª0*0,Ê¾Àı:roundsize="1,1"
-		static const char* COLOR_clrbg;											///< Õû¸ö²Ëµ¥µÄ±³¾°É«,ÔÚ±³¾°Í¼²»´æÔÚÊ±Ê¹ÓÃ,Ê¾Àı:clrbg="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrselbg;                                         ///< Ñ¡ÖĞ²Ëµ¥µÄ±³¾°É«,ÔÚ±³¾°Í¼²»´æÔÚÊ±Ê¹ÓÃ,Ê¾Àı:clrselbg="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrstep;											///< ·Ö¸îÀ¸µÄ±³¾°É«,ÔÚ±³¾°Í¼²»´æÔÚÊ±Ê¹ÓÃ,Ê¾Àı:clrstep="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtext;											///< Õı³£ÎÄ±¾ÑÕÉ«,Ê¾Àı:clrtext="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtextsel;										///< Ñ¡ÖĞÎÄ±¾ÑÕÉ«,Ê¾Àı:clrtextsel="pbgra(ff,00,ff,ff)"
-		static const char* COLOR_clrtextgray;										///< »Ò¶ÈÎÄ±¾ÑÕÉ«,Ê¾Àı:clrtextgray="pbgra(ff,00,ff,ff)"
-		static const char* FONT_font;												///< ²Ëµ¥Ä¬ÈÏ×ÖÌå,Ä¿Ç°²Ëµ¥²»Í¬×´Ì¬Ê¹ÓÃÁËÏàÍ¬×ÖÌå,ÈçÓĞĞèÒª,¿É×Ô¼ºÀ©Õ¹,Ê¾Àı:font="face:ËÎÌå,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:¡¢weight:ºó¶àÎ»£¬ÆäÓà:ºóÏŞÖÆ1Î»,ÔÊĞí¿Õ¸ñ!ÄÚ²¿×öÁË¿Õ¸ñÈ¥³ı²Ù×÷
-		static const char* BYTE_alpha;											    ///< ´°¿ÚÍ¸Ã÷¶È,Í¸Ã÷´°¿ÚÓĞÁ½ÖÖ,Ïê¼ûhttp://hgy413.com/1865.html Ê¾Àı:alpha="0xc0"
-		static const char* STRING_transid;										    ///< Ê¹ÓÃµÄtransid,ÎªNULLÊ¹ÓÃÄ¬ÈÏcustom Ê¾Àı:transid="custom"
+		static const char* SKIN_bgskin;											///< æ•´ä¸ªèœå•çš„èƒŒæ™¯å›¾,ç¤ºä¾‹:bgskin="menubg"
+		static const char* SKIN_itemselbgskin;										///< é€‰ä¸­èœå•é¡¹èƒŒæ™¯çš®è‚¤,ç¤ºä¾‹:itemselbgskin="menuselbg"
+		static const char* SKIN_iconskin;											///< èœå•å›¾æ ‡è¿å›¾,ç¤ºä¾‹:iconskin="menuicons"
+		static const char* SKIN_sepskin;											///< åˆ†å‰²æ çš®è‚¤,ç¤ºä¾‹:sepskin="sepskin"
+		static const char* SKIN_checkskin;											///< é€‰ä¸­çŠ¶æ€,åŒ…å«ä¸¤ç§çŠ¶æ€:å‹¾é€‰+åœˆé€‰,ç¤ºä¾‹:checkSkin="menucheck"
+		static const char* INT_itemhei;											///< èœå•é¡¹é«˜åº¦,ä¸è®¾ç½®æ—¶é»˜è®¤ä¸º16,å¦‚èœå•é¡¹å«æœ‰å›¾ç‰‡æˆ–é«˜åº¦ï¼Œåˆ™ä»¥å›¾ç‰‡æˆ–é«˜åº¦çš„æœ€å¤§å€¼ä¸ºå‡†,ç¤ºä¾‹:itemhei="16"
+		static const char* INT_iconoffset;											///< å›¾æ ‡å·¦è¾¹ç¼˜åç§»,ç¤ºä¾‹:iconoffset="10"
+		static const char* INT_textoffset;											///< æ–‡æœ¬å·¦è¾¹ç¼˜åç§»,ç¤ºä¾‹:textoffset="10"
+		static const char* INT_stepoffset;											///< Stepå·¦è¾¹ç¼˜åç§»,ç¤ºä¾‹:stepoffset="10"
+		static const char* INT_stephei;											///< Stepçš„é«˜åº¦ï¼Œé»˜è®¤ä¸º1,ç¤ºä¾‹:stephei="10"
+		static const char* INT_maxwidth;											///< èœå•é¡¹çš„æœ€å¤§å®½åº¦,é»˜è®¤ä¸º-1è¡¨ç¤ºè‡ªåŠ¨è®¡ç®—,ç¤ºä¾‹:maxwidth="10",è¦æ³¨æ„ç»˜åˆ¶çª—å£å®½åº¦ä¼šæ¯”è¿™ä¸ªè®¾ç½®å¤§14ï¼ˆç³»ç»Ÿè®¾ç½®çš„ï¼‰
+		static const char* bool_bshadow;											///< èœå•é˜´å½±æ˜¯å¦å¼€å¯ï¼Œé»˜è®¤ä¸º0,ç¤ºä¾‹:bshadow="0"
+		static const char* bool_bhideframe;                                        ///< æ˜¯å¦éšè—èœå•çš„ä¸»è¾¹æ¡†,é»˜è®¤ä¸º0,å¦‚æœéšè—,åˆ™èœå•é¡¹itemçš„å·¦å³å’Œä¸»è¾¹æ¡†çš„å·¦å³ç›¸åŒ,ç¤ºä¾‹:bhideframe="1"
+		static const char* SIZE_iconsize;											///< å›¾æ ‡å°ºå¯¸ï¼Œé»˜è®¤ä¸º16*16,ç¤ºä¾‹:iconsize="16,16"
+		static const char* SIZE_roundsize;											///< åœ†è§’å°ºå¯¸ï¼Œé»˜è®¤ä¸º0*0,ç¤ºä¾‹:roundsize="1,1"
+		static const char* COLOR_clrbg;											///< æ•´ä¸ªèœå•çš„èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸å­˜åœ¨æ—¶ä½¿ç”¨,ç¤ºä¾‹:clrbg="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrselbg;                                         ///< é€‰ä¸­èœå•çš„èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸å­˜åœ¨æ—¶ä½¿ç”¨,ç¤ºä¾‹:clrselbg="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrstep;											///< åˆ†å‰²æ çš„èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸å­˜åœ¨æ—¶ä½¿ç”¨,ç¤ºä¾‹:clrstep="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtext;											///< æ­£å¸¸æ–‡æœ¬é¢œè‰²,ç¤ºä¾‹:clrtext="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtextsel;										///< é€‰ä¸­æ–‡æœ¬é¢œè‰²,ç¤ºä¾‹:clrtextsel="pbgra(ff,00,ff,ff)"
+		static const char* COLOR_clrtextgray;										///< ç°åº¦æ–‡æœ¬é¢œè‰²,ç¤ºä¾‹:clrtextgray="pbgra(ff,00,ff,ff)"
+		static const char* FONT_font;												///< èœå•é»˜è®¤å­—ä½“,ç›®å‰èœå•ä¸åŒçŠ¶æ€ä½¿ç”¨äº†ç›¸åŒå­—ä½“,å¦‚æœ‰éœ€è¦,å¯è‡ªå·±æ‰©å±•,ç¤ºä¾‹:font="face:å®‹ä½“,size:0,weight:400,charset:0,underline:1,italic:1,strike:1",face:ã€weight:åå¤šä½ï¼Œå…¶ä½™:åé™åˆ¶1ä½,å…è®¸ç©ºæ ¼!å†…éƒ¨åšäº†ç©ºæ ¼å»é™¤æ“ä½œ
+		static const char* BYTE_alpha;											    ///< çª—å£é€æ˜åº¦,é€æ˜çª—å£æœ‰ä¸¤ç§,è¯¦è§http://hgy413.com/1865.html ç¤ºä¾‹:alpha="0xc0"
+		static const char* STRING_transid;										    ///< ä½¿ç”¨çš„transid,ä¸ºNULLä½¿ç”¨é»˜è®¤custom ç¤ºä¾‹:transid="custom"
 
-		static const char* NODE_sep;												///< ²Ëµ¥µÄxmlÏî½áµãÃû(¶ÔÓ¦Ò»Ìõ·Ö¸ôÀ¸)
-		static const char* NODE_item;                                              ///< ²Ëµ¥µÄxmlÏî½áµãÃû(¶ÔÓ¦Ò»Ìõ²Ëµ¥Ïî)
-		static const char* ITEM_height;                                            ///< ²Ëµ¥ÏîµÄ¸ß¶È(¿ÉÑ¡)£¬Èç¹û²Ëµ¥Ïî¸ß¶ÈĞ¡ÓÚ²Ëµ¥ÏîµÄ±³¾°Á¬Í¼µÄ¸ß¶È£¬ÔòÒÔ±³¾°Á¬Í¼¸ß¶ÈÎª×¼, Ê¾Àı:height="20"
-		static const char* ITEM_maxwidth;											///< ²Ëµ¥ÏîµÄ×î´ó¿í¶È(¿ÉÑ¡),Ê¾Àı:maxwidth="10",Òª×¢Òâ»æÖÆ´°¿Ú¿í¶È»á±ÈÕâ¸öÉèÖÃ´ó14£¨ÏµÍ³ÉèÖÃµÄ£©
-		static const char* ITEM_icon;                                              ///< ²Ëµ¥ÏîµÄiconÎ»ÖÃ£¨-1±íÊ¾Ã»ÓĞicon£©Ê¾Àı:icon="1"
-		static const char* ITEM_text;                                              ///< ²Ëµ¥ÏîµÄÎÄ±¾  Ê¾Àı:text="´ò¿ªPEÎÄ¼ş..."
-		static const char* ITEM_iconsize;											///< ²Ëµ¥ÏîµÄÍ¼±ê³ß´ç(¿ÉÑ¡)£¬Ä¬ÈÏÎª16*16,Èç¹ûÓĞ,¾Í¸²¸ÇINT_iconsize,Ê¾Àı:iconsize="16,16"
-		static const char* ITEM_iconoffset;										///< ²Ëµ¥ÏîµÄÍ¼±ê×ó±ßÔµÆ«ÒÆ(¿ÉÑ¡),Èç¹ûÓĞ,¾Í¸²¸ÇINT_iconoffset,Ê¾Àı:iconoffset="10"
-		static const char* ITEM_textoffset;										///< ²Ëµ¥ÏîµÄÎÄ±¾ÎÄ±¾×ó±ßÔµÆ«ÒÆ(¿ÉÑ¡),Èç¹ûÓĞ,¾Í¸²¸ÇINT_textoffset,Ê¾Àı:textoffset="10"
-		static const char* ITEM_skin;                                              ///< ²Ëµ¥ÏîµÄ±³¾°Á¬Í¼(Õı³£-Ñ¡ÖĞ-»Òµô)£¬»¹ÓĞÒ»¸ö×÷ÓÃ,ÔÚÊ¹ÓÃ×Ô¶¯¼ÆËã¿í¶ÈÊ±,µ±skin´æÔÚ,²¢ÇÒÃ»ÓĞÉèÖÃITEM_maxwidthÊ±,»áÈ¡µ±Ç°µÄskin×÷Îªµ±Ç°²Ëµ¥µÄ¿í¶È,Èç¹û¸¸×Ó²Ëµ¥ĞèÒª²»Í¬µÄ¿í¶È,¿ÉÒÔÍ¨¹ıÕâÖÖ·½Ê½À´Ö¸¶¨, Ê¾Àı:skin="itemskin"
-		static const char* ITEM_id;												///< ²Ëµ¥ÏîµÄid(²»ÄÜÎª0,ÔÚ1µ½65535Ö®¼ä)£¬ÓÃÓÚµã»÷Ê±·¢ËÍÏûÏ¢  Ê¾Àı:id="10"
-		static const char* ITEM_bcheck;                                            ///< ²Ëµ¥ÏîµÄcheckÏî£¨ÅäºÏSKIN_checkskin£©  Ê¾Àı:bcheck="1"
-		static const char* ITEM_bradio;                                            ///< ²Ëµ¥ÏîµÄradioÏî£¨ÅäºÏSKIN_checkskin£¬ºÍcheckÏî¶şÑ¡Ò»£©  Ê¾Àı:bradio="1"
-		static const char* ITEM_bdisable;                                          ///< ½ûÓÃ²Ëµ¥Ïî  Ê¾Àı:bdisable="1"
+		static const char* NODE_sep;												///< èœå•çš„xmlé¡¹ç»“ç‚¹å(å¯¹åº”ä¸€æ¡åˆ†éš”æ )
+		static const char* NODE_item;                                              ///< èœå•çš„xmlé¡¹ç»“ç‚¹å(å¯¹åº”ä¸€æ¡èœå•é¡¹)
+		static const char* ITEM_height;                                            ///< èœå•é¡¹çš„é«˜åº¦(å¯é€‰)ï¼Œå¦‚æœèœå•é¡¹é«˜åº¦å°äºèœå•é¡¹çš„èƒŒæ™¯è¿å›¾çš„é«˜åº¦ï¼Œåˆ™ä»¥èƒŒæ™¯è¿å›¾é«˜åº¦ä¸ºå‡†, ç¤ºä¾‹:height="20"
+		static const char* ITEM_maxwidth;											///< èœå•é¡¹çš„æœ€å¤§å®½åº¦(å¯é€‰),ç¤ºä¾‹:maxwidth="10",è¦æ³¨æ„ç»˜åˆ¶çª—å£å®½åº¦ä¼šæ¯”è¿™ä¸ªè®¾ç½®å¤§14ï¼ˆç³»ç»Ÿè®¾ç½®çš„ï¼‰
+		static const char* ITEM_icon;                                              ///< èœå•é¡¹çš„iconä½ç½®ï¼ˆ-1è¡¨ç¤ºæ²¡æœ‰iconï¼‰ç¤ºä¾‹:icon="1"
+		static const char* ITEM_text;                                              ///< èœå•é¡¹çš„æ–‡æœ¬  ç¤ºä¾‹:text="æ‰“å¼€PEæ–‡ä»¶..."
+		static const char* ITEM_iconsize;											///< èœå•é¡¹çš„å›¾æ ‡å°ºå¯¸(å¯é€‰)ï¼Œé»˜è®¤ä¸º16*16,å¦‚æœæœ‰,å°±è¦†ç›–INT_iconsize,ç¤ºä¾‹:iconsize="16,16"
+		static const char* ITEM_iconoffset;										///< èœå•é¡¹çš„å›¾æ ‡å·¦è¾¹ç¼˜åç§»(å¯é€‰),å¦‚æœæœ‰,å°±è¦†ç›–INT_iconoffset,ç¤ºä¾‹:iconoffset="10"
+		static const char* ITEM_textoffset;										///< èœå•é¡¹çš„æ–‡æœ¬æ–‡æœ¬å·¦è¾¹ç¼˜åç§»(å¯é€‰),å¦‚æœæœ‰,å°±è¦†ç›–INT_textoffset,ç¤ºä¾‹:textoffset="10"
+		static const char* ITEM_skin;                                              ///< èœå•é¡¹çš„èƒŒæ™¯è¿å›¾(æ­£å¸¸-é€‰ä¸­-ç°æ‰)ï¼Œè¿˜æœ‰ä¸€ä¸ªä½œç”¨,åœ¨ä½¿ç”¨è‡ªåŠ¨è®¡ç®—å®½åº¦æ—¶,å½“skinå­˜åœ¨,å¹¶ä¸”æ²¡æœ‰è®¾ç½®ITEM_maxwidthæ—¶,ä¼šå–å½“å‰çš„skinä½œä¸ºå½“å‰èœå•çš„å®½åº¦,å¦‚æœçˆ¶å­èœå•éœ€è¦ä¸åŒçš„å®½åº¦,å¯ä»¥é€šè¿‡è¿™ç§æ–¹å¼æ¥æŒ‡å®š, ç¤ºä¾‹:skin="itemskin"
+		static const char* ITEM_id;												///< èœå•é¡¹çš„id(ä¸èƒ½ä¸º0,åœ¨1åˆ°65535ä¹‹é—´)ï¼Œç”¨äºç‚¹å‡»æ—¶å‘é€æ¶ˆæ¯  ç¤ºä¾‹:id="10"
+		static const char* ITEM_bcheck;                                            ///< èœå•é¡¹çš„checké¡¹ï¼ˆé…åˆSKIN_checkskinï¼‰  ç¤ºä¾‹:bcheck="1"
+		static const char* ITEM_bradio;                                            ///< èœå•é¡¹çš„radioé¡¹ï¼ˆé…åˆSKIN_checkskinï¼Œå’Œchecké¡¹äºŒé€‰ä¸€ï¼‰  ç¤ºä¾‹:bradio="1"
+		static const char* ITEM_bdisable;                                          ///< ç¦ç”¨èœå•é¡¹  ç¤ºä¾‹:bdisable="1"
 	};
 	DMAttrValueInit(DUIMenuAttr,SKIN_bgskin)DMAttrValueInit(DUIMenuAttr,SKIN_itemselbgskin)DMAttrValueInit(DUIMenuAttr,SKIN_iconskin)
 	DMAttrValueInit(DUIMenuAttr,SKIN_sepskin)DMAttrValueInit(DUIMenuAttr,SKIN_checkskin)DMAttrValueInit(DUIMenuAttr,INT_itemhei)
@@ -142,45 +142,45 @@ namespace DM
 		DMCode OnAttrMaxWidth(LPCSTR pszValue, bool bLoadXml);
 
 	public:
-		IDMSkin*                    m_pBgSkin;       ///< Õû¸ö²Ëµ¥µÄ±³¾°Í¼
-		IDMSkin*					m_pItemSelBgSkin;///< Ñ¡ÖĞ²Ëµ¥Ïî±³¾°Æ¤·ô
-		IDMSkin*					m_pIconSkin;     ///< ²Ëµ¥Í¼±ê
-		IDMSkin*					m_pSepSkin;		 ///< ·Ö¸îÀ¸Æ¤·ô
-		IDMSkin*					m_pCheckSkin;    ///< Ñ¡ÖĞ×´Ì¬,°üº¬Á½ÖÖ×´Ì¬:¹´Ñ¡+È¦Ñ¡
-		int							m_nItemHei;      ///< ²Ëµ¥Ïî¸ß¶È
-		int							m_IconOffset;    ///< Í¼±ê×ó±ßÔµÆ«ÒÆ
-		int							m_TextOffset;    ///< ÎÄ±¾×ó±ßÔµÆ«ÒÆ
-		int						    m_StepOffset;    ///< Step×ó±ßÔµÆ«ÒÆ
-		int                         m_StepHei;       ///< StepµÄ¸ß¶È£¬Ä¬ÈÏÎª1
-		int                         m_MaxWidth;		 ///< ²Ëµ¥ÏîµÄ×î´ó¿í¶È,Ä¬ÈÏÎª-1±íÊ¾×Ô¶¯¼ÆËã£¬Òª×¢Òâ»æÖÆµÄ¿í¶ÈÒª±ÈËü´ó14£¨ÏµÍ³×Ô¶¯À©Õ¹14,ÈçÇ¿ÖÆ½ûÖ¹,Ôò×Ó²Ëµ¥ºÍ¸¸²Ëµ¥¼äÓĞ14¿ÕÏ¶£©
+		IDMSkin*                    m_pBgSkin;       ///< æ•´ä¸ªèœå•çš„èƒŒæ™¯å›¾
+		IDMSkin*					m_pItemSelBgSkin;///< é€‰ä¸­èœå•é¡¹èƒŒæ™¯çš®è‚¤
+		IDMSkin*					m_pIconSkin;     ///< èœå•å›¾æ ‡
+		IDMSkin*					m_pSepSkin;		 ///< åˆ†å‰²æ çš®è‚¤
+		IDMSkin*					m_pCheckSkin;    ///< é€‰ä¸­çŠ¶æ€,åŒ…å«ä¸¤ç§çŠ¶æ€:å‹¾é€‰+åœˆé€‰
+		int							m_nItemHei;      ///< èœå•é¡¹é«˜åº¦
+		int							m_IconOffset;    ///< å›¾æ ‡å·¦è¾¹ç¼˜åç§»
+		int							m_TextOffset;    ///< æ–‡æœ¬å·¦è¾¹ç¼˜åç§»
+		int						    m_StepOffset;    ///< Stepå·¦è¾¹ç¼˜åç§»
+		int                         m_StepHei;       ///< Stepçš„é«˜åº¦ï¼Œé»˜è®¤ä¸º1
+		int                         m_MaxWidth;		 ///< èœå•é¡¹çš„æœ€å¤§å®½åº¦,é»˜è®¤ä¸º-1è¡¨ç¤ºè‡ªåŠ¨è®¡ç®—ï¼Œè¦æ³¨æ„ç»˜åˆ¶çš„å®½åº¦è¦æ¯”å®ƒå¤§14ï¼ˆç³»ç»Ÿè‡ªåŠ¨æ‰©å±•14,å¦‚å¼ºåˆ¶ç¦æ­¢,åˆ™å­èœå•å’Œçˆ¶èœå•é—´æœ‰14ç©ºéš™ï¼‰
 		bool                        m_bAutoCalc;
-		DMColor                     m_crBg;          ///< Õû¸ö²Ëµ¥µÄ±³¾°É«,ÔÚ±³¾°Í¼²»´æÔÚÊ±Ê¹ÓÃ
-		DMColor                     m_crSelBg;       ///< Ñ¡ÖĞ²Ëµ¥µÄ±³¾°É«,ÔÚ±³¾°Í¼²»´æÔÚÊ±Ê¹ÓÃ
-		DMColor                     m_crStep;        ///< ·Ö¸îÀ¸µÄ±³¾°É«
-		DMColor						m_crTextNormal;  ///< Õı³£ÎÄ±¾ÑÕÉ«
-		DMColor						m_crTextSel;     ///< Ñ¡ÖĞÎÄ±¾ÑÕÉ«
-		DMColor					    m_crTextGray;    ///< »ÒÎÄ±¾ÑÕÉ«
-		CSize						m_szIcon;        ///< Í¼±ê³ß´ç
-		CSize                       m_szRound;       ///< Ô²½Ç³ß´ç
-		BYTE						m_byAlpha;		 ///< Í¸Ã÷¶È
-		bool                        m_bShadow;       ///< ²Ëµ¥ÒõÓ°
-		bool                        m_bHideFrame;    ///< Òş²Ø²Ëµ¥Ö÷±ß¿ò
-		DMSmartPtrT<IDMFont>        m_hFont;         ///< ÎÄ×Ö
-		CStringW                    m_strTransId;    ///< ÓïÑÔ°üµÄNode±êÊ¶
+		DMColor                     m_crBg;          ///< æ•´ä¸ªèœå•çš„èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸å­˜åœ¨æ—¶ä½¿ç”¨
+		DMColor                     m_crSelBg;       ///< é€‰ä¸­èœå•çš„èƒŒæ™¯è‰²,åœ¨èƒŒæ™¯å›¾ä¸å­˜åœ¨æ—¶ä½¿ç”¨
+		DMColor                     m_crStep;        ///< åˆ†å‰²æ çš„èƒŒæ™¯è‰²
+		DMColor						m_crTextNormal;  ///< æ­£å¸¸æ–‡æœ¬é¢œè‰²
+		DMColor						m_crTextSel;     ///< é€‰ä¸­æ–‡æœ¬é¢œè‰²
+		DMColor					    m_crTextGray;    ///< ç°æ–‡æœ¬é¢œè‰²
+		CSize						m_szIcon;        ///< å›¾æ ‡å°ºå¯¸
+		CSize                       m_szRound;       ///< åœ†è§’å°ºå¯¸
+		BYTE						m_byAlpha;		 ///< é€æ˜åº¦
+		bool                        m_bShadow;       ///< èœå•é˜´å½±
+		bool                        m_bHideFrame;    ///< éšè—èœå•ä¸»è¾¹æ¡†
+		DMSmartPtrT<IDMFont>        m_hFont;         ///< æ–‡å­—
+		CStringW                    m_strTransId;    ///< è¯­è¨€åŒ…çš„Nodeæ ‡è¯†
 	};
 
 	struct DMMenuItemInfo
 	{
 		DMMenuItemInfo(){nHeight = 0; maxWidth = -1; iIcon = -1; pSkin = NULL; iconOffset = 0; textOffset = 0; dwData = 0;}
 		int				nHeight;
-		int             maxWidth;                     ///< ²Ëµ¥ÏîµÄ×î´ó¿í¶È
-		int				iIcon;						  ///< iconÎ»ÖÃ
-		IDMSkin*		pSkin;						  ///< Í¼Æ¬
-		CStringW		strText;					  ///< ÎÄ×Ö
-		CSize           szIcon;                       ///< Í¼±ê³ß´ç
-		int             iconOffset;                   ///< Í¼±ê×ó±ßÔµÆ«ÒÆ
-		int				textOffset;                   ///< ÎÄ±¾×ó±ßÔµÆ«ÒÆ
-		DWORD           dwData;                       ///< ÆäËûÊı¾İ
+		int             maxWidth;                     ///< èœå•é¡¹çš„æœ€å¤§å®½åº¦
+		int				iIcon;						  ///< iconä½ç½®
+		IDMSkin*		pSkin;						  ///< å›¾ç‰‡
+		CStringW		strText;					  ///< æ–‡å­—
+		CSize           szIcon;                       ///< å›¾æ ‡å°ºå¯¸
+		int             iconOffset;                   ///< å›¾æ ‡å·¦è¾¹ç¼˜åç§»
+		int				textOffset;                   ///< æ–‡æœ¬å·¦è¾¹ç¼˜åç§»
+		DWORD           dwData;                       ///< å…¶ä»–æ•°æ®
 	};
 
 	struct DMMenuItemData
@@ -191,7 +191,7 @@ namespace DM
 	};
 
 	/// <summary>
-	///		 ¼ò°æ²»¶Ô·Ç×Ô»æÏµÍ³²Ëµ¥½øĞĞ´¦Àí,ÈçĞè´¦Àí,ÇëÊ¹ÓÃskinhgy lib¿â
+	///		 ç®€ç‰ˆä¸å¯¹éè‡ªç»˜ç³»ç»Ÿèœå•è¿›è¡Œå¤„ç†,å¦‚éœ€å¤„ç†,è¯·ä½¿ç”¨skinhgy libåº“
 	/// </summary>
 	class DM_EXPORT DUIMenuItem
 	{
@@ -233,12 +233,12 @@ namespace DM
 
 	public:
 		HMENU									m_hMenu;
-		HWND									m_hWnd;			///< ´°Ìå»ò¿Ø¼ş¾ä±ú
-		HWND									m_hMenuOwner;   ///< DUIµÄËŞÖ÷´°¿Ú
-		WNDPROC									m_pOldProc;		///< ¾ÉµÄ´°¿Ú¹ı³Ì
-		WNDPROC								    m_pNowProc;		///< Ä¿Ç°µÄ´°¿Ú¹ı³Ì
+		HWND									m_hWnd;			///< çª—ä½“æˆ–æ§ä»¶å¥æŸ„
+		HWND									m_hMenuOwner;   ///< DUIçš„å®¿ä¸»çª—å£
+		WNDPROC									m_pOldProc;		///< æ—§çš„çª—å£è¿‡ç¨‹
+		WNDPROC								    m_pNowProc;		///< ç›®å‰çš„çª—å£è¿‡ç¨‹
 
-		bool									m_bAlpha;		///< ÊÇ·ñÉèÖÃÁËÍ¸Ã÷
+		bool									m_bAlpha;		///< æ˜¯å¦è®¾ç½®äº†é€æ˜
 		DWORD									m_dwCurSel;
 		DMSmartPtrT<DUIMenu_XmlInfo>			m_pDUIMenuXmlInfo;
 	};

@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	RightXml.h
 // File mark:   
-// File summary:¹ÜÀíÓÒ±ßÊôĞÔÊÓÍ¼
+// File summary:ç®¡ç†å³è¾¹å±æ€§è§†å›¾
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8
@@ -22,7 +22,7 @@ public:
 	DMCode UnInitRightXml();
 	DMCode UpdataInfo(HDMTREEITEM hSel);
 	DMCode OnEyeChanged(DMEventArgs* pEvt);
-	DMCode UpdateEye(HDMTREEITEM hItem);// eye²»·ÅÔÚAttrBaseÖĞ£¬ÒòÎªAttrBase±»¶à¸öÀà¼Ì³Ğ,¿ÉÄÜÒ»¸öevent±»µ÷ÓÃ¶à´Î
+	DMCode UpdateEye(HDMTREEITEM hItem);// eyeä¸æ”¾åœ¨AttrBaseä¸­ï¼Œå› ä¸ºAttrBaseè¢«å¤šä¸ªç±»ç»§æ‰¿,å¯èƒ½ä¸€ä¸ªeventè¢«è°ƒç”¨å¤šæ¬¡
 
 public:
 	static DMCode s_DMHandleEvent(DMEventArgs *pEvt);
@@ -38,6 +38,6 @@ public:
 
 	DUIList*                                            m_pList;
 
-	// ÓÃÓÚ×ª·¢ÏûÏ¢
+	// ç”¨äºè½¬å‘æ¶ˆæ¯
 	static RightXml*                                    ms_pthis;
 };

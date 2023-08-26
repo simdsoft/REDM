@@ -1,11 +1,11 @@
-
+ï»¿
 //-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMRender.h 
-// File Des: äÖÈ¾½Ó¿Ú
-// File Summary: ÕâÀïËùÓĞµÄCOLORREF¶¼ĞèÊ¹ÓÃRGBAºêÀ´Ö¸¶¨£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡
+// File Des: æ¸²æŸ“æ¥å£
+// File Summary: è¿™é‡Œæ‰€æœ‰çš„COLORREFéƒ½éœ€ä½¿ç”¨RGBAå®æ¥æŒ‡å®šï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
 // Cur Version: 1.0
 // Author:
 // Create Data:
@@ -19,17 +19,17 @@
 namespace DM
 {
 
-	// »ù±¾Í¼ÔªÉùÃ÷-------------------------------------
-	class IDMBitmap;												// SkBitmap»òHBITMAPµÄ³éÏóÌå.
-	class IDMBrush;													// SkBitmapÎ»Í¼»­Ë¢»òHBRUSHµÄ³éÏóÌå	
-	class IDMFont;													// SkTypeface»òHFONTµÄ³éÏóÌå				
-	class IDMPen;													// SkBitmap»òHPENµÄ³éÏóÌå
-	class IDMRegion;												// SkRegion»òHRGNµÄ³éÏóÌå
-	class IDMCanvas;                                                // SkCanvas»òHDCµÄ³éÏóÌå
+	// åŸºæœ¬å›¾å…ƒå£°æ˜-------------------------------------
+	class IDMBitmap;												// SkBitmapæˆ–HBITMAPçš„æŠ½è±¡ä½“.
+	class IDMBrush;													// SkBitmapä½å›¾ç”»åˆ·æˆ–HBRUSHçš„æŠ½è±¡ä½“	
+	class IDMFont;													// SkTypefaceæˆ–HFONTçš„æŠ½è±¡ä½“				
+	class IDMPen;													// SkBitmapæˆ–HPENçš„æŠ½è±¡ä½“
+	class IDMRegion;												// SkRegionæˆ–HRGNçš„æŠ½è±¡ä½“
+	class IDMCanvas;                                                // SkCanvasæˆ–HDCçš„æŠ½è±¡ä½“
 
 	/// -------------------------------------------------
 	/// <summary>
-	///		äÖÈ¾¹¤³§
+	///		æ¸²æŸ“å·¥å‚
 	/// </summary>
 	class IDMRender:public DMBase
 	{
@@ -39,37 +39,37 @@ namespace DM
 		virtual~IDMRender(){};
 
 		//---------------------------------------------------
-		// Function Des: ´´½¨»ù±¾Í¼ÔªÏµÁĞº¯Êı
+		// Function Des: åˆ›å»ºåŸºæœ¬å›¾å…ƒç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
-		virtual DMCode CreateBitmap(IDMBitmap** ppBitmap)							= 0;  ///<´´½¨Í¼ĞÎ
-		virtual DMCode CreateFont(const LPLOGFONTW plf,IDMFont** ppFont)			= 0;  ///<´´½¨×ÖÌå
-		virtual DMCode CreateRegion(IDMRegion** ppRgn)								= 0;  ///<´´½¨»æÖÆÇø
-		virtual DMCode CreatePen(DMColor clr,int iStyle,int iWidth,IDMPen** ppPen)  = 0;  ///<´´½¨Pen
-		virtual DMCode CreateSolidColorBrush(DMColor clr,IDMBrush** ppBrush)		= 0;  ///<´´½¨ÊµÉ«»­Ë¢
-		virtual DMCode CreateBitmapBrush(IDMBitmap*pBmp,IDMBrush** ppBrush)			= 0;  ///<´´½¨Í¼Æ¬»­Ë¢
-		virtual DMCode CreateCanvas(int nWid,int nHei,IDMCanvas** ppCanvas)			= 0;  ///<´´½¨»­²¼
+		virtual DMCode CreateBitmap(IDMBitmap** ppBitmap)							= 0;  ///<åˆ›å»ºå›¾å½¢
+		virtual DMCode CreateFont(const LPLOGFONTW plf,IDMFont** ppFont)			= 0;  ///<åˆ›å»ºå­—ä½“
+		virtual DMCode CreateRegion(IDMRegion** ppRgn)								= 0;  ///<åˆ›å»ºç»˜åˆ¶åŒº
+		virtual DMCode CreatePen(DMColor clr,int iStyle,int iWidth,IDMPen** ppPen)  = 0;  ///<åˆ›å»ºPen
+		virtual DMCode CreateSolidColorBrush(DMColor clr,IDMBrush** ppBrush)		= 0;  ///<åˆ›å»ºå®è‰²ç”»åˆ·
+		virtual DMCode CreateBitmapBrush(IDMBitmap*pBmp,IDMBrush** ppBrush)			= 0;  ///<åˆ›å»ºå›¾ç‰‡ç”»åˆ·
+		virtual DMCode CreateCanvas(int nWid,int nHei,IDMCanvas** ppCanvas)			= 0;  ///<åˆ›å»ºç”»å¸ƒ
 	};
 
 	enum DMFTYPE		 ///< MetaFile type
 	{
 		DMF_NULL,		
-		DMF_PEN=1,		 ///< ¸Ö±ÊÍ¼Ôª
-		DMF_BRUSH=2,	 ///< »­Ë¢Í¼Ôª
-		DMF_BITMAP=3,	 ///< Í¼ĞÎÍ¼Ôª
-		DMF_FONT=4,		 ///< ×ÖÌåÍ¼Ôª
-		DMF_REGION=5,	 ///< ÇøÓòÍ¼Ôª
-		DMF_CANVAS=6,	 ///< »­²¼Í¼Ôª
+		DMF_PEN=1,		 ///< é’¢ç¬”å›¾å…ƒ
+		DMF_BRUSH=2,	 ///< ç”»åˆ·å›¾å…ƒ
+		DMF_BITMAP=3,	 ///< å›¾å½¢å›¾å…ƒ
+		DMF_FONT=4,		 ///< å­—ä½“å›¾å…ƒ
+		DMF_REGION=5,	 ///< åŒºåŸŸå›¾å…ƒ
+		DMF_CANVAS=6,	 ///< ç”»å¸ƒå›¾å…ƒ
 	};
 
-	enum DMEXPEND_MODE	 ///< »æÖÆÄ£Ê½
+	enum DMEXPEND_MODE	 ///< ç»˜åˆ¶æ¨¡å¼
 	{
-		DEM_STRETCH,     ///< À­Éì
-		DEM_TILE,        ///< Æ½ÆÌ
+		DEM_STRETCH,     ///< æ‹‰ä¼¸
+		DEM_TILE,        ///< å¹³é“º
 	};
 
 	/// -------------------------------------------------
 	/// <summary>
-	///		»ù±¾Í¼ÔªÔ¤´¦Àí
+	///		åŸºæœ¬å›¾å…ƒé¢„å¤„ç†
 	/// </summary>
 	class IDMMetaFile:public DMRefNum
 	{
@@ -79,43 +79,43 @@ namespace DM
 
 	/// ------------------------------------------------
 	/// <summary>
-	///		 »ù±¾Í¼ÔªÊµÏÖ.kBitmap»òHBITMAPµÄ³éÏóÌå.
+	///		 åŸºæœ¬å›¾å…ƒå®ç°.kBitmapæˆ–HBITMAPçš„æŠ½è±¡ä½“.
 	/// </summary>
 	class IDMBitmap:public IDMMetaFile
 	{
 	public:
 		DMFTYPE GetType(){return DMF_BITMAP;}
 	public:
-		virtual DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL) = 0;				///<³õÊ¼»¯
-		virtual DMCode InitFromFrame(IDMImgFrame *pImgFrame) = 0;						///<´Ó<see cref="IDMImgFrame"/>ÖĞ¼ÓÔØ
+		virtual DMCode Init(int nWid,int nHei,const LPVOID pBits=NULL) = 0;				///<åˆå§‹åŒ–
+		virtual DMCode InitFromFrame(IDMImgFrame *pImgFrame) = 0;						///<ä»<see cref="IDMImgFrame"/>ä¸­åŠ è½½
 		virtual DMCode InitFromHBITMAP(HBITMAP hbit) = 0;
-		virtual DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType) = 0;			///<´ÓÎÄ¼şÖĞ¼ÓÔØ
-		virtual DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;	///<´ÓÄÚ´æÖĞ¼ÓÔØ
+		virtual DMCode LoadFromFile(LPCWSTR pszFileName,LPCSTR pszType) = 0;			///<ä»æ–‡ä»¶ä¸­åŠ è½½
+		virtual DMCode LoadFromMemory(LPBYTE pBuf,size_t szLen,LPCSTR pszType) = 0;	///<ä»å†…å­˜ä¸­åŠ è½½
 
-		virtual DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL) = 0;			///<µ÷ÕûHSL
-		virtual DMCode ResetHsl() = 0;												    ///<»Ö¸´Î´±ä»»HSLÇ°£¬Çå³ıHSL±ä»»µÄÏñËØÕóÁĞ±»Çå³ı
-		virtual DMCode SaveFile(LPCWSTR pszFileName) = 0;								///<¸¨Öú£¬ÓÃÓÚ±£´æHSL±ä»»ºóµÄÍ¼Æ¬,¼ò½à°æ½öÖ§³Ö32Î»BITMAP
+		virtual DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL) = 0;			///<è°ƒæ•´HSL
+		virtual DMCode ResetHsl() = 0;												    ///<æ¢å¤æœªå˜æ¢HSLå‰ï¼Œæ¸…é™¤HSLå˜æ¢çš„åƒç´ é˜µåˆ—è¢«æ¸…é™¤
+		virtual DMCode SaveFile(LPCWSTR pszFileName) = 0;								///<è¾…åŠ©ï¼Œç”¨äºä¿å­˜HSLå˜æ¢åçš„å›¾ç‰‡,ç®€æ´ç‰ˆä»…æ”¯æŒ32ä½BITMAP
 
-		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;					///<µ÷ÕûÒ»¸öÇøÓòµÄalpha
-		virtual DMCode AlphaBackup(LPRECT lpRect) = 0;									///<±¸·İAlpha.±ØĞë³É¶Ô³öÏÖ£¡
-		virtual DMCode AlphaRestore() = 0;												///<»Ö¸´Alpha.±ØĞë³É¶Ô³öÏÖ£¡
+		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;					///<è°ƒæ•´ä¸€ä¸ªåŒºåŸŸçš„alpha
+		virtual DMCode AlphaBackup(LPRECT lpRect) = 0;									///<å¤‡ä»½Alpha.å¿…é¡»æˆå¯¹å‡ºç°ï¼
+		virtual DMCode AlphaRestore() = 0;												///<æ¢å¤Alpha.å¿…é¡»æˆå¯¹å‡ºç°ï¼
 
 		//---------------------------------------------------
-		// Function Des: »ñÈ¡ÏµÁĞº¯Êı
+		// Function Des: è·å–ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
-		virtual int GetWidth() = 0;														///<È¡µÃ¿í¶È
-		virtual int GetHeight() = 0;													///<È¡µÃ¸ß¶È
-		virtual int GetSize() = 0;													    ///<È¡µÃ´óĞ¡
-		virtual int GetBPS() = 0;														///<È¡µÃµ¥Æ½ÃæÉ¨ÃèÏß
-		virtual DMColor GetPixel(int x, int y) = 0;										///<È¡µÃÏñËØµã
-		virtual bool SetPixel(int x, int y, DMColor clr) = 0;						    ///<ÉèÖÃÏñËØµã
-		virtual PVOID GetPixelBits() = 0;                                               ///<»ñÈ¡µ±Ç°ÏñËØÕóÁĞ
-		virtual HBITMAP GetBitmap() = 0;												///<»ñµÃHBitmap					
+		virtual int GetWidth() = 0;														///<å–å¾—å®½åº¦
+		virtual int GetHeight() = 0;													///<å–å¾—é«˜åº¦
+		virtual int GetSize() = 0;													    ///<å–å¾—å¤§å°
+		virtual int GetBPS() = 0;														///<å–å¾—å•å¹³é¢æ‰«æçº¿
+		virtual DMColor GetPixel(int x, int y) = 0;										///<å–å¾—åƒç´ ç‚¹
+		virtual bool SetPixel(int x, int y, DMColor clr) = 0;						    ///<è®¾ç½®åƒç´ ç‚¹
+		virtual PVOID GetPixelBits() = 0;                                               ///<è·å–å½“å‰åƒç´ é˜µåˆ—
+		virtual HBITMAP GetBitmap() = 0;												///<è·å¾—HBitmap					
 	};
 	
 	/// ------------------------------------------------
 	/// <summary>
-	///		 SkBitmapÎ»Í¼»­Ë¢»òHBRUSHµÄ³éÏóÌå
+	///		 SkBitmapä½å›¾ç”»åˆ·æˆ–HBRUSHçš„æŠ½è±¡ä½“
 	/// </summary>
 	class IDMBrush:public IDMMetaFile
 	{
@@ -125,7 +125,7 @@ namespace DM
 
 	/// ------------------------------------------------
 	/// <summary>
-	///		 SkTypeface»òHFONTµÄ³éÏóÌå
+	///		 SkTypefaceæˆ–HFONTçš„æŠ½è±¡ä½“
 	/// </summary>
 	class IDMFont:public IDMMetaFile
 	{
@@ -134,16 +134,16 @@ namespace DM
 
 	public:
 
-		virtual const LOGFONTW* GetLogFont() const = 0;	///<È¡µÃ×ÖÌå
-		virtual LPCWSTR GetFaceName()			   = 0;	///<×ÖÌåÃû
-		virtual bool IsUnderline()				   = 0; ///<ÊÇ·ñÓĞÏÂ»®Ïß
-		virtual bool IsItalic()					   = 0; ///<ÊÇ·ñÎªĞ±Ìå
-		virtual bool IsStrikeOut()				   = 0; ///<ÊÇ·ñÓĞÉ¾³ıÏß
+		virtual const LOGFONTW* GetLogFont() const = 0;	///<å–å¾—å­—ä½“
+		virtual LPCWSTR GetFaceName()			   = 0;	///<å­—ä½“å
+		virtual bool IsUnderline()				   = 0; ///<æ˜¯å¦æœ‰ä¸‹åˆ’çº¿
+		virtual bool IsItalic()					   = 0; ///<æ˜¯å¦ä¸ºæ–œä½“
+		virtual bool IsStrikeOut()				   = 0; ///<æ˜¯å¦æœ‰åˆ é™¤çº¿
 	};
 
 	/// ------------------------------------------------
 	/// <summary>
-	///		 SkBitmap»òHPENµÄ³éÏóÌå
+	///		 SkBitmapæˆ–HPENçš„æŠ½è±¡ä½“
 	/// </summary>
 	class IDMPen:public IDMMetaFile
 	{
@@ -156,7 +156,7 @@ namespace DM
 
 	/// ------------------------------------------------
 	/// <summary>
-	///		 SkRegion»òHRGNµÄ³éÏóÌå--¿É²Î¿¼CRgn³ÉÔ±º¯Êı
+	///		 SkRegionæˆ–HRGNçš„æŠ½è±¡ä½“--å¯å‚è€ƒCRgnæˆå‘˜å‡½æ•°
 	/// </summary>
 	class IDMRegion:public IDMMetaFile
 	{
@@ -165,23 +165,23 @@ namespace DM
 	public:
 
 		//---------------------------------------------------
-		// Function Des: fnCombineMode ¿É²Î¿¼CombineRgn API
+		// Function Des: fnCombineMode å¯å‚è€ƒCombineRgn API
 		//---------------------------------------------------
-		virtual bool CombineRect(LPCRECT lpRect,int fnCombineMode=RGN_OR) = 0;///< ²»½¨ÒéÊ¹ÓÃRGN_DIFF£¬»á²úÉúCOMPLEXREGION£¨·Ç¾ØĞÎµÄÎŞĞ§Çø£©
-		virtual bool PtInRegion(const POINT &pt) = 0;						  ///< µãÊÇ·ñÔÚÇøÓòÄÚ
-		virtual bool RectInRegion(LPCRECT lpRect) = 0;						  ///< ¾ØĞÎÊÇ·ñºÍÇøÓòÓĞ½»¼¯
-		virtual void GetRgnBox(LPRECT lpRect) = 0;							  ///< °üº¬Õâ¸öÇøÓòµÄ¾ØĞÎ
-		virtual bool IsEmpty() = 0;											  ///< ÇøÓòÊÇ·ñÎª¿Õ
-		virtual void Offset(const POINT &pt) = 0;							  ///< Æ«ÒÆ
-		virtual void Clear() = 0;											  ///< Çå¿ÕÇøÓò
-		virtual DMCode GetRectNum(int &iNum) = 0;                             ///< »ñµÃ×é³ÉÇøÓòµÄRect¸öÊı
-		virtual DMCode GetRectArray(RECT* pRect,int iNum) = 0;                ///< »ñµÃ×é³ÉÇøÓòµÄRectÁĞ±í
+		virtual bool CombineRect(LPCRECT lpRect,int fnCombineMode=RGN_OR) = 0;///< ä¸å»ºè®®ä½¿ç”¨RGN_DIFFï¼Œä¼šäº§ç”ŸCOMPLEXREGIONï¼ˆéçŸ©å½¢çš„æ— æ•ˆåŒºï¼‰
+		virtual bool PtInRegion(const POINT &pt) = 0;						  ///< ç‚¹æ˜¯å¦åœ¨åŒºåŸŸå†…
+		virtual bool RectInRegion(LPCRECT lpRect) = 0;						  ///< çŸ©å½¢æ˜¯å¦å’ŒåŒºåŸŸæœ‰äº¤é›†
+		virtual void GetRgnBox(LPRECT lpRect) = 0;							  ///< åŒ…å«è¿™ä¸ªåŒºåŸŸçš„çŸ©å½¢
+		virtual bool IsEmpty() = 0;											  ///< åŒºåŸŸæ˜¯å¦ä¸ºç©º
+		virtual void Offset(const POINT &pt) = 0;							  ///< åç§»
+		virtual void Clear() = 0;											  ///< æ¸…ç©ºåŒºåŸŸ
+		virtual DMCode GetRectNum(int &iNum) = 0;                             ///< è·å¾—ç»„æˆåŒºåŸŸçš„Rectä¸ªæ•°
+		virtual DMCode GetRectArray(RECT* pRect,int iNum) = 0;                ///< è·å¾—ç»„æˆåŒºåŸŸçš„Rectåˆ—è¡¨
 	};
 	typedef IDMRegion* IDMRegionPtr;
 
 	/// ------------------------------------------------
 	/// <summary>
-	///		 »­²¼½Ó¿Ú
+	///		 ç”»å¸ƒæ¥å£
 	/// </summary>
 	class IDMCanvas:public IDMMetaFile
 	{
@@ -191,29 +191,29 @@ namespace DM
 	public:
 
 		//---------------------------------------------------
-		// Function Des:»ù´¡
+		// Function Des:åŸºç¡€
 		//---------------------------------------------------
-		virtual DMCode SelectObject(IDMMetaFile* pObj,IDMMetaFile** ppOldObj = NULL) = 0;	///<Ñ¡ÈëÍ¼Ôª
-		virtual DMCode GetObject(IDMMetaFile** ppObj, DMFTYPE DmfType) =0;					///<»ñÈ¡µ±Ç°Ñ¡ÈëµÄÍ¼Ôª
+		virtual DMCode SelectObject(IDMMetaFile* pObj,IDMMetaFile** ppOldObj = NULL) = 0;	///<é€‰å…¥å›¾å…ƒ
+		virtual DMCode GetObject(IDMMetaFile** ppObj, DMFTYPE DmfType) =0;					///<è·å–å½“å‰é€‰å…¥çš„å›¾å…ƒ
 		
-		virtual DMCode Resize(SIZE size) = 0;												///<ÖØÉèÖÃ»­²¼´óĞ¡
-		virtual DMCode Resize(int nWid,int nHei) = 0;										///<ÖØÉèÖÃ»­²¼´óĞ¡
-		virtual DMCode GetSize(SIZE &size) = 0;                                             ///<»ñÈ¡»­²¼´óĞ¡
+		virtual DMCode Resize(SIZE size) = 0;												///<é‡è®¾ç½®ç”»å¸ƒå¤§å°
+		virtual DMCode Resize(int nWid,int nHei) = 0;										///<é‡è®¾ç½®ç”»å¸ƒå¤§å°
+		virtual DMCode GetSize(SIZE &size) = 0;                                             ///<è·å–ç”»å¸ƒå¤§å°
 
-		virtual HDC GetDC() = 0;															///<»ñÈ¡DC
-		virtual DMCode ReleaseDC(HDC hdc) = 0;												///<ÊÍ·ÅDC
-		virtual DMCode SaveCanvas(int *pnState=NULL) = 0;									///<±£´æDC
-		virtual DMCode RestoreCanvas(int nState=-1) = 0;									///<»Ö¸´DC
-
-		//---------------------------------------------------
-		// Function Des:HSL±ä»»
-		//---------------------------------------------------
-		virtual DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL) = 0;				///<µ÷ÕûHSL
-		virtual DMCode ResetHsl() = 0;													    ///<»Ö¸´Î´±ä»»HSLÇ°£¬Çå³ıHSL±ä»»µÄÏñËØÕóÁĞ±»Çå³ı
-		virtual PVOID GetPixelBits(int* pSize) = 0;                                         ///<»ñÈ¡µ±Ç°µÄÏñËØÕóÁĞºÍ´óĞ¡
+		virtual HDC GetDC() = 0;															///<è·å–DC
+		virtual DMCode ReleaseDC(HDC hdc) = 0;												///<é‡Šæ”¾DC
+		virtual DMCode SaveCanvas(int *pnState=NULL) = 0;									///<ä¿å­˜DC
+		virtual DMCode RestoreCanvas(int nState=-1) = 0;									///<æ¢å¤DC
 
 		//---------------------------------------------------
-		// Function Des:»æÖÆ
+		// Function Des:HSLå˜æ¢
+		//---------------------------------------------------
+		virtual DMCode AdjustHSL32(int H, int S, int L,LPRECT lpRect=NULL) = 0;				///<è°ƒæ•´HSL
+		virtual DMCode ResetHsl() = 0;													    ///<æ¢å¤æœªå˜æ¢HSLå‰ï¼Œæ¸…é™¤HSLå˜æ¢çš„åƒç´ é˜µåˆ—è¢«æ¸…é™¤
+		virtual PVOID GetPixelBits(int* pSize) = 0;                                         ///<è·å–å½“å‰çš„åƒç´ é˜µåˆ—å’Œå¤§å°
+
+		//---------------------------------------------------
+		// Function Des:ç»˜åˆ¶
 		//---------------------------------------------------
 		virtual DMCode BitBlt(IDMCanvas*pCanvasSrc, int xSrc, int ySrc, LPCRECT lpRectDest, DWORD dwRop = SRCCOPY) = 0;	
 		virtual DMCode AlphaBlend(IDMCanvas*pCanvasSrc, LPCRECT lpRectSrc, LPCRECT lpRectDest, BYTE alpha=0xFF) = 0;
@@ -237,7 +237,7 @@ namespace DM
 		virtual DMCode GradientFill(DMColor clrBegin,DMColor clrEnd,LPCRECT lpRect,BOOL bVert,BYTE alpha=0xFF) = 0;
 		
 		//---------------------------------------------------
-		// Function Des:ÎÄ±¾
+		// Function Des:æ–‡æœ¬
 		//---------------------------------------------------
 		virtual DMColor SetTextColor(DMColor clr) = 0;
 		virtual DMColor GetTextColor() = 0;
@@ -247,40 +247,40 @@ namespace DM
 		virtual DMCode TextOut(LPCWSTR lpString, int nCount, int x, int  y, BYTE alpha=0xFF) = 0;
 
 		//---------------------------------------------------
-		// Function Des:×ø±ê±ä»»
+		// Function Des:åæ ‡å˜æ¢
 		//---------------------------------------------------
 		virtual DMCode OffsetViewportOrg(int dx, int dy, OUT LPPOINT lpPoint = NULL) = 0;
 		virtual DMCode SetViewportOrgEx(int dx, int dy,  OUT LPPOINT lpPoint = NULL) = 0;
 		virtual DMCode GetViewportOrg(LPPOINT lpPoint) = 0;
 
 		//---------------------------------------------------
-		// Function Des:»æÖÆÇøÓò²Ã¼ô
+		// Function Des:ç»˜åˆ¶åŒºåŸŸè£å‰ª
 		//---------------------------------------------------
 		virtual DMCode PushClip(IDMRegion *pRegion,int fnCombineMode=RGN_AND) = 0;
-		virtual DMCode PushClip(LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					///<½«Ö¸¶¨µÄ¼ô¼­ÇøÓòÍÆËÍµ½»æÍ¼ÉÏÏÂÎÄÉÏ
-		virtual DMCode PopClip() = 0;															///<»Ö¸´¡¢ºÍPushClip±ØĞë³É¶Ô³öÏÖ
+		virtual DMCode PushClip(LPCRECT lpRect,int fnCombineMode=RGN_AND) = 0;					///<å°†æŒ‡å®šçš„å‰ªè¾‘åŒºåŸŸæ¨é€åˆ°ç»˜å›¾ä¸Šä¸‹æ–‡ä¸Š
+		virtual DMCode PopClip() = 0;															///<æ¢å¤ã€å’ŒPushClipå¿…é¡»æˆå¯¹å‡ºç°
 		virtual DMCode GetClipBox(LPRECT lpRect) = 0;
-		virtual DMCode GetClipRegion(IDMRegion **ppRegion) = 0;									///<±ØĞëÊ¹ÓÃÖÇÄÜÖ¸Õë£¬Ğ»Ğ»£¡
+		virtual DMCode GetClipRegion(IDMRegion **ppRegion) = 0;									///<å¿…é¡»ä½¿ç”¨æ™ºèƒ½æŒ‡é’ˆï¼Œè°¢è°¢ï¼
 		
 		virtual DMCode ExcludeClipRect(LPCRECT lpRect) = 0;
 		virtual DMCode IntersectClipRect(LPCRECT lpRect) = 0;
 
 		//---------------------------------------------------
-		// Function Des:¸¨Öúµ÷ÊÔÊ¹ÓÃ
+		// Function Des:è¾…åŠ©è°ƒè¯•ä½¿ç”¨
 		//---------------------------------------------------
 		virtual DMCode SaveBmpToFile(LPCWSTR pszFileName) = 0;
 
 		//---------------------------------------------------
-		// Function Des:±¸·İÕû¸öAlpha!
+		// Function Des:å¤‡ä»½æ•´ä¸ªAlpha!
 		//---------------------------------------------------
-		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;							///<µ÷ÕûÒ»¸öÇøÓòµÄalpha
+		virtual DMCode AdjustAlpha(byte byAlpha, LPRECT lpRect) = 0;							///<è°ƒæ•´ä¸€ä¸ªåŒºåŸŸçš„alpha
 		virtual DMCode AlphaBackup(LPRECT lpRect) = 0;
 		virtual DMCode AlphaRestore() = 0;
 
 		//---------------------------------------------------
-		// Function Des:ºóĞø¸ù¾İĞèÇóÔö¼ÓµÄÀ©Õ¹º¯Êı,·ÅÔÚ×îºó,ÒÔ±£Ö¤ÏòÉÏ¼æÈİ
+		// Function Des:åç»­æ ¹æ®éœ€æ±‚å¢åŠ çš„æ‰©å±•å‡½æ•°,æ”¾åœ¨æœ€å,ä»¥ä¿è¯å‘ä¸Šå…¼å®¹
 		//---------------------------------------------------
-		virtual DMCode DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle) = 0;			///<startAngle:´Ó x ÖáÑØË³Ê±ÕëĞı×ªµ½ÉÈĞÎÇøµÚÒ»¸ö±ßµÄ½Ç¶È,sweepAngle´ÓstartAngle²ÎÊıÑØË³Ê±ÕëĞı×ªµ½µÚ¶ş¸ö±ßµÄ½Ç¶È£¨ÒÔ¶ÈÎªµ¥Î»£©
+		virtual DMCode DrawArc(LPCRECT lpRect,float startAngle, float sweepAngle) = 0;			///<startAngle:ä» x è½´æ²¿é¡ºæ—¶é’ˆæ—‹è½¬åˆ°æ‰‡å½¢åŒºç¬¬ä¸€ä¸ªè¾¹çš„è§’åº¦,sweepAngleä»startAngleå‚æ•°æ²¿é¡ºæ—¶é’ˆæ—‹è½¬åˆ°ç¬¬äºŒä¸ªè¾¹çš„è§’åº¦ï¼ˆä»¥åº¦ä¸ºå•ä½ï¼‰
 		virtual DMCode FillPie(LPCRECT lpRect,float startAngle, float sweepAngle) = 0;			///<https://msdn.microsoft.com/zh-cn/library/2cd07tb4(v=vs.110).aspx?cs-save-lang=1&cs-lang=cpp#code-snippet-1
 	};
 

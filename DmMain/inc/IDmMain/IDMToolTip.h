@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: IDMToolTip.h 
-// File Des: IDMToolTipÊÇ¶ÔtooltipµÄ³éÏóÀà
+// File Des: IDMToolTipæ˜¯å¯¹tooltipçš„æŠ½è±¡ç±»
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -22,28 +22,28 @@ namespace DM
 		{
 			hDUIWnd = 0;iDelayTime = 500;iSpanTime = 5000;dwReserve = 0;rcPosFlags.SetRect(-1,0,0,0);
 		}
-		DUIWND		hDUIWnd;		 ///< ÓµÓĞtooltipµÄDUI´°¿Ú¾ä±ú
-		int         iDelayTime;      ///< ÑÓÊ±ÏÔÊ¾
-		int         iSpanTime;       ///< ÑÓÊ±ÏûÊ§
-		CRect		rcTarget;		 ///< tooltip¸ĞÓ¦Çø
-		CStringW	strTip;			 ///< tooltip×Ö·û´®
-		CStringW	strXmlId;        ///< tooltipµÄxml
-		CRect       rcPosFlags;		 ///< ÀàËÆTrackPopupMenuµÄ²ÎÊı£¬Ç°ÈıÏî·Ö±ğ´ú±íUINT uFlags, int x, int y,µÚËÄÏî´óÓÚ±íÊ¾Ç¿ÖÆ¹Ì¶¨£¬Îª0±íÊ¾²»Ç¿ÖÆ¹Ì¶¨£¬µ½ÆÁÄ»±ßÉÏÊ±£¬×Ô¶¯ÄÚÒÆ
-		CRect       rcScreenTarget;  ///< rcTargetÎªÏà¶ÔÓÚÆä´°¿ÚµÄ¿Í»§ÇøÓò£¬rcScreenTargetÎªÆÁÄ»ÇøÓò
+		DUIWND		hDUIWnd;		 ///< æ‹¥æœ‰tooltipçš„DUIçª—å£å¥æŸ„
+		int         iDelayTime;      ///< å»¶æ—¶æ˜¾ç¤º
+		int         iSpanTime;       ///< å»¶æ—¶æ¶ˆå¤±
+		CRect		rcTarget;		 ///< tooltipæ„Ÿåº”åŒº
+		CStringW	strTip;			 ///< tooltipå­—ç¬¦ä¸²
+		CStringW	strXmlId;        ///< tooltipçš„xml
+		CRect       rcPosFlags;		 ///< ç±»ä¼¼TrackPopupMenuçš„å‚æ•°ï¼Œå‰ä¸‰é¡¹åˆ†åˆ«ä»£è¡¨UINT uFlags, int x, int y,ç¬¬å››é¡¹å¤§äºè¡¨ç¤ºå¼ºåˆ¶å›ºå®šï¼Œä¸º0è¡¨ç¤ºä¸å¼ºåˆ¶å›ºå®šï¼Œåˆ°å±å¹•è¾¹ä¸Šæ—¶ï¼Œè‡ªåŠ¨å†…ç§»
+		CRect       rcScreenTarget;  ///< rcTargetä¸ºç›¸å¯¹äºå…¶çª—å£çš„å®¢æˆ·åŒºåŸŸï¼ŒrcScreenTargetä¸ºå±å¹•åŒºåŸŸ
 		
-		LPARAM      dwReserve;       ///< ±£Áô
+		LPARAM      dwReserve;       ///< ä¿ç•™
 	}DMToolTipInfo,*PDMToolTipInfo;
 
 	/// <summary>
-	///		ToolTip¶ÔÍâÀ©Õ¹½Ó¿Ú,classtype=<see cref="DMREG_ToolTip"/>
+	///		ToolTipå¯¹å¤–æ‰©å±•æ¥å£,classtype=<see cref="DMREG_ToolTip"/>
 	/// </summary>
 	class DM_EXPORT IDMToolTip:public DMBase,public IDMMessageFilter
 	{
 		DMDECLARE_CLASS_NAME(IDMToolTip,"IDMToolTip",DMREG_ToolTip);
 	public:
-		virtual DMCode Update(PDMToolTipInfo pInfo) = 0;					///< ¸üĞÂ²¢ÆôÓÃÏÔÊ¾¶¨Ê±Æ÷
-		virtual DMCode Hide() = 0;											///< Ö±½ÓÒş²Ø
-		virtual DMCode Clear() = 0;											///< ×îºóÇå³ı
-		virtual DMCode RelayEvent(const MSG *pMsg) = 0;                     ///< ×ª·¢ÏûÏ¢
+		virtual DMCode Update(PDMToolTipInfo pInfo) = 0;					///< æ›´æ–°å¹¶å¯ç”¨æ˜¾ç¤ºå®šæ—¶å™¨
+		virtual DMCode Hide() = 0;											///< ç›´æ¥éšè—
+		virtual DMCode Clear() = 0;											///< æœ€åæ¸…é™¤
+		virtual DMCode RelayEvent(const MSG *pMsg) = 0;                     ///< è½¬å‘æ¶ˆæ¯
 	};
 }

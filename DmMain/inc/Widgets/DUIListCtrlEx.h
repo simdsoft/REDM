@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIListCtrlEx.h 
-// File Des: DUIListCtrlExÀ©Õ¹ListBoxEx£¬Ö§³Ö¶àÁĞ×éºÏÃæ°å
+// File Des: DUIListCtrlExæ‰©å±•ListBoxExï¼Œæ”¯æŒå¤šåˆ—ç»„åˆé¢æ¿
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -20,22 +20,22 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIListCtrlEx"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIListCtrlEx"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIListCtrlExAttr: public DUIScrollBaseAttr
 	{
 	public:
-		static const char* INT_headerheight;                                        ///< ÁĞ±íÍ·µÄ¸ß¶È,Ê¾Àı:headerheight="20"
-		static const char* INT_itemheight;                                          ///< ÏîµÄÄ¬ÈÏ¸ß¶È,´ËÖµ²»Ö§³Ö¶¯Ì¬±ä»¯,Ê¾Àı:itemheight="20"
-		static const char* INT_cursel;                                              ///< µ±Ç°Ñ¡ÖĞÏî,Ê¾Àı:cursel="1"
-		static const char* COLOR_clritembg;                                         ///< itemÏîµÄ±³¾°É«,Ê¾Àı:clritembg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemhoverbg;									 ///< itemÏîµÄÍ£Áô±³¾°É«,Ê¾Àı:clritemhoverbg="pbgra(ff,ff,ff,ff)"
-		static const char* COLOR_clritemselbg;                                      ///< itemÏîµÄÑ¡ÖĞ±³¾°É«,Ê¾Àı:clritemselbg="pbgra(ff,ff,ff,ff)"
-		static const char* bool_bmultisel;                                          ///< ÊÇ·ñÖ§³Ö¶àÑ¡,Ä¬ÈÏ²»Ö§³Ö,Ê¾Àı:bmultisel="1"
+		static const char* INT_headerheight;                                        ///< åˆ—è¡¨å¤´çš„é«˜åº¦,ç¤ºä¾‹:headerheight="20"
+		static const char* INT_itemheight;                                          ///< é¡¹çš„é»˜è®¤é«˜åº¦,æ­¤å€¼ä¸æ”¯æŒåŠ¨æ€å˜åŒ–,ç¤ºä¾‹:itemheight="20"
+		static const char* INT_cursel;                                              ///< å½“å‰é€‰ä¸­é¡¹,ç¤ºä¾‹:cursel="1"
+		static const char* COLOR_clritembg;                                         ///< itemé¡¹çš„èƒŒæ™¯è‰²,ç¤ºä¾‹:clritembg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemhoverbg;									 ///< itemé¡¹çš„åœç•™èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemhoverbg="pbgra(ff,ff,ff,ff)"
+		static const char* COLOR_clritemselbg;                                      ///< itemé¡¹çš„é€‰ä¸­èƒŒæ™¯è‰²,ç¤ºä¾‹:clritemselbg="pbgra(ff,ff,ff,ff)"
+		static const char* bool_bmultisel;                                          ///< æ˜¯å¦æ”¯æŒå¤šé€‰,é»˜è®¤ä¸æ”¯æŒ,ç¤ºä¾‹:bmultisel="1"
 
-		static const char* NODE_item;                                               ///< listctrlµÄxmlÏî½áµãÃû
-		static const char* ITEM_height;                                             ///< ÏîµÄ¸ß¶È(¿ÉÑ¡), Ê¾Àı:height="20"
-		static const char* ITEM_data;                                               ///< ÏîµÄÊı¾İ,Ê¾Àı:data="10"
+		static const char* NODE_item;                                               ///< listctrlçš„xmlé¡¹ç»“ç‚¹å
+		static const char* ITEM_height;                                             ///< é¡¹çš„é«˜åº¦(å¯é€‰), ç¤ºä¾‹:height="20"
+		static const char* ITEM_data;                                               ///< é¡¹çš„æ•°æ®,ç¤ºä¾‹:data="10"
 	};
 	DMAttrValueInit(DUIListCtrlExAttr,INT_headerheight)DMAttrValueInit(DUIListCtrlExAttr,INT_itemheight)
 	DMAttrValueInit(DUIListCtrlExAttr,INT_cursel)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritembg)DMAttrValueInit(DUIListCtrlExAttr,COLOR_clritemhoverbg)
@@ -57,19 +57,19 @@ namespace DM
 		{
 			pPanel.Release();
 		}
-		DMSmartPtrT<DUIItemPanel>       pPanel;     ///< Ãæ°å
-		int								nHeight;	///< ¸ß¶È
+		DMSmartPtrT<DUIItemPanel>       pPanel;     ///< é¢æ¿
+		int								nHeight;	///< é«˜åº¦
 		LPARAM							lParam;     ///< data
 	}LCITEMEX,*LPLCITEMEX;
 
 
 	/// <summary>
-	///		 DUIListCtrlExµÄÄÚÖÃÊµÏÖ
+	///		 DUIListCtrlExçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIListCtrlEx:public DUIScrollBase
 		,public IDMItemPanelOwner
 		,public DMArrayT<LPLCITEMEX>
-		,public DMMapT<int,CRect>		///< ¿ÉÊÓÁĞ±í
+		,public DMMapT<int,CRect>		///< å¯è§†åˆ—è¡¨
 	{
 		DMDECLARE_CLASS_NAME(DUIListCtrlEx, DUINAME_ListCtrlEx,DMREG_Window)
 	public:
@@ -77,7 +77,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú methods
+		// Function Des: å¯¹å¤–æ¥å£ methods
 		//---------------------------------------------------
 		int InsertItem(int nIndex, DMXmlNode&XmlNode, bool bUpdate = true);
 		int GetTopIndex() const;
@@ -119,23 +119,23 @@ namespace DM
 		virtual	void UpdateScrollBar();
 		virtual int GetTotalHeight();
 		virtual int GetTotalWidth();
-		virtual CRect GetListRect();															    ///< ¼ÆËãÁĞ±íÏîËùÔÚµÄÇøÓò(²»°üÀ¨head)
-		virtual CRect GetItemRect(int iItem);														///< ¼ÆËãÄ³ÏîÇøÓò(ºÍrcClient´¦Í¬Ò»×ø±êÏµ£©
-		virtual int HitTest(CPoint &pt);															///< ×Ô¶¯ĞŞ¸ÄptµÄÎ»ÖÃÎªÏà¶Ôµ±Ç°ÏîµÄÆ«ÒÆÁ¿
+		virtual CRect GetListRect();															    ///< è®¡ç®—åˆ—è¡¨é¡¹æ‰€åœ¨çš„åŒºåŸŸ(ä¸åŒ…æ‹¬head)
+		virtual CRect GetItemRect(int iItem);														///< è®¡ç®—æŸé¡¹åŒºåŸŸ(å’ŒrcClientå¤„åŒä¸€åæ ‡ç³»ï¼‰
+		virtual int HitTest(CPoint &pt);															///< è‡ªåŠ¨ä¿®æ”¹ptçš„ä½ç½®ä¸ºç›¸å¯¹å½“å‰é¡¹çš„åç§»é‡
 		int HitTotalY(int iTotalY);
 		virtual void UpdateScrollRange();	
 		virtual void UpdateVisibleMap();
 		virtual void PreArrayObjRemove(const LPLCITEMEX &obj);
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		//---------------------------------------------------
-		// Function Des: ¸¨Öú methods
+		// Function Des: è¾…åŠ© methods
 		//---------------------------------------------------
-		void UpdateItemPanelId(int iFirst=0, int iLast = -1);										///< ¸üĞÂË÷Òı
-		void RelayVisibleItemsWidth(int iNewWid);													///< ¸üĞÂ¿É¼ûµÄËùÓĞÏîµÄ¿í¶È
-		void ReLayoutVisibleItems();																///< ¸üĞÂ¿É¼ûµÄËùÓĞÏî
-		void RelayoutItem(int iIndex,CRect rcItem);													///< ¸üĞÂµ¥ÏîµÄ²¼¾Ö
-		void ModifyPanelBgClr(DUIItemPanel* pPanel);												///< ¸Ä±äPanelµÄ±³¾°É«
+		void UpdateItemPanelId(int iFirst=0, int iLast = -1);										///< æ›´æ–°ç´¢å¼•
+		void RelayVisibleItemsWidth(int iNewWid);													///< æ›´æ–°å¯è§çš„æ‰€æœ‰é¡¹çš„å®½åº¦
+		void ReLayoutVisibleItems();																///< æ›´æ–°å¯è§çš„æ‰€æœ‰é¡¹
+		void RelayoutItem(int iIndex,CRect rcItem);													///< æ›´æ–°å•é¡¹çš„å¸ƒå±€
+		void ModifyPanelBgClr(DUIItemPanel* pPanel);												///< æ”¹å˜Panelçš„èƒŒæ™¯è‰²
 		void ModifySelItems(int nOldSel,int nNewSel);
 
 	public:
@@ -156,7 +156,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 		void OnSize(UINT nType, CSize size);
@@ -185,12 +185,12 @@ namespace DM
 		DMCode OnAttributeCurSel(LPCSTR lpszValue, bool bLoadXml);
 
 	public:	
-		int									   m_iSelItem;						 ///< µ±Ç°Ñ¡ÖĞÏî,¶àÑ¡Îª×îºóÑ¡ÖĞµÄÄÇÏî.
-		int									   m_iHoverItem;					 ///< µ±Ç°Í£ÁôÏî
-		int									   m_iHeaderHei;					 ///< ÁĞ±íÍ·¸ß¶È
-		int									   m_iDefItemHei;					 ///< ÏîµÄÄ¬ÈÏ¸ß¶È
-		DMColor								   m_crItemBg[3];					 ///< ±³¾°ÈıÁ¬É«
-		DMSmartPtrT<DUIItemPanel>			   m_pCapturePanel;					 ///< µ±Ç°µ÷ÓÃÁËsetcaptureµÄÃæ°å
+		int									   m_iSelItem;						 ///< å½“å‰é€‰ä¸­é¡¹,å¤šé€‰ä¸ºæœ€åé€‰ä¸­çš„é‚£é¡¹.
+		int									   m_iHoverItem;					 ///< å½“å‰åœç•™é¡¹
+		int									   m_iHeaderHei;					 ///< åˆ—è¡¨å¤´é«˜åº¦
+		int									   m_iDefItemHei;					 ///< é¡¹çš„é»˜è®¤é«˜åº¦
+		DMColor								   m_crItemBg[3];					 ///< èƒŒæ™¯ä¸‰è¿è‰²
+		DMSmartPtrT<DUIItemPanel>			   m_pCapturePanel;					 ///< å½“å‰è°ƒç”¨äº†setcaptureçš„é¢æ¿
 		DMSmartPtrT<DUIHeaderCtrl>             m_pHeaderCtrl;                     
 		bool								   m_bHotTrack;  
 		bool                                   m_bMultiSel; 

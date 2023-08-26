@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MainWnd.h"
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -9,17 +9,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	OleInitialize(NULL);
 	DMApp theApp(hInstance);   
 
-	theApp.LoadResPack((WPARAM)(L"MyRes"),NULL,NULL);						// Â·¾¶×ÜÊÇÏà¶ÔÓÚÉú³ÉÄ¿Â¼
-	theApp.InitGlobal();													// ³õÊ¼»¯Ö¸¶¨µÄÈ«¾Öskin¡¢style¡¢Ä¬ÈÏ×ÖÌå
+	theApp.LoadResPack((WPARAM)(L"MyRes"),NULL,NULL);						// è·¯å¾„æ€»æ˜¯ç›¸å¯¹äºç”Ÿæˆç›®å½•
+	theApp.InitGlobal();													// åˆå§‹åŒ–æŒ‡å®šçš„å…¨å±€skinã€styleã€é»˜è®¤å­—ä½“
 
 	DMSmartPtrT<CMainWnd> pMainWnd;
 	pMainWnd.Attach(new CMainWnd());
-	pMainWnd->DM_CreateWindow(L"main",0,0,0,0,NULL,false);					// ´´½¨Ö÷´°¿Ú
+	pMainWnd->DM_CreateWindow(L"main",0,0,0,0,NULL,false);					// åˆ›å»ºä¸»çª—å£
 
 	pMainWnd->SendMessage(WM_INITDIALOG);
 	pMainWnd->CenterWindow();
 	pMainWnd->ShowWindow(SW_SHOW);
-	theApp.Run(pMainWnd->GetSafeHwnd());								    // ÔËĞĞµ±Ç°Ïß³ÌµÄÏûÏ¢Ñ­»·£¬²¢¼ÓÈëÏûÏ¢¶ÓÁĞ¹ÜÀíÖĞ
+	theApp.Run(pMainWnd->GetSafeHwnd());								    // è¿è¡Œå½“å‰çº¿ç¨‹çš„æ¶ˆæ¯å¾ªç¯ï¼Œå¹¶åŠ å…¥æ¶ˆæ¯é˜Ÿåˆ—ç®¡ç†ä¸­
 
 	return (int) 0;
 }

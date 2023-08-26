@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "RightXml.h"
 BEGIN_MSG_MAP(RightXml)
 END_MSG_MAP()
@@ -7,11 +7,11 @@ BEGIN_EVENT_MAP(RightXml)
 	CHAIN_EVENT_STATIC_MAP(HostAttr,s_DMHandleEvent)
 	CHAIN_EVENT_STATIC_MAP(WidgetAttr,s_DMHandleEvent)
 	CHAIN_EVENT_STATIC_MAP(PosAttr,s_DMHandleEvent)
-END_EVENT_INBASE()// »ùÀà
+END_EVENT_INBASE()// åŸºç±»
 RightXml*  RightXml::ms_pthis = NULL;
 RightXml::RightXml()
 {
-	m_pObjTree->m_EventMgr.SubscribeEvent(DUITreeExEyeChangedArgs::EventID, Subscriber(&RightXml::OnEyeChanged, this));// ·ÅÔÚrightxmlÖĞ±£Ö¤Ö»×¢²áÒ»¸ö
+	m_pObjTree->m_EventMgr.SubscribeEvent(DUITreeExEyeChangedArgs::EventID, Subscriber(&RightXml::OnEyeChanged, this));// æ”¾åœ¨rightxmlä¸­ä¿è¯åªæ³¨å†Œä¸€ä¸ª
 	m_pNameAttr  = NULL;
 	m_pHostAttr  = NULL;
 	m_pWidgetAttr= NULL;
@@ -45,16 +45,16 @@ DMCode RightXml::InitRightXml()
 	DMCode iErr = DM_ECODE_FAIL;
 	do 
 	{
-		//1.³õÊ¼»¯nameÊôĞÔ¿ØÖÆ
+		//1.åˆå§‹åŒ–nameå±æ€§æ§åˆ¶
 		m_pNameAttr = new NameAttr;
 	
-		//2.attr listÇø
+		//2.attr liståŒº
 		m_pList = g_pMainWnd->FindChildByNameT<DUIList>("ds_attr_list");DMASSERT(m_pList);
 		m_pList->DM_SetVisible(false,true);
 		m_pHostAttr = new HostAttr;
 		m_pWidgetAttr = new WidgetAttr;
 
-		//3.attr posÇø
+		//3.attr posåŒº
 		m_pPosAttr = new PosAttr;
 
 		iErr = DM_ECODE_OK;
@@ -69,13 +69,13 @@ DMCode RightXml::UnInitRightXml()
 	{
 		m_hObjSel  = NULL;
 
-		//2.¸ÉµônameÇøÊôĞÔ¿ØÖÆ
+		//2.å¹²æ‰nameåŒºå±æ€§æ§åˆ¶
 		if (m_pNameAttr)
 		{
 			DM_DELETE(m_pNameAttr);
 		}
 
-		//3.Òş²Øattr listÇø
+		//3.éšè—attr liståŒº
 		m_pList->DM_SetVisible(false,true);
 		if (m_pHostAttr)
 		{
@@ -96,7 +96,7 @@ DMCode RightXml::UnInitRightXml()
 
 DMCode RightXml::OnEyeChanged(DMEventArgs* pEvt)
 {
-	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// ´°¿ÚÇĞ»»Ê±£¬²»Ó°ÏìÏûÏ¢
+	DMAutoResetT<bool> AutoMuted(&m_bMuted,true);// çª—å£åˆ‡æ¢æ—¶ï¼Œä¸å½±å“æ¶ˆæ¯
 	DUITreeExEyeChangedArgs* pEvent =  (DUITreeExEyeChangedArgs*)pEvt;
 	UpdateEye(pEvent->m_hItem);
 	return DM_ECODE_OK;
@@ -117,10 +117,10 @@ DMCode RightXml::UpdateEye(HDMTREEITEM hItem)
 		}
 		
 		/*
-		1.m_iOrgVisibleÔÚ³õÊ¼Ê±ÎªDMVISIBLE_NULL,´Ë×´Ì¬ÏÂ²»×öÈÎºÎ´¦Àí
-		2.ÇĞ»»µ½DMTVEXEye_UnEyeÊ±,m_iOrgVisible¼ÇÂ¼ÁËÔ­Ê¼µÄm_bvisibleµÄÖµ,Í¬Ê±°Ñm_bvisibleÖÃÎªfalse
-		3.ÇĞ»»µ½DMTVEXEye_EyedÊ±,ÅĞ¶Ïm_iOrgVisible,ÒÔ×ö»Ö¸´´¦Àí
-		4.²»´¦ÀíDMTVEXEye_PartUnEyed,Ëü²»»áÒı·¢m_bvisible¸Ä±ä
+		1.m_iOrgVisibleåœ¨åˆå§‹æ—¶ä¸ºDMVISIBLE_NULL,æ­¤çŠ¶æ€ä¸‹ä¸åšä»»ä½•å¤„ç†
+		2.åˆ‡æ¢åˆ°DMTVEXEye_UnEyeæ—¶,m_iOrgVisibleè®°å½•äº†åŸå§‹çš„m_bvisibleçš„å€¼,åŒæ—¶æŠŠm_bvisibleç½®ä¸ºfalse
+		3.åˆ‡æ¢åˆ°DMTVEXEye_Eyedæ—¶,åˆ¤æ–­m_iOrgVisible,ä»¥åšæ¢å¤å¤„ç†
+		4.ä¸å¤„ç†DMTVEXEye_PartUnEyed,å®ƒä¸ä¼šå¼•å‘m_bvisibleæ”¹å˜
 		*/
 		DM::LPTVITEMEX pTV = m_pObjTree->GetItem(hItem);
 		if (DMTVEXEye_Eyed == pTV->iEyeValue)
@@ -157,7 +157,7 @@ DMCode RightXml::s_DMHandleEvent(DM::DMEventArgs *pEvt)
 		}
 		else
 		{
-			return ms_pthis->DMHandleEvent(pEvt);// ×ª·¢
+			return ms_pthis->DMHandleEvent(pEvt);// è½¬å‘
 		}
 	}
 

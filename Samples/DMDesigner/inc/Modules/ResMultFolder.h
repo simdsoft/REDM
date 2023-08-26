@@ -1,10 +1,10 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	ResMultFolder.h
 // File mark:   
-// File summary:ÓÃÓÚ¹ÜÀíÇø±ğDMDesignerµÄ×ÊÔ´ºÍÒª±à¼­µÄ×ÊÔ´
+// File summary:ç”¨äºç®¡ç†åŒºåˆ«DMDesignerçš„èµ„æºå’Œè¦ç¼–è¾‘çš„èµ„æº
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2016-7-8
@@ -12,7 +12,7 @@
 #pragma once
 #include "ResFolder.h"
 /// <summary>
-///		¶àÎÄ¼ş¼Ğ¹ÜÀí,0ÎÄ¼ş¼ĞÎªÉè¼ÆÆ÷×ÔÉí×ÊÔ´(È«ÒÔds_¿ªÍ·),1ÎÄ¼ş¼ĞÎªÒª±à¼­µÄ×ÊÔ´
+///		å¤šæ–‡ä»¶å¤¹ç®¡ç†,0æ–‡ä»¶å¤¹ä¸ºè®¾è®¡å™¨è‡ªèº«èµ„æº(å…¨ä»¥ds_å¼€å¤´),1æ–‡ä»¶å¤¹ä¸ºè¦ç¼–è¾‘çš„èµ„æº
 /// </summary>
 typedef ResFolder* ResFolderPtr;
 class ResMultFolder: public IDMRes,public DMArrayT<ResFolderPtr>

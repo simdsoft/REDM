@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIItemPanel.h 
-// File Des: DUI´°¿ÚÃæ°å
+// File Des: DUIçª—å£é¢æ¿
 // File Summary:  
 // Cur Version: 1.0
 // Author:
@@ -18,7 +18,7 @@ namespace DM
 {
 	class DUIItemPanel;
 	/// <summary>
-	///		Ãæ°åµÄÓµÓĞÕß
+	///		é¢æ¿çš„æ‹¥æœ‰è€…
 	/// </summary>
 	class DM_EXPORT IDMItemPanelOwner
 	{
@@ -26,11 +26,11 @@ namespace DM
 		virtual DUIWindow* GetOwnerWindow() = 0;   
 		virtual DMCode OnSetCapture(DUIItemPanel* pPanel) = 0;
 		virtual DMCode OnReleaseCapture(DUIItemPanel* pPanel) = 0;
-		virtual DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect) = 0; ///< ÇëÊ¹ÓÃ*lpRect¸³Öµ£¡
+		virtual DMCode OnGetPanelRect(DUIItemPanel* pPanel,LPRECT lpRect) = 0; ///< è¯·ä½¿ç”¨*lpRectèµ‹å€¼ï¼
 	};
 
 	/// <summary>
-	///		Ãæ°åµÄÄÚÖÃÊµÏÖ
+	///		é¢æ¿çš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIItemPanel:public DUIWindow,public DMContainerImpl
 	{
@@ -39,48 +39,48 @@ namespace DM
 		DUIItemPanel(DMXmlNode XmlNode, IDMItemPanelOwner *pItemOwner = NULL);
 		~DUIItemPanel();
 
-	public://»æÖÆ
+	public://ç»˜åˆ¶
 		void DrawItem(IDMCanvas* pCanvas, CRect& rc);
 		void ModifyState(DWORD dwStateAdd, DWORD dwStateRemove);
-		void SetItemId(LPARAM id);										///< ÉèÖÃ±êÊ¶,±£Ö¤ÔÚÒ»¸ö¼¯ºÏÖĞÊÇÎ¨Ò»µÄ
+		void SetItemId(LPARAM id);										///< è®¾ç½®æ ‡è¯†,ä¿è¯åœ¨ä¸€ä¸ªé›†åˆä¸­æ˜¯å”¯ä¸€çš„
 		LPARAM GetItemId();
 		
 	public:
 		virtual void OnFinalRelease();
 
-	public:// ¿ØÖÆ
+	public:// æ§åˆ¶
 		DMCode OnSetCaptureWnd(DUIWND DUIWnd,DUIWNDPtr pOldDUIWnd=NULL);
 		DMCode OnReleaseCaptureWnd();
-		DMCode OnGetContainerRect(LPRECT lpRect);                       ///< »ñÈ¡Ãæ°åÏîµÄÇøÓò
+		DMCode OnGetContainerRect(LPRECT lpRect);                       ///< è·å–é¢æ¿é¡¹çš„åŒºåŸŸ
 
-	public:// ÖØÔØIDMContainer
+	public:// é‡è½½IDMContainer
 		LRESULT OnFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp);
-		DMCode OnFireEvent(DMEventArgs &Evt);							///< ½«Ô­Ê¼ÏûÏ¢°ü×°³ÉÃæ°åÏûÏ¢,Ãæ°åÏûÏ¢ÖĞ´øÓĞÔ­Ê¼ÏûÏ¢
+		DMCode OnFireEvent(DMEventArgs &Evt);							///< å°†åŸå§‹æ¶ˆæ¯åŒ…è£…æˆé¢æ¿æ¶ˆæ¯,é¢æ¿æ¶ˆæ¯ä¸­å¸¦æœ‰åŸå§‹æ¶ˆæ¯
 		DMCode OnGetDraw(IDMDraw** ppObj);
 		DMCode OnGetCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas**ppCanvas);
 		DMCode OnReleaseCanvas(LPCRECT lpRect,DWORD dcFlags,IDMCanvas*pCanvas);
-		HWND OnGetHWnd();											    ///< ×ª·¢
-		DMCode OnIsTranslucent();                                       ///< ×ª·¢
-		DMCode OnUpdateWindow();										///< ×ª·¢
-		DMCode OnForceUpdateWindow();									///< ×ª·¢
-		DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd);             ///< Ãæ°åÄÚ¿Ø¼ş¸üĞÂË¢ĞÂ
-		DMCode OnClientToScreen(LPRECT lpRect);                         ///< ×ª·¢  
-		DMCode OnRegisterTimeline(IDMTimeline *pHandler);				///< ×ª·¢
-		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);				///< ×ª·¢
-		CStringW OnGetTransId();										///< ×ª·¢
+		HWND OnGetHWnd();											    ///< è½¬å‘
+		DMCode OnIsTranslucent();                                       ///< è½¬å‘
+		DMCode OnUpdateWindow();										///< è½¬å‘
+		DMCode OnForceUpdateWindow();									///< è½¬å‘
+		DMCode OnUpdateRect(LPCRECT lpRect,DUIWND hDUIWnd);             ///< é¢æ¿å†…æ§ä»¶æ›´æ–°åˆ·æ–°
+		DMCode OnClientToScreen(LPRECT lpRect);                         ///< è½¬å‘  
+		DMCode OnRegisterTimeline(IDMTimeline *pHandler);				///< è½¬å‘
+		DMCode OnUnregisterTimeline(IDMTimeline *pHandler);				///< è½¬å‘
+		CStringW OnGetTransId();										///< è½¬å‘
 
-	public:// ÖØÔØDUIWindow
+	public:// é‡è½½DUIWindow
 		bool DV_IsStateChangeRedraw(){return true;}
-		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);	///< ×ª·¢
+		DMCode DV_OnUpdateToolTip(CPoint pt, DMToolTipInfo &tipInfo);	///< è½¬å‘
 
-	public:// ¸¨Öú
-		bool PreHandleFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp);        ///< Ô¤´¦ÀíÏûÏ¢,ÔÚÕâÀïÉèÖÃÃæ°å±³¾°µÄ×´Ì¬
+	public:// è¾…åŠ©
+		bool PreHandleFrameEvent(UINT uMsg,WPARAM wp,LPARAM lp);        ///< é¢„å¤„ç†æ¶ˆæ¯,åœ¨è¿™é‡Œè®¾ç½®é¢æ¿èƒŒæ™¯çš„çŠ¶æ€
 
 	public:
-		DUIWindow*                                  m_pDUIWnd;			///< Ãæ°åÏîËùÔÚµÄDUI´°¿Ú
-		IDMItemPanelOwner*                          m_pItemOwner;		///< ÓµÓĞÃæ°åÏîµÄËŞÖ÷£¬ÓÃÓÚºÍÍâ²¿½»»¥¡¢
-		LPARAM										m_dwData;			///< ¶îÍâÊı¾İ
-		LPARAM										m_dwItemId;         ///< Ãæ°åµÄÎ¨Ò»Íâ²¿±êÊ¶
+		DUIWindow*                                  m_pDUIWnd;			///< é¢æ¿é¡¹æ‰€åœ¨çš„DUIçª—å£
+		IDMItemPanelOwner*                          m_pItemOwner;		///< æ‹¥æœ‰é¢æ¿é¡¹çš„å®¿ä¸»ï¼Œç”¨äºå’Œå¤–éƒ¨äº¤äº’ã€
+		LPARAM										m_dwData;			///< é¢å¤–æ•°æ®
+		LPARAM										m_dwItemId;         ///< é¢æ¿çš„å”¯ä¸€å¤–éƒ¨æ ‡è¯†
 	};
 
 }//namespace DM

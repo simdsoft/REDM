@@ -1,4 +1,4 @@
-#include "Plugin_DesignerAfx.h"
+﻿#include "Plugin_DesignerAfx.h"
 #include "Plugin_Designer.h"
 
 Plugin_Designer::Plugin_Designer(void)

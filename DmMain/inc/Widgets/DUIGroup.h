@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DUIGroup.h 
-// File Des: ÄÚÖÃGroupÊµÏÖ
+// File Des: å†…ç½®Groupå®ç°
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,15 +17,15 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DUIGroup"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DUIGroup"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DUIGroupAttr:public DUIWindowAttr
 	{
 	public:
-		static const char* INT_round;								///< ÉèÖÃgroupµÄÔ²½Ç°ë¾¶´óĞ¡,Ê¾Àı:round="4"
-		static const char* INT_linewid;                            ///< ÏßÌõµÄ¿í¶È,Ê¾Àı:linewid="1"
-		static const char* RECT_rcinset;							///< ÉèÖÃgroupµÄ×Ó´°¿ÚºÍÍâ¿òµÄËÄ±ß¾à,Ê¾Àı:rcinset="10,5,5,5"
-		static const char* COLOR_clrline;							///< ÉèÖÃgroupµÄÏßÑÕÉ«,Ê¾Àı:clrline=pbgra(ff,00,00,80) 
+		static const char* INT_round;								///< è®¾ç½®groupçš„åœ†è§’åŠå¾„å¤§å°,ç¤ºä¾‹:round="4"
+		static const char* INT_linewid;                            ///< çº¿æ¡çš„å®½åº¦,ç¤ºä¾‹:linewid="1"
+		static const char* RECT_rcinset;							///< è®¾ç½®groupçš„å­çª—å£å’Œå¤–æ¡†çš„å››è¾¹è·,ç¤ºä¾‹:rcinset="10,5,5,5"
+		static const char* COLOR_clrline;							///< è®¾ç½®groupçš„çº¿é¢œè‰²,ç¤ºä¾‹:clrline=pbgra(ff,00,00,80) 
 	};
 	DMAttrValueInit(DUIGroupAttr,INT_round)
 	DMAttrValueInit(DUIGroupAttr,INT_linewid)
@@ -36,7 +36,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		DUIGroupµÄÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DUIGroupAttr"/>
+	///		DUIGroupçš„å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DUIGroupAttr"/>
 	/// </summary>
 	class DM_EXPORT DUIGroup:public DUIWindow
 	{
@@ -50,7 +50,7 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void DM_OnPaint(IDMCanvas* pCanvas);
 
@@ -66,8 +66,8 @@ namespace DM
 		DM_END_ATTRIBUTES()
 	public:
 		DMColor									   m_crLine;
-		CRect									   m_rcInset;       ///< ×Ó´°¿ÚºÍÍâ¿òµÄËÄ±ß¾à
-		int										   m_iRound;        ///< Ô²½Ç°ë¾¶	
-		int                                        m_iLineWid;      ///< ÏßÌõµÄ¿í¶È
+		CRect									   m_rcInset;       ///< å­çª—å£å’Œå¤–æ¡†çš„å››è¾¹è·
+		int										   m_iRound;        ///< åœ†è§’åŠå¾„	
+		int                                        m_iLineWid;      ///< çº¿æ¡çš„å®½åº¦
 	};
 }//namespace DM

@@ -1,4 +1,4 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
@@ -17,16 +17,16 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DMImgListSkinImpl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DMImgListSkinImpl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DMImgListSkinImplAttr
 	{
 	public:
-		static const char* STRING_src;                            ///< ×´Ì¬Á¬Í¼Ô´£¬¿ÉÒÔÍ¨¹ıxml¼ÓÔØ
-		static const char* STRING_id;                             ///< Î¨Ò»±êÊ¶skinÀà¶ÔÏó£¬Ê¾Àı£ºid="channel_vz"
-		static const char* bool_btitle;                           ///< ÊÇ·ñÆ½ÆÌ»æÖÆ£¬Ê¾Àı£ºbtitle="1"
-		static const char* bool_bvert;                            ///< ×´Ì¬Á¬Í¼ÊÇ·ñÎªÊúÖ±·Ö²¼µÄ£¬Ê¾Àı£ºbvert="1"
-		static const char* INT_states;                            ///< ×´Ì¬Êı£¬Ê¾Àı£ºstates="1"
+		static const char* STRING_src;                            ///< çŠ¶æ€è¿å›¾æºï¼Œå¯ä»¥é€šè¿‡xmlåŠ è½½
+		static const char* STRING_id;                             ///< å”¯ä¸€æ ‡è¯†skinç±»å¯¹è±¡ï¼Œç¤ºä¾‹ï¼šid="channel_vz"
+		static const char* bool_btitle;                           ///< æ˜¯å¦å¹³é“ºç»˜åˆ¶ï¼Œç¤ºä¾‹ï¼šbtitle="1"
+		static const char* bool_bvert;                            ///< çŠ¶æ€è¿å›¾æ˜¯å¦ä¸ºç«–ç›´åˆ†å¸ƒçš„ï¼Œç¤ºä¾‹ï¼šbvert="1"
+		static const char* INT_states;                            ///< çŠ¶æ€æ•°ï¼Œç¤ºä¾‹ï¼šstates="1"
 
 	};
 	DMAttrValueInit(DMImgListSkinImplAttr,STRING_src)DMAttrValueInit(DMImgListSkinImplAttr,STRING_id)
@@ -37,7 +37,7 @@ namespace DMAttr
 namespace DM
 {
 	/// <summary>
-	///		×´Ì¬Á¬Í¼ÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DMImgListSkinImplAttr"/>
+	///		çŠ¶æ€è¿å›¾å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DMImgListSkinImplAttr"/>
 	/// </summary>
 	class DMImgListSkinImpl:public IDMSkin
 	{
@@ -64,14 +64,14 @@ namespace DM
 		DM_END_ATTRIBUTES()
 
 	public:
-		DMCode OnAttributeGetImage(LPCSTR pszValue, bool bLoadXml); // ³õÊ¼»¯m_pBitmap
+		DMCode OnAttributeGetImage(LPCSTR pszValue, bool bLoadXml); // åˆå§‹åŒ–m_pBitmap
 			
 	protected:
-		DMSmartPtrT<IDMBitmap>						m_pBitmap;      ///< ×´Ì¬Í¼         
-		int											m_nStates;		///< ÓĞ¶àÉÙÖÖ×´Ì¬
-		bool										m_bTile;		///< ÊÇ·ñÆ½ÆÌ»æÖÆ£¬flase±íÊ¾À­Éì»æÖÆ
-		bool										m_bVert;        ///< ×ÓÍ¼ÊÇ·ñ´¹Ö±ÅÅÁĞ£¬0--Ë®Æ½ÅÅÁĞ(Ä¬ÈÏ), ÆäËü--´¹Ö±ÅÅÁĞ
-		CStringA                                    m_strID;        ///< Î¨Ò»±êÊ¶
-		CStringA                                    m_strRes;       ///< ×ÊÔ´µÄÎ¨Ò»±êÊ¶£¬ÓÃÓÚ»»·ôÈ·ÈÏ
+		DMSmartPtrT<IDMBitmap>						m_pBitmap;      ///< çŠ¶æ€å›¾         
+		int											m_nStates;		///< æœ‰å¤šå°‘ç§çŠ¶æ€
+		bool										m_bTile;		///< æ˜¯å¦å¹³é“ºç»˜åˆ¶ï¼Œflaseè¡¨ç¤ºæ‹‰ä¼¸ç»˜åˆ¶
+		bool										m_bVert;        ///< å­å›¾æ˜¯å¦å‚ç›´æ’åˆ—ï¼Œ0--æ°´å¹³æ’åˆ—(é»˜è®¤), å…¶å®ƒ--å‚ç›´æ’åˆ—
+		CStringA                                    m_strID;        ///< å”¯ä¸€æ ‡è¯†
+		CStringA                                    m_strRes;       ///< èµ„æºçš„å”¯ä¸€æ ‡è¯†ï¼Œç”¨äºæ¢è‚¤ç¡®è®¤
 	};
 }//namespace DM

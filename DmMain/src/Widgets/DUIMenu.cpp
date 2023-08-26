@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIMenu.h"
 
 namespace DM
@@ -76,7 +76,7 @@ namespace DM
 		do 
 		{
 			if (::IsMenu(m_hMenu))
-			{// MenuÒÑ´æÔÚ
+			{// Menuå·²å­˜åœ¨
 				break;
 			}
 
@@ -131,7 +131,7 @@ namespace DM
 				break;
 			}
 			m_hMenuOwner = hWnd;
-			ATOM Atom = g_pDMApp->GetClassAtom(true);  // ÊÇ·ñÊ¹ÓÃÒõÓ°´°¿ÚÀà´´½¨
+			ATOM Atom = g_pDMApp->GetClassAtom(true);  // æ˜¯å¦ä½¿ç”¨é˜´å½±çª—å£ç±»åˆ›å»º
 			if (NULL == m_hWnd
 				&&!CreateWindowEx((LPCWSTR)Atom,NULL, WS_POPUP, WS_EX_NOACTIVATE, 0, 0, 0, 0, NULL, NULL))
 			{
@@ -147,7 +147,7 @@ namespace DM
 			{
 				::SendMessage(hWnd,WM_COMMAND,iRet,0);
 			}
-			m_hWnd = NULL;// ´°¿ÚÊÍ·ÅÊ±£¬±ØĞëÇå¿Õ
+			m_hWnd = NULL;// çª—å£é‡Šæ”¾æ—¶ï¼Œå¿…é¡»æ¸…ç©º
 		} while (false);
 		return iRet;
 	}
@@ -172,19 +172,19 @@ namespace DM
 			{
 				::InsertMenu(m_hMenu,nPosition,nFlags,(UINT_PTR)0,(LPCTSTR)NULL);
 				bRet = true;
-				break;// Ìø³ö
+				break;// è·³å‡º
 			}
 
 			DMMenuItemData* pMenuData	= new DMMenuItemData;
 			pMenuData->hMenu			= m_hMenu;
 			pMenuData->itemInfo.iIcon	= iIcon;
 			pMenuData->itemInfo.nHeight = m_pDUIMenuXmlInfo->m_nItemHei;
-			pMenuData->itemInfo.pSkin	= NULL;// ´Ë¹¦ÄÜÔİ²»²âÊÔ
+			pMenuData->itemInfo.pSkin	= NULL;// æ­¤åŠŸèƒ½æš‚ä¸æµ‹è¯•
 			pMenuData->itemInfo.strText = strText;
 	
 			if (nFlags&MF_POPUP)
 			{
-				//²åÈë×Ó²Ëµ¥£¬
+				//æ’å…¥å­èœå•ï¼Œ
 				DUIMenu *pSubMenu = (DUIMenu*)(LPVOID)nIDNewItem;
 				pMenuData->nID    = (UINT_PTR)pSubMenu->m_hMenu;
 			}
@@ -203,7 +203,7 @@ namespace DM
 			while (pRootMenu->m_pParent)
 				pRootMenu = pRootMenu->m_pParent;
 
-			// ½«·ÖÅäµÄÄÚ´æ·Åµ½¸ù²Ëµ¥µÄÄÚ´æ½ÚµãÁĞ±íÖĞ
+			// å°†åˆ†é…çš„å†…å­˜æ”¾åˆ°æ ¹èœå•çš„å†…å­˜èŠ‚ç‚¹åˆ—è¡¨ä¸­
 			pRootMenu->m_DmmiArray.Add(pMenuData);
 
 			if (nFlags&MF_POPUP)
@@ -274,7 +274,7 @@ namespace DM
 				}
 				
 				if (pdmmi->itemInfo.pSkin)
-				{// Èç¹û²Ëµ¥ÏîÖ¸¶¨ÁË×Ô¼ºµÄskin¾ÍÖ±½ÓÊ¹ÓÃskinµÄ¿í¶È.ºöÊÓÆäËû£¬ÕâÑù¾Í¿ÉÒÔÍ¨¹ıskinµÄ¿í¶ÈÀ´ÈÃ¸¸×Ó²Ëµ¥Ïî¿í¶È²»Ò»ÖÂ
+				{// å¦‚æœèœå•é¡¹æŒ‡å®šäº†è‡ªå·±çš„skinå°±ç›´æ¥ä½¿ç”¨skinçš„å®½åº¦.å¿½è§†å…¶ä»–ï¼Œè¿™æ ·å°±å¯ä»¥é€šè¿‡skinçš„å®½åº¦æ¥è®©çˆ¶å­èœå•é¡¹å®½åº¦ä¸ä¸€è‡´
 					CSize sz;
 					pdmmi->itemInfo.pSkin->GetStateSize(sz);
 					lpMeasureItemStruct->itemWidth = sz.cx;
@@ -309,12 +309,12 @@ namespace DM
 				lpMeasureItemStruct->itemWidth  = 0;
 			}
 
-			if (!m_pDUIMenuXmlInfo->m_bAutoCalc)// Èç¹ûÊÇÖ¸¶¨¿í¶È£¬¾ÍÊ¹ÓÃÖ¸¶¨¿í¶È
+			if (!m_pDUIMenuXmlInfo->m_bAutoCalc)// å¦‚æœæ˜¯æŒ‡å®šå®½åº¦ï¼Œå°±ä½¿ç”¨æŒ‡å®šå®½åº¦
 			{
 				lpMeasureItemStruct->itemWidth = m_pDUIMenuXmlInfo->m_MaxWidth;
 			}
 
-			if (pdmmi && pdmmi->itemInfo.maxWidth != -1)// ×ÓÏîµÄmax¿ÉÒÔ¸²¸ÇÈ«¾Ö
+			if (pdmmi && pdmmi->itemInfo.maxWidth != -1)// å­é¡¹çš„maxå¯ä»¥è¦†ç›–å…¨å±€
 			{
 				lpMeasureItemStruct->itemWidth = pdmmi->itemInfo.maxWidth;
 			}
@@ -323,13 +323,13 @@ namespace DM
 				&&0!=lpMeasureItemStruct->itemWidth
 				&&(int)lpMeasureItemStruct->itemWidth>m_pDUIMenuXmlInfo->m_MaxWidth)
 			{
-				m_pDUIMenuXmlInfo->m_MaxWidth = lpMeasureItemStruct->itemWidth;//Èç¹û²»ÊÇÖ¸¶¨¿í¶È£¬ ×Ô¶¯¼ÆËã³ö×î´ó¿í¶È
+				m_pDUIMenuXmlInfo->m_MaxWidth = lpMeasureItemStruct->itemWidth;//å¦‚æœä¸æ˜¯æŒ‡å®šå®½åº¦ï¼Œ è‡ªåŠ¨è®¡ç®—å‡ºæœ€å¤§å®½åº¦
 			}
 			
 		} while (FALSE);
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	void DUIMenu::BuildMenu(HMENU menuPopup,DMXmlNode xmlNode)
 	{
 		DMXmlNode XmlItem = xmlNode.FirstChild();
@@ -362,7 +362,7 @@ namespace DM
 				if (!XmlChild.IsValid())
 				{
 					pdmmi->nID = nId;
-					UINT uFlag = MF_OWNERDRAW;// ×Ô»æ
+					UINT uFlag = MF_OWNERDRAW;// è‡ªç»˜
 					if (bCheck)
 					{
 						uFlag |= MF_CHECKED;
@@ -375,7 +375,7 @@ namespace DM
 					{
 						uFlag |= MFT_RADIOCHECK|MF_CHECKED;
 					}
-					// ¾ßÌå¿´MSDN
+					// å…·ä½“çœ‹MSDN
 					::AppendMenu(menuPopup,uFlag,(UINT_PTR)pdmmi->nID,(LPCTSTR)pdmmi);
 				}
 				else
@@ -388,7 +388,7 @@ namespace DM
 						uFlag |= MF_GRAYED;
 					}
 					AppendMenu(menuPopup,uFlag,(UINT_PTR)hSubMenu,(LPCTSTR)pdmmi);
-					BuildMenu(hSubMenu,XmlItem);// ÂÖÑ¯×Ó¿Ø¼ş
+					BuildMenu(hSubMenu,XmlItem);// è½®è¯¢å­æ§ä»¶
 				}
 				m_DmmiArray.Add(pdmmi);
 			}
@@ -399,7 +399,7 @@ namespace DM
 
 	void DUIMenu::InstallMenuHook()
 	{
-		m_pThis = this;// DUIMenu¶ÔÏóÈç¹û²»ÊÇÁÙÊ±±äÁ¿£¬ÄÇÃ´ÔÚÃ¿´Îµ¯³öÊ±£¬ÏÈÒª°Ñm_pThisÖØĞÂ¸³Öµ,ÒÔ·Àm_pThisµÄÖµ¸Ä±ä
+		m_pThis = this;// DUIMenuå¯¹è±¡å¦‚æœä¸æ˜¯ä¸´æ—¶å˜é‡ï¼Œé‚£ä¹ˆåœ¨æ¯æ¬¡å¼¹å‡ºæ—¶ï¼Œå…ˆè¦æŠŠm_pThisé‡æ–°èµ‹å€¼,ä»¥é˜²m_pThisçš„å€¼æ”¹å˜
 		if (NULL == m_hMenuHook)
 		{
 			m_hMenuHook = ::SetWindowsHookEx(WH_CALLWNDPROC, MenuHookProc, GetModuleHandle(NULL), ::GetCurrentThreadId());

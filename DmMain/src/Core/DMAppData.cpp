@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMAppData.h"
 #include "DMCWnd.h"
 
@@ -11,8 +11,8 @@ namespace DM
 	extern 	fun_cbGetSubXmlDoc  g_pGetSubXmlDoc;
 	DMAppData::DMAppData(HINSTANCE hInst/* = GetModuleHandle(NULL)*/)
 	{
-		// ¼ÓÔØ×ÔÉíÄÚ²¿²å¼þ.ÄÚ²¿²å¼þµÄInstallº¯Êý»á×öÄ£¿é£¨¶ÔÓ¦filter:Modules£©³õÊ¼»¯²Ù×÷
-		// ¼ÓÔØ²å¼þÒ»°ãÔÚ×îÇ°Ãæ£¬ÕâÊ±Èç¹ûÓÐlog²å¼þ¼ÓÔØ£¬Ò²»áÔÚ×îÇ°Ãæ
+		// åŠ è½½è‡ªèº«å†…éƒ¨æ’ä»¶.å†…éƒ¨æ’ä»¶çš„Installå‡½æ•°ä¼šåšæ¨¡å—ï¼ˆå¯¹åº”filter:Modulesï¼‰åˆå§‹åŒ–æ“ä½œ
+		// åŠ è½½æ’ä»¶ä¸€èˆ¬åœ¨æœ€å‰é¢ï¼Œè¿™æ—¶å¦‚æžœæœ‰logæ’ä»¶åŠ è½½ï¼Œä¹Ÿä¼šåœ¨æœ€å‰é¢
 		m_pPlugin    = new DMPluginImpl;
 		InstallPlugin(m_pPlugin);
 
@@ -21,9 +21,9 @@ namespace DM
 		CStringW strShadowAtom;strShadowAtom.Format(L"%s_%d_%d",DM_DEF_SHADOWCLASS_NAME,::GetTickCount(),::GetCurrentThreadId());
 		m_Atom		 = RegisterClassEx(m_hInst, strAtom.GetBuffer());strAtom.ReleaseBuffer();
 		m_shadowAtom = RegisterClassEx(m_hInst, strShadowAtom.GetBuffer(), true);strShadowAtom.ReleaseBuffer();
-		m_pTaskRunnerObj->InitEvent(::GetCurrentThreadId());// ÔÚATOM½¨Á¢ºó²Å²ÅÄÜ´´½¨UIÏûÏ¢´°¿Ú
+		m_pTaskRunnerObj->InitEvent(::GetCurrentThreadId());// åœ¨ATOMå»ºç«‹åŽæ‰æ‰èƒ½åˆ›å»ºUIæ¶ˆæ¯çª—å£
 
-		// È«¾Ö±äÁ¿³õÊ¼»¯
+		// å…¨å±€å˜é‡åˆå§‹åŒ–
 		m_fun_UpdateLayeredWindowIndirect = NULL;
 		HMODULE hMod = GetModuleHandleW(L"user32");
 		if (hMod)
@@ -55,10 +55,10 @@ namespace DM
 	{	
 		if (m_hModuleDWM) FreeLibrary(m_hModuleDWM);
 
-		// ÏÈ¹Ø±ÕLOG
+		// å…ˆå…³é—­LOG
 		DMLogDispatch::SetLogDispatch(NULL);
 
-		// Ð¶ÔØ×ÔÉíÄÚ²¿²å¼þ.
+		// å¸è½½è‡ªèº«å†…éƒ¨æ’ä»¶.
 		m_pTaskRunnerObj->UninstallEvent();
 		UninstallPlugin(m_pPlugin);
 		DM_DELETE(m_pPlugin);
@@ -86,14 +86,14 @@ namespace DM
 				break;
 			}
 
-			// ÉèÖÃÄ¬ÈÏÎÄ±¾---------------------------
+			// è®¾ç½®é»˜è®¤æ–‡æœ¬---------------------------
 			CStringA strFont = XmlNode.Attribute(DMAttr::DMGlobalAttr::XMLATTR_font);
 			if (!strFont.IsEmpty())
 			{
 				m_FontPool->SetDefaultFont(strFont);
 			}
 
-			// ÉèÖÃÈ«¾ÖSkin---------------------------
+			// è®¾ç½®å…¨å±€Skin---------------------------
 			DMXmlNode XmlSkin = XmlNode.FirstChild(DMAttr::DMGlobalAttr::XMLNODE_skin);
 			while (XmlSkin.IsValid())
 			{
@@ -101,7 +101,7 @@ namespace DM
 				XmlSkin = XmlSkin.NextSibling(DMAttr::DMGlobalAttr::XMLNODE_skin);
 			}
 
-			// ÉèÖÃÈ«¾ÖStyle--------------------------
+			// è®¾ç½®å…¨å±€Style--------------------------
 			DMXmlNode XmlStyle = XmlNode.FirstChild(DMAttr::DMGlobalAttr::XMLNODE_style);
 			while (XmlStyle.IsValid())
 			{
@@ -120,7 +120,7 @@ namespace DM
 		do 
 		{
 			DMMsgLoop* pMsgLoop = m_MsgLoopTool->GetMessageLoop();
-			if (NULL == pMsgLoop)// µ±Ç°Ïß³ÌÃ»ÓÐLoop£¬Ôò´´½¨Loop
+			if (NULL == pMsgLoop)// å½“å‰çº¿ç¨‹æ²¡æœ‰Loopï¼Œåˆ™åˆ›å»ºLoop
 			{
 				DMMsgLoop *pThisLoop = new DMMsgLoop;
 				if (!m_MsgLoopTool->AddMessageLoop(pThisLoop))
@@ -128,23 +128,23 @@ namespace DM
 					iErr = DMAPP_RUN_ADDMESSAGELOOP_FAIL;
 					break;
 				}
-				pThisLoop->SetRefCount(1);// ³õÊ¼Loop×ÜÊÇÎª1
+				pThisLoop->SetRefCount(1);// åˆå§‹Loopæ€»æ˜¯ä¸º1
 				pMsgLoop = pThisLoop;
 			}
 			else
 			{
-				pMsgLoop->AddRef(); // ÒýÓÃ¼ÆÊý+1
+				pMsgLoop->AddRef(); // å¼•ç”¨è®¡æ•°+1
 			}
 
 			// HWND hLastMainWnd = ::GetActiveWindow();
 			// if (::IsWindow(hWnd))
 			// {
 			// 	if (!(::GetWindowLong(hWnd, GWL_EXSTYLE) & WS_EX_TOOLWINDOW))
-			// 	{// ÓÐWS_EX_TOOLWINDOWÊôÐÔµÄ²»Ç¿ÖÆÉèÖÃ¼¤»î
+			// 	{// æœ‰WS_EX_TOOLWINDOWå±žæ€§çš„ä¸å¼ºåˆ¶è®¾ç½®æ¿€æ´»
 			// 		hLastMainWnd = ::SetActiveWindow(hWnd);
 			// 	}
 			// }
-			size_t index = m_RunhWndArray.Add(hWnd);// ÓÃÓÚDestroyWindowÖÐÅÐ¶ÏÊÇ·ñ·¢ËÍWM_QUITÏûÏ¢ 
+			size_t index = m_RunhWndArray.Add(hWnd);// ç”¨äºŽDestroyWindowä¸­åˆ¤æ–­æ˜¯å¦å‘é€WM_QUITæ¶ˆæ¯ 
 			pMsgLoop->Run();
 			if (index<m_RunhWndArray.GetCount() && hWnd == m_RunhWndArray[index])
 			{
@@ -156,7 +156,7 @@ namespace DM
 				pMsgLoop->Release();
 			}
 			else if (1==pMsgLoop->GetRefCount())
-			{// µ±Ç°Ïß³ÌµÄ×îºóÒ»¸ö´°¿ÚÔÚÊ¹ÓÃLoopÁË
+			{// å½“å‰çº¿ç¨‹çš„æœ€åŽä¸€ä¸ªçª—å£åœ¨ä½¿ç”¨Loopäº†
 				m_MsgLoopTool->RemoveMessageLoop();
 				pMsgLoop->Release();
 			}
@@ -181,7 +181,7 @@ namespace DM
 		return iErr;
 	}
 
-	/// ×¢²áÀà-----------------------------------------
+	/// æ³¨å†Œç±»-----------------------------------------
 	DMCode DMAppData::Register(const IDMReg &RegObj, bool bReplace/*=false*/)
 	{
 		return m_RegMgr->Register(RegObj, bReplace);
@@ -212,7 +212,7 @@ namespace DM
 			{
 			case DMREG_Attribute:
 				{
-					m_pAttributeObj.Release();// ÏÈÊÍ·Å
+					m_pAttributeObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pAttributeObj, lpszClassName, RegType);
 					if (DMSUCCEEDED(iErr))
 					{
@@ -222,8 +222,8 @@ namespace DM
 				break;
 			case DMREG_Log:
 				{
-					DMLogDispatch::SetLogDispatch(NULL);// ÉèÖÃÎªNULL£¬ÒòÎªÔÚ½ÓÏÂÀ´µÄCreateRegObjÖÐ¿ÉÄÜ»áÓÐLOG
-					m_pLogObj.Release();// ÏÈÊÍ·Å
+					DMLogDispatch::SetLogDispatch(NULL);// è®¾ç½®ä¸ºNULLï¼Œå› ä¸ºåœ¨æŽ¥ä¸‹æ¥çš„CreateRegObjä¸­å¯èƒ½ä¼šæœ‰LOG
+					m_pLogObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pLogObj, lpszClassName, RegType);
 					if (DMSUCCEEDED(iErr))
 					{
@@ -233,25 +233,25 @@ namespace DM
 				break;
 			case DMREG_Res:
 				{
-					m_pResObj.Release();// ÏÈÊÍ·Å
+					m_pResObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pResObj, lpszClassName, DMREG_Res);
 				}
 				break;
 			case DMREG_Render:
 				{
-					m_pRenderObj.Release();// ÏÈÊÍ·Å
+					m_pRenderObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pRenderObj, lpszClassName, DMREG_Render);
 				}
 				break;
 			case DMREG_Trans:
 				{
-					m_pTransObj.Release();// ÏÈÊÍ·Å
+					m_pTransObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pTransObj, lpszClassName, DMREG_Trans);
 				}
 				break;
 			case DMREG_TaskRunner:
 				{
-					m_pTaskRunnerObj.Release();// ÏÈÊÍ·Å
+					m_pTaskRunnerObj.Release();// å…ˆé‡Šæ”¾
 					iErr = CreateRegObj((void**)&m_pTaskRunnerObj, lpszClassName, DMREG_TaskRunner);
 				}
 				break;
@@ -262,7 +262,7 @@ namespace DM
 			case DMREG_ToolTip:
 			case DMREG_Script:
 				{
-					// ËüÐèÒªÖ¸¶¨Ä¬ÈÏÀàÐÍ,µ«²»ÊÇÎ¨Ò»
+					// å®ƒéœ€è¦æŒ‡å®šé»˜è®¤ç±»åž‹,ä½†ä¸æ˜¯å”¯ä¸€
 				}
 				break;
 			case DMREG_Window:
@@ -270,12 +270,12 @@ namespace DM
 			case DMREG_Animate:
 			case DMREG_Skin:
 				{
-					// ËüÆäÊµ²»ÐèÒªÖ¸¶¨Ä¬ÈÏÀàÐÍ
+					// å®ƒå…¶å®žä¸éœ€è¦æŒ‡å®šé»˜è®¤ç±»åž‹
 				}	
 				break;
 			default:
 				{
-					DMFAIL_MSG("default object RegType not allowed"/*0,L"²»Ö§³ÖÉèÖÃÄ¬ÈÏ¶ÔÏóµÄRegType"*/);
+					DMFAIL_MSG("default object RegType not allowed"/*0,L"ä¸æ”¯æŒè®¾ç½®é»˜è®¤å¯¹è±¡çš„RegType"*/);
 				}
 				break;
 			}
@@ -303,7 +303,7 @@ namespace DM
 			case DMREG_TaskRunner:*ppObj = m_pTaskRunnerObj;m_pTaskRunnerObj->AddRef();break;
 			default:
 				{
-				DMFAIL_MSG_FMT("Unsupported RegType %d", RegType/*0,L"½öÖ§³ÖÈ¡µÃDMREG_Attribute¡¢DMREG_Log¡¢DMREG_Res¡¢DMREG_Render¡¢DMREG_Trans¡¢DMREG_TaskRunnerµÄRegType"*/);
+				DMFAIL_MSG_FMT("Unsupported RegType %d", RegType/*0,L"ä»…æ”¯æŒå–å¾—DMREG_Attributeã€DMREG_Logã€DMREG_Resã€DMREG_Renderã€DMREG_Transã€DMREG_TaskRunnerçš„RegType"*/);
 				}
 				break;
 			}
@@ -327,7 +327,7 @@ namespace DM
 		return loader;
 	}
 
-	/// ×¢²á²å¼þ-----------------------------------------
+	/// æ³¨å†Œæ’ä»¶-----------------------------------------
 	DMCode DMAppData::LoadPlugins(LPCWSTR lpszPluginsCfg)
 	{
 		return m_PluginsTool->LoadPlugins(lpszPluginsCfg);
@@ -360,7 +360,7 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	/// ½âÎö×ÊÔ´Res-----------------------------------------
+	/// è§£æžèµ„æºRes-----------------------------------------
 	DMCode DMAppData::LoadResPack(WPARAM wp, LPARAM lp, LPCSTR lpszClassName)
 	{
 		LOG_INFO("[start]lpszClassName:%s\n",lpszClassName);
@@ -373,13 +373,13 @@ namespace DM
 				break;
 			}
 
-			if (NULL!=lpszClassName) // ²»ÎªNULLÊ±ÅÐ¶ÏÊÇ·ñºÍµ±Ç°Ä¬ÈÏµÄÏàµ±
+			if (NULL!=lpszClassName) // ä¸ä¸ºNULLæ—¶åˆ¤æ–­æ˜¯å¦å’Œå½“å‰é»˜è®¤çš„ç›¸å½“
 			{
 				CStringA szName;
 				m_RegMgr->GetDefRegObj(szName,DMREG_Res);
 				if (lpszClassName != szName)
 				{	
-					iErr = SetDefRegObj(lpszClassName, DMREG_Res);// ÉèÖÃ³ÉÄ¬ÈÏµÄ
+					iErr = SetDefRegObj(lpszClassName, DMREG_Res);// è®¾ç½®æˆé»˜è®¤çš„
 				}
 			}
 
@@ -400,7 +400,7 @@ namespace DM
 		return iErr;
 	}
 
-	///  ÄÚ²¿¸¨Öú------------------------------------------
+	///  å†…éƒ¨è¾…åŠ©------------------------------------------
 	DMCode DMAppData::InitDMXmlDocument(DMXmlDocument &XmlDoc, LPCSTR lpszType,LPCSTR lpszResName)
 	{
 		LOG_INFO("[start]lpszType:%s,lpszResName:%s\n",lpszType,lpszResName);
@@ -409,7 +409,7 @@ namespace DM
 		{ 
 			DMXmlDocument* pDoc = NULL;
 			if (g_pGetSubXmlDoc
-				&&NULL!=(pDoc = g_pGetSubXmlDoc(lpszType, lpszResName)))// Ö§³ÖÍâ²¿Éú³ÉDoc´«Èë,ÄÚ²¿¸´ÖÆ,Ä¿Ç°ÓÃÓÚÉè¼ÆÆ÷
+				&&NULL!=(pDoc = g_pGetSubXmlDoc(lpszType, lpszResName)))// æ”¯æŒå¤–éƒ¨ç”ŸæˆDocä¼ å…¥,å†…éƒ¨å¤åˆ¶,ç›®å‰ç”¨äºŽè®¾è®¡å™¨
 			{
 				DMXmlNode XmlBase = XmlDoc.Base();
 				DMXmlNode XmlCopy = pDoc->Root();
@@ -452,19 +452,19 @@ namespace DM
 		return m_SkinPool->ClearUpdateSkinArray();
 	}
 
-	/// ¸¨Öú-----------------------------------------------
+	/// è¾…åŠ©-----------------------------------------------
 	ATOM DMAppData::RegisterClassEx(HINSTANCE hInst, LPCWSTR lpClassName, bool bShadow/*=false*/)
 	{
 		WNDCLASSEX wcex		  = {sizeof(WNDCLASSEX)};
 		wcex.style            = CS_HREDRAW | CS_VREDRAW |CS_DBLCLKS;
 
-		//windowÏµÍ³ÒõÓ°ÊÇÓÉ´°¿ÚÀàÀ´È·¶¨µÄ£¬µ«SetClassLong(m_hWnd, GCL_STYLE, xxx|CS_DROPSHADOW)»áÓ°ÏìÆäËû´°Ìå
-		//¹ÊÕâÀïÌá¹©Á½ÖÖ´°¿ÚÀà
+		//windowç³»ç»Ÿé˜´å½±æ˜¯ç”±çª—å£ç±»æ¥ç¡®å®šçš„ï¼Œä½†SetClassLong(m_hWnd, GCL_STYLE, xxx|CS_DROPSHADOW)ä¼šå½±å“å…¶ä»–çª—ä½“
+		//æ•…è¿™é‡Œæä¾›ä¸¤ç§çª—å£ç±»
 		if (bShadow)
 		{
 			wcex.style |= CS_DROPSHADOW;
 		}
-		wcex.lpfnWndProc	  = DMCWnd::FirstWindowProc; // µÚÒ»¸ö´¦Àíº¯Êý
+		wcex.lpfnWndProc	  = DMCWnd::FirstWindowProc; // ç¬¬ä¸€ä¸ªå¤„ç†å‡½æ•°
 		wcex.hInstance        = m_hInst;
 		wcex.hCursor		  = ::LoadCursor(NULL, IDC_ARROW);
 		wcex.hbrBackground    = (HBRUSH)(COLOR_WINDOW+1);

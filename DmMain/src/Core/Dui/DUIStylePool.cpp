@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIStylePool.h"
 
 namespace DM
@@ -32,7 +32,7 @@ namespace DM
 				else
 				{
 					if (!IsKeyExist(strId))
-					{// key²»´æÔÚÊ±²Å¼ÓÈë
+					{// keyä¸å­˜åœ¨æ—¶æ‰åŠ å…¥
 						AddKey(strId, XmlStyle);
 					}
 				}
@@ -121,7 +121,7 @@ namespace DM
 			{
 				if (pCur->GetObjByKey(strKey,XmlStyle))
 				{
-					break;// ÒÑÕÒµ½
+					break;// å·²æ‰¾åˆ°
 				}
 
 				if (bLoopFind)

@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMCWndBase.h"
 
 namespace DM
@@ -35,7 +35,7 @@ namespace DM
 	BOOL DMCWndBase::DestroyWindow() throw()
 	{
 		DMASSERT(::IsWindow(m_hWnd));
-		return ::DestroyWindow(m_hWnd);// ´Ë´¦²»ÄÜ°Ñm_hWnd¸³Îª0£¬ÒòÎªÏûÏ¢Ñ­»·»¹ÔÚÅÜ
+		return ::DestroyWindow(m_hWnd);// æ­¤å¤„ä¸èƒ½æŠŠm_hWndèµ‹ä¸º0ï¼Œå› ä¸ºæ¶ˆæ¯å¾ªç¯è¿˜åœ¨è·‘
 		//if (!::DestroyWindow(m_hWnd))
 		//	return FALSE;
 

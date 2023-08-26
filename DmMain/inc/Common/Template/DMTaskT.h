@@ -1,12 +1,12 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
 // File name:	DMTaskT.h
 // File mark:   
-// File summary:Ö§³Ö¹¹Ôì×î¶à7¸öÊäÈë²ÎÊı£¬5¸öÊä³ö²ÎÊıµÄº¯Êı
-//              1.Ê¹ÓÃDMNewRunnableFunction¹¹ÔìÆÕÍ¨º¯Êı£¬DMNewRunnableMethod¹¹Ôì³ÉÔ±º¯Êı:DMNewRunnableFunction(&FUN, arg0, arg1, arg2)£¬DMNewRunnableMethod(&CLS::FUN,CLS::THIS,arg0, arg1, arg2)
-//              2.×¢Òâ¹¹ÔìDMNewRunnableMethodÊ±£¬Ê¹ÓÃµÄÊÇIDMCancelableTask, Ä¬ÈÏÀàÖ§³ÖDMRefNum,ÀàÔÚÔËĞĞÇ°AddRef£¬ÔËĞĞºóReleaseRef,¿ÉÒÔÍ¨¹ıÉùÃ÷DMDISABLE_RUNNABLE_METHOD_REFCOUNT(ÀàÃû)È¡Ïû
+// File summary:æ”¯æŒæ„é€ æœ€å¤š7ä¸ªè¾“å…¥å‚æ•°ï¼Œ5ä¸ªè¾“å‡ºå‚æ•°çš„å‡½æ•°
+//              1.ä½¿ç”¨DMNewRunnableFunctionæ„é€ æ™®é€šå‡½æ•°ï¼ŒDMNewRunnableMethodæ„é€ æˆå‘˜å‡½æ•°:DMNewRunnableFunction(&FUN, arg0, arg1, arg2)ï¼ŒDMNewRunnableMethod(&CLS::FUN,CLS::THIS,arg0, arg1, arg2)
+//              2.æ³¨æ„æ„é€ DMNewRunnableMethodæ—¶ï¼Œä½¿ç”¨çš„æ˜¯IDMCancelableTask, é»˜è®¤ç±»æ”¯æŒDMRefNum,ç±»åœ¨è¿è¡Œå‰AddRefï¼Œè¿è¡ŒåReleaseRef,å¯ä»¥é€šè¿‡å£°æ˜DMDISABLE_RUNNABLE_METHOD_REFCOUNT(ç±»å)å–æ¶ˆ
 // Author:		guoyouhuang
 // Edition:     1.0
 // Create date: 2019-2-28
@@ -25,7 +25,7 @@ namespace DM
 	class IDMCancelableTask : public IDMTask
 	{
 	public:
-		virtual void Cancel() = 0;	///< ²»ÊÇËùÓĞµÄÈÎÎñ¶¼Ö§³ÖÈ¡Ïû²Ù×÷.
+		virtual void Cancel() = 0;	///< ä¸æ˜¯æ‰€æœ‰çš„ä»»åŠ¡éƒ½æ”¯æŒå–æ¶ˆæ“ä½œ.
 	};
 	typedef IDMCancelableTask*			IDMTaskPtr;
 	///---------------------------------------------------------------------------------------------------------------------------
@@ -272,7 +272,7 @@ namespace DM
 	};
 
 	///-----------------------------------------------------------------------------------------------
-	// ¹¹ÔìTuple
+	// æ„é€ Tuple
 	inline DMTuple0 DMMakeTuple() 
 	{
 		return DMTuple0();
@@ -326,7 +326,7 @@ namespace DM
 	}
 
 	///-----------------------------------------------------------------------------------------------
-	// ¹¹ÔìÒıÓÃTuple
+	// æ„é€ å¼•ç”¨Tuple
 	template <typename A>
 	inline DMTuple1<A&> DMMakeRefTuple(A& a) 
 	{
@@ -371,8 +371,8 @@ namespace DM
 		return DMTuple7<A&, B&, C&, D&, E&, F&, G&>(a, b, c, d, e, f, g);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
-	// ³ÉÔ±·½·¨ÅÉ·¢
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
+	// æˆå‘˜æ–¹æ³•æ´¾å‘
 	template <class ObjT, class Method>
 	inline void DMDispatchToMethod(ObjT* obj, Method method, const DMTuple0& arg) {
 		(obj->*method)();
@@ -427,8 +427,8 @@ namespace DM
 			(obj->*method)(arg.a, arg.b, arg.c, arg.d, arg.e, arg.f, arg.g);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
-	// ÆÕÍ¨º¯Êı
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
+	// æ™®é€šå‡½æ•°
 	template <class Function>
 	inline void DMDispatchToFunction(Function function, const DMTuple0& arg) {
 		(*function)();
@@ -473,7 +473,7 @@ namespace DM
 	}
 
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 0 out param (as a DMTuple0).
 	template <class ObjT, class Method>
 	inline void DMDispatchToMethod(ObjT* obj,
@@ -526,7 +526,7 @@ namespace DM
 			(obj->*method)(arg.a, arg.b, arg.c, arg.d, arg.e, arg.f);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 1 out param.
 	template<class ObjT, class Method,
 	class OutA>
@@ -594,7 +594,7 @@ namespace DM
 			(obj->*method)(in.a, in.b, in.c, in.d, in.e, in.f, &out->a);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 2 out param.
 	template<class ObjT, class Method,
 	class OutA, class OutB>
@@ -661,7 +661,7 @@ namespace DM
 		DMTuple2<OutA, OutB>* out) {
 			(obj->*method)(in.a, in.b, in.c, in.d, in.e, in.f, &out->a, &out->b);
 	}
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 3 out param.
 	template<class ObjT, class Method,
 	class OutA, class OutB, class OutC>
@@ -729,7 +729,7 @@ namespace DM
 			(obj->*method)(in.a, in.b, in.c, in.d, in.e, in.f, &out->a, &out->b, &out->c);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 4 out param.
 	template<class ObjT, class Method,
 	class OutA, class OutB, class OutC, class OutD>
@@ -799,7 +799,7 @@ namespace DM
 				&out->a, &out->b, &out->c, &out->d);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------º¯Êı°ü×°´¦
+	///------------------------------------------------------------------------------------------------------------------------------------å‡½æ•°åŒ…è£…å¤„
 	// Dispatchers with 5 out param.
 	template<class ObjT, class Method,
 	class OutA, class OutB, class OutC, class OutD, class OutE>
@@ -870,11 +870,11 @@ namespace DM
 				&out->a, &out->b, &out->c, &out->d, &out->e);
 	}
 
-	///------------------------------------------------------------------------------------------------------------------------------------¹¹Ôì¿ÉÔËĞĞº¯ÊıÀà
-	// ¹¹Ôì¿ÉÔËĞĞº¯ÊıÀà
+	///------------------------------------------------------------------------------------------------------------------------------------æ„é€ å¯è¿è¡Œå‡½æ•°ç±»
+	// æ„é€ å¯è¿è¡Œå‡½æ•°ç±»
 	const size_t kDeadTask = 0xDEAD7A53;
 
-	// É¾³ı¶ÔÏóµÄTask.
+	// åˆ é™¤å¯¹è±¡çš„Task.
 	template<class T>
 	class DMDeleteTask : public IDMCancelableTask
 	{
@@ -893,7 +893,7 @@ namespace DM
 		const T* m_obj;
 	};
 
-	// µ÷ÓÃ¶ÔÏóRelease()·½·¨µÄTask.
+	// è°ƒç”¨å¯¹è±¡Release()æ–¹æ³•çš„Task.
 	template<class T>
 	class DMReleaseTask : public IDMCancelableTask
 	{
@@ -958,7 +958,7 @@ namespace DM
 			// Catch DMNewRunnableMethod being called in an object's constructor.  This
 			// isn't safe since the method can be invoked before the constructor
 			// completes, causing the object to be deleted.
-			//  Èç¹ûÒıÓÃµÄÀà¶ÔÏóÒıÓÃ¼ÆÊıÔ­Ê¼Îª0,+1-1¿ÉÄÜµ÷ÓÃÄ¬ÈÏµÄdelete
+			//  å¦‚æœå¼•ç”¨çš„ç±»å¯¹è±¡å¼•ç”¨è®¡æ•°åŸå§‹ä¸º0,+1-1å¯èƒ½è°ƒç”¨é»˜è®¤çš„delete
 			obj->AddRef();
 			obj->Release();
 #endif

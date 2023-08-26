@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMScrollBarSkinImpl.h"
 
 namespace DM
@@ -36,9 +36,9 @@ namespace DM
 	}
 
 	//--------------------------------------------------
-	// ¿Ø¼ş:ÉÏ¼ıÍ·¡¢ÏÂ¼ıÍ·¡¢¼áÖ±¹ö¶¯Ìõ¡¢ÊúÖ±»¬²Û¡¢×ó¼ıÍ·¡¢ÓÒ¼ıÍ·¡¢Ë®Æ½¹ö¶¯Ìõ¡¢Ë®Æ½»¬²Û¡¢Ğ¡±ß½Ç
-	// ×´Ì¬:Õı³£¡¢Í£Áô¡¢µã»÷¡¢½ûÓÃ¡¢·ÇActive
-	// ¹²ÁĞ9*ĞĞ5=45ÖÖ×´Ì¬ nSbCode+bVertÑ¡ÔñÁĞ nStateÎªĞĞ
+	// æ§ä»¶:ä¸Šç®­å¤´ã€ä¸‹ç®­å¤´ã€åšç›´æ»šåŠ¨æ¡ã€ç«–ç›´æ»‘æ§½ã€å·¦ç®­å¤´ã€å³ç®­å¤´ã€æ°´å¹³æ»šåŠ¨æ¡ã€æ°´å¹³æ»‘æ§½ã€å°è¾¹è§’
+	// çŠ¶æ€:æ­£å¸¸ã€åœç•™ã€ç‚¹å‡»ã€ç¦ç”¨ã€éActive
+	// å…±åˆ—9*è¡Œ5=45ç§çŠ¶æ€ nSbCode+bVerté€‰æ‹©åˆ— nStateä¸ºè¡Œ
 	//--------------------------------------------------
 	CRect DMScrollBarSkinImpl::GetPartRect(int nSbCode, int nState,bool bVert)
 	{
@@ -64,12 +64,12 @@ namespace DM
 			case SB_PAGEDOWN:		iPart = 3;break;
 			case SB_CORNOR:         iPart = 8;break;
 			}
-			if (!bVert&&nSbCode!=SB_CORNOR) // ±ß½ÇÖ»ÓĞÒ»·İ
+			if (!bVert&&nSbCode!=SB_CORNOR) // è¾¹è§’åªæœ‰ä¸€ä»½
 			{
 				iPart += 4;
 			}
 
-			if (3 == nHei/szItem.cy) // ½öÇ°ÈıĞĞ,Ò²¾ÍÊÇÃ»ÓĞ½ûÓÃ¡¢·ÇActive×´Ì¬
+			if (3 == nHei/szItem.cy) // ä»…å‰ä¸‰è¡Œ,ä¹Ÿå°±æ˜¯æ²¡æœ‰ç¦ç”¨ã€éActiveçŠ¶æ€
 			{
 				if (DMSBST_DISABLE == nState||DMSBST_NOACTIVE==nState)
 				{
@@ -77,7 +77,7 @@ namespace DM
 				}
 			}
 
-			if (4 == nHei/szItem.cy) // ½öÇ°ËÄĞĞ,Ò²¾ÍÊÇÃ»ÓĞ·ÇActive×´Ì¬
+			if (4 == nHei/szItem.cy) // ä»…å‰å››è¡Œ,ä¹Ÿå°±æ˜¯æ²¡æœ‰éActiveçŠ¶æ€
 			{
 				if (DMSBST_NOACTIVE == nState)
 				{

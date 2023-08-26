@@ -1,27 +1,27 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DUIAnimate.h"
 
 namespace DM
 {
 	DUITabAnimate::DUITabAnimate(IDMTabAnimateOwner *pOwner, DUIWindowPtr pFrom, DUIWindowPtr pTo,int iSteps,int iType)
 	{
-		//1. ´´½¨¶þ±¶Ò³¿íµÄ»­²¼£¬·Ö±ð¼ÇÂ¼¾É×´Ì¬ºÍÐÂ×´Ì¬
+		//1. åˆ›å»ºäºŒå€é¡µå®½çš„ç”»å¸ƒï¼Œåˆ†åˆ«è®°å½•æ—§çŠ¶æ€å’Œæ–°çŠ¶æ€
 		DMASSERT(NULL!=pFrom&&NULL!=pTo&&NULL!=pOwner);
 		DUIWindowPtr pWnd = pOwner->GetOwnerWindow();
-		pWnd->DM_InsertChild(this);// ²åÈë×öÎª×Ó´°¿Ú
+		pWnd->DM_InsertChild(this);// æ’å…¥åšä¸ºå­çª—å£
 		CRect rcPage = pFrom->m_rcWindow;
 		DM_FloatLayout(rcPage);
 		DMSmartPtrT<IDMRender> pDefRender;
 		g_pDMApp->GetDefRegObj((void**)&pDefRender,DMREG_Render);
 		pDefRender->CreateCanvas(rcPage.Width()*2,rcPage.Height(),&m_pMemCanvas);
 
-		//2. ¸´ÖÆoldItemµ½»­²¼Ç°°ë²¿·Ö
+		//2. å¤åˆ¶oldItemåˆ°ç”»å¸ƒå‰åŠéƒ¨åˆ†
 		m_pMemCanvas->SetViewportOrgEx(-rcPage.left, -rcPage.top);
 		pFrom->DM_SetVisible(true);
 		DM_DrawBackground(m_pMemCanvas,rcPage);
 		pFrom->DM_SetVisible(false);
 
-		//3. ¸´ÖÆNewItemµ½»­²¼ºó°ë²¿·Ö
+		//3. å¤åˆ¶NewItemåˆ°ç”»å¸ƒåŽåŠéƒ¨åˆ†
 		m_pMemCanvas->OffsetViewportOrg(rcPage.Width(),0);
 		pTo->DM_SetVisible(true);
 		DM_DrawBackground(m_pMemCanvas,rcPage);
@@ -29,13 +29,13 @@ namespace DM
 
 		m_pMemCanvas->SetViewportOrgEx(0,0);
 
-		//4. ¼ÇÂ¼×´Ì¬
+		//4. è®°å½•çŠ¶æ€
 		m_iCurSteps  = 0;
 		m_nStepCount = iSteps;
 		m_TabAniType = iType;
 		m_pOwner     = pOwner;
 
-		// 5.¿ªÊ¼Ê±¼äÖ¡
+		// 5.å¼€å§‹æ—¶é—´å¸§
 		GetContainer()->OnRegisterTimeline(this);
 	}
 
@@ -113,7 +113,7 @@ namespace DM
 		if (m_pMemCanvas)
 		{
 			m_pMemCanvas.Release();
-			m_iCurSteps = 0;// ²»ÒªÔÚOnTabAnimateFinishÖ®ºó´¦Àí£¬ÒòÎªOnTabAnimateFinishÒ»°ã»ádelete Õâ¸ö´°¿Ú¶ÔÏó,ÔÙ´¦Àí¾ÍÒ°Ö¸ÕëÁË
+			m_iCurSteps = 0;// ä¸è¦åœ¨OnTabAnimateFinishä¹‹åŽå¤„ç†ï¼Œå› ä¸ºOnTabAnimateFinishä¸€èˆ¬ä¼šdelete è¿™ä¸ªçª—å£å¯¹è±¡,å†å¤„ç†å°±é‡ŽæŒ‡é’ˆäº†
 			m_pOwner->OnTabAnimateFinish();
 		}
 	}

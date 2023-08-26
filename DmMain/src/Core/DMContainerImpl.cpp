@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMContainerImpl.h"
 
 namespace DM
@@ -19,7 +19,7 @@ namespace DM
 		m_pContainWnd->AddRef();
 		m_pContainWnd->SetMsgHandled(TRUE);
 		switch (uMsg)
-		{// ´Ë²¿·ÖÏûÏ¢¿ÉÖ±½Ó²Î¿¼DMMsgCrack.hºê
+		{// æ­¤éƒ¨åˆ†æ¶ˆæ¯å¯ç›´æ¥å‚è€ƒDMMsgCrack.hå®
 		case WM_MOUSEMOVE:
 			{
 				OnFrameMouseMove((UINT)wParam,CPoint(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam)));
@@ -62,13 +62,13 @@ namespace DM
 			}
 			break;
 
-		case WM_ACTIVATE:// WM_ACTIVATEÖ»·¢¸ø±»¼¤»î»òÊ§È¥¼¤»îµÄÖ¸¶¨´°¿Ú
+		case WM_ACTIVATE:// WM_ACTIVATEåªå‘ç»™è¢«æ¿€æ´»æˆ–å¤±å»æ¿€æ´»çš„æŒ‡å®šçª—å£
 			{
 				OnActivate(LOWORD(wParam));
 			}
 			break;
 
-		case WM_ACTIVATEAPP:// WM_ACTIVATEAPP·¢¸ø±»¼¤»î»òÊ§È¥¼¤»îµÄÓ¦ÓÃ³ÌĞòËùÓµÓĞµÄËùÓĞ´°¿Ú
+		case WM_ACTIVATEAPP:// WM_ACTIVATEAPPå‘ç»™è¢«æ¿€æ´»æˆ–å¤±å»æ¿€æ´»çš„åº”ç”¨ç¨‹åºæ‰€æ‹¥æœ‰çš„æ‰€æœ‰çª—å£
 			{
 				OnActivateApp((BOOL)wParam,(DWORD)lParam);
 			}
@@ -85,11 +85,11 @@ namespace DM
 
 		default:
 			{
-				if (uMsg>=WM_KEYFIRST&&uMsg<=WM_KEYLAST)// KeyDownÏà¹Ø
+				if (uMsg>=WM_KEYFIRST&&uMsg<=WM_KEYLAST)// KeyDownç›¸å…³
 				{
 					OnFrameKeyEvent(uMsg,wParam,lParam);
 				}
-				else if(uMsg>=WM_MOUSEFIRST&&uMsg<= WM_MOUSELAST)// Êó±êµã»÷Ïà¹Ø
+				else if(uMsg>=WM_MOUSEFIRST&&uMsg<= WM_MOUSELAST)// é¼ æ ‡ç‚¹å‡»ç›¸å…³
 				{
 					OnFrameMouseEvent(uMsg,wParam,lParam);
 				}
@@ -220,14 +220,14 @@ namespace DM
 	{
 		DMTimelineHanderList TimelineList; 
 		POSITION Pos = m_TimelineList.GetHeadPosition();
-		while (Pos)// ¸´ÖÆÒ»·İ£¬·ÀÖ¹Ô­Êı¾İ±»ÎÛÈ¾
+		while (Pos)// å¤åˆ¶ä¸€ä»½ï¼Œé˜²æ­¢åŸæ•°æ®è¢«æ±¡æŸ“
 		{
 			IDMTimelinePtr &t = m_TimelineList.GetNext(Pos);
 			TimelineList.AddTail(t);
 		}
 
 		Pos = TimelineList.GetHeadPosition();
-		while (Pos)// Ñ­»·´¦Àí
+		while (Pos)// å¾ªç¯å¤„ç†
 		{
 			IDMTimelinePtr pHandler = TimelineList.GetNext(Pos);
 			pHandler->OnTimeline();
@@ -235,22 +235,22 @@ namespace DM
 		return DM_ECODE_OK;
 	}
 
-	// ¸¨Öú -------------------------------------------
-	// ´¦Àíhost window WM_MOUSEMOVEÏûÏ¢
+	// è¾…åŠ© -------------------------------------------
+	// å¤„ç†host window WM_MOUSEMOVEæ¶ˆæ¯
 	/*
-	Âß¼­£º
-	1.ÉèÖÃÁËCapture´°¿Ú£¨²¶»ñÊó±ê´°¿Ú£¬½ÓÊÜÊó±êËùÓĞÏûÏ¢£¬ÎŞÂÛ¹â±ê½¹µãÊÇ·ñÔÚDUI´°¿ÚÄÚ£©
-		1.1.Êó±êÍ£ÁôÔÚ´°¿ÚÇøÓòÄÚ£¬´ËÊ±Capture´°¿Ú¼´ÎªĞÂµÄMouseHover´°¿Ú(pHoverWnd==pCaptureWnd)
-			1.1.1.È¡µÃ¾ÉµÄMouseHover´°¿Ú(pOldHoverWnd)
-			1.1.2.Èç(pOldHoverWnd!=NULL&&pOldHoverWnd!=pHoverWnd)£¬ÈçÔ­Îª·Ç¿Í»§ÇøHover×´Ì¬(true==m_bNcHover)Ôò·¢ËÍWM_NCMOUSELEAVE£¬·ñÔò·¢ËÍWM_MOUSELEAVE
-			1.1.3.ÉèÖÃ·Ç¿Í»§ÇøHover×´Ì¬(m_bNcHover),ÉèÖÃĞÂµÄMouseHover´°¿Ú¾ä±ú£¨m_hDUIHoverWnd = hDUIHoverWnd£©
-			1.1.4.Èç(pHoverWnd!=pOldHoverWnd),Èç(true==m_bNcHover)Ôò·¢ËÍWM_NCMOUSEHOVER£¬·ñÔò·¢ËÍWM_MOUSEHOVER
-		1.2.Êó±êÎ´Í£ÁôÔÚ´°¿ÚÇøÓòÄÚ,´ËÊ±ĞÂµÄMouseHover´°¿ÚÎªNULL
-			1.2.1.È¡µÃ¾ÉµÄMouseHover´°¿Ú(pOldHoverWnd)
-			1.2.2.Èç(pOldHoverWnd!=NULL)£¬ÈçÔ­Îª·Ç¿Í»§ÇøHover×´Ì¬(true==m_bNcHover)Ôò·¢ËÍWM_NCMOUSELEAVE£¬·ñÔò·¢ËÍWM_MOUSELEAVE
-			1.2.3.ÉèÖÃĞÂµÄMouseHover´°¿Ú¾ä±úÎª0£¬ÉèÖÃÊó±êÎ´Í£ÁôÔÚ·Ç¿Í»§Çø
-	1.3.Capture´°¿ÚÈçÔ­Îª·Ç¿Í»§ÇøHover×´Ì¬(true==m_bNcHover)Ôò·¢ËÍWM_NCMOUSEMOVE£¬·ñÔò·¢ËÍWM_MOUSEMOVE
-	2.Î´ÉèÖÃCapture´°¿Ú£¬Âß¼­ºÍ1ÀàËÆ
+	é€»è¾‘ï¼š
+	1.è®¾ç½®äº†Captureçª—å£ï¼ˆæ•è·é¼ æ ‡çª—å£ï¼Œæ¥å—é¼ æ ‡æ‰€æœ‰æ¶ˆæ¯ï¼Œæ— è®ºå…‰æ ‡ç„¦ç‚¹æ˜¯å¦åœ¨DUIçª—å£å†…ï¼‰
+		1.1.é¼ æ ‡åœç•™åœ¨çª—å£åŒºåŸŸå†…ï¼Œæ­¤æ—¶Captureçª—å£å³ä¸ºæ–°çš„MouseHoverçª—å£(pHoverWnd==pCaptureWnd)
+			1.1.1.å–å¾—æ—§çš„MouseHoverçª—å£(pOldHoverWnd)
+			1.1.2.å¦‚(pOldHoverWnd!=NULL&&pOldHoverWnd!=pHoverWnd)ï¼Œå¦‚åŸä¸ºéå®¢æˆ·åŒºHoverçŠ¶æ€(true==m_bNcHover)åˆ™å‘é€WM_NCMOUSELEAVEï¼Œå¦åˆ™å‘é€WM_MOUSELEAVE
+			1.1.3.è®¾ç½®éå®¢æˆ·åŒºHoverçŠ¶æ€(m_bNcHover),è®¾ç½®æ–°çš„MouseHoverçª—å£å¥æŸ„ï¼ˆm_hDUIHoverWnd = hDUIHoverWndï¼‰
+			1.1.4.å¦‚(pHoverWnd!=pOldHoverWnd),å¦‚(true==m_bNcHover)åˆ™å‘é€WM_NCMOUSEHOVERï¼Œå¦åˆ™å‘é€WM_MOUSEHOVER
+		1.2.é¼ æ ‡æœªåœç•™åœ¨çª—å£åŒºåŸŸå†…,æ­¤æ—¶æ–°çš„MouseHoverçª—å£ä¸ºNULL
+			1.2.1.å–å¾—æ—§çš„MouseHoverçª—å£(pOldHoverWnd)
+			1.2.2.å¦‚(pOldHoverWnd!=NULL)ï¼Œå¦‚åŸä¸ºéå®¢æˆ·åŒºHoverçŠ¶æ€(true==m_bNcHover)åˆ™å‘é€WM_NCMOUSELEAVEï¼Œå¦åˆ™å‘é€WM_MOUSELEAVE
+			1.2.3.è®¾ç½®æ–°çš„MouseHoverçª—å£å¥æŸ„ä¸º0ï¼Œè®¾ç½®é¼ æ ‡æœªåœç•™åœ¨éå®¢æˆ·åŒº
+	1.3.Captureçª—å£å¦‚åŸä¸ºéå®¢æˆ·åŒºHoverçŠ¶æ€(true==m_bNcHover)åˆ™å‘é€WM_NCMOUSEMOVEï¼Œå¦åˆ™å‘é€WM_MOUSEMOVE
+	2.æœªè®¾ç½®Captureçª—å£ï¼Œé€»è¾‘å’Œ1ç±»ä¼¼
 	*/
 	void DMContainerImpl::OnFrameMouseMove(UINT uFlag,CPoint pt)
 	{
@@ -258,7 +258,7 @@ namespace DM
 		{
 			DUIWindow *pCaptureWnd = g_pDMDWndPool->FindDUIWnd(m_hDUICaptureWnd);
 			if (pCaptureWnd)
-			{//1 CaptureÏÂ£¬Èç¹ûÔÚCapture´°¿ÚÄÚ£¬¾Í¶ÔCapture´°¿Ú·¢hoverÏûÏ¢£¬¶ÔÔ­Ê¼hover´°¿Ú·¢leaveÏûÏ¢£¬Í¬Ê±¸üĞÂhover´°¿Ú¾ä±ú
+			{//1 Captureä¸‹ï¼Œå¦‚æœåœ¨Captureçª—å£å†…ï¼Œå°±å¯¹Captureçª—å£å‘hoveræ¶ˆæ¯ï¼Œå¯¹åŸå§‹hoverçª—å£å‘leaveæ¶ˆæ¯ï¼ŒåŒæ—¶æ›´æ–°hoverçª—å£å¥æŸ„
 				CRect rcWindow;
 				pCaptureWnd->DV_GetWindowRect(rcWindow);
 				DUIWindow* pHoverWnd = rcWindow.PtInRect(pt)?pCaptureWnd:NULL;
@@ -277,14 +277,14 @@ namespace DM
 					}
 				}
 				pCaptureWnd->DM_SendMessage(m_bNcHover?WM_NCMOUSEMOVE:WM_MOUSEMOVE,uFlag,MAKELPARAM(pt.x,pt.y));
-				break;// Capture½áÊø£¡
+				break;// Captureç»“æŸï¼
 			}
 
-			// 2.·ÇCapture
+			// 2.éCapture
 			DUIWND hDUIHoverWnd = m_pContainWnd->HitTestPoint(pt);
 			DUIWindow* pHoverWnd = g_pDMDWndPool->FindDUIWnd(hDUIHoverWnd);
 			if (hDUIHoverWnd!=m_hDUIHoverWnd)
-			{// 2.1ĞÂHover´°¿Ú²»Í¬ÓÚÔ­Ê¼hover´°¿Ú£¬Èç´æÔÚ£¬Ô­Ê¼·¢lever(nc+client),ĞÂµÄ·¢(hover+nchover)ÏûÏ¢
+			{// 2.1æ–°Hoverçª—å£ä¸åŒäºåŸå§‹hoverçª—å£ï¼Œå¦‚å­˜åœ¨ï¼ŒåŸå§‹å‘lever(nc+client),æ–°çš„å‘(hover+nchover)æ¶ˆæ¯
 				DUIWindow* pOldHoverWnd = g_pDMDWndPool->FindDUIWnd(m_hDUIHoverWnd);
 				m_hDUIHoverWnd = hDUIHoverWnd;
 				if (pOldHoverWnd)
@@ -307,7 +307,7 @@ namespace DM
 				}
 			}
 			else if (pHoverWnd&&!pHoverWnd->DM_IsDisable(true))
-			{// 2.2Ç°Ìá£¬ĞÂhover´°¿Ú==Ô­Ê¼hover´°¿Ú£¬´ËÊ±¼ÆËãnchover×´Ì¬£¬·¢mouseÏûÏ¢
+			{// 2.2å‰æï¼Œæ–°hoverçª—å£==åŸå§‹hoverçª—å£ï¼Œæ­¤æ—¶è®¡ç®—nchoverçŠ¶æ€ï¼Œå‘mouseæ¶ˆæ¯
 				bool bNcHover = DMSUCCEEDED(pHoverWnd->DV_OnNcHitTest(pt));
 				if (bNcHover != m_bNcHover)
 				{
@@ -348,7 +348,7 @@ namespace DM
 				if (bInRect)
 				{
 					DUIWindow* pOldHoverWnd = g_pDMDWndPool->FindDUIWnd(m_hDUIHoverWnd);//1.1.1
-					if (pOldHoverWnd&&pOldHoverWnd!=pCaptureWnd)//pOldHoverWnd==pCaptureWnd ±íÊ¾¼´ÎªÔ­À´Hover´°¿Ú
+					if (pOldHoverWnd&&pOldHoverWnd!=pCaptureWnd)//pOldHoverWnd==pCaptureWnd è¡¨ç¤ºå³ä¸ºåŸæ¥Hoverçª—å£
 					{//1.1.2
 						pOldHoverWnd->DM_SendMessage(m_bNcHover?WM_NCMOUSELEAVE:WM_MOUSELEAVE);
 					}	
@@ -419,18 +419,18 @@ namespace DM
 	}
 
 	//-----------------------------------------------
-	// ´¦ÀíÊó±êµã»÷Ïà¹ØÏûÏ¢¼°MOUSEHOVERÏûÏ¢
+	// å¤„ç†é¼ æ ‡ç‚¹å‡»ç›¸å…³æ¶ˆæ¯åŠMOUSEHOVERæ¶ˆæ¯
 	void DMContainerImpl::OnFrameMouseEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
 	{
 		DUIWindow* pCaptureWnd = g_pDMDWndPool->FindDUIWnd(m_hDUICaptureWnd);
 		if (pCaptureWnd)
-		{// Capture´°¿Ú²¶»ñËùÓĞÊó±êµã»÷ÏûÏ¢£¬±ÈÈç¹ö¶¯Ìõ
+		{// Captureçª—å£æ•è·æ‰€æœ‰é¼ æ ‡ç‚¹å‡»æ¶ˆæ¯ï¼Œæ¯”å¦‚æ»šåŠ¨æ¡
 			if (m_bNcHover&&WM_MOUSEWHEEL!=uMsg)
 			{
-				uMsg += WM_NCMOUSEFIRST-WM_MOUSEFIRST;// ×ª»»³ÉNC¶ÔÓ¦µÄÏûÏ¢
+				uMsg += WM_NCMOUSEFIRST-WM_MOUSEFIRST;// è½¬æ¢æˆNCå¯¹åº”çš„æ¶ˆæ¯
 			}
 			BOOL bMsgHandled = FALSE;
-			pCaptureWnd->DM_SendMessage(uMsg,wParam,lParam,&bMsgHandled);// ×ª·¢ÏûÏ¢
+			pCaptureWnd->DM_SendMessage(uMsg,wParam,lParam,&bMsgHandled);// è½¬å‘æ¶ˆæ¯
 			m_pContainWnd->SetMsgHandled(bMsgHandled);
 		}
 		else
@@ -441,10 +441,10 @@ namespace DM
 			{
 				if (m_bNcHover&&WM_MOUSEWHEEL!=uMsg)
 				{
-					uMsg += WM_NCMOUSEFIRST-WM_MOUSEFIRST;// ×ª»»³ÉNC¶ÔÓ¦µÄÏûÏ¢
+					uMsg += WM_NCMOUSEFIRST-WM_MOUSEFIRST;// è½¬æ¢æˆNCå¯¹åº”çš„æ¶ˆæ¯
 				}
 				BOOL bMsgHandled = FALSE;
-				pHoverWnd->DM_SendMessage(uMsg,wParam,lParam,&bMsgHandled);// ×ª·¢ÏûÏ¢
+				pHoverWnd->DM_SendMessage(uMsg,wParam,lParam,&bMsgHandled);// è½¬å‘æ¶ˆæ¯
 				m_pContainWnd->SetMsgHandled(bMsgHandled);
 			}
 			else
@@ -454,7 +454,7 @@ namespace DM
 		}
 	}
 
-	// ´¦ÀíWM_MOUSELEAVE
+	// å¤„ç†WM_MOUSELEAVE
 	void DMContainerImpl::OnFrameMouseLeave()
 	{
 		DUIWindow* pCaptureWnd = g_pDMDWndPool->FindDUIWnd(m_hDUICaptureWnd);
@@ -495,7 +495,7 @@ namespace DM
 			}
 
 			if (!DMSUCCEEDED(iErr))
-			{// ÉèÖÃÎª±ê×¼µÄ¼ıÍ·
+			{// è®¾ç½®ä¸ºæ ‡å‡†çš„ç®­å¤´
 				HCURSOR hCursor = ::LoadCursorW(NULL, IDC_ARROW);
 				::SetCursor(hCursor);
 			}
@@ -518,13 +518,13 @@ namespace DM
 		}
 	}
 
-	// ´¦ÀíWM_KEYDOWNÏûÏ¢
+	// å¤„ç†WM_KEYDOWNæ¶ˆæ¯
 	void DMContainerImpl::OnFrameKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		do 
 		{
 			if (m_FocusMgr.OnKeyDown(nChar))
-			{// Ê×ÏÈ´¦Àí½¹µãÇĞ»»
+			{// é¦–å…ˆå¤„ç†ç„¦ç‚¹åˆ‡æ¢
 				break;
 			}
 			OnFrameKeyEvent(WM_KEYDOWN,(WPARAM)nChar,MAKELPARAM(nRepCnt,nFlags));
@@ -535,11 +535,11 @@ namespace DM
 	{
 		if (WA_INACTIVE == nState)
 		{
-			m_FocusMgr.StoreFocuseWnd();  // ´æ´¢µ±Ç°½¹µã´°¿Ú
+			m_FocusMgr.StoreFocuseWnd();  // å­˜å‚¨å½“å‰ç„¦ç‚¹çª—å£
 		}
 		else if (WA_ACTIVE == nState)
 		{
-			m_FocusMgr.RestoreFocuseWnd();// »Ö¸´ÏÈÇ°½¹µã´°¿Ú
+			m_FocusMgr.RestoreFocuseWnd();// æ¢å¤å…ˆå‰ç„¦ç‚¹çª—å£
 		}
 	}
 

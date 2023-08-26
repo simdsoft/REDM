@@ -1,4 +1,4 @@
-#include "DMDesignerAfx.h"
+ï»¿#include "DMDesignerAfx.h"
 #include "Draw.h"
 
 namespace DM
@@ -22,7 +22,7 @@ namespace DM
 			}
 			pCanvas->PushClip(lpRgn);
 			DMDRAW_STATE Render_State = DRAW_START;
-			_OnRender(pCanvas,lpRgn,pTopWnd,pTopWnd,pWnd,Render_State);// ´Ó¶¥²ã¸¸´°¿Ú»æÖÆµ½±¾´°¿Ú
+			_OnRender(pCanvas,lpRgn,pTopWnd,pTopWnd,pWnd,Render_State);// ä»é¡¶å±‚çˆ¶çª—å£ç»˜åˆ¶åˆ°æœ¬çª—å£
 			pCanvas->PopClip();
 			iErr = DM_ECODE_OK;
 		} while (false);
@@ -82,27 +82,27 @@ namespace DM
 	}
 
 	DMCode DMDraw::InvalidateRect(DUIWND hDUIWnd,LPCRECT lpRect,int fnCombineMode)
-	{// Ä¿±ê:m_pInvalidRegion±£´æËùÓĞÎŞĞ§Çø,m_bOnlyOneRectRepaint¼ÇÂ¼ÊÇ·ñÎªÎŞĞ§¾ØĞÎÇø
+	{// ç›®æ ‡:m_pInvalidRegionä¿å­˜æ‰€æœ‰æ— æ•ˆåŒº,m_bOnlyOneRectRepaintè®°å½•æ˜¯å¦ä¸ºæ— æ•ˆçŸ©å½¢åŒº
 
 		CRect rcInvalid = m_rcCanvas;
 		do 
 		{
-			//1.ÅĞ¶ÏÊÇ·ñÎŞĞ§¾ØĞÎ
+			//1.åˆ¤æ–­æ˜¯å¦æ— æ•ˆçŸ©å½¢
 			if (NULL == lpRect)
-			{// ÎªNULLÊ±Ê¹ÓÃ»­²¼´óĞ¡,´ËÊ±Ö»ÓĞÎŞĞ§¾ØĞÎm_rcCanvas
+			{// ä¸ºNULLæ—¶ä½¿ç”¨ç”»å¸ƒå¤§å°,æ­¤æ—¶åªæœ‰æ— æ•ˆçŸ©å½¢m_rcCanvas
 				m_bOnlyOneRectRepaint = true;
 				m_rcOnlyOne = m_rcCanvas;
 				break;
 			}
 
-			//2.ÅĞ¶ÏÊÇ·ñÎª¿Õ
+			//2.åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 			rcInvalid = lpRect;
 			if (rcInvalid.IsRectEmpty()||rcInvalid.left<0||rcInvalid.top<0||rcInvalid.bottom<0||rcInvalid.right<0)
 			{
 				rcInvalid.SetRectEmpty();
 				break;
 			}
-			//4.½öÓĞÒ»¸öRectÊ±,Ç°ÃæÅÅ³ılpRectÎªNULLµÄ×´Ì¬,´ËÊ±Ö»ÓĞÎŞĞ§¾ØĞÎ
+			//4.ä»…æœ‰ä¸€ä¸ªRectæ—¶,å‰é¢æ’é™¤lpRectä¸ºNULLçš„çŠ¶æ€,æ­¤æ—¶åªæœ‰æ— æ•ˆçŸ©å½¢
 			if (RGN_COPY == fnCombineMode
 				||RGN_AND == fnCombineMode
 				)
@@ -112,29 +112,29 @@ namespace DM
 				break;
 			}
 
-			//5. Ç°ÃæÌõ¼şÏŞÖÆÁËlpRect²»ÎªNULL,ÇÒ²»ÊÇÈ«Ë¢ĞÂ,ÇÒ²»ÊÇRGN_COPY||RGN_AND
+			//5. å‰é¢æ¡ä»¶é™åˆ¶äº†lpRectä¸ä¸ºNULL,ä¸”ä¸æ˜¯å…¨åˆ·æ–°,ä¸”ä¸æ˜¯RGN_COPY||RGN_AND
 			if (m_bOnlyOneRectRepaint)
 			{
 				CRect rcNew = m_rcOnlyOne;
 				rcNew.UnionRect(rcInvalid,m_rcOnlyOne);
-				if (rcNew.EqualRect(m_rcOnlyOne)// ĞÂµÄÎŞĞ§¾ØĞÎÔÚÔ­ÎŞĞ§¾ØĞÎÒÔÄÚ
-					||rcNew.EqualRect(rcInvalid))// ¾ÉµÄÎŞĞ§¾ØĞÎÔÚĞÂÎŞĞ§¾ØĞÎÒÔÄÚ
+				if (rcNew.EqualRect(m_rcOnlyOne)// æ–°çš„æ— æ•ˆçŸ©å½¢åœ¨åŸæ— æ•ˆçŸ©å½¢ä»¥å†…
+					||rcNew.EqualRect(rcInvalid))// æ—§çš„æ— æ•ˆçŸ©å½¢åœ¨æ–°æ— æ•ˆçŸ©å½¢ä»¥å†…
 				{
 					m_rcOnlyOne = rcNew;
 					break;
 				}
 			}
-			m_bOnlyOneRectRepaint = false;// ²»ÊÇÒ»¸öÎŞĞ§¾ØĞÎ
+			m_bOnlyOneRectRepaint = false;// ä¸æ˜¯ä¸€ä¸ªæ— æ•ˆçŸ©å½¢
 		} while (false);
 
-		// ×îºó½øÈëÎŞĞ§RgnÉèÖÃ
+		// æœ€åè¿›å…¥æ— æ•ˆRgnè®¾ç½®
 		if (NULL == m_pInvalidRegion)
 		{
 			m_pRender->CreateRegion(&m_pInvalidRegion);
 		}
 		if (!rcInvalid.IsRectEmpty())
 		{
-			m_pInvalidRegion->CombineRect(&rcInvalid,fnCombineMode);// ×éºÏÎŞĞ§Çø
+			m_pInvalidRegion->CombineRect(&rcInvalid,fnCombineMode);// ç»„åˆæ— æ•ˆåŒº
 			m_bNeedRepaint = true;
 		}
 		return DM_ECODE_OK;
@@ -143,7 +143,7 @@ namespace DM
 	int DMDraw::GetInvalidateRect(DM::CArray<CRect>& Array)
 	{
 		do 
-		{// ºÍRenderº¯ÊıÂß¼­±£³ÖÒ»ÖÂ
+		{// å’ŒRenderå‡½æ•°é€»è¾‘ä¿æŒä¸€è‡´
 			if (!m_bNeedRepaint)
 			{
 				break;
@@ -165,13 +165,13 @@ namespace DM
 				break;
 			}
 			if (rcInvalid.Width()+100<m_rcCanvas.Width()
-				||rcInvalid.Height()+100<m_rcCanvas.Height())						// ´ó»­²¼,ÎŞĞ§ÇøºÜĞ¡£¨gdiÄÚ²¿»áÓÅ»¯£©,»æÖÆµÄĞ§ÂÊ»¹ÊÇÒªµÍÓÚÎŞĞ§Çø´óĞ¡µÄ»­²¼ÉÏÖ±½Ó»æÖÆ
+				||rcInvalid.Height()+100<m_rcCanvas.Height())						// å¤§ç”»å¸ƒ,æ— æ•ˆåŒºå¾ˆå°ï¼ˆgdiå†…éƒ¨ä¼šä¼˜åŒ–ï¼‰,ç»˜åˆ¶çš„æ•ˆç‡è¿˜æ˜¯è¦ä½äºæ— æ•ˆåŒºå¤§å°çš„ç”»å¸ƒä¸Šç›´æ¥ç»˜åˆ¶
 			{
 				int iNum = 0;
 				DMBufT<RECT> pRect;
-				if (DMSUCCEEDED(m_pInvalidRegion->GetRectNum(iNum)) // ³É¹¦»ñÈ¡
-					&&iNum<10&&iNum>1                               // ÎŞĞ§¾ØĞÎÁĞ±íÔÚ[2,10)Ö®¼ä,1±íÊ¾m_pInvalidRegion¾ÍÊÇÒ»¸ö¾ØĞÎ
-					&&NULL!=pRect.Allocate(iNum)                    // ÄÚ´æ·ÖÅä³É¹¦
+				if (DMSUCCEEDED(m_pInvalidRegion->GetRectNum(iNum)) // æˆåŠŸè·å–
+					&&iNum<10&&iNum>1                               // æ— æ•ˆçŸ©å½¢åˆ—è¡¨åœ¨[2,10)ä¹‹é—´,1è¡¨ç¤ºm_pInvalidRegionå°±æ˜¯ä¸€ä¸ªçŸ©å½¢
+					&&NULL!=pRect.Allocate(iNum)                    // å†…å­˜åˆ†é…æˆåŠŸ
 					&&DMSUCCEEDED(m_pInvalidRegion->GetRectArray(pRect,iNum))
 					)
 				{
@@ -205,7 +205,7 @@ namespace DM
 				break;
 			}
 			m_bNeedRepaint = false;
-			if (m_bOnlyOneRectRepaint)// Ö»ÓĞÒ»¸öÎŞĞ§¾ØĞÎ
+			if (m_bOnlyOneRectRepaint)// åªæœ‰ä¸€ä¸ªæ— æ•ˆçŸ©å½¢
 			{
 				if (m_rcOnlyOne.IsRectEmpty())
 				{
@@ -230,22 +230,22 @@ namespace DM
 				m_pMemCanvas->SelectObject(pOldFont);
 				m_rcOnlyOne.SetRectEmpty();
 			}
-			else// ¿ÉÄÜÓĞ¶à¸öÎŞĞ§¾ØĞÎµÄÒìĞÎÎŞĞ§Çø
+			else// å¯èƒ½æœ‰å¤šä¸ªæ— æ•ˆçŸ©å½¢çš„å¼‚å½¢æ— æ•ˆåŒº
 			{
 				CRect rcInvalid;
 				m_pInvalidRegion->GetRgnBox(&rcInvalid);
-				m_pMemCanvas->PushClip(m_pInvalidRegion,RGN_COPY);						// Ç¿ÖÆÉèÖÃÎª¿½±´Çø´óĞ¡,×¢Òâ²»Òª´«rcInvalid£¬ÒòÎªrcInvalid¿ÉÄÜ°üº¬ÁËÆäËû²»ĞèÒªË¢ĞÂµÄ×Ó¿Ø¼şÇøÓò
-				m_pMemCanvas->ClearRect(rcInvalid,0);									// Çå³ı²ĞÁôµÄalphaÖµ
+				m_pMemCanvas->PushClip(m_pInvalidRegion,RGN_COPY);						// å¼ºåˆ¶è®¾ç½®ä¸ºæ‹·è´åŒºå¤§å°,æ³¨æ„ä¸è¦ä¼ rcInvalidï¼Œå› ä¸ºrcInvalidå¯èƒ½åŒ…å«äº†å…¶ä»–ä¸éœ€è¦åˆ·æ–°çš„å­æ§ä»¶åŒºåŸŸ
+				m_pMemCanvas->ClearRect(rcInvalid,0);									// æ¸…é™¤æ®‹ç•™çš„alphaå€¼
 				DMSmartPtrT<IDMFont> pOldFont;
 				m_pMemCanvas->SelectObject(g_pDMApp->GetFont(""),(IDMMetaFile**)&pOldFont);
 				if (rcInvalid.Width()+100<m_rcCanvas.Width()
-					||rcInvalid.Height()+100<m_rcCanvas.Height())						// ´ó»­²¼,ÎŞĞ§ÇøºÜĞ¡£¨gdiÄÚ²¿»áÓÅ»¯£©,»æÖÆµÄĞ§ÂÊ»¹ÊÇÒªµÍÓÚÎŞĞ§Çø´óĞ¡µÄ»­²¼ÉÏÖ±½Ó»æÖÆ
+					||rcInvalid.Height()+100<m_rcCanvas.Height())						// å¤§ç”»å¸ƒ,æ— æ•ˆåŒºå¾ˆå°ï¼ˆgdiå†…éƒ¨ä¼šä¼˜åŒ–ï¼‰,ç»˜åˆ¶çš„æ•ˆç‡è¿˜æ˜¯è¦ä½äºæ— æ•ˆåŒºå¤§å°çš„ç”»å¸ƒä¸Šç›´æ¥ç»˜åˆ¶
 				{
 					int iNum = 0;
 					DMBufT<RECT> pRect;
-					if (DMSUCCEEDED(m_pInvalidRegion->GetRectNum(iNum)) // ³É¹¦»ñÈ¡
-						&&iNum<10&&iNum>1                               // ÎŞĞ§¾ØĞÎÁĞ±íÔÚ[2,10)Ö®¼ä,1±íÊ¾m_pInvalidRegion¾ÍÊÇÒ»¸ö¾ØĞÎ
-						&&NULL!=pRect.Allocate(iNum)                    // ÄÚ´æ·ÖÅä³É¹¦
+					if (DMSUCCEEDED(m_pInvalidRegion->GetRectNum(iNum)) // æˆåŠŸè·å–
+						&&iNum<10&&iNum>1                               // æ— æ•ˆçŸ©å½¢åˆ—è¡¨åœ¨[2,10)ä¹‹é—´,1è¡¨ç¤ºm_pInvalidRegionå°±æ˜¯ä¸€ä¸ªçŸ©å½¢
+						&&NULL!=pRect.Allocate(iNum)                    // å†…å­˜åˆ†é…æˆåŠŸ
 						&&DMSUCCEEDED(m_pInvalidRegion->GetRectArray(pRect,iNum))
 						)
 					{
@@ -256,7 +256,7 @@ namespace DM
 							m_pRender->CreateCanvas(rcRect.Width(),rcRect.Height(),&pTempCanvas);
 							DMSmartPtrT<IDMFont> pOldTempFont;
 							pTempCanvas->SelectObject(g_pDMApp->GetFont(""),(IDMMetaFile**)&pOldTempFont);
-							pTempCanvas->OffsetViewportOrg(-rcRect.left,-rcRect.top);// »­²¼ÓÒÒÆrcInvalid.left£¬ÏÂÒÆrcInvalid.top
+							pTempCanvas->OffsetViewportOrg(-rcRect.left,-rcRect.top);// ç”»å¸ƒå³ç§»rcInvalid.leftï¼Œä¸‹ç§»rcInvalid.top
 							DMSmartPtrT<IDMRegion> pRgn;
 							m_pRender->CreateRegion(&pRgn);
 							pRgn->CombineRect(rcRect);
@@ -277,7 +277,7 @@ namespace DM
 				m_pMemCanvas->SelectObject(pOldFont);
 				m_pMemCanvas->PopClip();		
 			}
-			m_pInvalidRegion->Clear();												// Çå¿ÕË¢ĞÂÇø
+			m_pInvalidRegion->Clear();												// æ¸…ç©ºåˆ·æ–°åŒº
 			iErr = DM_ECODE_OK;
 		} while (false);
 		return iErr;
@@ -318,42 +318,42 @@ namespace DM
 		return iErr;
 	}
 
-	// ¸¨Öú
+	// è¾…åŠ©
 	DMCode DMDraw::_OnRender(IDMCanvas* pCanvas, IDMRegion* pRgn,DUIWindow* pWndCur,DUIWindow* pStart,DUIWindow *pEnd, DMDRAW_STATE& Draw_State)
 	{
 		DMCode iErr = DM_ECODE_FAIL;
 		do 
 		{
-			if (NULL == pRgn										// ÎŞĞ§ÇøÎªNULL
-				||pRgn->IsEmpty()									// ÎŞĞ§ÇøÎª¿Õ
-				||DRAW_END == Draw_State							// ±éÀúµ½×îºóÁË
-				||(DRAW_DRAWING == Draw_State && pWndCur == pEnd))  // ±éÀúµ½×îºó±êÖ¾´°¿ÚÁË£¬×îºó±êÖ¾´°¿ÚÒ»°ãÎªNULL»òÆğµã´°¿Ú
+			if (NULL == pRgn										// æ— æ•ˆåŒºä¸ºNULL
+				||pRgn->IsEmpty()									// æ— æ•ˆåŒºä¸ºç©º
+				||DRAW_END == Draw_State							// éå†åˆ°æœ€åäº†
+				||(DRAW_DRAWING == Draw_State && pWndCur == pEnd))  // éå†åˆ°æœ€åæ ‡å¿—çª—å£äº†ï¼Œæœ€åæ ‡å¿—çª—å£ä¸€èˆ¬ä¸ºNULLæˆ–èµ·ç‚¹çª—å£
 			{
 				Draw_State = DRAW_END;
 				break;
 			}
 
 			CRect rcPlaceHolder;
-			pWndCur->DV_GetWindowRect(&rcPlaceHolder);				// »ñµÃÕ¼Î»´óĞ¡£¬Èç²»ÏÔÊ¾
-			if (!pWndCur->DM_IsVisible(true)						// ´°¿Ú²»¿É¼û
-				||!pRgn->RectInRegion(&rcPlaceHolder)				// Õ¼Î»ºÍ»æÖÆÇøÎŞ½»¼¯
-				||rcPlaceHolder.IsRectEmpty())                      // Õ¼Î»Îª¿Õ
+			pWndCur->DV_GetWindowRect(&rcPlaceHolder);				// è·å¾—å ä½å¤§å°ï¼Œå¦‚ä¸æ˜¾ç¤º
+			if (!pWndCur->DM_IsVisible(true)						// çª—å£ä¸å¯è§
+				||!pRgn->RectInRegion(&rcPlaceHolder)				// å ä½å’Œç»˜åˆ¶åŒºæ— äº¤é›†
+				||rcPlaceHolder.IsRectEmpty())                      // å ä½ä¸ºç©º
 			{
 				break;
 			}
 
 			if (DRAW_START == Draw_State&&pWndCur == pStart)
-			{//0. ¿ªÊ¼½øĞĞ»æÖÆ,ÕâÊÇ¸öÂÖÑ¯£¬pWndCur¿ÉÒÔÊÇpStartµÄ¸¸´°¿Ú£¨ÉÏ²ã´°¿Ú£©£¬ÕâÀïĞè±éÀúÕÒµ½¿ªÊ¼»æÖÆµã
+			{//0. å¼€å§‹è¿›è¡Œç»˜åˆ¶,è¿™æ˜¯ä¸ªè½®è¯¢ï¼ŒpWndCurå¯ä»¥æ˜¯pStartçš„çˆ¶çª—å£ï¼ˆä¸Šå±‚çª—å£ï¼‰ï¼Œè¿™é‡Œéœ€éå†æ‰¾åˆ°å¼€å§‹ç»˜åˆ¶ç‚¹
 				Draw_State = DRAW_DRAWING;
 			}
 
-			DMDRAW_STATE DrawBack = Draw_State;    // ±£´æµ±Ç°µÄ»æÖÆ×´Ì¬,ÔÚµİ¹é½áÊøºó¸ù¾İÕâ¸ö×´Ì¬À´ÅĞ¶ÏÊÇ·ñĞèÒª»æÖÆ·Ç¿Í»§Çø
+			DMDRAW_STATE DrawBack = Draw_State;    // ä¿å­˜å½“å‰çš„ç»˜åˆ¶çŠ¶æ€,åœ¨é€’å½’ç»“æŸåæ ¹æ®è¿™ä¸ªçŠ¶æ€æ¥åˆ¤æ–­æ˜¯å¦éœ€è¦ç»˜åˆ¶éå®¢æˆ·åŒº
 			CRect rcClient;
 			pWndCur->DV_GetClientRect(&rcClient);
-			if (DRAW_DRAWING == DrawBack            // »æÖÆ×´Ì¬
-				&&pRgn->RectInRegion(rcClient)		  // ×Ó¿Ø¼şÇøÓòºÍ»æÖÆÇøÓĞ½»¼¯
+			if (DRAW_DRAWING == DrawBack            // ç»˜åˆ¶çŠ¶æ€
+				&&pRgn->RectInRegion(rcClient)		  // å­æ§ä»¶åŒºåŸŸå’Œç»˜åˆ¶åŒºæœ‰äº¤é›†
 				)
-			{// 1.»æÖÆ×ÔÉí¿Í»§Çø
+			{// 1.ç»˜åˆ¶è‡ªèº«å®¢æˆ·åŒº
 				if (pWndCur->DV_IsOnlyDrawClient())
 				{
 					pCanvas->PushClip(&rcClient);
@@ -363,18 +363,18 @@ namespace DM
 					CRect rcWnd = pWndCur->m_rcWindow;
 					IDMCanvas* pCacheCanvas =  pWndCur->DM_GetCacheCanvas();
 					if (pCacheCanvas&&pWndCur->DM_IsCacheDirty()) 
-					{//1.1 »º´æ»­²¼ÒÑÔà£¬ĞèÒª¸üĞÂ
+					{//1.1 ç¼“å­˜ç”»å¸ƒå·²è„ï¼Œéœ€è¦æ›´æ–°
 						CPoint pt = -rcWnd.TopLeft();
 						pCacheCanvas->SetViewportOrgEx(pt.x,pt.y);
 
-						pCacheCanvas->BitBlt(pCanvas,rcWnd.left,rcWnd.top,&rcWnd,SRCCOPY);//°Ñ¸¸´°¿ÚµÄÄÚÈİ¸´ÖÆ¹ıÀ´¡£
+						pCacheCanvas->BitBlt(pCanvas,rcWnd.left,rcWnd.top,&rcWnd,SRCCOPY);//æŠŠçˆ¶çª—å£çš„å†…å®¹å¤åˆ¶è¿‡æ¥ã€‚
 
 						DMSmartPtrT<IDMFont> oldFont;
 						DMSmartPtrT<IDMFont> pFont;
 						DMColor crOld = pCanvas->GetTextColor();
-						if (pWndCur->DV_IsNeedDrawEnviron())//ÊÇ·ñĞèÒª×¼±¸»æÖÆ»·¾³
+						if (pWndCur->DV_IsNeedDrawEnviron())//æ˜¯å¦éœ€è¦å‡†å¤‡ç»˜åˆ¶ç¯å¢ƒ
 						{
-							pCanvas->GetObject((IDMMetaFile**)&pFont,DMF_FONT);// È¡µÃ´«ÈëµÄ×ÖÌå
+							pCanvas->GetObject((IDMMetaFile**)&pFont,DMF_FONT);// å–å¾—ä¼ å…¥çš„å­—ä½“
 							pCacheCanvas->SelectObject(pFont,(IDMMetaFile**)&oldFont);
 							pCacheCanvas->SetTextColor(crOld);
 						}
@@ -402,27 +402,27 @@ namespace DM
 			DUIDrawEnviron DrawEnviron;
 			if (pWndCur->DV_IsNeedDrawEnviron())
 			{			
-				pWndCur->DV_PushDrawEnviron(pCanvas, DrawEnviron);    // ×¼±¸»æÖÆ»·¾³
+				pWndCur->DV_PushDrawEnviron(pCanvas, DrawEnviron);    // å‡†å¤‡ç»˜åˆ¶ç¯å¢ƒ
 			}
 
 			DUIWindow *pChild=pWndCur->DM_GetWindow(GDW_FIRSTCHILD);
-			while (pChild) 	           // µİ¹é³ö¿Ú0
-			{// 2. µİ¹é»æÖÆ×ÔÉí×Ó´°¿Ú
+			while (pChild) 	           // é€’å½’å‡ºå£0
+			{// 2. é€’å½’ç»˜åˆ¶è‡ªèº«å­çª—å£
 				if (pChild==pEnd)
 				{
-					break;             // µİ¹é³ö¿Ú1
+					break;             // é€’å½’å‡ºå£1
 				}
 				_OnRender(pCanvas,pRgn,pChild,pStart,pEnd,Draw_State);
 				if (Draw_State == DRAW_END)
 				{
-					break;             // µİ¹é³ö¿Ú2
+					break;             // é€’å½’å‡ºå£2
 				}
 				pChild=pChild->DM_GetWindow(GDW_NEXTSIBLING);
 			}
 
 			if (pWndCur->DV_IsNeedDrawEnviron())
 			{	
-				pWndCur->DV_PopDrawEnviron(pCanvas, DrawEnviron);   // ½áÊø»æÖÆ»·¾³
+				pWndCur->DV_PopDrawEnviron(pCanvas, DrawEnviron);   // ç»“æŸç»˜åˆ¶ç¯å¢ƒ
 			}
 			if(Draw_State == DRAW_DRAWING&&pWndCur->DV_IsOnlyDrawClient())
 			{
@@ -430,7 +430,7 @@ namespace DM
 			}
 
 			if (DRAW_DRAWING == Draw_State)
-			{// 3. ·´Ïòµİ¹é»æÖÆ·Ç¿Í»§Çø£¬×îºóµÄ×Ó´°¿Ú×îÏÈ»æ·Ç¿Í»§Çø
+			{// 3. åå‘é€’å½’ç»˜åˆ¶éå®¢æˆ·åŒºï¼Œæœ€åçš„å­çª—å£æœ€å…ˆç»˜éå®¢æˆ·åŒº
 				pWndCur->DM_SendMessage(WM_NCPAINT, (WPARAM)pCanvas);
 			}
 

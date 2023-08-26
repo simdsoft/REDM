@@ -1,4 +1,4 @@
-#include "QQDemoAfx.h"
+ï»¿#include "QQDemoAfx.h"
 #include "SkinPreview.h"
 SkinPreview::SkinPreview()
 {
@@ -20,7 +20,7 @@ void SkinPreview::DM_OnPaint(IDMCanvas* pCanvas)
 			CRect rcText = m_rcWindow;rcText.bottom = rcText.top+m_rcWindow.Height()/2;
 			pCanvas->DrawText(m_strThemeName,-1,rcText,DT_VCENTER|DT_SINGLELINE|DT_CENTER,0xff);
 			rcText = m_rcWindow;rcText.top = rcText.bottom-m_rcWindow.Height()/2;
-			pCanvas->DrawText(L"±â±âÐÜÌá¹©",-1,rcText,DT_VCENTER|DT_SINGLELINE|DT_CENTER,0xff);
+			pCanvas->DrawText(L"æ‰æ‰ç†Šæä¾›",-1,rcText,DT_VCENTER|DT_SINGLELINE|DT_CENTER,0xff);
 			pCanvas->SetTextColor(clrOld);
 		}
 	}
@@ -84,7 +84,7 @@ void SkinPreview::OnLButtonUp(UINT nFlags,CPoint pt)
 					pCanvas->FillSolidRect(rcDraw,ClrBg);
 					DMSmartPtrT<IDMRes> pRes;
 					g_pDMApp->GetDefRegObj((void**)&pRes, DMREG_Res);
-					pRes->SetAttribute("boutstyle","1",false);// Íâ²¿ÉèÖÃÄ£Ê½
+					pRes->SetAttribute("boutstyle","1",false);// å¤–éƒ¨è®¾ç½®æ¨¡å¼
 					g_pDMApp->RedrawAll();
 				}
 			}

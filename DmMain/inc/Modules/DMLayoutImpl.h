@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMLayoutImpl.h 
-// File Des: Ãªµã²¼¾Ö
+// File Des: é”šç‚¹å¸ƒå±€
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -17,30 +17,30 @@
 namespace DMAttr
 {
 	/// <summary>
-	///		<see cref="DM::DMLayoutImpl"/>µÄxmlÊôĞÔ¶¨Òå
+	///		<see cref="DM::DMLayoutImpl"/>çš„xmlå±æ€§å®šä¹‰
 	/// </summary>
 	class DMLayoutImplAttr
 	{
 	public:
 		/// -------------------------------------------------
-		///  @brief Ö¸¶¨Î»ÖÃ,×î³£ÓÃµÄÎªÖ¸¶¨ËÄ¸ö×ø±ê,Ê¾Àı£º
-		///  @remark Ê¾Àı1:pos="10,11,101,102",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:10,ÉÏ:11,ÓÒ:101,ÏÂ:102
-		///  @remark Ê¾Àı2:pos="10,11,-12,-13",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:10,ÉÏ:11,ÓÒ:¸¸´°¿ÚÓÒ±ß×óÒÆ12,ÏÂ:¸¸´°¿ÚÏÂ±ßÉÏÒÆ13--->'-'£º¶¨Òå´°¿ÚµÄ¼ÆËãÒÔÏà·´×ø±êÏµ
-		///  @remark Ê¾Àı3:pos="10,11,@100,@101",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:10,ÉÏ:11,¿í:100,¸ß:101--->'@'£º¶¨Òå´°¿ÚµÄsize£¬Ö»ÔÚºóÁ½¸öÖµÖĞÓĞĞ§
-		///  @remark Ê¾Àı4:pos="10,11,|-1,|2",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:10,ÉÏ:11,ÓÒ:¸¸´°¿ÚÖĞĞÄµã×óÒÆ1(-1),ÏÂ£º¸¸´°¿ÚÖĞĞÄµãÏÂÒÆ2-->'|':²Î¿¼¸¸´°¿ÚÖĞĞÄ
-		///  @remark Ê¾Àı5:pos="[10,[11,@100,@101",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:¾àÇ°Ò»¸öĞÖµÜ´°¿Ú×Ô¼º½üµÄ±ßÓÒÒÆ(10)£¬ÉÏ:¾àÇ°Ò»¸öĞÖµÜ´°¿Ú×Ô¼º½üµÄ±ßÏÂÒÆ(10)£¬¿í:100,¸ß:101--->'['²Î¿¼Ç°Ò»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß£¨Ã»ÓĞĞÖµÜ´°¿Ú¾Í²Î¿¼¸¸´°¿ÚµÄ¿ÉÓÃ²¼¾Ö¿Õ¼ä£©
-		///  @remark Ê¾Àı6:pos="0,1,]-10,@100",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:0£¬ÉÏ:1£¬ÓÒ:¾àÏÂÒ»¸öĞÖµÜ´°¿Ú×óÒÆ10(-10),¸ß:100--->']'²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß£¨Ã»ÓĞĞÖµÜ´°¿Ú¾Í²Î¿¼¸¸´°¿ÚµÄ¿ÉÓÃ²¼¾Ö¿Õ¼ä£©
-		///  @remark -->'{'²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß£¬ÓëÊ¾Àı5ÀàĞÍ£¬-->'}'²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼ºÔ¶µÄ±ß,ÓëÊ¾Àı6ÀàËÆ
-		///  @remark Ê¾Àı7:pos="%10,%20,%30,%40",ËÄ¸öµã·Ö±ğ´ú±íÁË×ó:¸¸´°¿Ú²¼¾Ö¿Õ¼äµÄ%10£¬ÉÏ£º¸¸´°¿Ú²¼¾Ö¿Õ¼äµÄ%20£¬ÓÒ£º¸¸´°¿Ú²¼¾Ö¿Õ¼äµÄ%30£¬ÏÂ£º¸¸´°¿Ú²¼¾Ö¿Õ¼äµÄ%40--->'%'²ÉÓÃÔÚ¸¸´°¿ÚµÄ°Ù·Ö±È¶¨Òå×ø±ê
+		///  @brief æŒ‡å®šä½ç½®,æœ€å¸¸ç”¨çš„ä¸ºæŒ‡å®šå››ä¸ªåæ ‡,ç¤ºä¾‹ï¼š
+		///  @remark ç¤ºä¾‹1:pos="10,11,101,102",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:10,ä¸Š:11,å³:101,ä¸‹:102
+		///  @remark ç¤ºä¾‹2:pos="10,11,-12,-13",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:10,ä¸Š:11,å³:çˆ¶çª—å£å³è¾¹å·¦ç§»12,ä¸‹:çˆ¶çª—å£ä¸‹è¾¹ä¸Šç§»13--->'-'ï¼šå®šä¹‰çª—å£çš„è®¡ç®—ä»¥ç›¸ååæ ‡ç³»
+		///  @remark ç¤ºä¾‹3:pos="10,11,@100,@101",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:10,ä¸Š:11,å®½:100,é«˜:101--->'@'ï¼šå®šä¹‰çª—å£çš„sizeï¼Œåªåœ¨åä¸¤ä¸ªå€¼ä¸­æœ‰æ•ˆ
+		///  @remark ç¤ºä¾‹4:pos="10,11,|-1,|2",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:10,ä¸Š:11,å³:çˆ¶çª—å£ä¸­å¿ƒç‚¹å·¦ç§»1(-1),ä¸‹ï¼šçˆ¶çª—å£ä¸­å¿ƒç‚¹ä¸‹ç§»2-->'|':å‚è€ƒçˆ¶çª—å£ä¸­å¿ƒ
+		///  @remark ç¤ºä¾‹5:pos="[10,[11,@100,@101",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:è·å‰ä¸€ä¸ªå…„å¼Ÿçª—å£è‡ªå·±è¿‘çš„è¾¹å³ç§»(10)ï¼Œä¸Š:è·å‰ä¸€ä¸ªå…„å¼Ÿçª—å£è‡ªå·±è¿‘çš„è¾¹ä¸‹ç§»(10)ï¼Œå®½:100,é«˜:101--->'['å‚è€ƒå‰ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹ï¼ˆæ²¡æœ‰å…„å¼Ÿçª—å£å°±å‚è€ƒçˆ¶çª—å£çš„å¯ç”¨å¸ƒå±€ç©ºé—´ï¼‰
+		///  @remark ç¤ºä¾‹6:pos="0,1,]-10,@100",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:0ï¼Œä¸Š:1ï¼Œå³:è·ä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£å·¦ç§»10(-10),é«˜:100--->']'å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹ï¼ˆæ²¡æœ‰å…„å¼Ÿçª—å£å°±å‚è€ƒçˆ¶çª—å£çš„å¯ç”¨å¸ƒå±€ç©ºé—´ï¼‰
+		///  @remark -->'{'å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹ï¼Œä¸ç¤ºä¾‹5ç±»å‹ï¼Œ-->'}'å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿œçš„è¾¹,ä¸ç¤ºä¾‹6ç±»ä¼¼
+		///  @remark ç¤ºä¾‹7:pos="%10,%20,%30,%40",å››ä¸ªç‚¹åˆ†åˆ«ä»£è¡¨äº†å·¦:çˆ¶çª—å£å¸ƒå±€ç©ºé—´çš„%10ï¼Œä¸Šï¼šçˆ¶çª—å£å¸ƒå±€ç©ºé—´çš„%20ï¼Œå³ï¼šçˆ¶çª—å£å¸ƒå±€ç©ºé—´çš„%30ï¼Œä¸‹ï¼šçˆ¶çª—å£å¸ƒå±€ç©ºé—´çš„%40--->'%'é‡‡ç”¨åœ¨çˆ¶çª—å£çš„ç™¾åˆ†æ¯”å®šä¹‰åæ ‡
 		static const char* POS_pos;	
 
 		/// -------------------------------------------------
-		///  @brief Ö¸¶¨Î»ÖÃ,ÔÚpos×ø±êĞ¡ÓÚËÄÊ±£¬½áºÏposÊ¹ÓÃ,Ê¾Àı:
-		///  @remark Ê¾Àı1:pos="%10,%11" possize="100,101",pos¼ÇÂ¼ÁË×óÉÏ½Ç×ø±ê,¶øpossize¼ÇÂ¼ÁË¿í100£¬¸ß101
-		///  @remark Ê¾Àı2:pos="%10,%20" possize="-1,-1"£¬pos²»Îª¿Õ,Í¬Ê±possize´óĞ¡Îª-1£¬-1,£¨-1)±íÊ¾¸ù¾İÄÚÈİ²¼¾Ö£¬Ê¹ÓÃDV_GetDesiredSize£¬possizeÇ°Ò»ÖµÎªºáÏò£¬ºóÒ»ÖµÎªÊúÖ±
-		///  @remark Ê¾Àı3:pos="%10,%20" possize="-1,100"£¬pos²»Îª¿Õ,Í¬Ê±possize´óĞ¡Îª-1£¬100,£¨-1)±íÊ¾¸ù¾İÄÚÈİ²¼¾Ö,¸ß¶È100,Ê¹ÓÃDV_GetDesiredSize£¬possizeÇ°Ò»ÖµÎªºáÏò£¬ºóÒ»ÖµÎªÊúÖ±
-		///  @remark Ê¾Àı4:pos="" possize="-1,-1",posÎª¿Õ,possize´óĞ¡Îª-1£¬-1£¬ÌîÂú¸¸´°¿Ú
-		///  @remark Ê¾Àı4:pos="" possize="x,x",posÎª¿Õ,x²»È«Îª-1£¬-1£¬Ê¹ÓÃ×Ô¶¯ÅÅĞò,Ç°-1±íÊ¾ÌîÂúºáÏò¸¸´°¿Ú£¬ºó-1±íÊ¾ÌîÂú¼áÏò¸¸´°¿Ú
+		///  @brief æŒ‡å®šä½ç½®,åœ¨posåæ ‡å°äºå››æ—¶ï¼Œç»“åˆposä½¿ç”¨,ç¤ºä¾‹:
+		///  @remark ç¤ºä¾‹1:pos="%10,%11" possize="100,101",posè®°å½•äº†å·¦ä¸Šè§’åæ ‡,è€Œpossizeè®°å½•äº†å®½100ï¼Œé«˜101
+		///  @remark ç¤ºä¾‹2:pos="%10,%20" possize="-1,-1"ï¼Œposä¸ä¸ºç©º,åŒæ—¶possizeå¤§å°ä¸º-1ï¼Œ-1,ï¼ˆ-1)è¡¨ç¤ºæ ¹æ®å†…å®¹å¸ƒå±€ï¼Œä½¿ç”¨DV_GetDesiredSizeï¼Œpossizeå‰ä¸€å€¼ä¸ºæ¨ªå‘ï¼Œåä¸€å€¼ä¸ºç«–ç›´
+		///  @remark ç¤ºä¾‹3:pos="%10,%20" possize="-1,100"ï¼Œposä¸ä¸ºç©º,åŒæ—¶possizeå¤§å°ä¸º-1ï¼Œ100,ï¼ˆ-1)è¡¨ç¤ºæ ¹æ®å†…å®¹å¸ƒå±€,é«˜åº¦100,ä½¿ç”¨DV_GetDesiredSizeï¼Œpossizeå‰ä¸€å€¼ä¸ºæ¨ªå‘ï¼Œåä¸€å€¼ä¸ºç«–ç›´
+		///  @remark ç¤ºä¾‹4:pos="" possize="-1,-1",posä¸ºç©º,possizeå¤§å°ä¸º-1ï¼Œ-1ï¼Œå¡«æ»¡çˆ¶çª—å£
+		///  @remark ç¤ºä¾‹4:pos="" possize="x,x",posä¸ºç©º,xä¸å…¨ä¸º-1ï¼Œ-1ï¼Œä½¿ç”¨è‡ªåŠ¨æ’åº,å‰-1è¡¨ç¤ºå¡«æ»¡æ¨ªå‘çˆ¶çª—å£ï¼Œå-1è¡¨ç¤ºå¡«æ»¡åšå‘çˆ¶çª—å£
 		static const char* SIZE_possize;                                                        
 	};
 	DMAttrValueInit(DMLayoutImplAttr,POS_pos)DMAttrValueInit(DMLayoutImplAttr,SIZE_possize)
@@ -48,49 +48,49 @@ namespace DMAttr
 
 namespace DM
 {
-#define POSFLAG_NULL           ""			 // Õı³£×ø±ê,¸ººÅ±íÊ¾ÒÔÓÒ(ÏÂ)Îª²Î¿¼
-#define POSFLAG_REFCENTER      '|'          // ²Î¿¼¸¸´°¿ÚÖĞĞÄ
-#define POSFLAG_PERCENT        '%'          // ²ÉÓÃÔÚ¸¸´°¿ÚµÄ°Ù·Ö±È¶¨Òå×ø±ê
-#define POSFLAG_REFPREV_NEAR   '['          // ²Î¿¼Ç°Ò»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß
-#define POSFLAG_REFNEXT_NEAR   ']'          // ²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß
-#define POSFLAG_REFPREV_FAR    '{'          // ²Î¿¼Ç°Ò»¸öĞÖµÜ´°¿ÚÓë×Ô¼ºÔ¶µÄ±ß
-#define POSFLAG_REFNEXT_FAR    '}'          // ²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼ºÔ¶µÄ±ß
-#define POSFLAG_DEFSIZE        '@'          // ÔÚposÊôĞÔÖĞ¶¨Òå´°¿ÚµÄsize£¬Ö»ÔÚÔÚ¶¨Òåx2,y2Ê±ÓĞĞ§
+#define POSFLAG_NULL           ""			 // æ­£å¸¸åæ ‡,è´Ÿå·è¡¨ç¤ºä»¥å³(ä¸‹)ä¸ºå‚è€ƒ
+#define POSFLAG_REFCENTER      '|'          // å‚è€ƒçˆ¶çª—å£ä¸­å¿ƒ
+#define POSFLAG_PERCENT        '%'          // é‡‡ç”¨åœ¨çˆ¶çª—å£çš„ç™¾åˆ†æ¯”å®šä¹‰åæ ‡
+#define POSFLAG_REFPREV_NEAR   '['          // å‚è€ƒå‰ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹
+#define POSFLAG_REFNEXT_NEAR   ']'          // å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹
+#define POSFLAG_REFPREV_FAR    '{'          // å‚è€ƒå‰ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿œçš„è¾¹
+#define POSFLAG_REFNEXT_FAR    '}'          // å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿œçš„è¾¹
+#define POSFLAG_DEFSIZE        '@'          // åœ¨poså±æ€§ä¸­å®šä¹‰çª—å£çš„sizeï¼Œåªåœ¨åœ¨å®šä¹‰x2,y2æ—¶æœ‰æ•ˆ
 
-	enum POS_TYPE// ×ø±êÊôĞÔ
+	enum POS_TYPE// åæ ‡å±æ€§
 	{
 		SizeX_Mask          = 0x0007UL,
-		SizeX_Specify       = 0x0001UL,		// width >= 0,Ç¿ÖÆÖ¸¶¨ÁË´óĞ¡
-		SizeX_FitContent    = 0x0002UL,		// °´ÄÚÈİÖ¸¶¨
+		SizeX_Specify       = 0x0001UL,		// width >= 0,å¼ºåˆ¶æŒ‡å®šäº†å¤§å°
+		SizeX_FitContent    = 0x0002UL,		// æŒ‰å†…å®¹æŒ‡å®š
 		SizeX_FitParent     = 0x0004UL,		// width = -1 default
 		SizeY_Mask          = 0x0070UL,
 		SizeY_Specify       = 0x0010UL,		// height >= 0
-		SizeY_FitContent    = 0x0020UL,		// °´ÄÚÈİÖ¸¶¨
+		SizeY_FitContent    = 0x0020UL,		// æŒ‰å†…å®¹æŒ‡å®š
 		SizeY_FitParent     = 0x0040UL,		// height = -1 default
 	};
 
-	enum PIT// ×ø±êÀàĞÍ
+	enum PIT// åæ ‡ç±»å‹
 	{
-		PIT_NORMAL = 0,						// Ò»°ã×ø±ê
-		PIT_CENTER,							// ²Î¿¼¸¸´°¿ÚÖĞĞÄµã,ÒÔ"|"¿ªÊ¼
-		PIT_PERCENT,						// Ö¸¶¨ÔÚ¸¸´°¿Ú×ø±êµÄÖĞµÄ°Ù·Ö±È,ÒÔ"%"¿ªÍ·
-		PIT_PREV_NEAR,						// ²Î¿¼Ç°Ò»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß
-		PIT_NEXT_NEAR,						// ²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼º½üµÄ±ß
-		PIT_PREV_FAR,						// ²Î¿¼Ç°Ò»¸öĞÖµÜ´°¿ÚÓë×Ô¼ºÔ¶µÄ±ß
-		PIT_NEXT_FAR,						// ²Î¿¼ÏÂÒ»¸öĞÖµÜ´°¿ÚÓë×Ô¼ºÔ¶µÄ±ß
-		PIT_OFFSET,							// Ïà¶ÔÓÚÇ°Ãæx1,y1µÄÆ«ÒÆ,Ö»ÄÜÔÚx2,y2ÖĞÊ¹ÓÃ£¬ÒÔ@¿ªÍ·
+		PIT_NORMAL = 0,						// ä¸€èˆ¬åæ ‡
+		PIT_CENTER,							// å‚è€ƒçˆ¶çª—å£ä¸­å¿ƒç‚¹,ä»¥"|"å¼€å§‹
+		PIT_PERCENT,						// æŒ‡å®šåœ¨çˆ¶çª—å£åæ ‡çš„ä¸­çš„ç™¾åˆ†æ¯”,ä»¥"%"å¼€å¤´
+		PIT_PREV_NEAR,						// å‚è€ƒå‰ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹
+		PIT_NEXT_NEAR,						// å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿‘çš„è¾¹
+		PIT_PREV_FAR,						// å‚è€ƒå‰ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿œçš„è¾¹
+		PIT_NEXT_FAR,						// å‚è€ƒä¸‹ä¸€ä¸ªå…„å¼Ÿçª—å£ä¸è‡ªå·±è¿œçš„è¾¹
+		PIT_OFFSET,							// ç›¸å¯¹äºå‰é¢x1,y1çš„åç§»,åªèƒ½åœ¨x2,y2ä¸­ä½¿ç”¨ï¼Œä»¥@å¼€å¤´
 	};
 
 	typedef struct stPOS_ITEM
 	{
 		stPOS_ITEM(){pit=PIT_NORMAL;bMinus=false;nPos=0.0;}
-		PIT		pit;						// ×ø±êÀàĞÍ
-		bool	bMinus;						// true±íÊ¾ÕâÊÇÒ»¸ö¸ºÖµ
+		PIT		pit;						// åæ ‡ç±»å‹
+		bool	bMinus;						// trueè¡¨ç¤ºè¿™æ˜¯ä¸€ä¸ªè´Ÿå€¼
 		float   nPos;
 	}POS_ITEM;
 
 	/// <summary>
-	///		Ãªµã²¼¾ÖÄÚÖÃÊµÏÖ£¬ÊôĞÔ£º<see cref="DMAttr::DMLayoutImplAttr"/>
+	///		é”šç‚¹å¸ƒå±€å†…ç½®å®ç°ï¼Œå±æ€§ï¼š<see cref="DMAttr::DMLayoutImplAttr"/>
 	/// </summary>
 	class DMLayoutImpl:public IDMLayout
 	{
@@ -103,18 +103,18 @@ namespace DM
 		DMCode UpdateLayout(OUT LPRECT prcContainer,OUT CRect &rcWindow);
 		DMCode UpdateChildLayout();
 
-	public:// ¸¨Öú
+	public:// è¾…åŠ©
 		bool ParsePostion();
 		bool ParsePostionType();
 		bool ParseItem(LPCSTR lpszPos, POS_ITEM &item);
 		bool ParseChildPosition(DM::CList<DUIWindow*> *pList);
-		int ParseItemValue(const POS_ITEM &item,int nMin, int nMax,bool bX);//·µ»ØPOS_WAIT±íÊ¾²¼¾ÖÒÀÀµµÄÇ°»òºó´°¿ÚÎ´Íê³É²¼¾Ö£¬bX±íÊ¾ºá×ø±ê
+		int ParseItemValue(const POS_ITEM &item,int nMin, int nMax,bool bX);//è¿”å›POS_WAITè¡¨ç¤ºå¸ƒå±€ä¾èµ–çš„å‰æˆ–åçª—å£æœªå®Œæˆå¸ƒå±€ï¼ŒbXè¡¨ç¤ºæ¨ªåæ ‡
 		bool Update4(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool Update2(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool UpdateFull(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool UpdateAuto(LPRECT lpRcContainer,OUT CRect &rcWindow);
 		bool IsUnInitPos(int iPos);
-		CSize CalcSize(LPRECT pRcContainer);//  ¼ÆËã´°¿Ú´óĞ¡
+		CSize CalcSize(LPRECT pRcContainer);//  è®¡ç®—çª—å£å¤§å°
 
 
 	public:
@@ -128,13 +128,13 @@ namespace DM
 	public:
 		CStringA				 m_strPosValue;			
 			
-		DUIWindow*				 m_pOwner;			   // layoutµÄËŞÖ÷ 
-		int					     m_nCount;			   // ¶¨ÒåµÄ×ø±ê¸öÊı
+		DUIWindow*				 m_pOwner;			   // layoutçš„å®¿ä¸» 
+		int					     m_nCount;			   // å®šä¹‰çš„åæ ‡ä¸ªæ•°
 		
 		POS_ITEM m_Left;POS_ITEM m_Top;POS_ITEM m_Right;POS_ITEM m_Bottom;
 
-		UINT					m_uPositionType;      //  ×ø±êÊôĞÔ
+		UINT					m_uPositionType;      //  åæ ‡å±æ€§
 		CSize                   m_size;			      // SizeX_Mask,SizeY_Mask		
-		int						m_nSepSpace;          //  ´°¿Ú×Ô¶¯ÅÅ°æµÄÊúÖ±¼ä¸ô
+		int						m_nSepSpace;          //  çª—å£è‡ªåŠ¨æ’ç‰ˆçš„ç«–ç›´é—´éš”
 	};
 }//namespace DM

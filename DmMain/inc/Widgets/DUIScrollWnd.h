@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: 
-// File Des: DUIScrollWndÖ»ÔÊĞí°üº¬Ò»¸ö¾ø¶Ô²¼¾Ö×Ó¿Ø¼şDUIScrollFL,DUIScrollFLµÄ´óĞ¡×ÜÊÇ°üº¬ËüµÄËùÓĞ×Ó´°¿ÚÇøÓò
+// File Des: DUIScrollWndåªå…è®¸åŒ…å«ä¸€ä¸ªç»å¯¹å¸ƒå±€å­æ§ä»¶DUIScrollFL,DUIScrollFLçš„å¤§å°æ€»æ˜¯åŒ…å«å®ƒçš„æ‰€æœ‰å­çª—å£åŒºåŸŸ
 // File Summary:
 // Cur Version: 1.0
 // Author:
@@ -19,7 +19,7 @@
 namespace DM
 {
 	/// <summary>
-	///		 DUIScrollWndµÄ¸¨Öú,ÓÃÓÚ¾ø¶Ô²¼¾Ö,°üº¬ËüµÄËùÓĞ×Ó´°¿ÚÇøÓò,µ±×Ó´°¿ÚÇøÓò±ä»¯Ê±£¬Ëü»áÍ¬²½±ä»¯
+	///		 DUIScrollWndçš„è¾…åŠ©,ç”¨äºç»å¯¹å¸ƒå±€,åŒ…å«å®ƒçš„æ‰€æœ‰å­çª—å£åŒºåŸŸ,å½“å­çª—å£åŒºåŸŸå˜åŒ–æ—¶ï¼Œå®ƒä¼šåŒæ­¥å˜åŒ–
 	/// </summary>
 	class DM_EXPORT DUIScrollFL : public DUIWindow
 	{
@@ -27,7 +27,7 @@ namespace DM
 		DMDECLARE_CLASS_NAME(DUIScrollFL, DUINAME_ScrollFL, DMREG_Window);
 
 	public:
-		CRect GetMeasureRect(bool bUseFLCoordinate = false);				   ///< bUseFLCoordinateÎªtrueÊ±,±íÊ¾ÒÔScrollFLµÄ×óÉÏ½ÇÎª×ø±êÔ­µã,·ñÔòÒÔÖ÷´°¿ÚÎª×ø±êÔ­µã
+		CRect GetMeasureRect(bool bUseFLCoordinate = false);				   ///< bUseFLCoordinateä¸ºtrueæ—¶,è¡¨ç¤ºä»¥ScrollFLçš„å·¦ä¸Šè§’ä¸ºåæ ‡åŸç‚¹,å¦åˆ™ä»¥ä¸»çª—å£ä¸ºåæ ‡åŸç‚¹
 
 	public:
 		virtual DMCode DV_GetChildMeasureLayout(LPRECT lpRect);
@@ -40,17 +40,17 @@ namespace DM
 		DM_END_MSG_MAP()
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnDestroy();
 
 	public:
-		CRect                                          m_rcMeasure;             ///< ÒÔScrollFLµÄ×óÉÏ½ÇÎª×ø±êÔ­µã,°üº¬ËùÓĞ×Ó¿Ø¼şµÄ×îĞ¡ÇøÓò(²»°üº¬ScrollFL·Ç¿Í»§Çø)
+		CRect                                          m_rcMeasure;             ///< ä»¥ScrollFLçš„å·¦ä¸Šè§’ä¸ºåæ ‡åŸç‚¹,åŒ…å«æ‰€æœ‰å­æ§ä»¶çš„æœ€å°åŒºåŸŸ(ä¸åŒ…å«ScrollFLéå®¢æˆ·åŒº)
 	};
 
 
 	/// <summary>
-	///		 DUIScrollWndµÄÄÚÖÃÊµÏÖ
+	///		 DUIScrollWndçš„å†…ç½®å®ç°
 	/// </summary>
 	class DM_EXPORT DUIScrollWnd :public DUIScrollBase
 	{
@@ -61,9 +61,9 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: ¶ÔÍâ½Ó¿Ú
+		// Function Des: å¯¹å¤–æ¥å£
 		//---------------------------------------------------
-		virtual void UpdateScrollRange();									    ///< ¸üĞÂ¹ö¶¯·¶Î§£¬Èç¹û×Ó¿Ø¼şµÄ´óĞ¡¸Ä±äÁË,ĞèÒªÖ÷¶¯µ÷ÓÃ´ËÀ´´¥·¢
+		virtual void UpdateScrollRange();									    ///< æ›´æ–°æ»šåŠ¨èŒƒå›´ï¼Œå¦‚æœå­æ§ä»¶çš„å¤§å°æ”¹å˜äº†,éœ€è¦ä¸»åŠ¨è°ƒç”¨æ­¤æ¥è§¦å‘
 
 		//---------------------------------------------------
 		// Function Des: DV methods
@@ -78,7 +78,7 @@ namespace DM
 
 	public:
 		//---------------------------------------------------
-		// Function Des: DUIµÄÏûÏ¢·Ö·¢ÏµÁĞº¯Êı
+		// Function Des: DUIçš„æ¶ˆæ¯åˆ†å‘ç³»åˆ—å‡½æ•°
 		//---------------------------------------------------
 		void OnSize(UINT nType, CSize size);
 

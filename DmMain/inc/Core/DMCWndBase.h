@@ -1,9 +1,9 @@
-//-------------------------------------------------------
+ï»¿//-------------------------------------------------------
 // Copyright (c) DuiMagic
 // All rights reserved.
 // 
 // File Name: DMCWndBase.h 
-// File Des: ÊµÏÖCWnd·â×°
+// File Des: å®ç°CWndå°è£…
 // File Summary: 
 // Cur Version: 1.0
 // Author:
@@ -16,10 +16,10 @@
 namespace DM
 {
 	/// <summary>
-	///		»ùÓÚatlwin.CWindow,Ä£ÄâCWnd
+	///		åŸºäºatlwin.CWindow,æ¨¡æ‹ŸCWnd
 	/// </summary>
 	/// <remarks>
-	///		CWnd·â×°µÄº¯Êı,´ËÀà»ù±¾¶¼·â×°ÁË,º¯ÊıÌ«¶à,²»Ò»Ò»ÁĞ³ö,ÇëÖ±½ÓÊ¹ÓÃ
+	///		CWndå°è£…çš„å‡½æ•°,æ­¤ç±»åŸºæœ¬éƒ½å°è£…äº†,å‡½æ•°å¤ªå¤š,ä¸ä¸€ä¸€åˆ—å‡º,è¯·ç›´æ¥ä½¿ç”¨
 	/// </remarks>
 	class DM_EXPORT DMCWndBase
 	{
@@ -41,8 +41,8 @@ namespace DM
 		LONG SetWindowLong(int nIndex, LONG dwNewLong) throw();
 
 #ifdef _WIN64
-		LONG_PTR GetWindowLongPtr(int nIndex) const throw();//32Î»ÏÂÍ¬ÓÚGetWindowLong,WinUser.hÖĞÓĞºê¶¨Òå
-		LONG_PTR SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw();//32Î»ÏÂÍ¬ÓÚSetWindowLong,WinUser.hÖĞÓĞºê¶¨Òå
+		LONG_PTR GetWindowLongPtr(int nIndex) const throw();//32ä½ä¸‹åŒäºGetWindowLong,WinUser.hä¸­æœ‰å®å®šä¹‰
+		LONG_PTR SetWindowLongPtr(int nIndex, LONG_PTR dwNewLong) throw();//32ä½ä¸‹åŒäºSetWindowLong,WinUser.hä¸­æœ‰å®å®šä¹‰
 #endif
 
 		WORD GetWindowWord(int nIndex) const throw();
@@ -61,7 +61,7 @@ namespace DM
 		// Window Text Functions
 		BOOL SetWindowText(LPCTSTR lpszString) throw();
 		int GetWindowText(_Out_z_cap_post_count_(nMaxCount, return + 1) LPTSTR lpszStringBuf, _In_ int nMaxCount) const throw();
-		int GetWindowText(CStringT& strText) const;//CStringT´úÌæCSimpleString
+		int GetWindowText(CStringT& strText) const;//CStringTä»£æ›¿CSimpleString
 		int GetWindowTextLength() const throw();
 
 		// -------------------------------------------------
@@ -270,6 +270,6 @@ namespace DM
 		BOOL UpdateLayeredWindow(HDC hdcDst, POINT *pptDst, SIZE *psize, HDC hdcSrc, POINT *pptSrc,COLORREF crKey, BLENDFUNCTION *pblend,DWORD dwFlags);
 
 	public:
-		HWND					m_hWnd;///<´°¿Ú¾ä±ú
+		HWND					m_hWnd;///<çª—å£å¥æŸ„
 	};
 }// namespace DM

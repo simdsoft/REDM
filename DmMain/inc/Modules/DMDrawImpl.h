@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+ï»¿// ----------------------------------------------------------------
 // Copyright (c)  
 // All rights reserved.
 // 
@@ -15,13 +15,13 @@ namespace DM
 {
 	typedef enum _DRAWSTATE
 	{
-		DRAW_START=0,    //¿ªÊ¼
-		DRAW_DRAWING,    //»æÖÆÖĞ
-		DRAW_END         //½á¼ª
+		DRAW_START=0,    //å¼€å§‹
+		DRAW_DRAWING,    //ç»˜åˆ¶ä¸­
+		DRAW_END         //ç»“å‰
 	}DMDRAW_STATE;
 
 	/// <summary>
-	///		»æÖÆÂß¼­ÄÚÖÃÊµÏÖ
+	///		ç»˜åˆ¶é€»è¾‘å†…ç½®å®ç°
 	/// </summary>
 	class DMDrawImpl:public IDMDraw
 	{
@@ -43,7 +43,7 @@ namespace DM
 		DMCode GetCanvas(IDMCanvas** ppCanvas);
 		DMCode ResizeCanvas(SIZE size);
 
-	private:// ¸¨Öú
+	private:// è¾…åŠ©
 		DMCode _OnRender(IDMCanvas* pCanvas, IDMRegion* pRgn,DUIWindow* pWndCur,DUIWindow* pStart,DUIWindow *pEnd, DMDRAW_STATE& Draw_State);
 
 	public:
@@ -53,7 +53,7 @@ namespace DM
 		DMSmartPtrT<IDMCanvas>					m_pMemCanvas;
 
 		bool								    m_bNeedRepaint;
-		bool                                    m_bOnlyOneRectRepaint;			///< ½öÖ»ÓĞÒ»¸öÎŞĞ§¾ØĞÎÇø
+		bool                                    m_bOnlyOneRectRepaint;			///< ä»…åªæœ‰ä¸€ä¸ªæ— æ•ˆçŸ©å½¢åŒº
 		CRect                                   m_rcOnlyOne;                   
 		CRect                                   m_rcCanvas;
 	};

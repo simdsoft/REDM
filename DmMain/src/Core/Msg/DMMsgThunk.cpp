@@ -1,4 +1,4 @@
-#include "DmMainAfx.h"
+ï»¿#include "DmMainAfx.h"
 #include "DMMsgThunk.h"
 
 namespace DM
@@ -8,7 +8,7 @@ namespace DM
 	void DMMsgThunk::Init(DWORD_PTR proc, void* pThis)
 	{
 		m_mov = 0x042444C7;// C7 44 24 0C
-		m_this = PtrToUlong(pThis);  // mov [esp+4], pThis;¶øesp+4±¾À´ÊÇ·ÅhWnd,ÏÖÔÚ±»Íµ×Å·Å¶ÔÏóÖ¸ÕëÁË.
+		m_this = PtrToUlong(pThis);  // mov [esp+4], pThis;è€Œesp+4æœ¬æ¥æ˜¯æ”¾hWnd,çŽ°åœ¨è¢«å·ç€æ”¾å¯¹è±¡æŒ‡é’ˆäº†.
 		m_jmp = 0xe9;
 		m_relproc = (DWORD)((INT_PTR)proc - ((INT_PTR)this + sizeof(DMMsgThunk)));
 
@@ -82,9 +82,9 @@ namespace DM
 			}
 
 			m_pThunk->Init(proc, pThis);
-			WNDPROC pProc = (WNDPROC)m_pThunk->GetCodeAddress();// µÃµ½ThunkÖ¸Õë
+			WNDPROC pProc = (WNDPROC)m_pThunk->GetCodeAddress();// å¾—åˆ°ThunkæŒ‡é’ˆ
 
-			// µ÷ÓÃÏÂÃæµÄÓï¾äºó£¬ÒÔºóÏûÏ¢À´ÁË£¬¶¼ÓÉpProc´¦Àí
+			// è°ƒç”¨ä¸‹é¢çš„è¯­å¥åŽï¼Œä»¥åŽæ¶ˆæ¯æ¥äº†ï¼Œéƒ½ç”±pProcå¤„ç†
 			::SetWindowLongPtr(hWnd, GWLP_WNDPROC, (LONG_PTR)pProc);
 			bRet = true;
 		} while (false);
