@@ -1,4 +1,6 @@
-// v1.0 works on vs2010 or later
+// v1.0.1 add vs2022 17.8.0 support
+// v1.0.0 works on vs2010 to vs2022 17.7.x
+
 #ifndef SIMDSOFT__NTCVT_HPP
 #define SIMDSOFT__NTCVT_HPP
 
@@ -33,7 +35,12 @@ public:
                          std::_String_iter_types<
                              _Elem, typename _Alty_traits::size_type,
                              typename _Alty_traits::difference_type, typename _Alty_traits::pointer,
+#   if _MSC_VER < 1938
                              typename _Alty_traits::const_pointer, _Elem&, const _Elem&>>>;
+#   else //  VS2022 17.8.0+
+                             typename _Alty_traits::const_pointer>>>;
+#   endif
+
 #endif
   // See also afxmfc CString::GetBufferSetLength
   // Why do this hack?
@@ -105,7 +112,7 @@ template <typename _StringContType>
 inline _StringContType wcbs2a(const wchar_t* wcb, int len, UINT cp = NTCVT_CP_DEFAULT)
 {
   if (len == -1)
-    len = lstrlenW(wcb);
+    len = static_cast<int>(wcslen(wcb));
   _StringContType buffer;
   int cch;
   if (len > 0 && (cch = ::WideCharToMultiByte(cp, 0, wcb, len, NULL, 0, NULL, NULL)) > 0)
@@ -122,7 +129,7 @@ template <typename _StringContType>
 inline _StringContType mcbs2w(const char* mcb, int len, UINT cp = NTCVT_CP_DEFAULT)
 {
   if (len == -1)
-    len = lstrlenA(mcb);
+    len = static_cast<int>(strlen(mcb));
   _StringContType buffer;
   int cch;
   if (len > 0 && (cch = ::MultiByteToWideChar(cp, 0, mcb, len, NULL, 0)) > 0)
@@ -139,7 +146,7 @@ inline _StringContType mcbs2w(const char* mcb, int len, UINT cp = NTCVT_CP_DEFAU
 inline int mcbs2w(const char* mcb, int len, wchar_t* wbuf, int wbuf_len, UINT cp = NTCVT_CP_DEFAULT)
 {
   if (len == -1)
-    len = lstrlenA(mcb);
+    len = static_cast<int>(strlen(mcb));
   int cch;
   if (len > 0 && (cch = ::MultiByteToWideChar(cp, 0, mcb, len, NULL, 0)) > 0)
     return ::MultiByteToWideChar(cp, 0, mcb, len, wbuf, wbuf_len);
@@ -150,7 +157,7 @@ inline int mcbs2w(const char* mcb, int len, wchar_t* wbuf, int wbuf_len, UINT cp
 inline wchar_t* mcbs2wdup(const char* mcb, int len, int* wbuf_len, UINT cp = NTCVT_CP_DEFAULT)
 {
   if (len == -1)
-    len = lstrlenA(mcb);
+    len = static_cast<int>(strlen(mcb));
   int cch;
   if (len > 0 && (cch = ::MultiByteToWideChar(cp, 0, mcb, len, NULL, 0)) > 0)
   {
