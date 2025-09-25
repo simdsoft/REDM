@@ -21,7 +21,7 @@ namespace DM
 		void MeltTop(int count,int nSleeptime);
 
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DM_DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
 
 	public:
 		void OnPaint(HDC hdc);

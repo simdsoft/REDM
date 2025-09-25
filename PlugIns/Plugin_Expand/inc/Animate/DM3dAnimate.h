@@ -26,7 +26,7 @@ namespace DM
 		void OnTimer(UINT_PTR idEvent);
 
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DM_DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
 
 	public:
 		IDMAnimateOwner*				    m_pOwner; 

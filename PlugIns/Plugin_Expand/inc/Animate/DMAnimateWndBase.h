@@ -22,7 +22,7 @@ namespace DM
 		BOOL UpdateLayerWnd(IDMCanvas*pCanvas,byte alpha,CPoint pt=CPoint(0,0));
 
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DM_DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
 
 	public:
 

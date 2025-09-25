@@ -47,7 +47,7 @@ protected:
 	LRESULT OnTaskbarRestart(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/);
 
 public:
-	DECLARE_MESSAGE_MAP()	
+	DM_DECLARE_MESSAGE_MAP()	
 	static DWORD StartTimeCheck(LPVOID lp);
 
 public:

@@ -18,7 +18,7 @@ public:
 	int MessageBox(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType); 
 
 private:
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP()
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);

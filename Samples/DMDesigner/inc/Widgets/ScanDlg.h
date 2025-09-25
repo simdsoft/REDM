@@ -14,7 +14,7 @@
 class ScanDlg : public DMHDialog
 {
 public:
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	void OnSize(UINT nType, CSize size);
 
 protected:

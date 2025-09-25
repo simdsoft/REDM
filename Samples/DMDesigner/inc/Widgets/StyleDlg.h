@@ -16,7 +16,7 @@ class StyleDlg : public DMHDialog,public IAttrExpandOwner,DMArrayT<DMXmlInitAttr
 public:
 	StyleDlg(bool bEditMode = false);
 	~StyleDlg();
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP() 
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);

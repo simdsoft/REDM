@@ -22,7 +22,7 @@ BOOL CMainWnd::OnInitDialog(HWND wndFocus, LPARAM lInitParam)
 	// 加载三份消息宏
 	wchar_t szPath[MAX_PATH] = {0};
 	GetRootFullPath(L".\\DMMsgCrack.h",szPath,MAX_PATH);
-	m_MacroHelper.LoadFile(szPath,L"#define DECLARE_MESSAGE_MAP()");
+	m_MacroHelper.LoadFile(szPath,L"#define DM_DECLARE_MESSAGE_MAP()");
 
 	memset(szPath,0,MAX_PATH);
 	GetRootFullPath(L".\\DUIMsgCrack.h",szPath,MAX_PATH);

@@ -14,7 +14,7 @@
 class PreHWnd : public DMHWnd
 {
 public:
-	DECLARE_MESSAGE_MAP()						
+	DM_DECLARE_MESSAGE_MAP()						
 
 	HWND ObjCreateWindow(DMXmlDocument &XmlDoc);
 	DMCode LoadDMData(DMXmlDocument &XmlDoc);	

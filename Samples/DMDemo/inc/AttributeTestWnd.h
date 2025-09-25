@@ -32,7 +32,7 @@ public:
 	DMCode OnSetAttribute();
 
 protected:
-	DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
+	DM_DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
 	BEGIN_EVENT_MAPT(CAttributeTestWnd)
 		EVENT_NAME_COMMAND("btn_attrtestclose",OnClose)
 		EVENT_NAME_COMMAND("btn_testattr",OnSetAttribute)

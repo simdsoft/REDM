@@ -15,7 +15,7 @@ class ImgTypeDlg : public DMHDialog
 {
 public:
 	ImgTypeDlg(bool bEditMode = false,CStringW strName = L"");
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
 

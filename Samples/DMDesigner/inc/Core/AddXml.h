@@ -32,7 +32,7 @@ private:
 public:
 	static DMCode s_DMHandleEvent(DMEventArgs *pEvt);
 	static BOOL s_ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID = 0);
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP()
 
 public:

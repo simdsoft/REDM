@@ -15,7 +15,7 @@ class ThemeDlg : public DMHDialog
 {
 public: 
 	ThemeDlg(bool bEditMode = false,CStringA strThemeName = "",CStringW strDir = L"");
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP() 
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);

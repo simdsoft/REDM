@@ -33,7 +33,7 @@ public:
 	DMCode OnClose();
 	DMCode OnOutSkin();
 protected:
-	DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
+	DM_DECLARE_MESSAGE_MAP()// 仿MFC消息映射宏
 	DECLARE_EVENT_MAP()
 
 public:

@@ -16,7 +16,7 @@
 /// </summary>
 class XmlEditor : public DMHWnd
 {
-	DECLARE_MESSAGE_MAP()	
+	DM_DECLARE_MESSAGE_MAP()	
 public:
 	XmlEditor();
 

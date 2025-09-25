@@ -64,8 +64,8 @@ public: \
 	case 0:
 
 //-------------------------------------------------------
-#ifndef DECLARE_MESSAGE_MAP
-#define DECLARE_MESSAGE_MAP()					DECLARE_MSG_MAP()
+#ifndef DM_DECLARE_MESSAGE_MAP
+#define DM_DECLARE_MESSAGE_MAP()					DECLARE_MSG_MAP()
 #endif
 //-------------------------------------------------------
 // 在头文件中声明并定义,用于模板类

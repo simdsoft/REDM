@@ -15,7 +15,7 @@ class LayoutDlg : public DMHDialog
 {
 public:
 	LayoutDlg(bool bEditMode = false);
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP()
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);

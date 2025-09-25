@@ -54,7 +54,7 @@ namespace DM
 		void DestroyTipsWnd();
 
 	public:
-		DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
+		DM_DECLARE_MESSAGE_MAP()										// 仿MFC消息映射宏
 
 	public:
 		DMSmartPtrT<DMHWnd>			 m_pWnd;

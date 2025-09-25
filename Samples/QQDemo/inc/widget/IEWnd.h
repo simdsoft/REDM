@@ -17,7 +17,7 @@
 
 class CIEWnd:public DMHWnd 
 {
-	DECLARE_MESSAGE_MAP()	
+	DM_DECLARE_MESSAGE_MAP()	
 public:
 	void OnActivate(UINT nState, BOOL bMinimized, HWND wndOther);   
 };

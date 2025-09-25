@@ -20,7 +20,7 @@ public:
 
 public:
 	static DMCode s_DMHandleEvent(DM::DMEventArgs *pEvt);
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP()
 
 public:

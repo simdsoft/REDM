@@ -21,6 +21,8 @@
 
 #include "ntcvt/ntcvt.hpp"
 
+#include <algorithm>
+
 namespace DM
 {
 	__pragma(warning(push))
@@ -1565,7 +1567,7 @@ namespace DM
             tchar* psz = m_pszData;
             if (AllocBuffer(nNewLength))
             {
-                int nLength = min(pOldData->nDataLength, nNewLength) + 1;
+                int nLength = (std::min)(pOldData->nDataLength, nNewLength) + 1;
                 memcpy(m_pszData, psz, nLength * sizeof(tchar));
                 ReleaseData(pOldData);
                 return true;

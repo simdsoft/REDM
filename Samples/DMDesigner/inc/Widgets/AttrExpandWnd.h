@@ -26,7 +26,7 @@ class AttrExpandWnd : public DMHWnd
 public:
 	AttrExpandWnd(IAttrExpandOwner* pOwner);
 	~AttrExpandWnd();
-	DECLARE_MESSAGE_MAP()						
+	DM_DECLARE_MESSAGE_MAP()						
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
 	void OnSize(UINT nType, CSize size);
 	void OnDestroy();

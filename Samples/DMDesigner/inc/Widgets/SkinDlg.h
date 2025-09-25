@@ -18,7 +18,7 @@ class SkinDlg : public DMHDialog,public DMMapT<HDMTREEITEM,DMXmlNodePtr>
 public: 
 	SkinDlg(bool bEditMode = false);
 	~SkinDlg();
-	DECLARE_MESSAGE_MAP()
+	DM_DECLARE_MESSAGE_MAP()
 	DECLARE_EVENT_MAP() 
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);

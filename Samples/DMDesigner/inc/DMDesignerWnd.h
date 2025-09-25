@@ -17,7 +17,7 @@ public:
 	DMDesignerWnd();
 	~DMDesignerWnd();
 
-	DECLARE_MESSAGE_MAP()						
+	DM_DECLARE_MESSAGE_MAP()						
 	DECLARE_EVENT_MAP()		
 
 	BOOL OnInitDialog(HWND wndFocus, LPARAM lInitParam);
